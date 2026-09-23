@@ -28,3 +28,11 @@ def test_ladder_ordering_and_silent_sigh():
     assert lad["healing_ringdown"] < lad["scrambling"] < lad["page"] < lad["evaporation"]
     assert 10 < lad["scrambling"] / lad["healing_ringdown"] < 200
     assert healing_energy_fraction(63.1) < 1e-60
+
+
+def test_alpha_bounds_from_lvk():
+    from bh_graph.healing import alpha_heal_bounds, alpha_allowed, QNM_DAMPING_M
+    lo, hi = alpha_heal_bounds()
+    assert abs(lo - 8.992) < 0.01 and abs(hi - 12.364) < 0.01
+    assert alpha_allowed(QNM_DAMPING_M)
+    assert not alpha_allowed(5.0) and not alpha_allowed(20.0)

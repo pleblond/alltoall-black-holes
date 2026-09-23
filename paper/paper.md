@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v1.1 — computational companion paper (Secs 1–3 + Appendices A–AG)
+**Draft v1.2 — computational companion paper (Secs 1–3 + Appendices A–AH)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH).
 
 ---
 
@@ -605,3 +605,23 @@ scrambling $0.23$ s ($66\times$), Page $10^{79}$ s, evaporation $10^{80}$ s —
 separate rungs, separate physics, all computed.
 
 ![Fig 30](../figures/fig30_healing.png)
+
+## Appendix AH. MSS tested (finite-size) + randomness qualifier + $\alpha$ bounds
+
+(`bh_graph.mss`, Fig 31.) Regularized thermal OTOC on $N = 10$ SYK:
+$\lambda/2\pi T = 0.50$ ($\beta = 0.5$) rising to $0.68$ ($\beta = 1$) —
+bound respected with the saturation *direction* visible; low-$T$ fits freeze
+out at dim $32$ (stated limit, needs large-$N$ Krylov work). Uniform-all:all
+LMG control scrambles strictly worse (lower max, later threshold): with
+Tran et al.\ 2020 and DHS 2023 (uniform all:all has power-law, not log,
+saturation time), the model's slogan is now qualified in code and text —
+*random/chaotic* all:all scrambles fast; mere density does not. Healing
+coefficient from GWTC-3 hierarchical $\delta\tau_{220} \in [-0.2, +0.1]$
+(Abbott et al.\ 2021): $\alpha \in [9.0, 12.4]$ at 90% — the AG prediction
+$11.24$ sits inside with $\sim 20\%$ headroom each side. New anchors:
+Landsman 2019 (tunable-range ions: longer range, faster OTOCs — direct
+hierarchy support) and Seki 2025 (Quantinuum H1 has all:all connectivity but
+ran a local circuit and noted all:all $\to O(\log N)$ — the AF quench is one
+firmware change away on that exact device).
+
+![Fig 31](../figures/fig31_mss.png)

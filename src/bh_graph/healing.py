@@ -88,3 +88,19 @@ def healing_energy_fraction(m_msun: float) -> float:
 def is_adiabatic(k_timescale_s: float, m_msun: float) -> bool:
     """Boolean check: does the horizon track the driving (tau_drive >> tau_heal)?"""
     return bool(k_timescale_s > 100.0 * tau_heal_sec(m_msun))
+
+
+# GWTC-3 hierarchical 90% bounds (Abbott et al. 2021, via 2603.16026 compilation):
+# dtau220 in [-0.2, +0.1] => alpha = 11.24 (1 + dtau) in [9.0, 12.4].
+DTAU220_LO, DTAU220_HI = -0.2, 0.1
+
+
+def alpha_heal_bounds() -> tuple[float, float]:
+    """Allowed (lo, hi) for the healing coefficient from LVK ringdown bounds."""
+    return (QNM_DAMPING_M * (1 + DTAU220_LO), QNM_DAMPING_M * (1 + DTAU220_HI))
+
+
+def alpha_allowed(alpha: float) -> bool:
+    """Boolean check: is this healing coefficient inside LVK 90% bounds?"""
+    lo, hi = alpha_heal_bounds()
+    return bool(lo <= alpha <= hi)

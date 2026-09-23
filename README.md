@@ -38,6 +38,7 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **AE — Bounds exclusion** (`bounds.py`): vendored PBHbounds vs required-β; 40+ order exclusion, β>1 above 10⁶ g.
 - **AF — Quench protocol**: same-device grid→all:all quench; t* 8→1, gap 0.27→36 (no cross-platform systematics).
 - **AG — Healing lag** (`healing.py`): dA/dt relaxation; ringdown fixes τ=11.24M; ladder ms→10⁸⁰ s; silent Planck sigh.
+- **AH — MSS + qualifier** (`mss.py`): thermal λ/2πT=0.5→0.68 (bound held); uniform all:all slower; α∈[9.0,12.4] from LVK.
 
 ## Quickstart
 
@@ -72,10 +73,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                tev.py (T) echoes.py (U) posteriors.py (W) ds.py (X)
                krylov.py (Y) collapse.py (AA) cosmic.py (AB)
                lunch.py + remnant.py (AC) bounds.py (AE) healing.py (AG)
+               mss.py (AH)
 scripts/       generate_figures.py
-tests/         107 tests (test_*.py per module)
+tests/         112 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig30 (+8b, 8c) PNGs
+figures/       fig1..fig31 (+8b, 8c) PNGs
 data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```

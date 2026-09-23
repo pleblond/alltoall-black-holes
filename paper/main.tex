@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Draft v1.1 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (107 tests)}
+\author{Draft v1.2 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (112 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -170,6 +170,11 @@ gap $0.27\to36$ — no cross-platform systematics.
 $dA/dt=(kl_p^2-A)/\tau$, $\tau=11.24M$ from ringdown ($3.5$\,ms at
 $63\,M_\odot$). Ladder: healing, scrambling $66\times$, Page, evaporation;
 final sigh carries $\sim10^{-78}$ of the mass.
+
+\section{MSS + qualifier (Fig.~31)}
+Thermal SYK $\lambda/2\pi T=0.50\to0.68$ (bound held, finite-size).
+Uniform all:all scrambles worse (randomness load-bearing).
+LVK gives $\alpha\in[9.0,12.4]$; $11.24$ sits inside.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

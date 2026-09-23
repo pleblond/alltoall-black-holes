@@ -55,6 +55,38 @@ LITERATURE = {
         "model_reading": "teleportation = HP mirror (App F); sparse all:all suffices for signal",
         "doi": "10.1038/s41586-022-05424-3",
     },
+    "Landsman2019": {
+        "hardware": "trapped-ion simulator (Maryland)",
+        "wiring": "tunable-range power law (alpha = 1.21 vs 0.85)",
+        "qubits": 7,
+        "signature": "longer range -> faster OTOC wavefront spread",
+        "model_reading": "range-speed tradeoff directly supports Sec 1/A hierarchy",
+        "doi": "10.1038/s41567-019-0452-8",
+    },
+    "Seki2025": {
+        "hardware": "Quantinuum H1 (all:all connectivity, ran local kicked-Ising)",
+        "wiring": "all:all hardware, local circuit",
+        "qubits": 20,
+        "signature": "ballistic OTOC on local circuit; authors note all:all -> O(log N)",
+        "model_reading": "AF quench is one firmware change away on this device",
+        "doi": "10.1103/PhysRevResearch.7.023032",
+    },
+    "Tran2020": {
+        "hardware": "theory (Lieb-Robinson bounds for all:all spins)",
+        "wiring": "all:all two-body",
+        "qubits": "N (analytic)",
+        "signature": "fast scrambling permitted but not automatic; uniformity can slow",
+        "model_reading": "requires our randomness qualifier (App AH): chaotic, not just dense",
+        "doi": "10.48550/arXiv.2005.07558",
+    },
+    "DHS2023": {
+        "hardware": "theory (deep-Hilbert-space OTOC, N ~ 100 numerics)",
+        "wiring": "uniform all:all",
+        "qubits": "~100",
+        "signature": "super-exponential onset then power-law; t_S power law, NOT log",
+        "model_reading": "uniform all:all is not fast scrambling; randomness is load-bearing",
+        "doi": "10.48550/arXiv.2304.11138",
+    },
 }
 
 

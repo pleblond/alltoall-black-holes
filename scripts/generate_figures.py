@@ -36,6 +36,9 @@ from bh_graph.cosmic import cosmic_legs, GYR_S, ds_scrambling_gyr
 from bh_graph.lunch import lunch_trajectory
 from bh_graph.bounds import remnant_exclusion_ratio, load_bound, EVAPORATION_BOUNDS, f_to_beta
 from bh_graph.healing import relax_area, timescale_ladder
+from bh_graph.mss import mss_scan, lmg_hamiltonian
+from bh_graph.syk import otoc_curve as _otoc
+from bh_graph.healing import alpha_heal_bounds
 from bh_graph.remnant import required_beta_for_dm
 from bh_graph.syk import syk_hamiltonian as _syk_h, ising_chain_hamiltonian as _ising_h
 from bh_graph.circuits import mean_cover_time
@@ -718,6 +721,29 @@ def fig30_healing():
     fig.savefig(FIG / "fig30_healing.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig31_mss():
+    scan = mss_scan(10, betas=(0.5, 1.0), seeds=(0, 1, 2))
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    bs = sorted(scan)
+    axes[0].plot([1 / b for b in bs], [scan[b]["ratio"] for b in bs],
+                 marker="o", color="#2563eb", label="SYK N=10 (ED)")
+    axes[0].axhline(1.0, color="red", linestyle="--", label="MSS bound")
+    axes[0].set_xlabel("T (J=1 units)"); axes[0].set_ylabel("lambda / 2pi T")
+    axes[0].set_title("Bound respected, rising toward low T"); axes[0].legend(fontsize=8)
+    t = np.linspace(0, 12, 80)
+    cs = np.mean([_otoc(syk_hamiltonian(8, seed=s), 4, t) for s in range(3)], axis=0)
+    cl = _otoc(lmg_hamiltonian(4), 4, t)
+    axes[1].plot(t, cs, color="#2563eb", label="SYK (random all:all)")
+    axes[1].plot(t, cl, color="#dc2626", label="LMG (uniform all:all)")
+    axes[1].set_xlabel("t"); axes[1].set_ylabel("C(t)")
+    axes[1].set_title("Uniform all:all scrambles worse"); axes[1].legend(fontsize=8)
+    lo, hi = alpha_heal_bounds()
+    fig.suptitle(f"Fig 31 — AH: MSS tested + randomness qualifier (alpha in [{lo:.1f},{hi:.1f}])")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig31_mss.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -749,6 +775,7 @@ def main():
     fig28_lunch()
     fig29_bounds()
     fig30_healing()
+    fig31_mss()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

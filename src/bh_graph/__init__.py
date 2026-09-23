@@ -89,6 +89,10 @@ from bh_graph.bounds import (
 from bh_graph.healing import (
     tau_heal_sec, relax_area, merger_step_response, scrambling_time_s,
     timescale_ladder, healing_energy_fraction, is_adiabatic,
+    alpha_heal_bounds, alpha_allowed,
+)
+from bh_graph.mss import (
+    lmg_hamiltonian, thermal_otoc, fit_lyapunov, mss_ratio, mss_scan,
 )
 
 __all__ = [
@@ -143,4 +147,6 @@ __all__ = [
     "remnant_exclusion_ratio", "remnant_ruled_out_everywhere", "EVAPORATION_BOUNDS",
     "tau_heal_sec", "relax_area", "merger_step_response", "scrambling_time_s",
     "timescale_ladder", "healing_energy_fraction", "is_adiabatic",
+    "alpha_heal_bounds", "alpha_allowed",
+    "lmg_hamiltonian", "thermal_otoc", "fit_lyapunov", "mss_ratio", "mss_scan",
 ]
