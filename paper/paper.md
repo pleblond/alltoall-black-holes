@@ -4,7 +4,7 @@
 
 **Philippe Leblond**
 
-**Draft v1.5 — computational companion paper (Secs 1–3 + Appendices A–AN)**
+**Draft v1.6 — computational companion paper (Secs 1–3 + Appendices A–AO)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -196,7 +196,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO).
 
 ---
 
@@ -723,3 +723,21 @@ with a soft tail where $k(M) < k_{crit}$.**
 ![Fig 37](../figures/fig37_quench.png)
 ![Fig 38](../figures/fig38_selfattack.png)
 ![Fig 39](../figures/fig39_lhc.png)
+
+## Appendix AO. Big pops from hidden giants (LRD-adjacent scenario)
+
+(`bh_graph.concentration`, Fig 40.) The pop radius $R_b = \sqrt{k l_p^2/4\pi}$
+is set by pre-existing $k$, not by the trigger: a delocalized $k \sim 10^{97}$
+giant (Appendix AK: gravitating, horizonless, dark) that concentrates pops a
+$\sim 10^8\,M_\odot$ horizon when $\chi$ crosses 1 — analytically
+$t_{pop} = t_{ff}(1 - (R_b/r_0)^{3/2})$. Fiducial: $10^8\,M_\odot$ over
+$100$ pc free-falls to a pop in $\sim 2$ Myr vs $\sim 600$ Myr Eddington
+growth from $100\,M_\odot$ ($\sim 300\times$ faster — the mass is
+pre-assembled and hidden, so no luminous accretion is needed). Stated
+homework: no metric for delocalized objects (assumed diffuse $\sim$ halo),
+no formation story (primordial wiring fluctuations?), no CMB/lensing
+constraint pass on $10^7$–$10^9\,M_\odot$ diffuse clumps at $z > 7$, and the
+LRD anomaly itself is softening toward AGN interpretations. Scenario sketch
+with a working trigger and honest gaps — not a claimed solution.
+
+![Fig 40](../figures/fig40_bigpop.png)

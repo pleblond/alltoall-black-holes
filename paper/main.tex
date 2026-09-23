@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v1.5 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (147 tests)}
+\author{Philippe Leblond \\ \small Draft v1.6 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (151 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -190,6 +190,11 @@ empties babies; info-per-leg diverges $\iff$ cloning risk.
 AF quench: kill below ratio $1.3$ (predicted $2$--$3\times$). $\alpha$
 monitor awaits O4/O5 rows. Min-rule violations shrink; Ising $s_{leg}=0.55$
 vs $0.25$. LHC onset $\sim550$\,TeV; soft tail below kills.
+
+\section{Big pop (Fig.~40)}
+Hidden delocalized giants pop $R_b(k)$ horizons on concentration:
+$10^8\,M_\odot$ in $\sim2$\,Myr vs $\sim600$\,Myr Eddington. Scenario
+sketch: metric, formation, and constraints still open.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

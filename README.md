@@ -47,6 +47,7 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **AL — Charge endpoints** (`charge.py`): q=4πQ² protected legs; pinch / pointlike remnant / extremal map.
 - **AM — Bandwidth** (`bandwidth.py`): evacuation check; babies born empty; divergence ⟺ cloning risk.
 - **AN — Kill list** (`gridcirc.py`, `monitor.py`, `selfattack.py`, `lhc.py`): 5 pre-registered falsifiers with thresholds.
+- **AO — Big pop** (`concentration.py`): hidden delocalized giants pop large horizons on concentration; 300× beats Eddington (scenario sketch).
 
 ## Quickstart
 
@@ -84,10 +85,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                mss.py (AH) bigsyk.py (AI) mp.py + greybody.py (AJ)
                congestion.py (AK) charge.py (AL) bandwidth.py (AM)
                gridcirc.py + monitor.py + selfattack.py + lhc.py (AN)
+               concentration.py (AO)
 scripts/       generate_figures.py
-tests/         147 tests (test_*.py per module)
+tests/         151 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig39 (+8b, 8c) PNGs
+figures/       fig1..fig40 (+8b, 8c) PNGs
 data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```

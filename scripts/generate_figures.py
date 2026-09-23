@@ -46,6 +46,9 @@ from bh_graph.bandwidth import evacuation_trajectory as _evac
 from bh_graph.gridcirc import quench_prediction as _qp, AF_KILL_RATIO
 from bh_graph.selfattack import violation_scan as _vs, s_leg_random as _sr, s_leg_ising as _si
 from bh_graph.lhc import thermal_onset_mass as _to, BENCHMARKS as _BM, predicted_spectrum as _ps
+from bh_graph.concentration import pop_event as _pe, freefall_myr as _ff, eddington_myr as _ed
+from bh_graph.congestion import bubble_radius as _rb
+from bh_graph.data import k_schwarzschild_sun as _ks
 from bh_graph.syk import otoc_curve as _otoc
 from bh_graph.healing import alpha_heal_bounds
 from bh_graph.remnant import required_beta_for_dm
@@ -911,6 +914,28 @@ def fig39_lhc():
     fig.savefig(FIG / "fig39_lhc.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig40_bigpop():
+    ks = np.logspace(1, 97, 200)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].loglog(ks, [_rb(k) for k in ks], color="#2563eb")
+    axes[0].set_xlabel("k (preset legs)"); axes[0].set_ylabel("pop radius R_b (lp)")
+    axes[0].set_title("Pop size was always set by k")
+    k8 = _ks(1e8)
+    pe = _pe(k8, 100.0, _ff(1e8, 100.0))
+    axes[1].semilogy(pe["t"], np.maximum(pe["chi"], 1e-30), color="#dc2626")
+    axes[1].axhline(1.0, color="black", linestyle="--", label="chi = 1")
+    axes[1].set_xlabel("t (Myr)"); axes[1].set_ylabel("congestion chi")
+    axes[1].set_title("1e8 Msun, 100 pc: pop at ~2 Myr"); axes[1].legend(fontsize=8)
+    axes[2].bar(["free-fall pop", "Eddington"], [pe["t_pop_myr"], _ed(1e8, 100.0)],
+                color=["#0f766e", "#94a3b8"])
+    axes[2].set_ylabel("Myr (log)"); axes[2].set_yscale("log")
+    axes[2].set_title("Concentration beats accretion 300x")
+    fig.suptitle("Fig 40 — AO: big pop from hidden giants")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig40_bigpop.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -951,6 +976,7 @@ def main():
     fig37_quench()
     fig38_selfattack()
     fig39_lhc()
+    fig40_bigpop()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

@@ -129,6 +129,10 @@ from bh_graph.lhc import (
     regime, thermal_onset_mass, predicted_spectrum, hardness_ratio,
     lhc_kill_check, BENCHMARKS,
 )
+from bh_graph.concentration import (
+    mass_from_k_msun, freefall_myr, eddington_myr, footprint_track,
+    pop_event, pop_beats_eddington,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -199,4 +203,6 @@ __all__ = [
     "qes_assumption_holds",
     "regime", "thermal_onset_mass", "predicted_spectrum", "hardness_ratio",
     "lhc_kill_check", "BENCHMARKS",
+    "mass_from_k_msun", "freefall_myr", "eddington_myr", "footprint_track",
+    "pop_event", "pop_beats_eddington",
 ]
