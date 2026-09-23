@@ -57,6 +57,18 @@ from bh_graph.tev import (
 from bh_graph.echoes import (
     echo_delay_sec, echo_delay_from_k, inside_typical_window, event_echo_table,
 )
+from bh_graph.posteriors import (
+    z_from_dl, kerr_legs_msun, load_overall_posterior,
+    source_masses_and_spins, delta_legs_posterior, median_analysis,
+    GW150914_FILE,
+)
+from bh_graph.ds import (
+    lambda_planck, ds_entropy, ds_legs, stellar_bh_total_legs,
+    smbh_total_legs, nariai_radius_planck, cosmic_budget_dominates,
+)
+from bh_graph.krylov import (
+    lanczos, spread_complexity, peak_time, initial_rise_slope,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -93,4 +105,10 @@ __all__ = [
     "l_d_meters", "rs_add_meters", "k_add", "k_crit_tev", "is_pointlike_lhc",
     "thermal_null_scan",
     "echo_delay_sec", "echo_delay_from_k", "inside_typical_window", "event_echo_table",
+    "z_from_dl", "kerr_legs_msun", "load_overall_posterior",
+    "source_masses_and_spins", "delta_legs_posterior", "median_analysis",
+    "GW150914_FILE",
+    "lambda_planck", "ds_entropy", "ds_legs", "stellar_bh_total_legs",
+    "smbh_total_legs", "nariai_radius_planck", "cosmic_budget_dominates",
+    "lanczos", "spread_complexity", "peak_time", "initial_rise_slope",
 ]

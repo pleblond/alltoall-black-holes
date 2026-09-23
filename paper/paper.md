@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v0.7 — computational companion paper (Secs 1–3 + Appendices A–V)
+**Draft v0.8 — computational companion paper (Secs 1–3 + Appendices A–Y)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y).
 
 ---
 
@@ -479,3 +479,42 @@ Hayden-Preskill mirror primitive of Appendix F, and the signal surviving on a
 *sparse* all:all graph supports the "almost-perfect suffices" thesis of Sec 2.
 
 ![Fig 22](../figures/fig22_echo.png)
+
+## Appendix W. Spin-aware leg creation from GW150914 posteriors
+
+(`bh_graph.posteriors`, Fig 23.) GWOSC GWTC-1 Overall_posterior (8350
+samples): per-sample Kerr component areas from aligned spins
+$\chi_z$, source masses via Planck15 $d_L \to z$ inversion, remnant from
+$M_f = 63.1 \pm 1.5\,M_\odot$, $a_f = 0.68 \pm 0.06$ Gaussians. **$P(\Delta
+k > 0) = 100\%$** with median fractional creation $0.57$ (vs $0.77$
+Schwarzschild-medians: the spin correction is quantified, not hand-waved).
+Every posterior sample sits above the area bound in the initial-vs-final
+legs plane. This is the Appendix Q result with spins on both ends.
+
+![Fig 23](../figures/fig23_posterior.png)
+
+## Appendix X. The cosmic horizon owns the universe's wiring budget
+
+(`bh_graph.ds`, Fig 24.) Planck15 gives $\Lambda \approx 2.9\times10^{-122}$,
+$S_{dS} = 3\pi/\Lambda \approx 3\times10^{122}$, $k_{dS} = 4S \approx
+10^{123}$ legs wiring our static patch to the beyond. All stellar black
+holes ($\sim 10^{101}$) plus all SMBHs ($\sim 10^{101}$) are $20+$ orders of
+magnitude below — black holes are wiring rounding error next to $\Lambda$.
+The Nariai radius $1/\sqrt{\Lambda} \approx 10^{26}$ m marks where the two
+budgets merge. Baby-universe reading extends: a closed slicing has no
+exterior at all.
+
+![Fig 24](../figures/fig24_cosmic.png)
+
+## Appendix Y. Krylov hierarchy: saturation, not slope
+
+(`bh_graph.krylov`, Fig 25.) Spread complexity from Lanczos chains (full
+reorthogonalization, dim 16): SYK saturates at $\approx 2\times$ the chain's
+spread ($\approx 3.5$ vs $1.9$) with a higher late plateau — it explores far
+more Krylov space. Notably, early-slope and peak-time order the *opposite*
+way for a computational-basis start (transverse field rattles fast but
+locally), so those metrics were demoted and saturation promoted — an honest
+correction recorded in code and tests. The Sec 1 hierarchy holds in Krylov
+language at the level that is actually robust.
+
+![Fig 25](../figures/fig25_krylov.png)

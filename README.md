@@ -29,6 +29,9 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **T — TeV recast** (`tev.py`): LHC masses at k~11–17 vs k_crit~50 → thermal nulls expected, not constraining.
 - **U — Echo timescales** (`echoes.py`): 0.03–0.3 s across remnants, inside searched windows; amplitude unmodeled.
 - **V — EHT + wormhole** (`pheno.py`, `litcompare.py`): shadow deviation 10⁻⁴⁸ (47 orders below EHT); Jafferis22 teleportation anchor.
+- **W — Posterior area test** (`posteriors.py`): 8350 GW150914 samples, Kerr both ends, P(Δk>0)=100%, median +57%.
+- **X — Cosmic budget** (`ds.py`): k_dS~10¹²³ vs BHs ~10¹⁰¹; Nariai merge; baby-universe extension.
+- **Y — Krylov hierarchy** (`krylov.py`): SYK ~2× chain spread saturation (slope metric honestly demoted).
 
 ## Quickstart
 
@@ -60,11 +63,13 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                qec.py (F) robustness.py (G) kerr.py (H) haar.py (I)
                monogamy.py (J) otoc.py + pheno.py (L) tn.py (M)
                kerrpage.py (N) syk.py (O) data.py (Q) litcompare.py (R)
-               tev.py (T) echoes.py (U)
+               tev.py (T) echoes.py (U) posteriors.py (W) ds.py (X)
+               krylov.py (Y)
 scripts/       generate_figures.py
-tests/         75 tests (test_*.py per module)
+tests/         86 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig22 (+8b, 8c) PNGs
+figures/       fig1..fig25 (+8b, 8c) PNGs
+data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```
 

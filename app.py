@@ -28,10 +28,11 @@ from bh_graph.data import load_events, catalog_leg_audit
 from bh_graph.litcompare import head_to_head
 from bh_graph.tev import k_add, k_crit_tev
 from bh_graph.echoes import echo_delay_sec
+from bh_graph.ds import ds_legs, stellar_bh_total_legs
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–V", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–Y", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–V in src/bh_graph/ (paper/main.pdf)")
+st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–Y in src/bh_graph/ (paper/main.pdf)")
 
 tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
@@ -270,6 +271,11 @@ with tabQ:
     st.metric("echo spacing", f"{echo_delay_sec(float(mecho)):.3f} s")
     st.image("figures/fig21_tev.png", caption="fig21")
     st.image("figures/fig22_echo.png", caption="fig22")
+    st.subheader("W/X/Y — posteriors, cosmic budget, Krylov")
+    st.metric("cosmic legs k_dS", f"{float(ds_legs()):.2e}")
+    st.metric("stellar-BH legs", f"{float(stellar_bh_total_legs()):.2e}")
+    for f in ["fig23_posterior.png", "fig24_cosmic.png", "fig25_krylov.png"]:
+        st.image(f"figures/{f}", caption=f)
 
 with tab4:
     st.header("Paper draft")

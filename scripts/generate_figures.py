@@ -28,6 +28,10 @@ from bh_graph.litcompare import head_to_head
 from bh_graph.tev import k_add, k_crit_tev
 from bh_graph.echoes import event_echo_table
 from bh_graph.data import BUNDLED_EVENTS
+from bh_graph.posteriors import load_overall_posterior, source_masses_and_spins, delta_legs_posterior, GW150914_FILE, median_analysis
+from bh_graph.ds import ds_legs, stellar_bh_total_legs, smbh_total_legs
+from bh_graph.krylov import lanczos, spread_complexity
+from bh_graph.syk import syk_hamiltonian as _syk_h, ising_chain_hamiltonian as _ising_h
 from bh_graph.circuits import mean_cover_time
 from bh_graph.qec import recovery_fidelity, recovery_threshold
 from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary
@@ -42,10 +46,6 @@ from bh_graph.kerrpage import kerr_page
 from bh_graph.syk import syk_hamiltonian, ising_chain_hamiltonian, otoc_curve, scrambling_time_threshold
 from bh_graph.data import load_events, catalog_leg_audit
 from bh_graph.litcompare import head_to_head
-from bh_graph.tev import k_add, k_crit_tev
-from bh_graph.echoes import event_echo_table
-from bh_graph.data import BUNDLED_EVENTS
-from bh_graph.circuits import mean_cover_time
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
@@ -552,6 +552,68 @@ def fig22_echo():
     fig.savefig(FIG / "fig22_echo.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig23_posterior():
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    if GW150914_FILE.exists():
+        r = delta_legs_posterior(source_masses_and_spins(load_overall_posterior()))
+        dk, k1, k2, kf = r["dk"], r["k1"], r["k2"], r["kf"]
+        axes[0].hist(np.log10(dk), bins=30, color="#2563eb", alpha=0.8)
+        axes[0].set_xlabel("log10 created legs")
+        axes[0].set_title(f"GW150914 dk>0: {r['p_positive']*100:.1f}% of samples")
+        idx = np.random.default_rng(0).choice(len(dk), 1500, replace=False)
+        axes[1].scatter(np.log10(k1[idx] + k2[idx]), np.log10(kf[idx]), s=4, alpha=0.4, color="#0f766e")
+        lo = float(np.log10((k1 + k2).min()))
+        hi = float(np.log10(kf.max()))
+        axes[1].plot([lo, hi], [lo, hi], "--", color="red", label="area bound")
+        axes[1].set_xlabel("log10 initial legs"); axes[1].set_ylabel("log10 final legs")
+        axes[1].set_title("Every sample above the bound"); axes[1].legend(fontsize=8)
+    else:
+        r = median_analysis()
+        axes[0].bar(["dk"], [np.log10(r["dk"])], color="#2563eb")
+        axes[0].set_title("medians fallback (no HDF5)")
+    fig.suptitle("Fig 23 — W: spin-aware leg creation posterior")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig23_posterior.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig24_cosmic():
+    fig = plt.figure(figsize=(7, 4))
+    vals = [np.log10(stellar_bh_total_legs()), np.log10(smbh_total_legs()), np.log10(ds_legs())]
+    plt.bar(["stellar BHs", "SMBHs", "cosmic horizon"], vals, color=["#94a3b8", "#7c3aed", "#2563eb"])
+    for i, v in enumerate(vals):
+        plt.text(i, v + 1, f"1e{v:.0f}", ha="center", fontsize=9)
+    plt.ylabel("log10 exterior legs")
+    plt.title("Fig 24 — X: the universe's wiring is ~all cosmic horizon")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig24_cosmic.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig25_krylov():
+    d = 16
+    psi0 = np.zeros(d)
+    psi0[0] = 1.0
+    t = np.linspace(0, 20, 100)
+    a_s, b_s = lanczos(_syk_h(8, seed=1), psi0)
+    a_c, b_c = lanczos(_ising_h(4), psi0)
+    cs = spread_complexity(a_s, b_s, t)
+    cc = spread_complexity(a_c, b_c, t)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(t, cs, color="#2563eb", label="SYK all:all")
+    axes[0].plot(t, cc, color="#dc2626", label="Ising chain")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("spread C(t)")
+    axes[0].set_title("SYK explores ~2x Krylov space"); axes[0].legend(fontsize=8)
+    axes[1].plot(b_s, marker="o", color="#2563eb", label="SYK b_n")
+    axes[1].plot(b_c, marker="s", color="#dc2626", label="chain b_n")
+    axes[1].set_xlabel("n"); axes[1].set_ylabel("b_n")
+    axes[1].set_title("Lanczos profiles"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 25 — Y: Krylov hierarchy (saturation, not slope)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig25_krylov.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -575,6 +637,9 @@ def main():
     fig20_headtohead()
     fig21_tev()
     fig22_echo()
+    fig23_posterior()
+    fig24_cosmic()
+    fig25_krylov()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
