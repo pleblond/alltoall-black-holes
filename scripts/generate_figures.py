@@ -20,6 +20,10 @@ from bh_graph.qes import qes_candidates, qes_page_k, min_cut_scaling
 from bh_graph.evaporation import page_curve_bits, evaporate
 from bh_graph.qec import recovery_fidelity, recovery_threshold
 from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary
+from bh_graph.kerr import kerr_newman_k, spin_budget_fraction
+from bh_graph.haar import page_curve_exact_bits, haar_entropy_samples
+from bh_graph.monogamy import frontier, ckw_deficit
+from bh_graph.evaporation import page_curve_bits
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
@@ -279,6 +283,70 @@ def fig11_qec_robust():
     fig.savefig(FIG / "fig11_qec_robust.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig12_kerr():
+    m = 1.0
+    a = np.linspace(0, 1, 200)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(a, kerr_newman_k(m, a), color="#7c3aed")
+    axes[0].set_xlabel("spin a/M"); axes[0].set_ylabel("k_eff = A/lp^2")
+    axes[0].set_title("Spin costs legs (extremal = half)")
+    axes[1].plot(a, spin_budget_fraction(a, m), color="#dc2626")
+    axes[1].set_xlabel("a/M"); axes[1].set_ylabel("budget spent on rotation")
+    axes[1].set_title("Rotation budget fraction -> 1/2")
+    fig.suptitle("Fig 12 — H: Kerr extension preserves A(k)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig12_kerr.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig13_haar_page():
+    n = 10
+    t, s_exact = page_curve_exact_bits(n)
+    s_min = np.minimum(t, n - t)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(t, s_min, "--", color="gray", label="min() idealization")
+    axes[0].plot(t, s_exact, color="#2563eb", label="Page exact (Haar avg)")
+    # numeric Haar samples at N=8 (cheaper), overlaid scaled
+    t8 = np.arange(9)
+    ms, ss = [], []
+    for tt in t8:
+        m_, s_ = haar_entropy_samples(8, int(tt), trials=30, seed=0)
+        ms.append(m_); ss.append(s_)
+    axes[1].errorbar(t8, ms, yerr=ss, marker="o", color="#0f766e", capsize=2, label="Haar samples N=8")
+    t8e, s8e = page_curve_exact_bits(8)
+    axes[1].plot(t8e, s8e, "--", color="gray", label="Page exact N=8")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("S_rad (bits)")
+    axes[0].set_title("Exact Page dips below min() (~0.72 bit)")
+    axes[0].legend(fontsize=8)
+    axes[1].set_xlabel("t"); axes[1].set_ylabel("S_rad (bits)")
+    axes[1].set_title("Sampled states track the mean (typical)")
+    axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 13 — I: exact Page curve + Haar fluctuations")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig13_haar_page.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig14_monogamy():
+    x, y, th = frontier(300)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(x, y, color="#2563eb", label="explicit family (x=C^2_AB, y=tau_E)")
+    axes[0].plot([0, 1], [1, 0], "--", color="gray", label="linear toy x+y=1")
+    axes[0].scatter([1.0], [0.0], color="black", zorder=5)
+    axes[0].annotate("baby universe", (1.0, 0.0), xytext=(0.55, 0.35), arrowprops={"arrowstyle": "->"})
+    axes[0].set_xlabel("interior pairwise C^2_AB"); axes[0].set_ylabel("exterior tangle")
+    axes[0].set_title("Curved frontier below linear toy"); axes[0].legend(fontsize=7)
+    thg = np.linspace(0, np.pi / 2, 100)
+    axes[1].plot(thg, [ckw_deficit(float(t)) for t in thg], color="#0f766e")
+    axes[1].axhline(0, color="red", linestyle="--")
+    axes[1].set_xlabel("theta"); axes[1].set_ylabel("CKW deficit")
+    axes[1].set_title("Coffman-Kundu-Wootters holds (>= 0)")
+    fig.suptitle("Fig 14 — J: nonlinear monogamy from explicit states")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig14_monogamy.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -291,6 +359,9 @@ def main():
     fig9_qes()
     fig10_page()
     fig11_qec_robust()
+    fig12_kerr()
+    fig13_haar_page()
+    fig14_monogamy()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
