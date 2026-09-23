@@ -21,3 +21,10 @@ def test_echo_grows_with_mass_and_legs():
 def test_planck_mass_hole_is_pointlike():
     assert is_pointlike_pbh(0.1)
     assert not is_pointlike_pbh(100.0)
+
+
+def test_eht_bound_negligible():
+    from bh_graph.pheno import shadow_deviation_bound, eht_consistent
+    assert shadow_deviation_bound(6.5e9) < 1e-40  # M87*
+    assert shadow_deviation_bound(4e6) < 1e-40  # Sgr A*
+    assert eht_consistent(6.5e9) and eht_consistent(4e6)

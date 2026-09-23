@@ -26,10 +26,12 @@ from bh_graph.tn import eps_from_crossover
 from bh_graph.kerrpage import kerr_page
 from bh_graph.data import load_events, catalog_leg_audit
 from bh_graph.litcompare import head_to_head
+from bh_graph.tev import k_add, k_crit_tev
+from bh_graph.echoes import echo_delay_sec
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–S", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–V", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–S in src/bh_graph/ (paper/main.pdf)")
+st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–V in src/bh_graph/ (paper/main.pdf)")
 
 tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
@@ -261,6 +263,13 @@ with tabQ:
     st.metric("N=53 prediction: all:all t*", f"{pred['alltoall_t']:.1f}")
     st.metric("N=53 prediction: grid t*", f"{pred['grid_proxy_t']:.1f}")
     st.image("figures/fig20_headtohead.png", caption="fig20")
+    st.subheader("T/U/V — collider, echoes, shadows")
+    mtev = st.slider("M (TeV)", 1.0, 14.0, 5.0, step=0.5)
+    st.metric("k (n=6, MD=1 TeV)", f"{k_add(float(mtev), 1.0, 6):.1f} vs k_crit={k_crit_tev(2.0):.1f}")
+    mecho = st.slider("remnant mass (M_sun)", 10.0, 150.0, 63.1)
+    st.metric("echo spacing", f"{echo_delay_sec(float(mecho)):.3f} s")
+    st.image("figures/fig21_tev.png", caption="fig21")
+    st.image("figures/fig22_echo.png", caption="fig22")
 
 with tab4:
     st.header("Paper draft")

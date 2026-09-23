@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Draft v0.6 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (67 tests)}
+\author{Draft v0.7 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (75 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -145,6 +145,11 @@ radiated): mergers create exterior legs. Spin caveat $\sim13\%\ll$ margin.
 G\"arttner 2017 (all:all ions, $m\le8$ OTOC coherences) and Mi 2021 (Sycamore
 grid, ballistic OTOC decay) both consistent. Head-to-head prediction at
 $N=53$: $7.9$ vs $14.6$ steps; null result falsifies Sec~1/A.
+
+\section{TeV recast + echoes + EHT (Figs.~21--22)}
+LHC masses sit at $k\sim11$--$17$ vs $k_{\rm crit}\sim50$: thermal nulls
+expected. Echo spacings $0.03$--$0.3$\,s land in searched windows (amplitude
+unmodeled). Shadow deviation $\sim10^{-48}$: EHT-identical by 47 orders.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

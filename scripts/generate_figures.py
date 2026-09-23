@@ -25,6 +25,9 @@ from bh_graph.kerrpage import kerr_page
 from bh_graph.syk import syk_hamiltonian, ising_chain_hamiltonian, otoc_curve, scrambling_time_threshold
 from bh_graph.data import load_events, catalog_leg_audit
 from bh_graph.litcompare import head_to_head
+from bh_graph.tev import k_add, k_crit_tev
+from bh_graph.echoes import event_echo_table
+from bh_graph.data import BUNDLED_EVENTS
 from bh_graph.circuits import mean_cover_time
 from bh_graph.qec import recovery_fidelity, recovery_threshold
 from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary
@@ -39,6 +42,9 @@ from bh_graph.kerrpage import kerr_page
 from bh_graph.syk import syk_hamiltonian, ising_chain_hamiltonian, otoc_curve, scrambling_time_threshold
 from bh_graph.data import load_events, catalog_leg_audit
 from bh_graph.litcompare import head_to_head
+from bh_graph.tev import k_add, k_crit_tev
+from bh_graph.echoes import event_echo_table
+from bh_graph.data import BUNDLED_EVENTS
 from bh_graph.circuits import mean_cover_time
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
@@ -505,6 +511,47 @@ def fig20_headtohead():
     fig.savefig(FIG / "fig20_headtohead.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig21_tev():
+    m = np.linspace(1, 14, 200)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    for n, color in [(2, "#2563eb"), (6, "#dc2626")]:
+        kk = np.array([k_add(float(mm), 1.0, n) for mm in m])
+        axes[0].plot(m, kk, color=color, label=f"n={n}")
+    axes[0].axhline(k_crit_tev(2.0), color="black", linestyle="--", label="k_crit (r=2lD)")
+    axes[0].fill_between(m, 0, k_crit_tev(2.0), alpha=0.1, color="gray", label="pointlike")
+    axes[0].set_xlabel("M (TeV)"); axes[0].set_ylabel("k")
+    axes[0].set_title("LHC masses below k_crit"); axes[0].legend(fontsize=8)
+    md = np.linspace(1, 5, 100)
+    axes[1].plot(md, [k_add(5.0, float(x), 6) for x in md], color="#0f766e")
+    axes[1].axhline(k_crit_tev(2.0), color="black", linestyle="--")
+    axes[1].set_xlabel("M_D (TeV)"); axes[1].set_ylabel("k (M=5 TeV, n=6)")
+    axes[1].set_title("Pointlike across M_D range")
+    fig.suptitle("Fig 21 — T: TeV-gravity thermal nulls expected")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig21_tev.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig22_echo():
+    tab = event_echo_table(BUNDLED_EVENTS)
+    names = sorted(tab)
+    dts = [tab[n] for n in names]
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].barh(names, dts, color="#7c3aed")
+    axes[0].set_xlabel("predicted dt (s)")
+    axes[0].set_title("Echo spacing per event (remnant mass)")
+    axes[0].axvspan(0.01, 1.0, alpha=0.1, color="gray", label="searched windows")
+    axes[0].legend(fontsize=8)
+    axes[1].bar(["model dev.", "EHT sens."], [1e-48, 0.1], color=["#2563eb", "#dc2626"])
+    axes[1].set_yscale("log")
+    axes[1].set_ylabel("fractional shadow deviation")
+    axes[1].set_title("M87*: 47 orders below sensitivity")
+    fig.suptitle("Fig 22 — U/V: echoes in-window (no ampl.) + EHT untestable")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig22_echo.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -526,6 +573,8 @@ def main():
     fig18_syk()
     fig19_gwtc()
     fig20_headtohead()
+    fig21_tev()
+    fig22_echo()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

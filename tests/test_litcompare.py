@@ -2,9 +2,10 @@ from bh_graph.litcompare import LITERATURE, head_to_head, hierarchy_holds, grid_
 
 
 def test_literature_anchors_present():
-    assert set(LITERATURE) == {"Garttner2017", "Mi2021", "Blok2021"}
+    assert set(LITERATURE) == {"Garttner2017", "Mi2021", "Blok2021", "Jafferis2022"}
     assert LITERATURE["Garttner2017"]["wiring"] == "all:all Ising"
     assert LITERATURE["Mi2021"]["qubits"] == 53
+    assert "wormhole" in LITERATURE["Jafferis2022"]["signature"]
 
 
 def test_head_to_head_hierarchy_at_53():

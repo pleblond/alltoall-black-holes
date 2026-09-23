@@ -47,6 +47,14 @@ LITERATURE = {
         "model_reading": "small-local baseline; teleportation = HP mirror primitive",
         "doi": "10.1103/PhysRevX.11.021010",
     },
+    "Jafferis2022": {
+        "hardware": "Sycamore 9q (Google; learned SYK-like model)",
+        "wiring": "sparse all:all (learned)",
+        "qubits": 9,
+        "signature": "size-winding teleportation signal through 'wormhole' circuit",
+        "model_reading": "teleportation = HP mirror (App F); sparse all:all suffices for signal",
+        "doi": "10.1038/s41586-022-05424-3",
+    },
 }
 
 

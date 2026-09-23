@@ -26,6 +26,9 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **Q — GWTC repurposing** (`data.py`): all 32 GWTC-3 BBH mergers create legs (median +77%); live GWOSC fetch + offline fallback.
 - **R — Hardware literature** (`litcompare.py`): Gärttner/Mi/Blok anchors consistent; head-to-head prediction 7.9 vs 14.6 steps at N=53.
 - **S — Anomalies ledger**: echoes/LHC/PBH/EHT assessed honestly — model survives all, explains none standing.
+- **T — TeV recast** (`tev.py`): LHC masses at k~11–17 vs k_crit~50 → thermal nulls expected, not constraining.
+- **U — Echo timescales** (`echoes.py`): 0.03–0.3 s across remnants, inside searched windows; amplitude unmodeled.
+- **V — EHT + wormhole** (`pheno.py`, `litcompare.py`): shadow deviation 10⁻⁴⁸ (47 orders below EHT); Jafferis22 teleportation anchor.
 
 ## Quickstart
 
@@ -57,10 +60,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                qec.py (F) robustness.py (G) kerr.py (H) haar.py (I)
                monogamy.py (J) otoc.py + pheno.py (L) tn.py (M)
                kerrpage.py (N) syk.py (O) data.py (Q) litcompare.py (R)
+               tev.py (T) echoes.py (U)
 scripts/       generate_figures.py
-tests/         67 tests (test_*.py per module)
+tests/         75 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig20 (+8b, 8c) PNGs
+figures/       fig1..fig22 (+8b, 8c) PNGs
 app.py         Streamlit explorer
 ```
 

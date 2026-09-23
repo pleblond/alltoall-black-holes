@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v0.6 — computational companion paper (Secs 1–3 + Appendices A–S)
+**Draft v0.7 — computational companion paper (Secs 1–3 + Appendices A–V)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U).
 
 ---
 
@@ -442,3 +442,40 @@ Hubble tension, $g-2$, etc.**: no connection; the model is GR-identical at
 astrophysical scales by construction. Net: the model *survives* all current
 public data (Appendix Q positively) but *explains* no standing anomaly — its
 testable frontier is analogue/lab (Appendix R), not the sky.
+
+## Appendix T. TeV gravity: LHC thermal nulls recast as expected
+
+(`bh_graph.tev`, Fig 21.) With $M_D = 1$ TeV ($l_D \approx 2\times10^{-19}$ m),
+Myers-Perry masses across the LHC reach sit at $k \approx 11$ ($3$ TeV) to $17$
+($13$ TeV) for $n = 6$ — a factor $\sim 3$--$5$ *below* $k_{crit} \approx 50$
+($r_{point} = 2l_D$), and pointlike across $M_D = 1$--$5$ TeV. Sub-critical
+holes are non-thermal point defects (Sec 3), so ATLAS/CMS thermal-channel
+non-observations (high-multiplicity democratic decays) are *compatible at any
+$k_{crit}$ above LHC reach* — the null is recast from "no micro BHs" to "no
+*thermal* micro BHs, as the pointlike regime expects." Falsifier preserved: a
+thermal-spectrum excess at $k < k_{crit}$ would break Sec 3.
+
+![Fig 21](../figures/fig21_tev.png)
+
+## Appendix U. Echo timescales land in searched windows (amplitude-free)
+
+(`bh_graph.echoes`, Fig 22.) $dt = 4M\log(M/l_p)$ gives $0.03$--$0.3$ s across
+bundled remnants (GW150914: $0.11$ s) — inside the $O(0.01$--$1)$ s windows
+echo searches covered. LVK nulls therefore bound *reflectivity*, which the toy
+does not predict: compatible, not confirmed. The wiring form $dt \sim M\log k$
+makes the scaling testable in principle: echoes far from $M\log k$ would count
+against the picture; echoes tracking it (with amplitude from a future
+reflectivity calculation) would count for it.
+
+## Appendix V. EHT bound + wormhole anchor
+
+(`bh_graph.pheno`, `bh_graph.litcompare`.) Planck-scale microstructure shifts
+shadow sizes by $\sim l_p/2M \approx 10^{-48}$ (M87*) — $47$ orders of
+magnitude below EHT $O(10\%)$ precision (Fig 22, right): quantitative proof the
+model is GR-identical in the sky, and a quantitative no-go for EHT tests.
+Fourth literature anchor: Jafferis et al.\ 2022 (Sycamore 9q learned sparse
+SYK-like model, teleportation/"wormhole" signal) — teleportation is the
+Hayden-Preskill mirror primitive of Appendix F, and the signal surviving on a
+*sparse* all:all graph supports the "almost-perfect suffices" thesis of Sec 2.
+
+![Fig 22](../figures/fig22_echo.png)

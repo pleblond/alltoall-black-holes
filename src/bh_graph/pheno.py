@@ -46,3 +46,22 @@ def is_pointlike_pbh(m_planck: float, r_point: float = 1.0, lp: float = 1.0) -> 
 
     k = float(k_from_mass_schwarzschild(m_planck, lp))
     return bool(k * lp**2 < 4.0 * np.pi * r_point**2)
+
+
+M_SUN_PLANCK_PHENO = 9.137e37
+
+
+def shadow_deviation_bound(m_msun: float, lp: float = 1.0) -> float:
+    """Fractional shadow-size deviation from lp-scale microstructure ~ lp/(2M).
+
+    For M87* (~6.5e9 M_sun) this is ~1e-48 vs EHT O(10%) precision: the model
+    is GR-identical at EHT scales by ~47 orders of magnitude. Quantitative
+    consistency, and a quantitative statement of untestability there.
+    """
+    m_planck = max(float(m_msun) * M_SUN_PLANCK_PHENO, 1.0)
+    return float(lp / (2.0 * m_planck))
+
+
+def eht_consistent(m_msun: float, eht_precision: float = 0.1) -> bool:
+    """Boolean check: predicted deviation far below EHT sensitivity?"""
+    return bool(shadow_deviation_bound(m_msun) < eht_precision)

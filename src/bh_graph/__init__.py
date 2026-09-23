@@ -30,7 +30,8 @@ from bh_graph.otoc import (
 )
 from bh_graph.pheno import (
     pbh_lifetime_planck, pbh_mass_evaporating_today, echo_delay_toy,
-    echo_delay_from_legs, is_pointlike_pbh,
+    echo_delay_from_legs, is_pointlike_pbh, shadow_deviation_bound,
+    eht_consistent,
 )
 from bh_graph.tn import (
     min_rule, minimal_k_for_bulk, random_star_boundary_entropy,
@@ -48,6 +49,13 @@ from bh_graph.data import (
 )
 from bh_graph.litcompare import (
     LITERATURE, grid_diameter_prediction, head_to_head, hierarchy_holds,
+)
+from bh_graph.tev import (
+    l_d_meters, rs_add_meters, k_add, k_crit_tev, is_pointlike_lhc,
+    thermal_null_scan,
+)
+from bh_graph.echoes import (
+    echo_delay_sec, echo_delay_from_k, inside_typical_window, event_echo_table,
 )
 
 __all__ = [
@@ -71,7 +79,8 @@ __all__ = [
     "otoc_alltoall", "otoc_chain_avg", "scrambling_time_lyapunov",
     "scrambling_time_ballistic", "early_growth_rate",
     "pbh_lifetime_planck", "pbh_mass_evaporating_today", "echo_delay_toy",
-    "echo_delay_from_legs", "is_pointlike_pbh",
+    "echo_delay_from_legs", "is_pointlike_pbh", "shadow_deviation_bound",
+    "eht_consistent",
     "min_rule", "minimal_k_for_bulk", "random_star_boundary_entropy",
     "mean_star_entropy", "eps_from_qes_matching", "eps_from_crossover", "crossover_scale",
     "trajectories", "kerr_page", "page_time_fraction", "peak_entropy",
@@ -81,4 +90,7 @@ __all__ = [
     "leg_creation", "area_theorem_holds", "fetch_catalog_events", "load_events",
     "catalog_leg_audit",
     "LITERATURE", "grid_diameter_prediction", "head_to_head", "hierarchy_holds",
+    "l_d_meters", "rs_add_meters", "k_add", "k_crit_tev", "is_pointlike_lhc",
+    "thermal_null_scan",
+    "echo_delay_sec", "echo_delay_from_k", "inside_typical_window", "event_echo_table",
 ]
