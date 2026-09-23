@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Draft v0.5 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (60 tests)}
+\author{Draft v0.6 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (67 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -136,6 +136,15 @@ $a_0=0.95$ vs $0.54$ Schwarzschild.
 $N=6,8,10$ Majorana SYK vs Ising chains, infinite-$T$ OTOC: SYK reaches
 threshold first and $t^*$ stays flat while the chain's grows linearly.
 MSS saturation cited, hierarchy reproduced.
+
+\section{GWTC leg creation (Fig.~19)}
+All 32 GWTC-3 BBH medians satisfy $k_f>k_1+k_2$ (median $+77\%$ at $4\%$
+radiated): mergers create exterior legs. Spin caveat $\sim13\%\ll$ margin.
+
+\section{Hardware literature + prediction (Fig.~20)}
+G\"arttner 2017 (all:all ions, $m\le8$ OTOC coherences) and Mi 2021 (Sycamore
+grid, ballistic OTOC decay) both consistent. Head-to-head prediction at
+$N=53$: $7.9$ vs $14.6$ steps; null result falsifies Sec~1/A.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

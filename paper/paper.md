@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v0.5 — computational companion paper (Secs 1–3 + Appendices A–O)
+**Draft v0.6 — computational companion paper (Secs 1–3 + Appendices A–S)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R).
 
 ---
 
@@ -394,3 +394,51 @@ saturation at low $T$ is cited (Maldacena-Stanford), not reproduced:
 infinite-$T$ ED tests the hierarchy, which is what the model claims.
 
 ![Fig 18](../figures/fig18_syk.png)
+
+## Appendix Q. Repurposed public data: GWTC mergers create legs
+
+(`bh_graph.data`, Fig 19.) Live LIGO-Virgo-KAGRA catalog medians via the GWOSC
+event API (32 BBH events, GWTC-3-confident; bundled literature fallback
+offline): mapping $k = 16\pi M^2/l_p^2$ with $M_\odot \approx 9.14\times10^{37}
+m_P$, **every** merger satisfies $k_f > k_1 + k_2$ — median fractional creation
+$0.77$ at median radiated fraction $0.04$. The Hawking area theorem in wiring
+language: mergers are leg-creation events; radiated mass is more than paid for
+by the nonlinear $k \propto M^2$ law. Spin neglected (Schwarzschild areas), but
+remnant $a_f \sim 0.7$ costs only $\sim 13\%$ of the final area vs $\sim 77\%$
+median margin — the conclusion cannot flip. This is the model's first contact
+with real astrophysical data, and it passes.
+
+![Fig 19](../figures/fig19_gwtc.png)
+
+## Appendix R. Quantum hardware: literature consistency + head-to-head prediction
+
+(`bh_graph.litcompare`, Fig 20.) Published anchors: Garttner et al.\ 2017
+(100+ Penning-trap ions, all:all Ising) built $m$-body OTOC coherences up to
+$m = 8$ — rapid multi-body spread on all:all wiring, as Sec 1/A predict; Mi et
+al.\ 2021 (Sycamore 53q, local grid) saw ballistic average-OTOC decay with
+classically-simulable spreading — local behavior, as predicted. Different
+protocols, so consistency only — but the controlled test is now sharply posed:
+same OTOC protocol at $N = 53$ should find $t^* \approx 7.9 \pm 0.7$ steps on
+all:all (trapped-ion) wiring vs $\approx 14.6$ on grid (superconducting), ratio
+$\approx 1.9\times$ ($9.9\times$ vs a 1D chain). A null result (no separation)
+would falsify the Sec 1/A hierarchy at the hardware level.
+
+![Fig 20](../figures/fig20_headtohead.png)
+
+## Appendix S. Anomalies: what this model can and cannot say
+
+Honest ledger. **GW "echoes"** (contested Abedi et al.\ claims): the wiring
+language gives $\Delta t \sim M\log k$ (Appendix L), so *if* echoes were ever
+confirmed, the model has a natural slot for them — but it does not predict
+their amplitude, and current evidence is weak; no claim made. **LHC micro-BH
+null results** (13 TeV, thermal channels): expected, not surprising, under Sec
+3 — sub-critical holes are pointlike and non-thermal, so thermal-channel
+non-observation is compatible at any $k_{crit}$ above the LHC reach; this
+recasts a null as consistent rather than explaining an anomaly. **PBH bounds**
+(microlensing, Fermi-LAT, CMB): unaffected — constrained PBHs sit far above
+$k_{crit}$; only the final Planck-time of evaporation differs (no greybody
+suppression), which is unobservable. **EHT shadows, X-ray spins, mass gaps,
+Hubble tension, $g-2$, etc.**: no connection; the model is GR-identical at
+astrophysical scales by construction. Net: the model *survives* all current
+public data (Appendix Q positively) but *explains* no standing anomaly — its
+testable frontier is analogue/lab (Appendix R), not the sky.

@@ -41,6 +41,14 @@ from bh_graph.syk import (
     majoranas, syk_hamiltonian, ising_chain_hamiltonian, otoc_curve,
     scrambling_time_threshold,
 )
+from bh_graph.data import (
+    M_SUN_PLANCK, BUNDLED_EVENTS, m_sun_to_planck, k_schwarzschild_sun,
+    leg_creation, area_theorem_holds, fetch_catalog_events, load_events,
+    catalog_leg_audit,
+)
+from bh_graph.litcompare import (
+    LITERATURE, grid_diameter_prediction, head_to_head, hierarchy_holds,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -69,4 +77,8 @@ __all__ = [
     "trajectories", "kerr_page", "page_time_fraction", "peak_entropy",
     "majoranas", "syk_hamiltonian", "ising_chain_hamiltonian", "otoc_curve",
     "scrambling_time_threshold",
+    "M_SUN_PLANCK", "BUNDLED_EVENTS", "m_sun_to_planck", "k_schwarzschild_sun",
+    "leg_creation", "area_theorem_holds", "fetch_catalog_events", "load_events",
+    "catalog_leg_audit",
+    "LITERATURE", "grid_diameter_prediction", "head_to_head", "hierarchy_holds",
 ]

@@ -23,6 +23,9 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **M — Tensor network** (`tn.py`): random star TN verifies min-rule; $\varepsilon$ derived two ways (QES coincidence + linear-quadratic crossover).
 - **N — Kerr Page** (`kerrpage.py`): spin-down trajectories; high spin $\to$ lower peak + *later* turnover (numerics corrected the naive guess).
 - **O — SYK ED** (`syk.py`): Majorana SYK vs Ising chain OTOC; flat vs growing $t^*$ at 3–5 qubits.
+- **Q — GWTC repurposing** (`data.py`): all 32 GWTC-3 BBH mergers create legs (median +77%); live GWOSC fetch + offline fallback.
+- **R — Hardware literature** (`litcompare.py`): Gärttner/Mi/Blok anchors consistent; head-to-head prediction 7.9 vs 14.6 steps at N=53.
+- **S — Anomalies ledger**: echoes/LHC/PBH/EHT assessed honestly — model survives all, explains none standing.
 
 ## Quickstart
 
@@ -53,11 +56,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                circuits.py (A) maxent.py (B) qes.py (C) evaporation.py (D)
                qec.py (F) robustness.py (G) kerr.py (H) haar.py (I)
                monogamy.py (J) otoc.py + pheno.py (L) tn.py (M)
-               kerrpage.py (N) syk.py (O)
+               kerrpage.py (N) syk.py (O) data.py (Q) litcompare.py (R)
 scripts/       generate_figures.py
-tests/         60 tests (test_*.py per module)
+tests/         67 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig18 (+8b, 8c) PNGs
+figures/       fig1..fig20 (+8b, 8c) PNGs
 app.py         Streamlit explorer
 ```
 

@@ -24,14 +24,16 @@ from bh_graph.haar import page_curve_exact_bits
 from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
 from bh_graph.tn import eps_from_crossover
 from bh_graph.kerrpage import kerr_page
+from bh_graph.data import load_events, catalog_leg_audit
+from bh_graph.litcompare import head_to_head
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–O", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–S", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–O in src/bh_graph/ (paper/main.pdf)")
+st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–S in src/bh_graph/ (paper/main.pdf)")
 
-tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tab4 = st.tabs([
+tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
-    "A: Circuits", "B: k(N)", "C: QES", "D: Page", "F/G: QEC+robust", "H–L", "Paper",
+    "A: Circuits", "B: k(N)", "C: QES", "D: Page", "F/G: QEC+robust", "H–L", "Q/R: Data", "Paper",
 ])
 
 with tab1:
@@ -242,6 +244,23 @@ with tabHL:
     st.pyplot(figN)
     for f in ["fig16_tn.png", "fig17_kerrpage.png", "fig18_syk.png"]:
         st.image(f"figures/{f}", caption=f)
+
+with tabQ:
+    st.header("Q/R — Public data + hardware prediction")
+    try:
+        events = load_events()
+        src = "live GWOSC"
+    except Exception:
+        from bh_graph.data import BUNDLED_EVENTS as events
+        src = "bundled literature"
+    audit = catalog_leg_audit(events)
+    st.metric("BBH events", f"{len(audit)} ({src})")
+    st.metric("area-theorem violations", str(sum(1 for r in audit.values() if r["dk"] <= 0)))
+    st.image("figures/fig19_gwtc.png", caption="fig19")
+    pred = head_to_head(53, trials=10)
+    st.metric("N=53 prediction: all:all t*", f"{pred['alltoall_t']:.1f}")
+    st.metric("N=53 prediction: grid t*", f"{pred['grid_proxy_t']:.1f}")
+    st.image("figures/fig20_headtohead.png", caption="fig20")
 
 with tab4:
     st.header("Paper draft")

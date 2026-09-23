@@ -23,6 +23,9 @@ from bh_graph.tn import min_rule, mean_star_entropy, eps_from_crossover
 from bh_graph.maxent import maxent_k_linear
 from bh_graph.kerrpage import kerr_page
 from bh_graph.syk import syk_hamiltonian, ising_chain_hamiltonian, otoc_curve, scrambling_time_threshold
+from bh_graph.data import load_events, catalog_leg_audit
+from bh_graph.litcompare import head_to_head
+from bh_graph.circuits import mean_cover_time
 from bh_graph.qec import recovery_fidelity, recovery_threshold
 from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary
 from bh_graph.kerr import kerr_newman_k, spin_budget_fraction
@@ -34,6 +37,9 @@ from bh_graph.tn import min_rule, mean_star_entropy, eps_from_crossover
 from bh_graph.maxent import maxent_k_linear
 from bh_graph.kerrpage import kerr_page
 from bh_graph.syk import syk_hamiltonian, ising_chain_hamiltonian, otoc_curve, scrambling_time_threshold
+from bh_graph.data import load_events, catalog_leg_audit
+from bh_graph.litcompare import head_to_head
+from bh_graph.circuits import mean_cover_time
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
@@ -442,6 +448,63 @@ def fig18_syk():
     fig.savefig(FIG / "fig18_syk.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig19_gwtc():
+    try:
+        events = load_events()
+    except Exception:
+        from bh_graph.data import BUNDLED_EVENTS as events
+    audit = catalog_leg_audit(events)
+    names = sorted(audit)
+    rad = np.array([audit[n]["radiated"] for n in names])
+    frac = np.array([audit[n]["frac"] for n in names])
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].scatter(rad, frac, color="#2563eb", s=30)
+    for n in names:
+        if n == "GW150914":
+            axes[0].annotate("GW150914", (audit[n]["radiated"], audit[n]["frac"]),
+                             xytext=(0.055, 0.9), arrowprops={"arrowstyle": "->"}, fontsize=8)
+    axes[0].axhline(0, color="red", linestyle="--", label="area theorem bound")
+    axes[0].set_xlabel("radiated mass fraction"); axes[0].set_ylabel("legs created (dk/k)")
+    axes[0].set_title(f"All {len(names)} BBH mergers create legs"); axes[0].legend(fontsize=8)
+    axes[1].hist(frac, bins=12, color="#0f766e", alpha=0.8)
+    axes[1].axvline(float(np.median(frac)), color="red", linestyle="--",
+                    label=f"median {np.median(frac):.2f}")
+    axes[1].set_xlabel("fractional leg creation"); axes[1].set_ylabel("events")
+    axes[1].set_title("Creation margin >> spin caveat"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 19 — Q: GWTC mergers create exterior legs (public data)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig19_gwtc.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig20_headtohead():
+    ns = [8, 16, 24, 32, 40, 48, 53]
+    alls, chs = [], []
+    for n in ns:
+        m, _ = mean_cover_time(n, "alltoall", 1.0, 15, 0)
+        alls.append(m)
+        if n <= 40:
+            m2, _ = mean_cover_time(n, "chain", 1.0, 8, 7)
+            chs.append(m2)
+        else:
+            chs.append(np.nan)
+    from bh_graph.litcompare import grid_diameter_prediction
+    grid = [grid_diameter_prediction(n) for n in ns]
+    fig = plt.figure(figsize=(7, 4))
+    plt.plot(ns, alls, marker="o", color="#2563eb", label="all:all (sim, Garttner-like wiring)")
+    plt.plot(ns, grid, marker="s", color="#7c3aed", label="grid proxy (Mi-like wiring)")
+    plt.plot(ns[:5], chs[:5], marker="^", color="#dc2626", label="chain (sim)")
+    plt.axvline(53, color="gray", linestyle=":", label="Sycamore N=53")
+    plt.annotate("predict: 7.9 vs 14.6 steps", (53, 11), fontsize=9,
+                 arrowprops={"arrowstyle": "->"}, xytext=(30, 25))
+    plt.xlabel("qubits N"); plt.ylabel("cover time t* (steps)")
+    plt.title("Fig 20 — R: head-to-head prediction (same protocol, both wirings)")
+    plt.legend(fontsize=8); plt.grid(True, alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(FIG / "fig20_headtohead.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -461,6 +524,8 @@ def main():
     fig16_tn()
     fig17_kerrpage()
     fig18_syk()
+    fig19_gwtc()
+    fig20_headtohead()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
