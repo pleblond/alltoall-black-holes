@@ -48,6 +48,8 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **AM — Bandwidth** (`bandwidth.py`): evacuation check; babies born empty; divergence ⟺ cloning risk.
 - **AN — Kill list** (`gridcirc.py`, `monitor.py`, `selfattack.py`, `lhc.py`): 5 pre-registered falsifiers with thresholds.
 - **AO — Big pop** (`concentration.py`): hidden delocalized giants pop large horizons on concentration; 300× beats Eddington (scenario sketch).
+- **AP — Structure check** (`ps.py`): PS halos at z=8 suffice (0.1% occupation); >10¹² hosts excluded.
+- **AQ — Scatter prediction** (`scatter.py`): overmassive tail vs f_w; 10% tail→f_w≈0.18; null-of-300 kills channel.
 
 ## Quickstart
 
@@ -85,11 +87,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                mss.py (AH) bigsyk.py (AI) mp.py + greybody.py (AJ)
                congestion.py (AK) charge.py (AL) bandwidth.py (AM)
                gridcirc.py + monitor.py + selfattack.py + lhc.py (AN)
-               concentration.py (AO)
+               concentration.py (AO) ps.py (AP) scatter.py (AQ)
 scripts/       generate_figures.py
-tests/         151 tests (test_*.py per module)
+tests/         158 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig40 (+8b, 8c) PNGs
+figures/       fig1..fig42 (+8b, 8c) PNGs
 data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```

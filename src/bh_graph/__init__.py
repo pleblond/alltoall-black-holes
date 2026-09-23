@@ -133,6 +133,14 @@ from bh_graph.concentration import (
     mass_from_k_msun, freefall_myr, eddington_myr, footprint_track,
     pop_event, pop_beats_eddington,
 )
+from bh_graph.ps import (
+    growth_factor, sigma_mz, ps_cumulative, supply_vs_demand,
+    structure_kills, occupation_fraction,
+)
+from bh_graph.scatter import (
+    mock_catalog, overmassive_fraction, tail_vs_fw, fw_required_for_tail,
+    channel_killed_by_null, tail_slope,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -205,4 +213,8 @@ __all__ = [
     "lhc_kill_check", "BENCHMARKS",
     "mass_from_k_msun", "freefall_myr", "eddington_myr", "footprint_track",
     "pop_event", "pop_beats_eddington",
+    "growth_factor", "sigma_mz", "ps_cumulative", "supply_vs_demand",
+    "structure_kills", "occupation_fraction",
+    "mock_catalog", "overmassive_fraction", "tail_vs_fw", "fw_required_for_tail",
+    "channel_killed_by_null", "tail_slope",
 ]

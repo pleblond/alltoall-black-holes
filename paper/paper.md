@@ -4,7 +4,7 @@
 
 **Philippe Leblond**
 
-**Draft v1.6 — computational companion paper (Secs 1–3 + Appendices A–AO)
+**Draft v1.7 — computational companion paper (Secs 1–3 + Appendices A–AQ)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -196,7 +196,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ).
 
 ---
 
@@ -741,3 +741,33 @@ LRD anomaly itself is softening toward AGN interpretations. Scenario sketch
 with a working trigger and honest gaps — not a claimed solution.
 
 ![Fig 40](../figures/fig40_bigpop.png)
+
+## Appendix AP. Structure check: halos suffice, monsters excluded
+
+(`bh_graph.ps`, Fig 41.) Press-Schechter with exact $\Lambda$CDM growth
+($D(8) = 0.14$) and $\sigma(M,z)$ anchored to $M_*$ today
+($\gamma = 0.16$, band $[0.12, 0.22]$): demand $10^{-5}\,\mathrm{Mpc}^{-3}$
+needs $\sim 0.1\%$ occupation of $>10^{10}\,M_\odot$ halos at $z = 8$
+(survives across the whole band — `structure_kills` False), $\sim 100\%$ of
+$>10^{11}\,M_\odot$ (implausible but unexcluded), and exceeds $>10^{12}$
+supply everywhere (constrained out). Verdict: hidden giants must live in
+garden-variety high-$z$ halos, not rare monsters — a derived constraint, and
+the AO scenario survives structure. Caveat: if giants are primordial and
+halo-independent, this check is inapplicable and CMB/lensing bounds (not
+computed) take over.
+
+![Fig 41](../figures/fig41_ps.png)
+
+## Appendix AQ. Overmassive-tail prediction vs wiring fraction
+
+(`bh_graph.scatter`, Fig 42.) Mock high-$z$ $M_{BH}$–$M_*$: baseline
+$\log M_{BH} = \log M_* - 3 \pm 0.3$ plus wiring channel (fraction $f_w$,
+host-independent $\log M_{BH} \sim U(6, 9)$). Tail $P(M_{BH}/M_* > 0.1)$
+rises $0 \to 0.58$ over $f_w \in [0, 1]$; a $10\%$ UHZ1-like tail maps to
+$f_w \approx 0.18$. Pre-registered kill: zero outliers in $300$ complete
+systems forces $f_w < 0.017$ (rule-of-three at 95%), killing the channel's
+relevance (not the core model); $30$ clean systems cannot kill it. Direction
+(one-sided overmassive tail, no undermassive counterpart) is the robust
+prediction; amplitude awaits selection-corrected JWST samples.
+
+![Fig 42](../figures/fig42_scatter.png)

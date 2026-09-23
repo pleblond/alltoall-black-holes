@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v1.6 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (151 tests)}
+\author{Philippe Leblond \\ \small Draft v1.7 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (158 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -195,6 +195,11 @@ vs $0.25$. LHC onset $\sim550$\,TeV; soft tail below kills.
 Hidden delocalized giants pop $R_b(k)$ horizons on concentration:
 $10^8\,M_\odot$ in $\sim2$\,Myr vs $\sim600$\,Myr Eddington. Scenario
 sketch: metric, formation, and constraints still open.
+
+\section{Structure + scatter (Figs.~41--42)}
+PS halos at $z=8$ suffice ($0.1\%$ occupation); $>10^{12}\,M_\odot$ hosts
+excluded. Overmassive tail maps $10\%\to f_w\approx0.18$; null-of-300
+kills the channel.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

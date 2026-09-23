@@ -47,6 +47,8 @@ from bh_graph.gridcirc import quench_prediction as _qp, AF_KILL_RATIO
 from bh_graph.selfattack import violation_scan as _vs, s_leg_random as _sr, s_leg_ising as _si
 from bh_graph.lhc import thermal_onset_mass as _to, BENCHMARKS as _BM, predicted_spectrum as _ps
 from bh_graph.concentration import pop_event as _pe, freefall_myr as _ff, eddington_myr as _ed
+from bh_graph.ps import ps_cumulative as _psc
+from bh_graph.scatter import tail_vs_fw as _tvf, mock_catalog as _mc
 from bh_graph.congestion import bubble_radius as _rb
 from bh_graph.data import k_schwarzschild_sun as _ks
 from bh_graph.syk import otoc_curve as _otoc
@@ -936,6 +938,49 @@ def fig40_bigpop():
     fig.savefig(FIG / "fig40_bigpop.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig41_ps():
+    ms = np.logspace(10, 13, 25)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    for g, c in [(0.12, "#94a3b8"), (0.16, "#2563eb"), (0.22, "#7c3aed")]:
+        axes[0].loglog(ms, [_psc(m, 8.0, g) for m in ms], color=c, label=f"gamma={g}")
+    axes[0].axhline(1e-5, color="red", linestyle="--", label="demand 1e-5/Mpc3")
+    axes[0].set_xlabel("host mass (Msun)"); axes[0].set_ylabel("n(>M) z=8")
+    axes[0].set_title("Halo supply vs giant demand"); axes[0].legend(fontsize=7)
+    axes[1].bar(["1e10", "1e11", "1e12"],
+                [1e-5 / max(_psc(m, 8.0, 0.16), 1e-300) for m in [1e10, 1e11, 1e12]],
+                color=["#0f766e", "#b45309", "#dc2626"])
+    axes[1].axhline(1.0, color="black", linestyle="--", label="every halo")
+    axes[1].set_yscale("log"); axes[1].set_ylabel("required occupation")
+    axes[1].set_title("Garden halos suffice; monsters excluded"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 41 — AP: structure check (survived, constrained)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig41_ps.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig42_scatter():
+    r = _tvf(np.linspace(0, 1, 21))
+    cat = _mc(1500, 0.2, 1)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(r["f_w"], r["tail"], color="#2563eb")
+    axes[0].axhline(0.1, color="gray", linestyle=":", label="10% tail -> fw~0.18")
+    axes[0].set_xlabel("wiring fraction fw"); axes[0].set_ylabel("P(MBH/M*>0.1)")
+    axes[0].set_title("Overmassive tail vs fw"); axes[0].legend(fontsize=8)
+    w = cat["wiring"]
+    axes[1].scatter(cat["log_mstar"][~w], cat["log_mbh"][~w], s=6, alpha=0.4,
+                    color="gray", label="baseline")
+    axes[1].scatter(cat["log_mstar"][w], cat["log_mbh"][w], s=6, alpha=0.6,
+                    color="#dc2626", label="wiring (fw=0.2)")
+    xx = np.linspace(7, 9.5, 50)
+    axes[1].plot(xx, xx - 1, "k--", label="MBH/M*=0.1")
+    axes[1].set_xlabel("log M*"); axes[1].set_ylabel("log MBH")
+    axes[1].set_title("Mock high-z relation"); axes[1].legend(fontsize=7)
+    fig.suptitle("Fig 42 — AQ: overmassive-tail prediction")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig42_scatter.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -977,6 +1022,8 @@ def main():
     fig38_selfattack()
     fig39_lhc()
     fig40_bigpop()
+    fig41_ps()
+    fig42_scatter()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
