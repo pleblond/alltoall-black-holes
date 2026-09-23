@@ -5,11 +5,15 @@ From a [Meta AI conversation](https://www.meta.ai/share/c/Onvs47AV0o) to a repro
 **Core idea:** the interior is an almost-perfect all:all (complete) entanglement graph.
 Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one Planck patch, so horizon area is $A(k) = k\,l_p^2$ — independent of interior node count $N$. Perfect all:all ($k \to 0$) pinches off as a baby universe. Micro-holes stay pointlike until $k$ exceeds the point-embedding capacity, then "pop" a horizon.
 
-## What was implemented (Secs 1–3)
+## What was implemented (Secs 1–3 + Appendices A–D)
 
 - **Sec 1 — All:all = no interior space** (`src/bh_graph/scrambling.py`): complete vs chain/grid/random-regular graphs; SI cover time, diameter, mean distance, spectral gap. $K_N$ has diameter 1 and 1-step spread at every $N$.
 - **Sec 2 — Horizon counts exterior wiring** (`src/bh_graph/horizon.py`): $A(k)$, $R(k)$, $k \propto M^2$ Schwarzschild mapping, monogamy frontier $e_{int}+e_{ext}\le 1$ and baby-universe $k=0$ limit.
 - **Sec 3 — Micro-hole phase transition** (`src/bh_graph/micro.py`): critical $k_{crit} = 4\pi r_{point}^2/l_p^2$, flat-then-pop $R_{obs}(k)$, LQG-style area gap, growth trajectories $k(N)$.
+- **A — Finite-speed circuits** (`circuits.py`): random-matching SI derives $t_* \sim \log_2 N$ for all:all vs ballistic chain. 1-step artifact removed.
+- **B — Derived $k(N)$** (`maxent.py`): MaxEnt linear bound + gravitational fixed point $k^*(N) = 16\pi(\varepsilon N/l_p)^2$; predicts $\alpha(N) = k/N \propto N$.
+- **C — QES crossing** (`qes.py`): generalized-entropy island takeover at $k_{page} = S_0/(2s_{leg}-l_p^2/4)$ + explicit min-cut network. Sharp failure mode if $s_{leg} \le l_p^2/4$.
+- **D — Page evaporation** (`evaporation.py`): leg surgery $k \to k-1$ with Page curve; area identical whether $N$ shrinks or stays fixed.
 
 ## Quickstart
 
@@ -37,10 +41,12 @@ Open the shown URL: sliders for $N$, $k$, $r_{point}$, $l_p$; live Sec 1/2/3 plo
 
 ```
 src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
+               circuits.py (A) maxent.py (B) qes.py (C) evaporation.py (D)
 scripts/       generate_figures.py
 tests/         test_scrambling.py test_horizon.py test_micro.py
+               test_circuits.py test_maxent.py test_qes.py test_evaporation.py  (25 tests)
 paper/         paper.md main.tex
-figures/       fig1..fig6 PNGs
+figures/       fig1..fig10 (+8b, 8c) PNGs
 app.py         Streamlit explorer
 ```
 

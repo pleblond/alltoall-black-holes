@@ -1,4 +1,4 @@
-"""Interactive explorer for Secs 1–3. Run: streamlit run app.py"""
+"""Interactive explorer for Secs 1–3 + Appendices A–D. Run: streamlit run app.py"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -13,12 +13,19 @@ from bh_graph.scrambling import scrambling_scaling, infection_time
 from bh_graph.graphs import build_complete, build_chain, build_grid_2d
 from bh_graph.horizon import horizon_area, horizon_radius, monogamy_frontier, k_from_mass_schwarzschild
 from bh_graph.micro import critical_k, embedding_radius, growth_trajectory, quantized_area
+from bh_graph.circuits import mean_cover_time, predicted_alltoall_log
+from bh_graph.maxent import selfconsistent_k_quadratic, maxent_k_linear, legs_per_node
+from bh_graph.qes import qes_candidates, qes_page_k, has_qes_transition
+from bh_graph.evaporation import evaporate
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–D", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Sections 1, 2, 3 implemented in src/bh_graph/")
+st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–D in src/bh_graph/")
 
-tab1, tab2, tab3, tab4 = st.tabs(["Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition", "Paper"])
+tab1, tab2, tab3, tabA, tabB, tabC, tabD, tab4 = st.tabs([
+    "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
+    "A: Circuits", "B: k(N)", "C: QES", "D: Page", "Paper",
+])
 
 with tab1:
     st.header("Sec 1 — All:all = no interior space")
@@ -115,6 +122,66 @@ with tab3:
     plt.plot(kgrid, quantized_area(kgrid, 1.0, 1.0, rp), color="#b45309")
     plt.xlabel("k"); plt.ylabel("quantized area"); plt.title("Minimal-area gap: 0 then ≥ 1 quantum"); plt.grid(True, alpha=0.3)
     st.pyplot(fig5)
+
+with tabA:
+    st.header("A — Finite-speed circuits derive t* ~ log N")
+    e1, e2, e3 = st.columns(3)
+    with e1:
+        nA = st.slider("N qubits", 8, 128, 64, step=8)
+    with e2:
+        pA = st.slider("gate success p", 0.2, 1.0, 1.0, step=0.1)
+    with e3:
+        trialsA = st.slider("trials", 5, 60, 20)
+    m_all, s_all = mean_cover_time(nA, "alltoall", pA, trialsA, 0)
+    m_ch, s_ch = mean_cover_time(min(nA, 64), "chain", pA, min(trialsA, 15), 7)
+    st.metric(f"all:all mean t* (N={nA})", f"{m_all:.1f} ± {s_all:.1f}")
+    st.metric("chain mean t* (N≤64)", f"{m_ch:.1f} ± {s_ch:.1f}")
+    st.metric("log2 prediction", f"{float(predicted_alltoall_log(nA, pA)):.1f}")
+    st.image("figures/fig7_circuit_scrambling.png", caption="fig7")
+
+with tabB:
+    st.header("B — k(N) derived: linear bound + quadratic fixed point")
+    st.latex(r"k^*(N) = 16\pi(\varepsilon N/l_p)^2")
+    f1, f2 = st.columns(2)
+    with f1:
+        epsB = st.slider("eps (energy per node)", 0.02, 0.5, 0.1, step=0.02)
+    with f2:
+        nB = st.slider("N", 1, 60, 20)
+    st.metric("k*(N)", f"{float(selfconsistent_k_quadratic(nB, epsB)):.1f}")
+    st.metric("linear bound", f"{float(maxent_k_linear(nB)):.1f}")
+    st.metric("legs/node alpha(N)", f"{float(legs_per_node(nB, epsB)):.2f}")
+    st.image("figures/fig8_k_of_n.png", caption="fig8")
+
+with tabC:
+    st.header("C — QES pop from entropy crossing")
+    g1, g2 = st.columns(2)
+    with g1:
+        s0C = st.slider("S0 (interior entropy)", 5.0, 60.0, 20.0)
+    with g2:
+        slegC = st.slider("s_leg (bulk entropy/leg)", 0.1, 2.0, 1.0, step=0.1)
+    ok = has_qes_transition(slegC, 1.0)
+    st.metric("transition exists?", str(ok))
+    if ok:
+        st.metric("k_page", f"{qes_page_k(s0C, slegC, 1.0):.1f}")
+    else:
+        st.warning("s_leg <= lp^2/4: no crossing — Sec 3 would die here.")
+    st.image("figures/fig9_qes.png", caption="fig9")
+
+with tabD:
+    st.header("D — Page curve from leg surgery")
+    h1, h2 = st.columns(2)
+    with h1:
+        k0D = st.slider("k0 (initial legs)", 10, 80, 40)
+    with h2:
+        n0D = st.slider("N0 (interior nodes)", 10, 80, 50)
+    ev = evaporate(n0D, float(k0D), steps=k0D, wiring_only=True)
+    figD, axD = plt.subplots(figsize=(6, 3))
+    axD.plot(ev["t"], ev["S_rad"], color="#2563eb")
+    axD.axvline(k0D / 2, color="red", linestyle="--", label="Page time")
+    axD.set_xlabel("t"); axD.set_ylabel("S_rad (bits)"); axD.legend(); axD.grid(True, alpha=0.3)
+    st.pyplot(figD)
+    st.caption("Area evolution is identical whether N shrinks or stays fixed — it tracks k alone.")
+    st.image("figures/fig10_page.png", caption="fig10")
 
 with tab4:
     st.header("Paper draft")

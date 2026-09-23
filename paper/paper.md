@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v0.1 — computational companion paper**
+**Draft v0.2 — computational companion paper (Secs 1–3 + Appendices A–D)**
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -61,8 +61,8 @@ the seed's eccentricity; worst case equals graph diameter.
 | grid | $\sim 2\sqrt N$ | $\sim 2\sqrt N$ | $\sim O(\sqrt N)$ | $\sim O(1/N)$ |
 | random-regular | $\sim \log N$ | $\sim \log N$ | $\sim \log N$ | $O(1)$ |
 
-![Fig 1](figures/fig1_scrambling.png)
-![Fig 2](figures/fig2_graphs.png)
+![Fig 1](../figures/fig1_scrambling.png)
+![Fig 2](../figures/fig2_graphs.png)
 
 **Reading.** Only $K_N$ has diameter exactly 1 at every $N$: there is no "far
 side of the hole." Something entering on the left is immediately adjacent to
@@ -96,7 +96,7 @@ the ambient geometry with Planck-density bandwidth, so $k$ legs need $k$ Planck
 patches. This is the Bekenstein–Hawking / LQG puncture picture in graph
 language (`bh_graph.horizon.horizon_area`, `horizon_radius`).
 
-![Fig 3](figures/fig3_horizon_area.png)
+![Fig 3](../figures/fig3_horizon_area.png)
 
 ### 2.2 Why mass grows the horizon
 
@@ -119,7 +119,7 @@ i.e. a baby universe, no longer a black hole *in* our space. Black holes live
 in the almost-perfect corner: $e_{\mathrm{int}} \lesssim 1$, small but nonzero
 $k$.
 
-![Fig 4](figures/fig4_monogamy.png)
+![Fig 4](../figures/fig4_monogamy.png)
 
 ---
 
@@ -148,8 +148,8 @@ critical exterior entanglement. With an LQG-style gap $A_{\min}$
 (`quantized_area`), area is $0$ below threshold and $\ge A_{\min}$ above: there
 is no 0.2-Planck-area hole.
 
-![Fig 5](figures/fig5_phase_transition.png)
-![Fig 6](figures/fig6_quantized_area.png)
+![Fig 5](../figures/fig5_phase_transition.png)
+![Fig 6](../figures/fig6_quantized_area.png)
 
 **Prediction.** Micro-holes are *not* scaled-down Schwarzschild holes. They are
 point defects (indistinguishable from particles by size) until they cross a
@@ -160,19 +160,20 @@ $N \to \infty$ / semiclassical limit.
 
 ## 4. Discussion
 
-**Hawking evaporation** in this language is slow surgery on exterior legs: each
-emitted quantum severs/rewires an exterior leg into an entangled pair shared
-with radiation. The horizon shrinks because $k$ shrinks, not because interior
-nodes are deleted. Page-time behavior maps to the exterior budget's
-entanglement swapping from hole–ambient to radiation–ambient.
+**Hawking evaporation** in this language is slow surgery on exterior legs (see
+Appendix D for the implemented Page curve): each emitted quantum severs/rewires
+an exterior leg into an entangled pair shared with radiation. The horizon
+shrinks because $k$ shrinks, not because interior nodes are deleted. Page-time
+behavior maps to the exterior budget's entanglement swapping from hole–ambient
+to radiation–ambient.
 
-**What sets $k(N)$?** Standard GR says $k \propto M^2$, but the micro-mapping
-$N \mapsto k$ is the open function of this model. Candidates: (a) random-tensor
-averaging with fixed bond dimension; (b) a MaxEnt assignment under energy +
-purity constraints; (c) an explicit bulk tensor network whose boundary bond
-count is minimized. Falsifiable edge: any $k(N)$ sublinear enough to keep
-astrophysical holes pointlike is ruled out; any super-quadratic $k(N)$ over
-predicts horizon sizes.
+**What sets $k(N)$?** Appendix B now derives it instead of postulating it:
+MaxEnt counting gives the linear capacity bound $k \ge N s_{node}/s_{leg}$,
+and gravitational self-consistency ($R = \sqrt{k l_p^2/4\pi} = 2E$,
+$E = \varepsilon N$) fixes the quadratic fixed point
+$k^*(N) = 16\pi(\varepsilon N/l_p)^2$. The remaining free number is the
+per-node energy $\varepsilon$, not a free function. Prediction:
+legs-per-node $\alpha(N) = k^*/N$ grows linearly with $N$.
 
 **Limitations.** This is a graph-topology toy, not a derivation of GR. It has
 no dynamics, no Hamiltonian, no Lorentz invariance, and the monogamy frontier
@@ -191,7 +192,78 @@ python scripts/generate_figures.py   # writes figures/fig*.png
 streamlit run app.py                 # interactive Secs 1–3 explorer
 ```
 
-Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`.
+Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
+`circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D).
+
+---
+
+## Appendix A. Finite-speed circuits: deriving $t_* \sim \log N$
+
+Sec 1's 1-step SI toy assumed infinite parallelism (every infected node infects
+*all* neighbors per step). Appendix A (`bh_graph.circuits`) imposes the physical
+constraint of one 2-qubit interaction per qubit per step. Pairings are a random
+perfect matching (all:all) vs a random dimer covering (chain); infection crosses
+an active pairing with probability $p$.
+
+Early growth on all:all is exponential (each infected qubit meets a fresh
+susceptible partner with high probability), giving
+$t_*(N) \approx \log_2 N / \log_2(1+p)$ — exactly $\log_2 N$ at $p = 1$ —
+while the chain spreads ballistically, $t_* \sim N/v(p)$. Measured over 25
+trials per $N$, $N = 8 \dots 128$: all:all fits the log law (straight line on
+log-linear axes), chain grows linearly and is already >5× slower at $N = 64$.
+
+![Fig 7](../figures/fig7_circuit_scrambling.png)
+
+This promotes Sec 1 from "consistent with fast scrambling" to "derives the
+Sekino–Susskind $\log N$ bound from the model's own dynamics."
+
+## Appendix B. Deriving $k(N)$: MaxEnt bound + gravitational fixed point
+
+(`bh_graph.maxent`.) Step 1 — information capacity: interior entropy
+$S_{int} \sim N s_{node}$ must fit the exterior budget $S_{ext} \sim k s_{leg}$,
+so $k \ge N s_{node}/s_{leg}$ (linear lower bound, no gravity assumed; the
+random-tensor calculation $S_{ext} = \min(N\log d, k\log D)$ shows the same
+bottleneck structure). Step 2 — self-consistency: the budget sets its own radius
+$R = \sqrt{k l_p^2/4\pi}$, and a self-gravitating mass $E = \varepsilon N$
+demands $R = 2E$ ($G = c = 1$). Solving gives the fixed point
+
+$$k^*(N) = 16\pi(\varepsilon N/l_p)^2 \propto N^2,$$
+
+stable under damped iteration from any start. The free *function* $k(N)$ is
+gone; one free *number* $\varepsilon$ remains. Falsifiable corollary:
+$\alpha(N) = k^*/N \propto N$ — big holes are relatively more exterior-wired.
+
+![Fig 8](../figures/fig8_k_of_n.png)
+![Fig 8b](../figures/fig8b_alpha_of_n.png)
+![Fig 8c](../figures/fig8c_tensor_bottleneck.png)
+
+## Appendix C. QES pop from generalized-entropy crossing
+
+(`bh_graph.qes`.) The Sec 3 "pop" is now a computed crossing, not an input
+threshold shape. Candidates: $S_{no}(k) = k s_{leg}$ (naive Hawking, grows
+forever) vs $S_{isl}(k) = k l_p^2/4 + \max(S_0 - k s_{leg}, 0)$ (area + remaining
+bulk). If bulk entropy per leg exceeds area cost per leg ($s_{leg} > l_p^2/4$,
+now an explicit falsifiable assumption), they cross at
+$k_{page} = S_0/(2s_{leg} - l_p^2/4)$: below it the minimal surface is trivial
+(pointlike, no island), above it the island/QES dominates. An explicit
+core+legs flow network reproduces the same turnover in its min-cut value.
+
+![Fig 9](../figures/fig9_qes.png)
+
+Failure mode is sharp: if $s_{leg} \le l_p^2/4$ there is *no* crossing and Sec 3
+dies — the model would predict pointlike objects at all scales.
+
+## Appendix D. Page curve from leg surgery
+
+(`bh_graph.evaporation`.) Each step severs one exterior leg ($k \to k-1$) and
+emits one entangled pair; radiation entropy follows Page,
+$S_{rad}(t) = \min(t, N_{eff}-t)$ bits, turning over at $t = N_{eff}/2$.
+Crucially, area evolution is *identical* whether $N$ shrinks with $k$ (standard)
+or $N$ stays fixed (wiring-only): $A(t)$ tracks $k(t)$ alone. The horizon
+shrinks because the exterior budget is spent, not because interior nodes are
+deleted — the distinctive Sec 2 claim, now demonstrated rather than asserted.
+
+![Fig 10](../figures/fig10_page.png)
 
 ---
 
