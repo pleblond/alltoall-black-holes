@@ -35,6 +35,7 @@ from bh_graph.collapse import collapse_sweep, collapse_graph, erasure_lcc_diamet
 from bh_graph.cosmic import cosmic_legs, GYR_S, ds_scrambling_gyr
 from bh_graph.lunch import lunch_trajectory
 from bh_graph.bounds import remnant_exclusion_ratio, load_bound, EVAPORATION_BOUNDS, f_to_beta
+from bh_graph.healing import relax_area, timescale_ladder
 from bh_graph.remnant import required_beta_for_dm
 from bh_graph.syk import syk_hamiltonian as _syk_h, ising_chain_hamiltonian as _ising_h
 from bh_graph.circuits import mean_cover_time
@@ -695,6 +696,28 @@ def fig29_bounds():
     fig.savefig(FIG / "fig29_bounds.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig30_healing():
+    t = np.linspace(-5, 25, 400)
+    k = lambda tt: 100.0 if tt < 0 else 160.0
+    a = relax_area((t + 5) * 1e-3, lambda tt: k((tt * 1e3) - 5), 63.1)
+    kk = np.array([k(tt) for tt in t])
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(t, kk, "--", color="gray", label="k (wiring jumps)")
+    axes[0].plot(t, a, color="#2563eb", label="A (horizon lags = ringdown)")
+    axes[0].set_xlabel("t (ms)"); axes[0].set_ylabel("k / A")
+    axes[0].set_title("Merger: horizon catches up"); axes[0].legend(fontsize=8)
+    lad = timescale_ladder(63.1)
+    names = ["healing (ringdown)", "scrambling", "Page", "evaporation"]
+    vals = [lad["healing_ringdown"], lad["scrambling"], lad["page"], lad["evaporation"]]
+    axes[1].bar(names, np.log10(vals), color=["#2563eb", "#7c3aed", "#b45309", "#dc2626"])
+    axes[1].set_ylabel("log10 seconds")
+    axes[1].set_title("GW150914-mass ladder: ms to 1e80 s")
+    fig.suptitle("Fig 30 — AG: healing lag + timescale ladder")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig30_healing.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -725,6 +748,7 @@ def main():
     fig27_cosmic()
     fig28_lunch()
     fig29_bounds()
+    fig30_healing()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v1.0 — computational companion paper (Secs 1–3 + Appendices A–AF)
+**Draft v1.1 — computational companion paper (Secs 1–3 + Appendices A–AG)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG).
 
 ---
 
@@ -588,3 +588,20 @@ vs superconducting, different gates): same qubits, same protocol, wiring as
 the only knob. A null (no $t^*$ jump) falsifies the collapse-transition
 picture directly; a jump with the predicted sharpness promotes AA from toy
 to lab-observed transition.
+
+## Appendix AG. Healing is not instant: ringdown is the lag
+
+(`bh_graph.healing`, Fig 30.) $dA/dt = (k l_p^2 - A)/\tau_{heal}$ with the
+timescale fixed by data: identifying the merger step response with ringdown
+gives $\tau_{heal} = 1/\mathrm{Im}(\omega_{220}) = 11.24\,M$ — $3.5$ ms for
+GW150914's remnant, the measured damping scale. Two-sided pinch-off follows:
+the baby side keeps a closed $N$-node graph (causally cut off — nothing
+"comes out" here, the ADM mass already radiated); our side heals leftover
+buffer, trivially for pointlike holes (clean vanish) and exponentially for
+ex-horizon ones (a $\le$ Planck-energy sigh, fraction $\sim 10^{-78}$).
+Slow evaporation tracks adiabatically; mergers and the final Planck moments
+go non-adiabatic. Timescale ladder at $63\,M_\odot$: healing $3.5$ ms,
+scrambling $0.23$ s ($66\times$), Page $10^{79}$ s, evaporation $10^{80}$ s —
+separate rungs, separate physics, all computed.
+
+![Fig 30](../figures/fig30_healing.png)

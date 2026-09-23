@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Draft v1.0 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (103 tests)}
+\author{Draft v1.1 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (107 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -165,6 +165,11 @@ together. Cosmic legs $10^{122.3}\to10^{123.1}$; patch unscrambled ($t^*\approx
 Vendored PBHbounds vs required-$\beta$: $40+$ orders apart; $\beta>1$ above
 $10^6$\,g. Same-device grid$\to$all:all quench predicts $t^*$ $8\to1$,
 gap $0.27\to36$ — no cross-platform systematics.
+
+\section{Healing lag (Fig.~30)}
+$dA/dt=(kl_p^2-A)/\tau$, $\tau=11.24M$ from ringdown ($3.5$\,ms at
+$63\,M_\odot$). Ladder: healing, scrambling $66\times$, Page, evaporation;
+final sigh carries $\sim10^{-78}$ of the mass.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

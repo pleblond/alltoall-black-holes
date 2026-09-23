@@ -37,6 +37,7 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **AC — Lunch + remnants** (`lunch.py`, `remnant.py`): C/k diverges in evaporation; remnant DM fails except ultralight.
 - **AE — Bounds exclusion** (`bounds.py`): vendored PBHbounds vs required-β; 40+ order exclusion, β>1 above 10⁶ g.
 - **AF — Quench protocol**: same-device grid→all:all quench; t* 8→1, gap 0.27→36 (no cross-platform systematics).
+- **AG — Healing lag** (`healing.py`): dA/dt relaxation; ringdown fixes τ=11.24M; ladder ms→10⁸⁰ s; silent Planck sigh.
 
 ## Quickstart
 
@@ -70,11 +71,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                kerrpage.py (N) syk.py (O) data.py (Q) litcompare.py (R)
                tev.py (T) echoes.py (U) posteriors.py (W) ds.py (X)
                krylov.py (Y) collapse.py (AA) cosmic.py (AB)
-               lunch.py + remnant.py (AC) bounds.py (AE)
+               lunch.py + remnant.py (AC) bounds.py (AE) healing.py (AG)
 scripts/       generate_figures.py
-tests/         103 tests (test_*.py per module)
+tests/         107 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig29 (+8b, 8c) PNGs
+figures/       fig1..fig30 (+8b, 8c) PNGs
 data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```

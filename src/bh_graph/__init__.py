@@ -86,6 +86,10 @@ from bh_graph.bounds import (
     t_form_s, t_form_temp_ev, f_to_beta, load_bound, bound_envelope_beta,
     remnant_exclusion_ratio, remnant_ruled_out_everywhere, EVAPORATION_BOUNDS,
 )
+from bh_graph.healing import (
+    tau_heal_sec, relax_area, merger_step_response, scrambling_time_s,
+    timescale_ladder, healing_energy_fraction, is_adiabatic,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -137,4 +141,6 @@ __all__ = [
     "required_beta_for_dm", "remnant_dm_viable",
     "t_form_s", "t_form_temp_ev", "f_to_beta", "load_bound", "bound_envelope_beta",
     "remnant_exclusion_ratio", "remnant_ruled_out_everywhere", "EVAPORATION_BOUNDS",
+    "tau_heal_sec", "relax_area", "merger_step_response", "scrambling_time_s",
+    "timescale_ladder", "healing_energy_fraction", "is_adiabatic",
 ]
