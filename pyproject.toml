@@ -1,0 +1,28 @@
+[project]
+name = "bh-graph"
+version = "0.1.0"
+description = "All:all entanglement graph model of black holes — simulations for Secs 1,2,3"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "scipy>=1.12",
+  "networkx>=3.2",
+  "matplotlib>=3.8",
+  "pandas>=2.0",
+  "streamlit>=1.32",
+  "plotly>=5.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.4"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
