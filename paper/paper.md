@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v1.3 — computational companion paper (Secs 1–3 + Appendices A–AJ)
+**Draft v1.4 — computational companion paper (Secs 1–3 + Appendices A–AM)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM).
 
 ---
 
@@ -654,3 +654,41 @@ formula, and predicts the thermal/non-thermal emission transition tracks
 $k_{crit}$ rather than any fixed mass scale.
 
 ![Fig 33](../figures/fig33_mp_grey.png)
+
+## Appendix AK. Horizons are congestion: footprint-dependent $k_{crit}$
+
+(`bh_graph.congestion`, Fig 34.) Repairing Sec 3's hidden assumption (all legs
+from one point): with footprint $r_{foot}$, congestion
+$\chi = k l_p^2/4\pi r_{foot}^2$ decides — bubble iff $\chi > 1$, $R_b =
+\sqrt{k l_p^2/4\pi}$. Concentrated legs recover $k_{crit} = 4\pi
+r_{src}^2/l_p^2$ exactly; spread legs never bubble at any $k$ — a giant
+interior with $k = 10^6$ legs over $r_{foot} = 10^6 l_p$ sits deep in the
+delocalized phase (multi-mouth ER network, volume nowhere). Three phases:
+baby ($k = 0$), delocalized ($\chi \le 1$), horizon ($\chi > 1$). The 1-leg
+object is pinpoint by the same token: one leg congests nothing.
+
+![Fig 34](../figures/fig34_congestion.png)
+
+## Appendix AL. Charge pins legs: evaporation endpoints
+
+(`bh_graph.charge`, Fig 35.) $q = 4\pi Q^2/l_p^2$ legs protected by Gauss's
+law; $k(t) = \max(k_0 - t, q)$. Neutral: full pinch-off, nothing left here.
+Small charge ($Q = 0.5$): pointlike remnant, $M \sim 0.35\,M_P$, stable in our
+space. Large charge ($Q = 5$): extremal remnant BH. Extremality $A \ge 4\pi
+Q^2$ verified along every trajectory. Charged holes cannot fully disconnect;
+neutral ones must. (Schwinger discharge neglected: valid for small cold
+charges; stated caveat.)
+
+![Fig 35](../figures/fig35_charge.png)
+
+## Appendix AM. Last-leg bandwidth: babies born empty, divergence = risk
+
+(`bh_graph.bandwidth`, Fig 36.) $S_0$ bits drain at $s_{leg}$ per cut;
+fiducial $k^* \sim N^2$ vs $S_0 \sim N$ evacuates with $\sim N\times$ margin —
+pinch-off with vacuum inside, no cloning. Adversarial ($s_{leg}$ tiny):
+leftover at $k = 0$ flags "cloning risk," forbidding the last cut until more
+flows — the dynamical content of "why would it disconnect." Corrected in
+testing: info-per-leg diverges $\iff$ risk (clean cases drain to 0); the
+naive "last legs carry the most, always" was wrong and is now the diagnostic.
+
+![Fig 36](../figures/fig36_bandwidth.png)

@@ -40,6 +40,9 @@ from bh_graph.mss import mss_scan, lmg_hamiltonian
 from bh_graph.bigsyk import scaling_big
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
+from bh_graph.congestion import congestion as _chi
+from bh_graph.charge import evaporate_charged
+from bh_graph.bandwidth import evacuation_trajectory as _evac
 from bh_graph.syk import otoc_curve as _otoc
 from bh_graph.healing import alpha_heal_bounds
 from bh_graph.remnant import required_beta_for_dm
@@ -785,6 +788,67 @@ def fig33_mp_grey():
     fig.savefig(FIG / "fig33_mp_grey.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig34_congestion():
+    k = np.logspace(0, 6, 200)
+    r = np.logspace(0, 4, 200)
+    K, R = np.meshgrid(k, r)
+    chi = K / (4 * np.pi * R**2)
+    fig, ax = plt.subplots(figsize=(6, 4.5))
+    ax.contourf(np.log10(K), np.log10(R), np.log10(np.maximum(chi, 1e-300)),
+                levels=20, cmap="coolwarm")
+    ax.contour(np.log10(K), np.log10(R), np.log10(np.maximum(chi, 1e-300)),
+               levels=[0], colors="black", linewidths=2)
+    ax.plot([0, 6], [0.55, 3.55], "k--", label="chi = 1 boundary")
+    ax.scatter([6], [6], s=60, color="white", edgecolors="black", zorder=5)
+    ax.annotate("giant delocalized (huge k, no bubble)", (6, 6), xytext=(3.2, 5.2),
+                arrowprops={"arrowstyle": "->"}, fontsize=9, color="white")
+    ax.annotate("horizon", (5, 1.2), fontsize=10, color="white")
+    ax.annotate("delocalized", (1.5, 3.2), fontsize=10)
+    ax.set_xlabel("log10 k"); ax.set_ylabel("log10 footprint/lp")
+    ax.set_title("Fig 34 — AK: horizon-as-congestion phase diagram")
+    ax.legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(FIG / "fig34_congestion.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig35_charge():
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    for q, color in [(0.0, "#94a3b8"), (0.5, "#2563eb"), (2.0, "#dc2626")]:
+        ev = evaporate_charged(40.0, q, 60)
+        axes[0].plot(ev["t"], ev["k"], color=color, label=f"Q={q}")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("k")
+    axes[0].set_title("Charge pins a floor under k"); axes[0].legend(fontsize=8)
+    qq = np.linspace(0, 3, 200)
+    axes[1].plot(qq, 4 * np.pi * qq**2, color="#0f766e")
+    axes[1].axhline(4 * np.pi, color="black", linestyle="--", label="k_crit")
+    axes[1].fill_between(qq, 0, 4 * np.pi * qq**2, where=(4 * np.pi * qq**2 < 4 * np.pi),
+                         alpha=0.2, color="gray", label="pointlike remnant")
+    axes[1].set_xlabel("Q (Planck)"); axes[1].set_ylabel("protected q")
+    axes[1].set_title("Endpoint map"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 35 — AL: charge-protected evaporation endpoints")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig35_charge.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig36_bandwidth():
+    tr_ok = _evac(100.0, 1.0, 1000.0)
+    tr_bad = _evac(100.0, 0.05, 100.0)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(tr_ok["k"], tr_ok["remaining"], color="#2563eb", label="clean (drains)")
+    axes[0].plot(tr_bad["k"], tr_bad["remaining"], color="#dc2626", label="risk (leftover)")
+    axes[0].set_xlabel("k"); axes[0].set_ylabel("remaining info (bits)")
+    axes[0].set_title("Evacuation vs cloning risk"); axes[0].legend(fontsize=8)
+    axes[1].plot(tr_bad["k"][1:], tr_bad["per_leg"][1:], color="#dc2626")
+    axes[1].set_xlabel("k"); axes[1].set_ylabel("info per leg")
+    axes[1].set_title("Divergence diagnoses risk (clean drains to 0)")
+    fig.suptitle("Fig 36 — AM: last-leg bandwidth + baby inventory")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig36_bandwidth.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -819,6 +883,9 @@ def main():
     fig31_mss()
     fig32_bigscaling()
     fig33_mp_grey()
+    fig34_congestion()
+    fig35_charge()
+    fig36_bandwidth()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

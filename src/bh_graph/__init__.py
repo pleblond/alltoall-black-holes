@@ -103,6 +103,18 @@ from bh_graph.mp import (
 from bh_graph.greybody import (
     transmission, leg_emission, suppression_ratio, is_unsuppressed,
 )
+from bh_graph.congestion import (
+    congestion, needs_bubble, bubble_radius, k_crit_footprint, phase,
+    footprint_needed,
+)
+from bh_graph.charge import (
+    protected_legs, evaporate_charged, endpoint, remnant_mass_planck,
+    respects_extremality_bound,
+)
+from bh_graph.bandwidth import (
+    remaining_info, info_per_leg, evacuates_cleanly, baby_inventory,
+    evacuation_trajectory,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -161,4 +173,10 @@ __all__ = [
     "sparse_majoranas", "sparse_syk", "sparse_ising", "typicality_otoc", "scaling_big",
     "mp_edges", "mp_density", "star_spectrum", "spectrum_moments", "mp_predicted_var",
     "transmission", "leg_emission", "suppression_ratio", "is_unsuppressed",
+    "congestion", "needs_bubble", "bubble_radius", "k_crit_footprint", "phase",
+    "footprint_needed",
+    "protected_legs", "evaporate_charged", "endpoint", "remnant_mass_planck",
+    "respects_extremality_bound",
+    "remaining_info", "info_per_leg", "evacuates_cleanly", "baby_inventory",
+    "evacuation_trajectory",
 ]

@@ -32,9 +32,9 @@ from bh_graph.ds import ds_legs, stellar_bh_total_legs
 from bh_graph.cosmic import ds_scrambling_gyr
 from bh_graph.remnant import required_beta_for_dm
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–AJ", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–AM", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–AJ in src/bh_graph/ (paper/main.pdf)")
+st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–AM in src/bh_graph/ (paper/main.pdf)")
 
 tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
@@ -293,6 +293,10 @@ with tabQ:
     st.subheader("AI/AJ — big SYK + typicality")
     st.image("figures/fig32_bigscaling.png", caption="fig32_bigscaling.png")
     st.image("figures/fig33_mp_grey.png", caption="fig33_mp_grey.png")
+    st.subheader("AK/AL/AM — congestion, charge, bandwidth")
+    st.image("figures/fig34_congestion.png", caption="fig34_congestion.png")
+    st.image("figures/fig35_charge.png", caption="fig35_charge.png")
+    st.image("figures/fig36_bandwidth.png", caption="fig36_bandwidth.png")
 
 with tab4:
     st.header("Paper draft")

@@ -41,6 +41,9 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **AH — MSS + qualifier** (`mss.py`): thermal λ/2πT=0.5→0.68 (bound held); uniform all:all slower; α∈[9.0,12.4] from LVK.
 - **AI — Big SYK** (`bigsyk.py`): sparse N≤20, typicality OTOCs; t* flat vs linear to 10 qubits; MSS stable at N=16.
 - **AJ — MP + greybody** (`mp.py`, `greybody.py`): TN spectrum Haar-typical; analytic T(E) grounds unsuppressed sub-critical emission.
+- **AK — Congestion phases** (`congestion.py`): footprint-dependent k_crit; giant delocalized holes need no bubble.
+- **AL — Charge endpoints** (`charge.py`): q=4πQ² protected legs; pinch / pointlike remnant / extremal map.
+- **AM — Bandwidth** (`bandwidth.py`): evacuation check; babies born empty; divergence ⟺ cloning risk.
 
 ## Quickstart
 
@@ -76,10 +79,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                krylov.py (Y) collapse.py (AA) cosmic.py (AB)
                lunch.py + remnant.py (AC) bounds.py (AE) healing.py (AG)
                mss.py (AH) bigsyk.py (AI) mp.py + greybody.py (AJ)
+               congestion.py (AK) charge.py (AL) bandwidth.py (AM)
 scripts/       generate_figures.py
-tests/         121 tests (test_*.py per module)
+tests/         133 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig33 (+8b, 8c) PNGs
+figures/       fig1..fig36 (+8b, 8c) PNGs
 data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```

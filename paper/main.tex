@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Draft v1.3 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (121 tests)}
+\author{Draft v1.4 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (133 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -180,6 +180,11 @@ LVK gives $\alpha\in[9.0,12.4]$; $11.24$ sits inside.
 Sparse $N\le20$: $t^*$ flat vs chain $1.8\to6.2$; MSS stable at $N=16$.
 TN spectrum matches Marchenko-Pastur; analytic $T(E)$ grounds $T\equiv1$
 sub-critical emission.
+
+\section{Congestion + charge + bandwidth (Figs.~34--36)}
+Bubble iff $\chi=kl_p^2/4\pi r_{foot}^2>1$; spread giants delocalized.
+Charge pins $q=4\pi Q^2$ legs (pinch/pointlike/extremal map). Evacuation
+empties babies; info-per-leg diverges $\iff$ cloning risk.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}
