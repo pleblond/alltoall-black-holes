@@ -69,6 +69,19 @@ from bh_graph.ds import (
 from bh_graph.krylov import (
     lanczos, spread_complexity, peak_time, initial_rise_slope,
 )
+from bh_graph.collapse import (
+    collapse_graph, order_parameters, collapse_sweep, erasure_lcc_diameter,
+    is_fast_scrambler,
+)
+from bh_graph.cosmic import (
+    scale_factor, event_horizon_meters, cosmic_legs, ds_scrambling_gyr,
+    universe_scrambled,
+)
+from bh_graph.lunch import lunch_trajectory, lunch_overtake_step, lunch_diverges
+from bh_graph.remnant import (
+    pbh_lifetime_s, evaporation_temp_ev, omega_remnant,
+    required_beta_for_dm, remnant_dm_viable,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -111,4 +124,11 @@ __all__ = [
     "lambda_planck", "ds_entropy", "ds_legs", "stellar_bh_total_legs",
     "smbh_total_legs", "nariai_radius_planck", "cosmic_budget_dominates",
     "lanczos", "spread_complexity", "peak_time", "initial_rise_slope",
+    "collapse_graph", "order_parameters", "collapse_sweep", "erasure_lcc_diameter",
+    "is_fast_scrambler",
+    "scale_factor", "event_horizon_meters", "cosmic_legs", "ds_scrambling_gyr",
+    "universe_scrambled",
+    "lunch_trajectory", "lunch_overtake_step", "lunch_diverges",
+    "pbh_lifetime_s", "evaporation_temp_ev", "omega_remnant",
+    "required_beta_for_dm", "remnant_dm_viable",
 ]

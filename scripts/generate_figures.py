@@ -31,6 +31,10 @@ from bh_graph.data import BUNDLED_EVENTS
 from bh_graph.posteriors import load_overall_posterior, source_masses_and_spins, delta_legs_posterior, GW150914_FILE, median_analysis
 from bh_graph.ds import ds_legs, stellar_bh_total_legs, smbh_total_legs
 from bh_graph.krylov import lanczos, spread_complexity
+from bh_graph.collapse import collapse_sweep, collapse_graph, erasure_lcc_diameter
+from bh_graph.cosmic import cosmic_legs, GYR_S, ds_scrambling_gyr
+from bh_graph.lunch import lunch_trajectory
+from bh_graph.remnant import required_beta_for_dm
 from bh_graph.syk import syk_hamiltonian as _syk_h, ising_chain_hamiltonian as _ising_h
 from bh_graph.circuits import mean_cover_time
 from bh_graph.qec import recovery_fidelity, recovery_threshold
@@ -614,6 +618,62 @@ def fig25_krylov():
     fig.savefig(FIG / "fig25_krylov.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig26_collapse():
+    s = collapse_sweep(6, gamma=6.0)
+    fig, axes = plt.subplots(1, 3, figsize=(12, 3.5))
+    axes[0].plot(s["c"], s["diameter"], color="#2563eb")
+    axes[0].set_xlabel("compactness"); axes[0].set_ylabel("diameter")
+    axes[0].set_title("Diameter 10 -> 1 (sharp)")
+    axes[1].plot(s["c"], s["gap"], color="#0f766e")
+    axes[1].set_xlabel("compactness"); axes[1].set_ylabel("spectral gap")
+    axes[1].set_title("Gap switches on")
+    cc = np.linspace(0, 1, 9)
+    er = [erasure_lcc_diameter(collapse_graph(6, float(x), 6.0), 0.4, 8, 3) for x in cc]
+    axes[2].plot(cc, er, marker="o", color="#dc2626")
+    axes[2].set_xlabel("compactness"); axes[2].set_ylabel("LCC diameter after 40% loss")
+    axes[2].set_title("Any-subset recovery switches on")
+    fig.suptitle("Fig 26 — AA: collapse = scrambling/code transition")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig26_collapse.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig27_cosmic():
+    tg = np.linspace(1, 100, 60)
+    kk = np.array([float(cosmic_legs(tt * GYR_S)) for tt in tg])
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(tg, np.log10(kk), color="#2563eb")
+    axes[0].axhline(123.11, color="red", linestyle="--", label="k_dS")
+    axes[0].set_xlabel("t (Gyr)"); axes[0].set_ylabel("log10 cosmic legs")
+    axes[0].set_title("Exterior budget opens to 1e123"); axes[0].legend(fontsize=8)
+    axes[1].bar(["universe age", "dS t*"], [13.8, ds_scrambling_gyr()], color=["#94a3b8", "#dc2626"])
+    axes[1].set_ylabel("Gyr (log)"); axes[1].set_yscale("log")
+    axes[1].set_title("Unscrambled by ~300x")
+    fig.suptitle("Fig 27 — AB: cosmic leg history + young patch")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig27_cosmic.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig28_lunch():
+    tr = lunch_trajectory(50, 40.0, 1.0)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(tr["t"], tr["k"], color="gray", label="k (shrinks)")
+    axes[0].plot(tr["t"], tr["C"], color="#2563eb", label="C (grows)")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("k / C")
+    axes[0].set_title("Horizon shrinks, lunch grows"); axes[0].legend(fontsize=8)
+    mm = np.logspace(5, 15, 100)
+    bb = np.array([required_beta_for_dm(float(x)) for x in mm])
+    axes[1].loglog(mm, bb, color="#dc2626")
+    axes[1].axhline(1.0, color="black", linestyle="--", label="beta = 1 (max)")
+    axes[1].set_xlabel("PBH mass (g)"); axes[1].set_ylabel("beta required for DM")
+    axes[1].set_title("Remnant DM needs ultralight"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 28 — AC: lunch diverges + remnant tension")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig28_lunch.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -640,6 +700,9 @@ def main():
     fig23_posterior()
     fig24_cosmic()
     fig25_krylov()
+    fig26_collapse()
+    fig27_cosmic()
+    fig28_lunch()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

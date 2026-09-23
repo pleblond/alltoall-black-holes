@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Draft v0.8 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (86 tests)}
+\author{Draft v0.9 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (98 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -155,6 +155,11 @@ unmodeled). Shadow deviation $\sim10^{-48}$: EHT-identical by 47 orders.
 8350 GW150914 samples: $P(\Delta k>0)=100\%$, median $+57\%$ (Kerr both
 ends). Cosmic horizon owns the wiring budget ($10^{123}$ vs $10^{101}$).
 SYK saturates $\sim2\times$ the chain's Krylov spread.
+
+\section{Collapse + cosmic history + lunch (Figs.~26--28)}
+Compactness-driven local$\to$all:all transition: diameter/gap/erasure switch
+together. Cosmic legs $10^{122.3}\to10^{123.1}$; patch unscrambled ($t^*\approx
+4000$\,Gyr). Lunch $C/k$ diverges in evaporation; remnant DM needs ultralight.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

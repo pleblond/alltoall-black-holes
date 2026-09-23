@@ -32,6 +32,9 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **W — Posterior area test** (`posteriors.py`): 8350 GW150914 samples, Kerr both ends, P(Δk>0)=100%, median +57%.
 - **X — Cosmic budget** (`ds.py`): k_dS~10¹²³ vs BHs ~10¹⁰¹; Nariai merge; baby-universe extension.
 - **Y — Krylov hierarchy** (`krylov.py`): SYK ~2× chain spread saturation (slope metric honestly demoted).
+- **AA — Collapse transition** (`collapse.py`): compactness-driven local→all:all; diameter/gap/erasure switch together.
+- **AB — Cosmic legs** (`cosmic.py`): k(t) 10¹²²→10¹²³; dS t*≈4000 Gyr, patch unscrambled.
+- **AC — Lunch + remnants** (`lunch.py`, `remnant.py`): C/k diverges in evaporation; remnant DM fails except ultralight.
 
 ## Quickstart
 
@@ -64,11 +67,12 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                monogamy.py (J) otoc.py + pheno.py (L) tn.py (M)
                kerrpage.py (N) syk.py (O) data.py (Q) litcompare.py (R)
                tev.py (T) echoes.py (U) posteriors.py (W) ds.py (X)
-               krylov.py (Y)
+               krylov.py (Y) collapse.py (AA) cosmic.py (AB)
+               lunch.py + remnant.py (AC)
 scripts/       generate_figures.py
-tests/         86 tests (test_*.py per module)
+tests/         98 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig25 (+8b, 8c) PNGs
+figures/       fig1..fig28 (+8b, 8c) PNGs
 data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```

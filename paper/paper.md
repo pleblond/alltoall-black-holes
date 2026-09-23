@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v0.8 — computational companion paper (Secs 1–3 + Appendices A–Y)
+**Draft v0.9 — computational companion paper (Secs 1–3 + Appendices A–AC)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC).
 
 ---
 
@@ -518,3 +518,42 @@ correction recorded in code and tests. The Sec 1 hierarchy holds in Krylov
 language at the level that is actually robust.
 
 ![Fig 25](../figures/fig25_krylov.png)
+
+## Appendix AA. Collapse is a scrambling/code transition
+
+(`bh_graph.collapse`, Fig 26.) Grid + long-range edges with $p = c^6$,
+compactness $c \in [0, 1]$: diameter $10 \to 1$ in a $0.55$-wide window,
+spectral gap switches on, and 40%-erasure LCC diameter collapses to $1$ —
+any surviving subset stays a clique. Forming a horizon = becoming a fast
+scrambler = becoming an optimal erasure code, all at once. Sharpness tracks
+$\gamma$ (stated, not hidden: $\gamma = 6$ fiducial sharp, $3$ gradual);
+GR motivates sharp since horizons form suddenly. Direct consequence that
+distinguishes black holes from matter *within* the model, and suggests an
+analogue test: quench a simulator's connectivity and watch $t^*$ jump.
+
+![Fig 26](../figures/fig26_collapse.png)
+
+## Appendix AB. Cosmic legs open up; the patch is unscrambled
+
+(`bh_graph.cosmic`, Fig 27.) $\Lambda$CDM event-horizon legs grow
+$10^{122.3}$ ($1$ Gyr) $\to 10^{123.1}$ (late dS): the early universe is a
+nearly-closed baby-like patch gaining its exterior with time (an initial
+"focusing from infinity" guess was wrong — the dS future converges the
+integral from any $t$ — and corrected). dS scrambling time
+$t^* = H^{-1}\log S_{dS} \approx 4000$ Gyr $\approx 300\times$ the cosmic age:
+super-horizon correlations must be primordial, never dynamically generated.
+
+![Fig 27](../figures/fig27_cosmic.png)
+
+## Appendix AC. Lunch grows as the horizon shrinks; remnants fail DM
+
+(`bh_graph.lunch`, `bh_graph.remnant`, Fig 28.) With $C(t) = C_0 + vt$ and
+wiring-only $k(t)$: lunch $C/k$ diverges through evaporation — the interior
+keeps getting harder to decode while looking smaller outside (Python's lunch
+with size replaced by complexity). Remnants: each evaporated PBH leaves
+$M_P$, but required $\beta \propto M^{5/2}$ exceeds unity above $\sim 10^6$
+g — BBN-era masses fail decisively, ultralight needs literature bound curves
+not encoded here. A direct consequence that mostly *fails*: kept as a
+negative result constraining the baby-universe end-state story.
+
+![Fig 28](../figures/fig28_lunch.png)
