@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.23)  23 SEP 2026 22:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.23)  23 SEP 2026 22:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -415,7 +415,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 10.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<../figures/fig1_scrambling.png, id=112, 715.473pt x 286.671pt>
+<../figures/fig1_scrambling.png, id=116, 715.473pt x 286.671pt>
 File: ../figures/fig1_scrambling.png Graphic file (type png)
 <use ../figures/fig1_scrambling.png>
 Package pdftex.def Info: ../figures/fig1_scrambling.png  used on input line 46.
@@ -497,21 +497,14 @@ s/generate[]figures.py; streamlit
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 4436517EBEC03ED7F343A328514BACB4;5967
-(rerunfilecheck)             After:  D04CEB358D297D811EF6A01C6CB9D856;6145.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: D04CEB358D297D811EF6A01C6CB9D856;6145.
  ) 
 Here is how much of TeX's memory you used:
- 10291 strings out of 476182
- 155125 string characters out of 5795595
+ 10292 strings out of 476182
+ 155137 string characters out of 5795595
  1941975 words of memory out of 5000000
- 32124 multiletter control sequences out of 15000+600000
+ 32125 multiletter control sequences out of 15000+600000
  569102 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,10n,79p,541b,557s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -531,10 +524,10 @@ share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on main.pdf (6 pages, 325198 bytes).
+Output written on main.pdf (6 pages, 324303 bytes).
 PDF statistics:
- 259 PDF objects out of 1000 (max. 8388607)
- 212 compressed objects within 3 object streams
+ 262 PDF objects out of 1000 (max. 8388607)
+ 215 compressed objects within 3 object streams
  50 named destinations out of 1000 (max. 500000)
- 222 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 230 words of extra memory for PDF output out of 10000 (max. 10000000)
 

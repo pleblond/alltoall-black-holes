@@ -2,7 +2,9 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v1.5 — computational companion paper (Secs 1–3 + Appendices A–AN)
+**Philippe Leblond**
+
+**Draft v1.5 — computational companion paper (Secs 1–3 + Appendices A–AN)**
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
