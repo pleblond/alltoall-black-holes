@@ -4,7 +4,7 @@
 
 **Philippe Leblond**
 
-**Draft v1.7 — computational companion paper (Secs 1–3 + Appendices A–AQ)
+**Draft v1.8 — computational companion paper (Secs 1–3 + Appendices A–AR)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -196,7 +196,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR).
 
 ---
 
@@ -549,6 +549,8 @@ super-horizon correlations must be primordial, never dynamically generated.
 
 ## Appendix AC. Lunch grows as the horizon shrinks; remnants fail DM
 
+**Erratum (v1.8, see Appendix AR):** remnant abundance corrected (growth + EMD branch); failure now localized to $M \gtrsim 10^6$ g and $M \lesssim 10^5$ g with a narrow viable window at $\sim 4\times10^5$ g.
+
 (`bh_graph.lunch`, `bh_graph.remnant`, Fig 28.) With $C(t) = C_0 + vt$ and
 wiring-only $k(t)$: lunch $C/k$ diverges through evaporation — the interior
 keeps getting harder to decode while looking smaller outside (Python's lunch
@@ -561,6 +563,8 @@ negative result constraining the baby-universe end-state story.
 ![Fig 28](../figures/fig28_lunch.png)
 
 ## Appendix AE. Remnant DM vs published bounds: excluded, decisively
+
+**Erratum (v1.8, see Appendix AR):** the required-beta formula used here omitted PBH-fraction growth; the verdict stands but the numbers are superseded by the corrected viability map.
 
 (`bh_graph.bounds`, Fig 29.) Vendored PBHbounds evaporation curves (Kavanagh;
 EGRB, Voyager, INTEGRAL, SuperK, CMBevap, 511keV, Comptel) converted
@@ -771,3 +775,31 @@ relevance (not the core model); $30$ clean systems cannot kill it. Direction
 prediction; amplitude awaits selection-corrected JWST samples.
 
 ![Fig 42](../figures/fig42_scatter.png)
+
+## Appendix AR. Obituary and resurrection: remnants, corrected
+
+(`bh_graph.emd`, `bh_graph.viability`, Fig 29 rewritten.) **Erratum first:**
+Appendices AC/AE omitted the PBH fraction's growth ($\propto a$) between
+formation and evaporation — wrong by $\sim 9$ orders at $10^{10}$ g. The
+corrected RD abundance $\Omega h^2 = \beta(M_P/M)(T_{form}/T_{eq})0.143$ and
+its EMD branch ($\beta$-independent, continuous at $\beta_{dom} = 1/57M$)
+redraw the map as max-achievable $\Omega(M) \propto M^{-2.5}$:
+
+- $M \gtrsim 10^6$ g: max $\ll 0.12$ — **dead** (the AE verdict stands, now
+for the right reason; photon bounds pile on where they cover).
+- $M \sim 4\times10^5$ g: max $\approx 0.12$ — **viable sweet spot**,
+$\sim 0.4$ dex wide, any $\beta \gtrsim 10^{-12}$ (EMD), evaporating at
+$10^{-9}$ s ($T_{RH} \sim 10$ GeV, BBN-safe), no current photon/poltergeist
+coverage. Resurrected, narrowly.
+- $M \lesssim 10^5$ g: max $\gg 0.12$ — **excluded** (overclose-or-negligible,
+no middle ground).
+
+Open checks on the window (flagged): current $\Delta N_{eff}$ integral vs the
+poltergeist spectrum needs Inomata et al.'s calculation (beyond toy scope),
+and formation at $\beta \gg 10^{-12}$ needs an inflationary mechanism.
+Future poltergeist-GW probes (sensitive to $\beta \gtrsim 10^{-5}$–$10^{-8}$
+at $10^3$–$10^5$ g) are the scheduled executioner-or-confirmer. The death
+stands corrected and dated; the resurrection is conditional and narrow —
+exactly as it should be.
+
+![Fig 29](../figures/fig29_bounds.png)

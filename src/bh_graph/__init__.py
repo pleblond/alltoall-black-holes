@@ -137,6 +137,13 @@ from bh_graph.ps import (
     growth_factor, sigma_mz, ps_cumulative, supply_vs_demand,
     structure_kills, occupation_fraction,
 )
+from bh_graph.emd import (
+    t_form_s, t_form_temp_ev, m_to_planck, beta_domination, omega_rd,
+    omega_emd, omega, required_beta_rd, emd_sweet_spot, remnant_status,
+)
+from bh_graph.viability import (
+    evaporated, allowed_omega, viability, viability_curve,
+)
 from bh_graph.scatter import (
     mock_catalog, overmassive_fraction, tail_vs_fw, fw_required_for_tail,
     channel_killed_by_null, tail_slope,
@@ -217,4 +224,7 @@ __all__ = [
     "structure_kills", "occupation_fraction",
     "mock_catalog", "overmassive_fraction", "tail_vs_fw", "fw_required_for_tail",
     "channel_killed_by_null", "tail_slope",
+    "t_form_s", "t_form_temp_ev", "m_to_planck", "beta_domination", "omega_rd",
+    "omega_emd", "omega", "required_beta_rd", "emd_sweet_spot", "remnant_status",
+    "evaporated", "allowed_omega", "viability", "viability_curve",
 ]
