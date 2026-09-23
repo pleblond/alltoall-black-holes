@@ -18,12 +18,14 @@ from bh_graph.maxent import (
 )
 from bh_graph.qes import qes_candidates, qes_page_k, min_cut_scaling
 from bh_graph.evaporation import page_curve_bits, evaporate
+from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
 from bh_graph.qec import recovery_fidelity, recovery_threshold
 from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary
 from bh_graph.kerr import kerr_newman_k, spin_budget_fraction
 from bh_graph.haar import page_curve_exact_bits, haar_entropy_samples
 from bh_graph.monogamy import frontier, ckw_deficit
 from bh_graph.evaporation import page_curve_bits
+from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
@@ -347,6 +349,25 @@ def fig14_monogamy():
     fig.savefig(FIG / "fig14_monogamy.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig15_otoc():
+    n = 1000
+    t = np.linspace(0, 12, 400)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(t, otoc_alltoall(t, n, 1.0), color="#2563eb", label="all:all exp")
+    axes[0].plot(t, otoc_chain_avg(t, 12, 1.0), color="#dc2626", label="chain N=12")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("1 - C(t)")
+    axes[0].set_title("OTOC decay: exp vs ballistic"); axes[0].legend(fontsize=8)
+    nn = np.logspace(1, 6, 50)
+    axes[1].loglog(nn, np.log(nn), color="#2563eb", label="log N (all:all)")
+    axes[1].loglog(nn, nn, color="#dc2626", label="N (chain)")
+    axes[1].set_xlabel("N"); axes[1].set_ylabel("t*")
+    axes[1].set_title("Scrambling-time hierarchy"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 15 — L: OTOC Lyapunov vs ballistic")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig15_otoc.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -362,6 +383,7 @@ def main():
     fig12_kerr()
     fig13_haar_page()
     fig14_monogamy()
+    fig15_otoc()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

@@ -19,14 +19,17 @@ from bh_graph.qes import qes_candidates, qes_page_k, has_qes_transition
 from bh_graph.evaporation import evaporate
 from bh_graph.qec import recovery_fidelity, recovery_threshold
 from bh_graph.robustness import log_slope_vs_p
+from bh_graph.kerr import kerr_newman_k, spin_budget_fraction
+from bh_graph.haar import page_curve_exact_bits
+from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–G", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–L", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–G in src/bh_graph/")
+st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–L in src/bh_graph/ (paper/main.pdf)")
 
-tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tab4 = st.tabs([
+tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
-    "A: Circuits", "B: k(N)", "C: QES", "D: Page", "F/G: QEC+robust", "Paper",
+    "A: Circuits", "B: k(N)", "C: QES", "D: Page", "F/G: QEC+robust", "H–L", "Paper",
 ])
 
 with tab1:
@@ -201,6 +204,30 @@ with tabF:
     axF.set_xlabel("k"); axF.set_ylabel("F"); axF.legend(); axF.grid(True, alpha=0.3)
     st.pyplot(figF)
     st.image("figures/fig11_qec_robust.png", caption="fig11")
+
+with tabHL:
+    st.header("H–L — Kerr, exact Page, monogamy, OTOC")
+    j1, j2 = st.columns(2)
+    with j1:
+        aH = st.slider("spin a/M (M=1)", 0.0, 1.0, 0.5, step=0.05)
+    with j2:
+        lamL = st.slider("Lyapunov λ", 0.2, 2.0, 1.0, step=0.1)
+    st.metric("k_eff(M=1, a)", f"{float(kerr_newman_k(1.0, aH)):.1f}")
+    st.metric("spin budget spent", f"{float(spin_budget_fraction(aH, 1.0)):.2f}")
+    tH, sH = page_curve_exact_bits(10)
+    figH, axH = plt.subplots(figsize=(6, 3))
+    axH.plot(tH, np.minimum(tH, 10 - tH), "--", color="gray", label="min() ideal")
+    axH.plot(tH, sH, color="#2563eb", label="Page exact")
+    axH.set_xlabel("t"); axH.set_ylabel("S_rad"); axH.legend(); axH.grid(True, alpha=0.3)
+    st.pyplot(figH)
+    tO = np.linspace(0, 12, 200)
+    figO, axO = plt.subplots(figsize=(6, 3))
+    axO.plot(tO, otoc_alltoall(tO, 1000, lamL), color="#2563eb", label="all:all")
+    axO.plot(tO, otoc_chain_avg(tO, 12, 1.0), color="#dc2626", label="chain")
+    axO.set_xlabel("t"); axO.set_ylabel("1 - C(t)"); axO.legend(); axO.grid(True, alpha=0.3)
+    st.pyplot(figO)
+    for f in ["fig12_kerr.png", "fig13_haar_page.png", "fig14_monogamy.png", "fig15_otoc.png"]:
+        st.image(f"figures/{f}", caption=f)
 
 with tab4:
     st.header("Paper draft")

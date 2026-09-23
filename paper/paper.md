@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v0.3 — computational companion paper (Secs 1–3 + Appendices A–G)**
+**Draft v0.4 — computational companion paper (Secs 1–3 + Appendices A–L)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L).
 
 ---
 
@@ -298,3 +298,56 @@ transition iff $s_{leg} > l_p^2/4$. So A–C each survive parameter sweeps with
 their failure modes made explicit rather than hidden.
 
 ![Fig 11](../figures/fig11_qec_robust.png)
+
+## Appendix H. Kerr-Newman: spin and charge as wiring budgets
+
+(`bh_graph.kerr`, Fig 12.) With $r_+ = M + \sqrt{M^2-a^2-Q^2}$ and
+$A = 4\pi(r_+^2+a^2)$, effective legs $k_{eff} = A/l_p^2$ fall monotonically
+with spin at fixed $M$: extremal Kerr ($a = M$) keeps exactly half the
+Schwarzschild legs; extremal Reissner-Nordstrom a quarter. Rotation *orders*
+legs (correlates them), charge soaks them into flux — the area law
+$A = k_{eff} l_p^2$ survives with $N$ still absent. Spin budget
+$1 - A(M,a)/A(M,0) \to 1/2$ is now a second, independent exterior budget the
+model must track; a Kerr Page curve with spin-dependent $k_{eff}(t)$ is the
+natural next calculation.
+
+![Fig 12](../figures/fig12_kerr.png)
+
+## Appendix I. Exact Page curve with Haar-typical fluctuations
+
+(`bh_graph.haar`, Fig 13.) Page's exact $S(m,n) = H(mn) - H(n) - (m-1)/2n$
+replaces the $\min()$ idealization: the curve dips $\sim 1/2$ nat ($\approx
+0.72$ bits) below naive at turnover — information starts leaking just *before*
+the naive Page time. Direct Haar sampling ($N = 8$, 30 states per $t$) tracks
+the mean with small spread: the Page curve is typical, not fine-tuned, and
+leg-surgery evaporation inherits that typicality.
+
+![Fig 13](../figures/fig13_haar_page.png)
+
+## Appendix J. Nonlinear monogamy from explicit states
+
+(`bh_graph.monogamy`, Fig 14.) On
+$|\psi(t)\rangle = \cos t\,|\Phi^+\rangle|0\rangle + \sin t\,|00\rangle|1\rangle$,
+Wootters $C^2_{AB}$ vs exterior one-tangle $\tau_{E|AB}$ traces a frontier
+strictly below the linear toy ($x + y = 0.70$ at $t = 0.3$), from the
+baby-universe point $(1, 0)$ around to product $(0, 0)$. CKW deficit
+$\tau_{A|BE} - C^2_{AB} - C^2_{AE} \ge 0$ verified on a 25-point grid. The
+linear $e_{int} + e_{ext} \le 1$ is therefore a *conservative outer bound*:
+real states pinch off sooner, which only strengthens the baby-universe limit.
+
+![Fig 14](../figures/fig14_monogamy.png)
+
+## Appendix L. OTOC Lyapunov toy + phenomenology signposts
+
+(`bh_graph.otoc`, `bh_graph.pheno`, Fig 15.) Early OTOC growth
+$C(t) \sim e^{\lambda t}/N$ on all:all gives $t^* = \log N/\lambda$
+(MSS-style; fitted $\lambda$ recovers the input to $< 0.1$), vs ballistic
+$t^* = N/v$ on chains — the same hierarchy as Appendices A and 1, now in chaos
+language. Phenomenology, honestly order-of-magnitude: PBHs evaporating today
+sit at $\sim 10^{18}$--$10^{19}$ Planck masses ($\sim 10^{14}$ g); sub-critical
+(pointlike) holes would evaporate *without* greybody horizon suppression; GW
+echo spacing in wiring language reads $\Delta t \sim M\log k$. The nearest-term
+empirical handle remains analogue: all:all vs local scrambling is directly
+comparable on programmable trapped-ion / superconducting processors.
+
+![Fig 15](../figures/fig15_otoc.png)

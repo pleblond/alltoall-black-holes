@@ -16,6 +16,10 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **D — Page evaporation** (`evaporation.py`): leg surgery $k \to k-1$ with Page curve; area identical whether $N$ shrinks or stays fixed.
 - **F — QEC mirror** (`qec.py`): Hayden-Preskill $F(k) = 1 - \min(1/2, 2^{N/2+1-k})$; baby-universe $k\to 0$ seals information off.
 - **G — Robustness** (`robustness.py`): log law at all $p$, exact quadraticity at all $\varepsilon$, sharp QES boundary at $s_{leg} = l_p^2/4$.
+- **H — Kerr-Newman** (`kerr.py`): $k_{eff}(M,a,Q) = A/l_p^2$; extremal Kerr keeps half the legs; spin as second wiring budget.
+- **I — Exact Page** (`haar.py`): Page 1993 $S(m,n)$ with $-1/2$ nat dip + Haar sampling showing typicality.
+- **J — Nonlinear monogamy** (`monogamy.py`): explicit-state CKW frontier strictly below linear toy; baby universe at $(1,0)$.
+- **L — OTOC + pheno** (`otoc.py`, `pheno.py`): Lyapunov $t^* = \log N/\lambda$ vs ballistic $N/v$; PBH/echo/analogue signposts.
 
 ## Quickstart
 
@@ -44,13 +48,12 @@ Open the shown URL: sliders for $N$, $k$, $r_{point}$, $l_p$; live Sec 1/2/3 plo
 ```
 src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                circuits.py (A) maxent.py (B) qes.py (C) evaporation.py (D)
-               qec.py (F) robustness.py (G)
+               qec.py (F) robustness.py (G) kerr.py (H) haar.py (I)
+               monogamy.py (J) otoc.py + pheno.py (L)
 scripts/       generate_figures.py
-tests/         test_scrambling.py test_horizon.py test_micro.py
-               test_circuits.py test_maxent.py test_qes.py test_evaporation.py  (31 tests)
-               test_qec.py test_robustness.py
-paper/         paper.md main.tex
-figures/       fig1..fig11 (+8b, 8c) PNGs
+tests/         50 tests (test_*.py per module)
+paper/         paper.md main.tex main.pdf
+figures/       fig1..fig15 (+8b, 8c) PNGs
 app.py         Streamlit explorer
 ```
 

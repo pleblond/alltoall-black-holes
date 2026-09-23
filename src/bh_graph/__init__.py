@@ -24,6 +24,14 @@ from bh_graph.monogamy import (
     psi_family, rho_ab, concurrence_2qubit, one_tangle, interior_pairwise_c2,
     exterior_tangle, ckw_deficit, frontier,
 )
+from bh_graph.otoc import (
+    otoc_alltoall, otoc_chain_avg, scrambling_time_lyapunov,
+    scrambling_time_ballistic, early_growth_rate,
+)
+from bh_graph.pheno import (
+    pbh_lifetime_planck, pbh_mass_evaporating_today, echo_delay_toy,
+    echo_delay_from_legs, is_pointlike_pbh,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -43,4 +51,8 @@ __all__ = [
     "page_deficit_at_turnover", "haar_state", "subsystem_entropy_bits", "haar_entropy_samples",
     "psi_family", "rho_ab", "concurrence_2qubit", "one_tangle", "interior_pairwise_c2",
     "exterior_tangle", "ckw_deficit", "frontier",
+    "otoc_alltoall", "otoc_chain_avg", "scrambling_time_lyapunov",
+    "scrambling_time_ballistic", "early_growth_rate",
+    "pbh_lifetime_planck", "pbh_mass_evaporating_today", "echo_delay_toy",
+    "echo_delay_from_legs", "is_pointlike_pbh",
 ]
