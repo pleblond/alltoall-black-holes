@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Draft v0.9 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (98 tests)}
+\author{Draft v1.0 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (103 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -160,6 +160,11 @@ SYK saturates $\sim2\times$ the chain's Krylov spread.
 Compactness-driven local$\to$all:all transition: diameter/gap/erasure switch
 together. Cosmic legs $10^{122.3}\to10^{123.1}$; patch unscrambled ($t^*\approx
 4000$\,Gyr). Lunch $C/k$ diverges in evaporation; remnant DM needs ultralight.
+
+\section{Bounds kill remnants + quench protocol (Fig.~29)}
+Vendored PBHbounds vs required-$\beta$: $40+$ orders apart; $\beta>1$ above
+$10^6$\,g. Same-device grid$\to$all:all quench predicts $t^*$ $8\to1$,
+gap $0.27\to36$ — no cross-platform systematics.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

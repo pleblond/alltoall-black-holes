@@ -82,6 +82,10 @@ from bh_graph.remnant import (
     pbh_lifetime_s, evaporation_temp_ev, omega_remnant,
     required_beta_for_dm, remnant_dm_viable,
 )
+from bh_graph.bounds import (
+    t_form_s, t_form_temp_ev, f_to_beta, load_bound, bound_envelope_beta,
+    remnant_exclusion_ratio, remnant_ruled_out_everywhere, EVAPORATION_BOUNDS,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -131,4 +135,6 @@ __all__ = [
     "lunch_trajectory", "lunch_overtake_step", "lunch_diverges",
     "pbh_lifetime_s", "evaporation_temp_ev", "omega_remnant",
     "required_beta_for_dm", "remnant_dm_viable",
+    "t_form_s", "t_form_temp_ev", "f_to_beta", "load_bound", "bound_envelope_beta",
+    "remnant_exclusion_ratio", "remnant_ruled_out_everywhere", "EVAPORATION_BOUNDS",
 ]

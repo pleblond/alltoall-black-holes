@@ -34,6 +34,7 @@ from bh_graph.krylov import lanczos, spread_complexity
 from bh_graph.collapse import collapse_sweep, collapse_graph, erasure_lcc_diameter
 from bh_graph.cosmic import cosmic_legs, GYR_S, ds_scrambling_gyr
 from bh_graph.lunch import lunch_trajectory
+from bh_graph.bounds import remnant_exclusion_ratio, load_bound, EVAPORATION_BOUNDS, f_to_beta
 from bh_graph.remnant import required_beta_for_dm
 from bh_graph.syk import syk_hamiltonian as _syk_h, ising_chain_hamiltonian as _ising_h
 from bh_graph.circuits import mean_cover_time
@@ -674,6 +675,26 @@ def fig28_lunch():
     fig.savefig(FIG / "fig28_lunch.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig29_bounds():
+    m = np.logspace(np.log10(5e14), 17.5, 80)
+    req, bound, ratio = remnant_exclusion_ratio(m)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].loglog(m, req, color="#dc2626", label="required beta (remnant DM)")
+    axes[0].loglog(m, bound, color="#2563eb", label="published envelope (converted)")
+    axes[0].axhline(1.0, color="black", linestyle="--", label="beta = 1")
+    axes[0].set_xlabel("PBH mass (g)"); axes[0].set_ylabel("beta")
+    axes[0].set_title("Required vs bounds: 40+ orders apart"); axes[0].legend(fontsize=7)
+    for n in ["EGRB", "Voyager", "SuperK"]:
+        mm, ff = load_bound(n)
+        axes[1].loglog(mm, f_to_beta(ff, mm), label=n)
+    axes[1].set_xlabel("PBH mass (g)"); axes[1].set_ylabel("beta upper limit")
+    axes[1].set_title("Converted evaporation bounds"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 29 — AE: remnant DM excluded by public bound curves")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig29_bounds.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -703,6 +724,7 @@ def main():
     fig26_collapse()
     fig27_cosmic()
     fig28_lunch()
+    fig29_bounds()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

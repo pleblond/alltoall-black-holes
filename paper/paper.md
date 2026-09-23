@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v0.9 — computational companion paper (Secs 1–3 + Appendices A–AC)
+**Draft v1.0 — computational companion paper (Secs 1–3 + Appendices A–AF)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE).
 
 ---
 
@@ -557,3 +557,34 @@ not encoded here. A direct consequence that mostly *fails*: kept as a
 negative result constraining the baby-universe end-state story.
 
 ![Fig 28](../figures/fig28_lunch.png)
+
+## Appendix AE. Remnant DM vs published bounds: excluded, decisively
+
+(`bh_graph.bounds`, Fig 29.) Vendored PBHbounds evaporation curves (Kavanagh;
+EGRB, Voyager, INTEGRAL, SuperK, CMBevap, 511keV, Comptel) converted
+$f_{PBH} \to \beta(M)$ from first principles
+($\beta = f(\Omega_{DM}/\Omega_{rad})(T_0/T_{form})$, $\gamma = 0.2$).
+Two independent kills: (i) required $\beta > 1$ (unphysical) for all
+$M \gtrsim 10^6$ g — no data needed; (ii) where photon bounds cover
+($5\times10^{14}$–$10^{17}$ g), required exceeds them by $40+$ orders of
+magnitude — $10^6\times$ beyond any conceivable $\gamma/g^*/$convention
+systematic. Remnant DM survives only, if at all, for ultralight PBHs against
+induced-GW bounds not encoded here. The AC negative result is now a
+data-backed exclusion, and the baby-universe end-state must shed remnants as
+a DM candidate (closed nuggets can still exist — they just cannot be the
+dark matter).
+
+![Fig 29](../figures/fig29_bounds.png)
+
+## Appendix AF. Single-device quench protocol (sharpened head-to-head)
+
+No new module: numbers from Appendices AA + A. On a tunable-coupler device
+(Sycamore-class), quench the *same* $6\times6$ patch from grid to all:all
+connectivity mid-scrambling-run. Predicted jumps (SI cover / diameter):
+$t^*$ $8 \to 1$ steps, diameter $10 \to 1$, spectral gap $0.27 \to 36$ —
+with the crossover concentrated in a $0.55$-wide compactness window
+($\gamma = 6$). This removes Appendix R's cross-platform systematics (ions
+vs superconducting, different gates): same qubits, same protocol, wiring as
+the only knob. A null (no $t^*$ jump) falsifies the collapse-transition
+picture directly; a jump with the predicted sharpness promotes AA from toy
+to lab-observed transition.
