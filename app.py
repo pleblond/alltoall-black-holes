@@ -22,10 +22,12 @@ from bh_graph.robustness import log_slope_vs_p
 from bh_graph.kerr import kerr_newman_k, spin_budget_fraction
 from bh_graph.haar import page_curve_exact_bits
 from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
+from bh_graph.tn import eps_from_crossover
+from bh_graph.kerrpage import kerr_page
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–L", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–O", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–L in src/bh_graph/ (paper/main.pdf)")
+st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–O in src/bh_graph/ (paper/main.pdf)")
 
 tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
@@ -227,6 +229,18 @@ with tabHL:
     axO.set_xlabel("t"); axO.set_ylabel("1 - C(t)"); axO.legend(); axO.grid(True, alpha=0.3)
     st.pyplot(figO)
     for f in ["fig12_kerr.png", "fig13_haar_page.png", "fig14_monogamy.png", "fig15_otoc.png"]:
+        st.image(f"figures/{f}", caption=f)
+    st.subheader("M–O")
+    nmatch = st.slider("N_match (TN/gravity crossover)", 5, 100, 25)
+    st.metric("derived eps", f"{float(eps_from_crossover(float(nmatch))):.4f}")
+    a0n = st.slider("initial spin a0/M", 0.0, 0.99, 0.9, step=0.05)
+    pg = kerr_page(10.0, float(a0n))
+    figN, axN = plt.subplots(figsize=(6, 3))
+    axN.plot(pg["t"], pg["S_phys"], color="#dc2626", label=f"a0={a0n}")
+    axN.plot(kerr_page(10.0, 0.0)["t"], kerr_page(10.0, 0.0)["S_phys"], "--", color="gray", label="a0=0")
+    axN.set_xlabel("t/T"); axN.set_ylabel("S_phys"); axN.legend(); axN.grid(True, alpha=0.3)
+    st.pyplot(figN)
+    for f in ["fig16_tn.png", "fig17_kerrpage.png", "fig18_syk.png"]:
         st.image(f"figures/{f}", caption=f)
 
 with tab4:

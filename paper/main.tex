@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Draft v0.4 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (43 tests)}
+\author{Draft v0.5 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (60 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -120,6 +120,22 @@ $N/v$ on chains. PBHs evaporating today $\sim10^{18}$--$10^{19}$ Planck masses;
 sub-critical holes evaporate without greybody suppression; echo toy
 $\Delta t\sim M\log k$; nearest-term test is analogue scrambling on
 programmable processors.
+
+\section{Tensor network derives $\varepsilon$ (Fig.~16)}
+Random star TN verifies $S_{\rm bdy}=\min(N\log d,k\log D)$; minimal wiring
+$k_{\min}=S_{\rm bulk}/\log D$. Two routes fix $\varepsilon$: QES coincidence
+$\varepsilon=(l_p/N)\sqrt{k_{\rm page}/16\pi}$ and crossover
+$\varepsilon=l_p\sqrt{s_{\rm node}/(16\pi\log D\,N_{\rm match})}$.
+
+\section{Kerr Page curve (Fig.~17)}
+$M\propto(1-t/T)^{1/3}$, $J$ shed faster; high spin lowers the peak and
+\emph{delays} turnover (spin-shedding offsets early area loss): $t/T=0.73$ at
+$a_0=0.95$ vs $0.54$ Schwarzschild.
+
+\section{SYK ED vs chain (Fig.~18)}
+$N=6,8,10$ Majorana SYK vs Ising chains, infinite-$T$ OTOC: SYK reaches
+threshold first and $t^*$ stays flat while the chain's grows linearly.
+MSS saturation cited, hierarchy reproduced.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

@@ -32,6 +32,15 @@ from bh_graph.pheno import (
     pbh_lifetime_planck, pbh_mass_evaporating_today, echo_delay_toy,
     echo_delay_from_legs, is_pointlike_pbh,
 )
+from bh_graph.tn import (
+    min_rule, minimal_k_for_bulk, random_star_boundary_entropy,
+    mean_star_entropy, eps_from_qes_matching, eps_from_crossover, crossover_scale,
+)
+from bh_graph.kerrpage import trajectories, kerr_page, page_time_fraction, peak_entropy
+from bh_graph.syk import (
+    majoranas, syk_hamiltonian, ising_chain_hamiltonian, otoc_curve,
+    scrambling_time_threshold,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -55,4 +64,9 @@ __all__ = [
     "scrambling_time_ballistic", "early_growth_rate",
     "pbh_lifetime_planck", "pbh_mass_evaporating_today", "echo_delay_toy",
     "echo_delay_from_legs", "is_pointlike_pbh",
+    "min_rule", "minimal_k_for_bulk", "random_star_boundary_entropy",
+    "mean_star_entropy", "eps_from_qes_matching", "eps_from_crossover", "crossover_scale",
+    "trajectories", "kerr_page", "page_time_fraction", "peak_entropy",
+    "majoranas", "syk_hamiltonian", "ising_chain_hamiltonian", "otoc_curve",
+    "scrambling_time_threshold",
 ]

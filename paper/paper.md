@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v0.4 — computational companion paper (Secs 1–3 + Appendices A–L)
+**Draft v0.5 — computational companion paper (Secs 1–3 + Appendices A–O)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O).
 
 ---
 
@@ -351,3 +351,46 @@ empirical handle remains analogue: all:all vs local scrambling is directly
 comparable on programmable trapped-ion / superconducting processors.
 
 ![Fig 15](../figures/fig15_otoc.png)
+
+## Appendix M. Tensor network derives $\varepsilon$
+
+(`bh_graph.tn`, Fig 16.) A central Gaussian random tensor with $N$ bulk legs
+($d = 2$) and $k$ boundary legs ($D = 2$), traced over the bulk, reproduces
+the Hayden et al.\ min-rule $S_{bdy} = \min(N\log d, k\log D)$ numerically
+($N = 4$, $k = 1\ldots8$, 10 trials). Minimal wiring follows:
+$k_{min} = S_{bulk}/\log D$. The per-node energy $\varepsilon$ — the last free
+number from Appendix B — is then fixed two ways that must agree: (a) QES
+coincidence $\varepsilon = (l_p/N)\sqrt{k_{page}/16\pi}$ with
+$k_{page} = S_0/(2s_{leg} - l_p^2/4)$; (b) linear-quadratic crossover
+$\varepsilon = l_p\sqrt{s_{node}/(16\pi\log D\,N_{match})}$. E.g.\ $D = 2$,
+$s_{node} = \log 2$, $N_{match} = 25$ gives $\varepsilon \approx 0.021\,l_p^{-1}$.
+$\varepsilon$ is no longer an input: it is tensor-network data plus one
+crossover scale.
+
+![Fig 16](../figures/fig16_tn.png)
+
+## Appendix N. Kerr Page curve: spin lowers and delays
+
+(`bh_graph.kerrpage`, Fig 17.) With $M(t) = M_0(1-t/T)^{1/3}$ and faster
+spin-down $J(t) = J_0(1-t/T)^{1.2}$, $S_{phys} = \min(g(S_0 - S_{BH}), S_{BH})$,
+$g = 1.48$: $a_0 = 0.95$ peaks at 65% of the Schwarzschild peak and turns over
+at $t/T = 0.73$ vs $0.54$. The delay is physical, not a bug: shedding $J$ at
+fixed $M$ *grows* area, offsetting early mass-loss shrinkage. Initial
+speculation said "earlier"; the numerics corrected it — spin is a second
+exterior budget with its own Page phenomenology.
+
+![Fig 17](../figures/fig17_kerrpage.png)
+
+## Appendix O. SYK exact diagonalization vs local chain
+
+(`bh_graph.syk`, Fig 18.) $N = 6, 8, 10$ Majorana SYK (Jordan-Wigner,
+Gaussian $J_{ijkl}$, $\mathrm{var} = 6J^2/N^3$, dim $\le 32$) vs mixed-field
+Ising chains on identical Hilbert spaces, infinite-$T$ OTOC for distant $X$
+operators: SYK reaches $C = 0.4$ first at $n_q \ge 4$, and $t^*$ stays flat
+($\approx 1.1$--$1.5$) while the chain's grows linearly ($1.1 \to 2.5$ over
+3--5 qubits) — the log-vs-linear signature at the smallest sizes ED allows.
+Majorana Clifford algebra and Hermiticity verified; MSS $\lambda \le 2\pi T$
+saturation at low $T$ is cited (Maldacena-Stanford), not reproduced:
+infinite-$T$ ED tests the hierarchy, which is what the model claims.
+
+![Fig 18](../figures/fig18_syk.png)

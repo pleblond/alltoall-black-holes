@@ -19,6 +19,10 @@ from bh_graph.maxent import (
 from bh_graph.qes import qes_candidates, qes_page_k, min_cut_scaling
 from bh_graph.evaporation import page_curve_bits, evaporate
 from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
+from bh_graph.tn import min_rule, mean_star_entropy, eps_from_crossover
+from bh_graph.maxent import maxent_k_linear
+from bh_graph.kerrpage import kerr_page
+from bh_graph.syk import syk_hamiltonian, ising_chain_hamiltonian, otoc_curve, scrambling_time_threshold
 from bh_graph.qec import recovery_fidelity, recovery_threshold
 from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary
 from bh_graph.kerr import kerr_newman_k, spin_budget_fraction
@@ -26,6 +30,10 @@ from bh_graph.haar import page_curve_exact_bits, haar_entropy_samples
 from bh_graph.monogamy import frontier, ckw_deficit
 from bh_graph.evaporation import page_curve_bits
 from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
+from bh_graph.tn import min_rule, mean_star_entropy, eps_from_crossover
+from bh_graph.maxent import maxent_k_linear
+from bh_graph.kerrpage import kerr_page
+from bh_graph.syk import syk_hamiltonian, ising_chain_hamiltonian, otoc_curve, scrambling_time_threshold
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
@@ -368,6 +376,72 @@ def fig15_otoc():
     fig.savefig(FIG / "fig15_otoc.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig16_tn():
+    n_bulk = 4
+    ks = np.arange(1, 9)
+    means, stds = mean_star_entropy(n_bulk, ks, trials=10, seed=0)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].errorbar(ks, means, yerr=stds, marker="o", color="#2563eb", capsize=2, label="random star TN")
+    axes[0].plot(ks, min_rule(n_bulk, ks), "--", color="gray", label="min(N log d, k log D)")
+    axes[0].set_xlabel("k"); axes[0].set_ylabel("S_bdy (nats)")
+    axes[0].set_title("Boundary entropy follows min-rule"); axes[0].legend(fontsize=8)
+    eps = eps_from_crossover(25.0)
+    nn = np.linspace(1, 60, 200)
+    axes[1].plot(nn, maxent_k_linear(nn), color="gray", label="TN linear k=N")
+    axes[1].plot(nn, selfconsistent_k_quadratic(nn, eps), color="#7c3aed", label=f"quadratic eps={eps:.3f}")
+    axes[1].axvline(25, color="red", linestyle=":", label="N_match=25")
+    axes[1].set_xlabel("N"); axes[1].set_ylabel("k"); axes[1].set_title("eps from crossover")
+    axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 16 — M: tensor network derives eps")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig16_tn.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig17_kerrpage():
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    for a0, color in [(0.0, "#2563eb"), (0.95, "#dc2626")]:
+        pg = kerr_page(10.0, a0)
+        axes[0].plot(pg["t"], pg["S_phys"], color=color, label=f"a0={a0}")
+    axes[0].set_xlabel("t/T"); axes[0].set_ylabel("S_phys")
+    axes[0].set_title("Spin: lower peak, later turnover"); axes[0].legend()
+    pg = kerr_page(10.0, 0.9)
+    axes[1].plot(pg["t"], pg["a"] / np.maximum(pg["M"], 1e-9), color="#0f766e")
+    axes[1].set_xlabel("t/T"); axes[1].set_ylabel("a/M")
+    axes[1].set_title("Spin-down (a/M falls)")
+    fig.suptitle("Fig 17 — N: Kerr Page curve")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig17_kerrpage.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig18_syk():
+    t = np.linspace(0, 12, 60)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    cs = np.mean([otoc_curve(syk_hamiltonian(8, seed=s), 4, t) for s in range(3)], axis=0)
+    cc = otoc_curve(ising_chain_hamiltonian(4), 4, t)
+    axes[0].plot(t, cs, color="#2563eb", label="SYK all:all (N=8)")
+    axes[0].plot(t, cc, color="#dc2626", label="Ising chain (L=4)")
+    axes[0].axhline(0.4, color="gray", linestyle=":", label="threshold")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("C(t)")
+    axes[0].set_title("OTOC: all:all first"); axes[0].legend(fontsize=8)
+    ns = [3, 4, 5]
+    tss, tcs = [], []
+    tg = np.linspace(0, 15, 80)
+    for nq, nm in [(3, 6), (4, 8), (5, 10)]:
+        c1 = np.mean([otoc_curve(syk_hamiltonian(nm, seed=s), nq, tg) for s in range(3)], axis=0)
+        tss.append(scrambling_time_threshold(tg, c1))
+        tcs.append(scrambling_time_threshold(tg, otoc_curve(ising_chain_hamiltonian(nq), nq, tg)))
+    axes[1].plot(ns, tss, marker="o", color="#2563eb", label="SYK (flat-ish)")
+    axes[1].plot(ns, tcs, marker="o", color="#dc2626", label="chain (grows)")
+    axes[1].set_xlabel("qubits"); axes[1].set_ylabel("t*")
+    axes[1].set_title("t* hierarchy at tiny sizes"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 18 — O: SYK ED vs local chain")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig18_syk.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -384,6 +458,9 @@ def main():
     fig13_haar_page()
     fig14_monogamy()
     fig15_otoc()
+    fig16_tn()
+    fig17_kerrpage()
+    fig18_syk()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

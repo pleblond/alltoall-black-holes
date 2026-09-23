@@ -20,6 +20,9 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **I — Exact Page** (`haar.py`): Page 1993 $S(m,n)$ with $-1/2$ nat dip + Haar sampling showing typicality.
 - **J — Nonlinear monogamy** (`monogamy.py`): explicit-state CKW frontier strictly below linear toy; baby universe at $(1,0)$.
 - **L — OTOC + pheno** (`otoc.py`, `pheno.py`): Lyapunov $t^* = \log N/\lambda$ vs ballistic $N/v$; PBH/echo/analogue signposts.
+- **M — Tensor network** (`tn.py`): random star TN verifies min-rule; $\varepsilon$ derived two ways (QES coincidence + linear-quadratic crossover).
+- **N — Kerr Page** (`kerrpage.py`): spin-down trajectories; high spin $\to$ lower peak + *later* turnover (numerics corrected the naive guess).
+- **O — SYK ED** (`syk.py`): Majorana SYK vs Ising chain OTOC; flat vs growing $t^*$ at 3–5 qubits.
 
 ## Quickstart
 
@@ -49,11 +52,12 @@ Open the shown URL: sliders for $N$, $k$, $r_{point}$, $l_p$; live Sec 1/2/3 plo
 src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                circuits.py (A) maxent.py (B) qes.py (C) evaporation.py (D)
                qec.py (F) robustness.py (G) kerr.py (H) haar.py (I)
-               monogamy.py (J) otoc.py + pheno.py (L)
+               monogamy.py (J) otoc.py + pheno.py (L) tn.py (M)
+               kerrpage.py (N) syk.py (O)
 scripts/       generate_figures.py
-tests/         50 tests (test_*.py per module)
+tests/         60 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig15 (+8b, 8c) PNGs
+figures/       fig1..fig18 (+8b, 8c) PNGs
 app.py         Streamlit explorer
 ```
 
