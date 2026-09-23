@@ -37,6 +37,9 @@ from bh_graph.lunch import lunch_trajectory
 from bh_graph.bounds import remnant_exclusion_ratio, load_bound, EVAPORATION_BOUNDS, f_to_beta
 from bh_graph.healing import relax_area, timescale_ladder
 from bh_graph.mss import mss_scan, lmg_hamiltonian
+from bh_graph.bigsyk import scaling_big
+from bh_graph.mp import mp_density, mp_edges, star_spectrum
+from bh_graph.greybody import transmission, leg_emission
 from bh_graph.syk import otoc_curve as _otoc
 from bh_graph.healing import alpha_heal_bounds
 from bh_graph.remnant import required_beta_for_dm
@@ -744,6 +747,44 @@ def fig31_mss():
     fig.savefig(FIG / "fig31_mss.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig32_bigscaling():
+    r = scaling_big((8, 12, 16, 20), t_max=10, nt=40, n_samples=3, seed=0)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(r["n"], r["syk"], marker="o", color="#2563eb", label="SYK (flat)")
+    axes[0].plot(r["n"], r["chain"], marker="s", color="#dc2626", label="chain (linear)")
+    axes[0].set_xlabel("qubits"); axes[0].set_ylabel("t* (C>=0.35)")
+    axes[0].set_title("Log-vs-linear to 10 qubits"); axes[0].legend(fontsize=8)
+    axes[1].plot([10, 16], [0.68, 0.66], marker="o", color="#0f766e", label="beta=1")
+    axes[1].plot([10, 16], [0.50, 0.41], marker="s", color="#7c3aed", label="beta=0.5")
+    axes[1].axhline(1.0, color="red", linestyle="--", label="MSS")
+    axes[1].set_xlabel("N Majoranas"); axes[1].set_ylabel("lambda/2piT")
+    axes[1].set_title("MSS headroom stable N=10->16"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 32 — AI: big-SYK scaling + deeper MSS")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig32_bigscaling.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig33_mp_grey():
+    lam = np.concatenate([star_spectrum(5, 3, seed=i) for i in range(10)])
+    lo, hi = mp_edges(5, 3)
+    xs = np.linspace(max(lo * 0.9, 0.01), hi * 1.1, 300)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].hist(lam, bins=30, density=True, color="#2563eb", alpha=0.7, label="star TN")
+    axes[0].plot(xs, mp_density(xs, 5, 3), color="red", label="Marchenko-Pastur")
+    axes[0].set_xlabel("normalized eigenvalue"); axes[0].set_ylabel("density")
+    axes[0].set_title("TN spectrum is Haar-typical"); axes[0].legend(fontsize=8)
+    e = np.linspace(0.05, 3, 200)
+    axes[1].plot(e, transmission(e), color="#dc2626", label="T(E) barrier")
+    axes[1].axhline(1.0, color="gray", linestyle="--", label="pointlike: T=1")
+    axes[1].set_xlabel("E/V"); axes[1].set_ylabel("transmission")
+    axes[1].set_title("Greybody on/off at k_crit"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 33 — AJ: MP spectrum + greybody switch")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig33_mp_grey.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -776,6 +817,8 @@ def main():
     fig29_bounds()
     fig30_healing()
     fig31_mss()
+    fig32_bigscaling()
+    fig33_mp_grey()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Draft v1.2 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (112 tests)}
+\author{Draft v1.3 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (121 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -175,6 +175,11 @@ final sigh carries $\sim10^{-78}$ of the mass.
 Thermal SYK $\lambda/2\pi T=0.50\to0.68$ (bound held, finite-size).
 Uniform all:all scrambles worse (randomness load-bearing).
 LVK gives $\alpha\in[9.0,12.4]$; $11.24$ sits inside.
+
+\section{Big SYK + typicality (Figs.~32--33)}
+Sparse $N\le20$: $t^*$ flat vs chain $1.8\to6.2$; MSS stable at $N=16$.
+TN spectrum matches Marchenko-Pastur; analytic $T(E)$ grounds $T\equiv1$
+sub-critical emission.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

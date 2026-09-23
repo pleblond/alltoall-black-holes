@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v1.2 — computational companion paper (Secs 1–3 + Appendices A–AH)
+**Draft v1.3 — computational companion paper (Secs 1–3 + Appendices A–AJ)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ).
 
 ---
 
@@ -625,3 +625,32 @@ ran a local circuit and noted all:all $\to O(\log N)$ — the AF quench is one
 firmware change away on that exact device).
 
 ![Fig 31](../figures/fig31_mss.png)
+
+## Appendix AI. Big SYK: clean separation to 10 qubits, MSS headroom stable
+
+(`bh_graph.bigsyk`, Fig 32.) Sparse Pauli-string SYK to $N = 20$ (dim 1024)
+with typicality+Krylov OTOCs (validated: sparse==dense Hamiltonians, 0.95
+correlation with exact OTOC at $N = 8$): $t^*$ flat at $\approx 1.0$--$1.3$
+for SYK across 4--10 qubits while the chain climbs $1.8 \to 6.2$ — the
+log-vs-linear hierarchy with no finite-size ambiguity left. Thermal MSS at
+$N = 16$: $\lambda/2\pi T = 0.41, 0.66$ ($\beta = 0.5, 1$), stable vs $N = 10$;
+$\beta = 2$ fits $1.03$ — at the bound within fit systematics at dim 256,
+reported as "consistent modulo systematics," not a violation claim (MSS is a
+large-$N$ statement; the honest next step is sparse-Lanczos $N \ge 24$).
+
+![Fig 32](../figures/fig32_bigscaling.png)
+
+## Appendix AJ. Haar-typical TN spectrum + greybody switch
+
+(`bh_graph.mp`, `bh_graph.greybody`, Fig 33.) Star-tensor boundary spectra
+match Marchenko-Pastur moments and support (variance within 30% at tiny
+dims, density normalized): the Appendix M entanglement is genuinely
+Haar-typical — a faked (diagonal-mixture) state could match the entropy but
+never MP. Square-barrier transmission $T(E)$ is analytic: horizon present
+$\to$ low-$\omega$ suppression with total-emission ratio $< 1$; pointlike
+($k < k_{crit}$) $\to$ barrier gone $\to$ $T \equiv 1$. This grounds Appendix
+T's load-bearing assertion (sub-critical holes emit unsuppressed) in one
+formula, and predicts the thermal/non-thermal emission transition tracks
+$k_{crit}$ rather than any fixed mass scale.
+
+![Fig 33](../figures/fig33_mp_grey.png)

@@ -94,6 +94,15 @@ from bh_graph.healing import (
 from bh_graph.mss import (
     lmg_hamiltonian, thermal_otoc, fit_lyapunov, mss_ratio, mss_scan,
 )
+from bh_graph.bigsyk import (
+    sparse_majoranas, sparse_syk, sparse_ising, typicality_otoc, scaling_big,
+)
+from bh_graph.mp import (
+    mp_edges, mp_density, star_spectrum, spectrum_moments, mp_predicted_var,
+)
+from bh_graph.greybody import (
+    transmission, leg_emission, suppression_ratio, is_unsuppressed,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -149,4 +158,7 @@ __all__ = [
     "timescale_ladder", "healing_energy_fraction", "is_adiabatic",
     "alpha_heal_bounds", "alpha_allowed",
     "lmg_hamiltonian", "thermal_otoc", "fit_lyapunov", "mss_ratio", "mss_scan",
+    "sparse_majoranas", "sparse_syk", "sparse_ising", "typicality_otoc", "scaling_big",
+    "mp_edges", "mp_density", "star_spectrum", "spectrum_moments", "mp_predicted_var",
+    "transmission", "leg_emission", "suppression_ratio", "is_unsuppressed",
 ]

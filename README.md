@@ -39,6 +39,8 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **AF — Quench protocol**: same-device grid→all:all quench; t* 8→1, gap 0.27→36 (no cross-platform systematics).
 - **AG — Healing lag** (`healing.py`): dA/dt relaxation; ringdown fixes τ=11.24M; ladder ms→10⁸⁰ s; silent Planck sigh.
 - **AH — MSS + qualifier** (`mss.py`): thermal λ/2πT=0.5→0.68 (bound held); uniform all:all slower; α∈[9.0,12.4] from LVK.
+- **AI — Big SYK** (`bigsyk.py`): sparse N≤20, typicality OTOCs; t* flat vs linear to 10 qubits; MSS stable at N=16.
+- **AJ — MP + greybody** (`mp.py`, `greybody.py`): TN spectrum Haar-typical; analytic T(E) grounds unsuppressed sub-critical emission.
 
 ## Quickstart
 
@@ -73,11 +75,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                tev.py (T) echoes.py (U) posteriors.py (W) ds.py (X)
                krylov.py (Y) collapse.py (AA) cosmic.py (AB)
                lunch.py + remnant.py (AC) bounds.py (AE) healing.py (AG)
-               mss.py (AH)
+               mss.py (AH) bigsyk.py (AI) mp.py + greybody.py (AJ)
 scripts/       generate_figures.py
-tests/         112 tests (test_*.py per module)
+tests/         121 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig31 (+8b, 8c) PNGs
+figures/       fig1..fig33 (+8b, 8c) PNGs
 data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```
