@@ -43,6 +43,9 @@ from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
 from bh_graph.charge import evaporate_charged
 from bh_graph.bandwidth import evacuation_trajectory as _evac
+from bh_graph.gridcirc import quench_prediction as _qp, AF_KILL_RATIO
+from bh_graph.selfattack import violation_scan as _vs, s_leg_random as _sr, s_leg_ising as _si
+from bh_graph.lhc import thermal_onset_mass as _to, BENCHMARKS as _BM, predicted_spectrum as _ps
 from bh_graph.syk import otoc_curve as _otoc
 from bh_graph.healing import alpha_heal_bounds
 from bh_graph.remnant import required_beta_for_dm
@@ -849,6 +852,65 @@ def fig36_bandwidth():
     fig.savefig(FIG / "fig36_bandwidth.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig37_quench():
+    sides = [4, 5, 6, 7, 8]
+    alls, grids = [], []
+    for s in sides:
+        pr = _qp(s, trials=12)
+        alls.append(pr["all"])
+        grids.append(pr["grid"])
+    ns = [s * s for s in sides]
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(ns, alls, marker="o", color="#2563eb", label="all:all (sim)")
+    axes[0].plot(ns, grids, marker="s", color="#7c3aed", label="grid (sim)")
+    axes[0].set_xlabel("N"); axes[0].set_ylabel("t*")
+    axes[0].set_title("Same dynamics, both wirings"); axes[0].legend(fontsize=8)
+    ratios = np.array(grids) / np.array(alls)
+    axes[1].plot(ns, ratios, marker="o", color="#dc2626", label="measured ratio")
+    axes[1].axhline(AF_KILL_RATIO, color="black", linestyle="--", label="KILL below 1.3")
+    axes[1].axhline(2.0, color="gray", linestyle=":", label="predicted ~2-3x")
+    axes[1].set_xlabel("N"); axes[1].set_ylabel("t*_grid / t*_all")
+    axes[1].set_title("Pre-registered AF threshold"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 37 — KA: quench prediction + kill line")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig37_quench.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig38_selfattack():
+    sc = _vs([3, 4, 5, 6, 7], k=2, trials=8)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(sc["N"], sc["rel_dev"], marker="o", color="#2563eb")
+    axes[0].set_xlabel("bulk N"); axes[0].set_ylabel("|S-min|/min")
+    axes[0].set_title("Violations shrink with N (attack fails)")
+    axes[1].bar(["random TN", "Ising GS", "bound lp2/4"],
+                [_sr(), _si(10), 0.25], color=["#2563eb", "#7c3aed", "#dc2626"])
+    axes[1].set_ylabel("s_leg (nats)")
+    axes[1].set_title("QES assumption holds, Ising closest")
+    fig.suptitle("Fig 38 — KC: self-attack repelled")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig38_selfattack.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig39_lhc():
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    labels = [f"{md}/{n}" for md, n in _BM]
+    onsets = [_to(md, n, m_max=2000.0) for md, n in _BM]
+    axes[0].bar(labels, np.log10(onsets), color="#b45309")
+    axes[0].axhline(np.log10(14.0), color="red", linestyle="--", label="LHC reach")
+    axes[0].set_ylabel("log10 onset mass (TeV)")
+    axes[0].set_title("Thermal onset far above LHC"); axes[0].legend(fontsize=8)
+    s5 = _ps(5.0, 1.0, 6)
+    axes[1].plot(s5["x"], s5["emission"], color="#2563eb", label="5 TeV: hard, no tail")
+    axes[1].set_xlabel("omega/T"); axes[1].set_ylabel("per-leg emission")
+    axes[1].set_title("Pre-registered non-thermal shape"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 39 — KD: LHC onset masses + spectrum")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig39_lhc.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -886,6 +948,9 @@ def main():
     fig34_congestion()
     fig35_charge()
     fig36_bandwidth()
+    fig37_quench()
+    fig38_selfattack()
+    fig39_lhc()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

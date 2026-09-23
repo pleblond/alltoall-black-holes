@@ -44,6 +44,7 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **AK — Congestion phases** (`congestion.py`): footprint-dependent k_crit; giant delocalized holes need no bubble.
 - **AL — Charge endpoints** (`charge.py`): q=4πQ² protected legs; pinch / pointlike remnant / extremal map.
 - **AM — Bandwidth** (`bandwidth.py`): evacuation check; babies born empty; divergence ⟺ cloning risk.
+- **AN — Kill list** (`gridcirc.py`, `monitor.py`, `selfattack.py`, `lhc.py`): 5 pre-registered falsifiers with thresholds.
 
 ## Quickstart
 
@@ -80,10 +81,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                lunch.py + remnant.py (AC) bounds.py (AE) healing.py (AG)
                mss.py (AH) bigsyk.py (AI) mp.py + greybody.py (AJ)
                congestion.py (AK) charge.py (AL) bandwidth.py (AM)
+               gridcirc.py + monitor.py + selfattack.py + lhc.py (AN)
 scripts/       generate_figures.py
-tests/         133 tests (test_*.py per module)
+tests/         147 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig36 (+8b, 8c) PNGs
+figures/       fig1..fig39 (+8b, 8c) PNGs
 data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```

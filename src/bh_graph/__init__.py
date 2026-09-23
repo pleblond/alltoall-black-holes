@@ -115,6 +115,20 @@ from bh_graph.bandwidth import (
     remaining_info, info_per_leg, evacuates_cleanly, baby_inventory,
     evacuation_trajectory,
 )
+from bh_graph.gridcirc import (
+    grid_cover_time, grid_mean_cover, quench_prediction, af_verdict,
+)
+from bh_graph.monitor import (
+    combined_alive, alpha_from_dtau, universality_chi2, universality_verdict,
+)
+from bh_graph.selfattack import (
+    violation_scan, violations_grow, s_leg_random, s_leg_ising,
+    qes_assumption_holds,
+)
+from bh_graph.lhc import (
+    regime, thermal_onset_mass, predicted_spectrum, hardness_ratio,
+    lhc_kill_check, BENCHMARKS,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -179,4 +193,10 @@ __all__ = [
     "respects_extremality_bound",
     "remaining_info", "info_per_leg", "evacuates_cleanly", "baby_inventory",
     "evacuation_trajectory",
+    "grid_cover_time", "grid_mean_cover", "quench_prediction", "af_verdict",
+    "combined_alive", "alpha_from_dtau", "universality_chi2", "universality_verdict",
+    "violation_scan", "violations_grow", "s_leg_random", "s_leg_ising",
+    "qes_assumption_holds",
+    "regime", "thermal_onset_mass", "predicted_spectrum", "hardness_ratio",
+    "lhc_kill_check", "BENCHMARKS",
 ]

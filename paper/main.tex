@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Draft v1.4 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (133 tests)}
+\author{Draft v1.5 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (147 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -185,6 +185,11 @@ sub-critical emission.
 Bubble iff $\chi=kl_p^2/4\pi r_{foot}^2>1$; spread giants delocalized.
 Charge pins $q=4\pi Q^2$ legs (pinch/pointlike/extremal map). Evacuation
 empties babies; info-per-leg diverges $\iff$ cloning risk.
+
+\section{Kill list (Figs.~37--39)}
+AF quench: kill below ratio $1.3$ (predicted $2$--$3\times$). $\alpha$
+monitor awaits O4/O5 rows. Min-rule violations shrink; Ising $s_{leg}=0.55$
+vs $0.25$. LHC onset $\sim550$\,TeV; soft tail below kills.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

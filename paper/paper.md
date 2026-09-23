@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v1.4 — computational companion paper (Secs 1–3 + Appendices A–AM)
+**Draft v1.5 — computational companion paper (Secs 1–3 + Appendices A–AN)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN).
 
 ---
 
@@ -692,3 +692,32 @@ testing: info-per-leg diverges $\iff$ risk (clean cases drain to 0); the
 naive "last legs carry the most, always" was wrong and is now the diagnostic.
 
 ![Fig 36](../figures/fig36_bandwidth.png)
+
+## Appendix AN. Pre-registered kill list (five live wires)
+
+One appendix, five executable falsifiers — thresholds fixed *before* the data:
+
+1. **AF quench** (`gridcirc`, Fig 37). Same-device grid$\to$all:all quench at
+$N \ge 36$: predicted $t^*_{grid}/t^*_{all} \approx 2$--$3\times$ (simulated
+$2.09, 2.40, 3.00$ at $N = 16, 36, 64$). **KILL if ratio $< 1.3$**; confirm in
+$[1.3, 5]$; above $5$ is device anomaly, not confirmation.
+2. **$\alpha$ universality** (`monitor`). Combined kill if hierarchical
+$\delta\tau_{220}$ excludes $0$ at 90% (now $[-0.2, +0.1]$: alive);
+universality kill if per-event $\alpha_i$ scatter with $\chi^2$ $p < 0.01$ or
+trends with mass. Scaffold runs today on synthetic rows, awaits O4/O5 rows —
+reports "awaiting data," never a free pass.
+3. **Min-rule self-attack** (`selfattack`, Fig 38). Violations $15\% \to
+2\%$ shrinking with $N$ (attack fails — Page corrections fade as theory
+says). Would-be kill (violations growing with $N$) not observed.
+4. **$s_{leg}$ probe** (`selfattack`, Fig 38). Random TN $s_{leg} \approx
+0.69$, critical Ising GS $0.55$ vs bound $0.25$ — QES assumption holds with
+Ising as narrowest clearance ($2.2\times$). A physical state class under
+$0.25$ would restrict Appendix C's domain (noted, not found).
+5. **LHC thermal shape** (`lhc`, Fig 39). Onset masses $\gg$ LHC reach at all
+benchmarks ($\sim 550$ TeV at $M_D = 1$ TeV, $n = 6$); pre-registered hard
+spectra with no soft tail below onset. **KILL on any thermal-shaped excess
+with a soft tail where $k(M) < k_{crit}$.**
+
+![Fig 37](../figures/fig37_quench.png)
+![Fig 38](../figures/fig38_selfattack.png)
+![Fig 39](../figures/fig39_lhc.png)
