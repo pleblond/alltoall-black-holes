@@ -17,14 +17,16 @@ from bh_graph.circuits import mean_cover_time, predicted_alltoall_log
 from bh_graph.maxent import selfconsistent_k_quadratic, maxent_k_linear, legs_per_node
 from bh_graph.qes import qes_candidates, qes_page_k, has_qes_transition
 from bh_graph.evaporation import evaporate
+from bh_graph.qec import recovery_fidelity, recovery_threshold
+from bh_graph.robustness import log_slope_vs_p
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–D", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–G", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–D in src/bh_graph/")
+st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–G in src/bh_graph/")
 
-tab1, tab2, tab3, tabA, tabB, tabC, tabD, tab4 = st.tabs([
+tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
-    "A: Circuits", "B: k(N)", "C: QES", "D: Page", "Paper",
+    "A: Circuits", "B: k(N)", "C: QES", "D: Page", "F/G: QEC+robust", "Paper",
 ])
 
 with tab1:
@@ -182,6 +184,23 @@ with tabD:
     st.pyplot(figD)
     st.caption("Area evolution is identical whether N shrinks or stays fixed — it tracks k alone.")
     st.image("figures/fig10_page.png", caption="fig10")
+
+with tabF:
+    st.header("F/G — Mirror recovery + robustness")
+    i1, i2 = st.columns(2)
+    with i1:
+        nF = st.slider("N (hole qubits)", 4, 40, 20)
+    with i2:
+        kF = st.slider("k (collected legs)", 0, 40, 20)
+    st.metric("recovery fidelity", f"{float(recovery_fidelity(kF, nF)):.4f}")
+    st.metric("99% threshold k", f"{recovery_threshold(nF):.1f}")
+    kk = np.linspace(0, 40, 200)
+    figF, axF = plt.subplots(figsize=(6, 3))
+    axF.plot(kk, recovery_fidelity(kk, nF), color="#2563eb")
+    axF.axvline(nF / 2, color="gray", linestyle=":", label="N/2")
+    axF.set_xlabel("k"); axF.set_ylabel("F"); axF.legend(); axF.grid(True, alpha=0.3)
+    st.pyplot(figF)
+    st.image("figures/fig11_qec_robust.png", caption="fig11")
 
 with tab4:
     st.header("Paper draft")

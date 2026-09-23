@@ -14,6 +14,8 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **B — Derived $k(N)$** (`maxent.py`): MaxEnt linear bound + gravitational fixed point $k^*(N) = 16\pi(\varepsilon N/l_p)^2$; predicts $\alpha(N) = k/N \propto N$.
 - **C — QES crossing** (`qes.py`): generalized-entropy island takeover at $k_{page} = S_0/(2s_{leg}-l_p^2/4)$ + explicit min-cut network. Sharp failure mode if $s_{leg} \le l_p^2/4$.
 - **D — Page evaporation** (`evaporation.py`): leg surgery $k \to k-1$ with Page curve; area identical whether $N$ shrinks or stays fixed.
+- **F — QEC mirror** (`qec.py`): Hayden-Preskill $F(k) = 1 - \min(1/2, 2^{N/2+1-k})$; baby-universe $k\to 0$ seals information off.
+- **G — Robustness** (`robustness.py`): log law at all $p$, exact quadraticity at all $\varepsilon$, sharp QES boundary at $s_{leg} = l_p^2/4$.
 
 ## Quickstart
 
@@ -42,11 +44,13 @@ Open the shown URL: sliders for $N$, $k$, $r_{point}$, $l_p$; live Sec 1/2/3 plo
 ```
 src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                circuits.py (A) maxent.py (B) qes.py (C) evaporation.py (D)
+               qec.py (F) robustness.py (G)
 scripts/       generate_figures.py
 tests/         test_scrambling.py test_horizon.py test_micro.py
-               test_circuits.py test_maxent.py test_qes.py test_evaporation.py  (25 tests)
+               test_circuits.py test_maxent.py test_qes.py test_evaporation.py  (31 tests)
+               test_qec.py test_robustness.py
 paper/         paper.md main.tex
-figures/       fig1..fig10 (+8b, 8c) PNGs
+figures/       fig1..fig11 (+8b, 8c) PNGs
 app.py         Streamlit explorer
 ```
 

@@ -13,6 +13,8 @@ from bh_graph.qes import (
     build_core_boundary_flow, min_cut_value, min_cut_scaling,
 )
 from bh_graph.evaporation import page_curve_bits, page_time, evaporate, is_evaporated
+from bh_graph.qec import recovery_error, recovery_fidelity, recovery_threshold, is_recoverable
+from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary, all_quadratic
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -25,4 +27,6 @@ __all__ = [
     "qes_candidates", "qes_page_k", "qes_dominant", "has_qes_transition",
     "build_core_boundary_flow", "min_cut_value", "min_cut_scaling",
     "page_curve_bits", "page_time", "evaporate", "is_evaporated",
+    "recovery_error", "recovery_fidelity", "recovery_threshold", "is_recoverable",
+    "log_slope_vs_p", "quadratic_coefficient", "qes_phase_boundary", "all_quadratic",
 ]

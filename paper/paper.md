@@ -2,7 +2,7 @@
 
 ## Interior collapse, horizon wiring, and the micro-hole phase transition
 
-**Draft v0.2 — computational companion paper (Secs 1–3 + Appendices A–D)**
+**Draft v0.3 — computational companion paper (Secs 1–3 + Appendices A–G)**
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -193,7 +193,8 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 ```
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
-`circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D).
+`circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
+`qec.py` (F), `robustness.py` (G).
 
 ---
 
@@ -276,3 +277,24 @@ deleted — the distinctive Sec 2 claim, now demonstrated rather than asserted.
 - Rovelli & Smolin, *Discreteness of area and volume in quantum gravity*, Nucl. Phys. B 1995.
 - Penington / Almheiri et al., *Entanglement wedge reconstruction and the island formula*, JHEP 2019–2020.
 - Hayden & Preskill, *Black holes as mirrors*, JHEP 2007.
+
+## Appendix F. QEC check: Hayden-Preskill mirror vs exterior budget
+
+(`bh_graph.qec`.) Recovery error for a diary qubit under Haar-random all:all
+dynamics obeys $err(k) = \min(1/2, 2^{N/2+1-k})$: guessing ($F = 1/2$) below
+$k \sim N/2$, then exponential climb to a mirror ($F \to 1$ a few legs past
+half). The 99%-fidelity threshold is $k \ge N/2 + 1 + \log_2 100$. In the
+baby-universe limit $k \to 0$ the diary is sealed off — exactly the decoupling
+Sec 2 demands. The model's QEC story is therefore self-consistent: almost-all:all
++ budget = fast mirror; perfect all:all = no outside recovery.
+
+## Appendix G. Robustness: the results are not fine-tuned
+
+(`bh_graph.robustness`, Fig 11.) (i) Circuit log law persists at every gate
+success $p$, slope $1/\log_2(1+p)$ — noisy gates only steepen it. (ii) $k^*(N)$
+is exactly quadratic ($k^*(2N)/k^*(N) = 4$) for every $\varepsilon$; only the
+coefficient $16\pi(\varepsilon/l_p)^2$ moves. (iii) The QES boundary is sharp:
+transition iff $s_{leg} > l_p^2/4$. So A–C each survive parameter sweeps with
+their failure modes made explicit rather than hidden.
+
+![Fig 11](../figures/fig11_qec_robust.png)

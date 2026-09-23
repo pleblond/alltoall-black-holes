@@ -18,6 +18,8 @@ from bh_graph.maxent import (
 )
 from bh_graph.qes import qes_candidates, qes_page_k, min_cut_scaling
 from bh_graph.evaporation import page_curve_bits, evaporate
+from bh_graph.qec import recovery_fidelity, recovery_threshold
+from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
@@ -252,6 +254,31 @@ def fig10_page():
     plt.close(fig)
 
 
+def fig11_qec_robust():
+    fig, axes = plt.subplots(1, 3, figsize=(12, 3.5))
+    # QEC mirror
+    k = np.linspace(0, 30, 300)
+    axes[0].plot(k, recovery_fidelity(k, 20), color="#2563eb")
+    axes[0].axvline(10, color="gray", linestyle=":", label="N/2")
+    axes[0].axvline(recovery_threshold(20), color="red", linestyle="--", label="99% threshold")
+    axes[0].set_xlabel("k (collected legs)"); axes[0].set_ylabel("recovery fidelity")
+    axes[0].set_title("Hayden-Preskill mirror (N=20)"); axes[0].legend(fontsize=7)
+    # log slope vs p
+    p = np.linspace(0.1, 1.0, 100)
+    axes[1].plot(p, log_slope_vs_p(p), color="#0f766e")
+    axes[1].set_xlabel("gate success p"); axes[1].set_ylabel("slope dt*/d log2 N")
+    axes[1].set_title("Log law persists at p<1 (steeper)")
+    # QES phase boundary
+    s = np.linspace(0.0, 1.0, 400)
+    axes[2].plot(s, qes_phase_boundary(s).astype(float), color="#dc2626")
+    axes[2].axvline(0.25, color="black", linestyle="--", label="lp^2/4")
+    axes[2].set_xlabel("s_leg"); axes[2].set_ylabel("transition exists")
+    axes[2].set_title("QES phase boundary (sharp)"); axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 11 — F/G: QEC mirror + robustness (log law, QES boundary)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig11_qec_robust.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -263,6 +290,7 @@ def main():
     fig8_k_of_n()
     fig9_qes()
     fig10_page()
+    fig11_qec_robust()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
@@ -270,3 +298,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
