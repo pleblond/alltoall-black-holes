@@ -11,6 +11,13 @@ import networkx as nx
 from bh_graph.scrambling import scrambling_scaling
 from bh_graph.horizon import horizon_area, horizon_radius, monogamy_frontier, k_from_mass_schwarzschild
 from bh_graph.micro import critical_k, embedding_radius, growth_trajectory, quantized_area
+from bh_graph.circuits import circuit_scaling, predicted_alltoall_log
+from bh_graph.maxent import (
+    maxent_k_linear, selfconsistent_k_quadratic, legs_per_node,
+    fixed_point_iteration, random_tensor_page_saturation,
+)
+from bh_graph.qes import qes_candidates, qes_page_k, min_cut_scaling
+from bh_graph.evaporation import page_curve_bits, evaporate
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
@@ -143,6 +150,108 @@ def fig6_quantized():
     plt.close(fig)
 
 
+def fig7_circuit_scrambling():
+    ns = [8, 16, 32, 64, 96, 128]
+    data = circuit_scaling(ns, p=1.0, trials=25, seed=0)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+    for topo, color in [("alltoall", "#2563eb"), ("chain", "#dc2626")]:
+        xs = sorted(data[topo])
+        ms = [data[topo][n][0] for n in xs]
+        ss = [data[topo][n][1] for n in xs]
+        axes[0].errorbar(xs, ms, yerr=ss, marker="o", label=topo, color=color, capsize=3)
+    nn = np.linspace(8, 128, 100)
+    axes[0].plot(nn, predicted_alltoall_log(nn, 1.0), "--", color="gray", label="log2 N prediction")
+    axes[0].set_xlabel("N qubits"); axes[0].set_ylabel("mean cover time (steps)")
+    axes[0].set_title("Random circuit: all:all ~ log N, chain ~ N"); axes[0].legend(fontsize=8)
+    # log-x view makes the log law a straight line
+    for topo, color in [("alltoall", "#2563eb"), ("chain", "#dc2626")]:
+        xs = sorted(data[topo])
+        ms = [data[topo][n][0] for n in xs]
+        axes[1].plot(np.log2(xs), ms, marker="o", label=topo, color=color)
+    axes[1].plot(np.log2(nn), predicted_alltoall_log(nn, 1.0), "--", color="gray")
+    axes[1].set_xlabel("log2 N"); axes[1].set_ylabel("mean cover time")
+    axes[1].set_title("Log-linear view: all:all is straight (fast scrambler)")
+    axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 7 — A: finite-speed circuits derive t* ~ log N")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig7_circuit_scrambling.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig8_k_of_n():
+    n = np.linspace(1, 30, 200)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+    axes[0].plot(n, maxent_k_linear(n), label="MaxEnt linear bound k>=N", color="gray")
+    axes[0].plot(n, selfconsistent_k_quadratic(n, eps=0.1), label="self-consistent k*=16pi(eps N)^2", color="#7c3aed")
+    axes[0].set_xlabel("N"); axes[0].set_ylabel("k"); axes[0].set_title("k(N): linear bound vs quadratic fixed point")
+    axes[0].legend(fontsize=8)
+    traj = fixed_point_iteration(10, eps=0.1, steps=10, k_init=1.0)
+    axes[1].plot(traj, marker="o", color="#0f766e")
+    axes[1].axhline(float(selfconsistent_k_quadratic(10, 0.1)), color="red", linestyle="--", label="k*(10)")
+    axes[1].set_xlabel("iteration"); axes[1].set_ylabel("k"); axes[1].set_title("Fixed point stable from any start")
+    axes[1].legend(fontsize=8)
+    n2 = np.linspace(1, 30, 100)
+    fig2 = plt.figure(figsize=(5, 3.5))
+    plt.plot(n2, legs_per_node(n2, eps=0.1), color="#b45309")
+    plt.xlabel("N"); plt.ylabel("legs per node k*/N")
+    plt.title("Prediction: big holes relatively more wired")
+    plt.tight_layout()
+    fig2.savefig(FIG / "fig8b_alpha_of_n.png", bbox_inches="tight")
+    plt.close(fig2)
+    k = np.linspace(0, 30, 200)
+    fig3 = plt.figure(figsize=(5, 3.5))
+    plt.plot(k, random_tensor_page_saturation(10, k), color="#2563eb")
+    plt.xlabel("k"); plt.ylabel("S_ext (nats)")
+    plt.title("Random-tensor bottleneck: grows then saturates at N log d")
+    plt.tight_layout()
+    fig3.savefig(FIG / "fig8c_tensor_bottleneck.png", bbox_inches="tight")
+    plt.close(fig3)
+    fig.suptitle("Fig 8 — B: k(N) derived, not postulated")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig8_k_of_n.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig9_qes():
+    s0, s_leg, lp = 20.0, 1.0, 1.0
+    k = np.linspace(0, 30, 400)
+    s_no, s_isl = qes_candidates(k, s0, s_leg, lp)
+    kp = qes_page_k(s0, s_leg, lp)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+    axes[0].plot(k, s_no, label="no-island S=k s_leg", color="gray")
+    axes[0].plot(k, s_isl, label="island S=k lp^2/4+bulk", color="#2563eb")
+    axes[0].plot(k, np.minimum(s_no, s_isl), "--", color="red", label="min (physical)")
+    axes[0].axvline(kp, color="red", linestyle=":", label=f"k_page={kp:.1f}")
+    axes[0].set_xlabel("k"); axes[0].set_ylabel("generalized entropy")
+    axes[0].set_title("Island takes over: QES pops at crossing"); axes[0].legend(fontsize=7)
+    kk = np.arange(0, 21)
+    axes[1].plot(kk, min_cut_scaling(6, kk, c_int=5.0, c_leg=1.0), marker="o", color="#0f766e")
+    axes[1].set_xlabel("k legs"); axes[1].set_ylabel("min-cut value")
+    axes[1].set_title("Explicit core+legs graph min-cut vs k")
+    fig.suptitle("Fig 9 — C: QES pop from generalized-entropy crossing")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig9_qes.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig10_page():
+    a = evaporate(n0=50, k0=40, steps=40, wiring_only=True)
+    b = evaporate(n0=50, k0=40, steps=40, wiring_only=False)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+    axes[0].plot(a["t"], a["S_rad"], color="#2563eb", label="S_rad (Page)")
+    axes[0].axvline(20, color="red", linestyle="--", label="Page time")
+    axes[0].set_xlabel("evaporation step t"); axes[0].set_ylabel("S_rad (bits)")
+    axes[0].set_title("Page curve rises then falls"); axes[0].legend()
+    axes[1].plot(a["t"], a["area"], label="wiring-only (N fixed)", color="#0f766e")
+    axes[1].plot(b["t"], b["area"], "--", label="standard (N shrinks)", color="gray")
+    axes[1].set_xlabel("t"); axes[1].set_ylabel("A/lp^2")
+    axes[1].set_title("Area identical: tracks k, not N"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 10 — D: leg-surgery evaporation + Page curve")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig10_page.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -150,6 +259,10 @@ def main():
     fig4_monogamy()
     fig5_phase_transition()
     fig6_quantized()
+    fig7_circuit_scrambling()
+    fig8_k_of_n()
+    fig9_qes()
+    fig10_page()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
