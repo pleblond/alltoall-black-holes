@@ -4,6 +4,7 @@
 
 [![Code: MIT](https://img.shields.io/badge/code-MIT-green)](LICENSE-CODE-MIT)
 [![Docs: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-blue)](LICENSE-DOCS-CC-BY-4.0.txt)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22929076.svg)](https://doi.org/10.5281/zenodo.22929076)
 
 > A reproducible toy theory: black-hole interiors are almost-perfect all:all
 > entanglement graphs, horizon area counts exterior legs ($A = k\,l_p^2$),
@@ -135,10 +136,11 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 @software{leblond2026alltoall,
   author  = {Leblond, Philippe},
   title   = {Black Holes as Almost-Perfect All:All Entanglement Graphs},
-  version = {2.1.1},
+  version = {2.1.0},
   year    = {2026},
+  doi     = {10.5281/zenodo.22929077},
   url     = {https://github.com/pleblond/alltoall-black-holes},
-  note    = {Code MIT; text/figures CC BY 4.0}
+  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076}
 }
 ```
 

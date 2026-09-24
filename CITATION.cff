@@ -8,6 +8,10 @@ authors:
 version: 2.1.1
 date-released: 2026-09-24
 repository-code: "https://github.com/pleblond/alltoall-black-holes"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22929077
+    description: "Zenodo record for v2.1.0 (concept DOI for all versions: 10.5281/zenodo.22929076)"
 license: MIT
 keywords:
   - black holes
