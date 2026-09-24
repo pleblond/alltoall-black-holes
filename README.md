@@ -11,10 +11,6 @@
 > and micro-holes undergo a point-to-horizon phase transition. Every claim
 > ships with runnable code, tests, and figures.
 
-Origin: a [Meta AI conversation](https://www.meta.ai/share/c/Onvs47AV0o)
-about black holes as all:all entanglements, developed into a computational
-companion paper (Secs 1–3 + Appendices A–BD, v2.6).
-
 ## Abstract
 
 We study a toy model in which spacetime connectivity is an entanglement graph
@@ -23,20 +19,23 @@ Internal edges cost no exterior space; each of $k$ exterior legs costs about
 one Planck patch of horizon area. From two postulates the model reproduces
 fast scrambling ($t_* \sim \log N$), the Bekenstein–Hawking area law, the
 exact Page curve with Haar-typical fluctuations, island/QES takeover, Kerr
-thermodynamics, Hayden–Preskill mirror recovery, and — via an entropic
-argument on leg screens — Newton's $1/r^2$ law, Kepler orbits, and textbook
-gravitational redshifts (GPS, Pound–Rebka). It predicts a micro-hole
+thermodynamics, and Hayden–Preskill mirror recovery. An entropic argument on
+leg screens yields Newton's $1/r^2$ law, Kepler orbits, textbook
+gravitational redshifts (GPS, Pound–Rebka), full first-order light bending,
+and three routes toward the Einstein–Hilbert action. It predicts a micro-hole
 point-to-horizon phase transition, a collapse-as-scrambling transition, and
 lab-testable scrambling hierarchies, while meeting public LIGO–Virgo–KAGRA,
-LHC-recast, and quantum-hardware data. Falsifiers are pre-registered
+ringdown, LHC-recast, and quantum-hardware data. Falsifiers are pre-registered
 (Appendix AN); one sub-claim (broad remnant dark matter) is already ruled
-out on the record, with a narrow surviving window.
+out on the record, with a narrow surviving window. Postulates, derivations,
+and open gaps are labeled throughout — including the missing spatial-curvature
+sector and the un-derived gap coefficient.
 
 ## Contents
 
 | Path | Description | License |
 |---|---|---|
-| `paper/paper.md` | Full draft (Secs 1–3 + Appendices A–AY) | CC BY 4.0 |
+| `paper/paper.md` | Full draft (Secs 1–3 + Appendices A–BD) | CC BY 4.0 |
 | `paper/main.tex`, `paper/main.pdf` | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
@@ -101,7 +100,8 @@ cd paper && pdflatex main.tex && pdflatex main.tex
   QES/island crossing, Page curve + fluctuations, CKW frontier,
   Hayden–Preskill mirror, Kerr Page delay, $1/r^2$ + Kepler + redshifts,
   tortoise freezing, congestion phases, charge endpoints, evacuation
-  ordering, MP spectrum, greybody switch, $\alpha = 11.24$ match.
+  ordering, MP spectrum, greybody switch, $\alpha = 11.24$ match,
+  quadratic-only LIV ($E_{QG,1} = \infty$, $E_{QG,2} = \sqrt{8}\,E_P$).
 - **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
   equivalence principle, continuum limits (heat-kernel, Ollivier),
   Raychaudhuri for leg bundles, gap coefficient, crossover scales.
@@ -109,7 +109,8 @@ cd paper && pdflatex main.tex && pdflatex main.tex
   only in a $\sim 0.4$-dex EMD window at $\sim 4\times10^5$ g).
 - **Falsifiers armed:** AF quench ratio $< 1.3$, $\alpha$ outside
   $[9.0, 12.4]$, $A \propto N$ in any TN calculation, thermal LHC excess
-  below $k_{crit}$, $s_{leg} \le l_p^2/4$ in any physical state class.
+  below $k_{crit}$, $s_{leg} \le l_p^2/4$ in any physical state class,
+  any linear-LIV signal (finite $E_{QG,1}$).
 
 ## License
 

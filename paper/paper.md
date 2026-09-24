@@ -968,4 +968,20 @@ over 3 Gpc delays $\sim 10^{-20}$ s). Caveats: regular-lattice result (no
 $k$ exists in all:all regions); near-horizon running of effective spacing
 open; scalar only, no birefringence prediction.
 
+> **Vacuum Dispersion and Discrete Leg Symmetry.**
+> The discrete leg network induces an effective chromatic dispersion on null
+> trajectories. Owing to the inversion symmetry $k \leftrightarrow -k$ of the
+> regular ambient lattice, the odd-power dispersion terms vanish identically
+> ($E_{QG,1} = \infty$). The leading-order correction is purely quadratic in
+> photon energy (group velocity, subluminal):
+> $$v(E) = c\left(1 - \frac{E^2}{E_{QG,2}^2}\right), \quad \text{with } E_{QG,2} = \sqrt{8}\,E_{Planck} \approx 3.45 \times 10^{19}\,\text{GeV}$$
+> This prediction establishes a sharp falsifiability criterion: detection of
+> any linear-LIV signal (finite $E_{QG,1}$) falsifies the discrete-leg
+> topology, whereas a measured sub-Planckian quadratic delay
+> ($E_{QG,2} \sim \mathcal{O}(E_P)$) fixes the effective spatial leg spacing
+> up to $O(1)$ lattice factors. Current astrophysical constraints (Fermi-LAT
+> GRB limits $E_{QG,2} \gtrsim 10^{11}$ GeV) lie approximately eight orders
+> of magnitude below this Planck-scale threshold, ensuring full compatibility
+> with existing observational data.
+
 ![Fig 51](../figures/fig51_dispersion.png)
