@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v2.2 — computational companion paper (Secs 1–3 + Appendices A–AY)
+**Draft v2.3 — computational companion paper (Secs 1–3 + Appendices A–BA)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -898,3 +898,29 @@ it reports "not yet public" today, never fake data. SYK-24 on Quantinuum H1
 added as 9th literature anchor: sparse random all:all scrambles on hardware.
 
 ![Fig 47](../figures/fig47_gw250114.png)
+
+## Appendix AZ. Overtone tower from leaky cavities; tension no-go
+
+(`bh_graph.overtones`, `bh_graph.tensionvol`, Fig 48.) Fitting a
+Poschl-Teller barrier to the fundamental only ($b = 1/2\mathrm{Im}\,\omega_0$)
+predicts the damping ladder $1$:$3$:$5$ vs GR's $1$:$3.08$:$5.38$ (Leaver) —
+within $8\%$ with zero additional parameters: tower *structure* from
+leaky-cavity physics, absolute scale from Appendix AG, exact numbers still
+GR's (Regge-Wheeler potential needed for those). Tension-from-complexity was
+attempted and honestly failed: bridge volume energy $E = \rho A d$ leaves
+$\rho$ undetermined over $\sim 100$ orders (Planck vs Hawking density), with
+Planck tension exceeding the hole's own mass (absurd) — so $\sigma$ stays a
+bounded parameter (Appendix AX), and the missing microphysics is localized
+to the bridge interior equation of state, not bluffed.
+
+![Fig 48](../figures/fig48_overtones.png)
+
+## Appendix BA. Big SYK to $N = 24$: flat $t^*$, MSS headroom holding
+
+(`bh_graph.sparse24`, Fig 32 extended.) Stabilizer-tableau triplet builder
+($N = 24$: 10626 terms, dim 4096, $\sim 4$ s build, verified against dense
+ED) with thermal typicality OTOCs: infinite-$T$ $t^*$ flat at $1.28$–$1.30$
+from $N = 8$ to $24$ while the chain climbs $1.8 \to 7.4$; thermal
+$\lambda/2\pi T$ at $\beta = 1$ reads $0.68, 0.66, 0.86, 0.77$ at $N = 10, 16, 20, 24$ — below 1 throughout, trending upward within fit noise (unregularized thermal OTOC, 2 disorder samples).
+Saturation approached, not claimed — finite-size fits at dim $\le 4096$.
+![Fig 32](../figures/fig32_bigscaling.png)

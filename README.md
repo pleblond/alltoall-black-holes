@@ -55,7 +55,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`.
 
 ## Quickstart
 
@@ -63,7 +63,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 199 tests
+python -m pytest tests/ -q          # 206 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -147,7 +147,7 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
-v2.2 — complete through Appendix AY (fission, k-audit, tension, GW250114,
-Einstein–Hilbert routes). The paper is a living research document:
+v2.3 — complete through Appendix BA (overtone tower, tension no-go, big-SYK
+to $N=24$). The paper is a living research document:
 errata are recorded in-text (see Appendices AC/AE/AR), and the kill
 list (Appendix AN) scores all future results.

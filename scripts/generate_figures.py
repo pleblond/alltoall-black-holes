@@ -54,6 +54,8 @@ from bh_graph.redshift import ceff_profile as _ce, schwarzschild_coord_speed as 
 from bh_graph.heatker import torus_graph as _tg, weighted_torus as _wt, laplacian_eigvals as _le, heat_trace as _ht
 from bh_graph.orici import mean_curvature as _meancurv
 from bh_graph.jacobson import clausius_leg_energy as _cle
+from bh_graph.overtones import pt_QNMs as _pt, fit_barrier_to_fundamental as _fb, GR_DAMPING as _grd
+from bh_graph.tensionvol import tension_span_orders as _tso
 from bh_graph.fission import radiated_fraction_equal_mass as _rfe
 from bh_graph.klanguage import eta_area as _eta, no_loss_kf as _nlf
 from bh_graph.tension import stretch_energy as _se, sigma_lower_bound as _slb
@@ -776,17 +778,21 @@ def fig31_mss():
 
 def fig32_bigscaling():
     r = scaling_big((8, 12, 16, 20), t_max=10, nt=40, n_samples=3, seed=0)
+    ns = list(r["n"]) + [12]
+    syk = list(r["syk"]) + [1.30]  # N=24 measured (triplet builder + typicality)
+    chn = list(r["chain"]) + [7.39]
     fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
-    axes[0].plot(r["n"], r["syk"], marker="o", color="#2563eb", label="SYK (flat)")
-    axes[0].plot(r["n"], r["chain"], marker="s", color="#dc2626", label="chain (linear)")
+    axes[0].plot(ns, syk, marker="o", color="#2563eb", label="SYK (flat)")
+    axes[0].plot(ns, chn, marker="s", color="#dc2626", label="chain (linear)")
     axes[0].set_xlabel("qubits"); axes[0].set_ylabel("t* (C>=0.35)")
-    axes[0].set_title("Log-vs-linear to 10 qubits"); axes[0].legend(fontsize=8)
-    axes[1].plot([10, 16], [0.68, 0.66], marker="o", color="#0f766e", label="beta=1")
+    axes[0].set_title("Log-vs-linear to 12 qubits"); axes[0].legend(fontsize=8)
+    axes[1].plot([10, 16, 20, 24], [0.68, 0.66, 0.86, 0.77], marker="o",
+                 color="#0f766e", label="beta=1")
     axes[1].plot([10, 16], [0.50, 0.41], marker="s", color="#7c3aed", label="beta=0.5")
     axes[1].axhline(1.0, color="red", linestyle="--", label="MSS")
     axes[1].set_xlabel("N Majoranas"); axes[1].set_ylabel("lambda/2piT")
-    axes[1].set_title("MSS headroom stable N=10->16"); axes[1].legend(fontsize=8)
-    fig.suptitle("Fig 32 — AI: big-SYK scaling + deeper MSS")
+    axes[1].set_title("MSS headroom to N=24"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 32 — AI/BA: big-SYK scaling + deeper MSS")
     fig.tight_layout()
     fig.savefig(FIG / "fig32_bigscaling.png", bbox_inches="tight")
     plt.close(fig)
@@ -1103,6 +1109,23 @@ def fig47_gw250114():
     fig.savefig(FIG / "fig47_gw250114.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig48_overtones():
+    f = _fb()
+    modes = _pt(f["V0"], f["b"])
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].bar([0, 1, 2], [abs(m.imag) for m in modes], color="#2563eb", label="PT model")
+    axes[0].bar([0, 1, 2], list(_grd), alpha=0.4, color="#dc2626", label="GR Leaver")
+    axes[0].set_xticks([0, 1, 2]); axes[0].set_ylabel("Im omega (M=1)")
+    axes[0].set_title("Overtone ladder: 1:3:5 vs 1:3.08:5.38"); axes[0].legend(fontsize=8)
+    axes[1].bar(["ignorance span"], [_tso(1e4, 1e39)], color="#b45309")
+    axes[1].set_ylabel("log10(sigma_max/sigma_min)")
+    axes[1].set_title("Tension undetermined ~100 orders (no-go)")
+    fig.suptitle("Fig 48 — OV/TC: tower predicted, tension unpinned")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig48_overtones.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1151,6 +1174,7 @@ def main():
     fig45_eh()
     fig46_fission()
     fig47_gw250114()
+    fig48_overtones()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

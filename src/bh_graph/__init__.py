@@ -173,6 +173,15 @@ from bh_graph.tension import (
 from bh_graph.gw250114 import (
     kerr_area_msun, eta_kerr, gw250114_prediction, check_o4b_public,
 )
+from bh_graph.sparse24 import triplet_syk, thermal_typicality_otoc
+from bh_graph.overtones import (
+    pt_QNMs, fit_barrier_to_fundamental, overtone_ratios, gr_ratios,
+    tower_agreement,
+)
+from bh_graph.tensionvol import (
+    sigma_planck_density, sigma_hawking_density, tension_span_orders,
+    bridge_energy, planck_tension_absurd,
+)
 from bh_graph.viability import (
     evaporated, allowed_omega, viability, viability_curve,
 )
@@ -283,4 +292,9 @@ __all__ = [
     "stretch_energy", "stretch_force", "fission_rate_toy", "sigma_lower_bound",
     "hawking_temperature", "tension_band",
     "kerr_area_msun", "eta_kerr", "gw250114_prediction", "check_o4b_public",
+    "triplet_syk", "thermal_typicality_otoc",
+    "pt_QNMs", "fit_barrier_to_fundamental", "overtone_ratios", "gr_ratios",
+    "tower_agreement",
+    "sigma_planck_density", "sigma_hawking_density", "tension_span_orders",
+    "bridge_energy", "planck_tension_absurd",
 ]
