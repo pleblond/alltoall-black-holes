@@ -49,6 +49,7 @@ from bh_graph.perwalk import drift_profile as _dp, persistent_walk as _pw, msd_e
 from bh_graph.strain import (
     h_tortuosity as _hto, h_naive as _hna, gr_h as _hgr,
     mercury_arcsec as _mar, f_schw as _fsc, newton_h as _hne)
+from bh_graph.weakfield import weak_field_graph as _wfg, kappa_profile as _kp
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1356,6 +1357,45 @@ def fig58_strain():
     fig.savefig(FIG / "fig58_strain.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig59_weakfield():
+    radii = (1.5, 2.5, 3.5)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    profs = {}
+    for mode, color in (("direct", "#2563eb"), ("chains", "#f59e0b")):
+        arr = []
+        for seed in range(6):
+            g, pos = _wfg(L=9, n_stubs=60, mode=mode, seed=seed)
+            arr.append([_kp(g, pos, radii=radii)[r] for r in radii])
+        arr = np.array(arr)
+        profs[mode] = arr
+        axes[0].errorbar(radii, -arr.mean(0), yerr=arr.std(0), marker="o",
+                         color=color, label=f"{mode} -k", capsize=3)
+    rr = np.array(radii)
+    axes[0].plot(rr, 0.03 / rr, "--", color="gray", label="1/r ref")
+    axes[0].plot(rr, 0.06 / rr**2, ":", color="gray", label="1/r^2 ref")
+    axes[0].set_xlabel("r"); axes[0].set_ylabel("-kappa_rad")
+    axes[0].set_title("Radial OR curvature: negative, ~1/r-ish")
+    axes[0].legend(fontsize=8)
+    c1 = []
+    for ns in (30, 60, 120):
+        for seed in range(6):
+            g, pos = _wfg(L=9, n_stubs=ns, mode="direct", seed=seed)
+            for r, k in _kp(g, pos, radii=radii).items():
+                c1.append(-k * r / np.sqrt(ns))
+    axes[1].plot(c1, marker=".", ls="", color="#2563eb")
+    axes[1].axhline(np.mean(c1), color="black", lw=1)
+    axes[1].set_xlabel("config"); axes[1].set_ylabel("-k.r/sqrt(ns)")
+    axes[1].set_title("Collapse quantity (CV ~0.47)")
+    axes[2].bar(["dir 1/r", "dir 1/r2", "ch 1/r", "ch 1/r2"],
+                [0.47, 0.60, 0.34, 0.35],
+                color=["#2563eb", "#93c5fd", "#f59e0b", "#fde68a"])
+    axes[2].set_ylabel("CV"); axes[2].set_title("Model discrimination")
+    fig.suptitle("Fig 59 — BI: weak-field OR profile, partial micro-derivation")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig59_weakfield.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1415,6 +1455,7 @@ def main():
     fig56_foam()
     fig57_perwalk()
     fig58_strain()
+    fig59_weakfield()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

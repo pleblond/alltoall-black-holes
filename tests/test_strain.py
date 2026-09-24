@@ -30,3 +30,12 @@ def test_flat_space_control_two_thirds():
     # validates the integrator in a second regime instead.
     got = mercury_arcsec(f_schw, newton_h)
     assert abs(got - 43.0 * 2 / 3) / (43.0 * 2 / 3) < 0.15
+
+
+def test_consistency_chain_ceff():
+    # Route A lock: c_eff = sqrt(f/h) matches AT's 1-x to first order.
+    import numpy as np
+    x = np.array([1e-3, 1e-4])
+    r = 2.0 / x
+    ceff = np.sqrt(f_schw(r) / h_tortuosity(r))
+    assert np.all(np.abs(ceff - (1 - x)) / x**2 < 1.0)

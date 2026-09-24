@@ -203,6 +203,7 @@ from bh_graph.strain import (
     h_tortuosity, h_naive, f_schw, gr_h, newton_h,
     gamma_ppn_of_h, perihelion_advance, mercury_arcsec,
 )
+from bh_graph.weakfield import weak_field_graph, kappa_profile, scaling_power
 from bh_graph.qnmlegs import (
     leg_transition_omega, leg_transition_hz, qnm_fund_hz,
     fine_structure_ratio, single_quantum_fraction, microstate_broadening,
@@ -354,6 +355,7 @@ __all__ = [
     "spin_circulation_drift", "mpd_fractional",
     "h_tortuosity", "h_naive", "f_schw", "gr_h", "newton_h",
     "gamma_ppn_of_h", "perihelion_advance", "mercury_arcsec",
+    "weak_field_graph", "kappa_profile", "scaling_power",
     "mass_ladder", "qnm_comb", "comb_fractional_spacing", "echo_train",
     "leg_transition_omega", "leg_transition_hz", "qnm_fund_hz",
     "fine_structure_ratio", "single_quantum_fraction", "microstate_broadening",

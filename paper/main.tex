@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v3.2 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (260 tests)}
+\author{Philippe Leblond \\ \small Draft v3.3 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (264 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -270,6 +270,11 @@ Mercury MPD $\sim4\times10^{-14}$.
 Naive $dl=dr/(1-\sqrt\chi)$ gives $\gamma=2$ (Cassini-excluded); tortuosity
 $dl=(1+\sqrt\chi/2)dr$ gives $h=(1+x/2)^2$, $\gamma=1$ exactly, and Mercury
 $42.99''$/cy by direct geodesic integration — the $g_{rr}$ sector derived.
+
+\section{Weak-field OR profile (Fig.~59)}
+Grid+hub with flux stubs: radial Ollivier-Ricci negative in all configs
+(sign of $h>1$ derived from micro); scaling $p\approx0.9\pm0.5$ suggestive,
+not resolved — partial micro-derivation, bigger lattices needed.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

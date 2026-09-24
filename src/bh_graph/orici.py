@@ -16,7 +16,7 @@ from scipy.optimize import linprog
 
 
 def _neighborhood_measure(g: nx.Graph, x, p: float = 0.0) -> dict:
-    nbrs = sorted(g.neighbors(x))
+    nbrs = sorted(g.neighbors(x), key=repr)
     m = {x: p}
     rest = (1.0 - p) / max(len(nbrs), 1)
     for v in nbrs:
@@ -24,14 +24,15 @@ def _neighborhood_measure(g: nx.Graph, x, p: float = 0.0) -> dict:
     return m
 
 
-def wasserstein1(g: nx.Graph, mx: dict, my: dict) -> float:
+def wasserstein1(g: nx.Graph, mx: dict, my: dict, _dist=None, _idx=None) -> float:
     """Exact W_1 between two finitely-supported measures (transportation LP)."""
     xs, ys = list(mx), list(my)
     a = np.array([mx[v] for v in xs])
     b = np.array([my[v] for v in ys])
-    dist = nx.floyd_warshall_numpy(g)
-    nodes = list(g.nodes())
-    idx = {v: i for i, v in enumerate(nodes)}
+    if _dist is None:
+        _dist = nx.floyd_warshall_numpy(g)
+        _idx = {v: i for i, v in enumerate(g.nodes())}
+    dist, idx = _dist, _idx
     c = np.array([dist[idx[u], idx[v]] for u in xs for v in ys], dtype=float)
     n, m = len(xs), len(ys)
     a_ub = np.zeros((n + m, n * m))
@@ -46,9 +47,10 @@ def wasserstein1(g: nx.Graph, mx: dict, my: dict) -> float:
     return float(res.fun)
 
 
-def ollivier_curvature(g: nx.Graph, x, y, p: float = 0.0) -> float:
+def ollivier_curvature(g: nx.Graph, x, y, p: float = 0.0, _dist=None, _idx=None) -> float:
     d = nx.shortest_path_length(g, x, y)
-    w = wasserstein1(g, _neighborhood_measure(g, x, p), _neighborhood_measure(g, y, p))
+    w = wasserstein1(g, _neighborhood_measure(g, x, p), _neighborhood_measure(g, y, p),
+                     _dist=_dist, _idx=_idx)
     return float(1.0 - w / max(d, 1e-300))
 
 

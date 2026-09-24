@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.2 — computational companion paper (Secs 1–3 + Appendices A–BH)
+**Draft v3.3 — computational companion paper (Secs 1–3 + Appendices A–BI)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1112,4 +1112,30 @@ integrator), model 42.99"/cy (identical — differences are $O(x^2)$),
 flat-$h$ hybrid 28.7" (PPN $2/3$ factor reproduced). The BB Mercury gap
 is closed: the missing $g_{rr}$ sector is now derived, not calibrated.
 
+**Logical status (Route A).** The tortuosity picture above is illustrative,
+not load-bearing: $h$ is already fixed by consistency — AS's potential plus
+BB's $4M/b$ bending force $\gamma = 1$ in any metric reading, hence $h
+\approx 1+x$, and $c_{eff} = \sqrt{f/h} = 1-x$ matches AT to first order
+(locked as `test_consistency_chain_ceff`). The live assumptions are the
+metric framework itself (angular $r^2 d\Omega^2$ included) and the inherited
+AT $\alpha = 1$ calibration. Appendix BI attempts the genuine
+from-micro derivation via Ollivier-Ricci.
+
 ![Fig 58](../figures/fig58_strain.png)
+
+## Appendix BI. Weak-field Ollivier-Ricci: sign derived, scaling suggestive
+
+(`bh_graph.weakfield`, Fig 59.) Ambient $L^3$ grid plus hub, stubs attached
+by pure flux ($P \propto 1/r^2$ — geometric input, nothing tuned), two
+attachment modes. Measured radial OR curvature is **negative in every
+configuration** (both modes, all seeds, all stub counts): mass stretches
+radial rulers, the correct sign for $h > 1$, against the naive
+hub-shortcut intuition (which predicted positive). Scaling is suggestive
+but unresolved: direct mode gives exponent $p = 0.92 \pm 0.48$ ($L = 9$,
+6 seeds) and the $1/r$ collapse beats $1/r^2$ (CV $0.47$ vs $0.60$),
+while chains sit at $p = 1.30 \pm 0.31$ with tied CVs. The pre-registered
+bar (direct $p \in [0.7, 1.3]$) is met by the mean but not cleanly —
+recorded as a **partial** micro-derivation: sign from micro, scaling and
+coefficient still open, awaiting bigger lattices.
+
+![Fig 59](../figures/fig59_weakfield.png)
