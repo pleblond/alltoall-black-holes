@@ -157,6 +157,22 @@ from bh_graph.jacobson import (
     clausius_leg_energy, clausius_residual, newton_G_from_eta,
     einstein_lhs_scale,
 )
+from bh_graph.fission import (
+    fission_budget, fission_allowed, no_split_rule, mouth_congestions,
+    both_mouths_horizons, cross_links, radiated_fraction_equal_mass,
+    fission_phase,
+)
+from bh_graph.klanguage import (
+    mass_of_k, k_of_mass, radiated_energy, eta_area, no_loss_kf,
+    saturation_kf, audit_module_agreement,
+)
+from bh_graph.tension import (
+    stretch_energy, stretch_force, fission_rate_toy, sigma_lower_bound,
+    hawking_temperature, tension_band,
+)
+from bh_graph.gw250114 import (
+    kerr_area_msun, eta_kerr, gw250114_prediction, check_o4b_public,
+)
 from bh_graph.viability import (
     evaporated, allowed_omega, viability, viability_curve,
 )
@@ -259,4 +275,12 @@ __all__ = [
     "ollivier_curvature", "mean_curvature", "eh_functional", "wasserstein1",
     "clausius_leg_energy", "clausius_residual", "newton_G_from_eta",
     "einstein_lhs_scale",
+    "fission_budget", "fission_allowed", "no_split_rule", "mouth_congestions",
+    "both_mouths_horizons", "cross_links", "radiated_fraction_equal_mass",
+    "fission_phase",
+    "mass_of_k", "k_of_mass", "radiated_energy", "eta_area", "no_loss_kf",
+    "saturation_kf", "audit_module_agreement",
+    "stretch_energy", "stretch_force", "fission_rate_toy", "sigma_lower_bound",
+    "hawking_temperature", "tension_band",
+    "kerr_area_msun", "eta_kerr", "gw250114_prediction", "check_o4b_public",
 ]

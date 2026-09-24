@@ -54,6 +54,10 @@ from bh_graph.redshift import ceff_profile as _ce, schwarzschild_coord_speed as 
 from bh_graph.heatker import torus_graph as _tg, weighted_torus as _wt, laplacian_eigvals as _le, heat_trace as _ht
 from bh_graph.orici import mean_curvature as _meancurv
 from bh_graph.jacobson import clausius_leg_energy as _cle
+from bh_graph.fission import radiated_fraction_equal_mass as _rfe
+from bh_graph.klanguage import eta_area as _eta, no_loss_kf as _nlf
+from bh_graph.tension import stretch_energy as _se, sigma_lower_bound as _slb
+from bh_graph.gw250114 import eta_kerr as _ek
 from bh_graph.congestion import bubble_radius as _rb
 from bh_graph.data import k_schwarzschild_sun as _ks
 from bh_graph.syk import otoc_curve as _otoc
@@ -1060,6 +1064,45 @@ def fig45_eh():
     fig.savefig(FIG / "fig45_eh.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig46_fission():
+    rr = np.linspace(1.0, 2.0, 200)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(rr, [_rfe(r) for r in rr], color="#2563eb", label="E_rad/(M1+M2)")
+    axes[0].axvline(1.0, color="red", linestyle="--", label="saturation: 29%")
+    axes[0].axvline(2.0, color="gray", linestyle=":", label="no-loss: 0%")
+    axes[0].set_xlabel("kf/(k1+k2)"); axes[0].set_ylabel("radiated fraction")
+    axes[0].set_title("Corrected mapping (was inverted)"); axes[0].legend(fontsize=8)
+    dd = np.linspace(0, 10, 200)
+    axes[1].plot(dd, _se(dd, 1.0, 1.0), color="#0f766e", label="p=1")
+    axes[1].plot(dd, _se(dd, 0.3, 2.0), color="#7c3aed", label="p=2")
+    axes[1].set_xlabel("mouth separation d"); axes[1].set_ylabel("E_stretch")
+    axes[1].set_title("Tension laws (sigma bounded, not set)"); axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 46 — AV/AX: fission mapping + tension")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig46_fission.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig47_gw250114():
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    mf = np.linspace(55, 66, 200)
+    axes[0].plot(mf, [_ek(33.6, 32.2, m, 0.7) for m in mf], color="#2563eb",
+                 label="Kerr af=0.7")
+    axes[0].plot(mf, [_ek(33.6, 32.2, m, 0.0) for m in mf], "--", color="gray",
+                 label="Schwarzschild")
+    axes[0].axvline(62.5, color="red", linestyle=":", label="fiducial Mf")
+    axes[0].set_xlabel("remnant mass"); axes[0].set_ylabel("eta_A")
+    axes[0].set_title("GW250114 eta_A needs Kerr"); axes[0].legend(fontsize=8)
+    axes[1].bar(["GW150914 (post)", "GW250114 (median)"],
+                [0.57, 0.36], color=["#94a3b8", "#2563eb"])
+    axes[1].set_ylabel("eta_A")
+    axes[1].set_title("Leg-creation fraction across events")
+    fig.suptitle("Fig 47 — AY: GW250114 area invariant")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig47_gw250114.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1106,6 +1149,8 @@ def main():
     fig43_newton()
     fig44_redshift()
     fig45_eh()
+    fig46_fission()
+    fig47_gw250114()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

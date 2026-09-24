@@ -87,6 +87,14 @@ LITERATURE = {
         "model_reading": "uniform all:all is not fast scrambling; randomness is load-bearing",
         "doi": "10.48550/arXiv.2304.11138",
     },
+    "Granet2025": {
+        "hardware": "Quantinuum H1-1 (trapped-ion, all:all)",
+        "wiring": "sparse SYK, N = 24 Majoranas, k = 2.3, TETRIS",
+        "qubits": 13,
+        "signature": "Loschmidt decay to Jt ~ 1, all:all connectivity credited",
+        "model_reading": "sparse random all:all scrambles on hardware; largest SYK sim yet",
+        "doi": "10.1038/s41534-026-01206-1",
+    },
 }
 
 

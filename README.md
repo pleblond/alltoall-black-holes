@@ -13,7 +13,7 @@
 
 Origin: a [Meta AI conversation](https://www.meta.ai/share/c/Onvs47AV0o)
 about black holes as all:all entanglements, developed into a computational
-companion paper (Secs 1–3 + Appendices A–AU, v2.1).
+companion paper (Secs 1–3 + Appendices A–AY, v2.2).
 
 ## Abstract
 
@@ -36,7 +36,7 @@ out on the record, with a narrow surviving window.
 
 | Path | Description | License |
 |---|---|---|
-| `paper/paper.md` | Full draft (Secs 1–3 + Appendices A–AU) | CC BY 4.0 |
+| `paper/paper.md` | Full draft (Secs 1–3 + Appendices A–AY) | CC BY 4.0 |
 | `paper/main.tex`, `paper/main.pdf` | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
@@ -54,7 +54,8 @@ U `echoes`; W `posteriors`; X `ds`; Y `krylov`; Z–AC `collapse`,
 AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
-`entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`.
+`entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
+AW `klanguage`; AX `tension`; AY `gw250114`.
 
 ## Quickstart
 
@@ -62,7 +63,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 183 tests
+python -m pytest tests/ -q          # 199 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -146,7 +147,7 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
-v2.1.1 — complete through Appendix AU (entropic Newton, redshift,
+v2.2 — complete through Appendix AY (fission, k-audit, tension, GW250114,
 Einstein–Hilbert routes). The paper is a living research document:
 errata are recorded in-text (see Appendices AC/AE/AR), and the kill
 list (Appendix AN) scores all future results.

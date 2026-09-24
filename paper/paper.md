@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v2.1 — computational companion paper (Secs 1–3 + Appendices A–AU)
+**Draft v2.2 — computational companion paper (Secs 1–3 + Appendices A–AY)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS), `redshift.py` (AT), `heatker.py` + `orici.py` + `jacobson.py` (AU).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS), `redshift.py` (AT), `heatker.py` + `orici.py` + `jacobson.py` (AU), `fission.py` (AV), `klanguage.py` (AW), `tension.py` (AX), `gw250114.py` (AY).
 
 ---
 
@@ -852,3 +852,49 @@ the seed). Three independent convergences on $\int R\sqrt{-g}$; a full
 derivation from nothing is not claimed — each bridge is named.
 
 ![Fig 45](../figures/fig45_eh.png)
+
+## Appendix AV. Fission done right: $K_N^2$, corrected mapping, no "traversable"
+
+(`bh_graph.fission`, Fig 46.) One $K_N$ interior, two disjoint footprints:
+a non-traversable multi-boundary ER microstate (shared interior, no GJW
+coupling — the "traversable" label refused). Budget $k = k_1+k_2+\Delta
+k_{rad}$ ($\Delta k_{rad} \ge 0$ always); no-split rule $k < 2k_{crit}$;
+cross-links $(N/2)^2$ uncut (cutting them is $O(N^2)$ baby pinch-off, not
+fission). Corrected mapping, tested: saturation $k_f = k_1+k_2 \iff 29\%$
+radiated (equal mass), no-loss $k_f = (\sqrt{k_1}+\sqrt{k_2})^2 \iff E_{rad}
+= 0$ — the thread's inversion repaired and locked by test.
+
+![Fig 46](../figures/fig46_fission.png)
+
+## Appendix AW. k-language audit: one mass map
+
+(`bh_graph.klanguage`.) $M(k) = l_p\sqrt{k}/4\sqrt{\pi}$ as the single source
+of truth, with $E_{rad}$, $\eta_A$, and both landmark limits re-derived from
+it and cross-checked against the horizon/data/remnant/LHC/healing modules to
+machine precision. GW150914-like point ($k_f/(k_1+k_2) \approx 1.8$) lands at
+$\sim 5\%$ radiated. Any future bound in mass units passes through here.
+
+## Appendix AX. Mouth tension: parametrized, bounded, not set
+
+(`bh_graph.tension`, Fig 46.) $E(d) = \sigma(d/l_p)^p$ postulated openly
+(new physics, labeled as such — legs have no length-energy in the current
+model); $F = -dE/dd$ computed; thermal activation $\Gamma \sim e^{-E/T_H}$
+inverted into $\sigma$ floors from fission non-observation. The thread's
+$\sqrt{k}$ assertion is superseded: barrier shape follows from $(\sigma, p)$,
+to be pinched by data (or derived from complexity growth — flagged as the
+research-grade alternative).
+
+## Appendix AY. GW250114 medians + SYK-24 anchor
+
+(`bh_graph.gw250114`, Fig 47.) O4b PE samples are not yet on the public GWOSC
+API (checked through GWTC-4.1, coverage ends Jan 2024), so: paper medians
+($33.6/32.2\,M_\odot$) through Kerr $\eta_A$ give $0.3$–$0.4$ at $a_f \sim
+0.7$ — showing the quoted range *requires* the Kerr correction
+(Schwarzschild-only gives $\sim 0.45$) — with $E_{rad} \sim 5\%$, far from
+any fission corner (ordinary GR merger in our reading). `check_o4b_public()`
+pulls real PE samples the moment they land and re-runs Appendix W per-sample;
+it reports "not yet public" today, never fake data. SYK-24 on Quantinuum H1
+(Granet et al., arXiv:2507.07530, TETRIS, Loschmidt decay to $Jt \sim 1$)
+added as 9th literature anchor: sparse random all:all scrambles on hardware.
+
+![Fig 47](../figures/fig47_gw250114.png)
