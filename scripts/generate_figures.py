@@ -46,6 +46,9 @@ from bh_graph.gwdata import overtone_deviation_pct as _od, echo_margin_orders as
 from bh_graph.qnmlegs import leg_transition_hz as _lth, qnm_fund_hz as _qfh, microstate_broadening as _mb, lattice_reflectivity as _lr
 from bh_graph.foamgrid import deficit_vs_omega as _dvo, exclusion_epsilon as _exe, run_case as _rc
 from bh_graph.perwalk import drift_profile as _dp, persistent_walk as _pw, msd_exponent as _me
+from bh_graph.strain import (
+    h_tortuosity as _hto, h_naive as _hna, gr_h as _hgr,
+    mercury_arcsec as _mar, f_schw as _fsc, newton_h as _hne)
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1328,6 +1331,31 @@ def fig57_perwalk():
     fig.savefig(FIG / "fig57_perwalk.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig58_strain():
+    xx = np.linspace(0.001, 0.2, 200)
+    rr = 2.0 / xx
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].plot(xx, _hna(rr) - 1, color="#dc2626", label="naive 1/(1-x)^2 (gam=2)")
+    axes[0].plot(xx, _hto(rr) - 1, color="#2563eb", label="tortuosity (1+x/2)^2")
+    axes[0].plot(xx, _hgr(rr) - 1, "--", color="gray", label="GR 1/(1-x)")
+    axes[0].set_xlabel("x = Rs/r"); axes[0].set_ylabel("h - 1")
+    axes[0].set_title("Radial strain: naive dies, tortuosity tracks GR")
+    axes[0].legend(fontsize=8)
+    axes[1].plot(xx, (_hna(rr) - 1) / xx, color="#dc2626", label="naive -> 2")
+    axes[1].plot(xx, (_hto(rr) - 1) / xx, color="#2563eb", label="tortuosity -> 1")
+    axes[1].axhline(1.0, ls="--", color="gray")
+    axes[1].set_xlabel("x = Rs/r"); axes[1].set_ylabel("(h-1)/x = gamma")
+    axes[1].set_title("PPN gamma extraction"); axes[1].legend(fontsize=8)
+    vals = [_mar(_fsc, _hgr), _mar(_fsc, _hto), _mar(_fsc, _hne)]
+    axes[2].bar(["GR", "model", "flat-h"], vals, color=["gray", "#2563eb", "#f59e0b"])
+    axes[2].axhline(43.0, ls="--", color="black", lw=1)
+    axes[2].set_ylabel("arcsec/century"); axes[2].set_title("Mercury: 42.99 vs 42.99")
+    fig.suptitle("Fig 58 — BH: tortuosity strain closes Mercury")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig58_strain.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1386,6 +1414,7 @@ def main():
     fig55_chroma()
     fig56_foam()
     fig57_perwalk()
+    fig58_strain()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

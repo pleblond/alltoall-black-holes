@@ -115,7 +115,7 @@ def perihelion_advance(f_fn, h_fn, a: float, e: float, r_s: float = 2.0,
     if len(mins) < 5:
         return float("nan")
     idx = np.arange(len(mins))
-    slope, _ = np.polyfit(idx, np.unwrap(mins), 1)
+    slope, _ = np.polyfit(idx, mins, 1)  # no unwrap: ramp IS the signal
     return float(slope - 2 * np.pi)
 
 

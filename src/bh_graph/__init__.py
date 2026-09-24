@@ -199,6 +199,10 @@ from bh_graph.perwalk import (
     drift_profile, drift_power_law, persistent_walk, msd_exponent,
     spin_circulation_drift, mpd_fractional,
 )
+from bh_graph.strain import (
+    h_tortuosity, h_naive, f_schw, gr_h, newton_h,
+    gamma_ppn_of_h, perihelion_advance, mercury_arcsec,
+)
 from bh_graph.qnmlegs import (
     leg_transition_omega, leg_transition_hz, qnm_fund_hz,
     fine_structure_ratio, single_quantum_fraction, microstate_broadening,
@@ -348,6 +352,8 @@ __all__ = [
     "clock_rate", "max_speed", "degree_drift_1d", "pileup_degree",
     "drift_profile", "drift_power_law", "persistent_walk", "msd_exponent",
     "spin_circulation_drift", "mpd_fractional",
+    "h_tortuosity", "h_naive", "f_schw", "gr_h", "newton_h",
+    "gamma_ppn_of_h", "perihelion_advance", "mercury_arcsec",
     "mass_ladder", "qnm_comb", "comb_fractional_spacing", "echo_train",
     "leg_transition_omega", "leg_transition_hz", "qnm_fund_hz",
     "fine_structure_ratio", "single_quantum_fraction", "microstate_broadening",

@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.1 — computational companion paper (Secs 1–3 + Appendices A–BG)
+**Draft v3.2 — computational companion paper (Secs 1–3 + Appendices A–BH)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1069,3 +1069,22 @@ toy), and Mathisson-Papapetrou for Mercury is $\sim 4\times10^{-14}$ of
 Newtonian — the spin question answered: negligible, quantified.
 
 ![Fig 57](../figures/fig57_perwalk.png)
+
+## Appendix BH. Strain corrected: tortuosity gives $\gamma = 1$, Mercury 42.99"
+
+(`bh_graph.strain`, Fig 58.) The proposed $dl = dr/(1-\sqrt{\chi})$ is
+excluded: it gives $h = 1/(1-x)^2$, $\gamma = 2$, missing Cassini by
+$\sim 50{,}000\sigma$ (locked as `test_gamma_corrected_vs_naive`), and
+its $c_{eff}$ contradicts Appendix AT. The consistent tortuosity form
+$dl = (1+\sqrt{\chi}/2)\,dr$ gives $h = (1+x/2)^2 \approx 1+x$ via
+$\sqrt{\chi} = R_s/r$ (Appendix AW), hence $\gamma = 1$ exactly,
+$c_{eff} = \sqrt{f/h} = 1-x$ matching AT to first order, and $b_{crit}$
+back to $3\sqrt{3}M$ (BC target — $f$ alone fixes the photon sphere).
+Mercury precession measured by direct geodesic integration
+($\phi$-domain orbit equation, complex-step derivatives, refined
+perihelion tracking): GR Schwarzschild 42.99"/cy (validates the
+integrator), model 42.99"/cy (identical — differences are $O(x^2)$),
+flat-$h$ hybrid 28.7" (PPN $2/3$ factor reproduced). The BB Mercury gap
+is closed: the missing $g_{rr}$ sector is now derived, not calibrated.
+
+![Fig 58](../figures/fig58_strain.png)
