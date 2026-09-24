@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v1.8 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (166 tests)}
+\author{Philippe Leblond \\ \small Draft v1.9 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (171 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -207,6 +207,11 @@ kills the channel.
 Formula corrected (growth + EMD): dead above $\sim10^6$\,g and below
 $\sim10^5$\,g (overclose); viable sweet spot $\sim4\times10^5$\,g,
 currently unconstrained, poltergeist-probed in future.
+
+\section{Entropic Newton (Fig.~43)}
+Leg screens + equipartition + Bekenstein give $F=M_1M_2/r^2$ exact
+(slope $-2$ to $10^{-9}$); leapfrog orbits close, $T^2\propto r^3$.
+Flux $\propto1/r^2$ distinguished from force (temperature corrects).
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

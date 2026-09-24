@@ -51,6 +51,7 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **AP — Structure check** (`ps.py`): PS halos at z=8 suffice (0.1% occupation); >10¹² hosts excluded.
 - **AQ — Scatter prediction** (`scatter.py`): overmassive tail vs f_w; 10% tail→f_w≈0.18; null-of-300 kills channel.
 - **AR — Remnant obituary+resurrection** (`emd.py`, `viability.py`): formula corrected; dead except EMD sweet spot ~4e5 g.
+- **AS — Entropic Newton** (`entropic.py`): Verlinde chain on leg screens → 1/r² exact; Kepler orbits close.
 
 ## Quickstart
 
@@ -89,11 +90,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                congestion.py (AK) charge.py (AL) bandwidth.py (AM)
                gridcirc.py + monitor.py + selfattack.py + lhc.py (AN)
                concentration.py (AO) ps.py (AP) scatter.py (AQ)
-               emd.py + viability.py (AR)
+               emd.py + viability.py (AR) entropic.py (AS)
 scripts/       generate_figures.py
-tests/         166 tests (test_*.py per module)
+tests/         171 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig42 (+8b, 8c) PNGs
+figures/       fig1..fig43 (+8b, 8c) PNGs
 data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```

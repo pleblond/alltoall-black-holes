@@ -4,7 +4,7 @@
 
 **Philippe Leblond**
 
-**Draft v1.8 — computational companion paper (Secs 1–3 + Appendices A–AR)
+**Draft v1.9 — computational companion paper (Secs 1–3 + Appendices A–AS)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -196,7 +196,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS).
 
 ---
 
@@ -803,3 +803,19 @@ stands corrected and dated; the resurrection is conditional and narrow —
 exactly as it should be.
 
 ![Fig 29](../figures/fig29_bounds.png)
+
+## Appendix AS. Entropic Newton: $F = M_1M_2/r^2$ from leg capacity
+
+(`bh_graph.entropic`, Fig 43.) Verlinde's chain with screens made concrete:
+$k(r) = 4\pi r^2/l_p^2$ legs (Sec 2) $\to$ equipartition $T = 2M_1/k(r)$
+$\to$ Bekenstein $dS = 2\pi M_2\,dr$ $\to$ $F = T\,dS/dr = M_1M_2/r^2$
+($G = 1$), verified to log-log slope $-2$ within $10^{-9}$, potential/force
+consistent, leapfrog orbits closing with $T^2 \propto r^3$. The subtlety that
+kills naive attempts is implemented alongside: raw link-flux also scales
+$N_1N_2/r^2$, but as an *energy* that would give $1/r^3$ — the temperature
+factor (same energy over a growing screen) corrects it to $1/r^2$. Model
+contribution vs borrowed postulates, stated plainly: (i) is ours (legs as
+screen bits, $k(N)$ derived); (ii)–(iv) are Verlinde's, translated. Newton
+from all:all topology holds to exactly the extent those postulates do.
+
+![Fig 43](../figures/fig43_newton.png)

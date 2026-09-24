@@ -148,6 +148,11 @@ from bh_graph.scatter import (
     mock_catalog, overmassive_fraction, tail_vs_fw, fw_required_for_tail,
     channel_killed_by_null, tail_slope,
 )
+from bh_graph.entropic import (
+    screen_legs, screen_temperature, entropy_gradient, newton_force,
+    newton_potential, link_flux, force_slope, kepler_period,
+    leapfrog_orbit, orbit_closes,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -227,4 +232,7 @@ __all__ = [
     "t_form_s", "t_form_temp_ev", "m_to_planck", "beta_domination", "omega_rd",
     "omega_emd", "omega", "required_beta_rd", "emd_sweet_spot", "remnant_status",
     "evaporated", "allowed_omega", "viability", "viability_curve",
+    "screen_legs", "screen_temperature", "entropy_gradient", "newton_force",
+    "newton_potential", "link_flux", "force_slope", "kepler_period",
+    "leapfrog_orbit", "orbit_closes",
 ]

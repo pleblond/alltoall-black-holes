@@ -49,6 +49,7 @@ from bh_graph.lhc import thermal_onset_mass as _to, BENCHMARKS as _BM, predicted
 from bh_graph.concentration import pop_event as _pe, freefall_myr as _ff, eddington_myr as _ed
 from bh_graph.ps import ps_cumulative as _psc
 from bh_graph.scatter import tail_vs_fw as _tvf, mock_catalog as _mc
+from bh_graph.entropic import newton_force as _nf, newton_potential as _np, leapfrog_orbit as _lo, link_flux as _lf
 from bh_graph.congestion import bubble_radius as _rb
 from bh_graph.data import k_schwarzschild_sun as _ks
 from bh_graph.syk import otoc_curve as _otoc
@@ -987,6 +988,27 @@ def fig42_scatter():
     fig.savefig(FIG / "fig42_scatter.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig43_newton():
+    r = np.logspace(0, 3, 200)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].loglog(r, _nf(10.0, 5.0, r), color="#2563eb", label="F = T dS/dr")
+    axes[0].loglog(r, _lf(10, 5, r), "--", color="gray", label="link flux (channels)")
+    axes[0].set_xlabel("r"); axes[0].set_ylabel("F / flux")
+    axes[0].set_title("Force: exact -2 slope"); axes[0].legend(fontsize=8)
+    axes[1].plot(r, _np(10.0, 5.0, r), color="#dc2626")
+    axes[1].set_xlabel("r"); axes[1].set_ylabel("V(r)")
+    axes[1].set_title("Potential well V ~ -1/r")
+    tr = _lo(5.0, 100.0)
+    axes[2].plot(tr["xy"][:, 0], tr["xy"][:, 1], color="#0f766e", lw=1)
+    axes[2].scatter([0], [0], s=80, color="black", label="M=100")
+    axes[2].set_aspect("equal"); axes[2].set_title("Closed leapfrog orbit")
+    axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 43 — AS: entropic Newton + Kepler")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig43_newton.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1030,6 +1052,7 @@ def main():
     fig40_bigpop()
     fig41_ps()
     fig42_scatter()
+    fig43_newton()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
