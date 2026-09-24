@@ -178,6 +178,10 @@ from bh_graph.lensing import (
     fermat_bending, gr_bending, newton_bending, second_order_fit,
     gr_mercury_arcsec_per_century, our_mercury_arcsec_per_century,
 )
+from bh_graph.shapiro import (
+    shapiro_delay, shapiro_gr_leading, cassini_gamma_minus_one,
+    cassini_consistent,
+)
 from bh_graph.chroma import (
     phase_velocity, n_dispersion, n_total, chromatic_deflection,
     chromaticity, chromaticity_analytic, photon_omega_ratio,
@@ -328,6 +332,8 @@ __all__ = [
     "triplet_syk", "thermal_typicality_otoc",
     "fermat_bending", "gr_bending", "newton_bending", "second_order_fit",
     "gr_mercury_arcsec_per_century", "our_mercury_arcsec_per_century",
+    "shapiro_delay", "shapiro_gr_leading", "cassini_gamma_minus_one",
+    "cassini_consistent",
     "phase_velocity", "n_dispersion", "n_total", "chromatic_deflection",
     "chromaticity", "chromaticity_analytic", "photon_omega_ratio",
     "f_bouguer", "bcrit_isotropic", "bcrit_isotropic_numeric",

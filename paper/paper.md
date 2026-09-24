@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v2.9 — computational companion paper (Secs 1–3 + Appendices A–BF)
+**Draft v3.0 — computational companion paper (Secs 1–3 + Appendices A–BF)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -945,6 +945,14 @@ it factors out of Born exactly: fractional chromaticity $= (x^2/24)/(1-x^2/24)$,
 $\sim 10^{-56}$ optical to $\sim 10^{-32}$ at 10 TeV — achromaticity holds by
 $\sim 50$ orders over multi-wavelength tests ($\sim 10^{-3}$). A null
 prediction with an exact scaling law, not a signal.
+
+Extension (`bh_graph.shapiro`, Fig 49, third panel): the same $c_{eff}$
+gives Shapiro delay for free — $\Delta T = \int(1/c_{eff} - 1)\,dl$
+reproduces GR's $R_s\ln(4r_1r_2/b^2)$ leading logarithm (tested to 5%),
+so Cassini's $\gamma - 1 = (2.1 \pm 2.3)\times10^{-5}$ passes with our
+$\gamma = 1$ exactly. Light-propagation tests now stand three-for-three
+at first order (bending, Shapiro, achromaticity); orbits remain the open
+sector.
 
 ![Fig 55](../figures/fig55_chroma.png)
 

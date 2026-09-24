@@ -107,7 +107,36 @@ Appendix BD — and our wave simulations show transmission loss growing
 $\propto \omega^2$ with frequency (Appendix BF). Same geometry, different
 walks: radio light sees glass where TeV light sees frost.
 
-## 5. Why horizons have size: exterior bandwidth, not interior bulk
+## 5. Gravity from legs: Newton to light bending, tested
+
+Walks plus congestion turn out to be *gravity*. The chain of reasoning is
+short enough to state in full. Screens around a mass count legs ($k \propto
+r^2$); spreading the mass-energy evenly over those legs defines a
+temperature falling as $1/r^2$; moving a small mass outward changes
+entropy linearly with distance (Bekenstein's bound); and force is
+temperature times entropy gradient. Multiply through: $F = M_1M_2/r^2$ —
+**Newton's law**, with $G = 1$ in Planck units, verified in code to a
+log-log slope of exactly $-2$. Feed that force to an orbit integrator and
+Kepler's third law ($T^2 \propto r^3$) drops out downstream.
+
+The same machinery reaches further. The Newtonian potential plus the
+equivalence principle gives gravitational redshift with no new parameters —
+and out come textbook digits: GPS clocks fast by $+5.3\times10^{-10}$,
+Pound–Rebka $2.5\times10^{-15}$ over 22.5 m. Near a horizon, congestion
+slows fronts ($c_{eff} \to 0$), freezing escape in the tortoise-like way
+general relativity predicts. And light bending through the congestion field
+gives the full $4M/b$ — *not* the half-strength value a naive
+equivalence-principle argument yields (we predicted the failure, ran the
+calculation, and lost the bet on the record). Shapiro delay follows from
+the same integral and matches Cassini.
+
+The honest boundary of all this: it is gravity *for light and slow orbits*
+only. Mercury's precession ($43''$/century) comes out as $0$ — the model has
+no spatial-curvature sector ($g_{rr}$) yet, and orbits need it. Light never
+did. So the scoreboard reads: Newton ✓, Kepler ✓, redshift ✓, bending ✓,
+Shapiro ✓, Mercury ✗ (gap named, not hidden).
+
+## 6. Why horizons have size: exterior bandwidth, not interior bulk
 
 The question the model answers most sharply: if the interior has no extent,
 why do horizons come in sizes? Because **size counts exterior legs**.
@@ -126,7 +155,7 @@ holes to carry more exterior legs ($k \propto M^2$ in ordinary gravity), so
 wiring budgets, not bulk volume. Second, adding interior nodes without adding
 legs changes nothing observable from outside — the interior can be arbitrarily
 rich while the horizon stays fixed. (This decoupling is what makes the
-information puzzle sharp, and its resolution possible; see §8.)
+information puzzle sharp, and its resolution possible; see §9.)
 
 To put the point bluntly: **the inside contributes nothing to the size; the
 outside contributes everything.** Think of a building whose size is set by
@@ -138,7 +167,7 @@ uncompressible*: patches cannot overlap, bandwidth cannot be exceeded. The
 horizon is outside space's response to wiring congestion — never a measure
 of interior contents.
 
-## 6. The perfectly wired limit: baby universes
+## 7. The perfectly wired limit: baby universes
 
 Push the model to its endpoint: interior entanglement perfect, exterior legs
 exactly zero. Monogamy of entanglement — a theorem, not an assumption: a
@@ -153,7 +182,7 @@ real work — it is the precise amount by which a black hole fails to be a
 separate universe, and everything observable (area, temperature, radiation)
 lives in that failure.
 
-## 7. Micro-holes: pointlike until they pop
+## 8. Micro-holes: pointlike until they pop
 
 Now run the logic downward. A handful of nodes, all mutually linked, with a
 few exterior legs: in three dimensions, a few outgoing connections radiate
@@ -184,7 +213,7 @@ congestion — presence without extent. Everyday objects bundle the two
 together (to exist is to occupy space); the model splits them apart, and
 the micro-hole phase is where the split shows.
 
-## 8. Evaporation, disappearance, and the fate of information
+## 9. Evaporation, disappearance, and the fate of information
 
 A black hole evaporates the way a rope bridge comes apart: **exterior legs
 snap one by one, and each snap emits something.** Each severed leg's
@@ -221,9 +250,9 @@ margin — but the loss branch is not philosophy; it is a computed threshold
 away, and the paper keeps it visible rather than assuming it away. (A
 subtler version of the race — information *flux* vs. per-leg channel
 capacity in the final non-adiabatic moments — is saved for future work;
-see the open problems in §10.)
+see the open problems in §11.)
 
-## 9. How this could be proven wrong
+## 10. How this could be proven wrong
 
 A model that can't die isn't science. Ours carries pre-registered,
 quantitative falsifiers (Appendix AN):
@@ -255,7 +284,7 @@ One sub-claim has already died this way (Planck-mass remnant dark matter,
 ruled out by abundance arithmetic plus published bounds — kept on record
 with a narrow surviving window at $\sim 4\times10^5$ g).
 
-## 10. What this model is not
+## 11. What this model is not
 
 - **Not a quantum gravity theory.** It reproduces large parts of gravity
   (Newton's law, Kepler orbits, GPS and Pound–Rebka redshifts, first-order
@@ -280,7 +309,7 @@ with a narrow surviving window at $\sim 4\times10^5$ g).
   and the information-flux race in the final non-adiabatic moments
   (per-leg channel capacity vs. required evacuation flux).
 
-## 11. Where to go next
+## 12. Where to go next
 
 - **The paper proper:** `paper/paper.md` (readable draft, Secs 1–3 +
   appendices) and `paper/main.pdf` (compiled LaTeX) — same narrative, every

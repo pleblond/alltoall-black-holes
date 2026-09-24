@@ -3,6 +3,8 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v3.0** — BB extension: Shapiro delay matches GR log + Cassini; gravity
+  section in explainer (Newton-to-lensing scoreboard, Mercury gap kept). 251 tests.
 - **v2.9** — BF wave lab: FDTD dephasing on defective fabric (deficit
   $\propto \omega^2$, unbiased centroids), fabric-cleanliness bounds
   ($\varepsilon \lesssim 10^{-14}$ TeV/Gpc). 248 tests, 58 figs.

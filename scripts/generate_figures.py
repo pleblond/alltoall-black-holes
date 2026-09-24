@@ -1135,8 +1135,9 @@ def fig48_overtones():
 
 
 def fig49_lensing():
+    from bh_graph.shapiro import shapiro_delay as _sh, shapiro_gr_leading as _shg
     bs = np.logspace(1, 3, 60)
-    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
     axes[0].loglog(bs, [_fer(b, 2.0) for b in bs], color="#2563eb", label="model (Fermat)")
     axes[0].loglog(bs, [_grb(b, 1.0, 1) for b in bs], "--", color="gray", label="GR 4M/b")
     axes[0].loglog(bs, [_newb(b, 1.0) for b in bs], ":", color="#dc2626", label="Newton 2M/b")
@@ -1145,6 +1146,10 @@ def fig49_lensing():
     axes[1].bar(["GR Mercury", "model Mercury"], [43.0, 0.0], color=["#0f766e", "#dc2626"])
     axes[1].set_ylabel("arcsec/century")
     axes[1].set_title("Orbits: gap documented (need g_rr)")
+    axes[2].loglog(bs, [_sh(2000.0, 2000.0, b) for b in bs], color="#2563eb", label="model")
+    axes[2].loglog(bs, [_shg(2000.0, 2000.0, b) for b in bs], "--", color="gray", label="GR log")
+    axes[2].set_xlabel("impact b"); axes[2].set_ylabel("delay")
+    axes[2].set_title("Shapiro: log pile-up matches"); axes[2].legend(fontsize=8)
     fig.suptitle("Fig 49 — BB: light passes, Mercury gaps")
     fig.tight_layout()
     fig.savefig(FIG / "fig49_lensing.png", bbox_inches="tight")
