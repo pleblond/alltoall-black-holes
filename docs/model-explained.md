@@ -132,7 +132,9 @@ the same integral and matches Cassini.
 
 The last gap — Mercury's orbit — closed when we derived the
 spatial-curvature sector ($g_{rr}$) from leg tortuosity: radial rulers
-stretch as $(1+x/2)^2$ through the packed legs, giving $\gamma = 1$
+stretch as $(1+x/2)^2$ through the packed legs (the $1/2$ is honestly
+fitted to recover $\gamma = 1$, not derived — see the audit in
+Appendix BH), giving $\gamma = 1$
 exactly and Mercury's $43''$/century by direct orbit integration
 (42.99" measured, identical to general relativity at this precision).
 So the scoreboard reads: Newton ✓, Kepler ✓, redshift ✓, bending ✓,

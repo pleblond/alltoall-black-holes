@@ -1121,6 +1121,27 @@ metric framework itself (angular $r^2 d\Omega^2$ included) and the inherited
 AT $\alpha = 1$ calibration. Appendix BI attempts the genuine
 from-micro derivation via Ollivier-Ricci.
 
+**Fitted-parameter audit.** The $1/2$ in $h = (1+x/2)^2$ is **fitted**,
+not derived: it is the unique coefficient giving $\gamma = 1$ and hence
+Mercury. It is recorded here as a fit so no reader mistakes the tortuosity
+picture for a derivation of the coefficient. Full parameter status:
+
+| parameter | value | status |
+|---|---|---|
+| tortuosity $1/2$ | $0.5$ | fitted to $\gamma = 1$ (this appendix) |
+| AT $\alpha$ | $1$ | calibrated to Schwarzschild $c_{eff}$ (BB) |
+| $k(M) = 16\pi M^2$ | — | GR-consistency input (Sec 2; see audit below) |
+| $s_{leg} > 1/4$ | $0.25$ | assumed QES input (C; clearance in AN/4) |
+| $k_{crit}$ | embedding | heuristic $\to$ formalized in BK |
+
+**Circularity audit for $k(M)$.** The circle is real and is not hidden:
+$k(M)$ enters through GR consistency, and the gravity derivations (BB, BH,
+BI) spend it to convert leg counts into $R_s/r$. Given $k(M)$, what is
+genuinely derived: the $1/r$ dependence, $\gamma = 1$, Mercury's $43''$,
+$b_{crit} = 3\sqrt{3}M$. What is not: any mass scaling — the theory does
+not predict how $k$ grows with $M$ from microphysics (Appendix B derives
+$k(N)$, not $k(M)$). A referee aiming here aims at the admitted joint.
+
 ![Fig 58](../figures/fig58_strain.png)
 
 ## Appendix BI. Weak-field Ollivier-Ricci: sign derived, scaling suggestive
