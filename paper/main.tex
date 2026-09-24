@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v2.6 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (212 tests)}
+\author{Philippe Leblond \\ \small Draft v2.7 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (237 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -249,6 +249,10 @@ Tangential must be fast (all:all); target window $[4.42,5.98]M$ locked.
 \section{Lattice dispersion (Fig.~51)}
 $v_g$ even in $k$: no linear term (Fermi linear bounds evaded by symmetry).
 $E_{QG,2}=\sqrt8\,E_P$, $10^8\times$ above Fermi quadratic bound.
+
+\section{Footprint ringdown (Figs.~52--53)}
+Mass comb $1/2k$; echoes with derived $R\sim(\omega/\omega_P)^2\sim10^{-160}$;
+$\ell(\ell+1)\le k$ bites micro-holes; leg lines $37.6\times$ finer than QNM.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

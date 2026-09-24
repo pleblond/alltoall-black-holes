@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v2.6 — computational companion paper (Secs 1–3 + Appendices A–BD)
+**Draft v2.7 — computational companion paper (Secs 1–3 + Appendices A–BE)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -985,3 +985,31 @@ open; scalar only, no birefringence prediction.
 > with existing observational data.
 
 ![Fig 51](../figures/fig51_dispersion.png)
+
+## Appendix BE. Footprint corrections to ringdown: comb, echoes, $\ell$-cutoff
+
+(`bh_graph.qnmfoot`, Fig 52.) Three finite-$k$ effects: (1) mass ladder
+$M_k = \sqrt{k/16\pi}$ makes QNMs a comb with fractional spacing $1/2k$
+($\sim 10^{-77}$ astrophysically — derived, unobservable, stated), $\to$ GR
+as $k \to \infty$; (2) echo trains $h = \sum R^n h_{RD}(t - n\Delta t)$
+with our $\Delta t(M)$, reflectivity $R$ postulated (leg S-matrix open) —
+LVK echo nulls bound $R$ in principle, a matched-filter search we don't run
+(note: echoes vanish as $\omega \to 0$, not as $k \to \infty$); (3) angular
+cutoff $\ell(\ell+1) \le k$ ($\to$ GR as $k \to \infty$): irrelevant at
+$k \sim 10^{77}$ ($\ell_{max} \sim 10^{38}$) but sharp for micro-holes
+($k \sim 100 \to \ell \le 9$) — the one footprint signature that bites
+where $k$ is small.
+
+![Fig 52](../figures/fig52_qnmfoot.png)
+
+Extension (`bh_graph.qnmlegs`, Fig 53): leg quantization via the first law
+gives transition lines $\omega_n = n/32\pi M$, a factor $\approx 37.6$ finer
+than the QNM fundamental — $\sim 5$ Hz at $63\,M_\odot$ (below band; only
+$\lesssim 10\,M_\odot$ holes peek above 10 Hz), with single-quantum energy
+fraction $\sim 10^{-41}$ (incoherent fine structure, invisible next to
+coherent ringing). Microstate broadening $\delta\tau/\tau \sim 1/\sqrt{k}
+\sim 10^{-39}$; lattice reflectivity $R \sim (\omega/\omega_P)^2$ closes
+item (2)'s open $R$: echo energy $\sim 10^{-160}$ at 100 Hz — discreteness
+echoes unobservable, from this mechanism, by a quantified margin.
+
+![Fig 53](../figures/fig53_qnmlegs.png)

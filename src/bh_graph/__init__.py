@@ -186,6 +186,19 @@ from bh_graph.dispersion import (
     omega_tb, group_velocity, velocity_defect, eqg2_scale_gev,
     arrival_delay_s, fermi_quad_margin, linear_term_absent,
 )
+from bh_graph.qnmlegs import (
+    leg_transition_omega, leg_transition_hz, qnm_fund_hz,
+    fine_structure_ratio, single_quantum_fraction, microstate_broadening,
+    lattice_reflectivity, in_lvk_band,
+)
+from bh_graph.gwdata import (
+    overtone_deviation_pct, echo_margin_orders, love_number_estimate,
+    emd_peak_freq_hz, pta_mismatch_orders, lisa_requirement_pct,
+)
+from bh_graph.qnmfoot import (
+    mass_ladder, qnm_comb, comb_fractional_spacing, echo_train,
+    echo_energy_ratio, ell_cutoff, ell_cutoff_violated,
+)
 from bh_graph.overtones import (
     pt_QNMs, fit_barrier_to_fundamental, overtone_ratios, gr_ratios,
     tower_agreement,
@@ -311,6 +324,13 @@ __all__ = [
     "eht_exclusion_sigma", "isotropic_ruled_out", "tangential_target",
     "omega_tb", "group_velocity", "velocity_defect", "eqg2_scale_gev",
     "arrival_delay_s", "fermi_quad_margin", "linear_term_absent",
+    "mass_ladder", "qnm_comb", "comb_fractional_spacing", "echo_train",
+    "leg_transition_omega", "leg_transition_hz", "qnm_fund_hz",
+    "fine_structure_ratio", "single_quantum_fraction", "microstate_broadening",
+    "lattice_reflectivity", "in_lvk_band",
+    "echo_energy_ratio", "ell_cutoff", "ell_cutoff_violated",
+    "overtone_deviation_pct", "echo_margin_orders", "love_number_estimate",
+    "emd_peak_freq_hz", "pta_mismatch_orders", "lisa_requirement_pct",
     "pt_QNMs", "fit_barrier_to_fundamental", "overtone_ratios", "gr_ratios",
     "tower_agreement",
     "sigma_planck_density", "sigma_hawking_density", "tension_span_orders",

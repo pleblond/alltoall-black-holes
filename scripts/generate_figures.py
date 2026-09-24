@@ -41,6 +41,9 @@ from bh_graph.bigsyk import scaling_big
 from bh_graph.lensing import fermat_bending as _fer, gr_bending as _grb, newton_bending as _newb
 from bh_graph.bcrit import f_bouguer as _fbg, GR_BCRIT as _gbc
 from bh_graph.dispersion import omega_tb as _om, group_velocity as _gv, arrival_delay_s as _ad
+from bh_graph.qnmfoot import echo_train as _et, ell_cutoff as _lc
+from bh_graph.gwdata import overtone_deviation_pct as _od, echo_margin_orders as _emo, pta_mismatch_orders as _pmo
+from bh_graph.qnmlegs import leg_transition_hz as _lth, qnm_fund_hz as _qfh, microstate_broadening as _mb, lattice_reflectivity as _lr
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1186,6 +1189,68 @@ def fig51_dispersion():
     fig.savefig(FIG / "fig51_dispersion.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig52_qnmfoot():
+    t = np.linspace(0, 60, 1200)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].plot(t, _et(t, 5.0, 2.0, 0.0, 12.0), color="gray", label="R=0 (GR)")
+    axes[0].plot(t, _et(t, 5.0, 2.0, 0.4, 12.0), color="#2563eb", label="R=0.4")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("h(t)")
+    axes[0].set_title("Echo trains (R postulated)"); axes[0].legend(fontsize=8)
+    kk = np.logspace(1, 6, 100)
+    axes[1].loglog(kk, [max(_lc(k), 1) for k in kk], color="#dc2626")
+    axes[1].axhline(2, color="black", linestyle="--", label="l=2 needs k>=6")
+    axes[1].set_xlabel("k"); axes[1].set_ylabel("l_max")
+    axes[1].set_title("Angular cutoff vs legs"); axes[1].legend(fontsize=8)
+    from bh_graph.qnmfoot import echo_energy_ratio as _eer
+    rr = np.linspace(0, 0.9, 100)
+    axes[2].plot(rr, [_eer(r) for r in rr], color="#7c3aed")
+    axes[2].set_xlabel("reflectivity R"); axes[2].set_ylabel("echo/main energy")
+    axes[2].set_title("Echo loudness vs R (LVK bounds R)")
+    fig.suptitle("Fig 52 — BE: footprint QNM corrections")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig52_qnmfoot.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig53_qnmlegs():
+    ms = np.logspace(0.5, 2.5, 120)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].loglog(ms, [_lth(m) for m in ms], color="#2563eb", label="leg line n=1")
+    axes[0].loglog(ms, [_qfh(m) for m in ms], color="#dc2626", label="QNM fund")
+    axes[0].axhline(10.0, color="black", linestyle="--", label="LVK low edge")
+    axes[0].set_xlabel("M (Msun)"); axes[0].set_ylabel("Hz")
+    axes[0].set_title("Fine structure 38x below QNM"); axes[0].legend(fontsize=8)
+    axes[1].loglog(ms, [_mb(m) for m in ms], color="#0f766e")
+    axes[1].set_xlabel("M (Msun)"); axes[1].set_ylabel("dtau/tau ~ 1/sqrt(k)")
+    axes[1].set_title("Microstate broadening")
+    fs = np.logspace(1, 4, 120)
+    axes[2].loglog(fs, [_lr(f) for f in fs], color="#7c3aed")
+    axes[2].set_xlabel("Hz"); axes[2].set_ylabel("R ~ (w/wP)^2")
+    axes[2].set_title("Lattice reflectivity: echoes ~1e-160")
+    fig.suptitle("Fig 53 — BE ext.: leg-quantum lines, broadening, reflectivity")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig53_qnmlegs.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig54_gwdata():
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].bar(["n=1", "n=2"], list(_od())[1:], color=["#2563eb", "#7c3aed"])
+    axes[0].axhline(8.0, color="red", linestyle="--", label="LISA target ~8%")
+    axes[0].set_ylabel("% deviation from Kerr")
+    axes[0].set_title("Overtone ratios: PT vs Kerr"); axes[0].legend(fontsize=8)
+    axes[1].bar(["echo margin (orders)"], [_emo()], color="#0f766e")
+    axes[1].set_ylabel("log10(detectable/predicted)")
+    axes[1].set_title("Echoes: null expected by ~160 orders")
+    axes[2].bar(["PTA mismatch (orders)"], [_pmo()], color="#b45309")
+    axes[2].set_ylabel("log10(f_peak/f_PTA)")
+    axes[2].set_title("EMD window far above nHz")
+    fig.suptitle("Fig 54 — BF: GW battery (LVK/LISA/PTA)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig54_gwdata.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1238,6 +1303,9 @@ def main():
     fig49_lensing()
     fig50_bcrit()
     fig51_dispersion()
+    fig52_qnmfoot()
+    fig53_qnmlegs()
+    fig54_gwdata()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

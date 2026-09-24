@@ -3,6 +3,14 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v2.7** — BE footprint ringdown corrections (mass comb, echo trains,
+  $\ell$-cutoff) + leg-quantum fine structure ($\times 37.6$ finer),
+  microstate broadening, derived lattice reflectivity. 237 tests, 55 figs.
+- **v2.6** — BD lattice dispersion (quadratic by $k \leftrightarrow -k$,
+  $E_{QG,2} = \sqrt{8}\,E_P$, Fermi-safe by $10^8$). 224 tests, 53 figs.
+- **v2.5** — BB Fermat bending ($4M/b$ first order) + Mercury gap ($g_{rr}$
+  missing documented), BC $b_{crit}$ $8M$ isotropic exclusion. 220 tests.
+- **v2.4** — (see v2.5 entry: BB was developed under v2.4, BC closed v2.5).
 - **v2.3** — AZ overtone tower (Pöschl-Teller 1:3:5 vs 1:3.08:5.38),
   tension-from-complexity no-go (~100 orders), BA big-SYK to $N=24$
   (flat $t^*$, MSS $0.66$–$0.86$). 208 tests, 48 figures.

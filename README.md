@@ -35,11 +35,11 @@ sector and the un-derived gap coefficient.
 
 | Path | Description | License |
 |---|---|---|
-| `paper/paper.md` | Full draft (Secs 1–3 + Appendices A–BD) | CC BY 4.0 |
+| `paper/paper.md` | Full draft (Secs 1–3 + Appendices A–BE) | CC BY 4.0 |
 | `paper/main.tex`, `paper/main.pdf` | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
-| `tests/` | 183 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 232 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -54,7 +54,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`; BC `bcrit`; BD `dispersion`.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`.
 
 ## Quickstart
 
@@ -62,7 +62,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 206 tests
+python -m pytest tests/ -q          # 237 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -148,7 +148,7 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
-v2.6 — complete through Appendix BD (fission done right, k-language audit,
+v2.7 — complete through Appendix BE (fission done right, k-language audit,
 tension bounds, GW250114, overtones, big-SYK to $N=24$, lensing, b-crit).
 The paper is a living research document:
 errata are recorded in-text (see Appendices AC/AE/AR), and the kill
