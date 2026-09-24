@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v2.5 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (212 tests)}
+\author{Philippe Leblond \\ \small Draft v2.6 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (212 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -245,6 +245,10 @@ $3.36$ vs $1.94$. Orbits need $g_{rr}$: Newtonian $0$ vs $43''$/cy gap.
 \section{b-crit kills isotropic (Fig.~50)}
 Bouguer gives $8M$ vs GR $3\sqrt{3}M$: excluded $\approx3.6\sigma$ by EHT.
 Tangential must be fast (all:all); target window $[4.42,5.98]M$ locked.
+
+\section{Lattice dispersion (Fig.~51)}
+$v_g$ even in $k$: no linear term (Fermi linear bounds evaded by symmetry).
+$E_{QG,2}=\sqrt8\,E_P$, $10^8\times$ above Fermi quadratic bound.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

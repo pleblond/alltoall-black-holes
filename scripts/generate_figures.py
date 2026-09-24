@@ -40,6 +40,7 @@ from bh_graph.mss import mss_scan, lmg_hamiltonian
 from bh_graph.bigsyk import scaling_big
 from bh_graph.lensing import fermat_bending as _fer, gr_bending as _grb, newton_bending as _newb
 from bh_graph.bcrit import f_bouguer as _fbg, GR_BCRIT as _gbc
+from bh_graph.dispersion import omega_tb as _om, group_velocity as _gv, arrival_delay_s as _ad
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1164,6 +1165,27 @@ def fig50_bcrit():
     fig.savefig(FIG / "fig50_bcrit.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig51_dispersion():
+    k = np.linspace(0, np.pi, 300)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].plot(k, _om(k), color="#2563eb", label="lattice w(k)")
+    axes[0].plot(k, k, "--", color="gray", label="continuum")
+    axes[0].set_xlabel("k"); axes[0].set_ylabel("omega")
+    axes[0].set_title("Dispersion bends at Brillouin edge"); axes[0].legend(fontsize=8)
+    axes[1].plot(k, _gv(k), color="#dc2626")
+    axes[1].set_xlabel("k"); axes[1].set_ylabel("v_g")
+    axes[1].set_title("Group velocity -> 0 (even in k)")
+    es = np.logspace(0, 4, 100)
+    axes[2].loglog(es, [_ad(e, 3000.0) for e in es], color="#0f766e")
+    axes[2].axhline(1e-3, color="black", linestyle="--", label="ms detectability")
+    axes[2].set_xlabel("E (GeV)"); axes[2].set_ylabel("delay (s), 3 Gpc")
+    axes[2].set_title("GRB delays far below bounds"); axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 51 — BD: quadratic lattice dispersion, Fermi-safe")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig51_dispersion.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1215,6 +1237,7 @@ def main():
     fig48_overtones()
     fig49_lensing()
     fig50_bcrit()
+    fig51_dispersion()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

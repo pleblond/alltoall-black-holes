@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v2.5 — computational companion paper (Secs 1–3 + Appendices A–BC)
+**Draft v2.6 — computational companion paper (Secs 1–3 + Appendices A–BD)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -954,3 +954,18 @@ a quantitative target: any transverse completion (anisotropic effective
 geometry or $g_{rr}$ spatial curvature) must land $b_{crit}$ in $[4.42, 5.98]M$.
 
 ![Fig 50](../figures/fig50_bcrit.png)
+
+## Appendix BD. Lattice dispersion: quadratic by symmetry, Fermi-safe by 8 orders
+
+(`bh_graph.dispersion`, Fig 51.) Hopping on discrete legs implies lattice
+dispersion $\omega = 2J|\sin ka/2|$, $v_g = Ja\cos ka/2 \to 0$ at the
+Brillouin edge. Since $v_g$ is even in $k$, there is NO linear term:
+$\delta v/v = (ka)^2/8 + \cdots$ — the strong Fermi linear bounds
+($E_{QG,1} > 9.3\times10^{19}$ GeV) are evaded by symmetry, not tuning.
+Effective quadratic scale $\sqrt{8}\,E_P \approx 2.8\,E_{Planck}$ vs Fermi
+quadratic $1.3\times10^{11}$ GeV: safe by $\sim 10^8$ (a 10 GeV GRB photon
+over 3 Gpc delays $\sim 10^{-20}$ s). Caveats: regular-lattice result (no
+$k$ exists in all:all regions); near-horizon running of effective spacing
+open; scalar only, no birefringence prediction.
+
+![Fig 51](../figures/fig51_dispersion.png)

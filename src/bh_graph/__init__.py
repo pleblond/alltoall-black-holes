@@ -182,6 +182,10 @@ from bh_graph.bcrit import (
     f_bouguer, bcrit_isotropic, bcrit_isotropic_numeric,
     eht_exclusion_sigma, isotropic_ruled_out, tangential_target,
 )
+from bh_graph.dispersion import (
+    omega_tb, group_velocity, velocity_defect, eqg2_scale_gev,
+    arrival_delay_s, fermi_quad_margin, linear_term_absent,
+)
 from bh_graph.overtones import (
     pt_QNMs, fit_barrier_to_fundamental, overtone_ratios, gr_ratios,
     tower_agreement,
@@ -305,6 +309,8 @@ __all__ = [
     "gr_mercury_arcsec_per_century", "our_mercury_arcsec_per_century",
     "f_bouguer", "bcrit_isotropic", "bcrit_isotropic_numeric",
     "eht_exclusion_sigma", "isotropic_ruled_out", "tangential_target",
+    "omega_tb", "group_velocity", "velocity_defect", "eqg2_scale_gev",
+    "arrival_delay_s", "fermi_quad_margin", "linear_term_absent",
     "pt_QNMs", "fit_barrier_to_fundamental", "overtone_ratios", "gr_ratios",
     "tower_agreement",
     "sigma_planck_density", "sigma_hawking_density", "tension_span_orders",
