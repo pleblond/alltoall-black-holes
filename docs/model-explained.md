@@ -1,19 +1,19 @@
 # Black Holes as Almost-Perfect All:All Entanglement Graphs — Explained
 
-*A companion to the technical paper, written for scientifically literate
-non-specialists: no physics degree assumed, but no hand-waving either.
-Terms are introduced once, precisely, then used. For the full mathematics,
-code, and tests, see `paper/paper.md`.*
+*A companion to the technical paper, written for educated non-physicists who
+already know what quantum entanglement is. Everything else is defined as
+needed; the mathematics is kept to a handful of formulas, each translated.
+For the full derivations, code, and tests, see `paper/paper.md`.*
 
 ---
 
 ## 0. Words we will use precisely
 
 - **Node / edge.** The model treats reality at the smallest scale as a
-  network: indivisible nodes joined by edges. You can picture atoms in a
-  crystal, but the nodes here are far smaller (Planck scale, $10^{-35}$ m)
-  and the "edges" are quantum entanglement — the measurable correlation
-  between quantum systems, not metaphorical links.
+  network of indivisible nodes joined by edges, where an edge *is* a unit
+  of entanglement (think Bell pairs as the atomic bond) and the edge count
+  across any cut sets an upper bound on the entanglement entropy across it.
+  Nodes live at the Planck scale ($10^{-35}$ m).
 - **All:all (complete) graph.** A network where every node connects directly
   to every other node. Distances inside it are trivial: one hop from anywhere
   to anywhere.
@@ -23,9 +23,10 @@ code, and tests, see `paper/paper.md`.*
 - **Horizon.** In ordinary gravity, the surface of no return around a black
   hole. Here: the two-dimensional surface forced into existence when many
   exterior legs must be embedded in space without overlapping.
-- **Scrambling.** How fast a localized disturbance spreads across all degrees
-  of freedom of a system. Black holes are conjectured (Sekino–Susskind) to be
-  the fastest scramblers allowed by quantum mechanics.
+- **Scrambling.** How fast a localized operator spreads over all degrees of
+  freedom, as diagnosed by out-of-time-order correlators (OTOCs): black holes
+  are conjectured (Sekino–Susskind) to saturate the bound $t_* \sim \log N$,
+  faster than any locally-interacting system allows.
 
 ---
 
@@ -82,7 +83,31 @@ expander graphs — and only the complete graph collapses distance entirely
 (Appendix A upgrades the toy to finite-speed random circuits and recovers
 $t_* \sim \log N$ quantitatively).
 
-## 4. Why horizons have size: exterior bandwidth, not interior bulk
+## 4. How things move: walks on the network
+
+Everything in the model moves the same way: **one edge per tick.** A
+disturbance — a particle, a signal, an operator — is a walker hopping from
+node to node along edges. On a regular lattice region this produces
+ordinary straight-line motion on average: the walker jitters left and right
+but its mean position advances steadily, exactly like a drunkard who drifts
+downhill. Macroscopic trajectories, light cones, and causal structure are
+just what edge-hopping looks like from far above.
+
+Crucially, **different frequencies walk differently.** A wave of wavelength
+$\lambda$ accumulates phase as it goes, and every edge it crosses imprints a
+phase error proportional to how many of its own oscillations fit across
+that edge — roughly $a/\lambda$ per edge, where $a$ is the spacing. A
+long-wavelength (low-energy) wave barely notices the grain: millions of
+wavelengths average thousands of edges each, and it sails through as if
+space were smooth. A short-wavelength (high-energy) wave samples every
+defect: its many rapid oscillations multiply each edge's jitter, scattering
+it and slowing its group velocity. In equations the lattice gives group
+velocity $v_g \approx c(1 - (ka)^2/8)$ — quadratic in energy, tested in
+Appendix BD — and our wave simulations show transmission loss growing
+$\propto \omega^2$ with frequency (Appendix BF). Same geometry, different
+walks: radio light sees glass where TeV light sees frost.
+
+## 5. Why horizons have size: exterior bandwidth, not interior bulk
 
 The question the model answers most sharply: if the interior has no extent,
 why do horizons come in sizes? Because **size counts exterior legs**.
@@ -101,9 +126,19 @@ holes to carry more exterior legs ($k \propto M^2$ in ordinary gravity), so
 wiring budgets, not bulk volume. Second, adding interior nodes without adding
 legs changes nothing observable from outside — the interior can be arbitrarily
 rich while the horizon stays fixed. (This decoupling is what makes the
-information puzzle sharp, and its resolution possible; see §7.)
+information puzzle sharp, and its resolution possible; see §8.)
 
-## 5. The perfectly wired limit: baby universes
+To put the point bluntly: **the inside contributes nothing to the size; the
+outside contributes everything.** Think of a building whose size is set by
+its doors — one door-width per entrance, doors that cannot overlap — while
+the interior rooms (TARDIS-like) can be few or infinite without moving a
+single outer wall. Here the "doors" are exterior legs, the "door width" is
+one Planck patch, and the unbreakable rule is that *outside space is
+uncompressible*: patches cannot overlap, bandwidth cannot be exceeded. The
+horizon is outside space's response to wiring congestion — never a measure
+of interior contents.
+
+## 6. The perfectly wired limit: baby universes
 
 Push the model to its endpoint: interior entanglement perfect, exterior legs
 exactly zero. Monogamy of entanglement — a theorem, not an assumption: a
@@ -118,7 +153,7 @@ real work — it is the precise amount by which a black hole fails to be a
 separate universe, and everything observable (area, temperature, radiation)
 lives in that failure.
 
-## 6. Micro-holes: pointlike until they pop
+## 7. Micro-holes: pointlike until they pop
 
 Now run the logic downward. A handful of nodes, all mutually linked, with a
 few exterior legs: in three dimensions, a few outgoing connections radiate
@@ -139,20 +174,56 @@ gravity language, the sudden appearance of quantum extremal surfaces
 ("islands") in entanglement calculations: below threshold the outside's
 entanglement wedge contains no interior at all.
 
-## 7. Evaporation and information, briefly
+Why, then, does such an object have *no size at all* while plainly
+existing? Because in this model **existence and size are different
+properties.** Existence means *being connected*: $k > 0$ legs joining our
+graph, through which the object interacts, scatters, gravitates. Size means
+*needing a surface*: legs so numerous through one region that space must
+inflate to host them. Below $k_{crit}$ there is connection without
+congestion — presence without extent. Everyday objects bundle the two
+together (to exist is to occupy space); the model splits them apart, and
+the micro-hole phase is where the split shows.
 
-Each Hawking quantum severs roughly one exterior leg and carries its
-entanglement into the ambient graph as radiation. The horizon shrinks because
-$k$ shrinks — interior nodes are never "deleted." Crucially, the exterior
-budget's entanglement is gradually *swapped* from hole–ambient to
-radiation–ambient, which reproduces the Page curve (radiation entropy rising
-then falling, turning over halfway). Information is never inside waiting to
-escape; it was always being re-encoded into the wiring, and the wiring leaves
-leg by leg. The baby-universe endpoint inherits nothing because, by the time
-$k \to 0$, there is nothing left to inherit — the no-cloning constraint is
-satisfied by evacuation ordering, checked explicitly in the paper.
+## 8. Evaporation, disappearance, and the fate of information
 
-## 8. How this could be proven wrong
+A black hole evaporates the way a rope bridge comes apart: **exterior legs
+snap one by one, and each snap emits something.** Each severed leg's
+entanglement leaves into the ambient graph as one quantum of Hawking
+radiation. The horizon shrinks because the *count* of outside connections
+shrinks — interior nodes are never "deleted." Follow this to the end: the
+last legs go, $k \to 0$, and the interior pinches off. It is not destroyed;
+it is *disconnected* — no longer interacting with, curving, or located in
+our space. From our side, the black hole has disappeared from the universe,
+leaving only the radiation it emitted along the way.
+
+What happens to the *information* — everything that ever fell in? Two
+endings are possible, and the model characterizes exactly what decides
+between them:
+
+- **Preserved (the fiducial outcome).** Each cut leg carries up to $s_{leg}$
+  bits out; total capacity over the hole's life is $k_0 \cdot s_{leg}$ against
+  interior content $S_0$. Since derived leg budgets scale as $k^* \sim N^2$
+  while content scales as $S_0 \sim N$, capacity wins by a factor $\sim N$:
+  everything drains before pinch-off, the baby is born empty, and the
+radiation purifies along the Page curve (entropy rising, turning over
+halfway, falling). No cloning occurs, because at the moment of pinch-off
+there is nothing left inside to clone.
+- **Lost from our universe (Hawking's 1976 position, made precise).** If
+  evaporation ever outruns evacuation — information still inside when the
+  last legs go — pinch-off strands it outside our spacetime: genuinely,
+  permanently lost *to us* (whether a baby universe inherits it is then
+  unobservable by construction). The paper flags exactly this condition as
+  "cloning risk": the race is capacity vs. content, and loss is what losing
+  the race means.
+
+Which ending is real? Within the model as built, evacuation wins by a large
+margin — but the loss branch is not philosophy; it is a computed threshold
+away, and the paper keeps it visible rather than assuming it away. (A
+subtler version of the race — information *flux* vs. per-leg channel
+capacity in the final non-adiabatic moments — is saved for future work;
+see the open problems in §10.)
+
+## 9. How this could be proven wrong
 
 A model that can't die isn't science. Ours carries pre-registered,
 quantitative falsifiers (Appendix AN):
@@ -184,7 +255,7 @@ One sub-claim has already died this way (Planck-mass remnant dark matter,
 ruled out by abundance arithmetic plus published bounds — kept on record
 with a narrow surviving window at $\sim 4\times10^5$ g).
 
-## 9. What this model is not
+## 10. What this model is not
 
 - **Not a quantum gravity theory.** It reproduces large parts of gravity
   (Newton's law, Kepler orbits, GPS and Pound–Rebka redshifts, first-order
@@ -204,10 +275,12 @@ with a narrow surviving window at $\sim 4\times10^5$ g).
   coherent, falsifiable toy — not a solution in search of a problem.
 - **Missing pieces, named:** the spatial-curvature sector ($g_{rr}$ —
   Mercury precession is a clean miss at $0$ vs $43''$/cy), the exact gap
-  coefficient, a formation story for delocalized giants, and unitary
-  leg-surgery dynamics (evaporation is currently a Markov chain on $k$).
+  coefficient, a formation story for delocalized giants, unitary
+  leg-surgery dynamics (evaporation is currently a Markov chain on $k$),
+  and the information-flux race in the final non-adiabatic moments
+  (per-leg channel capacity vs. required evacuation flux).
 
-## 10. Where to go next
+## 11. Where to go next
 
 - **The paper proper:** `paper/paper.md` (readable draft, Secs 1–3 +
   appendices) and `paper/main.pdf` (compiled LaTeX) — same narrative, every
