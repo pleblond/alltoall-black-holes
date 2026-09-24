@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v1.9 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (171 tests)}
+\author{Philippe Leblond \\ \small Draft v2.0 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (176 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -212,6 +212,11 @@ currently unconstrained, poltergeist-probed in future.
 Leg screens + equipartition + Bekenstein give $F=M_1M_2/r^2$ exact
 (slope $-2$ to $10^{-9}$); leapfrog orbits close, $T^2\propto r^3$.
 Flux $\propto1/r^2$ distinguished from force (temperature corrects).
+
+\section{Redshift (Fig.~44)}
+GPS $+5.29\times10^{-10}$ and Pound-Rebka $2.55\times10^{-15}$ derived
+(no new parameters). Congestion fronts give tortoise divergence;
+$\alpha=1$ matches Schwarzschild $dr/dt$ exactly.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

@@ -4,7 +4,7 @@
 
 **Philippe Leblond**
 
-**Draft v1.9 — computational companion paper (Secs 1–3 + Appendices A–AS)
+**Draft v2.0 — computational companion paper (Secs 1–3 + Appendices A–AT)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -196,7 +196,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS), `redshift.py` (AT).
 
 ---
 
@@ -819,3 +819,20 @@ screen bits, $k(N)$ derived); (ii)–(iv) are Verlinde's, translated. Newton
 from all:all topology holds to exactly the extent those postulates do.
 
 ![Fig 43](../figures/fig43_newton.png)
+
+## Appendix AT. Redshift: derived weak-field, modeled near-horizon
+
+(`bh_graph.redshift`, Fig 44.) Part 1 is a derivation: Appendix AS's
+$\Phi = -M/r$ plus weak-field $g_{00} = 1 + 2\Phi$ plus equivalence gives
+$z = M(1/r_1 - 1/r_2)$ with no new parameters — GPS $+5.29\times10^{-10}$
+and Pound-Rebka $2.55\times10^{-15}$ reproduced to textbook precision.
+Part 2 is a model: layered graph with stay profile $s(r) = (R_s/r)^\alpha$
+(tangential wandering from congestion) slows SI fronts to $c_{eff} = 1 -
+s(r) \to 0$ at the horizon with tortoise-divergent escape ($R^2 > 0.99$ vs
+$-\log(r - r_h)$); $\alpha = 1$ matches Schwarzschild $dr/dt$ exactly
+(calibration), $\alpha = 2$ is the naive angular-size guess (qualitative).
+Ledger: redshift itself is robust to the profile; the exact exponent is open
+leg-termination microphysics — the same class of unknown as the gap
+coefficient, and the honest price of the near-horizon claim.
+
+![Fig 44](../figures/fig44_redshift.png)

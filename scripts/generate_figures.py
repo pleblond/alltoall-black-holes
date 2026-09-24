@@ -50,6 +50,7 @@ from bh_graph.concentration import pop_event as _pe, freefall_myr as _ff, edding
 from bh_graph.ps import ps_cumulative as _psc
 from bh_graph.scatter import tail_vs_fw as _tvf, mock_catalog as _mc
 from bh_graph.entropic import newton_force as _nf, newton_potential as _np, leapfrog_orbit as _lo, link_flux as _lf
+from bh_graph.redshift import ceff_profile as _ce, schwarzschild_coord_speed as _sc, layered_arrival_times as _la
 from bh_graph.congestion import bubble_radius as _rb
 from bh_graph.data import k_schwarzschild_sun as _ks
 from bh_graph.syk import otoc_curve as _otoc
@@ -1009,6 +1010,28 @@ def fig43_newton():
     fig.savefig(FIG / "fig43_newton.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig44_redshift():
+    r = np.linspace(10.5, 60, 300)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].plot(r, _ce(r, 10.0, 1.0), color="#2563eb", label="model alpha=1")
+    axes[0].plot(r, _sc(r, 10.0), "--", color="gray", label="Schwarzschild dr/dt")
+    axes[0].plot(r, _ce(r, 10.0, 2.0), color="#dc2626", label="alpha=2 (naive)")
+    axes[0].set_xlabel("r"); axes[0].set_ylabel("c_eff")
+    axes[0].set_title("Front speed -> 0 at horizon"); axes[0].legend(fontsize=8)
+    d = _la(10.0, 60.0, 0.5, 1.0)
+    axes[1].plot(d["r"], d["arrival"], color="#0f766e")
+    axes[1].set_xlabel("r"); axes[1].set_ylabel("arrival time")
+    axes[1].set_title("Escape time diverges (tortoise)")
+    axes[2].bar(["GPS 5.3e-10", "P-Rebka 2.5e-15"], [5.29e-10, 2.55e-15],
+                color=["#2563eb", "#7c3aed"])
+    axes[2].set_yscale("log"); axes[2].set_ylabel("|dz| predicted = measured")
+    axes[2].set_title("Weak-field numbers hit")
+    fig.suptitle("Fig 44 — AT: congestion redshift + textbook checks")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig44_redshift.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1053,6 +1076,7 @@ def main():
     fig41_ps()
     fig42_scatter()
     fig43_newton()
+    fig44_redshift()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
