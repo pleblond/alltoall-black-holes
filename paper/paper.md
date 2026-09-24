@@ -30,9 +30,24 @@ monogamy-forced pinch-off (baby universe); **(3)** micro-holes undergo a
 horizon-formation phase transition — pointlike defects with $k\,l_p^2 <
 4\pi r_{\mathrm{point}}^2$ that "pop" a horizon once the exterior budget exceeds
 the point-embedding capacity, with an LQG-style minimal-area gap. The horizon
-interior is, in this picture, mostly empty routing buffer. All claims ship with
+interior is, in this picture, mostly empty routing buffer. Beyond Secs 1–3,
+the appendices derive weak-field gravity to first post-Newtonian order from
+the same leg network: Newton's law, Kepler's laws, textbook redshift digits,
+full-strength light bending, Cassini-grade Shapiro delay, $\gamma = 1$
+exactly, and Mercury's $43''$/cy by direct geodesic integration. All claims ship with
 reproducible simulations (`python scripts/generate_figures.py`) and an
 interactive demo (`streamlit run app.py`).
+
+---
+
+## Results at a glance
+
+| sector | headline | status |
+|---|---|---|
+| gravity | Newton, Kepler, redshift, bending, Shapiro, Mercury 42.99" | all pass (AS, AT, AU, BB, BH) |
+| quantum info | scrambling hierarchy, Page curve, QES pop, Hayden–Preskill | derived (A, C, F, H) |
+| phenomenology | no LHC thermal BHs, no echoes, achromatic lensing | nulls held (T, AN5, BB) |
+| open frontier | 2nd-PN $c_1 = 3.36$ vs GR $1.94$; tortuosity micro-derivation | pre-registered (AN wire 6, BH) |
 
 ---
 
@@ -700,9 +715,9 @@ naive "last legs carry the most, always" was wrong and is now the diagnostic.
 
 ![Fig 36](../figures/fig36_bandwidth.png)
 
-## Appendix AN. Pre-registered kill list (five live wires)
+## Appendix AN. Pre-registered kill list (six live wires)
 
-One appendix, five executable falsifiers — thresholds fixed *before* the data:
+One appendix, six executable falsifiers — thresholds fixed *before* the data:
 
 1. **AF quench** (`gridcirc`, Fig 37). Same-device grid$\to$all:all quench at
 $N \ge 36$: predicted $t^*_{grid}/t^*_{all} \approx 2$--$3\times$ (simulated
@@ -724,6 +739,11 @@ $0.25$ would restrict Appendix C's domain (noted, not found).
 benchmarks ($\sim 550$ TeV at $M_D = 1$ TeV, $n = 6$); pre-registered hard
 spectra with no soft tail below onset. **KILL on any thermal-shaped excess
 with a soft tail where $k(M) < k_{crit}$.**
+6. **Second-order bending** (`lensing`, BH). First-PN light bending matches
+GR exactly, but the second-order coefficient is pre-registered at $c_1 =
+3.36$ vs GR's $1.94$ — currently untestable by $\sim 6$ orders. **KILL the
+strong-field extrapolation on any future measurement consistent with GR's
+$1.94$ and excluding $3.36$ at 90%.**
 
 ![Fig 37](../figures/fig37_quench.png)
 ![Fig 38](../figures/fig38_selfattack.png)
@@ -956,6 +976,11 @@ so Cassini's $\gamma - 1 = (2.1 \pm 2.3)\times10^{-5}$ passes with our
 $\gamma = 1$ exactly. Light-propagation tests now stand three-for-three
 at first order (bending, Shapiro, achromaticity); orbits remain the open
 sector.
+
+**Update (BH):** the orbit sector is now closed — see Appendix BH. The
+missing $g_{rr}$ is derived from leg tortuosity ($h = (1+x/2)^2$,
+$\gamma = 1$), and Mercury integrates to 42.99"/cy. BB's "orbits fail
+cleanly" stands as the recorded miss, corrected in-text per convention.
 
 ![Fig 55](../figures/fig55_chroma.png)
 

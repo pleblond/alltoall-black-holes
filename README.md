@@ -26,24 +26,26 @@ exact Page curve with Haar-typical fluctuations, island/QES takeover, Kerr
 thermodynamics, and Hayden–Preskill mirror recovery. An entropic argument on
 leg screens yields Newton's $1/r^2$ law, Kepler orbits, textbook
 gravitational redshifts (GPS, Pound–Rebka), full first-order light bending,
-and three routes toward the Einstein–Hilbert action. It predicts a micro-hole
+Cassini-grade Shapiro delay, $\gamma = 1$, Mercury's $43''$/cy from a
+derived spatial-curvature sector, and three routes toward the Einstein–Hilbert
+action. It predicts a micro-hole
 point-to-horizon phase transition, a collapse-as-scrambling transition, and
 lab-testable scrambling hierarchies, while meeting public LIGO–Virgo–KAGRA,
 ringdown, LHC-recast, and quantum-hardware data. Falsifiers are pre-registered
 (Appendix AN); one sub-claim (broad remnant dark matter) is already ruled
 out on the record, with a narrow surviving window. Postulates, derivations,
-and open gaps are labeled throughout — including the missing spatial-curvature
-sector and the un-derived gap coefficient.
+and open gaps are labeled throughout — including the tortuosity
+micro-derivation behind $g_{rr}$ and the un-derived gap coefficient.
 
 ## Contents
 
 | Path | Description | License |
 |---|---|---|
-| `paper/paper.md` | Full draft (Secs 1–3 + Appendices A–BE) | CC BY 4.0 |
+| `paper/paper.md` | Full draft (Secs 1–3 + Appendices A–BH) | CC BY 4.0 |
 | `paper/main.tex`, `paper/main.pdf` | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
-| `tests/` | 251 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 260 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
