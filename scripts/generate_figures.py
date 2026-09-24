@@ -44,6 +44,7 @@ from bh_graph.dispersion import omega_tb as _om, group_velocity as _gv, arrival_
 from bh_graph.qnmfoot import echo_train as _et, ell_cutoff as _lc
 from bh_graph.gwdata import overtone_deviation_pct as _od, echo_margin_orders as _emo, pta_mismatch_orders as _pmo
 from bh_graph.qnmlegs import leg_transition_hz as _lth, qnm_fund_hz as _qfh, microstate_broadening as _mb, lattice_reflectivity as _lr
+from bh_graph.foamgrid import deficit_vs_omega as _dvo, exclusion_epsilon as _exe, run_case as _rc
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1272,6 +1273,30 @@ def fig54_gwdata():
     fig.savefig(FIG / "fig54_gwdata.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig56_foam():
+    import numpy as np
+    lams = [6.0, 8.0, 12.0, 16.0, 24.0, 32.0]
+    r = _dvo(lams, eps=0.25, n=130, trials=3, seed=1)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].loglog(r["lambda"], np.maximum(r["deficit"], 1e-4), marker="o", color="#2563eb")
+    axes[0].set_xlabel("wavelength (cells)"); axes[0].set_ylabel("transmission deficit")
+    axes[0].set_title("Short waves scatter more"); axes[0].grid(True, alpha=0.3)
+    es = np.logspace(0, 13, 100)
+    axes[1].loglog(es, [_exe(e, 3000.0) for e in es], color="#dc2626")
+    axes[1].axhline(1.0, color="black", linestyle="--", label="eps = 1 (O(1) defects)")
+    axes[1].set_xlabel("photon energy (eV)"); axes[1].set_ylabel("max allowed eps")
+    axes[1].set_title("Fabric smoothness bound (3 Gpc)"); axes[1].legend(fontsize=8)
+    c = _rc(110, 12.0, 0.2, n_steps=400, seed=5)
+    axes[2].plot(c["screens"], c["centroids"], marker="o", color="#0f766e")
+    axes[2].axhline(0, color="black", lw=0.8)
+    axes[2].set_xlabel("screen x"); axes[2].set_ylabel("centroid offset")
+    axes[2].set_title("Unbiased: jitters, averages straight")
+    fig.suptitle("Fig 56 — BF: wave lab on defective fabric")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig56_foam.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1328,6 +1353,7 @@ def main():
     fig53_qnmlegs()
     fig54_gwdata()
     fig55_chroma()
+    fig56_foam()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

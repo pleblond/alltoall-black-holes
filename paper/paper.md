@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v2.8 — computational companion paper (Secs 1–3 + Appendices A–BE)
+**Draft v2.9 — computational companion paper (Secs 1–3 + Appendices A–BF)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1024,3 +1024,20 @@ item (2)'s open $R$: echo energy $\sim 10^{-160}$ at 100 Hz — discreteness
 echoes unobservable, from this mechanism, by a quantified margin.
 
 ![Fig 53](../figures/fig53_qnmlegs.png)
+
+## Appendix BF. Wave lab: dephasing on defective fabric, measured
+
+(`bh_graph.foamgrid`, Fig 56.) FDTD scalar waves on a 2D grid with per-edge
+speed defects ($c^2 = 1 + \varepsilon M$, pulsed Gaussian-beam source):
+centroids stay unbiased (jitters, averages straight — tested); transmission
+deficit grows $\propto \omega^2$ (16% $\to$ 4% $\to$ 0.2% across $\lambda =
+8 \to 32$ cells at $\varepsilon = 0.25$) — faster phase rotation samples
+defects harder, exactly the proposed mechanism. Calibrated extrapolation
+($\delta\phi^2 = C(k\varepsilon a)^2 N_{edges}$) turns sharp-image data into
+a fabric-cleanliness bound: per-Planck-edge fluctuations $\varepsilon
+\lesssim 10^{-3}$ (optical/Gpc) and $\lesssim 10^{-14}$ (TeV/Gpc), assuming
+independent edges (correlated patches of $\xi$ edges relax this by
+$\sqrt{\xi}$ — stated). Static disorder only: no foam dynamics smuggled in;
+quantized fluctuating wirings remain open (see discussion of item 2/3).
+
+![Fig 56](../figures/fig56_foam.png)

@@ -195,6 +195,10 @@ from bh_graph.qnmlegs import (
     fine_structure_ratio, single_quantum_fraction, microstate_broadening,
     lattice_reflectivity, in_lvk_band,
 )
+from bh_graph.foamgrid import (
+    make_medium, propagate, beam_stats, run_case, transmitted,
+    deficit_vs_omega, exclusion_epsilon,
+)
 from bh_graph.gwdata import (
     overtone_deviation_pct, echo_margin_orders, love_number_estimate,
     emd_peak_freq_hz, pta_mismatch_orders, lisa_requirement_pct,
@@ -335,6 +339,8 @@ __all__ = [
     "fine_structure_ratio", "single_quantum_fraction", "microstate_broadening",
     "lattice_reflectivity", "in_lvk_band",
     "echo_energy_ratio", "ell_cutoff", "ell_cutoff_violated",
+    "make_medium", "propagate", "beam_stats", "run_case", "transmitted",
+    "deficit_vs_omega", "exclusion_epsilon",
     "overtone_deviation_pct", "echo_margin_orders", "love_number_estimate",
     "emd_peak_freq_hz", "pta_mismatch_orders", "lisa_requirement_pct",
     "pt_QNMs", "fit_barrier_to_fundamental", "overtone_ratios", "gr_ratios",

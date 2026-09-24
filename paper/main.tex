@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v2.8 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (243 tests)}
+\author{Philippe Leblond \\ \small Draft v2.9 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (248 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -255,6 +255,10 @@ $E_{QG,2}=\sqrt8\,E_P$, $10^8\times$ above Fermi quadratic bound.
 \section{Footprint ringdown (Figs.~52--53)}
 Mass comb $1/2k$; echoes with derived $R\sim(\omega/\omega_P)^2\sim10^{-160}$;
 $\ell(\ell+1)\le k$ bites micro-holes; leg lines $37.6\times$ finer than QNM.
+
+\section{Wave lab on defective fabric (Fig.~56)}
+FDTD beams: unbiased centroids, deficit $\propto\omega^2$ ($16\%\to0.2\%$);
+fabric smoothness bounded to $\varepsilon\lesssim10^{-14}$ (TeV/Gpc).
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}
