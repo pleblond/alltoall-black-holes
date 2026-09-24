@@ -33,3 +33,13 @@ def test_growth_trajectory_transitions():
     assert traj["pointlike"][0]
     assert not traj["pointlike"][-1]
     assert len(traj["radius"]) == 40
+
+
+def test_packing_bound_forces_pop():
+    from bh_graph.micro import packing_kmax, footprint_deficit, pop_forced
+    assert packing_kmax(1.0, 1.0) == 12  # floor(4 pi)
+    assert not pop_forced(12)
+    assert pop_forced(13)
+    assert footprint_deficit(12) < 0 < footprint_deficit(13)
+    # consistency with the heuristic threshold
+    assert packing_kmax() <= critical_k() < packing_kmax() + 1

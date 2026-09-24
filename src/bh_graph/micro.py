@@ -33,6 +33,25 @@ def is_pointlike(k, r_point: float = 1.0, lp: float = 1.0) -> np.ndarray | bool:
     return np.asarray(k, dtype=float) * lp**2 < FOUR_PI * r_point**2
 
 
+def packing_kmax(r_foot: float = 1.0, lp: float = 1.0) -> int:
+    """BK: largest leg count embeddable through a footprint (patch postulate).
+
+    Theorem-in-toy: given one Planck patch per leg, no embedding exists for
+    k > floor(4 pi r_foot^2 / lp^2) — the pop is forced, not postulated.
+    """
+    return int(np.floor(FOUR_PI * r_foot**2 / lp**2))
+
+
+def footprint_deficit(k, r_foot: float = 1.0, lp: float = 1.0) -> float:
+    """BK: k*lp^2 - 4 pi r_foot^2; > 0 iff the horizon must inflate."""
+    return float(np.asarray(k, dtype=float) * lp**2 - FOUR_PI * r_foot**2)
+
+
+def pop_forced(k, r_foot: float = 1.0, lp: float = 1.0) -> bool:
+    """BK: strict boolean — does the patch postulate force a horizon pop?"""
+    return bool(footprint_deficit(k, r_foot, lp) > 0)
+
+
 def embedding_radius(k, r_point: float = 1.0, lp: float = 1.0):
     """Observed radius: r_point while pointlike, else Schwarzschild-style R(k).
 

@@ -2,7 +2,7 @@
 from bh_graph.graphs import build_complete, build_chain, build_grid_2d, build_random_regular
 from bh_graph.scrambling import infection_time, scrambling_scaling, graph_diameter, mean_path_length, spectral_gap
 from bh_graph.horizon import horizon_area, horizon_radius, k_from_mass_schwarzschild, monogamy_frontier
-from bh_graph.micro import critical_k, embedding_radius, is_pointlike, quantized_area, growth_trajectory
+from bh_graph.micro import critical_k, embedding_radius, is_pointlike, quantized_area, growth_trajectory, packing_kmax, footprint_deficit, pop_forced
 from bh_graph.circuits import circuit_cover_time, mean_cover_time, predicted_alltoall_log, circuit_scaling
 from bh_graph.maxent import (
     maxent_k_linear, selfconsistent_k_quadratic, legs_per_node,
@@ -247,7 +247,7 @@ __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
     "infection_time", "scrambling_scaling", "graph_diameter", "mean_path_length", "spectral_gap",
     "horizon_area", "horizon_radius", "k_from_mass_schwarzschild", "monogamy_frontier",
-    "critical_k", "embedding_radius", "is_pointlike", "quantized_area", "growth_trajectory",
+    "critical_k", "embedding_radius", "is_pointlike", "quantized_area", "growth_trajectory", "packing_kmax", "footprint_deficit", "pop_forced",
     "circuit_cover_time", "mean_cover_time", "predicted_alltoall_log", "circuit_scaling",
     "maxent_k_linear", "selfconsistent_k_quadratic", "legs_per_node",
     "fixed_point_iteration", "random_tensor_page_saturation", "bekenstein_check",

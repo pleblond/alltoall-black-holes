@@ -1160,3 +1160,45 @@ recorded as a **partial** micro-derivation: sign from micro, scaling and
 coefficient still open, awaiting bigger lattices.
 
 ![Fig 59](../figures/fig59_weakfield.png)
+
+## Appendix BJ. PPN status table + second-order peel-off law
+
+(`bh_graph.strain`, Fig 60.) The post-Newtonian ledger, all entries:
+
+| quantity | GR | model | status |
+|---|---|---|---|
+| $\gamma$ | 1 | 1 exactly | derived (BH tortuosity) |
+| light bending | $4M/b$ | $4M/b$ | derived (BB) |
+| Shapiro $\gamma$ | 1 | 1 | derived (BB/Shapiro) |
+| Mercury | $43''$/cy | 42.99" | measured by integration (BH) |
+| $\beta$ | 1 | — | **unresolved** (coordinate-confused; not quoted) |
+| $\alpha_{1,2}, \xi$, Nordtvedt | 0 | — | untouched |
+| 2nd-order bending $c_1$ | 1.94 | 3.36 | pre-registered wire (AN/6) |
+| 2nd-order peel-off | 0 | $-0.75\,M/a$ | **measured here** |
+
+The last row is new: ours-vs-GR perihelion difference follows
+$(ours - GR)/GR = -0.75\,M/a$ ($4.1\%$ at $a = 20M$ down to $2\times10^{-8}$
+at Mercury — second-order structure confirmed numerically, unobservable in
+the solar system). The model is GR to first PN order with a quantified,
+falsifiable-in-principle second-order departure.
+
+![Fig 60](../figures/fig60_divergence.png)
+
+## Appendix BK. Formal $k_{crit}$ + $s_{leg}$ delimitation (no figure — formal)
+
+(`bh_graph.micro`: `packing_kmax`, `footprint_deficit`, `pop_forced`.)
+**Theorem-in-toy (pop forced).** Given the patch postulate (each exterior
+leg occupies $\ge l_p^2$ of footprint), no embedding of $k$ legs exists
+through $r_{foot}$ for $k > \lfloor 4\pi r_{foot}^2/l_p^2 \rfloor$ — the
+horizon pop is then a packing necessity, not a dynamical postulate. The
+code locks the boundary: `packing_kmax(1,1) = 12`, pop unforced at 12,
+forced at 13, consistent with the Sec 3 heuristic. What remains
+postulated is exactly one thing: the patch size $l_p^2$ per leg.
+
+**Postulate box ($s_{leg} > 1/4$).** Appendix C assumes each leg carries
+entropy capacity above $1/4$ for the QES argument. Domain: random tensor
+networks and area-law ground states (measured $0.69$ random, $0.55$
+critical Ising — AN wire 4). Violation criterion: any physical state class
+with $s_{leg} < 0.25$ restricts C's domain to states above the bound; the
+wire stays live. Neither number is derived from nothing — both are now
+theorems-given-postulates with their inputs named.
