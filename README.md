@@ -11,6 +11,10 @@
 > and micro-holes undergo a point-to-horizon phase transition. Every claim
 > ships with runnable code, tests, and figures.
 
+> **New here?** Start with [`docs/model-explained.md`](docs/model-explained.md) —
+> a plain-language tour of the whole model (no physics background needed),
+> with pointers into the paper, code, and demo.
+
 ## Abstract
 
 We study a toy model in which spacetime connectivity is an entanglement graph
