@@ -39,6 +39,7 @@ from bh_graph.healing import relax_area, timescale_ladder
 from bh_graph.mss import mss_scan, lmg_hamiltonian
 from bh_graph.bigsyk import scaling_big
 from bh_graph.lensing import fermat_bending as _fer, gr_bending as _grb, newton_bending as _newb
+from bh_graph.bcrit import f_bouguer as _fbg, GR_BCRIT as _gbc
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1144,6 +1145,25 @@ def fig49_lensing():
     fig.savefig(FIG / "fig49_lensing.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig50_bcrit():
+    r = np.linspace(2.05, 20, 400)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].plot(r, _fbg(r, 2.0), color="#2563eb", label="model n(r)r")
+    axes[0].axhline(8.0, color="red", linestyle="--", label="isotropic min: 8M")
+    axes[0].axhline(_gbc, color="black", linestyle=":", label="GR: 3sqrt(3)M")
+    axes[0].set_xlabel("r"); axes[0].set_ylabel("n(r) r")
+    axes[0].set_title("Turning-point function"); axes[0].legend(fontsize=8)
+    axes[1].bar(["isotropic (dead)", "GR/EHT"], [8.0, _gbc],
+                color=["#dc2626", "#0f766e"])
+    axes[1].errorbar([1], [_gbc], yerr=0.15 * _gbc, color="black", capsize=4)
+    axes[1].set_ylabel("b_crit / M")
+    axes[1].set_title("Isotropic excluded ~3.6 sigma")
+    fig.suptitle("Fig 50 — BC: b_crit kills isotropic, targets tangential")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig50_bcrit.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1194,6 +1214,7 @@ def main():
     fig47_gw250114()
     fig48_overtones()
     fig49_lensing()
+    fig50_bcrit()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

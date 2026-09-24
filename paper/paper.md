@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v2.4 — computational companion paper (Secs 1–3 + Appendices A–BB)
+**Draft v2.5 — computational companion paper (Secs 1–3 + Appendices A–BC)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -938,3 +938,19 @@ the missing piece is precisely the spatial/post-Newtonian sector ($g_{rr}$),
 which no appendix currently derives. Light never needed it; orbits do.
 
 ![Fig 49](../figures/fig49_lensing.png)
+
+## Appendix BC. $b_{crit}$: isotropic reading dies at $8M$, tangential constrained
+
+(`bh_graph.bcrit`, Fig 50.) Bouguer's invariant in the AT medium extended
+isotropically on flat space: turning function $n(r)r = r^2/(r-R_s)$ minimized
+at $r = 2R_s$ gives $b_{crit} = 8M$ — $54\%$ above GR's $3\sqrt{3}M$, excluded
+by EHT's shadow ($\sim 15\%$ combined) at $\approx 3.6\sigma$ (not $5\sigma$ —
+stated). This kills the *isotropic extension*, not the core: radial AT
+calibration, weak-field results, and the $4M/b$ first-order bending all stand.
+Constructive consequence: transverse propagation must differ from radial —
+near-horizon tangential motion must be $\sim$unimpeded (fast), exactly as the
+all:all interior independently demands (Sec 1). EHT's shadow thereby becomes
+a quantitative target: any transverse completion (anisotropic effective
+geometry or $g_{rr}$ spatial curvature) must land $b_{crit}$ in $[4.42, 5.98]M$.
+
+![Fig 50](../figures/fig50_bcrit.png)
