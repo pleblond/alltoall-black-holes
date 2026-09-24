@@ -205,6 +205,7 @@ from bh_graph.strain import (
     divergence_law, divergence_slope,
 )
 from bh_graph.weakfield import weak_field_graph, kappa_profile, scaling_power
+from bh_graph.legham import leg_field_hamiltonian, scrambling_vs_leg_coupling
 from bh_graph.qnmlegs import (
     leg_transition_omega, leg_transition_hz, qnm_fund_hz,
     fine_structure_ratio, single_quantum_fraction, microstate_broadening,
@@ -358,6 +359,7 @@ __all__ = [
     "gamma_ppn_of_h", "perihelion_advance", "mercury_arcsec",
     "divergence_law", "divergence_slope",
     "weak_field_graph", "kappa_profile", "scaling_power",
+    "leg_field_hamiltonian", "scrambling_vs_leg_coupling",
     "mass_ladder", "qnm_comb", "comb_fractional_spacing", "echo_train",
     "leg_transition_omega", "leg_transition_hz", "qnm_fund_hz",
     "fine_structure_ratio", "single_quantum_fraction", "microstate_broadening",

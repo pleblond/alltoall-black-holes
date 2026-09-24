@@ -51,6 +51,8 @@ from bh_graph.strain import (
     mercury_arcsec as _mar, f_schw as _fsc, newton_h as _hne,
     divergence_law as _dl, divergence_slope as _ds)
 from bh_graph.weakfield import weak_field_graph as _wfg, kappa_profile as _kp
+from bh_graph.legham import leg_field_hamiltonian as _lh, scrambling_vs_leg_coupling as _sv
+from bh_graph.syk import otoc_curve as _oc
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1417,6 +1419,24 @@ def fig60_divergence():
     fig.savefig(FIG / "fig60_divergence.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig61_legham():
+    tg = np.linspace(0, 6, 120)
+    fig, axes = plt.subplots(1, 2, figsize=(9, 3.5))
+    for lam, color in ((0.0, "gray"), (0.3, "#2563eb"), (3.0, "#dc2626")):
+        axes[0].plot(tg, _oc(_lh(8, lam), 4, tg), color=color, label=f"lam={lam}")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("OTOC C(t)")
+    axes[0].set_title("Leg coupling: weak preserves, strong slows")
+    axes[0].legend(fontsize=8)
+    t = _sv(lams=(0.0, 0.1, 0.3, 1.0, 3.0))
+    axes[1].plot(sorted(t), [t[k] for k in sorted(t)], marker="o", color="#2563eb")
+    axes[1].set_xlabel("lambda"); axes[1].set_ylabel("t*")
+    axes[1].set_title("Scrambling time vs leg strength")
+    fig.suptitle("Fig 61 — BL: Hamiltonian sketch, small-N check")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig61_legham.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1478,6 +1498,7 @@ def main():
     fig58_strain()
     fig59_weakfield()
     fig60_divergence()
+    fig61_legham()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
