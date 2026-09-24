@@ -1,0 +1,12 @@
+{
+  "title": "Black Holes as Almost-Perfect All:All Entanglement Graphs: Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition",
+  "description": "Computational companion to a toy theory in which black hole interiors are almost-perfect all:all entanglement graphs, horizon area counts exterior legs (A = k l_p^2), and micro-holes undergo a point-to-horizon phase transition. Includes reproducible simulations (Secs 1-3 + Appendices A-AU), paper drafts (Markdown + LaTeX/PDF), figures, tests, and an interactive demo. Code MIT, text/figures CC BY 4.0.",
+  "creators": [{"name": "Leblond, Philippe"}],
+  "license": {"id": "other-open"},
+  "notes": "Dual-licensed: code under MIT (LICENSE-CODE-MIT), text and figures under CC BY 4.0 (LICENSE-DOCS-CC-BY-4.0.txt).",
+  "keywords": ["black holes", "quantum entanglement", "tensor networks", "quantum gravity", "fast scrambling", "Page curve", "gravitational waves", "reproducible research"],
+  "version": "2.1.0",
+  "language": "eng",
+  "access_right": "open",
+  "upload_type": "software"
+}

@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: "Black Holes as Almost-Perfect All:All Entanglement Graphs: Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition"
+message: "If you use this work, please cite the Zenodo record (DOI minted on first release) and the paper draft in paper/."
+type: software
+authors:
+  - family-names: Leblond
+    given-names: Philippe
+version: 2.1.0
+date-released: 2026-09-24
+repository-code: "https://github.com/pleblond/intuition"
+license: MIT
+keywords:
+  - black holes
+  - quantum entanglement
+  - tensor networks
+  - quantum gravity
+  - fast scrambling
+  - Page curve
+  - gravitational waves
+preferred-citation:
+  type: preprint
+  title: "Black Holes as Almost-Perfect All:All Entanglement Graphs"
+  authors:
+    - family-names: Leblond
+      given-names: Philippe
+  notes: "Computational companion paper (paper/paper.md, paper/main.pdf). Text and figures CC BY 4.0; code MIT."

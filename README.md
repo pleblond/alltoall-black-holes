@@ -2,106 +2,149 @@
 
 **Philippe Leblond**
 
-From a [Meta AI conversation](https://www.meta.ai/share/c/Onvs47AV0o) to a reproducible paper + simulations.
+[![Code: MIT](https://img.shields.io/badge/code-MIT-green)](LICENSE-CODE-MIT)
+[![Docs: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-blue)](LICENSE-DOCS-CC-BY-4.0.txt)
 
-**Core idea:** the interior is an almost-perfect all:all (complete) entanglement graph.
-Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one Planck patch, so horizon area is $A(k) = k\,l_p^2$ — independent of interior node count $N$. Perfect all:all ($k \to 0$) pinches off as a baby universe. Micro-holes stay pointlike until $k$ exceeds the point-embedding capacity, then "pop" a horizon.
+> A reproducible toy theory: black-hole interiors are almost-perfect all:all
+> entanglement graphs, horizon area counts exterior legs ($A = k\,l_p^2$),
+> and micro-holes undergo a point-to-horizon phase transition. Every claim
+> ships with runnable code, tests, and figures.
 
-## What was implemented (Secs 1–3 + Appendices A–AN)
+Origin: a [Meta AI conversation](https://www.meta.ai/share/c/Onvs47AV0o)
+about black holes as all:all entanglements, developed into a computational
+companion paper (Secs 1–3 + Appendices A–AU, v2.1).
 
-- **Sec 1 — All:all = no interior space** (`src/bh_graph/scrambling.py`): complete vs chain/grid/random-regular graphs; SI cover time, diameter, mean distance, spectral gap. $K_N$ has diameter 1 and 1-step spread at every $N$.
-- **Sec 2 — Horizon counts exterior wiring** (`src/bh_graph/horizon.py`): $A(k)$, $R(k)$, $k \propto M^2$ Schwarzschild mapping, monogamy frontier $e_{int}+e_{ext}\le 1$ and baby-universe $k=0$ limit.
-- **Sec 3 — Micro-hole phase transition** (`src/bh_graph/micro.py`): critical $k_{crit} = 4\pi r_{point}^2/l_p^2$, flat-then-pop $R_{obs}(k)$, LQG-style area gap, growth trajectories $k(N)$.
-- **A — Finite-speed circuits** (`circuits.py`): random-matching SI derives $t_* \sim \log_2 N$ for all:all vs ballistic chain. 1-step artifact removed.
-- **B — Derived $k(N)$** (`maxent.py`): MaxEnt linear bound + gravitational fixed point $k^*(N) = 16\pi(\varepsilon N/l_p)^2$; predicts $\alpha(N) = k/N \propto N$.
-- **C — QES crossing** (`qes.py`): generalized-entropy island takeover at $k_{page} = S_0/(2s_{leg}-l_p^2/4)$ + explicit min-cut network. Sharp failure mode if $s_{leg} \le l_p^2/4$.
-- **D — Page evaporation** (`evaporation.py`): leg surgery $k \to k-1$ with Page curve; area identical whether $N$ shrinks or stays fixed.
-- **F — QEC mirror** (`qec.py`): Hayden-Preskill $F(k) = 1 - \min(1/2, 2^{N/2+1-k})$; baby-universe $k\to 0$ seals information off.
-- **G — Robustness** (`robustness.py`): log law at all $p$, exact quadraticity at all $\varepsilon$, sharp QES boundary at $s_{leg} = l_p^2/4$.
-- **H — Kerr-Newman** (`kerr.py`): $k_{eff}(M,a,Q) = A/l_p^2$; extremal Kerr keeps half the legs; spin as second wiring budget.
-- **I — Exact Page** (`haar.py`): Page 1993 $S(m,n)$ with $-1/2$ nat dip + Haar sampling showing typicality.
-- **J — Nonlinear monogamy** (`monogamy.py`): explicit-state CKW frontier strictly below linear toy; baby universe at $(1,0)$.
-- **L — OTOC + pheno** (`otoc.py`, `pheno.py`): Lyapunov $t^* = \log N/\lambda$ vs ballistic $N/v$; PBH/echo/analogue signposts.
-- **M — Tensor network** (`tn.py`): random star TN verifies min-rule; $\varepsilon$ derived two ways (QES coincidence + linear-quadratic crossover).
-- **N — Kerr Page** (`kerrpage.py`): spin-down trajectories; high spin $\to$ lower peak + *later* turnover (numerics corrected the naive guess).
-- **O — SYK ED** (`syk.py`): Majorana SYK vs Ising chain OTOC; flat vs growing $t^*$ at 3–5 qubits.
-- **Q — GWTC repurposing** (`data.py`): all 32 GWTC-3 BBH mergers create legs (median +77%); live GWOSC fetch + offline fallback.
-- **R — Hardware literature** (`litcompare.py`): Gärttner/Mi/Blok anchors consistent; head-to-head prediction 7.9 vs 14.6 steps at N=53.
-- **S — Anomalies ledger**: echoes/LHC/PBH/EHT assessed honestly — model survives all, explains none standing.
-- **T — TeV recast** (`tev.py`): LHC masses at k~11–17 vs k_crit~50 → thermal nulls expected, not constraining.
-- **U — Echo timescales** (`echoes.py`): 0.03–0.3 s across remnants, inside searched windows; amplitude unmodeled.
-- **V — EHT + wormhole** (`pheno.py`, `litcompare.py`): shadow deviation 10⁻⁴⁸ (47 orders below EHT); Jafferis22 teleportation anchor.
-- **W — Posterior area test** (`posteriors.py`): 8350 GW150914 samples, Kerr both ends, P(Δk>0)=100%, median +57%.
-- **X — Cosmic budget** (`ds.py`): k_dS~10¹²³ vs BHs ~10¹⁰¹; Nariai merge; baby-universe extension.
-- **Y — Krylov hierarchy** (`krylov.py`): SYK ~2× chain spread saturation (slope metric honestly demoted).
-- **AA — Collapse transition** (`collapse.py`): compactness-driven local→all:all; diameter/gap/erasure switch together.
-- **AB — Cosmic legs** (`cosmic.py`): k(t) 10¹²²→10¹²³; dS t*≈4000 Gyr, patch unscrambled.
-- **AC — Lunch + remnants** (`lunch.py`, `remnant.py`): C/k diverges in evaporation; remnant DM fails except ultralight.
-- **AE — Bounds exclusion** (`bounds.py`): vendored PBHbounds vs required-β; 40+ order exclusion, β>1 above 10⁶ g.
-- **AF — Quench protocol**: same-device grid→all:all quench; t* 8→1, gap 0.27→36 (no cross-platform systematics).
-- **AG — Healing lag** (`healing.py`): dA/dt relaxation; ringdown fixes τ=11.24M; ladder ms→10⁸⁰ s; silent Planck sigh.
-- **AH — MSS + qualifier** (`mss.py`): thermal λ/2πT=0.5→0.68 (bound held); uniform all:all slower; α∈[9.0,12.4] from LVK.
-- **AI — Big SYK** (`bigsyk.py`): sparse N≤20, typicality OTOCs; t* flat vs linear to 10 qubits; MSS stable at N=16.
-- **AJ — MP + greybody** (`mp.py`, `greybody.py`): TN spectrum Haar-typical; analytic T(E) grounds unsuppressed sub-critical emission.
-- **AK — Congestion phases** (`congestion.py`): footprint-dependent k_crit; giant delocalized holes need no bubble.
-- **AL — Charge endpoints** (`charge.py`): q=4πQ² protected legs; pinch / pointlike remnant / extremal map.
-- **AM — Bandwidth** (`bandwidth.py`): evacuation check; babies born empty; divergence ⟺ cloning risk.
-- **AN — Kill list** (`gridcirc.py`, `monitor.py`, `selfattack.py`, `lhc.py`): 5 pre-registered falsifiers with thresholds.
-- **AO — Big pop** (`concentration.py`): hidden delocalized giants pop large horizons on concentration; 300× beats Eddington (scenario sketch).
-- **AP — Structure check** (`ps.py`): PS halos at z=8 suffice (0.1% occupation); >10¹² hosts excluded.
-- **AQ — Scatter prediction** (`scatter.py`): overmassive tail vs f_w; 10% tail→f_w≈0.18; null-of-300 kills channel.
-- **AR — Remnant obituary+resurrection** (`emd.py`, `viability.py`): formula corrected; dead except EMD sweet spot ~4e5 g.
-- **AS — Entropic Newton** (`entropic.py`): Verlinde chain on leg screens → 1/r² exact; Kepler orbits close.
-- **AT — Redshift** (`redshift.py`): GPS + Pound-Rebka derived; congestion fronts → tortoise (α=1 exact).
-- **AU — Einstein-Hilbert** (`heatker.py`, `orici.py`, `jacobson.py`): a₁ response, Ollivier signs, Clausius fixes ε.
+## Abstract
+
+We study a toy model in which spacetime connectivity is an entanglement graph
+and a black-hole interior is an almost-perfect all:all (complete) subgraph.
+Internal edges cost no exterior space; each of $k$ exterior legs costs about
+one Planck patch of horizon area. From two postulates the model reproduces
+fast scrambling ($t_* \sim \log N$), the Bekenstein–Hawking area law, the
+exact Page curve with Haar-typical fluctuations, island/QES takeover, Kerr
+thermodynamics, Hayden–Preskill mirror recovery, and — via an entropic
+argument on leg screens — Newton's $1/r^2$ law, Kepler orbits, and textbook
+gravitational redshifts (GPS, Pound–Rebka). It predicts a micro-hole
+point-to-horizon phase transition, a collapse-as-scrambling transition, and
+lab-testable scrambling hierarchies, while meeting public LIGO–Virgo–KAGRA,
+LHC-recast, and quantum-hardware data. Falsifiers are pre-registered
+(Appendix AN); one sub-claim (broad remnant dark matter) is already ruled
+out on the record, with a narrow surviving window.
+
+## Contents
+
+| Path | Description | License |
+|---|---|---|
+| `paper/paper.md` | Full draft (Secs 1–3 + Appendices A–AU) | CC BY 4.0 |
+| `paper/main.tex`, `paper/main.pdf` | LaTeX source + compiled PDF | CC BY 4.0 |
+| `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
+| `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
+| `tests/` | 183 pytest checks (derivations, data, falsifiers) | MIT |
+| `app.py` | Interactive Streamlit explorer | MIT |
+| `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
+| `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
+
+Module map (each with tests): Sec 1 `graphs`, `scrambling`; Sec 2 `horizon`;
+Sec 3 `micro`; A `circuits`; B `maxent`; C `qes`; D `evaporation`; F `qec`;
+G `robustness`; H `kerr`; I `haar`; J `monogamy`; L `otoc`, `pheno`;
+M `tn`; N `kerrpage`; O `syk`; Q `data`; R `litcompare`; T `tev`;
+U `echoes`; W `posteriors`; X `ds`; Y `krylov`; Z–AC `collapse`,
+`cosmic`, `lunch`, `remnant`; AE `bounds`; AF (protocol); AG `healing`;
+AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
+AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
+`concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
+`entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`.
 
 ## Quickstart
 
+Requires Python ≥ 3.10.
+
 ```bash
 pip install -e .
-python3 -m pytest tests/ -q
-python3 scripts/generate_figures.py   # writes figures/fig*.png
+python -m pytest tests/ -q          # 183 tests
+python scripts/generate_figures.py  # writes figures/fig*.png
+streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
 
-## Interactive demo
+Compile the paper (needs `pdflatex`):
 
 ```bash
-streamlit run app.py --server.port 43123
+cd paper && pdflatex main.tex && pdflatex main.tex
 ```
 
-Open the shown URL: sliders for $N$, $k$, $r_{point}$, $l_p$; live Sec 1/2/3 plots; paper summary.
+## Reproducibility
 
-## Paper
+- All figures are generated artifacts: delete `figures/` and re-run the
+  script; every number in the paper traces to a tested function.
+- External data is fetched live with committed fallbacks: GWOSC catalog
+  medians (fallback: bundled literature values), GW150914 posteriors
+  (cached under `data/`, DOI 10.7935/82H3-HH23), PBHbounds curves
+  (vendored under `data/pbhbounds/`, see `ATTRIBUTION.md`).
+- Randomness is seeded throughout; test tolerances are recorded in-test.
 
-- Readable draft: `paper/paper.md`
-- LaTeX draft: `paper/main.tex` (compile with `pdflatex paper/main.tex`)
-- Figures: `figures/fig*.png` (regenerate anytime via the script above)
+## Data provenance
 
-## Layout
+- LIGO–Virgo–KAGRA GWOSC event API (GWTC-1/3 medians + GW150914
+  Overall_posterior): https://gwosc.org — see paper for DOIs.
+- PBHbounds evaporation curves (Bradley Kavanagh, BSD): vendored with
+  attribution in `data/pbhbounds/ATTRIBUTION.md`.
+- Literature anchors (Gärttner 2017, Mi 2021, Blok 2021, Jafferis 2022,
+  Landsman 2019, Seki 2025, Abbott et al. 2021 testing-GR, Inomata et
+  al. 2020): qualitative signatures only, with DOIs in
+  `src/bh_graph/litcompare.py`. No third-party figure data is copied.
 
+## Honesty ledger (what is derived vs assumed)
+
+- **Derived in-repo:** $\log N$ scrambling, $k^*(N)$ fixed point,
+  QES/island crossing, Page curve + fluctuations, CKW frontier,
+  Hayden–Preskill mirror, Kerr Page delay, $1/r^2$ + Kepler + redshifts,
+  tortoise freezing, congestion phases, charge endpoints, evacuation
+  ordering, MP spectrum, greybody switch, $\alpha = 11.24$ match.
+- **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
+  equivalence principle, continuum limits (heat-kernel, Ollivier),
+  Raychaudhuri for leg bundles, gap coefficient, crossover scales.
+- **Ruled out (on record):** broad Planck-remnant dark matter (survives
+  only in a $\sim 0.4$-dex EMD window at $\sim 4\times10^5$ g).
+- **Falsifiers armed:** AF quench ratio $< 1.3$, $\alpha$ outside
+  $[9.0, 12.4]$, $A \propto N$ in any TN calculation, thermal LHC excess
+  below $k_{crit}$, $s_{leg} \le l_p^2/4$ in any physical state class.
+
+## License
+
+Dual-licensed (see `LICENSE.md`):
+
+- **Code** (`src/`, `scripts/`, `tests/`, `app.py`, config): **MIT** —
+  `LICENSE-CODE-MIT`, © 2026 Philippe Leblond.
+- **Text and figures** (`paper/`, `figures/`, `README.md`): **CC BY 4.0** —
+  `LICENSE-DOCS-CC-BY-4.0.txt`.
+- Third-party `data/` retains upstream terms.
+
+## Citation / Zenodo
+
+Cite via `CITATION.cff`. To publish on Zenodo:
+
+1. Push this repo to GitHub (already mirrored at
+   `https://github.com/pleblond/intuition`).
+2. In Zenodo, enable the GitHub integration and flip the switch for the
+   repository — metadata is prefilled from `.zenodo.json`.
+3. Create a GitHub Release (e.g. `v2.1.0`); Zenodo archives a snapshot and
+   mints a DOI. Add the DOI badge here and to `CITATION.cff`
+   (`identifiers:`) afterwards.
+
+```bibtex
+@software{leblond2026alltoall,
+  author  = {Leblond, Philippe},
+  title   = {Black Holes as Almost-Perfect All:All Entanglement Graphs},
+  version = {2.1.0},
+  year    = {2026},
+  url     = {https://github.com/pleblond/intuition},
+  note    = {Code MIT; text/figures CC BY 4.0}
+}
 ```
-src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
-               circuits.py (A) maxent.py (B) qes.py (C) evaporation.py (D)
-               qec.py (F) robustness.py (G) kerr.py (H) haar.py (I)
-               monogamy.py (J) otoc.py + pheno.py (L) tn.py (M)
-               kerrpage.py (N) syk.py (O) data.py (Q) litcompare.py (R)
-               tev.py (T) echoes.py (U) posteriors.py (W) ds.py (X)
-               krylov.py (Y) collapse.py (AA) cosmic.py (AB)
-               lunch.py + remnant.py (AC) bounds.py (AE) healing.py (AG)
-               mss.py (AH) bigsyk.py (AI) mp.py + greybody.py (AJ)
-               congestion.py (AK) charge.py (AL) bandwidth.py (AM)
-               gridcirc.py + monitor.py + selfattack.py + lhc.py (AN)
-               concentration.py (AO) ps.py (AP) scatter.py (AQ)
-               emd.py + viability.py (AR) entropic.py (AS) redshift.py (AT)
-               heatker.py + orici.py + jacobson.py (AU)
-scripts/       generate_figures.py
-tests/         183 tests (test_*.py per module)
-paper/         paper.md main.tex main.pdf
-figures/       fig1..fig45 (+8b, 8c) PNGs
-data/          GW150914 posteriors (GWOSC) + catalog cache
-app.py         Streamlit explorer
-```
 
-## Falsifiable edge
+## Status
 
-Micro black holes are *not* scaled-down Schwarzschild holes in this model: they are point defects until a critical exterior-entanglement budget, then acquire a horizon discontinuously (semiclassical limit). Any fuller tensor-network / LQG / island calculation can test the $k_{crit}$ scaling.
+v2.1.0 — complete through Appendix AU (entropic Newton, redshift,
+Einstein–Hilbert routes). The paper is a living research document:
+errata are recorded in-text (see Appendices AC/AE/AR), and the kill
+list (Appendix AN) scores all future results.
