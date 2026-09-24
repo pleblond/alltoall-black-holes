@@ -8,5 +8,6 @@
   "version": "2.1.0",
   "language": "eng",
   "access_right": "open",
-  "upload_type": "software"
+  "upload_type": "publication",
+  "publication_type": "workingpaper"
 }
