@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v2.3 — computational companion paper (Secs 1–3 + Appendices A–BA)
+**Draft v2.4 — computational companion paper (Secs 1–3 + Appendices A–BB)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -924,3 +924,17 @@ from $N = 8$ to $24$ while the chain climbs $1.8 \to 7.4$; thermal
 $\lambda/2\pi T$ at $\beta = 1$ reads $0.68, 0.66, 0.86, 0.77$ at $N = 10, 16, 20, 24$ — below 1 throughout, trending upward within fit noise (unregularized thermal OTOC, 2 disorder samples).
 Saturation approached, not claimed — finite-size fits at dim $\le 4096$.
 ![Fig 32](../figures/fig32_bigscaling.png)
+
+## Appendix BB. Light bending passes, Mercury gaps (my bet lost)
+
+(`bh_graph.lensing`, Fig 49.) Fermat paths in $n(r) = 1/c_{eff}$ with
+$c_{eff} = 1 - R_s/r$ give $4M/b$ at first order — full GR, not half
+(the factor-2 shortfall belongs to $v_{coord} = 1 - M/r$ models; ours was
+calibrated to the full Schwarzschild coordinate speed, so the naive failure
+I predicted does NOT occur — recorded as a lost bet). Second order differs
+($c_1 = 3.36$ vs GR $1.94$), currently untestable. Mercury/orbits fail
+cleanly: Appendix AS gives closed Newtonian ellipses ($0$ vs $43''$/cy) —
+the missing piece is precisely the spatial/post-Newtonian sector ($g_{rr}$),
+which no appendix currently derives. Light never needed it; orbits do.
+
+![Fig 49](../figures/fig49_lensing.png)

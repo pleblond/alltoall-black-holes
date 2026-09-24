@@ -55,7 +55,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`.
 
 ## Quickstart
 
@@ -147,7 +147,7 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
-v2.3 — complete through Appendix BA (overtone tower, tension no-go, big-SYK
+v2.4 — complete through Appendix BB (overtone tower, big-SYK N=24, lensing
 to $N=24$). The paper is a living research document:
 errata are recorded in-text (see Appendices AC/AE/AR), and the kill
 list (Appendix AN) scores all future results.

@@ -38,6 +38,7 @@ from bh_graph.bounds import remnant_exclusion_ratio, load_bound, EVAPORATION_BOU
 from bh_graph.healing import relax_area, timescale_ladder
 from bh_graph.mss import mss_scan, lmg_hamiltonian
 from bh_graph.bigsyk import scaling_big
+from bh_graph.lensing import fermat_bending as _fer, gr_bending as _grb, newton_bending as _newb
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1126,6 +1127,23 @@ def fig48_overtones():
     fig.savefig(FIG / "fig48_overtones.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig49_lensing():
+    bs = np.logspace(1, 3, 60)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].loglog(bs, [_fer(b, 2.0) for b in bs], color="#2563eb", label="model (Fermat)")
+    axes[0].loglog(bs, [_grb(b, 1.0, 1) for b in bs], "--", color="gray", label="GR 4M/b")
+    axes[0].loglog(bs, [_newb(b, 1.0) for b in bs], ":", color="#dc2626", label="Newton 2M/b")
+    axes[0].set_xlabel("impact b"); axes[0].set_ylabel("deflection")
+    axes[0].set_title("First order: full GR, not half"); axes[0].legend(fontsize=8)
+    axes[1].bar(["GR Mercury", "model Mercury"], [43.0, 0.0], color=["#0f766e", "#dc2626"])
+    axes[1].set_ylabel("arcsec/century")
+    axes[1].set_title("Orbits: gap documented (need g_rr)")
+    fig.suptitle("Fig 49 — BB: light passes, Mercury gaps")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig49_lensing.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1175,6 +1193,7 @@ def main():
     fig46_fission()
     fig47_gw250114()
     fig48_overtones()
+    fig49_lensing()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

@@ -174,6 +174,10 @@ from bh_graph.gw250114 import (
     kerr_area_msun, eta_kerr, gw250114_prediction, check_o4b_public,
 )
 from bh_graph.sparse24 import triplet_syk, thermal_typicality_otoc
+from bh_graph.lensing import (
+    fermat_bending, gr_bending, newton_bending, second_order_fit,
+    gr_mercury_arcsec_per_century, our_mercury_arcsec_per_century,
+)
 from bh_graph.overtones import (
     pt_QNMs, fit_barrier_to_fundamental, overtone_ratios, gr_ratios,
     tower_agreement,
@@ -293,6 +297,8 @@ __all__ = [
     "hawking_temperature", "tension_band",
     "kerr_area_msun", "eta_kerr", "gw250114_prediction", "check_o4b_public",
     "triplet_syk", "thermal_typicality_otoc",
+    "fermat_bending", "gr_bending", "newton_bending", "second_order_fit",
+    "gr_mercury_arcsec_per_century", "our_mercury_arcsec_per_century",
     "pt_QNMs", "fit_barrier_to_fundamental", "overtone_ratios", "gr_ratios",
     "tower_agreement",
     "sigma_planck_density", "sigma_hawking_density", "tension_span_orders",
