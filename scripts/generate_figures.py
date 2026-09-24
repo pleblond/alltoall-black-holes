@@ -48,7 +48,8 @@ from bh_graph.foamgrid import deficit_vs_omega as _dvo, exclusion_epsilon as _ex
 from bh_graph.perwalk import drift_profile as _dp, persistent_walk as _pw, msd_exponent as _me
 from bh_graph.strain import (
     h_tortuosity as _hto, h_naive as _hna, gr_h as _hgr,
-    mercury_arcsec as _mar, f_schw as _fsc, newton_h as _hne)
+    mercury_arcsec as _mar, f_schw as _fsc, newton_h as _hne,
+    divergence_law as _dl, divergence_slope as _ds)
 from bh_graph.weakfield import weak_field_graph as _wfg, kappa_profile as _kp
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
@@ -1396,6 +1397,26 @@ def fig59_weakfield():
     fig.savefig(FIG / "fig59_weakfield.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig60_divergence():
+    frac = _dl()
+    aa = np.array(sorted(frac))
+    yy = np.array([-frac[a] for a in aa])
+    fig, axes = plt.subplots(1, 2, figsize=(9, 3.5))
+    axes[0].loglog(1 / aa, yy, marker="o", color="#2563eb", label="measured -(ours-GR)/GR")
+    axes[0].loglog(1 / aa, 0.75 / aa, "--", color="gray", label="0.75 M/a")
+    axes[0].set_xlabel("M/a"); axes[0].set_ylabel("fractional peel-off")
+    axes[0].set_title(f"Strong-field divergence (slope {_ds(frac):.2f})")
+    axes[0].legend(fontsize=8)
+    axes[1].bar(["a=20", "a=100", "a=1000", "Mercury"],
+                [4.1, 0.76, 0.075, 2e-6], color="#2563eb")
+    axes[1].set_yscale("log"); axes[1].set_ylabel("% difference")
+    axes[1].set_title("Peel-off: % level to unobservable")
+    fig.suptitle("Fig 60 — BJ: second-order peel-off law")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig60_divergence.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1456,6 +1477,7 @@ def main():
     fig57_perwalk()
     fig58_strain()
     fig59_weakfield()
+    fig60_divergence()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

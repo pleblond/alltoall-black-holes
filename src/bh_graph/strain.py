@@ -124,3 +124,21 @@ def mercury_arcsec(f_fn, h_fn) -> float:
     a_geom = 0.38710 * 1.495978707e11 / 1477.0
     adv = perihelion_advance(f_fn, h_fn, a_geom, 0.20563, r_s=2.0, n_orbits=12)
     return float(adv * (100 * 365.25 / 87.969) * 206265.0)
+
+
+def divergence_law(a_list=(20.0, 50.0, 100.0, 200.0, 1000.0), e: float = 0.5):
+    """Fractional (ours - GR)/GR perihelion difference vs a/M (BJ)."""
+    out = {}
+    for a in a_list:
+        g = perihelion_advance(f_schw, gr_h, a, e, n_orbits=8)
+        o = perihelion_advance(f_schw, h_tortuosity, a, e, n_orbits=8)
+        out[float(a)] = float((o - g) / g)
+    return out
+
+
+def divergence_slope(frac: dict) -> float:
+    """Fit (ours-GR)/GR = s*(M/a); GR-second-order peel-off coefficient."""
+    aa = np.array(sorted(frac))
+    yy = np.array([frac[a] for a in aa])
+    s, _ = np.polyfit(1.0 / aa, yy, 1)
+    return float(s)

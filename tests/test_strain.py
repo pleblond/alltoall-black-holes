@@ -39,3 +39,11 @@ def test_consistency_chain_ceff():
     r = 2.0 / x
     ceff = np.sqrt(f_schw(r) / h_tortuosity(r))
     assert np.all(np.abs(ceff - (1 - x)) / x**2 < 1.0)
+
+
+def test_divergence_linear_law():
+    from bh_graph.strain import divergence_law, divergence_slope
+    frac = divergence_law()
+    assert abs(divergence_slope(frac) - (-0.75)) < 0.15
+    aa = sorted(frac)
+    assert all(abs(frac[aa[i]]) > abs(frac[aa[i + 1]]) for i in range(len(aa) - 1))
