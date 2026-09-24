@@ -15,6 +15,9 @@
 > a plain-language tour of the whole model (no physics background needed),
 > with pointers into the paper, code, and demo.
 
+> **Read the paper:** [`paper/paper.md`](paper/paper.md) (full draft) ·
+> [`paper/main.pdf`](paper/main.pdf) (compiled PDF)
+
 ## Abstract
 
 We study a toy model in which spacetime connectivity is an entanglement graph
@@ -41,8 +44,8 @@ micro-derivation behind $g_{rr}$ and the un-derived gap coefficient.
 
 | Path | Description | License |
 |---|---|---|
-| `paper/paper.md` | Full draft (Secs 1–3 + Appendices A–BH) | CC BY 4.0 |
-| `paper/main.tex`, `paper/main.pdf` | LaTeX source + compiled PDF | CC BY 4.0 |
+| [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BH) | CC BY 4.0 |
+| `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
 | `tests/` | 260 pytest checks (derivations, data, falsifiers) | MIT |
