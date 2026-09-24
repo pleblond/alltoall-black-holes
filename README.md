@@ -53,6 +53,7 @@ Internal edges cost no exterior space. Each of the $k$ exterior legs costs ~ one
 - **AR — Remnant obituary+resurrection** (`emd.py`, `viability.py`): formula corrected; dead except EMD sweet spot ~4e5 g.
 - **AS — Entropic Newton** (`entropic.py`): Verlinde chain on leg screens → 1/r² exact; Kepler orbits close.
 - **AT — Redshift** (`redshift.py`): GPS + Pound-Rebka derived; congestion fronts → tortoise (α=1 exact).
+- **AU — Einstein-Hilbert** (`heatker.py`, `orici.py`, `jacobson.py`): a₁ response, Ollivier signs, Clausius fixes ε.
 
 ## Quickstart
 
@@ -92,10 +93,11 @@ src/bh_graph/  graphs.py scrambling.py horizon.py micro.py
                gridcirc.py + monitor.py + selfattack.py + lhc.py (AN)
                concentration.py (AO) ps.py (AP) scatter.py (AQ)
                emd.py + viability.py (AR) entropic.py (AS) redshift.py (AT)
+               heatker.py + orici.py + jacobson.py (AU)
 scripts/       generate_figures.py
-tests/         176 tests (test_*.py per module)
+tests/         183 tests (test_*.py per module)
 paper/         paper.md main.tex main.pdf
-figures/       fig1..fig44 (+8b, 8c) PNGs
+figures/       fig1..fig45 (+8b, 8c) PNGs
 data/          GW150914 posteriors (GWOSC) + catalog cache
 app.py         Streamlit explorer
 ```

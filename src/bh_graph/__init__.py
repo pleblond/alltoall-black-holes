@@ -146,6 +146,17 @@ from bh_graph.redshift import (
     ceff_profile, schwarzschild_coord_speed, layered_arrival_times,
     escape_diverges, tortoise_fit,
 )
+from bh_graph.heatker import (
+    torus_graph, weighted_torus, laplacian_eigvals, heat_trace,
+    spectral_dimension, heat_coefficients,
+)
+from bh_graph.orici import (
+    ollivier_curvature, mean_curvature, eh_functional, wasserstein1,
+)
+from bh_graph.jacobson import (
+    clausius_leg_energy, clausius_residual, newton_G_from_eta,
+    einstein_lhs_scale,
+)
 from bh_graph.viability import (
     evaporated, allowed_omega, viability, viability_curve,
 )
@@ -243,4 +254,9 @@ __all__ = [
     "g00_weak", "frac_shift", "gps_redshift", "pound_rebka_shift", "stay_profile",
     "ceff_profile", "schwarzschild_coord_speed", "layered_arrival_times",
     "escape_diverges", "tortoise_fit",
+    "torus_graph", "weighted_torus", "laplacian_eigvals", "heat_trace",
+    "spectral_dimension", "heat_coefficients",
+    "ollivier_curvature", "mean_curvature", "eh_functional", "wasserstein1",
+    "clausius_leg_energy", "clausius_residual", "newton_G_from_eta",
+    "einstein_lhs_scale",
 ]

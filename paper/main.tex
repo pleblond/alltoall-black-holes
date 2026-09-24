@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v2.0 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (176 tests)}
+\author{Philippe Leblond \\ \small Draft v2.1 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (183 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -217,6 +217,11 @@ Flux $\propto1/r^2$ distinguished from force (temperature corrects).
 GPS $+5.29\times10^{-10}$ and Pound-Rebka $2.55\times10^{-15}$ derived
 (no new parameters). Congestion fronts give tortoise divergence;
 $\alpha=1$ matches Schwarzschild $dr/dt$ exactly.
+
+\section{Einstein-Hilbert routes (Fig.~45)}
+Heat $a_1$ responds to curvature; Ollivier signs exact (flat/neg/pos);
+Clausius fixes $\varepsilon=\kappa/8\pi$, $G=1$. Bridges labeled,
+Raychaudhuri-for-legs open.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

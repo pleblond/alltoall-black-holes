@@ -51,6 +51,9 @@ from bh_graph.ps import ps_cumulative as _psc
 from bh_graph.scatter import tail_vs_fw as _tvf, mock_catalog as _mc
 from bh_graph.entropic import newton_force as _nf, newton_potential as _np, leapfrog_orbit as _lo, link_flux as _lf
 from bh_graph.redshift import ceff_profile as _ce, schwarzschild_coord_speed as _sc, layered_arrival_times as _la
+from bh_graph.heatker import torus_graph as _tg, weighted_torus as _wt, laplacian_eigvals as _le, heat_trace as _ht
+from bh_graph.orici import mean_curvature as _meancurv
+from bh_graph.jacobson import clausius_leg_energy as _cle
 from bh_graph.congestion import bubble_radius as _rb
 from bh_graph.data import k_schwarzschild_sun as _ks
 from bh_graph.syk import otoc_curve as _otoc
@@ -1032,6 +1035,31 @@ def fig44_redshift():
     fig.savefig(FIG / "fig44_redshift.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig45_eh():
+    import networkx as nx
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    ev = _le(_tg(12))
+    s = np.logspace(-0.7, 0.0, 12)
+    axes[0].loglog(s, _ht(ev, s), marker="o", color="#2563eb", label="torus K(s)")
+    axes[0].loglog(s, 11.9 * s**-1.0, "--", color="gray", label="slope -1 (d=2)")
+    axes[0].set_xlabel("s"); axes[0].set_ylabel("K(s)")
+    axes[0].set_title("Heat trace: spectral dim 2"); axes[0].legend(fontsize=8)
+    axes[1].bar(["line (flat)", "tree (neg)", "K6 (pos)"],
+                [_meancurv(nx.path_graph(7)), _meancurv(nx.balanced_tree(2, 3)), _meancurv(nx.complete_graph(6))],
+                color=["#94a3b8", "#dc2626", "#2563eb"])
+    axes[1].axhline(0, color="black", lw=0.8)
+    axes[1].set_ylabel("mean Ollivier kappa")
+    axes[1].set_title("Curvature signs from topology")
+    ka = np.linspace(0.1, 2, 50)
+    axes[2].plot(ka, [_cle(k) for k in ka], color="#0f766e", label="eps = k/8pi")
+    axes[2].set_xlabel("surface gravity k"); axes[2].set_ylabel("leg energy eps")
+    axes[2].set_title("Clausius fixes leg energy"); axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 45 — AU: three routes to Einstein-Hilbert")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig45_eh.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1077,6 +1105,7 @@ def main():
     fig42_scatter()
     fig43_newton()
     fig44_redshift()
+    fig45_eh()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

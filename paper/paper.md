@@ -4,7 +4,7 @@
 
 **Philippe Leblond**
 
-**Draft v2.0 — computational companion paper (Secs 1–3 + Appendices A–AT)
+**Draft v2.1 — computational companion paper (Secs 1–3 + Appendices A–AU)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -196,7 +196,7 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS), `redshift.py` (AT).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS), `redshift.py` (AT), `heatker.py` + `orici.py` + `jacobson.py` (AU).
 
 ---
 
@@ -836,3 +836,21 @@ leg-termination microphysics — the same class of unknown as the gap
 coefficient, and the honest price of the near-horizon claim.
 
 ![Fig 44](../figures/fig44_redshift.png)
+
+## Appendix AU. Three routes to Einstein-Hilbert (bridges labeled)
+
+Heat kernel (`heatker`), Ollivier-Ricci (`orici`), Jacobson chain
+(`jacobson`), Fig 45. (1) Torus Laplacian spectra: spectral dimension
+$2.05$, $a_0 = 11.9$ vs $N/4\pi = 11.5$, and $a_1$ shifting $+16.2 \to
+-4.0$ under a conformal bump — the curvature response read relatively
+(flat-lattice $a_1 \ne 0$ artifact stated; continuum $a_1 \to \int R$
+cited). (2) Ollivier $\kappa$: line $0$, tree $< 0$, $K_6 > 0$ (all
+exact signs), $S = \sum_e \kappa(e) = 0$ on flat grids — curvature native
+to topology, converging to Ricci on geometric graphs per Ollivier's
+theorems (cited). (3) Clausius across a leg-cut fixes $\varepsilon =
+\kappa/8\pi$ with $G = 1/4\eta = 1$ — Einstein's equations follow given
+Raychaudhuri for leg bundles (open; Appendix AT's congestion slowdown is
+the seed). Three independent convergences on $\int R\sqrt{-g}$; a full
+derivation from nothing is not claimed — each bridge is named.
+
+![Fig 45](../figures/fig45_eh.png)
