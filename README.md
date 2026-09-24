@@ -54,7 +54,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`.
 
 ## Quickstart
 
@@ -62,7 +62,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 237 tests
+python -m pytest tests/ -q          # 243 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -148,8 +148,9 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
-v2.7 — complete through Appendix BE (fission done right, k-language audit,
-tension bounds, GW250114, overtones, big-SYK to $N=24$, lensing, b-crit).
+v2.8 — complete through Appendix BE plus chromatic lensing (fission done right,
+k-language audit, tension bounds, GW250114, overtones, big-SYK to $N=24$,
+lensing, b-crit, footprint ringdown).
 The paper is a living research document:
 errata are recorded in-text (see Appendices AC/AE/AR), and the kill
 list (Appendix AN) scores all future results.

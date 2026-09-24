@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v2.7 — computational companion paper (Secs 1–3 + Appendices A–BE)
+**Draft v2.8 — computational companion paper (Secs 1–3 + Appendices A–BE)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -936,6 +936,17 @@ I predicted does NOT occur — recorded as a lost bet). Second order differs
 cleanly: Appendix AS gives closed Newtonian ellipses ($0$ vs $43''$/cy) —
 the missing piece is precisely the spatial/post-Newtonian sector ($g_{rr}$),
 which no appendix currently derives. Light never needed it; orbits do.
+
+Extension (`bh_graph.chroma`, Fig 55): Fermat uses *phase* velocity, so
+lensing goes chromatic as $n(r,\omega) = n_{geom}(r)\,n_{disp}(\omega)$ with
+$n_{disp} - 1 = (\omega/\omega_P)^2/24$ (phase $1/24$, not group $1/8$ —
+conflating them would triple the effect). Since $n_{disp}$ is $r$-independent
+it factors out of Born exactly: fractional chromaticity $= (x^2/24)/(1-x^2/24)$,
+$\sim 10^{-56}$ optical to $\sim 10^{-32}$ at 10 TeV — achromaticity holds by
+$\sim 50$ orders over multi-wavelength tests ($\sim 10^{-3}$). A null
+prediction with an exact scaling law, not a signal.
+
+![Fig 55](../figures/fig55_chroma.png)
 
 ![Fig 49](../figures/fig49_lensing.png)
 

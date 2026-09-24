@@ -178,6 +178,10 @@ from bh_graph.lensing import (
     fermat_bending, gr_bending, newton_bending, second_order_fit,
     gr_mercury_arcsec_per_century, our_mercury_arcsec_per_century,
 )
+from bh_graph.chroma import (
+    phase_velocity, n_dispersion, n_total, chromatic_deflection,
+    chromaticity, chromaticity_analytic, photon_omega_ratio,
+)
 from bh_graph.bcrit import (
     f_bouguer, bcrit_isotropic, bcrit_isotropic_numeric,
     eht_exclusion_sigma, isotropic_ruled_out, tangential_target,
@@ -320,6 +324,8 @@ __all__ = [
     "triplet_syk", "thermal_typicality_otoc",
     "fermat_bending", "gr_bending", "newton_bending", "second_order_fit",
     "gr_mercury_arcsec_per_century", "our_mercury_arcsec_per_century",
+    "phase_velocity", "n_dispersion", "n_total", "chromatic_deflection",
+    "chromaticity", "chromaticity_analytic", "photon_omega_ratio",
     "f_bouguer", "bcrit_isotropic", "bcrit_isotropic_numeric",
     "eht_exclusion_sigma", "isotropic_ruled_out", "tangential_target",
     "omega_tb", "group_velocity", "velocity_defect", "eqg2_scale_gev",

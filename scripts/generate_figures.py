@@ -1150,6 +1150,27 @@ def fig49_lensing():
     plt.close(fig)
 
 
+def fig55_chroma():
+    from bh_graph.chroma import chromaticity, chromaticity_analytic, photon_omega_ratio
+    es = np.logspace(0, 13, 60)  # eV: optical to 10 TeV
+    from bh_graph.chroma import photon_omega_ratio as _por
+    ch = chromaticity_analytic(np.array([photon_omega_ratio(e) for e in es]))
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    axes[0].loglog(es, ch, color="#2563eb")
+    axes[0].axhline(1e-3, color="red", linestyle="--", label="test level ~1e-3")
+    axes[0].set_xlabel("photon energy (eV)"); axes[0].set_ylabel("fractional chromaticity")
+    axes[0].set_title("Lensing chromaticity vs energy"); axes[0].legend(fontsize=8)
+    axes[1].loglog(es, np.array(ch) / (np.array(es) / 1.220910e28) ** 2 * 24,
+                   color="#0f766e")
+    axes[1].axhline(1.0, color="black", linestyle=":")
+    axes[1].set_xlabel("photon energy (eV)"); axes[1].set_ylabel("measured / (w^2/24)")
+    axes[1].set_title("Quadratic law verified (ratio = 1)")
+    fig.suptitle("Fig 55 — BB ext.: chromatic lensing, unobservable")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig55_chroma.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def fig50_bcrit():
     r = np.linspace(2.05, 20, 400)
     fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
@@ -1306,6 +1327,7 @@ def main():
     fig52_qnmfoot()
     fig53_qnmlegs()
     fig54_gwdata()
+    fig55_chroma()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

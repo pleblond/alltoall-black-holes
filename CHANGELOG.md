@@ -3,6 +3,7 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v2.8** — BB extension: chromatic lensing (phase-velocity $1/24$, achromatic to $10^{-56}$). 243 tests, 56 figs.
 - **v2.7** — BE footprint ringdown corrections (mass comb, echo trains,
   $\ell$-cutoff) + leg-quantum fine structure ($\times 37.6$ finer),
   microstate broadening, derived lattice reflectivity. 237 tests, 55 figs.
