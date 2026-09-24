@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.3 — computational companion paper (Secs 1–3 + Appendices A–BI)
+**Draft v3.4 — computational companion paper (Secs 1–3 + Appendices A–BL)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1202,3 +1202,18 @@ critical Ising — AN wire 4). Violation criterion: any physical state class
 with $s_{leg} < 0.25$ restricts C's domain to states above the bound; the
 wire stays live. Neither number is derived from nothing — both are now
 theorems-given-postulates with their inputs named.
+
+## Appendix BL. Hamiltonian sketch + small-$N$ leg check (labeled sketch)
+
+(`bh_graph.legham`, Fig 61.) The sketch: $H = H_{SYK}(interior) +
+H_{legs} + H_{ambient}$, with $H_{legs} = \lambda\sum_{i<j \in legs}
+ig_{ij}\chi_i\chi_j$ a weak quadratic Majorana field on the legged subset
+(Hermitian bilinear — the bare $\chi_i\chi_j$ is anti-Hermitian and
+vanishes under symmetrization, a bug caught by the suite). Small-$N$ ED
+($N = 8$): $t^*$ unmoved at $\lambda = 0.1$, barely shifted at $1.0$,
+$\sim 2\times$ slower at $3.0$ — weak legs preserve the fast scrambler,
+strong legs break it. This is a consistency check on a sketch, not a
+dynamics: unitarity of leg surgery, backreaction of $k$-change on the
+spectrum, and the ambient coupling are named known-unknowns, unsolved.
+
+![Fig 61](../figures/fig61_legham.png)

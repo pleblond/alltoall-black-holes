@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v3.3 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (264 tests)}
+\author{Philippe Leblond \\ \small Draft v3.4 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (268 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -275,6 +275,15 @@ $42.99''$/cy by direct geodesic integration — the $g_{rr}$ sector derived.
 Grid+hub with flux stubs: radial Ollivier-Ricci negative in all configs
 (sign of $h>1$ derived from micro); scaling $p\approx0.9\pm0.5$ suggestive,
 not resolved — partial micro-derivation, bigger lattices needed.
+
+\section{PPN ledger + peel-off (Fig.~60)}
+Full table: $\gamma=1$ derived, $\beta$ unresolved (not quoted),
+$\alpha_{1,2},\xi$ untouched; ours-vs-GR perihelion $=-0.75\,M/a$ measured.
+
+\section{Formal pop + Hamiltonian sketch (Fig.~61)}
+Packing forces the pop past $\lfloor4\pi r^2/l_p^2\rfloor$; $s_{leg}>1/4$
+boxed as postulate. $H=H_{SYK}+H_{legs}$: $t^*$ survives weak legs,
+$\sim2\times$ slower at $\lambda=3$ (sketch, $N=8$).
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}
