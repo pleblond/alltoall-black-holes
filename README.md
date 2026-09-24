@@ -13,7 +13,7 @@
 
 Origin: a [Meta AI conversation](https://www.meta.ai/share/c/Onvs47AV0o)
 about black holes as all:all entanglements, developed into a computational
-companion paper (Secs 1–3 + Appendices A–AY, v2.2).
+companion paper (Secs 1–3 + Appendices A–BA, v2.3).
 
 ## Abstract
 

@@ -1,0 +1,13 @@
+# Locked dependency snapshot for v2.3 (Python 3.12.3, 2026-09-24).
+# Direct dependencies pinned to the tested versions; transitive
+# dependencies resolve via pip. Reproduces the exact CI-less
+# environment this snapshot's 208 tests ran green in.
+numpy==2.4.4
+scipy==1.18.1
+networkx==3.7
+matplotlib==3.11.2
+pandas==3.0.6
+streamlit==1.64.0
+plotly==7.1.0
+pytest==9.1.1
+h5py==3.16.0
