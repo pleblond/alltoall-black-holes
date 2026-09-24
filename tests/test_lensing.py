@@ -19,3 +19,15 @@ def test_second_order_differs():
 def test_mercury_gap():
     assert abs(gr_mercury_arcsec_per_century() - 43.0) < 1.0
     assert our_mercury_arcsec_per_century() == 0.0  # gap: need g_rr sector
+
+
+def test_bending_is_sqrt_congestion_to_leading_order():
+    # alpha = 2 sqrt(chi(b)) [1 + O(sqrt(chi))]: exact only as chi -> 0
+    import numpy as np
+    from bh_graph.congestion import congestion
+    from bh_graph.klanguage import k_of_mass
+    k = float(k_of_mass(1.0))
+    for b, tol in [(100.0, 0.05), (2000.0, 0.005)]:
+        chi = float(congestion(k, b))
+        ratio = fermat_bending(b, 2.0) / (2 * np.sqrt(chi))
+        assert abs(ratio - 1.0) < tol
