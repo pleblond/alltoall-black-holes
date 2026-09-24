@@ -7,7 +7,7 @@ authors:
     given-names: Philippe
 version: 2.1.0
 date-released: 2026-09-24
-repository-code: "https://github.com/pleblond/intuition"
+repository-code: "https://github.com/pleblond/alltoall-black-holes"
 license: MIT
 keywords:
   - black holes

@@ -124,7 +124,7 @@ Dual-licensed (see `LICENSE.md`):
 Cite via `CITATION.cff`. To publish on Zenodo:
 
 1. Push this repo to GitHub (already mirrored at
-   `https://github.com/pleblond/intuition`).
+   `https://github.com/pleblond/alltoall-black-holes`).
 2. In Zenodo, enable the GitHub integration and flip the switch for the
    repository — metadata is prefilled from `.zenodo.json`.
 3. Create a GitHub Release (e.g. `v2.1.0`); Zenodo archives a snapshot and
@@ -137,7 +137,7 @@ Cite via `CITATION.cff`. To publish on Zenodo:
   title   = {Black Holes as Almost-Perfect All:All Entanglement Graphs},
   version = {2.1.0},
   year    = {2026},
-  url     = {https://github.com/pleblond/intuition},
+  url     = {https://github.com/pleblond/alltoall-black-holes},
   note    = {Code MIT; text/figures CC BY 4.0}
 }
 ```
