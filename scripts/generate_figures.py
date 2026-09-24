@@ -45,6 +45,7 @@ from bh_graph.qnmfoot import echo_train as _et, ell_cutoff as _lc
 from bh_graph.gwdata import overtone_deviation_pct as _od, echo_margin_orders as _emo, pta_mismatch_orders as _pmo
 from bh_graph.qnmlegs import leg_transition_hz as _lth, qnm_fund_hz as _qfh, microstate_broadening as _mb, lattice_reflectivity as _lr
 from bh_graph.foamgrid import deficit_vs_omega as _dvo, exclusion_epsilon as _exe, run_case as _rc
+from bh_graph.perwalk import drift_profile as _dp, persistent_walk as _pw, msd_exponent as _me
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1302,6 +1303,31 @@ def fig56_foam():
     fig.savefig(FIG / "fig56_foam.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig57_perwalk():
+    rr = np.array([20.0, 40.0, 80.0, 160.0, 320.0])
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].loglog(rr, _dp(rr), marker="o", color="#2563eb", label="measured drift")
+    axes[0].loglog(rr, 30.0 / rr**3, "--", color="gray", label="1/r^3 ref")
+    axes[0].loglog(rr, 3.0 / rr**2, ":", color="#dc2626", label="1/r^2 (Newton, not matched)")
+    axes[0].set_xlabel("r"); axes[0].set_ylabel("inward drift/step")
+    axes[0].set_title("Degree drift: cubic, not square"); axes[0].legend(fontsize=8)
+    t1 = _pw(1200, 0.0, seed=1)
+    t2 = _pw(1200, 0.98, seed=1)
+    axes[1].plot(t1[:, 0], t1[:, 1], color="gray", lw=0.7, label=f"mu=0 (a={_me(t1):.2f})")
+    axes[1].plot(t2[:, 0], t2[:, 1], color="#2563eb", lw=0.7, label=f"mu=.98 (a={_me(t2):.2f})")
+    axes[1].set_aspect("equal"); axes[1].set_title("Persistence: diffusive to ballistic")
+    axes[1].legend(fontsize=8)
+    vv = np.linspace(0, 0.99, 100)
+    from bh_graph.perwalk import clock_rate as _cr
+    axes[2].plot(vv, [_cr(v) for v in vv], color="#0f766e", label="sqrt(1-v^2)")
+    axes[2].set_xlabel("v/c"); axes[2].set_ylabel("clock rate")
+    axes[2].set_title("Time dilation by hop counting"); axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 57 — BG: persistent walks, drift, dilation")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig57_perwalk.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1359,6 +1385,7 @@ def main():
     fig54_gwdata()
     fig55_chroma()
     fig56_foam()
+    fig57_perwalk()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

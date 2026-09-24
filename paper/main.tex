@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v3.0 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (251 tests)}
+\author{Philippe Leblond \\ \small Draft v3.1 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (255 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -259,6 +259,11 @@ $\ell(\ell+1)\le k$ bites micro-holes; leg lines $37.6\times$ finer than QNM.
 \section{Wave lab on defective fabric (Fig.~56)}
 FDTD beams: unbiased centroids, deficit $\propto\omega^2$ ($16\%\to0.2\%$);
 fabric smoothness bounded to $\varepsilon\lesssim10^{-14}$ (TeV/Gpc).
+
+\section{Persistent walks (Fig.~57)}
+Hop-budget time dilation $\sqrt{1-v^2}$; degree drift $\sim1/r^3$ (not Newton:
+$T(r)$ load-bearing); diffusive-to-ballistic morphologies; spin effaced,
+Mercury MPD $\sim4\times10^{-14}$.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

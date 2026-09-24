@@ -58,7 +58,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`.
 
 ## Quickstart
 
@@ -66,7 +66,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 251 tests
+python -m pytest tests/ -q          # 255 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -152,7 +152,7 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
-v3.0 — complete through Appendix BF (wave lab) plus Shapiro delay:
+v3.1 — complete through Appendix BG (wave lab) plus Shapiro delay:
 gravity scoreboard reads Newton, Kepler, redshift, bending, Shapiro as
 passes, Mercury as the documented gap (missing $g_{rr}$ sector).
 The paper is a living research document:

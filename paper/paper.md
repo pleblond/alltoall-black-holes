@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.0 — computational companion paper (Secs 1–3 + Appendices A–BF)
+**Draft v3.1 — computational companion paper (Secs 1–3 + Appendices A–BG)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -194,7 +194,10 @@ streamlit run app.py                 # interactive Secs 1–3 explorer
 
 Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `circuits.py` (A), `maxent.py` (B), `qes.py` (C), `evaporation.py` (D),
-`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS), `redshift.py` (AT), `heatker.py` + `orici.py` + `jacobson.py` (AU), `fission.py` (AV), `klanguage.py` (AW), `tension.py` (AX), `gw250114.py` (AY).
+`qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS), `redshift.py` (AT), `heatker.py` + `orici.py` + `jacobson.py` (AU), `fission.py` (AV), `klanguage.py` (AW), `tension.py` (AX), `gw250114.py` (AY),
+`overtones.py` + `tensionvol.py` (AZ), `sparse24.py` (BA), `lensing.py` +
+`chroma.py` + `shapiro.py` (BB), `bcrit.py` (BC), `dispersion.py` (BD),
+`qnmfoot.py` + `qnmlegs.py` (BE), `foamgrid.py` (BF), `perwalk.py` (BG).
 
 ---
 
@@ -1049,3 +1052,20 @@ $\sqrt{\xi}$ — stated). Static disorder only: no foam dynamics smuggled in;
 quantized fluctuating wirings remain open (see discussion of item 2/3).
 
 ![Fig 56](../figures/fig56_foam.png)
+## Appendix BG. Persistent walks: dilation derived, drift cubic, spin effaced
+
+(`bh_graph.perwalk`, Fig 57.) Massive walkers split fixed-length hops between
+translation and internal cycles: $v^2 + r_{clock}^2 = c^2$, so clocks tick at
+$\sqrt{1-v^2}$ by counting (linear $1-v$ would be wrong — tested via 3-4-5
+triangle). Degree-biased hopping on flux-conserved pileup $d \propto 1/r^2$
+gives drift $\propto 1/r^3$, *not* Newton $1/r^2$ (measured slope $\approx
+-3$): heterogeneity alone cannot source gravity, proving Appendix AS's
+temperature factor load-bearing rather than decorative. Heading memory $\mu$
+tunes trajectories diffusive ($\alpha \approx 1$) to ballistic ($\alpha
+\approx 2) without closing orbits — momentum memory is demonstrated, true
+inertial trajectories still need calibration ($\tau_p$ open). Spin as
+internal circulation leaves mean drift unchanged to first order (effacement
+toy), and Mathisson-Papapetrou for Mercury is $\sim 4\times10^{-14}$ of
+Newtonian — the spin question answered: negligible, quantified.
+
+![Fig 57](../figures/fig57_perwalk.png)
