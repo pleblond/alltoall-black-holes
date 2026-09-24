@@ -135,7 +135,7 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 @software{leblond2026alltoall,
   author  = {Leblond, Philippe},
   title   = {Black Holes as Almost-Perfect All:All Entanglement Graphs},
-  version = {2.1.0},
+  version = {2.1.1},
   year    = {2026},
   url     = {https://github.com/pleblond/alltoall-black-holes},
   note    = {Code MIT; text/figures CC BY 4.0}
@@ -144,7 +144,7 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
-v2.1.0 — complete through Appendix AU (entropic Newton, redshift,
+v2.1.1 — complete through Appendix AU (entropic Newton, redshift,
 Einstein–Hilbert routes). The paper is a living research document:
 errata are recorded in-text (see Appendices AC/AE/AR), and the kill
 list (Appendix AN) scores all future results.

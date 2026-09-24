@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: Leblond
     given-names: Philippe
-version: 2.1.0
+version: 2.1.1
 date-released: 2026-09-24
 repository-code: "https://github.com/pleblond/alltoall-black-holes"
 license: MIT
