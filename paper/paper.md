@@ -1233,6 +1233,15 @@ not a web. (Scaling remark: $R_s \propto M$ alone follows from dimensional
 analysis + scale invariance — the unfactorable residue is the pure number
 $2$.)
 
+**Anchor note.** Until derived, $R_s = 2M$ is taken as a *measured input*
+(light deflection, Shapiro, EHT shadows, Sgr A* orbits confirm it
+independently of this model) — the theory's $G$, not a vicious circle:
+vicious would be claiming to derive it while assuming it, which the audit
+above preempts. Two GR-free derivation routes are queued: statistical
+mechanics (spectral $T(k)$ + equipartition + legs-as-bits, blocked on a
+Hamiltonian) and Jacobson completion (blocked on Raychaudhuri + BO
+mechanism).
+
 ## Appendix BN. Jacobson bridge 2: constancy passes, $\eta$ exposes $\ln 2$
 
 (`bh_graph.jacobson`, Fig 62.) The cheapest Jacobson falsifier, run first:
