@@ -5,6 +5,7 @@ type: software
 authors:
   - family-names: Leblond
     given-names: Philippe
+    email: leblond.philippe@gmail.com
 version: 3.11.0
 date-released: 2026-09-25
 repository-code: "https://github.com/pleblond/alltoall-black-holes"
@@ -27,4 +28,5 @@ preferred-citation:
   authors:
     - family-names: Leblond
       given-names: Philippe
+      email: leblond.philippe@gmail.com
   notes: "Computational companion paper (paper/paper.md, paper/main.pdf). Text and figures CC BY 4.0; code MIT."

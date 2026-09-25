@@ -1,6 +1,6 @@
 # Black Holes as Almost-Perfect All:All Entanglement Graphs: Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition
 
-**Philippe Leblond**
+**Philippe Leblond** — leblond.philippe@gmail.com
 
 **Draft v3.11 — computational companion paper (Secs 1–3 + Appendices A–BS)
 
