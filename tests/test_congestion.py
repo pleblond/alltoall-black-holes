@@ -2,13 +2,13 @@ from bh_graph.congestion import (
     congestion, needs_bubble, bubble_radius, k_crit_footprint, phase,
     footprint_needed,
 )
-from bh_graph.micro import critical_k
+from bh_graph.micro import critical_k, R_POINT
 
 
 def test_recovers_sec3_when_concentrated():
     assert k_crit_footprint(1.0) == critical_k(1.0, 1.0)
-    assert bool(needs_bubble(critical_k() + 1, 1.0))
-    assert not bool(needs_bubble(critical_k() - 1, 1.0))
+    assert bool(needs_bubble(critical_k() + 1, R_POINT))
+    assert not bool(needs_bubble(critical_k() - 1, R_POINT))
 
 
 def test_giant_delocalized_no_bubble():

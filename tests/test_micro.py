@@ -1,11 +1,14 @@
 import numpy as np
 from bh_graph.micro import (
     critical_k, is_pointlike, embedding_radius, quantized_area, growth_trajectory,
+    R_POINT,
 )
+from bh_graph.horizon import PATCH_AREA
 
 
 def test_critical_k_matches_formula():
-    assert critical_k(r_point=1.0, lp=1.0) == 4 * np.pi
+    assert critical_k(r_point=1.0, lp=1.0) == 4 * np.pi / PATCH_AREA
+    assert abs(critical_k() - 4 * np.pi) < 1e-12  # one leg cell -> same 4 pi
 
 
 def test_pointlike_below_threshold_only():
@@ -18,8 +21,8 @@ def test_radius_flat_then_pops():
     kc = critical_k()
     r_below = embedding_radius(kc - 5)
     r_above = embedding_radius(kc + 50)
-    assert r_below == 1.0
-    assert r_above > 1.0
+    assert r_below == R_POINT
+    assert r_above > R_POINT
 
 
 def test_quantized_area_has_gap():
@@ -36,8 +39,8 @@ def test_growth_trajectory_transitions():
 
 
 def test_packing_bound_forces_pop():
-    from bh_graph.micro import packing_kmax, footprint_deficit, pop_forced
-    assert packing_kmax(1.0, 1.0) == 12  # floor(4 pi)
+    from bh_graph.micro import packing_kmax, footprint_deficit, pop_forced, R_POINT
+    assert packing_kmax(R_POINT, 1.0) == 12  # floor(4 pi), one leg cell
     assert not pop_forced(12)
     assert pop_forced(13)
     assert footprint_deficit(12) < 0 < footprint_deficit(13)

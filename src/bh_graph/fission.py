@@ -36,8 +36,11 @@ def fission_allowed(k: float, k1: float, k2: float) -> bool:
     return bool(fission_budget(k, k1, k2) >= -1e-9)
 
 
-def no_split_rule(k: float, r_point: float = 1.0, lp: float = 1.0) -> bool:
+def no_split_rule(k: float, r_point: float | None = None, lp: float = 1.0) -> bool:
     """Boolean check: k < 2 k_crit forbids two-horizon fission?"""
+    from bh_graph.micro import R_POINT
+    if r_point is None:
+        r_point = R_POINT
     return bool(k < 2 * k_crit_footprint(r_point, lp))
 
 

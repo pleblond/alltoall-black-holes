@@ -20,12 +20,14 @@ FOUR_PI = 4.0 * np.pi
 
 
 def mass_of_k(k, lp: float = 1.0):
-    """M = lp sqrt(k)/4 sqrt(pi) (geometric/Planck units)."""
-    return lp * np.sqrt(np.maximum(np.asarray(k, dtype=float), 0.0)) / (4 * np.sqrt(np.pi))
+    """M = lp sqrt(k PATCH)/4 sqrt(pi) (BS flip)."""
+    from bh_graph.horizon import PATCH_AREA
+    return lp * np.sqrt(np.maximum(np.asarray(k, dtype=float), 0.0) * PATCH_AREA) / (4 * np.sqrt(np.pi))
 
 
 def k_of_mass(m, lp: float = 1.0):
-    return 16 * np.pi * np.asarray(m, dtype=float) ** 2 / lp**2
+    from bh_graph.horizon import PATCH_AREA
+    return 16 * np.pi * np.asarray(m, dtype=float) ** 2 / (PATCH_AREA * lp**2)
 
 
 def radiated_energy(k1: float, k2: float, kf: float, lp: float = 1.0) -> float:

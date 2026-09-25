@@ -6,8 +6,9 @@ from bh_graph.qnmfoot import (
 
 
 def test_mass_ladder_scaling():
-    assert mass_ladder(16 * np.pi) == 1.0
-    assert mass_ladder(4 * 16 * np.pi) == 2.0
+    from bh_graph.horizon import PATCH_AREA
+    assert mass_ladder(16 * np.pi / PATCH_AREA) == 1.0
+    assert mass_ladder(4 * 16 * np.pi / PATCH_AREA) == 2.0
 
 
 def test_comb_spacing_inverse_k():

@@ -24,8 +24,9 @@ import numpy as np
 
 
 def mass_ladder(k):
-    """M_k = sqrt(k/16 pi) in Planck masses (integer-k mass quantization)."""
-    return np.sqrt(np.asarray(k, dtype=float) / (16 * np.pi))
+    """M_k = sqrt(k PATCH/16 pi) in Planck masses (BS flip)."""
+    from bh_graph.horizon import PATCH_AREA
+    return np.sqrt(np.asarray(k, dtype=float) * PATCH_AREA / (16 * np.pi))
 
 
 def qnm_comb(k_grid, omega_dimless: float = 0.37367 - 0.08896j):

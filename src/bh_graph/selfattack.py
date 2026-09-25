@@ -1,4 +1,4 @@
-"""KC: Self-attack module — trying to break A ~ k and s_leg > lp^2/4.
+"""KC: Self-attack module — trying to break A ~ k PATCH and s_leg > PATCH/8 (BS).
 
 Attack 1 (min-rule violations): relative deviation (S - min)/min of random
 star-TN boundary entropy vs bulk size N at fixed k. If violations GREW with
@@ -8,9 +8,9 @@ flat and small (~few %).
 Attack 2 (s_leg probe): bulk entropy per boundary leg in the unsaturated
 regime, for (a) random TNs (expect ~ log D) and (b) critical transverse-field
 Ising ground states across a middle cut (ED, S_half/ln2 — the hardest case:
-area-law states carry the least per-leg entropy). Appendix C needs
-s_leg > lp^2/4 = 0.25. Both pass with margin; the Ising value sets the
-narrowest clearance and is reported, not hidden.
+area-law states carry the least per-leg entropy). Appendix C needs s_leg > PATCH/8 = ln 2/2 ~ 0.347 (BS flip). Both pass;
+Ising clearance narrows 2.2x -> 1.6x and is reported, not hidden. Saturation
+s_leg = ln 2 (vacuum legs, for eta = 1/4) is a separate, stronger claim.
 """
 from __future__ import annotations
 
@@ -73,5 +73,6 @@ def s_leg_ising(n_spins: int = 10, h: float = 1.0) -> float:
 
 
 def qes_assumption_holds(s_leg: float, lp: float = 1.0) -> bool:
-    """Boolean check: s_leg > lp^2/4 (Appendix C crossing exists)?"""
-    return bool(s_leg > lp**2 / 4.0)
+    """Boolean check: s_leg > PATCH/8 (Appendix C crossing exists, BS flip)?"""
+    from bh_graph.horizon import PATCH_AREA
+    return bool(s_leg > PATCH_AREA * lp**2 / 8.0)

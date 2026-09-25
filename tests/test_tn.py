@@ -35,10 +35,11 @@ def test_eps_routes_positive_and_consistent_scaling():
 
 
 def test_entropy_capacity_tension():
-    # BR: purity + E = eps N + S = k/4 forces N <= ~125 (macro violated).
+    # BR: purity + fixed eps + S = k ln 2 -> N_max = N_match = 25 (identity);
+    # violated beyond matching for repo eps.
     from bh_graph.tn import max_consistent_n, capacity_violated
-    assert abs(max_consistent_n() - 125.1) < 1.0
-    assert not capacity_violated(25)  # consistent at matching scale
+    assert abs(max_consistent_n() - 25.0) < 0.1
+    assert not capacity_violated(25)  # saturates exactly at matching scale
     assert capacity_violated(1000)  # violated for macro holes
 
 
@@ -47,3 +48,14 @@ def test_tension_robust_to_eps():
     from bh_graph.tn import max_consistent_n, capacity_violated
     assert max_consistent_n(eps=0.1) < max_consistent_n(eps=0.01)
     assert capacity_violated(10**6, eps=0.1) and capacity_violated(10**6, eps=0.001)
+
+
+def test_running_eps_resolves():
+    # BS(b*): crossover c saturates bound identity; alpha = 1, margin = PATCH.
+    from bh_graph.tn import (eps_running, alpha_running, running_c_bound,
+                             running_margin, eps_from_crossover)
+    from bh_graph.horizon import PATCH_AREA
+    assert abs(eps_running(25) - eps_from_crossover(25.0)) < 1e-12
+    assert abs(alpha_running() - 1.0) < 1e-9  # legs = nodes exactly
+    assert running_c_bound() > 0.39
+    assert abs(running_margin() - PATCH_AREA) < 1e-9

@@ -1,18 +1,18 @@
 import numpy as np
 from bh_graph.horizon import (
     horizon_area, horizon_radius, k_from_mass_schwarzschild,
-    monogamy_frontier, exterior_budget, is_baby_universe_limit,
+    monogamy_frontier, exterior_budget, is_baby_universe_limit, PATCH_AREA,
 )
 
 
 def test_area_counts_k_not_n():
-    assert horizon_area(10) == 10.0
-    assert horizon_area([0, 4], lp=2.0).tolist() == [0.0, 16.0]
+    assert horizon_area(10) == 10.0 * PATCH_AREA  # BS: patch = 4 ln 2
+    assert horizon_area([0, 4], lp=2.0).tolist() == [0.0, 16.0 * PATCH_AREA]
 
 
 def test_radius_formula():
     k = 4 * np.pi
-    assert horizon_radius(k) == 1.0
+    assert abs(horizon_radius(k) - np.sqrt(PATCH_AREA)) < 1e-12
 
 
 def test_k_scales_as_m_squared():
@@ -31,13 +31,13 @@ def test_monogamy_frontier_and_baby_limit():
 
 
 def test_reduction_theorem():
-    # BM: k(M) factors entirely through R_s(M); 16 pi rides on the input.
+    # BM: k(M) factors entirely through R_s(M); BS: k = (4 pi/ln 2) M^2.
     import numpy as np
     from bh_graph.horizon import (
         k_from_mass_via_rs, k_from_mass_schwarzschild, schwarzschild_rs,
-        k_from_rs, horizon_radius)
-    assert k_from_mass_via_rs(1.0) == 16 * np.pi
-    assert k_from_mass_via_rs(1.0, lambda m: 3 * m) == 36 * np.pi  # wrong input, wrong output
+        k_from_rs, horizon_radius, PATCH_AREA)
+    assert k_from_mass_via_rs(1.0) == 4 * np.pi / np.log(2)
+    assert k_from_mass_via_rs(1.0, lambda m: 3 * m) == 36 * np.pi / PATCH_AREA
     assert np.allclose(k_from_mass_schwarzschild([1.0, 2.0]),
                        k_from_mass_via_rs([1.0, 2.0], schwarzschild_rs))  # backward compat
     assert np.allclose(horizon_radius(k_from_rs([1.0, 5.0])), [1.0, 5.0])  # round-trip

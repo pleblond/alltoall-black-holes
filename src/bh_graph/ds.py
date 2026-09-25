@@ -39,20 +39,22 @@ def ds_legs(h0_planck: float = H0_PLANCK_DEFAULT, omega_l: float = 0.69) -> floa
 def stellar_bh_total_legs(
     n_bh: float = 1e22, m_msun: float = 10.0, lp: float = 1.0
 ) -> float:
-    """Order-of-magnitude legs in all stellar BHs: N * 16 pi M^2."""
+    """Order-of-magnitude legs in all stellar BHs: N * 16 pi M^2/PATCH (BS)."""
     from bh_graph.data import m_sun_to_planck
+    from bh_graph.horizon import PATCH_AREA
 
     m = m_sun_to_planck(m_msun)
-    return float(n_bh * 16.0 * np.pi * m**2 / lp**2)
+    return float(n_bh * 16.0 * np.pi * m**2 / (PATCH_AREA * lp**2))
 
 
 def smbh_total_legs(
     n_smbh: float = 1e11, m_msun: float = 1e8, lp: float = 1.0
 ) -> float:
     from bh_graph.data import m_sun_to_planck
+    from bh_graph.horizon import PATCH_AREA
 
     m = m_sun_to_planck(m_msun)
-    return float(n_smbh * 16.0 * np.pi * m**2 / lp**2)
+    return float(n_smbh * 16.0 * np.pi * m**2 / (PATCH_AREA * lp**2))
 
 
 def nariai_radius_planck(h0_planck: float = H0_PLANCK_DEFAULT, omega_l: float = 0.69) -> float:

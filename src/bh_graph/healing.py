@@ -59,8 +59,7 @@ def scrambling_time_s(m_msun: float) -> float:
     from bh_graph.data import m_sun_to_planck
 
     m = m_sun_to_planck(m_msun)
-    s_bh = 16.0 * np.pi * m**2
-    n = s_bh / np.log(2.0)
+    n = 16.0 * np.pi * m**2 / (4.0 * np.log(2.0))  # S_BH/ln2 qubits (BS: was 4x off)
     m_sec = m_msun * M_SUN_SEC
     return float(4.0 * m_sec * np.log(n))
 

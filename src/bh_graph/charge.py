@@ -46,10 +46,12 @@ def endpoint(charge_planck: float, r_point: float = 1.0, lp: float = 1.0) -> str
 
 
 def remnant_mass_planck(charge_planck: float) -> float:
-    """M ~ sqrt(q) M_P (from k = 16 pi M^2 in the neutral-Schwarzschild map)."""
-    return float(np.sqrt(max(protected_legs(charge_planck), 0.0) / (16.0 * np.pi)))
+    """M ~ sqrt(q) M_P (BS: k = 16 pi M^2/PATCH)."""
+    from bh_graph.horizon import PATCH_AREA
+    return float(np.sqrt(max(protected_legs(charge_planck), 0.0) * PATCH_AREA / (16.0 * np.pi)))
 
 
 def respects_extremality_bound(k: float, charge_planck: float, lp: float = 1.0) -> bool:
-    """Boolean check: A = k lp^2 >= 4 pi Q^2 always?"""
-    return bool(k * lp**2 >= FOUR_PI * charge_planck**2 - 1e-9)
+    """Boolean check: A = k PATCH lp^2 >= 4 pi Q^2 always (BS)?"""
+    from bh_graph.horizon import PATCH_AREA
+    return bool(k * PATCH_AREA * lp**2 >= FOUR_PI * charge_planck**2 - 1e-9)

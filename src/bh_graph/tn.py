@@ -74,19 +74,22 @@ def eps_from_qes_matching(s0: float, n: int, s_leg: float = 1.0, lp: float = 1.0
     kp = qes_page_k(s0, s_leg, lp)
     if not np.isfinite(kp):
         return float("nan")
-    return float(lp / max(n, 1) * np.sqrt(kp / (16.0 * np.pi)))
+    from bh_graph.horizon import PATCH_AREA
+    return float(lp / max(n, 1) * np.sqrt(kp * PATCH_AREA / (16.0 * np.pi)))
 
 
 def eps_from_crossover(
     n_match: float, s_node: float = np.log(2), bond_dim: int = 2, lp: float = 1.0
 ) -> float:
     """Route (b): eps from linear-TN / quadratic-gravity crossover at N_match."""
-    return float(lp * np.sqrt(s_node / (16.0 * np.pi * np.log(bond_dim) * n_match)))
+    from bh_graph.horizon import PATCH_AREA
+    return float(lp * np.sqrt(s_node * PATCH_AREA / (16.0 * np.pi * np.log(bond_dim) * n_match)))
 
 
 def crossover_scale(eps: float, s_node: float = np.log(2), bond_dim: int = 2, lp: float = 1.0) -> float:
     """N_match implied by eps: N = s_node lp^2 / (16 pi log D eps^2)."""
-    return float(s_node * lp**2 / (16.0 * np.pi * np.log(bond_dim) * eps**2))
+    from bh_graph.horizon import PATCH_AREA
+    return float(s_node * PATCH_AREA * lp**2 / (16.0 * np.pi * np.log(bond_dim) * eps**2))
 
 
 def interior_capacity(n, d: int = 2) -> float:
@@ -94,23 +97,79 @@ def interior_capacity(n, d: int = 2) -> float:
     return float(np.asarray(n, dtype=float) * np.log(d))
 
 
-def required_entropy(n, eps: float = 0.021, lp: float = 1.0) -> float:
-    """BR: S = k/4 implied by E = eps N + k* = 16 pi (eps N)^2."""
+def required_entropy(n, eps: float | None = None, lp: float = 1.0) -> float:
+    """BR: S = k ln 2 implied by E = eps N + flipped k* (BS: saturated legs)."""
     from bh_graph.maxent import selfconsistent_k_quadratic
-    return float(selfconsistent_k_quadratic(n, eps, lp) / 4.0)
+    if eps is None:
+        eps = eps_from_crossover(25.0)
+    return float(selfconsistent_k_quadratic(n, eps, lp) * np.log(2.0))
 
 
-def max_consistent_n(eps: float = 0.021, d: int = 2) -> float:
-    """BR: largest N with k/4 <= N ln d (purity + fixed eps).
+def max_consistent_n(eps: float | None = None, d: int = 2) -> float:
+    """BR: largest N with k ln 2 <= N ln d (purity + fixed eps, BS: saturated).
 
     Theorem-in-toy: S_ext = k/4 = S_int <= N ln d forces k/N <= 4 ln 2,
     but k/N = 16 pi eps^2 N grows unboundedly — violated past N_max.
-    N_max = ln d / (4 pi eps^2); the NUMBER inherits 16 pi (M's eps does),
-    the EXISTENCE of a finite N_max holds for any constant eps.
+    N_max = N_match identically at repo eps (crossover identity); the EXISTENCE
+    of a finite N_max holds for any constant eps (BS: flipped k*).
     """
-    return float(np.log(d) / (4.0 * np.pi * eps**2))
+    from bh_graph.horizon import PATCH_AREA
+    if eps is None:
+        eps = eps_from_crossover(25.0)
+    return float(np.log(d) * PATCH_AREA / (16.0 * np.pi * np.log(2.0) * eps**2))
 
 
-def capacity_violated(n, eps: float = 0.021, d: int = 2) -> bool:
+def capacity_violated(n, eps: float | None = None, d: int = 2) -> bool:
     """BR: strict boolean — does N exceed the entropy-capacity bound?"""
+    if eps is None:
+        eps = eps_from_crossover(25.0)
     return bool(required_entropy(n, eps) > interior_capacity(n, d))
+
+
+def _crossover_c() -> float:
+    """BS(b*): c = sqrt(PATCH/16 pi) ~ 0.2349 from the crossover identity."""
+    from bh_graph.horizon import PATCH_AREA
+    return float(np.sqrt(PATCH_AREA / (16.0 * np.pi)))
+
+
+def eps_running(n, c: float | None = None, lp: float = 1.0):
+    """BS(b*): running per-node energy eps(N) = c/sqrt(N) (temperature-like).
+
+    Default c from the crossover identity (matches M's eps(25) = 0.0470);
+    N becomes holographic.
+    """
+    if c is None:
+        c = _crossover_c()
+    n = np.asarray(n, dtype=float)
+    return c * lp / np.sqrt(np.maximum(n, 1e-300))
+
+
+def k_star_running(n, c: float | None = None, lp: float = 1.0):
+    """BS(b*): fixed point with running eps: k* = 16 pi c^2 N/PATCH (LINEAR)."""
+    from bh_graph.horizon import PATCH_AREA
+    if c is None:
+        c = _crossover_c()
+    n = np.asarray(n, dtype=float)
+    return 16.0 * np.pi * c**2 * n / (PATCH_AREA * lp**2)
+
+
+def alpha_running(c: float | None = None) -> float:
+    """BS(b*): legs-per-node = 16 pi c^2/PATCH = 1.0 exactly (k = N)."""
+    from bh_graph.horizon import PATCH_AREA
+    if c is None:
+        c = _crossover_c()
+    return float(16.0 * np.pi * c**2 / PATCH_AREA)
+
+
+def running_c_bound() -> float:
+    """BS(b*): c <= sqrt(ln 2 PATCH/4 pi) ~ 0.391 for capacity at all N."""
+    from bh_graph.horizon import PATCH_AREA
+    return float(np.sqrt(np.log(2.0) * PATCH_AREA / (4.0 * np.pi)))
+
+
+def running_margin(c: float | None = None) -> float:
+    """BS(b*): entropy-capacity margin ln 2 PATCH/4 pi c^2 = PATCH (crossover c)."""
+    from bh_graph.horizon import PATCH_AREA
+    if c is None:
+        c = _crossover_c()
+    return float(np.log(2.0) * PATCH_AREA / (4.0 * np.pi * c**2))

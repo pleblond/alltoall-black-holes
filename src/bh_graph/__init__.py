@@ -1,8 +1,8 @@
 """All:all entanglement graph model of black holes."""
 from bh_graph.graphs import build_complete, build_chain, build_grid_2d, build_random_regular
 from bh_graph.scrambling import infection_time, scrambling_scaling, graph_diameter, mean_path_length, spectral_gap
-from bh_graph.horizon import horizon_area, horizon_radius, k_from_mass_schwarzschild, monogamy_frontier, schwarzschild_rs, k_from_rs, k_from_mass_via_rs
-from bh_graph.micro import critical_k, embedding_radius, is_pointlike, quantized_area, growth_trajectory, packing_kmax, footprint_deficit, pop_forced
+from bh_graph.horizon import horizon_area, horizon_radius, k_from_mass_schwarzschild, monogamy_frontier, schwarzschild_rs, k_from_rs, k_from_mass_via_rs, PATCH_AREA
+from bh_graph.micro import critical_k, embedding_radius, is_pointlike, quantized_area, growth_trajectory, packing_kmax, footprint_deficit, pop_forced, R_POINT
 from bh_graph.circuits import circuit_cover_time, mean_cover_time, predicted_alltoall_log, circuit_scaling
 from bh_graph.maxent import (
     maxent_k_linear, selfconsistent_k_quadratic, legs_per_node,
@@ -37,6 +37,7 @@ from bh_graph.tn import (
     min_rule, minimal_k_for_bulk, random_star_boundary_entropy,
     mean_star_entropy, eps_from_qes_matching, eps_from_crossover, crossover_scale,
     interior_capacity, required_entropy, max_consistent_n, capacity_violated,
+    eps_running, k_star_running, alpha_running, running_c_bound, running_margin,
 )
 from bh_graph.kerrpage import trajectories, kerr_page, page_time_fraction, peak_entropy
 from bh_graph.syk import (
@@ -157,7 +158,7 @@ from bh_graph.orici import (
 from bh_graph.jacobson import (
     clausius_leg_energy, clausius_residual, newton_G_from_eta,
     einstein_lhs_scale, G_from_eta, eta_profile,
-    eta_constancy_deviation, eta_measured, postulate_B_closure,
+    eta_constancy_deviation, eta_measured, measured_eta_closure,
 )
 from bh_graph.fission import (
     fission_budget, fission_allowed, no_split_rule, mouth_congestions,
@@ -250,8 +251,8 @@ from bh_graph.entropic import (
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
     "infection_time", "scrambling_scaling", "graph_diameter", "mean_path_length", "spectral_gap",
-    "horizon_area", "horizon_radius", "k_from_mass_schwarzschild", "monogamy_frontier", "schwarzschild_rs", "k_from_rs", "k_from_mass_via_rs",
-    "critical_k", "embedding_radius", "is_pointlike", "quantized_area", "growth_trajectory", "packing_kmax", "footprint_deficit", "pop_forced",
+    "horizon_area", "horizon_radius", "k_from_mass_schwarzschild", "monogamy_frontier", "schwarzschild_rs", "k_from_rs", "k_from_mass_via_rs", "PATCH_AREA",
+    "critical_k", "embedding_radius", "is_pointlike", "quantized_area", "growth_trajectory", "packing_kmax", "footprint_deficit", "pop_forced", "R_POINT",
     "circuit_cover_time", "mean_cover_time", "predicted_alltoall_log", "circuit_scaling",
     "maxent_k_linear", "selfconsistent_k_quadratic", "legs_per_node",
     "fixed_point_iteration", "random_tensor_page_saturation", "bekenstein_check",
@@ -273,6 +274,7 @@ __all__ = [
     "min_rule", "minimal_k_for_bulk", "random_star_boundary_entropy",
     "mean_star_entropy", "eps_from_qes_matching", "eps_from_crossover", "crossover_scale",
     "interior_capacity", "required_entropy", "max_consistent_n", "capacity_violated",
+    "eps_running", "k_star_running", "alpha_running", "running_c_bound", "running_margin",
     "trajectories", "kerr_page", "page_time_fraction", "peak_entropy",
     "majoranas", "syk_hamiltonian", "ising_chain_hamiltonian", "otoc_curve",
     "scrambling_time_threshold",
@@ -337,7 +339,7 @@ __all__ = [
     "ollivier_curvature", "mean_curvature", "eh_functional", "wasserstein1",
     "clausius_leg_energy", "clausius_residual", "newton_G_from_eta",
     "einstein_lhs_scale", "G_from_eta", "eta_profile",
-    "eta_constancy_deviation", "eta_measured", "postulate_B_closure",
+    "eta_constancy_deviation", "eta_measured", "measured_eta_closure",
     "fission_budget", "fission_allowed", "no_split_rule", "mouth_congestions",
     "both_mouths_horizons", "cross_links", "radiated_fraction_equal_mass",
     "fission_phase",

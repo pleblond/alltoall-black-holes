@@ -21,8 +21,9 @@ FOUR_PI = 4.0 * np.pi
 
 
 def congestion(k, r_foot: float, lp: float = 1.0) -> np.ndarray | float:
-    """Legs-per-Planck-patch through the footprint surface."""
-    return np.asarray(k, dtype=float) * lp**2 / (FOUR_PI * max(r_foot, 1e-300) ** 2)
+    """Leg area per footprint area: k PATCH lp^2/4 pi r^2 (BS flip)."""
+    from bh_graph.horizon import PATCH_AREA
+    return np.asarray(k, dtype=float) * PATCH_AREA * lp**2 / (FOUR_PI * max(r_foot, 1e-300) ** 2)
 
 
 def needs_bubble(k, r_foot: float, lp: float = 1.0) -> np.ndarray | bool:
@@ -35,8 +36,9 @@ def bubble_radius(k, lp: float = 1.0) -> np.ndarray | float:
 
 
 def k_crit_footprint(r_foot: float, lp: float = 1.0) -> float:
-    """Footprint version of the Sec 3 threshold (r_foot = r_src recovers it)."""
-    return float(FOUR_PI * r_foot**2 / lp**2)
+    """Footprint version of the Sec 3 threshold (BS: /PATCH_AREA)."""
+    from bh_graph.horizon import PATCH_AREA
+    return float(FOUR_PI * r_foot**2 / (PATCH_AREA * lp**2))
 
 
 def phase(k: float, r_foot: float, lp: float = 1.0) -> str:

@@ -35,8 +35,9 @@ LP_M = 1.616255e-35
 
 
 def mass_from_k_msun(k: float) -> float:
-    """ADM mass (M_sun) behind k legs: k = 16 pi (M/M_P)^2."""
-    m_planck = np.sqrt(max(k, 0.0) / (16.0 * np.pi))
+    """ADM mass (M_sun) behind k legs: k = 16 pi (M/M_P)^2/PATCH (BS)."""
+    from bh_graph.horizon import PATCH_AREA
+    m_planck = np.sqrt(max(k, 0.0) * PATCH_AREA / (16.0 * np.pi))
     return float(m_planck * 2.176434e-8 / M_SUN_KG)
 
 

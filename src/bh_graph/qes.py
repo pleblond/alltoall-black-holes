@@ -5,11 +5,11 @@ critical exterior budget rather than being put in by hand:
 
 1. Generalized-entropy crossing (analytic): naive Hawking candidate grows as
    S_no(k) = k s_leg forever, while the island candidate costs area plus
-   remaining bulk entanglement S_isl(k) = k lp^2/4 + max(S0 - k s_leg, 0).
-   If bulk entropy per leg exceeds area cost per leg (s_leg > lp^2/4), the
-   lines cross at k_page = S0 / (2 s_leg - lp^2/4): below it the minimal
+   remaining bulk entanglement S_isl(k) = k PATCH/4 + max(S0 - k s_leg, 0).
+   If 2 s_leg exceeds area cost per leg (s_leg > PATCH/8 = ln 2/2), the
+   lines cross at k_page = S0 / (2 s_leg - PATCH/4): below it the minimal
    surface is trivial (no island / pointlike), above it the island/QES
-   dominates. The assumption s_leg > lp^2/4 is now explicit and falsifiable.
+   dominates. Saturated vacuum legs (s_leg = ln 2) give k_page = S0/ln 2.
 
 2. Explicit graph min-cut (numeric): flow network with an all:all core
    (internal capacity c_int) wired to boundary sinks via k legs (capacity
@@ -24,33 +24,44 @@ import numpy as np
 import networkx as nx
 
 
-def qes_candidates(k, s0: float, s_leg: float = 1.0, lp: float = 1.0):
-    """Return (S_no_island, S_island) generalized-entropy candidates."""
+def qes_candidates(k, s0: float, s_leg: float | None = None, lp: float = 1.0):
+    """Return (S_no_island, S_island) generalized-entropy candidates (BS: area k PATCH/4)."""
+    from bh_graph.horizon import PATCH_AREA
+    if s_leg is None:
+        s_leg = float(np.log(2.0))  # saturated legs
     k = np.asarray(k, dtype=float)
     s_no = k * s_leg
-    s_isl = k * lp**2 / 4.0 + np.maximum(s0 - k * s_leg, 0.0)
+    s_isl = k * PATCH_AREA * lp**2 / 4.0 + np.maximum(s0 - k * s_leg, 0.0)
     if s_no.ndim == 0:
         return float(s_no), float(s_isl)
     return s_no, s_isl
 
 
-def qes_page_k(s0: float, s_leg: float = 1.0, lp: float = 1.0) -> float:
-    """Analytic crossing k_page = S0/(2 s_leg - lp^2/4). Inf if no crossing."""
-    denom = 2.0 * s_leg - lp**2 / 4.0
+def qes_page_k(s0: float, s_leg: float | None = None, lp: float = 1.0) -> float:
+    """Analytic crossing k_page = S0/(2 s_leg - PATCH lp^2/4) (BS). Inf if none."""
+    from bh_graph.horizon import PATCH_AREA
+    if s_leg is None:
+        s_leg = float(np.log(2.0))
+    denom = 2.0 * s_leg - PATCH_AREA * lp**2 / 4.0
     if denom <= 0:
         return float("inf")
     return float(s0 / denom)
 
 
-def qes_dominant(k, s0: float, s_leg: float = 1.0, lp: float = 1.0):
+def qes_dominant(k, s0: float, s_leg: float | None = None, lp: float = 1.0):
     """Boolean array: True where island/QES dominates (S_isl < S_no)."""
+    if s_leg is None:
+        s_leg = float(np.log(2.0))
     s_no, s_isl = qes_candidates(k, s0, s_leg, lp)
-    return np.asarray(s_isl) < np.asarray(s_no)
+    return np.asarray(s_isl) <= np.asarray(s_no)  # BS: tie counts as island (saturated slopes match)
 
 
-def has_qes_transition(s_leg: float = 1.0, lp: float = 1.0) -> bool:
-    """Boolean check: does the model admit a QES pop at all?"""
-    return bool(s_leg > lp**2 / 4.0)
+def has_qes_transition(s_leg: float | None = None, lp: float = 1.0) -> bool:
+    """Boolean check: does the model admit a QES pop at all (BS: > PATCH/8)?"""
+    from bh_graph.horizon import PATCH_AREA
+    if s_leg is None:
+        s_leg = float(np.log(2.0))
+    return bool(s_leg > PATCH_AREA * lp**2 / 8.0)
 
 
 def build_core_boundary_flow(n_core: int, k: int, c_int: float = 5.0, c_leg: float = 1.0) -> nx.DiGraph:

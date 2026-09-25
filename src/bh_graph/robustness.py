@@ -20,8 +20,9 @@ def log_slope_vs_p(p_grid) -> np.ndarray:
 
 
 def quadratic_coefficient(eps: float, lp: float = 1.0) -> float:
-    """k*(N) = coeff * N^2 with coeff = 16 pi (eps/lp)^2."""
-    return float(16.0 * np.pi * (eps / lp) ** 2)
+    """k*(N) = coeff * N^2 with coeff = 16 pi (eps/lp)^2/PATCH (BS)."""
+    from bh_graph.horizon import PATCH_AREA
+    return float(16.0 * np.pi * (eps / lp) ** 2 / PATCH_AREA)
 
 
 def qes_phase_boundary(s_leg_grid, lp: float = 1.0) -> np.ndarray:

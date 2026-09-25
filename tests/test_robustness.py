@@ -9,10 +9,11 @@ def test_log_law_persists_with_steeper_slope_at_low_p():
 
 
 def test_quadratic_for_all_eps():
-    assert all_quadratic([0.01, 0.1, 0.5, 1.0])
-    assert quadratic_coefficient(0.1) == 16 * np.pi * 0.01
+        assert all_quadratic([0.01, 0.1, 0.5, 1.0])
+        from bh_graph.horizon import PATCH_AREA
+        assert quadratic_coefficient(0.1) == 16 * np.pi * 0.01 / PATCH_AREA
 
 
 def test_qes_boundary_sharp_at_lp2_over_4():
-    grid = [0.1, 0.24, 0.26, 1.0]
+    grid = [0.1, 0.34, 0.36, 1.0]  # BS: boundary now PATCH/8 ~ 0.347
     assert list(qes_phase_boundary(grid, lp=1.0)) == [False, False, True, True]

@@ -19,9 +19,10 @@ def test_no_split_below_twice_critical():
 
 
 def test_two_mouths_need_both_congested():
-    assert both_mouths_horizons(100.0, 100.0, 1.0, 1.0)
-    assert not both_mouths_horizons(100.0, 5.0, 1.0, 1.0)
-    assert fission_phase(100.0, 100.0, 1.0, 1.0) == "two horizons"
+    from bh_graph.micro import R_POINT
+    assert both_mouths_horizons(100.0, 100.0, R_POINT, R_POINT)
+    assert not both_mouths_horizons(100.0, 5.0, R_POINT, R_POINT)
+    assert fission_phase(100.0, 100.0, R_POINT, R_POINT) == "two horizons"
     assert fission_phase(5.0, 5.0, 100.0, 100.0) == "delocalized pair"
 
 

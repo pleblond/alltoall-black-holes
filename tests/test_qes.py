@@ -4,10 +4,11 @@ from bh_graph.qes import (
 
 
 def test_crossing_exists_when_bulk_denser_than_area():
+    from bh_graph.horizon import PATCH_AREA
     assert has_qes_transition(s_leg=1.0, lp=1.0)
     assert not has_qes_transition(s_leg=0.1, lp=1.0)
     kp = qes_page_k(s0=20.0, s_leg=1.0, lp=1.0)
-    assert kp == 20.0 / (2.0 - 0.25)
+    assert kp == 20.0 / (2.0 - PATCH_AREA / 4.0)
 
 
 def test_dominance_flips_at_page_k():

@@ -31,9 +31,10 @@ def maxent_k_linear(n, s_node: float = 1.0, s_leg: float = 1.0):
 
 
 def selfconsistent_k_quadratic(n, eps: float = 1.0, lp: float = 1.0):
-    """Gravitational fixed point k*(N) = 16 pi (eps N/lp)^2 (G=c=1)."""
+    """Fixed-eps form k*(N) = 16 pi (eps N/lp)^2/PATCH (BS; matching-scale)."""
+    from bh_graph.horizon import PATCH_AREA
     n = np.asarray(n, dtype=float)
-    return 16.0 * np.pi * (eps * n / lp) ** 2
+    return 16.0 * np.pi * (eps * n / lp) ** 2 / PATCH_AREA
 
 
 def legs_per_node(n, eps: float = 1.0, lp: float = 1.0):

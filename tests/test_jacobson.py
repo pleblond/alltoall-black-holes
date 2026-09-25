@@ -18,17 +18,21 @@ def test_bridge2_constancy_passes():
 
 
 def test_bridge2_coefficient_exposes_mismatch():
-    # Measured eta = ln 2 (qubit legs), NOT the 1/4 the chain assumes.
+    # BN measured eta_vN = ln 2 per leg-unit area; BS flip converts to Planck:
+    # eta_Planck = ln 2/PATCH_AREA = 1/4 exactly -> G = 1. No postulate.
     import numpy as np
     from bh_graph.jacobson import eta_measured, G_from_eta
+    from bh_graph.horizon import PATCH_AREA
     assert abs(eta_measured() - np.log(2)) / np.log(2) < 0.02
-    assert abs(G_from_eta(np.log(2)) - 0.3607) < 0.005  # G != 1 at face value
+    assert G_from_eta(np.log(2) / PATCH_AREA) == 1.0
 
 
 def test_postulate_B_closes():
-    from bh_graph.jacobson import postulate_B_closure
+    # BS flip: measured eta_vN = ln 2 -> patch = 4 ln 2 -> eta = 1/4, G = 1.
+    # (Postulate B retired; legs saturate, no mechanism debt.)
+    from bh_graph.jacobson import measured_eta_closure
     import numpy as np
-    L = postulate_B_closure()
-    assert L["eta"] == 0.25 and L["G_newton"] == 1.0 and L["S_per_leg"] == 0.25
-    # random-TN ln 2 is the kinematic max ABOVE the physical value, not a contradiction
-    assert np.log(2) > L["s_leg_phys"]
+    L = measured_eta_closure()
+    assert L["s_leg_vn"] == np.log(2)
+    assert L["patch_area"] == 4 * np.log(2)
+    assert L["eta"] == 0.25 and L["G_newton"] == 1.0

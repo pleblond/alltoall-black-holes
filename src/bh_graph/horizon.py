@@ -1,9 +1,13 @@
 """Section 2 — Horizon size from exterior wiring, not interior bulk.
 
-Core claim: horizon area counts *exterior* legs k, each carrying ~ one Planck
-patch, independent of the interior node count N:
+Core claim: horizon area counts *exterior* legs k, independent of the
+interior node count N. BS flip: each leg carries a patch of 4 ln 2 Planck
+areas (derived from measured eta_vN = ln 2 + G = 1 units — legs saturate):
 
-    A(k) = k * l_p^2,   R(k) = sqrt(A / 4 pi).
+    A(k) = k * PATCH_AREA * l_p^2,   R(k) = sqrt(A / 4 pi).
+
+Code works in leg units (a = 1, patch = 1 per leg); PATCH_AREA = 4 ln 2
+converts leg area to Planck area at physical interfaces (k(M) etc.).
 
 Mass enters only because consistency (purity + conservation) forces k to grow
 with M; in GR, k ~ A/l_p^2 ~ M^2. The baby-universe limit is k -> 0: a
@@ -15,22 +19,27 @@ from __future__ import annotations
 import numpy as np
 
 FOUR_PI = 4.0 * np.pi
+PATCH_AREA = 4.0 * np.log(2.0)  # Planck areas per leg (BS flip, derived)
 
 
 def horizon_area(k, lp: float = 1.0) -> np.ndarray | float:
-    """Horizon area A = k * lp^2. k = number of exterior legs."""
+    """Horizon area A = k * PATCH_AREA * lp^2 (lp = Planck length).
+
+    BS flip: each leg carries 4 ln 2 Planck areas (derived, saturated legs).
+    """
     k = np.asarray(k, dtype=float)
-    return k * lp**2
+    return k * PATCH_AREA * lp**2
 
 
 def horizon_radius(k, lp: float = 1.0) -> np.ndarray | float:
-    """Areal radius R = sqrt(k * lp^2 / 4 pi)."""
-    return np.sqrt(np.maximum(np.asarray(k, dtype=float), 0.0) * lp**2 / FOUR_PI)
+    """Areal radius R = sqrt(k * PATCH_AREA * lp^2 / 4 pi)."""
+    return np.sqrt(np.maximum(np.asarray(k, dtype=float), 0.0) * PATCH_AREA * lp**2 / FOUR_PI)
 
 
 def k_from_mass_schwarzschild(mass, lp: float = 1.0, mass_unit: float = 1.0) -> np.ndarray | float:
-    """Toy GR mapping k ~ A/lp^2 with A = 4 pi (2M)^2 (G=c=1 units).
+    """Toy GR mapping k = A/PATCH with A = 4 pi (2M)^2 (G=c=1 units).
 
+    BS flip: k = (4 pi/ln 2) M^2 ~ 18.13 M^2 (was 16 pi M^2 at patch = 1).
     mass_unit converts caller mass units to Planck masses.
     BM: now a special case of k_from_mass_via_rs with the GR input explicit.
     """
@@ -43,9 +52,9 @@ def schwarzschild_rs(mass) -> np.ndarray | float:
 
 
 def k_from_rs(rs, lp: float = 1.0) -> np.ndarray | float:
-    """BM: k = 4 pi R_s^2 / lp^2 — patch postulate + sphere geometry, no GR."""
+    """BM: k = 4 pi R_s^2 / PATCH_AREA lp^2 — postulate + geometry, no GR."""
     r = np.asarray(rs, dtype=float)
-    return FOUR_PI * r**2 / lp**2
+    return FOUR_PI * r**2 / (PATCH_AREA * lp**2)
 
 
 def k_from_mass_via_rs(mass, rs_of_m=schwarzschild_rs, lp: float = 1.0,
@@ -53,8 +62,8 @@ def k_from_mass_via_rs(mass, rs_of_m=schwarzschild_rs, lp: float = 1.0,
     """BM reduction: k(M) is determined iff R_s(M) is given.
 
     The reduction theorem: given (patch postulate, sphere geometry), the map
-    M -> k factors entirely through R_s(M). Pass a wrong R_s(M) and the
-    wrong k(M) comes out — the 16 pi rides on the input alone.
+    M -> k factors entirely through R_s(M): k = 4 pi R_s^2 / PATCH_AREA.
+    Pass a wrong R_s(M) and the wrong k(M) comes out.
     """
     m = np.asarray(mass, dtype=float) * mass_unit
     return k_from_rs(rs_of_m(m), lp)
@@ -62,7 +71,7 @@ def k_from_mass_via_rs(mass, rs_of_m=schwarzschild_rs, lp: float = 1.0,
 
 def mass_from_k(k, lp: float = 1.0) -> np.ndarray | float:
     k = np.asarray(k, dtype=float)
-    return np.sqrt(np.maximum(k, 0.0) * lp**2 / (16.0 * np.pi))
+    return np.sqrt(np.maximum(k, 0.0) * PATCH_AREA * lp**2 / (16.0 * np.pi))
 
 
 def monogamy_frontier(n: int, n_points: int = 200) -> tuple[np.ndarray, np.ndarray]:

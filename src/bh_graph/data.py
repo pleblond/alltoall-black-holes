@@ -43,9 +43,10 @@ def m_sun_to_planck(m: float) -> float:
 
 
 def k_schwarzschild_sun(m_sun: float, lp: float = 1.0) -> float:
-    """Exterior legs k = 16 pi M^2/lp^2 for mass in solar masses."""
+    """Exterior legs k = 16 pi M^2/PATCH lp^2 for mass in solar masses (BS)."""
+    from bh_graph.horizon import PATCH_AREA
     m = m_sun_to_planck(m_sun)
-    return float(16.0 * np.pi * m**2 / lp**2)
+    return float(16.0 * np.pi * m**2 / (PATCH_AREA * lp**2))
 
 
 def leg_creation(m1: float, m2: float, mf: float) -> dict[str, float]:

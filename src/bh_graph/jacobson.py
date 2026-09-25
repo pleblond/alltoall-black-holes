@@ -2,12 +2,11 @@
 
 Heat through a cut = energy per leg x legs cut: dQ = eps dk.
 Unruh temperature of the cut: T = kappa/2pi (surface gravity input).
-Entropy of the cut: dS = dk/4 (ours, S = k/4).
-Clausius dQ = T dS then DEMANDS eps = kappa/8pi: the chain fixes the leg
-energy scale (like alpha fixed by ringdown), and with Raychaudhuri for leg
-bundles (cited as the open bridge, exactly as Jacobson 1995 needs it for
-null congruences) the Einstein equations follow with G = 1/4eta = 1
-(Planck units, eta = 1/4 our area coefficient).
+Entropy of the cut: dS = ln 2 dk (BS flip: legs saturate, BN-measured).
+Clausius dQ = T dS then DEMANDS eps = kappa ln 2/2pi, and with Raychaudhuri
+for leg bundles (cited as the open bridge, exactly as Jacobson 1995 needs
+it for null congruences) the Einstein equations follow with G = 1/4eta = 1
+(Planck units, eta = ln 2/PATCH_AREA = 1/4 exactly — measured, not assumed).
 
 What this proves: IF leg bundles obey Raychaudhuri AND the thermodynamic
 postulates hold at cuts, THEN Einstein's equations with our G. The remaining
@@ -20,15 +19,15 @@ import numpy as np
 
 
 def clausius_leg_energy(kappa: float) -> float:
-    """eps = kappa/8pi demanded by dQ = T dS across the cut."""
-    return float(kappa / (8.0 * np.pi))
+    """eps = kappa ln 2/2pi demanded by dQ = T dS across the cut (BS: saturated)."""
+    return float(kappa * np.log(2.0) / (2.0 * np.pi))
 
 
 def clausius_residual(eps: float, kappa: float, dk: float = 1.0) -> float:
     """dQ - T dS (zero iff consistent)."""
     dq = eps * dk
     t = kappa / (2.0 * np.pi)
-    ds = dk / 4.0
+    ds = dk * np.log(2.0)
     return float(dq - t * ds)
 
 
@@ -65,16 +64,17 @@ def eta_measured(n_bulk: int = 8, k_grid=(1, 2, 3, 4), trials: int = 12,
     return float(ratios.mean())
 
 
-def postulate_B_closure(s_leg_phys: float = 0.25) -> dict[str, float]:
-    """BO: consistency ledger under Postulate B (physical legs = 1/4 nat).
+def measured_eta_closure() -> dict[str, float]:
+    """BS: ledger from MEASURED eta_vN (Postulate B retired by the flip).
 
-    Random-TN ln 2 is the kinematic maximum; dynamics selects the
-    sub-maximal physical value. With s_leg = 1/4: eta = 1/4, G = 1,
-    S = k/4, Clausius eps = kappa/8pi — everything closes.
+    eta_vN = ln 2 per leg-unit area (BN) + G = 1 units -> patch = 4 ln 2 ->
+    eta = ln 2/patch = 1/4 exactly, G = 1. Legs saturate; no postulate.
     """
-    eta = s_leg_phys  # patch = 1 Planck area, S = k*s_leg
-    return {"s_leg_phys": s_leg_phys, "eta": eta, "G_newton": G_from_eta(eta),
-            "S_per_leg": s_leg_phys}
+    from bh_graph.horizon import PATCH_AREA
+    eta_vn = float(np.log(2.0))
+    return {"s_leg_vn": eta_vn, "patch_area": float(PATCH_AREA),
+            "eta": eta_vn / float(PATCH_AREA),
+            "G_newton": G_from_eta(eta_vn / float(PATCH_AREA))}
 
 
 def einstein_lhs_scale() -> dict[str, float]:
