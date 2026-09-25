@@ -3,6 +3,37 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v3.11** — BS flip to A+(b*): patch $= 4\ln 2$ derived from measured
+  $\eta_{vN}$, legs saturate, Postulate B retired on the record;
+  $\varepsilon$ runs as $c/\sqrt{N}$ ($k = N$ exactly, $N$ holographic,
+  BR tension resolved); entropic $G = 1$ preserved via Planck-bits
+  equipartition; 6 assumptions $\to$ 4, zero mechanism debts. 278 tests, 65 figs.
+- **v3.10** — BR entropy-capacity tension: purity + fixed $\varepsilon$ +
+  $S = k/4$ force $N \le 125$ (finite $N_{max}$ for any constant
+  $\varepsilon$); three resolutions named; BI-sign abstract line. 277 tests.
+- **v3.9** — BQ external-review kills (s-wave: Rayleigh 11.4%, 52% speckle,
+  interference; $-1/4$: $n_d^{-1}$ universal) + Green-function walk fails by
+  leg shorting ($h$-steepness $9.2 \to 4.1$); AS temperature triply
+  load-bearing. 275 tests, 64 figs.
+- **v3.8** — BP walk no-go ($-2.99$ all smooth rules, constant-$\mu$ keeps
+  $-3$ analytically) + $\mu(\chi)$ fluctuation escape to $-1.95 \approx -2$
+  modulo labeled $\sqrt{\chi}$ assumption. 274 tests, 63 figs.
+- **v3.7** — BO Postulate B adopted (physical legs at $1/4$ nat, AU chain
+  closes with patch $= 1$); later retired by BS flip. 272 tests.
+- **v3.6** — BN Jacobson bridge 2: $S/k$ constancy passes ($< 0.8\%$) but
+  $\eta = \ln 2 \ne 1/4$ exposes $2.77\times$ crack; bridges 3/1 gated. 271 tests, 62 figs.
+- **v3.5** — BM reduction theorem: $k(M) \iff R_s(M)$, circle shrunk to the
+  single statement $R_s = 2M$ (+ anchor note: measured input). 269 tests.
+- **v3.4** — Honesty audits (fitted $1/2$, circular $k(M)$) + BJ PPN ledger
+  and $-0.75\,M/a$ peel-off law + BK formal packing-forced pop + BL
+  Hamiltonian sketch with leg-coupled SYK check. 268 tests, 61 figs.
+- **v3.3** — BI weak-field Ollivier-Ricci profile: radial sign derived
+  (negative, all configs), scaling suggestive ($p \approx 0.9 \pm 0.5$). 264 tests, 59 figs.
+- **v3.2** — BH tortuosity strain: naive $\gamma = 2$ excluded, $h = (1+x/2)^2$
+  gives $\gamma = 1$ exactly, Mercury 42.99"/cy by direct geodesic integration;
+  abstract scoreboard, AN 6th wire ($c_1$). 260 tests, 58 figs.
+- **v3.1** — BG persistent walks (hop-budget $\sqrt{1-v^2}$ dilation, cubic
+  drift $\ne$ Newton, spin effacement). 255 tests, 59 figs.
 - **v3.0** — BB extension: Shapiro delay matches GR log + Cassini; gravity
   section in explainer (Newton-to-lensing scoreboard, Mercury gap kept). 251 tests.
 - **v2.9** — BF wave lab: FDTD dephasing on defective fabric (deficit
