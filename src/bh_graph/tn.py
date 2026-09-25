@@ -87,3 +87,30 @@ def eps_from_crossover(
 def crossover_scale(eps: float, s_node: float = np.log(2), bond_dim: int = 2, lp: float = 1.0) -> float:
     """N_match implied by eps: N = s_node lp^2 / (16 pi log D eps^2)."""
     return float(s_node * lp**2 / (16.0 * np.pi * np.log(bond_dim) * eps**2))
+
+
+def interior_capacity(n, d: int = 2) -> float:
+    """BR: max interior von Neumann entropy N ln d (qubit nodes)."""
+    return float(np.asarray(n, dtype=float) * np.log(d))
+
+
+def required_entropy(n, eps: float = 0.021, lp: float = 1.0) -> float:
+    """BR: S = k/4 implied by E = eps N + k* = 16 pi (eps N)^2."""
+    from bh_graph.maxent import selfconsistent_k_quadratic
+    return float(selfconsistent_k_quadratic(n, eps, lp) / 4.0)
+
+
+def max_consistent_n(eps: float = 0.021, d: int = 2) -> float:
+    """BR: largest N with k/4 <= N ln d (purity + fixed eps).
+
+    Theorem-in-toy: S_ext = k/4 = S_int <= N ln d forces k/N <= 4 ln 2,
+    but k/N = 16 pi eps^2 N grows unboundedly — violated past N_max.
+    N_max = ln d / (4 pi eps^2); the NUMBER inherits 16 pi (M's eps does),
+    the EXISTENCE of a finite N_max holds for any constant eps.
+    """
+    return float(np.log(d) / (4.0 * np.pi * eps**2))
+
+
+def capacity_violated(n, eps: float = 0.021, d: int = 2) -> bool:
+    """BR: strict boolean — does N exceed the entropy-capacity bound?"""
+    return bool(required_entropy(n, eps) > interior_capacity(n, d))

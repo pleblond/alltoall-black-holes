@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.9 — computational companion paper (Secs 1–3 + Appendices A–BQ)
+**Draft v3.10 — computational companion paper (Secs 1–3 + Appendices A–BR)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -34,7 +34,9 @@ interior is, in this picture, mostly empty routing buffer. Beyond Secs 1–3,
 the appendices derive weak-field gravity to first post-Newtonian order from
 the same leg network: Newton's law, Kepler's laws, textbook redshift digits,
 full-strength light bending, Cassini-grade Shapiro delay, $\gamma = 1$
-exactly, and Mercury's $43''$/cy by direct geodesic integration. All claims ship with
+exactly, and Mercury's $43''$/cy by direct geodesic integration. Attraction's
+sign is derived from pure flux with zero tuning (negative radial
+Ollivier-Ricci in every configuration). All claims ship with
 reproducible simulations (`python scripts/generate_figures.py`) and an
 interactive demo (`streamlit run app.py`).
 
@@ -1235,9 +1237,9 @@ $2$.)
 
 **Anchor note.** Until derived, $R_s = 2M$ is taken as a *measured input*
 (light deflection, Shapiro, EHT shadows, Sgr A* orbits confirm it
-independently of this model) — the theory's $G$, not a vicious circle:
-vicious would be claiming to derive it while assuming it, which the audit
-above preempts. Two GR-free derivation routes are queued: statistical
+independently of this model) — the theory's $G$, not a vicious circle
+(Verlinde takes $G$ the same way): vicious would be claiming to derive it
+while assuming it, which the audit above preempts. Two GR-free derivation routes are queued: statistical
 mechanics (spectral $T(k)$ + equipartition + legs-as-bits, blocked on a
 Hamiltonian) and Jacobson completion (blocked on Raychaudhuri + BO
 mechanism).
@@ -1323,3 +1325,26 @@ mass $=$ input charge). Temperature (AS) remains load-bearing — BG's
 lesson confirmed from a third direction.
 
 ![Fig 64](../figures/fig64_green.png)
+
+## Appendix BR. Entropy-capacity tension: $N \le 125$ or something gives (no figure — formal)
+
+(`bh_graph.tn`: `interior_capacity`, `required_entropy`, `max_consistent_n`,
+`capacity_violated`.) **Theorem-in-toy.** Given (i) $E = \varepsilon N$
+with fixed $\varepsilon \approx 0.021$ (B/M), (ii) $S_{ext} = k/4$ (BO),
+(iii) an $N$-qubit interior, (iv) pure total state: $k/4 = S_{ext} =
+S_{int} \le N\ln 2$ forces $k/N \le 4\ln 2$, but $k/N = 16\pi\varepsilon^2
+N$ grows unboundedly — violated past $N_{max} = \ln 2/4\pi\varepsilon^2
+\approx 125$ (locked: consistent at matching scale $N = 25$, violated at
+$1000$; a finite $N_{max}$ exists for *any* constant $\varepsilon$). The
+number 125 inherits $16\pi$ (M's $\varepsilon$ does); the contradiction's
+existence does not. Three resolutions, all load-bearing: **(a)**
+microstates live holographically on legs ($e^{1/4}$ fractional states per
+leg — B restated as the residue); **(b)** $\varepsilon$ runs with $N$
+(required: $\varepsilon \propto 1/M$; note the suite already shows
+$\varepsilon \sim 1/\sqrt{N_{match}}$ — hint, not solution); **(c)** the
+interior is not a Hilbert-space factor (radical holography — Page/QES
+entropies need re-grounding; possible von Neumann vs thermodynamic
+conflation flagged for audit). Postulate B's local $1/4$ is downstream of
+this: global counting already forces sub-maximal *average*
+($\le (N/k)\ln 2 \ll 1/4$ for macro), but B's exact local value needs the
+Hilbert-space question settled first. Sharpest open problem in the paper.

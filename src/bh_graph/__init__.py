@@ -36,6 +36,7 @@ from bh_graph.pheno import (
 from bh_graph.tn import (
     min_rule, minimal_k_for_bulk, random_star_boundary_entropy,
     mean_star_entropy, eps_from_qes_matching, eps_from_crossover, crossover_scale,
+    interior_capacity, required_entropy, max_consistent_n, capacity_violated,
 )
 from bh_graph.kerrpage import trajectories, kerr_page, page_time_fraction, peak_entropy
 from bh_graph.syk import (
@@ -271,6 +272,7 @@ __all__ = [
     "eht_consistent",
     "min_rule", "minimal_k_for_bulk", "random_star_boundary_entropy",
     "mean_star_entropy", "eps_from_qes_matching", "eps_from_crossover", "crossover_scale",
+    "interior_capacity", "required_entropy", "max_consistent_n", "capacity_violated",
     "trajectories", "kerr_page", "page_time_fraction", "peak_entropy",
     "majoranas", "syk_hamiltonian", "ising_chain_hamiltonian", "otoc_curve",
     "scrambling_time_threshold",

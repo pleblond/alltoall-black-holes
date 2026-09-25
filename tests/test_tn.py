@@ -32,3 +32,18 @@ def test_eps_routes_positive_and_consistent_scaling():
     assert abs(e_b / e_a - 0.5) < 1e-9  # eps ~ 1/sqrt(N_match)
     # round trip
     assert abs(crossover_scale(e_a) - 10.0) < 1e-9
+
+
+def test_entropy_capacity_tension():
+    # BR: purity + E = eps N + S = k/4 forces N <= ~125 (macro violated).
+    from bh_graph.tn import max_consistent_n, capacity_violated
+    assert abs(max_consistent_n() - 125.1) < 1.0
+    assert not capacity_violated(25)  # consistent at matching scale
+    assert capacity_violated(1000)  # violated for macro holes
+
+
+def test_tension_robust_to_eps():
+    # Existence of finite N_max holds for ANY constant eps (only number moves).
+    from bh_graph.tn import max_consistent_n, capacity_violated
+    assert max_consistent_n(eps=0.1) < max_consistent_n(eps=0.01)
+    assert capacity_violated(10**6, eps=0.1) and capacity_violated(10**6, eps=0.001)
