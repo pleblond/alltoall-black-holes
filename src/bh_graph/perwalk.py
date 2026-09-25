@@ -68,6 +68,84 @@ def drift_power_law(r_grid=(20.0, 40.0, 80.0, 160.0)) -> float:
     return float(slope)
 
 
+def generalized_drift(r_grid, response, d0: float = 6.0, amp: float = 100.0,
+                      dr: float = 0.5):
+    """BP no-go: drift for hop weights w = response(local degree).
+
+    Any local rule sees only d(r); drift ~= (w'-form) x d'(r) ~ g(d)/r^3.
+    """
+    out = []
+    for r in np.asarray(list(r_grid), dtype=float):
+        w_plus = response(pileup_degree(r + dr, d0, amp))
+        w_minus = response(pileup_degree(r - dr, d0, amp))
+        out.append(-degree_drift_1d(w_plus, w_minus))
+    return np.array(out)
+
+
+def nogo_slopes(r_grid=(20.0, 40.0, 80.0, 160.0, 320.0)) -> dict:
+    """BP: drift slopes for natural rules (all ~ -3) + the absurd escape (~ -2).
+
+    Background d -> d0 kills every smooth weight rule; only the
+    background-subtracted exp-root monstrosity escapes — documenting that
+    weight-rules cannot honestly reach -2.
+    """
+    import math
+    rules = {
+        "linear": lambda d: d,
+        "sqrt": lambda d: math.sqrt(max(d, 1e-300)),
+        "saturated": lambda d: d / (1.0 + d),
+        "tuned_exp_root": lambda d: math.exp(2.0 * math.sqrt(max(d, 1e-300))),
+        "absurd_bg_sub": lambda d: math.exp(2.0 * math.sqrt(max(d - 6.0, 1e-9))),
+    }
+    out = {}
+    for name, fn in rules.items():
+        vec = np.vectorize(fn)
+        d = generalized_drift(r_grid, vec)
+        r = np.asarray(list(r_grid), dtype=float)
+        slope, _ = np.polyfit(np.log(r), np.log(np.maximum(d, 1e-300)), 1)
+        out[name] = float(slope)
+    return out
+
+
+def mu_of_chi(r, c: float = 1.0, d0: float = 6.0, amp: float = 100.0):
+    """BP: persistence from LOCAL leg-density fluctuations: 1 - mu = c*sqrt(chi).
+
+    chi = (d(r) - d0)/amp ~ 1/r^2; walker sees density, never r directly.
+    LABELED ASSUMPTION (fluctuation story, not derived): the unique honest
+    escape from the no-go, joining the micro-derivation queue with BH's 1/2.
+    """
+    r = np.asarray(r, dtype=float)
+    chi = np.maximum((pileup_degree(r, d0, amp) - d0) / amp, 0.0)
+    return np.clip(1.0 - c * np.sqrt(chi), 0.0, 0.999)
+
+
+def much_slope_analytic(r_grid=(10.0, 20.0, 40.0, 80.0, 160.0),
+                        c: float = 1.0) -> float:
+    """BP: exact slope of v(r) = b(r)/(1 - mu(r)) — the escape, analytic."""
+    r = np.asarray(list(r_grid), dtype=float)
+    b = np.array([-degree_drift_1d(pileup_degree(x + 0.5), pileup_degree(x - 0.5))
+                  for x in r])
+    v = b / (1.0 - mu_of_chi(r, c))
+    slope, _ = np.polyfit(np.log(r), np.log(np.maximum(v, 1e-300)), 1)
+    return float(slope)
+
+
+def amplification_check(r: float = 10.0, mu: float = 0.9, n_walkers: int = 400,
+                        n_steps: int = 4000, seed: int = 0) -> dict:
+    """BP: validate v = b/(1-mu) by 1D persistent-walk simulation (small r)."""
+    rng = np.random.default_rng(seed)
+    b = -degree_drift_1d(pileup_degree(r + 0.5), pileup_degree(r - 0.5))
+    head = rng.choice([-1.0, 1.0], size=n_walkers)
+    tot = np.zeros(n_walkers)
+    for _ in range(n_steps):
+        p_keep = (1.0 + mu) / 2.0 + 0.5 * b * head
+        keep = rng.random(n_walkers) < np.clip(p_keep, 0.0, 1.0)
+        head = np.where(keep, head, -head)
+        tot += head
+    measured = float(tot.mean() / n_steps)
+    return {"measured": measured, "predicted": float(b / (1.0 - mu)), "bias": b}
+
+
 def persistent_walk(n_steps: int = 2000, mu: float = 0.9, bias: float = 0.0,
                     seed: int = 0) -> np.ndarray:
     """2D heading-memory walk; returns trajectory. bias = inward pull/step."""

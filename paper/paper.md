@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.7 — computational companion paper (Secs 1–3 + Appendices A–BO)
+**Draft v3.8 — computational companion paper (Secs 1–3 + Appendices A–BP)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1272,3 +1272,24 @@ A). **Mechanism status:** unknown — candidates (4-partite sharing,
 QES-extremization selection, Unruh-thermal origin) are ideas, not sketches;
 the QES-selection candidate is flagged circular ($1/4$ is input to $S_{gen}$).
 Postulate B is assumed, fenced, and load-bearing for bridges 3/1.
+
+## Appendix BP. Walk no-go + fluctuation escape: BG solved modulo one assumption
+
+(`bh_graph.perwalk`, Fig 63.) **No-go theorem-in-toy.** Any walk with hop
+weights a smooth function of local degree drifts $\propto (w'/w)\,d'(r)$;
+with ambient background $d \to d_0$, the exponent is $-3$ for *every*
+smooth $w$ — locked for linear, sqrt, saturated, and even tuned-exp-root
+(all $-2.99$). The only weight escape is the background-subtracted
+$e^{2\sqrt{d-d_0}}$ monstrosity (exactly $-2.0$), documenting that
+weight-rules cannot honestly reach Newton. Constant persistence cannot
+either: $v = b/(1-\mu)$ inherits $b$'s $-3$ exactly (the $d_f = 1$
+trajectory-dimension proposal dies here — persistence rescales
+coefficients, never exponents). **Escape.** Persistence from local
+fluctuations, $1 - \mu = c\sqrt{\chi}$ (walker sees leg density, never
+$r$): $v(r) = b(r)/(1-\mu(r))$ has exact slope $-1.95 \approx -2$, and the
+amplification law $v = b/(1-\mu)$ is validated by simulation to a few
+percent. BG is solved modulo the labeled $\sqrt{\chi}$ assumption
+(fluctuation story, not derived) — parallel to BH's fitted $1/2$, queued
+for the same micro-derivation campaign.
+
+![Fig 63](../figures/fig63_muchi.png)

@@ -30,3 +30,18 @@ def test_spin_effacement_and_mpd_negligible():
     # circulation changes mean radius by < 15% (first-order effacement)
     assert abs(np.mean(spins) - np.mean(outs)) / np.mean(outs) < 0.15
     assert mpd_fractional() < 1e-12  # Mercury spin: utterly negligible
+
+
+def test_nogo_natural_rules_all_cubic():
+    from bh_graph.perwalk import nogo_slopes
+    s = nogo_slopes()
+    for name in ("linear", "sqrt", "saturated", "tuned_exp_root"):
+        assert abs(s[name] - (-3.0)) < 0.15, name
+    assert abs(s["absurd_bg_sub"] - (-2.0)) < 0.15  # only escape: absurd form
+
+
+def test_muchi_escape_and_amplification():
+    from bh_graph.perwalk import much_slope_analytic, amplification_check
+    assert abs(much_slope_analytic() - (-2.0)) < 0.15  # analytic, given 1-mu ~ sqrt(chi)
+    chk = amplification_check()
+    assert abs(chk["measured"] - chk["predicted"]) / chk["predicted"] < 0.2

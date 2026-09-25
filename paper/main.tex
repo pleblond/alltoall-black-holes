@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v3.7 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (272 tests)}
+\author{Philippe Leblond \\ \small Draft v3.8 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (274 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -297,6 +297,11 @@ $G=0.36$. Patch $=4\ln2$ or sub-maximal legs; bridges 3/1 gated.
 Physical legs at $1/4$ nat (random $\ln2$ is kinematic max): $\eta=1/4$,
 $G=1$, $S=k/4$ close with patch $=1$. Mechanism unknown; bridges proceed
 conditionally, B load-bearing.
+
+\section{Walk no-go + escape (Fig.~63)}
+All smooth weight rules cubic ($-2.99$); only absurd $e^{2\sqrt{d-d_0}}$
+escapes. Constant $\mu$ keeps $-3$ exactly; $\mu(\chi)$ fluctuation walk
+gives $-1.95\approx-2$ modulo labeled $\sqrt\chi$ assumption.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

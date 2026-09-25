@@ -32,9 +32,9 @@ from bh_graph.ds import ds_legs, stellar_bh_total_legs
 from bh_graph.cosmic import ds_scrambling_gyr
 from bh_graph.remnant import required_beta_for_dm
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–BO", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–BP", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–BO in src/bh_graph/ (paper/main.pdf)")
+st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–BP in src/bh_graph/ (paper/main.pdf)")
 
 tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",

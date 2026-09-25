@@ -198,7 +198,8 @@ from bh_graph.dispersion import (
 from bh_graph.perwalk import (
     clock_rate, max_speed, degree_drift_1d, pileup_degree,
     drift_profile, drift_power_law, persistent_walk, msd_exponent,
-    spin_circulation_drift, mpd_fractional,
+    spin_circulation_drift, mpd_fractional, generalized_drift, nogo_slopes,
+    mu_of_chi, much_slope_analytic, amplification_check,
 )
 from bh_graph.strain import (
     h_tortuosity, h_naive, f_schw, gr_h, newton_h,
@@ -356,7 +357,8 @@ __all__ = [
     "arrival_delay_s", "fermi_quad_margin", "linear_term_absent",
     "clock_rate", "max_speed", "degree_drift_1d", "pileup_degree",
     "drift_profile", "drift_power_law", "persistent_walk", "msd_exponent",
-    "spin_circulation_drift", "mpd_fractional",
+    "spin_circulation_drift", "mpd_fractional", "generalized_drift", "nogo_slopes",
+    "mu_of_chi", "much_slope_analytic", "amplification_check",
     "h_tortuosity", "h_naive", "f_schw", "gr_h", "newton_h",
     "gamma_ppn_of_h", "perihelion_advance", "mercury_arcsec",
     "divergence_law", "divergence_slope",

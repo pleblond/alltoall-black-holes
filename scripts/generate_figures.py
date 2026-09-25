@@ -54,6 +54,7 @@ from bh_graph.weakfield import weak_field_graph as _wfg, kappa_profile as _kp
 from bh_graph.legham import leg_field_hamiltonian as _lh, scrambling_vs_leg_coupling as _sv
 from bh_graph.syk import otoc_curve as _oc
 from bh_graph.jacobson import eta_profile as _etap, G_from_eta as _geta
+from bh_graph.perwalk import nogo_slopes as _nogo, much_slope_analytic as _msa, mu_of_chi as _moc
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1457,6 +1458,29 @@ def fig62_eta():
     fig.savefig(FIG / "fig62_eta.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig63_muchi():
+    s = _nogo()
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    names = ["linear", "sqrt", "saturated", "tuned", "absurd"]
+    vals = [s["linear"], s["sqrt"], s["saturated"], s["tuned_exp_root"], s["absurd_bg_sub"]]
+    axes[0].bar(names, [-v for v in vals], color=["#dc2626"] * 4 + ["#f59e0b"])
+    axes[0].axhline(2.0, ls="--", color="black", lw=1)
+    axes[0].set_ylabel("-slope"); axes[0].set_title("No-go: all natural rules cubic")
+    axes[0].tick_params(axis="x", rotation=20, labelsize=8)
+    rr = np.linspace(10, 160, 100)
+    axes[1].plot(rr, _moc(rr), color="#2563eb")
+    axes[1].set_xlabel("r"); axes[1].set_ylabel("mu")
+    axes[1].set_title("Assumed persistence profile 1-mu ~ sqrt(chi)")
+    axes[2].bar(["BG local", "const-mu", "mu(chi)"], [3.0, 3.0, -_msa()],
+                color=["#dc2626", "#dc2626", "#2563eb"])
+    axes[2].axhline(2.0, ls="--", color="black", lw=1)
+    axes[2].set_ylabel("-slope"); axes[2].set_title("Escape: mu(chi) gives -2")
+    fig.suptitle("Fig 63 — BP: walk no-go + fluctuation escape")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig63_muchi.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1520,6 +1544,7 @@ def main():
     fig60_divergence()
     fig61_legham()
     fig62_eta()
+    fig63_muchi()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
