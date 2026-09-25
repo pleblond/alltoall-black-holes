@@ -184,11 +184,12 @@ shrinks because $k$ shrinks, not because interior nodes are deleted. Page-time
 behavior maps to the exterior budget's entanglement swapping from hole–ambient
 to radiation–ambient.
 
-**What sets $k(N)$?** Appendix B now derives it instead of postulating it:
+**What sets $k(N)$?** Appendix B constrains it instead of postulating it:
 MaxEnt counting gives the linear capacity bound $k \ge N s_{node}/s_{leg}$,
 and gravitational self-consistency ($R = \sqrt{k l_p^2/4\pi} = 2E$,
 $E = \varepsilon N$) fixes the quadratic fixed point
-$k^*(N) = 16\pi(\varepsilon N/l_p)^2$. The remaining free number is the
+$k^*(N) = 16\pi(\varepsilon N/l_p)^2$ — given $R = 2E$ as input (the
+circle enters here; BM localizes it, it is not derived). The remaining free number is the
 per-node energy $\varepsilon$, not a free function. Prediction:
 legs-per-node $\alpha(N) = k^*/N$ grows linearly with $N$.
 
