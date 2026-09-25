@@ -32,10 +32,32 @@ def k_from_mass_schwarzschild(mass, lp: float = 1.0, mass_unit: float = 1.0) -> 
     """Toy GR mapping k ~ A/lp^2 with A = 4 pi (2M)^2 (G=c=1 units).
 
     mass_unit converts caller mass units to Planck masses.
+    BM: now a special case of k_from_mass_via_rs with the GR input explicit.
+    """
+    return k_from_mass_via_rs(mass, schwarzschild_rs, lp, mass_unit)
+
+
+def schwarzschild_rs(mass) -> np.ndarray | float:
+    """BM: R_s = 2M — THE single GR input to k(M). Everything else is ours."""
+    return 2.0 * np.asarray(mass, dtype=float)
+
+
+def k_from_rs(rs, lp: float = 1.0) -> np.ndarray | float:
+    """BM: k = 4 pi R_s^2 / lp^2 — patch postulate + sphere geometry, no GR."""
+    r = np.asarray(rs, dtype=float)
+    return FOUR_PI * r**2 / lp**2
+
+
+def k_from_mass_via_rs(mass, rs_of_m=schwarzschild_rs, lp: float = 1.0,
+                       mass_unit: float = 1.0) -> np.ndarray | float:
+    """BM reduction: k(M) is determined iff R_s(M) is given.
+
+    The reduction theorem: given (patch postulate, sphere geometry), the map
+    M -> k factors entirely through R_s(M). Pass a wrong R_s(M) and the
+    wrong k(M) comes out — the 16 pi rides on the input alone.
     """
     m = np.asarray(mass, dtype=float) * mass_unit
-    area = FOUR_PI * (2.0 * m) ** 2
-    return area / lp**2
+    return k_from_rs(rs_of_m(m), lp)
 
 
 def mass_from_k(k, lp: float = 1.0) -> np.ndarray | float:

@@ -28,3 +28,16 @@ def test_monogamy_frontier_and_baby_limit():
     assert exterior_budget(10, 1.0, 100.0) == 0.0
     assert is_baby_universe_limit(0.0)
     assert not is_baby_universe_limit(1.0)
+
+
+def test_reduction_theorem():
+    # BM: k(M) factors entirely through R_s(M); 16 pi rides on the input.
+    import numpy as np
+    from bh_graph.horizon import (
+        k_from_mass_via_rs, k_from_mass_schwarzschild, schwarzschild_rs,
+        k_from_rs, horizon_radius)
+    assert k_from_mass_via_rs(1.0) == 16 * np.pi
+    assert k_from_mass_via_rs(1.0, lambda m: 3 * m) == 36 * np.pi  # wrong input, wrong output
+    assert np.allclose(k_from_mass_schwarzschild([1.0, 2.0]),
+                       k_from_mass_via_rs([1.0, 2.0], schwarzschild_rs))  # backward compat
+    assert np.allclose(horizon_radius(k_from_rs([1.0, 5.0])), [1.0, 5.0])  # round-trip

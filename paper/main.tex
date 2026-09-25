@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v3.4 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (268 tests)}
+\author{Philippe Leblond \\ \small Draft v3.5 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (269 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -284,6 +284,10 @@ $\alpha_{1,2},\xi$ untouched; ours-vs-GR perihelion $=-0.75\,M/a$ measured.
 Packing forces the pop past $\lfloor4\pi r^2/l_p^2\rfloor$; $s_{leg}>1/4$
 boxed as postulate. $H=H_{SYK}+H_{legs}$: $t^*$ survives weak legs,
 $\sim2\times$ slower at $\lambda=3$ (sketch, $N=8$).
+
+\section{Reduction: $k(M)\iff R_s(M)$}
+$M\mapsto k$ factors entirely through $M\mapsto R_s$ (explicit function
+argument; $3M$ input gives $36\pi M^2$). Circle shrunk to one statement.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.4 — computational companion paper (Secs 1–3 + Appendices A–BL)
+**Draft v3.5 — computational companion paper (Secs 1–3 + Appendices A–BM)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1217,3 +1217,18 @@ dynamics: unitarity of leg surgery, backreaction of $k$-change on the
 spectrum, and the ambient coupling are named known-unknowns, unsolved.
 
 ![Fig 61](../figures/fig61_legham.png)
+
+## Appendix BM. Reduction theorem: $k(M) \iff R_s(M)$ (no figure — formal)
+
+(`bh_graph.horizon`: `k_from_mass_via_rs`, `schwarzschild_rs`, `k_from_rs`.)
+**Theorem.** Given the patch postulate ($k = A/l_p^2$) and sphere geometry
+($A = 4\pi R^2$), the mass map $M \mapsto k$ factors entirely through the
+radius map $M \mapsto R_s$: $k(M) = 4\pi R_s(M)^2/l_p^2$. The code takes
+$R_s(M)$ as an explicit function argument — pass $2M$, get $16\pi M^2$;
+pass $3M$, get $36\pi M^2$ (locked as `test_reduction_theorem`). The
+admitted circle of BH's audit is thereby shrunk to exactly one statement:
+$R_s = 2M$, the vacuum Schwarzschild relation. Deriving $k(M)$ from
+microphysics is equivalent to deriving vacuum GR; there is one target,
+not a web. (Scaling remark: $R_s \propto M$ alone follows from dimensional
+analysis + scale invariance — the unfactorable residue is the pure number
+$2$.)
