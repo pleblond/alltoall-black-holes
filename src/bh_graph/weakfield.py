@@ -80,3 +80,113 @@ def scaling_power(profile: dict) -> float:
         return float("nan")
     p, _ = np.polyfit(np.log(rs), np.log(-ks), 1)
     return float(-p)
+
+
+def harmonic_potential(g, hub=("hub",), source: float = 1.0, source_node=None):
+    """BQ: lattice Coulomb potential L Phi = source*delta (grounded box).
+
+    source_node defaults to hub; pass a grid node for the no-stub control.
+    Returns dict node -> Phi. Far field must be ~ source/r (mass = source).
+    """
+    import networkx as nx
+    from scipy import sparse
+    from scipy.sparse.linalg import spsolve
+    nodes_all = list(g.nodes())
+    src = source_node if source_node is not None else hub
+    nodes = [v for v in nodes_all if g.degree(v) > 0 or v == src]
+    idx = {v: i for i, v in enumerate(nodes)}
+    n = len(nodes)
+    L = sparse.lil_matrix((n, n))
+    for u, v in g.edges():
+        i, j = idx[u], idx[v]
+        L[i, i] += 1
+        L[j, j] += 1
+        L[i, j] -= 1
+        L[j, i] -= 1
+    b = np.zeros(n)
+    b[idx[src]] = source
+    # grounded box: pin all outer-shell grid nodes to Phi = 0 (any odd L)
+    grid = [v for v in nodes if isinstance(v, tuple) and len(v) == 3]
+    cmax = max(max(v) for v in grid)
+    cmin = min(min(v) for v in grid)
+    L = L.tolil()
+    shell = [v for v in grid if any(c in (cmin, cmax) for c in v)]
+    for v in shell:
+        i = idx[v]
+        L.rows[i] = [i]
+        L.data[i] = [1.0]
+        b[i] = 0.0
+    phi = spsolve(L.tocsr(), b)
+    return {v: float(phi[idx[v]]) for v in nodes}
+
+
+def potential_profile(phi: dict, pos: dict, radii=(1.5, 2.5, 3.5)) -> dict:
+    """BQ: shell-averaged Phi(r) over grid nodes."""
+    out = {}
+    for r in radii:
+        vals = [p for v, p in phi.items()
+                if isinstance(v, tuple) and len(v) == 3
+                and abs(np.linalg.norm(pos[v]) - r) < 0.6]
+        out[r] = float(np.mean(vals)) if vals else float("nan")
+    return out
+
+
+def potential_power(profile: dict) -> float:
+    """BQ: fit Phi ~ r^-p (Coulomb: p = 1)."""
+    rs = np.array(sorted(profile))
+    ps = np.array([profile[r] for r in rs])
+    if np.any(~np.isfinite(ps)) or np.any(ps <= 0):
+        return float("nan")
+    p, _ = np.polyfit(np.log(rs), np.log(ps), 1)
+    return float(-p)
+
+
+def gradient_drift_slope(phi: dict, pos: dict, radii=(1.5, 2.5, 3.5)) -> float:
+    """BQ: log-log slope of |dPhi/dr| over shells (Newton: -2)."""
+    prof = potential_profile(phi, pos, radii)
+    rs = np.array(sorted(prof))
+    ps = np.array([prof[r] for r in rs])
+    grad = -np.gradient(ps, rs)
+    ok = np.isfinite(grad) & (grad > 0)
+    if ok.sum() < 2:
+        return float("nan")
+    slope, _ = np.polyfit(np.log(rs[ok]), np.log(grad[ok]), 1)
+    return float(slope)
+
+
+def hitting_probability(g, hub=("hub",)):
+    """BQ: P(hit hub before box) — harmonic, hub=1, box=0.
+
+    Gemini Alt-1 test object. Legs SHORT it: more stubs -> flatter h ->
+    weaker gradient drift (anti-gravity scaling, locked in tests).
+    """
+    import networkx as nx
+    from scipy import sparse
+    from scipy.sparse.linalg import spsolve
+    nodes = [v for v in g.nodes() if g.degree(v) > 0]
+    idx = {v: i for i, v in enumerate(nodes)}
+    n = len(nodes)
+    L = sparse.lil_matrix((n, n))
+    for u, v in g.edges():
+        i, j = idx[u], idx[v]
+        L[i, i] += 1
+        L[j, j] += 1
+        L[i, j] -= 1
+        L[j, i] -= 1
+    grid = [v for v in nodes if isinstance(v, tuple) and len(v) == 3]
+    cmax = max(max(v) for v in grid)
+    cmin = min(min(v) for v in grid)
+    shell = [v for v in grid if any(c in (cmin, cmax) for c in v)]
+    b = np.zeros(n)
+    L = L.tolil()
+    for v in shell:
+        i = idx[v]
+        L.rows[i] = [i]
+        L.data[i] = [1.0]
+        b[i] = 0.0
+    i = idx[hub]
+    L.rows[i] = [i]
+    L.data[i] = [1.0]
+    b[i] = 1.0
+    h = spsolve(L.tocsr(), b)
+    return {v: float(h[idx[v]]) for v in nodes}

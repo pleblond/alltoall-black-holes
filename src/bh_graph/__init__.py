@@ -206,7 +206,7 @@ from bh_graph.strain import (
     gamma_ppn_of_h, perihelion_advance, mercury_arcsec,
     divergence_law, divergence_slope,
 )
-from bh_graph.weakfield import weak_field_graph, kappa_profile, scaling_power
+from bh_graph.weakfield import weak_field_graph, kappa_profile, scaling_power, harmonic_potential, potential_profile, potential_power, gradient_drift_slope, hitting_probability
 from bh_graph.legham import leg_field_hamiltonian, scrambling_vs_leg_coupling
 from bh_graph.qnmlegs import (
     leg_transition_omega, leg_transition_hz, qnm_fund_hz,
@@ -362,7 +362,7 @@ __all__ = [
     "h_tortuosity", "h_naive", "f_schw", "gr_h", "newton_h",
     "gamma_ppn_of_h", "perihelion_advance", "mercury_arcsec",
     "divergence_law", "divergence_slope",
-    "weak_field_graph", "kappa_profile", "scaling_power",
+    "weak_field_graph", "kappa_profile", "scaling_power", "harmonic_potential", "potential_profile", "potential_power", "gradient_drift_slope", "hitting_probability",
     "leg_field_hamiltonian", "scrambling_vs_leg_coupling",
     "mass_ladder", "qnm_comb", "comb_fractional_spacing", "echo_train",
     "leg_transition_omega", "leg_transition_hz", "qnm_fund_hz",

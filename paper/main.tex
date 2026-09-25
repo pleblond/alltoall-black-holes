@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v3.8 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (274 tests)}
+\author{Philippe Leblond \\ \small Draft v3.9 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (275 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -302,6 +302,11 @@ conditionally, B load-bearing.
 All smooth weight rules cubic ($-2.99$); only absurd $e^{2\sqrt{d-d_0}}$
 escapes. Constant $\mu$ keeps $-3$ exactly; $\mu(\chi)$ fluctuation walk
 gives $-1.95\approx-2$ modulo labeled $\sqrt\chi$ assumption.
+
+\section{Review kills + Green shorting (Fig.~64)}
+S-wave cut (Rayleigh $11.4\%$, $52\%$ speckle, interference); $-1/4$ cut
+($n_d^{-1}$ universal). Harmonic drift fails: legs short gradients
+($h$-steepness $9.2\to4.1$); AS temperature triply load-bearing.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

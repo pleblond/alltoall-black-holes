@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.8 — computational companion paper (Secs 1–3 + Appendices A–BP)
+**Draft v3.9 — computational companion paper (Secs 1–3 + Appendices A–BQ)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1302,3 +1302,24 @@ percent. BG is solved modulo the labeled $\sqrt{\chi}$ assumption
 for the same micro-derivation campaign.
 
 ![Fig 63](../figures/fig63_muchi.png)
+
+## Appendix BQ. External review kills + Green-function walk fails by shorting
+
+(`bh_graph.weakfield`, Fig 64.) An external model review (Gemini) killed
+two programs, both verified independently here. **S-wave superposition:**
+$\mathbb{E}[|S|] = \frac{\sqrt{\pi}}{2}\sqrt{k}$, not $\sqrt{k}$ (11.4%
+shortfall — RMS/expectation conflation, confirmed numerically), 52%
+metric speckle (measured 0.522, excluded by Cassini at $10^{10}$), plus
+multi-body interference and cherry-picked $1/\sqrt{4\pi}$ — cut, all five
+holes fatal. **Dephasing exponent $-1/4$:** dilute scattering gives
+$l_\phi \propto n_d^{-1}$ universally, and disorder area $\sim \chi^{-1/2}$
+demands infinite influence at large $r$ — cut. The review's best proposal
+(Green's-function drift) was tested on the actual topology and **fails by
+shorting**: hitting probability $h(2)/h(6)$ drops $9.2 \to 4.1$ from 0 to
+60 stubs — more legs flatten harmonic gradients (anti-gravity scaling),
+the Sec-1 small-world mechanism striking again. Poisson far-field stays
+$\sim A/r + B$ but legs only degrade the fit ($3\% \to 17\%$ residual;
+mass $=$ input charge). Temperature (AS) remains load-bearing — BG's
+lesson confirmed from a third direction.
+
+![Fig 64](../figures/fig64_green.png)

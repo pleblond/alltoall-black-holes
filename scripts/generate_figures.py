@@ -55,6 +55,9 @@ from bh_graph.legham import leg_field_hamiltonian as _lh, scrambling_vs_leg_coup
 from bh_graph.syk import otoc_curve as _oc
 from bh_graph.jacobson import eta_profile as _etap, G_from_eta as _geta
 from bh_graph.perwalk import nogo_slopes as _nogo, much_slope_analytic as _msa, mu_of_chi as _moc
+from bh_graph.weakfield import (
+    weak_field_graph as _wfg2, hitting_probability as _hp, potential_profile as _pp,
+    harmonic_potential as _hpo)
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1481,6 +1484,36 @@ def fig63_muchi():
     fig.savefig(FIG / "fig63_muchi.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig64_green():
+    SH = (2.0, 3.0, 4.0, 5.0, 6.0)
+    rr = np.array(SH)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    g0, pos0 = _wfg2(L=15, n_stubs=0, mode="direct", seed=0)
+    h0 = _pp(_hp(g0, hub=(7, 7, 7)), pos0, radii=SH)
+    g1, pos1 = _wfg2(L=15, n_stubs=60, mode="direct", seed=0)
+    h1 = _pp(_hp(g1), pos1, radii=SH)
+    axes[0].plot(rr, [h0[r] for r in rr], marker="o", color="gray", label="0 stubs")
+    axes[0].plot(rr, [h1[r] for r in rr], marker="o", color="#dc2626", label="60 stubs")
+    axes[0].set_xlabel("r"); axes[0].set_ylabel("P(hit hub)")
+    axes[0].set_title("Legs short harmonic gradients"); axes[0].legend(fontsize=8)
+    axes[1].bar(["0 stubs", "60 stubs"],
+                [h0[2.0] / h0[6.0], h1[2.0] / h1[6.0]], color=["gray", "#dc2626"])
+    axes[1].set_ylabel("h(2)/h(6) steepness"); axes[1].set_title("More legs -> flatter")
+    phi = _hpo(g0, source_node=(7, 7, 7))
+    pr = _pp(phi, pos0, radii=SH)
+    v = np.array([pr[r] for r in rr])
+    A = np.vstack([1 / rr, np.ones_like(rr)]).T
+    sol = np.linalg.lstsq(A, v, rcond=None)[0]
+    axes[2].plot(rr, v, marker="o", color="#2563eb", label="measured Phi")
+    axes[2].plot(rr, sol[0] / rr + sol[1], "--", color="gray", label="A/r+B")
+    axes[2].set_xlabel("r"); axes[2].set_ylabel("Phi")
+    axes[2].set_title("Control: lattice Coulomb 1/r"); axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 64 — BQ: Green-function walk fails by shorting")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig64_green.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1545,6 +1578,7 @@ def main():
     fig61_legham()
     fig62_eta()
     fig63_muchi()
+    fig64_green()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
