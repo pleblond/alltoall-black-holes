@@ -16,6 +16,7 @@ from bh_graph.maxent import (
     maxent_k_linear, selfconsistent_k_quadratic, legs_per_node,
     fixed_point_iteration, random_tensor_page_saturation,
 )
+from bh_graph.tn import k_star_running as _ksr
 from bh_graph.qes import qes_candidates, qes_page_k, min_cut_scaling
 from bh_graph.evaporation import page_curve_bits, evaporate
 from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
@@ -58,6 +59,8 @@ from bh_graph.perwalk import nogo_slopes as _nogo, much_slope_analytic as _msa, 
 from bh_graph.weakfield import (
     weak_field_graph as _wfg2, hitting_probability as _hp, potential_profile as _pp,
     harmonic_potential as _hpo)
+from bh_graph.tn import eps_running as _er, k_star_running as _ksr2
+from bh_graph.horizon import PATCH_AREA as _PA
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -164,9 +167,9 @@ def fig3_horizon_area():
     m = np.linspace(0, 3, 200)
     axes[1].plot(m, k_from_mass_schwarzschild(m), color="#7c3aed")
     axes[1].set_xlabel("M (Planck masses)")
-    axes[1].set_ylabel("k = A/lp^2")
+    axes[1].set_ylabel("k = A/4ln2 lp^2")
     axes[1].set_title("GR consistency: k grows as M^2")
-    fig.suptitle("Fig 3 — Sec 2: A(k) = k lp^2")
+    fig.suptitle("Fig 3 — Sec 2: A(k) = 4ln2 k lp^2")
     fig.tight_layout()
     fig.savefig(FIG / "fig3_horizon_area.png", bbox_inches="tight")
     plt.close(fig)
@@ -264,8 +267,9 @@ def fig8_k_of_n():
     n = np.linspace(1, 30, 200)
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
     axes[0].plot(n, maxent_k_linear(n), label="MaxEnt linear bound k>=N", color="gray")
-    axes[0].plot(n, selfconsistent_k_quadratic(n, eps=0.1), label="self-consistent k*=16pi(eps N)^2", color="#7c3aed")
-    axes[0].set_xlabel("N"); axes[0].set_ylabel("k"); axes[0].set_title("k(N): linear bound vs quadratic fixed point")
+    axes[0].plot(n, selfconsistent_k_quadratic(n, eps=0.1), label="fixed-eps k* (matching)", color="#7c3aed")
+    axes[0].plot(n, _ksr(n), label="running-eps k*=N (BS adopted)", color="#2563eb")
+    axes[0].set_xlabel("N"); axes[0].set_ylabel("k"); axes[0].set_title("k(N): matching form vs adopted running")
     axes[0].legend(fontsize=8)
     traj = fixed_point_iteration(10, eps=0.1, steps=10, k_init=1.0)
     axes[1].plot(traj, marker="o", color="#0f766e")
@@ -274,9 +278,10 @@ def fig8_k_of_n():
     axes[1].legend(fontsize=8)
     n2 = np.linspace(1, 30, 100)
     fig2 = plt.figure(figsize=(5, 3.5))
-    plt.plot(n2, legs_per_node(n2, eps=0.1), color="#b45309")
+    plt.plot(n2, legs_per_node(n2, eps=0.1), color="#b45309", label="fixed-eps (matching)")
+    plt.axhline(1.0, color="#2563eb", label="running-eps alpha=1 (BS)")
     plt.xlabel("N"); plt.ylabel("legs per node k*/N")
-    plt.title("Prediction: big holes relatively more wired")
+    plt.title("BS: alpha = 1, not growing"); plt.legend(fontsize=8)
     plt.tight_layout()
     fig2.savefig(FIG / "fig8b_alpha_of_n.png", bbox_inches="tight")
     plt.close(fig2)
@@ -301,7 +306,7 @@ def fig9_qes():
     kp = qes_page_k(s0, s_leg, lp)
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
     axes[0].plot(k, s_no, label="no-island S=k s_leg", color="gray")
-    axes[0].plot(k, s_isl, label="island S=k lp^2/4+bulk", color="#2563eb")
+    axes[0].plot(k, s_isl, label="island S=k ln2+bulk", color="#2563eb")
     axes[0].plot(k, np.minimum(s_no, s_isl), "--", color="red", label="min (physical)")
     axes[0].axvline(kp, color="red", linestyle=":", label=f"k_page={kp:.1f}")
     axes[0].set_xlabel("k"); axes[0].set_ylabel("generalized entropy")
@@ -351,7 +356,7 @@ def fig11_qec_robust():
     # QES phase boundary
     s = np.linspace(0.0, 1.0, 400)
     axes[2].plot(s, qes_phase_boundary(s).astype(float), color="#dc2626")
-    axes[2].axvline(0.25, color="black", linestyle="--", label="lp^2/4")
+    axes[2].axvline(np.log(2) / 2, color="black", linestyle="--", label="ln2/2 (BS)")
     axes[2].set_xlabel("s_leg"); axes[2].set_ylabel("transition exists")
     axes[2].set_title("QES phase boundary (sharp)"); axes[2].legend(fontsize=8)
     fig.suptitle("Fig 11 — F/G: QEC mirror + robustness (log law, QES boundary)")
@@ -365,7 +370,7 @@ def fig12_kerr():
     a = np.linspace(0, 1, 200)
     fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
     axes[0].plot(a, kerr_newman_k(m, a), color="#7c3aed")
-    axes[0].set_xlabel("spin a/M"); axes[0].set_ylabel("k_eff = A/lp^2")
+    axes[0].set_xlabel("spin a/M"); axes[0].set_ylabel("k_eff = A/4ln2 lp^2")
     axes[0].set_title("Spin costs legs (extremal = half)")
     axes[1].plot(a, spin_budget_fraction(a, m), color="#dc2626")
     axes[1].set_xlabel("a/M"); axes[1].set_ylabel("budget spent on rotation")
@@ -930,8 +935,8 @@ def fig38_selfattack():
     axes[0].plot(sc["N"], sc["rel_dev"], marker="o", color="#2563eb")
     axes[0].set_xlabel("bulk N"); axes[0].set_ylabel("|S-min|/min")
     axes[0].set_title("Violations shrink with N (attack fails)")
-    axes[1].bar(["random TN", "Ising GS", "bound lp2/4"],
-                [_sr(), _si(10), 0.25], color=["#2563eb", "#7c3aed", "#dc2626"])
+    axes[1].bar(["random TN", "Ising GS", "bound ln2/2"],
+                [_sr(), _si(10), np.log(2) / 2], color=["#2563eb", "#7c3aed", "#dc2626"])
     axes[1].set_ylabel("s_leg (nats)")
     axes[1].set_title("QES assumption holds, Ising closest")
     fig.suptitle("Fig 38 — KC: self-attack repelled")
@@ -1448,15 +1453,15 @@ def fig62_eta():
     fig, axes = plt.subplots(1, 2, figsize=(9, 3.5))
     axes[0].errorbar(ks, ratios, yerr=stds / ks, marker="o", color="#2563eb",
                      label="measured S/k", capsize=3)
-    axes[0].axhline(np.log(2), ls="--", color="black", label="ln2 (qubit max)")
-    axes[0].axhline(0.25, ls=":", color="#dc2626", label="1/4 (chain needs)")
+    axes[0].axhline(np.log(2), ls="--", color="black", label="ln2 (saturated)")
     axes[0].set_xlabel("cut legs k"); axes[0].set_ylabel("S/k (nats)")
-    axes[0].set_title("Bridge 2: flat, but at ln2 not 1/4")
+    axes[0].set_title("Bridge 2: flat at ln2 (BS: legs saturate)")
     axes[0].legend(fontsize=8)
-    axes[1].bar(["chain needs", "TN measures"], [1.0, _geta(np.log(2))],
-                color=["gray", "#dc2626"])
-    axes[1].set_ylabel("G"); axes[1].set_title("G-ledger: 1.0 vs 0.36")
-    fig.suptitle("Fig 62 — BN: bridge-2 constancy passes, coefficient exposes")
+    axes[1].bar(["eta_vN", "patch", "eta_Planck", "G"],
+                [np.log(2), _PA, np.log(2) / _PA, 1.0],
+                color=["#2563eb", "gray", "#2563eb", "#0f766e"])
+    axes[1].set_ylabel("value"); axes[1].set_title("BS chain: ln2/4ln2=1/4, G=1")
+    fig.suptitle("Fig 62 — BN/BS: measured eta closes the chain")
     fig.tight_layout()
     fig.savefig(FIG / "fig62_eta.png", bbox_inches="tight")
     plt.close(fig)
@@ -1512,6 +1517,25 @@ def fig64_green():
     fig.suptitle("Fig 64 — BQ: Green-function walk fails by shorting")
     fig.tight_layout()
     fig.savefig(FIG / "fig64_green.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig65_flip():
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].bar(["before", "after"], [6, 4], color=["#dc2626", "#2563eb"])
+    axes[0].set_ylabel("assumptions"); axes[0].set_title("Flip: 6 -> 4, 0 mechanism debts")
+    nn = np.linspace(5, 200, 200)
+    axes[1].loglog(nn, _er(nn), color="#2563eb", label="eps=c/sqrt(N)")
+    axes[1].axhline(0.047, ls="--", color="gray", label="eps(25) repo")
+    axes[1].set_xlabel("N"); axes[1].set_ylabel("eps")
+    axes[1].set_title("Running eps (temperature-like)"); axes[1].legend(fontsize=8)
+    axes[2].plot(nn, _ksr2(nn), color="#2563eb", label="k*=N (adopted)")
+    axes[2].plot(nn, _ksr2(nn) * 0 + nn, "--", color="gray", label="k=N ref")
+    axes[2].set_xlabel("N"); axes[2].set_ylabel("k*")
+    axes[2].set_title("Linear fixed point k=N"); axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 65 — BS: flip ledger + running eps")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig65_flip.png", bbox_inches="tight")
     plt.close(fig)
 
 def main():
@@ -1579,6 +1603,7 @@ def main():
     fig62_eta()
     fig63_muchi()
     fig64_green()
+    fig65_flip()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

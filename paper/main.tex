@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v3.10 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (277 tests)}
+\author{Philippe Leblond \\ \small Draft v3.11 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (278 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -293,10 +293,9 @@ argument; $3M$ input gives $36\pi M^2$). Circle shrunk to one statement.
 $S/k$ flat to $<1\%$ across cuts, but at $\ln2$, not $1/4$: face-value
 $G=0.36$. Patch $=4\ln2$ or sub-maximal legs; bridges 3/1 gated.
 
-\section{Postulate B adopted}
-Physical legs at $1/4$ nat (random $\ln2$ is kinematic max): $\eta=1/4$,
-$G=1$, $S=k/4$ close with patch $=1$. Mechanism unknown; bridges proceed
-conditionally, B load-bearing.
+\section{Postulate B adopted, then retired}
+Physical $1/4$ nat adopted, then reversed by BS: vN/thermo audit showed A
+(measured $\eta$, patch $4\ln2$) dissolves mismatch + mechanism debt.
 
 \section{Walk no-go + escape (Fig.~63)}
 All smooth weight rules cubic ($-2.99$); only absurd $e^{2\sqrt{d-d_0}}$
@@ -308,10 +307,13 @@ S-wave cut (Rayleigh $11.4\%$, $52\%$ speckle, interference); $-1/4$ cut
 ($n_d^{-1}$ universal). Harmonic drift fails: legs short gradients
 ($h$-steepness $9.2\to4.1$); AS temperature triply load-bearing.
 
-\section{Entropy-capacity tension}
-Purity + $E=\varepsilon N$ + $S=k/4$ force $N\le125$ (macro violated, any
-constant $\varepsilon$). Holographic legs, running $\varepsilon$, or no
-interior factor; B downstream of Hilbert-space question.
+\section{Entropy-capacity tension, resolved}
+Purity + fixed $\varepsilon$ + $S=k\ln2$ forced $N\le N_{match}$; resolved by
+running $\varepsilon=c/\sqrt N$ ($N$ holographic, $k=N$, margin $4\ln2$).
+
+\section{Flip to A+(b*) (Fig.~65)}
+Patch $4\ln2$ from measured $\eta_{vN}$; legs saturate; $\varepsilon$ runs;
+6 assumptions $\to$ 4, zero mechanism debts. B retired on record.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

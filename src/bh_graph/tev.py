@@ -41,14 +41,17 @@ def rs_add_meters(m_tev: float, m_d_tev: float, n_extra: int = 6) -> float:
 
 
 def k_add(m_tev: float, m_d_tev: float, n_extra: int = 6) -> float:
-    """Effective brane legs k = 4 pi R_s^2 / l_D^2."""
+    """Effective brane legs k = 4 pi R_s^2 / PATCH l_D^2 (BS uniformity)."""
+    from bh_graph.horizon import PATCH_AREA
     rs = rs_add_meters(m_tev, m_d_tev, n_extra)
     ld = l_d_meters(m_d_tev)
-    return float(FOUR_PI * (rs / ld) ** 2)
+    return float(FOUR_PI * (rs / ld) ** 2 / PATCH_AREA)
 
 
 def k_crit_tev(r_point_over_lD: float = 2.0) -> float:
-    return float(FOUR_PI * r_point_over_lD**2)
+    """BS: same PATCH divisor (onset mass invariant — ratio preserved)."""
+    from bh_graph.horizon import PATCH_AREA
+    return float(FOUR_PI * r_point_over_lD**2 / PATCH_AREA)
 
 
 def is_pointlike_lhc(

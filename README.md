@@ -23,7 +23,8 @@
 We study a toy model in which spacetime connectivity is an entanglement graph
 and a black-hole interior is an almost-perfect all:all (complete) subgraph.
 Internal edges cost no exterior space; each of $k$ exterior legs costs about
-one Planck patch of horizon area. From two postulates the model reproduces
+$4\ln 2 \approx 2.77$ Planck patches of horizon area (derived from measured
+leg entanglement). From two postulates the model reproduces
 fast scrambling ($t_* \sim \log N$), the Bekenstein–Hawking area law, the
 exact Page curve with Haar-typical fluctuations, island/QES takeover, Kerr
 thermodynamics, and Hayden–Preskill mirror recovery. An entropic argument on
@@ -44,11 +45,11 @@ micro-derivation behind $g_{rr}$ and the un-derived gap coefficient.
 
 | Path | Description | License |
 |---|---|---|
-| [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BR) | CC BY 4.0 |
+| [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BS) | CC BY 4.0 |
 | `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
-| `tests/` | 277 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 278 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -63,7 +64,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$).
 
 ## Quickstart
 
@@ -71,7 +72,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 277 tests
+python -m pytest tests/ -q          # 278 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -157,10 +158,10 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
-v3.10 — complete through Appendix BR (entropy-capacity tension):
-purity + $E = \varepsilon N$ + $S = k/4$ force $N \le 125$ (macro
-violated, any constant $\varepsilon$); three resolutions named, B's local
-$1/4$ downstream of the Hilbert-space question.
+v3.11 — the flip to A+(b*), complete through Appendix BS:
+patch $= 4\ln 2$ (derived from measured $\eta_{vN}$), legs saturate,
+$\varepsilon$ runs ($k = N$ exactly), 6 assumptions $\to$ 4 with zero
+mechanism debts. B retired on the record.
 The paper is a living research document:
 errata are recorded in-text (see Appendices AC/AE/AR), and the kill
 list (Appendix AN) scores all future results.

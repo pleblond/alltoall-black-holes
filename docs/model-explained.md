@@ -19,7 +19,8 @@ For the full derivations, code, and tests, see `paper/paper.md`.*
   to anywhere.
 - **Exterior leg ($k$).** An edge crossing from a subgraph to the rest of
   the network. The model's central quantity: horizon area equals leg count
-  times one Planck patch, $A = k\,l_p^2$.
+  times $4\ln 2 \approx 2.77$ Planck patches, $A = 4\ln 2\cdot k\,l_p^2$ (derived
+  from measured leg entanglement, not assumed).
 - **Horizon.** In ordinary gravity, the surface of no return around a black
   hole. Here: the two-dimensional surface forced into existence when many
   exterior legs must be embedded in space without overlapping.
@@ -37,7 +38,7 @@ an entanglement network. A black hole interior is a subgraph wired
 *almost* all:all — every node adjacent to every other — which destroys
 interior distance: there is no far side inside. Its horizon size is set not
 by how much is inside but by how many entanglement legs connect it to the
-outside world, each costing roughly one Planck area. Perfect the internal
+outside world, each costing roughly $2.77$ Planck areas ($4\ln 2$, derived). Perfect the internal
 wiring (zero exterior legs) and the subgraph decouples entirely — a baby
 universe. Shrink the leg count below a threshold and no horizon forms at
 all: the object is pointlike until its exterior wiring exceeds what a point
@@ -151,8 +152,8 @@ why do horizons come in sizes? Because **size counts exterior legs**.
 
 Each leg joining the interior subgraph to the ambient graph must be embedded
 through surrounding space, and space has finite bandwidth: at most one
-elementary connection per Planck patch ($\sim l_p^2$). $k$ legs therefore
-require $k$ patches — a surface of area $A = k\,l_p^2$, independent of the
+elementary connection per $4\ln 2 \approx 2.77$ Planck patches ($\sim 2.77\,l_p^2$). $k$ legs therefore
+require $k$ such patches — a surface of area $A = 4\ln 2\cdot k\,l_p^2$, independent of the
 interior node count $N$. The horizon is that surface: an *empty routing
 buffer* inflated to host the wiring, containing (almost) nothing.
 
@@ -170,7 +171,7 @@ outside contributes everything.** Think of a building whose size is set by
 its doors — one door-width per entrance, doors that cannot overlap — while
 the interior rooms (TARDIS-like) can be few or infinite without moving a
 single outer wall. Here the "doors" are exterior legs, the "door width" is
-one Planck patch, and the unbreakable rule is that *outside space is
+$4\ln 2 \approx 2.77$ Planck patches, and the unbreakable rule is that *outside space is
 uncompressible*: patches cannot overlap, bandwidth cannot be exceeded. The
 horizon is outside space's response to wiring congestion — never a measure
 of interior contents.
@@ -274,7 +275,7 @@ quantitative falsifiers (Appendix AN):
    freedom). Per-event deviations outside $[9.0, 12.4]$ in future catalogs
    kill it.
 3. **Collider thermality (LHC).** Sub-critical objects are pointlike and
-   non-thermal; thermal onset sits near $\sim 550$ TeV for TeV-scale gravity
+   non-thermal; thermal onset sits near $\sim 600$ TeV for TeV-scale gravity
    benchmarks. Any thermal-shaped excess with a soft tail where we predict
    pointlike behavior kills Section 3.
 4. **Leg entanglement density (theory).** Horizon formation needs

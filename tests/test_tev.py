@@ -10,8 +10,9 @@ def test_fundamental_length_tev_scale():
 
 
 def test_k_crit_order_tens():
-    assert k_crit_tev(1.0) == 4 * np.pi
-    assert 40 < k_crit_tev(2.0) < 60
+    from bh_graph.horizon import PATCH_AREA
+    assert k_crit_tev(1.0) == 4 * np.pi / PATCH_AREA
+    assert 10 < k_crit_tev(2.0) < 30  # BS: 18.1, still order tens
 
 
 def test_more_dims_smaller_k():

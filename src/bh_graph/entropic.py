@@ -3,10 +3,11 @@
 Claim: two clusters (masses M1, M2 from Sec 2 leg counts) attract with
 F = M1 M2/r^2, derived from four ingredients:
 
-  (i)   Holographic screens ARE leg capacity: k(r) = 4 pi r^2/lp^2 (ours, Sec 2).
-  (ii)  Equipartition of mass-energy over legs: E = M1 = k T/2
+  (i)   Holographic screens ARE leg capacity: k(r) = 4 pi r^2/PATCH lp^2 (Sec 2, BS).
+  (ii)  Equipartition of mass-energy over Planck bits: E = M1 = N T/2 with
+        N = k PATCH (each qubit leg = PATCH classical bits)
         -> T(r) = M1/(2 pi r^2). Temperature falls as 1/r^2 because the
-        same energy spreads over a growing screen.
+        same energy spreads over a growing screen (PATCH cancels: T is physical).
   (iii) Bekenstein displacement: moving M2 by dr changes entropy by
         dS = 2 pi M2 dr (each unit mass drags its leg-length distribution).
   (iv)  Entropic force: F = T dS/dr = M1 M2/r^2. Newton, G = 1.
@@ -26,13 +27,15 @@ FOUR_PI = 4.0 * np.pi
 
 
 def screen_legs(r, lp: float = 1.0):
-    """Leg capacity of a screen at radius r: k = 4 pi r^2/lp^2."""
-    return FOUR_PI * np.asarray(r, dtype=float) ** 2 / lp**2
+    """Leg capacity of a screen at radius r: k = 4 pi r^2/PATCH lp^2 (BS)."""
+    from bh_graph.horizon import PATCH_AREA
+    return FOUR_PI * np.asarray(r, dtype=float) ** 2 / (PATCH_AREA * lp**2)
 
 
 def screen_temperature(m1: float, r, lp: float = 1.0):
-    """Equipartition temperature T = 2 M1/k(r) (Planck units)."""
-    return 2.0 * m1 / np.maximum(screen_legs(r, lp), 1e-300)
+    """Equipartition T = 2 M1/(k PATCH) over Planck bits (BS; G = 1 exact)."""
+    from bh_graph.horizon import PATCH_AREA
+    return 2.0 * m1 / np.maximum(screen_legs(r, lp) * PATCH_AREA, 1e-300)
 
 
 def entropy_gradient(m2: float):

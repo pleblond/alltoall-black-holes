@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.10 — computational companion paper (Secs 1–3 + Appendices A–BR)
+**Draft v3.11 — computational companion paper (Secs 1–3 + Appendices A–BS)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -20,14 +20,14 @@
 We study a toy model in which spacetime connectivity is an entanglement graph
 and a black hole interior is an *almost-perfect* all:all (complete) subgraph.
 Internal edges cost no exterior space; exterior legs ("wiring" to the ambient
-graph) each cost ~ one Planck patch of horizon area. We show: **(1)** the
+graph) each cost ~ $4\ln 2 \approx 2.77$ Planck patches of horizon area (derived, BS). We show: **(1)** the
 complete graph destroys interior distance (diameter 1, single-step operator
 spread for any $N$) and reproduces the fast-scrambling hierarchy vs local
-graphs; **(2)** horizon area scales as $A(k) = k\,l_p^2$ with exterior leg count
+graphs; **(2)** horizon area scales as $A(k) = 4\ln 2\cdot k\,l_p^2$ with exterior leg count
 $k$, independent of interior node count $N$, with mass entering only through
 the GR consistency condition $k \propto M^2$, and the $k \to 0$ limit is a
 monogamy-forced pinch-off (baby universe); **(3)** micro-holes undergo a
-horizon-formation phase transition — pointlike defects with $k\,l_p^2 <
+horizon-formation phase transition — pointlike defects with $4\ln 2\cdot k\,l_p^2 <
 4\pi r_{\mathrm{point}}^2$ that "pop" a horizon once the exterior budget exceeds
 the point-embedding capacity, with an LQG-style minimal-area gap. The horizon
 interior is, in this picture, mostly empty routing buffer. Beyond Secs 1–3,
@@ -105,7 +105,7 @@ python -c "from bh_graph.scrambling import scrambling_scaling; print(scrambling_
 Decompose edges into $N(N-1)/2$ internal pairs and $k$ exterior legs to the
 ambient graph, with $k \ll N^2$. Postulate:
 
-$$A_{\mathrm{horizon}}(k) = k\,l_p^2, \qquad R(k) = \sqrt{k\,l_p^2/4\pi}.$$
+$$A_{\mathrm{horizon}}(k) = 4\ln 2\cdot k\,l_p^2, \qquad R(k) = \sqrt{4\ln 2\cdot k\,l_p^2/4\pi}.$$
 
 $N$ drops out: adding interior nodes without adding exterior legs tightens
 binding but buys no horizon area. Each exterior leg must be embedded through
@@ -119,7 +119,7 @@ language (`bh_graph.horizon.horizon_area`, `horizon_radius`).
 
 Purity + conservation force $k$ to track $M$. In Schwarzschild units ($G=c=1$):
 
-$$k(M) = A/l_p^2 = 4\pi(2M)^2/l_p^2 \;\propto\; M^2,$$
+$$k(M) = A/4\ln 2\,l_p^2 = (4\pi/\ln 2)M^2/l_p^2 \;\propto\; M^2,$$
 
 implemented as `k_from_mass_schwarzschild`. Mass is, in this model, the Lagrange
 multiplier enforcing the exterior budget: heavier means more entanglement that
@@ -148,9 +148,9 @@ In 3D, a few legs ($k = 2,3,\dots$) radiate out of a point region of radius
 $r_{\mathrm{point}}$ with no surface needed. They need a surface only when
 Planck-density packing fails:
 
-$$k\,l_p^2 < 4\pi r_{\mathrm{point}}^2 \;\Rightarrow\; \text{pointlike (particle)},$$
+$$4\ln 2\cdot k\,l_p^2 < 4\pi r_{\mathrm{point}}^2 \;\Rightarrow\; \text{pointlike (particle)},$$
 
-$$R_{\mathrm{obs}}(k) = \begin{cases} r_{\mathrm{point}} & k \le k_{\mathrm{crit}} \\ \sqrt{k\,l_p^2/4\pi} & k > k_{\mathrm{crit}} \end{cases}, \qquad k_{\mathrm{crit}} = 4\pi r_{\mathrm{point}}^2/l_p^2.$$
+$$R_{\mathrm{obs}}(k) = \begin{cases} r_{\mathrm{point}} & k \le k_{\mathrm{crit}} \\ \sqrt{4\ln 2\cdot k\,l_p^2/4\pi} & k > k_{\mathrm{crit}} \end{cases}, \qquad k_{\mathrm{crit}} = 4\pi r_{\mathrm{point}}^2/4\ln 2\,l_p^2.$$
 
 Implemented as `critical_k`, `is_pointlike`, `embedding_radius`. The interior of
 the sphere is not "stuff" — it is empty routing gap inflated to give each leg
@@ -186,12 +186,13 @@ to radiation–ambient.
 
 **What sets $k(N)$?** Appendix B constrains it instead of postulating it:
 MaxEnt counting gives the linear capacity bound $k \ge N s_{node}/s_{leg}$,
-and gravitational self-consistency ($R = \sqrt{k l_p^2/4\pi} = 2E$,
-$E = \varepsilon N$) fixes the quadratic fixed point
-$k^*(N) = 16\pi(\varepsilon N/l_p)^2$ — given $R = 2E$ as input (the
+and gravitational self-consistency ($R = \sqrt{4\ln 2\cdot k l_p^2/4\pi} = 2E$,
+$E = \varepsilon N$) fixes the fixed point
+$k^*(N) = 16\pi(\varepsilon N/l_p)^2/4\ln 2$ — given $R = 2E$ as input (the
 circle enters here; BM localizes it, it is not derived). The remaining free number is the
-per-node energy $\varepsilon$, not a free function. Prediction:
-legs-per-node $\alpha(N) = k^*/N$ grows linearly with $N$.
+per-node energy $\varepsilon$, not a free function (BS update: $\varepsilon$
+runs as $c/\sqrt{N}$, so $k^* \propto N$ and $\alpha = k^*/N = 1$ exactly;
+linear $\alpha$ growth holds only for the fixed-$\varepsilon$ matching form).
 
 **Limitations.** This is a graph-topology toy, not a derivation of GR. It has
 no dynamics, no Hamiltonian, no Lorentz invariance, and the monogamy frontier
@@ -246,14 +247,15 @@ $S_{int} \sim N s_{node}$ must fit the exterior budget $S_{ext} \sim k s_{leg}$,
 so $k \ge N s_{node}/s_{leg}$ (linear lower bound, no gravity assumed; the
 random-tensor calculation $S_{ext} = \min(N\log d, k\log D)$ shows the same
 bottleneck structure). Step 2 — self-consistency: the budget sets its own radius
-$R = \sqrt{k l_p^2/4\pi}$, and a self-gravitating mass $E = \varepsilon N$
-demands $R = 2E$ ($G = c = 1$). Solving gives the fixed point
+$R = \sqrt{4\ln 2\cdot k l_p^2/4\pi}$, and a self-gravitating mass $E = \varepsilon N$
+demands $R = 2E$ ($G = c = 1$). Solving gives the fixed point (fixed-$\varepsilon$ form)
 
-$$k^*(N) = 16\pi(\varepsilon N/l_p)^2 \propto N^2,$$
+$$k^*(N) = 16\pi(\varepsilon N/l_p)^2/4\ln 2 \propto N^2,$$
 
 stable under damped iteration from any start. The free *function* $k(N)$ is
-gone; one free *number* $\varepsilon$ remains. Falsifiable corollary:
-$\alpha(N) = k^*/N \propto N$ — big holes are relatively more exterior-wired.
+gone; one free *number* $\varepsilon$ remains at matching scale (BS: runs as
+$c/\sqrt{N}$). Falsifiable corollary (BS-revised): $\alpha(N) = k^*/N = 1$
+exactly under running $\varepsilon$ — legs match nodes one-to-one.
 
 ![Fig 8](../figures/fig8_k_of_n.png)
 ![Fig 8b](../figures/fig8b_alpha_of_n.png)
@@ -263,10 +265,10 @@ $\alpha(N) = k^*/N \propto N$ — big holes are relatively more exterior-wired.
 
 (`bh_graph.qes`.) The Sec 3 "pop" is now a computed crossing, not an input
 threshold shape. Candidates: $S_{no}(k) = k s_{leg}$ (naive Hawking, grows
-forever) vs $S_{isl}(k) = k l_p^2/4 + \max(S_0 - k s_{leg}, 0)$ (area + remaining
-bulk). If bulk entropy per leg exceeds area cost per leg ($s_{leg} > l_p^2/4$,
+forever) vs $S_{isl}(k) = k\ln 2\,l_p^2 + \max(S_0 - k s_{leg}, 0)$ (area + remaining
+bulk). If twice bulk entropy per leg exceeds area cost per leg ($s_{leg} > \ln 2\,l_p^2/2$,
 now an explicit falsifiable assumption), they cross at
-$k_{page} = S_0/(2s_{leg} - l_p^2/4)$: below it the minimal surface is trivial
+$k_{page} = S_0/(2s_{leg} - \ln 2\,l_p^2)$: below it the minimal surface is trivial
 (pointlike, no island), above it the island/QES dominates. An explicit
 core+legs flow network reproduces the same turnover in its min-cut value.
 
@@ -327,7 +329,7 @@ $A = 4\pi(r_+^2+a^2)$, effective legs $k_{eff} = A/l_p^2$ fall monotonically
 with spin at fixed $M$: extremal Kerr ($a = M$) keeps exactly half the
 Schwarzschild legs; extremal Reissner-Nordstrom a quarter. Rotation *orders*
 legs (correlates them), charge soaks them into flux — the area law
-$A = k_{eff} l_p^2$ survives with $N$ still absent. Spin budget
+$A = 4\ln 2\cdot k_{eff} l_p^2$ survives with $N$ still absent. Spin budget
 $1 - A(M,a)/A(M,0) \to 1/2$ is now a second, independent exterior budget the
 model must track; a Kerr Page curve with spin-dependent $k_{eff}(t)$ is the
 natural next calculation.
@@ -381,12 +383,12 @@ the Hayden et al.\ min-rule $S_{bdy} = \min(N\log d, k\log D)$ numerically
 ($N = 4$, $k = 1\ldots8$, 10 trials). Minimal wiring follows:
 $k_{min} = S_{bulk}/\log D$. The per-node energy $\varepsilon$ — the last free
 number from Appendix B — is then fixed two ways that must agree: (a) QES
-coincidence $\varepsilon = (l_p/N)\sqrt{k_{page}/16\pi}$ with
-$k_{page} = S_0/(2s_{leg} - l_p^2/4)$; (b) linear-quadratic crossover
-$\varepsilon = l_p\sqrt{s_{node}/(16\pi\log D\,N_{match})}$. E.g.\ $D = 2$,
-$s_{node} = \log 2$, $N_{match} = 25$ gives $\varepsilon \approx 0.021\,l_p^{-1}$.
+coincidence $\varepsilon = (l_p/N)\sqrt{4\ln 2\cdot k_{page}/16\pi}$ with
+$k_{page} = S_0/(2s_{leg} - \ln 2\,l_p^2)$; (b) linear-quadratic crossover
+$\varepsilon = l_p\sqrt{4\ln 2\cdot s_{node}/(16\pi\log D\,N_{match})}$. E.g.\ $D = 2$,
+$s_{node} = \log 2$, $N_{match} = 25$ gives $\varepsilon \approx 0.047\,l_p^{-1}$.
 $\varepsilon$ is no longer an input: it is tensor-network data plus one
-crossover scale.
+crossover scale (BS: runs as $c/\sqrt{N}$ — M gives $\varepsilon(25)$).
 
 ![Fig 16](../figures/fig16_tn.png)
 
@@ -420,7 +422,7 @@ infinite-$T$ ED tests the hierarchy, which is what the model claims.
 
 (`bh_graph.data`, Fig 19.) Live LIGO-Virgo-KAGRA catalog medians via the GWOSC
 event API (32 BBH events, GWTC-3-confident; bundled literature fallback
-offline): mapping $k = 16\pi M^2/l_p^2$ with $M_\odot \approx 9.14\times10^{37}
+offline): mapping $k = (4\pi/\ln 2) M^2/l_p^2$ (BS flip) with $M_\odot \approx 9.14\times10^{37}
 m_P$, **every** merger satisfies $k_f > k_1 + k_2$ — median fractional creation
 $0.77$ at median radiated fraction $0.04$. The Hawking area theorem in wiring
 language: mergers are leg-creation events; radiated mass is more than paid for
@@ -616,7 +618,7 @@ to lab-observed transition.
 
 ## Appendix AG. Healing is not instant: ringdown is the lag
 
-(`bh_graph.healing`, Fig 30.) $dA/dt = (k l_p^2 - A)/\tau_{heal}$ with the
+(`bh_graph.healing`, Fig 30.) $dA/dt = (4\ln 2\cdot k l_p^2 - A)/\tau_{heal}$ with the
 timescale fixed by data: identifying the merger step response with ringdown
 gives $\tau_{heal} = 1/\mathrm{Im}(\omega_{220}) = 11.24\,M$ — $3.5$ ms for
 GW150914's remnant, the measured damping scale. Two-sided pinch-off follows:
@@ -684,7 +686,7 @@ $k_{crit}$ rather than any fixed mass scale.
 
 (`bh_graph.congestion`, Fig 34.) Repairing Sec 3's hidden assumption (all legs
 from one point): with footprint $r_{foot}$, congestion
-$\chi = k l_p^2/4\pi r_{foot}^2$ decides — bubble iff $\chi > 1$, $R_b =
+$\chi = 4\ln 2\cdot k l_p^2/4\pi r_{foot}^2$ decides — bubble iff $\chi > 1$, $R_b =
 \sqrt{k l_p^2/4\pi}$. Concentrated legs recover $k_{crit} = 4\pi
 r_{src}^2/l_p^2$ exactly; spread legs never bubble at any $k$ — a giant
 interior with $k = 10^6$ legs over $r_{foot} = 10^6 l_p$ sits deep in the
@@ -698,7 +700,7 @@ object is pinpoint by the same token: one leg congests nothing.
 
 (`bh_graph.charge`, Fig 35.) $q = 4\pi Q^2/l_p^2$ legs protected by Gauss's
 law; $k(t) = \max(k_0 - t, q)$. Neutral: full pinch-off, nothing left here.
-Small charge ($Q = 0.5$): pointlike remnant, $M \sim 0.35\,M_P$, stable in our
+Small charge ($Q = 0.5$): pointlike remnant, $M \sim 0.42\,M_P$, stable in our
 space. Large charge ($Q = 5$): extremal remnant BH. Extremality $A \ge 4\pi
 Q^2$ verified along every trajectory. Charged holes cannot fully disconnect;
 neutral ones must. (Schwinger discharge neglected: valid for small cold
@@ -735,11 +737,12 @@ reports "awaiting data," never a free pass.
 2\%$ shrinking with $N$ (attack fails — Page corrections fade as theory
 says). Would-be kill (violations growing with $N$) not observed.
 4. **$s_{leg}$ probe** (`selfattack`, Fig 38). Random TN $s_{leg} \approx
-0.69$, critical Ising GS $0.55$ vs bound $0.25$ — QES assumption holds with
-Ising as narrowest clearance ($2.2\times$). A physical state class under
-$0.25$ would restrict Appendix C's domain (noted, not found).
+0.69$, critical Ising GS $0.55$ vs bound $\ln 2/2 \approx 0.347$ (BS flip) —
+QES assumption holds with Ising as narrowest clearance ($1.6\times$). A
+physical state class under $0.347$ would restrict Appendix C's domain
+(noted, not found).
 5. **LHC thermal shape** (`lhc`, Fig 39). Onset masses $\gg$ LHC reach at all
-benchmarks ($\sim 550$ TeV at $M_D = 1$ TeV, $n = 6$); pre-registered hard
+benchmarks ($\sim 600$ TeV at $M_D = 1$ TeV, $n = 6$); pre-registered hard
 spectra with no soft tail below onset. **KILL on any thermal-shaped excess
 with a soft tail where $k(M) < k_{crit}$.**
 6. **Second-order bending** (`lensing`, BH). First-PN light bending matches
@@ -831,7 +834,7 @@ exactly as it should be.
 ## Appendix AS. Entropic Newton: $F = M_1M_2/r^2$ from leg capacity
 
 (`bh_graph.entropic`, Fig 43.) Verlinde's chain with screens made concrete:
-$k(r) = 4\pi r^2/l_p^2$ legs (Sec 2) $\to$ equipartition $T = 2M_1/k(r)$
+$k(r) = 4\pi r^2/4\ln 2\,l_p^2$ legs (Sec 2, BS) $\to$ equipartition over Planck bits $T = 2M_1/k(r)4\ln 2$
 $\to$ Bekenstein $dS = 2\pi M_2\,dr$ $\to$ $F = T\,dS/dr = M_1M_2/r^2$
 ($G = 1$), verified to log-log slope $-2$ within $10^{-9}$, potential/force
 consistent, leapfrog orbits closing with $T^2 \propto r^3$. The subtlety that
@@ -1133,8 +1136,8 @@ picture for a derivation of the coefficient. Full parameter status:
 |---|---|---|
 | tortuosity $1/2$ | $0.5$ | fitted to $\gamma = 1$ (this appendix) |
 | AT $\alpha$ | $1$ | calibrated to Schwarzschild $c_{eff}$ (BB) |
-| $k(M) = 16\pi M^2$ | — | GR-consistency input (Sec 2; see audit below) |
-| $s_{leg} > 1/4$ | $0.25$ | **Postulate B adopted** (BO; mechanism unknown) |
+| $k(M) = (4\pi/\ln 2)M^2$ | — | GR-consistency input (Sec 2; see audit below) |
+| $s_{leg} = \ln 2$ | $0.69$ | **measured saturation** (BN; B retired by BS flip) |
 | $k_{crit}$ | embedding | heuristic $\to$ formalized in BK |
 
 **Circularity audit for $k(M)$.** The circle is real and is not hidden:
@@ -1194,17 +1197,18 @@ falsifiable-in-principle second-order departure.
 leg occupies $\ge l_p^2$ of footprint), no embedding of $k$ legs exists
 through $r_{foot}$ for $k > \lfloor 4\pi r_{foot}^2/l_p^2 \rfloor$ — the
 horizon pop is then a packing necessity, not a dynamical postulate. The
-code locks the boundary: `packing_kmax(1,1) = 12`, pop unforced at 12,
+code locks the boundary: `packing_kmax(R_POINT,1) = 12`, pop unforced at 12,
 forced at 13, consistent with the Sec 3 heuristic. What remains
-postulated is exactly one thing: the patch size $l_p^2$ per leg.
+postulated is exactly one thing: the patch size $4\ln 2\,l_p^2$ per leg (BS: derived
+from measured $\eta_{vN}$, not assumed — see BS).
 
-**Postulate box ($s_{leg} > 1/4$).** Appendix C assumes each leg carries
-entropy capacity above $1/4$ for the QES argument. Domain: random tensor
-networks and area-law ground states (measured $0.69$ random, $0.55$
-critical Ising — AN wire 4). Violation criterion: any physical state class
-with $s_{leg} < 0.25$ restricts C's domain to states above the bound; the
-wire stays live. Neither number is derived from nothing — both are now
-theorems-given-postulates with their inputs named.
+**Postulate box ($s_{leg} > \ln 2/2$; saturation $s_{leg} = \ln 2$).** Appendix C
+needs $s_{leg} > \ln 2/2 \approx 0.347$ for the QES crossing (BS flip). Domain:
+random tensor networks and area-law ground states (measured $0.69$ random,
+$0.55$ critical Ising — AN wire 4, clearance $1.6\times$). Separately, vacuum
+legs saturate at $s_{leg} = \ln 2$ (BN-measured), which via patch $= 4\ln 2$
+gives $\eta = 1/4$ exactly (BS). Crossing bound vs saturation value are
+different quantities — conflating them caused the BN false alarm.
 
 ## Appendix BL. Hamiltonian sketch + small-$N$ leg check (labeled sketch)
 
@@ -1224,11 +1228,11 @@ spectrum, and the ambient coupling are named known-unknowns, unsolved.
 ## Appendix BM. Reduction theorem: $k(M) \iff R_s(M)$ (no figure — formal)
 
 (`bh_graph.horizon`: `k_from_mass_via_rs`, `schwarzschild_rs`, `k_from_rs`.)
-**Theorem.** Given the patch postulate ($k = A/l_p^2$) and sphere geometry
+**Theorem.** Given the patch postulate ($k = A/4\ln 2\,l_p^2$, BS) and sphere geometry
 ($A = 4\pi R^2$), the mass map $M \mapsto k$ factors entirely through the
-radius map $M \mapsto R_s$: $k(M) = 4\pi R_s(M)^2/l_p^2$. The code takes
-$R_s(M)$ as an explicit function argument — pass $2M$, get $16\pi M^2$;
-pass $3M$, get $36\pi M^2$ (locked as `test_reduction_theorem`). The
+radius map $M \mapsto R_s$: $k(M) = 4\pi R_s(M)^2/4\ln 2\,l_p^2$. The code takes
+$R_s(M)$ as an explicit function argument — pass $2M$, get $(4\pi/\ln 2)M^2$;
+pass $3M$, get $9$ times that (locked as `test_reduction_theorem`). The
 admitted circle of BH's audit is thereby shrunk to exactly one statement:
 $R_s = 2M$, the vacuum Schwarzschild relation. Deriving $k(M)$ from
 microphysics is equivalent to deriving vacuum GR; there is one target,
@@ -1260,30 +1264,28 @@ surgery, all coherent); **(B)** physical legs carry $1/4$ nat sub-maximally
 Bridges 3 (scaling) and 1 (modular Hamiltonian) are gated on resolving
 this; running them first would build on a $2.77\times$ crack.
 
-**Update (BO):** resolution **B adopted** — physical legs carry $1/4$ nat
-sub-maximally (random-TN $\ln 2$ is the kinematic maximum); A rejected
-because it rescales the headline $A = k\,l_p^2$. Bridges 3/1 proceed
-conditionally, inheriting Postulate B as labeled load-bearing input.
+**Update (BO):** resolution **B adopted** — then **reversed by BS** (see below):
+the vN/thermo audit showed A dissolves two debts (BN mismatch + B mechanism)
+while B keeps both. **A adopted:** patch $= 4\ln 2$, legs saturate, $\eta =
+\ln 2/4\ln 2 = 1/4$ exact, $G = 1$ — measured, no postulate. Bridges 3/1
+proceed on measured $\eta$.
 
 ![Fig 62](../figures/fig62_eta.png)
 
-## Appendix BO. Postulate B adopted: physical legs at $1/4$ nat (no figure — formal)
+## Appendix BO. Postulate B adopted, then retired by BS (history preserved)
 
-(`bh_graph.jacobson`: `postulate_B_closure`.) **Postulate B.** Physical leg
-states carry exactly $1/4$ nat each; the random-tensor $\ln 2$ is the
-kinematic maximum, and dynamics selects the sub-maximal value. Consequences
-(all locked as `test_postulate_B_closes`): $\eta = 1/4$, $G = 1$, $S = k/4$,
-Clausius $\varepsilon = \kappa/8\pi$ — the AU chain closes with patch $= 1$
-Planck area intact. **Why B over A:** B preserves Sec 2's $A = k\,l_p^2$
-exactly and localizes the new assumption to one number; A would rescale
-every absolute coefficient ($k(M)$, $k_{crit}$, $S$) while explaining
-nothing more. B is also sharper: it predicts physical entanglement is
-sub-maximal, falsified by any physical state class under $1/4$ (already AN
-wire 4) or any proof that physical legs must saturate $\ln 2$ (would force
-A). **Mechanism status:** unknown — candidates (4-partite sharing,
-QES-extremization selection, Unruh-thermal origin) are ideas, not sketches;
-the QES-selection candidate is flagged circular ($1/4$ is input to $S_{gen}$).
-Postulate B is assumed, fenced, and load-bearing for bridges 3/1.
+(`bh_graph.jacobson`: `postulate_B_closure`, since removed.) **Postulate B
+(retired).** Physical leg states were taken to carry exactly $1/4$ nat
+each; the random-tensor $\ln 2$ was read as a kinematic maximum above the
+physical value. Consequences (then locked): $\eta = 1/4$, $G = 1$, $S = k/4$,
+Clausius $\varepsilon = \kappa/8\pi$ — the AU chain closed with patch $= 1$
+Planck area intact. **Why B was chosen:** it preserved Sec 2's $A = k\,l_p^2$
+exactly and localized the new assumption to one number. **Why reversed (BS):**
+the vN/thermo audit showed the mismatch was a category error — BN measured
+vN capacity ($\ln 2$) while B assigned thermo value ($1/4$) — and option A
+(measured $\eta_{vN}$ + patch $4\ln 2$) dissolves both the mismatch and B's
+mechanism debt with zero new assumptions. B's ledger entry is kept here so
+the reversal is on the record; the live theory is A (BS).
 
 ## Appendix BP. Walk no-go + fluctuation escape: BG solved modulo one assumption
 
@@ -1327,25 +1329,44 @@ lesson confirmed from a third direction.
 
 ![Fig 64](../figures/fig64_green.png)
 
-## Appendix BR. Entropy-capacity tension: $N \le 125$ or something gives (no figure — formal)
+## Appendix BR. Entropy-capacity tension: resolved by BS (history preserved)
 
 (`bh_graph.tn`: `interior_capacity`, `required_entropy`, `max_consistent_n`,
 `capacity_violated`.) **Theorem-in-toy.** Given (i) $E = \varepsilon N$
-with fixed $\varepsilon \approx 0.021$ (B/M), (ii) $S_{ext} = k/4$ (BO),
-(iii) an $N$-qubit interior, (iv) pure total state: $k/4 = S_{ext} =
-S_{int} \le N\ln 2$ forces $k/N \le 4\ln 2$, but $k/N = 16\pi\varepsilon^2
-N$ grows unboundedly — violated past $N_{max} = \ln 2/4\pi\varepsilon^2
-\approx 125$ (locked: consistent at matching scale $N = 25$, violated at
-$1000$; a finite $N_{max}$ exists for *any* constant $\varepsilon$). The
-number 125 inherits $16\pi$ (M's $\varepsilon$ does); the contradiction's
-existence does not. Three resolutions, all load-bearing: **(a)**
-microstates live holographically on legs ($e^{1/4}$ fractional states per
-leg — B restated as the residue); **(b)** $\varepsilon$ runs with $N$
-(required: $\varepsilon \propto 1/M$; note the suite already shows
-$\varepsilon \sim 1/\sqrt{N_{match}}$ — hint, not solution); **(c)** the
-interior is not a Hilbert-space factor (radical holography — Page/QES
-entropies need re-grounding; possible von Neumann vs thermodynamic
-conflation flagged for audit). Postulate B's local $1/4$ is downstream of
-this: global counting already forces sub-maximal *average*
-($\le (N/k)\ln 2 \ll 1/4$ for macro), but B's exact local value needs the
-Hilbert-space question settled first. Sharpest open problem in the paper.
+with fixed $\varepsilon$ (B/M), (ii) $S_{ext} = k\ln 2$ (BS: saturated legs),
+(iii) an $N$-qubit interior, (iv) pure total state: $k\ln 2 = S_{ext} =
+S_{int} \le N\ln 2$ forces $k \le N$, but fixed-$\varepsilon$ $k/N$ grows
+unboundedly — violated past $N_{max}$ ($= N_{match} = 25$ at repo $\varepsilon$,
+identically; a finite $N_{max}$ exists for *any* constant $\varepsilon$).
+**Resolved by BS:** $\varepsilon$ runs as $c/\sqrt{N}$ (temperature-like),
+$N$ goes holographic ($N \propto M^2$), $k = N$ exactly, margin $= 4\ln 2$.
+The vN/thermo audit (Page/QES/Clausius all formula-level thermodynamic; BN's
+SVD the only genuine vN entropy) confirmed the tension was about microstate
+housing, settled by running $\varepsilon$ + saturated legs. (c) partially
+true throughout (no interior factor ever constructed); (a) subsumed (wirings
+counted, no fractional states — $e^{k\ln 2} = 2^k$ integer).
+
+## Appendix BS. The flip to A+(b*): legs saturate, $\varepsilon$ runs (Fig 65)
+
+(`bh_graph.horizon` `PATCH_AREA`, `bh_graph.tn` running-$\varepsilon`,
+`bh_graph.jacobson` `measured_eta_closure`.) The vN/thermo audit (Page,
+QES, Clausius all formula-level thermodynamic; BN's SVD the only genuine
+vN entropy) showed BN's $\eta_{vN} = \ln 2$ vs $1/4$ "mismatch" was a
+category error — capacity vs assignment — and option A dissolves it plus
+Postulate B's mechanism debt with zero new assumptions. **Adopted:**
+patch $= 4\ln 2$ Planck areas per leg (from measured $\eta_{vN}$ + $G = 1$
+units), legs saturate ($s_{leg} = \ln 2$), $\eta = \ln 2/4\ln 2 = 1/4$
+exact, $G = 1$, $k(M) = (4\pi/\ln 2)M^2$. **Adopted (b*):** $\varepsilon$
+runs as $c/\sqrt{N}$ (temperature-like, $c = \sqrt{4\ln 2/16\pi}$ from the
+crossover identity), $N$ goes holographic ($N \propto M^2$), $k = N$
+exactly, $\alpha = 1$ (the growing-$\alpha$ corollary revised — it holds
+only for the fixed-$\varepsilon$ matching form), capacity margin $= 4\ln 2$.
+Entropic Newton preserved exactly (equipartition over Planck bits
+$N = k\cdot 4\ln 2$, $G = 1$ locked by the chain test). QES transition
+bound moves to $\ln 2/2$ (AN wire 4 margin $2.2\times \to 1.6\times$, no
+trip). **Ledger: 6 assumptions $\to$ 4** (measured $R_s$, fitted $1/2$,
+calibrated $\alpha$, assumed $\mu(\chi)$), **zero mechanism debts** — every
+survivor is an input, fit, calibration, or labeled assumption, no
+unexplained numbers.
+
+![Fig 65](../figures/fig65_flip.png)
