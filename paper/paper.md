@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.5 — computational companion paper (Secs 1–3 + Appendices A–BM)
+**Draft v3.6 — computational companion paper (Secs 1–3 + Appendices A–BN)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1232,3 +1232,20 @@ microphysics is equivalent to deriving vacuum GR; there is one target,
 not a web. (Scaling remark: $R_s \propto M$ alone follows from dimensional
 analysis + scale invariance — the unfactorable residue is the pure number
 $2$.)
+
+## Appendix BN. Jacobson bridge 2: constancy passes, $\eta$ exposes $\ln 2$
+
+(`bh_graph.jacobson`, Fig 62.) The cheapest Jacobson falsifier, run first:
+$S_{ent}/k$ across random star-TN cuts ($N = 8$ bulk, $k = 1$–$4$, 12
+seeds each). **Constancy passes:** drift $< 0.8\%$ — the area law with
+universal coefficient holds in the $k$-limited regime (local Rindler cuts
+always are). **Coefficient exposes:** $\eta = 0.69 = \ln 2$ (qubit legs),
+not the $1/4$ the AU chain assumes — face-value $G = 1/4\eta = 0.36 \ne 1$.
+Two resolutions, no bluffing: **(A)** the leg patch is $4\ln 2 \approx
+2.77$ Planck areas (recalibrates $A = k\,l_p^2$, $k(M)$, $k_{crit}$ — major
+surgery, all coherent); **(B)** physical legs carry $1/4$ nat sub-maximally
+(keeps patch $= 1$, needs a dynamical reason — new open assumption).
+Bridges 3 (scaling) and 1 (modular Hamiltonian) are gated on resolving
+this; running them first would build on a $2.77\times$ crack.
+
+![Fig 62](../figures/fig62_eta.png)

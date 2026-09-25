@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v3.5 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (269 tests)}
+\author{Philippe Leblond \\ \small Draft v3.6 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (271 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -288,6 +288,10 @@ $\sim2\times$ slower at $\lambda=3$ (sketch, $N=8$).
 \section{Reduction: $k(M)\iff R_s(M)$}
 $M\mapsto k$ factors entirely through $M\mapsto R_s$ (explicit function
 argument; $3M$ input gives $36\pi M^2$). Circle shrunk to one statement.
+
+\section{Bridge 2: constancy passes, $\eta=\ln2$ (Fig.~62)}
+$S/k$ flat to $<1\%$ across cuts, but at $\ln2$, not $1/4$: face-value
+$G=0.36$. Patch $=4\ln2$ or sub-maximal legs; bridges 3/1 gated.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

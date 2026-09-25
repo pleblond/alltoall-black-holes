@@ -44,11 +44,11 @@ micro-derivation behind $g_{rr}$ and the un-derived gap coefficient.
 
 | Path | Description | License |
 |---|---|---|
-| [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BM) | CC BY 4.0 |
+| [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BN) | CC BY 4.0 |
 | `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
-| `tests/` | 269 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 271 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -63,7 +63,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN `jacobson` ext.
 
 ## Quickstart
 
@@ -71,7 +71,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 269 tests
+python -m pytest tests/ -q          # 271 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -157,9 +157,10 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
-v3.5 — complete through Appendix BM (reduction theorem):
-the $k(M)$ circle is shrunk to exactly one statement ($R_s = 2M$);
-gravity scoreboard unchanged (all pass to first PN order).
+v3.6 — complete through Appendix BN (Jacobson bridge 2):
+area-law constancy passes ($< 1\%$ drift) but $\eta = \ln 2 \ne 1/4$
+exposes a $2.77\times$ crack under the AU chain (two resolutions named,
+bridges 3/1 gated).
 The paper is a living research document:
 errata are recorded in-text (see Appendices AC/AE/AR), and the kill
 list (Appendix AN) scores all future results.

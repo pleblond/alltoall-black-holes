@@ -155,7 +155,8 @@ from bh_graph.orici import (
 )
 from bh_graph.jacobson import (
     clausius_leg_energy, clausius_residual, newton_G_from_eta,
-    einstein_lhs_scale,
+    einstein_lhs_scale, G_from_eta, eta_profile,
+    eta_constancy_deviation, eta_measured,
 )
 from bh_graph.fission import (
     fission_budget, fission_allowed, no_split_rule, mouth_congestions,
@@ -332,7 +333,8 @@ __all__ = [
     "spectral_dimension", "heat_coefficients",
     "ollivier_curvature", "mean_curvature", "eh_functional", "wasserstein1",
     "clausius_leg_energy", "clausius_residual", "newton_G_from_eta",
-    "einstein_lhs_scale",
+    "einstein_lhs_scale", "G_from_eta", "eta_profile",
+    "eta_constancy_deviation", "eta_measured",
     "fission_budget", "fission_allowed", "no_split_rule", "mouth_congestions",
     "both_mouths_horizons", "cross_links", "radiated_fraction_equal_mass",
     "fission_phase",

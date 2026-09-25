@@ -37,6 +37,34 @@ def newton_G_from_eta(eta: float = 0.25) -> float:
     return float(1.0 / (4.0 * eta))
 
 
+def G_from_eta(eta: float) -> float:
+    """BN: Jacobson G for a MEASURED eta; eta = ln 2 -> G ~ 0.36."""
+    return float(1.0 / (4.0 * eta))
+
+
+def eta_profile(n_bulk: int = 8, k_grid=(1, 2, 3, 4), trials: int = 12,
+                seed: int = 0):
+    """BN bridge 2: S_ent/k across cut sizes (random star TN, k-limited)."""
+    from bh_graph.tn import mean_star_entropy
+    ks = np.asarray(list(k_grid), dtype=int)
+    means, stds = mean_star_entropy(n_bulk, ks, trials=trials, seed=seed)
+    return ks, means, stds, means / ks
+
+
+def eta_constancy_deviation(n_bulk: int = 8, k_grid=(1, 2, 3, 4),
+                            trials: int = 12, seed: int = 0) -> float:
+    """BN: max fractional drift of S/k across cuts (bridge 2 constancy)."""
+    _, _, _, ratios = eta_profile(n_bulk, k_grid, trials, seed)
+    return float(np.max(np.abs(ratios - ratios.mean()) / ratios.mean()))
+
+
+def eta_measured(n_bulk: int = 8, k_grid=(1, 2, 3, 4), trials: int = 12,
+                 seed: int = 0) -> float:
+    """BN: mean S/k — the TN-measured eta (expect ln 2, not 1/4)."""
+    _, _, _, ratios = eta_profile(n_bulk, k_grid, trials, seed)
+    return float(ratios.mean())
+
+
 def einstein_lhs_scale() -> dict[str, float]:
     """Bookkeeping of the chain's moving parts (all Planck units)."""
     return {"eta_area_coeff": 0.25, "G_newton": newton_G_from_eta(),

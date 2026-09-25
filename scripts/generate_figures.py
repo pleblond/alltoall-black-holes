@@ -53,6 +53,7 @@ from bh_graph.strain import (
 from bh_graph.weakfield import weak_field_graph as _wfg, kappa_profile as _kp
 from bh_graph.legham import leg_field_hamiltonian as _lh, scrambling_vs_leg_coupling as _sv
 from bh_graph.syk import otoc_curve as _oc
+from bh_graph.jacobson import eta_profile as _etap, G_from_eta as _geta
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1437,6 +1438,25 @@ def fig61_legham():
     fig.savefig(FIG / "fig61_legham.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig62_eta():
+    ks, means, stds, ratios = _etap()
+    fig, axes = plt.subplots(1, 2, figsize=(9, 3.5))
+    axes[0].errorbar(ks, ratios, yerr=stds / ks, marker="o", color="#2563eb",
+                     label="measured S/k", capsize=3)
+    axes[0].axhline(np.log(2), ls="--", color="black", label="ln2 (qubit max)")
+    axes[0].axhline(0.25, ls=":", color="#dc2626", label="1/4 (chain needs)")
+    axes[0].set_xlabel("cut legs k"); axes[0].set_ylabel("S/k (nats)")
+    axes[0].set_title("Bridge 2: flat, but at ln2 not 1/4")
+    axes[0].legend(fontsize=8)
+    axes[1].bar(["chain needs", "TN measures"], [1.0, _geta(np.log(2))],
+                color=["gray", "#dc2626"])
+    axes[1].set_ylabel("G"); axes[1].set_title("G-ledger: 1.0 vs 0.36")
+    fig.suptitle("Fig 62 — BN: bridge-2 constancy passes, coefficient exposes")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig62_eta.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1499,6 +1519,7 @@ def main():
     fig59_weakfield()
     fig60_divergence()
     fig61_legham()
+    fig62_eta()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

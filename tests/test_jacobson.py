@@ -10,3 +10,16 @@ def test_clausius_fixes_leg_energy():
 
 def test_G_unity_from_quarter():
     assert newton_G_from_eta(0.25) == 1.0
+
+
+def test_bridge2_constancy_passes():
+    from bh_graph.jacobson import eta_constancy_deviation
+    assert eta_constancy_deviation() < 0.02  # S/k flat across cuts
+
+
+def test_bridge2_coefficient_exposes_mismatch():
+    # Measured eta = ln 2 (qubit legs), NOT the 1/4 the chain assumes.
+    import numpy as np
+    from bh_graph.jacobson import eta_measured, G_from_eta
+    assert abs(eta_measured() - np.log(2)) / np.log(2) < 0.02
+    assert abs(G_from_eta(np.log(2)) - 0.3607) < 0.005  # G != 1 at face value
