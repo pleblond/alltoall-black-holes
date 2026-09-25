@@ -36,7 +36,13 @@ the same leg network: Newton's law, Kepler's laws, textbook redshift digits,
 full-strength light bending, Cassini-grade Shapiro delay, $\gamma = 1$
 exactly, and Mercury's $43''$/cy by direct geodesic integration. Attraction's
 sign is derived from pure flux with zero tuning (negative radial
-Ollivier-Ricci in every configuration). All claims ship with
+Ollivier-Ricci in every configuration). At weak field, we further study gravity
+as an emergent consequence of graph transport and exterior entanglement
+capacity: microscopic lattice walks alone do not reproduce the Newtonian
+inverse-square law, while their combination with the model's exterior-leg
+thermodynamic structure yields the $1/r^2$ force law; an independent
+Ollivier–Ricci analysis finds the expected negative radial curvature sign,
+although its quantitative scaling remains an open problem. All claims ship with
 reproducible simulations (`python scripts/generate_figures.py`) and an
 interactive demo (`streamlit run app.py`).
 
