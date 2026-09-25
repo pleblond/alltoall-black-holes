@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small Draft v3.6 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (271 tests)}
+\author{Philippe Leblond \\ \small Draft v3.7 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (272 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -292,6 +292,11 @@ argument; $3M$ input gives $36\pi M^2$). Circle shrunk to one statement.
 \section{Bridge 2: constancy passes, $\eta=\ln2$ (Fig.~62)}
 $S/k$ flat to $<1\%$ across cuts, but at $\ln2$, not $1/4$: face-value
 $G=0.36$. Patch $=4\ln2$ or sub-maximal legs; bridges 3/1 gated.
+
+\section{Postulate B adopted}
+Physical legs at $1/4$ nat (random $\ln2$ is kinematic max): $\eta=1/4$,
+$G=1$, $S=k/4$ close with patch $=1$. Mechanism unknown; bridges proceed
+conditionally, B load-bearing.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

@@ -65,6 +65,18 @@ def eta_measured(n_bulk: int = 8, k_grid=(1, 2, 3, 4), trials: int = 12,
     return float(ratios.mean())
 
 
+def postulate_B_closure(s_leg_phys: float = 0.25) -> dict[str, float]:
+    """BO: consistency ledger under Postulate B (physical legs = 1/4 nat).
+
+    Random-TN ln 2 is the kinematic maximum; dynamics selects the
+    sub-maximal physical value. With s_leg = 1/4: eta = 1/4, G = 1,
+    S = k/4, Clausius eps = kappa/8pi — everything closes.
+    """
+    eta = s_leg_phys  # patch = 1 Planck area, S = k*s_leg
+    return {"s_leg_phys": s_leg_phys, "eta": eta, "G_newton": G_from_eta(eta),
+            "S_per_leg": s_leg_phys}
+
+
 def einstein_lhs_scale() -> dict[str, float]:
     """Bookkeeping of the chain's moving parts (all Planck units)."""
     return {"eta_area_coeff": 0.25, "G_newton": newton_G_from_eta(),

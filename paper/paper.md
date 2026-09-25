@@ -2,7 +2,7 @@
 
 **Philippe Leblond**
 
-**Draft v3.6 — computational companion paper (Secs 1–3 + Appendices A–BN)
+**Draft v3.7 — computational companion paper (Secs 1–3 + Appendices A–BO)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1131,7 +1131,7 @@ picture for a derivation of the coefficient. Full parameter status:
 | tortuosity $1/2$ | $0.5$ | fitted to $\gamma = 1$ (this appendix) |
 | AT $\alpha$ | $1$ | calibrated to Schwarzschild $c_{eff}$ (BB) |
 | $k(M) = 16\pi M^2$ | — | GR-consistency input (Sec 2; see audit below) |
-| $s_{leg} > 1/4$ | $0.25$ | assumed QES input (C; clearance in AN/4) |
+| $s_{leg} > 1/4$ | $0.25$ | **Postulate B adopted** (BO; mechanism unknown) |
 | $k_{crit}$ | embedding | heuristic $\to$ formalized in BK |
 
 **Circularity audit for $k(M)$.** The circle is real and is not hidden:
@@ -1248,4 +1248,27 @@ surgery, all coherent); **(B)** physical legs carry $1/4$ nat sub-maximally
 Bridges 3 (scaling) and 1 (modular Hamiltonian) are gated on resolving
 this; running them first would build on a $2.77\times$ crack.
 
+**Update (BO):** resolution **B adopted** — physical legs carry $1/4$ nat
+sub-maximally (random-TN $\ln 2$ is the kinematic maximum); A rejected
+because it rescales the headline $A = k\,l_p^2$. Bridges 3/1 proceed
+conditionally, inheriting Postulate B as labeled load-bearing input.
+
 ![Fig 62](../figures/fig62_eta.png)
+
+## Appendix BO. Postulate B adopted: physical legs at $1/4$ nat (no figure — formal)
+
+(`bh_graph.jacobson`: `postulate_B_closure`.) **Postulate B.** Physical leg
+states carry exactly $1/4$ nat each; the random-tensor $\ln 2$ is the
+kinematic maximum, and dynamics selects the sub-maximal value. Consequences
+(all locked as `test_postulate_B_closes`): $\eta = 1/4$, $G = 1$, $S = k/4$,
+Clausius $\varepsilon = \kappa/8\pi$ — the AU chain closes with patch $= 1$
+Planck area intact. **Why B over A:** B preserves Sec 2's $A = k\,l_p^2$
+exactly and localizes the new assumption to one number; A would rescale
+every absolute coefficient ($k(M)$, $k_{crit}$, $S$) while explaining
+nothing more. B is also sharper: it predicts physical entanglement is
+sub-maximal, falsified by any physical state class under $1/4$ (already AN
+wire 4) or any proof that physical legs must saturate $\ln 2$ (would force
+A). **Mechanism status:** unknown — candidates (4-partite sharing,
+QES-extremization selection, Unruh-thermal origin) are ideas, not sketches;
+the QES-selection candidate is flagged circular ($1/4$ is input to $S_{gen}$).
+Postulate B is assumed, fenced, and load-bearing for bridges 3/1.
