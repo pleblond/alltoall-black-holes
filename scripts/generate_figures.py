@@ -103,9 +103,11 @@ from bh_graph.kerrpage import kerr_page
 from bh_graph.syk import syk_hamiltonian, ising_chain_hamiltonian, otoc_curve, scrambling_time_threshold
 from bh_graph.data import load_events, catalog_leg_audit
 from bh_graph.litcompare import head_to_head
+from bh_graph import uvscatter as _uv
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
+DATA = Path(__file__).resolve().parent.parent / "data"
 
 plt.rcParams.update({"figure.dpi": 150, "font.size": 10, "axes.grid": True, "grid.alpha": 0.3})
 
@@ -1680,6 +1682,187 @@ def fig69_o5_protocol():
     fig.savefig(FIG / "fig69_o5_protocol.png", bbox_inches="tight")
     plt.close(fig)
 
+def fig70_uv_c():
+    L = 32
+    ks = [10, 20, 40, 80, 160]
+    soft = [_uv.measure_c(L, k, mode="soft") for k in ks]
+    mix = [_uv.measure_c(L, k, mode="mixed") for k in [10, 20, 40]]
+    hard = _uv.measure_c(24, 10, mode="hard")
+    fig, ax = plt.subplots(figsize=(7, 4.2))
+    ax.errorbar(ks, [m["c_median"] for m in soft],
+                yerr=[m["c_std"] for m in soft], marker="o", color="#2563eb",
+                label="soft alpha=ln2 (L=32)")
+    ax.errorbar([10, 20, 40], [m["c_median"] for m in mix],
+                yerr=[m["c_std"] for m in mix], marker="s", color="#16a34a",
+                label="mixed 0.75r_e core")
+    ax.scatter([10], [hard["c_median"]], marker="x", s=80, color="#dc2626",
+               label="hard cylinders (L=24)")
+    ax.axhspan(0.456 - 0.025, 0.456 + 0.025, color="gray", alpha=0.2,
+               label="BU-implied 0.456+-0.025")
+    ax.axhline(1.0 / np.sqrt(np.pi), ls="--", color="black", lw=1,
+               label="geometric 1/sqrt(pi)=0.564")
+    ax.set_xscale("log")
+    ax.set_xlabel("k (legs)")
+    ax.set_ylabel("c = excess/x")
+    ax2 = ax.secondary_yaxis("right", functions=(lambda c: 2 * c, lambda p: p / 2))
+    ax2.set_ylabel("p = 2c")
+    ax.set_title("Fig 70 — BV: dilute c from ln2 scattering (no tuning)")
+    ax.legend(fontsize=7, loc="upper left")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig70_uv_c.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig71_uv_pop():
+    L = 32
+    kgrid = [5, 10, 20, 40, 80, 160]
+    rows = _uv.pop_scan(L, kgrid, mode="mixed")
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4.2))
+    kk = np.array([r["k"] for r in rows])
+    reach = np.array([r["reachable_frac"] for r in rows])
+    axes[0].semilogx(kk, reach, marker="o", color="#2563eb")
+    axes[0].axvline(_uv.kcrit_of(2.0, _uv.sigma_lat2()), ls="--", color="#dc2626",
+                    label="k_crit(r=2)=44.1")
+    axes[0].set_xlabel("k")
+    axes[0].set_ylabel("reachable fraction")
+    axes[0].set_title("Mixed pop: graph disconnects at chi~1")
+    axes[0].legend(fontsize=8)
+    for k, ls, lab in [(20, "-", "mixed k=20"), (40, "--", "mixed k=40")]:
+        uv = _uv.uv_running_p(_uv.running_profile(L, k, mode="mixed"))
+        chi = np.array([b["chi"] for b in uv])
+        p = np.array([b["p"] for b in uv])
+        ok = np.isfinite(chi) & np.isfinite(p)
+        axes[1].plot(chi[ok], p[ok], marker="o", ls=ls, label=lab)
+    uv = _uv.uv_running_p(_uv.running_profile(L, 40, mode="soft"))
+    chi = np.array([b["chi"] for b in uv])
+    p = np.array([b["p"] for b in uv])
+    ok = np.isfinite(chi) & np.isfinite(p)
+    axes[1].plot(chi[ok], p[ok], marker="^", ls=":", color="gray", label="soft k=40")
+    axes[1].axhspan(0.913 - 0.049, 0.913 + 0.049, color="gray", alpha=0.2,
+                    label="BU p=0.913+-0.049")
+    axes[1].set_xlabel("chi = (R_s/r)^2")
+    axes[1].set_ylabel("p(shell) = 2c")
+    axes[1].set_title("UV running: p rises toward chi~1, then pops")
+    axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 71 — BV: horizon pop + UV running without a metric")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig71_uv_pop.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig72_uv_ladder():
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4.2))
+    d = _uv.measure_c(12, 10, mode="soft")["c_median"]
+    t = _uv.mc_transport_c(12, 10, temperatures=(0.5, 2.0), n_walks=40, seed=1)
+    r = _uv.mc_ray_tortuosity(10, 6.0)["c"]
+    mcs = [row["c"] for row in t["ladder"]]
+    axes[0].bar(["Dijkstra\n(optimal)", "MC walks\nT=0.5", "MC walks\nT=2.0",
+                 "rays\n(no detour)"],
+                [d, mcs[0], mcs[1], r],
+                color=["#2563eb", "#16a34a", "#16a34a", "#dc2626"])
+    axes[0].axhspan(0.456 - 0.1, 0.456 + 0.1, color="gray", alpha=0.2)
+    axes[0].set_ylabel("c")
+    axes[0].set_title("Transport ladder: routing is worth 3x")
+    xs, ys = [], []
+    sig = _uv.sigma_lat2()
+    for L in (16, 24, 32):
+        t0 = _uv.lattice_tort0(L)
+        for k in (10, 20, 40):
+            run = _uv.run_soft(L, k)
+            fe = _uv.fit_c_dilute(_uv.tortuosity_profile(
+                run["d_graph"], run["d_clean"], run["pos"], _uv.rs_of(k, sig)))
+            gd = _uv.graph_distance_profile(run["d_graph"], run["d_clean"], run["pos"])
+            fg = _uv.c_with_graph_distance(gd, k, sig, t0)
+            xs.append(fe["c_median"])
+            ys.append(fg["c_median"])
+    xs, ys = np.array(xs), np.array(ys)
+    axes[1].scatter(xs, ys, color="#2563eb")
+    lo, hi = float(np.min([xs, ys])) - 0.05, float(np.max([xs, ys])) + 0.05
+    axes[1].plot([lo, hi], [lo, hi], "--", color="gray", label="y=x")
+    axes[1].set_xlabel("c (Euclidean r)")
+    axes[1].set_ylabel("c (graph distance)")
+    axes[1].set_title("No-r check: operational distance agrees")
+    axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 72 — BV: Boltzmann ladder + coordinate-free c")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig72_uv_ladder.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig73_uv_n4000():
+    import json
+    from bh_graph import shellscale as _hs, sinkor as _sk
+    art = json.load(open(DATA / "p80_n4000_beta099.json"))
+    sis = json.load(open(DATA / "p16_n4000_beta099_seed1000.json"))
+    art8k = json.load(open(DATA / "p80_n8000_beta087.json"))
+    art16k = json.load(open(DATA / "p80_n16000_beta074.json"))
+    prof4k = {float(k): v for k, v in art["stacked"].items()}
+    loc4k = {float(k): v for k, v in art["local"].items()}
+    loc16 = np.array([[float(v) for v in _hs.local_slopes(
+        {float(k): vv for k, vv in w.items()}).values()] for w in sis["profiles"]])
+    loc_sem80 = loc16.std(axis=0) / np.sqrt(len(sis["profiles"]) * 5.0)
+    prof8k = {float(k): v for k, v in art8k["stacked"].items()}
+    loc8k = {float(k): v for k, v in art8k["local"].items()}
+    loc80 = np.array([[float(v) for v in _hs.local_slopes(
+        {float(k): vv for k, vv in w.items()}).values()]
+        for w in art8k["profiles"]])
+    loc_sem8k = loc80.std(axis=0) / np.sqrt(len(art8k["profiles"]))
+    prof16k = {float(k): v for k, v in art16k["stacked"].items()}
+    loc16k = {float(k): v for k, v in art16k["local"].items()}
+    loc160 = np.array([[float(v) for v in _hs.local_slopes(
+        {float(k): vv for k, vv in w.items()}).values()]
+        for w in art16k["profiles"]])
+    loc_sem16k = loc160.std(axis=0) / np.sqrt(len(art16k["profiles"]))
+    bu = dict(_hs.BU_N1020_STACKED)
+    loc1020 = _hs.local_slopes(bu)
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4.2))
+    n_pts = np.array([300, 600, 1020, 4000, 8000, 16000])
+    b_pts = np.array([1.5, 1.28, 1.24, art["config"]["beta"],
+                      art8k["config"]["beta"], art16k["config"]["beta"]])
+    axes[0].plot(n_pts, b_pts, marker="o", color="#2563eb", label="calibrated")
+    f = _sk.beta_fit_inv_n()
+    nn = np.linspace(300, 16000, 200)
+    axes[0].plot(nn, f["beta_inf"] + f["a"] / nn, "--", color="gray",
+                 label="1/N extrap (fails)")
+    axes[0].axhline(1.18, ls=":", color="#dc2626", label="pre-run guess 1.18")
+    axes[0].set_xlabel("N")
+    axes[0].set_ylabel("beta(N)")
+    axes[0].set_title("Recalibration: drift faster than 1/N")
+    axes[0].legend(fontsize=8)
+    for prof, sty, lab in [(bu, "o-", "N=1020 BU"), (prof4k, "s--", "N=4000"),
+                             (prof8k, "^:", "N=8000"), (prof16k, "d-.", "N=16000")]:
+        rr = np.array(sorted(prof))
+        kk = np.array([-prof[r] for r in rr])
+        axes[1].loglog(rr, kk, sty, label=lab)
+    axes[1].set_xlabel("r")
+    axes[1].set_ylabel("|kappa| stacked")
+    axes[1].set_yticks([0.5, 1.0])
+    axes[1].get_yaxis().set_major_formatter(plt.ScalarFormatter())
+    axes[1].set_title("Stacked profiles agree in shape")
+    axes[1].legend(fontsize=8)
+    axes[2].plot(sorted(loc1020), [loc1020[r] for r in sorted(loc1020)],
+                 marker="o", label="N=1020 local p")
+    lk = sorted(loc4k)
+    axes[2].errorbar(lk, [loc4k[r] for r in lk], yerr=loc_sem80,
+                     marker="s", label="N=4000 local p")
+    lk8 = sorted(loc8k)
+    axes[2].errorbar(lk8, [loc8k[r] for r in lk8], yerr=loc_sem8k,
+                     marker="^", label="N=8000 local p")
+    lk16 = sorted(loc16k)
+    axes[2].errorbar(lk16, [loc16k[r] for r in lk16], yerr=loc_sem16k,
+                     marker="d", label="N=16000 local p")
+    axes[2].axhline(art["stacked_fit"]["p"], ls="--", color="gray",
+                    label="N=4000 global p")
+    axes[2].set_xlabel("window mid r")
+    axes[2].set_ylabel("local p")
+    axes[2].set_title("UV turnover: inner windows flatten")
+    axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 73 — BV: N=4000/8000/16000 campaigns (80 graphs, CPU+pod+farm)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig73_uv_n4000.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1750,6 +1933,10 @@ def main():
     fig67_orici_p_fit()
     fig68_kilonova_gap()
     fig69_o5_protocol()
+    fig70_uv_c()
+    fig71_uv_pop()
+    fig72_uv_ladder()
+    fig73_uv_n4000()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

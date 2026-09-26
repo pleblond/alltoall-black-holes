@@ -31,14 +31,16 @@ from bh_graph.echoes import echo_delay_sec
 from bh_graph.ds import ds_legs, stellar_bh_total_legs
 from bh_graph.cosmic import ds_scrambling_gyr
 from bh_graph.remnant import required_beta_for_dm
+from bh_graph import uvscatter as _uv
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–BS", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–BS, BV", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–BS in src/bh_graph/ (paper/main.pdf)")
+st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–BS, BV in src/bh_graph/ (paper/main.pdf)")
 
-tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tab4 = st.tabs([
+tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tabBV, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
-    "A: Circuits", "B: k(N)", "C: QES", "D: Page", "F/G: QEC+robust", "H–L", "Q/R: Data", "Paper",
+    "A: Circuits", "B: k(N)", "C: QES", "D: Page", "F/G: QEC+robust", "H–L", "Q/R: Data",
+    "BV: UV scattering", "Paper",
 ])
 
 with tab1:
@@ -306,6 +308,30 @@ with tabQ:
     st.subheader("AP/AQ — structure + scatter")
     st.image("figures/fig41_ps.png", caption="fig41_ps.png")
     st.image("figures/fig42_scatter.png", caption="fig42_scatter.png")
+
+with tabBV:
+    st.header("BV — UV tortuosity-as-scattering")
+    st.markdown("Legs as radial line defects ($\\sigma = 4\\ln 2$), soft cost "
+                "$\\ln 2$ per encounter. Dilute $c \\approx 0.44$–$0.60$ with zero "
+                "tuning (target $0.456$, geometric $1/\\sqrt\\pi$); $p = 2c$, $\\gamma = 2c$.")
+    col_a, col_b = st.columns([1, 2])
+    with col_a:
+        bv_L = st.slider("L (lattice)", 8, 32, 16, step=8)
+        bv_k = st.slider("k (legs)", 5, 80, 20, step=5)
+        bv_mode = st.selectbox("mode", ["soft", "mixed", "hard"])
+        with st.spinner("measuring c..."):
+            bv = _uv.measure_c(int(bv_L), int(bv_k), mode=bv_mode)
+        if bv.get("ok"):
+            st.metric("c (median)", f"{bv['c_median']:.3f} ± {bv['c_std']:.3f}")
+            st.metric("p = 2c", f"{bv['p_median']:.3f}")
+            st.metric("gamma = 2c", f"{bv['gamma_median']:.3f}")
+            st.metric("reachable", f"{bv['reachable_frac']:.3f}")
+        else:
+            st.warning("popped (graph disconnected) — that is the horizon.")
+    with col_b:
+        st.image("figures/fig70_uv_c.png", caption="fig70: dilute c, no tuning")
+        st.image("figures/fig71_uv_pop.png", caption="fig71: pop + UV running")
+        st.image("figures/fig72_uv_ladder.png", caption="fig72: ladder + no-r check")
 
 with tab4:
     st.header("Paper draft")

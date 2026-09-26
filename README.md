@@ -42,17 +42,18 @@ ringdown, LHC-recast, and quantum-hardware data. Falsifiers are pre-registered
 (Appendix AN); one sub-claim (broad remnant dark matter) is already ruled
 out on the record, with a narrow surviving window. Postulates, derivations,
 and open gaps are labeled throughout — including the tortuosity
-micro-derivation behind $g_{rr}$ and the un-derived gap coefficient.
+micro-derivation behind $g_{rr}$ (derived in BV from $\ln 2$ scattering)
+and the un-derived gap coefficient.
 
 ## Contents
 
 | Path | Description | License |
 |---|---|---|
-| [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BS + BU) | CC BY 4.0 |
+| [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BS + BU, BV) | CC BY 4.0 |
 | `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
-| `tests/` | 312 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 356 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -67,7 +68,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding).
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`.
 
 ## Quickstart
 
@@ -75,7 +76,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 312 tests
+python -m pytest tests/ -q          # 356 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -118,6 +119,9 @@ cd paper && pdflatex main.tex && pdflatex main.tex
   v4.0 adds: $p = 0.913\pm0.049$ from exact OR (80 graphs, N = 1020,
   SEM $0.0055$), $M(c_1,c_2)$ pulsar inversion, $M_{ej}(M_{tot})$ shedding law,
   KN band mags + O5 yield arithmetic.
+  v4.1 adds: tortuosity $c \approx 0.44$–$0.60$ from $\ln 2$ line-defect
+  scattering ($p = 2c$, $\gamma = 2c$), UV pop as graph disconnection at
+  $k_{crit}$, $p$ at N = 4000/8000/16000 ($0.9315$, $0.9382$, $0.9137$).
 - **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
   equivalence principle, continuum limits (heat-kernel, Ollivier),
   Raychaudhuri for leg bundles, gap coefficient, crossover scales.
@@ -170,6 +174,11 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
+v4.1: BV UV tortuosity-as-scattering on top of v4.0 — 4 assumptions
+$\to$ 3 (tortuosity $1/2$ derived from $\ln 2$); N = 4000/8000/16000
+campaigns hold $p = 0.93/0.94/0.91$ with turnover $0.63$–$0.69 \to 1.26$–$1.46$
+measured; $\beta(N)$ log-linear over 6 points. 356 tests, 77 figure files
+(Figs 1–73).
 v4.0:
 **no neutron stars** — pulsars, gap objects, and BHs are the same low-$k$
 all:all graphs; J0737 2PN measured at $p = 0.913\pm0.049$ (80 graphs,

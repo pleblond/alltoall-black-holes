@@ -2,7 +2,7 @@
 
 **Philippe Leblond** — leblond.philippe@gmail.com
 
-**Draft v4.0 — computational companion paper (Secs 1–3 + Appendices A–BS + BU)
+**Draft v4.1 — computational companion paper (Secs 1–3 + Appendices A–BS + BU, BV)
 
 > Branch retitle: the pre-v4.0 title (*Black Holes as Almost-Perfect All:All
 > Entanglement Graphs: Interior Collapse, Horizon Wiring, and the Micro-Hole
@@ -52,8 +52,13 @@ inverse-square law, while their combination with the model's exterior-leg
 thermodynamic structure yields the $1/r^2$ force law; an independent
 Ollivier–Ricci analysis finds the expected negative radial curvature sign,
 with radial scaling measured at $p = 0.913\pm0.049$ (80 graphs, N = 1020,
-Appendix BU) while the quantitative $\kappa\to c_2$ map remains an open
-derivation. All claims ship with
+Appendix BU) and confirmed at N = 4000/8000/16000 ($0.93/0.94/0.91$, BV)
+while the quantitative $\kappa\to c_2$ map remains an open
+derivation. In the UV ($\chi \to 1$), tortuosity is derived as line-defect
+scattering with entanglement cost $\ln 2$ per encounter ($c \approx 0.44$–$0.60$
+with zero tuning, predicting $p = 2c$ and $\gamma = 2c$), and the horizon pop
+appears as graph disconnection at $k_{crit} = 4\pi r^2/\sigma$ with no metric
+input (BV). All claims ship with
 reproducible simulations (`python scripts/generate_figures.py`) and an
 interactive demo (`streamlit run app.py`).
 
@@ -67,7 +72,7 @@ interactive demo (`streamlit run app.py`).
 | quantum info | scrambling hierarchy, Page curve, QES pop, Hayden–Preskill | derived (A, C, F, H) |
 | phenomenology | no LHC thermal BHs, no echoes, achromatic lensing | nulls held (T, AN5, BB) |
 | compact objects | gap, sub-minimum, super-TOV masses, AT2017gfo, gap-KN prediction | 5 anomalies, one idea (BU) |
-| open frontier | 2nd-PN $c_{tot}$ matches GR via $p = 0.913\pm0.049$ (J0737 $0.1\sigma$); $\kappa\to c_2$ map + tortuosity derivation open | measured (BU), map queued |
+| open frontier | 2nd-PN $c_{tot}$ matches GR via $p = 0.913\pm0.049$ (J0737 $0.1\sigma$, BV holds to N=16000); tortuosity $1/2$ derived (BV), $\kappa\to c_2$ map open | measured (BU+BV), map queued |
 
 ---
 
@@ -1553,3 +1558,201 @@ per module, not imported once — same numbers, centralize later.)
 ![Fig 67](../figures/fig67_orici_p_fit.png)
 ![Fig 68](../figures/fig68_kilonova_gap.png)
 ![Fig 69](../figures/fig69_o5_protocol.png)
+## Appendix BV. UV tortuosity-as-scattering: $c$, $p$, $\gamma$ from $\ln 2$ (Figs 70–73)
+
+(`bh_graph.uvscatter`, `bh_graph.sinkor`, `bh_graph.shellscale`; added v4.1.)
+BU's numbers ($p = 0.913 \pm 0.049$, $\beta(N)$, $c_1 = 3.36$, $w = 1.953$)
+are comparison targets only — nothing below takes them as input.
+
+**Motivation.** BH fitted the tortuosity factor $1/2$ to $\gamma = 1$ and BU
+fitted the radial exponent $p$ and bridge law $\beta(N)$ to the J0737
+2PN cancellation. Three open entries, one mechanism: exterior legs are radial
+line defects of cross-section $\sigma = 4\ln 2\,l_p^2$ (BS patch postulate),
+and graph walks scatter off them with entanglement cost $s_{leg} = \ln 2$ per
+encounter (BN-measured saturation). The dilute-line tortuosity of this porous
+medium derives $c$, hence $p = 2c$, $\gamma = 2c$, and the pop at $\chi = 1$.
+
+**Micro identities (zero new assumptions).** $k$ legs piercing a sphere of
+radius $r$ give 2D density $\rho_{2D} = k/4\pi r^2$ and occupied area fraction
+$\chi(r) = \rho_{2D}\sigma = k\sigma/4\pi r^2$. With $R_s = \sqrt{k\sigma/4\pi}$
+(the radius where $\chi = 1$) and $x = R_s/r$: $\chi = x^2$ exactly. The pop
+$k_{crit} = 4\pi r^2/\sigma$ is the BK packing theorem restated ($r = 1.6\,l_p
+\to k_{crit} = 11.6$, matching `packing_kmax` exactly). Mean transverse spacing
+$d = r\sqrt{4\pi/k}$ and exclusion radius $r_e = \sqrt{\sigma/\pi}$ give the
+detour fraction $r_e/d = \sqrt{\chi/\pi}$ (identity), so $dl/dr = 1 + x/\sqrt\pi$
+for unit detour efficiency: $c_{geom} = 1/\sqrt\pi = 0.564$ with $f = 1$.
+Comparing $h = (1+cx)^2 \approx 1 + 2cx$ with $g_{rr} = (1+U)^{2p} \approx 1+px$
+($U = x/2$) gives $p = 2c$; with $f = 1-x$, $\gamma = (h-1)/(f^{-1}-1) = 2c$.
+One packing number predicts the radial exponent, the PPN parameter, and via
+$c_2(p) = p(2p-1)$, $c_{tot} = 3.36 + 1.953\,c_2$ the 2PN cancellation.
+
+**Simulation design.** $L^3$ cubic lattice (ambient graph, mean degree ~6),
+core = nodes within $1\,l.u.$ of center (the all:all interior, never blocked),
+$k$ radial rays in Fibonacci directions (the exterior legs). Three modes:
+**hard** (BFS avoiding cylinders $d < 0.9\,l.u.$), **soft** (Dijkstra with
+Gaussian edge cost $w = 1 + \alpha e^{-d^2/2r_e^2}$, $\alpha = \ln 2$,
+$r_e = 0.60\,l.u.$ from $\sigma = 1.139\,l.u.^2$ at $a = 1.56\,l_p$), **mixed**
+(hard core $d < 0.75\,r_e$ + soft Gaussian outside). Observable per radial
+shell: $tort = d_{graph}/r$, $tort_{clean}$ on the undefected lattice
+(Manhattan baseline $\sim 1.35$), excess $= tort/tort_{clean} - 1$ (the ratio
+cancels the lattice baseline and core-source convention), $c = excess/x$.
+Dilute fit over $\chi < 0.2$ shells inside the inscribed sphere (box corners
+excluded). Estimators (median/mean/regression) agree within $0.15$.
+
+**Results (Fig 70).** Soft $\alpha = \ln 2$, L=32: $c = 0.437$ ($k = 20$),
+$0.636$ ($k = 80$), $0.681$ ($k = 160$); L=64, $k = 160$: $0.603$. The $k = 20$
+point lands $0.2\sigma$ from the BU-implied $0.456$ with zero tuning; the
+high-$k$ asymptote $\approx 0.60$ matches $c_{geom} = 0.564$. Orientation ensemble
+(6 random leg-pattern rotations): std $0.011$ — $c$ is not a lattice-alignment
+artifact; shell scatter ($\sim 0.10$) dominates the quoted band. The $c(k)$ rise
+is void closure: sparse legs leave void channels walks slip through ($f < 1$);
+dense legs are unavoidable ($f \to 1$) — the same disorder that pulls $0.5$ to
+$0.456$. Hard walls give $c = 0.66$ at $k = 10$ (2× soft, overshooting toward
+the naive $1.1$–$1.6$) and pop already at $k = 20$ (reachable $0.2\%$): too
+strong and brittle, as expected for infinite barriers vs $\ln 2$ soft cost.
+Mixed ($0.75\,r_e$ core): $0.451$ ($k = 20$), $0.827$ ($k = 40$), disconnected
+at $k = 80$ — dilute value, pre-pop rise, then horizon. Predicted
+$p = 2c = 0.87$ ($k = 20$) sits $0.2\sigma$ from BU's measured $0.913 \pm
+0.049$; $c_{tot}(0.87) = 4.79$ vs GR $4.8695$ ($\Delta = -0.08$, sub-$\sigma$
+for J0737). The flat case $c = 0.25 \to p = 0.5 \to c_{tot} = 3.36$ stays dead
+at $\Delta = -1.51$.
+
+**Boltzmann layer (Fig 72).** Mean free path $\lambda_{mfp} = d = r\sqrt{4\pi/k}$;
+optical depth $\tau = cx$ (extra path per unit path). Transport ladder at
+L=12, $k = 10$: Dijkstra $0.33 \approx$ drifted finite-$T$ walks $0.37$–$0.76$
+$<$ straight through-core rays $1.15$ — optimal routing is worth 3×, and
+Boltzmann sampling agrees with Dijkstra within 2× at all $T$ (dilute detours
+are perturbative). Bridge-exponent ladder for the BU $\beta(N)$ comparison:
+$n(r) \sim r^2/F$ gives $\beta = 0, 1, 2$ for point/line/area footprints
+$F = \lambda^2, \lambda a, a^2$; BU's fitted $1.24$ sits between line-like and
+area-like — legs couple as lines with partial transverse resolution, and the
+$1.5 \to 1.24$ drift is motion toward line-like as shells resolve. This
+constrains $\beta$; it does not yet derive $1.24$ (queued: OR-gradient port).
+
+**Pop without a metric (Fig 71).** Mixed L=32: reachable $0.99 \to 0.0002$
+between $k = 40$ and $80$; theory $k_{crit}(r=2) = 44.1$ splits them, and
+$\chi_{inner}$ crosses $1$ across the same step. The BK pop is graph
+disconnection, no $g_{rr}$ written. UV running $p(\chi) = 2c(\chi)$: mixed
+$k = 40$ rises $1.5 \to 2.8$ from $\chi = 0.03$ to $0.58$ (turnover at
+$\chi = 0.06$), the emergent version of BU's fitted $p_{adj}(s)$ slope —
+then paths vanish (turnover to pop, not flattening). Soft mode stays flat
+($1.0$–$1.5$): Gaussian cost saturates at $1+\alpha$ instead of diverging.
+
+**No-$r$ analysis (Fig 72).** Recomputing $\chi = k\sigma/4\pi r_{phys}^2$
+with operational radius $r_{phys} = d_{clean}/T_0$ ($T_0 \approx 1.35$ the
+once-measured clean-lattice ruler factor; $d_{clean}$ = Dijkstra distance
+from the core) reproduces $c$ within $0.03$–$0.10$ across $L$, $k$. The
+$\chi \to h \to p, \gamma$ chain never uses a background coordinate; $M \equiv
+k$, $R_s$ is defined by $\chi = 1$. Full coordinate-freedom (random geometric
+graph + OR-ball binning instead of a cubic lattice) is queued — the embedding
+still uses coordinates; the analysis no longer does.
+
+**UV sign check.** Radial Ollivier–Ricci on a defect-pierced weak-field graph
+(L=7, $k = 4$ hard lines + flux stubs, exact LP): $\kappa = -0.148, -0.057,
+-0.012$ per shell — negative everywhere. Attraction survives at $\chi \sim 1$;
+a sign flip would have killed the model.
+
+**Ledger: 4 assumptions $\to$ 3.** Tortuosity $1/2$ (fitted) $\to$ derived from
+$s_{leg} = \ln 2$ + sphere packing ($c = 0.44$–$0.60$); $p$ (BU-fitted)
+$\to$ predicted $0.87$–$1.2$; $k_{crit}$ heuristic $\to$ packing theorem
+confirmed by disconnection. Remaining: $R_s(M)$ input, AT $\alpha$
+calibration, $\mu(\chi)$ assumption. Honestly calibrated (not derived):
+mixed-core fraction $0.75$ (0.5 blocks nothing, 1.5 pops at $k = 20$),
+dilute cut $\chi < 0.2$, $T_0$ per $L$. Falsifiers armed: soft $c$ outside
+$[0.3, 0.8]$ at any $k \ge 20$ kills the $\ln 2$ cost model; $\kappa \ge 0$ in
+any UV shell kills attraction; pop location off $k_{crit}$ by $> 2\times$ kills
+the packing pop.
+
+**Scaling prototype for the N=4096 GPU run (`bh_graph.sinkor`).** Exact
+N=1020 cost O(N³) Floyd $1.06\times10^9$ ops/graph; N=4096 exact would be
+$64\times$ ($68.7\times10^9$/graph, $5.5\times10^{12}$ over 80 graphs) plus
+12k Wasserstein LPs — a RunPod GPU job tracked as a GitHub issue, not a CPU
+job. The CPU reference it ports is tested here: sparse Johnson matches Floyd
+exactly (N=4096 in 1.7 s, 134 MB) and log-domain annealed Sinkhorn
+($\epsilon = 0.01$) matches the exact LP to 4 decimals, reproducing the
+weak-field radial slope $p = 0.940$ shell-by-shell — the exponent physics
+survives the approximation. (Naive Sinkhorn stalls harmonically on OR cost
+matrices because $C/\epsilon$ spans $10^{17}$; $\epsilon$-annealing
+$1.0 \to 0.01$ with warm starts is load-bearing — the GPU port must keep
+it.) The $\beta(4096)$ starting guess is $1.140$, band $[1.095, 1.185]$ from
+the $1/N$ fit over BU points, GPU guess $1.18$ at the top (to be measured,
+not fitted): one exact N=4096 graph at $\beta = 1.18$ with Sinkhorn OR tests
+whether $p$ flattens/drops at $s < 5$ where $\chi \sim 0.2$–$0.5$.
+
+**N=4000 campaign: ran on CPU, extrapolation dead, turnover confirmed
+(Fig 73, `data/p80_n4000_beta099.json`).** The CSR/Sinkhorn pipeline
+(`bh_graph.shellscale`, no NetworkX on the hot path) reproduces BU exactly
+at N=1020 (12 graphs: mean $0.9107$ vs BU $0.9134$, stacked $0.9088$ vs
+$0.9105$, 7 s wall) — then scales. Beta scan at N=4000 (400×10):
+$\beta = 1.00 \to p = 0.946$, $1.06 \to 1.027$, $1.12 \to 1.141$,
+$1.18 \to 1.242$. The $1.18$ guess is killed (honest miss, measurement
+rules); the $1/N$ extrapolation ($1.14$) fails with it — $\beta(N)$ drops
+$1.5 \to 1.28 \to 1.24 \to \mathbf{0.99}$, faster than $1/N$, p-matched at
+$\beta = 0.98$–$1.00$. Production (80 graphs, $\beta = 0.99$, 15 min wall
+on 4 vCPU): $p = 0.9315 \pm 0.0032$, stacked $0.9306$, $R^2 = 0.974$ —
+inside the J0737 $1\sigma$ window with 2× BU's precision. Local slopes run
+$0.63 \to 1.46$ outward (inner windows $\sim 30\sigma$ below the global
+fit; errors from a 16-graph sister campaign with saved profiles): the
+profile is curved, flat inside, steep outside — the UV turnover, measured
+not fitted, replicated on independent seeds (sister: $0.63 \to 1.47$,
+mean $0.9129$). The curvature was latent in BU's N=1020 profile
+($0.53 \to 1.66$, unremarked); N=4000 confirms it persists with tighter
+errors while straightening slightly (finite-width effects washing out).
+N=8000 pilot ($\beta = 0.90$, single graph, 251 s): $p = 0.977$,
+turnover shape again ($0.67$ inner, $\sim 1.4$ outer) — third confirmation.
+Hero-2 beta scan at N=8000: $0.80 \to 0.854$, $0.87 \to 0.931$,
+$0.94 \to 1.050$, so $\beta(8000) = 0.87$. The drift is log-linear,
+$\approx -0.13$ per doubling from N=1020 up (zero only at $N \sim 10^6$):
+neither asymptote nor crash — the 8–16k crash fear is downgraded, and the
+80-graph N=8000 production at $\beta = 0.87$ is underway (same box,
+$\sim 85$ min wall). Remaining watch: the log-linear law itself is fitted
+through 4 points — 16k decides whether it holds or breaks.
+All kill wires survived: no $\kappa$ sign flip, no tweaks needed,
+pop at $k_{crit}$.
+
+**N=8000 production: two A100 pods, $p = 0.9382 \pm 0.0030$ (Fig 73,
+`data/p80_n8000_beta087.json`).** RunPod CPU capacity was absent above
+2 vCPU, so hero-3 ran as 40+40 shards on two A100-SXM4 (16 vCPU each,
+$\sim \$1$ total): mean $0.9382$, stacked $0.9375$, $R^2 = 0.980$,
+turnover $0.66 \to 1.40$ — fourth confirmation, inner $\sim 30\sigma$
+flat with direct 80-graph profile errors. Pod vCPUs ran $\sim 3\times$
+slower per core than the dev box (bandwidth-stalled, 60% util): the
+fix is algorithmic, not hardware — shell graphs are unweighted, so
+dense Johnson now runs BFS per source (`unweighted=True`, same numbers,
+$\sim 4$–$5\times$), with float32 + support-only sources and a
+GPU-native parallel-BFS (sparse-dense SpMM, int8, diameter $\sim 10$)
+queued for 16k. GPU verdict: batched torch Sinkhorn would take the 30%
+OT share $20$–$50\times$, but Amdahl caps end-to-end gains at $\sim 3$–$5\times$
+until Johnson moves — which is why Johnson moved first.
+
+**N=16000 production: GPU farm, $p = 0.9137 \pm 0.0022$ (Fig 73,
+`data/p80_n16000_beta074.json`).** Local oracle scan first: $0.68 \to 0.804$,
+$0.74 \to 0.920$, $0.80 \to 0.999$ — $\beta(16000) = 0.74$, nailing the
+$-0.13$/doubling line ($0.87 - 0.13$). Then 80 graphs preemptively on the
+4090 serverless farm (oracle distances + torch fp32 Sinkhorn, 9 workers):
+mean $0.9137$, stacked $0.9133$, $R^2 = 0.986$, turnover $0.69 \to 1.26$ —
+fifth confirmation, and the flattest run yet (outer $1.66 \to 1.46 \to 1.40
+\to 1.26$ from 1020 to 16000: profiles straighten as shells widen, exactly
+the finite-width washout). Per-graph std falls with N ($0.049 \to 0.029 \to
+0.026 \to 0.020$): wider shells self-average. Every job reported its CUDA
+device in-payload; fp32-GPU agrees with fp64-CPU to $2\times10^{-5}$ on $p$.
+The $\beta(N)$ log-linear law now spans 300–16000 (6 points); 32k decides
+whether it holds toward the $\sim 10^6$ zero-crossing.
+
+**Three closing checks (all local, all pass).** (1) Weighted $p(\beta)$
+inversion of the 16k scan ($0.68 \to 0.804$, $0.74 \to 0.920$,
+$0.80 \to 0.999$, slope $1.735$) at farm $p = 0.9137 \pm 0.0022$ gives
+$\beta(16000) = 0.742 \pm 0.003\,(\mathrm{stat}) \pm 0.01\,(\mathrm{linearity})$ —
+inside $\pm 0.02$ with margin. (2) Turnover significance from direct
+80-graph profile errors: inner window $0.692 \pm 0.005$ sits $43\sigma$
+below global $0.9133$, outer $1.262 \pm 0.024$ is $14\sigma$ above, every
+window $5\sigma+$ off — the power law is an average over real curvature.
+(3) Kill wires at scale: radial OR stays negative on defect-pierced graphs
+at L=7, 9 ($-0.23, -0.12, -0.06$) and L=11 ($-0.30, -0.18, -0.08, exact
+LP); mixed mode at L=25 (15625 nodes) gives dilute $0.32$, rise $1.81$,
+pop (reachable $0.99 \to 0.0004$ across $k = 40$–$80$ vs $k_{crit} = 44.1$).
+Soft-$c$ systematics mapped honestly: even-L decline $0.59 \to 0.38$
+(L=16→48, void-dilution at fixed $k$) plus an odd-L center-alignment
+offset (L=25: $0.32$) — all inside the armed $[0.3, 0.8]$ wire, and fixed-$k$
+across-$L$ is apples-to-oranges ($R_s$/box changes); the matched comparison
+is the $c(k)$ curve at fixed $L$.

@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v4.1** — BV UV tortuosity-as-scattering + N-scale campaigns: legs as
+  radial line defects ($\sigma = 4\ln 2$), soft cost $\ln 2$ gives dilute
+  $c = 0.44$–$0.60$ (target $0.456$) with zero tuning; $p = 2c$,
+  $\gamma = 2c$; mixed mode disconnects at $k_{crit}$; UV turnover measured.
+  4 assumptions $\to$ 3. CSR-direct shell graphs + Sinkhorn OR (no NetworkX):
+  N=1020 reproduced (0.9107 vs 0.9134); N=4000 $p = 0.9315\pm0.0032$
+  ($\beta = 0.99$); N=8000 $p = 0.9382\pm0.0030$ ($\beta = 0.87$, pods);
+  N=16000 $p = 0.9137\pm0.0022$ ($\beta = 0.74$, GPU farm); exact shell
+  distance oracle + torch backend; $\beta(N)$ log-linear over 6 points.
+  356 tests, 77 figure files (Figs 1–73).
 - **v4.0** — No Neutron Stars (retitled; was "Black Holes as ... Phase
   Transition", preserved in git history): BU resuscitate-no-neutrons, merged.
   Gradient shells $p_{adj}(r) = 0.85+0.015r$ + exact EMD, measured 80 graphs

@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{No Neutron Stars: Black Holes, Pulsars, and Gap Objects as Almost-Perfect All:All Entanglement Graphs}
-\author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\ \small Draft v4.0 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (312 tests)}
+\author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\ \small Draft v4.1 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (356 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -332,6 +332,14 @@ leg-shedding yields $0.047\,M_\odot$ (AT2017gfo-like) and predicts gap
 kilonovae $\sim1$/yr O5 vs $\le0.3$ standard. Kill rule: 10 clean
 non-detections $<$200\,Mpc. Fitted: slope $0.015$, $\beta(N)$, $w=1.953$,
 shed $e$+efficiency, $\kappa\to c_2$ map.
+
+\section{UV tortuosity-as-scattering (Figs.~70--73)}
+Legs as radial line defects ($\sigma=4\ln2\,l_p^2$), soft cost $\ln2$ per
+encounter: dilute $c=0.44$--$0.60$ (target $0.456$, geometric $1/\sqrt\pi$),
+$p=2c$, $\gamma=2c$; mixed mode rises then disconnects at
+$k_{crit}=4\pi r^2/\sigma$; OR stays negative in the UV. 4 assumptions
+$\to$ 3 (tortuosity $1/2$ derived). Scale-up: $p=0.93/0.94/0.91$ at
+N$=4000/8000/16000$ (80 graphs), turnover measured, $\beta(N)$ log-linear.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}
