@@ -1549,3 +1549,17 @@ GPU-native parallel-BFS (sparse-dense SpMM, int8, diameter $\sim 10$)
 queued for 16k. GPU verdict: batched torch Sinkhorn would take the 30%
 OT share $20$–$50\times$, but Amdahl caps end-to-end gains at $\sim 3$–$5\times$
 until Johnson moves — which is why Johnson moved first.
+
+**N=16000 production: GPU farm, $p = 0.9137 \pm 0.0022$ (Fig 73,
+`data/p80_n16000_beta074.json`).** Local oracle scan first: $0.68 \to 0.804$,
+$0.74 \to 0.920$, $0.80 \to 0.999$ — $\beta(16000) = 0.74$, nailing the
+$-0.13$/doubling line ($0.87 - 0.13$). Then 80 graphs preemptively on the
+4090 serverless farm (oracle distances + torch fp32 Sinkhorn, 9 workers):
+mean $0.9137$, stacked $0.9133$, $R^2 = 0.986$, turnover $0.69 \to 1.26$ —
+fifth confirmation, and the flattest run yet (outer $1.66 \to 1.46 \to 1.40
+\to 1.26$ from 1020 to 16000: profiles straighten as shells widen, exactly
+the finite-width washout). Per-graph std falls with N ($0.049 \to 0.029 \to
+0.026 \to 0.020$): wider shells self-average. Every job reported its CUDA
+device in-payload; fp32-GPU agrees with fp64-CPU to $2\times10^{-5}$ on $p$.
+The $\beta(N)$ log-linear law now spans 300–16000 (6 points); 32k decides
+whether it holds toward the $\sim 10^6$ zero-crossing.
