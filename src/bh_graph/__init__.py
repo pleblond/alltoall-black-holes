@@ -271,6 +271,16 @@ from bh_graph.sinkor import (
     all_pairs_johnson, kappa_mean_sinkhorn, beta_fit_inv_n, beta_predict,
     beta_predict_4096, floyd_cost, johnson_cost, or_lp_count, scaling_table,
 )
+from bh_graph.shellscale import (
+    P_ADJ_BASE, P_ADJ_SLOPE, BRIDGE_ALPHA, BRIDGE_BETA_OLD, BRIDGE_BETA_NEW,
+    BRIDGE_C, R_INNER, R_OUTER, DENSE_JOHNSON_MAX_N,
+    is_valid_shell_params, p_adj_of_shell, shell_pair_radius,
+    n_bridges_for_pair, packing_implied_spacing, fit_scaling_power,
+    local_slopes, gradient_shell_graph_nx, build_shell_csr,
+    dense_johnson_csr, streamed_sources_csr, csr_neighbors,
+    shell_kappa_profile_csr, measure_p_csr, campaign,
+    save_artifact, load_artifact,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -375,6 +385,14 @@ __all__ = [
     "BETA_BU_POINTS", "BETA_GPU_GUESS", "sinkhorn_w1", "ollivier_curvature_sinkhorn",
     "all_pairs_johnson", "kappa_mean_sinkhorn", "beta_fit_inv_n", "beta_predict",
     "beta_predict_4096", "floyd_cost", "johnson_cost", "or_lp_count", "scaling_table",
+    "P_ADJ_BASE", "P_ADJ_SLOPE", "BRIDGE_ALPHA", "BRIDGE_BETA_OLD", "BRIDGE_BETA_NEW",
+    "BRIDGE_C", "R_INNER", "R_OUTER", "DENSE_JOHNSON_MAX_N",
+    "is_valid_shell_params", "p_adj_of_shell", "shell_pair_radius",
+    "n_bridges_for_pair", "packing_implied_spacing", "fit_scaling_power",
+    "local_slopes", "gradient_shell_graph_nx", "build_shell_csr",
+    "dense_johnson_csr", "streamed_sources_csr", "csr_neighbors",
+    "shell_kappa_profile_csr", "measure_p_csr", "campaign",
+    "save_artifact", "load_artifact",
     "g00_weak", "frac_shift", "gps_redshift", "pound_rebka_shift", "stay_profile",
     "ceff_profile", "schwarzschild_coord_speed", "layered_arrival_times",
     "escape_diverges", "tortoise_fit",

@@ -107,6 +107,7 @@ from bh_graph import uvscatter as _uv
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
+DATA = Path(__file__).resolve().parent.parent / "data"
 
 plt.rcParams.update({"figure.dpi": 150, "font.size": 10, "axes.grid": True, "grid.alpha": 0.3})
 
@@ -1646,6 +1647,58 @@ def fig72_uv_ladder():
     plt.close(fig)
 
 
+def fig73_uv_n4000():
+    import json
+    from bh_graph import shellscale as _hs, sinkor as _sk
+    art = json.load(open(DATA / "p80_n4000_beta099.json"))
+    sis = json.load(open(DATA / "p16_n4000_beta099_seed1000.json"))
+    prof4k = {float(k): v for k, v in art["stacked"].items()}
+    loc4k = {float(k): v for k, v in art["local"].items()}
+    loc16 = np.array([[float(v) for v in _hs.local_slopes(
+        {float(k): vv for k, vv in w.items()}).values()] for w in sis["profiles"]])
+    loc_sem80 = loc16.std(axis=0) / np.sqrt(len(sis["profiles"]) * 5.0)
+    bu = dict(_hs.BU_N1020_STACKED)
+    loc1020 = _hs.local_slopes(bu)
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4.2))
+    n_pts = np.array([300, 600, 1020, 4000])
+    b_pts = np.array([1.5, 1.28, 1.24, art["config"]["beta"]])
+    axes[0].plot(n_pts, b_pts, marker="o", color="#2563eb", label="calibrated")
+    f = _sk.beta_fit_inv_n()
+    nn = np.linspace(300, 4000, 200)
+    axes[0].plot(nn, f["beta_inf"] + f["a"] / nn, "--", color="gray",
+                 label="1/N extrap (fails)")
+    axes[0].axhline(1.18, ls=":", color="#dc2626", label="pre-run guess 1.18")
+    axes[0].set_xlabel("N")
+    axes[0].set_ylabel("beta(N)")
+    axes[0].set_title("Recalibration: drift faster than 1/N")
+    axes[0].legend(fontsize=8)
+    for prof, sty, lab in [(bu, "o-", "N=1020 BU"), (prof4k, "s--", "N=4000")]:
+        rr = np.array(sorted(prof))
+        kk = np.array([-prof[r] for r in rr])
+        axes[1].loglog(rr, kk, sty, label=lab)
+    axes[1].set_xlabel("r")
+    axes[1].set_ylabel("|kappa| stacked")
+    axes[1].set_yticks([0.5, 1.0])
+    axes[1].get_yaxis().set_major_formatter(plt.ScalarFormatter())
+    axes[1].set_title("Stacked profiles agree in shape")
+    axes[1].legend(fontsize=8)
+    axes[2].plot(sorted(loc1020), [loc1020[r] for r in sorted(loc1020)],
+                 marker="o", label="N=1020 local p")
+    lk = sorted(loc4k)
+    axes[2].errorbar(lk, [loc4k[r] for r in lk], yerr=loc_sem80,
+                     marker="s", label="N=4000 local p")
+    axes[2].axhline(art["stacked_fit"]["p"], ls="--", color="gray",
+                    label="N=4000 global p")
+    axes[2].set_xlabel("window mid r")
+    axes[2].set_ylabel("local p")
+    axes[2].set_title("UV turnover: inner windows flatten")
+    axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 73 — BV: N=4000 campaign (beta=0.99, 80 graphs, CPU)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig73_uv_n4000.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1715,6 +1768,7 @@ def main():
     fig70_uv_c()
     fig71_uv_pop()
     fig72_uv_ladder()
+    fig73_uv_n4000()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
