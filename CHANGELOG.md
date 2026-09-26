@@ -3,6 +3,12 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v3.12** — BT pulsar 2PN audit + graph-star sketch: J0737/B1913 GR PK
+  (DD k2 +0.00044, Iorio total -0.00080..-0.00045), self-consistent
+  R+omegadot M inversion (-11.1 ppm, s +3.7e-6, passes old), c2(p) map with
+  w = 1.95 FIT (not derived), dp needs +-0.080 publ / +-0.028 fut vs
+  BI +-0.48, packing Mmax 4.06 Msun at 12 km. Audit, not confirmation.
+  290 tests, 66 figs.
 - **v3.11** — BS flip to A+(b*): patch $= 4\ln 2$ derived from measured
   $\eta_{vN}$, legs saturate, Postulate B retired on the record;
   $\varepsilon$ runs as $c/\sqrt{N}$ ($k = N$ exactly, $N$ holographic,

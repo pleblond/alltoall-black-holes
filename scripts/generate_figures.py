@@ -1538,6 +1538,69 @@ def fig65_flip():
     fig.savefig(FIG / "fig65_flip.png", bbox_inches="tight")
     plt.close(fig)
 
+def fig66_pulsar():
+    from bh_graph.pulsar import (
+        delta_omegadot_of_p_deg, solve_M_from_omegadot_toy, predict_s_from_M_R,
+        packing_chi, C1_GR_BENDING, C1_MODEL_BENDING, C2_GR_ISOTROPIC,
+        J0737_2006, J0737_2021,
+    )
+    d06, d21 = J0737_2006, J0737_2021
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    # A: residual vs p with w = 1.95 (fit) and w = 1
+    pp = np.linspace(0.2, 1.4, 200)
+    for w, color, ls in ((1.95, "#2563eb", "-"), (1.0, "#94a3b8", "--")):
+        yy = np.array([delta_omegadot_of_p_deg(p, d06["M_msun"], d06["Pb_d"], d06["e"], w)
+                       for p in pp])
+        axes[0].plot(pp, yy * 1e6, color=color, ls=ls, label=f"w={w}")
+    for err, col, lab in ((0.00068, "#fecaca", "2006 680 uas"),
+                          (0.000037, "#fed7aa", "2021 37 uas"),
+                          (0.000013, "#fca5a5", "future 13 uas")):
+        axes[0].axhspan(-err * 1e6, err * 1e6, alpha=0.25, color=col, label=lab)
+    axes[0].axvline(0.92, color="red", ls=":", label="p=0.92")
+    axes[0].axvspan(0.92 - 0.48, 0.92 + 0.48, alpha=0.12, color="red", label="BI +-0.48")
+    axes[0].set_xlabel("p (radial exponent)")
+    axes[0].set_ylabel("toy residual vs GR (uas/yr)")
+    axes[0].set_title("Cancellation needs p=0.92+-0.08 (publ.)")
+    axes[0].legend(fontsize=7)
+    axes[0].set_ylim(-800, 800)
+    # B: s prediction vs observed (R error dominates)
+    Mgr = solve_M_from_omegadot_toy(d06["omegadot_deg_per_yr"], d06["Pb_d"], d06["e"],
+                                    C1_GR_BENDING, C2_GR_ISOTROPIC, 1.95)
+    Mmo = solve_M_from_omegadot_toy(d06["omegadot_deg_per_yr"], d06["Pb_d"], d06["e"],
+                                    C1_MODEL_BENDING, C2_GR_ISOTROPIC, 1.95)
+    s_gr = predict_s_from_M_R(Mgr, d06["Pb_d"], d06["xA_s"], d06["R"])
+    s_mo = predict_s_from_M_R(Mmo, d06["Pb_d"], d06["xA_s"], d06["R"])
+    r_err = 0.000531  # ds/dR * R_err, dominates
+    axes[1].errorbar([0, 1], [s_gr, s_mo], yerr=r_err, fmt="o", color="#2563eb",
+                     capsize=4, label="pred GR / model (R err)")
+    axes[1].errorbar([2], [d06["s_obs"]], yerr=[[d06["s_err_lo"]], [d06["s_err_hi"]]],
+                     fmt="s", color="gray", capsize=4, label="obs 2006")
+    axes[1].errorbar([3], [d21["s_obs"]], yerr=d21["s_err"], fmt="^", color="#dc2626",
+                     capsize=4, label="obs 2021 (Shapiro)")
+    axes[1].set_xticks([0, 1, 2, 3])
+    axes[1].set_xticklabels(["GR", "model", "2006", "2021"], fontsize=8)
+    axes[1].set_ylabel("s = sin i")
+    axes[1].set_title("s passes via R err; 2021 needs DDS")
+    axes[1].legend(fontsize=7)
+    # C: packing chi vs M (footprint-fixed sketch)
+    mm = np.linspace(1.0, 6.0, 200)
+    for Rf, color in ((10.0, "#2563eb"), (12.0, "#0f766e")):
+        axes[2].semilogy(mm, [packing_chi(m, Rf * 1e3) for m in mm], color=color, label=f"R={Rf} km")
+    axes[2].axhline(1.0, color="black", ls="--", label="horizon")
+    for mx, lab in ((1.4, "1.4"), (2.5, "TOV"), (4.06, "graph 12km"), (5.0, "gap")):
+        axes[2].axvline(mx, color="gray", ls=":", lw=1)
+        axes[2].text(mx, 2.2, lab, fontsize=7, ha="center")
+    axes[2].set_xlabel("M (Msun)")
+    axes[2].set_ylabel("chi = k/k_crit")
+    axes[2].set_title("Horizonless to ~4 Msun at 12 km")
+    axes[2].legend(fontsize=7)
+    axes[2].set_ylim(0.05, 4.0)
+    fig.suptitle("Fig 66 — BT: 2PN audit + graph-star packing sketch")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig66_pulsar.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1604,6 +1667,7 @@ def main():
     fig63_muchi()
     fig64_green()
     fig65_flip()
+    fig66_pulsar()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

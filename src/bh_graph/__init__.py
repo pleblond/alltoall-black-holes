@@ -247,6 +247,15 @@ from bh_graph.entropic import (
     newton_potential, link_flux, force_slope, kepler_period,
     leapfrog_orbit, orbit_closes,
 )
+from bh_graph.pulsar import (
+    T_SUN_S, C1_GR_BENDING, C1_MODEL_BENDING, C2_GR_ISOTROPIC,
+    J0737_2006, J0737_2021, B1913,
+    omegadot_1pn_deg_per_yr, omegadot_2pn_toy_deg_per_yr,
+    omegadot_2pn_Hu_prograde_deg_per_yr, omegadot_2pn_Iorio_full_deg_per_yr,
+    c2_of_p, p_of_c2, total_2pn_coeff, weight_for_exact_cancellation,
+    solve_M_from_omegadot_toy, predict_s_from_M_R, dp_1sigma,
+    packing_chi, M_max_horizonless_msun, tidal_lambda_sketch,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -381,4 +390,11 @@ __all__ = [
     "tower_agreement",
     "sigma_planck_density", "sigma_hawking_density", "tension_span_orders",
     "bridge_energy", "planck_tension_absurd",
+    "T_SUN_S", "C1_GR_BENDING", "C1_MODEL_BENDING", "C2_GR_ISOTROPIC",
+    "J0737_2006", "J0737_2021", "B1913",
+    "omegadot_1pn_deg_per_yr", "omegadot_2pn_toy_deg_per_yr",
+    "omegadot_2pn_Hu_prograde_deg_per_yr", "omegadot_2pn_Iorio_full_deg_per_yr",
+    "c2_of_p", "p_of_c2", "total_2pn_coeff", "weight_for_exact_cancellation",
+    "solve_M_from_omegadot_toy", "predict_s_from_M_R", "dp_1sigma",
+    "packing_chi", "M_max_horizonless_msun", "tidal_lambda_sketch",
 ]
