@@ -266,6 +266,11 @@ from bh_graph.uvscatter import (
     graph_distance_profile, mc_ray_tortuosity, mc_lattice_walk_cost,
     mc_transport_c, dijkstra_shell_cost, uv_or_sign, survey_table,
 )
+from bh_graph.sinkor import (
+    BETA_BU_POINTS, BETA_GPU_GUESS, sinkhorn_w1, ollivier_curvature_sinkhorn,
+    all_pairs_johnson, kappa_mean_sinkhorn, beta_fit_inv_n, beta_predict,
+    beta_predict_4096, floyd_cost, johnson_cost, or_lp_count, scaling_table,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -367,6 +372,9 @@ __all__ = [
     "lattice_tort0", "chi_from_graph_distance", "c_with_graph_distance",
     "graph_distance_profile", "mc_ray_tortuosity", "mc_lattice_walk_cost",
     "mc_transport_c", "dijkstra_shell_cost", "uv_or_sign", "survey_table",
+    "BETA_BU_POINTS", "BETA_GPU_GUESS", "sinkhorn_w1", "ollivier_curvature_sinkhorn",
+    "all_pairs_johnson", "kappa_mean_sinkhorn", "beta_fit_inv_n", "beta_predict",
+    "beta_predict_4096", "floyd_cost", "johnson_cost", "or_lp_count", "scaling_table",
     "g00_weak", "frac_shift", "gps_redshift", "pound_rebka_shift", "stay_profile",
     "ceff_profile", "schwarzschild_coord_speed", "layered_arrival_times",
     "escape_diverges", "tortoise_fit",

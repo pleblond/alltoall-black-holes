@@ -1487,3 +1487,19 @@ dilute cut $\chi < 0.2$, $T_0$ per $L$. Falsifiers armed: soft $c$ outside
 $[0.3, 0.8]$ at any $k \ge 20$ kills the $\ln 2$ cost model; $\kappa \ge 0$ in
 any UV shell kills attraction; pop location off $k_{crit}$ by $> 2\times$ kills
 the packing pop.
+
+**Scaling prototype for the N=4096 GPU run (`bh_graph.sinkor`).** Exact
+N=1020 cost O(N³) Floyd $1.06\times10^9$ ops/graph; N=4096 exact would be
+$64\times$ ($68.7\times10^9$/graph, $5.5\times10^{12}$ over 80 graphs) plus
+12k Wasserstein LPs — a RunPod GPU job tracked as a GitHub issue, not a CPU
+job. The CPU reference it ports is tested here: sparse Johnson matches Floyd
+exactly (N=4096 in 1.7 s, 134 MB) and log-domain annealed Sinkhorn
+($\epsilon = 0.01$) matches the exact LP to 4 decimals, reproducing the
+weak-field radial slope $p = 0.940$ shell-by-shell — the exponent physics
+survives the approximation. (Naive Sinkhorn stalls harmonically on OR cost
+matrices because $C/\epsilon$ spans $10^{17}$; $\epsilon$-annealing
+$1.0 \to 0.01$ with warm starts is load-bearing — the GPU port must keep
+it.) The $\beta(4096)$ starting guess is $1.140$, band $[1.095, 1.185]$ from
+the $1/N$ fit over BU points, GPU guess $1.18$ at the top (to be measured,
+not fitted): one exact N=4096 graph at $\beta = 1.18$ with Sinkhorn OR tests
+whether $p$ flattens/drops at $s < 5$ where $\chi \sim 0.2$–$0.5$.

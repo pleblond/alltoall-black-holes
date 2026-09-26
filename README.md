@@ -50,7 +50,7 @@ and the un-derived gap coefficient.
 | `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
-| `tests/` | 297 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 305 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -73,7 +73,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 297 tests
+python -m pytest tests/ -q          # 305 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -162,7 +162,7 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 ## Status
 
 v3.12-BV (this branch) — BV derives tortuosity-as-scattering on top of the
-v3.11 flip: 4 assumptions $\to$ 3, 297 tests, 68 figs. BT–BU (2PN IR battery,
+v3.11 flip: 4 assumptions $\to$ 3, 305 tests, 68 figs. BT–BU (2PN IR battery,
 kilonovae) live on main; BV quotes their numbers as targets only.
 v3.11 flip: patch $= 4\ln 2$ (derived from measured $\eta_{vN}$), legs saturate,
 $\varepsilon$ runs ($k = N$ exactly), 6 assumptions $\to$ 4 with zero
