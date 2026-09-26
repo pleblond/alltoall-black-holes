@@ -6,7 +6,7 @@ authors:
   - family-names: Leblond
     given-names: Philippe
     email: leblond.philippe@gmail.com
-version: 4.0.0
+version: 4.1.0
 date-released: 2026-09-26
 repository-code: "https://github.com/pleblond/alltoall-black-holes"
 identifiers:
