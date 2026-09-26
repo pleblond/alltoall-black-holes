@@ -196,7 +196,7 @@ def all_pairs_johnson(g, weight: str | None = None):
     except (ValueError, TypeError, KeyError):
         return None, None
     try:
-        dist = johnson(csr, directed=False)
+        dist = johnson(csr, directed=False, unweighted=(weight is None))
     except (ValueError, RuntimeError):
         return None, None
     return np.asarray(dist, dtype=float), idx

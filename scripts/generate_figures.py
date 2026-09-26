@@ -1652,19 +1652,27 @@ def fig73_uv_n4000():
     from bh_graph import shellscale as _hs, sinkor as _sk
     art = json.load(open(DATA / "p80_n4000_beta099.json"))
     sis = json.load(open(DATA / "p16_n4000_beta099_seed1000.json"))
+    art8k = json.load(open(DATA / "p80_n8000_beta087.json"))
     prof4k = {float(k): v for k, v in art["stacked"].items()}
     loc4k = {float(k): v for k, v in art["local"].items()}
     loc16 = np.array([[float(v) for v in _hs.local_slopes(
         {float(k): vv for k, vv in w.items()}).values()] for w in sis["profiles"]])
     loc_sem80 = loc16.std(axis=0) / np.sqrt(len(sis["profiles"]) * 5.0)
+    prof8k = {float(k): v for k, v in art8k["stacked"].items()}
+    loc8k = {float(k): v for k, v in art8k["local"].items()}
+    loc80 = np.array([[float(v) for v in _hs.local_slopes(
+        {float(k): vv for k, vv in w.items()}).values()]
+        for w in art8k["profiles"]])
+    loc_sem8k = loc80.std(axis=0) / np.sqrt(len(art8k["profiles"]))
     bu = dict(_hs.BU_N1020_STACKED)
     loc1020 = _hs.local_slopes(bu)
     fig, axes = plt.subplots(1, 3, figsize=(15, 4.2))
-    n_pts = np.array([300, 600, 1020, 4000])
-    b_pts = np.array([1.5, 1.28, 1.24, art["config"]["beta"]])
+    n_pts = np.array([300, 600, 1020, 4000, 8000])
+    b_pts = np.array([1.5, 1.28, 1.24, art["config"]["beta"],
+                      art8k["config"]["beta"]])
     axes[0].plot(n_pts, b_pts, marker="o", color="#2563eb", label="calibrated")
     f = _sk.beta_fit_inv_n()
-    nn = np.linspace(300, 4000, 200)
+    nn = np.linspace(300, 8000, 200)
     axes[0].plot(nn, f["beta_inf"] + f["a"] / nn, "--", color="gray",
                  label="1/N extrap (fails)")
     axes[0].axhline(1.18, ls=":", color="#dc2626", label="pre-run guess 1.18")
@@ -1672,7 +1680,8 @@ def fig73_uv_n4000():
     axes[0].set_ylabel("beta(N)")
     axes[0].set_title("Recalibration: drift faster than 1/N")
     axes[0].legend(fontsize=8)
-    for prof, sty, lab in [(bu, "o-", "N=1020 BU"), (prof4k, "s--", "N=4000")]:
+    for prof, sty, lab in [(bu, "o-", "N=1020 BU"), (prof4k, "s--", "N=4000"),
+                             (prof8k, "^:", "N=8000")]:
         rr = np.array(sorted(prof))
         kk = np.array([-prof[r] for r in rr])
         axes[1].loglog(rr, kk, sty, label=lab)
@@ -1687,13 +1696,16 @@ def fig73_uv_n4000():
     lk = sorted(loc4k)
     axes[2].errorbar(lk, [loc4k[r] for r in lk], yerr=loc_sem80,
                      marker="s", label="N=4000 local p")
+    lk8 = sorted(loc8k)
+    axes[2].errorbar(lk8, [loc8k[r] for r in lk8], yerr=loc_sem8k,
+                     marker="^", label="N=8000 local p")
     axes[2].axhline(art["stacked_fit"]["p"], ls="--", color="gray",
                     label="N=4000 global p")
     axes[2].set_xlabel("window mid r")
     axes[2].set_ylabel("local p")
     axes[2].set_title("UV turnover: inner windows flatten")
     axes[2].legend(fontsize=8)
-    fig.suptitle("Fig 73 — BV: N=4000 campaign (beta=0.99, 80 graphs, CPU)")
+    fig.suptitle("Fig 73 — BV: N=4000 + N=8000 campaigns (80 graphs, CPU+pod)")
     fig.tight_layout()
     fig.savefig(FIG / "fig73_uv_n4000.png", bbox_inches="tight")
     plt.close(fig)

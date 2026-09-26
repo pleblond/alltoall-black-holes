@@ -1534,3 +1534,18 @@ $\sim 85$ min wall). Remaining watch: the log-linear law itself is fitted
 through 4 points — 16k decides whether it holds or breaks.
 All kill wires survived: no $\kappa$ sign flip, no tweaks needed,
 pop at $k_{crit}$.
+
+**N=8000 production: two A100 pods, $p = 0.9382 \pm 0.0030$ (Fig 73,
+`data/p80_n8000_beta087.json`).** RunPod CPU capacity was absent above
+2 vCPU, so hero-3 ran as 40+40 shards on two A100-SXM4 (16 vCPU each,
+$\sim \$1$ total): mean $0.9382$, stacked $0.9375$, $R^2 = 0.980$,
+turnover $0.66 \to 1.40$ — fourth confirmation, inner $\sim 30\sigma$
+flat with direct 80-graph profile errors. Pod vCPUs ran $\sim 3\times$
+slower per core than the dev box (bandwidth-stalled, 60% util): the
+fix is algorithmic, not hardware — shell graphs are unweighted, so
+dense Johnson now runs BFS per source (`unweighted=True`, same numbers,
+$\sim 4$–$5\times$), with float32 + support-only sources and a
+GPU-native parallel-BFS (sparse-dense SpMM, int8, diameter $\sim 10$)
+queued for 16k. GPU verdict: batched torch Sinkhorn would take the 30%
+OT share $20$–$50\times$, but Amdahl caps end-to-end gains at $\sim 3$–$5\times$
+until Johnson moves — which is why Johnson moved first.

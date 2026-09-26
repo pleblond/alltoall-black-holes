@@ -1,4 +1,4 @@
-# RunPod hero-run kit (CPU pods, REST v2)
+# RunPod hero-run kit (A100 pods, REST v2 + proxy SSH)
 
 Scale-up campaigns the laptop/CI box shouldn't run: N=8000 beta scan +
 production, N=16000 wide singles, narrow-shape comparisons. N=4000 and below
@@ -33,7 +33,7 @@ elapsed time, and the p verdict.
 
 ## Pod spec (default)
 
-32 vCPU / memory-optimized flavor, Secure Cloud (public IP always),
+A100-SXM4 (16 vCPU/250GB), Secure Cloud, proxy SSH (no scp; artifacts catted back),
 `runpod/pytorch` image (stock SSH + python3), 50 GB container disk,
 SSH on 22/tcp. Override with `--vcpu 16 --cloud COMMUNITY` etc. (see
 `launch.sh --help`). Cost is a few dollars per campaign at current CPU

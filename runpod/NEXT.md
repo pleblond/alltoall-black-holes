@@ -6,7 +6,7 @@ Each line is one pod (auto-terminates). Artifacts return to `data/`.
 ```bash
 # HERO-3 (pod redo, only if the local backstop failed): 80 graphs @ N=8000
 ./runpod/launch.sh --per-shell 800 --beta 0.87 --graphs 80 --terminate
-# expected: p ~0.92, ~10 min wall on 32 vCPU
+# expected: p ~0.92, ~35 min wall on 16 vCPU (or split 40+40 across two pods)
 
 # HERO-4: beta scan @ N=16000 (log-linear says beta ~0.74)
 ./runpod/launch.sh --per-shell 1600 --betas 0.68,0.74,0.80 --graphs 4 --terminate
