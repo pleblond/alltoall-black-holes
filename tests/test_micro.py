@@ -46,3 +46,10 @@ def test_packing_bound_forces_pop():
     assert footprint_deficit(12) < 0 < footprint_deficit(13)
     # consistency with the heuristic threshold
     assert packing_kmax() <= critical_k() < packing_kmax() + 1
+
+
+def test_nicer_packing_margins():
+    # BT: known pulsars sub-critical with margin; a pulsar below R_s kills us.
+    from bh_graph.micro import packing_margin_msun, NICER_POINTS
+    for name, (m, r) in NICER_POINTS.items():
+        assert packing_margin_msun(m, r) > 3.0, name

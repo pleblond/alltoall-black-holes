@@ -53,6 +53,28 @@ def pop_forced(k, r_foot: float = R_POINT, lp: float = 1.0) -> bool:
     return bool(footprint_deficit(k, r_foot, lp) > 0)
 
 
+NICER_POINTS = {  # canonical masses/radii (km), ±10% level
+    "J0030": (1.44, 13.0),
+    "J0740": (2.08, 12.4),
+    "GW170817a": (1.4, 11.5),
+}
+
+KM_PER_LP = 1e3 / 1.616255e-35
+
+
+def packing_margin_msun(m_msun: float, r_km: float) -> float:
+    """BT: 4 pi R^2/(k PATCH) for a pulsar (M_sun, km); > 1 iff sub-critical.
+
+    Falsifier: any pulsing object with margin < 1 (below R_s line) kills us.
+    """
+    from bh_graph.data import m_sun_to_planck
+    from bh_graph.horizon import k_from_mass_schwarzschild, PATCH_AREA
+    m = m_sun_to_planck(m_msun)
+    k = float(np.asarray(k_from_mass_schwarzschild(m)).flat[0])
+    r = r_km * KM_PER_LP
+    return float(FOUR_PI * r**2 / (k * PATCH_AREA))
+
+
 def embedding_radius(k, r_point: float = R_POINT, lp: float = 1.0):
     """Observed radius: r_point while pointlike, else Schwarzschild-style R(k).
 

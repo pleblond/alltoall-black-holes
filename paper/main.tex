@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\ \small Draft v3.11 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (278 tests)}
+\author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\ \small Draft v3.12 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (282 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -314,6 +314,11 @@ running $\varepsilon=c/\sqrt N$ ($N$ holographic, $k=N$, margin $4\ln2$).
 \section{Flip to A+(b*) (Fig.~65)}
 Patch $4\ln2$ from measured $\eta_{vN}$; legs saturate; $\varepsilon$ runs;
 6 assumptions $\to$ 4, zero mechanism debts. B retired on record.
+
+\section{Honest 2PN + graph stars (Fig.~66)}
+J0737 $-2.3\times10^{-6}$ absorbed in $M$; peel-off gains $f(e)$; same-gauge
+deficit $-3.0$ kills $-0.73$ numerology; pulsars sub-critical, kilonova kills
+no-neutrons.
 
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}

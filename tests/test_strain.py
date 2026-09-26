@@ -47,3 +47,25 @@ def test_divergence_linear_law():
     assert abs(divergence_slope(frac) - (-0.75)) < 0.15
     aa = sorted(frac)
     assert all(abs(frac[aa[i]]) > abs(frac[aa[i + 1]]) for i in range(len(aa) - 1))
+
+
+def test_peeloff_e_dependence():
+    from bh_graph.strain import peeloff_e_factor
+    f = peeloff_e_factor(e_grid=(0.0878, 0.5, 0.8))
+    assert abs(f[0.5] - 1.0) < 0.05
+    assert abs(f[0.0878] - 0.68) < 0.05
+    assert f[0.8] > 2.0  # steep high-e rise
+
+
+def test_j0737_untestable_quantified():
+    from bh_graph.strain import j0737_absorption
+    J = j0737_absorption()
+    assert abs(J["fracdiff"] - (-2.3e-6)) < 0.6e-6  # 3x smaller than c1-swap estimate
+    assert J["mass_margin"] > 100 and J["s_margin"] > 100  # absorbed, invisible
+
+
+def test_gauge_demo_deficit_minus_three():
+    from bh_graph.strain import u2_coefficient, h_tortuosity, gr_h, gr_isotropic_h
+    assert abs(u2_coefficient(h_tortuosity) - 1.0) < 0.05
+    assert abs(u2_coefficient(gr_h) - 4.0) < 0.05  # same gauge: deficit -3.0
+    assert abs(u2_coefficient(gr_isotropic_h) - 1.5) < 0.05  # other gauge: 1.5, do not compare

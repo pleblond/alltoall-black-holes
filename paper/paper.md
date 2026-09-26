@@ -2,7 +2,7 @@
 
 **Philippe Leblond** — leblond.philippe@gmail.com
 
-**Draft v3.11 — computational companion paper (Secs 1–3 + Appendices A–BS)
+**Draft v3.12 — computational companion paper (Secs 1–3 + Appendices A–BT)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1376,3 +1376,26 @@ survivor is an input, fit, calibration, or labeled assumption, no
 unexplained numbers.
 
 ![Fig 65](../figures/fig65_flip.png)
+
+## Appendix BT. Honest 2PN: J0737 untestable, gauge kill, graph-star check (Fig 66)
+
+(`bh_graph.strain`, `bh_graph.micro`, Fig 66.) An external thread claimed a
+$0.7\%$ "exact cancellation" saving $c_1 = 3.36$ via $p = 0.92$; attempted
+honestly, three results. **(1) J0737 by direct integration** (both metrics,
+common-mode subtraction — no coefficient-swapping): fractional deviation
+$-2.3\times10^{-6}$ (stable across settings), $3\times$ smaller than the
+$c_1$-swap estimate — and fully absorbed by a $3.5$ ppm $M$-shift ($300\times$
+below mass errors; $s$-shift $10^{-6}$ vs $10^{-4}$ errors). 2PN untestable
+here, quantified. Bonus: the peel-off law gains eccentricity dependence,
+$f(e) = 0.68 \to 2.43$ over $e = 0.09 \to 0.8$ (BJ's $-0.75/a$ holds at
+$e = 0.5$). **(2) Gauge kill:** same-gauge $U^2$ coefficients are ours $1.0$
+vs GR-Schwarzschild $4.0$ (deficit $-3.0$); GR-isotropic $1.5$ is another
+gauge — the $-0.73$ "match" was gauge confusion plus a fitted weight plus an
+invented $p$-parametrization. **(3) Graph-star packing check:** NICER/GW170817
+points sit sub-critical with $4$–$9\times$ margin — consistent but empty
+(packing is an inequality; no radius mechanism, no $M$-$R$ prediction).
+Falsifier locked: any pulsar below the $R_s$ line kills us. The kilonova
+(AT2017gfo r-process ejecta) independently requires baryonic neutrons —
+"no neutrons, just routing" is dead as stated.
+
+![Fig 66](../figures/fig66_graphstar.png)
