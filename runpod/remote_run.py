@@ -19,6 +19,8 @@ def main() -> int:
     ap.add_argument("--backend", default="auto")
     ap.add_argument("--out", required=True)
     ap.add_argument("--save-profiles", action="store_true")
+    ap.add_argument("--workers", type=int, default=None,
+                    help="process workers (default: auto; set to vCPU allocation on pods)")
     args = ap.parse_args()
 
     sys.path.insert(0, os.path.expanduser("~/alltoall-black-holes/src"))
@@ -26,7 +28,7 @@ def main() -> int:
 
     r = H.campaign(args.per_shell, args.n_shells, args.graphs, True,
                    args.beta, args.seed0, args.max_per_shell, args.eps,
-                   args.backend, None, True, args.save_profiles)
+                   args.backend, args.workers, True, args.save_profiles)
     H.save_artifact(r, args.out)
     print(json.dumps({"mean": r["mean"], "std": r["std"], "sem": r["sem"],
                       "stacked_p": r["stacked_fit"]["p"],
