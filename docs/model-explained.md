@@ -360,10 +360,14 @@ with a narrow surviving window at $\sim 4\times10^5$ g).
   standard EBL opacity, no echoes above $\sim 10^{-160}$) rather than
   anomalies. Its testable frontier is the laboratory (item 1) and precision
   gravitational-wave catalogs (item 2).
-- **Not an explanation of any standing anomaly.** Several candidates were
+- **Not an explanation of any standing anomaly (main line; revised on this branch).** Several candidates were
   examined (fast radio bursts, lensing oddities, TeV transparency, remnant
   dark matter); each died on arithmetic, on the record. What survives is a
-  coherent, falsifiable toy — not a solution in search of a problem.
+  coherent, falsifiable model — not a solution in search of a problem.
+  On the `resuscitate-no-neutrons` branch this bullet is superseded:
+  the mass gap, sub-minimum and super-TOV masses, and AT2017gfo's
+  brightness are now claimed as explained (zero tuning for the masses),
+  with gap kilonovae as the pending test — see §5b and Appendix BU.
 - **Missing pieces, named:** the micro-derivation of tortuosity's
   $\sqrt{\chi}$-linearity (the load-bearing assumption behind $g_{rr}$ and
   Mercury), the exact gap coefficient, a formation story for delocalized

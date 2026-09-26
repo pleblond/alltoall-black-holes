@@ -6,7 +6,7 @@
 [![Docs: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-blue)](LICENSE-DOCS-CC-BY-4.0.txt)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22929076.svg)](https://doi.org/10.5281/zenodo.22929076)
 
-> A reproducible toy theory: black-hole interiors are almost-perfect all:all
+> A reproducible model: black-hole interiors are almost-perfect all:all
 > entanglement graphs, horizon area counts exterior legs ($A = k\,l_p^2$),
 > and micro-holes undergo a point-to-horizon phase transition. Every claim
 > ships with runnable code, tests, and figures.

@@ -24,7 +24,9 @@
 
 ## Abstract
 
-We study a toy model in which spacetime connectivity is an entanglement graph
+We study a phenomenological model in which spacetime connectivity is an entanglement graph
+(developed from the Secs 1–3 toy; promoted by the J0737 2PN lock and the
+falsifiable gap-kilonova prediction to a testable model of all compact objects — BU)
 and a black hole interior is an *almost-perfect* all:all (complete) subgraph.
 Internal edges cost no exterior space; exterior legs ("wiring" to the ambient
 graph) each cost ~ $4\ln 2 \approx 2.77$ Planck patches of horizon area (derived, BS). We show: **(1)** the
@@ -255,7 +257,7 @@ per-node energy $\varepsilon$, not a free function (BS update: $\varepsilon$
 runs as $c/\sqrt{N}$, so $k^* \propto N$ and $\alpha = k^*/N = 1$ exactly;
 linear $\alpha$ growth holds only for the fixed-$\varepsilon$ matching form).
 
-**Limitations.** This is a graph-topology toy, not a derivation of GR. It has
+**Limitations.** This is an effective model with listed derivation debts, not a derivation of GR from nothing. It has
 no dynamics, no Hamiltonian, no Lorentz invariance, and the monogamy frontier
 is linearized. Its value is intuition + scaling reproduction + a concrete
 micro-hole prediction to test in fuller tensor-network / LQG / island
