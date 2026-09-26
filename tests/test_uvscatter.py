@@ -119,6 +119,13 @@ def test_mixed_pop_at_kcrit():
     assert rows[0]["chi_inner"] < 1.0 < rows[1]["chi_inner"]
 
 
+def test_mixed_pop_at_l25():
+    lo = U.measure_c(25, 20, mode="mixed")
+    hi = U.measure_c(25, 80, mode="mixed")
+    assert lo["reachable_frac"] > 0.9 and 0.2 < lo["c_median"] < 1.0
+    assert hi["reachable_frac"] < 0.01  # 15625 nodes, pop holds
+
+
 def test_uv_rise_then_turnover():
     rp = U.running_profile(24, 40, mode="mixed")
     uv = U.uv_running_p(rp)
@@ -171,6 +178,11 @@ def test_ray_monotone():
 def test_or_sign_survives_uv():
     o = U.uv_or_sign()
     assert o["ok"] and o["all_negative"]  # attraction holds at chi ~ 1
+
+
+def test_or_sign_survives_uv_l11():
+    o = U.uv_or_sign(L=11, k=8, n_stubs=48)
+    assert o["ok"] and o["all_negative"]  # 1331 nodes, exact LP
 
 
 def test_orientation_spread_small():
