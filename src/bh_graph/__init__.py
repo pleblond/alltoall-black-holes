@@ -2,7 +2,7 @@
 from bh_graph.graphs import build_complete, build_chain, build_grid_2d, build_random_regular
 from bh_graph.scrambling import infection_time, scrambling_scaling, graph_diameter, mean_path_length, spectral_gap
 from bh_graph.horizon import horizon_area, horizon_radius, k_from_mass_schwarzschild, monogamy_frontier, schwarzschild_rs, k_from_rs, k_from_mass_via_rs, PATCH_AREA
-from bh_graph.micro import critical_k, embedding_radius, is_pointlike, quantized_area, growth_trajectory, packing_kmax, footprint_deficit, pop_forced, R_POINT, packing_margin_msun, NICER_POINTS, KM_PER_LP
+from bh_graph.micro import critical_k, embedding_radius, is_pointlike, quantized_area, growth_trajectory, packing_kmax, footprint_deficit, pop_forced, R_POINT
 from bh_graph.circuits import circuit_cover_time, mean_cover_time, predicted_alltoall_log, circuit_scaling
 from bh_graph.maxent import (
     maxent_k_linear, selfconsistent_k_quadratic, legs_per_node,
@@ -206,9 +206,7 @@ from bh_graph.perwalk import (
 from bh_graph.strain import (
     h_tortuosity, h_naive, f_schw, gr_h, newton_h,
     gamma_ppn_of_h, perihelion_advance, mercury_arcsec,
-    divergence_law, divergence_slope, gr_isotropic_h,
-    peeloff_e_factor, j0737_fractional_difference, j0737_absorption,
-    u2_coefficient,
+    divergence_law, divergence_slope,
 )
 from bh_graph.weakfield import weak_field_graph, kappa_profile, scaling_power, harmonic_potential, potential_profile, potential_power, gradient_drift_slope, hitting_probability
 from bh_graph.legham import leg_field_hamiltonian, scrambling_vs_leg_coupling
@@ -254,7 +252,7 @@ __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
     "infection_time", "scrambling_scaling", "graph_diameter", "mean_path_length", "spectral_gap",
     "horizon_area", "horizon_radius", "k_from_mass_schwarzschild", "monogamy_frontier", "schwarzschild_rs", "k_from_rs", "k_from_mass_via_rs", "PATCH_AREA",
-    "critical_k", "embedding_radius", "is_pointlike", "quantized_area", "growth_trajectory", "packing_kmax", "footprint_deficit", "pop_forced", "R_POINT", "packing_margin_msun", "NICER_POINTS", "KM_PER_LP",
+    "critical_k", "embedding_radius", "is_pointlike", "quantized_area", "growth_trajectory", "packing_kmax", "footprint_deficit", "pop_forced", "R_POINT",
     "circuit_cover_time", "mean_cover_time", "predicted_alltoall_log", "circuit_scaling",
     "maxent_k_linear", "selfconsistent_k_quadratic", "legs_per_node",
     "fixed_point_iteration", "random_tensor_page_saturation", "bekenstein_check",
@@ -367,9 +365,7 @@ __all__ = [
     "mu_of_chi", "much_slope_analytic", "amplification_check",
     "h_tortuosity", "h_naive", "f_schw", "gr_h", "newton_h",
     "gamma_ppn_of_h", "perihelion_advance", "mercury_arcsec",
-    "divergence_law", "divergence_slope", "gr_isotropic_h",
-    "peeloff_e_factor", "j0737_fractional_difference", "j0737_absorption",
-    "u2_coefficient",
+    "divergence_law", "divergence_slope",
     "weak_field_graph", "kappa_profile", "scaling_power", "harmonic_potential", "potential_profile", "potential_power", "gradient_drift_slope", "hitting_probability",
     "leg_field_hamiltonian", "scrambling_vs_leg_coupling",
     "mass_ladder", "qnm_comb", "comb_fractional_spacing", "echo_train",
