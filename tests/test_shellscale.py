@@ -98,6 +98,19 @@ def test_bu_reference_transcription():
     assert abs(H.BU_N1020_P - 0.9134) < 0.001
 
 
+def test_merge_campaigns():
+    a = H.campaign(12, 6, 2, True, 1.5, 0, 4, 0.05, "dense", 1, verbose=False)
+    b = H.campaign(12, 6, 2, True, 1.5, 100, 4, 0.05, "dense", 1, verbose=False)
+    m = H.merge_campaigns([a, b])
+    assert m["n_ok"] == 4 and len(m["per_graph"]) == 4
+    assert abs(m["mean"] - np.mean(m["per_graph"])) < 1e-12
+    assert m["config"]["merged_from"] == 2
+    assert np.isfinite(m["stacked_fit"]["p"])
+    assert H.merge_campaigns([]) == {}
+    c = H.campaign(12, 6, 1, True, 1.0, 0, 4, 0.05, "dense", 1, verbose=False)
+    assert H.merge_campaigns([a, c]) == {}  # beta mismatch
+
+
 def test_campaign_artifact_roundtrip(tmp_path):
     r = H.campaign(12, 6, 2, True, 1.5, 0, 4, 0.05, "dense", 1, verbose=False)
     p = str(tmp_path / "mini.json")

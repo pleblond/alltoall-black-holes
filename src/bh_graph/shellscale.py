@@ -447,6 +447,51 @@ def campaign(per_shell: int = 30, n_shells: int = 10, n_graphs: int = 12,
     return out
 
 
+def merge_campaigns(shards: list) -> dict:
+    """Merge campaign dicts (pod shards) into one aggregate.
+
+    per_graph concatenated in shard order; stacked = n_ok-weighted mean;
+    stacked_fit + local refit on the combined profile. Configs must agree
+    on per_shell/n_shells/beta (checked; {} if not).
+    """
+    if not shards:
+        return {}
+    c0 = shards[0].get("config", {})
+    for s in shards[1:]:
+        c = s.get("config", {})
+        if any(c.get(k) != c0.get(k) for k in ("per_shell", "n_shells", "beta")):
+            return {}
+    per_graph = [p for s in shards for p in s.get("per_graph", [])]
+    ok = np.array([p for p in per_graph if np.isfinite(p)])
+    rs = sorted(shards[0].get("stacked", {}), key=float)
+    stacked = {}
+    for r in rs:
+        tot, n = 0.0, 0
+        for s in shards:
+            v = s.get("stacked", {}).get(r, float("nan"))
+            if np.isfinite(v):
+                tot += v * s.get("n_ok", 0)
+                n += s.get("n_ok", 0)
+        stacked[float(r)] = float(tot / n) if n else float("nan")
+    out = {
+        "config": dict(c0, n_graphs=sum(s.get("n_ok", 0) for s in shards),
+                       merged_from=len(shards)),
+        "per_graph": [float(v) for v in per_graph],
+        "mean": float(np.mean(ok)) if len(ok) else float("nan"),
+        "std": float(np.std(ok)) if len(ok) else float("nan"),
+        "sem": float(np.std(ok) / np.sqrt(len(ok))) if len(ok) else float("nan"),
+        "n_ok": int(len(ok)),
+        "stacked": {str(k): v for k, v in stacked.items()},
+        "stacked_fit": fit_scaling_power(stacked),
+        "local": {str(k): v for k, v in local_slopes(stacked).items()},
+        "elapsed_s": max([s.get("elapsed_s", 0.0) for s in shards] + [0.0]),
+    }
+    profs = [p for s in shards for p in s.get("profiles", [])]
+    if profs:
+        out["profiles"] = profs
+    return out
+
+
 def save_artifact(res: dict, path: str) -> str:
     """Write campaign JSON (config + results). Returns path."""
     with open(path, "w") as f:
