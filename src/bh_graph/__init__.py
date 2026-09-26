@@ -247,6 +247,22 @@ from bh_graph.entropic import (
     newton_potential, link_flux, force_slope, kepler_period,
     leapfrog_orbit, orbit_closes,
 )
+from bh_graph.pulsar import (
+    c2_of_p, p_of_c2, ctot, kepler_a_m, gm_over_ac2,
+    dot_omega_1pn_degyr, dot_omega_dir_2pn_degyr, dot_omega_tot_2pn_degyr,
+    model_factor, dot_omega_model_degyr, invert_mass_msun, sin_i_from_x,
+    is_valid_orbit, required_c2_deficit, p_precision_for_sigma,
+    C1_GR, C1_MODEL, C2_GR, W_2PN, C_TOT_GR, B1913, J0737,
+)
+from bh_graph.orici import (
+    gradient_shell_graph, shell_kappa_profile, fit_scaling_power, measure_p,
+    p_adj_of_shell, shell_pair_radius, n_bridges_for_pair, is_valid_shell_params,
+)
+from bh_graph.collapse import (
+    shed_fraction, leg_shedding_ejecta, is_kilonova_capable,
+    kilonova_peak_time_days, kilonova_peak_lum_erg_s,
+    kilonova_lightcurve_lum, gap_kilonova_table, is_valid_merger,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -381,4 +397,14 @@ __all__ = [
     "tower_agreement",
     "sigma_planck_density", "sigma_hawking_density", "tension_span_orders",
     "bridge_energy", "planck_tension_absurd",
+    "c2_of_p", "p_of_c2", "ctot", "kepler_a_m", "gm_over_ac2",
+    "dot_omega_1pn_degyr", "dot_omega_dir_2pn_degyr", "dot_omega_tot_2pn_degyr",
+    "model_factor", "dot_omega_model_degyr", "invert_mass_msun", "sin_i_from_x",
+    "is_valid_orbit", "required_c2_deficit", "p_precision_for_sigma",
+    "C1_GR", "C1_MODEL", "C2_GR", "W_2PN", "C_TOT_GR", "B1913", "J0737",
+    "gradient_shell_graph", "shell_kappa_profile", "fit_scaling_power", "measure_p",
+    "p_adj_of_shell", "shell_pair_radius", "n_bridges_for_pair", "is_valid_shell_params",
+    "shed_fraction", "leg_shedding_ejecta", "is_kilonova_capable",
+    "kilonova_peak_time_days", "kilonova_peak_lum_erg_s",
+    "kilonova_lightcurve_lum", "gap_kilonova_table", "is_valid_merger",
 ]

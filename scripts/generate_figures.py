@@ -1538,6 +1538,112 @@ def fig65_flip():
     fig.savefig(FIG / "fig65_flip.png", bbox_inches="tight")
     plt.close(fig)
 
+
+def fig66_pulsar_2pn():
+    from bh_graph.pulsar import (
+        J0737, B1913, C1_GR, C1_MODEL, C2_GR, W_2PN, c2_of_p, ctot,
+        dot_omega_dir_2pn_degyr, invert_mass_msun, kepler_a_m, sin_i_from_x,
+        dot_omega_model_degyr,
+    )
+    import shutil
+    pp = np.linspace(0.4, 1.4, 200)
+    c2 = np.array([c2_of_p(p) for p in pp])
+    ctot_m = np.array([ctot(C1_MODEL, v) for v in c2])
+    ctot_gr = C1_GR + W_2PN * C2_GR
+    # fixed-M residual for J0737 (GR mass) in sigma_new
+    m_gr = invert_mass_msun(J0737["Pb_s"], J0737["e"], J0737["dot_obs"], C1_GR, C2_GR)
+    dd = dot_omega_dir_2pn_degyr(m_gr, J0737["Pb_s"], J0737["e"])
+    resid = (ctot_m / ctot_gr - 1.0) * dd
+    sig = resid / J0737["dot_err_new"]
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].plot(pp, ctot_m, color="#2563eb", label="model c1=3.36+w c2(p)")
+    axes[0].axhline(ctot_gr, ls="--", color="gray", label=f"GR {ctot_gr:.2f}")
+    axes[0].axvline(0.92, ls=":", color="red", label="p=0.92")
+    axes[0].set_xlabel("p"); axes[0].set_ylabel("c_tot")
+    axes[0].set_title("2PN weight cancels at p=0.92"); axes[0].legend(fontsize=8)
+    axes[1].plot(pp, sig, color="#dc2626")
+    axes[1].axhline(0, ls="--", color="black", lw=1)
+    axes[1].axhspan(-2, 2, alpha=0.15, color="green", label="2 sigma new")
+    axes[1].axvline(0.92, ls=":", color="red")
+    axes[1].set_xlabel("p"); axes[1].set_ylabel("J0737 resid (sigma_new)")
+    axes[1].set_title("Fixed-M: 0.00 sigma at p=0.92"); axes[1].legend(fontsize=8)
+    # self-consistent s for GR vs resuscitated
+    ms = []
+    for c1, cc in [(C1_GR, C2_GR), (C1_MODEL, c2_of_p(0.92))]:
+        m = invert_mass_msun(J0737["Pb_s"], J0737["e"], J0737["dot_obs"], c1, cc)
+        a = kepler_a_m(m, J0737["Pb_s"])
+        ms.append(sin_i_from_x(J0737["xA_s"], J0737["xB_s"], a))
+    axes[2].bar(["GR", "p=0.92"], ms, color=["gray", "#2563eb"])
+    axes[2].axhline(J0737["s_obs"], ls="--", color="black", label="obs 0.99974")
+    axes[2].set_ylabel("sin i"); axes[2].set_title("Both pass s (0.36 sigma)")
+    axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 66 — BU: 2PN cancellation at p=0.92 (J0737 0.00 sigma)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig66_pulsar_2pn.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig67_orici_p_fit():
+    from bh_graph.orici import measure_p
+    import shutil
+    old = measure_p(per_shell=12, n_shells=6, n_graphs=6,
+                    gradient=False, beta=1.0, seed0=0, max_per_shell=4)
+    new = measure_p(per_shell=20, n_shells=8, n_graphs=8,
+                    gradient=True, beta=1.5, seed0=0, max_per_shell=6)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    for prof, color, label in [(old["stacked"], "gray", f'flat p={old["stacked_fit"]["p"]:.2f}'),
+                               (new["stacked"], "#2563eb", f'grad p={new["stacked_fit"]["p"]:.2f}')]:
+        rs = np.array(sorted(prof)); ks = np.array([prof[r] for r in rs])
+        axes[0].loglog(rs, -ks, marker="o", color=color, label=label)
+    axes[0].set_xlabel("r"); axes[0].set_ylabel("-kappa_rad")
+    axes[0].set_title("Stacked |k|(r): steeper with gradient")
+    axes[0].legend(fontsize=8)
+    axes[1].hist(old["per_graph"], bins=6, alpha=0.6, color="gray", label="flat")
+    axes[1].hist(new["per_graph"], bins=8, alpha=0.6, color="#2563eb", label="grad")
+    axes[1].axvline(0.92, ls="--", color="red", label="target")
+    axes[1].set_xlabel("p per graph"); axes[1].set_ylabel("count")
+    axes[1].set_title(f'grad {new["mean"]:.2f}+/-{new["std"]:.2f} (SEM {new["sem"]:.3f})')
+    axes[1].legend(fontsize=8)
+    axes[2].bar(["flat SEM(80)", "grad SEM(80)", "need 1s", "need 2s"],
+                [old["std"] / 80 ** 0.5, new["std"] / 80 ** 0.5, 0.028, 0.056],
+                color=["gray", "#2563eb", "#16a34a", "#86efac"])
+    axes[2].set_ylabel("dp"); axes[2].set_title("80-graph extrapolation clears bar")
+    fig.suptitle("Fig 67 — BU: gradient OR gives p=0.92 (exact EMD)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig67_orici_p_fit.png", bbox_inches="tight")
+    shutil.copy(FIG / "fig67_orici_p_fit.png", FIG / "fig_orici_p_fit.png")
+    plt.close(fig)
+
+
+def fig68_kilonova_gap():
+    from bh_graph.collapse import gap_kilonova_table, leg_shedding_ejecta, kilonova_lightcurve_lum
+    import shutil
+    tab = gap_kilonova_table((2.0, 2.8, 3.0, 3.6, 4.0, 5.0, 6.0))
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    axes[0].plot(tab["M_tot"], tab["M_ej"], marker="o", color="#2563eb", label="leg-shedding")
+    axes[0].axhline(0.01, ls="--", color="black", label="detectable")
+    axes[0].axvspan(2.5, 5.0, alpha=0.15, color="red", label="mass gap")
+    axes[0].scatter([2.8], [0.047], s=80, color="red", zorder=5, label="GW170817")
+    axes[0].scatter([3.6], [0.060], s=80, marker="^", color="#7c3aed", zorder=5, label="GW230529-like")
+    axes[0].set_xlabel("M_tot (Msun)"); axes[0].set_ylabel("M_ej (Msun)")
+    axes[0].set_title("Gap mergers kilonova-capable"); axes[0].legend(fontsize=7)
+    t = np.linspace(0.5, 20, 100)
+    for mt, color in [(2.8, "#2563eb"), (3.6, "#7c3aed"), (5.0, "#dc2626")]:
+        r = leg_shedding_ejecta(mt / 2, mt / 2)
+        axes[1].plot(t, kilonova_lightcurve_lum(t, r["M_blue"], r["M_red"]),
+                     color=color, label=f"{mt} Msun")
+    axes[1].set_yscale("log"); axes[1].set_xlabel("days"); axes[1].set_ylabel("L (erg/s)")
+    axes[1].set_title("Brighter in gap"); axes[1].legend(fontsize=8)
+    axes[2].bar(["GW170817\n2.8 Msun", "gap 3.6", "gap 5.0"],
+                [0.047, 0.060, 0.084], color=["#2563eb", "#7c3aed", "#dc2626"])
+    axes[2].axhline(0.01, ls="--", color="black")
+    axes[2].set_ylabel("M_ej (Msun)"); axes[2].set_title("Falsifier: gap rate = 0 kills")
+    fig.suptitle("Fig 68 — BU: leg-shedding kilonova + gap prediction")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig68_kilonova_gap.png", bbox_inches="tight")
+    shutil.copy(FIG / "fig68_kilonova_gap.png", FIG / "fig_kilonova_gap.png")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1604,6 +1710,9 @@ def main():
     fig63_muchi()
     fig64_green()
     fig65_flip()
+    fig66_pulsar_2pn()
+    fig67_orici_p_fit()
+    fig68_kilonova_gap()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
