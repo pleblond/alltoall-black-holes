@@ -36,6 +36,7 @@ BRIDGE_C = 8.0 / (30.0**BRIDGE_ALPHA)
 R_INNER = 1.5
 R_OUTER = 5.5
 DENSE_JOHNSON_MAX_N = 8000
+ORACLE_MIN_BRIDGES = 100  # below this, cross blocks use exact Dijkstra
 
 
 # ---------------------------------------------------------------------------
@@ -264,9 +265,18 @@ def csr_neighbors(csr, u: int) -> np.ndarray:
 # Sinkhorn OR on CSR graphs (dense or streaming backend, same numbers).
 # ---------------------------------------------------------------------------
 
-def _edge_kappa_from_supports(su: np.ndarray, sv: np.ndarray, dxy: float,
-                              getd, eps: float, max_iter: int) -> dict:
+def _solve_w1(C, a, b, eps: float, max_iter: int, or_backend: str) -> dict:
+    """W1 via numpy (exact-ish) or torch (GPU-native). Same dict form."""
+    if or_backend == "torch":
+        from bh_graph.sinkor import sinkhorn_w1_torch
+        return sinkhorn_w1_torch(C, a, b, eps=eps, max_iter=max_iter)
     from bh_graph.sinkor import sinkhorn_w1
+    return sinkhorn_w1(C, a, b, eps=eps, max_iter=max_iter)
+
+
+def _edge_kappa_from_supports(su: np.ndarray, sv: np.ndarray, dxy: float,
+                              getd, eps: float, max_iter: int,
+                              or_backend: str = "numpy") -> dict:
     bad = {"ok": False, "kappa": float("nan")}
     if not (np.isfinite(dxy) and dxy > 0) or su.size == 0 or sv.size == 0:
         return bad
@@ -278,7 +288,7 @@ def _edge_kappa_from_supports(su: np.ndarray, sv: np.ndarray, dxy: float,
         C[i, :] = row[sv]
     a = np.full(su.size, 1.0 / su.size)
     b = np.full(sv.size, 1.0 / sv.size)
-    s = sinkhorn_w1(C, a, b, eps=eps, max_iter=max_iter)
+    s = _solve_w1(C, a, b, eps, max_iter, or_backend)
     if not s["ok"]:
         return bad
     return {"ok": True, "kappa": float(1.0 - s["distance"] / dxy),
@@ -288,17 +298,56 @@ def _edge_kappa_from_supports(su: np.ndarray, sv: np.ndarray, dxy: float,
 def shell_kappa_profile_csr(csr, bridges: list, n_shells: int,
                             max_per_shell: int = 8, eps: float = 0.01,
                             backend: str = "auto", seed: int = 0,
-                            max_iter: int = 2000) -> dict:
+                            max_iter: int = 2000, or_backend: str = "numpy",
+                            shell_of=None, per_shell: int = 0,
+                            spotcheck_n: int = 64) -> dict:
     """Mean Sinkhorn-OR kappa on bridge edges per shell-pair. {r: kappa}.
 
-    backend auto: dense Johnson for N <= 8000 else streamed Dijkstra.
+    backend auto: dense Johnson for N <= 8000 else oracle (exact,
+    diameter-2 shells). or_backend numpy (default) or torch (GPU-native).
+    Oracle mode needs shell_of/per_shell + runs a Dijkstra spot-check
+    tripwire (spotcheck_n pairs, 0 to skip); mismatch returns {} (loud).
     Subsamples max_per_shell bridges per pair (seeded).
     """
     from scipy.sparse.csgraph import dijkstra as _sp_dijkstra
     n = csr.shape[0]
     if backend == "auto":
-        backend = "dense" if n <= DENSE_JOHNSON_MAX_N else "stream"
+        backend = "dense" if n <= DENSE_JOHNSON_MAX_N else "oracle"
     rng = np.random.default_rng(seed)
+    if backend == "oracle":
+        if shell_of is None or not per_shell:
+            return {}
+        orac = build_oracle(csr, shell_of, bridges, per_shell, n_shells)
+        if not orac.get("ok", False):
+            return {}
+        if spotcheck_n > 0:
+            chk = oracle_spotcheck(orac, csr, spotcheck_n, seed)
+            if not chk["ok"]:
+                return {}
+        out = {}
+        for s, blist in enumerate(bridges):
+            r = shell_pair_radius(s, n_shells)
+            if not blist:
+                out[r] = float("nan")
+                continue
+            sel = blist
+            if len(blist) > max_per_shell:
+                pick = rng.choice(len(blist), size=max_per_shell, replace=False)
+                sel = [blist[int(i)] for i in pick]
+            kaps = []
+            for u, v in sel:
+                su = csr_neighbors(csr, u)
+                sv = csr_neighbors(csr, v)
+                C = oracle_dist_matrix(orac, su, sv, csr)
+                if C is None:
+                    continue
+                a = np.full(su.size, 1.0 / su.size)
+                b = np.full(sv.size, 1.0 / sv.size)
+                w = _solve_w1(C, a, b, eps, max_iter, or_backend)
+                if w["ok"]:
+                    kaps.append(float(1.0 - w["distance"]))  # bridge: d = 1
+            out[r] = float(np.mean(kaps)) if kaps else float("nan")
+        return out
     dist = None
     if backend == "dense":
         dist = dense_johnson_csr(csr)
@@ -338,7 +387,8 @@ def shell_kappa_profile_csr(csr, bridges: list, n_shells: int,
             du = getd(u)
             if du is None:
                 continue
-            kk = _edge_kappa_from_supports(su, sv, float(du[v]), getd, eps, max_iter)
+            kk = _edge_kappa_from_supports(su, sv, float(du[v]), getd, eps,
+                                             max_iter, or_backend)
             if kk["ok"]:
                 kaps.append(kk["kappa"])
         out[r] = float(np.mean(kaps)) if kaps else float("nan")
@@ -348,7 +398,8 @@ def shell_kappa_profile_csr(csr, bridges: list, n_shells: int,
 def measure_p_csr(per_shell: int = 30, n_shells: int = 10, gradient: bool = True,
                   beta: float | None = None, seed: int = 0,
                   max_per_shell: int = 8, eps: float = 0.01,
-                  backend: str = "auto") -> dict:
+                  backend: str = "auto", or_backend: str = "numpy",
+                  spotcheck_n: int = 64) -> dict:
     """Single-graph p via CSR + Sinkhorn OR. {ok, p, p_err, r2, profile}."""
     bad = {"ok": False, "p": float("nan")}
     built = build_shell_csr(per_shell, n_shells, gradient, beta, seed)
@@ -356,7 +407,9 @@ def measure_p_csr(per_shell: int = 30, n_shells: int = 10, gradient: bool = True
         return bad
     t0 = time.time()
     prof = shell_kappa_profile_csr(built["csr"], built["bridges"], n_shells,
-                                   max_per_shell, eps, backend, seed)
+                                   max_per_shell, eps, backend, seed,
+                                   2000, or_backend, built["shell_of"],
+                                   per_shell, spotcheck_n)
     fit = fit_scaling_power(prof)
     return {"ok": True, "p": fit["p"], "p_err": fit["p_err"], "r2": fit["r2"],
             "profile": prof, "local": local_slopes(prof),
@@ -382,6 +435,177 @@ BU_N1020_BETA = 1.24
 
 
 # ---------------------------------------------------------------------------
+# Shell distance oracle: exact all-pairs without Johnson (diameter-2 shells).
+#
+# Wide shells are ER(0.85-0.99) => diameter exactly 2 (tested at N<=4000,
+# theory margin e^-5000 at 64k): intra-shell dist is 1-or-2 by adjacency.
+# Adjacent-shell pairs are 1 (bridge), 2 (incident-bridge path) or 3 —
+# the 3-default needs dense bridges (sparse pairs can hide 4s: measured
+# 24/5184 at N=72), so pairs below ORACLE_MIN_BRIDGES use exact Dijkstra
+# (cheap exactly when bridges are few). Gap-2 pairs (0.2% of queries) use
+# exact multi-source Dijkstra. Replaces O(VE) Johnson with O(E + queries)
+# vectorized lookups: ~1000x at N=64k (28 hrs -> ~2 min), exactly.
+# ---------------------------------------------------------------------------
+
+def build_oracle(csr, shell_of: np.ndarray, bridges: list, per_shell: int,
+                 n_shells: int) -> dict:
+    """Precompute shell blocks + bridge indices. {ok, blocks, ...}."""
+    bad = {"ok": False}
+    try:
+        csr = csr.tocsr()
+    except (ValueError, TypeError):
+        return bad
+    shell_of = np.asarray(shell_of)
+    blocks = []
+    for s in range(n_shells):
+        blk = np.zeros((per_shell, per_shell), dtype=bool)
+        base = s * per_shell
+        for i in range(per_shell):
+            u = base + i
+            for v in csr.indices[csr.indptr[u]:csr.indptr[u + 1]]:
+                j = int(v) - base
+                if 0 <= j < per_shell and j != i:
+                    blk[i, j] = True
+        blocks.append(blk)
+    bpair: list = []
+    for blist in bridges:
+        bi, bj = [], []
+        for u, v in blist:
+            su, sv = int(shell_of[u]), int(shell_of[v])
+            if abs(su - sv) != 1:
+                continue
+            if su > sv:
+                u, v, su, sv = v, u, sv, su
+            bi.append(u - su * per_shell)
+            bj.append(v - sv * per_shell)
+        bpair.append((np.array(bi, dtype=int), np.array(bj, dtype=int)))
+    return {"ok": True, "blocks": blocks, "bpair": bpair,
+            "shell_of": shell_of, "per_shell": int(per_shell),
+            "n_shells": int(n_shells)}
+
+
+def _oracle_cross_block(orac: dict, su: np.ndarray, sv: np.ndarray,
+                        s: int) -> np.ndarray:
+    """Exact dist block su(shell s) x sv(shell s+1): 1/2/3 vectorized."""
+    per_shell = orac["per_shell"]
+    iu = su - s * per_shell
+    iv = sv - (s + 1) * per_shell
+    D = np.full((su.size, sv.size), 3.0)
+    blk_s, blk_t = orac["blocks"][s], orac["blocks"][s + 1]
+    bi, bj = orac["bpair"][s]
+    sumask = np.zeros(per_shell, dtype=bool)
+    svmask = np.zeros(per_shell, dtype=bool)
+    sumask[iu] = True
+    svmask[iv] = True
+    pos_u = np.full(per_shell, -1)
+    pos_v = np.full(per_shell, -1)
+    pos_u[iu] = np.arange(su.size)
+    pos_v[iv] = np.arange(sv.size)
+    if bi.size:
+        hit = sumask[bi] & svmask[bj]
+        D[pos_u[bi[hit]], pos_v[bj[hit]]] = 1.0
+        # 2-paths via shell s: x -> w -> y, (w,y) bridge
+        land_t: dict = {}
+        for a, b in zip(bi.tolist(), bj.tolist()):
+            land_t.setdefault(b, []).append(a)
+        for yi, y in enumerate(iv.tolist()):
+            for w in land_t.get(y, ()):
+                if svmask[y]:
+                    D[blk_s[iu, w], yi] = np.minimum(D[blk_s[iu, w], yi], 2.0)
+        # 2-paths via shell t: x -> w -> y, (x,w) bridge
+        land_s: dict = {}
+        for a, b in zip(bi.tolist(), bj.tolist()):
+            land_s.setdefault(a, []).append(b)
+        for xi, x in enumerate(iu.tolist()):
+            for w in land_s.get(x, ()):
+                if sumask[x]:
+                    D[xi, blk_t[iv, w]] = np.minimum(D[xi, blk_t[iv, w]], 2.0)
+    return D
+
+
+def oracle_dist_matrix(orac: dict, su: np.ndarray, sv: np.ndarray,
+                       csr=None) -> np.ndarray | None:
+    """Full C-block for supports su x sv (any shells). None on failure.
+
+    Same/adjacent-shell sub-blocks via vectorized oracle; gap-2 sub-blocks
+    via exact multi-source Dijkstra (needs csr). Falls back to None (loud)
+    if a gap block is requested without csr.
+    """
+    su = np.asarray(su, dtype=int)
+    sv = np.asarray(sv, dtype=int)
+    if su.size == 0 or sv.size == 0 or not orac.get("ok", False):
+        return None
+    per_shell = orac["per_shell"]
+    sh = orac["shell_of"]
+    D = np.empty((su.size, sv.size))
+    for a in np.unique(sh[su]):
+        for b in np.unique(sh[sv]):
+            ra = np.nonzero(sh[su] == a)[0]
+            cb = np.nonzero(sh[sv] == b)[0]
+            xa, yb = su[ra], sv[cb]
+            if a == b:
+                blk = orac["blocks"][int(a)]
+                ia, ib = xa - int(a) * per_shell, yb - int(a) * per_shell
+                sub = np.where(blk[np.ix_(ia, ib)], 1.0, 2.0)
+                # same shell + same local index <=> same node => 0
+                sub[ia[:, None] == ib[None, :]] = 0.0
+                D[np.ix_(ra, cb)] = sub
+            elif abs(int(a) - int(b)) == 1:
+                s = min(int(a), int(b))
+                bi, _ = orac["bpair"][s]
+                if bi.size < ORACLE_MIN_BRIDGES:
+                    if csr is None:
+                        return None
+                    rows = streamed_sources_csr(csr, xa if xa.size <= yb.size else yb)
+                    if rows is None:
+                        return None
+                    if xa.size <= yb.size:
+                        for i, x in enumerate(xa.tolist()):
+                            D[ra[i], cb] = rows[x][yb]
+                    else:
+                        for j, y in enumerate(yb.tolist()):
+                            D[ra, cb[j]] = rows[y][xa]
+                elif int(a) < int(b):
+                    D[np.ix_(ra, cb)] = _oracle_cross_block(orac, xa, yb, s)
+                else:
+                    D[np.ix_(ra, cb)] = _oracle_cross_block(orac, yb, xa, s).T
+            else:
+                if csr is None:
+                    return None
+                rows = streamed_sources_csr(csr, xa if xa.size <= yb.size else yb)
+                if rows is None:
+                    return None
+                if xa.size <= yb.size:
+                    for i, x in enumerate(xa.tolist()):
+                        D[ra[i], cb] = rows[x][yb]
+                else:
+                    for j, y in enumerate(yb.tolist()):
+                        D[ra, cb[j]] = rows[y][xa]
+    if not np.all(np.isfinite(D)):
+        return None
+    return D
+
+
+def oracle_spotcheck(orac: dict, csr, n: int = 200, seed: int = 0) -> dict:
+    """Tripwire: exact-Dijkstra compare on n random pairs. {ok, maxdiff}."""
+    rng = np.random.default_rng(seed)
+    N = csr.shape[0]
+    us = rng.integers(0, N, size=n)
+    vs = rng.integers(0, N, size=n)
+    rows = streamed_sources_csr(csr, np.unique(us))
+    if rows is None:
+        return {"ok": False, "maxdiff": float("nan")}
+    worst = 0.0
+    for u, v in zip(us.tolist(), vs.tolist()):
+        exact = float(rows[u][v])
+        got = oracle_dist_matrix(orac, np.array([u]), np.array([v]), csr)
+        if got is None or not np.isfinite(exact):
+            continue
+        worst = max(worst, abs(float(got[0, 0]) - exact))
+    return {"ok": bool(worst == 0.0), "maxdiff": float(worst)}
+
+
+# ---------------------------------------------------------------------------
 # Multiprocess campaigns + JSON artifacts.
 # ---------------------------------------------------------------------------
 
@@ -389,7 +613,8 @@ def _campaign_worker(cfg: dict) -> dict:
     t = cfg["t"]
     r = measure_p_csr(cfg["per_shell"], cfg["n_shells"], cfg["gradient"],
                       cfg["beta"], cfg["seed0"] + t, cfg["max_per_shell"],
-                      cfg["eps"], cfg["backend"])
+                      cfg["eps"], cfg["backend"], cfg.get("or_backend", "numpy"),
+                      cfg.get("spotcheck_n", 64))
     return {"t": t, "p": r.get("p", float("nan")),
             "profile": r.get("profile", {}), "elapsed_s": r.get("elapsed_s", 0.0),
             "n_edges": r.get("n_edges", 0)}
@@ -399,13 +624,14 @@ def campaign(per_shell: int = 30, n_shells: int = 10, n_graphs: int = 12,
              gradient: bool = True, beta: float | None = None, seed0: int = 0,
              max_per_shell: int = 8, eps: float = 0.01, backend: str = "auto",
              workers: int | None = None, verbose: bool = True,
-             save_profiles: bool = False) -> dict:
+             save_profiles: bool = False, or_backend: str = "numpy",
+             spotcheck_n: int = 64) -> dict:
     """p over n_graphs CSR shell graphs in parallel. BU-measure_p analog.
 
     Returns per-graph p, mean/std/sem, stacked profile + fit, local slopes,
     elapsed wall time, and full config (for the artifact). save_profiles
     keeps every graph's profile (for local-slope error bars; off by default
-    to keep artifacts small).
+    to keep artifacts small). or_backend torch = GPU-native Sinkhorn.
     """
     if beta is None:
         beta = BRIDGE_BETA_NEW if gradient else BRIDGE_BETA_OLD
@@ -413,7 +639,8 @@ def campaign(per_shell: int = 30, n_shells: int = 10, n_graphs: int = 12,
         workers = max(1, min(32, os.cpu_count() or 4))
     cfgs = [{"t": t, "per_shell": per_shell, "n_shells": n_shells,
              "gradient": gradient, "beta": beta, "seed0": seed0,
-             "max_per_shell": max_per_shell, "eps": eps, "backend": backend}
+             "max_per_shell": max_per_shell, "eps": eps, "backend": backend,
+             "or_backend": or_backend, "spotcheck_n": spotcheck_n}
             for t in range(n_graphs)]
     t0 = time.time()
     results = []
@@ -435,7 +662,8 @@ def campaign(per_shell: int = 30, n_shells: int = 10, n_graphs: int = 12,
         "config": {"per_shell": per_shell, "n_shells": n_shells,
                    "n_graphs": n_graphs, "gradient": gradient, "beta": beta,
                    "seed0": seed0, "max_per_shell": max_per_shell, "eps": eps,
-                   "backend": backend, "workers": workers},
+                   "backend": backend, "or_backend": or_backend,
+                   "workers": workers},
         "per_graph": [float(v) for v in per_graph],
         "mean": float(np.mean(ok)) if len(ok) else float("nan"),
         "std": float(np.std(ok)) if len(ok) else float("nan"),
@@ -485,7 +713,7 @@ def merge_campaigns(shards: list) -> dict:
         "mean": float(np.mean(ok)) if len(ok) else float("nan"),
         "std": float(np.std(ok)) if len(ok) else float("nan"),
         "sem": float(np.std(ok) / np.sqrt(len(ok))) if len(ok) else float("nan"),
-        "n_ok": int(len(ok)),
+        "n_ok": len(ok),
         "stacked": {str(k): v for k, v in stacked.items()},
         "stacked_fit": fit_scaling_power(stacked),
         "local": {str(k): v for k, v in local_slopes(stacked).items()},

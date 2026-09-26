@@ -5,6 +5,7 @@ Spec fidelity to BU (same bridge counts, radii, p_adj), CSR-direct builder
 reproduction of BU bands (N=300 ~0.92, N=1020 ~0.913).
 """
 import numpy as np
+import pytest
 
 from bh_graph import shellscale as H
 
@@ -48,6 +49,35 @@ def test_nx_port_valid():
     assert g.number_of_nodes() == 72
     for s in range(5):
         assert any(sorted([u[0], v[0]]) == [s, s + 1] for u, v in g.edges())
+
+
+def test_oracle_matches_dense_exactly():
+    for s, n in [(12, 6), (30, 10)]:
+        b = H.build_shell_csr(s, n, True, 1.5, 1)
+        d = H.shell_kappa_profile_csr(b["csr"], b["bridges"], n, 8, 0.05,
+                                      "dense", 1)
+        o = H.shell_kappa_profile_csr(b["csr"], b["bridges"], n, 8, 0.05,
+                                      "oracle", 1, 2000, "numpy",
+                                      b["shell_of"], s, 0)
+        assert set(d) == set(o)
+        assert max(abs(d[r] - o[r]) for r in d) < 1e-12
+    b = H.build_shell_csr(12, 6, True, 1.5, 1)
+    assert H.shell_kappa_profile_csr(b["csr"], b["bridges"], 6, 4, 0.05,
+                                     "oracle", 1) == {}
+    orac = H.build_oracle(b["csr"], b["shell_of"], b["bridges"], 12, 6)
+    chk = H.oracle_spotcheck(orac, b["csr"], 50, 0)
+    assert chk["ok"] and chk["maxdiff"] == 0.0
+
+
+def test_torch_or_backend_parity():
+    torch = pytest.importorskip("torch")
+    assert torch is not None
+    b = H.build_shell_csr(12, 6, True, 1.5, 1)
+    d = H.shell_kappa_profile_csr(b["csr"], b["bridges"], 6, 4, 0.05,
+                                  "dense", 1)
+    t = H.shell_kappa_profile_csr(b["csr"], b["bridges"], 6, 4, 0.05,
+                                  "dense", 1, 2000, "torch")
+    assert max(abs(d[r] - t[r]) for r in d) < 1e-9
 
 
 def test_streaming_matches_dense():

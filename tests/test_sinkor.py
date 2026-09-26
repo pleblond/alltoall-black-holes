@@ -7,6 +7,7 @@ on the weak-field graph. Plus the beta(4096) starting guess and op counts.
 """
 import networkx as nx
 import numpy as np
+import pytest
 from scipy.optimize import linprog
 
 from bh_graph import sinkor as S
@@ -38,6 +39,19 @@ def test_sinkhorn_matches_lp():
         assert s["distance"] - exact > -1e-9  # entropic overshoot only
         assert s["distance"] - exact < 0.01
         assert s["marginal_error"] < 1e-8
+
+
+def test_torch_sinkhorn_matches_numpy():
+    torch = pytest.importorskip("torch")
+    assert torch is not None
+    rng = np.random.default_rng(3)
+    C = rng.uniform(0, 4, (30, 30))
+    a = rng.dirichlet(np.ones(30))
+    b = rng.dirichlet(np.ones(30))
+    n = S.sinkhorn_w1(C, a, b, eps=0.05)
+    t = S.sinkhorn_w1_torch(C, a, b, eps=0.05, device="cpu")
+    assert t["ok"] and t["converged"]
+    assert abs(t["distance"] - n["distance"]) < 1e-9
 
 
 def test_sinkhorn_bad_inputs_no_raise():

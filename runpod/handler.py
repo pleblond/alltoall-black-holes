@@ -2,11 +2,13 @@
 
 Worker boots from a stock image; the endpoint start command clones this
 branch, installs deps, and runs this file, which polls the RunPod job queue.
-Job input: {per_shell, n_shells, beta, seed, max_per_shell, eps, backend}.
+Job input: {per_shell, n_shells, beta, seed, max_per_shell, eps, backend,
+or_backend} (or_backend torch = GPU-native when torch+CUDA present).
 Job output: {p, p_err, r2, profile, elapsed_s} (KBs).
 """
 from __future__ import annotations
 
+import os
 import sys
 import time
 from pathlib import Path
@@ -25,7 +27,8 @@ def compute_job(inp: dict) -> dict:
             bool(inp.get("gradient", True)),
             float(inp.get("beta", 1.5)), int(inp.get("seed", 0)),
             int(inp.get("max_per_shell", 8)), float(inp.get("eps", 0.01)),
-            str(inp.get("backend", "auto")))
+            str(inp.get("backend", "auto")),
+            str(inp.get("or_backend", os.environ.get("OR_BACKEND", "numpy"))))
         if not r.get("ok", False):
             return bad
         return {"ok": True, "p": r["p"], "p_err": r["p_err"], "r2": r["r2"],

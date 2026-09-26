@@ -111,6 +111,93 @@ def sinkhorn_w1(C, a, b, eps: float = 0.05, max_iter: int = 2000,
             "converged": bool(err < tol), "marginal_error": float(err)}
 
 
+def _torch_available() -> bool:
+    """Boolean check: torch importable (optional dependency, GPU path)."""
+    try:
+        import torch  # noqa: F401
+        return True
+    except ImportError:
+        return False
+
+
+def sinkhorn_w1_torch(C, a, b, eps: float = 0.05, max_iter: int = 2000,
+                      tol: float | None = None, anneal: bool = True,
+                      device: str | None = None) -> dict:
+    """Torch Sinkhorn W1 (GPU-native; same math as sinkhorn_w1).
+
+    C/a/b as numpy arrays; runs log-domain annealed Sinkhorn in torch on
+    `device` (default: cuda if available else cpu). float32 on CUDA with
+    tol 1e-5 (fp32-appropriate), float64 on CPU with tol 1e-8; pass tol
+    explicitly to override. Returns the same dict form (distance as float).
+    ok=False (no raise) when torch is missing or inputs are bad.
+    """
+    bad = {"ok": False, "distance": float("nan"), "n_iter": 0,
+           "converged": False, "marginal_error": float("nan")}
+    if not _torch_available():
+        return bad
+    import torch
+    try:
+        Cn = np.asarray(C, dtype=float)
+        an = np.asarray(a, dtype=float)
+        bn = np.asarray(b, dtype=float)
+    except (ValueError, TypeError):
+        return bad
+    if Cn.ndim != 2 or an.ndim != 1 or bn.ndim != 1:
+        return bad
+    n, m = Cn.shape
+    if an.shape[0] != n or bn.shape[0] != m or n == 0 or m == 0:
+        return bad
+    if not (np.all(np.isfinite(Cn)) and np.all(Cn >= 0)):
+        return bad
+    if not (np.all(an > 0) and np.all(bn > 0) and np.isfinite(eps) and eps > 0):
+        return bad
+    dev = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
+    dtype = torch.float32 if dev.type == "cuda" else torch.float64
+    if tol is None:
+        tol = 1e-5 if dev.type == "cuda" else 1e-8
+    try:
+        Cc = torch.as_tensor(Cn, dtype=dtype, device=dev)
+        aa = torch.as_tensor(an / an.sum(), dtype=dtype, device=dev)
+        bb = torch.as_tensor(bn / bn.sum(), dtype=dtype, device=dev)
+        loga, logb = torch.log(aa), torch.log(bb)
+        if anneal and eps < 0.5:
+            stages = [float(s) for s in np.geomspace(
+                0.5, eps, num=max(2, int(np.ceil(np.log(0.5 / eps) / np.log(2))) + 1))]
+        else:
+            stages = [float(eps)]
+        f = torch.zeros(n, dtype=dtype, device=dev)
+        g = torch.zeros(m, dtype=dtype, device=dev)
+        total_it, err = 0, float("inf")
+        P = torch.outer(aa, bb)
+        for e in stages:
+            for _ in range(max(200, int(max_iter))):
+                total_it += 1
+                f = e * (loga - torch.logsumexp((g[None, :] - Cc) / e, dim=1))
+                g = e * (logb - torch.logsumexp((f[:, None] - Cc) / e, dim=0))
+                if not (torch.all(torch.isfinite(f)) and torch.all(torch.isfinite(g))):
+                    return bad
+                if total_it % 50 == 0:
+                    P = torch.exp((f[:, None] + g[None, :] - Cc) / e)
+                    if not torch.all(torch.isfinite(P)):
+                        return bad
+                    err = max(float((P.sum(1) - aa).abs().max()),
+                              float((P.sum(0) - bb).abs().max()))
+                    if err < tol:
+                        break
+            if err < tol and e == stages[-1]:
+                break
+        P = torch.exp((f[:, None] + g[None, :] - Cc) / float(stages[-1]))
+        if not torch.all(torch.isfinite(P)):
+            return bad
+        err = max(float((P.sum(1) - aa).abs().max()),
+                  float((P.sum(0) - bb).abs().max()))
+        return {"ok": True, "distance": float((P * Cc).sum()),
+                "n_iter": int(total_it), "converged": bool(err < tol),
+                "marginal_error": float(err)}
+    except RuntimeError:
+        return bad
+
+
 def _local_measure(nbrs: list, lazy: float = 0.0) -> np.ndarray:
     """Uniform neighborhood measure with optional lazy mass at index 0.
 
