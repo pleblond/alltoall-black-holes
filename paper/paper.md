@@ -1563,3 +1563,21 @@ the finite-width washout). Per-graph std falls with N ($0.049 \to 0.029 \to
 device in-payload; fp32-GPU agrees with fp64-CPU to $2\times10^{-5}$ on $p$.
 The $\beta(N)$ log-linear law now spans 300–16000 (6 points); 32k decides
 whether it holds toward the $\sim 10^6$ zero-crossing.
+
+**Three closing checks (all local, all pass).** (1) Weighted $p(\beta)$
+inversion of the 16k scan ($0.68 \to 0.804$, $0.74 \to 0.920$,
+$0.80 \to 0.999$, slope $1.735$) at farm $p = 0.9137 \pm 0.0022$ gives
+$\beta(16000) = 0.742 \pm 0.003\,(\mathrm{stat}) \pm 0.01\,(\mathrm{linearity})$ —
+inside $\pm 0.02$ with margin. (2) Turnover significance from direct
+80-graph profile errors: inner window $0.692 \pm 0.005$ sits $43\sigma$
+below global $0.9133$, outer $1.262 \pm 0.024$ is $14\sigma$ above, every
+window $5\sigma+$ off — the power law is an average over real curvature.
+(3) Kill wires at scale: radial OR stays negative on defect-pierced graphs
+at L=7, 9 ($-0.23, -0.12, -0.06$) and L=11 ($-0.30, -0.18, -0.08, exact
+LP); mixed mode at L=25 (15625 nodes) gives dilute $0.32$, rise $1.81$,
+pop (reachable $0.99 \to 0.0004$ across $k = 40$–$80$ vs $k_{crit} = 44.1$).
+Soft-$c$ systematics mapped honestly: even-L decline $0.59 \to 0.38$
+(L=16→48, void-dilution at fixed $k$) plus an odd-L center-alignment
+offset (L=25: $0.32$) — all inside the armed $[0.3, 0.8]$ wire, and fixed-$k$
+across-$L$ is apples-to-oranges ($R_s$/box changes); the matched comparison
+is the $c(k)$ curve at fixed $L$.
