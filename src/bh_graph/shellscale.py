@@ -399,7 +399,7 @@ def measure_p_csr(per_shell: int = 30, n_shells: int = 10, gradient: bool = True
                   beta: float | None = None, seed: int = 0,
                   max_per_shell: int = 8, eps: float = 0.01,
                   backend: str = "auto", or_backend: str = "numpy",
-                  spotcheck_n: int = 64) -> dict:
+                  spotcheck_n: int = 16) -> dict:
     """Single-graph p via CSR + Sinkhorn OR. {ok, p, p_err, r2, profile}."""
     bad = {"ok": False, "p": float("nan")}
     built = build_shell_csr(per_shell, n_shells, gradient, beta, seed)
@@ -625,7 +625,7 @@ def campaign(per_shell: int = 30, n_shells: int = 10, n_graphs: int = 12,
              max_per_shell: int = 8, eps: float = 0.01, backend: str = "auto",
              workers: int | None = None, verbose: bool = True,
              save_profiles: bool = False, or_backend: str = "numpy",
-             spotcheck_n: int = 64) -> dict:
+             spotcheck_n: int = 16) -> dict:
     """p over n_graphs CSR shell graphs in parallel. BU-measure_p analog.
 
     Returns per-graph p, mean/std/sem, stacked profile + fit, local slopes,

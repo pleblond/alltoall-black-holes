@@ -31,9 +31,15 @@ def compute_job(inp: dict) -> dict:
             str(inp.get("or_backend", os.environ.get("OR_BACKEND", "numpy"))))
         if not r.get("ok", False):
             return bad
-        return {"ok": True, "p": r["p"], "p_err": r["p_err"], "r2": r["r2"],
-                "profile": {str(k): v for k, v in r["profile"].items()},
-                "elapsed_s": time.time() - t0}
+        out = {"ok": True, "p": r["p"], "p_err": r["p_err"], "r2": r["r2"],
+               "profile": {str(k): v for k, v in r["profile"].items()},
+               "elapsed_s": time.time() - t0}
+        try:
+            import torch
+            out["torch_device"] = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "cpu"
+        except ImportError:
+            out["torch_device"] = "no-torch"
+        return out
     except Exception as e:  # noqa: BLE001 — jobs must return, not raise
         return {"ok": False, "p": float("nan"), "error": str(e)[:200]}
 

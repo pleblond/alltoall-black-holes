@@ -193,7 +193,8 @@ def sinkhorn_w1_torch(C, a, b, eps: float = 0.05, max_iter: int = 2000,
                   float((P.sum(0) - bb).abs().max()))
         return {"ok": True, "distance": float((P * Cc).sum()),
                 "n_iter": int(total_it), "converged": bool(err < tol),
-                "marginal_error": float(err)}
+                "marginal_error": float(err), "device": str(dev),
+                "dtype": str(dtype).replace("torch.", "")}
     except RuntimeError:
         return bad
 
