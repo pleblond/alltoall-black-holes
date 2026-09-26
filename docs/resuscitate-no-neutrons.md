@@ -17,7 +17,7 @@ standard $\le0.3$/yr). 308 tests green, 69+2 figures. Protocol:
 
 | File | Old (main) | New (this branch) |
 |---|---|---|
-| `src/bh_graph/orici.py` | grid+hub BI, 3 shells, 6 graphs, $\sigma_p = 0.48$ | gradient shells $p_{adj}(s) = 0.85+0.015s$, 8–10 shells, exact EMD full neighborhoods, deterministic bridge counts $n \propto r^{\beta(N)}$ → $p = 0.917 \pm 0.030$ at N = 1020 (SEM $0.011$ at 8 graphs; 80-graph exact run in progress) |
+| `src/bh_graph/orici.py` | grid+hub BI, 3 shells, 6 graphs, $\sigma_p = 0.48$ | gradient shells $p_{adj}(s) = 0.85+0.015s$, 8–10 shells, exact EMD full neighborhoods, deterministic bridge counts $n \propto r^{\beta(N)}$ → $p = 0.913 \pm 0.049$ at N = 1020, SEM $0.0055$ (80 graphs exact, $0.24\sigma$ from target) |
 | `src/bh_graph/pulsar.py` | — (new) | Iorio 2PN direct+total, $c_2(p) = p(2p-1)$, $w = 1.953$, $R+\dot\omega\to M$ inversion, $p$-precision bar, GR-battery 2PN margins (bending/Mercury hidden) |
 | `src/bh_graph/collapse.py` | grid→complete transition only | + leg-shedding: $e$ $0.5\to0.416$, $M_{ej} = \Delta k\,m_{leg}\times0.1$, blue+red AT2017gfo, gap table, band mags, O5 yield, kill rule |
 | `tests/` | 278 | +30 (pulsar 14, kilonova 10, orici 9, minus overlaps) = 308 |
@@ -107,21 +107,25 @@ $\beta = 1.5$ is calibrated at $N = 300$ (per-shell 30). Probing larger:
 | 1020 | 102 | 1.3 | $1.05\pm0.03$ |
 | **1020** | **102** | **1.25** | **$0.956\pm0.036$, SEM $0.013$ (8 graphs)** |
 | **1020** | **102** | **1.24** | **$0.917\pm0.030$, SEM $0.011$, stacked $0.914$ (8 graphs)** |
+| **1020** | **102** | **1.24** | **$0.913\pm0.049$, SEM $0.0055$, stacked $0.911$ (80 graphs, exact)** |
 
 So $\beta$ must be recalibrated per $N$ ($\approx1.5$ at 300, $\approx1.28$
-at 600, $\approx1.24$ at 1020). **Full-scale lock achieved:** at $N = 1020$
-($10\times102$, the $1024$ class), $\beta = 1.24$ gives $p = 0.917\pm0.030$
-per graph, SEM $0.011$ at 8 graphs → $0.003$ extrapolated at 80 graphs,
-clearing the $0.028$ (1σ) / $0.056$ (2σ) bars by $9\times$/$19\times$.
-Per-graph scatter drops with $N$ ($0.06\to0.03$) as larger shells average
-better — the method improves toward the $1024$ target. To reproduce:
+at 600, $\approx1.24$ at 1020). **Full-scale lock measured (not
+extrapolated):** at $N = 1020$ ($10\times102$, the $1024$ class),
+$\beta = 1.24$, 80 graphs exact Floyd+LP (545 s): $p = 0.913\pm0.049$
+per graph, SEM $0.0055$, stacked $0.911$ (R² $0.956$), 80/80 fits ok,
+range $0.79$–$1.05$. Distance to target: $|0.913-0.92| = 0.007$
+($0.24\sigma$ in $p$, $\sim0.09\sigma$ in $\dot\omega$) — **within
+$1\sigma$**, with $5\times$ precision margin ($0.0055$ vs $0.028$).
+Per-graph scatter drops with $N$ ($0.06\to0.05$) as larger shells average
+better. To reproduce (`/tmp/p80_run.py` pattern, ~9 min):
 
 ```bash
 python -c "from bh_graph.orici import measure_p;
-r = measure_p(per_shell=102, n_shells=10, n_graphs=8,
+r = measure_p(per_shell=102, n_shells=10, n_graphs=80,
               gradient=True, beta=1.24, seed0=0, max_per_shell=8);
 print(r['mean'], r['std'], r['sem'], r['stacked_fit'])"
-# expect ~0.917 0.030 0.011 {p: 0.914} in ~60 s
+# measured ~0.913 0.049 0.0055 {p: 0.911, R2: 0.956} in ~545 s
 ```
 
 ## Falsifiers (this branch)
