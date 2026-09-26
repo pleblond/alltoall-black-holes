@@ -57,6 +57,25 @@ python scripts/generate_figures.py  # writes fig66/67/68 + aliases
   stiffness, full $N = 1024$ $k = 160$ run (this branch validates the method
   at $N = 160$–$300$; $1024$ is the same law, larger shells).
 
+## Scaling probe (honest drift found)
+
+$\beta = 1.5$ is calibrated at $N = 300$ (per-shell 30). Probing larger:
+
+| $N$ | per-shell | $\beta$ | measured $p$ (3 graphs) |
+|---|---|---|---|
+| 300 | 30 | 1.5 | $0.94\pm0.06$ |
+| 600 | 60 | 1.5 | $1.16\pm0.06$ (drifts high) |
+| 600 | 60 | 1.3 | $0.96\pm0.06$ |
+| 600 | 60 | 1.2 | $0.72\pm0.03$ → $\beta(600)\approx1.28$ for $p = 0.92$ |
+
+So $\beta$ must be recalibrated per $N$ ($\approx1.5$ at 300, $\approx1.28$
+at 600, $\sim1.1$ predicted at 1024 by log-linear extrapolation). This is
+expected — $\beta$ absorbs the $N$-dependent contrast between intra-shell
+density and bridge sparsity — but it means the full $N = 1024$ run is a
+fresh fit, not a free extrapolation. The $p = 0.92\pm0.02$ lock at $1024$
+requires running `measure_p(per_shell=102, n_shells=10, n_graphs=80,
+beta=1.1)` ($\sim7$ min) and adjusting $\beta$ to center $0.92$.
+
 ## Falsifiers (this branch)
 
 1. $p$ outside $0.92\pm0.056$ at $N = 1024$, 80 graphs → 2PN dead.
