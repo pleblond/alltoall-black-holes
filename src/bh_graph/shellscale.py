@@ -442,17 +442,16 @@ def build_oracle(csr, shell_of: np.ndarray, bridges: list, per_shell: int,
     except (ValueError, TypeError):
         return bad
     shell_of = np.asarray(shell_of)
-    blocks = []
-    for s in range(n_shells):
-        blk = np.zeros((per_shell, per_shell), dtype=bool)
-        base = s * per_shell
-        for i in range(per_shell):
-            u = base + i
-            for v in csr.indices[csr.indptr[u]:csr.indptr[u + 1]]:
-                j = int(v) - base
-                if 0 <= j < per_shell and j != i:
-                    blk[i, j] = True
-        blocks.append(blk)
+    # Vectorized blocks: stack (n_shells, s, s), scatter intra edges once.
+    coo = csr.tocoo()
+    ru = np.asarray(coo.row)
+    cu = np.asarray(coo.col)
+    shu = shell_of[ru]
+    same = (shu == shell_of[cu]) & (ru != cu)
+    stacked = np.zeros((n_shells, per_shell, per_shell), dtype=bool)
+    np.maximum.at(stacked, (shu[same], ru[same] - shu[same] * per_shell,
+                             cu[same] - shu[same] * per_shell), True)
+    blocks = [np.asarray(stacked[s]) for s in range(n_shells)]
     bpair: list = []
     for blist in bridges:
         bi, bj = [], []
@@ -467,46 +466,60 @@ def build_oracle(csr, shell_of: np.ndarray, bridges: list, per_shell: int,
         bpair.append((np.array(bi, dtype=int), np.array(bj, dtype=int)))
     return {"ok": True, "blocks": blocks, "bpair": bpair,
             "shell_of": shell_of, "per_shell": int(per_shell),
-            "n_shells": int(n_shells)}
+            "n_shells": int(n_shells), "paircache": {}}
+
+
+def _pair_cross_full(orac: dict, s: int, csr=None) -> np.ndarray | None:
+    """Full s x s cross-distance block for pair s|s+1 (cached per graph).
+
+    D1 by bridge scatter; D2 by two int16 BLAS gemms
+    (A_s @ B and B @ A_t); default 3. Pairs below ORACLE_MIN_BRIDGES
+    use exact Dijkstra rows instead (sparse pairs can hide 4s).
+    int16 counts fit (sums <= per_shell <= 32767). None on failure.
+    """
+    if s in orac["paircache"]:
+        return orac["paircache"][s]
+    ps = orac["per_shell"]
+    bi, bj = orac["bpair"][s]
+    if bi.size < ORACLE_MIN_BRIDGES:
+        if csr is None:
+            return None
+        rows = streamed_sources_csr(csr, np.arange(s * ps, (s + 1) * ps))
+        if rows is None:
+            return None
+        D = np.empty((ps, ps))
+        for i in range(ps):
+            D[i, :] = rows[s * ps + i][(s + 1) * ps:(s + 2) * ps]
+        orac["paircache"][s] = D
+        return D
+    A_s = orac["blocks"][s].astype(np.int16)
+    A_t = orac["blocks"][s + 1].astype(np.int16)
+    B = np.zeros((ps, ps), dtype=np.int16)
+    B[bi, bj] = 1
+    D = np.full((ps, ps), 3.0)
+    D[bi, bj] = 1.0
+    M1 = (A_s @ B) > 0
+    D[M1] = np.minimum(D[M1], 2.0)
+    M2 = (B @ A_t) > 0
+    D[M2] = np.minimum(D[M2], 2.0)
+    orac["paircache"][s] = D
+    return D
 
 
 def _oracle_cross_block(orac: dict, su: np.ndarray, sv: np.ndarray,
-                        s: int) -> np.ndarray:
-    """Exact dist block su(shell s) x sv(shell s+1): 1/2/3 vectorized."""
+                        s: int, csr=None) -> np.ndarray | None:
+    """Support-sliced cross block su(shell s) x sv(shell s+1).
+
+    Full pair block computed once per graph (BLAS, cached), sliced per
+    measured edge. None on failure.
+    """
     per_shell = orac["per_shell"]
     iu = su - s * per_shell
     iv = sv - (s + 1) * per_shell
-    D = np.full((su.size, sv.size), 3.0)
-    blk_s, blk_t = orac["blocks"][s], orac["blocks"][s + 1]
-    bi, bj = orac["bpair"][s]
-    sumask = np.zeros(per_shell, dtype=bool)
-    svmask = np.zeros(per_shell, dtype=bool)
-    sumask[iu] = True
-    svmask[iv] = True
-    pos_u = np.full(per_shell, -1)
-    pos_v = np.full(per_shell, -1)
-    pos_u[iu] = np.arange(su.size)
-    pos_v[iv] = np.arange(sv.size)
-    if bi.size:
-        hit = sumask[bi] & svmask[bj]
-        D[pos_u[bi[hit]], pos_v[bj[hit]]] = 1.0
-        # 2-paths via shell s: x -> w -> y, (w,y) bridge
-        land_t: dict = {}
-        for a, b in zip(bi.tolist(), bj.tolist()):
-            land_t.setdefault(b, []).append(a)
-        for yi, y in enumerate(iv.tolist()):
-            for w in land_t.get(y, ()):
-                if svmask[y]:
-                    D[blk_s[iu, w], yi] = np.minimum(D[blk_s[iu, w], yi], 2.0)
-        # 2-paths via shell t: x -> w -> y, (x,w) bridge
-        land_s: dict = {}
-        for a, b in zip(bi.tolist(), bj.tolist()):
-            land_s.setdefault(a, []).append(b)
-        for xi, x in enumerate(iu.tolist()):
-            for w in land_s.get(x, ()):
-                if sumask[x]:
-                    D[xi, blk_t[iv, w]] = np.minimum(D[xi, blk_t[iv, w]], 2.0)
-    return D
+    full = _pair_cross_full(orac, s, csr)
+    if full is None:
+        return None
+    return np.asarray(full[np.ix_(iu, iv)], dtype=float)
 
 
 def oracle_dist_matrix(orac: dict, su: np.ndarray, sv: np.ndarray,
@@ -538,23 +551,16 @@ def oracle_dist_matrix(orac: dict, su: np.ndarray, sv: np.ndarray,
                 D[np.ix_(ra, cb)] = sub
             elif abs(int(a) - int(b)) == 1:
                 s = min(int(a), int(b))
-                bi, _ = orac["bpair"][s]
-                if bi.size < ORACLE_MIN_BRIDGES:
-                    if csr is None:
+                if int(a) < int(b):
+                    sub = _oracle_cross_block(orac, xa, yb, s, csr)
+                    if sub is None:
                         return None
-                    rows = streamed_sources_csr(csr, xa if xa.size <= yb.size else yb)
-                    if rows is None:
-                        return None
-                    if xa.size <= yb.size:
-                        for i, x in enumerate(xa.tolist()):
-                            D[ra[i], cb] = rows[x][yb]
-                    else:
-                        for j, y in enumerate(yb.tolist()):
-                            D[ra, cb[j]] = rows[y][xa]
-                elif int(a) < int(b):
-                    D[np.ix_(ra, cb)] = _oracle_cross_block(orac, xa, yb, s)
+                    D[np.ix_(ra, cb)] = sub
                 else:
-                    D[np.ix_(ra, cb)] = _oracle_cross_block(orac, yb, xa, s).T
+                    sub = _oracle_cross_block(orac, yb, xa, s, csr)
+                    if sub is None:
+                        return None
+                    D[np.ix_(ra, cb)] = sub.T
             else:
                 if csr is None:
                     return None

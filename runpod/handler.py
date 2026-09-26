@@ -28,12 +28,17 @@ def compute_job(inp: dict) -> dict:
             float(inp.get("beta", 1.5)), int(inp.get("seed", 0)),
             int(inp.get("max_per_shell", 8)), float(inp.get("eps", 0.01)),
             str(inp.get("backend", "auto")),
-            str(inp.get("or_backend", os.environ.get("OR_BACKEND", "numpy"))))
+            str(inp.get("or_backend", os.environ.get("OR_BACKEND", "numpy"))),
+            int(inp.get("spotcheck_n", 16)))
         if not r.get("ok", False):
             return bad
         out = {"ok": True, "p": r["p"], "p_err": r["p_err"], "r2": r["r2"],
                "profile": {str(k): v for k, v in r["profile"].items()},
-               "elapsed_s": time.time() - t0}
+               "elapsed_s": time.time() - t0, "n_edges": r.get("n_edges", 0),
+               "cfg": {"backend": str(inp.get("backend", "auto")),
+                       "or_backend": str(inp.get("or_backend", "numpy")),
+                       "spotcheck_n": int(inp.get("spotcheck_n", 16)),
+                       "eps": float(inp.get("eps", 0.01))}}
         try:
             import torch
             out["torch_device"] = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "cpu"
