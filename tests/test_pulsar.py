@@ -146,3 +146,41 @@ def test_invalid_inputs_nan_not_raise():
     assert np.isnan(dot_omega_1pn_degyr(-2.0, 100.0, 0.1))
     assert np.isnan(invert_mass_msun(100.0, 0.1, np.nan))
     assert np.isnan(sin_i_from_x(1.0, 1.0, -5.0))
+
+
+def test_gr_battery_1pn_p_independent():
+    # gamma = 1, Mercury 43", bending 4M/b, Cassini: all 1PN, untouched by p.
+    from bh_graph.lensing import fermat_bending, gr_bending
+    from bh_graph.shapiro import cassini_consistent
+    from bh_graph.strain import (
+        f_schw,
+        gamma_ppn_of_h,
+        gr_h,
+        h_tortuosity,
+        mercury_arcsec,
+    )
+    assert abs(gamma_ppn_of_h(h_tortuosity) - 1.0) < 1e-6
+    assert abs(mercury_arcsec(f_schw, h_tortuosity) - 43.0) / 43.0 < 0.15
+    assert abs(mercury_arcsec(f_schw, gr_h) - 43.0) < 4.0
+    b = 200.0
+    assert abs(fermat_bending(b, 2.0) / gr_bending(b, 1.0, order=1) - 1.0) < 0.02
+    assert cassini_consistent()
+
+
+def test_gr_battery_2pn_hidden():
+    # Same (c1, c2): bending excess ~3e-6 << VLBI 1e-4; Mercury 2PN ~1e-6".
+    from bh_graph.pulsar import (
+        M_SUN_M,
+        R_SUN_M,
+        bending_2pn_excess_fractional,
+        is_bending_2pn_hidden,
+        is_mercury_2pn_hidden,
+        mercury_2pn_excess_arcsec,
+    )
+    ex = bending_2pn_excess_fractional(M_SUN_M / R_SUN_M)
+    assert abs(ex - 1.42 * 2.12e-6) / (1.42 * 2.12e-6) < 0.05
+    assert is_bending_2pn_hidden()
+    assert not is_bending_2pn_hidden(bound=1e-7)  # bound matters
+    assert abs(mercury_2pn_excess_arcsec() - 1.1e-6) < 0.5e-6
+    assert is_mercury_2pn_hidden()
+    assert np.isnan(bending_2pn_excess_fractional(-1.0))

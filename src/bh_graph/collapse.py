@@ -226,3 +226,94 @@ def gap_kilonova_table(m_tot_list=(2.8, 3.0, 3.6, 4.0, 5.0)) -> dict[str, np.nda
         [leg_shedding_ejecta(m / 2.0, m / 2.0)["M_ej"] for m in m_tot], dtype=float
     )
     return {"M_tot": m_tot, "M_ej": m_ej}
+
+
+# ---------------------------------------------------------------------------
+# Bands + detectability (analytic Arnett/Metzger; POSSIS colors queued).
+# Blue component assigned to g-band, red to i-band at face value (BC = 0);
+# real colors need radiative transfer — predictions below are brightness
+# (detectable yes/no), not precision photometry.
+# ---------------------------------------------------------------------------
+
+L_SUN_ERG_S = 3.828e33
+M_SUN_BOL = 4.74
+RUBIN_SINGLE_VISIT_R = 24.5
+DECAM_KN_DEPTH = 23.5
+KILL_NONDETECTIONS = 10
+
+
+def lum_to_abs_mag_bol(lum_erg_s: float) -> float:
+    """Bolometric absolute mag from luminosity. nan if invalid."""
+    if not np.isfinite(lum_erg_s) or lum_erg_s <= 0:
+        return float("nan")
+    return float(M_SUN_BOL - 2.5 * np.log10(lum_erg_s / L_SUN_ERG_S))
+
+
+def dist_modulus(dist_mpc: float) -> float:
+    """Distance modulus 5log10(d/10pc). nan if invalid."""
+    if not np.isfinite(dist_mpc) or dist_mpc <= 0:
+        return float("nan")
+    return float(5.0 * np.log10(dist_mpc * 1e6 / 10.0))
+
+
+def peak_apparent_mags(m_tot_msun: float, dist_mpc: float) -> dict[str, float]:
+    """Peak g (blue) / i (red) apparent mags for an equal-mass merger.
+
+    Each component evaluated at its own peak (dominant-band approximation).
+    nan entries if inputs invalid.
+    """
+    nan = float("nan")
+    if not all(np.isfinite(v) for v in (m_tot_msun, dist_mpc)):
+        return {"m_g": nan, "m_i": nan, "t_blue": nan, "t_red": nan}
+    if not (m_tot_msun > 0 and dist_mpc > 0):
+        return {"m_g": nan, "m_i": nan, "t_blue": nan, "t_red": nan}
+    ej = leg_shedding_ejecta(m_tot_msun / 2.0, m_tot_msun / 2.0)
+    lb = kilonova_peak_lum_erg_s(ej["M_blue"], V_BLUE_C, KAPPA_BLUE)
+    lr = kilonova_peak_lum_erg_s(ej["M_red"], V_RED_C, KAPPA_RED)
+    tb = kilonova_peak_time_days(ej["M_blue"], V_BLUE_C, KAPPA_BLUE)
+    tr = kilonova_peak_time_days(ej["M_red"], V_RED_C, KAPPA_RED)
+    dm = dist_modulus(dist_mpc)
+    if not all(np.isfinite(v) for v in (lb, lr, dm)):
+        return {"m_g": nan, "m_i": nan, "t_blue": tb, "t_red": tr}
+    return {
+        "m_g": float(lum_to_abs_mag_bol(lb) + dm),
+        "m_i": float(lum_to_abs_mag_bol(lr) + dm),
+        "t_blue": float(tb),
+        "t_red": float(tr),
+    }
+
+
+def is_detectable(m_app: float, limiting_mag: float) -> bool:
+    """Boolean check: transient brighter than survey depth?"""
+    return bool(np.isfinite(m_app) and np.isfinite(limiting_mag) and m_app < limiting_mag)
+
+
+def gap_o5_yield(
+    n_gap_events_per_yr: float = 1.5,
+    detection_eff: float = 0.7,
+    standard_kn_lo: float = 0.02,
+    standard_kn_hi: float = 0.28,
+) -> dict[str, float]:
+    """Expected gap kilonovae/yr: ours (100% if <200Mpc) vs standard 2-28%.
+
+    Standard range is the literature mgNSBH KN probability (labeled input,
+    not derived here). nan if inputs invalid.
+    """
+    vals = (n_gap_events_per_yr, detection_eff, standard_kn_lo, standard_kn_hi)
+    if not all(np.isfinite(v) for v in vals) or n_gap_events_per_yr < 0:
+        nan = float("nan")
+        return {"model": nan, "standard_lo": nan, "standard_hi": nan}
+    if not 0 <= detection_eff <= 1:
+        nan = float("nan")
+        return {"model": nan, "standard_lo": nan, "standard_hi": nan}
+    base = n_gap_events_per_yr * detection_eff
+    return {
+        "model": float(base * 1.0),
+        "standard_lo": float(base * standard_kn_lo),
+        "standard_hi": float(base * standard_kn_hi),
+    }
+
+
+def falsifier_killed_by_nondetections(n_nondetections: int) -> bool:
+    """Boolean check: 10 well-localized gap non-detections <200Mpc kill us?"""
+    return bool(isinstance(n_nondetections, (int, np.integer)) and n_nondetections >= KILL_NONDETECTIONS)

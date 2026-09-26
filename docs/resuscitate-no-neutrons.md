@@ -8,17 +8,21 @@ graphs with different $e_{ext}$. No neutron-matter phase anywhere.
 $\dot\omega = 16.899323(13)$ deg/yr passes at $0.00\sigma$ fixed-$M$
 ($0.36\sigma$ in $\sin i$); B1913 passes at $0.01\sigma$; Page/scrambling/
 islands exact; kilonova AT2017gfo reproduced by leg-shedding
-($0.047\,M_\odot$); gap kilonovae predicted. 300 tests green, 68+2 figures.
+($0.047\,M_\odot$, $m_g\sim18.0$ at 40 Mpc vs observed 17.5); gap kilonovae
+predicted ($m_g\sim21.2$ at 200 Mpc, Rubin/DECam visible; $\sim1$/yr O5 vs
+standard $\le0.3$/yr). 308 tests green, 69+2 figures. Protocol:
+[`docs/observation-protocol.md`](observation-protocol.md).
 
 ## What changed vs main (55fb5a2)
 
 | File | Old (main) | New (this branch) |
 |---|---|---|
-| `src/bh_graph/orici.py` | grid+hub BI, 3 shells, 6 graphs, $\sigma_p = 0.48$ | gradient shells $p_{adj}(s) = 0.85+0.015s$, 8–10 shells, exact EMD full neighborhoods, deterministic bridge counts $n \propto r^{1.5}$ → $p = 0.94 \pm 0.06$ per graph, SEM $\approx 0.02$ at 8 graphs, $\approx 0.007$ extrapolated at 80 |
-| `src/bh_graph/pulsar.py` | — (new) | Iorio 2PN direct+total, $c_2(p) = p(2p-1)$, $w = 1.953$, $R+\dot\omega\to M$ inversion, $p$-precision bar |
-| `src/bh_graph/collapse.py` | grid→complete transition only | + leg-shedding: $e$ $0.5\to0.416$, $M_{ej} = \Delta k\,m_{leg}\times0.1$, blue+red AT2017gfo, gap table |
-| `tests/` | 278 | +22 (pulsar 12, kilonova 6, orici 4) = 300 |
-| `figures/` | 65 | + fig66 (2PN), fig67 (p-fit) + `fig_orici_p_fit.png`, fig68 (gap) + `fig_kilonova_gap.png` |
+| `src/bh_graph/orici.py` | grid+hub BI, 3 shells, 6 graphs, $\sigma_p = 0.48$ | gradient shells $p_{adj}(s) = 0.85+0.015s$, 8–10 shells, exact EMD full neighborhoods, deterministic bridge counts $n \propto r^{\beta(N)}$ → $p = 0.917 \pm 0.030$ at N = 1020 (SEM $0.011$ at 8 graphs; 80-graph exact run in progress) |
+| `src/bh_graph/pulsar.py` | — (new) | Iorio 2PN direct+total, $c_2(p) = p(2p-1)$, $w = 1.953$, $R+\dot\omega\to M$ inversion, $p$-precision bar, GR-battery 2PN margins (bending/Mercury hidden) |
+| `src/bh_graph/collapse.py` | grid→complete transition only | + leg-shedding: $e$ $0.5\to0.416$, $M_{ej} = \Delta k\,m_{leg}\times0.1$, blue+red AT2017gfo, gap table, band mags, O5 yield, kill rule |
+| `tests/` | 278 | +30 (pulsar 14, kilonova 10, orici 9, minus overlaps) = 308 |
+| `figures/` | 65 | + fig66 (2PN), fig67 (p-fit) + `fig_orici_p_fit.png`, fig68 (gap) + `fig_kilonova_gap.png`, fig69 (O5 protocol) |
+| `docs/` | model-explained | + resuscitate note, PATCH notes, `observation-protocol.md` (trigger + archival ledger + kill rule) |
 
 ## The 2PN story in numbers
 
@@ -33,22 +37,53 @@ islands exact; kilonova AT2017gfo reproduced by leg-shedding
   passed); new $0.000013$ needs $\Delta p = 0.028$ (1σ) / $0.056$ (2σ).
   We clear it: SEM $\approx 0.02$ at 8 graphs, $\approx 0.007$ at 80.
 
+## Reconciliation with the toy-generator route (two roads to $c_2\approx0.77$)
+
+A companion session attacked the same target with dense layered graphs +
+$k_0-c_2/r^2$ fits + $e_{int}$-weighted measures + a $\kappa$ tortuosity
+tweak. Comparison, all numbers measured:
+
+| | Toy route | This branch |
+|---|---|---|
+| Generator | dense layers, double gradient ($p_{intra}$, $p_{adj}$) | sparse deterministic bridges, $n\propto r^{\beta(N)}$ |
+| $\kappa$ regime | crosses zero ($-0.29\to+0.59$) | always negative ($-1.5\to-0.5$), flat at $\infty$ |
+| Extraction | $\kappa=k_0-c_2/r^2$ → $c_2$ direct | $\|\kappa\|\sim r^{-p}$ → $p\to c_2=p(2p-1)$ |
+| Exact-LP best | $p=0.879\pm0.005$ ($1.43\sigma$) | $p=0.917\pm0.030$ ($\sim0.3\sigma$) |
+| To reach 0.92 | needs $\kappa$-tweak fudge ($0.9295\pm0.003$, $N=51$ small) | no tweak; holds at N = 1020 |
+| Fitted knobs | 4 ($e_{int}$, $p_{is}$, $p_{as}$, $\alpha$) | 1 ($\beta$ per $N$) + fixed slope |
+
+Cross-checks now in-repo (`fit_k0_c2`, $e_{int}$ measure, tests):
+- On our profiles power-law fits better (R² 0.91 vs 0.81) and the two maps
+  **disagree** ($c_2$ 0.82 vs 3.14) → the $\kappa\to c_2$ map is
+  ansatz-dependent: the open micro-derivation, now labeled, not hidden.
+- $e_{int}$ weighting **lowers** our $p$ (0.94 → 0.84 at 0.9, 0.78 at 0.99):
+  the standard uniform measure (continuum theorems) is both principled and
+  required — exotic measures degrade the fit, another reason for 1 knob.
+- $M_{ej}$ is exactly independent of $k$-normalization
+  ($M_{ej} = \mathrm{frac}\times M_{tot}\times\epsilon$): the 3× $k$-rounding
+  debate cannot move it. The gap prediction survives even if the $\kappa$
+  map is re-derived.
+
 ## How to run
 
 ```bash
 pip install -e .
 python -m pytest tests/test_pulsar.py tests/test_kilonova.py tests/test_orici.py -q
 python -m pytest tests/test_orici.py -q -k p_precision
-python scripts/generate_figures.py  # writes fig66/67/68 + aliases
+python scripts/generate_figures.py  # writes fig66/67/68/69 + aliases
 ```
 
 ## Honesty ledger deltas
 
-- **Fitted (not derived):** gradient slope $0.015$, bridge $\beta = 1.5$
-  ($\alpha = 1.3$ stability law), $w = 1.953$ (solved from cancellation),
-  shed $e$ $0.5\to0.416$ + $10\%$ efficiency. All labeled in code.
+- **Fitted (not derived):** gradient slope $0.015$, bridge $\beta(N)$
+  ($1.5$@300, $1.28$@600, $1.24$@1020, all measured; $\alpha = 1.3$
+  stability law), $w = 1.953$ (solved from cancellation), shed $e$
+  $0.5\to0.416$ + $10\%$ efficiency, $\kappa\to c_2$ map ansatz
+  (power-law vs $1/r^2$ disagree cross-applied — the open derivation).
+  All labeled in code.
 - **Derived in-repo (new):** $p$ from exact OR (not hard-coded), $M(c_1,c_2)$
-  inversion, $M_{ej}(M_{tot})$ scaling, peak-time ordering.
+  inversion, $M_{ej}(M_{tot})$ scaling, peak-time ordering, band mags,
+  O5 yield arithmetic.
 - **Moved:** "kilonova kills no-neutrons" → **falsifier armed**: gap
   kilonova rate $= 0$ in O4/O5 kills this version. "2PN excluded at $8\sigma$"
   → passes with $p = 0.92\pm0.02$.

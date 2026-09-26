@@ -69,3 +69,48 @@ def test_p_precision():
     assert sem80 < 0.028
     # all radial means negative (the BI sign, preserved)
     assert all(v < 0 for v in r["stacked"].values())
+
+
+def test_extraction_crosscheck_ansatz_dependent():
+    # Power-law |k| ~ r^-p fits bridge profiles better than k0 - c2/r^2,
+    # and the two maps disagree on c2 -> the kappa-to-c2 map is the open
+    # micro-derivation (honesty ledger), not a derived identity.
+    from bh_graph.orici import fit_k0_c2, fit_scaling_power, measure_p
+    from bh_graph.pulsar import c2_of_p
+    r = measure_p(per_shell=20, n_shells=8, n_graphs=6,
+                  gradient=True, beta=1.5, seed0=0, max_per_shell=6)
+    pl = fit_scaling_power(r["stacked"])
+    kc = fit_k0_c2(r["stacked"])
+    assert pl["r2"] > 0.7
+    assert pl["r2"] > kc["r2"]
+    assert abs(kc["c2"] - c2_of_p(pl["p"])) > 1.0
+
+
+def test_eint_measure_robustness_and_fallback():
+    # Uniform (standard OR, continuum theorems) sits in the J0737 window;
+    # e_int deformations lower p (directional, degrades) but stay in the
+    # broad BI window; invalid e_int falls back to uniform exactly.
+    from bh_graph.orici import (
+        _neighborhood_measure,
+        eint_weighted_measure,
+        gradient_shell_graph,
+        is_valid_eint,
+        measure_p,
+    )
+    uni = measure_p(per_shell=20, n_shells=8, n_graphs=6,
+                    gradient=True, beta=1.5, seed0=0, max_per_shell=6)
+    w09 = measure_p(per_shell=20, n_shells=8, n_graphs=6,
+                    gradient=True, beta=1.5, seed0=0, max_per_shell=6, e_int=0.9)
+    w99 = measure_p(per_shell=20, n_shells=8, n_graphs=6,
+                    gradient=True, beta=1.5, seed0=0, max_per_shell=6, e_int=0.99)
+    assert 0.80 < uni["mean"] < 1.05
+    assert 0.65 < w09["mean"] < 1.05
+    assert 0.60 < w99["mean"] < uni["mean"]  # weighting lowers p
+    assert not is_valid_eint(1.5)
+    assert not is_valid_eint(float("nan"))
+    assert is_valid_eint(0.995)
+    g = gradient_shell_graph(per_shell=12, n_shells=6, gradient=True, seed=0)
+    x = (0, 0)
+    assert eint_weighted_measure(g, x, 1.5) == _neighborhood_measure(g, x, 0.0)
+    m = eint_weighted_measure(g, x, 0.995)
+    assert abs(sum(m.values()) - 1.0) < 1e-12

@@ -54,6 +54,51 @@ def ollivier_curvature(g: nx.Graph, x, y, p: float = 0.0, _dist=None, _idx=None)
     return float(1.0 - w / max(d, 1e-300))
 
 
+def is_valid_eint(e_int: float) -> bool:
+    """Boolean check: e_int in [0, 1] and finite (monogamy e_int+e_ext = 1)."""
+    return bool(np.isfinite(e_int) and 0.0 <= e_int <= 1.0)
+
+
+def eint_weighted_measure(g: nx.Graph, x, e_int: float = 0.995) -> dict:
+    """Neighborhood measure with same-shell mass e_int, cross-shell e_ext.
+
+    For shell-graph nodes (shell, idx): neighbors sharing x's shell split
+    e_int, the rest split e_ext = 1 - e_int. Degenerate groups (empty side)
+    put all mass on the non-empty side. Non-shell nodes fall back to the
+    uniform measure (single group). No exceptions for bad e_int: invalid
+    values fall back to uniform (check with is_valid_eint).
+    """
+    nbrs = sorted(g.neighbors(x), key=repr)
+    if not is_valid_eint(e_int) or not nbrs:
+        return _neighborhood_measure(g, x, 0.0)
+    e_ext = 1.0 - e_int
+    if isinstance(x, tuple) and len(x) == 2:
+        same = [v for v in nbrs if isinstance(v, tuple) and len(v) == 2 and v[0] == x[0]]
+        cross = [v for v in nbrs if v not in same]
+    else:
+        same, cross = nbrs, []
+    m: dict = {}
+    if same and cross:
+        for v in same:
+            m[v] = m.get(v, 0.0) + e_int / len(same)
+        for v in cross:
+            m[v] = m.get(v, 0.0) + e_ext / len(cross)
+    else:
+        for v in nbrs:
+            m[v] = m.get(v, 0.0) + 1.0 / len(nbrs)
+    return m
+
+
+def ollivier_curvature_eint(
+    g: nx.Graph, x, y, e_int: float = 0.995, _dist=None, _idx=None
+) -> float:
+    """Exact Ollivier-Ricci with e_int-weighted measures (no kappa tweak)."""
+    d = nx.shortest_path_length(g, x, y)
+    w = wasserstein1(g, eint_weighted_measure(g, x, e_int),
+                     eint_weighted_measure(g, y, e_int), _dist=_dist, _idx=_idx)
+    return float(1.0 - w / max(d, 1e-300))
+
+
 def mean_curvature(g: nx.Graph, p: float = 0.0, max_edges: int | None = None) -> float:
     edges = list(g.edges())
     if max_edges is not None:
@@ -168,9 +213,13 @@ def gradient_shell_graph(
 
 
 def shell_kappa_profile(
-    g: nx.Graph, n_shells: int, max_per_shell: int = 8
+    g: nx.Graph, n_shells: int, max_per_shell: int = 8, e_int: float | None = None
 ) -> dict[float, float]:
-    """Mean exact-OR kappa on radial edges per shell-pair. Cached distances."""
+    """Mean exact-OR kappa on radial edges per shell-pair. Cached distances.
+
+    e_int = None (default) uses the uniform neighborhood measure; a value in
+    [0, 1] uses the e_int-weighted measure (same-shell mass e_int).
+    """
     dist = nx.floyd_warshall_numpy(g)
     idx = {v: i for i, v in enumerate(g.nodes())}
     out: dict[float, float] = {}
@@ -183,7 +232,10 @@ def shell_kappa_profile(
             if len(u) != 2 or len(v) != 2:
                 continue
             if sorted([u[0], v[0]]) == [s, s + 1]:
-                kaps.append(ollivier_curvature(g, u, v, _dist=dist, _idx=idx))
+                if e_int is None:
+                    kaps.append(ollivier_curvature(g, u, v, _dist=dist, _idx=idx))
+                else:
+                    kaps.append(ollivier_curvature_eint(g, u, v, e_int, _dist=dist, _idx=idx))
                 if len(kaps) >= max_per_shell:
                     break
         out[r] = float(np.mean(kaps)) if kaps else float("nan")
@@ -210,6 +262,29 @@ def fit_scaling_power(profile: dict[float, float]) -> dict[str, float]:
     }
 
 
+def fit_k0_c2(profile: dict[float, float]) -> dict[str, float]:
+    """Fit k(r) = k0 - c2/r^2 (companion extraction; needs no sign mask).
+
+    Same c2 as c2_of_p would give only if the profile is truly 1/r^2-like.
+    On bridge graphs (power-law profiles) this disagrees with fit_scaling_power
+    — the kappa-to-c2 map is ansatz-dependent (open micro-derivation, on the
+    honesty ledger). Returns k0, c2, R2 (nan if fewer than 3 finite shells).
+    """
+    rs = np.array(sorted(profile))
+    ks = np.array([profile[r] for r in rs])
+    mask = np.isfinite(ks)
+    if int(mask.sum()) < 3:
+        return {"k0": float("nan"), "c2": float("nan"), "r2": float("nan")}
+    r = rs[mask]
+    k = ks[mask]
+    A = np.vstack([np.ones_like(r), -1.0 / r**2]).T
+    (k0, c2), *_ = np.linalg.lstsq(A, k, rcond=None)
+    pred = k0 - c2 / r**2
+    denom = np.sum((k - k.mean()) ** 2)
+    r2 = 1.0 - np.sum((k - pred) ** 2) / denom if denom > 0 else float("nan")
+    return {"k0": float(k0), "c2": float(c2), "r2": float(r2)}
+
+
 def measure_p(
     per_shell: int = 30,
     n_shells: int = 10,
@@ -218,11 +293,14 @@ def measure_p(
     beta: float | None = None,
     seed0: int = 0,
     max_per_shell: int = 8,
+    e_int: float | None = None,
 ) -> dict:
     """Measure p over n_graphs shell graphs (exact EMD, full neighborhoods).
 
     Returns per-graph p list, mean/std/sem, and the stacked-profile fit.
     Empty/NaN-tolerant: nan entries mark failed fits (check is_valid result).
+    e_int = None uses the uniform measure; a value in [0, 1] uses the
+    e_int-weighted measure (robustness branch, same exact LP, no kappa tweak).
     """
     if beta is None:
         beta = BRIDGE_BETA_NEW if gradient else BRIDGE_BETA_OLD
@@ -230,7 +308,7 @@ def measure_p(
     per_graph = []
     for t in range(n_graphs):
         g = gradient_shell_graph(per_shell, n_shells, gradient, beta, seed0 + t)
-        prof = shell_kappa_profile(g, n_shells, max_per_shell)
+        prof = shell_kappa_profile(g, n_shells, max_per_shell, e_int)
         profiles.append(prof)
         per_graph.append(fit_scaling_power(prof)["p"])
     per_graph = np.array(per_graph, dtype=float)

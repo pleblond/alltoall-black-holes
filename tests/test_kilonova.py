@@ -63,3 +63,51 @@ def test_invalid_merger_nan_not_raise():
     r = leg_shedding_ejecta(-1.0, 1.4)
     assert np.isnan(r["M_ej"])
     assert not is_kilonova_capable(float("nan"))
+
+
+def test_ejecta_independent_of_k_normalization():
+    # M_ej = frac x M_tot x eff exactly (m_leg = M/k cancels k-scale),
+    # so the 3x k-rounding debate (1e78 vs 3e77) cannot move M_ej.
+    from bh_graph.collapse import SHED_EFFICIENCY
+    for m1, m2 in [(1.4, 1.4), (3.6, 1.4), (0.77, 0.77)]:
+        r = leg_shedding_ejecta(m1, m2)
+        expect = shed_fraction() * (m1 + m2) * SHED_EFFICIENCY
+        assert abs(r["M_ej"] - expect) / expect < 1e-9
+
+
+def test_at2017gfo_band_anchor():
+    # GW170817-like 2.8 Msun at 40 Mpc: g peak near observed ~17.5 (+/-1
+    # analytic tolerance); blue before red.
+    from bh_graph.collapse import peak_apparent_mags
+    pk = peak_apparent_mags(2.8, 40.0)
+    assert abs(pk["m_g"] - 17.5) < 1.0
+    assert pk["t_blue"] < pk["t_red"]
+
+
+def test_gap_detectable_rubin_and_decam():
+    # GW230529-like total 5.0 Msun at 200 Mpc: brighter than AT2017gfo,
+    # visible to Rubin (24.5) and DECam (23.5) in g.
+    from bh_graph.collapse import (
+        DECAM_KN_DEPTH,
+        RUBIN_SINGLE_VISIT_R,
+        is_detectable,
+        peak_apparent_mags,
+    )
+    gap = peak_apparent_mags(5.0, 200.0)
+    assert is_detectable(gap["m_g"], RUBIN_SINGLE_VISIT_R)
+    assert is_detectable(gap["m_g"], DECAM_KN_DEPTH)
+    assert gap["m_g"] < 22.5  # m ~ 21, not marginal
+    assert np.isnan(peak_apparent_mags(-1.0, 200.0)["m_g"])
+
+
+def test_o5_yield_and_kill_rule():
+    # Ours ~1/yr detectable vs standard <= 0.3/yr; 10 clean
+    # non-detections kill the resuscitation.
+    from bh_graph.collapse import falsifier_killed_by_nondetections, gap_o5_yield
+    y = gap_o5_yield()
+    assert abs(y["model"] - 1.05) < 1e-9
+    assert y["model"] > y["standard_hi"]
+    assert y["standard_hi"] < 0.35
+    assert not falsifier_killed_by_nondetections(9)
+    assert falsifier_killed_by_nondetections(10)
+    assert np.isnan(gap_o5_yield(n_gap_events_per_yr=-1.0)["model"])

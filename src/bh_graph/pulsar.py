@@ -231,3 +231,50 @@ def p_precision_for_sigma(dot_err_degyr: float, d_ddir_dc: float = 8.9e-5) -> fl
     if not (np.isfinite(dot_err_degyr) and np.isfinite(denom) and denom > 0):
         return float("nan")
     return float(dot_err_degyr / denom)
+
+
+# ---------------------------------------------------------------------------
+# GR battery at the same p: 1PN tests are p-independent (gamma = 1 from h);
+# 2PN deviations in bending/Mercury must hide below VLBI/astrometry bounds.
+# Bending uses the conservative c1-only excess (null-ray g_rr mapping open).
+# ---------------------------------------------------------------------------
+
+M_SUN_M = 1477.0
+R_SUN_M = 6.957e8
+MERCURY_A_M = 0.38710 * 1.495978707e11
+MERCURY_1PN_ARCSEC = 43.0
+VLBI_BENDING_FRACTIONAL = 1e-4
+MERCURY_2PN_TOL_ARCSEC = 0.01
+
+
+def bending_2pn_excess_fractional(
+    m_over_b: float, c1_model: float = C1_MODEL
+) -> float:
+    """Fractional bending excess vs GR: (c1_model - c1_GR) M/b. nan if bad."""
+    if not all(np.isfinite(v) for v in (m_over_b, c1_model)) or m_over_b < 0:
+        return float("nan")
+    return float((c1_model - C1_GR) * m_over_b)
+
+
+def is_bending_2pn_hidden(
+    m_over_b: float = M_SUN_M / R_SUN_M,
+    bound: float = VLBI_BENDING_FRACTIONAL,
+) -> bool:
+    """Boolean check: 2PN bending excess below VLBI sensitivity?"""
+    ex = bending_2pn_excess_fractional(m_over_b)
+    return bool(np.isfinite(ex) and np.isfinite(bound) and abs(ex) < bound)
+
+
+def mercury_2pn_excess_arcsec(coef: float = 1.0) -> float:
+    """Order-of-magnitude 2PN Mercury excess: 43" x coef x M/a. nan if bad."""
+    if not np.isfinite(coef):
+        return float("nan")
+    return float(MERCURY_1PN_ARCSEC * coef * M_SUN_M / MERCURY_A_M)
+
+
+def is_mercury_2pn_hidden(
+    coef: float = 1.0, tol: float = MERCURY_2PN_TOL_ARCSEC
+) -> bool:
+    """Boolean check: 2PN Mercury excess below astrometry tolerance?"""
+    ex = mercury_2pn_excess_arcsec(coef)
+    return bool(np.isfinite(ex) and np.isfinite(tol) and abs(ex) < tol)

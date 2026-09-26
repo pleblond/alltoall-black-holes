@@ -52,7 +52,7 @@ micro-derivation behind $g_{rr}$ and the un-derived gap coefficient.
 | `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
-| `tests/` | 300 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 308 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -75,7 +75,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 300 tests
+python -m pytest tests/ -q          # 308 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -169,7 +169,7 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 v4.0 draft (this branch `resuscitate-no-neutrons`, based on 55fb5a2):
 pulsars as low-$k$ graphs, J0737 2PN at $0.00\sigma$ via $p = 0.92$,
-leg-shedding kilonovae, gap prediction. 300 tests, 68+2 figs.
+leg-shedding kilonovae, gap prediction. 308 tests, 69+2 figs.
 See [`docs/resuscitate-no-neutrons.md`](docs/resuscitate-no-neutrons.md).
 
 v3.11 — the flip to A+(b*), complete through Appendix BS:

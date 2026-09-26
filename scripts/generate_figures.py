@@ -1642,6 +1642,44 @@ def fig68_kilonova_gap():
     shutil.copy(FIG / "fig68_kilonova_gap.png", FIG / "fig_kilonova_gap.png")
     plt.close(fig)
 
+
+def fig69_o5_protocol():
+    from bh_graph.collapse import (
+        DECAM_KN_DEPTH, RUBIN_SINGLE_VISIT_R, gap_o5_yield, peak_apparent_mags,
+    )
+    from bh_graph.pulsar import (
+        VLBI_BENDING_FRACTIONAL, bending_2pn_excess_fractional,
+        mercury_2pn_excess_arcsec,
+    )
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    dd = np.linspace(40, 250, 60)
+    for mt, color in [(2.8, "#2563eb"), (5.0, "#7c3aed"), (7.2, "#dc2626")]:
+        mg = [peak_apparent_mags(mt, d)["m_g"] for d in dd]
+        axes[0].plot(dd, mg, color=color, label=f"{mt} Msun")
+    axes[0].axhline(RUBIN_SINGLE_VISIT_R, ls="--", color="black", label="Rubin 24.5")
+    axes[0].axhline(DECAM_KN_DEPTH, ls=":", color="black", label="DECam 23.5")
+    axes[0].axhline(21.1, ls="-.", color="gray", label="ZTF O4a 21.1")
+    axes[0].axvline(200, ls="--", color="red", alpha=0.5, label="200 Mpc")
+    axes[0].set_ylim(24.5, 16.5)
+    axes[0].set_xlabel("distance (Mpc)"); axes[0].set_ylabel("peak m_g")
+    axes[0].set_title("Gap KN visible to 200 Mpc"); axes[0].legend(fontsize=7)
+    y = gap_o5_yield()
+    axes[1].bar(["ours", "standard\n(hi)"], [y["model"], y["standard_hi"]],
+                color=["#2563eb", "gray"])
+    axes[1].set_ylabel("detectable gap KN / yr (O5)")
+    axes[1].set_title("~1/yr vs <=0.3/yr")
+    axes[2].bar(["bending 2PN\nvs VLBI", "Mercury 2PN\nvs 0.01\""],
+                [abs(bending_2pn_excess_fractional(1477.0 / 6.957e8)) / VLBI_BENDING_FRACTIONAL,
+                 abs(mercury_2pn_excess_arcsec()) / 0.01],
+                color=["#0f766e", "#0f766e"])
+    axes[2].axhline(1.0, ls="--", color="red", label="bound")
+    axes[2].set_yscale("log"); axes[2].set_ylabel("fraction of bound")
+    axes[2].set_title("Same p: 2PN hides"); axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 69 — BU: O5 detectability + GR-battery 2PN margins")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig69_o5_protocol.png", bbox_inches="tight")
+    plt.close(fig)
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1711,6 +1749,7 @@ def main():
     fig66_pulsar_2pn()
     fig67_orici_p_fit()
     fig68_kilonova_gap()
+    fig69_o5_protocol()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
