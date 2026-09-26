@@ -1,5 +1,6 @@
 import networkx as nx
-from bh_graph.orici import ollivier_curvature, mean_curvature, eh_functional
+
+from bh_graph.orici import eh_functional, mean_curvature, ollivier_curvature
 
 
 def test_flat_line_zero():

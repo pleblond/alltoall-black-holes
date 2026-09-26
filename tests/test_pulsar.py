@@ -2,11 +2,26 @@
 import numpy as np
 
 from bh_graph.pulsar import (
-    B1913, J0737, C1_GR, C1_MODEL, C2_GR, W_2PN, C_TOT_GR,
-    c2_of_p, p_of_c2, ctot, kepler_a_m, gm_over_ac2,
-    dot_omega_1pn_degyr, dot_omega_dir_2pn_degyr, dot_omega_tot_2pn_degyr,
-    model_factor, dot_omega_model_degyr, invert_mass_msun, sin_i_from_x,
-    is_valid_orbit, required_c2_deficit, p_precision_for_sigma,
+    B1913,
+    C1_GR,
+    C1_MODEL,
+    C2_GR,
+    J0737,
+    c2_of_p,
+    ctot,
+    dot_omega_1pn_degyr,
+    dot_omega_dir_2pn_degyr,
+    dot_omega_model_degyr,
+    dot_omega_tot_2pn_degyr,
+    gm_over_ac2,
+    invert_mass_msun,
+    is_valid_orbit,
+    kepler_a_m,
+    model_factor,
+    p_of_c2,
+    p_precision_for_sigma,
+    required_c2_deficit,
+    sin_i_from_x,
 )
 
 

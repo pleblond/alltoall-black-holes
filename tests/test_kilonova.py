@@ -2,9 +2,13 @@
 import numpy as np
 
 from bh_graph.collapse import (
-    shed_fraction, leg_shedding_ejecta, is_kilonova_capable,
-    kilonova_peak_time_days, kilonova_peak_lum_erg_s,
-    kilonova_lightcurve_lum, gap_kilonova_table, is_valid_merger,
+    gap_kilonova_table,
+    is_kilonova_capable,
+    is_valid_merger,
+    kilonova_lightcurve_lum,
+    kilonova_peak_time_days,
+    leg_shedding_ejecta,
+    shed_fraction,
 )
 
 

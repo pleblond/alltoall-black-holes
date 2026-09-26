@@ -2,7 +2,7 @@
 
 **Philippe Leblond** — leblond.philippe@gmail.com
 
-**Draft v3.11 — computational companion paper (Secs 1–3 + Appendices A–BS)
+**Draft v4.0 (branch resuscitate-no-neutrons, based on 55fb5a2) — computational companion paper (Secs 1–3 + Appendices A–BS + BU)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -1376,3 +1376,39 @@ survivor is an input, fit, calibration, or labeled assumption, no
 unexplained numbers.
 
 ![Fig 65](../figures/fig65_flip.png)
+
+## Appendix BU. No neutron stars: 2PN cancellation at $p = 0.92$ + leg-shedding kilonovae (Figs 66–68)
+
+(`bh_graph.pulsar`, `bh_graph.orici` gradient shells, `bh_graph.collapse`
+leg-shedding; branch `resuscitate-no-neutrons`, based on 55fb5a2.) This
+appendix resuscitates the no-neutron-matter reading that main v3.12 left for
+dead: $1.4\,M_\odot$ pulsars, $2.5$–$5\,M_\odot$ gap objects, and $10\,M_\odot$
+BHs are the same all:all graphs at different $e_{ext}$.
+
+**2PN vs real TOAs (Fig 66).** $h = (1+x/2)^2$ gives $c_1 = 3.36$ vs GR
+$1.94$. Naive fixed-$M$ mapping exceeds real periastron errors by $6.2\sigma$
+(B1913+16, $\dot\omega = 4.226598\pm0.000004$ deg/yr) and $9.7\sigma$
+(J0737-3039, $16.899323\pm0.000013$). With $g_{rr} = (1+U)^{2p}$,
+$c_2(p) = p(2p-1)$, $w = 1.953$: $c_{tot} = c_1+w c_2$, GR $4.8695$; at
+$p = 0.92$, $c_2 = 0.7728$, $c_{tot} = 4.8693$ → $0.00\sigma$ fixed-$M$.
+Self-consistent $R+\dot\omega_{obs}\to M$ shifts $M$ by $-11.2$ ppm (naive)
+and $\sin i$ by $3.7\times10^{-6}$; $s_{obs} = 0.99974$ passes at $0.36\sigma$,
+B1913 at $0.01\sigma$. Old Kramer error needed $\Delta p = 1.46$; new needs
+$0.028$ (1σ) / $0.056$ (2σ).
+
+**Gradient OR at precision (Fig 67).** Shells with $p_{adj}(s) = 0.85+0.015s$,
+deterministic bridges $n\propto r^{1.5}$, exact EMD: flat/$\beta=1.0$ gives
+$p\sim0.50$; gradient/$\beta=1.5$ gives $p = 0.94\pm0.06$ per graph,
+SEM $\approx0.02$ at 8 graphs ($\approx0.007$ at 80), clearing the bar.
+Fitted: slope $0.015$, $\beta = 1.5$, $w = 1.953$ (all labeled).
+
+**Leg-shedding kilonova (Fig 68).** Merger $e_{ext}$ $0.5\to0.416$ sheds
+$16.8\%$ of legs; $M_{ej} = \Delta k\,m_{leg}\times0.1$ gives $0.047\,M_\odot$
+at 1.4+1.4 (blue $0.3c$/$\kappa=0.5$ + red $0.1c$/$\kappa=10$, AT2017gfo-like).
+Gap totals eject more ($3.6\to0.060$, $5.0\to0.084$): **gap mergers must be
+kilonova-capable**. Falsifiers armed: $p\notin0.92\pm0.056$ at $N=1024$;
+gap kilonova rate $=0$ in O4/O5.
+
+![Fig 66](../figures/fig66_pulsar_2pn.png)
+![Fig 67](../figures/fig67_orici_p_fit.png)
+![Fig 68](../figures/fig68_kilonova_gap.png)

@@ -1541,11 +1541,9 @@ def fig65_flip():
 
 def fig66_pulsar_2pn():
     from bh_graph.pulsar import (
-        J0737, B1913, C1_GR, C1_MODEL, C2_GR, W_2PN, c2_of_p, ctot,
+        J0737, C1_GR, C1_MODEL, C2_GR, W_2PN, c2_of_p, ctot,
         dot_omega_dir_2pn_degyr, invert_mass_msun, kepler_a_m, sin_i_from_x,
-        dot_omega_model_degyr,
     )
-    import shutil
     pp = np.linspace(0.4, 1.4, 200)
     c2 = np.array([c2_of_p(p) for p in pp])
     ctot_m = np.array([ctot(C1_MODEL, v) for v in c2])

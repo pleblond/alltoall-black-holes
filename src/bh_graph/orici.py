@@ -245,7 +245,7 @@ def measure_p(
         "mean": float(np.mean(ok)) if len(ok) else float("nan"),
         "std": float(np.std(ok)) if len(ok) else float("nan"),
         "sem": float(np.std(ok) / np.sqrt(len(ok))) if len(ok) else float("nan"),
-        "n_ok": int(len(ok)),
+        "n_ok": len(ok),
         "stacked": stacked,
         "stacked_fit": stack_fit,
     }
