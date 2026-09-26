@@ -64,7 +64,53 @@ interactive demo (`streamlit run app.py`).
 | gravity | Newton, Kepler, redshift, bending, Shapiro, Mercury 42.99" | all pass (AS, AT, AU, BB, BH) |
 | quantum info | scrambling hierarchy, Page curve, QES pop, Hayden–Preskill | derived (A, C, F, H) |
 | phenomenology | no LHC thermal BHs, no echoes, achromatic lensing | nulls held (T, AN5, BB) |
+| compact objects | gap, sub-minimum, super-TOV masses, AT2017gfo, gap-KN prediction | 5 anomalies, one idea (BU) |
 | open frontier | 2nd-PN $c_{tot}$ matches GR via $p = 0.913\pm0.049$ (J0737 $0.1\sigma$); $\kappa\to c_2$ map + tortuosity derivation open | measured (BU), map queued |
+
+---
+
+## The five anomalies explained here (read this first)
+
+Standard theory needs a separate excuse for each of these five facts. This
+branch explains all five with one idea — mass is leg count,
+$k = 1.51\times10^{77}(M/M_\odot)^2$, with no matter phases — plus two
+shedding numbers calibrated once on AT2017gfo:
+
+| # | anomaly | standard verdict | this branch |
+|---|---|---|---|
+| 1 | Mass gap: GW190814 $2.6$, GW230529 $3.6\,M_\odot$ | impossible (NS $<2.3$, BH $>5$) | continuous $k = 1.0$–$2.0\times10^{78}$; gap must flash (BU, protocol) |
+| 2 | Too light: HESS J1731-347 $0.77\,M_\odot$ | below min NS $1.17$ — cannot form | low-$k$ tail $9.0\times10^{76}$, same $p$ |
+| 3 | Too heavy: J0740 $2.14$, J0952 $2.35\,M_\odot$ | EOS tension with NICER $R_{1.4}$ | more legs $7.0$–$8.4\times10^{77}$, no EOS |
+| 4 | AT2017gfo $0.05\,M_\odot$ blue+red | needs neutron-rich EOS in tension | leg-shedding $0.047\,M_\odot$, $m_g\sim18.0$ vs $17.5$, no neutrons |
+| 5 | Next gap merger (prediction) | dark ($\le0.3$/yr O5) | kilonova-bright $\sim1$/yr O5; 10 clean misses kill us |
+
+Implications, stated bluntly so no reader misses them:
+
+1. **Nuclear physics ends at $\sim10^{15}$ g/cc.** No stable matter above
+   it: no EOS, no hyperons, no quark matter — the high-density QCD phase
+   diagram is never realized in nature. Heavy-element $r$-process work
+   routed through AT2017gfo neutron ejecta is reinterpreted: shed legs
+   ($s_{leg} = 4\ln2\,l_p^2$ defects) hadronize neutron-rich with no
+   neutron star anywhere.
+2. **Astrophysics textbooks rewrite.** The $1.1$–$2.3\,M_\odot$ pulsar
+   distribution is the low-$k$ tail ($k\sim10^{77}$) of one family; the
+   $2.5$–$5\,M_\odot$ gap is where $e_{int}\sim e_{ext}$, not a boundary.
+   (Speculative pointers, no code yet: FRBs, magnetar flares, and glitches
+   as $e_{ext}$ leg-reconnection instead of crust quakes.)
+3. **GR tests re-anchor.** J0737 $16.899323(13)$ deg/yr needs
+   $c_{tot} = c_1+w c_2 = 4.8695$ ($w = 1.953$): flat $p = 0.49$ is
+   $-10\sigma$ dead, our measured $p = 0.913\pm0.049$ lands at $0.1\sigma$.
+   Shapiro, $\gamma$, bending, Mercury re-fit with the same $p$: 1PN
+   untouched, 2PN pieces hidden below VLBI/astrometry (Fig 69).
+4. **Quantum gravity without quantization.** All:all graphs with
+   $|\kappa|\sim r^{-p}$ match GR to $10^{-5}$ deg/yr at 2PN with no
+   strings, no loops, no quantization postulate — discreteness in,
+   Einstein out (map ansatz still open, on the ledger).
+5. **Falsifiers (why this is science).** Ten gap mergers $<200$ Mpc with
+   zero kilonovae to $m<24$ kills the resuscitation; a NICER $1.4\,M_\odot$
+   radius $11$–$13$ km at $5\%$ unreproducible by routing stiffness kills
+   it; one gap kilonova kills neutron stars instead. Full trigger plan,
+   brightness tables, and archival ledger: `docs/observation-protocol.md`.
 
 ---
 
