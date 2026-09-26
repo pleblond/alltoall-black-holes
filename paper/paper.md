@@ -2,7 +2,7 @@
 
 **Philippe Leblond** — leblond.philippe@gmail.com
 
-**Draft v3.11 — computational companion paper (Secs 1–3 + Appendices A–BS)
+**Draft v3.12-BV — computational companion paper (Secs 1–3 + Appendices A–BS, BV)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -42,7 +42,12 @@ capacity: microscopic lattice walks alone do not reproduce the Newtonian
 inverse-square law, while their combination with the model's exterior-leg
 thermodynamic structure yields the $1/r^2$ force law; an independent
 Ollivier–Ricci analysis finds the expected negative radial curvature sign,
-although its quantitative scaling remains an open problem. All claims ship with
+although its quantitative scaling remains an open problem. In the UV
+($\chi \to 1$), tortuosity is derived as line-defect scattering with
+entanglement cost $\ln 2$ per encounter ($c \approx 0.44$–$0.60$ with zero
+tuning, predicting $p = 2c$ and $\gamma = 2c$), and the horizon pop appears
+as graph disconnection at $k_{crit} = 4\pi r^2/\sigma$ with no metric input
+(BV). All claims ship with
 reproducible simulations (`python scripts/generate_figures.py`) and an
 interactive demo (`streamlit run app.py`).
 
@@ -55,7 +60,7 @@ interactive demo (`streamlit run app.py`).
 | gravity | Newton, Kepler, redshift, bending, Shapiro, Mercury 42.99" | all pass (AS, AT, AU, BB, BH) |
 | quantum info | scrambling hierarchy, Page curve, QES pop, Hayden–Preskill | derived (A, C, F, H) |
 | phenomenology | no LHC thermal BHs, no echoes, achromatic lensing | nulls held (T, AN5, BB) |
-| open frontier | 2nd-PN $c_1 = 3.36$ vs GR $1.94$; tortuosity micro-derivation | pre-registered (AN wire 6, BH) |
+| open frontier | 2nd-PN $c_1 = 3.36$ vs GR $1.94$; tortuosity $1/2$ derived (BV), $\mu(\chi)$ still assumed | pre-registered (AN wire 6, BH→BV) |
 
 ---
 
@@ -1376,3 +1381,107 @@ survivor is an input, fit, calibration, or labeled assumption, no
 unexplained numbers.
 
 ![Fig 65](../figures/fig65_flip.png)
+
+## Appendix BV. UV tortuosity-as-scattering: $c$, $p$, $\gamma$ from $\ln 2$ (Figs 70–72)
+
+(`bh_graph.uvscatter`.) Lettering note: BT–BU live on main (2PN IR battery +
+leg-shedding kilonovae); this branch continues at BV for merge compatibility,
+and quotes main's BU numbers ($p = 0.913 \pm 0.049$, $\beta(N)$, $c_1 = 3.36$,
+$w = 1.953$) as comparison targets only — nothing below takes them as input.
+
+**Motivation.** BH fitted the tortuosity factor $1/2$ to $\gamma = 1$ and BU
+(main) fitted the radial exponent $p$ and bridge law $\beta(N)$ to the J0737
+2PN cancellation. Three open entries, one mechanism: exterior legs are radial
+line defects of cross-section $\sigma = 4\ln 2\,l_p^2$ (BS patch postulate),
+and graph walks scatter off them with entanglement cost $s_{leg} = \ln 2$ per
+encounter (BN-measured saturation). The dilute-line tortuosity of this porous
+medium derives $c$, hence $p = 2c$, $\gamma = 2c$, and the pop at $\chi = 1$.
+
+**Micro identities (zero new assumptions).** $k$ legs piercing a sphere of
+radius $r$ give 2D density $\rho_{2D} = k/4\pi r^2$ and occupied area fraction
+$\chi(r) = \rho_{2D}\sigma = k\sigma/4\pi r^2$. With $R_s = \sqrt{k\sigma/4\pi}$
+(the radius where $\chi = 1$) and $x = R_s/r$: $\chi = x^2$ exactly. The pop
+$k_{crit} = 4\pi r^2/\sigma$ is the BK packing theorem restated ($r = 1.6\,l_p
+\to k_{crit} = 11.6$, matching `packing_kmax` exactly). Mean transverse spacing
+$d = r\sqrt{4\pi/k}$ and exclusion radius $r_e = \sqrt{\sigma/\pi}$ give the
+detour fraction $r_e/d = \sqrt{\chi/\pi}$ (identity), so $dl/dr = 1 + x/\sqrt\pi$
+for unit detour efficiency: $c_{geom} = 1/\sqrt\pi = 0.564$ with $f = 1$.
+Comparing $h = (1+cx)^2 \approx 1 + 2cx$ with $g_{rr} = (1+U)^{2p} \approx 1+px$
+($U = x/2$) gives $p = 2c$; with $f = 1-x$, $\gamma = (h-1)/(f^{-1}-1) = 2c$.
+One packing number predicts the radial exponent, the PPN parameter, and via
+$c_2(p) = p(2p-1)$, $c_{tot} = 3.36 + 1.953\,c_2$ the 2PN cancellation.
+
+**Simulation design.** $L^3$ cubic lattice (ambient graph, mean degree ~6),
+core = nodes within $1\,l.u.$ of center (the all:all interior, never blocked),
+$k$ radial rays in Fibonacci directions (the exterior legs). Three modes:
+**hard** (BFS avoiding cylinders $d < 0.9\,l.u.$), **soft** (Dijkstra with
+Gaussian edge cost $w = 1 + \alpha e^{-d^2/2r_e^2}$, $\alpha = \ln 2$,
+$r_e = 0.60\,l.u.$ from $\sigma = 1.139\,l.u.^2$ at $a = 1.56\,l_p$), **mixed**
+(hard core $d < 0.75\,r_e$ + soft Gaussian outside). Observable per radial
+shell: $tort = d_{graph}/r$, $tort_{clean}$ on the undefected lattice
+(Manhattan baseline $\sim 1.35$), excess $= tort/tort_{clean} - 1$ (the ratio
+cancels the lattice baseline and core-source convention), $c = excess/x$.
+Dilute fit over $\chi < 0.2$ shells inside the inscribed sphere (box corners
+excluded). Estimators (median/mean/regression) agree within $0.15$.
+
+**Results (Fig 70).** Soft $\alpha = \ln 2$, L=32: $c = 0.437$ ($k = 20$),
+$0.636$ ($k = 80$), $0.681$ ($k = 160$); L=64, $k = 160$: $0.603$. The $k = 20$
+point lands $0.2\sigma$ from the BU-implied $0.456$ with zero tuning; the
+high-$k$ asymptote $\approx 0.60$ matches $c_{geom} = 0.564$. The $c(k)$ rise
+is void closure: sparse legs leave void channels walks slip through ($f < 1$);
+dense legs are unavoidable ($f \to 1$) — the same disorder that pulls $0.5$ to
+$0.456$. Hard walls give $c = 0.66$ at $k = 10$ (2× soft, overshooting toward
+the naive $1.1$–$1.6$) and pop already at $k = 20$ (reachable $0.2\%$): too
+strong and brittle, as expected for infinite barriers vs $\ln 2$ soft cost.
+Mixed ($0.75\,r_e$ core): $0.451$ ($k = 20$), $0.827$ ($k = 40$), disconnected
+at $k = 80$ — dilute value, pre-pop rise, then horizon. Predicted
+$p = 2c = 0.87$ ($k = 20$) sits $0.2\sigma$ from BU's measured $0.913 \pm
+0.049$; $c_{tot}(0.87) = 4.79$ vs GR $4.8695$ ($\Delta = -0.08$, sub-$\sigma$
+for J0737). The flat case $c = 0.25 \to p = 0.5 \to c_{tot} = 3.36$ stays dead
+at $\Delta = -1.51$.
+
+**Boltzmann layer (Fig 72).** Mean free path $\lambda_{mfp} = d = r\sqrt{4\pi/k}$;
+optical depth $\tau = cx$ (extra path per unit path). Transport ladder at
+L=12, $k = 10$: Dijkstra $0.33 \approx$ drifted finite-$T$ walks $0.37$–$0.76$
+$<$ straight through-core rays $1.15$ — optimal routing is worth 3×, and
+Boltzmann sampling agrees with Dijkstra within 2× at all $T$ (dilute detours
+are perturbative). Bridge-exponent ladder for the BU $\beta(N)$ comparison:
+$n(r) \sim r^2/F$ gives $\beta = 0, 1, 2$ for point/line/area footprints
+$F = \lambda^2, \lambda a, a^2$; BU's fitted $1.24$ sits between line-like and
+area-like — legs couple as lines with partial transverse resolution, and the
+$1.5 \to 1.24$ drift is motion toward line-like as shells resolve. This
+constrains $\beta$; it does not yet derive $1.24$ (queued: OR-gradient port).
+
+**Pop without a metric (Fig 71).** Mixed L=32: reachable $0.99 \to 0.0002$
+between $k = 40$ and $80$; theory $k_{crit}(r=2) = 44.1$ splits them, and
+$\chi_{inner}$ crosses $1$ across the same step. The BK pop is graph
+disconnection, no $g_{rr}$ written. UV running $p(\chi) = 2c(\chi)$: mixed
+$k = 40$ rises $1.5 \to 2.8$ from $\chi = 0.03$ to $0.58$ (turnover at
+$\chi = 0.06$), the emergent version of BU's fitted $p_{adj}(s)$ slope —
+then paths vanish (turnover to pop, not flattening). Soft mode stays flat
+($1.0$–$1.5$): Gaussian cost saturates at $1+\alpha$ instead of diverging.
+
+**No-$r$ analysis (Fig 72).** Recomputing $\chi = k\sigma/4\pi r_{phys}^2$
+with operational radius $r_{phys} = d_{clean}/T_0$ ($T_0 \approx 1.35$ the
+once-measured clean-lattice ruler factor; $d_{clean}$ = Dijkstra distance
+from the core) reproduces $c$ within $0.03$–$0.10$ across $L$, $k$. The
+$\chi \to h \to p, \gamma$ chain never uses a background coordinate; $M \equiv
+k$, $R_s$ is defined by $\chi = 1$. Full coordinate-freedom (random geometric
+graph + OR-ball binning instead of a cubic lattice) is queued — the embedding
+still uses coordinates; the analysis no longer does.
+
+**UV sign check.** Radial Ollivier–Ricci on a defect-pierced weak-field graph
+(L=7, $k = 4$ hard lines + flux stubs, exact LP): $\kappa = -0.148, -0.057,
+-0.012$ per shell — negative everywhere. Attraction survives at $\chi \sim 1$;
+a sign flip would have killed the model.
+
+**Ledger: 4 assumptions $\to$ 3.** Tortuosity $1/2$ (fitted) $\to$ derived from
+$s_{leg} = \ln 2$ + sphere packing ($c = 0.44$–$0.60$); $p$ (BU-fitted on main)
+$\to$ predicted $0.87$–$1.2$; $k_{crit}$ heuristic $\to$ packing theorem
+confirmed by disconnection. Remaining: $R_s(M)$ input, AT $\alpha$
+calibration, $\mu(\chi)$ assumption. Honestly calibrated (not derived):
+mixed-core fraction $0.75$ (0.5 blocks nothing, 1.5 pops at $k = 20$),
+dilute cut $\chi < 0.2$, $T_0$ per $L$. Falsifiers armed: soft $c$ outside
+$[0.3, 0.8]$ at any $k \ge 20$ kills the $\ln 2$ cost model; $\kappa \ge 0$ in
+any UV shell kills attraction; pop location off $k_{crit}$ by $> 2\times$ kills
+the packing pop.

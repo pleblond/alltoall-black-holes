@@ -3,6 +3,13 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v3.12-BV (this branch)** — BV UV tortuosity-as-scattering: legs as radial
+  line defects ($\sigma = 4\ln 2$), soft cost $\ln 2$ per encounter gives
+  dilute $c = 0.44$–$0.60$ (target $0.456$, geometric $1/\sqrt\pi$) with zero
+  tuning; $p = 2c$, $\gamma = 2c$; mixed mode rises then disconnects at
+  $k_{crit}$; UV running $p(\chi)$ turnover; no-$r$ analysis; OR stays
+  negative in the UV. 4 assumptions $\to$ 3 (tortuosity $1/2$ derived).
+  296 tests, 68 figs.
 - **v3.11** — BS flip to A+(b*): patch $= 4\ln 2$ derived from measured
   $\eta_{vN}$, legs saturate, Postulate B retired on the record;
   $\varepsilon$ runs as $c/\sqrt{N}$ ($k = N$ exactly, $N$ holographic,

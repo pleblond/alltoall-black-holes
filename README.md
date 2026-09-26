@@ -39,17 +39,18 @@ ringdown, LHC-recast, and quantum-hardware data. Falsifiers are pre-registered
 (Appendix AN); one sub-claim (broad remnant dark matter) is already ruled
 out on the record, with a narrow surviving window. Postulates, derivations,
 and open gaps are labeled throughout — including the tortuosity
-micro-derivation behind $g_{rr}$ and the un-derived gap coefficient.
+micro-derivation behind $g_{rr}$ (derived in BV from $\ln 2$ scattering)
+and the un-derived gap coefficient.
 
 ## Contents
 
 | Path | Description | License |
 |---|---|---|
-| [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BS) | CC BY 4.0 |
+| [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BS, BV) | CC BY 4.0 |
 | `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
-| `tests/` | 278 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 296 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -64,7 +65,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$).
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BV `uvscatter`.
 
 ## Quickstart
 
@@ -72,7 +73,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 278 tests
+python -m pytest tests/ -q          # 296 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -111,7 +112,9 @@ cd paper && pdflatex main.tex && pdflatex main.tex
   Hayden–Preskill mirror, Kerr Page delay, $1/r^2$ + Kepler + redshifts,
   tortoise freezing, congestion phases, charge endpoints, evacuation
   ordering, MP spectrum, greybody switch, $\alpha = 11.24$ match,
-  quadratic-only LIV ($E_{QG,1} = \infty$, $E_{QG,2} = \sqrt{8}\,E_P$).
+  quadratic-only LIV ($E_{QG,1} = \infty$, $E_{QG,2} = \sqrt{8}\,E_P$),
+  tortuosity $c \approx 0.44$–$0.60$ from $\ln 2$ line-defect scattering
+  ($p = 2c$, $\gamma = 2c$), UV pop as graph disconnection at $k_{crit}$.
 - **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
   equivalence principle, continuum limits (heat-kernel, Ollivier),
   Raychaudhuri for leg bundles, gap coefficient, crossover scales.
@@ -158,8 +161,10 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
-v3.11 — the flip to A+(b*), complete through Appendix BS:
-patch $= 4\ln 2$ (derived from measured $\eta_{vN}$), legs saturate,
+v3.12-BV (this branch) — BV derives tortuosity-as-scattering on top of the
+v3.11 flip: 4 assumptions $\to$ 3, 296 tests, 68 figs. BT–BU (2PN IR battery,
+kilonovae) live on main; BV quotes their numbers as targets only.
+v3.11 flip: patch $= 4\ln 2$ (derived from measured $\eta_{vN}$), legs saturate,
 $\varepsilon$ runs ($k = N$ exactly), 6 assumptions $\to$ 4 with zero
 mechanism debts. B retired on the record.
 The paper is a living research document:
