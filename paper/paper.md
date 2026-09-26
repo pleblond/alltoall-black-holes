@@ -2,7 +2,7 @@
 
 **Philippe Leblond** — leblond.philippe@gmail.com
 
-**Draft v3.11 — computational companion paper (Secs 1–3 + Appendices A–BS)
+**Draft v3.12 — computational companion paper (Secs 1–3 + Appendices A–BT)
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -56,6 +56,7 @@ interactive demo (`streamlit run app.py`).
 | quantum info | scrambling hierarchy, Page curve, QES pop, Hayden–Preskill | derived (A, C, F, H) |
 | phenomenology | no LHC thermal BHs, no echoes, achromatic lensing | nulls held (T, AN5, BB) |
 | open frontier | 2nd-PN $c_1 = 3.36$ vs GR $1.94$; tortuosity micro-derivation | pre-registered (AN wire 6, BH) |
+| pulsars | J0737 self-consistent $-11$ ppm, $s$ passes (old); needs $p\pm0.08$ | audit, not confirmation (BT) |
 
 ---
 
@@ -222,7 +223,9 @@ Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS), `redshift.py` (AT), `heatker.py` + `orici.py` + `jacobson.py` (AU), `fission.py` (AV), `klanguage.py` (AW), `tension.py` (AX), `gw250114.py` (AY),
 `overtones.py` + `tensionvol.py` (AZ), `sparse24.py` (BA), `lensing.py` +
 `chroma.py` + `shapiro.py` (BB), `bcrit.py` (BC), `dispersion.py` (BD),
-`qnmfoot.py` + `qnmlegs.py` (BE), `foamgrid.py` (BF), `perwalk.py` (BG).
+`qnmfoot.py` + `qnmlegs.py` (BE), `foamgrid.py` (BF), `perwalk.py` (BG),
+`strain.py` (BH/BJ), `weakfield.py` (BI/BQ), `legham.py` (BL),
+`jacobson.py` (BN/BO), `tn.py` (BR), `pulsar.py` (BT).
 
 ---
 
@@ -1376,3 +1379,118 @@ survivor is an input, fit, calibration, or labeled assumption, no
 unexplained numbers.
 
 ![Fig 65](../figures/fig65_flip.png)
+
+## Appendix BT. Binary-pulsar 2PN audit + graph-star sketch (Fig 66)
+
+(`bh_graph.pulsar`, Fig 66.) Conversation hypothesis, audited honestly:
+what we time as "neutron stars" (J0737-3039A/B, B1913+16) might already be
+low-$k$ graph-dominated objects ($e_{ext}\sim0.5$, still with a resolvable
+routing surface, not yet $e_{ext}\to1$), and the model's light-bending
+$c_1=3.36$ vs GR $1.94$ (BB, AN wire 6) might be compensated in periastron
+advance by the radial sector $c_2(p)=p(2p-1)$ from BI's $p=0.92\pm0.48$.
+**Verdict first: the audit passes the old data and survives the new data
+only inside stated errors — it confirms nothing.** Every number below is
+locked in `tests/test_pulsar.py`; every gap is labeled.
+
+**Data (published only, no private TOAs).** J0737 2006 (Kramer+Lyne,
+Science): $P_b=0.10225156248$ d, $e=0.0877775$, $x_A=1.415032(1)$ s,
+$x_B=1.5161(16)$ s, $R=x_B/x_A=1.0714(11)$ (any theory),
+$\dot\omega_{obs}=16.89947(68)$ deg/yr, $s_{obs}=0.99974(-39,+16)$,
+$\gamma=0.3856(26)$ ms, $r=6.21(33)\,\mu$s. J0737 2021/22 (Kramer 2021 PRX
+16-yr 7-PK + Hu+ 2022 MeerKAT DDS Table 2): $P_b=0.1022515592972(29)$ d,
+$e_T=0.087777036(48)$, $x_A=1.415028299(88)$ s,
+$\dot\omega_{obs}=16.899321(37)$ deg/yr, $s_{obs}=0.9999369(51)$,
+$\gamma_E=0.384045(94)$ ms, $r=6.163(16)\,\mu$s, $M=2.587052(11)\,M_\odot$
+($B$ unseen since 2008, so $R$ is carried from 2006). The conversation's
+$16.899323(13)$ (13 $\mu$as/yr) is **tighter than published** (37
+$\mu$as/yr) and is treated as optimistic/future (SKA), not data. B1913+16:
+$\dot\omega=4.226585(4)$ deg/yr, single-line (no theory-free $R$), so its
+test is weaker. Timing uses IAU $T_\odot=4.9254909476\,\mu$s, **not**
+CODATA $G\,M_\odot/c^3$ ($+30$ ppm, larger than the 11 ppm shift under
+test — locked as `test_t_sun_iau_not_codata_product`).
+
+**Three 2PN normalizations (do not conflate).** (a) Conversation toy
+$\dot\omega_{dir}=n_b(GM/c^2a)^2(28-e^2)/[4(1-e^2)^2]=0.00017269$ deg/yr
+for J0737 — test-mass-like, reproduces the thread to 0.5% but
+underestimates the DD term by $\sim2.5\times$. (b) Damour-Schafer DD
+$k_2$-only (Hu+ 2020 Table 1): $k_2=x^2[78-28\nu+(51-26\nu)e^2]/[4(1-e^2)^2]$,
+$n\,k_2=+0.000440$ deg/yr prograde for J0737 (reproduced to 3%). (c) Iorio
+2021 Eq. 18 full total (osculating Kepler, $f_0$-dependent):
+$-0.00080$ to $-0.00045$ deg/yr retrograde for J0737 (reproduced; always
+$<0$), $-697$ to $+43\,\mu$as/yr for B1913. The thread's map lives in (a);
+its GR total $(c_{1g}+w\,c_{2g})\times$scale $=+0.00043$ is Hu-like (b),
+**missing Iorio's $n_{1PN}\,k_{1PN}$ cross term** ($\sim-0.0010$). The
+Lense-Thirring $-0.00060$ (comparable) is cited, not fitted. Any claim of
+"cancellation" is therefore **toy-map only** until the cross term and
+spin-orbit are in the same fit.
+
+**Self-consistent $R+\dot\omega\to M$ inversion (no GR masses).**
+$\dot\omega_{model}(M)=\dot\omega_{1PN}(M)+$scale$(M)\,(c_1+w\,c_2)$,
+scale $=$ toy$/c_{1g}\approx8.88\times10^{-5}$ deg/yr per unit $c$,
+solved by Brent for $M$, then $s=(x_A+x_B)c/a(M)$ from the same $M$:
+
+- Fixed-$M$ excess $(3.36/1.94-1)\times$toy $=+0.0001264$ deg/yr:
+  $0.19\sigma_{old}$ (2006, not excluded), $3.4\sigma_{publ}$ (37
+  $\mu$as/yr), $9.7\sigma_{fut}$ (13 $\mu$as/yr), $6.2\sigma$ B1913-naive.
+- Floating $M$: $M$ shifts $-11.1$ ppm ($-0.000029\,M_\odot$), $s$ shifts
+  $+3.7\times10^{-6}$ — the thread's numbers to stated precision.
+  With $R_{err}=0.0011$ propagated ($s_{pred}$ err $0.000531$ dominates),
+  $s_{pred}=0.999878$ vs $s_{obs}=0.99974$ passes at $0.2\sigma_{old}$,
+  and vs $s_{obs}=0.9999369$ at $0.1\sigma$ **once $R$ error is included**
+  (naive $11\sigma$ using only the 2021 Shapiro error is a stale-$R$
+  artifact: $B$-based $R$ cannot test DDS $s$ at $5\times10^{-6}$).
+- GR PK cross-checks at 2021 masses: $\gamma$ $-0.5\sigma$, $r$ $-0.8\sigma$,
+  $\dot P_b$ $1.4\sigma$ (quadrupole-only; Shklovskii/Galactic/mass-loss at
+  $10^{-4}$ omitted by design).
+- $p=0.92$, $w=1.95$: toy residual
+  $\Delta\dot\omega=(\Delta c_1+w\,\Delta c_2)\times$scale with
+  $c_2(0.92)=0.7728$ vs $1.5$ gives $-6\times10^{-7}$ deg/yr (machine zero
+  with exact fit weight; $6.2\times10^{-5}$ with $w=1$: $0.09\sigma_{old}$,
+  $4.7\sigma_{fut}$). **$w=1.95$ is FIT for exact cancellation, not
+  derived** — Damour-Schafer $w\sim2$ ("$g_{rr}$ enters $\sim2\times$
+  $g_{tt}$") is assumed PPN lore; light-bending $c_1\neq$ periastron
+  coefficient in general. Conflating them is the audit's load-bearing
+  assumption, stated here.
+
+**Precision needed.** $dc_2/dp=4p-1=2.68$ at $p=0.92$:
+$\Delta p_{1\sigma}=\sigma_{\dot\omega}/[w(4p-1)$scale$]$ gives
+$1.47$ (2006, any $p$ passes), **$0.080$ (published 37 $\mu$as/yr)**,
+$0.028$ (future 13 $\mu$as/yr). Current BI $0.92\pm0.48$ ($L=9$, 6 seeds,
+reproduced bit-for-bit including the $p=-0.09$ outlier seed) is $6\times$
+($17\times$ future) too loose. Getting to $\pm0.08$ needs $\sim36\times$
+the seeds at fixed scatter ($\sim200$ configs) or a better estimator
+(more shells, robust fit, larger $L$ with sparse distances — Floyd-Warshall
+is the bottleneck: 1.9 s at $L=9$, 4.8 s at $L=11$ per config). The
+$N=2000$ all:all + 10k-realization OR program quoted in the thread is
+**not run here** — OR on dense $K_N$ needs a different $W_1$ backend than
+the current LP, queued as stated work, not claimed.
+
+**Graph-star sketch (packing, NOT an $M$-$R$ curve).** With
+$k=(4\pi/\ln2)(M/M_P)^2$ and $\chi=k/k_{crit}$,
+$k_{crit}=4\pi R_{foot}^2/4\ln2\,l_p^2$: $1.4\,M_\odot$ at 12 km gives
+$\chi=0.119$ (pointlike/horizonless, correct — no horizon claimed);
+footprint-fixed horizonless ceiling $M_{max}=4.06\,M_\odot$ at 12 km
+($3.39$ at 10 km); $5\,M_\odot$ at 10 km gives $\chi=2.2$ (horizon
+forced). So the sketch predicts gap pulsars $2.5$–$4\,M_\odot$ **possible
+iff footprints stay $\sim12$ km**, then BHs — but $R_{foot}(M)$,
+routing-buffer stiffness $k_{2,graph}$, and formation are all **open**:
+$\Lambda=(2/3)k_2(R/M)^5$ gives 439 at (1.4, 12 km, $k_2=0.1$) vs 104 at
+9 km, bracketing GW170817 $\Lambda\sim300$, yet $k_2$ is parametrized, not
+derived, and $R$ is input, not output. No TOV cutoff is derived either —
+absence of a cutoff is absence of a prediction, not a prediction of gap
+pulsars. Glitch-as-rewiring, burst light curves, and $M$-$R$ from
+microphysics are named unknowns.
+
+**Kills (pre-registered).** (i) Full DD fit (2PN cross term + spin-orbit +
+$e_T\leftrightarrow e$) with $c_1=3.36$, $c_2(p)$ and fitted $w$ missing
+any of $\dot\omega,\gamma,r,s,\dot P_b$ at $>3\sigma_{2021}$ kills the
+toy-map cancellation (this appendix, not the core model). (ii) $p$ measured
+to $\pm0.08$ landing outside $0.92\pm0.16$ ($2\sigma$) kills exact
+cancellation at published precision. (iii) One solid $>4.5\,M_\odot$ pulsar
+with $\dot\omega$ kills the 12-km footprint sketch (move $R_{foot}$ or
+drop it). (iv) NICER+GW $M$-$R$-$\Lambda$ requiring nuclear $k_2(R)$ with
+no graph stiffness matching it kills "pulsars are low-$k$ graphs" as a
+research direction. Until then: **interesting, unfalsified, unconfirmed —
+exactly as filed.**
+
+![Fig 66](../figures/fig66_pulsar.png)
