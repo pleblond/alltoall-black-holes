@@ -1,4 +1,5 @@
 import networkx as nx
+import numpy as np
 
 from bh_graph.orici import eh_functional, mean_curvature, ollivier_curvature
 
@@ -114,3 +115,16 @@ def test_eint_measure_robustness_and_fallback():
     assert eint_weighted_measure(g, x, 1.5) == _neighborhood_measure(g, x, 0.0)
     m = eint_weighted_measure(g, x, 0.995)
     assert abs(sum(m.values()) - 1.0) < 1e-12
+
+
+def test_packing_closure_planckian():
+    # Packing never entered the beta fit, yet the fitted bridge law implies
+    # O(1)-Planck lattice spacing, tightening with N: independent closure.
+    from bh_graph.orici import packing_implied_spacing
+    a300 = packing_implied_spacing(30, 1.5)
+    a600 = packing_implied_spacing(60, 1.28)
+    a1020 = packing_implied_spacing(102, 1.24)
+    assert a300 < a600 < a1020
+    assert 1.2 < a1020 < 2.0
+    assert np.isnan(packing_implied_spacing(-5, 1.5))
+    assert np.isnan(packing_implied_spacing(30, float("nan")))

@@ -2,11 +2,11 @@
 
 **Philippe Leblond** — leblond.philippe@gmail.com
 
-**Draft v4.0 (branch resuscitate-no-neutrons, based on 55fb5a2) — computational companion paper (Secs 1–3 + Appendices A–BS + BU)
+**Draft v4.0 — computational companion paper (Secs 1–3 + Appendices A–BS + BU)
 
-> Branch retitle: the main-line title (*Black Holes as Almost-Perfect All:All
+> Branch retitle: the pre-v4.0 title (*Black Holes as Almost-Perfect All:All
 > Entanglement Graphs: Interior Collapse, Horizon Wiring, and the Micro-Hole
-> Phase Transition*) is preserved in git history. This branch promotes a
+> Phase Transition*) is preserved in git history. v4.0 promotes a
 > consequence to the thesis — compact objects at every mass are the same
 > all:all graphs, so neutron matter does not exist (Appendix BU) — and titles
 > it accordingly. If BU is killed, the title reverts with it.
@@ -78,7 +78,7 @@ branch explains all five with one idea — mass is leg count,
 $k = 1.51\times10^{77}(M/M_\odot)^2$, with no matter phases — plus two
 shedding numbers calibrated once on AT2017gfo:
 
-| # | anomaly | standard verdict | this branch |
+| # | anomaly | standard verdict | v4.0 |
 |---|---|---|---|
 | 1 | Mass gap: GW190814 $2.6$, GW230529 $3.6\,M_\odot$ | impossible (NS $<2.3$, BH $>5$) | continuous $k = 1.0$–$2.0\times10^{78}$; gap must flash (BU, protocol) |
 | 2 | Too light: HESS J1731-347 $0.77\,M_\odot$ | below min NS $1.17$ — cannot form | low-$k$ tail $9.0\times10^{76}$, same $p$ |
@@ -541,7 +541,7 @@ Hubble tension, $g-2$, etc.**: no connection; the model is GR-identical at
 astrophysical scales by construction. Net: the model *survives* all current
 public data (Appendix Q positively) but *explains* no standing anomaly — its
 testable frontier is analogue/lab (Appendix R), not the sky.
-**Update (BU):** this verdict is superseded on this branch — the mass gap,
+**Update (BU):** this verdict is superseded in v4.0 — the mass gap,
 sub-minimum and super-TOV masses, and AT2017gfo's brightness are now claimed
 as explained (zero tuning for the masses; shedding calibrated on AT2017gfo),
 and the testable frontier extends to the sky (J0737 2PN passed at $0.1\sigma$,
@@ -1469,7 +1469,7 @@ unexplained numbers.
 ## Appendix BU. No neutron stars: 2PN cancellation at $p = 0.92$ + leg-shedding kilonovae (Figs 66–69)
 
 (`bh_graph.pulsar`, `bh_graph.orici` gradient shells, `bh_graph.collapse`
-leg-shedding; branch `resuscitate-no-neutrons`, based on 55fb5a2.) This
+leg-shedding; added v4.0.) This
 appendix resuscitates the no-neutron-matter reading that main v3.12 left for
 dead: $1.4\,M_\odot$ pulsars, $2.5$–$5\,M_\odot$ gap objects, and $10\,M_\odot$
 BHs are the same all:all graphs at different $e_{ext}$.
@@ -1494,13 +1494,19 @@ margin (artifact `data/p80_n1020_beta124.json`). $\beta$ recalibrates per $N$
 ($1.5$@300, $1.28$@600, $1.24$@1020, all measured). Fitted: slope $0.015$,
 $\beta(N)$, $w = 1.953$ (all labeled).
 
-**Reconciliation.** A companion dense-layer route ($\kappa=k_0-c_2/r^2$,
+**Reconciliation (primary route first).** The claim rests on the one-knob
+bridge law above — uniform measure, exact LP, no $\kappa$ tweak. A companion
+dense-layer route ($\kappa=k_0-c_2/r^2$,
 $e_{int}$ weights) reaches $p = 0.879$ exact ($1.43\sigma$) but needs a
-$\kappa$-tweak fudge for $0.93$ and 4 knobs vs our 1. Cross-checks in-repo:
+$\kappa$-tweak fudge for $0.93$ and 4 knobs vs our 1; it is the cross-check,
+not the claim. Cross-checks in-repo:
 on bridge profiles power-law fits better (R² 0.91 vs 0.81) and the two
 $\kappa\to c_2$ maps disagree cross-applied — the map is the open
 micro-derivation (ledger), and $e_{int}$ deformations lower our $p$, so the
-standard uniform measure is both principled and required. $M_{ej}$ is exactly
+standard uniform measure is both principled and required. Independent
+closure: packing (never used in the fit) demands lattice spacing
+$a\gtrsim1.56\,l_p$ at N = 1020 — O(1) Planck, tightening with $N$
+($0.69\to1.10\to1.56$), exactly the model's premise. $M_{ej}$ is exactly
 $k$-normalization independent, so the gap prediction survives any re-derivation
 of the map.
 
@@ -1523,7 +1529,7 @@ kill the resuscitation (`docs/observation-protocol.md`).
 **Anomaly census (one idea, zero tuning for 1–3).** Masses are leg counts,
 $k = 1.51\times10^{77}(M/M_\odot)^2$ (BS patch, `k_schwarzschild_sun`):
 
-| object | $M$ | $k$ | standard problem | this branch |
+| object | $M$ | $k$ | standard problem | v4.0 |
 |---|---|---|---|---|
 | HESS J1731-347 | $0.77$ | $9.0\times10^{76}$ | below min NS $1.17$ | low-$k$ tail, same $p$ |
 | J0453 comp. | $1.17$ | $2.1\times10^{77}$ | at NS minimum | ordinary low-$k$ graph |

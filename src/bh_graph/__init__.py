@@ -261,6 +261,7 @@ from bh_graph.orici import (
     gradient_shell_graph, shell_kappa_profile, fit_scaling_power, measure_p,
     p_adj_of_shell, shell_pair_radius, n_bridges_for_pair, is_valid_shell_params,
     fit_k0_c2, eint_weighted_measure, ollivier_curvature_eint, is_valid_eint,
+    packing_implied_spacing,
 )
 from bh_graph.collapse import (
     shed_fraction, leg_shedding_ejecta, is_kilonova_capable,
@@ -416,6 +417,7 @@ __all__ = [
     "gradient_shell_graph", "shell_kappa_profile", "fit_scaling_power", "measure_p",
     "p_adj_of_shell", "shell_pair_radius", "n_bridges_for_pair", "is_valid_shell_params",
     "fit_k0_c2", "eint_weighted_measure", "ollivier_curvature_eint", "is_valid_eint",
+    "packing_implied_spacing",
     "shed_fraction", "leg_shedding_ejecta", "is_kilonova_capable",
     "kilonova_peak_time_days", "kilonova_peak_lum_erg_s",
     "kilonova_lightcurve_lum", "gap_kilonova_table", "is_valid_merger",

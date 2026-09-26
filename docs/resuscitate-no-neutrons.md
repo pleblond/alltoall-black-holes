@@ -10,7 +10,7 @@ $\dot\omega = 16.899323(13)$ deg/yr passes at $0.00\sigma$ fixed-$M$
 islands exact; kilonova AT2017gfo reproduced by leg-shedding
 ($0.047\,M_\odot$, $m_g\sim18.0$ at 40 Mpc vs observed 17.5); gap kilonovae
 predicted ($m_g\sim21.2$ at 200 Mpc, Rubin/DECam visible; $\sim1$/yr O5 vs
-standard $\le0.3$/yr). 311 tests green, 69+2 figures. Protocol:
+standard $\le0.3$/yr). 312 tests green, 69+2 figures. Protocol:
 [`docs/observation-protocol.md`](observation-protocol.md).
 
 ## What changed vs main (55fb5a2)
@@ -20,7 +20,7 @@ standard $\le0.3$/yr). 311 tests green, 69+2 figures. Protocol:
 | `src/bh_graph/orici.py` | grid+hub BI, 3 shells, 6 graphs, $\sigma_p = 0.48$ | gradient shells $p_{adj}(s) = 0.85+0.015s$, 8–10 shells, exact EMD full neighborhoods, deterministic bridge counts $n \propto r^{\beta(N)}$ → $p = 0.913 \pm 0.049$ at N = 1020, SEM $0.0055$ (80 graphs exact, $0.24\sigma$ from target) |
 | `src/bh_graph/pulsar.py` | — (new) | Iorio 2PN direct+total, $c_2(p) = p(2p-1)$, $w = 1.953$, $R+\dot\omega\to M$ inversion, $p$-precision bar, GR-battery 2PN margins (bending/Mercury hidden) |
 | `src/bh_graph/collapse.py` | grid→complete transition only | + leg-shedding: $e$ $0.5\to0.416$, $M_{ej} = \Delta k\,m_{leg}\times0.1$, blue+red AT2017gfo, gap table, band mags, O5 yield, kill rule |
-| `tests/` | 278 | +33 (pulsar 14, kilonova 13, orici 9) = 311 |
+| `tests/` | 278 | +33 (pulsar 14, kilonova 13, orici 9) = 312 |
 | `figures/` | 65 | + fig66 (2PN), fig67 (p-fit) + `fig_orici_p_fit.png`, fig68 (gap) + `fig_kilonova_gap.png`, fig69 (O5 protocol) |
 | `docs/` | model-explained | + resuscitate note, PATCH notes, `observation-protocol.md` (trigger + archival ledger + kill rule) |
 

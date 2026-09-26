@@ -174,6 +174,29 @@ def n_bridges_for_pair(r_mid: float, per_shell: int, beta: float) -> int:
     return int(max(1, round(n)))
 
 
+def packing_implied_spacing(per_shell: int, beta: float, n_shells: int = 10) -> float:
+    """Min lattice spacing a (in l_p) fitting bridges within Planck packing.
+
+    Radial bridges through shell-pair area 4 pi r^2 need patch 4 ln 2 l_p^2
+    each: n(r) <= 4 pi (r a)^2 / 4 ln 2. Packing never entered the beta fit,
+    so a ~= O(1) is an independent closure (measured: 0.69 at N = 300,
+    1.10 at 600, 1.56 at 1020 — tightening the right way). nan if invalid.
+    """
+    if not (isinstance(per_shell, (int, np.integer)) and per_shell > 0):
+        return float("nan")
+    if not (np.isfinite(beta) and isinstance(n_shells, (int, np.integer)) and n_shells >= 2):
+        return float("nan")
+    worst = 0.0
+    for s in range(n_shells - 1):
+        r = shell_pair_radius(s, n_shells)
+        n = n_bridges_for_pair(r, per_shell, beta)
+        nmax_unit = np.pi * r**2 / np.log(2.0)  # n_max at a = 1 l_p
+        if nmax_unit <= 0:
+            return float("nan")
+        worst = max(worst, n / nmax_unit)
+    return float(np.sqrt(worst))
+
+
 def gradient_shell_graph(
     per_shell: int = 30,
     n_shells: int = 10,

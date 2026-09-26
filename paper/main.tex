@@ -2,26 +2,33 @@
 \usepackage{amsmath,amssymb,amsthm,graphicx,hyperref,booktabs,geometry}
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
-\title{Black Holes as Almost-Perfect All:All Entanglement Graphs:\\Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition}
-\author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\ \small Draft v3.11 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (278 tests)}
+\title{No Neutron Stars: Black Holes, Pulsars, and Gap Objects as Almost-Perfect All:All Entanglement Graphs}
+\author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\ \small Draft v4.0 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (312 tests)}
 \date{\today}
 \begin{document}
 \maketitle
 \begin{abstract}
 We formalize the intuition that a black hole interior is an almost-perfect
 all:all entanglement graph. Internal edges cost no exterior space; each of the
-$k$ exterior legs costs $\sim l_p^2$ of horizon area, so $A(k)=k\,l_p^2$
+$k$ exterior legs costs $4\ln2$ Planck patches of horizon area (measured, BS),
+so $A(k)=4\ln2\cdot k\,l_p^2$
 independent of interior node count $N$. We show (1) the complete graph $K_N$
 destroys interior distance and, under finite-speed random circuits, derives the
 Sekino--Susskind $t_*\sim\log N$ fast-scrambling bound; (2) mass enters via a
-derived $k^*(N)=16\pi(\varepsilon N/l_p)^2$ fixed point, spin/charge consume
+$k^*(N)$ fixed point with running $\varepsilon$ ($k=N$ exactly, BS),
+spin/charge consume
 part of the exterior budget (extremal Kerr keeps half the legs), and the
 $k\to0$ monogamy limit is a baby-universe pinch-off with an explicit nonlinear
-CKW frontier; (3) micro-holes are pointlike until $k\,l_p^2 \ge 4\pi
+CKW frontier; (3) micro-holes are pointlike until $4\ln2\cdot k\,l_p^2 \ge 4\pi
 r_{\mathrm{point}}^2$, then pop a horizon via a computed QES/island crossing,
 with an LQG-style area gap. Evaporation as leg surgery reproduces the exact
 Page curve (Page 1993, $-1/2$ nat correction included) with Haar-typical
 fluctuations, and Hayden--Preskill mirror recovery works past $k\sim N/2$.
+Weak-field gravity follows to 1PN ($\gamma=1$, Mercury $42.99''$/cy), and at
+2PN the J0737 double pulsar is matched to $0.1\sigma$ via a measured radial
+exponent $p=0.913\pm0.049$ (Appendix~BU) — unifying pulsars, mass-gap objects,
+and black holes as one $k\propto M^2$ family with no neutron-matter phase and
+a falsifiable gap-kilonova prediction ($\sim1$/yr O5).
 Simulations in \texttt{bh\_graph} accompany each claim.
 \end{abstract}
 
@@ -50,24 +57,24 @@ random-regular & $\sim\log N$ & $\sim\log N$ & $\sim\log N$ & $O(1)$ \\\bottomru
 \section{Sec 2: Horizon area counts exterior legs}
 Interior pairs $N(N{-}1)/2$ plus $k\ll N^2$ exterior legs:
 \begin{equation}
-A(k) = k\,l_p^2,\qquad R(k)=\sqrt{k\,l_p^2/4\pi},
+A(k) = 4\ln2\cdot k\,l_p^2,\qquad R(k)=\sqrt{4\ln2\cdot k\,l_p^2/4\pi},
 \end{equation}
 so $N$ drops out (Fig.~3). Schwarzschild consistency forces
-$k(M)=4\pi(2M)^2/l_p^2\propto M^2$; Appendix~B derives this from MaxEnt +
+$k(M)=(4\pi/\ln2)M^2/l_p^2\propto M^2$; Appendix~B derives this from MaxEnt +
 self-gravity, and Appendix~H extends it to Kerr--Newman
-$k_{\rm eff}(M,a,Q)=A(M,a,Q)/l_p^2$ with extremal Kerr at half the legs.
+$k_{\rm eff}(M,a,Q)=A(M,a,Q)/4\ln2\,l_p^2$ with extremal Kerr at half the legs.
 Monogamy (linear toy Fig.~4; nonlinear CKW Fig.~14) sends $e_{\rm int}\to1$,
 $k\to0$: pinch-off into a baby universe.
 
 \section{Sec 3: Micro-hole phase transition}
 A point region of radius $r_{\rm point}$ embeds $k$ legs iff
-$k\,l_p^2<4\pi r_{\rm point}^2$. Hence
+$4\ln2\cdot k\,l_p^2<4\pi r_{\rm point}^2$. Hence
 \begin{equation}
-R_{\rm obs}(k)=\begin{cases}r_{\rm point} & k\le k_{\rm crit}\\\sqrt{k\,l_p^2/4\pi} & k>k_{\rm crit}\end{cases},\quad k_{\rm crit}=4\pi r_{\rm point}^2/l_p^2,
+R_{\rm obs}(k)=\begin{cases}r_{\rm point} & k\le k_{\rm crit}\\\sqrt{4\ln2\cdot k\,l_p^2/4\pi} & k>k_{\rm crit}\end{cases},\quad k_{\rm crit}=4\pi r_{\rm point}^2/4\ln2\,l_p^2,
 \end{equation}
 with LQG-style quantization $A\in\{0\}\cup[A_{\min},\infty)$ (Figs.~5--6).
 Appendix~C shows the pop is a computed QES/island crossing at
-$k_{\rm page}=S_0/(2s_{\rm leg}-l_p^2/4)$, existing iff $s_{\rm leg}>l_p^2/4$.
+$k_{\rm page}=S_0/(2s_{\rm leg}-\ln2\,l_p^2)$, existing iff $s_{\rm leg}>\ln2\,l_p^2/2$.
 
 \section{Discussion}
 Evaporation = leg surgery with exact Page curve (Appendices~D, I) and
@@ -83,13 +90,14 @@ One gate/qubit/step; random matching (all:all) vs dimer covering (chain).
 Early growth exponential on all:all; chain ballistic. Measured $N=8\ldots128$.
 
 \section{Deriving $k(N)$ (Fig.~8)}
-MaxEnt bound $k\ge Ns_{\rm node}/s_{\rm leg}$ plus $R=\sqrt{kl_p^2/4\pi}=2E$,
-$E=\varepsilon N$: fixed point $k^*(N)=16\pi(\varepsilon N/l_p)^2$, stable
-from any start. Predicts $\alpha(N)=k^*/N\propto N$.
+MaxEnt bound $k\ge Ns_{\rm node}/s_{\rm leg}$ plus $R=\sqrt{4\ln2\cdot k\,l_p^2/4\pi}=2E$,
+$E=\varepsilon N$: fixed point $k^*(N)=16\pi(\varepsilon N/l_p)^2/4\ln2$, stable
+from any start. BS: $\varepsilon$ runs as $c/\sqrt N$, so $k^*=N$ exactly
+($\alpha=1$; quadratic growth holds only for fixed-$\varepsilon$ matching).
 
 \section{QES pop from entropy crossing (Fig.~9)}
-$S_{\rm no}=ks_{\rm leg}$ vs $S_{\rm isl}=kl_p^2/4+\max(S_0-ks_{\rm leg},0)$;
-crossing iff $s_{\rm leg}>l_p^2/4$. Explicit core+legs min-cut agrees.
+$S_{\rm no}=ks_{\rm leg}$ vs $S_{\rm isl}=k\ln2+\max(S_0-ks_{\rm leg},0)$;
+crossing iff $s_{\rm leg}>\ln2/2$. Explicit core+legs min-cut agrees.
 
 \section{Page curve from leg surgery (Fig.~10)}
 $S_{\rm rad}(t)=\min(t,N_{\rm eff}-t)$; area identical for wiring-only vs
@@ -101,7 +109,7 @@ $k\ge N/2+1+\log_2 100$; $k\to0$ seals information off.
 
 \section{Robustness (Fig.~11)}
 Log slope $1/\log_2(1+p)$ at all $p$; exact quadraticity at all $\varepsilon$;
-sharp QES boundary at $s_{\rm leg}=l_p^2/4$.
+sharp QES boundary at $s_{\rm leg}=\ln2/2$.
 
 \section{Kerr--Newman (Fig.~12)}
 $r_+=M+\sqrt{M^2-a^2-Q^2}$, $A=4\pi(r_+^2+a^2)$; spin budget
@@ -169,7 +177,7 @@ $10^6$\,g. Same-device grid$\to$all:all quench predicts $t^*$ $8\to1$,
 gap $0.27\to36$ — no cross-platform systematics.
 
 \section{Healing lag (Fig.~30)}
-$dA/dt=(kl_p^2-A)/\tau$, $\tau=11.24M$ from ringdown ($3.5$\,ms at
+$dA/dt=(4\ln2\cdot k\,l_p^2-A)/\tau$, $\tau=11.24M$ from ringdown ($3.5$\,ms at
 $63\,M_\odot$). Ladder: healing, scrambling $66\times$, Page, evaporation;
 final sigh carries $\sim10^{-78}$ of the mass.
 
@@ -184,14 +192,14 @@ TN spectrum matches Marchenko-Pastur; analytic $T(E)$ grounds $T\equiv1$
 sub-critical emission.
 
 \section{Congestion + charge + bandwidth (Figs.~34--36)}
-Bubble iff $\chi=kl_p^2/4\pi r_{foot}^2>1$; spread giants delocalized.
+Bubble iff $\chi=4\ln2\cdot k\,l_p^2/4\pi r_{foot}^2>1$; spread giants delocalized.
 Charge pins $q=4\pi Q^2$ legs (pinch/pointlike/extremal map). Evacuation
 empties babies; info-per-leg diverges $\iff$ cloning risk.
 
 \section{Kill list (Figs.~37--39)}
 AF quench: kill below ratio $1.3$ (predicted $2$--$3\times$). $\alpha$
 monitor awaits O4/O5 rows. Min-rule violations shrink; Ising $s_{leg}=0.55$
-vs $0.25$. LHC onset $\sim550$\,TeV; soft tail below kills.
+vs $0.347$. LHC onset $\sim550$\,TeV; soft tail below kills.
 
 \section{Big pop (Fig.~40)}
 Hidden delocalized giants pop $R_b(k)$ horizons on concentration:
@@ -240,7 +248,7 @@ below bound, upward within fit noise.
 
 \section{Lensing passes, Mercury gaps (Fig.~49)}
 Fermat $n=1/c_{eff}$ gives full $4M/b$ (naive 2M/b bet lost); 2nd order
-$3.36$ vs $1.94$. Orbits need $g_{rr}$: Newtonian $0$ vs $43''$/cy gap.
+$3.36$ vs $1.94$ (BU: periastron $c_{tot}$ tested, J0737 $0.1\sigma$). Orbits need $g_{rr}$: Newtonian $0$ vs $43''$/cy gap.
 Lensing now chromatic via phase velocity: $\Delta\alpha/\alpha\sim10^{-56}$
 optical (Fig.~55), achromaticity held by $\sim50$ orders. (Update: the orbit
 gap is closed by the Strain section below.)
@@ -273,12 +281,14 @@ $42.99''$/cy by direct geodesic integration — the $g_{rr}$ sector derived.
 
 \section{Weak-field OR profile (Fig.~59)}
 Grid+hub with flux stubs: radial Ollivier-Ricci negative in all configs
-(sign of $h>1$ derived from micro); scaling $p\approx0.9\pm0.5$ suggestive,
-not resolved — partial micro-derivation, bigger lattices needed.
+(sign of $h>1$ derived from micro). BU measures $p=0.913\pm0.049$ (80 graphs,
+N$=1020$ exact, SEM $0.0055$): scaling resolved, $\kappa\to c_2$ map open.
 
 \section{PPN ledger + peel-off (Fig.~60)}
 Full table: $\gamma=1$ derived, $\beta$ unresolved (not quoted),
 $\alpha_{1,2},\xi$ untouched; ours-vs-GR perihelion $=-0.75\,M/a$ measured.
+BU: $c_{tot}=c_1+w\,c_2$ matches GR (J0737 $0.1\sigma$); bending 2PN hides
+below VLBI, Mercury 2PN below astrometry.
 
 \section{Formal pop + Hamiltonian sketch (Fig.~61)}
 Packing forces the pop past $\lfloor4\pi r^2/l_p^2\rfloor$; $s_{leg}>1/4$
@@ -315,6 +325,14 @@ running $\varepsilon=c/\sqrt N$ ($N$ holographic, $k=N$, margin $4\ln2$).
 Patch $4\ln2$ from measured $\eta_{vN}$; legs saturate; $\varepsilon$ runs;
 6 assumptions $\to$ 4, zero mechanism debts. B retired on record.
 
+\section{No neutron stars: 2PN + kilonovae (Figs.~66--69)}
+Pulsars, gap objects, BHs as one $k\propto M^2$ family: gradient shells give
+$p=0.913\pm0.049$ (80 graphs, N$=1020$ exact), J0737 $0.1\sigma$;
+leg-shedding yields $0.047\,M_\odot$ (AT2017gfo-like) and predicts gap
+kilonovae $\sim1$/yr O5 vs $\le0.3$ standard. Kill rule: 10 clean
+non-detections $<$200\,Mpc. Fitted: slope $0.015$, $\beta(N)$, $w=1.953$,
+shed $e$+efficiency, $\kappa\to c_2$ map.
+
 \section*{Reproducibility}
 \texttt{pip install -e .; python -m pytest tests/ -q; python scripts/generate\_figures.py; streamlit run app.py.}
 
@@ -328,5 +346,9 @@ Patch $4\ln2$ from measured $\eta_{vN}$; legs saturate; $\varepsilon$ runs;
 \bibitem{hp07} Hayden \& Preskill, JHEP 2007.
 \bibitem{page93} Page, Phys.\ Rev.\ Lett.\ 1993.
 \bibitem{ckw00} Coffman, Kundu \& Wootters, Phys.\ Rev.\ A 2000.
+\bibitem{kramer06} Kramer et al., Science 2006 (J0737 double pulsar).
+\bibitem{wh16} Weisberg \& Huang, ApJ 2016 (B1913+16 timing).
+\bibitem{gw170817} Abbott et al.\ (LVK) + Villar et al., ApJL 2017 (AT2017gfo).
+\bibitem{gw230529} LVK P2300352 + Kunnumkai et al., arXiv:2409.10651 (gap KN).
 \end{thebibliography}
 \end{document}

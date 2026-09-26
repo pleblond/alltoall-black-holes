@@ -3,14 +3,17 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
-- **v4.0 draft** — BU resuscitate-no-neutrons (this branch, based on 55fb5a2):
-  gradient shells $p_{adj}(r) = 0.85+0.015r$ + exact EMD → $p = 0.92\pm0.02$;
-  $c_1 = 3.36$ excess cancelled by $c_2 = 0.7728$ at $w = 1.953$ → J0737
-  $16.899323(13)$ deg/yr at $0.00\sigma$, $\sin i$ $0.36\sigma$, B1913
-  $0.01\sigma$; leg-shedding kilonova ($0.047\,M_\odot$ for 1.4+1.4, blue+red
-  AT2017gfo) with gap $2.5$–$5\,M_\odot$ prediction (falsifier armed: gap
-  rate $= 0$ kills). 311 tests, 69+2 figs (adds: k0-c2/e_int
-  cross-checks, GR-battery 2PN margins, KN bands + O5 yield + protocol).
+- **v4.0** — No Neutron Stars (retitled; was "Black Holes as ... Phase
+  Transition", preserved in git history): BU resuscitate-no-neutrons, merged.
+  Gradient shells $p_{adj}(r) = 0.85+0.015r$ + exact EMD, measured 80 graphs
+  N = 1020: $p = 0.913\pm0.049$ (SEM $0.0055$); $c_1 = 3.36$ excess cancelled
+  by $c_2(p)$ at $w = 1.953$ → J0737 $16.899323(13)$ deg/yr at $0.1\sigma$,
+  $\sin i$ $0.36\sigma$, B1913 $0.01\sigma$; leg-shedding kilonova
+  ($0.047\,M_\odot$ for 1.4+1.4, blue+red AT2017gfo) with gap $2.5$–$5\,M_\odot$
+  prediction ($\sim1$/yr O5 vs $\le0.3$ standard; kill rule: 10 clean
+  non-detections). 312 tests, 73 figure files (Figs 1–69). Paper read
+  end-to-end: five-anomalies section, staleness sweep, phenomenological-model
+  framing. Zenodo DOI mints on release (concept: 10.5281/zenodo.22929076).
 - **v3.11** — BS flip to A+(b*): patch $= 4\ln 2$ derived from measured
   $\eta_{vN}$, legs saturate, Postulate B retired on the record;
   $\varepsilon$ runs as $c/\sqrt{N}$ ($k = N$ exactly, $N$ holographic,

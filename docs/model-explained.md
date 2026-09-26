@@ -147,7 +147,7 @@ the second-order effect directly (see §5b), and the graph passes — while
 the bending-only piece stays a factor $\sim30$ below what telescopes can
 see, pre-registered rather than hidden.
 
-## 5b. Second order, pulsars, and the no-neutron-stars claim (this branch)
+## 5b. Second order, pulsars, and the no-neutron-stars claim (v4.0)
 
 A binary pulsar is two dead stars orbiting each other, one of them flashing
 like a lighthouse up to hundreds of times per second. Those flashes are a
@@ -333,11 +333,11 @@ quantitative falsifiers (Appendix AN):
 6. **Vacuum dispersion (astrophysics).** Discrete legs forbid *linear*
    light-speed shifts exactly (a lattice symmetry); any confirmed linear
    Lorentz-violation signal kills the discrete-leg picture outright.
-7. **Second-order exponent (pulsars, this branch).** The radial-curvature
+7. **Second-order exponent (pulsars, v4.0).** The radial-curvature
    exponent must sit at $p = 0.92\pm0.056$ (measured $0.913\pm0.049$ at
    N = 1020, passes). A future exact run outside that window kills the
    2PN cancellation.
-8. **Gap kilonovae (O5, this branch).** Every well-localized
+8. **Gap kilonovae (O5, v4.0).** Every well-localized
    $2.5$–$5\,M_\odot$ merger within 200 Mpc must flash ($m_g\sim21$,
    $\sim1$/yr vs standard $\le0.3$/yr). Ten clean non-detections kill
    no-neutron-stars; one flash kills neutron-star theory instead.
@@ -360,11 +360,11 @@ with a narrow surviving window at $\sim 4\times10^5$ g).
   standard EBL opacity, no echoes above $\sim 10^{-160}$) rather than
   anomalies. Its testable frontier is the laboratory (item 1) and precision
   gravitational-wave catalogs (item 2).
-- **Not an explanation of any standing anomaly (main line; revised on this branch).** Several candidates were
+- **Not an explanation of any standing anomaly (pre-v4.0; revised in v4.0).** Several candidates were
   examined (fast radio bursts, lensing oddities, TeV transparency, remnant
   dark matter); each died on arithmetic, on the record. What survives is a
   coherent, falsifiable model — not a solution in search of a problem.
-  On the `resuscitate-no-neutrons` branch this bullet is superseded:
+  In v4.0 this bullet is superseded:
   the mass gap, sub-minimum and super-TOV masses, and AT2017gfo's
   brightness are now claimed as explained (zero tuning for the masses),
   with gap kilonovae as the pending test — see §5b and Appendix BU.
