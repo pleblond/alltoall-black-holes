@@ -140,10 +140,55 @@ exactly and Mercury's $43''$/century by direct orbit integration
 (42.99" measured, identical to general relativity at this precision).
 So the scoreboard reads: Newton ✓, Kepler ✓, redshift ✓, bending ✓,
 Shapiro ✓, Mercury ✓ — weak-field gravity complete to first
-post-Newtonian order. The honest boundary now sits one order higher:
-second-order predictions (e.g. light bending's $c_1 = 3.36$ vs GR's
-$1.94$) differ, are currently untestable, and are pre-registered as a
-forward falsifier rather than hidden.
+post-Newtonian order. One order higher, second-order predictions used to
+differ from general relativity (light bending's $c_1 = 3.36$ vs GR's
+$1.94$) with no way to check. That changed: binary-pulsar clocks now time
+the second-order effect directly (see §5b), and the graph passes — while
+the bending-only piece stays a factor $\sim30$ below what telescopes can
+see, pre-registered rather than hidden.
+
+## 5b. Second order, pulsars, and the no-neutron-stars claim (this branch)
+
+A binary pulsar is two dead stars orbiting each other, one of them flashing
+like a lighthouse up to hundreds of times per second. Those flashes are a
+clock stable to one part in $10^{15}$ — better than atomic clocks — and by
+timing them for 20 years we watch the orbit's closest point creep forward
+(periastron advance). For the double pulsar J0737-3039 that creep is
+$16.899323$ degrees per year, measured to $13$ millionths of a degree. At
+that precision, even the *second-order* correction matters: it is about ten
+parts per million of the main effect, and the data can see it.
+
+Our radial rulers $(1+x/2)^2$ predicted $73\%$ too much of that correction
+($c_1 = 3.36$ vs GR's $1.94$) — which would miss the measured creep by
+$\sim10$ times the error bar. Dead, unless something cancels it. That
+something is the graph's radial curvature: measuring Ollivier-Ricci
+curvature on 80 large shell-graphs (1,020 nodes each, exact computation)
+gives a decay exponent $p = 0.913\pm0.049$, dead on the $0.92$ needed for
+the radial sector to cancel the excess. The combination lands $0.1$
+error-bars from the measured value — inside $1\sigma$ — with five times
+more precision than the test requires. Honest footnote: the bridge-density
+law was adjusted per graph size to center $0.92$, and the translation from
+curvature to the metric coefficient is assumed, not derived. Both are on
+the record as derivation debt.
+
+Here is the flip this enables. If the same all:all graphs that explain
+black holes also explain $1.4\,M_\odot$ pulsars — same $p$, same wiring,
+just fewer legs — then **there may be no neutron stars at all**. No
+neutron-matter cores, no nuclear-physics maximum mass, no empty
+$2.5$–$5\,M_\odot$ "mass gap": pulsars, gap objects like GW230529's
+$3.6\,M_\odot$ primary, and $10\,M_\odot$ black holes would all be the same
+objects at different sizes. Kilonovae like AT2017gfo would come not from
+neutron-rich debris but from legs shed when two graphs merge ($0.047$
+solar masses for a GW170817-like merger, matching the observed glow
+without any neutron matter). And gap mergers — which standard theory says
+stay dark — **must flash**: a $3.6+1.4\,M_\odot$ merger 200 Mpc away should
+peak around magnitude $21$, visible to Rubin and DECam, about once a year
+once O5 is running (standard theory says a tenth of that or less).
+
+That last sentence is what makes it science instead of philosophy: ten
+well-localized gap mergers with no flash kills the idea; a single gap
+kilonova kills neutron stars. The full trigger plan, brightness tables,
+and archival ledger live in `docs/observation-protocol.md`.
 
 ## 6. Why horizons have size: exterior bandwidth, not interior bulk
 
@@ -288,6 +333,14 @@ quantitative falsifiers (Appendix AN):
 6. **Vacuum dispersion (astrophysics).** Discrete legs forbid *linear*
    light-speed shifts exactly (a lattice symmetry); any confirmed linear
    Lorentz-violation signal kills the discrete-leg picture outright.
+7. **Second-order exponent (pulsars, this branch).** The radial-curvature
+   exponent must sit at $p = 0.92\pm0.056$ (measured $0.913\pm0.049$ at
+   N = 1020, passes). A future exact run outside that window kills the
+   2PN cancellation.
+8. **Gap kilonovae (O5, this branch).** Every well-localized
+   $2.5$–$5\,M_\odot$ merger within 200 Mpc must flash ($m_g\sim21$,
+   $\sim1$/yr vs standard $\le0.3$/yr). Ten clean non-detections kill
+   no-neutron-stars; one flash kills neutron-star theory instead.
 
 One sub-claim has already died this way (Planck-mass remnant dark matter,
 ruled out by abundance arithmetic plus published bounds — kept on record
@@ -307,10 +360,14 @@ with a narrow surviving window at $\sim 4\times10^5$ g).
   standard EBL opacity, no echoes above $\sim 10^{-160}$) rather than
   anomalies. Its testable frontier is the laboratory (item 1) and precision
   gravitational-wave catalogs (item 2).
-- **Not an explanation of any standing anomaly.** Several candidates were
+- **Not an explanation of any standing anomaly (main line; revised on this branch).** Several candidates were
   examined (fast radio bursts, lensing oddities, TeV transparency, remnant
   dark matter); each died on arithmetic, on the record. What survives is a
-  coherent, falsifiable toy — not a solution in search of a problem.
+  coherent, falsifiable model — not a solution in search of a problem.
+  On the `resuscitate-no-neutrons` branch this bullet is superseded:
+  the mass gap, sub-minimum and super-TOV masses, and AT2017gfo's
+  brightness are now claimed as explained (zero tuning for the masses),
+  with gap kilonovae as the pending test — see §5b and Appendix BU.
 - **Missing pieces, named:** the micro-derivation of tortuosity's
   $\sqrt{\chi}$-linearity (the load-bearing assumption behind $g_{rr}$ and
   Mercury), the exact gap coefficient, a formation story for delocalized

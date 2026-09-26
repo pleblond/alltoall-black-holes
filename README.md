@@ -6,7 +6,7 @@
 [![Docs: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-blue)](LICENSE-DOCS-CC-BY-4.0.txt)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22929076.svg)](https://doi.org/10.5281/zenodo.22929076)
 
-> A reproducible toy theory: black-hole interiors are almost-perfect all:all
+> A reproducible model: black-hole interiors are almost-perfect all:all
 > entanglement graphs, horizon area counts exterior legs ($A = k\,l_p^2$),
 > and micro-holes undergo a point-to-horizon phase transition. Every claim
 > ships with runnable code, tests, and figures.
@@ -14,6 +14,10 @@
 > **New here?** Start with [`docs/model-explained.md`](docs/model-explained.md) —
 > a plain-language tour of the whole model (no physics background needed),
 > with pointers into the paper, code, and demo.
+> **This branch:** [`docs/resuscitate-no-neutrons.md`](docs/resuscitate-no-neutrons.md) —
+> **no neutron stars**; J0737 2PN measured $p = 0.913\pm0.049$ (80 graphs,
+> exact), gap kilonovae with an O5 kill-or-confirm
+> [`protocol`](docs/observation-protocol.md).
 
 > **Read the paper:** [`paper/paper.md`](paper/paper.md) (full draft) ·
 > [`paper/main.pdf`](paper/main.pdf) (compiled PDF)
@@ -49,7 +53,7 @@ micro-derivation behind $g_{rr}$ and the un-derived gap coefficient.
 | `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
-| `tests/` | 278 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 311 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -64,7 +68,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$).
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU (this branch) `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding).
 
 ## Quickstart
 
@@ -72,7 +76,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 278 tests
+python -m pytest tests/ -q          # 311 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -112,15 +116,24 @@ cd paper && pdflatex main.tex && pdflatex main.tex
   tortoise freezing, congestion phases, charge endpoints, evacuation
   ordering, MP spectrum, greybody switch, $\alpha = 11.24$ match,
   quadratic-only LIV ($E_{QG,1} = \infty$, $E_{QG,2} = \sqrt{8}\,E_P$).
+  This branch adds: $p = 0.913\pm0.049$ from exact OR (80 graphs, N = 1020,
+  SEM $0.0055$), $M(c_1,c_2)$ pulsar inversion, $M_{ej}(M_{tot})$ shedding law,
+  KN band mags + O5 yield arithmetic.
 - **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
   equivalence principle, continuum limits (heat-kernel, Ollivier),
   Raychaudhuri for leg bundles, gap coefficient, crossover scales.
+  This branch fits (labeled): gradient slope $0.015$, bridge $\beta(N)$
+  ($1.5$@300, $1.28$@600, $1.24$@1020), $w = 1.953$, shed $e$
+  $0.5\to0.416$ + $10\%$ efficiency, $\kappa\to c_2$ map ansatz.
 - **Ruled out (on record):** broad Planck-remnant dark matter (survives
   only in a $\sim 0.4$-dex EMD window at $\sim 4\times10^5$ g).
 - **Falsifiers armed:** AF quench ratio $< 1.3$, $\alpha$ outside
   $[9.0, 12.4]$, $A \propto N$ in any TN calculation, thermal LHC excess
   below $k_{crit}$, $s_{leg} \le l_p^2/4$ in any physical state class,
   any linear-LIV signal (finite $E_{QG,1}$).
+  This branch arms: $p$ outside $0.92\pm0.056$ at $N = 1024$ (measured
+  $0.913\pm0.049$, passes); 10 well-localized gap non-detections $<200$ Mpc
+  kill the resuscitation (protocol in `docs/observation-protocol.md`).
 
 ## License
 
@@ -157,6 +170,15 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 ```
 
 ## Status
+
+v4.0 draft (this branch `resuscitate-no-neutrons`, based on 55fb5a2):
+**no neutron stars** — pulsars, gap objects, and BHs are the same low-$k$
+all:all graphs; J0737 2PN measured at $p = 0.913\pm0.049$ (80 graphs,
+N = 1020, exact), SEM $0.0055$, $0.24\sigma$ from the GR-cancellation
+point; leg-shedding kilonovae ($0.047\,M_\odot$, AT2017gfo-like) with a
+gap prediction ($\sim1$/yr O5 vs standard $\le0.3$/yr). 311 tests, 69+2 figs.
+See [`docs/resuscitate-no-neutrons.md`](docs/resuscitate-no-neutrons.md) and
+the kill-or-confirm [`docs/observation-protocol.md`](docs/observation-protocol.md).
 
 v3.11 — the flip to A+(b*), complete through Appendix BS:
 patch $= 4\ln 2$ (derived from measured $\eta_{vN}$), legs saturate,

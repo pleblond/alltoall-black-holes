@@ -247,6 +247,30 @@ from bh_graph.entropic import (
     newton_potential, link_flux, force_slope, kepler_period,
     leapfrog_orbit, orbit_closes,
 )
+from bh_graph.pulsar import (
+    c2_of_p, p_of_c2, ctot, kepler_a_m, gm_over_ac2,
+    dot_omega_1pn_degyr, dot_omega_dir_2pn_degyr, dot_omega_tot_2pn_degyr,
+    model_factor, dot_omega_model_degyr, invert_mass_msun, sin_i_from_x,
+    is_valid_orbit, required_c2_deficit, p_precision_for_sigma,
+    C1_GR, C1_MODEL, C2_GR, W_2PN, C_TOT_GR, B1913, J0737,
+    bending_2pn_excess_fractional, is_bending_2pn_hidden,
+    mercury_2pn_excess_arcsec, is_mercury_2pn_hidden,
+    M_SUN_M, R_SUN_M, MERCURY_A_M, VLBI_BENDING_FRACTIONAL,
+)
+from bh_graph.orici import (
+    gradient_shell_graph, shell_kappa_profile, fit_scaling_power, measure_p,
+    p_adj_of_shell, shell_pair_radius, n_bridges_for_pair, is_valid_shell_params,
+    fit_k0_c2, eint_weighted_measure, ollivier_curvature_eint, is_valid_eint,
+)
+from bh_graph.collapse import (
+    shed_fraction, leg_shedding_ejecta, is_kilonova_capable,
+    kilonova_peak_time_days, kilonova_peak_lum_erg_s,
+    kilonova_lightcurve_lum, gap_kilonova_table, is_valid_merger,
+    lum_to_abs_mag_bol, dist_modulus, peak_apparent_mags, is_detectable,
+    gap_o5_yield, falsifier_killed_by_nondetections,
+    kn_peak_lum_ratio, gw230529_detection_prob, is_gw230529_nondetection_consistent,
+    L_SUN_ERG_S, RUBIN_SINGLE_VISIT_R, DECAM_KN_DEPTH, KILL_NONDETECTIONS,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -381,4 +405,22 @@ __all__ = [
     "tower_agreement",
     "sigma_planck_density", "sigma_hawking_density", "tension_span_orders",
     "bridge_energy", "planck_tension_absurd",
+    "c2_of_p", "p_of_c2", "ctot", "kepler_a_m", "gm_over_ac2",
+    "dot_omega_1pn_degyr", "dot_omega_dir_2pn_degyr", "dot_omega_tot_2pn_degyr",
+    "model_factor", "dot_omega_model_degyr", "invert_mass_msun", "sin_i_from_x",
+    "is_valid_orbit", "required_c2_deficit", "p_precision_for_sigma",
+    "C1_GR", "C1_MODEL", "C2_GR", "W_2PN", "C_TOT_GR", "B1913", "J0737",
+    "bending_2pn_excess_fractional", "is_bending_2pn_hidden",
+    "mercury_2pn_excess_arcsec", "is_mercury_2pn_hidden",
+    "M_SUN_M", "R_SUN_M", "MERCURY_A_M", "VLBI_BENDING_FRACTIONAL",
+    "gradient_shell_graph", "shell_kappa_profile", "fit_scaling_power", "measure_p",
+    "p_adj_of_shell", "shell_pair_radius", "n_bridges_for_pair", "is_valid_shell_params",
+    "fit_k0_c2", "eint_weighted_measure", "ollivier_curvature_eint", "is_valid_eint",
+    "shed_fraction", "leg_shedding_ejecta", "is_kilonova_capable",
+    "kilonova_peak_time_days", "kilonova_peak_lum_erg_s",
+    "kilonova_lightcurve_lum", "gap_kilonova_table", "is_valid_merger",
+    "lum_to_abs_mag_bol", "dist_modulus", "peak_apparent_mags", "is_detectable",
+    "gap_o5_yield", "falsifier_killed_by_nondetections",
+    "kn_peak_lum_ratio", "gw230529_detection_prob", "is_gw230529_nondetection_consistent",
+    "L_SUN_ERG_S", "RUBIN_SINGLE_VISIT_R", "DECAM_KN_DEPTH", "KILL_NONDETECTIONS",
 ]
