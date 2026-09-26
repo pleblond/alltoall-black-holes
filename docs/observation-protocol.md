@@ -26,8 +26,9 @@ brightness below. Standard model: 2–28% per event (mgNSBH, literature range).
 Anchor: AT2017gfo peaked $m_g\sim17.5$ at 40 Mpc; we predict 18.0 (0.5 mag,
 inside the $\pm1$ analytic tolerance). Gap events are **brighter** than
 AT2017gfo at fixed distance. Rubin single-visit $r=24.5$, DECam KN depth
-23.5: gap $g$-band detectable to 200 Mpc with margin; $i$-band marginal at
-200 Mpc (POSSIS colors needed for precision).
+23.5: gap $g$-band detectable to 200 Mpc with margin; $i$-band analytic
+values are likely 2–3 mag FAINT (one-zone $\kappa=10$ over-traps — see
+honesty notes), so all detection claims rest on $g$ only, conservatively.
 
 Expected O5 yield (`gap_o5_yield`, 1.5 gap events/yr, 70% DECam-like):
 **ours $\sim1.05$/yr vs standard $\le0.3$/yr**.
@@ -47,8 +48,8 @@ kill rule; single-detector non-detections are uninformative either way.
 ## Honesty notes
 
 - Band mags assume BC = 0 and per-component peaks; real lightcurves need
-  POSSIS ($ \kappa_{blue}=0.5$, $\kappa_{red}=10$) — brightness verdicts
-  (detectable yes/no) are robust, colors are not claimed.
-- Red peak times (10–16d) are slower than AT2017gfo's $\sim$4d red decline:
-  analytic Arnett spread at $\kappa=10$; same caveat.
+  POSSIS ($\kappa_{blue}=0.5$, $\kappa_{red}=10$) — $g$-band verdicts
+  (detectable yes/no) are robust; $i$-band is NOT claimed (one-zone red
+  over-traps: $t_{red}\sim10$d vs observed $\sim4$d decline, $m_i$ faint
+  by $\sim$2–3 mag — direction conservative for gap-$g$ detectability).
 - Standard 2–28% band is a literature input (EOS-dependent), not derived.
