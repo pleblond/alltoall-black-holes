@@ -40,6 +40,7 @@ from itertools import pairwise
 import numpy as np
 
 from bh_graph.horizon import PATCH_AREA
+from bh_graph.pulsar import C1_GR, C1_MODEL, C2_GR, C_TOT_GR, W_2PN, c2_of_p
 
 # ---------------------------------------------------------------------------
 # Micro constants (all derived from the BS patch postulate + BN saturation).
@@ -56,14 +57,88 @@ P_MEAS_BU_ERR = 0.049
 P_MEAS_BU_SEM = 0.0055
 BETA_BU = {300: 1.5, 600: 1.28, 1020: 1.24}
 A_AUDIT_BU = {300: 0.69, 600: 1.10, 1020: 1.56}
-C1_MODEL = 3.36
-C1_GR = 1.94
-C2_GR = 1.5
-W_2PN = 1.953
-C_TOT_GR = float(C1_GR + W_2PN * C2_GR)  # 4.8695
+# 2PN numbers canonical from pulsar (single source of truth post-merge).
 J0737_DOT = 16.899323
 J0737_DOT_ERR = 0.000013
 J0737_DDDIR_DC = 8.9e-5  # per-unit-c deg/yr scale for J0737 (main pulsar.py)
+
+__all__ = [
+    "A_AUDIT_BU",
+    "A_LATTICE_LP",
+    "BETA_BU",
+    "C1_GR",
+    "C1_MODEL",
+    "C2_GR",
+    "C_GEOM",
+    "C_TOT_GR",
+    "J0737_DDDIR_DC",
+    "J0737_DOT",
+    "J0737_DOT_ERR",
+    "P_MEAS_BU",
+    "P_MEAS_BU_ERR",
+    "P_MEAS_BU_SEM",
+    "SIGMA_LP2",
+    "S_LEG",
+    "W_2PN",
+    "block_mask_hard",
+    "bridge_exponent_ladder",
+    "build_lattice_csr",
+    "c2_of_p",
+    "c_of_p",
+    "c_with_graph_distance",
+    "chi_from_graph_distance",
+    "chi_of",
+    "core_nodes",
+    "ctot_of",
+    "ctot_of_p",
+    "detour_fraction_of",
+    "dijkstra_shell_cost",
+    "distances_from_core",
+    "dl_dr_of",
+    "fibonacci_directions",
+    "fit_c_dilute",
+    "fit_c_slopes",
+    "gamma_of_c",
+    "graph_distance_profile",
+    "h_of_x",
+    "is_valid_k",
+    "is_valid_lattice",
+    "is_valid_radius",
+    "is_valid_sigma",
+    "kcrit_of",
+    "lambda_mfp_of",
+    "lattice_positions",
+    "lattice_tort0",
+    "mc_lattice_walk_cost",
+    "mc_ray_tortuosity",
+    "mc_transport_c",
+    "measure_c",
+    "min_line_distance",
+    "node_cost_soft",
+    "orientation_spread",
+    "p_of_c",
+    "p_precision_j0737",
+    "pop_scan",
+    "r_excl_lat",
+    "rho2d_of",
+    "rs_of",
+    "run_hard",
+    "run_soft",
+    "running_profile",
+    "sigma_lat2",
+    "sigma_vs_bu",
+    "sigma_vs_j0737",
+    "spacing_of",
+    "subgraph_csr",
+    "survey_table",
+    "tau_of_x",
+    "tortuosity_profile",
+    "turnover_chi",
+    "uv_or_sign",
+    "uv_running_p",
+    "weighted_csr",
+    "x_of_chi",
+]
 
 
 # ---------------------------------------------------------------------------
@@ -213,13 +288,6 @@ def c_of_p(p) -> float:
     if not np.isfinite(p):
         return float("nan")
     return float(p / 2.0)
-
-
-def c2_of_p(p) -> float:
-    """g_rr U^2 coefficient from exponent p: (1+U)^{2p} -> p(2p-1)."""
-    if not np.isfinite(p):
-        return float("nan")
-    return float(p * (2.0 * p - 1.0))
 
 
 def ctot_of(c1: float, c2: float, w: float = W_2PN) -> float:

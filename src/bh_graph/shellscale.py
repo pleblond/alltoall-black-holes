@@ -1,11 +1,11 @@
 """BV scale-up: CSR-direct shell graphs + Sinkhorn OR campaigns (no NetworkX).
 
-Ports the BU shell-graph SPEC from main (pure functions, same numbers) and
-reimplements the hot path for scale: the builder emits scipy CSR directly
-(NetworkX at N=4000 wide already holds 737k Python edges; at 11M it is the
-wall / OOM risk), distances come from dense sparse-Johnson (N <= 8k) or
-streamed per-source Dijkstra (large-N narrow shapes, O(N+E) memory), and OR
-uses annealed Sinkhorn (`bh_graph.sinkor`) instead of exact LPs.
+BU spec (bridge law, radii, p-fits) imported canonical from `bh_graph.orici`;
+this module reimplements the hot path for scale: the builder emits scipy CSR
+directly (NetworkX at N=4000 wide already holds 737k Python edges; at 11M it
+is the wall / OOM risk), distances come from the exact shell oracle or dense
+sparse-Johnson, and OR uses annealed Sinkhorn (`bh_graph.sinkor`) instead of
+exact LPs.
 
 Shapes: BU grows WIDTH at fixed 10 shells (30/60/102 per shell at
 N=300/600/1020; N=4000 production is 400x10). Narrow shapes (fixed width,
@@ -26,83 +26,69 @@ from concurrent.futures import ProcessPoolExecutor
 
 import numpy as np
 
-# BU spec constants (same values as main's orici BU section).
-P_ADJ_BASE = 0.85
-P_ADJ_SLOPE = 0.015
-BRIDGE_ALPHA = 1.3
-BRIDGE_BETA_OLD = 1.0
-BRIDGE_BETA_NEW = 1.5
-BRIDGE_C = 8.0 / (30.0**BRIDGE_ALPHA)
-R_INNER = 1.5
-R_OUTER = 5.5
+# BU spec: canonical imports from orici (single source of truth post-merge).
+# Re-exported here so H.p_adj_of_shell etc. keep working.
+from bh_graph.orici import (
+    BRIDGE_ALPHA,
+    BRIDGE_BETA_NEW,
+    BRIDGE_BETA_OLD,
+    BRIDGE_C,
+    P_ADJ_BASE,
+    P_ADJ_SLOPE,
+    R_INNER,
+    R_OUTER,
+    fit_scaling_power,
+    is_valid_shell_params,
+    n_bridges_for_pair,
+    p_adj_of_shell,
+    packing_implied_spacing,
+    shell_pair_radius,
+)
+
 DENSE_JOHNSON_MAX_N = 8000
 ORACLE_MIN_BRIDGES = 100  # below this, cross blocks use exact Dijkstra
 
+__all__ = [
+    "BRIDGE_ALPHA",
+    "BRIDGE_BETA_NEW",
+    "BRIDGE_BETA_OLD",
+    "BRIDGE_C",
+    "BU_N1020_BETA",
+    "BU_N1020_P",
+    "BU_N1020_STACKED",
+    "DENSE_JOHNSON_MAX_N",
+    "ORACLE_MIN_BRIDGES",
+    "P_ADJ_BASE",
+    "P_ADJ_SLOPE",
+    "R_INNER",
+    "R_OUTER",
+    "build_oracle",
+    "build_shell_csr",
+    "campaign",
+    "csr_neighbors",
+    "dense_johnson_csr",
+    "fit_scaling_power",
+    "gradient_shell_graph_nx",
+    "is_valid_shell_params",
+    "load_artifact",
+    "local_slopes",
+    "measure_p_csr",
+    "merge_campaigns",
+    "n_bridges_for_pair",
+    "oracle_dist_matrix",
+    "oracle_spotcheck",
+    "p_adj_of_shell",
+    "packing_implied_spacing",
+    "save_artifact",
+    "shell_kappa_profile_csr",
+    "shell_pair_radius",
+    "streamed_sources_csr",
+]
+
 
 # ---------------------------------------------------------------------------
-# BU spec, pure functions (same numbers as main).
+# Turnover detector (BV addition; fit itself is orici's).
 # ---------------------------------------------------------------------------
-
-def is_valid_shell_params(per_shell: int, n_shells: int, n_graphs: int) -> bool:
-    """Boolean check for shell-measurement inputs (no exceptions)."""
-    return bool(
-        isinstance(per_shell, (int, np.integer)) and per_shell >= 6
-        and isinstance(n_shells, (int, np.integer)) and n_shells >= 4
-        and isinstance(n_graphs, (int, np.integer)) and n_graphs >= 1
-    )
-
-
-def p_adj_of_shell(shell: int, gradient: bool = True) -> float:
-    """Completeness of shell s: 0.85+0.015 s if gradient else 0.85."""
-    if gradient:
-        return float(P_ADJ_BASE + P_ADJ_SLOPE * shell)
-    return float(P_ADJ_BASE)
-
-
-def shell_pair_radius(s: int, n_shells: int) -> float:
-    """Mid radius of shell-pair s|s+1 mapped linearly to [1.5, 5.5]."""
-    return float(R_INNER + (s + 0.5) * (R_OUTER - R_INNER) / max(n_shells - 1, 1))
-
-
-def n_bridges_for_pair(r_mid: float, per_shell: int, beta: float) -> int:
-    """Deterministic radial bridge count (no binomial variance)."""
-    n = BRIDGE_C * float(per_shell) ** BRIDGE_ALPHA * (r_mid / 2.0) ** beta
-    return int(max(1, round(n)))
-
-
-def packing_implied_spacing(per_shell: int, beta: float, n_shells: int = 10) -> float:
-    """Min lattice spacing a (in l_p) fitting bridges within Planck packing."""
-    if not (isinstance(per_shell, (int, np.integer)) and per_shell > 0):
-        return float("nan")
-    if not (np.isfinite(beta) and isinstance(n_shells, (int, np.integer)) and n_shells >= 2):
-        return float("nan")
-    worst = 0.0
-    for s in range(n_shells - 1):
-        r = shell_pair_radius(s, n_shells)
-        n = n_bridges_for_pair(r, per_shell, beta)
-        nmax_unit = np.pi * r**2 / np.log(2.0)
-        if nmax_unit <= 0:
-            return float("nan")
-        worst = max(worst, n / nmax_unit)
-    return float(np.sqrt(worst))
-
-
-def fit_scaling_power(profile: dict) -> dict:
-    """Fit |k| ~ r^-p over shells with k < 0. {p, p_err, r2} (nan if bad)."""
-    rs = np.array(sorted(profile))
-    ks = np.array([profile[r] for r in rs])
-    mask = np.isfinite(ks) & (ks < 0)
-    if int(mask.sum()) < 3:
-        return {"p": float("nan"), "p_err": float("nan"), "r2": float("nan")}
-    x = np.log(rs[mask])
-    y = np.log(-ks[mask])
-    coef, cov = np.polyfit(x, y, 1, cov=True)
-    pred = coef[0] * x + coef[1]
-    denom = np.sum((y - y.mean()) ** 2)
-    r2 = 1.0 - np.sum((y - pred) ** 2) / denom if denom > 0 else float("nan")
-    return {"p": float(-coef[0]), "p_err": float(np.sqrt(max(cov[0, 0], 0.0))),
-            "r2": float(r2)}
-
 
 def local_slopes(profile: dict, window: int = 3) -> dict:
     """Sliding-window p over shell pairs: turnover detector.
