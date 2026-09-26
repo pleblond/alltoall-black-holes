@@ -1503,3 +1503,29 @@ it.) The $\beta(4096)$ starting guess is $1.140$, band $[1.095, 1.185]$ from
 the $1/N$ fit over BU points, GPU guess $1.18$ at the top (to be measured,
 not fitted): one exact N=4096 graph at $\beta = 1.18$ with Sinkhorn OR tests
 whether $p$ flattens/drops at $s < 5$ where $\chi \sim 0.2$–$0.5$.
+
+**N=4000 campaign: ran on CPU, extrapolation dead, turnover confirmed
+(Fig 73, `data/p80_n4000_beta099.json`).** The CSR/Sinkhorn pipeline
+(`bh_graph.shellscale`, no NetworkX on the hot path) reproduces BU exactly
+at N=1020 (12 graphs: mean $0.9107$ vs BU $0.9134$, stacked $0.9088$ vs
+$0.9105$, 7 s wall) — then scales. Beta scan at N=4000 (400×10):
+$\beta = 1.00 \to p = 0.946$, $1.06 \to 1.027$, $1.12 \to 1.141$,
+$1.18 \to 1.242$. The $1.18$ guess is killed (honest miss, measurement
+rules); the $1/N$ extrapolation ($1.14$) fails with it — $\beta(N)$ drops
+$1.5 \to 1.28 \to 1.24 \to \mathbf{0.99}$, faster than $1/N$, p-matched at
+$\beta = 0.98$–$1.00$. Production (80 graphs, $\beta = 0.99$, 15 min wall
+on 4 vCPU): $p = 0.9315 \pm 0.0032$, stacked $0.9306$, $R^2 = 0.974$ —
+inside the J0737 $1\sigma$ window with 2× BU's precision. Local slopes run
+$0.63 \to 1.46$ outward (inner windows $\sim 30\sigma$ below the global
+fit; errors from a 16-graph sister campaign with saved profiles): the
+profile is curved, flat inside, steep outside — the UV turnover, measured
+not fitted, replicated on independent seeds (sister: $0.63 \to 1.47$,
+mean $0.9129$). The curvature was latent in BU's N=1020 profile
+($0.53 \to 1.66$, unremarked); N=4000 confirms it persists with tighter
+errors while straightening slightly (finite-width effects washing out).
+N=8000 pilot ($\beta = 0.90$, single graph, 251 s): $p = 0.977$,
+turnover shape again ($0.67$ inner, $\sim 1.4$ outer) — third confirmation.
+Watch item: if $\beta(N)$ crashes through zero at 8–16k the bridge law
+inverts (model-threatening); if it asymptotes, the line-like picture holds.
+All kill wires survived: no $\kappa$ sign flip, no tweaks needed,
+pop at $k_{crit}$.

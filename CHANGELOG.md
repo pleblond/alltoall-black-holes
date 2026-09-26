@@ -9,7 +9,10 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   tuning; $p = 2c$, $\gamma = 2c$; mixed mode rises then disconnects at
   $k_{crit}$; UV running $p(\chi)$ turnover; no-$r$ analysis; OR stays
   negative in the UV. 4 assumptions $\to$ 3 (tortuosity $1/2$ derived).
-  305 tests, 68 figs.
+  Scale-up: CSR-direct shell graphs + Sinkhorn OR campaigns (no NetworkX);
+  N=4000 80-graph production on CPU ($p = 0.9315 \pm 0.0032$, $\beta = 0.99$,
+  turnover $0.63 \to 1.46$ replicated); N=8000 pilot ($p = 0.977$); RunPod
+  launch kit for hero runs. 316 tests, 69 figs.
 - **v3.11** — BS flip to A+(b*): patch $= 4\ln 2$ derived from measured
   $\eta_{vN}$, legs saturate, Postulate B retired on the record;
   $\varepsilon$ runs as $c/\sqrt{N}$ ($k = N$ exactly, $N$ holographic,
