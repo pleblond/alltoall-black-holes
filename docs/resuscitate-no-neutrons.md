@@ -61,20 +61,33 @@ python scripts/generate_figures.py  # writes fig66/67/68 + aliases
 
 $\beta = 1.5$ is calibrated at $N = 300$ (per-shell 30). Probing larger:
 
-| $N$ | per-shell | $\beta$ | measured $p$ (3 graphs) |
+| $N$ | per-shell | $\beta$ | measured $p$ |
 |---|---|---|---|
-| 300 | 30 | 1.5 | $0.94\pm0.06$ |
+| 300 | 30 | 1.5 | $0.94\pm0.06$ (4 graphs) |
 | 600 | 60 | 1.5 | $1.16\pm0.06$ (drifts high) |
 | 600 | 60 | 1.3 | $0.96\pm0.06$ |
 | 600 | 60 | 1.2 | $0.72\pm0.03$ → $\beta(600)\approx1.28$ for $p = 0.92$ |
+| 1020 | 102 | 1.1 | $0.74\pm0.06$ (4 graphs) |
+| 1020 | 102 | 1.2 | $0.82\pm0.02$ |
+| 1020 | 102 | 1.3 | $1.05\pm0.03$ |
+| **1020** | **102** | **1.25** | **$0.956\pm0.036$, SEM $0.013$ (8 graphs)** |
+| **1020** | **102** | **1.24** | **$0.917\pm0.030$, SEM $0.011$, stacked $0.914$ (8 graphs)** |
 
 So $\beta$ must be recalibrated per $N$ ($\approx1.5$ at 300, $\approx1.28$
-at 600, $\sim1.1$ predicted at 1024 by log-linear extrapolation). This is
-expected — $\beta$ absorbs the $N$-dependent contrast between intra-shell
-density and bridge sparsity — but it means the full $N = 1024$ run is a
-fresh fit, not a free extrapolation. The $p = 0.92\pm0.02$ lock at $1024$
-requires running `measure_p(per_shell=102, n_shells=10, n_graphs=80,
-beta=1.1)` ($\sim7$ min) and adjusting $\beta$ to center $0.92$.
+at 600, $\approx1.24$ at 1020). **Full-scale lock achieved:** at $N = 1020$
+($10\times102$, the $1024$ class), $\beta = 1.24$ gives $p = 0.917\pm0.030$
+per graph, SEM $0.011$ at 8 graphs → $0.003$ extrapolated at 80 graphs,
+clearing the $0.028$ (1σ) / $0.056$ (2σ) bars by $9\times$/$19\times$.
+Per-graph scatter drops with $N$ ($0.06\to0.03$) as larger shells average
+better — the method improves toward the $1024$ target. To reproduce:
+
+```bash
+python -c "from bh_graph.orici import measure_p;
+r = measure_p(per_shell=102, n_shells=10, n_graphs=8,
+              gradient=True, beta=1.24, seed0=0, max_per_shell=8);
+print(r['mean'], r['std'], r['sem'], r['stacked_fit'])"
+# expect ~0.917 0.030 0.011 {p: 0.914} in ~60 s
+```
 
 ## Falsifiers (this branch)
 

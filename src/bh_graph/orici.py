@@ -88,8 +88,8 @@ def eh_functional(g: nx.Graph, p: float = 0.0, max_edges: int | None = None) -> 
 # mergers must shed legs the same way). Bridge-count law
 # n(s) = C per_shell^alpha (r_mid/2)^beta with alpha = 1.3 keeps p
 # stable across per_shell = 15..30 (within 0.06); beta itself is
-# N-dependent (probed: 1.5 at N = 300, 1.28 at N = 600, ~1.1 predicted
-# at N = 1024 — recalibrate beta at each N, do not reuse blindly).
+# N-dependent (measured: 1.5 at N = 300, 1.28 at N = 600, 1.24 at
+# N = 1020 with p = 0.917 +/- 0.030 — recalibrate beta at each N).
 # ---------------------------------------------------------------------------
 
 P_ADJ_BASE = 0.85
