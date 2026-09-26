@@ -47,13 +47,6 @@ def newton_h(r, r_s: float = 2.0):
     return np.ones_like(np.asarray(r, dtype=float))
 
 
-def gr_isotropic_h(r, r_s: float = 2.0):
-    """GR g_rr in ISOTROPIC gauge: (1+Rs/4r)^4 — different gauge, do not
-    compare coefficients against Schwarzschild-like h (documents BT error)."""
-    r = np.asarray(r, dtype=float)
-    return (1.0 + r_s / (4.0 * np.maximum(r, 1e-300))) ** 4
-
-
 def _h_of_u_tort(u, r_s):
     return (1.0 + 0.5 * r_s * u) ** 2
 
@@ -149,45 +142,3 @@ def divergence_slope(frac: dict) -> float:
     yy = np.array([frac[a] for a in aa])
     s, _ = np.polyfit(1.0 / aa, yy, 1)
     return float(s)
-
-
-def peeloff_e_factor(e_grid=(0.05, 0.1, 0.2, 0.35, 0.5, 0.65, 0.8),
-                     a: float = 200.0) -> dict:
-    """BT: e-dependent peel-off f(e) = fracdiff/(-0.75/a); f(0.5) = 1 by fit."""
-    out = {}
-    for e in e_grid:
-        g = perihelion_advance(f_schw, gr_h, a, e, n_orbits=8)
-        o = perihelion_advance(f_schw, h_tortuosity, a, e, n_orbits=8)
-        out[float(e)] = float(((o - g) / g) / (-0.75 / a))
-    return out
-
-
-def j0737_fractional_difference() -> float:
-    """BT: measured (ours-GR)/GR at J0737 scale (a/M = 2.3e5, e = 0.0878)."""
-    g = perihelion_advance(f_schw, gr_h, 230000.0, 0.0878, n_orbits=10)
-    o = perihelion_advance(f_schw, h_tortuosity, 230000.0, 0.0878, n_orbits=10)
-    return float((o - g) / g)
-
-
-def j0737_absorption() -> dict:
-    """BT: M-shift absorbs our 2PN deviation; s-shift vs error (margins)."""
-    d = j0737_fractional_difference()
-    dm = 1.5 * abs(d)  # dM/M from w ~ M^{2/3}
-    ds = dm / 3.0  # da/a = dM/3M feeds s
-    return {"fracdiff": d, "dM_over_M": dm, "ds_shift": ds,
-            "mass_margin": 1e-3 / dm, "s_margin": 3.9e-4 / ds}
-
-
-def u2_coefficient(h_fn, r_s: float = 2.0) -> float:
-    """BT: U^2 coefficient of (h-1) with U = M/r (numeric extraction).
-
-    Same-gauge truth: ours 1.0 vs GR-Schwarzschild 4.0 (deficit -3.0).
-    GR-isotropic 1.5 is a DIFFERENT gauge — comparing against it (as one
-    external thread did) manufactures a fake -0.73 match.
-    """
-    x = np.array([1e-4, 2e-4, 5e-4, 1e-3])
-    r = r_s / x
-    h = np.asarray(h_fn(r, r_s), dtype=float)
-    u = x / 2.0
-    a, _, _, _ = np.linalg.lstsq((u**2)[:, None], (h - 1 - 2 * u), rcond=None)
-    return float(a[0])

@@ -3,10 +3,6 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
-- **v3.12** — BT honest 2PN: J0737 $-2.3\times10^{-6}$ by direct integration
-  (absorbed in $M$, $300\times$ margins), peel-off gains $f(e)$ ($0.68 \to 2.43$),
-  same-gauge $U^2$ deficit $-3.0$ kills $-0.73$ numerology, NICER packing
-  margins $4$–$9\times$, kilonova kills no-neutrons. 282 tests, 66 figs.
 - **v3.11** — BS flip to A+(b*): patch $= 4\ln 2$ derived from measured
   $\eta_{vN}$, legs saturate, Postulate B retired on the record;
   $\varepsilon$ runs as $c/\sqrt{N}$ ($k = N$ exactly, $N$ holographic,

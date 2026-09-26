@@ -61,9 +61,6 @@ from bh_graph.weakfield import (
     harmonic_potential as _hpo)
 from bh_graph.tn import eps_running as _er, k_star_running as _ksr2
 from bh_graph.horizon import PATCH_AREA as _PA
-from bh_graph.strain import peeloff_e_factor as _pef, u2_coefficient as _u2c
-from bh_graph.strain import h_tortuosity as _hto2, gr_h as _hgr2, gr_isotropic_h as _hiso
-from bh_graph.micro import packing_margin_msun as _pmm, NICER_POINTS as _NIC
 from bh_graph.mp import mp_density, mp_edges, star_spectrum
 from bh_graph.greybody import transmission, leg_emission
 from bh_graph.congestion import congestion as _chi
@@ -1541,28 +1538,6 @@ def fig65_flip():
     fig.savefig(FIG / "fig65_flip.png", bbox_inches="tight")
     plt.close(fig)
 
-
-def fig66_graphstar():
-    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
-    f = _pef()
-    es = sorted(f)
-    axes[0].plot(es, [f[e] for e in es], marker="o", color="#2563eb", label="measured f(e)")
-    axes[0].axhline(1.0, ls="--", color="gray", label="BJ law (e=0.5)")
-    axes[0].set_xlabel("e"); axes[0].set_ylabel("f(e)")
-    axes[0].set_title("Peel-off e-dependence"); axes[0].legend(fontsize=8)
-    axes[1].bar(["ours", "GR-Schw", "GR-iso"], [_u2c(_hto2), _u2c(_hgr2), _u2c(_hiso)],
-                color=["#2563eb", "gray", "#f59e0b"])
-    axes[1].set_ylabel("U^2 coeff"); axes[1].set_title("Same gauge: deficit -3, not -0.73")
-    names = list(_NIC)
-    axes[2].bar(names, [_pmm(*_NIC[n]) for n in names], color="#0f766e")
-    axes[2].axhline(1.0, ls="--", color="#dc2626", label="R_s falsifier line")
-    axes[2].set_ylabel("packing margin"); axes[2].set_title("Pulsars sub-critical")
-    axes[2].legend(fontsize=8)
-    fig.suptitle("Fig 66 — BT: honest 2PN + graph-star check")
-    fig.tight_layout()
-    fig.savefig(FIG / "fig66_graphstar.png", bbox_inches="tight")
-    plt.close(fig)
-
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1629,7 +1604,6 @@ def main():
     fig63_muchi()
     fig64_green()
     fig65_flip()
-    fig66_graphstar()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
