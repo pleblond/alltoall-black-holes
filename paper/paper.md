@@ -1525,7 +1525,12 @@ mean $0.9129$). The curvature was latent in BU's N=1020 profile
 errors while straightening slightly (finite-width effects washing out).
 N=8000 pilot ($\beta = 0.90$, single graph, 251 s): $p = 0.977$,
 turnover shape again ($0.67$ inner, $\sim 1.4$ outer) — third confirmation.
-Watch item: if $\beta(N)$ crashes through zero at 8–16k the bridge law
-inverts (model-threatening); if it asymptotes, the line-like picture holds.
+Hero-2 beta scan at N=8000: $0.80 \to 0.854$, $0.87 \to 0.931$,
+$0.94 \to 1.050$, so $\beta(8000) = 0.87$. The drift is log-linear,
+$\approx -0.13$ per doubling from N=1020 up (zero only at $N \sim 10^6$):
+neither asymptote nor crash — the 8–16k crash fear is downgraded, and the
+80-graph N=8000 production at $\beta = 0.87$ is underway (same box,
+$\sim 85$ min wall). Remaining watch: the log-linear law itself is fitted
+through 4 points — 16k decides whether it holds or breaks.
 All kill wires survived: no $\kappa$ sign flip, no tweaks needed,
 pop at $k_{crit}$.
