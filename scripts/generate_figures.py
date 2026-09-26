@@ -103,6 +103,7 @@ from bh_graph.kerrpage import kerr_page
 from bh_graph.syk import syk_hamiltonian, ising_chain_hamiltonian, otoc_curve, scrambling_time_threshold
 from bh_graph.data import load_events, catalog_leg_audit
 from bh_graph.litcompare import head_to_head
+from bh_graph import uvscatter as _uv
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
@@ -1538,6 +1539,113 @@ def fig65_flip():
     fig.savefig(FIG / "fig65_flip.png", bbox_inches="tight")
     plt.close(fig)
 
+def fig70_uv_c():
+    L = 32
+    ks = [10, 20, 40, 80, 160]
+    soft = [_uv.measure_c(L, k, mode="soft") for k in ks]
+    mix = [_uv.measure_c(L, k, mode="mixed") for k in [10, 20, 40]]
+    hard = _uv.measure_c(24, 10, mode="hard")
+    fig, ax = plt.subplots(figsize=(7, 4.2))
+    ax.errorbar(ks, [m["c_median"] for m in soft],
+                yerr=[m["c_std"] for m in soft], marker="o", color="#2563eb",
+                label="soft alpha=ln2 (L=32)")
+    ax.errorbar([10, 20, 40], [m["c_median"] for m in mix],
+                yerr=[m["c_std"] for m in mix], marker="s", color="#16a34a",
+                label="mixed 0.75r_e core")
+    ax.scatter([10], [hard["c_median"]], marker="x", s=80, color="#dc2626",
+               label="hard cylinders (L=24)")
+    ax.axhspan(0.456 - 0.025, 0.456 + 0.025, color="gray", alpha=0.2,
+               label="BU-implied 0.456+-0.025")
+    ax.axhline(1.0 / np.sqrt(np.pi), ls="--", color="black", lw=1,
+               label="geometric 1/sqrt(pi)=0.564")
+    ax.set_xscale("log")
+    ax.set_xlabel("k (legs)")
+    ax.set_ylabel("c = excess/x")
+    ax2 = ax.secondary_yaxis("right", functions=(lambda c: 2 * c, lambda p: p / 2))
+    ax2.set_ylabel("p = 2c")
+    ax.set_title("Fig 70 — BV: dilute c from ln2 scattering (no tuning)")
+    ax.legend(fontsize=7, loc="upper left")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig70_uv_c.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig71_uv_pop():
+    L = 32
+    kgrid = [5, 10, 20, 40, 80, 160]
+    rows = _uv.pop_scan(L, kgrid, mode="mixed")
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4.2))
+    kk = np.array([r["k"] for r in rows])
+    reach = np.array([r["reachable_frac"] for r in rows])
+    axes[0].semilogx(kk, reach, marker="o", color="#2563eb")
+    axes[0].axvline(_uv.kcrit_of(2.0, _uv.sigma_lat2()), ls="--", color="#dc2626",
+                    label="k_crit(r=2)=44.1")
+    axes[0].set_xlabel("k")
+    axes[0].set_ylabel("reachable fraction")
+    axes[0].set_title("Mixed pop: graph disconnects at chi~1")
+    axes[0].legend(fontsize=8)
+    for k, ls, lab in [(20, "-", "mixed k=20"), (40, "--", "mixed k=40")]:
+        uv = _uv.uv_running_p(_uv.running_profile(L, k, mode="mixed"))
+        chi = np.array([b["chi"] for b in uv])
+        p = np.array([b["p"] for b in uv])
+        ok = np.isfinite(chi) & np.isfinite(p)
+        axes[1].plot(chi[ok], p[ok], marker="o", ls=ls, label=lab)
+    uv = _uv.uv_running_p(_uv.running_profile(L, 40, mode="soft"))
+    chi = np.array([b["chi"] for b in uv])
+    p = np.array([b["p"] for b in uv])
+    ok = np.isfinite(chi) & np.isfinite(p)
+    axes[1].plot(chi[ok], p[ok], marker="^", ls=":", color="gray", label="soft k=40")
+    axes[1].axhspan(0.913 - 0.049, 0.913 + 0.049, color="gray", alpha=0.2,
+                    label="BU p=0.913+-0.049")
+    axes[1].set_xlabel("chi = (R_s/r)^2")
+    axes[1].set_ylabel("p(shell) = 2c")
+    axes[1].set_title("UV running: p rises toward chi~1, then pops")
+    axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 71 — BV: horizon pop + UV running without a metric")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig71_uv_pop.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig72_uv_ladder():
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4.2))
+    d = _uv.measure_c(12, 10, mode="soft")["c_median"]
+    t = _uv.mc_transport_c(12, 10, temperatures=(0.5, 2.0), n_walks=40, seed=1)
+    r = _uv.mc_ray_tortuosity(10, 6.0)["c"]
+    mcs = [row["c"] for row in t["ladder"]]
+    axes[0].bar(["Dijkstra\n(optimal)", "MC walks\nT=0.5", "MC walks\nT=2.0",
+                 "rays\n(no detour)"],
+                [d, mcs[0], mcs[1], r],
+                color=["#2563eb", "#16a34a", "#16a34a", "#dc2626"])
+    axes[0].axhspan(0.456 - 0.1, 0.456 + 0.1, color="gray", alpha=0.2)
+    axes[0].set_ylabel("c")
+    axes[0].set_title("Transport ladder: routing is worth 3x")
+    xs, ys = [], []
+    sig = _uv.sigma_lat2()
+    for L in (16, 24, 32):
+        t0 = _uv.lattice_tort0(L)
+        for k in (10, 20, 40):
+            run = _uv.run_soft(L, k)
+            fe = _uv.fit_c_dilute(_uv.tortuosity_profile(
+                run["d_graph"], run["d_clean"], run["pos"], _uv.rs_of(k, sig)))
+            gd = _uv.graph_distance_profile(run["d_graph"], run["d_clean"], run["pos"])
+            fg = _uv.c_with_graph_distance(gd, k, sig, t0)
+            xs.append(fe["c_median"])
+            ys.append(fg["c_median"])
+    xs, ys = np.array(xs), np.array(ys)
+    axes[1].scatter(xs, ys, color="#2563eb")
+    lo, hi = float(np.min([xs, ys])) - 0.05, float(np.max([xs, ys])) + 0.05
+    axes[1].plot([lo, hi], [lo, hi], "--", color="gray", label="y=x")
+    axes[1].set_xlabel("c (Euclidean r)")
+    axes[1].set_ylabel("c (graph distance)")
+    axes[1].set_title("No-r check: operational distance agrees")
+    axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 72 — BV: Boltzmann ladder + coordinate-free c")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig72_uv_ladder.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1604,6 +1712,9 @@ def main():
     fig63_muchi()
     fig64_green()
     fig65_flip()
+    fig70_uv_c()
+    fig71_uv_pop()
+    fig72_uv_ladder()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
