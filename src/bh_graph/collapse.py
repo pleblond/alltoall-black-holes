@@ -317,3 +317,61 @@ def gap_o5_yield(
 def falsifier_killed_by_nondetections(n_nondetections: int) -> bool:
     """Boolean check: 10 well-localized gap non-detections <200Mpc kill us?"""
     return bool(isinstance(n_nondetections, (int, np.integer)) and n_nondetections >= KILL_NONDETECTIONS)
+
+
+def kn_peak_lum_ratio(m_tot_hi: float = 7.2, m_tot_lo: float = 2.8) -> dict[str, float]:
+    """Blue/red peak-luminosity ratios across a total-mass range.
+
+    Observed KN spread is ~4x (GRB130603B ~2x brighter to GRB160821B ~2x
+    fainter than AT2017gfo); our mass-driven spread must sit inside it.
+    nan if inputs invalid.
+    """
+    if not all(np.isfinite(v) for v in (m_tot_hi, m_tot_lo)):
+        return {"blue": float("nan"), "red": float("nan")}
+    if not (m_tot_hi > 0 and m_tot_lo > 0):
+        return {"blue": float("nan"), "red": float("nan")}
+    hi = leg_shedding_ejecta(m_tot_hi / 2.0, m_tot_hi / 2.0)
+    lo = leg_shedding_ejecta(m_tot_lo / 2.0, m_tot_lo / 2.0)
+    lb_hi = kilonova_peak_lum_erg_s(hi["M_blue"], V_BLUE_C, KAPPA_BLUE)
+    lb_lo = kilonova_peak_lum_erg_s(lo["M_blue"], V_BLUE_C, KAPPA_BLUE)
+    lr_hi = kilonova_peak_lum_erg_s(hi["M_red"], V_RED_C, KAPPA_RED)
+    lr_lo = kilonova_peak_lum_erg_s(lo["M_red"], V_RED_C, KAPPA_RED)
+    if not all(np.isfinite(v) and v > 0 for v in (lb_hi, lb_lo, lr_hi, lr_lo)):
+        return {"blue": float("nan"), "red": float("nan")}
+    return {"blue": float(lb_hi / lb_lo), "red": float(lr_hi / lr_lo)}
+
+
+def gw230529_detection_prob(
+    footprint_frac: float = 0.07,
+    depth_g: float = 21.1,
+    m_tot: float = 5.0,
+    dist_med_mpc: float = 201.0,
+    dist_sigma_mpc: float = 100.0,
+) -> dict[str, float]:
+    """Expected ZTF detection probability for a GW230529-like event in our model.
+
+    P = footprint x Phi((d_max - med)/sig), d_max from peak m_g = depth.
+    Published inputs (single-detector 24,200 deg^2 -> 7% ZTF to g = 21.1,
+    d = 201 Mpc): non-detection must come out likely (localization killed
+    the test, not physics). nan if inputs invalid.
+    """
+    import math
+    vals = (footprint_frac, depth_g, m_tot, dist_med_mpc, dist_sigma_mpc)
+    if not all(np.isfinite(v) for v in vals):
+        return {"prob": float("nan"), "d_max_mpc": float("nan")}
+    if not (0 <= footprint_frac <= 1 and dist_sigma_mpc > 0 and m_tot > 0):
+        return {"prob": float("nan"), "d_max_mpc": float("nan")}
+    ej = leg_shedding_ejecta(m_tot / 2.0, m_tot / 2.0)
+    lb = kilonova_peak_lum_erg_s(ej["M_blue"], V_BLUE_C, KAPPA_BLUE)
+    if not (np.isfinite(lb) and lb > 0):
+        return {"prob": float("nan"), "d_max_mpc": float("nan")}
+    abs_g = lum_to_abs_mag_bol(lb)
+    d_max = 10.0 ** ((depth_g - abs_g - 25.0) / 5.0)
+    phi = 0.5 * (1.0 + math.erf((d_max - dist_med_mpc) / (dist_sigma_mpc * math.sqrt(2.0))))
+    return {"prob": float(footprint_frac * phi), "d_max_mpc": float(d_max)}
+
+
+def is_gw230529_nondetection_consistent() -> bool:
+    """Boolean check: model detection prob for GW230529 below 10%?"""
+    r = gw230529_detection_prob()
+    return bool(np.isfinite(r["prob"]) and r["prob"] < 0.10)

@@ -9,7 +9,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   $16.899323(13)$ deg/yr at $0.00\sigma$, $\sin i$ $0.36\sigma$, B1913
   $0.01\sigma$; leg-shedding kilonova ($0.047\,M_\odot$ for 1.4+1.4, blue+red
   AT2017gfo) with gap $2.5$–$5\,M_\odot$ prediction (falsifier armed: gap
-  rate $= 0$ kills). 308 tests, 69+2 figs (adds: k0-c2/e_int
+  rate $= 0$ kills). 311 tests, 69+2 figs (adds: k0-c2/e_int
   cross-checks, GR-battery 2PN margins, KN bands + O5 yield + protocol).
 - **v3.11** — BS flip to A+(b*): patch $= 4\ln 2$ derived from measured
   $\eta_{vN}$, legs saturate, Postulate B retired on the record;

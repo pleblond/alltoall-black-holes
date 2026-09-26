@@ -111,3 +111,35 @@ def test_o5_yield_and_kill_rule():
     assert not falsifier_killed_by_nondetections(9)
     assert falsifier_killed_by_nondetections(10)
     assert np.isnan(gap_o5_yield(n_gap_events_per_yr=-1.0)["model"])
+
+
+def test_anomaly_k_scale_continuous():
+    # k(M) smooth M^2 across 0.77 -> 3.6 Msun: no gap, no floor, no ceiling.
+    from bh_graph.data import k_schwarzschild_sun
+    masses = [0.77, 1.17, 1.4, 2.14, 2.35, 2.6, 3.6]
+    ks = [k_schwarzschild_sun(m) for m in masses]
+    for (m1, k1), (m2, k2) in zip(zip(masses, ks), zip(masses[1:], ks[1:])):
+        assert abs(k2 / k1 - (m2 / m1) ** 2) / ((m2 / m1) ** 2) < 1e-9
+    assert abs(ks[0] - 9.0e76) / 9.0e76 < 0.05  # HESS low tail
+    assert abs(ks[-1] - 1.96e78) / 1.96e78 < 0.05  # GW230529 gap
+
+
+def test_kn_spread_inside_observed_envelope():
+    # Mass-driven spread 2.8 -> 7.2 Msun sits inside the observed ~4x
+    # KN luminosity envelope (130603B ~2x up, 160821B ~2x down).
+    from bh_graph.collapse import kn_peak_lum_ratio
+    r = kn_peak_lum_ratio()
+    assert 1.0 < r["blue"] < 4.0
+    assert 1.0 < r["red"] < 4.0
+    assert np.isnan(kn_peak_lum_ratio(-1.0, 2.8)["blue"])
+
+
+def test_gw230529_nondetection_expected():
+    # 7% footprint x depth-limited distance fraction -> ~3% expected
+    # detection: the null constrains nothing (localization killed it).
+    from bh_graph.collapse import gw230529_detection_prob, is_gw230529_nondetection_consistent
+    r = gw230529_detection_prob()
+    assert 0.01 < r["prob"] < 0.08
+    assert 150.0 < r["d_max_mpc"] < 230.0
+    assert is_gw230529_nondetection_consistent()
+    assert np.isnan(gw230529_detection_prob(footprint_frac=2.0)["prob"])

@@ -268,6 +268,7 @@ from bh_graph.collapse import (
     kilonova_lightcurve_lum, gap_kilonova_table, is_valid_merger,
     lum_to_abs_mag_bol, dist_modulus, peak_apparent_mags, is_detectable,
     gap_o5_yield, falsifier_killed_by_nondetections,
+    kn_peak_lum_ratio, gw230529_detection_prob, is_gw230529_nondetection_consistent,
     L_SUN_ERG_S, RUBIN_SINGLE_VISIT_R, DECAM_KN_DEPTH, KILL_NONDETECTIONS,
 )
 
@@ -420,5 +421,6 @@ __all__ = [
     "kilonova_lightcurve_lum", "gap_kilonova_table", "is_valid_merger",
     "lum_to_abs_mag_bol", "dist_modulus", "peak_apparent_mags", "is_detectable",
     "gap_o5_yield", "falsifier_killed_by_nondetections",
+    "kn_peak_lum_ratio", "gw230529_detection_prob", "is_gw230529_nondetection_consistent",
     "L_SUN_ERG_S", "RUBIN_SINGLE_VISIT_R", "DECAM_KN_DEPTH", "KILL_NONDETECTIONS",
 ]

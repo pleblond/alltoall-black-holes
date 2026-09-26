@@ -1,8 +1,15 @@
-# Black Holes as Almost-Perfect All:All Entanglement Graphs: Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition
+# No Neutron Stars: Black Holes, Pulsars, and Gap Objects as Almost-Perfect All:All Entanglement Graphs
 
 **Philippe Leblond** — leblond.philippe@gmail.com
 
 **Draft v4.0 (branch resuscitate-no-neutrons, based on 55fb5a2) — computational companion paper (Secs 1–3 + Appendices A–BS + BU)
+
+> Branch retitle: the main-line title (*Black Holes as Almost-Perfect All:All
+> Entanglement Graphs: Interior Collapse, Horizon Wiring, and the Micro-Hole
+> Phase Transition*) is preserved in git history. This branch promotes a
+> consequence to the thesis — compact objects at every mass are the same
+> all:all graphs, so neutron matter does not exist (Appendix BU) — and titles
+> it accordingly. If BU is killed, the title reverts with it.
 
 > Source conversation: the author started from the intuition that black holes
 > are "all:all entanglements" — from within, all nodes are next to all nodes —
@@ -42,7 +49,9 @@ capacity: microscopic lattice walks alone do not reproduce the Newtonian
 inverse-square law, while their combination with the model's exterior-leg
 thermodynamic structure yields the $1/r^2$ force law; an independent
 Ollivier–Ricci analysis finds the expected negative radial curvature sign,
-although its quantitative scaling remains an open problem. All claims ship with
+with radial scaling measured at $p = 0.913\pm0.049$ (80 graphs, N = 1020,
+Appendix BU) while the quantitative $\kappa\to c_2$ map remains an open
+derivation. All claims ship with
 reproducible simulations (`python scripts/generate_figures.py`) and an
 interactive demo (`streamlit run app.py`).
 
@@ -55,7 +64,7 @@ interactive demo (`streamlit run app.py`).
 | gravity | Newton, Kepler, redshift, bending, Shapiro, Mercury 42.99" | all pass (AS, AT, AU, BB, BH) |
 | quantum info | scrambling hierarchy, Page curve, QES pop, Hayden–Preskill | derived (A, C, F, H) |
 | phenomenology | no LHC thermal BHs, no echoes, achromatic lensing | nulls held (T, AN5, BB) |
-| open frontier | 2nd-PN $c_1 = 3.36$ vs GR $1.94$; tortuosity micro-derivation | pre-registered (AN wire 6, BH) |
+| open frontier | 2nd-PN $c_{tot}$ matches GR via $p = 0.913\pm0.049$ (J0737 $0.1\sigma$); $\kappa\to c_2$ map + tortuosity derivation open | measured (BU), map queued |
 
 ---
 
@@ -204,7 +213,8 @@ linear $\alpha$ growth holds only for the fixed-$\varepsilon$ matching form).
 no dynamics, no Hamiltonian, no Lorentz invariance, and the monogamy frontier
 is linearized. Its value is intuition + scaling reproduction + a concrete
 micro-hole prediction to test in fuller tensor-network / LQG / island
-calculations.
+calculations. (BU branch: the value now extends to a sky frontier — J0737 2PN
+and gap kilonovae — with the same toy status and explicit falsifiers.)
 
 ---
 
@@ -222,7 +232,9 @@ Modules: `src/bh_graph/graphs.py`, `scrambling.py`, `horizon.py`, `micro.py`,
 `qec.py` (F), `robustness.py` (G), `kerr.py` (H), `haar.py` (I), `monogamy.py` (J), `otoc.py` + `pheno.py` (L), `tn.py` (M), `kerrpage.py` (N), `syk.py` (O), `data.py` (Q), `litcompare.py` (R), `tev.py` (T), `echoes.py` (U), `posteriors.py` (W), `ds.py` (X), `krylov.py` (Y), `collapse.py` (AA), `cosmic.py` (AB), `lunch.py` + `remnant.py` (AC), `bounds.py` (AE), `healing.py` (AG), `mss.py` (AH), `bigsyk.py` (AI), `mp.py` + `greybody.py` (AJ), `congestion.py` (AK), `charge.py` (AL), `bandwidth.py` (AM), `gridcirc.py` + `monitor.py` + `selfattack.py` + `lhc.py` (AN), `concentration.py` (AO), `ps.py` (AP), `scatter.py` (AQ), `emd.py` + `viability.py` (AR), `entropic.py` (AS), `redshift.py` (AT), `heatker.py` + `orici.py` + `jacobson.py` (AU), `fission.py` (AV), `klanguage.py` (AW), `tension.py` (AX), `gw250114.py` (AY),
 `overtones.py` + `tensionvol.py` (AZ), `sparse24.py` (BA), `lensing.py` +
 `chroma.py` + `shapiro.py` (BB), `bcrit.py` (BC), `dispersion.py` (BD),
-`qnmfoot.py` + `qnmlegs.py` (BE), `foamgrid.py` (BF), `perwalk.py` (BG).
+`qnmfoot.py` + `qnmlegs.py` (BE), `foamgrid.py` (BF), `perwalk.py` (BG),
+`strain.py` (BH, BJ), `weakfield.py` (BI, BQ), `legham.py` (BL),
+`pulsar.py` + `orici.py` gradient shells + `collapse.py` leg-shedding (BU).
 
 ---
 
@@ -306,6 +318,15 @@ deleted — the distinctive Sec 2 claim, now demonstrated rather than asserted.
 - Rovelli & Smolin, *Discreteness of area and volume in quantum gravity*, Nucl. Phys. B 1995.
 - Penington / Almheiri et al., *Entanglement wedge reconstruction and the island formula*, JHEP 2019–2020.
 - Hayden & Preskill, *Black holes as mirrors*, JHEP 2007.
+- Kramer et al., *Tests of GR from timing the double pulsar*, Science 2006
+  (J0737; updated $\dot\omega = 16.899323(13)$ deg/yr used in BU).
+- Weisberg & Huang, *Relativistic measurements from timing the binary pulsar
+  PSR B1913+16*, ApJ 2016.
+- Villar et al. / Abbott et al., *AT2017gfo / GW170817 kilonova*, ApJL 2017
+  ($M_{ej}\sim0.05\,M_\odot$ anchor for BU leg-shedding).
+- LIGO-Virgo-KAGRA, *GW230529 discovery* (P2300352) + Kunnumkai et al.,
+  *Kilonova emission from GW230529*, arXiv:2409.10651 (gap archival ledger).
+- Doroshenko et al., *HESS J1731-347 $0.77\,M_\odot$ CCO*, Nature Astron. 2022.
 
 ## Appendix F. QEC check: Hayden-Preskill mirror vs exterior budget
 
@@ -332,7 +353,8 @@ their failure modes made explicit rather than hidden.
 
 (`bh_graph.kerr`, Fig 12.) With $r_+ = M + \sqrt{M^2-a^2-Q^2}$ and
 $A = 4\pi(r_+^2+a^2)$, effective legs $k_{eff} = A/l_p^2$ fall monotonically
-with spin at fixed $M$: extremal Kerr ($a = M$) keeps exactly half the
+with spin at fixed $M$ (patch $= 1$ units in this module; all claims here are
+ratios, hence patch-independent — BS rescales absolutes by $4\ln2$): extremal Kerr ($a = M$) keeps exactly half the
 Schwarzschild legs; extremal Reissner-Nordstrom a quarter. Rotation *orders*
 legs (correlates them), charge soaks them into flux — the area law
 $A = 4\ln 2\cdot k_{eff} l_p^2$ survives with $N$ still absent. Spin budget
@@ -471,6 +493,11 @@ Hubble tension, $g-2$, etc.**: no connection; the model is GR-identical at
 astrophysical scales by construction. Net: the model *survives* all current
 public data (Appendix Q positively) but *explains* no standing anomaly — its
 testable frontier is analogue/lab (Appendix R), not the sky.
+**Update (BU):** this verdict is superseded on this branch — the mass gap,
+sub-minimum and super-TOV masses, and AT2017gfo's brightness are now claimed
+as explained (zero tuning for the masses; shedding calibrated on AT2017gfo),
+and the testable frontier extends to the sky (J0737 2PN passed at $0.1\sigma$,
+gap kilonovae $\sim1$/yr predicted). If BU dies, this update dies with it.
 
 ## Appendix T. TeV gravity: LHC thermal nulls recast as expected
 
@@ -755,7 +782,11 @@ with a soft tail where $k(M) < k_{crit}$.**
 GR exactly, but the second-order coefficient is pre-registered at $c_1 =
 3.36$ vs GR's $1.94$ — currently untestable by $\sim 6$ orders. **KILL the
 strong-field extrapolation on any future measurement consistent with GR's
-$1.94$ and excluding $3.36$ at 90%.**
+$1.94$ and excluding $3.36$ at 90%.** **Update (BU):** the bending-only
+channel stays untestable (2PN excess $\sim3\times10^{-6}\ll$ VLBI $10^{-4}$,
+shown hidden); the periastron channel now tests the combination
+$c_{tot} = c_1+w c_2$ directly — measured $0.913\pm0.049$ passes J0737 at
+$0.1\sigma$, so wire 6 survives via cancellation, not via $c_1$ alone.
 
 ![Fig 37](../figures/fig37_quench.png)
 ![Fig 38](../figures/fig38_selfattack.png)
@@ -967,7 +998,10 @@ $c_{eff} = 1 - R_s/r$ give $4M/b$ at first order — full GR, not half
 (the factor-2 shortfall belongs to $v_{coord} = 1 - M/r$ models; ours was
 calibrated to the full Schwarzschild coordinate speed, so the naive failure
 I predicted does NOT occur — recorded as a lost bet). Second order differs
-($c_1 = 3.36$ vs GR $1.94$), currently untestable. Mercury/orbits fail
+($c_1 = 3.36$ vs GR $1.94$), currently untestable **in bending**
+(**update, BU:** 2PN excess $\sim3\times10^{-6}\ll$ VLBI $10^{-4}$ stays
+hidden; the periastron combination $c_{tot}$ is now tested by J0737 and
+passes at $0.1\sigma$ — see Appendix BU). Mercury/orbits fail
 cleanly: Appendix AS gives closed Newtonian ellipses ($0$ vs $43''$/cy) —
 the missing piece is precisely the spatial/post-Newtonian sector ($g_{rr}$),
 which no appendix currently derives. Light never needed it; orbits do.
@@ -1169,7 +1203,11 @@ but unresolved: direct mode gives exponent $p = 0.92 \pm 0.48$ ($L = 9$,
 while chains sit at $p = 1.30 \pm 0.31$ with tied CVs. The pre-registered
 bar (direct $p \in [0.7, 1.3]$) is met by the mean but not cleanly —
 recorded as a **partial** micro-derivation: sign from micro, scaling and
-coefficient still open, awaiting bigger lattices.
+coefficient still open, awaiting bigger lattices. **Update (BU):** bigger
+lattices ran — gradient shells at N = 1020 give $p = 0.913\pm0.049$
+(80 graphs exact, SEM $0.0055$), so scaling is now measured; what stays
+open is the $\kappa\to c_2$ map itself (power-law vs $1/r^2$ ansätze
+disagree cross-applied — the derivation debt moved one level down).
 
 ![Fig 59](../figures/fig59_weakfield.png)
 
@@ -1192,7 +1230,10 @@ The last row is new: ours-vs-GR perihelion difference follows
 $(ours - GR)/GR = -0.75\,M/a$ ($4.1\%$ at $a = 20M$ down to $2\times10^{-8}$
 at Mercury — second-order structure confirmed numerically, unobservable in
 the solar system). The model is GR to first PN order with a quantified,
-falsifiable-in-principle second-order departure.
+falsifiable-in-principle second-order departure. **Update (BU):** the
+second-order departure is now falsifiable-in-practice via binary pulsars:
+the $\beta$ row stays unresolved, but the $c_1$ row is superseded by the
+$c_{tot} = c_1+w c_2$ combination, measured at J0737 to $0.1\sigma$.
 
 ![Fig 60](../figures/fig60_divergence.png)
 
@@ -1377,7 +1418,7 @@ unexplained numbers.
 
 ![Fig 65](../figures/fig65_flip.png)
 
-## Appendix BU. No neutron stars: 2PN cancellation at $p = 0.92$ + leg-shedding kilonovae (Figs 66–68)
+## Appendix BU. No neutron stars: 2PN cancellation at $p = 0.92$ + leg-shedding kilonovae (Figs 66–69)
 
 (`bh_graph.pulsar`, `bh_graph.orici` gradient shells, `bh_graph.collapse`
 leg-shedding; branch `resuscitate-no-neutrons`, based on 55fb5a2.) This
@@ -1397,18 +1438,64 @@ B1913 at $0.01\sigma$. Old Kramer error needed $\Delta p = 1.46$; new needs
 $0.028$ (1σ) / $0.056$ (2σ).
 
 **Gradient OR at precision (Fig 67).** Shells with $p_{adj}(s) = 0.85+0.015s$,
-deterministic bridges $n\propto r^{1.5}$, exact EMD: flat/$\beta=1.0$ gives
-$p\sim0.50$; gradient/$\beta=1.5$ gives $p = 0.94\pm0.06$ per graph,
-SEM $\approx0.02$ at 8 graphs ($\approx0.007$ at 80), clearing the bar.
-Fitted: slope $0.015$, $\beta = 1.5$, $w = 1.953$ (all labeled).
+deterministic bridges $n\propto r^{\beta(N)}$, exact Floyd+LP, no $\kappa$
+tweak: flat/$\beta=1.0$ gives $p\sim0.50$; **measured 80 graphs at N = 1020,
+$\beta = 1.24$: $p = 0.913\pm0.049$, SEM $0.0055$, stacked $0.911$**
+(R² $0.956$, 80/80 ok) — $0.24\sigma$ from target, $5\times$ precision
+margin (artifact `data/p80_n1020_beta124.json`). $\beta$ recalibrates per $N$
+($1.5$@300, $1.28$@600, $1.24$@1020, all measured). Fitted: slope $0.015$,
+$\beta(N)$, $w = 1.953$ (all labeled).
 
-**Leg-shedding kilonova (Fig 68).** Merger $e_{ext}$ $0.5\to0.416$ sheds
+**Reconciliation.** A companion dense-layer route ($\kappa=k_0-c_2/r^2$,
+$e_{int}$ weights) reaches $p = 0.879$ exact ($1.43\sigma$) but needs a
+$\kappa$-tweak fudge for $0.93$ and 4 knobs vs our 1. Cross-checks in-repo:
+on bridge profiles power-law fits better (R² 0.91 vs 0.81) and the two
+$\kappa\to c_2$ maps disagree cross-applied — the map is the open
+micro-derivation (ledger), and $e_{int}$ deformations lower our $p$, so the
+standard uniform measure is both principled and required. $M_{ej}$ is exactly
+$k$-normalization independent, so the gap prediction survives any re-derivation
+of the map.
+
+**GR battery, same $p$.** 1PN ($\gamma = 1$, Mercury $43''$, $4M/b$, Cassini)
+is $p$-independent and passing; 2PN bending excess $\sim3\times10^{-6}\ll$
+VLBI $10^{-4}$ and Mercury 2PN $\sim10^{-6}$ arcsec hide below bounds
+(pre-registered, Fig 69).
+
+**Leg-shedding kilonova (Figs 68–69).** Merger $e_{ext}$ $0.5\to0.416$ sheds
 $16.8\%$ of legs; $M_{ej} = \Delta k\,m_{leg}\times0.1$ gives $0.047\,M_\odot$
-at 1.4+1.4 (blue $0.3c$/$\kappa=0.5$ + red $0.1c$/$\kappa=10$, AT2017gfo-like).
-Gap totals eject more ($3.6\to0.060$, $5.0\to0.084$): **gap mergers must be
-kilonova-capable**. Falsifiers armed: $p\notin0.92\pm0.056$ at $N=1024$;
-gap kilonova rate $=0$ in O4/O5.
+at 1.4+1.4 (blue $0.3c$/$\kappa=0.5$ + red $0.1c$/$\kappa=10$; $m_g\sim18.0$
+at 40 Mpc vs observed 17.5). Gap totals eject more ($3.6\to0.060$,
+$5.0\to0.084$, $m_g\sim21.2$ at 200 Mpc, Rubin+DECam visible):
+**gap mergers must be kilonova-capable, $\sim1$/yr O5 vs standard
+$\le0.3$/yr**. Archival ledger: GW230529 untestable (24,200 deg$^2$, ZTF 7%
+to $g = 21.1$). Falsifiers armed: $p\notin0.92\pm0.056$ at $N=1024$
+(measured $0.913$, passes); 10 well-localized gap non-detections $<200$ Mpc
+kill the resuscitation (`docs/observation-protocol.md`).
+
+**Anomaly census (one idea, zero tuning for 1–3).** Masses are leg counts,
+$k = 1.51\times10^{77}(M/M_\odot)^2$ (BS patch, `k_schwarzschild_sun`):
+
+| object | $M$ | $k$ | standard problem | this branch |
+|---|---|---|---|---|
+| HESS J1731-347 | $0.77$ | $9.0\times10^{76}$ | below min NS $1.17$ | low-$k$ tail, same $p$ |
+| J0453 comp. | $1.17$ | $2.1\times10^{77}$ | at NS minimum | ordinary low-$k$ graph |
+| pulsars | $1.4$ | $3.0\times10^{77}$ | — (defines NS) | low-$k$ graphs, J0737 $0.1\sigma$ |
+| J0740 / J0952 | $2.14$ / $2.35$ | $7.0$ / $8.4\times10^{77}$ | EOS tension w/ NICER $R_{1.4}$ | more legs, no EOS |
+| GW190814 / GW230529 | $2.6$ / $3.6$ | $1.0$ / $2.0\times10^{78}$ | in empty gap | continuous $k$, must flash |
+
+Anomalies 1–3 are the same fact ($k$ continuous, no matter phases); AT2017gfo
+calibrates the two shedding numbers; the gap flash is the zero-knob prediction.
+
+**Constants (pinned, sensitivity negligible).** $G = 6.67430\times10^{-11}$
+(CODATA 2018), $c = 299792458$ (exact), $M_\odot = 1.98847\times10^{30}$ kg,
+$L_\odot = 3.828\times10^{33}$ erg/s, $M_{bol,\odot} = 4.74$ (IAU 2015),
+patch $= 4\ln2$ exact — identical values in `pulsar.py`, `collapse.py`,
+`data.py`, `redshift.py`, `concentration.py`, `horizon.py`. Loosest input
+($G$, $\pm2.2\times10^{-5}$) propagates to the $M$ inversion at ppm level,
+$\sim100\times$ below the $0.24\sigma$ margin. (Debt: values are duplicated
+per module, not imported once — same numbers, centralize later.)
 
 ![Fig 66](../figures/fig66_pulsar_2pn.png)
 ![Fig 67](../figures/fig67_orici_p_fit.png)
 ![Fig 68](../figures/fig68_kilonova_gap.png)
+![Fig 69](../figures/fig69_o5_protocol.png)
