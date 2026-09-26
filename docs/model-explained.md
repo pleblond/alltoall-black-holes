@@ -133,9 +133,10 @@ the same integral and matches Cassini.
 
 The last gap — Mercury's orbit — closed when we derived the
 spatial-curvature sector ($g_{rr}$) from leg tortuosity: radial rulers
-stretch as $(1+x/2)^2$ through the packed legs (the $1/2$ is honestly
-fitted to recover $\gamma = 1$, not derived — see the audit in
-Appendix BH), giving $\gamma = 1$
+stretch as $(1+x/2)^2$ through the packed legs (the $1/2$ was honestly
+fitted to recover $\gamma = 1$ in Appendix BH, then derived from $\ln 2$
+line-defect scattering in Appendix BV: $c \approx 0.44$–$0.60$, zero tuning),
+giving $\gamma = 1$
 exactly and Mercury's $43''$/century by direct orbit integration
 (42.99" measured, identical to general relativity at this precision).
 So the scoreboard reads: Newton ✓, Kepler ✓, redshift ✓, bending ✓,
@@ -311,9 +312,9 @@ with a narrow surviving window at $\sim 4\times10^5$ g).
   examined (fast radio bursts, lensing oddities, TeV transparency, remnant
   dark matter); each died on arithmetic, on the record. What survives is a
   coherent, falsifiable toy — not a solution in search of a problem.
-- **Missing pieces, named:** the micro-derivation of tortuosity's
-  $\sqrt{\chi}$-linearity (the load-bearing assumption behind $g_{rr}$ and
-  Mercury), the exact gap coefficient, a formation story for delocalized
+- **Missing pieces, named:** the exact gap coefficient (tortuosity's
+  $\sqrt{\chi}$-linearity, formerly the load-bearing assumption behind $g_{rr}$
+  and Mercury, is now derived from $\ln 2$ scattering in Appendix BV), a formation story for delocalized
   giants, unitary leg-surgery dynamics (evaporation is currently a Markov
   chain on $k$), and the information-flux race in the final non-adiabatic
   moments (per-leg channel capacity vs. required evacuation flux).
