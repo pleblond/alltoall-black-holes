@@ -3,6 +3,13 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v4.1** — BV Cassini dual-band re-evaluation: geometric $c = 1/\sqrt{\pi}$
+  ($\gamma = 1.128$) challenged via the chromatic-plasma loophole and closed
+  on four counts — 5580$\sigma$ achromatic exclusion, 63.6-order hiding gap
+  (5.6% needed vs $1.4\times10^{-65}$ lattice), $1/f^2$ mimic unbiased in
+  $\gamma$, three-link residuals + radio-optical bound exclude hiding laws.
+  Isotropic $\langle|\cos|\rangle = 1/2$ noted as the queued derivation of
+  the fitted coefficient. 327 tests, Fig 70.
 - **v4.0** — No Neutron Stars (retitled; was "Black Holes as ... Phase
   Transition", preserved in git history): BU resuscitate-no-neutrons, merged.
   Gradient shells $p_{adj}(r) = 0.85+0.015r$ + exact EMD, measured 80 graphs

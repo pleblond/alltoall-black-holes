@@ -2,7 +2,7 @@
 
 **Philippe Leblond** — leblond.philippe@gmail.com
 
-**Draft v4.0 — computational companion paper (Secs 1–3 + Appendices A–BS + BU)
+**Draft v4.1 — computational companion paper (Secs 1–3 + Appendices A–BS + BU–BV)
 
 > Branch retitle: the pre-v4.0 title (*Black Holes as Almost-Perfect All:All
 > Entanglement Graphs: Interior Collapse, Horizon Wiring, and the Micro-Hole
@@ -1553,3 +1553,71 @@ per module, not imported once — same numbers, centralize later.)
 ![Fig 67](../figures/fig67_orici_p_fit.png)
 ![Fig 68](../figures/fig68_kilonova_gap.png)
 ![Fig 69](../figures/fig69_o5_protocol.png)
+
+## Appendix BV. Cassini re-evaluated: the chromatic loophole is real — and 63 orders short (Fig 70)
+
+(`bh_graph.cassini`; added v4.1.) This appendix answers the sharpest
+substantive challenge to the weak-field sector: the tortuosity coefficient
+$c$ in $dl = (1+c\sqrt{\chi})\,dr$ is **fitted** to $c = 1/2$ (BH audit),
+giving $\gamma = 2c = 1$ exactly. A geometric guess $c = 1/\sqrt{\pi}
+\approx 0.564$ would give $\gamma = 2/\sqrt{\pi} \approx 1.128$ — a $12.8\%$
+violation of GR, excluded achromatically by Cassini
+($\gamma-1 = (2.1\pm2.3)\times10^{-5}$, Bertotti et al.\ 2003) at
+$\approx 5580\sigma$. The proposed escape: Cassini calibrated solar plasma
+with two bands (X $\sim 8.4$ GHz, Ka $\sim 32$ GHz) by assuming gravity is
+achromatic, so a *chromatic* lattice gravity could have been subtracted away
+as "plasma." The loophole is formally correct. Quantitatively, it fails by
+tens of orders on four independent counts.
+
+**The estimators (no fitting, linear algebra).** One-way toy with
+$y_X = y_{gr}+P/f_X^2$, $y_K = y_{gr}+P/f_K^2$ solves exactly for
+$(y_{gr},P)$ (`two_band_estimate`); the real three-link system
+$y_l = y_{gr}+PC_l$ over XX/XK/KK ($C_l = 1/f_{up}^2+1/f_{down}^2$ with
+7175/8425/34316/32028 MHz, `three_link_estimate`) is overdetermined and
+least-squares. Achromatic signals recover exactly (both, tested); two bands
+at one epoch fit *any* $(y_X,y_K)$ with zero residuals (total degeneracy),
+while three links leave residuals for any non-$1/f^2$ chromaticity.
+
+**1. The lattice gives $\sim10^{-65}$, hiding needs $\sim10^{-2}$.**
+Group-delay excess $(x^2/8)/(1-x^2/8)$, $x = hf/E_P \sim 3\times10^{-33}$:
+$\delta_X \approx 1.0\times10^{-66}$, $\delta_{Ka} \approx 1.5\times10^{-65}$,
+X–Ka differential $1.37\times10^{-65}$. To move $\gamma = 1.128$ to $1.0$
+the standard pipeline needs fractional bias $B = -6.03\%$, i.e.\ Ka-only
+$\delta_{Ka} = -5.61\%$ or X-only $\delta_X = +81\%$ (the estimator trusts
+Ka for gravity and spends X on plasma — verified by direct injection,
+which lands on $\gamma = 1.000$ to $10^{-9}$). Gap:
+$\log_{10}(0.0561/1.37\times10^{-65}) = 63.6$ orders. Injecting true lattice
+chromaticity moves $\gamma$ by $\sim10^{-65}$ (analytic; numeric solver
+floor $\sim10^{-14}$, itself $9$ orders below Cassini's window).
+
+**2. The perfect mimic hides in the wrong parameter.** A $1/f^2$ gravity law
+$\delta(f) = \epsilon_X(f_X/f)^2$ is exactly plasma-shaped, so three-link
+residuals are $\approx 0$ even at $\epsilon_X = 5\%$ — but the pipeline
+absorbs it into $P_{est}$ ($\Delta P = y_0\epsilon_X f_X^2$, halved for
+two-way links; tested to machine precision) with $\gamma_{est}$ unbiased.
+A mimic therefore *cannot* hide an achromatic $1.128$ offset (injected:
+returns $1.128$ to $10^{-9$).
+
+**3. Any hiding law rings the three-link residuals.** A hiding-shaped
+$(0,\delta/2,\delta)$ pattern at $5.6\%$ leaves rms residuals $\sim 3500\times$
+the $10^{-14}$ Doppler noise (floor test: $>100\times$); lattice truth sits
+$11$ orders *below* noise numerically ($61$ analytically). Cassini is not
+"two bands" — the XK cross-link breaks the degeneracy the loophole needs.
+
+**4. Radio–optical bending excludes the step without Cassini.** A radio
+$\gamma = 1$ vs optical $\gamma = 1.128$ is a $6.4\%$ bending step
+($\alpha \propto (1+\gamma)/2$); VLBI–Gaia agreement at $10^{-3}$ excludes
+it $64\times$ over. No plasma subtraction is involved.
+
+**Verdict.** Re-running Cassini's calibration with the lattice dispersion law
+returns the *same* conclusion as GR ($\gamma = 1$ to $10^{-65}$); a "different
+conclusion" requires radio-frequency dispersion $63$ orders above the lattice
+with non-plasma scaling already excluded by (3)–(4). The honest path is the
+queued micro-derivation of $c = 1/2$ — note the candidate already on the
+table: isotropic leg orientations average to $\langle|\hat n\cdot\hat
+r|\rangle = 1/2$ exactly, i.e.\ the fitted value *is* the natural geometric
+value, while $1/\sqrt{\pi}$ has no tortuosity mechanism on record.
+Pre-registered: any future derivation yielding $c \neq 1/2$ must pass this
+four-count battery or die with the geometric guess.
+
+![Fig 70](../figures/fig70_cassini_dualband.png)

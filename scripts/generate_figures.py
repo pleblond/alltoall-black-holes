@@ -1680,6 +1680,69 @@ def fig69_o5_protocol():
     fig.savefig(FIG / "fig69_o5_protocol.png", bbox_inches="tight")
     plt.close(fig)
 
+def fig70_cassini_dualband():
+    from bh_graph.cassini import (
+        F_X_DOWN, F_KA_DOWN, Y_GR_PEAK, Y_DOPPLER_NOISE,
+        C_FITTED, C_GEOMETRIC, CASSINI_GAMMA_SIGMA,
+        gamma_of_tortuosity_c, y_of_gamma,
+        inferred_gamma_two_band, three_link_residual_from_deltas,
+        lattice_group_excess, lattice_xka_differential,
+        required_ka_only_delta_to_hide,
+    )
+    import numpy as _np
+    g_geom = float(gamma_of_tortuosity_c(C_GEOMETRIC))
+    y_ref = -Y_GR_PEAK
+    y0_geom = float(y_of_gamma(y_ref, g_geom))
+    ka_hide = float(required_ka_only_delta_to_hide(g_geom, 1.0))
+    lat_k = float(lattice_group_excess(F_KA_DOWN))
+    P_two = 4.2e12
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    # Panel 1: inferred gamma vs Ka-only chromaticity (log |delta|).
+    mag = _np.logspace(-70, 0, 400)
+    g_est = _np.array([
+        inferred_gamma_two_band(y0_geom, 0.0, -m, P_two, y_ref)[0] for m in mag
+    ])
+    axes[0].semilogx(mag, g_est, color="#2563eb", label="inferred gamma (truth 1.128)")
+    axes[0].axhline(1.0, ls="--", color="black", lw=1, label="GR / Cassini center")
+    axes[0].axhspan(1 - 2 * CASSINI_GAMMA_SIGMA, 1 + 2 * CASSINI_GAMMA_SIGMA,
+                    alpha=0.15, color="green", label="Cassini 2sig")
+    axes[0].axvline(abs(ka_hide), ls=":", color="red", label=f"hide needs {abs(ka_hide):.1%}")
+    axes[0].axvline(lat_k, ls="-.", color="gray", label=f"lattice {lat_k:.1e}")
+    axes[0].set_xlabel("|delta_Ka| (Ka-only, X untouched)")
+    axes[0].set_ylabel("standard-pipeline gamma_est")
+    axes[0].set_title("Hiding 1.128 needs 5.6%; lattice gives 1e-65")
+    axes[0].legend(fontsize=7)
+    axes[0].set_ylim(0.9, 1.2)
+    # Panel 2: three-link residuals vs chromaticity scale.
+    mag2 = _np.logspace(-16, 0, 200)
+    rms = _np.array([
+        three_link_residual_from_deltas(0.0, -m / 2.0, -m, y_ref) for m in mag2
+    ])
+    axes[1].loglog(mag2, rms / Y_DOPPLER_NOISE, color="#dc2626", label="hiding-shape rms/noise")
+    axes[1].axhline(1.0, ls="--", color="black", label="noise floor")
+    axes[1].axvline(abs(ka_hide), ls=":", color="red", label="hide point (~3500x noise)")
+    axes[1].set_xlabel("|delta| scale (0, d/2, d) link pattern)")
+    axes[1].set_ylabel("three-link rms / Doppler noise")
+    axes[1].set_title("3 links break the 2-band degeneracy")
+    axes[1].legend(fontsize=7)
+    # Panel 3: tortuosity map gamma = 2c.
+    cc = _np.linspace(0.42, 0.64, 200)
+    axes[2].plot(cc, 2 * cc, color="#2563eb", label="gamma = 2c")
+    axes[2].axhspan(1 - 2 * CASSINI_GAMMA_SIGMA, 1 + 2 * CASSINI_GAMMA_SIGMA,
+                    alpha=0.15, color="green", label="Cassini 2sig")
+    axes[2].scatter([C_FITTED], [1.0], s=80, color="#2563eb", zorder=5, label="fitted 1/2 -> 1")
+    axes[2].scatter([C_GEOMETRIC], [g_geom], s=80, color="#dc2626", zorder=5,
+                    label=f"1/sqrt(pi) -> {g_geom:.3f} (~5580sig)")
+    axes[2].set_xlabel("tortuosity coefficient c")
+    axes[2].set_ylabel("gamma")
+    axes[2].set_title("Geometric 1/sqrt(pi) dies achromatically")
+    axes[2].legend(fontsize=7)
+    fig.suptitle("Fig 70 — BV: Cassini re-evaluation closes the chromatic loophole")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig70_cassini_dualband.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1750,6 +1813,7 @@ def main():
     fig67_orici_p_fit()
     fig68_kilonova_gap()
     fig69_o5_protocol()
+    fig70_cassini_dualband()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
