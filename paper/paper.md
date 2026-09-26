@@ -1427,7 +1427,9 @@ excluded). Estimators (median/mean/regression) agree within $0.15$.
 **Results (Fig 70).** Soft $\alpha = \ln 2$, L=32: $c = 0.437$ ($k = 20$),
 $0.636$ ($k = 80$), $0.681$ ($k = 160$); L=64, $k = 160$: $0.603$. The $k = 20$
 point lands $0.2\sigma$ from the BU-implied $0.456$ with zero tuning; the
-high-$k$ asymptote $\approx 0.60$ matches $c_{geom} = 0.564$. The $c(k)$ rise
+high-$k$ asymptote $\approx 0.60$ matches $c_{geom} = 0.564$. Orientation ensemble
+(6 random leg-pattern rotations): std $0.011$ — $c$ is not a lattice-alignment
+artifact; shell scatter ($\sim 0.10$) dominates the quoted band. The $c(k)$ rise
 is void closure: sparse legs leave void channels walks slip through ($f < 1$);
 dense legs are unavoidable ($f \to 1$) — the same disorder that pulls $0.5$ to
 $0.456$. Hard walls give $c = 0.66$ at $k = 10$ (2× soft, overshooting toward

@@ -173,6 +173,12 @@ def test_or_sign_survives_uv():
     assert o["ok"] and o["all_negative"]  # attraction holds at chi ~ 1
 
 
+def test_orientation_spread_small():
+    o = U.orientation_spread(16, 20, "soft", n_rot=4)
+    assert o["ok"] and o["n"] == 4
+    assert 0.30 < o["mean"] < 0.75 and o["std"] < 0.08  # not an artifact
+
+
 def test_survey_table_smoke():
     rows = U.survey_table(16, [10, 20], modes=("soft", "mixed"), seed=0)
     assert len(rows) == 4 and all(r["ok"] for r in rows)

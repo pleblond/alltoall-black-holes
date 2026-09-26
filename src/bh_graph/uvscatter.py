@@ -450,14 +450,16 @@ def distances_from_core(csr, sources) -> np.ndarray:
 
 
 def run_hard(L: int, k: int, r_cyl: float = 0.9, core_radius: float = 1.0,
-             seed: int = 0) -> dict:
-    """Hard-cylinder run: BFS avoiding blocked nodes + clean baseline."""
+             seed: int = 0, jitter: float = 0.0) -> dict:
+    """Hard-cylinder run: BFS avoiding blocked nodes + clean baseline.
+
+    jitter > 0 randomly rotates the leg pattern (seeded ensemble)."""
     out: dict = {"mode": "hard", "L": int(L), "k": int(k)}
     if not (is_valid_lattice(L) and is_valid_k(k)):
         out.update({"ok": False})
         return out
     pos = lattice_positions(L)
-    dirs = fibonacci_directions(k, seed=seed)
+    dirs = fibonacci_directions(k, seed=seed, jitter=jitter)
     dist = min_line_distance(pos, dirs, core_radius)
     base = build_lattice_csr(L)
     src = core_nodes(pos, core_radius)
@@ -477,8 +479,10 @@ def run_hard(L: int, k: int, r_cyl: float = 0.9, core_radius: float = 1.0,
 
 def run_soft(L: int, k: int, alpha: float = S_LEG, r_e: float | None = None,
              core_radius: float = 1.0, seed: int = 0,
-             r_core_hard: float = 0.0) -> dict:
-    """Soft run: Dijkstra with Gaussian cost; r_core_hard > 0 adds mixed core."""
+             r_core_hard: float = 0.0, jitter: float = 0.0) -> dict:
+    """Soft run: Dijkstra with Gaussian cost; r_core_hard > 0 adds mixed core.
+
+    jitter > 0 randomly rotates the leg pattern (seeded ensemble)."""
     out: dict = {"mode": "mixed" if r_core_hard > 0 else "soft",
                  "L": int(L), "k": int(k)}
     if not (is_valid_lattice(L) and is_valid_k(k)):
@@ -487,7 +491,7 @@ def run_soft(L: int, k: int, alpha: float = S_LEG, r_e: float | None = None,
     if r_e is None:
         r_e = r_excl_lat()
     pos = lattice_positions(L)
-    dirs = fibonacci_directions(k, seed=seed)
+    dirs = fibonacci_directions(k, seed=seed, jitter=jitter)
     dist = min_line_distance(pos, dirs, core_radius)
     base = build_lattice_csr(L)
     src = core_nodes(pos, core_radius)
@@ -604,20 +608,21 @@ def fit_c_slopes(profile: list, chi_max: float = 0.2) -> dict:
 
 def measure_c(L: int, k: int, mode: str = "soft", alpha: float = S_LEG,
               r_cyl: float = 0.9, r_core_hard: float | None = None,
-              core_radius: float = 1.0, seed: int = 0,
+              core_radius: float = 1.0, seed: int = 0, jitter: float = 0.0,
               a_lp: float = A_LATTICE_LP, chi_max: float = 0.2) -> dict:
     """One-call c measurement: run graph, profile shells, fit dilute c.
 
     mode 'mixed' defaults r_core_hard to 0.75 r_e (None = mode default).
+    jitter > 0 rotates the leg pattern (seeded orientation ensemble).
     """
     sig = sigma_lat2(a_lp)
     Rs = rs_of(k, sig)
     if mode == "hard":
-        run = run_hard(L, k, r_cyl, core_radius, seed)
+        run = run_hard(L, k, r_cyl, core_radius, seed, jitter)
     else:
         if r_core_hard is None:
             r_core_hard = 0.75 * r_excl_lat(a_lp) if mode == "mixed" else 0.0
-        run = run_soft(L, k, alpha, None, core_radius, seed, r_core_hard)
+        run = run_soft(L, k, alpha, None, core_radius, seed, r_core_hard, jitter)
     if not run.get("ok", False):
         return {"ok": False, "mode": mode, "L": L, "k": k}
     prof = tortuosity_profile(run["d_graph"], run["d_clean"], run["pos"], Rs)
@@ -629,6 +634,27 @@ def measure_c(L: int, k: int, mode: str = "soft", alpha: float = S_LEG,
                 "gamma_mean": gamma_of_c(fit["c_mean"]),
                 "gamma_median": gamma_of_c(fit["c_median"])})
     return fit
+
+
+def orientation_spread(L: int, k: int, mode: str = "soft", n_rot: int = 4,
+                       jitter: float = 1.0, **kw) -> dict:
+    """c over random leg-pattern orientations (seeded, jitter rotations).
+
+    c must not be an orientation artifact: measured std is ~0.01 at
+    L = 32 (shell scatter ~0.10 dominates). Extra kwargs pass to measure_c.
+    """
+    cs = []
+    for s in range(max(int(n_rot), 1)):
+        m = measure_c(L, k, mode=mode, seed=s, jitter=jitter, **kw)
+        if m.get("ok", False) and np.isfinite(m["c_median"]):
+            cs.append(m["c_median"])
+    cs = np.array(cs)
+    if cs.size == 0:
+        return {"ok": False, "mean": float("nan"), "std": float("nan"),
+                "n": 0}
+    return {"ok": True, "mean": float(cs.mean()),
+            "std": float(cs.std(ddof=1)) if cs.size > 1 else 0.0,
+            "min": float(cs.min()), "max": float(cs.max()), "n": int(cs.size)}
 
 
 # ---------------------------------------------------------------------------
