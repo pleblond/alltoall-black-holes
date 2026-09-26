@@ -46,7 +46,6 @@ micro-derivation behind $g_{rr}$ and the un-derived gap coefficient.
 | Path | Description | License |
 |---|---|---|
 | [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BT) | CC BY 4.0 |
-| [`paper/peeloff.md`](paper/peeloff.md) | Standalone paper: eccentricity-dependent perihelion peel-off (2PN signature) | CC BY 4.0 |
 | `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
