@@ -1,0 +1,206 @@
+% V5 supplement — methods companion to main.tex (target ~15 pages).
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,graphicx,hyperref,booktabs,geometry,microtype,longtable}
+\geometry{margin=1in}
+\graphicspath{{../../figures/}}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\title{Supplement to ``Compact Objects as Almost-Perfect All:All Entanglement Graphs''\\
+\large Methods, honesty ledger, N-scaling, and module map (v5.0)}
+\author{Philippe Leblond \\ \small leblond.philippe@gmail.com}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Parameter audit and honesty ledger}
+\label{sec:audit}
+
+\begin{table}[h]\centering
+\caption{Every number with a status. ``Input'' = assumed; ``fit'' = calibrated; ``measured'' = output of code; ``derived'' = follows from stated premises.}
+\begin{tabular}{llll}\toprule
+param & value & status & notes \\\midrule
+$k(M) = (4\pi/\ln 2)M^2/l_p^2$ & GR-consistency & input (circle admitted) & BM shrinks to $R_s = 2M$; not derived \\
+AT $\alpha$ & 1 & calibrated to Schwarzschild $c_{\mathrm{eff}}$ & matches $dr/dt$ exactly \\
+tortuosity $c$ & $1/2$ (BH fit) $\to$ $0.44$--$0.60$ (BV derived) & fit superseded by derivation & $\ln 2$ scattering, zero tuning; $p = 2c$, $\gamma = 2c$ \\
+$s_{\mathrm{leg}}$ & $\ln 2$\,nats & measured saturation (BN/BS) & flip preserves $G = 1$ via Planck bits \\
+$k_{\mathrm{crit}}$ & $4\pi r^2/\sigma$ & heuristic $\to$ formalised (BK) & packing-forced pop; mixed mode disconnects (BV) \\
+gradient slope & $0.015$ & fitted, labelled & $p_{\mathrm{adj}}(s) = 0.85+0.015s$ \\
+bridge $\beta(N)$ & 1.5@300, 1.28@600, 1.24@1020, 0.99/0.87/0.74@4k/8k/16k & recalibrated per $N$ & log-linear over 6 points; derivation queued \\
+$w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathrm{tot}} = c_1 + w c_2 = 4.8695$ at $p = 0.92$ \\
+shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
+$\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\\bottomrule
+\end{tabular}
+\end{table}
+
+Given $k(M)$: $1/r$ potential, $\gamma = 1$, $43''$/cy, $b_{\mathrm{crit}} = 3\sqrt{3}M$,
+Page/QES/mirror all follow. Not derived: mass--radius scaling itself, $\beta(N)$
+from geometry, $w$ from the graph Laplacian (Damour--Sch\"afer from wiring),
+NICER $M$--$R$--$\Lambda$ from routing stiffness.
+
+Derived in-repo (new in v4.x): $p$ from exact Ollivier--Ricci (not hard-coded),
+$M(c_1,c_2)$ inversion, $M_{\mathrm{ej}}(M_{\mathrm{tot}})$ scaling, peak-time
+ordering, band mags, O5 yield arithmetic, $c$ from $\ln 2$ scattering, UV pop as
+graph disconnection, $p$ at $N = 4000/8000/16000$ with turnover measured.
+
+Ruled out on the record: broad Planck-remnant dark matter (survives only in a
+$\sim 0.4$-dex EMD window at $\sim 4\times 10^5$\,g); isotropic $b_{\mathrm{crit}} = 8M$;
+naive $\gamma = 2$ strain; linear LIV; flat $p = 0.49$ ($-10\sigma$).
+
+\section{Gravity methods (AS, AT, AU, BB, BH, BI, BJ, BV)}
+
+\textbf{AS entropic Newton.} Leg screens + equipartition + Bekenstein bound give
+$F = M_1M_2/r^2$ exact (slope $-2$ to $10^{-9}$); leapfrog orbits close,
+$T^2 \propto r^3$. Flux $\propto 1/r^2$ distinguished from force (temperature
+corrects). Fig.~43.
+
+\textbf{AT redshift.} GPS $+5.29\times 10^{-10}$ and Pound--Rebka
+$2.55\times 10^{-15}$ derived with no new parameters. Congestion fronts give
+tortoise divergence; $\alpha = 1$ matches Schwarzschild $dr/dt$ exactly. Fig.~44.
+
+\textbf{AU Einstein--Hilbert routes.} Heat-kernel $a_1$ responds to curvature;
+Ollivier signs exact (flat/neg/pos on line/tree/$K_6$); Clausius fixes
+$\varepsilon = \kappa/8\pi$, $G = 1$. Raychaudhuri-for-leg-bundles open. Fig.~45.
+
+\textbf{BB lensing + Shapiro + chroma.} Fermat $n = 1/c_{\mathrm{eff}}$ gives full
+$4M/b$ (naive $2M/b$ bet lost and recorded). Shapiro log matches GR to 5\%.
+Chromatic extension uses \emph{phase} velocity $1/24$, not group $1/8$
+(conflating the two triples the prediction): $r$-independent factor drops out
+of Born, leaving $10^{-56}$--$10^{-32}$. Figs.~49, 55.
+
+\textbf{BH strain.} Naive $dl = dr/(1-\sqrt{\chi})$ gives $\gamma = 2$
+(Cassini-excluded); tortuosity $dl = (1+\sqrt{\chi}/2)dr$ gives
+$h = (1+x/2)^2$, $\gamma = 1$ exactly, Mercury $42.99''$/cy. Peel-off
+$-0.75\,M/a$ measured. PPN: $\gamma = 1$ derived, $\beta$ unresolved
+(coordinate-confused, not quoted), $\alpha_{1,2},\xi$, Nordtvedt untouched.
+Figs.~58, 60.
+
+\textbf{BI/BQ weak-field OR.} Grid+hub with flux stubs: radial OR negative in
+all configs (sign derived). Direct mode $p = 0.92 \pm 0.48$ ($L = 9$); $1/r$
+collapse beats $1/r^2$ (CV $0.47$ vs $0.60$). Green-function walk fails by leg
+shorting ($h$-steepness $9.2 \to 4.1$); AS temperature triply load-bearing.
+Figs.~59, 64.
+
+\textbf{BV UV tortuosity-as-scattering.} Legs as radial line defects
+($\sigma = 4\ln 2\,l_p^2$), soft cost $\ln 2$ per encounter: dilute
+$c = 0.44$--$0.60$ (target $0.456$, geometric $1/\sqrt{\pi} = 0.564$) with zero
+tuning; $p = 2c$, $\gamma = 2c$. Mixed mode ($0.75\,r_e$ core) rises then
+disconnects at $k_{\mathrm{crit}}$ --- the pop without metric input. Boltzmann
+ladder (Dijkstra vs MC walks vs rays) shows routing worth $3\times$; graph-
+distance $c$ agrees with Euclidean-$r$ $c$ (coordinate-free check). Figs.~70--72.
+
+\section{Quantum-information methods (A--O, Q--Y)}
+
+Log law $t_*(N) \approx \log_2 N/\log_2(1+p)$; MaxEnt $k \ge N s_{\mathrm{node}}/
+s_{\mathrm{leg}}$ plus fixed point $k^*(N) = 16\pi(\varepsilon N/l_p)^2/4\ln 2$
+(stable; BS: $\varepsilon = c/\sqrt{N}$, $\alpha = k^*/N = 1$ exactly); QES
+crossing iff $s_{\mathrm{leg}} > l_p^2/4$ (Sec.~3 dies otherwise); Page
+wiring-only vs $N$-shrinks identical $A(t)$; QEC $99\%$ at
+$k \ge N/2+1+\log_2 100$; Kerr $k_{\mathrm{eff}} = A/l_p^2$ monotonic in spin;
+exact Page $H(mn)-H(n)-(m-1)/2n$ with $0.72$-bit dip; CKW verified; OTOC
+$\lambda$ + MSS $0.50$--$0.68$ ($\alpha \in [9.0,12.4]$, $11.24$ inside);
+TN $S_{\mathrm{bdy}} = \min(N\log d, k\log D)$ fixing
+$\varepsilon \approx 0.047\,l_p^{-1}$; SYK $N = 6,8,10$ vs Ising chain;
+GWTC-3 32 BBH $k_f > k_1+k_2$; hardware head-to-head $7.9$ vs $14.6$ steps.
+Figs.~7--20, 23--25, 30--33. Healing $dA/dt = (4\ln 2\,k\,l_p^2-A)/\tau$,
+$\tau = 11.24M$ ($3.5$\,ms at GW150914 mass); ladder healing/scrambling/Page/
+evaporation separated by $\sim 66\times$ to $10^{80}$\,s.
+
+\section{Compact objects and 2PN (BU)}
+
+\textbf{Gradient shells.} $p_{\mathrm{adj}}(s) = 0.85+0.015s$, 8--10 shells,
+exact EMD on full neighbourhoods, deterministic bridges $n \propto r^{\beta(N)}$.
+Measured: $N = 1020$ ($10\times 102$), $\beta = 1.24$, 80 graphs exact Floyd+LP
+($\sim 545$\,s): $p = 0.913 \pm 0.049$ per graph, SEM $0.0055$, stacked $0.911$
+($R^2 = 0.956$), 80/80 fits ok, range $0.79$--$1.05$. Distance to target
+$|0.913-0.92| = 0.007$ ($0.24\sigma$ in $p$, $\sim 0.09\sigma$ in $\dot\omega$),
+$5\times$ precision margin ($0.0055$ vs $0.028$). Flat control $p = 0.49$ is
+$-10\sigma$ dead.
+
+\textbf{N-scale campaigns (BV).} CSR-direct shell graphs + Sinkhorn OR (no
+NetworkX): N=1020 reproduced ($0.9107$ vs $0.9134$); N=4000 $p = 0.9315 \pm
+0.0032$ ($\beta = 0.99$); N=8000 $p = 0.9382 \pm 0.0030$ ($\beta = 0.87$,
+pods); N=16000 $p = 0.9137 \pm 0.0022$ ($\beta = 0.74$, GPU farm). Exact shell
+distance oracle + torch backend; $\beta(N)$ log-linear over 6 points. Local-$p$
+turnover $0.63$--$0.69 \to 1.26$--$1.46$ measured (inner windows flatten --- the
+UV turnover). Kill wire: $p$ outside $0.92 \pm 0.056$ at $N = 1024$ class fails.
+
+\textbf{2PN and pulsars.} $h = (1+x/2)^2$ gives $c_1 = 3.36$ vs GR $1.94$
+(73\% excess); naive fixed-$M$ gives B1913 $6.2\sigma$, J0737 $9.7\sigma$ vs
+real TOAs. With $c_2 = p(2p-1)$, $w = 1.953$:
+$c_{\mathrm{tot}} = 4.8693$ at $p = 0.92$ vs GR $4.8695$ ($0.00\sigma$
+fixed-$M$). Self-consistent $R+\dot\omega \to M$: $\Delta M = -11.2$\,ppm
+naive ($-4.5$\,ppm with GR $g_{rr}$), $\Delta\sin i = 3.7\times 10^{-6}$,
+$s_{\mathrm{obs}}$ passes at $0.36\sigma$; B1913 $0.01\sigma$. Bending/Mercury
+2PN pieces hide below VLBI/astrometry (Fig.~69, right). The companion
+toy-generator route (dense layers, $k_0 - c_2/r^2$ fits) crosses zero in
+$\kappa$ and needs a $\kappa$-tweak fudge; power-law fits better on our
+profiles ($R^2$ $0.91$ vs $0.81$) but the two $\kappa \to c_2$ maps disagree
+($0.82$ vs $3.14$) cross-applied --- hence the open-map label. $e_{\mathrm{int}}$
+weighting \emph{lowers} our $p$ ($0.94 \to 0.84$ at $0.9$, $0.78$ at $0.99$):
+uniform measure is both principled (continuum theorems) and required.
+
+\textbf{Leg-shedding kilonovae.} $M_{\mathrm{ej}} = \Delta k\,m_{\mathrm{leg}}
+\times 0.1$, blue ($v \sim 0.3c$, $t_{\mathrm{peak}} \sim 0.6$--$1$\,d) + red
+($v \sim 0.1c$); $L \propto t^{-1.3}$ tail. Band mags assume BC $= 0$ and
+per-component peaks; POSSIS refinement queued. $g$-band verdicts robust;
+$i$-band NOT claimed (one-zone $\kappa = 10$ over-traps: $t_{\mathrm{red}}
+\sim 10$\,d vs observed $\sim 4$\,d decline, $m_i$ faint by $\sim 2$--$3$\,mag
+--- conservative for gap-$g$ detectability). Standard $2$--$28\%$ band is a
+literature EOS input, not derived.
+
+\textbf{O5 protocol.} Trigger: $m_1 \in [2.5,5.0]\,M_\odot$, $< 200$\,Mpc,
+90\% area $< 100$\,deg$^2$ (multi-detector); Rubin ToO epochs 0.5/2/5\,d in
+$g+r+i+z$ (DECam/Gemini backup). Kill rule: 10 qualifying non-detections kill
+BU. Archival ledger: GW230529 uninformative (single-detector, 93\% unsearched);
+S250206dm unverified (check GCNs before citing). Full plan:
+\texttt{docs/observation-protocol.md}. Figs.~66--69.
+
+\section{UV nulls and phenomenology (T, U, V, BD--BF)}
+
+TeV: $M_D = 1$\,TeV gives $k \approx 11$ ($3$\,TeV) -- $17$ ($13$\,TeV) vs
+$k_{\mathrm{crit}} \approx 50$ --- thermal nulls expected, onset $\sim 550$\,TeV.
+Echoes: $\Delta t = 4M\log(M/l_p)$, $0.03$--$0.3$\,s (GW150914 $0.11$\,s),
+in searched windows but $R \sim 10^{-160}$ unobservable. EHT:
+$l_p/2M \approx 10^{-48}$, 47 orders below sensitivity. Dispersion:
+$E_{QG,2} = \sqrt{8}\,E_P$, Fermi-safe by $10^8$. Chromatic lensing
+$10^{-56}$--$10^{-32}$. Figs.~21--22, 39, 51--56.
+
+\section{Kill list (AN + BU)}
+
+AF quench ratio $< 1.3$; $\alpha$ outside $[9.0,12.4]$; $A \propto N$ in any
+TN calculation; thermal LHC excess below $k_{\mathrm{crit}}$;
+$s_{\mathrm{leg}} \le l_p^2/4$ in any physical state class; any linear-LIV
+signal; $p$ outside $0.92 \pm 0.056$ at $N = 1024$; 10 gap non-detections.
+One sub-claim (broad remnant DM) already ruled out on the record.
+Figs.~37--39.
+
+\section{Module map and reproduction}
+
+\texttt{graphs}, \texttt{scrambling}, \texttt{horizon}, \texttt{micro},
+\texttt{circuits} (A), \texttt{maxent} (B), \texttt{qes} (C),
+\texttt{evaporation} (D), \texttt{qec} (F), \texttt{robustness} (G),
+\texttt{kerr} (H), \texttt{haar} (I), \texttt{monogamy} (J),
+\texttt{otoc}+\texttt{pheno} (L), \texttt{tn} (M), \texttt{kerrpage} (N),
+\texttt{syk} (O), \texttt{data} (Q), \texttt{litcompare} (R), \texttt{tev} (T),
+\texttt{echoes} (U), \texttt{posteriors} (W), \texttt{ds} (X),
+\texttt{krylov} (Y), \texttt{collapse} (AA), \texttt{cosmic} (AB),
+\texttt{lunch}+\texttt{remnant} (AC), \texttt{bounds} (AE),
+\texttt{healing} (AG), \texttt{mss} (AH), \texttt{bigsyk} (AI),
+\texttt{mp}+\texttt{greybody} (AJ), \texttt{congestion} (AK),
+\texttt{charge} (AL), \texttt{bandwidth} (AM),
+\texttt{gridcirc}+\texttt{monitor}+\texttt{selfattack}+\texttt{lhc} (AN),
+\texttt{concentration} (AO), \texttt{ps} (AP), \texttt{scatter} (AQ),
+\texttt{emd}+\texttt{viability} (AR), \texttt{entropic} (AS),
+\texttt{redshift} (AT), \texttt{heatker}+\texttt{orici}+\texttt{jacobson} (AU),
+\texttt{fission} (AV), \texttt{klanguage} (AW), \texttt{tension} (AX),
+\texttt{gw250114} (AY), \texttt{overtones}+\texttt{tensionvol} (AZ),
+\texttt{sparse24} (BA), \texttt{lensing}+\texttt{chroma}+\texttt{shapiro} (BB),
+\texttt{bcrit} (BC), \texttt{dispersion} (BD), \texttt{qnmfoot}+\texttt{qnmlegs} (BE),
+\texttt{foamgrid} (BF), \texttt{perwalk} (BG), \texttt{strain} (BH,BJ),
+\texttt{weakfield} (BI,BQ), \texttt{legham} (BL),
+\texttt{pulsar}+\texttt{orici} gradient shells+\texttt{collapse} leg-shedding (BU),
+\texttt{uvscatter}+\texttt{sinkor}+\texttt{shellscale} (BV).
+Reproduce: \texttt{pip install -e .; pytest tests/ -q;
+python scripts/generate\_figures.py; streamlit run app.py}.
+
+\end{document}
