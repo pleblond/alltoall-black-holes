@@ -38,15 +38,12 @@ with paper text. v5/main.tex:
 - v4.1 `paper.md` + `main.tex`/`main.pdf` untouched as extended record.
 - Honesty ledger preserved and tightened (S1 table).
 
-## Compile
-
-Needs pdflatex (not in minimal cloud image; install texlive-latex-base +
-texlive-latex-recommended):
+## Compile (verified under TeX Live 2023; zero warnings)
 
 ```bash
 cd paper/v5
-pdflatex main.tex && pdflatex main.tex
-pdflatex supplement.tex && pdflatex supplement.tex
+pdflatex main.tex && pdflatex main.tex            # main.pdf, 9pp
+pdflatex supplement.tex && pdflatex supplement.tex # supplement.pdf, 9pp
 ```
 
 Figures resolve via `../../figures/`.

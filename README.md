@@ -18,7 +18,9 @@
 > J0737 2PN measured $p = 0.913\pm0.049$ (80 graphs, exact), gap kilonovae
 > with an O5 kill-or-confirm [`protocol`](docs/observation-protocol.md).
 
-> **Read the paper:** [`paper/paper.md`](paper/paper.md) (full draft) ·
+> **Read the paper:** journal cut [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 9pp) ·
+> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 9pp) ·
+> living record [`paper/paper.md`](paper/paper.md) (full draft) ·
 > [`paper/main.pdf`](paper/main.pdf) (compiled PDF)
 
 ## Abstract
@@ -51,6 +53,7 @@ and the un-derived gap coefficient.
 |---|---|---|
 | [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BS + BU, BV) | CC BY 4.0 |
 | `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
+| `paper/v5/`, [`paper/v5/main.pdf`](paper/v5/main.pdf), [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) | Journal cut: main text + methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
 | `tests/` | 356 pytest checks (derivations, data, falsifiers) | MIT |
@@ -174,6 +177,15 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
+v5.0: journal cut of the v4.1 living document — [`main.pdf`](paper/v5/main.pdf)
+(9pp preprint ≈ 6pp two-column: motivation, 3 claims, gravity to 1PN + 2PN
+preview, UV+QI, one-family compact objects + gap-KN ~1/yr O5, falsifiers) +
+[`supplement.pdf`](paper/v5/supplement.pdf) (9pp S1–S9 methods: audit, N-scale
+table, PPN/archival ledgers, O5 protocol, kill list, 10 evidence figures).
+40 references, new survival-matrix figure (`scripts/generate_v5_figs.py`).
+No physics changes; v4.1 files untouched as the extended record.
+Build: `cd paper/v5 && pdflatex main.tex && pdflatex supplement.tex`
+(see [`paper/v5/README.md`](paper/v5/README.md)).
 v4.1: BV UV tortuosity-as-scattering on top of v4.0 — 4 assumptions
 $\to$ 3 (tortuosity $1/2$ derived from $\ln 2$); N = 4000/8000/16000
 campaigns hold $p = 0.93/0.94/0.91$ with turnover $0.63$–$0.69 \to 1.26$–$1.46$
