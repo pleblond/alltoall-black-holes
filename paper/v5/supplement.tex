@@ -15,17 +15,17 @@
 \section{Parameter audit and honesty ledger}
 \label{sec:audit}
 
-\begin{table}[h]\centering
+\begin{table}[ht]\centering\footnotesize
 \caption{Every number with a status. ``Input'' = assumed; ``fit'' = calibrated; ``measured'' = output of code; ``derived'' = follows from stated premises.}
-\begin{tabular}{llll}\toprule
+\begin{tabular}{@{}p{3.4cm} p{3.4cm} p{2.6cm} p{4.4cm}@{}}\toprule
 param & value & status & notes \\\midrule
-$k(M) = (4\pi/\ln 2)M^2/l_p^2$ & GR-consistency & input (circle admitted) & BM shrinks to $R_s = 2M$; not derived \\
+$k(M)$ map $\propto M^2$ & GR-consistency & input (circle admitted) & BM shrinks to $R_s = 2M$; not derived \\
 AT $\alpha$ & 1 & calibrated to Schwarzschild $c_{\mathrm{eff}}$ & matches $dr/dt$ exactly \\
 tortuosity $c$ & $1/2$ (BH fit) $\to$ $0.44$--$0.60$ (BV derived) & fit superseded by derivation & $\ln 2$ scattering, zero tuning; $p = 2c$, $\gamma = 2c$ \\
 $s_{\mathrm{leg}}$ & $\ln 2$\,nats & measured saturation (BN/BS) & flip preserves $G = 1$ via Planck bits \\
 $k_{\mathrm{crit}}$ & $4\pi r^2/\sigma$ & heuristic $\to$ formalised (BK) & packing-forced pop; mixed mode disconnects (BV) \\
 gradient slope & $0.015$ & fitted, labelled & $p_{\mathrm{adj}}(s) = 0.85+0.015s$ \\
-bridge $\beta(N)$ & 1.5@300, 1.28@600, 1.24@1020, 0.99/0.87/0.74@4k/8k/16k & recalibrated per $N$ & log-linear over 6 points; derivation queued \\
+bridge $\beta(N)$ & 1.5@300; 1.28@600; 1.24@1020; 0.99@4k; 0.87@8k; 0.74@16k & recalibrated per $N$ & log-linear over 6 points; derivation queued \\
 $w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathrm{tot}} = c_1 + w c_2 = 4.8695$ at $p = 0.92$ \\
 shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\\bottomrule
@@ -74,6 +74,23 @@ $-0.75\,M/a$ measured. PPN: $\gamma = 1$ derived, $\beta$ unresolved
 (coordinate-confused, not quoted), $\alpha_{1,2},\xi$, Nordtvedt untouched.
 Figs.~58, 60.
 
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig49_lensing.png}
+\caption{Gravity battery I: Fermat bending matches GR $4M/b$ to first order
+(left), Shapiro log pile-up matches (right); the middle panel records the
+pre-BH orbit gap ($0$ vs $43''$/cy) that the strain sector closes.
+\texttt{lensing}, \texttt{shapiro}.}
+\label{fig:sup-lens}
+\end{figure}
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig58_strain.png}
+\caption{Gravity battery II: naive strain gives $\gamma = 2$ (excluded);
+tortuosity $h = (1+x/2)^2$ gives $\gamma = 1$ exactly and Mercury
+$42.99''$/cy by direct geodesic integration. \texttt{strain}.}
+\label{fig:sup-merc}
+\end{figure}
+
 \textbf{BI/BQ weak-field OR.} Grid+hub with flux stubs: radial OR negative in
 all configs (sign derived). Direct mode $p = 0.92 \pm 0.48$ ($L = 9$); $1/r$
 collapse beats $1/r^2$ (CV $0.47$ vs $0.60$). Green-function walk fails by leg
@@ -88,12 +105,21 @@ disconnects at $k_{\mathrm{crit}}$ --- the pop without metric input. Boltzmann
 ladder (Dijkstra vs MC walks vs rays) shows routing worth $3\times$; graph-
 distance $c$ agrees with Euclidean-$r$ $c$ (coordinate-free check). Figs.~70--72.
 
+\begin{figure}[ht]\centering
+\includegraphics[width=0.85\linewidth]{fig70_uv_c.png}
+\caption{BV tortuosity from $\ln 2$ scattering: dilute $c = 0.44$--$0.60$
+with zero tuning against the BU-implied $0.456 \pm 0.025$ band and the
+geometric $1/\sqrt{\pi}$ line. Right axis shows $p = 2c$. Hard cylinders
+(red $\times$) overshoot; soft and mixed modes agree. \texttt{uvscatter}.}
+\label{fig:sup-uvc}
+\end{figure}
+
 \section{Quantum-information methods (A--O, Q--Y)}
 
 Log law $t_*(N) \approx \log_2 N/\log_2(1+p)$; MaxEnt $k \ge N s_{\mathrm{node}}/
-s_{\mathrm{leg}}$ plus fixed point $k^*(N) = 16\pi(\varepsilon N/l_p)^2/4\ln 2$
-(stable; BS: $\varepsilon = c/\sqrt{N}$, $\alpha = k^*/N = 1$ exactly); QES
-crossing iff $s_{\mathrm{leg}} > l_p^2/4$ (Sec.~3 dies otherwise); Page
+s_{\mathrm{leg}}$ plus fixed point $k^*(N) = 16\pi(\varepsilon N/l_p)^2\allowbreak/4\ln 2$
+(stable; BS gives $\varepsilon = c/\sqrt{N}$ and $\alpha = k^*/N = 1$ exactly);
+QES crossing iff $s_{\mathrm{leg}} > l_p^2/4$ (Sec.~3 dies otherwise); Page
 wiring-only vs $N$-shrinks identical $A(t)$; QEC $99\%$ at
 $k \ge N/2+1+\log_2 100$; Kerr $k_{\mathrm{eff}} = A/l_p^2$ monotonic in spin;
 exact Page $H(mn)-H(n)-(m-1)/2n$ with $0.72$-bit dip; CKW verified; OTOC
@@ -104,6 +130,15 @@ GWTC-3 32 BBH $k_f > k_1+k_2$; hardware head-to-head $7.9$ vs $14.6$ steps.
 Figs.~7--20, 23--25, 30--33. Healing $dA/dt = (4\ln 2\,k\,l_p^2-A)/\tau$,
 $\tau = 11.24M$ ($3.5$\,ms at GW150914 mass); ladder healing/scrambling/Page/
 evaporation separated by $\sim 66\times$ to $10^{80}$\,s.
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig10_page.png}
+\caption{Leg-surgery evaporation: radiation entropy follows the Page curve
+(left, turnover at half evaporation); horizon area is identical whether $N$
+shrinks with $k$ or stays fixed (right) --- area tracks wiring alone, the
+distinctive Claim~2 prediction. \texttt{evaporation}.}
+\label{fig:sup-page}
+\end{figure}
 
 \section{Compact objects and 2PN (BU)}
 
@@ -139,6 +174,24 @@ profiles ($R^2$ $0.91$ vs $0.81$) but the two $\kappa \to c_2$ maps disagree
 weighting \emph{lowers} our $p$ ($0.94 \to 0.84$ at $0.9$, $0.78$ at $0.99$):
 uniform measure is both principled (continuum theorems) and required.
 
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig66_pulsar_2pn.png}
+\caption{2PN cancellation: model $c_{\mathrm{tot}}(p)$ crosses GR at $p = 0.92$
+(left); fixed-mass J0737 residual vanishes there (middle, green $2\sigma$ band);
+self-consistent $\sin i$ passes for both GR and $p = 0.92$ (right).
+\texttt{pulsar}.}
+\label{fig:sup-2pn}
+\end{figure}
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig67_orici_p_fit.png}
+\caption{Gradient-shell Ollivier--Ricci: stacked $|\kappa|(r)$ steepens with the
+gradient (left); per-graph $p$ histogram centres on target (middle); 80-graph
+SEM extrapolation clears the $1\sigma$/$2\sigma$ precision bars (right).
+Production N=1020: $p = 0.913 \pm 0.049$, SEM $0.0055$. \texttt{orici}.}
+\label{fig:sup-pfit}
+\end{figure}
+
 \textbf{Leg-shedding kilonovae.} $M_{\mathrm{ej}} = \Delta k\,m_{\mathrm{leg}}
 \times 0.1$, blue ($v \sim 0.3c$, $t_{\mathrm{peak}} \sim 0.6$--$1$\,d) + red
 ($v \sim 0.1c$); $L \propto t^{-1.3}$ tail. Band mags assume BC $= 0$ and
@@ -153,7 +206,7 @@ literature EOS input, not derived.
 $g+r+i+z$ (DECam/Gemini backup). Kill rule: 10 qualifying non-detections kill
 BU. Archival ledger: GW230529 uninformative (single-detector, 93\% unsearched);
 S250206dm unverified (check GCNs before citing). Full plan:
-\texttt{docs/observation-protocol.md}. Figs.~66--69.
+\path{docs/observation-protocol.md}. Figs.~66--69.
 
 \section{UV nulls and phenomenology (T, U, V, BD--BF)}
 
@@ -164,6 +217,15 @@ in searched windows but $R \sim 10^{-160}$ unobservable. EHT:
 $l_p/2M \approx 10^{-48}$, 47 orders below sensitivity. Dispersion:
 $E_{QG,2} = \sqrt{8}\,E_P$, Fermi-safe by $10^8$. Chromatic lensing
 $10^{-56}$--$10^{-32}$. Figs.~21--22, 39, 51--56.
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig51_dispersion.png}
+\caption{Lattice dispersion: band bending at the Brillouin edge (left) with
+group velocity even in $k$ (middle, no linear term by symmetry); GRB arrival
+delays sit orders of magnitude below detectability across GeV--TeV (right).
+\texttt{dispersion}.}
+\label{fig:sup-disp}
+\end{figure}
 
 \section{Kill list (AN + BU)}
 
@@ -177,11 +239,11 @@ Figs.~37--39.
 \section{N-scaling and calibration record}
 \label{sec:nscale}
 
-\begin{table}[h]\centering\small
+\begin{table}[ht]\centering\small
 \caption{Gradient-shell $p$ measurements: $\beta$ recalibrated per $N$ (log-linear over 6 points).
 All 80-graph production rows use exact distances; errors are per-graph std with SEM quoted in text.}
 \label{tab:nscale}
-\begin{tabular}{lllll}\toprule
+\begin{tabular}{@{}l l l p{5.8cm} l@{}}\toprule
 $N$ & shells $\times$ per-shell & $\beta$ & measured $p$ & backend \\\midrule
 300 & $10\times 30$ & 1.50 & $0.94 \pm 0.06$ (4 graphs) & NetworkX exact \\
 600 & $10\times 60$ & 1.28 & $0.96 \pm 0.06$ & NetworkX exact \\
@@ -200,16 +262,28 @@ CSR-direct $0.9107$ vs NetworkX $0.9134$ (agree to $3\times 10^{-3}$).
 Local-$p$ turnover (inner windows flatten, $0.63$--$0.69 \to 1.26$--$1.46$)
 is measured at 4k/8k/16k, not extrapolated. Fig.~73.
 
+\begin{figure}[ht]\centering
+\includegraphics[width=0.95\linewidth]{fig73_uv_n4000.png}
+\caption{N-scale campaigns: $\beta(N)$ recalibration drifts faster than $1/N$
+(left); stacked $|\kappa|(r)$ profiles agree in shape across $1020$--$16000$
+(middle); local-$p$ windows show the UV turnover with SEM error bars (right).
+80 graphs per production row. \texttt{shellscale}, \texttt{sinkor}.}
+\label{fig:sup-nscale}
+\end{figure}
+
 Reproduce (N=1020, $\sim 9$\,min):
-\texttt{measure\_p(per\_shell=102, n\_shells=10, n\_graphs=80, gradient=True, beta=1.24, seed0=0, max\_per\_shell=8)}.
+\begin{quote}\small
+\path{measure_p(per_shell=102, n_shells=10, n_graphs=80,}\\
+\path{gradient=True, beta=1.24, seed0=0, max_per_shell=8)}
+\end{quote}
 
 \section{PPN ledger and walk/foam/healing notes}
 \label{sec:ppn}
 
-\begin{table}[h]\centering\small
+\begin{table}[ht]\centering\small
 \caption{PPN status: only $\gamma$ is claimed. $\beta$ is coordinate-confused and not quoted.}
 \label{tab:ppn}
-\begin{tabular}{lll}\toprule
+\begin{tabular}{@{}l l p{9.5cm}@{}}\toprule
 param & GR & this model \\\midrule
 $\gamma$ & 1 & 1 exactly (tortuosity $h = (1+x/2)^2$; BV $c \to \gamma = 2c$) \\
 $\beta$ & 1 & unresolved (not quoted) \\
@@ -227,65 +301,91 @@ walks fail by leg shorting. Conclusion: temperature (AS), not bare graph
 diffusion, carries Newton. Figs.~63--64.
 
 \textbf{Foamgrid FDTD (BF).} Beams on defective fabric: centroids unbiased
-(jitter, average straight), deficit $\propto \omega^2$. Bounds assume
-independent edges; correlated patches of size $\xi$ relax by $\sqrt{\xi}$.
+(jitter, average straight) with deficit $\propto \omega^2$. Bounds assume
+independent edges; correlated patches of size $\xi$ relax them by $\sqrt{\xi}$.
 Fig.~56.
 
-\textbf{Healing ladder (AG/AH).} $\tau_{\mathrm{heal}} = 1/\mathrm{Im}\,\omega_{220}
-= 11.24M$; GW150914-mass ladder: healing $3.5$\,ms, scrambling $0.23$\,s,
+\textbf{Healing ladder (AG/AH).} $\tau_{\mathrm{heal}} = 11.24M$
+($1/\mathrm{Im}\,\omega_{220}$); GW150914-mass ladder: healing $3.5$\,ms, scrambling $0.23$\,s,
 Page $\sim 10^{79}$\,s, evaporation $\sim 10^{80}$\,s. MSS
 $\lambda/2\pi T = 0.50$--$0.68$; LVK $\alpha \in [9.0,12.4]$ contains $11.24$.
 Figs.~30--31.
 
+\begin{figure}[ht]\centering
+\includegraphics[width=0.9\linewidth]{fig30_healing.png}
+\caption{Healing lag: wiring jumps at merger while horizon area catches up on
+the ringdown time (left); timescale ladder from milliseconds to $10^{80}$\,s
+(right). The final sigh carries $\sim 10^{-78}$ of the mass. \texttt{healing}.}
+\label{fig:sup-heal}
+\end{figure}
+
 \section{Archival ledger and O5 trigger (BU detail)}
 \label{sec:ledger}
 
-\begin{table}[h]\centering\footnotesize
+\begin{table}[ht]\centering\footnotesize
 \caption{What exists today: no qualifying test yet. Only multi-detector, $<100$\,deg$^2$ gap events count.}
 \label{tab:archival}
-\begin{tabular}{lllll}\toprule
+\begin{tabular}{@{}l p{2.9cm} l p{4.5cm} p{4.2cm}@{}}\toprule
 event & masses & distance & localisation / EM & verdict \\\midrule
-GW230529 & $2.5$--$4.5$ + $1.2$--$2.0$ & $\sim 197$\,Mpc & 24,200\,deg$^2$ (single-detector); ZTF 7\% to $g = 21.1$ & not a test: 93\% unsearched; our $m_g \sim 21.2$ at depth edge \\
+GW230529 & $2.5$--$4.5$ + $1.2$--$2.0$ & $\sim 197$\,Mpc & 24,200\,deg$^2$ (single-det.); ZTF 7\% to $g = 21.1$ & not a test: 93\% unsearched; $m_g \sim 21.2$ at depth edge \\
 S250206dm & mgBH candidate & --- & no counterpart (per notes) & unverified: check GCNs before citing \\\bottomrule
 \end{tabular}
 \end{table}
 
-Trigger (full plan \texttt{docs/observation-protocol.md}): $m_1 \in
+Trigger (full plan \path{docs/observation-protocol.md}): $m_1 \in
 [2.5,5.0]\,M_\odot$, $< 200$\,Mpc, 90\% $< 100$\,deg$^2$; Rubin ToO
 0.5/2/5\,d in $g+r+i+z$ (DECam/Gemini backup). Sought: fast blue
 ($v \sim 0.3c$, $t_{\mathrm{peak}} \sim 0.6$--$1$\,d) $\to$ slow red with
 $L \propto t^{-1.3}$ tail. Yield: 1.5 gap/yr $\times$ 70\% $\approx 1.05$/yr
 ours vs $\le 0.3$/yr standard. Yield arithmetic in
-\texttt{collapse.gap\_o5\_yield}; brightness in
-\texttt{collapse.peak\_apparent\_mags}. Figs.~68--69.
+\path{collapse.gap_o5_yield}; brightness in
+\path{collapse.peak_apparent_mags}. Figs.~68--69.
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig69_o5_protocol.png}
+\caption{O5 protocol: gap kilonovae visible in $g$-band to 200\,Mpc with margin
+over Rubin/DECam depths (left); yield $\sim 1$/yr vs $\le 0.3$/yr standard
+(middle); the same $p$ keeps bending/Mercury 2PN pieces below VLBI/astrometry
+(right). \texttt{collapse}, \texttt{pulsar}.}
+\label{fig:sup-o5}
+\end{figure}
 
 \section{Module map and reproduction}
 
-\texttt{graphs}, \texttt{scrambling}, \texttt{horizon}, \texttt{micro},
-\texttt{circuits} (A), \texttt{maxent} (B), \texttt{qes} (C),
-\texttt{evaporation} (D), \texttt{qec} (F), \texttt{robustness} (G),
-\texttt{kerr} (H), \texttt{haar} (I), \texttt{monogamy} (J),
-\texttt{otoc}+\texttt{pheno} (L), \texttt{tn} (M), \texttt{kerrpage} (N),
-\texttt{syk} (O), \texttt{data} (Q), \texttt{litcompare} (R), \texttt{tev} (T),
-\texttt{echoes} (U), \texttt{posteriors} (W), \texttt{ds} (X),
-\texttt{krylov} (Y), \texttt{collapse} (AA), \texttt{cosmic} (AB),
-\texttt{lunch}+\texttt{remnant} (AC), \texttt{bounds} (AE),
-\texttt{healing} (AG), \texttt{mss} (AH), \texttt{bigsyk} (AI),
-\texttt{mp}+\texttt{greybody} (AJ), \texttt{congestion} (AK),
-\texttt{charge} (AL), \texttt{bandwidth} (AM),
-\texttt{gridcirc}+\texttt{monitor}+\texttt{selfattack}+\texttt{lhc} (AN),
-\texttt{concentration} (AO), \texttt{ps} (AP), \texttt{scatter} (AQ),
-\texttt{emd}+\texttt{viability} (AR), \texttt{entropic} (AS),
-\texttt{redshift} (AT), \texttt{heatker}+\texttt{orici}+\texttt{jacobson} (AU),
-\texttt{fission} (AV), \texttt{klanguage} (AW), \texttt{tension} (AX),
-\texttt{gw250114} (AY), \texttt{overtones}+\texttt{tensionvol} (AZ),
-\texttt{sparse24} (BA), \texttt{lensing}+\texttt{chroma}+\texttt{shapiro} (BB),
-\texttt{bcrit} (BC), \texttt{dispersion} (BD), \texttt{qnmfoot}+\texttt{qnmlegs} (BE),
-\texttt{foamgrid} (BF), \texttt{perwalk} (BG), \texttt{strain} (BH,BJ),
-\texttt{weakfield} (BI,BQ), \texttt{legham} (BL),
-\texttt{pulsar}+\texttt{orici} gradient shells+\texttt{collapse} leg-shedding (BU),
-\texttt{uvscatter}+\texttt{sinkor}+\texttt{shellscale} (BV).
-Reproduce: \texttt{pip install -e .; pytest tests/ -q;
-python scripts/generate\_figures.py; streamlit run app.py}.
+{\sloppy\footnotesize
+Modules follow the appendix letters of the v4.1 extended record:
+\path{graphs}, \path{scrambling}, \path{horizon}, \path{micro},
+\path{circuits} (A), \path{maxent} (B), \path{qes} (C),
+\path{evaporation} (D), \path{qec} (F), \path{robustness} (G),
+\path{kerr} (H), \path{haar} (I), \path{monogamy} (J),
+\path{otoc}+\path{pheno} (L), \path{tn} (M), \path{kerrpage} (N),
+\path{syk} (O), \path{data} (Q), \path{litcompare} (R), \path{tev} (T),
+\path{echoes} (U), \path{posteriors} (W), \path{ds} (X),
+\path{krylov} (Y), \path{collapse} (AA), \path{cosmic} (AB),
+\path{lunch}+\path{remnant} (AC), \path{bounds} (AE),
+\path{healing} (AG), \path{mss} (AH), \path{bigsyk} (AI),
+\path{mp}+\path{greybody} (AJ), \path{congestion} (AK),
+\path{charge} (AL), \path{bandwidth} (AM),
+\path{gridcirc}+\path{monitor}+\path{selfattack}+\path{lhc} (AN),
+\path{concentration} (AO), \path{ps} (AP), \path{scatter} (AQ),
+\path{emd}+\path{viability} (AR), \path{entropic} (AS),
+\path{redshift} (AT), \path{heatker}+\path{orici}+\path{jacobson} (AU),
+\path{fission} (AV), \path{klanguage} (AW), \path{tension} (AX),
+\path{gw250114} (AY), \path{overtones}+\path{tensionvol} (AZ),
+\path{sparse24} (BA), \path{lensing}+\path{chroma}+\path{shapiro} (BB),
+\path{bcrit} (BC), \path{dispersion} (BD), \path{qnmfoot}+\path{qnmlegs} (BE),
+\path{foamgrid} (BF), \path{perwalk} (BG), \path{strain} (BH,BJ),
+\path{weakfield} (BI,BQ), \path{legham} (BL),
+\path{pulsar}+\path{orici} gradient shells+\path{collapse} leg-shedding (BU),
+\path{uvscatter}+\path{sinkor}+\path{shellscale} (BV).
+\par}
+
+Reproduce:
+\begin{quote}\small
+\path{pip install -e .}\\
+\path{pytest tests/ -q}\\
+\path{python scripts/generate_figures.py}\\
+\path{streamlit run app.py}
+\end{quote}
 
 \end{document}

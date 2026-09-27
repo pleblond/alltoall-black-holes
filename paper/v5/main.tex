@@ -109,17 +109,17 @@ comparison explicit: among the surveyed alternatives, only the present model
 passes the Fermi, LHC-recast, EHT/$\gamma$, and gap/HESS battery simultaneously
 while predicting a bright-gap rate distinct from the standard one.
 
-\begin{figure}[h]\centering
+\begin{figure}[ht]\centering
 \includegraphics[width=0.92\linewidth]{figV5_survival.png}
 \caption{Survival matrix (visualisation of Table~\ref{tab:ledger}; no new numbers).
 \texttt{scripts/generate\_v5\_figs.py}.}
 \label{fig:survival}
 \end{figure}
 
-\begin{table}[h]\centering\small
+\begin{table}[ht]\centering\small
 \caption{Survival ledger: headline result per sector and where it is implemented and tested.}
 \label{tab:ledger}
-\begin{tabular}{lll}\toprule
+\begin{tabular}{@{}l p{8.6cm} l@{}}\toprule
 sector & headline & status / modules \\\midrule
 gravity & Newton, Kepler, redshift, $4M/b$, Shapiro, Mercury $42.99''$, $\gamma=1$ exactly, J0737 $0.1\sigma$ & pass (AS, AT, AU, BB, BH) \\
 quantum info & $\log N$ vs $N$ hierarchy, Page dip $0.72$\,bits, QES pop, mirror, $k_f > k_1+k_2$ at 100\% & derived (A, C, D, F, H, Q, W) \\
@@ -154,7 +154,7 @@ $N$, $N = 8\ldots128$; chain already $> 5\times$ slower at $N = 64$).
 Modules \texttt{graphs}, \texttt{scrambling}, \texttt{circuits},
 \texttt{otoc}, \texttt{krylov}, \texttt{syk}.
 
-\begin{figure}[h]\centering
+\begin{figure}[ht]\centering
 \includegraphics[width=0.85\linewidth]{fig1_scrambling.png}
 \caption{SI cover time and diameter: all:all stays at 1 while local baselines grow.
 Finite-speed circuits (supplement Fig.~7) promote this to $t_* \sim \log N$.}
@@ -188,7 +188,7 @@ at $t = 0.3$). At $e_{\mathrm{int}} \to 1$, $k \to 0$: the subgraph
 decouples as a closed graph (baby universe). Black holes live in the
 almost-perfect corner.
 
-\begin{figure}[h]\centering
+\begin{figure}[ht]\centering
 \includegraphics[width=0.55\linewidth]{fig4_monogamy.png}
 \caption{Monogamy frontier: black holes live at $e_{\mathrm{int}} \lesssim 1$ with small
 nonzero $k$; the $k \to 0$ limit is a decoupled baby universe.}
@@ -342,10 +342,10 @@ The standard picture needs a separate excuse for each of five facts. One law,
 $k = 1.51\times 10^{77}(M/M_\odot)^2$ with no matter phases, plus two shedding
 numbers calibrated \emph{once} on AT2017gfo, addresses all five:
 
-\begin{table}[h]\centering\footnotesize
+\begin{table}[ht]\centering\footnotesize
 \caption{Five anomalies, one law. Shedding: $e$: $0.5 \to 0.416$ plus 10\% efficiency, fixed on \#4.}
 \label{tab:five}
-\begin{tabular}{llll}\toprule
+\begin{tabular}{@{}c p{3.4cm} p{4.2cm} p{6.2cm}@{}}\toprule
 \# & anomaly & standard & this model \\\midrule
 1 & Gap: GW190814 2.6, GW230529 3.6\,$M_\odot$ & impossible (NS $< 2.3$, BH $> 5$) & continuous $k = 1.0$--$2.0\times 10^{78}$; must flash \\
 2 & Light: HESS J1731 $0.77\,M_\odot$ & below min $1.17$, cannot form & low-$k$ tail $9\times 10^{76}$ \\
@@ -373,7 +373,7 @@ NICER radii \cite{NICER19,NICER21} and tidal deformabilities from routing stiffn
 derived (queued, supplement S4) and constitute the sharpest near-term test
 after the kilonova rate.
 
-\begin{table}[h]\centering\small
+\begin{table}[ht]\centering\small
 \caption{Gap-kilonova brightness ($g$-band, analytic BC $= 0$; $i$-band not claimed).
 AT2017gfo anchor: predicted 18.0 vs observed 17.5 at 40~Mpc. Rubin single-visit $r = 24.5$ \cite{Rubin19}.}
 \label{tab:bright}
@@ -385,7 +385,7 @@ $M_{\mathrm{tot}}$ & $M_{\mathrm{ej}}$ & 40~Mpc $m_g$ & 100~Mpc $m_g$ & 200~Mpc 
 \end{tabular}
 \end{table}
 
-\begin{figure}[h]\centering
+\begin{figure}[ht]\centering
 \includegraphics[width=0.88\linewidth]{fig68_kilonova_gap.png}
 \caption{Leg-shedding ejecta vs total mass: gap mergers are kilonova-capable and brighter
 than GW170817 at fixed distance. Gap rate $= 0$ kills the proposal.}
@@ -399,10 +399,10 @@ than GW170817 at fixed distance. Gap rate $= 0$ kills the proposal.}
 We state what kills the paper before concluding, with thresholds,
 current status, and timelines in Table~\ref{tab:kill}.
 
-\begin{table}[h]\centering\footnotesize
+\begin{table}[ht]\centering\footnotesize
 \caption{Pre-registered kill wires. ``Now'' = status at submission; ``O5'' = decisive by end of O5 unless stated.}
 \label{tab:kill}
-\begin{tabular}{llll}\toprule
+\begin{tabular}{@{}l p{6.0cm} p{4.2cm} l@{}}\toprule
 wire & threshold & now & timeline \\\midrule
 Gap kilonovae & 10 qualifying gap mergers $< 200$\,Mpc, $< 100$\,deg$^2$, zero KN to $m < 24$ & 0 qualifying so far & O5 decisive \\
 NICER radius & $R_{1.4}$ at 11--13\,km, 5\%, unreproducible by routing stiffness & stiffness underived & 2--3\,yr \\
@@ -446,10 +446,14 @@ with blue+red components, band mags, O5 yield arithmetic. Randomness seeded;
 tolerances recorded in-test.
 
 \paragraph{Data and code availability.}
-Code MIT (\texttt{src/}, \texttt{scripts/}, \texttt{tests/}, \texttt{app.py});
-text/figures CC~BY~4.0. Reproduce via
-\texttt{pip install -e .; pytest tests/ -q; python scripts/generate\_figures.py;
-streamlit run app.py}.
+Code MIT (\path{src/}, \path{scripts/}, \path{tests/}, \path{app.py});
+text/figures CC~BY~4.0. Reproduce via:
+\begin{quote}\small
+\path{pip install -e .}\\
+\path{pytest tests/ -q}\\
+\path{python scripts/generate_figures.py}\\
+\path{streamlit run app.py}
+\end{quote}
 GWOSC medians fetched live with bundled fallbacks; GW150914 posteriors cached
 (DOI 10.7935/82H3-HH23); PBHbounds curves vendored with attribution. No
 third-party figure data copied.
