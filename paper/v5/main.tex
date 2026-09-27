@@ -2,14 +2,16 @@
 % Compiles with: cd paper/v5 && pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex
 % Figures are the tested artifacts in ../../figures/ (see supplement for full map).
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb,amsthm,graphicx,hyperref,booktabs,geometry,microtype}
-\geometry{margin=1in}
+\usepackage{amsmath,amssymb,amsthm,graphicx,hyperref,booktabs,geometry}
+\geometry{margin=0.9in,top=0.85in,bottom=0.9in}
 \graphicspath{{../../figures/}}
+\usepackage{caption}
+\captionsetup{font=small,skip=4pt}
 \hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
 \title{Compact Objects as Almost-Perfect All:All Entanglement Graphs:\\
 \large From fast scrambling and weak-field gravity to a testable gap-kilonova prediction}
 \author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\
-\small Draft v5.0 --- main text (companion supplement with methods) \\
+\small Draft v5.0 --- main text (companion supplement with methods; 9pp preprint $\approx$ 6pp journal two-column) \\
 \small\texttt{python scripts/generate\_figures.py} reproduces every figure; 356 tests}
 \date{\today}
 \begin{document}
@@ -65,7 +67,7 @@ must release that information in a Page curve with island/QES turnover
 \cite{Page1993,Penington2019,Almheiri2019}. Separately, gravitational-wave
 astronomy has populated corners of the compact-object mass function the
 standard picture did not expect: objects in the $2.5$--$5\,M_\odot$ mass gap
-(GW190814 at $2.6\,M_\odot$, GW230529 at $3.6\,M_\odot$), a central compact
+(GW190814 at $2.6\,M_\odot$ \cite{GW190814}, GW230529 at $3.6\,M_\odot$ \cite{GW230529}), a central compact
 object below the minimum neutron-star mass (HESS~J1731 at $0.77\,M_\odot$
 \cite{Doroshenko2022}), and pulsars pressing against the maximum Tolman--
 Oppenheimer--Volkoff mass (J0740 at $2.14\,M_\odot$, J0952 at $2.35\,M_\odot$).
@@ -73,7 +75,7 @@ Each anomaly has its own candidate excuse; none was predicted.
 
 This paper explores one idea that addresses both sets jointly:
 \emph{maximal entanglement is zero-length connectivity}. In the ER=EPR and
-``spacetime from entanglement'' reading \cite{VanRaamsdonk2010,Maldacena2013},
+``spacetime from entanglement'' reading \cite{VanRaamsdonk2010,Maldacena2013,RT06},
 a black-hole interior is a region where interior mutual connectivity is so
 dense that interior distance collapses, while horizon size counts only the
 \emph{exterior} wiring that must be embedded through ambient space. A perfect
@@ -92,14 +94,14 @@ pre-registered wires when it is wrong, and makes one sharp sky prediction
 that the current observing run can kill or confirm.
 
 \paragraph{How this differs from neighbours.}
-Fuzzball and gravastar proposals also remove the singularity but keep
+Fuzzball \cite{Mathur05} and gravastar \cite{Mazur04} proposals also remove the singularity but keep
 compact-star matter phases and do not generically predict bright gap
-kilonovae; quark/strange-star models populate the gap with a new equation of
+kilonovae; quark/strange-star models \cite{Witten84,EOSrev} populate the gap with a new equation of
 state (EOS) rather than removing the EOS entirely. Polymer and loop-inspired
-holes modify the near-horizon metric at a level constrained by EHT and
-$\gamma$; our 1PN sector is exactly GR ($\gamma = 1$) with deviations
+holes modify the near-horizon metric at a level constrained by EHT \cite{EHT19} and
+$\gamma$ \cite{Bertotti03,Will14}; our 1PN sector is exactly GR ($\gamma = 1$) with deviations
 appearing only at 2PN below current VLBI/astrometry. Linearly-dispersive
-``spacetime foam'' models are already excluded by Fermi GRB~090510
+``spacetime foam'' models \cite{Amelino13} are already excluded by Fermi GRB~090510
 \cite{Abdo2009}; our lattice implies quadratic-only dispersion by
 $k \leftrightarrow -k$ symmetry, evading that bound by construction.
 Table~\ref{tab:ledger} (survival ledger) and Fig.~\ref{fig:survival} make the
@@ -107,7 +109,14 @@ comparison explicit: among the surveyed alternatives, only the present model
 passes the Fermi, LHC-recast, EHT/$\gamma$, and gap/HESS battery simultaneously
 while predicting a bright-gap rate distinct from the standard one.
 
-\begin{table}[h]\centering
+\begin{figure}[h]\centering
+\includegraphics[width=0.92\linewidth]{figV5_survival.png}
+\caption{Survival matrix (visualisation of Table~\ref{tab:ledger}; no new numbers).
+\texttt{scripts/generate\_v5\_figs.py}.}
+\label{fig:survival}
+\end{figure}
+
+\begin{table}[h]\centering\small
 \caption{Survival ledger: headline result per sector and where it is implemented and tested.}
 \label{tab:ledger}
 \begin{tabular}{lll}\toprule
@@ -146,7 +155,7 @@ Modules \texttt{graphs}, \texttt{scrambling}, \texttt{circuits},
 \texttt{otoc}, \texttt{krylov}, \texttt{syk}.
 
 \begin{figure}[h]\centering
-\includegraphics[width=\linewidth]{fig1_scrambling.png}
+\includegraphics[width=0.85\linewidth]{fig1_scrambling.png}
 \caption{SI cover time and diameter: all:all stays at 1 while local baselines grow.
 Finite-speed circuits (supplement Fig.~7) promote this to $t_* \sim \log N$.}
 \label{fig:scr}
@@ -180,7 +189,7 @@ decouples as a closed graph (baby universe). Black holes live in the
 almost-perfect corner.
 
 \begin{figure}[h]\centering
-\includegraphics[width=0.62\linewidth]{fig4_monogamy.png}
+\includegraphics[width=0.55\linewidth]{fig4_monogamy.png}
 \caption{Monogamy frontier: black holes live at $e_{\mathrm{int}} \lesssim 1$ with small
 nonzero $k$; the $k \to 0$ limit is a decoupled baby universe.}
 \label{fig:mono}
@@ -219,7 +228,7 @@ with hop-budget time dilation $\sqrt{1-v^2}$ (linear $1-v$ excluded by the
 $d \propto 1/r^2$ yield drift $\propto 1/r^3$ (measured slope $\approx -3$),
 and every smooth weight rule stays cubic (no-go $-2.99$). The $1/r^2$ force
 law emerges from the combination with exterior-leg thermodynamics on leg
-screens (Verlinde equipartition + Bekenstein bound, both postulated):
+screens (Verlinde equipartition \cite{Verlinde11} + Bekenstein bound, Jacobson route \cite{Jacobson95}, all postulated):
 $F = M_1M_2/r^2$ exact to $10^{-9}$ in slope, with closed leapfrog orbits and
 $T^2 \propto r^3$. Ollivier--Ricci curvature is radially negative in every
 tested configuration, attachment mode, and seed --- the sign of attraction
@@ -234,9 +243,9 @@ contributes only $r$-independently and factors out of the Born integral:
 fractional chromaticity $\sim 10^{-56}$ (optical) to $\sim 10^{-32}$
 (10~TeV), achromatic by $\sim 50$ orders. Shapiro delay
 $\Delta T = \int (1/c_{\mathrm{eff}} - 1)\,dl$ reproduces
-$R_s \ln(4r_1r_2/b^2)$ to 5\%, passing Cassini with $\gamma = 1$ exactly.
+$R_s \ln(4r_1r_2/b^2)$ to 5\%, passing Cassini \cite{Bertotti03} with $\gamma = 1$ exactly.
 An isotropic reading would give $b_{\mathrm{crit}} = 8M$, $54\%$ above GR's
-$3\sqrt{3}M$ and excluded by EHT at $\sim 3.6\sigma$; it is the isotropic
+$3\sqrt{3}M$ and excluded by EHT \cite{EHT19} at $\sim 3.6\sigma$; it is the isotropic
 reading that dies, not the core --- transverse propagation must be
 essentially unimpeded, as an all:all interior demands.
 
@@ -306,19 +315,19 @@ curve at $a_0 = 0.95$ peaks at 65\% of Schwarzschild and turns over at
 $t/T = 0.73$ versus $0.54$ because shedding $J$ grows area early.
 
 \paragraph{Gravitational-wave battery.}
-All 32 confident GWTC-3 BBH medians satisfy $k_f > k_1+k_2$ (median fractional
+All 32 confident GWTC-3 \cite{GWTC3,TestGR} BBH medians satisfy $k_f > k_1+k_2$ (median fractional
 creation $0.77$ at $0.04$ radiated; spin neglected but $a_f \sim 0.7$ costs
 $\sim 13\%$ against a $77\%$ margin and cannot flip the inequality).
 GW150914 posteriors (8350 samples, spin-aware both ends) give
 $P(\Delta k > 0) = 100\%$, median $0.57$: the area theorem in wiring language.
 Hardware anchors (G\"arttner 2017 all:all ions to $m = 8$-body OTOC; Mi 2021
 Sycamore grid ballistic spread; Jafferis 2022 sparse-SYK teleportation as a
-Hayden--Preskill mirror primitive) are all consistent, with a head-to-head
+Hayden--Preskill mirror primitive \cite{Kitaev15}) are all consistent, with a head-to-head
 prediction at $N = 53$ of $t^* \approx 7.9 \pm 0.7$ (all:all) versus $14.6$
 (grid), ratio $1.9\times$ ($9.9\times$ versus a 1D chain).
 
 \paragraph{Nulls held.}
-No LHC thermal black holes ($k \approx 11$--$17$ at $3$--$13$\,TeV versus
+No LHC thermal black holes \cite{LHCbh} ($k \approx 11$--$17$ at $3$--$13$\,TeV versus
 $k_{\mathrm{crit}} \approx 50$), no echoes ($R \sim 10^{-160}$), no EHT shadow
 shift ($10^{-48}$, 47 orders below sensitivity). Remnant dark matter is
 excluded on the record except a narrow $\sim 0.4$-dex window at
@@ -333,7 +342,7 @@ The standard picture needs a separate excuse for each of five facts. One law,
 $k = 1.51\times 10^{77}(M/M_\odot)^2$ with no matter phases, plus two shedding
 numbers calibrated \emph{once} on AT2017gfo, addresses all five:
 
-\begin{table}[h]\centering
+\begin{table}[h]\centering\footnotesize
 \caption{Five anomalies, one law. Shedding: $e$: $0.5 \to 0.416$ plus 10\% efficiency, fixed on \#4.}
 \label{tab:five}
 \begin{tabular}{llll}\toprule
@@ -357,16 +366,16 @@ distance (Table~\ref{tab:bright}). The $1.1$--$2.3\,M_\odot$ pulsar
 distribution is the low-$k$ tail ($k \sim 10^{77}$) of the same family; the
 gap is where $e_{\mathrm{int}} \sim e_{\mathrm{ext}}$, not a boundary between
 kinds. If correct, stable nuclear matter ends at $\sim 10^{15}$~g/cc with no
-hyperon/quark branch realised in nature, and $r$-process yields routed
+hyperon/quark branch \cite{EOSrev} realised in nature, and $r$-process yields routed
 through AT2017gfo neutron ejecta are reinterpreted as shed-leg hadronization
 --- a blunt implication we state so no reader misses it, while noting that
-NICER radii and tidal deformabilities from routing stiffness are not yet
+NICER radii \cite{NICER19,NICER21} and tidal deformabilities from routing stiffness are not yet
 derived (queued, supplement S4) and constitute the sharpest near-term test
 after the kilonova rate.
 
-\begin{table}[h]\centering
+\begin{table}[h]\centering\small
 \caption{Gap-kilonova brightness ($g$-band, analytic BC $= 0$; $i$-band not claimed).
-AT2017gfo anchor: predicted 18.0 vs observed 17.5 at 40~Mpc. Rubin single-visit $r = 24.5$.}
+AT2017gfo anchor: predicted 18.0 vs observed 17.5 at 40~Mpc. Rubin single-visit $r = 24.5$ \cite{Rubin19}.}
 \label{tab:bright}
 \begin{tabular}{lllll}\toprule
 $M_{\mathrm{tot}}$ & $M_{\mathrm{ej}}$ & 40~Mpc $m_g$ & 100~Mpc $m_g$ & 200~Mpc $m_g$ \\\midrule
@@ -377,7 +386,7 @@ $M_{\mathrm{tot}}$ & $M_{\mathrm{ej}}$ & 40~Mpc $m_g$ & 100~Mpc $m_g$ & 200~Mpc 
 \end{table}
 
 \begin{figure}[h]\centering
-\includegraphics[width=\linewidth]{fig68_kilonova_gap.png}
+\includegraphics[width=0.88\linewidth]{fig68_kilonova_gap.png}
 \caption{Leg-shedding ejecta vs total mass: gap mergers are kilonova-capable and brighter
 than GW170817 at fixed distance. Gap rate $= 0$ kills the proposal.}
 \label{fig:kn}
@@ -390,7 +399,7 @@ than GW170817 at fixed distance. Gap rate $= 0$ kills the proposal.}
 We state what kills the paper before concluding, with thresholds,
 current status, and timelines in Table~\ref{tab:kill}.
 
-\begin{table}[h]\centering
+\begin{table}[h]\centering\footnotesize
 \caption{Pre-registered kill wires. ``Now'' = status at submission; ``O5'' = decisive by end of O5 unless stated.}
 \label{tab:kill}
 \begin{tabular}{llll}\toprule
@@ -466,6 +475,26 @@ third-party figure data copied.
 \bibitem{Garttner2017} M.~G\"arttner et al., Nature Phys.\ 13, 781 (2017).
 \bibitem{Mi2021} X.~Mi et al.\ (Google), Science 374, 1479 (2021).
 \bibitem{Jafferis2022} D.~Jafferis et al., Nature 612, 51 (2022).
+\bibitem{GW190814} R.~Abbott et al.\ (LVK), ApJL 896, L44 (2020).
+\bibitem{GWTC3} R.~Abbott et al.\ (LVK), arXiv:2111.03606 (2021).
+\bibitem{TestGR} R.~Abbott et al.\ (LVK), arXiv:2112.06861 (2021), tests of GR with GWTC-3.
+\bibitem{NICER19} T.~E.~Riley et al., ApJL 887, L21 (2019); M.~C.~Miller et al., ApJL 887, L24 (2019).
+\bibitem{NICER21} T.~E.~Riley et al., ApJL 918, L27 (2021); M.~C.~Miller et al., ApJL 918, L28 (2021).
+\bibitem{EOSrev} J.~M.~Lattimer and M.~Prakash, Science 304, 536 (2004); Phys.\ Rep.\ 621, 127 (2016).
+\bibitem{Verlinde11} E.~Verlinde, JHEP 04, 029 (2011).
+\bibitem{Jacobson95} T.~Jacobson, Phys.\ Rev.\ Lett.\ 75, 1260 (1995).
+\bibitem{RT06} S.~Ryu and T.~Takayanagi, Phys.\ Rev.\ Lett.\ 96, 181602 (2006).
+\bibitem{Will14} C.~M.~Will, Living Rev.\ Rel.\ 17, 4 (2014), PPN and Solar-System tests.
+\bibitem{Bertotti03} B.~Bertotti, L.~Iess, and P.~Tortora, Nature 425, 374 (2003), Cassini $\gamma$.
+\bibitem{EHT19} K.~Akiyama et al.\ (EHT), ApJL 875, L1 (2019), M87* shadow.
+\bibitem{LHCbh} CMS, JHEP 04, 047 (2023); ATLAS, JHEP 11, 169 (2022), BH and non-thermal searches.
+\bibitem{Rubin19} v{Z}.~Ivezi\'c et al.\ (LSST), ApJ 873, 111 (2019).
+\bibitem{POSSIS} M.~Bulla, MNRAS 489, 5037 (2019), kilonova radiative transfer.
+\bibitem{Mathur05} S.~D.~Mathur, Fortsch.\ Phys.\ 53, 793 (2005), fuzzball review.
+\bibitem{Mazur04} P.~O.~Mazur and E.~Mottola, PNAS 101, 9545 (2004), gravastars.
+\bibitem{Witten84} E.~Witten, Phys.\ Rev.\ D 30, 272 (1984), strange/quark matter.
+\bibitem{Amelino13} G.~Amelino-Camelia, Living Rev.\ Rel.\ 16, 5 (2013), LIV review.
+\bibitem{Kitaev15} A.~Kitaev, talks on SYK (2015); J.~Maldacena and D.~Stanford, PRD 94, 106002 (2016).
 \end{thebibliography}
 
 \end{document}

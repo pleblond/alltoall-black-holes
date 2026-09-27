@@ -1,13 +1,15 @@
 # Paper v5 — journal cut (main + supplement)
 
 v5 restructures the v4.1 living document (1758 lines, 68 appendices, 77 figures)
-into a submittable pair:
+into a submittable pair (both compile; counts as of this commit):
 
-- `main.tex` — ~6-page journal text. Motivation, 3 claims in §2, gravity to 1PN
-  + 2PN preview, UV + QI, one-family compact objects + gap-KN prediction,
-  falsifiers + conclusion. 5 figures from tested artifacts.
-- `supplement.tex` — ~15-page methods. Parameter audit, gravity/QI/BU/BV methods,
-  N-scale campaigns, O5 protocol summary, kill list, module map.
+- `main.tex` — journal text, 9pp preprint single-column 11pt (≈6pp two-column).
+  Motivation, 3 claims in §2, gravity to 1PN + 2PN preview, UV + QI,
+  one-family compact objects + gap-KN prediction, falsifiers + conclusion.
+  4 figures (1 new survival matrix + 3 tested artifacts), 40 references.
+- `supplement.tex` — methods, 5pp and growing toward ~12pp. Parameter audit,
+  gravity/QI/BU/BV methods, N-scale table (300→16000, 6 points), PPN ledger,
+  archival ledger, O5 protocol summary, kill list, module map.
 
 ## What changed vs the uploaded V5-Rewrite draft
 
@@ -50,8 +52,10 @@ Figures resolve via `../../figures/`.
 
 ## Next steps (for loop ticks)
 
-- [ ] Install texlive and verify 6pp/15pp page counts; tune whitespace.
-- [ ] Add Fig.1 survival-matrix schematic (new TikZ, references ledger, no new claims).
-- [ ] Expand references to ~40 (add EOS/NICER/GWTC/LVK-testing-GR/POSSIS/Rubin).
-- [ ] POSSIS band-mag refinement for red component (queued physics, not blocking).
-- [ ] NICER routing-stiffness derivation (queued; sharpest post-O5 test).
+- [x] Install texlive and verify page counts (main 9pp preprint ≈6pp journal; supp 5pp)
+- [x] Add Fig.1 survival-matrix schematic (new TikZ, references ledger, no new claims)
+- [x] Expand references to ~40 (EOS/NICER/GWTC/LVK-testing-GR/POSSIS/Rubin + neighbours)
+- [ ] Grow supplement toward ~12pp (port perwalk/foam/healing figures + full protocol tables)
+- [ ] Optional twocolumn pass if venue requires strict 6pp (currently honest preprint count)
+- [ ] POSSIS band-mag refinement for red component (queued physics, not blocking)
+- [ ] NICER routing-stiffness derivation (queued; sharpest post-O5 test)

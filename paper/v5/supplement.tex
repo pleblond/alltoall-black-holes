@@ -1,6 +1,6 @@
 % V5 supplement — methods companion to main.tex (target ~15 pages).
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb,amsthm,graphicx,hyperref,booktabs,geometry,microtype,longtable}
+\usepackage{amsmath,amssymb,amsthm,graphicx,hyperref,booktabs,geometry,longtable}
 \geometry{margin=1in}
 \graphicspath{{../../figures/}}
 \hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
@@ -173,6 +173,91 @@ $s_{\mathrm{leg}} \le l_p^2/4$ in any physical state class; any linear-LIV
 signal; $p$ outside $0.92 \pm 0.056$ at $N = 1024$; 10 gap non-detections.
 One sub-claim (broad remnant DM) already ruled out on the record.
 Figs.~37--39.
+
+\section{N-scaling and calibration record}
+\label{sec:nscale}
+
+\begin{table}[h]\centering\small
+\caption{Gradient-shell $p$ measurements: $\beta$ recalibrated per $N$ (log-linear over 6 points).
+All 80-graph production rows use exact distances; errors are per-graph std with SEM quoted in text.}
+\label{tab:nscale}
+\begin{tabular}{lllll}\toprule
+$N$ & shells $\times$ per-shell & $\beta$ & measured $p$ & backend \\\midrule
+300 & $10\times 30$ & 1.50 & $0.94 \pm 0.06$ (4 graphs) & NetworkX exact \\
+600 & $10\times 60$ & 1.28 & $0.96 \pm 0.06$ & NetworkX exact \\
+1020 & $10\times 102$ & 1.24 & $0.913 \pm 0.049$, SEM $0.0055$, stacked $0.911$ (80 graphs) & Floyd+LP exact \\
+4000 & CSR-direct & 0.99 & $0.9315 \pm 0.0032$ (80 graphs) & CPU + Sinkhorn OR \\
+8000 & CSR-direct & 0.87 & $0.9382 \pm 0.0030$ (80 graphs) & pod + Sinkhorn OR \\
+16000 & CSR-direct & 0.74 & $0.9137 \pm 0.0022$ (80 graphs) & GPU farm + torch OR \\\bottomrule
+\end{tabular}
+\end{table}
+
+Drift check: $\beta = 1.5$ calibrated at $N = 300$ drifts high at $N = 600$
+($1.16 \pm 0.06$); recalibration to $1.28/1.24$ recovers $p \approx 0.92$.
+Pre-run $1/N$ extrapolation predicted $\beta(16000) \approx 1.18$; measured
+$0.74$ --- drift faster than $1/N$, now fit log-linear. N=1020 cross-check:
+CSR-direct $0.9107$ vs NetworkX $0.9134$ (agree to $3\times 10^{-3}$).
+Local-$p$ turnover (inner windows flatten, $0.63$--$0.69 \to 1.26$--$1.46$)
+is measured at 4k/8k/16k, not extrapolated. Fig.~73.
+
+Reproduce (N=1020, $\sim 9$\,min):
+\texttt{measure\_p(per\_shell=102, n\_shells=10, n\_graphs=80, gradient=True, beta=1.24, seed0=0, max\_per\_shell=8)}.
+
+\section{PPN ledger and walk/foam/healing notes}
+\label{sec:ppn}
+
+\begin{table}[h]\centering\small
+\caption{PPN status: only $\gamma$ is claimed. $\beta$ is coordinate-confused and not quoted.}
+\label{tab:ppn}
+\begin{tabular}{lll}\toprule
+param & GR & this model \\\midrule
+$\gamma$ & 1 & 1 exactly (tortuosity $h = (1+x/2)^2$; BV $c \to \gamma = 2c$) \\
+$\beta$ & 1 & unresolved (not quoted) \\
+$\alpha_{1,2}$, $\xi$ & 0 & untouched \\
+Nordtvedt & 0 & untouched \\
+2PN $c_{\mathrm{tot}}$ & 4.8695 & 4.8693 at $p = 0.92$ (J0737 $0.1\sigma$) \\\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Walk no-go (BP/BQ).} All smooth weight rules give drift slope $-2.99$;
+only the absurd $e^{2\sqrt{d-d_0}}$ escapes. Constant-$\mu$ persistence keeps
+$-3$ analytically; $\mu(\chi)$ fluctuation walk gives $-1.95 \approx -2$
+modulo the labelled $\sqrt{\chi}$ assumption. Harmonic/hitting-probability
+walks fail by leg shorting. Conclusion: temperature (AS), not bare graph
+diffusion, carries Newton. Figs.~63--64.
+
+\textbf{Foamgrid FDTD (BF).} Beams on defective fabric: centroids unbiased
+(jitter, average straight), deficit $\propto \omega^2$. Bounds assume
+independent edges; correlated patches of size $\xi$ relax by $\sqrt{\xi}$.
+Fig.~56.
+
+\textbf{Healing ladder (AG/AH).} $\tau_{\mathrm{heal}} = 1/\mathrm{Im}\,\omega_{220}
+= 11.24M$; GW150914-mass ladder: healing $3.5$\,ms, scrambling $0.23$\,s,
+Page $\sim 10^{79}$\,s, evaporation $\sim 10^{80}$\,s. MSS
+$\lambda/2\pi T = 0.50$--$0.68$; LVK $\alpha \in [9.0,12.4]$ contains $11.24$.
+Figs.~30--31.
+
+\section{Archival ledger and O5 trigger (BU detail)}
+\label{sec:ledger}
+
+\begin{table}[h]\centering\footnotesize
+\caption{What exists today: no qualifying test yet. Only multi-detector, $<100$\,deg$^2$ gap events count.}
+\label{tab:archival}
+\begin{tabular}{lllll}\toprule
+event & masses & distance & localisation / EM & verdict \\\midrule
+GW230529 & $2.5$--$4.5$ + $1.2$--$2.0$ & $\sim 197$\,Mpc & 24,200\,deg$^2$ (single-detector); ZTF 7\% to $g = 21.1$ & not a test: 93\% unsearched; our $m_g \sim 21.2$ at depth edge \\
+S250206dm & mgBH candidate & --- & no counterpart (per notes) & unverified: check GCNs before citing \\\bottomrule
+\end{tabular}
+\end{table}
+
+Trigger (full plan \texttt{docs/observation-protocol.md}): $m_1 \in
+[2.5,5.0]\,M_\odot$, $< 200$\,Mpc, 90\% $< 100$\,deg$^2$; Rubin ToO
+0.5/2/5\,d in $g+r+i+z$ (DECam/Gemini backup). Sought: fast blue
+($v \sim 0.3c$, $t_{\mathrm{peak}} \sim 0.6$--$1$\,d) $\to$ slow red with
+$L \propto t^{-1.3}$ tail. Yield: 1.5 gap/yr $\times$ 70\% $\approx 1.05$/yr
+ours vs $\le 0.3$/yr standard. Yield arithmetic in
+\texttt{collapse.gap\_o5\_yield}; brightness in
+\texttt{collapse.peak\_apparent\_mags}. Figs.~68--69.
 
 \section{Module map and reproduction}
 
