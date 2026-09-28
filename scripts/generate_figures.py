@@ -1863,6 +1863,56 @@ def fig73_uv_n4000():
     plt.close(fig)
 
 
+def fig74_nsbh_discriminator():
+    from bh_graph.nsbh import (
+        discriminator_point, graph_nsbh_ejecta, spin_sweep,
+        standard_nsbh_ejecta,
+    )
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    chi = np.linspace(-0.9, 0.9, 37)
+    for eos, color, ls in [("softer", "#94a3b8", "--"), ("fiducial", "#dc2626", "-"),
+                            ("stiffer", "#7c3aed", ":")]:
+        ej = np.array([standard_nsbh_ejecta(3.6, 1.4, float(c), eos)["M_ej"] for c in chi])
+        axes[0].plot(chi, np.maximum(ej, 3e-5), color=color, ls=ls, label=f"tidal {eos}")
+    axes[0].axhline(0.084, color="#2563eb", label="graph baseline")
+    axes[0].fill_between(chi, 0.063, 0.084, color="#2563eb", alpha=0.15,
+                         label="graph spin_ordered env.")
+    axes[0].axhline(1e-4, color="black", ls="--", lw=1, label="KN threshold")
+    axes[0].axvspan(-0.9, 0.05, alpha=0.08, color="red", label="GW230529 bulk")
+    axes[0].set_yscale("log")
+    axes[0].set_ylim(3e-5, 0.3)
+    axes[0].set_xlabel("chi_BH"); axes[0].set_ylabel("M_ej (Msun)")
+    axes[0].set_title("Gate vs floor at 3.6+1.4"); axes[0].legend(fontsize=6)
+    m1 = np.linspace(2.5, 9.0, 40)
+    std_q = np.array([standard_nsbh_ejecta(float(a), 1.4, 0.0, "fiducial")["M_ej"] for a in m1])
+    gr_q = np.array([graph_nsbh_ejecta(float(a), 1.4, 0.0, "baseline")["M_ej"] for a in m1])
+    axes[1].plot(m1, np.maximum(std_q, 3e-5), color="#dc2626", label="tidal chi=0")
+    axes[1].plot(m1, gr_q, color="#2563eb", label="graph baseline")
+    axes[1].axhline(1e-4, color="black", ls="--", lw=1)
+    axes[1].axvspan(2.5, 5.0, alpha=0.15, color="red", label="mass gap")
+    axes[1].set_yscale("log")
+    axes[1].set_ylim(3e-5, 0.3)
+    axes[1].set_xlabel("M_BH (Msun, M_NS=1.4, chi=0)")
+    axes[1].set_ylabel("M_ej (Msun)")
+    axes[1].set_title("Standard dies with Q, graph grows"); axes[1].legend(fontsize=7)
+    dd = np.linspace(40, 400, 60)
+    g_gap = [discriminator_point(3.6, 1.4, 0.0, "fiducial", d, "baseline")["graph_m_g"] for d in dd]
+    s_pro = [discriminator_point(3.6, 1.4, 0.5, "fiducial", d, "baseline")["std_m_g"] for d in dd]
+    axes[2].plot(dd, g_gap, color="#2563eb", label="graph 3.6+1.4 any chi")
+    axes[2].plot(dd, s_pro, color="#dc2626", ls="--", label="tidal 3.6+1.4 chi=0.5")
+    axes[2].axhline(24.5, color="black", ls="--", lw=1, label="Rubin 24.5")
+    axes[2].axhline(23.5, color="black", ls=":", lw=1, label="DECam 23.5")
+    axes[2].axhline(21.1, color="gray", ls="-.", lw=1, label="ZTF 21.1")
+    axes[2].axvline(201, color="red", alpha=0.5, ls="--", label="GW230529")
+    axes[2].set_ylim(24.5, 19.0)
+    axes[2].set_xlabel("distance (Mpc)"); axes[2].set_ylabel("peak m_g")
+    axes[2].set_title("Gap KN visible; control overlaps"); axes[2].legend(fontsize=6)
+    fig.suptitle("Fig 74 — GW230529 KN discriminator: tidal gate vs shedding floor")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig74_nsbh_discriminator.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1937,6 +1987,7 @@ def main():
     fig71_uv_pop()
     fig72_uv_ladder()
     fig73_uv_n4000()
+    fig74_nsbh_discriminator()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

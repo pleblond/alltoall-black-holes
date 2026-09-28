@@ -68,7 +68,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`; GW230529 KN discriminator `nsbh`.
 
 ## Quickstart
 

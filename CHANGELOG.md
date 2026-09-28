@@ -3,6 +3,12 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased** — GW230529 kilonova discriminator (`nsbh.py`, Fig 74,
+  `docs/gw230529-discriminator.md`): standard Foucart+Krüger tidal fits vs
+  graph leg-shedding over $(M_{\rm BH},M_{\rm NS},\chi_{\rm BH})$; at the
+  medians the standard model is dark for $\chi\lesssim0$ while shedding
+  gives $0.084\,M_\odot$ ($m_g\sim21.3$ at 201 Mpc); spin/Q sweeps,
+  labeled graph spin variants, O3 archival check. 12 tests.
 - **v4.1** — BV UV tortuosity-as-scattering + N-scale campaigns: legs as
   radial line defects ($\sigma = 4\ln 2$), soft cost $\ln 2$ gives dilute
   $c = 0.44$–$0.60$ (target $0.456$) with zero tuning; $p = 2c$,
