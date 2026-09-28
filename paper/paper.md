@@ -1783,3 +1783,47 @@ Soft-$c$ systematics mapped honestly: even-L decline $0.59 \to 0.38$
 offset (L=25: $0.32$) — all inside the armed $[0.3, 0.8]$ wire, and fixed-$k$
 across-$L$ is apples-to-oranges ($R_s$/box changes); the matched comparison
 is the $c(k)$ curve at fixed $L$.
+
+## Appendix BW. Mass-spectrum structure in k-language: explored, null (Fig 74)
+
+(`bh_graph.massspec`; full ledger in `docs/mass-spectrum-exploration.md`.)
+GWTC-3 population inference finds structure beyond a bare power law: excesses
+near $\sim 10\,M_\odot$ and $\sim 34\,M_\odot$ plus a high-mass transition
+(Abbott et al., PRX 13, 011048). Since the model's variable is $k \propto M^2$,
+preferred $k$ transitions could in principle map nonlinearly into $M$. The
+population was simulated; nothing survives. Four quantitative nulls:
+
+**(1) Discreteness is 78 orders too fine.** At $10\,M_\odot$,
+$k \approx 1.5\times10^{79}$, so $\Delta M/M = 1/2k \approx 3\times10^{-80}$
+per integer leg step (Fig 74a). "Integer graph units" cannot shape solar-mass
+features without a new scale — dead as stated, on the record.
+
+**(2) Smooth $k$ maps to smooth $M$.** $M = \sqrt{k/c}$ is monotone $C^1$, so
+mode counts are preserved (tested: unimodal Gamma in $k$ stays unimodal in
+$M$; power-law index shifts $\gamma \to 2\gamma-1$ through the Jacobian).
+The nonlinearity reshapes peaks; it cannot mint them.
+
+**(3) The merger leg budget is GR's.** On 83 unique BBH medians (GWOSC
+GWTC-1/2.1/3), $\eta = (k_f-k_1-k_2)/(k_1+k_2)$ tracks mass ratio at
+$R^2 = 0.85$ (Fig 74c) with $E_{rad}/M_{tot} = 0.048\,(4\nu)^2$ — the textbook
+nonspinning value. Residual room for graph microphysics is $\sim 0.7\%$ of
+total mass. The equal-mass ladder $10 \to 18.8 \to 35.4\,M_\odot$ at median
+$\eta$ is suggestive until scatter, pairing, and retention are included: the
+seeded hierarchical toy then shows smooth 1G yields smooth observed $m_1$,
+and the 35 $M_\odot$ pile-up appears only when put into 1G by (stellar)
+hand (Fig 74b) — the standard story, reparametrized, with identical tuning.
+The 10 $M_\odot$-as-hierarchical-from-gap sub-idea is vetoed by spins (all 16
+low-mass events have $|\chi_{eff}| < 0.25$ vs $\sim 0.7$ expected for
+remnants). The $\sigma_{M_f} = M_f\sigma_\eta/2(1+\eta)$ bridge to future peak
+predictions is implemented; its derived input is absent.
+
+**(4) An intrinsic comb needs an absent mesoscale.** Shedding in units of
+$k/N_{mod}$ gives $\Delta M/M = 1/2N_{mod}$; peak-width structure needs
+$N_{mod} \lesssim 5$ coherent modules per hole (Fig 74d) — 38 orders above any
+Planckian $N$ in the model, evidenced nowhere. Pre-registered test:
+$\sqrt{n/m}$ remnant-mass clustering (none seen); the PISN edge stays stellar
+physics, out of scope.
+
+Verdict: 🟡 stays 🟡 — interesting language, no claim. Upgrade requires a
+derived $\eta$ distribution differing from GR's remnant formula, or a derived
+mesoscopic scale. Neither exists; this appendix is the receipt.

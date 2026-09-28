@@ -3,6 +3,14 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased** — BW mass-spectrum exploration (null, on the record):
+  integer-$k$ steps shift $10\,M_\odot$ by $3\times10^{-80}$ (78 orders below
+  peak widths); smooth $k\to$ smooth $M$ (mode preservation); GWTC $\eta(q)$
+  at $R^2 = 0.85$ with $E_{rad} = 0.048\,(4\nu)^2$ (GR fixes the leg budget);
+  seeded hierarchical toy adds no 35 $M_\odot$ peak without stellar input;
+  10 $M_\odot$-from-gap vetoed by spins; intrinsic comb would need
+  $N_{mod} \lesssim 5$ (absent; test pre-registered). 13 tests, Fig 74.
+
 - **v4.1** — BV UV tortuosity-as-scattering + N-scale campaigns: legs as
   radial line defects ($\sigma = 4\ln 2$), soft cost $\ln 2$ gives dilute
   $c = 0.44$–$0.60$ (target $0.456$) with zero tuning; $p = 2c$,

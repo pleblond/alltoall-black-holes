@@ -32,15 +32,16 @@ from bh_graph.ds import ds_legs, stellar_bh_total_legs
 from bh_graph.cosmic import ds_scrambling_gyr
 from bh_graph.remnant import required_beta_for_dm
 from bh_graph import uvscatter as _uv
+from bh_graph import massspec as _ms
 
 st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–BS, BV", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
 st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–BS, BV in src/bh_graph/ (paper/main.pdf)")
 
-tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tabBV, tab4 = st.tabs([
+tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tabBV, tabBW, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
     "A: Circuits", "B: k(N)", "C: QES", "D: Page", "F/G: QEC+robust", "H–L", "Q/R: Data",
-    "BV: UV scattering", "Paper",
+    "BV: UV scattering", "BW: mass spectrum", "Paper",
 ])
 
 with tab1:
@@ -332,6 +333,25 @@ with tabBV:
         st.image("figures/fig70_uv_c.png", caption="fig70: dilute c, no tuning")
         st.image("figures/fig71_uv_pop.png", caption="fig71: pop + UV running")
         st.image("figures/fig72_uv_ladder.png", caption="fig72: ladder + no-r check")
+
+with tabBW:
+    st.header("BW — Mass spectrum in k-language (explored, null)")
+    st.markdown("Integer-$k$ steps shift $10\\,M_\\odot$ by $3\\times10^{-80}$; "
+                "the merger leg budget is GR's ($\\eta(q)$, $R^2=0.85$); hierarchy "
+                "adds no peak without stellar input. Full ledger in "
+                "`docs/mass-spectrum-exploration.md`.")
+    col_a, col_b = st.columns([1, 2])
+    with col_a:
+        bw_m = st.slider("M (Msun)", 5.0, 100.0, 10.0, step=1.0)
+        sp = _ms.unit_leg_spacing(float(bw_m))
+        st.metric("dM/M per leg step", f"{sp['rel']:.2e}")
+        st.metric("k legs", f"{sp['k']:.2e}")
+        bw_nmod = st.slider("mesoscopic modules N_mod", 1, 100, 5, step=1)
+        st.metric("comb spacing dM/M", f"{_ms.comb_relative_spacing(float(bw_nmod)):.3f}")
+        st.metric("equal-mass ladder x10", " / ".join(
+            f"{x:.1f}" for x in _ms.hierarchical_chain(10.0, _ms.ETA_MEDIAN, 2)))
+    with col_b:
+        st.image("figures/fig74_massspec.png", caption="fig74: null result (n=83 BBH)")
 
 with tab4:
     st.header("Paper draft")

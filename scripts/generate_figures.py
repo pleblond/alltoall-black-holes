@@ -1863,6 +1863,58 @@ def fig73_uv_n4000():
     plt.close(fig)
 
 
+def fig74_massspec():
+    from bh_graph import massspec as _ms
+    samp = _ms.gwtc_bbh_sample(live=True)
+    cal = _ms.eta_calibration(samp)
+    m1g = np.array([v[0] for v in samp.values()])
+    bins = np.array([5, 8, 12, 16, 20, 25, 30, 35, 40, 45, 50, 60, 80, 120])
+    smooth = _ms.simulate_hierarchical(n_1g=40000, seed=3)
+    peaked = _ms.simulate_hierarchical(n_1g=40000, seed=3, peak_frac=0.25)
+    hs = _ms.observed_m1_histogram(smooth, bins)["counts"] * len(m1g) / 83.0
+    hp = _ms.observed_m1_histogram(peaked, bins)["counts"] * len(m1g) / 83.0
+    hg, _ = np.histogram(m1g, bins=bins)
+    fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+    ax = axes[0, 0]
+    mm = np.logspace(np.log10(5), 2, 100)
+    ax.loglog(mm, [1.0 / (2.0 * _ms.k_of_m_msun(m)) for m in mm], color="#2563eb")
+    ax.axhline(0.1, ls="--", color="red", label="10% (peak-width scale)")
+    ax.annotate("dk=1: dM/M ~ 1e-79\n78 orders below peaks", (9, 1e-70),
+                fontsize=9, color="#2563eb")
+    ax.set_xlabel("M (Msun)"); ax.set_ylabel("dM/M per integer leg step")
+    ax.set_title("(a) k-discreteness cannot shape the spectrum"); ax.legend(fontsize=8)
+    ax = axes[0, 1]
+    ctr = 0.5 * (bins[:-1] + bins[1:])
+    ax.step(ctr, hg, where="mid", color="black", lw=1.8, label=f"GWTC medians (n={len(m1g)})")
+    ax.step(ctr, hs, where="mid", color="#94a3b8", label="toy: smooth 1G")
+    ax.step(ctr, hp, where="mid", color="#2563eb", label="toy: +35 Msun stellar peak")
+    ax.axvspan(30, 45, alpha=0.12, color="red", label="35 Msun feature")
+    ax.set_xlabel("primary mass m1 (Msun)"); ax.set_ylabel("VT-weighted counts")
+    ax.set_title("(b) hierarchy adds no peak; stellar input does"); ax.legend(fontsize=7)
+    ax = axes[1, 0]
+    ax.scatter(cal["q"], cal["eta"], s=14, alpha=0.6, color="#2563eb", label="GWTC medians")
+    qq = np.linspace(0.15, 1.0, 100)
+    ax.plot(qq, _ms.eta_quad_fit(qq), color="red",
+            label=f"quad fit R2={cal['r2']:.2f}")
+    ax.set_xlabel("mass ratio q"); ax.set_ylabel("leg-creation eta")
+    ax.set_title(f"(c) GR fixes the leg budget (Erad A={cal['erad_A']:.3f}~0.05)")
+    ax.legend(fontsize=8)
+    ax = axes[1, 1]
+    nn = np.logspace(0, 40, 200)
+    ax.loglog(nn, 0.5 / nn, color="#2563eb")
+    ax.axhspan(0.01, 1.0, alpha=0.12, color="green", label="visible (>1%)")
+    ax.axvline(5, ls="--", color="red", label="need N_mod <~ 5 for 10% comb")
+    ax.scatter([1e39], [0.5e-39], s=60, color="black", zorder=5)
+    ax.annotate("Planckian N~1e39", (1e39, 0.5e-39), xytext=(1e28, 1e-36),
+                arrowprops={"arrowstyle": "->"}, fontsize=9)
+    ax.set_xlabel("mesoscopic modules N_mod"); ax.set_ylabel("comb spacing dM/M")
+    ax.set_title("(d) intrinsic comb needs a new scale (absent)"); ax.legend(fontsize=8)
+    fig.suptitle(f"Fig 74 — BW: mass spectrum in k-language (null: n={len(m1g)} BBH)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig74_massspec.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1937,6 +1989,7 @@ def main():
     fig71_uv_pop()
     fig72_uv_ladder()
     fig73_uv_n4000()
+    fig74_massspec()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
