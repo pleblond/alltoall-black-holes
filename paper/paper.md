@@ -269,10 +269,11 @@ micro-hole prediction to test in fuller tensor-network / LQG / island
 calculations. (BU branch: the value now extends to a sky frontier — J0737 2PN
 and gap kilonovae — with the same toy status and explicit falsifiers.)
 
-**Ringdown status.** The present construction predicts negligible horizon reflectivity from
-lattice scattering — amplitude $R \sim (\omega/\omega_P)^2 \sim 10^{-80}$, echo energy
+**Ringdown status.** A dimensional estimate based on lattice scattering gives negligible effective
+reflection — amplitude $R \sim (\omega/\omega_P)^2 \sim 10^{-80}$, echo energy
 $\sim 10^{-160}$ at 100 Hz vs $O(0.01)$ detectability — and therefore no observable echo
-signal from this mechanism. It does not derive a modified QNM spectrum from graph dynamics:
+signal from this lattice-scattering mechanism. This is an order-of-magnitude estimate, not a
+derivation of the graph/leg scattering matrix. The model does not yet derive a modified QNM spectrum from graph dynamics:
 the fundamental damping $\tau = 11.24\,M$ is calibrated to GR (AG), the Pöschl-Teller tower
 $1$:$3$:$5$ vs $1$:$3.08$:$5.38$ is a toy stand-in for the Regge-Wheeler barrier (AZ), and
 footprint corrections ($1/2k$, $1/\sqrt{k}$) sit $40+$ orders below sensitivity (BE).
@@ -1179,7 +1180,7 @@ echoes unobservable, from this mechanism, by a quantified margin.
 > fundamental only (AZ, $<8\%$ on damping ratios), and the comb/broadening/leg-line
 > imprints are computed but unobservable. The exterior perturbation problem —
 > what $h_{\mu\nu}$ does at the graph/horizon, and hence $\delta\omega_{nlm}$ vs
-> Kerr — is open. GW250114 is the pre-registered ruler: $\delta f_{220} \sim 2\%$,
+> Kerr — is open. GW250114 provides the benchmark: $\delta f_{220} \sim 2\%$,
 > $\delta\tau_{220} \sim 10\%$, $\delta f_{221} \sim 30\%$, $\delta f_{440} \sim$
 > tens of \%. A future graph-derived $\lvert\delta\omega/\omega\rvert$ above those
 > thresholds for a GW250114-like remnant fails; below them it passes.
