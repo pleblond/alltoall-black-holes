@@ -3,7 +3,7 @@
 v5 restructures the v4.1 living document (1758 lines, 68 appendices, 77 figures)
 into a submittable pair (both compile; counts as of this commit):
 
-- `main.tex` — journal text, 11pp preprint single-column 11pt (≈7pp two-column).
+- `main.tex` — journal text, 12pp preprint single-column 11pt (≈8pp two-column).
   Motivation, 3 claims in §2, gravity to 1PN + 2PN preview, UV + QI,
   one-family compact objects + gap-KN prediction, falsifiers + conclusion.
   5 figures (1 new survival matrix + 4 tested artifacts), 46 references.
@@ -46,7 +46,7 @@ with paper text. v5/main.tex:
 
 ```bash
 cd paper/v5
-pdflatex main.tex && pdflatex main.tex            # main.pdf, 11pp
+pdflatex main.tex && pdflatex main.tex            # main.pdf, 12pp
 pdflatex supplement.tex && pdflatex supplement.tex # supplement.pdf, 11pp
 ```
 
@@ -54,7 +54,7 @@ Figures resolve via `../../figures/`.
 
 ## Next steps (for loop ticks)
 
-- [x] Install texlive and verify page counts (main 11pp preprint ≈7pp journal; supp 11pp)
+- [x] Install texlive and verify page counts (main 12pp preprint ≈8pp journal; supp 11pp)
 - [x] Add Fig.1 survival-matrix schematic (new TikZ, references ledger, no new claims)
 - [x] Expand references to ~40 (EOS/NICER/GWTC/LVK-testing-GR/POSSIS/Rubin + neighbours)
 - [x] Grow supplement toward ~12pp → reached 11pp with 12 ported figures (lensing/Mercury/UV-c/Page/unitary-Page/N-scale/2PN/p-fit/O5/healing/dispersion/systematics)

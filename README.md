@@ -14,14 +14,14 @@
 > **New here?** Start with [`docs/model-explained.md`](docs/model-explained.md) —
 > a plain-language tour of the whole model (no physics background needed),
 > with pointers into the paper, code, and demo.
-> **v5.0** is the journal cut (11pp main + 11pp methods supplement):
+> **v5.0** is the journal cut (12pp main + 11pp methods supplement):
 > one compact-object family — **no neutron stars**
 > ([`note`](docs/resuscitate-no-neutrons.md)) — J0737 2PN at
 > $p = 0.913\pm0.049$ (80 graphs, exact), gap kilonovae at ~1/yr in O5
 > with a kill-or-confirm [`protocol`](docs/observation-protocol.md),
 > plus an upper-gap null and a GW190814 audit (tension, not exclusion).
 
-> **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 11pp) ·
+> **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 12pp) ·
 > [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 11pp, S1–S10) ·
 > build [`notes`](paper/v5/README.md)
 
@@ -203,7 +203,7 @@ release:
 ## Status
 
 v5.0: journal cut of the v4.1 living document — [`main.pdf`](paper/v5/main.pdf)
-(11pp preprint ≈ 7pp two-column: motivation, 3 claims, gravity to 1PN + 2PN
+(12pp preprint ≈ 8pp two-column: motivation, 3 claims, gravity to 1PN + 2PN
 preview, UV+QI, one-family compact objects + gap-KN ~1/yr O5, upper-gap null
 + GW190814 audit, falsifiers) +
 [`supplement.pdf`](paper/v5/supplement.pdf) (11pp S1–S10 methods: audit,
