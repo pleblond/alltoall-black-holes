@@ -1,0 +1,46 @@
+{
+ "frozen": {
+  "delay_s": 0.3,
+  "window_s": 0.02,
+  "threshold": 5.0
+ },
+ "note": "frozen statistic mock-validated on WHITE noise only; raw colored strain has DC offsets (see report); descriptive-only, verdict margin-driven",
+ "strains": {
+  "GW150914/H1": {
+   "snr_excess_frozen": 0.9293981429713389,
+   "symmetric_posthoc": -0.8863977458991207,
+   "sig_dc": 1.1973910908063827e-19,
+   "bkg_dc": -1.200871410960573e-19,
+   "fs_hz": 4096.0,
+   "gps_merger": 1126259462.4,
+   "file": "H-H1_GWOSC_4KHZ_R1-1126259447-32.hdf5"
+  },
+  "GW150914/L1": {
+   "snr_excess_frozen": 364.37683134870406,
+   "symmetric_posthoc": 3.215993885381173,
+   "sig_dc": -9.888247214156772e-19,
+   "bkg_dc": -9.522153690547702e-19,
+   "fs_hz": 4096.0,
+   "gps_merger": 1126259462.4,
+   "file": "L-L1_GWOSC_4KHZ_R1-1126259447-32.hdf5"
+  },
+  "GW190521/H1": {
+   "snr_excess_frozen": 23.638074577701474,
+   "symmetric_posthoc": 3.404983356765279,
+   "sig_dc": -8.577886684585364e-20,
+   "bkg_dc": 1.5818617515319817e-19,
+   "fs_hz": 4096.0,
+   "gps_merger": 1242442967.43,
+   "file": "H-H1_GWOSC_4KHZ_R1-1242442952-32.hdf5"
+  },
+  "GW190521/L1": {
+   "snr_excess_frozen": 23.076811395758682,
+   "symmetric_posthoc": 3.874909788176729,
+   "sig_dc": -2.664604059840663e-19,
+   "bkg_dc": 4.910997714426662e-19,
+   "fs_hz": 4096.0,
+   "gps_merger": 1242442967.43,
+   "file": "L-L1_GWOSC_4KHZ_R1-1242442952-32.hdf5"
+  }
+ }
+}

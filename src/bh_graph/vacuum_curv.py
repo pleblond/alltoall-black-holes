@@ -31,15 +31,15 @@ PROTOCOLS = ("E1", "E2")
 CORE_FAMILIES = ("cubic", "bcc", "fcc")
 
 __all__ = [
-    "SEEDS",
-    "PROTOCOLS",
     "CORE_FAMILIES",
+    "PROTOCOLS",
+    "SEEDS",
+    "base_absorbed_slopes",
+    "fit_form_comparison",
     "is_valid_profile",
     "measure_kappa_sample",
     "radial_kappa_profile",
     "radial_kappa_profile_sinkhorn",
-    "fit_form_comparison",
-    "base_absorbed_slopes",
     "test_i_verdict",
     "test_ii_verdict",
     "test_iii_verdict",

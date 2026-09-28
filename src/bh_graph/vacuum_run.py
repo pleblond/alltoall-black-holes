@@ -81,7 +81,7 @@ def run_profiles() -> dict:
          for f in C.CORE_FAMILIES}) for setting in form_by_setting}
     # Strict reading: one setting must win on >= 2 families (same setting).
     overall = "INCONCLUSIVE"
-    for setting, v in verdicts.items():
+    for v in verdicts.values():
         if v["verdict"] == "PASS":
             overall = "PASS"
     if overall != "PASS" and any(v["verdict"] == "FAIL"

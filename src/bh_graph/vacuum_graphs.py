@@ -32,12 +32,12 @@ K_VAC = {"cubic": 6, "bcc": 8, "fcc": 12, "kelvin": 14}
 __all__ = [
     "FAMILIES",
     "K_VAC",
+    "apply_excursion",
     "build_vacuum",
     "is_k_regular",
-    "is_valid_family",
     "is_valid_L",
+    "is_valid_family",
     "max_unwrapped_radius",
-    "apply_excursion",
     "radial_bins",
 ]
 

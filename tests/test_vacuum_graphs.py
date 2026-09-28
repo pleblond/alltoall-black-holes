@@ -1,6 +1,7 @@
 """Vacuum graphs: regularity, counts, excursions, wrap control (prereg §1)."""
+from itertools import pairwise
+
 import networkx as nx
-import numpy as np
 
 from bh_graph import vacuum_graphs as V
 
@@ -52,7 +53,7 @@ def test_unwrapped_radius_monotone_and_pinned():
     for fam, Ls in (("cubic", [6, 8, 10, 12]), ("bcc", [5, 6, 7, 8]),
                     ("fcc", [4, 5, 6, 7])):
         rs = [V.max_unwrapped_radius(V.build_vacuum(fam, L)) for L in Ls]
-        assert all(b >= a for a, b in zip(rs, rs[1:])), (fam, rs)
+        assert all(b >= a for a, b in pairwise(rs)), (fam, rs)
     assert V.max_unwrapped_radius(V.build_vacuum("bcc", 8)) >= 4
     assert V.max_unwrapped_radius(V.build_vacuum("fcc", 7)) >= 4
     assert V.max_unwrapped_radius({"ok": False}) == 0

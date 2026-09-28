@@ -29,8 +29,8 @@ LVK_NULLS = (
 
 __all__ = [
     "LVK_NULLS",
-    "mock_ringdown",
     "frozen_statistic",
+    "mock_ringdown",
     "mock_validation",
     "null_verdict",
     "try_gwosc_fetch",
@@ -71,11 +71,19 @@ def frozen_statistic(mock: dict, window_s: float = 0.02) -> dict:
     Signal window = [delay, delay+window]; background = late-time
     window of equal length. {ok, snr_excess}. Frozen = fixed here
     before any real-data comparison.
+
+    NOTE (real-data limitation, found 2026-09-28, behavior unchanged):
+    validated on WHITE-noise mocks only. On RAW colored strain the
+    signal mean-square keeps the DC offset while the background
+    VARIANCE removes it, so unwhitened DC (~1e-19) fires the statistic
+    spuriously (GW150914/L1: 364; symmetric var/var post-hoc: < 5
+    everywhere). Real-strain use is descriptive-only; the null verdict
+    is margin-driven + LVK published nulls. See docs/VACUUM_REPORT.md.
     """
     bad = {"ok": False}
     if not mock.get("ok", False):
         return bad
-    t, h, fs = mock["t_s"], mock["h"], mock["fs_hz"]
+    t, h = mock["t_s"], mock["h"]
     d = mock["echo_delay_s"]
     sig = h[(t >= d) & (t < d + window_s)]
     bkg = h[(t >= d + 4 * window_s) & (t < d + 5 * window_s)]
@@ -127,7 +135,7 @@ def try_gwosc_fetch() -> dict:
         return {"ok": True, "reason": "",
                 "note": "URLs listed; strain download not attempted "
                         "(margin is analytic; see null_verdict)"}
-    except Exception as exc:  # network or API failure → published path
+    except Exception as exc:  # noqa: BLE001 -- any network/API failure routes to the published-nulls path by design
         return {"ok": False, "reason": f"gwosc-fetch-error: {exc}"}
 
 

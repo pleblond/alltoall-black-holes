@@ -34,12 +34,12 @@ GRB090510_DIST_MPC = 7000.0  # z = 0.903, ~7 Gpc comoving-ish scale
 GRB080916C_DIST_MPC = 12000.0  # z = 4.35, higher-z lever arm
 
 __all__ = [
-    "GRB090510_TOP_ENERGY_GEV",
+    "GRB080916C_DIST_MPC",
     "GRB090510_DELAY_WINDOW_S",
     "GRB090510_DIST_MPC",
-    "GRB080916C_DIST_MPC",
-    "mock_grb_photons",
+    "GRB090510_TOP_ENERGY_GEV",
     "frozen_statistic",
+    "mock_grb_photons",
     "mock_validation",
     "null_verdict",
 ]

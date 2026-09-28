@@ -1,0 +1,67 @@
+{
+ "liv": {
+  "mock": {
+   "ok": true,
+   "model_slope": 4.735924443265362e-06,
+   "excluded_slope": 0.007209634677099674,
+   "jitter_floor": 0.00043838093222054093,
+   "quiet": true,
+   "fires": true
+  },
+  "null": {
+   "verdict": "PASS",
+   "predicted_090510_s": 5.806226601012749e-19,
+   "predicted_080916c_s": 1.7504128953253836e-19,
+   "bound_window_s": 1.0,
+   "margin_orders_090510": 18.236106018857594,
+   "fermi_quad_margin": 265634996.9902978,
+   "fermi_quad_bound_gev": 130000000000.0,
+   "eqg2_gev": 3.4532549608738714e+19,
+   "linear_absent": true
+  }
+ },
+ "echo": {
+  "mock": {
+   "ok": true,
+   "snr_detectable": 13.140171925365678,
+   "snr_model": 0.019117380942462514,
+   "threshold": 5.0,
+   "fires": true,
+   "quiet": true
+  },
+  "null": {
+   "verdict": "PASS",
+   "margin_orders": 159.88052360861698,
+   "detect_energy_ref": 0.01,
+   "lvk_nulls": [
+    "Abbott et al. PRD 112, 084080 (O3 BayesWave echo search: null)",
+    "Uchikata et al. PRD 108, 104040 (template echo search: null)"
+   ],
+   "gwosc": {
+    "ok": true,
+    "reason": "",
+    "note": "URLs listed; strain download not attempted (margin is analytic; see null_verdict)"
+   }
+  }
+ },
+ "pulsar": {
+  "label": "CONSISTENCY-GATE (never validation)",
+  "anchors_ok": true,
+  "fitted": {
+   "ok": true,
+   "p": 0.913,
+   "c2": 0.7541380000000001,
+   "J0737": {
+    "M_gr": 2.586924235431386,
+    "dot_model": 16.89932169967599,
+    "sigma": 0.1000249237283522
+   },
+   "B1913": {
+    "M_gr": 2.828279714383876,
+    "dot_model": 4.226597746488445,
+    "sigma": 0.06337788871491057
+   }
+  },
+  "phase1": null
+ }
+}

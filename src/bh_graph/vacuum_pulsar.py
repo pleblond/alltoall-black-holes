@@ -23,8 +23,8 @@ B1913_DOT = 4.226598
 FITTED_P = 0.913  # L2 fitted radial exponent (comparison input, not derived)
 
 __all__ = [
-    "KRAMER_J0737_DOT",
     "FITTED_P",
+    "KRAMER_J0737_DOT",
     "anchors_match",
     "gate_at_p",
     "gate_verdict",
