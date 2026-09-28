@@ -31,7 +31,8 @@ $w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathr
 shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
-Kerr $M_2$, $g_{t\phi}$, ISCO & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW241011 future wire \\\bottomrule
+Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
+echo $R$ & $10^{-80}$ ampl., $10^{-160}$ energy & dimensional estimate & $\propto\omega^2$ lattice scattering, not leg S-matrix; $\sim158$ orders margin \\\bottomrule
 \end{tabular}
 \end{table}
 
@@ -152,10 +153,18 @@ Tracked as D1 in \path{docs/DEFERRED.md}.
 \textbf{What Kerr means here (honesty note).} Only the Kerr--Newman area $A(M,a,Q)$ is assumed to
 set the leg budget $k_{\rm eff}=A/4\ln2$ (module \texttt{kerr}; extremal Kerr half, extremal RN
 quarter; ratios patch-independent). Not derived from the graph: spin-induced quadrupole $M_2=-Ma^2$,
-frame dragging $g_{t\phi}$, ISCO$(M,J)$, or the Kerr QNM spectrum (the overtone toy is Schwarzschild-like).
+frame dragging $g_{t\phi}$, ISCO$(M,J)$, or the Kerr QNM spectrum (the overtone toy is Schwarzschild-like;
+fundamental damping $\tau=11.24\,M$ calibrated, footprint corrections $1/2k$, $1/\sqrt{k}$ unobservable).
+Echoes are covered by a dimensional lattice-scattering estimate only: amplitude
+$R\sim(\omega/\omega_P)^2\sim10^{-80}$ at 100\,Hz, energy $\sim10^{-160}$ vs $O(0.01)$
+detectability ($\sim158$ orders of margin, module \texttt{gwdata}) --- not a leg S-matrix derivation.
+The exterior perturbation problem ($\delta\omega_{nlm}$ vs Kerr) is open.
 Hence GW250114 (SNR 80 area law + Kerr ringdown) and GW241011 (strongest $\delta\kappa$ bound to date,
 Kerr to factor $\sim$2 resp.\ $\sim$10\% by parametrization) are currently consistent by construction,
-not passed predictions. A future graph derivation $Q=-Ma^2(1+\delta_Q)$ with $|\delta_Q|\gtrsim0.17$
+not passed predictions. GW250114 provides the QNM benchmark ($\delta f_{220}\sim2\%$,
+$\delta\tau_{220}\sim10\%$, $\delta f_{221}\sim30\%$, $\delta f_{440}\sim$tens\%):
+a future graph-derived $|\delta\omega/\omega|$ above those thresholds fails.
+A future graph derivation $Q=-Ma^2(1+\delta_Q)$ with $|\delta_Q|\gtrsim0.17$
 would be ruled out by GW241011. Tracked as D2 in \path{docs/DEFERRED.md}.
 
 \textbf{Kerr thermodynamics (conditional check).} With $S = k\ln 2$ (saturated
