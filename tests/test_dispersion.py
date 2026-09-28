@@ -39,7 +39,7 @@ def test_gw_extrapolation_absurdly_safe():
     # Correct LVK map is alpha = 4 (alpha = 2 has no dispersion).
     assert abs(lvk_a4_pev_inv2()) < 1e-80  # ~6e-82 peV^-2
     assert lvk_a4_margin() > 1e50  # ~1e60
-    assert multimessenger_margin() > 1e20  # ~1e32, photon-side dominated
+    assert multimessenger_margin() > 1e20  # ~1e32 at representative 100 keV
     assert is_gw_propagation_safe()
 
 

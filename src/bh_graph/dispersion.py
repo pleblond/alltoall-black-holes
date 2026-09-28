@@ -38,7 +38,9 @@ H_GEV_S = 4.135667696e-24
 # GWTC-4.0 tightens by factors of a few — irrelevant at 60 orders).
 # A_4 has dimension energy^-2; alpha = 2 is excluded by LVK (no dispersion).
 LVK_A4_BOUND_PEV_INV2 = 1.0e-21
-# GW170817/GRB 170817A fractional-speed difference bound (order of magnitude).
+# Observed fractional-speed bound from GW170817/GRB 170817A arrival-time
+# comparison (order of magnitude; the full constraint folds in the photon
+# energy distribution and uncertain intrinsic source-emission delay).
 GW170817_FRAC_SPEED_BOUND = 1.0e-15
 # GeV -> peV conversion: 1 GeV = 1e21 peV.
 GEV_PER_PEV = 1.0e-21
@@ -118,7 +120,14 @@ def lvk_a4_margin() -> float:
 
 
 def multimessenger_margin(grb_energy_gev: float = 1.0e-4) -> float:
-    """GW170817 bound / photon-side shift (photon dominates over GW by ~35 orders)."""
+    """Observed speed bound / model photon-side shift at a representative E_gamma.
+
+    Default 1e-4 GeV (100 keV) is illustrative, not "the" GW170817 photon
+    energy: the real constraint involves the GRB photon distribution and an
+    astrophysically uncertain intrinsic emission delay. The point is only
+    that even the photon side (which dominates the GW side by ~35 orders
+    under universality) sits far below the observed bound.
+    """
     photon_shift = (grb_energy_gev / eqg2_scale_gev()) ** 2
     return float(GW170817_FRAC_SPEED_BOUND / photon_shift)
 

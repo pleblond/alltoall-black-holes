@@ -1138,8 +1138,10 @@ GeV photons. In LVK language $E^2 = (pc)^2 + A_{\alpha}(pc)^{\alpha}$
 ($\alpha = 2$ excluded — no dispersion), quadratic-in-$v$ maps to
 $\alpha = 4$ with $A_4 = -2/3E_{QG,2}^{-2} \sim -6\times10^{-82}$
 peV$^{-2}$ vs bound $\sim 10^{-21}$ peV$^{-2}$: safe by $\sim 10^{60}$;
-the GW170817 speed comparison is photon-side dominated ($\sim 10^{-47}$
-vs $10^{-15}$: safe by $\sim 10^{32}$). GW propagation therefore cannot
+for a representative $E_{\gamma} = 10^{-4}$ GeV photon the model photon-side
+shift is $\sim 10^{-47}$, already $\sim 10^{32}$ below the observed
+fractional-speed bound (the precise multimessenger comparison depends on the
+photon-energy distribution and source-emission delay). GW propagation therefore cannot
 constrain this UV term — Fermi already wins — and we claim no GW-sector
 derivation; a dangerous GW signal would have to come from graph geometry,
 not hopping.
