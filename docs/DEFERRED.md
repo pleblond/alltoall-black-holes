@@ -92,6 +92,18 @@ Production gated on G1 mapping review + G2 source + G3 tables + G4 budget
 (pre-reg §6); any run outside the grid is exploratory-labelled. The round-4
 analytic verdicts stand until pre-registered RT supersedes them cell by cell.
 
+**Update (D7 public-data package v2, 2026-09-28, same branch):** NMMA
+built-in SVD grids (Bu2019nsbh + Ka2017, pinned in `d7_public_models/`)
+evaluated as SURROGATE-NOT-RT exploratory cells per spec
+`docs/D7_TRANSPORT_SPEC.md` (amendments A1–A3 to the frozen parent docs).
+Anchor gate: E0 passes g (18.00/18.32) but fails i-decline (no i
+promotion); E1 fails g as specified (fixed Xlan=1e-3 too red);
+E2 brackets. GW190814 (0.43) is 4–17× outside every published grid →
+sensitivity-only; the §12 named outcome applies (transport cannot
+adjudicate at headline level; analytic tension-not-exclusion stands).
+gap50 forward predictions (in-grid) corroborate analytic g to ~0.2 mag.
+Full account: `docs/D7_REPORT.md`, machine-readable `results/d7/`.
+
 ## D8 — Shedding efficiency ε(M,a) + upper-gap assignment — P1
 
 **Missing:** derivation of the shedding efficiency's mass, spin, and
