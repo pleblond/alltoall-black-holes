@@ -373,8 +373,10 @@ with a narrow surviving window at $\sim 4\times10^5$ g).
   $\sqrt{\chi}$-linearity, formerly the load-bearing assumption behind $g_{rr}$
   and Mercury, is now derived from $\ln 2$ scattering in Appendix BV), a formation story for delocalized
   giants, unitary leg-surgery dynamics (evaporation is currently a Markov
-  chain on $k$), and the information-flux race in the final non-adiabatic
-  moments (per-leg channel capacity vs. required evacuation flux).
+  chain on $k$; the qubit and small-$N$ graph instances now have explicit
+  isometries, but the $k$-backreaction theory is open), and — now closed —
+  the information-flux race in the final non-adiabatic moments (per-leg
+  channel capacity wins by $\sim M^2$; crunch only trans-Planckian).
 
 ## 12. Where to go next
 
