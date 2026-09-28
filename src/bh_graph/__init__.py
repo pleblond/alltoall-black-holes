@@ -30,6 +30,12 @@ from bh_graph.kerrquad import (
     required_anisotropy_for_kerr, toy_kerr_deviation_summary,
     GW241011_DELTA_Q_WIRE, GW250114_QNM_TOLERANCES, KERR_KAPPA, is_valid_spin,
 )
+from bh_graph.kerraniso import (
+    assign_latitude_labels, is_valid_bridge_eps, gradient_shell_graph_latitude,
+    edge_zone, bridge_polar_fraction, shell_kappa_profile_by_zone,
+    zonal_anisotropy, measure_anisotropy, calibration_curve,
+    is_anisotropy_detected, POLAR, EQUATORIAL, MIXED,
+)
 from bh_graph.haar import (
     harmonic, page_entropy_exact_nats, page_entropy_exact_bits, page_curve_exact_bits,
     page_deficit_at_turnover, haar_state, subsystem_entropy_bits, haar_entropy_samples,
@@ -361,6 +367,10 @@ __all__ = [
     "toy_delta_q_finite_k", "toy_delta_q_eint", "toy_oblate_shell_quadrupole",
     "required_anisotropy_for_kerr", "toy_kerr_deviation_summary",
     "GW241011_DELTA_Q_WIRE", "GW250114_QNM_TOLERANCES", "KERR_KAPPA", "is_valid_spin",
+    "assign_latitude_labels", "is_valid_bridge_eps", "gradient_shell_graph_latitude",
+    "edge_zone", "bridge_polar_fraction", "shell_kappa_profile_by_zone",
+    "zonal_anisotropy", "measure_anisotropy", "calibration_curve",
+    "is_anisotropy_detected", "POLAR", "EQUATORIAL", "MIXED",
     "harmonic", "page_entropy_exact_nats", "page_entropy_exact_bits", "page_curve_exact_bits",
     "page_deficit_at_turnover", "haar_state", "subsystem_entropy_bits", "haar_entropy_samples",
     "psi_family", "rho_ab", "concurrence_2qubit", "one_tangle", "interior_pairwise_c2",

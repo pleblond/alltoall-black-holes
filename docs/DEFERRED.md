@@ -41,6 +41,13 @@ level; factor ~2 resp. ~10% by parametrization, LIGO-P2500402).
 GW250114 (LIGO-P2500421, SNR 80 area law + Kerr ringdown) and GW241011 are
 currently consistent by construction, not passed predictions.
 
+**Update (Route A calibration):** imposed-anisotropy map shipped (`kerraniso`,
+`data/kerraniso_calibration.json`, `docs/kerr-multipoles-exploration.md` §4b):
+latitude-labeled shells + zonal OR give a monotone imposed→measured map with
+negative slope (~−0.1, dilution: more bridges → smaller |κ|), zero at zero,
+weak response (|ε_OR| ≲ 0.08 before zone starvation). Imposed proxy only —
+spin-from-dynamics still open; close criterion unchanged.
+
 ## D3 — κ -> c2 map (2PN) — ongoing
 
 **Missing:** quantitative Ollivier-Ricci `κ` to 2PN coefficient `c2` map.

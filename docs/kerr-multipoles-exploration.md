@@ -1,7 +1,7 @@
 # Kerr multipoles: exploration report (D2 scaffold, no derivation claimed)
 
-Status: **exploration only**. Nothing in this note or in `src/bh_graph/kerrquad.py`
-derives any Kerr multipole from the graph. The model's claim remains exactly what
+Status: **exploration only**. Nothing in this note, in `src/bh_graph/kerrquad.py`,
+or in `src/bh_graph/kerraniso.py` derives any Kerr multipole from the graph. The model's claim remains exactly what
 supplement S1/S3 says: area (hence `T_H`, `Omega_H`) is assumed from the Kerr–Newman
 formula; `M_2`, `g_tphi`, ISCO, and the QNM spectrum are open (D2 in
 `docs/DEFERRED.md`). The `|delta_Q| >= 0.17` kill wire is unchanged.
@@ -87,13 +87,20 @@ bridge-density ratio. This does not derive spin — it calibrates the map
 "wiring anisotropy → curvature anisotropy", the same role the `p` measurement
 played for the radial sector.
 
-**Non-obvious constraint the toy already surfaces:** Kerr has `Q < 0`, which
-in the shell convention needs `ε < 0` (polar leg *excess*), while naive
-"spin flings legs to the equator" gives `ε > 0` (wrong sign). Any Route A
-proposal must explain polar excess — e.g. spin correlates equatorial legs
-(mutual information, fewer *independent* legs there) while polar legs stay
-independent. That sign flip is a genuine prediction-shape of the "spin orders
-legs" reading and worth stating early.
+**Sign story (corrected during scaffolding — read carefully, two spaces).**
+In the shell-density convention (`σ = σ₀(1+εP₂)`, `P₂(pole) = 1`),
+Kerr's `Q < 0` needs `ε < 0`: equatorial leg-density excess (oblate). The
+naive "spin flings legs outward" story therefore gives the RIGHT sign in
+*density* space. But the Route A calibration (§4b) measures the response in
+*curvature* space and finds a NEGATIVE slope (connectivity dilutes `|κ|`):
+polar bridge excess produces oblate *curvature* (`|κ|` relatively larger at
+the equator). If the future axisymmetric `κ → metric` map tracks `|κ|` the
+way the radial sector does, then Kerr-oblate wants polar bridge excess —
+i.e. equatorial *correlation* (fewer independent equatorial bridges, exactly
+the "spin orders legs" micro-story) gives the right sign. The sign flips
+between density space and curvature space; any future Route A proposal must
+state which space its `ε` lives in. This flip is the calibration's sharpest
+conceptual output.
 
 **Scale warning:** at horizon radius and extremal spin, `ε_Kerr ~ −5` is
 order unity, not a perturbation. Either the horizon wiring is strongly
@@ -159,14 +166,59 @@ evaluates both toys against the wire for any `(m, χ, k, e_int)`. Wire it into
 `app.py` / a figure only if a future measurement gives `e_int(χ)` something
 to chew on; until then it is a guardrail, not a result.
 
+## 4b. Route A calibration: first measurement (this branch)
+
+Shipped: `src/bh_graph/kerraniso.py` + `tests/test_kerraniso.py` (9 checks) +
+`data/kerraniso_calibration.json`. Method: latitude-labeled gradient shells
+(zone split 50/50, P2-mirroring bridge weights `w_pol = 1+ε`,
+`w_eq = 1−ε/2`), exact Ollivier–Ricci per zone, `ε_OR =
+(|κ_pol| − |κ_eq|)/|κ_all|`. The imposed `ε_bridge` is a hand-set spin proxy —
+this is calibration, not derivation.
+
+| curve | imposed ε | measured ε_OR ± SEM | bridge polar frac | n_ok |
+|---|---|---|---|---|
+| N=90 (15×6, 16 graphs) | −0.5 | +0.054 ± 0.025 | 0.31 | 15 |
+| | 0.0 | +0.006 ± 0.013 | 0.54 | 16 |
+| | +0.5 | −0.037 ± 0.023 | 0.70 | 16 |
+| | +1.0 | −0.053 ± 0.037 | 0.81 | 13 |
+| N=160 (20×8, 8 graphs) | −0.5 | +0.047 ± 0.025 | 0.32 | 8 |
+| | 0.0 | +0.014 ± 0.010 | 0.51 | 8 |
+| | +0.5 | −0.044 ± 0.019 | 0.69 | 8 |
+
+Findings:
+
+1. **Zero at zero.** Both curves pass through the origin within SEM — no
+   systematic offset from the zone labeling. (`ε = 0` edge sets are
+   bit-identical to `orici`, tested.)
+2. **Negative slope ≈ −0.07 to −0.14.** Zones with MORE bridges show SMALLER
+   `|κ|`: connectivity dilutes curvature magnitude. The response strengthens
+   outward with bridge density (per-shell check at N=90: inner `+0.03`,
+   outer `−0.06`), consistent with a dilution mechanism.
+3. **Magnitude channel carries the signal; exponent does not.** Zonal `p`
+   fits (`p_pol` vs `p_eq`) show no trend with imposed ε at this precision,
+   while `ε_OR` is monotone. Future axisymmetric work should fit magnitudes
+   first, exponents second.
+4. **Weak response, limited range.** `|ε_bridge| ≳ 1` starves a zone (`n_ok`
+   collapses; the `ε = −0.9`/`+1.5` points are unreliable and excluded
+   above). Max reachable `|ε_OR| ~ 0.05–0.08` — far below Kerr-scale
+   order-unity *curvature* anisotropy. Whether that suffices depends on the
+   open axisymmetric `κ → metric` map (gain unknown): either the map
+   amplifies ~10–50×, or the deformation must be stronger than bridge
+   placement (e.g. latitude-dependent intra-shell completeness — a larger
+   neighborhood change). A continuous-latitude (P2-weighted) estimator would
+   also extend dynamic range beyond the binary-zone starvation limit.
+
+Net for D2: the imposed→measured map exists, is monotone, and its sign flip
+(density-oblate ⟺ curvature-prolate and vice versa) is now a measured
+constraint any derivation must route through — see the sign story in Route A.
+Spin-from-dynamics (work-order step 4) remains the hard, open step.
+
 ## 5. Suggested work order
 
 1. **Scaffold (done, this branch):** `kerrquad` + tests + this note. No paper
    changes; no claim changes.
-2. **Route A calibration:** latitude-labeled shell graphs → polar/equatorial
-   OR profiles → `ε_OR` vs imposed bridge anisotropy → sign check (polar
-   excess?) → required-`ε` comparison. A figure of `ε_OR` vs `ε_Kerr` across
-   `χ` is the natural first artifact.
+2. **Route A calibration (done, this branch):** `kerraniso` + artifact above;
+   `ε_OR` vs `ε_Kerr` comparison now quantitative (weak-response caveat applies).
 3. **Route B calibration:** directed azimuthal overlay → `Ω_graph(b, r)` fit
    → required-`b(χ)` curve.
 4. **Spin-labeled dynamics (the hard step):** replace imposed anisotropy/bias
@@ -201,6 +253,8 @@ against Bardeen / Lense–Thirring / GW250114.
 ## 8. Pointers
 
 - Scaffold: `src/bh_graph/kerrquad.py`, `tests/test_kerrquad.py`.
+- Route A calibration: `src/bh_graph/kerraniso.py`, `tests/test_kerraniso.py`,
+  `data/kerraniso_calibration.json`.
 - Area/thermo baseline: `src/bh_graph/kerr.py`, `src/bh_graph/thermo.py`,
   `src/bh_graph/kerrpage.py`.
 - Radial-sector template to imitate: `src/bh_graph/orici.py`

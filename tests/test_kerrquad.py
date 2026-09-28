@@ -69,8 +69,9 @@ def test_toy_scalings_vanish_in_limit():
     assert not K.is_quadrupole_ruled_out(K.toy_delta_q_eint(0.999))
 
 
-def test_oblate_shell_requires_polar_excess():
-    # Kerr-matching anisotropy is negative (polar excess), order unity at horizon.
+def test_oblate_shell_requires_equatorial_excess():
+    # Kerr-matching anisotropy is negative (equatorial excess / oblate),
+    # order unity at horizon scales.
     eps = K.required_anisotropy_for_kerr(1.0, 1.0)
     assert abs(eps + 5.0) < 1e-12
     q = K.toy_oblate_shell_quadrupole(1.0, 1.0, eps)

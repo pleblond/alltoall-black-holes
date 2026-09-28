@@ -281,10 +281,13 @@ def toy_oblate_shell_quadrupole(m, r_shell, epsilon):
     ``sigma(theta) = sigma0 (1 + epsilon P_2(cos theta))`` has
     ``Q = m r_shell^2 epsilon / 5`` (``integral of P_2^2 = 4pi/5``).
     Toy reading: IF exterior legs settled into such an oblate/prolate shell,
-    THIS is the quadrupole it would source. Sign: oblate (equatorial excess,
-    epsilon > 0) gives Q > 0 in this convention; Kerr has Q < 0, so matching
-    Kerr needs epsilon < 0 (polar excess) at this Newtonian level — already a
-    useful constraint on naive "spin flings legs outward" stories.
+    THIS is the quadrupole it would source. Sign (P2(pole) = 1,
+    P2(equator) = -1/2): epsilon > 0 is polar excess (prolate) and gives
+    Q > 0; epsilon < 0 is equatorial excess (oblate) and gives Q < 0, the
+    Kerr sign. So the naive "spin flings legs outward" story gives the RIGHT
+    sign at this Newtonian level — the open questions are magnitude (order
+    unity, see required_anisotropy_for_kerr) and mechanism (leg density vs
+    independent-leg count, which can disagree once spin correlates legs).
     """
     m = np.asarray(m, dtype=float)
     r = np.asarray(r_shell, dtype=float)
@@ -300,7 +303,7 @@ def required_anisotropy_for_kerr(a, r_shell):
     Inverts the toy above: ``epsilon_Kerr = -5 a^2 / r_shell^2``. At horizon
     scales (``r_shell ~ M``, extremal ``a = M``) this is ``epsilon ~ -5`` —
     order unity, i.e. NOT a small perturbation of isotropic wiring. A future
-    derivation must either produce large polar leg excess at the horizon or
+    derivation must either produce large equatorial leg excess at the horizon or
     (more plausibly) generate the quadrupole non-locally through the exterior
     routing field rather than a literal shell. NaN for bad inputs.
     """
