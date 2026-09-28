@@ -120,3 +120,19 @@ flat-vs-shaped (Fig 68b). Still open: `ε(M,a)` shutoff derivation.
 pair-instability edge. `k(M)` zero curvature, smooth spin/Love running,
 He-core χ ~ 1e-8 (`massgaps`): the ~44 M☉ boundary belongs to
 stellar/nuclear physics. Negative prediction, main text.
+
+## D9 — Raychaudhuri for leg bundles (Jacobson-chain closure)
+
+**Missing:** focusing theorem for SI fronts on leg networks. Current status:
+the Jacobson chain is complete *except* this bridge — heat `dQ = eps·dk`,
+Unruh `T = kappa/2pi` (input), saturated `dS = ln2·dk`, Clausius-demanded
+`eps = kappa·ln2/2pi`, and measured `eta = ln2/PATCH = 1/4` giving `G = 1`
+(`jacobson`: `clausius_leg_energy`, `measured_eta_closure`, all tested).
+
+**Close criterion:** derive (not cite) Raychaudhuri-style focusing for fronts
+propagating on leg networks; AT congestion slowdown is the documented seed.
+Closes I6c in `docs/model.md` and promotes "Einstein equations follow" from
+conditional to derived.
+
+**Kill relevance:** none (gates no theorem in T8–T11); mathematical completion
+of the AU triptych's third route.

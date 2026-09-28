@@ -1,4 +1,4 @@
-# The model, stated first (v0.2)
+# The model, stated first (v0.3)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
@@ -15,6 +15,14 @@ paper-side), Kerr leg normalization stated explicitly, `pheno` restored to the
 module map, D-tag collision disambiguated. Two code-side flags (comment-only
 notes added, zero behavior change): `evaporate()["radius"]` legacy convention,
 `kerr_newman_k` patch-1 units. See §8 provenance layers and §9.
+
+**v0.3 imports-hardening release.** No number changes: import surgery only.
+I4 splits into equipartition (I4a) and Bekenstein displacement (I4b); I6
+splits into the heat-kernel bridge (I6a, cited, load: none), the
+Ollivier–Ricci limit (I6b, load-bearing, now with its measure postulated in
+new L0 postulate P4), and the Raychaudhuri open bridge (I6c → new DEFERRED
+item D9). I3 gains the BM reduction theorem stated exactly. Import IDs are
+otherwise stable; see §9.
 
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
@@ -63,6 +71,7 @@ These are undefined terms. Everything else is built from them.
 | `k` | exterior leg count (edges crossing the cut) | the model's central quantity; `k << N²` for black holes |
 | `e_int`, `e_ext` | interior / exterior entanglement fractions | normalized wiring budgets; see P3 |
 | `K_max` | max exterior budget (normalization) | toy-level; physical predictions must be `K_max`-independent where claimed |
+| `m_x` | neighborhood measure at node `x` | canonical form postulated in P4; the only measure any theorem uses |
 | `H_graph,k`, `H_leg` | graph / leg Hilbert spaces | used only where unitarity is explicitly constructed (qubit toy, see T7); no general graph Hamiltonian is postulated |
 
 What is **not** primitive: mass, radius, temperature, metric, area. Those enter
@@ -99,6 +108,20 @@ At `e_int → 1`, `k → 0`: the subgraph decouples as a closed graph — the
 **baby-universe limit**. Black holes live in the almost-perfect corner
 `e_int ≲ 1`, small nonzero `k`. (`horizon.is_baby_universe_limit`.)
 
+### P4 (canonical measure postulate). Neighborhood measures are uniform with idleness zero.
+
+Ollivier–Ricci curvature `κ(x, y) = 1 − W₁(m_x, m_y)/d(x, y)` is always computed
+with `m_x` uniform over the graph neighbors of `x` and zero self-mass
+(`orici._neighborhood_measure` default `p = 0.0`; used by `weakfield` and the
+gradient-shell measurements). Justification, in order: (i) the continuum
+theorems by which Ollivier curvature recovers Ricci assume the uniform
+measure; (ii) the tested alternative — `e_int`-weighted same-shell/cross-shell
+measures — degrades the L2 fit (`p`: `0.94 → 0.84` at `e_int = 0.9`, `0.78`
+at `0.99`), so the canonical choice is both principled and required. What is
+postulated is the *choice*; the curvature values themselves are measured.
+Discharge condition: derive the measure from graph dynamics, or exhibit an
+alternative measure preserving the T8 sign and the L2 `p` (related: D1, D3).
+
 ### T1 (no interior distance). `K_N` has diameter exactly 1 at every `N`.
 
 Mean distance 1, spectral gap `N`. Deterministic SI/operator spread covers `K_N`
@@ -132,7 +155,8 @@ continuum limit. Any result needing those lives in L1 or L2 and says so.
 ## 3. L1: the spacetime interface
 
 L1 adds a short list of imports. Everything in this section is of the form
-"**given** L0 + imports I1–I7, **then** T4–T14." The imports are the price;
+"**given** L0 + imports I1–I7 (I4 and I6 split into independently
+dischargeable parts), **then** T4–T14." The imports are the price;
 the theorems are what the price buys.
 
 ### Imports (inputs, all labeled)
@@ -142,10 +166,26 @@ the theorems are what the price buys.
 | I1 | Patch postulate: each exterior leg costs `4ln2 ≈ 2.77` Planck patches; `A(k) = 4ln2·k·l_p²`, `R(k) = √(A/4π)` | **derived** (BS: from measured von Neumann leg entanglement `η_vN = ln2` per leg with Planck-bits equipartition, closing the Jacobson chain at `G = 1`; legs saturate) | `horizon`, S1 |
 | I2 | Embedding rule: `k` legs need `k` Planck patches of ambient surface; interior size `N` buys no area | postulate (Bekenstein–Hawking / LQG-puncture picture in graph language) | `horizon`, `micro` |
 | I3 | Mass map `k(M) = A/4ln2·l_p² = (4π/ln2)M²/l_p² ∝ M²` (Schwarzschild units), i.e. `k = 1.51e77(M/M☉)²` | **input** (GR-consistency, not derived). BM reduction: given I1 + sphere geometry, `k(M)` is fixed iff `R_s(M)` is given; the circle is shrunk to the single statement `R_s = 2M`, whose derivation from wiring is open (D6) | `horizon.k_from_mass_via_rs`, `data.k_schwarzschild_sun`, S1 |
-| I4 | Verlinde equipartition + Bekenstein bound (`E = M`, `dS = 2πM₂dr`) | **input** (postulated) | `entropic`, S1 |
+| I4a | Equipartition over Planck bits: `E = M₁ = NT/2`, `N = k·PATCH` → `T(r) = M₁/2πr²` | **input** (postulated) | `entropic.screen_temperature`, S1 |
+| I4b | Bekenstein displacement: moving `M₂` by `dr` changes entropy by `dS = 2πM₂dr`; force `F = T·dS/dr` | **input** (postulated) | `entropic.entropy_gradient`, S1 |
 | I5 | Equivalence principle (Newtonian potential → `g_00`, redshifts) | **input** (postulated) | `redshift`, S1 |
-| I6 | Continuum limits (heat-kernel, Ollivier–Ricci → Ricci, Raychaudhuri for leg bundles where invoked) | **input** (postulated) | `heatker`, `orici`, `jacobson`, S1 |
+| I6a | Heat-kernel bridge: graph `a₁` → `∫R` identification | cited, not proved (curvature read relatively, weighted-minus-flat); load: none — AU supporting evidence only | `heatker`, S1 |
+| I6b | Ollivier–Ricci → Ricci continuum limit, with the P4 uniform measure | **input** (postulated); load-bearing for the T8 sign and the L2 `p` | `orici`, `weakfield`, S1 |
+| I6c | Raychaudhuri (focusing) for leg bundles + Jacobson-chain inputs (`T = κ/2π`, Clausius `dQ = T·dS`, `dS = ln2·dk` saturated) | open bridge (D9); load: only the "Einstein equations follow" conditional — T8–T11 do not depend on it | `jacobson`, S1 |
 | I7 | Gap coefficient, crossover scales (`r_point`, `α = 1` congestion calibration, `A_min`) | heuristic / calibrated (see T6, T9) | `micro`, `redshift`, S1 |
+
+### The BM reduction theorem (I3, stated exactly).
+
+Given I1 (patch postulate) + sphere geometry (`A = 4πR²`), the mass map factors
+entirely through the radius map:
+
+`k(M) = 4π·R_s(M)² / PATCH_AREA·l_p²` — i.e. `k(M)` ⟺ `R_s(M)`.
+
+So `k(M) ∝ M²` holds iff `R_s(M)` is supplied; the circle is exactly the
+single statement `R_s = 2M` (derivation open, D6). Pinned in code:
+`k_from_mass_via_rs(1.0) = 4π/ln2`; a wrong radius law gives the wrong legs
+(`R_s = 3M` → `36π/PATCH`); the Schwarzschild entry point is backward-compatible
+(`test_reduction_theorem`). (`horizon.k_from_mass_via_rs`.)
 
 Consequences of I1–I3 worth stating plainly:
 
@@ -221,9 +261,9 @@ QEC mirror: recovery error `err(k) = min(1/2, 2^{N/2+1−k})` reaches 99% at
 `k ≥ N/2+1+log₂100`, sealing at `k → 0` (Hayden–Preskill primitive).
 (`evaporation`, `evaporation_unitary`, `haar`, `qec`, `kerrpage`.)
 
-### T8 (Newton + Kepler + sign). `F = M₁M₂/r²` by exact algebra given I4, orbits close, attraction signed.
+### T8 (Newton + Kepler + sign). `F = M₁M₂/r²` by exact algebra given I4a+I4b, orbits close, attraction signed.
 
-Leg screens + I4 give `F = M₁M₂/r²` by exact multiplication of the chain
+Leg screens + I4a+I4b give `F = M₁M₂/r²` by exact multiplication of the chain
 (`T·dS/dr`, pinned with `==` in `test_chain_multiplies_to_newton`); the fitted
 log-log slope verifies to `1e−9` numerically, with
 closed leapfrog orbits and `T² ∝ r³`. Raw link-flux scales as channels
@@ -231,11 +271,11 @@ closed leapfrog orbits and `T² ∝ r³`. Raw link-flux scales as channels
 `r`-dependent screen corrects it to `1/r²` — both implemented so the
 distinction is checkable. Ollivier–Ricci curvature is radially negative in
 every tested configuration, attachment mode, and seed: the sign of attraction,
-zero tuning. Micro-walks alone do **not** give Newton (persistent walks yield
+zero tuning (I6b with the P4 measure). Micro-walks alone do **not** give Newton (persistent walks yield
 drift `∝ 1/r³`, slope `≈ −3`; every smooth weight rule stays cubic, no-go
 `−2.99`; `μ(χ)` fluctuation escape to `−1.95 ≈ −2` is modulo the labeled `√χ`
 assumption). Conclusion: temperature (AS), not bare graph diffusion, carries
-Newton. **Derived** given I4. (`entropic`, `weakfield`, `perwalk`.)
+Newton. **Derived** given I4a+I4b. (`entropic`, `weakfield`, `perwalk`.)
 
 ### T9 (redshifts + freezing). GPS and Pound–Rebka with no new parameters.
 
@@ -272,7 +312,8 @@ flat-`h` hybrid gives `28.7″`/cy (PPN `2/3`). Second-order peel-off
 Coefficient history, preserved: `1/2` was **fitted** to enforce `γ = 1` (BH,
 unique coefficient, labeled fit); BV then **derived** `c ≈ 0.44–0.60` from
 `ln2` line-defect scattering with zero tuning (target `0.456`, geometric
-`1/√π = 0.564`), predicting `p = 2c` and `γ = 2c`. Both determinations agree;
+`1/√π = 0.564`), predicting `p = 2c` and `γ = 2c` (comparison target `p`
+measured under I6b). Both determinations agree;
 the micro-derivation is adopted with the fit preserved in history.
 (`strain`, `uvscatter`; PPN: `γ = 1` claimed, `β` unresolved and not quoted,
 `α₁,₂/ξ`/Nordtvedt untouched.)
@@ -353,7 +394,8 @@ and its mass-independence has not been derived from graph dynamics (D8).
 | F1 | gradient slope | `p_adj(s) = 0.85 + 0.015·s`, 8–10 shells, exact EMD on full neighborhoods | **fitted**, labeled |
 | F2 | bridge exponent | `β ≈ 1.5@300; 1.28@600; 1.24@1020; 0.99@4k; 0.87@8k; 0.74@16k`, deterministic `n ∝ r^β(N)`; log-linear over 6 points; recalibrated per `N` (drift faster than `1/N`; pre-run `1/N` extrapolation predicted `β(16000) ≈ 1.18`, measured `0.74`) | **fitted** per `N`; derivation from `N(r)` geometry queued (D4) |
 | F3 | 2PN weight | `w = 1.953`, `c_tot = c₁ + w·c₂` | **solved** from the cancellation condition, not tuned — but not derived from the graph Laplacian either (D4) |
-| F4 | `κ → c₂` map | `c₂(p) = p(2p−1)` | **ansatz** (open derivation D3): power-law fits better on these profiles (`R² 0.91` vs `0.81`) but the two maps disagree cross-applied (`c₂ 0.82` vs `3.14`); uniform measure is principled (continuum theorems) and required (`e_int` weighting *lowers* `p`: `0.94 → 0.84` at `0.9`, `0.78` at `0.99`) |
+| F4 | `κ → c₂` map | `c₂(p) = p(2p−1)` | **ansatz** (open derivation D3): power-law fits better on these profiles (`R² 0.91` vs `0.81`) but the two maps disagree cross-applied (`c₂ 0.82` vs `3.14`); the uniform
+measure is postulated in P4, so the open part is the map alone |
 | F5 | shedding | `e: 0.5 → 0.416` (fraction `0.168`) + `10%` efficiency + `blue_frac 0.2` (`v_blue 0.3c κ 0.5`, `v_red 0.1c κ 10`) | **calibrated once** on AT2017gfo; `M_ej` exactly `k`-normalization-independent (`M_ej = frac·M_tot·ε`) |
 | F6 | `q`-independence | `M_ej = 0.0168·M_tot` exactly flat in mass ratio (machine precision) | **prescription**, not derived from `V_k` (D1/D8): `q ~ 0.11` (GW190814) flashing at the same fraction as `q = 1` (GW170817) is the model's biggest theory bet |
 
@@ -424,7 +466,7 @@ graph; inserting `44 M☉` as a graph parameter is refused. (`massgaps`.)
 
 Each item: what is missing, what would close it, what it gates. Tracked in
 `docs/DEFERRED.md`; the paper's kill table wires the falsifiable ones.
-Tag convention: D1–D8 here always mean DEFERRED items; the appendix-letter tag
+Tag convention: D1–D9 here always mean DEFERRED items; the appendix-letter tag
 (D2) (= module `evaporation_unitary`) is always written as the module name —
 supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 
@@ -438,6 +480,7 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 | D6 | Mass–radius from wiring | derive `R_s = 2M` from wiring alone | promotes I3 to derived (long-term) |
 | D7 | Kilonova radiative transfer | validated multidimensional RT on public ejecta models/transformations compatible with the F5/F6 bulk prescription (morphology, velocity structure per VEL-1, Ye-dependent opacities/reprocessing, viewing-angle dependence, direct `i`-band); pipeline must pass the AT2017gfo anchor/control gate before its GW190814 result promotes the analytic verdict (POSSIS primary implementation) | decides whether the GW190814 non-detection is compatible with universal shedding or falsifies it; `g`-band verdicts already robust |
 | D8 | Shedding efficiency `ε(M,a,q)` + shutoff location | derive mass/spin/ratio dependence from `K_max(N)` combinatorics, spin-ordered reabsorption, or remnant-trap physics, with any shutoff location as *output* | highest-value attack surface on universal shedding; a derived shutoff between gap and BBH masses must land where it lands (same no-insertion rule as the 44 M☉ null) |
+| D9 | Raychaudhuri (focusing) for leg bundles | derive focusing for SI fronts on leg networks (seed: AT congestion slowdown); closes the Jacobson chain to Einstein's equations with measured `η = 1/4`, `G = 1` | promotes I6c from open bridge to derived; gates nothing else — T8–T11 stand without it |
 
 Rule for all D-items: the closing derivation must output the number or location,
 not take it as input. Inserting an observed scale as a graph parameter is a fit,
@@ -478,6 +521,8 @@ Single table; every symbol in §1–§4 appears here with its home.
 | `k` | exterior leg count | §1, `horizon` |
 | `e_int`, `e_ext` | interior / exterior entanglement fractions | P3, `horizon`/`monogamy` |
 | `K_max` | max exterior budget (normalization) | §1, `horizon.exterior_budget` |
+| `m_x` | neighborhood measure at `x` (P4: uniform, `p = 0`) | P4, `orici` |
+| `κ(x,y)` | Ollivier–Ricci curvature `1 − W₁(m_x,m_y)/d(x,y)` | T8/F4, `orici` |
 | `A(k)`, `R(k)` | `4ln2·k·l_p²`, `√(A/4π)` | I1, `horizon` |
 | `PATCH_AREA` | `4ln2` Planck areas per leg | I1, `horizon.PATCH_AREA` |
 | `r_point`, `k_crit`, `R_obs` | point radius, `4πr²/4ln2`, piecewise radius | T5, `micro` |
@@ -556,7 +601,8 @@ dimensional estimate). Suite on this branch: 398 collected, 396 passed,
   is recorded in `docs/DEFERRED.md`, not by softening the criterion here.
 - A **killed** claim stays in §6 with its killer named. (Precedents: broad
   remnant DM, isotropic `b_crit`, naive `γ = 2`, linear LIV, flat `p = 0.49`.)
-- This document versions with the paper: v0.2 tracks v5.0 (audit release).
+- This document versions with the paper: v0.3 tracks v5.0 (imports-hardening
+  release; import IDs stable except the v0.3 splits I4→I4a/I4b, I6→I6a-c).
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:
   T14 TeV absolutes follow the code (post-BS), not v5 prose (pre-BS).
