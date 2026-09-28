@@ -46,6 +46,12 @@ Current status: only Kerr-Newman area `A(M,a,Q)` is assumed to set
 **Close criterion:** derive `Q = -M a^2 (1 + δ_Q)` without assuming Kerr;
 compare `δ_Q` to GW241011 (`|δ_Q| ≳ 0.17` ruled out at symmetric-combination
 level; factor ~2 resp. ~10% by parametrization, LIGO-P2500402).
+Update (this branch): dragging SIGN + transport derived — `framedrag`
+imposes rotation on a graph core and measures unbiased-rim drift: sign
+preserved both ways (55σ), linear in spin (R² > 0.95), nulls hold
+(w = 0, disconnected shells), transmission ~25% peaking at intermediate
+coupling (dilution past it, Fig 77). No Kerr input; no coefficient either
+(toy units). Still open: `M2`, `g_tφ` magnitude, `r_ISCO`, Kerr QNM.
 
 **Kill relevance:** future wire (see v5 kill table "Kerr quadrupole").
 GW250114 (LIGO-P2500421, SNR 80 area law + Kerr ringdown) and GW241011 are

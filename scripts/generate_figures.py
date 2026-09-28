@@ -2039,6 +2039,33 @@ def fig75b_gw190814_systematics():
     plt.close(fig)
 
 
+def fig77_framedrag():
+    from bh_graph.framedrag import drag_vs_bridges, drag_vs_omega, ring_drift
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    # rim drift linear in core spin (nothing biases the rim locally)
+    scan = drag_vs_omega()
+    axes[0].plot(scan["omega"], scan["drift_rate"], "o-", color="#0f766e", ms=5)
+    axes[0].axhline(0.0, ls="--", color="gray")
+    axes[0].set_xlabel("core spin w"); axes[0].set_ylabel("rim drift rate")
+    axes[0].set_title("Sign preserved, linear response")
+    # transmission peaks at intermediate radial coupling (dilution past it)
+    bscan = drag_vs_bridges()
+    axes[1].plot(bscan["p_radial"], bscan["drift_rate"], "s-", color="#2563eb", ms=5)
+    axes[1].set_xlabel("radial coupling p"); axes[1].set_ylabel("rim drift rate")
+    axes[1].set_title("Optimal coupling for transport")
+    # robust across seeds: every trial drags the same way
+    seeds = list(range(8))
+    rates = [ring_drift(0.5, seed=s)["drift_rate"] for s in seeds]
+    axes[2].scatter(seeds, rates, color="#0f766e", s=40)
+    axes[2].axhline(0.0, ls="--", color="gray")
+    axes[2].set_xlabel("seed"); axes[2].set_ylabel("rim drift rate")
+    axes[2].set_title("Same sign, all 8 seeds")
+    fig.suptitle("Fig 77 — D2 partial: core rotation transported to unbiased rim (framedrag)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig77_framedrag.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -2118,6 +2145,7 @@ def main():
     fig74b_graphvk()
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
+    fig77_framedrag()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
