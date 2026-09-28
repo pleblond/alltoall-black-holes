@@ -53,3 +53,20 @@ kill rule; single-detector non-detections are uninformative either way.
   over-traps: $t_{red}\sim10$d vs observed $\sim4$d decline, $m_i$ faint
   by $\sim$2–3 mag — direction conservative for gap-$g$ detectability).
 - Standard 2–28% band is a literature input (EOS-dependent), not derived.
+
+## BBH extension (universal shedding, Eq. 2 main text)
+
+**Model prediction:** the same $M_{ej} = 0.0168\,M_{tot}$ law (exact
+$q$-independence) applies to binary black holes: nearby BBH must flash
+at $m_g\sim22$ (e.g. GW150914-like at 410 Mpc: $m_g\sim21.8$;
+GW170608-like at 340 Mpc: $m_g\sim21.9$). Standard model: dark.
+
+- **Trigger:** same cuts as gap ($<200$ Mpc, $<100$ deg$^2$ 90%,
+  multi-detector), any masses; same Rubin ToO epochs 0.5d, 2d, 5d.
+- **Kill accounting:** kept SEPARATE from the gap sample — a clean BBH
+  sample kills universal shedding even if gap events flash (and vice
+  versa); thresholds for the BBH sample size TBD by O5 rates.
+- **Archival anchor:** GW190814 ($23.2+2.6$, 241 Mpc): CFHT g 22.8@1.7d
+  (65.5%) + GROWTH i 6 epochs (to 98%) give combined
+  $P(\mathrm{detect})\approx0.68$–$0.88$ — tension ($p\sim0.12$), not a
+  kill. Verdict function: `massgaps.gw190814_combined_pdetect`.
