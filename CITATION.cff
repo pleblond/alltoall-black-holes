@@ -1,13 +1,13 @@
 cff-version: 1.2.0
-title: "Black Holes as Almost-Perfect All:All Entanglement Graphs: Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition"
-message: "If you use this work, please cite the Zenodo record (DOI minted on first release) and the paper draft in paper/."
+title: "Compact Objects as Almost-Perfect All:All Entanglement Graphs: From fast scrambling and weak-field gravity to a testable gap-kilonova prediction"
+message: "If you use this work, please cite the Zenodo record and the v5 paper (paper/v5/)."
 type: software
 authors:
   - family-names: Leblond
     given-names: Philippe
     email: leblond.philippe@gmail.com
-version: 4.1.0
-date-released: 2026-09-26
+version: 5.0.0
+date-released: 2026-09-28
 repository-code: "https://github.com/pleblond/alltoall-black-holes"
 identifiers:
   - type: doi
@@ -24,9 +24,9 @@ keywords:
   - gravitational waves
 preferred-citation:
   type: preprint
-  title: "No Neutron Stars: Black Holes, Pulsars, and Gap Objects as Almost-Perfect All:All Entanglement Graphs"
+  title: "Compact Objects as Almost-Perfect All:All Entanglement Graphs: From fast scrambling and weak-field gravity to a testable gap-kilonova prediction"
   authors:
     - family-names: Leblond
       given-names: Philippe
       email: leblond.philippe@gmail.com
-  notes: "Computational companion paper (paper/paper.md, paper/main.pdf). Text and figures CC BY 4.0; code MIT."
+  notes: "Journal cut (paper/v5/main.pdf + supplement.pdf). Text and figures CC BY 4.0; code MIT."
