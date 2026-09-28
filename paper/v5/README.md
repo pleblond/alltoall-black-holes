@@ -7,9 +7,9 @@ into a submittable pair (both compile; counts as of this commit):
   Motivation, 3 claims in §2, gravity to 1PN + 2PN preview, UV + QI,
   one-family compact objects + gap-KN prediction, falsifiers + conclusion.
   5 figures (1 new survival matrix + 4 tested artifacts), 46 references.
-- `supplement.tex` — methods, 11pp: parameter audit, gravity/QI/BU/BV methods,
+- `supplement.tex` — methods, 12pp: parameter audit, gravity/QI/BU/BV methods,
   N-scale table (300→16000, 6 points), PPN ledger, archival ledger, O5 protocol
-  summary, kill list, module map. 12 ported evidence figures (lensing, Mercury,
+  summary, D7 RT pre-registration note, kill list, module map. 12 ported evidence figures (lensing, Mercury,
   UV-c, Page, unitary-Page, N-scale, 2PN, p-fit, O5, healing, dispersion,
   systematics). Zero LaTeX warnings.
 
@@ -57,7 +57,7 @@ Figures resolve via `../../figures/`.
 - [x] Install texlive and verify page counts (main 12pp preprint ≈8pp journal; supp 11pp)
 - [x] Add Fig.1 survival-matrix schematic (new TikZ, references ledger, no new claims)
 - [x] Expand references to ~40 (EOS/NICER/GWTC/LVK-testing-GR/POSSIS/Rubin + neighbours)
-- [x] Grow supplement toward ~12pp → reached 11pp with 12 ported figures (lensing/Mercury/UV-c/Page/unitary-Page/N-scale/2PN/p-fit/O5/healing/dispersion/systematics)
+- [x] Grow supplement toward ~12pp → reached 12pp with 12 ported figures (lensing/Mercury/UV-c/Page/unitary-Page/N-scale/2PN/p-fit/O5/healing/dispersion/systematics) + D7 RT methods note
 - [x] Clear LaTeX warnings (tables → p-columns, code → quote+path, math allowbreaks; only sub-5pt overfulls remain)
 - [ ] Prose polish pass on main.tex (read-through for typos, transitions, symbol consistency)
 - [ ] Optional twocolumn pass if venue requires strict 6pp (currently honest preprint count)

@@ -1969,6 +1969,71 @@ def fig75b_gw190814_systematics():
     plt.close(fig)
 
 
+def fig76_possis_prereg():
+    """D7 pre-registration + mock pilot plumbing (NO RT RESULTS YET).
+
+    Left: pre-registered 3 ejecta x 4 config grid (M_ej values, pilot cell).
+    Middle: mock pilot lightcurves (1 model x 3 angles, MOCK-NOT-RT surrogate).
+    Right: pre-registered statistic shape (sig_RT=0.5 vs analytic 1.0).
+    Every panel is bookkeeping or mock; RT cells are empty until G1-G4 gates.
+    """
+    import json
+    from bh_graph import possis as P
+    fig, axes = plt.subplots(1, 3, figsize=(14, 3.8))
+    # Left: prereg grid schematic.
+    grid = P.prereg_grid()
+    models = ["gw190814", "gap50", "gw170817"]
+    configs = list(P.PREREG_CONFIGS)
+    mat = np.zeros((len(models), len(configs)))
+    for r in grid:
+        i, j = models.index(r["model_id"]), configs.index(r["config"])
+        mat[i, j] = r["M_ej"]
+    im = axes[0].imshow(np.log10(mat), cmap="Blues", aspect="auto")
+    axes[0].set_xticks(range(len(configs))); axes[0].set_xticklabels(configs, rotation=20, fontsize=7)
+    axes[0].set_yticks(range(len(models))); axes[0].set_yticklabels(models, fontsize=8)
+    axes[0].set_title("Pre-reg grid: 12 models (log M_ej)")
+    for i in range(len(models)):
+        for j in range(len(configs)):
+            axes[0].text(j, i, f"{mat[i, j]:.3f}", ha="center", va="center", fontsize=7,
+                         color="white" if mat[i, j] > 0.1 else "black")
+    # Pilot cell highlight: gw170817 x null_sph.
+    axes[0].add_patch(plt.Rectangle((-0.5, 2 - 0.5), 1, 1, fill=False, edgecolor="#dc2626", lw=2))
+    axes[0].text(0, 2.45, "pilot", color="#dc2626", fontsize=7, ha="center")
+    fig.colorbar(im, ax=axes[0], fraction=0.046, label="log10 M_ej")
+    # Middle: mock pilot curves from the staged artifact.
+    try:
+        art = json.load(open(DATA / "possis_pilot_mock.json"))
+        curves = art.get("lightcurves", {})
+    except (OSError, ValueError):
+        curves = {}
+    for key in sorted(curves):
+        ep = curves[key].get("epochs", [])
+        ts = [r["t_days"] for r in ep]; ms = [r["g"] for r in ep]
+        axes[1].plot(ts, ms, marker="o", ms=3, label=key)
+    axes[1].invert_yaxis()
+    axes[1].set_xlabel("days"); axes[1].set_ylabel("mock g (40 Mpc)")
+    axes[1].set_title("Mock pilot (MOCK-NOT-RT, plumbing only)")
+    axes[1].legend(fontsize=6)
+    axes[1].text(0.5, 0.02, "surrogate: analytic peak + viewing slope",
+                 transform=axes[1].transAxes, fontsize=6, ha="center", color="#64748b")
+    # Right: statistic shape P_detect vs (depth - m) at coverage=1.
+    import math
+    dm = np.linspace(-2, 2, 200)
+    for sig, lab, col in ((1.0, "analytic sig=1.0", "#64748b"), (0.5, "RT sig=0.5 (pre-reg)", "#2563eb")):
+        tot = np.sqrt(np.array(sig) ** 2 + 0.39 ** 2)
+        phi = 0.5 * (1 + np.vectorize(math.erf)(dm / (tot * np.sqrt(2))))
+        axes[2].plot(dm, phi, label=lab, color=col)
+    axes[2].axvline(0, color="black", lw=1, ls="--")
+    axes[2].axhline(0.5, color="#dc2626", lw=1, ls=":")
+    axes[2].set_xlabel("depth - m_RT (mag)"); axes[2].set_ylabel("P_detect (cov=1)")
+    axes[2].set_title("Pre-reg statistic (no RT mags yet)")
+    axes[2].legend(fontsize=7)
+    fig.suptitle("Fig 76 — D7 pre-registration + mock pilot: grid, plumbing, statistic (NO RT RESULTS YET)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig76_possis_prereg.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -2046,6 +2111,7 @@ def main():
     fig74_unitary_page()
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
+    fig76_possis_prereg()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
