@@ -34,7 +34,8 @@ upper-gap null & no feature at $44\,M_\odot$ & negative prediction (measured smo
 GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, POSSIS queued (D7) & non-detection at $p \sim 0.12$--$0.32$; epoch audit in \texttt{massgaps} \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
-Kerr $M_2$, $g_{t\phi}$, ISCO & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW241011 future wire \\\bottomrule
+Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
+echo $R$ & $10^{-80}$ ampl., $10^{-160}$ energy & dimensional estimate & $\propto\omega^2$ lattice scattering, not leg S-matrix; $\sim158$ orders margin \\\bottomrule
 \end{tabular}
 \end{table}
 
@@ -155,11 +156,31 @@ Tracked as D1 in \path{docs/DEFERRED.md}.
 \textbf{What Kerr means here (honesty note).} Only the Kerr--Newman area $A(M,a,Q)$ is assumed to
 set the leg budget $k_{\rm eff}=A/4\ln2$ (module \texttt{kerr}; extremal Kerr half, extremal RN
 quarter; ratios patch-independent). Not derived from the graph: spin-induced quadrupole $M_2=-Ma^2$,
-frame dragging $g_{t\phi}$, ISCO$(M,J)$, or the Kerr QNM spectrum (the overtone toy is Schwarzschild-like).
+frame dragging $g_{t\phi}$, ISCO$(M,J)$, or the Kerr QNM spectrum (the overtone toy is Schwarzschild-like;
+fundamental damping $\tau=11.24\,M$ calibrated, footprint corrections $1/2k$, $1/\sqrt{k}$ unobservable).
+Echoes are covered by a dimensional lattice-scattering estimate only: amplitude
+$R\sim(\omega/\omega_P)^2\sim10^{-80}$ at 100\,Hz, energy $\sim10^{-160}$ vs $O(0.01)$
+detectability ($\sim158$ orders of margin, module \texttt{gwdata}) --- not a leg S-matrix derivation.
+The exterior perturbation problem ($\delta\omega_{nlm}$ vs Kerr) is open.
 Hence GW250114 (SNR 80 area law + Kerr ringdown) and GW241011 (strongest $\delta\kappa$ bound to date,
 Kerr to factor $\sim$2 resp.\ $\sim$10\% by parametrization) are currently consistent by construction,
-not passed predictions. A future graph derivation $Q=-Ma^2(1+\delta_Q)$ with $|\delta_Q|\gtrsim0.17$
+not passed predictions. GW250114 provides the QNM benchmark ($\delta f_{220}\sim2\%$,
+$\delta\tau_{220}\sim10\%$, $\delta f_{221}\sim30\%$, $\delta f_{440}\sim$tens\%):
+a future graph-derived $|\delta\omega/\omega|$ above those thresholds fails.
+A future graph derivation $Q=-Ma^2(1+\delta_Q)$ with $|\delta_Q|\gtrsim0.17$
 would be ruled out by GW241011. Tracked as D2 in \path{docs/DEFERRED.md}.
+
+\textbf{Kerr thermodynamics (conditional check).} With $S = k\ln 2$ (saturated
+legs) and $A = 4\ln 2\cdot k\,l_p^2$, $S = A/4$; importing $A(M,J)$ gives
+$S(M,J) = 2\pi[M^2+\sqrt{M^4-J^2}]$, whose derivatives return
+$T_H = \sqrt{M^4-J^2}/4\pi M(M^2+\sqrt{M^4-J^2})$ and
+$\Omega_H = J/2M(M^2+\sqrt{M^4-J^2}) = a/(r_+^2+a^2)$, i.e.\
+$dM = T\,dS + \Omega_H\,dJ$ (module \texttt{thermo}: identities $< 10^{-6}$,
+independent finite-step $\Delta M = T\Delta S + \Omega_H\Delta J$ to $O(d^2)$;
+super-extremal $|J| > M^2$ returns NaN, never clamped). Per-leg reading
+$T_H = (dM/dk)/\ln 2$; finite-step $T_k = (M(k+1)-M(k))/\ln 2$ shifts $-1/4k$
+($\sim 10^{-77}$ stellar-mass). Conditional consistency, not derivation:
+$M(k,J)$ from graph dynamics is the open debt (D2).
 
 \begin{figure}[ht]\centering
 \includegraphics[width=0.92\linewidth]{fig10_page.png}
@@ -271,7 +292,10 @@ $k_{\mathrm{crit}} \approx 50$ --- thermal nulls expected, onset $\sim 550$\,TeV
 Echoes: $\Delta t = 4M\log(M/l_p)$, $0.03$--$0.3$\,s (GW150914 $0.11$\,s),
 in searched windows but $R \sim 10^{-160}$ unobservable. EHT:
 $l_p/2M \approx 10^{-48}$, 47 orders below sensitivity. Dispersion:
-$E_{QG,2} = \sqrt{8}\,E_P$, Fermi-safe by $10^8$. Chromatic lensing
+$E_{QG,2} = \sqrt{8}\,E_P$, Fermi-safe by $10^8$; universal GW
+extrapolation shifts 100\,Hz by $\sim 10^{-82}$ (LVK $\alpha = 4$, safe by
+$\sim 10^{60}$ --- a recorded null, not a falsifier; no GW sector
+claimed). Chromatic lensing
 $10^{-56}$--$10^{-32}$. Figs.~21--22, 39, 51--56.
 
 \begin{figure}[ht]\centering
@@ -422,7 +446,7 @@ Modules follow the appendix letters of the v4.1 extended record:
 \path{graphs}, \path{scrambling}, \path{horizon}, \path{micro},
 \path{circuits} (A), \path{maxent} (B), \path{qes} (C),
 \path{evaporation} (D), \path{evaporation_unitary} (D2), \path{qec} (F), \path{robustness} (G),
-\path{kerr} (H), \path{haar} (I), \path{monogamy} (J),
+\path{kerr} (H), \path{thermo} (H2), \path{haar} (I), \path{monogamy} (J),
 \path{otoc}+\path{pheno} (L), \path{tn} (M), \path{kerrpage} (N),
 \path{syk} (O), \path{data} (Q), \path{litcompare} (R), \path{tev} (T),
 \path{echoes} (U), \path{posteriors} (W), \path{ds} (X),
