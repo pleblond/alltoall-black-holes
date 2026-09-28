@@ -1,4 +1,4 @@
-# The model, stated first (v0.4)
+# The model, stated first (v0.5)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
@@ -32,6 +32,14 @@ nat/bit units corrected). Postulate B stays retired with one clarifying
 sentence; the s-leg falsifier now tests I1a directly; I6c's Jacobson
 conclusion is guarded given-I1b. Import IDs otherwise stable; see §9.
 
+**v0.5 ambient-L0 release.** No number changes: L0 gains the vacuum postulate
+P5 (ambient graph connected, bridgeless, large-world) and reference-family
+theorems A1–A5 (diameter/gap duals of T1, finite-speed floor, tree floor,
+isoperimetric rip-cost + `d_iso` estimator, pinch-off complement) in new
+module `ambient` (12 tests; suite: 425 collected, 423 passed, 2 torch/GPU-only
+skipped). Vacuum selection and edge-minimality queued as D10. Model-only
+release: `paper/v5/` untouched, import IDs stable; see §9.
+
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
 figures, and measurements are cited as *evidence about* the model, never as its
@@ -53,7 +61,7 @@ follows, and what is still missing.
   a solved weight, one ansatz map, and one extrapolation prescription. Killing L2
   must not kill L0/L1.
 
-Open derivations (D1–D8 in `docs/DEFERRED.md`) are fenced in §5 and referenced
+Open derivations (D1–D10 in `docs/DEFERRED.md`) are fenced in §5 and referenced
 from the exact postulate or theorem they would promote. Nothing in §2–§4 depends
 on them silently.
 
@@ -152,6 +160,51 @@ chain is already `> 5×` slower at `N = 64`. OTOC form `C(t) ~ e^{λt}/N`,
 At `t = 0` the witness family has interior concurrence 1 and exterior tangle 0
 (baby-universe endpoint); at `t = π/2` it is fully product `(0,0)`. This is a
 theorem of quantum mechanics applied to the wiring, not an extra postulate.
+
+### P5 (vacuum postulate). The ambient graph is connected, bridgeless, and large-world.
+
+The complement of the P1 interior across the `k`-leg cut — the rest of the
+network in §1 — is one space (connected), has no single-edge rips
+(bridgeless: every edge lies on a cycle), and is large-world (diameter
+super-logarithmic in `n`, i.e. no small-world shortcuts). Each clause is
+falsifiable downstream without assuming a dimension: connected (else dust,
+no space), bridgeless (macroscopic single-edge tears are ruled out by every
+null in §6/T13–T14), large-world (shortcuts are ruled out by finite-`c`
+propagation and no anomalous transmission). What P5 does **not** claim: any
+dimension (`D` is a D10 output measured by `d_iso`, never an input), exact
+flatness (approximate, measured with the P4 measure; physical meaning via
+I6b), edge-minimality, or any Hamiltonian/dynamics (still excluded from L0).
+(`ambient`.)
+
+### Ambient reference-family theorems (A1–A5). Pure graph theory; no new postulates.
+
+- **A1 (diameter dual of T1).** `K_N` uniquely minimizes diameter (1) and the
+  path `P_N` uniquely maximizes it (`n−1`) among connected graphs. BH lives at
+  the minimal end, vacuum toward the maximal end. **Derived**, zero tuning.
+  (`ambient.diameter_of`, `is_diameter_minimal/maximal`.)
+- **A2 (gap extremes + speed floor).** Spectral gap runs `n` (`K_N`, fastest
+  mixing) down to `2(1−cos π/n)` (`P_N`, slowest); SI spread obeys
+  `t_cover ≥ eccentricity` (one edge per step — the L0 speed limit, attained by
+  `infection_time`). Finite `c` ⟺ local + sparse, made rigorous. (`ambient`,
+  `scrambling`.)
+- **A3 (tree floor).** Trees are the edge-minimum connected graphs (`n−1`
+  edges), all bridges, edge-connectivity `λ = 1`; uniform trees are the
+  branched-polymer phase (`D_H = 2`, `d_s = 4/3`, cited). The floor every vacuum
+  candidate is measured against; the cycle `C_n` is the minimal bridgeless
+  connected graph (`m = n`, `λ = 2`). (`ambient`.)
+- **A4 (isoperimetry).** Rip cost `C(V)` = edge-boundary of `B(r)`; the
+  cut-dimension estimator `d_iso` from `|∂V| ∼ V^{(d−1)/d}` separates 1D
+  (slope `∼0`, `d = 1.00`), 2D (slope `∼1/2`, `d = 2.06` on 21² grids), 3D
+  (slope `∼2/3`, small-window bias from above documented) and trees
+  (slope `→ 1`, boundary `∼` volume: no interior). Pinned tension for D10:
+  random 4-regular graphs carry `⟨κ⟩ < −0.05` (measured, P4 measure) — `z = 4`
+  and flatness are jointly non-trivial. (`ambient.ball_profile`, `iso_slope`,
+  `iso_dimension`.)
+- **A5 (pinch-off complement).** Cutting the `k`-leg cut isolates both sides:
+  `k = 0` with both sides nonempty is decoupled — interior → `K_N` baby
+  universe (T3), ambient → vacuum-minus-puncture (the D10 object). BH and
+  vacuum are complementary outcomes of one cut. (`ambient.pinch_complement`,
+  `horizon.is_baby_universe_limit`.)
 
 ### Explicitly not in L0.
 
@@ -507,7 +560,7 @@ graph; inserting `44 M☉` as a graph parameter is refused. (`massgaps`.)
 
 Each item: what is missing, what would close it, what it gates. Tracked in
 `docs/DEFERRED.md`; the paper's kill table wires the falsifiable ones.
-Tag convention: D1–D9 here always mean DEFERRED items; the appendix-letter tag
+Tag convention: D1–D10 here always mean DEFERRED items; the appendix-letter tag
 (D2) (= module `evaporation_unitary`) is always written as the module name —
 supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 
@@ -522,6 +575,7 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 | D7 | Kilonova radiative transfer | validated multidimensional RT on public ejecta models/transformations compatible with the F5/F6 bulk prescription (morphology, velocity structure per VEL-1, Ye-dependent opacities/reprocessing, viewing-angle dependence, direct `i`-band); pipeline must pass the AT2017gfo anchor/control gate before its GW190814 result promotes the analytic verdict (POSSIS primary implementation) | decides whether the GW190814 non-detection is compatible with universal shedding or falsifies it; `g`-band verdicts already robust |
 | D8 | Shedding efficiency `ε(M,a,q)` + shutoff location | derive mass/spin/ratio dependence from `K_max(N)` combinatorics, spin-ordered reabsorption, or remnant-trap physics, with any shutoff location as *output* | highest-value attack surface on universal shedding; a derived shutoff between gap and BBH masses must land where it lands (same no-insertion rule as the 44 M☉ null) |
 | D9 | Raychaudhuri (focusing) for leg bundles | derive focusing for SI fronts on leg networks (seed: AT congestion slowdown); closes the Jacobson chain to Einstein's equations with `η = 1/4` from I1b, `G = 1` | promotes I6c from open bridge to derived; gates nothing else — T8–T11 stand without it |
+| D10 | Vacuum selection: constrained ensemble + edge-minimality beyond the structural P5 | connected/bridgeless/large-world ensemble with `d_iso → 3` at large scales (dimension as output, never input), approximately Ollivier-flat (P4 measure), edge-minimal among qualifying ensembles — or a sparser counterexample falsifies | gates P5's physical content; `z = 4` + flat tension adjudicated by the annealer |
 
 Rule for all D-items: the closing derivation must output the number or location,
 not take it as input. Inserting an observed scale as a graph parameter is a fit,
@@ -543,6 +597,8 @@ Stated so no reader misses them:
 - No NICER radii or tidal deformabilities yet (queued, D5).
 - No `i`-band kilonova photometry claimed (one-zone red over-traps).
 - No graph feature at 44 M☉ (positive null, §4).
+- No vacuum dimension assumed (`d_iso` is an estimator; `D = 3` is a D10 output target, not an L0 input).
+- No vacuum selection or edge-minimality claimed (P5 is structural only; the ensemble + minimality are D10).
 - No explanation of FRBs, lensing oddities, or TeV transparency (examined, died
   on arithmetic, on the record). Pre-v4.0 "no standing anomaly" framing is
   superseded for exactly the five compact-object facts in §4 — nothing else.
@@ -583,6 +639,9 @@ Single table; every symbol in §1–§4 appears here with its home.
 | `p`, `β(N)`, `c₁`, `c₂`, `w`, `c_tot` | radial exponent, bridge exponent, 2PN coefficients/weight | §4 F1–F4, `orici`/`pulsar` |
 | `e_init/final`, `ε`, `M_ej` | shed fractions, efficiency, ejecta mass | §4 F5–F6, `collapse` |
 | `m_g`, `m_i` | peak apparent mags (analytic, `BC = 0`) | §4, `collapse.peak_apparent_mags` |
+| `λ(G)` | edge-connectivity: fewest edges whose removal disconnects (rip index) | A3, `ambient.edge_connectivity_of` |
+| `C(V)` | rip cost: edge-boundary of ball `B(r)` enclosing volume `V` | A4, `ambient.ball_profile` |
+| `d_iso` | cut dimension from `|∂V| ∼ V^{(d−1)/d}` (`1/(1−slope)`) | A4, `ambient.iso_dimension` |
 
 ---
 
@@ -590,7 +649,7 @@ Single table; every symbol in §1–§4 appears here with its home.
 
 - **L0**: `graphs`, `scrambling`, `circuits`, `otoc`+`pheno`, `krylov`, `syk`, `bigsyk`,
   `sparse24`, `monogamy`, `qec`, `robustness`, `fission`, `klanguage`,
-  `collapse` (grid→complete part), `concentration`.
+  `collapse` (grid→complete part), `concentration`, `ambient` (A1–A5).
 - **L1**: `horizon`, `micro`, `qes`, `evaporation`, `evaporation_unitary`,
   `haar`, `maxent`, `tn`, `kerr`, `kerrpage`, `thermo`, `entropic`, `redshift`,
   `heatker`, `orici` (AU signs), `jacobson`, `lensing`, `chroma`, `shapiro`,
@@ -607,7 +666,7 @@ Single table; every symbol in §1–§4 appears here with its home.
   thermality below `k_crit`, `s_leg ≤ l_p²/4` wire, linear LIV, `p` wire, gap/BBH
   kilonova wires, NICER wire, Kerr-quadrupole future wire — see the v5 kill
   table (`paper/v5/main.tex` §6) and `docs/observation-protocol.md`.
-- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (398 tests),
+- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (425 tests),
   `python scripts/generate_figures.py` + `python scripts/generate_v5_figs.py`
   (81 figure files, Figs 1–75), `streamlit run app.py`.
 
@@ -642,8 +701,9 @@ dimensional estimate). Suite on this branch: 398 collected, 396 passed,
   is recorded in `docs/DEFERRED.md`, not by softening the criterion here.
 - A **killed** claim stays in §6 with its killer named. (Precedents: broad
   remnant DM, isotropic `b_crit`, naive `γ = 2`, linear LIV, flat `p = 0.49`.)
-- This document versions with the paper: v0.4 tracks v5.0 (I1-matching
-  release; import IDs stable except the splits I1→I1a/I1b (v0.4),
+- This document versions with the paper: v0.5 tracks v5.0 (ambient-L0
+  release, model-only: paper untouched; import IDs stable, L0 gains P5 +
+  A1–A5, D10 queued; prior splits I1→I1a/I1b (v0.4),
   I4→I4a/I4b and I6→I6a-c (v0.3)).
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:

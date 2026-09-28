@@ -69,7 +69,7 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 398 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 425 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -86,7 +86,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`; mass-gaps `massgaps`.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`; mass-gaps `massgaps`; L0 ambient `ambient` (A1–A5).
 
 ## Quickstart
 
@@ -94,7 +94,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 398 tests (2 torch/GPU-only skip without torch)
+python -m pytest tests/ -q          # 425 tests (2 torch/GPU-only skip without torch)
 python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
@@ -148,7 +148,7 @@ pdflatex supplement.tex && pdflatex supplement.tex
   v5.0 adds: D2 qubit-toy unitary evaporation (graph
   dynamics open), H2 $T_H$/$\Omega_H$ in the main text, mass-gap null +
   universal BBH shedding + GW190814 epoch audit ($P \approx 0.68$–$0.88$,
-  tension), 46/46 references cited, 398 tests, 81 figure files.
+  tension), 46/46 references cited, 425 tests, 81 figure files.
 - **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
   equivalence principle, continuum limits (heat-kernel, Ollivier),
   Raychaudhuri for leg bundles, gap coefficient, crossover scales.
@@ -209,7 +209,7 @@ preview, UV+QI, one-family compact objects + gap-KN ~1/yr O5, upper-gap null
 [`supplement.pdf`](paper/v5/supplement.pdf) (11pp S1–S10 methods: audit,
 gravity/QI methods, N-scale table, PPN/archival ledgers, O5 protocol, kill
 list, module map; 5 main figures + 12 evidence figures, 46/46 references
-cited). 398 tests, 81 figure files (Figs 1–75).
+cited). 425 tests, 81 figure files (Figs 1–75).
 New survival-matrix figure (`scripts/generate_v5_figs.py`); the mass-gaps
 module (upper-gap null, universal BBH shedding, GW190814 epoch audit) and
 ringdown wording ports landed after the cut.

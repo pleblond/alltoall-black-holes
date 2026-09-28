@@ -327,6 +327,16 @@ from bh_graph.massgaps import (
     gw190814_peak_covered,
     love_vs_mass, is_love_smooth_across_44,
 )
+from bh_graph.ambient import (
+    is_valid_n, is_connected_nonempty,
+    build_cycle, build_grid_3d, build_balanced_tree,
+    diameter_of, is_diameter_minimal, max_diameter_connected,
+    is_diameter_maximal, diameter_vs_log,
+    gap_complete_exact, gap_path_exact, spread_floor,
+    min_edges_connected, is_tree_graph, bridge_fraction, edge_connectivity_of,
+    ball_profile, iso_slope, iso_dimension, boundary_volume_ratio,
+    pinch_complement,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -527,4 +537,12 @@ __all__ = [
     "gw190814_cfht_audit", "gw190814_growth_audit", "gw190814_combined_pdetect",
     "gw190814_peak_covered",
     "love_vs_mass", "is_love_smooth_across_44",
+    "is_valid_n", "is_connected_nonempty",
+    "build_cycle", "build_grid_3d", "build_balanced_tree",
+    "diameter_of", "is_diameter_minimal", "max_diameter_connected",
+    "is_diameter_maximal", "diameter_vs_log",
+    "gap_complete_exact", "gap_path_exact", "spread_floor",
+    "min_edges_connected", "is_tree_graph", "bridge_fraction", "edge_connectivity_of",
+    "ball_profile", "iso_slope", "iso_dimension", "boundary_volume_ratio",
+    "pinch_complement",
 ]
