@@ -386,4 +386,33 @@ INCONCLUSIVE).
 
 ## §8. Amendments (post-compute edits logged here, never silent)
 
-(None yet.)
+### A1 (2026-09-28, post-primary-compute): exploratory radial-edge profiles
+
+RATIONALE (defect found in the prereg'd observable, not in the bars):
+the §3.1 observable (mean κ over INTRA-shell edges) is identically
+EMPTY on bipartite vacua — cubic (even L) and BCC returned 0 intra-shell
+edges in all shells (proven: intra-shell edges are odd cycles, absent in
+bipartite graphs), and FCC intra-shell κ sits at the LP noise floor
+(~1e-17, insensitive to excursion strength s: identical p across s=2,4,8).
+36/81 primary cells are INCONCLUSIVE-by-data for this reason. The primary
+verdicts (§3.3/§4/§5.1 bars) STAND AS COMPUTED — this amendment adds a
+labeled EXPLORATORY robustness check that CANNOT overturn them (only a new
+prereg + held-out data could); its purpose is to determine whether the
+primary kill is observable-robust or observable-dependent.
+
+FROZEN EXPLORATORY OBSERVABLE (no tuning; set here before running):
+`radial_edge_kappa_profile(h, center)`: edge (u,v) with BFS depths (du,dv)
+is assigned to shell r = min(du,dv) — radial edges (r,r+1)→r (each counted
+ONCE; the §3 "double-count" rationale was mistaken) plus intra-shell
+(r,r)→r (a strict SUPERSET of the §3.1 edges — no cherry-picking).
+Shells r = 0..4 (shell 0 = edges incident to the center: the direct
+defect response). y(r) = |mean κ|; shells with <3 edges → NaN; fits need
+≥3 finite shells. SAME three models + R²/RSS/AIC/BIC + SAME §3.3/§5.1
+bars computed FOR INFORMATION ONLY (labels: EXPLORATORY-PASS/-FAIL,
+never PASS/FAIL). Same 81-cell grid (same graphs, s, centers).
+
+INTERPRETATION RULE (frozen): if exploratory also kills log → kill is
+OBSERVABLE-ROBUST. If exploratory shows log emergence → primary kill is
+OBSERVABLE-DEPENDENT: C1 remains UNPROVEN (exploratory ≠ PASS) and a
+follow-up prereg with the radial observable is recommended. Either way
+the §3–§5 verdict lines in the report keep their primary (prereg'd) values.

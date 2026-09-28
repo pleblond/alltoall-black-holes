@@ -1,0 +1,23 @@
+{
+ "A_liv": {
+  "eqg2_gev": 3.4532549608738714e+19,
+  "fermi_quad_margin": 265634996.9902978,
+  "mock_10gev_3gpc_s": 2.5893681883511596e-20,
+  "real_31gev_grb090510_s": 1.85799251232408e-19,
+  "fermi_bound_s": 0.859,
+  "null_margin_orders": 18.66494920436893
+ },
+ "C_echo": {
+  "margin_orders_100hz": 159.88052360861698
+ },
+ "B_2pn_gate": {
+  "label": "CONSISTENCY-GATE (never VALIDATION)",
+  "m_gr": 2.586924235431386,
+  "m_model": 2.586924237235773,
+  "dot_resid_sigma": 5.465713352000771e-10,
+  "dot_fixedM_resid_sigma": 0.0006044842738250857,
+  "sin_i": 0.9998864951444113,
+  "sin_i_obs": 0.99974,
+  "b1913_pb_s": 27906.9807816
+ }
+}
