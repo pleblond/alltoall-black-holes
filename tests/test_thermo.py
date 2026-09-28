@@ -5,8 +5,10 @@ from bh_graph.kerr import kerr_newman_area
 from bh_graph.thermo import (
     finite_k_relative_correction,
     finite_k_temperature,
+    first_law_finite_step,
     first_law_residual,
     is_thermo_consistent,
+    is_valid_kerr,
     kerr_entropy,
     kerr_omega,
     kerr_omega_from_a,
@@ -78,10 +80,41 @@ def test_kerr_entropy_matches_area():
         assert abs(kerr_entropy(m, j) - kerr_newman_area(m, a, 0.0) / 4.0) < 1e-12
 
 
-def test_first_law_closes_numerically():
+def test_kerr_thermodynamic_identities():
+    # Regression: central differences of S agree with the analytic T/Omega
+    # formulas they define (not an independent derivation of the first law).
     for m, j in [(1.0, 0.0), (1.0, 0.5), (2.0, 1.0), (1.5, 0.2)]:
         assert first_law_residual(m, j) < 1e-6
         assert is_thermo_consistent(m, j)
+
+
+def test_first_law_finite_step():
+    # Independent directions (dM, dJ): dM = T dS + Omega dJ to O(d^2).
+    # Absolute mismatch must be tiny at h = 1e-4 and shrink ~100x at h/10.
+    for m, j in [(1.0, 0.3), (2.0, 1.0)]:
+        e1 = first_law_finite_step(m, j, 1e-4, 2e-4)
+        e2 = first_law_finite_step(m, j, 1e-5, 2e-5)
+        assert e1 < 1e-7
+        assert 50.0 < e1 / e2 < 200.0
+    # Pure-spin direction (dM = 0) also closes: 0 = T dS + Omega dJ.
+    assert first_law_finite_step(1.0, 0.3, 0.0, 1e-4) < 1e-7
+    # Super-extremal endpoints never close.
+    assert first_law_finite_step(1.0, 1.1) == float("inf")
+    assert not is_thermo_consistent(1.0, 1.1)
+
+
+def test_super_extremal_is_nan_not_clamped():
+    # |J| > M^2 has no horizon: NaN everywhere, never the extremal value.
+    assert np.isnan(kerr_temperature(1.0, 1.1))
+    assert np.isnan(kerr_entropy(1.0, 1.1))
+    assert np.isnan(kerr_omega(1.0, 1.1))
+    assert np.isnan(kerr_omega_from_a(1.0, 1.1))
+    assert not is_valid_kerr(1.0, 1.1)
+    assert is_valid_kerr(1.0, 1.0)  # extremal is valid
+    assert is_valid_kerr(1.0, 0.5)
+    # Vectorized form propagates NaN only at invalid points.
+    t = kerr_temperature(1.0, np.array([0.0, 0.5, 1.1]))
+    assert np.isfinite(t[0]) and np.isfinite(t[1]) and np.isnan(t[2])
 
 
 def test_finite_k_correction_is_minus_quarter_over_k():

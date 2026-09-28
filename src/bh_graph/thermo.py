@@ -17,9 +17,12 @@ is derive M(k, J) from graph dynamics; that remains the stated derivation debt
 (see Appendix BM / legham sketch). Importing S(M, J) and differentiating is a
 consistency check, not a microscopic derivation.
 
-Also included: the finite-k correction T_k = (M(k+1) - M(k)) / ln 2, which
-differs from the continuum T by ~1/4k (negligible for astrophysical holes,
-potentially relevant near Planck / extremality).
+Also included: the finite-step correction T_k = (M(k+1) - M(k)) / ln 2 under the
+one-leg energy assignment, which differs from the continuum T by ~1/4k
+(negligible for astrophysical holes, potentially relevant near Planck /
+extremality). The forward-difference identification itself is an interpretation
+choice (symmetric difference or detailed-balance constructions would differ);
+the module tests the stated assignment, not its uniqueness.
 """
 from __future__ import annotations
 
@@ -29,6 +32,21 @@ from bh_graph.horizon import PATCH_AREA
 from bh_graph.kerr import kerr_newman_area
 
 LN2 = float(np.log(2.0))
+
+
+def _subextremal_mask(m, j) -> np.ndarray:
+    """Valid Kerr states: M > 0 and J^2 <= M^4. Super-extremal -> NaN, never clamped."""
+    m = np.asarray(m, dtype=float)
+    j = np.asarray(j, dtype=float)
+    return (m > 0) & (j**2 <= m**4)
+
+
+def is_valid_kerr(m, j) -> np.ndarray | bool:
+    """Boolean check: is (M, J) a valid (sub-extremal or extremal) Kerr state?"""
+    out = _subextremal_mask(m, j)
+    if out.ndim == 0:
+        return bool(out)
+    return out
 
 
 def schwarzschild_entropy(m) -> np.ndarray | float:
@@ -55,50 +73,63 @@ def temperature_from_leg_cost(m) -> np.ndarray | float:
 
 
 def kerr_entropy(m, j) -> np.ndarray | float:
-    """S(M, J) = 2 pi [M^2 + sqrt(M^4 - J^2)] (S = A/4)."""
+    """S(M, J) = 2 pi [M^2 + sqrt(M^4 - J^2)] (S = A/4). NaN if super-extremal."""
     m = np.asarray(m, dtype=float)
     j = np.asarray(j, dtype=float)
     root = np.sqrt(np.maximum(m**4 - j**2, 0.0))
-    return 2.0 * np.pi * (m**2 + root)
+    out = 2.0 * np.pi * (m**2 + root)
+    out = np.where(_subextremal_mask(m, j), out, np.nan)
+    if out.ndim == 0:
+        return float(out)
+    return out
 
 
 def kerr_temperature(m, j) -> np.ndarray | float:
     """Kerr T_H = sqrt(M^4 - J^2) / [4 pi M (M^2 + sqrt(M^4 - J^2))].
 
-    Reduces to 1/(8 pi M) at J = 0; tends to 0 at extremality |J| = M^2.
+    Reduces to 1/(8 pi M) at J = 0; exactly 0 at extremality |J| = M^2;
+    NaN for super-extremal |J| > M^2 (no horizon — never silently clamped).
     """
     m = np.asarray(m, dtype=float)
     j = np.asarray(j, dtype=float)
+    valid = _subextremal_mask(m, j)
     root = np.sqrt(np.maximum(m**4 - j**2, 0.0))
     denom = 4.0 * np.pi * m * (m**2 + root)
     with np.errstate(divide="ignore", invalid="ignore"):
-        out = np.where(denom > 0, root / denom, 0.0)
-    # Extremal (root == 0, M > 0): T = 0 exactly.
-    out = np.where((root == 0.0) & (m > 0), 0.0, out)
+        out = np.where(denom > 0, root / denom, np.nan)
+    out = np.where(valid, out, np.nan)
     if out.ndim == 0:
         return float(out)
     return out
 
 
 def kerr_omega(m, j) -> np.ndarray | float:
-    """Kerr horizon angular velocity: J / [2 M (M^2 + sqrt(M^4 - J^2))]."""
+    """Kerr horizon angular velocity: J / [2 M (M^2 + sqrt(M^4 - J^2))]. NaN if super-extremal."""
     m = np.asarray(m, dtype=float)
     j = np.asarray(j, dtype=float)
+    valid = _subextremal_mask(m, j)
     root = np.sqrt(np.maximum(m**4 - j**2, 0.0))
     denom = 2.0 * m * (m**2 + root)
     with np.errstate(divide="ignore", invalid="ignore"):
-        out = np.where(denom > 0, j / denom, 0.0)
+        out = np.where(denom > 0, j / denom, np.nan)
+    out = np.where(valid, out, np.nan)
     if out.ndim == 0:
         return float(out)
     return out
 
 
 def kerr_omega_from_a(m, a) -> np.ndarray | float:
-    """Omega_H = a / (r_+^2 + a^2), cross-check form."""
+    """Omega_H = a / (r_+^2 + a^2), cross-check form. NaN if |a| > M."""
     m = np.asarray(m, dtype=float)
     a = np.asarray(a, dtype=float)
+    valid = (m > 0) & (a**2 <= m**2)
     r_plus = m + np.sqrt(np.maximum(m**2 - a**2, 0.0))
-    return a / (r_plus**2 + a**2)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        out = a / (r_plus**2 + a**2)
+    out = np.where(valid, out, np.nan)
+    if np.ndim(out) == 0:
+        return float(out)
+    return out
 
 
 def mass_from_k_schwarzschild(k, lp: float = 1.0) -> np.ndarray | float:
@@ -138,14 +169,17 @@ def finite_k_relative_correction(k) -> np.ndarray | float:
 
 
 def first_law_residual(m, j, dm: float = 1e-6, dj: float = 1e-6) -> float:
-    """Numerical check of dM = T dS + Omega dJ at (M, J).
+    """Definitions-consistency residual for T = 1/(dS/dM)_J, Omega = -T(dS/dJ)_M.
 
-    Returns the relative mismatch between an explicit dM step and the
-    T dS + Omega dJ reconstruction along a generic (dM-from-dS, dJ) move.
-    Uses central differences of S(M, J) from kerr_entropy (S = A/4).
+    Regression check that central differences of S(M, J) agree with the analytic
+    T/Omega formulas they define — NOT an independent derivation of the first law.
+    Returns inf for super-extremal (M, J); only meaningful for strictly sub-extremal
+    states (at exact extremality dS/dM diverges while T = 0).
     """
     m = float(m)
     j = float(j)
+    if not bool(_subextremal_mask(m, j)):
+        return float("inf")
     t = float(kerr_temperature(m, j))
     om = float(kerr_omega(m, j))
     # Central-difference gradients of S.
@@ -158,6 +192,27 @@ def first_law_residual(m, j, dm: float = 1e-6, dj: float = 1e-6) -> float:
     return max(r1, r2)
 
 
+def first_law_finite_step(m, j, dm: float = 1e-4, dj: float = 1e-4) -> float:
+    """Finite-step first-law mismatch |dM - (T dS + Omega dJ)| along a generic move.
+
+    Perturbs (M, J) independently, takes dS = S(M+dM, J+dJ) - S(M, J) from the
+    entropy function, and compares the two sides of dM = T dS + Omega dJ.
+    Returns the absolute mismatch (O(d^2) for a closing differential relation),
+    or inf if either endpoint is super-extremal. Absolute (not relative) so the
+    dM = 0 pure-spin direction stays well-defined.
+    """
+    m = float(m)
+    j = float(j)
+    if not bool(_subextremal_mask(m, j)):
+        return float("inf")
+    if not bool(_subextremal_mask(m + dm, j + dj)):
+        return float("inf")
+    t = float(kerr_temperature(m, j))
+    om = float(kerr_omega(m, j))
+    ds = float(kerr_entropy(m + dm, j + dj)) - float(kerr_entropy(m, j))
+    return abs(dm - (t * ds + om * dj))
+
+
 def is_thermo_consistent(m, j, tol: float = 1e-6) -> bool:
-    """Boolean check: does (M, J) satisfy the first-law identities to tol?"""
+    """Boolean check: sub-extremal (M, J) satisfying the thermodynamic identities to tol?"""
     return bool(first_law_residual(m, j) < tol)
