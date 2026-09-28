@@ -1,0 +1,45 @@
+# POSSIS image: CPU Monte Carlo RT + opacity tables baked in (D7, step 4).
+#
+# Build ONCE (tables are GBs); pods boot from the built image, never
+# re-download per model. Pinned hashes go here when G2/G3 land — until
+# then this Dockerfile is STAGED (reviewed, not built) and every artifact
+# from the repo pipeline carries MOCK-NOT-RT.
+#
+#   docker build -f runpod/possis_Dockerfile -t <registry>/possis-d7:<tag> .
+#   docker push <registry>/possis-d7:<tag>
+#   # then: runpod/possis_launch.sh --image <registry>/possis-d7:<tag> --model gw170817 --config null_sph --pilot --keep
+#
+# ASSUMPTIONS (same convention as runpod/launch.sh): base image digest,
+# POSSIS tarball URL (author-provided, not public), opacity-table URLs.
+# First live build: verify hashes, compile with -O2, run the 1e5 pilot
+# smoke, THEN tag as the pre-registered image.
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc make curl ca-certificates python3 python3-pip git openssh-server \
+ && rm -rf /var/lib/apt/lists/*
+
+# --- POSSIS source (G2: fill tarball URL + sha256 when access lands) ---
+# RUN mkdir -p /opt/possis && curl -L -o /tmp/possis.tar.gz "<POSSIS_TARBALL_URL>" \
+#  && echo "<SHA256>  /tmp/possis.tar.gz" | sha256sum -c - \
+#  && tar -xzf /tmp/possis.tar.gz -C /opt/possis --strip-components=1 \
+#  && make -C /opt/possis -j"$(nproc)" \
+#  && /opt/possis/possis --help | head -n 5
+
+# --- Opacity tables (G3: fill URLs + sha256; ~2-10 GB per composition set) ---
+# RUN mkdir -p /opt/possis/data/opacities \
+#  && curl -L -o /opt/possis/data/opacities/tanaka19.tar.gz "<OPACITY_URL>" \
+#  && echo "<SHA256>  /opt/possis/data/opacities/tanaka19.tar.gz" | sha256sum -c - \
+#  && tar -xzf /opt/possis/data/opacities/tanaka19.tar.gz -C /opt/possis/data/opacities \
+#  && du -sh /opt/possis/data/opacities
+
+# --- Repo pipeline (bookkeeping only; physics lives in the binary above) ---
+RUN pip install --no-cache-dir numpy scipy
+COPY src/ /opt/d7/src/
+COPY runpod/possis_remote.py /opt/d7/possis_remote.py
+ENV PYTHONPATH=/opt/d7/src
+WORKDIR /opt/d7
+
+# Smoke: bookkeeping import + config builder (no RT without the binary).
+RUN python3 -c "from bh_graph.possis import build_possis_run_config; c=build_possis_run_config('gw170817','null_sph'); assert c['ok']; print('D7_SMOKE_OK', c['MOCK-NOT-RT'])"
