@@ -38,10 +38,12 @@ Expected O5 yield (`gap_o5_yield`, 1.5 gap events/yr, 70% DECam-like):
 | Event | Masses | Distance | Localization | EM result | Verdict for us |
 |---|---|---|---|---|---|
 | GW230529 | $2.5$–$4.5$ + $1.2$–$2.0$ | $\sim197$ Mpc | 24,200 deg$^2$ (single-detector Livingston) | No online KN search possible; ZTF covered 7% to $g=21.1$/$r=21.0$, 6 candidates rejected; no GRB (Swift/Fermi); standard disruption prob 0.1 | **Not a test**: 93% of skymap unsearched, and our $m_g\sim21.2$ sits at the ZTF depth even inside the footprint |
+| GW190814 | $23.2$ + $2.59$ ($q=0.112$) | $241^{+41}_{-45}$ Mpc | 18.5 deg$^2$ (3-det, 90%) | CFHT MegaCam: $g>22.8$ at 1.7d/65.5%, $g>23.6$ at 6.6d/35.9%, $i>23.1$ at 3.7d/61.5%, $i>23.9$ at 8.7d/70.5%; GROWTH/DECam $>98$% to $\sim21.7$, RT bound $M_{ej}<0.04$ polar; no counterpart | **Tension, not exclusion** (stress test, outside trigger: $M_{tot}=25.8$, $d>200$ Mpc so does not count toward kill rule): ours $M_{ej}=0.43$, $m_g\sim21.2$ at 1.7d, $P$(detect)$\approx0.71$ $g$-only ($p_{miss}\approx0.29$), $\approx0.87$ with $i$-from-blue $g-i=0.7$ ($p_{miss}\approx0.13$); equatorial + lanthanide-mixed ($\kappa_{blue}=2$) drops $P<0.1$. See `gw190814_detection_prob`, Fig 75 |
 | S250206dm | mgBH candidate (per working notes) | — | — | No promising counterpart (per notes) | **Unverified here** — check GCN circulars before citing |
 
 Refs: LIGO DCC P2300352 (discovery), arXiv:2409.10651 (KN models),
 GCN 33900 (ZTF), O4a ZTF summary (7% coverage), Swift/Fermi GRB limits.
+GW190814: Abbott et al. ApJL 896 L44 (2020) discovery; Vieira et al. ApJ 895 96 (2020) CFHT Table 1 depths/coverage; Andreoni et al. ApJ 890 131 (2020) GROWTH/DECam limits + RT bounds.
 Lesson: only **multi-detector, $<100$ deg$^2$** gap events count toward the
 kill rule; single-detector non-detections are uninformative either way.
 

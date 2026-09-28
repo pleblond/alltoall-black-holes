@@ -1894,6 +1894,71 @@ def fig74_unitary_page():
     plt.close(fig)
 
 
+def fig75_gw190814_audit():
+    from bh_graph.collapse import (
+        gw190814_detection_prob, gw190814_epoch_mags,
+        gw190814_systematics_table, he_core_congestion,
+        upper_gap_k_smoothness,
+    )
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    # left: epoch predicted vs depth (face-on direct + equatorial hidable)
+    face = gw190814_epoch_mags()
+    hide = gw190814_epoch_mags(theta_deg=90.0, kappa_blue=2.0)
+    xs = np.arange(len(face))
+    labels = [f"{r['band']}\n{r['t_days']}d" for r in face]
+    pred_f = np.array([r["predicted"] for r in face])
+    pred_h = np.array([r["predicted"] for r in hide])
+    depths = np.array([r["depth"] for r in face])
+    axes[0].scatter(xs, depths, s=80, marker="v", color="black", zorder=5, label="CFHT depth")
+    axes[0].scatter(xs, pred_f, s=60, color="#dc2626", zorder=5, label="face-on kap=0.5")
+    axes[0].scatter(xs, pred_h, s=60, marker="^", color="#2563eb", zorder=5,
+                    label="equat. kap=2 (hidable)")
+    for x, d, p in zip(xs, depths, pred_f):
+        axes[0].plot([x, x], [d, p], color="gray", lw=1, alpha=0.6)
+    axes[0].set_xticks(xs); axes[0].set_xticklabels(labels, fontsize=7)
+    axes[0].set_ylim(26.5, 20.0); axes[0].set_ylabel("mag")
+    axes[0].set_title("GW190814: predicted vs CFHT (direct)")
+    axes[0].legend(fontsize=7)
+    # middle: P(detect) systematics grid (g-only)
+    tab = gw190814_systematics_table()
+    thetas = sorted(set(c["theta_deg"] for c in tab))
+    kaps = sorted(set(c["kappa_blue"] for c in tab))
+    mat = np.array([[next(c["prob_g_only"] for c in tab
+                           if c["theta_deg"] == th and c["kappa_blue"] == kb)
+                     for kb in kaps] for th in thetas])
+    im = axes[1].imshow(mat, vmin=0, vmax=1, cmap="RdYlGn_r", aspect="auto")
+    axes[1].set_xticks(range(len(kaps))); axes[1].set_xticklabels([str(k) for k in kaps])
+    axes[1].set_yticks(range(len(thetas))); axes[1].set_yticklabels([str(int(t)) for t in thetas])
+    axes[1].set_xlabel("kappa_blue"); axes[1].set_ylabel("theta (deg)")
+    axes[1].set_title("P(detect) g-only: hiding window")
+    for i in range(len(thetas)):
+        for j in range(len(kaps)):
+            axes[1].text(j, i, f"{mat[i, j]:.2f}", ha="center", va="center", fontsize=8,
+                         color="white" if mat[i, j] > 0.5 else "black")
+    fig.colorbar(im, ax=axes[1], fraction=0.046, label="P(detect)")
+    # right: upper-gap k smoothness + He-core chi
+    sm = upper_gap_k_smoothness((20.0, 30.0, 44.3, 60.0, 80.0, 116.0))
+    ms = np.array(sm["masses"]); ks = np.array(sm["ks"])
+    axes[2].loglog(ms, ks / 1e80, marker="o", color="#2563eb", label="k(M) smooth M^2")
+    axes[2].axvline(44.3, ls="--", color="red", label="GWTC-4 44.3 Msun")
+    axes[2].axvspan(44.3 - 3.5, 44.3 + 5.9, alpha=0.15, color="red")
+    chi = he_core_congestion()["chi"]
+    axes[2].text(0.05, 0.08, f"He-core chi ~ {chi:.1e} << 1\nno wiring term in PISN",
+                 transform=axes[2].transAxes, fontsize=8,
+                 bbox=dict(facecolor="white", alpha=0.8, edgecolor="gray"))
+    axes[2].set_xlabel("M (Msun)"); axes[2].set_ylabel("k / 1e80")
+    axes[2].set_title("Upper gap: no feature predicted")
+    axes[2].legend(fontsize=7)
+    g_only = gw190814_detection_prob(g_only=True)
+    gcol = gw190814_detection_prob(i_from_blue_color=0.7)
+    fig.suptitle(f"Fig 75 — GW190814 audit: P(g)={g_only['prob']:.2f} "
+                 f"p_miss={g_only['p_miss']:.2f}; P(g+i,color)={gcol['prob']:.2f} "
+                 f"p_miss={gcol['p_miss']:.2f} (tension, not exclusion)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig75_gw190814_audit.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1969,6 +2034,7 @@ def main():
     fig72_uv_ladder()
     fig73_uv_n4000()
     fig74_unitary_page()
+    fig75_gw190814_audit()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

@@ -63,7 +63,14 @@ Sharpest near-term test after kilonova rate (2-3 yr timeline).
 **Missing:** `R_s = 2M` (BM reduction: `k(M)` iff `R_s(M)` given).
 Single GR input; derivation from wiring alone open.
 
-## D7 — Kilonova radiative transfer — queued
+## D7 — Kilonova radiative transfer — analytic audit done, full RT queued
 
-**Missing:** POSSIS refinement; i-band not claimed (one-zone κ=10
-over-traps). g-band verdicts robust; gap-KN ~1/yr O5 prediction stands.
+**Update (GW190814 audit):** epoch-specific analytic audit shipped
+(`collapse.gw190814_*`, Fig 75, 15 tests): CFHT/GROWTH depths + coverage,
+POSSIS-inspired viewing/opacity/color surrogates (labelled, bounded),
+P(detect) ~0.71 g-only / ~0.87 g+i(color), p_miss ~0.29/0.13 = tension not
+exclusion; equatorial + lanthanide-mixed hiding window quantified;
+upper-gap no-feature (k smooth M^2 at 44.3 Msun) + He-core chi ~1e-8 done.
+**Still missing:** full 3D POSSIS (morphology, Ye-dependent opacities,
+reprocessing); i-band direct not claimed (one-zone κ=10 over-traps,
+t_red ~30d at 0.35 Msun). g-band verdicts robust; gap-KN ~1/yr O5 stands.

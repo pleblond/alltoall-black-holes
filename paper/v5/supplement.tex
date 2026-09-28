@@ -243,7 +243,12 @@ Production N=1020: $p = 0.913 \pm 0.049$, SEM $0.0055$. \texttt{orici}.}
 \textbf{Leg-shedding kilonovae.} $M_{\mathrm{ej}} = \Delta k\,m_{\mathrm{leg}}
 \times 0.1$, blue ($v \sim 0.3c$, $t_{\mathrm{peak}} \sim 0.6$--$1$\,d) + red
 ($v \sim 0.1c$); $L \propto t^{-1.3}$ tail. Band mags assume BC $= 0$ and
-per-component peaks; POSSIS refinement queued. $g$-band verdicts robust;
+per-component peaks; full POSSIS queued (D7) with an analytic audit done:
+GW190814 ($23.2+2.59\,M_\odot$, 241\,Mpc) gives $M_{\mathrm{ej}} = 0.43\,M_\odot$,
+$m_g \sim 21.2$ at 1.7\,d vs CFHT $g > 22.8$/65.5\%, $P(\mathrm{detect}) \approx 0.71$
+$g$-only ($p_{\mathrm{miss}} \approx 0.29$), $\approx 0.87$ with $i$-from-blue
+$g-i = 0.7$ ($p_{\mathrm{miss}} \approx 0.13$): tension, not exclusion;
+equatorial + $\kappa_{\mathrm{blue}} = 2$ hides ($P < 0.1$). $g$-band verdicts robust;
 $i$-band NOT claimed (one-zone $\kappa = 10$ over-traps: $t_{\mathrm{red}}
 \sim 10$\,d vs observed $\sim 4$\,d decline, $m_i$ faint by $\sim 2$--$3$\,mag
 --- conservative for gap-$g$ detectability). Standard $2$--$28\%$ band is a
@@ -253,8 +258,12 @@ literature EOS input, not derived.
 90\% area $< 100$\,deg$^2$ (multi-detector); Rubin ToO epochs 0.5/2/5\,d in
 $g+r+i+z$ (DECam/Gemini backup). Kill rule: 10 qualifying non-detections kill
 BU. Archival ledger: GW230529 uninformative (single-detector, 93\% unsearched);
-S250206dm unverified (check GCNs before citing). Full plan:
-\path{docs/observation-protocol.md}. Figs.~66--69.
+GW190814 tension-not-exclusion stress test (outside trigger: $M_{\mathrm{tot}} = 25.8$,
+$d > 200$\,Mpc; does not count toward kill rule);
+S250206dm unverified (check GCNs before citing). Upper (PISN) gap: $k \propto M^2$ smooth across
+GWTC-4 $44.3^{+5.9}_{-3.5}\,M_\odot$, no feature predicted; He-core
+$\chi \sim 10^{-8} \ll 1$ so no wiring term in pair-instability. Full plan:
+\path{docs/observation-protocol.md}. Figs.~66--69, 75.
 
 \section{UV nulls and phenomenology (T, U, V, BD--BF)}
 
@@ -377,6 +386,7 @@ the ringdown time (left); timescale ladder from milliseconds to $10^{80}$\,s
 \begin{tabular}{@{}l p{2.9cm} l p{4.5cm} p{4.2cm}@{}}\toprule
 event & masses & distance & localisation / EM & verdict \\\midrule
 GW230529 & $2.5$--$4.5$ + $1.2$--$2.0$ & $\sim 197$\,Mpc & 24,200\,deg$^2$ (single-det.); ZTF 7\% to $g = 21.1$ & not a test: 93\% unsearched; $m_g \sim 21.2$ at depth edge \\
+GW190814 & $23.2$ + $2.59$ ($q = 0.112$) & $241^{+41}_{-45}$\,Mpc & 18.5\,deg$^2$ (3-det); CFHT $g > 22.8$/65.5\% + GROWTH $>98$\% & tension, not exclusion: $P \approx 0.71$/$0.87$, $p_{\mathrm{miss}} \approx 0.29$/$0.13$; outside trigger \\
 S250206dm & mgBH candidate & --- & no counterpart (per notes) & unverified: check GCNs before citing \\\bottomrule
 \end{tabular}
 \end{table}
@@ -388,7 +398,9 @@ Trigger (full plan \path{docs/observation-protocol.md}): $m_1 \in
 $L \propto t^{-1.3}$ tail. Yield: 1.5 gap/yr $\times$ 70\% $\approx 1.05$/yr
 ours vs $\le 0.3$/yr standard. Yield arithmetic in
 \path{collapse.gap_o5_yield}; brightness in
-\path{collapse.peak_apparent_mags}. Figs.~68--69.
+\path{collapse.peak_apparent_mags}; GW190814 audit in
+\path{collapse.gw190814_detection_prob} with systematics grid
+\path{collapse.gw190814_systematics_table}. Figs.~68--69, 75.
 
 \begin{figure}[ht]\centering
 \includegraphics[width=0.92\linewidth]{fig69_o5_protocol.png}
@@ -397,6 +409,19 @@ over Rubin/DECam depths (left); yield $\sim 1$/yr vs $\le 0.3$/yr standard
 (middle); the same $p$ keeps bending/Mercury 2PN pieces below VLBI/astrometry
 (right). \texttt{collapse}, \texttt{pulsar}.}
 \label{fig:sup-o5}
+\end{figure}
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.95\linewidth]{fig75_gw190814_audit.png}
+\caption{GW190814 stress test (outside O5 trigger, does not count toward kill rule).
+Left: epoch predicted mags vs CFHT depths --- face-on $g$ 1.7\,d is $\sim 1.6$\,mag
+brighter than $g > 22.8$ (tension); equatorial + $\kappa_{\mathrm{blue}} = 2$ hides.
+Direct $i$ is faint (one-zone $\kappa = 10$ over-traps, $t_{\mathrm{red}} \sim 30$\,d:
+unconstraining, not claimed). Middle: $P(\mathrm{detect})$ $g$-only systematics grid
+(POSSIS-inspired viewing $0$--$1.25$\,mag + opacity $L \propto \kappa^{-0.65}$).
+Right: upper-gap $k(M)$ smooth $M^2$ across GWTC-4 $44.3^{+5.9}_{-3.5}\,M_\odot$
+(red band) with He-core $\chi \sim 10^{-8}$: no wiring feature. \texttt{collapse}.}
+\label{fig:sup-190814}
 \end{figure}
 
 \section{Module map and reproduction}

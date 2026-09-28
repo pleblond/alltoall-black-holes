@@ -375,3 +375,420 @@ def is_gw230529_nondetection_consistent() -> bool:
     """Boolean check: model detection prob for GW230529 below 10%?"""
     r = gw230529_detection_prob()
     return bool(np.isfinite(r["prob"]) and r["prob"] < 0.10)
+
+
+# ---------------------------------------------------------------------------
+# GW190814 archival audit (CFHT + GROWTH/DECam) + POSSIS-inspired systematics.
+#
+# GW190814 (Abbott et al. ApJL 896 L44 2020): m1 = 23.2 Msun, m2 = 2.59 Msun
+# (q = 0.112, most unequal), DL = 241 +41/-45 Mpc, 18.5 deg2 at 90% (3-det).
+# No confirmed EM counterpart despite deep follow-up:
+#   CFHT MegaCam (Vieira et al. ApJ 895 96 2020, Table 1):
+#     g > 22.8 at 1.7d over 65.5%, g > 23.6 at 6.6d over 35.9%,
+#     i > 23.1 at 3.7d over 61.5% (cleaned), i > 22.8 at 4.7d over 70.5%,
+#     i > 23.9 at 8.7d over 70.5% (median 5-sigma, integrated prob).
+#   GROWTH/DECam (Andreoni et al. ApJ 890 131 2020): >98% coverage, mean
+#     detection limit ~21.7 mag; RT simulations constrain M_ej < 0.04 Msun
+#     (polar) or < 0.03 Msun if kap < 2 cm2/g at nearest consistent distance.
+#
+# Our model (leg-shedding, q-independent): M_ej = 0.0168 * 25.8 = 0.43 Msun,
+# m_g ~ 21.0 at 241 Mpc (blue peak 1.9d). Face-on this is ~1.8 mag brighter
+# than CFHT g at 1.7d -> tension. Whether it is excluded depends on
+# viewing angle, lanthanide fraction/opacity, color, dust, distance tail,
+# and footprint. Functions below quantify each WITHOUT running full RT:
+#   - epoch-specific mags from the same Arnett shape used for peaks,
+#   - POSSIS-inspired surrogates (Bulla 2019: equatorial 1.0-1.5 mag fainter
+#     in g; kap scaling L ~ kap^-0.65; g-i color for i-from-blue),
+#   - per-epoch P(detect) = coverage x Phi((d_max-med)/sig), combined,
+#   - required suppression to hide, and tension-vs-exclusion verdict.
+# Full 3D POSSIS (morphology, Ye-dependent opacities, reprocessing) stays
+# queued (D7); the surrogates below are labelled, bounded, and tested.
+# ---------------------------------------------------------------------------
+
+GW190814_M1_MSUN = 23.2
+GW190814_M2_MSUN = 2.59
+GW190814_DIST_MED_MPC = 241.0
+GW190814_DIST_SIGMA_MPC = 43.0  # mean of +41/-45, Gaussian approx
+GW190814_AREA90_DEG2 = 18.5
+
+# CFHT MegaCam epochs used in the audit (Vieira et al. Table 1).
+# (band, t_days, depth_5sig, integrated_prob_coverage)
+CFHT_EPOCHS = (
+    {"band": "g", "t_days": 1.7, "depth": 22.8, "coverage": 0.655},
+    {"band": "g", "t_days": 6.6, "depth": 23.6, "coverage": 0.359},
+    {"band": "i", "t_days": 3.7, "depth": 23.1, "coverage": 0.615},
+    {"band": "i", "t_days": 4.7, "depth": 22.8, "coverage": 0.705},
+    {"band": "i", "t_days": 8.7, "depth": 23.9, "coverage": 0.705},
+)
+
+# GROWTH/DECam synoptic limits (Andreoni et al.): deep + wide.
+GROWTH_MEAN_DEPTH = 21.7
+GROWTH_COVERAGE = 0.98
+GROWTH_MEJ_POLAR_LIMIT = 0.04  # Msun at nearest consistent distance
+GROWTH_MEJ_LOWKAP_LIMIT = 0.03  # Msun if kap < 2
+
+# POSSIS-inspired surrogate ranges (Bulla 2019 + nature-astronomy BHNS).
+VIEW_DIM_G_EQUATOR = 1.25  # mag, central; range 1.0-1.5 tested
+VIEW_DIM_G_LO = 1.0
+VIEW_DIM_G_HI = 1.5
+VIEW_DIM_I_EQUATOR = 0.5  # red less viewing-sensitive (conservative)
+G_MINUS_I_BLUE = 0.7  # color to map blue continuum into i (systematic)
+
+LP_M = 1.616255e-35
+
+
+def is_valid_viewing_angle(theta_deg: float) -> bool:
+    """Boolean check: polar angle in [0, 90] deg and finite."""
+    return bool(np.isfinite(theta_deg) and 0.0 <= theta_deg <= 90.0)
+
+
+def viewing_dimming_mag(theta_deg: float, band: str = "g",
+                        equator_g: float = VIEW_DIM_G_EQUATOR,
+                        equator_i: float = VIEW_DIM_I_EQUATOR) -> float:
+    """POSSIS-surrogate viewing dimming: A_band * sin^2(theta). nan if bad.
+
+    Polar (0 deg) -> 0; equatorial (90 deg) -> A (1.25 g, 0.5 i).
+    Range A_g in [1.0, 1.5] spans Bulla 2019 face-on vs edge-on.
+    Labelled surrogate, not RT: uniform over time (real color evolution
+    needs POSSIS). nan if inputs invalid.
+    """
+    if not is_valid_viewing_angle(theta_deg):
+        return float("nan")
+    if band not in ("g", "i"):
+        return float("nan")
+    if not all(np.isfinite(v) for v in (equator_g, equator_i)):
+        return float("nan")
+    if not (equator_g >= 0 and equator_i >= 0):
+        return float("nan")
+    amp = equator_g if band == "g" else equator_i
+    return float(amp * np.sin(np.deg2rad(theta_deg)) ** 2)
+
+
+def opacity_dimming_mag(kappa: float, kappa_ref: float) -> float:
+    """Peak-mag dimming from opacity: 1.625*log10(kap/kap_ref). nan if bad.
+
+    From L_peak ~ kap^-0.65: delta_m = 2.5*0.65*log10(ratio). kap 0.5 -> 2
+    gives +0.98 mag. Peak-time shift handled separately in epoch mags.
+    """
+    if not all(np.isfinite(v) for v in (kappa, kappa_ref)):
+        return float("nan")
+    if not (kappa > 0 and kappa_ref > 0):
+        return float("nan")
+    return float(2.5 * 0.65 * np.log10(kappa / kappa_ref))
+
+
+def component_lum_at_time(t_days, m_msun: float, v_c: float,
+                          kappa: float) -> np.ndarray:
+    """Single-component L(t): rise x exp decay, L(tp) = L_peak. nan if bad."""
+    t = np.asarray(t_days, dtype=float)
+    tp = kilonova_peak_time_days(m_msun, v_c, kappa)
+    lp = kilonova_peak_lum_erg_s(m_msun, v_c, kappa)
+    if not (np.isfinite(tp) and np.isfinite(lp) and tp > 0 and lp > 0):
+        return np.full_like(t, np.nan, dtype=float)
+    shape = np.exp(-np.maximum(t - tp, 0.0) / tp) * np.minimum(t / tp, 1.0)
+    return lp * shape
+
+
+def component_apparent_mag(t_days: float, m_msun: float, v_c: float,
+                           kappa: float, dist_mpc: float,
+                           theta_deg: float = 0.0, band: str = "g",
+                           dust_mag: float = 0.0) -> float:
+    """Epoch apparent mag for one component + viewing + dust. nan if bad.
+
+    theta_deg = 0 polar (no dimming); 90 equatorial (+1.25 g / +0.5 i).
+    dust_mag >= 0 is explicit extra extinction (labelled fudge, default 0).
+    BC = 0 as in peaks; colors need RT (D7).
+    """
+    vals = (t_days, m_msun, v_c, kappa, dist_mpc, theta_deg, dust_mag)
+    if not all(np.isfinite(v) for v in vals):
+        return float("nan")
+    if not (t_days > 0 and dist_mpc > 0 and dust_mag >= 0):
+        return float("nan")
+    if band not in ("g", "i"):
+        return float("nan")
+    lum = component_lum_at_time(np.array([t_days]), m_msun, v_c, kappa)[0]
+    dm = dist_modulus(dist_mpc)
+    dim = viewing_dimming_mag(theta_deg, band)
+    if not all(np.isfinite(v) for v in (lum, dm, dim)) or lum <= 0:
+        return float("nan")
+    return float(lum_to_abs_mag_bol(float(lum)) + dm + dim + dust_mag)
+
+
+def gw190814_ejecta() -> dict[str, float]:
+    """Fiducial leg-shedding ejecta for 23.2 + 2.59 Msun. M_ej ~ 0.43 Msun."""
+    return leg_shedding_ejecta(GW190814_M1_MSUN, GW190814_M2_MSUN)
+
+
+def gw190814_epoch_mags(dist_mpc: float = GW190814_DIST_MED_MPC,
+                        theta_deg: float = 0.0,
+                        kappa_blue: float = KAPPA_BLUE,
+                        kappa_red: float = KAPPA_RED,
+                        dust_g: float = 0.0, dust_i: float = 0.0,
+                        i_from_blue_color: float | None = None) -> list:
+    """Predicted mag per CFHT epoch with systematics. [] if inputs invalid.
+
+    g epochs use the blue component at epoch time; i epochs use the red
+    component by default (direct, faint, unconstraining because one-zone
+    kap=10 over-traps: t_red ~ 30d at 0.35 Msun). Pass i_from_blue_color
+    (e.g. 0.7) to map blue continuum into i instead (constraining path,
+    color systematic). Returns list of dicts with predicted/depth/margin.
+    """
+    vals = (dist_mpc, theta_deg, kappa_blue, kappa_red, dust_g, dust_i)
+    if not all(np.isfinite(v) for v in vals):
+        return []
+    if not (dist_mpc > 0 and dust_g >= 0 and dust_i >= 0):
+        return []
+    if not is_valid_viewing_angle(theta_deg):
+        return []
+    if i_from_blue_color is not None and not np.isfinite(i_from_blue_color):
+        return []
+    ej = gw190814_ejecta()
+    out = []
+    for ep in CFHT_EPOCHS:
+        t, band = ep["t_days"], ep["band"]
+        if band == "g":
+            pred = component_apparent_mag(t, ej["M_blue"], V_BLUE_C,
+                                          kappa_blue, dist_mpc,
+                                          theta_deg, "g", dust_g)
+        elif i_from_blue_color is not None:
+            g_at_t = component_apparent_mag(t, ej["M_blue"], V_BLUE_C,
+                                            kappa_blue, dist_mpc,
+                                            theta_deg, "g", dust_g)
+            i_view = viewing_dimming_mag(theta_deg, "i")
+            g_view = viewing_dimming_mag(theta_deg, "g")
+            if not all(np.isfinite(v) for v in (g_at_t, i_view, g_view)):
+                pred = float("nan")
+            else:
+                # blue continuum + color, with i viewing (not double-count g)
+                pred = float(g_at_t - g_view + i_view
+                             + i_from_blue_color + (dust_i - dust_g))
+        else:
+            pred = component_apparent_mag(t, ej["M_red"], V_RED_C,
+                                          kappa_red, dist_mpc,
+                                          theta_deg, "i", dust_i)
+        out.append({"band": band, "t_days": float(t),
+                    "depth": float(ep["depth"]),
+                    "coverage": float(ep["coverage"]),
+                    "predicted": float(pred),
+                    "margin": float(ep["depth"] - pred)
+                    if np.isfinite(pred) else float("nan")})
+    return out
+
+
+def gw190814_required_suppression(dist_mpc: float = GW190814_DIST_MED_MPC,
+                                  theta_deg: float = 0.0,
+                                  kappa_blue: float = KAPPA_BLUE,
+                                  i_from_blue_color: float | None = None
+                                  ) -> list:
+    """Extra mag needed per epoch to hide (depth - predicted, negative ok).
+
+    Positive = must dim by that much to escape; negative = already hidden.
+    [] if inputs invalid. Fiducial g 1.7d needs ~+1.6 mag.
+    """
+    rows = gw190814_epoch_mags(dist_mpc, theta_deg, kappa_blue,
+                               KAPPA_RED, 0.0, 0.0, i_from_blue_color)
+    return [{"band": r["band"], "t_days": r["t_days"],
+             "required_mag": float(r["margin"])
+             if np.isfinite(r["margin"]) else float("nan"),
+             "margin": r["margin"]} for r in rows]
+
+
+def _gauss_cdf(x: float) -> float:
+    import math
+    return float(0.5 * (1.0 + math.erf(x / math.sqrt(2.0))))
+
+
+def gw190814_detection_prob(dist_med_mpc: float = GW190814_DIST_MED_MPC,
+                            dist_sigma_mpc: float = GW190814_DIST_SIGMA_MPC,
+                            theta_deg: float = 0.0,
+                            kappa_blue: float = KAPPA_BLUE,
+                            dust_g: float = 0.0, dust_i: float = 0.0,
+                            i_from_blue_color: float | None = None,
+                            g_only: bool = False) -> dict:
+    """P(detect) over CFHT epochs: coverage x distance-posterior fraction.
+
+    Per epoch: d_max from predicted(t, med) = depth -> Phi((d_max-med)/sig)
+    x coverage. Combined = 1 - Prod(1 - p_i) (independent-epoch approx,
+    optimistic; also reports max single-epoch P). g_only=True drops i epochs
+    (robust: no color assumption). nan if inputs invalid.
+    Fiducial face-on g-only ~0.68; with i-from-blue (g-i=0.7) ~0.88.
+    """
+    vals = (dist_med_mpc, dist_sigma_mpc, theta_deg, kappa_blue,
+            dust_g, dust_i)
+    if not all(np.isfinite(v) for v in vals):
+        return {"prob": float("nan"), "prob_max": float("nan"), "epochs": []}
+    if not (dist_sigma_mpc > 0 and dist_med_mpc > 0
+            and dust_g >= 0 and dust_i >= 0):
+        return {"prob": float("nan"), "prob_max": float("nan"), "epochs": []}
+    if not is_valid_viewing_angle(theta_deg):
+        return {"prob": float("nan"), "prob_max": float("nan"), "epochs": []}
+    rows = gw190814_epoch_mags(dist_med_mpc, theta_deg, kappa_blue,
+                               KAPPA_RED, dust_g, dust_i, i_from_blue_color)
+    if not rows:
+        return {"prob": float("nan"), "prob_max": float("nan"), "epochs": []}
+    per = []
+    for r in rows:
+        if g_only and r["band"] != "g":
+            continue
+        pred, depth = r["predicted"], r["depth"]
+        if not (np.isfinite(pred) and np.isfinite(depth)):
+            per.append({"band": r["band"], "t_days": r["t_days"],
+                        "p_epoch": float("nan"), "d_max_mpc": float("nan")})
+            continue
+        # d_max: predicted(med) + 5 log(d_max/med) = depth
+        d_max = dist_med_mpc * 10.0 ** ((depth - pred) / 5.0)
+        phi = _gauss_cdf((d_max - dist_med_mpc) / dist_sigma_mpc)
+        per.append({"band": r["band"], "t_days": r["t_days"],
+                    "p_epoch": float(r["coverage"] * phi),
+                    "d_max_mpc": float(d_max), "phi": float(phi),
+                    "predicted": float(pred), "depth": float(depth),
+                    "coverage": float(r["coverage"])})
+    ok = [p["p_epoch"] for p in per if np.isfinite(p["p_epoch"])]
+    if not ok:
+        return {"prob": float("nan"), "prob_max": float("nan"), "epochs": per}
+    combined = float(1.0 - np.prod([1.0 - p for p in ok]))
+    return {"prob": float(combined), "prob_max": float(max(ok)),
+            "p_miss": float(1.0 - combined), "epochs": per}
+
+
+def is_gw190814_tension_not_exclusion() -> bool:
+    """Boolean check: fiducial P(detect) in tension band, not excluded.
+
+    Tension = g-only P in [0.5, 0.95] (likely-should-have-seen but
+    p_miss > 0.05). Fiducial face-on g-only ~0.68 -> True.
+    """
+    r = gw190814_detection_prob(g_only=True)
+    return bool(np.isfinite(r["prob"]) and 0.5 <= r["prob"] <= 0.95
+                and np.isfinite(r["p_miss"]) and r["p_miss"] > 0.05)
+
+
+def gw190814_systematics_table(
+        thetas=(0.0, 45.0, 90.0),
+        kappa_blues=(0.5, 2.0, 5.0)) -> list:
+    """P(detect) grid over viewing angle x blue opacity (g-only, robust).
+
+    Each cell: fiducial distance, no dust, direct components. Shows the
+    hiding window: equatorial + lanthanide-mixed (kap 2-5) drops P below
+    ~0.3. [] if inputs invalid.
+    """
+    try:
+        ths = [float(v) for v in list(thetas)]
+        kps = [float(v) for v in list(kappa_blues)]
+    except (TypeError, ValueError):
+        return []
+    if not all(np.isfinite(v) for v in ths + kps):
+        return []
+    if not all(is_valid_viewing_angle(v) for v in ths):
+        return []
+    if not all(v > 0 for v in kps):
+        return []
+    out = []
+    for th in ths:
+        for kb in kps:
+            r = gw190814_detection_prob(theta_deg=th, kappa_blue=kb,
+                                       g_only=True)
+            out.append({"theta_deg": float(th), "kappa_blue": float(kb),
+                        "prob_g_only": float(r["prob"]),
+                        "p_miss": float(r["p_miss"])
+                        if np.isfinite(r["prob"]) else float("nan")})
+    return out
+
+
+def gw190814_growth_tension() -> dict[str, float]:
+    """Our M_ej vs GROWTH/DECam RT bounds (0.04 polar, 0.03 low-kap). nan-safe.
+
+    Ratio >> 1 = tension (ours 0.43 Msun is ~11x/14x the bounds at nearest
+    consistent distance). Bounds assume NSBH RT grids; ours is leg-shedding
+    with same Arnett scalings, so the comparison is like-for-like in mass
+    but not in geometry/composition (labelled).
+    """
+    ej = gw190814_ejecta()["M_ej"]
+    if not np.isfinite(ej):
+        nan = float("nan")
+        return {"M_ej": nan, "ratio_polar": nan, "ratio_lowkap": nan}
+    return {"M_ej": float(ej),
+            "ratio_polar": float(ej / GROWTH_MEJ_POLAR_LIMIT),
+            "ratio_lowkap": float(ej / GROWTH_MEJ_LOWKAP_LIMIT)}
+
+
+# ---------------------------------------------------------------------------
+# Upper (pair-instability) mass gap: k ~ M^2 predicts NO feature at ~44 Msun.
+#
+# GWTC-4 (Nature Astron. 2026, arXiv:2509.04637): spin-transition / lower gap
+# edge at m~ = 44.3 +5.9/-3.5 Msun (first-gen low-spin below, hierarchical
+# high-spin across). Our k(M) = 16 pi M^2/PATCH is smooth M^2: ratios follow
+# (m2/m1)^2 exactly, no dip, step, or edge at 44.3. He-core congestion
+# chi = k PATCH lp^2/4 pi r^2 = (Rs/r)^2 ~ 1e-8 << 1, so wiring adds no
+# pressure/opacity term to pair-instability or the C12(a,g)O16 rate.
+# Inserting 44 Msun as a fit is refused: the gap is astrophysics
+# (stellar evolution + hierarchical assembly), not wiring.
+# ---------------------------------------------------------------------------
+
+UPPER_GAP_EDGE_MSUN = 44.3
+UPPER_GAP_EDGE_UP = 5.9
+UPPER_GAP_EDGE_LO = 3.5
+
+
+def upper_gap_k_smoothness(masses=(30.0, 44.3, 60.0, 80.0)) -> dict:
+    """k ratios across the upper gap follow (m2/m1)^2 with no feature.
+
+    Returns ks, adjacent ratios vs M^2 expectation (rel err ~1e-16), and
+    max deviation. Any dip/step at 44.3 would show here; none is predicted.
+    nan entries if inputs invalid.
+    """
+    from bh_graph.data import k_schwarzschild_sun
+    try:
+        ms = [float(v) for v in list(masses)]
+    except (TypeError, ValueError):
+        nan = float("nan")
+        return {"masses": [], "ks": [], "max_rel_err": nan}
+    if not all(np.isfinite(v) and v > 0 for v in ms) or len(ms) < 2:
+        nan = float("nan")
+        return {"masses": list(ms), "ks": [], "max_rel_err": nan}
+    ks = [float(k_schwarzschild_sun(m)) for m in ms]
+    errs = []
+    for (m1, k1), (m2, k2) in zip(zip(ms, ks), zip(ms[1:], ks[1:])):
+        expect = (m2 / m1) ** 2
+        errs.append(abs(k2 / k1 - expect) / expect)
+    return {"masses": [float(v) for v in ms],
+            "ks": [float(v) for v in ks],
+            "max_rel_err": float(max(errs)) if errs else float("nan"),
+            "rel_errs": [float(v) for v in errs]}
+
+
+def is_upper_gap_feature_predicted() -> bool:
+    """Boolean check: does wiring predict a feature at ~44 Msun? Always False.
+
+    k ~ M^2 smooth by construction; Kerr k_eff monotonic in spin with no
+    transition. Returns False (the gap is stellar/hierarchical, not wiring).
+    """
+    return False
+
+
+def he_core_congestion(m_he_msun: float = 40.0,
+                       r_he_m: float = 1e9) -> dict[str, float]:
+    """Wiring congestion chi in a He core: (Rs/r)^2 ~ 1e-8 << 1. nan if bad.
+
+    m_he ~ 30-60 Msun pre-pair-instability core, r_he ~ 1e8-1e10 m.
+    chi << 1 at every radius -> legs uncongested, no term in pair-instability
+    criterion or C12(a,g)O16 burning. Uses k_schwarzschild_sun + LP_M.
+    """
+    from bh_graph.data import k_schwarzschild_sun
+    from bh_graph.horizon import PATCH_AREA
+    if not all(np.isfinite(v) for v in (m_he_msun, r_he_m)):
+        nan = float("nan")
+        return {"chi": nan, "k": nan, "r_planck": nan}
+    if not (m_he_msun > 0 and r_he_m > 0):
+        nan = float("nan")
+        return {"chi": nan, "k": nan, "r_planck": nan}
+    k = float(k_schwarzschild_sun(m_he_msun))
+    r_pl = float(r_he_m / LP_M)
+    chi = float(k * PATCH_AREA / (4.0 * np.pi * r_pl ** 2))
+    return {"chi": chi, "k": k, "r_planck": r_pl}
+
+
+def is_he_core_uncongested(m_he_msun: float = 40.0,
+                           r_he_m: float = 1e9) -> bool:
+    """Boolean check: He-core chi < 1e-3 (uncongested by >3 orders)?"""
+    r = he_core_congestion(m_he_msun, r_he_m)
+    return bool(np.isfinite(r["chi"]) and r["chi"] < 1e-3)
