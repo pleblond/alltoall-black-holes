@@ -1863,6 +1863,42 @@ def fig73_uv_n4000():
     plt.close(fig)
 
 
+def fig74_anomaly_tiers():
+    from bh_graph.anomaly_survey import (
+        TIER_NAMES, gap_lens_probability, tier_table,
+    )
+    rows = tier_table()
+    tiers = sorted({r["tier"] for r in rows})
+    colors = {0: "#dc2626", 1: "#d97706", 2: "#2563eb", 3: "#6b7280"}
+    fig, axes = plt.subplots(1, 2, figsize=(13, 4.5))
+    ax = axes[0]
+    for t in tiers:
+        sub = [r for r in rows if r["tier"] == t]
+        ys = np.arange(len(sub))
+        ax.barh(
+            [f"{r['id']} (d={r['mechanism_distance']})" for r in sub],
+            [10.0 - 3.0 * r["mechanism_distance"] for r in sub],
+            color=colors[t], alpha=0.85, label=TIER_NAMES[t],
+        )
+    ax.set_xlabel("raw score 10 - 3*distance (caps by tier, see module)")
+    ax.set_title("Anomaly candidates by tier + mechanism distance")
+    ax.legend(fontsize=7)
+    ax = axes[1]
+    fs = np.linspace(0.0, 0.35, 70)
+    ps = [gap_lens_probability(8, float(f))["p_ge1"] for f in fs]
+    ax.plot(fs, ps, color="#2563eb", label="P(>=1 gap lens), n=8")
+    ax.axhline(0.5, ls="--", color="red", label="informative = 0.5")
+    ax.axvline(0.15, ls=":", color="black", label="fiducial f_gap=0.15")
+    ax.set_xlabel("gap fraction f_gap (continuous mass function)")
+    ax.set_ylabel("P(>=1 gap lens in Gaia DR4)")
+    ax.set_title("DR4 gap-lens forecast (~0.73 at fiducial)")
+    ax.legend(fontsize=8)
+    fig.suptitle("Fig 74 — BW: anomaly survey tiers + Gaia DR4 gap forecast")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig74_anomaly_tiers.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1937,6 +1973,7 @@ def main():
     fig71_uv_pop()
     fig72_uv_ladder()
     fig73_uv_n4000()
+    fig74_anomaly_tiers()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
