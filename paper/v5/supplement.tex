@@ -29,14 +29,17 @@ gradient slope & $0.015$ & fitted, labelled & $p_{\mathrm{adj}}(s) = 0.85+0.015s
 bridge $\beta(N)$ & 1.5@300; 1.28@600; 1.24@1020; 0.99@4k; 0.87@8k; 0.74@16k & recalibrated per $N$ & log-linear over 6 points; derivation queued \\
 $w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathrm{tot}} = c_1 + w c_2 = 4.8695$ at $p = 0.92$ \\
 shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
-$\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\\bottomrule
+$\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
+evap.\ isometry $V_k$ & $k\to k-1$ imposed & open derivation (S3) & need $V_k:{\cal H}_k\to{\cal H}_{k-1}\otimes{\cal H}_{\rm leg}$ from graph dynamics \\
+Kerr $M_2$, $g_{t\phi}$, ISCO & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW241011 future wire \\\bottomrule
 \end{tabular}
 \end{table}
 
 Given $k(M)$: $1/r$ potential, $\gamma = 1$, $43''$/cy, $b_{\mathrm{crit}} = 3\sqrt{3}M$,
-Page/QES/mirror all follow. Not derived: mass--radius scaling itself, $\beta(N)$
+Page/island-like/mirror follow as random-state/toy-code behaviour (genuine QES extremization
+and evaporation isometry $V_k$ open, S3). Not derived: mass--radius scaling itself, $\beta(N)$
 from geometry, $w$ from the graph Laplacian (Damour--Sch\"afer from wiring),
-NICER $M$--$R$--$\Lambda$ from routing stiffness.
+NICER $M$--$R$--$\Lambda$ from routing stiffness, Kerr $M_2$/$g_{t\phi}$/ISCO/QNM from the graph.
 
 Derived in-repo (new in v4.x): $p$ from exact Ollivier--Ricci (not hard-coded),
 $M(c_1,c_2)$ inversion, $M_{\mathrm{ej}}(M_{\mathrm{tot}})$ scaling, peak-time
@@ -131,6 +134,26 @@ GWTC-3 32 BBH $k_f > k_1+k_2$; hardware head-to-head $7.9$ vs $14.6$ steps.
 Figs.~7--20, 23--25, 30--33. Healing $dA/dt = (4\ln 2\,k\,l_p^2-A)/\tau$,
 $\tau = 11.24M$ ($3.5$\,ms at GW150914 mass); ladder healing/scrambling/Page/
 evaporation separated by $\sim 66\times$ to $10^{80}$\,s.
+
+\textbf{What Page vs.\ island means here (honesty note).} The Page curve is derived as
+random-state behaviour: leg surgery $k\to k-1$ is imposed and $S_{\rm rad}=\min(t,N_{\rm eff}-t)$
+with the exact $0.72$-bit Page dip is imposed/sampled (modules \texttt{evaporation}, \texttt{haar}),
+so ``wiring-only vs $N$-shrinks identical'' holds by construction. The QES/island crossing
+$S_{\rm no}=ks_{\rm leg}$ vs $S_{\rm isl}=k\ln2+\max(S_0-ks_{\rm leg},0)$ is a two-saddle
+competition plus a discrete min-cut analogue (module \texttt{qes}), not an extremization of
+$S_{\rm gen}=A/4G+S_{\rm matter}$ from a gravitational path integral. The missing theorem is the
+evaporation isometry $V_k:{\cal H}_{{\rm graph},k}\to{\cal H}_{{\rm graph},k-1}\otimes{\cal H}_{\rm leg}$:
+prove surgery preserves inner products and yields the claimed entanglement spectrum under all:all
+dynamics. Tracked as D1 in \path{docs/DEFERRED.md}.
+
+\textbf{What Kerr means here (honesty note).} Only the Kerr--Newman area $A(M,a,Q)$ is assumed to
+set the leg budget $k_{\rm eff}=A/4\ln2$ (module \texttt{kerr}; extremal Kerr half, extremal RN
+quarter; ratios patch-independent). Not derived from the graph: spin-induced quadrupole $M_2=-Ma^2$,
+frame dragging $g_{t\phi}$, ISCO$(M,J)$, or the Kerr QNM spectrum (the overtone toy is Schwarzschild-like).
+Hence GW250114 (SNR 80 area law + Kerr ringdown) and GW241011 (strongest $\delta\kappa$ bound to date,
+Kerr to factor $\sim$2 resp.\ $\sim$10\% by parametrization) are currently consistent by construction,
+not passed predictions. A future graph derivation $Q=-Ma^2(1+\delta_Q)$ with $|\delta_Q|\gtrsim0.17$
+would be ruled out by GW241011. Tracked as D2 in \path{docs/DEFERRED.md}.
 
 \begin{figure}[ht]\centering
 \includegraphics[width=0.92\linewidth]{fig10_page.png}
@@ -233,7 +256,8 @@ delays sit orders of magnitude below detectability across GeV--TeV (right).
 AF quench ratio $< 1.3$; $\alpha$ outside $[9.0,12.4]$; $A \propto N$ in any
 TN calculation; thermal LHC excess below $k_{\mathrm{crit}}$;
 $s_{\mathrm{leg}} \le l_p^2/4$ in any physical state class; any linear-LIV
-signal; $p$ outside $0.92 \pm 0.056$ at $N = 1024$; 10 gap non-detections.
+signal; $p$ outside $0.92 \pm 0.056$ at $N = 1024$; graph-predicted $|\delta_Q|\gtrsim0.17$;
+10 gap non-detections.
 One sub-claim (broad remnant DM) already ruled out on the record.
 Figs.~37--39.
 
