@@ -38,19 +38,36 @@ currently consistent by construction, not passed predictions.
 ## D3 — κ -> c2 map (2PN) — ongoing
 
 **Missing:** quantitative Ollivier-Ricci `κ` to 2PN coefficient `c2` map.
-`c2 = p(2p-1)` is ansatz; power-law vs `1/r^2` disagree cross-applied.
-See supplement S4 / BU. Kill wire `p = 0.92 ± 0.056` held to N=16000.
+`c2 = p_OR(2 p_OR-1)` is ansatz; power-law vs `1/r^2` disagree cross-applied
+(`0.82` vs `3.14`).
+`p_OR` (radial exponent `|κ| ~ r^-p_OR`) enters only at 2PN; the 1PN
+coefficient is held at unity (`γ = 1`) from the BH sector and is not refit
+by `p_OR`. BV's `c = 0.44–0.60` brackets the BH `1/2` at ~20%
+(`γ = 2c = 0.88–1.2`), a consistency check, not Cassini-precision.
+See supplement S4 / BU. Kill wire `p_OR = 0.92 ± 0.056` held to N=16000.
 
 ## D4 — β(N), w from geometry — ongoing
 
 **Missing:** bridge exponent `β(N)` (log-linear over 6 points, recalibrated
 per N) and 2PN weight `w = 1.953` (solved from cancellation) derived from
-graph Laplacian / Damour-Schafer from wiring.
+graph Laplacian / Damour-Schafer from wiring. Gradient slope `0.015`
+likewise fitted.
 
-## D5 — NICER M-R-Λ + tidal deformability — P1
+## D5 — NICER M-R-Λ + tidal deformability + surface — P1
 
-**Missing:** `R_1.4`, `M-R`, tidal `Λ` from routing stiffness.
+**Missing:** `R_1.4`, `M-R`, tidal `Λ` from routing stiffness, plus the
+stellar-surface definition and shed-leg hadronisation chemistry (`Y_e`, Sr).
 Sharpest near-term test after kilonova rate (2-3 yr timeline).
+
+Current tension (stated, not hidden): `k(M)` gives a would-be horizon radius
+`R_s(1.4 M_sun) ≈ 4.1 km`, well inside the observed `R_1.4 ≈ 11–13 km`.
+Low-`k` objects are horizonless (`χ < 1`, delocalized phase); their ~12-km
+photosphere must come from routing stiffness, which is underived. Targets:
+`R_1.4 = 11.5 ± 0.9 km`, `Λ_1.4 = 265^{+238}_{-104}` (joint GW+NICER) or
+`Λ_1.4 = 190^{+390}_{-120}` (GW170817 alone); Sr II in AT2017gfo (Watson+19).
+
+**Close criterion:** derive `R(M)`, `Λ(M)` from leg response to tidal fields;
+reproduce `R_1.4` at 5% and `Λ_1.4` at 90%, or BU is killed (v5 kill table).
 
 ## D6 — Mass-radius from wiring — long-term
 
@@ -61,3 +78,22 @@ Single GR input; derivation from wiring alone open.
 
 **Missing:** POSSIS refinement; i-band not claimed (one-zone κ=10
 over-traps). g-band verdicts robust; gap-KN ~1/yr O5 prediction stands.
+Shed-leg hadronisation chemistry (`Y_e`, Sr II) open — folded here.
+
+## D8 — Mass-ratio-dependent shedding + per-event Foucart baseline — queued (v5 review)
+
+**Missing:** (a) `q`-dependent shed fraction `frac(q)` — current law is
+equal-mass leading order `M_ej = 0.0168 M_tot` in all rows by construction
+(`collapse.leg_shedding_ejecta`), so unequal-mass pairs at fixed `M_tot`
+give identical ejecta; (b) per-event standard-model baseline via the Foucart
+et al. (2018) `M_rem(q, C_NS, χ_BH)` formula evaluated over LVK posteriors
+(`collapse.foucart_m_rem` stub, not yet implemented).
+
+**Close criterion:** (a) `frac(q)` ∝ `4q/(1+q)^2` (or graph-derived
+equivalent) normalised to the AT2017gfo point, with the brightness table
+gaining a `q` column; (b) every O5 gap trigger auto-classified into
+Category B (decisive: `m2 > 2.5` or Foucart `M_rem = 0` at 90%) vs Category A
+(ambiguous gap+NS). Kill rule counts B only (see `observation-protocol.md`).
+
+**Kill relevance:** sharpens the gap-KN falsifier so a bright gap+NS
+disruption (Foucart-allowed) cannot be miscounted as killing NS EOS models.
