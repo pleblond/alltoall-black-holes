@@ -283,7 +283,7 @@ per-epoch coverage $\times$ depth against distance ($241 \pm 43$\,Mpc) and
 $\pm 1$\,mag theory errors; combined $P \approx 0.68$ (g-only) / $0.88$
 (g+i at $g-i = 0.7$). Erratum on record: the first audit used a nominal ZTF
 depth, but ZTF ran no targeted GW190814 follow-up; superseded by the
-CFHT/GROWTH epoch tables above. Fig.~75 (main text).
+CFHT/GROWTH epoch tables above. Fig.~75 (main text). Analytic systematics (round 4): viewing $A_g \sin^2\theta$ ($A_g = 1.25$) + opacity-rescaled blue mags give the $P$ grid in Fig.~75b; the hiding window is bounded, not open-ended.
 
 \section{UV nulls and phenomenology (T, U, V, BD--BF)}
 
@@ -421,7 +421,9 @@ Trigger (full plan \path{docs/observation-protocol.md}): $m_1 \in
 $L \propto t^{-1.3}$ tail. Yield: 1.5 gap/yr $\times$ 70\% $\approx 1.05$/yr
 ours vs $\le 0.3$/yr standard. Yield arithmetic in
 \path{collapse.gap_o5_yield}; brightness in
-\path{collapse.peak_apparent_mags}. Figs.~68--69.
+\path{collapse.peak_apparent_mags}; GW190814 epoch audit + systematics grid in
+\path{massgaps.gw190814_combined_pdetect} /
+\path{massgaps.gw190814_systematics_table}. Figs.~68--69, 75 (main text), 75b.
 
 BBH extension (this work): the same shedding law predicts $m_g \sim 22$
 transients for nearby BBH, so the ToO program extends to well-localized
@@ -437,6 +439,17 @@ over Rubin/DECam depths (left); yield $\sim 1$/yr vs $\le 0.3$/yr standard
 (middle); the same $p$ keeps bending/Mercury 2PN pieces below VLBI/astrometry
 (right). \texttt{collapse}, \texttt{pulsar}.}
 \label{fig:sup-o5}
+\end{figure}
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.95\linewidth]{fig75b_gw190814_systematics.png}
+\caption{GW190814 analytic systematics (round 4; full POSSIS queued, D7).
+Left: $P(\mathrm{detect})$ $g$-only over viewing angle $\times$ blue opacity
+(CFHT epochs, no color term): fiducial face-on $\kappa = 0.5$ gives $0.68$;
+equatorial + lanthanide-mixed ($\kappa_{\mathrm{blue}} = 2$) drops to $\sim 0.18$.
+Right: face-on hiding bar per CFHT $g$ epoch ($g$ 1.7\,d needs $\sim 1.6$\,mag).
+Module \texttt{massgaps}.}
+\label{fig:sup-190814sys}
 \end{figure}
 
 \section{Module map and reproduction}

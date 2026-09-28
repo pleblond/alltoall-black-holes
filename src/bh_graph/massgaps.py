@@ -474,3 +474,199 @@ def is_love_smooth_across_44(tol: float = 1e-9) -> bool:
     lm, lk = np.log(r["M"]), np.log(r["k2"])
     slope = np.gradient(lk, lm)
     return bool(np.all(np.abs(slope + 2.0) < tol))
+
+
+# ---------------------------------------------------------------------------
+# Round 4: analytic systematics for the GW190814 audit (viewing + opacity).
+#
+# The epoch audit above is fiducial face-on with kappa_blue = 0.5. Its two
+# largest labeled systematics are quantified here WITHOUT running full RT
+# (D7 stays queued):
+#   viewing: POSSIS-inspired surrogate (Bulla 2019: equatorial observers see
+#     ~1.0-1.5 mag fainter in g from lanthanide-rich line blocking).
+#     delta(band, theta) = A_band * sin^2(theta), A_g = 1.25, A_i = 0.5.
+#   opacity: lanthanide-mixed blue ejecta (kappa 0.5 -> 2-5) dims the peak
+#     as L ~ kappa^-0.65 AND delays it as tp ~ kappa^0.5 (Arnett scalings,
+#     same as collapse.kilonova_*); epoch mags recomputed, not just shifted.
+#   dust: explicit extra extinction knob (labeled fudge, default 0).
+# Result: the hiding window is bounded (equatorial + kappa = 2 drops
+# g-only P to ~0.18), so "dusty/off-axis hides it" is now a number,
+# not prose. Full 3D POSSIS (morphology, Ye opacities, reprocessing)
+# remains the decisive calculation.
+# ---------------------------------------------------------------------------
+
+VIEW_DIM_G_EQUATOR = 1.25  # mag at 90 deg; plausible range 1.0-1.5
+VIEW_DIM_G_LO = 1.0
+VIEW_DIM_G_HI = 1.5
+VIEW_DIM_I_EQUATOR = 0.5  # red continuum less viewing-sensitive
+
+
+def is_valid_viewing_angle(theta_deg: float) -> bool:
+    """Boolean check: polar angle in [0, 90] deg and finite."""
+    return bool(np.isfinite(theta_deg) and 0.0 <= theta_deg <= 90.0)
+
+
+def viewing_dimming_mag(theta_deg: float, band: str = "g",
+                        equator_g: float = VIEW_DIM_G_EQUATOR,
+                        equator_i: float = VIEW_DIM_I_EQUATOR) -> float:
+    """POSSIS-surrogate viewing dimming: A_band * sin^2(theta). nan if bad.
+
+    Polar (0) -> 0; equatorial (90) -> A (1.25 g, 0.5 i). Time-independent
+    (real color evolution needs RT). nan if inputs invalid.
+    """
+    if not is_valid_viewing_angle(theta_deg):
+        return float("nan")
+    if band not in ("g", "i"):
+        return float("nan")
+    if not all(np.isfinite(v) for v in (equator_g, equator_i)):
+        return float("nan")
+    if not (equator_g >= 0 and equator_i >= 0):
+        return float("nan")
+    amp = equator_g if band == "g" else equator_i
+    return float(amp * np.sin(np.deg2rad(theta_deg)) ** 2)
+
+
+def opacity_dimming_mag(kappa: float, kappa_ref: float) -> float:
+    """Peak-mag dimming from opacity: 1.625*log10(kap/kap_ref). nan if bad.
+
+    From L_peak ~ kap^-0.65. kap 0.5 -> 2 gives +0.98 mag. Peak-time shift
+    handled in gw190814_blue_mag_sys (tp ~ kap^0.5), not here.
+    """
+    if not all(np.isfinite(v) for v in (kappa, kappa_ref)):
+        return float("nan")
+    if not (kappa > 0 and kappa_ref > 0):
+        return float("nan")
+    return float(2.5 * 0.65 * np.log10(kappa / kappa_ref))
+
+
+def gw190814_blue_mag_sys(t_days: float, dist_mpc: float = GW190814_DIST_MPC,
+                          kappa_blue: float = 0.5,
+                          theta_deg: float = 0.0,
+                          dust_mag: float = 0.0) -> float:
+    """Blue mag at time t with opacity/viewing/dust systematics. nan if bad.
+
+    kappa_blue rescales BOTH peak (L ~ kap^-0.65) and time (tp ~ kap^0.5)
+    via collapse.kilonova_*; theta adds viewing_dimming_mag(g); dust adds
+    explicit extinction. kappa = 0.5, theta = 0, dust = 0 reproduces
+    gw190814_blue_mag exactly.
+    """
+    from bh_graph.collapse import (
+        leg_shedding_ejecta, kilonova_peak_lum_erg_s, kilonova_peak_time_days,
+        lum_to_abs_mag_bol, dist_modulus, V_BLUE_C,
+    )
+
+    vals = (t_days, dist_mpc, kappa_blue, theta_deg, dust_mag)
+    if not all(np.isfinite(v) for v in vals):
+        return float("nan")
+    if not (t_days >= 0 and dist_mpc > 0 and kappa_blue > 0 and dust_mag >= 0):
+        return float("nan")
+    if not is_valid_viewing_angle(theta_deg):
+        return float("nan")
+    ej = leg_shedding_ejecta(GW190814_M1, GW190814_M2)
+    lb = kilonova_peak_lum_erg_s(ej["M_blue"], V_BLUE_C, kappa_blue)
+    tb = kilonova_peak_time_days(ej["M_blue"], V_BLUE_C, kappa_blue)
+    dm = dist_modulus(dist_mpc)
+    dim = viewing_dimming_mag(theta_deg, "g")
+    if not all(np.isfinite(v) for v in (lb, tb, dm, dim)) or lb <= 0 or tb <= 0:
+        return float("nan")
+    shape = min(t_days / tb, 1.0) * np.exp(-max(t_days - tb, 0.0) / tb)
+    if shape <= 0:
+        return float("inf")
+    return float(lum_to_abs_mag_bol(lb * shape) + dm + dim + dust_mag)
+
+
+def gw190814_epoch_pdetect_sys(
+    t_days: float,
+    depth: float,
+    coverage: float,
+    theta_deg: float = 0.0,
+    kappa_blue: float = 0.5,
+    dust_mag: float = 0.0,
+    sigma_theory_mag: float = ANALYTIC_MAG_TOL,
+    color_term: float = 0.0,
+) -> float:
+    """Per-epoch P(detect) with systematics: coverage x Phi((depth-m)/sig).
+
+    Same probabilistic form as gw190814_epoch_pdetect; model mag from
+    gw190814_blue_mag_sys (opacity/viewing/dust) plus color_term into the
+    observed band. nan if invalid.
+    """
+    import math
+
+    vals = (t_days, depth, coverage, theta_deg, kappa_blue, dust_mag,
+            sigma_theory_mag, color_term)
+    if not all(np.isfinite(v) for v in vals):
+        return float("nan")
+    if not (t_days >= 0 and 0 <= coverage <= 1 and sigma_theory_mag > 0):
+        return float("nan")
+    m = gw190814_blue_mag_sys(t_days, GW190814_DIST_MPC, kappa_blue,
+                              theta_deg, dust_mag) + color_term
+    if not np.isfinite(m):
+        return float("nan")
+    sig = math.sqrt(sigma_theory_mag**2 + gw190814_dist_sigma_mag()**2)
+    phi = 0.5 * (1.0 + math.erf((depth - m) / (sig * math.sqrt(2.0))))
+    return float(coverage * phi)
+
+
+def gw190814_systematics_table(
+    thetas=(0.0, 45.0, 90.0),
+    kappa_blues=(0.5, 2.0, 5.0),
+) -> list:
+    """Combined g-only P(detect) over viewing x opacity (CFHT epochs, robust).
+
+    No color term (g-band only): each cell combines the two CFHT g epochs
+    as independent (same labeled approx as the fiducial audit). Shows the
+    hiding window: equatorial + kappa = 2 drops P to ~0.18. [] if bad.
+    """
+    try:
+        ths = [float(v) for v in list(thetas)]
+        kps = [float(v) for v in list(kappa_blues)]
+    except (TypeError, ValueError):
+        return []
+    if not all(np.isfinite(v) for v in ths + kps):
+        return []
+    if not all(is_valid_viewing_angle(v) for v in ths):
+        return []
+    if not all(v > 0 for v in kps):
+        return []
+    out = []
+    for th in ths:
+        for kb in kps:
+            per = [gw190814_epoch_pdetect_sys(t, d, c, th, kb)
+                   for (t, d, c) in GW190814_CFHT_G_EPOCHS]
+            if not all(np.isfinite(v) for v in per):
+                out.append({"theta_deg": float(th), "kappa_blue": float(kb),
+                            "prob_g_only": float("nan"),
+                            "p_miss": float("nan")})
+                continue
+            p = float(1.0 - np.prod([1.0 - v for v in per]))
+            out.append({"theta_deg": float(th), "kappa_blue": float(kb),
+                        "prob_g_only": p, "p_miss": float(1.0 - p)})
+    return out
+
+
+def gw190814_required_suppression() -> list:
+    """Extra mag needed per CFHT g epoch to hide (depth - predicted).
+
+    Positive = must dim by that much to escape. Fiducial face-on g 1.7d
+    needs ~+1.6 mag (the quantified hiding bar for viewing/dust/opacity).
+    """
+    out = []
+    for (t, depth, cov) in GW190814_CFHT_G_EPOCHS:
+        pred = gw190814_blue_mag(t)
+        out.append({"t_days": float(t), "depth": float(depth),
+                    "coverage": float(cov),
+                    "predicted": float(pred),
+                    "required_mag": float(depth - pred)
+                    if np.isfinite(pred) else float("nan")})
+    return out
+
+
+def is_systematics_hiding_window(theta_deg: float = 90.0,
+                                 kappa_blue: float = 2.0,
+                                 threshold: float = 0.20) -> bool:
+    """Boolean check: equatorial + lanthanide-mixed hides (P < 0.20)?"""
+    tab = gw190814_systematics_table((theta_deg,), (kappa_blue,))
+    if not tab or not np.isfinite(tab[0]["prob_g_only"]):
+        return False
+    return bool(tab[0]["prob_g_only"] < threshold)

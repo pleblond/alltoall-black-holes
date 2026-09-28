@@ -63,10 +63,15 @@ Sharpest near-term test after kilonova rate (2-3 yr timeline).
 **Missing:** `R_s = 2M` (BM reduction: `k(M)` iff `R_s(M)` given).
 Single GR input; derivation from wiring alone open.
 
-## D7 — Kilonova radiative transfer — queued
+## D7 — Kilonova radiative transfer — analytic systematics done, full RT queued
 
-**Missing:** POSSIS refinement; i-band not claimed (one-zone κ=10
-over-traps). g-band verdicts robust; gap-KN ~1/yr O5 prediction stands.
+**Update (round 4):** analytic viewing/opacity/dust systematics shipped
+(`massgaps.gw190814_*_sys`, `gw190814_systematics_table`, Fig 75b, 9 tests):
+POSSIS-inspired viewing (equatorial +1.25 g/+0.5 i) + Arnett opacity
+rescaling bound the hiding window (equatorial + κ_blue=2 → P~0.18).
+**Still missing:** full 3D POSSIS (morphology, Ye-dependent opacities,
+reprocessing); i-band direct not claimed (one-zone κ=10 over-traps).
+g-band verdicts robust; gap-KN ~1/yr O5 prediction stands.
 
 ## D8 — Shedding efficiency ε(M,a) + upper-gap assignment — P1
 

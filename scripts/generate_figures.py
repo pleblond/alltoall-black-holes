@@ -1934,6 +1934,41 @@ def fig75_gw190814_audit():
     plt.close(fig)
 
 
+def fig75b_gw190814_systematics():
+    from bh_graph.massgaps import (
+        gw190814_required_suppression, gw190814_systematics_table,
+    )
+    fig, axes = plt.subplots(1, 2, figsize=(11, 3.8))
+    tab = gw190814_systematics_table()
+    thetas = sorted(set(c["theta_deg"] for c in tab))
+    kaps = sorted(set(c["kappa_blue"] for c in tab))
+    mat = np.array([[next(c["prob_g_only"] for c in tab
+                           if c["theta_deg"] == th and c["kappa_blue"] == kb)
+                     for kb in kaps] for th in thetas])
+    im = axes[0].imshow(mat, vmin=0, vmax=1, cmap="RdYlGn_r", aspect="auto")
+    axes[0].set_xticks(range(len(kaps))); axes[0].set_xticklabels([str(k) for k in kaps])
+    axes[0].set_yticks(range(len(thetas))); axes[0].set_yticklabels([str(int(v)) for v in thetas])
+    axes[0].set_xlabel("kappa_blue"); axes[0].set_ylabel("viewing theta (deg)")
+    axes[0].set_title("P(detect) g-only: hiding window")
+    for i in range(len(thetas)):
+        for j in range(len(kaps)):
+            axes[0].text(j, i, f"{mat[i, j]:.2f}", ha="center", va="center", fontsize=9,
+                         color="white" if mat[i, j] > 0.5 else "black")
+    fig.colorbar(im, ax=axes[0], fraction=0.046, label="P(detect)")
+    rows = gw190814_required_suppression()
+    xs = [f"g {r['t_days']}d\ndepth {r['depth']}" for r in rows]
+    req = [r["required_mag"] for r in rows]
+    colors = ["#dc2626" if v > 0 else "#0f766e" for v in req]
+    axes[1].bar(xs, req, color=colors)
+    axes[1].axhline(0, color="black", lw=1)
+    axes[1].set_ylabel("mag needed to hide (+ = brighter than depth)")
+    axes[1].set_title("CFHT g hiding bar (face-on fiducial)")
+    fig.suptitle("Fig 75b — GW190814 systematics: equatorial + kap=2 hides (P~0.18)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig75b_gw190814_systematics.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -2010,6 +2045,7 @@ def main():
     fig73_uv_n4000()
     fig74_unitary_page()
     fig75_gw190814_audit()
+    fig75b_gw190814_systematics()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
