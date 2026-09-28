@@ -269,6 +269,18 @@ micro-hole prediction to test in fuller tensor-network / LQG / island
 calculations. (BU branch: the value now extends to a sky frontier — J0737 2PN
 and gap kilonovae — with the same toy status and explicit falsifiers.)
 
+**Ringdown status.** A dimensional estimate based on lattice scattering gives negligible effective
+reflection — amplitude $R \sim (\omega/\omega_P)^2 \sim 10^{-80}$, echo energy
+$\sim 10^{-160}$ at 100 Hz vs $O(0.01)$ detectability — and therefore no observable echo
+signal from this lattice-scattering mechanism. This is an order-of-magnitude estimate, not a
+derivation of the graph/leg scattering matrix. The model does not yet derive a modified QNM spectrum from graph dynamics:
+the fundamental damping $\tau = 11.24\,M$ is calibrated to GR (AG), the Pöschl-Teller tower
+$1$:$3$:$5$ vs $1$:$3.08$:$5.38$ is a toy stand-in for the Regge-Wheeler barrier (AZ), and
+footprint corrections ($1/2k$, $1/\sqrt{k}$) sit $40+$ orders below sensitivity (BE).
+Reproducing $\{\omega_{220}, \tau_{220}, \omega_{221}, \tau_{221}, \omega_{440}\}$ to GW250114
+precision ($\delta f_{220} \sim 2\%$, $\delta\tau_{220} \sim 10\%$, $\delta f_{221} \sim 30\%$,
+$\delta f_{440} \sim$ tens of \%) is an open formalization target, not a claimed pass.
+
 ---
 
 ## 5. Reproducibility
@@ -1183,6 +1195,21 @@ coherent ringing). Microstate broadening $\delta\tau/\tau \sim 1/\sqrt{k}
 \sim 10^{-39}$; lattice reflectivity $R \sim (\omega/\omega_P)^2$ closes
 item (2)'s open $R$: echo energy $\sim 10^{-160}$ at 100 Hz — discreteness
 echoes unobservable, from this mechanism, by a quantified margin.
+
+> **Ringdown status (what is and is not claimed).** $R \sim 10^{-80}$ is the
+> amplitude reflection coefficient at 100 Hz; $\sim 10^{-160}$ is the echo energy
+> ($\propto R^2$) vs $O(0.01)$ detectability ($\sim 158$ orders of margin,
+> `bh_graph.gwdata.echo_margin_orders`). The estimate is dimensional
+> ($\propto \omega^2$ lattice scattering), not a leg S-matrix derivation — echoes
+> would need non-lattice physics. Likewise the QNM fundamental scale is calibrated
+> ($\tau = 11.24\,M$, AG), the overtone ladder is a Pöschl-Teller toy fit to the
+> fundamental only (AZ, $<8\%$ on damping ratios), and the comb/broadening/leg-line
+> imprints are computed but unobservable. The exterior perturbation problem —
+> what $h_{\mu\nu}$ does at the graph/horizon, and hence $\delta\omega_{nlm}$ vs
+> Kerr — is open. GW250114 provides the benchmark: $\delta f_{220} \sim 2\%$,
+> $\delta\tau_{220} \sim 10\%$, $\delta f_{221} \sim 30\%$, $\delta f_{440} \sim$
+> tens of \%. A future graph-derived $\lvert\delta\omega/\omega\rvert$ above those
+> thresholds for a GW250114-like remnant fails; below them it passes.
 
 ![Fig 53](../figures/fig53_qnmlegs.png)
 
