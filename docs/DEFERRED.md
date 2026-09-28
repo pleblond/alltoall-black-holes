@@ -51,17 +51,34 @@ level; factor ~2 resp. ~10% by parametrization, LIGO-P2500402).
 GW250114 (LIGO-P2500421, SNR 80 area law + Kerr ringdown) and GW241011 are
 currently consistent by construction, not passed predictions.
 
-## D3 — κ -> c2 map (2PN) — ongoing
+## D3 — κ -> c2 map (2PN) — ongoing, narrowed
 
-**Missing:** quantitative Ollivier-Ricci `κ` to 2PN coefficient `c2` map.
-`c2 = p(2p-1)` is ansatz; power-law vs `1/r^2` disagree cross-applied.
-See supplement S4 / BU. Kill wire `p = 0.92 ± 0.056` held to N=16000.
+**Missing:** WHY power-law `|κ| ~ r^-p` implies the metric exponent in
+`g_rr = (1+U)^2p` (analytic kappa -> metric map); power-law vs `1/r^2`
+disagree cross-applied. See supplement S4 / BU. Kill wire
+`p = 0.92 ± 0.056` held to N=16000 (kept as-is; now understood as
+conservative ~0.8σ_ω̇ after the erratum below).
+Update (this branch): `c2 = p(2p-1)` promoted from ansatz to EXACT theorem
+of the `g_rr` ansatz (complex-step series extraction, `twopn`); the ansatz
+is now only the `g_rr` FORM plus the kappa -> metric bridge itself.
+Erratum (this branch, on record): the J0737 per-unit-c conversion was
+`8.9e-5 = dot_dir/C1_GR`; the rescale needs per-unit-c_tot
+`dot_dir/C_TOT_GR = 3.55e-5`. Required precision `0.028 -> 0.070`, margin
+`5x -> 12.7x`, direct residual `0.24σ -> 0.10σ` (self-consistent `0.09σ`
+unaffected — that path never used the conversion). Headline `0.1σ` stands.
 
-## D4 — β(N), w from geometry — ongoing
+## D4 — β(N), w from geometry — ongoing, narrowed
 
-**Missing:** bridge exponent `β(N)` (log-linear over 6 points, recalibrated
-per N) and 2PN weight `w = 1.953` (solved from cancellation) derived from
-graph Laplacian / Damour-Schafer from wiring.
+**Missing:** bridge exponent `β(N)` first-principles drift (log-linear over
+6 points, recalibrated per N) and `w` from the graph Laplacian /
+Damour-Schafer from wiring (the geodesic-sensitivity route is queued).
+Update (this branch): `w` documented in closed form
+`(c1m-c1g)/(c2g-c2(p))` of the measured inputs (`twopn.w_closed_form`);
+empirical construction -> p maps measured at N = 300 (`twopn`, Fig 66b):
+`p(beta)` is a steep clean control curve (load-bearing knob,
+`beta_for_p(0.92) ≈ 1.48`), while `p(slope)` is flat within noise — the
+fitted 0.015 gradient slope is NOT load-bearing. The empirical `β` law is
+N-conditional (drift with N still to derive).
 
 ## D5 — NICER M-R-Λ + tidal deformability — P1
 

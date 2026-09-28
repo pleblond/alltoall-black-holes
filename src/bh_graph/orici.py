@@ -129,7 +129,9 @@ def eh_functional(g: nx.Graph, p: float = 0.0, max_edges: int | None = None) -> 
 #
 # Honesty: bridge beta = 1.5 and gradient slope 0.015 are FITTED to the
 # J0737 2PN cancellation (c1 = 3.36 needs c2 = 0.7728), not derived from
-# first principles. The forward prediction is gap kilonovae (2.5-5 Msun
+# first principles. Update (twopn branch): slope scans show p is nearly
+# insensitive to the gradient slope (dp < 0.07 over 0-0.03 at N = 300) --
+# beta is the load-bearing construction parameter, slope is not. The forward prediction is gap kilonovae (2.5-5 Msun
 # mergers must shed legs the same way). Bridge-count law
 # n(s) = C per_shell^alpha (r_mid/2)^beta with alpha = 1.3 keeps p
 # stable across per_shell = 15..30 (within 0.06); beta itself is
@@ -156,10 +158,14 @@ def is_valid_shell_params(per_shell: int, n_shells: int, n_graphs: int) -> bool:
     )
 
 
-def p_adj_of_shell(shell: int, gradient: bool = True) -> float:
-    """Completeness of shell s: 0.85+0.015 s if gradient else 0.85."""
+def p_adj_of_shell(shell: int, gradient: bool = True, slope: float | None = None) -> float:
+    """Completeness of shell s: 0.85+slope*s if gradient else 0.85.
+
+    slope = None recovers the fiducial P_ADJ_SLOPE (0.015); expose it to scan
+    the construction -> p map (twopn): slope 0 must recover ~flat p ~ 0.49.
+    """
     if gradient:
-        return float(P_ADJ_BASE + P_ADJ_SLOPE * shell)
+        return float(P_ADJ_BASE + (P_ADJ_SLOPE if slope is None else slope) * shell)
     return float(P_ADJ_BASE)
 
 
@@ -203,6 +209,7 @@ def gradient_shell_graph(
     gradient: bool = True,
     beta: float | None = None,
     seed: int = 0,
+    slope: float | None = None,
 ) -> nx.Graph:
     """Build a chain of dense shells with sparse radial bridges.
 
@@ -210,6 +217,7 @@ def gradient_shell_graph(
     Inter-shell edges: exactly n_bridges_for_pair per adjacent pair,
     placed uniformly at random. Exact-EMD ready (full neighborhoods,
     no Sinkhorn subsampling). Returns the graph (nodes encode shells).
+    slope threads through to p_adj_of_shell (None = fiducial 0.015).
     """
     if beta is None:
         beta = BRIDGE_BETA_NEW if gradient else BRIDGE_BETA_OLD
@@ -219,7 +227,7 @@ def gradient_shell_graph(
         for i in range(per_shell):
             g.add_node((s, i))
     for s in range(n_shells):
-        p = p_adj_of_shell(s, gradient)
+        p = p_adj_of_shell(s, gradient, slope)
         for ii in range(per_shell):
             for jj in range(ii + 1, per_shell):
                 if rng.random() < p:
@@ -317,6 +325,7 @@ def measure_p(
     seed0: int = 0,
     max_per_shell: int = 8,
     e_int: float | None = None,
+    slope: float | None = None,
 ) -> dict:
     """Measure p over n_graphs shell graphs (exact EMD, full neighborhoods).
 
@@ -324,13 +333,14 @@ def measure_p(
     Empty/NaN-tolerant: nan entries mark failed fits (check is_valid result).
     e_int = None uses the uniform measure; a value in [0, 1] uses the
     e_int-weighted measure (robustness branch, same exact LP, no kappa tweak).
+    slope threads to the shell completeness gradient (None = fiducial 0.015).
     """
     if beta is None:
         beta = BRIDGE_BETA_NEW if gradient else BRIDGE_BETA_OLD
     profiles = []
     per_graph = []
     for t in range(n_graphs):
-        g = gradient_shell_graph(per_shell, n_shells, gradient, beta, seed0 + t)
+        g = gradient_shell_graph(per_shell, n_shells, gradient, beta, seed0 + t, slope)
         prof = shell_kappa_profile(g, n_shells, max_per_shell, e_int)
         profiles.append(prof)
         per_graph.append(fit_scaling_power(prof)["p"])

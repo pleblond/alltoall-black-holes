@@ -225,8 +225,8 @@ measured; $\beta(N)$ log-linear over 6 points. 356 tests, 77 figure files
 v4.0:
 **no neutron stars** — pulsars, gap objects, and BHs are the same low-$k$
 all:all graphs; J0737 2PN measured at $p = 0.913\pm0.049$ (80 graphs,
-N = 1020, exact), SEM $0.0055$, $0.24\sigma$ from the GR-cancellation
-point; leg-shedding kilonovae ($0.047\,M_\odot$, AT2017gfo-like) with a
+N = 1020, exact), SEM $0.0055$, $0.10\sigma$ direct-mapping from the GR-cancellation
+point ($0.09\sigma$ self-consistent); leg-shedding kilonovae ($0.047\,M_\odot$, AT2017gfo-like) with a
 gap prediction ($\sim1$/yr O5 vs standard $\le0.3$/yr). 312 tests, 73 figure files (Figs 1–69).
 See [`docs/resuscitate-no-neutrons.md`](docs/resuscitate-no-neutrons.md) and
 the kill-or-confirm [`docs/observation-protocol.md`](docs/observation-protocol.md).

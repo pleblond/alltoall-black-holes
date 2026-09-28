@@ -24,6 +24,12 @@ p = 0.92 gives c2 = 0.7728, c_tot = 4.8693 -> exact cancellation.
 Honesty: w = 1.953 is solved from the cancellation condition, not
 derived from the graph Laplacian yet (queued). p = 0.92 slope is
 fitted to J0737; gap kilonovae are the forward prediction.
+
+Erratum (twopn branch, on record): the per-unit-c conversion was
+8.9e-5 = dot_dir/C1_GR (per unit c1); the rescale math needs per-unit-c_tot,
+dot_dir/C_TOT_GR = 3.55e-5. Required precision loosens 0.028 -> 0.070,
+margin 5x -> 12.7x, direct residual 0.24 -> 0.10 sigma. Headline (J0737
+0.1 sigma) and kill wire (+-0.056, now conservative) stand.
 """
 from __future__ import annotations
 
@@ -221,12 +227,36 @@ def required_c2_deficit(c1_model: float = C1_MODEL, w: float = W_2PN) -> float:
     return float((C1_GR - c1_model) / w)
 
 
-def p_precision_for_sigma(dot_err_degyr: float, d_ddir_dc: float = 8.9e-5) -> float:
+def ddot_per_unit_c(m_ref: float | None = None) -> float:
+    """Direct-2PN deg/yr per unit c_tot at J0737 (derived, no magic number).
+
+    dot_dir at the model-independent inverted GR mass, divided by C_TOT_GR
+    (the rescale denominator in model_factor). An explicit mass overrides
+    for cross-checks. nan if invalid. (Erratum: supersedes 8.9e-5, which
+    divided by C1_GR instead.)
+    """
+    if m_ref is None:
+        m = invert_mass_msun(J0737["Pb_s"], J0737["e"], J0737["dot_obs"], C1_GR, C2_GR)
+    else:
+        m = float(m_ref)
+    if not (np.isfinite(m) and m > 0):
+        return float("nan")
+    dd = dot_omega_dir_2pn_degyr(m, J0737["Pb_s"], J0737["e"])
+    if not (np.isfinite(dd) and C_TOT_GR > 0):
+        return float("nan")
+    return float(dd / C_TOT_GR)
+
+
+def p_precision_for_sigma(dot_err_degyr: float, d_ddir_dc: float | None = None) -> float:
     """Delta-p for 1 sigma: err / [w(4p-1) dDdC] at p = 0.92.
 
-    dDdC converts per-unit-c to deg/yr for J0737 (~8.9e-5).
+    dDdC = None uses the derived per-unit-c_tot conversion (3.55e-5);
+    pass an explicit value only to reproduce the old (mis-normalized)
+    8.9e-5 bookkeeping.
     """
     p = 0.92
+    if d_ddir_dc is None:
+        d_ddir_dc = ddot_per_unit_c()
     denom = W_2PN * (4.0 * p - 1.0) * d_ddir_dc
     if not (np.isfinite(dot_err_degyr) and np.isfinite(denom) and denom > 0):
         return float("nan")

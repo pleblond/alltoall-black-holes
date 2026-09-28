@@ -1559,16 +1559,20 @@ $c_2(p) = p(2p-1)$, $w = 1.953$: $c_{tot} = c_1+w c_2$, GR $4.8695$; at
 $p = 0.92$, $c_2 = 0.7728$, $c_{tot} = 4.8693$ → $0.00\sigma$ fixed-$M$.
 Self-consistent $R+\dot\omega_{obs}\to M$ shifts $M$ by $-11.2$ ppm (naive)
 and $\sin i$ by $3.7\times10^{-6}$; $s_{obs} = 0.99974$ passes at $0.36\sigma$,
-B1913 at $0.01\sigma$. Old Kramer error needed $\Delta p = 1.46$; new needs
-$0.028$ (1σ) / $0.056$ (2σ).
+B1913 at $0.01\sigma$. Old Kramer error needed $\Delta p = 3.66$; new needs
+$0.070$ (1σ) / $0.14$ (2σ). (Erratum: was $1.46$/$0.028$/$0.056$ under a
+mis-normalized per-unit-$c_1$ conversion; derived per-unit-$c_{tot}$ loosens
+all three. The armed kill wire stays at $\pm0.056$, now conservative.)
 
 **Gradient OR at precision (Fig 67).** Shells with $p_{adj}(s) = 0.85+0.015s$,
 deterministic bridges $n\propto r^{\beta(N)}$, exact Floyd+LP, no $\kappa$
 tweak: flat/$\beta=1.0$ gives $p\sim0.50$; **measured 80 graphs at N = 1020,
 $\beta = 1.24$: $p = 0.913\pm0.049$, SEM $0.0055$, stacked $0.911$**
-(R² $0.956$, 80/80 ok) — $0.24\sigma$ from target, $5\times$ precision
+(R² $0.956$, 80/80 ok) — $0.10\sigma$ direct-mapping from target ($0.09\sigma$
+self-consistent), $12.7\times$ precision
 margin (artifact `data/p80_n1020_beta124.json`). $\beta$ recalibrates per $N$
-($1.5$@300, $1.28$@600, $1.24$@1020, all measured). Fitted: slope $0.015$,
+($1.5$@300, $1.28$@600, $1.24$@1020, all measured). Fitted: slope $0.015$
+(shown subdominant by twopn scans — $\beta$ does the work),
 $\beta(N)$, $w = 1.953$ (all labeled).
 
 **Reconciliation (primary route first).** The claim rests on the one-knob
@@ -1623,7 +1627,7 @@ $L_\odot = 3.828\times10^{33}$ erg/s, $M_{bol,\odot} = 4.74$ (IAU 2015),
 patch $= 4\ln2$ exact — identical values in `pulsar.py`, `collapse.py`,
 `data.py`, `redshift.py`, `concentration.py`, `horizon.py`. Loosest input
 ($G$, $\pm2.2\times10^{-5}$) propagates to the $M$ inversion at ppm level,
-$\sim100\times$ below the $0.24\sigma$ margin. (Debt: values are duplicated
+$\sim100\times$ below the $0.10\sigma$ margin. (Debt: values are duplicated
 per module, not imported once — same numbers, centralize later.)
 
 ![Fig 66](../figures/fig66_pulsar_2pn.png)

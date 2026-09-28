@@ -126,9 +126,11 @@ def test_resuscitated_passes_dot_and_s():
 
 
 def test_p_precision_requirement():
-    # New J0737 needs dp = 0.028 (1 sigma), old needs 1.46 (any p passes).
-    assert abs(p_precision_for_sigma(0.000013) - 0.028) < 0.005
-    assert abs(p_precision_for_sigma(0.00068) - 1.46) < 0.15
+    # New J0737 needs dp = 0.070 (1 sigma), old needs 3.66 (any p passes).
+    # Erratum: was 0.028/1.46 under mis-normalized dDdC (divided by C1_GR);
+    # derived per-unit-c_tot conversion loosens both (margin improves).
+    assert abs(p_precision_for_sigma(0.000013) - 0.070) < 0.005
+    assert abs(p_precision_for_sigma(0.00068) - 3.66) < 0.3
 
 
 def test_total_2pn_bracket_sane():
