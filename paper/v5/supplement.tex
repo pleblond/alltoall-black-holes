@@ -30,14 +30,14 @@ bridge $\beta(N)$ & 1.5@300; 1.28@600; 1.24@1020; 0.99@4k; 0.87@8k; 0.74@16k & r
 $w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathrm{tot}} = c_1 + w c_2 = 4.8695$ at $p = 0.92$ \\
 shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
-evap.\ isometry $V_k$ & $k\to k-1$ imposed & open derivation (S3) & need $V_k:{\cal H}_k\to{\cal H}_{k-1}\otimes{\cal H}_{\rm leg}$ from graph dynamics \\
+evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW241011 future wire \\\bottomrule
 \end{tabular}
 \end{table}
 
 Given $k(M)$: $1/r$ potential, $\gamma = 1$, $43''$/cy, $b_{\mathrm{crit}} = 3\sqrt{3}M$,
 Page/island-like/mirror follow as random-state/toy-code behaviour (genuine QES extremization
-and evaporation isometry $V_k$ open, S3). Not derived: mass--radius scaling itself, $\beta(N)$
+and graph-dynamics $V_k$ open, S3; qubit-toy $V_t$ done). Not derived: mass--radius scaling itself, $\beta(N)$
 from geometry, $w$ from the graph Laplacian (Damour--Sch\"afer from wiring),
 NICER $M$--$R$--$\Lambda$ from routing stiffness, Kerr $M_2$/$g_{t\phi}$/ISCO/QNM from the graph.
 
@@ -136,15 +136,18 @@ $\tau = 11.24M$ ($3.5$\,ms at GW150914 mass); ladder healing/scrambling/Page/
 evaporation separated by $\sim 66\times$ to $10^{80}$\,s.
 
 \textbf{What Page vs.\ island means here (honesty note).} The Page curve is derived as
-random-state behaviour: leg surgery $k\to k-1$ is imposed and $S_{\rm rad}=\min(t,N_{\rm eff}-t)$
-with the exact $0.72$-bit Page dip is imposed/sampled (modules \texttt{evaporation}, \texttt{haar}),
-so ``wiring-only vs $N$-shrinks identical'' holds by construction. The QES/island crossing
+random-state behaviour: idealised leg surgery $k\to k-1$ is imposed and $S_{\rm rad}=\min(t,N_{\rm eff}-t)$
+holds by construction (module \texttt{evaporation}), but the qubit toy now has an explicit unitary
+completion (module \path{evaporation_unitary}, Fig.~\ref{fig:sup-upage}): per-step $V_t$ with
+$V_t^\dagger V_t=I$ verified, $S_{\rm rad}$ computed from $\rho_{\rm rad}$ tracks the finite-dimensional
+Haar/Page expectation (mean dev.\ $0.002$ bits, $N=8$), and finite-depth all:all circuits converge to
+Page by depth $\sim5$/step without assuming Haar. The QES/island crossing
 $S_{\rm no}=ks_{\rm leg}$ vs $S_{\rm isl}=k\ln2+\max(S_0-ks_{\rm leg},0)$ is a two-saddle
 competition plus a discrete min-cut analogue (module \texttt{qes}), not an extremization of
-$S_{\rm gen}=A/4G+S_{\rm matter}$ from a gravitational path integral. The missing theorem is the
-evaporation isometry $V_k:{\cal H}_{{\rm graph},k}\to{\cal H}_{{\rm graph},k-1}\otimes{\cal H}_{\rm leg}$:
-prove surgery preserves inner products and yields the claimed entanglement spectrum under all:all
-dynamics. Tracked as D1 in \path{docs/DEFERRED.md}.
+$S_{\rm gen}=A/4G+S_{\rm matter}$ from a gravitational path integral. The remaining missing theorem is the
+graph-dynamics evaporation isometry $V_k:{\cal H}_{{\rm graph},k}\to{\cal H}_{{\rm graph},k-1}\otimes{\cal H}_{\rm leg}$:
+derive (not merely allow) a scrambling $V_k$ from the graph Hamiltonian/adjacency.
+Tracked as D1 in \path{docs/DEFERRED.md}.
 
 \textbf{What Kerr means here (honesty note).} Only the Kerr--Newman area $A(M,a,Q)$ is assumed to
 set the leg budget $k_{\rm eff}=A/4\ln2$ (module \texttt{kerr}; extremal Kerr half, extremal RN
@@ -174,6 +177,15 @@ $M(k,J)$ from graph dynamics is the open debt (D2).
 shrinks with $k$ or stays fixed (right) --- area tracks wiring alone, the
 distinctive Claim~2 prediction. \texttt{evaporation}.}
 \label{fig:sup-page}
+\end{figure}
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig74_unitary_page.png}
+\caption{Unitary completion of the qubit toy: sequential $V_t$ (left) tracks the finite-dimensional
+Haar/Page expectation including the $0.72$-bit dip, computed from $\rho_{\rm rad}$ rather than $\min()$;
+finite-depth all:all circuits (right) converge to Page by depth $\sim5$/step without assuming Haar.
+Module \texttt{evaporation\_unitary} (D2).}
+\label{fig:sup-upage}
 \end{figure}
 
 \section{Compact objects and 2PN (BU)}
@@ -393,7 +405,7 @@ over Rubin/DECam depths (left); yield $\sim 1$/yr vs $\le 0.3$/yr standard
 Modules follow the appendix letters of the v4.1 extended record:
 \path{graphs}, \path{scrambling}, \path{horizon}, \path{micro},
 \path{circuits} (A), \path{maxent} (B), \path{qes} (C),
-\path{evaporation} (D), \path{qec} (F), \path{robustness} (G),
+\path{evaporation} (D), \path{evaporation_unitary} (D2), \path{qec} (F), \path{robustness} (G),
 \path{kerr} (H), \path{thermo} (H2), \path{haar} (I), \path{monogamy} (J),
 \path{otoc}+\path{pheno} (L), \path{tn} (M), \path{kerrpage} (N),
 \path{syk} (O), \path{data} (Q), \path{litcompare} (R), \path{tev} (T),

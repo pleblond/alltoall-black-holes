@@ -1,5 +1,8 @@
 # No Neutron Stars: Black Holes, Pulsars, and Gap Objects as Almost-Perfect All:All Entanglement Graphs
 
+> **Note: this v4.1 living document has been superseded by the [v5 journal cut](v5/main.pdf)
+> (`paper/v5/`). It is retained as the extended technical record; new readers should start with v5.**
+
 **Philippe Leblond** — leblond.philippe@gmail.com
 
 **Draft v4.1 — computational companion paper (Secs 1–3 + Appendices A–BS + BU, BV)
