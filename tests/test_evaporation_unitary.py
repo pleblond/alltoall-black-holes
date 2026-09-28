@@ -133,3 +133,20 @@ def test_circuit_evaporation_converges_to_page_with_depth():
 def test_page_exact_reference_values_unchanged():
     # Pin the comparison curve itself: turnover deficit ~0.72 bits.
     assert abs(page_entropy_exact_bits(16, 16) - (4.0 - 0.7213)) < 0.05
+
+
+def test_composed_evaporation_preserves_inner_products():
+    # The full sequence V_{N-1} ... V_0 is unitary: inner products of
+    # arbitrary initial states are preserved, not just |0..0> norm.
+    n = 6
+    unitaries = evaporate_unitary(n, seed=0, mode="haar")["unitaries"]
+    rng = np.random.default_rng(123)
+    psi = haar_state(2**n, rng)
+    phi = haar_state(2**n, rng)
+    before = np.vdot(psi, phi)
+    assert abs(before) < 0.99  # distinct states, nontrivial check
+    for t, u in enumerate(unitaries):
+        hole = list(range(t, n))
+        psi = apply_subset_unitary(psi, u, hole, n)
+        phi = apply_subset_unitary(phi, u, hole, n)
+    assert np.allclose(np.vdot(psi, phi), before, atol=1e-10)

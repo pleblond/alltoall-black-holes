@@ -15,8 +15,8 @@ Hilbert-space convention (fixed total dimension, CPU-only, ``N <= 12``):
   ``2**t`` and ``2**(N-t)``.
 * One evaporation step applies a scrambling unitary ``U_t`` on the hole
   factor ``H_BH,t``, then moves the cut (qubit ``t`` joins radiation).
-  As a matrix on ``H_BH,t`` the emission map is ``V_t = U_t`` with its
-  output factorized as ``H_new otimes H_BH,t+1`` (``2**(N-t) =
+  The emission step is represented as ``V_t = U_t`` with its output
+  factorized as ``H_new otimes H_BH,t+1`` (``2**(N-t) =
   2 x 2**(N-t-1)``), hence square-unitary and a fortiori an isometry:
   ``V_t^dagger V_t = I``. On the total space the step is
   ``V_t otimes I_rad,t``, so global purity is preserved by construction.
@@ -142,9 +142,12 @@ def scramble_subset_circuit(
 def build_emission_isometry(n_bh_qubits: int, rng: np.random.Generator) -> np.ndarray:
     """Explicit emission map ``V: H_BH,t -> H_new otimes H_BH,t+1``.
 
-    For the fixed-total-dimension qubit toy the map is a Haar-random unitary
-    on the hole factor; its output is read as (emitted qubit, remaining hole).
-    Square, hence ``V^dagger V = I`` holds with equality.
+    The map is represented by a square unitary on the fixed total Hilbert
+    space; its output tensor factors are interpreted as (emitted qubit,
+    remaining hole). Square, hence ``V^dagger V = I`` holds with equality.
+    This is a unitary completion of the qubit toy, not a physical emission
+    operator derived from graph dynamics (no energy, mass-spectrum, or
+    adjacency constraints enter ``U_t``).
     """
     if n_bh_qubits < 1:
         raise ValueError("need at least 1 hole qubit to emit from")
