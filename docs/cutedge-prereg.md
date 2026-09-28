@@ -109,4 +109,13 @@ This prereg is committed before any `vacuum_cutedge` measurement.
 
 ## §6. Amendments (post-compute edits logged here, never silent)
 
-(None yet.)
+### C1 (2026-09-28, PRE-compute): growth-fit saturation prefix
+
+Clarification (no bar affected — G is a no-bar sanity diagnostic, and no
+verdict input uses growth): ball-growth OLS fits use the UNSATURATED
+prefix only (points with |B(r)| < N; need ≥3, else fall back to all
+points with a flag). Rationale: on N ≤ 256 periodic graphs, |B(r)|
+saturates at N by r ≈ 5–6; saturated points carry zero growth
+information and a full-range fit would artifactually flatten d̂. The
+frozen r = 1..6 sampling is unchanged; only saturated tail points are
+excluded from the OLS (counts + n_used reported per graph).
