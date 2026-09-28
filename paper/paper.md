@@ -1130,6 +1130,20 @@ open; scalar only, no birefringence prediction.
 > of magnitude below this Planck-scale threshold, ensuring full compatibility
 > with existing observational data.
 
+GW note (hypothetical universal extrapolation, not a claimed constraint):
+if the same quadratic law applied to GWs, a 100 Hz component shifts by
+$\Delta v/c \sim 10^{-82}$ ($\sim 10^{-65}$ s over a Gpc), because
+$E_{GW} \sim 10^{-22}$ GeV samples the $E^2$ law $\sim 10^{44}$ below
+GeV photons. In LVK language $E^2 = (pc)^2 + A_{\alpha}(pc)^{\alpha}$
+($\alpha = 2$ excluded — no dispersion), quadratic-in-$v$ maps to
+$\alpha = 4$ with $A_4 = -2/3E_{QG,2}^{-2} \sim -6\times10^{-82}$
+peV$^{-2}$ vs bound $\sim 10^{-21}$ peV$^{-2}$: safe by $\sim 10^{60}$;
+the GW170817 speed comparison is photon-side dominated ($\sim 10^{-47}$
+vs $10^{-15}$: safe by $\sim 10^{32}$). GW propagation therefore cannot
+constrain this UV term — Fermi already wins — and we claim no GW-sector
+derivation; a dangerous GW signal would have to come from graph geometry,
+not hopping.
+
 ![Fig 51](../figures/fig51_dispersion.png)
 
 ## Appendix BE. Footprint corrections to ringdown: comb, echoes, $\ell$-cutoff
