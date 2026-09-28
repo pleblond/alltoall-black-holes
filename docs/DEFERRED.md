@@ -28,6 +28,16 @@ graph instance: derive `V_k` from graph dynamics, not merely choose one.
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
 follows the claimed Page curve under all:all dynamics. Then "Page curve is
 a theorem of graph dynamics".
+Update (this branch): graph instance closed at small-`N` ED level —
+`graphvk` derives per-step `V_k = exp(-i H_graph dt)` from the hole adjacency
+(disordered Heisenberg, one random XYZ term per edge), proves `V†V=I` (incl.
+a composed-map inner-product test), computes `S_rad` from `rho_rad`, and shows
+all:all tracks exact Page (mean dev < 0.25 bits at `N = 8`, typically ~0.01)
+while the same `dt` on a chain sags below Page (mean dev > 0.4); changing the
+graph changes `V` (`||U_complete - U_chain|| > 1`, `is_adjacency_sensitive`).
+Fig 74b. What remains: large-`N`/thermodynamic limit, `k`-backreaction on the
+interior spectrum, emission energy/mass spectrum, and `S_gen` extremization
+from a gravitational path integral (QES still two-saddle + min-cut analogue).
 
 **Kill relevance:** none currently (no observed BH Page curve); referee
 honesty issue, not a falsifier.
@@ -93,6 +103,15 @@ spin-ordered reabsorption, or remnant-trap physics with the shutoff
 location (if any) as output, not input. A derived shutoff between gap
 and BBH masses must land where it lands; inserting it at any observed
 scale is refused (same rule as the 44 M☉ graph null).
+Update (this branch): mass-ratio SHAPE + mass independence derived —
+`mergershed` gets `frac(q) = η·2q/(1+q)²` from cross-bond counting with
+`1/N` dilution forced by extensivity + all:all symmetry (monogamy
+displaces `dS/s_leg` legs; `N` cancels). One calibration `η = 0.336`
+replaces `e_final` (anchor `frac(1) = 0.168`); `η < 1` predicted and held;
+`ε = 0.1` stays an astrophysics input. GW190814 dims ~0.4 mag vs the flat
+prescription but stays kilonova-bright (`M_ej ≈ 0.157 M☉`); the flat
+`collapse` law is kept as the O5 falsifier and the sample adjudicates
+flat-vs-shaped (Fig 68b). Still open: `ε(M,a)` shutoff derivation.
 
 **Related (not deferred — answered):** no graph feature at the
 pair-instability edge. `k(M)` zero curvature, smooth spin/Love running,
