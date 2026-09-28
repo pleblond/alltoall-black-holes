@@ -32,7 +32,7 @@ echo "repo: $(git -C "$HOME/alltoall-black-holes" rev-parse --short HEAD) $(git 
 if [ ! -x "$HOME/d7/venv/bin/python" ]; then
   python3 -m venv "$HOME/d7/venv"
 fi
-"$HOME/d7/venv/bin/pip" install -q numpy scipy networkx
+"$HOME/d7/venv/bin/pip" install -q numpy scipy networkx pytest
 echo "venv: $("$HOME/d7/venv/bin/python" --version)"
 
 mkdir -p "$HOME/d7/bin" "$HOME/d7/tables" "$HOME/d7/work" "$HOME/d7/logs"
