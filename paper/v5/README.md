@@ -7,10 +7,10 @@ into a submittable pair (both compile; counts as of this commit):
   Motivation, 3 claims in §2, gravity to 1PN + 2PN preview, UV + QI,
   one-family compact objects + gap-KN prediction, falsifiers + conclusion.
   4 figures (1 new survival matrix + 3 tested artifacts), 40 references.
-- `supplement.tex` — methods, 9pp: parameter audit, gravity/QI/BU/BV methods,
+- `supplement.tex` — methods, 10pp: parameter audit, gravity/QI/BU/BV methods,
   N-scale table (300→16000, 6 points), PPN ledger, archival ledger, O5 protocol
-  summary, kill list, module map. 10 ported evidence figures (lensing, Mercury,
-  UV-c, Page, N-scale, 2PN, p-fit, O5, healing, dispersion). Zero LaTeX warnings.
+  summary, kill list, module map. 11 ported evidence figures (lensing, Mercury,
+  UV-c, Page, unitary-Page, N-scale, 2PN, p-fit, O5, healing, dispersion). Zero LaTeX warnings.
 
 ## What changed vs the uploaded V5-Rewrite draft
 

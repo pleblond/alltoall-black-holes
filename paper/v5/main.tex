@@ -26,9 +26,9 @@ so $A(k) = 4\ln 2\cdot k\,l_p^2$ independent of interior size $N$. From this
 wiring picture we recover fast scrambling ($t_* \sim \log N$), the
 Bekenstein--Hawking area law, the exact Page curve with Haar-typical
 fluctuations, island-like turnover (genuine QES extremization open,
-supplement S1/S3), Kerr thermodynamics (area; $M_2$, $g_{t\phi}$, ISCO open), and Hayden--Preskill
+S1/S3), Kerr thermodynamics (area, $T_H$/$\Omega_H$; $M_2$, $g_{t\phi}$, ISCO open), and Hayden--Preskill
 mirror recovery. The same leg network yields weak-field gravity to first
-post-Newtonian order: Newton's $1/r^2$, Kepler orbits, textbook redshifts,
+post-Newtonian order: Newton's $1/r^2$, Kepler orbits, redshifts,
 full-strength light bending $4M/b$, Cassini-grade Shapiro delay, $\gamma = 1$
 exactly, and Mercury's $43''$/cy by direct geodesic integration. Lattice
 hopping gives quadratic-only dispersion ($E_{QG,1} = \infty$), safe from Fermi
@@ -123,7 +123,7 @@ while predicting a bright-gap rate distinct from the standard one.
 \begin{tabular}{@{}l p{8.6cm} p{3.2cm}@{}}\toprule
 sector & headline & status / modules \\\midrule
 gravity & Newton, Kepler, redshift, $4M/b$, Shapiro, Mercury $42.99''$, $\gamma=1$ exactly, J0737 $0.1\sigma$ & pass (AS, AT, AU, BB, BH) \\
-quantum info & $\log N$ vs $N$ hierarchy, Page dip $0.72$\,bits, island-like pop, mirror, $k_f > k_1+k_2$ at 100\% & toy/random-state; $V_k$, QES open \\
+quantum info & $\log N$ vs $N$ hierarchy, Page dip $0.72$\,bits, island-like pop, mirror, $k_f > k_1+k_2$ at 100\% & qubit $V_t$ done; graph $V_k$, QES open \\
 UV & quadratic-only LIV, $E_{QG,2} = \sqrt{8}\,E_P$, achromatic lensing $10^{-56}$--$10^{-32}$ & nulls held (T, BB, BD, BF) \\
 compact objects & gap 2.6/3.6, HESS 0.77, J0740/J0952, AT2017gfo, gap-KN $\sim 1$/yr & 5 anomalies, one law (BU) \\
 open & $p = 0.913 \pm 0.049$ matches GR; $c \approx 0.44$--$0.60$ derived (BV); $\kappa \to c_2$ map, $V_k$ isometry, Kerr $M_2$ open & measured; maps queued \\\bottomrule
@@ -308,8 +308,8 @@ $k \ge N/2+1+\log_2 100$, sealing at $k \to 0$. Evaporation as leg surgery
 ($k \to k-1$ per step) reproduces the Page curve
 $S_{\mathrm{rad}} = \min(t, N_{\mathrm{eff}}-t)$ with the exact Page dip
 $0.72$\,bits and Haar-typical spread, identically whether $N$ shrinks with
-$k$ or stays fixed --- area tracks wiring alone (surgery imposed; unitary isometry
-$V_k:{\cal H}_k\to{\cal H}_{k-1}\otimes{\cal H}_{\rm leg}$ from graph dynamics open, Suppl.~S1/S3). Kerr--Newman
+$k$ or stays fixed --- area tracks wiring alone (qubit-toy unitary completion $V_t$ tested,
+Suppl.~S3; graph-dynamics $V_k$ open, Suppl.~S1/S3). Kerr--Newman
 ($r_+ = M+\sqrt{M^2-a^2-Q^2}$, $A = 4\pi(r_+^2+a^2)$) costs legs monotonically
 in spin at fixed $M$ (extremal Kerr half, extremal Reissner--Nordstr\"om
 quarter the Schwarzschild budget, patch-independent ratios); the Kerr Page
@@ -323,6 +323,11 @@ $\sim 13\%$ against a $77\%$ margin and cannot flip the inequality).
 GW150914 posteriors (8350 samples, spin-aware both ends) give
 $P(\Delta k > 0) = 100\%$, median $0.57$: the area theorem in wiring language.
 GW250114 (SNR 80 \cite{GW250114}) confirms the area law, consistent with $k_f>k_1+k_2$;
+its Kerr ringdown is consistent by construction, not a passed prediction: the QNM spectrum is
+not derived from graph dynamics (fundamental damping calibrated, overtone ladder a
+Schwarzschild-like toy), and reproducing $\{220,221,440\}$ to GW250114 precision
+($\delta f_{220}\sim2\%$, $\delta\tau_{220}\sim10\%$, $\delta f_{221}\sim30\%$,
+$\delta f_{440}\sim$tens\%) is the open benchmark (Suppl.~S1/S3).
 GW241011 gives the strongest quadrupole bound to date \cite{GW241011} but we predict no
 $M_2(\chi)$, $g_{t\phi}$, $r_{\rm ISCO}$ yet (Suppl.~S1/S3) --- future $|\delta_Q|\gtrsim0.17$ ruled out.
 Hardware anchors (G\"arttner 2017 \cite{Garttner2017} all:all ions to $m = 8$-body OTOC; Mi 2021
@@ -333,7 +338,9 @@ prediction at $N = 53$ of $t^* \approx 7.9 \pm 0.7$ (all:all) versus $14.6$
 
 \paragraph{Nulls held.}
 No LHC thermal black holes \cite{LHCbh} ($k \approx 11$--$17$ at $3$--$13$\,TeV versus
-$k_{\mathrm{crit}} \approx 50$), no echoes ($R \sim 10^{-160}$), no EHT shadow
+$k_{\mathrm{crit}} \approx 50$), no lattice echoes (dimensional estimate: amplitude
+$R\sim(\omega/\omega_P)^2\sim10^{-80}$, energy $\sim10^{-160}$ at 100\,Hz, far below
+detectability; not a leg S-matrix derivation), no EHT shadow
 shift ($10^{-48}$, 47 orders below sensitivity). Remnant dark matter is
 excluded on the record except a narrow $\sim 0.4$-dex window at
 $\sim 4\times 10^5$\,g (photon bounds exceed by $40+$ orders elsewhere; induced-GW

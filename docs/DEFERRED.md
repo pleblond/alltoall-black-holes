@@ -12,10 +12,16 @@ Current status: `k -> k-1` surgery is imposed; `S_rad = min(t, Neff-t)`
 with 0.72-bit dip is imposed/sampled (`evaporation`, `haar`); QES crossing
 is a two-saddle competition + discrete min-cut analogue (`qes`), not
 `S_gen = A/4G + S_matter` extremized from a gravitational path integral.
+Update (PR #10): the qubit-toy instance is closed — `evaporation_unitary`
+(D2) constructs per-step `V_t`, proves `V†V=I` (incl. a composed-map
+inner-product test), and computes `S_rad` from `rho_rad` (tracks Haar/Page
+to 0.002 bits; all:all circuits converge by depth ~5). What remains is the
+graph instance: derive `V_k` from graph dynamics, not merely choose one.
 
-**Close criterion:** construct `V_k`, prove it preserves inner products,
-show the reduced radiation spectrum follows the claimed Page curve under
-all:all dynamics. Then "Page curve is a theorem of graph dynamics".
+**Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
+from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
+follows the claimed Page curve under all:all dynamics. Then "Page curve is
+a theorem of graph dynamics".
 
 **Kill relevance:** none currently (no observed BH Page curve); referee
 honesty issue, not a falsifier.

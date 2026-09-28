@@ -94,6 +94,7 @@ from bh_graph.qec import recovery_fidelity, recovery_threshold
 from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary
 from bh_graph.kerr import kerr_newman_k, spin_budget_fraction
 from bh_graph.haar import page_curve_exact_bits, haar_entropy_samples
+from bh_graph.evaporation_unitary import evaporate_unitary
 from bh_graph.monogamy import frontier, ckw_deficit
 from bh_graph.evaporation import page_curve_bits
 from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
@@ -1863,6 +1864,36 @@ def fig73_uv_n4000():
     plt.close(fig)
 
 
+def fig74_unitary_page():
+    n = 8
+    t, s_exact = page_curve_exact_bits(n)
+    s_min = np.minimum(t, n - t)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    # sequential Haar evaporation: entropy computed from rho_rad, never min()
+    acc = np.zeros(n + 1)
+    n_seeds = 12
+    for seed in range(n_seeds):
+        acc += evaporate_unitary(n, seed=seed, mode="haar")["S_rad"]
+    axes[0].plot(t, s_min, "--", color="gray", label="min() idealization")
+    axes[0].plot(t, s_exact, color="#2563eb", label="Page exact (Haar avg)")
+    axes[0].plot(t, acc / n_seeds, "o-", color="#0f766e", ms=4, label="unitary evap., mean 12 seeds")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("S_rad (bits)")
+    axes[0].set_title("Sequential V_t tracks exact Page (dip incl.)")
+    axes[0].legend(fontsize=8)
+    # finite-depth all:all circuits converge to Page without assuming Haar
+    axes[1].plot(t, s_exact, "--", color="gray", label="Page exact")
+    for depth, color in [(0, "#dc2626"), (5, "#d97706"), (40, "#0f766e")]:
+        s = evaporate_unitary(n, depth_per_step=depth, seed=0, mode="circuit")["S_rad"]
+        axes[1].plot(t, s, "o-", color=color, ms=4, label=f"circuit depth {depth}/step")
+    axes[1].set_xlabel("t"); axes[1].set_ylabel("S_rad (bits)")
+    axes[1].set_title("Dynamics generates Page by depth ~5")
+    axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 74 — D2: unitary evaporation (V^d V=I, S from rho_rad)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig74_unitary_page.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1937,6 +1968,7 @@ def main():
     fig71_uv_pop()
     fig72_uv_ladder()
     fig73_uv_n4000()
+    fig74_unitary_page()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
