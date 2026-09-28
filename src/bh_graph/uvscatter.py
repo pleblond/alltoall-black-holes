@@ -41,6 +41,7 @@ import numpy as np
 
 from bh_graph.horizon import PATCH_AREA
 from bh_graph.pulsar import C1_GR, C1_MODEL, C2_GR, C_TOT_GR, W_2PN, c2_of_p
+from bh_graph.pulsar import ddot_per_unit_c as _ddot_per_unit_c
 
 # ---------------------------------------------------------------------------
 # Micro constants (all derived from the BS patch postulate + BN saturation).
@@ -60,7 +61,9 @@ A_AUDIT_BU = {300: 0.69, 600: 1.10, 1020: 1.56}
 # 2PN numbers canonical from pulsar (single source of truth post-merge).
 J0737_DOT = 16.899323
 J0737_DOT_ERR = 0.000013
-J0737_DDDIR_DC = 8.9e-5  # per-unit-c deg/yr scale for J0737 (main pulsar.py)
+# Erratum (twopn branch): was 8.9e-5 = dot_dir/C1_GR; the rescale needs
+# per-unit-c_tot (dot_dir/C_TOT_GR). Derived at import (cheap bisection).
+J0737_DDDIR_DC = _ddot_per_unit_c()
 
 __all__ = [
     "A_AUDIT_BU",

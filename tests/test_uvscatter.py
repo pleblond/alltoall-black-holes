@@ -42,7 +42,7 @@ def test_bridge_ladder_and_sigmas():
     assert lad["bu_1020"] == 1.24  # between line-like and area-like
     assert U.sigma_vs_bu(0.913) == 0.0
     assert abs(U.sigma_vs_bu(1.0) - 1.78) < 0.05
-    assert abs(U.p_precision_j0737() - 0.028) < 0.003
+    assert abs(U.p_precision_j0737() - 0.070) < 0.005  # erratum: was 0.028 (dDdC norm)
 
 
 def test_validity_no_exceptions():

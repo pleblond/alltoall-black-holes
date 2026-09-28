@@ -1585,6 +1585,45 @@ def fig66_pulsar_2pn():
     plt.close(fig)
 
 
+def fig66b_twopn_bridge():
+    from bh_graph.twopn import p_vs_beta, p_vs_slope
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    # beta is the load-bearing construction knob (N=300, exact EMD)
+    bscan = p_vs_beta(n_graphs=4, seed0=0)
+    bb = sorted(bscan)
+    bm = np.array([bscan[b]["mean"] for b in bb])
+    bs = np.array([bscan[b]["std"] for b in bb])
+    axes[0].errorbar(bb, bm, yerr=bs, fmt="o-", color="#0f766e", ms=4, capsize=3)
+    axes[0].axhline(0.92, ls="--", color="red", label="target 0.92")
+    axes[0].axhspan(0.92 - 0.056, 0.92 + 0.056, alpha=0.12, color="red", label="kill wire +-0.056")
+    axes[0].set_xlabel("bridge exponent beta"); axes[0].set_ylabel("p")
+    axes[0].set_title("p(beta): steep control curve")
+    axes[0].legend(fontsize=7)
+    # gradient slope is nearly inert: fitted 0.015 not load-bearing
+    sscan = p_vs_slope(n_graphs=4, seed0=0)
+    ss = sorted(sscan)
+    sm = np.array([sscan[s]["mean"] for s in ss])
+    sd = np.array([sscan[s]["std"] for s in ss])
+    axes[1].errorbar(ss, sm, yerr=sd, fmt="s-", color="#d97706", ms=4, capsize=3)
+    axes[1].axhline(0.92, ls="--", color="red", label="target 0.92")
+    axes[1].set_xlabel("gradient slope"); axes[1].set_ylabel("p")
+    axes[1].set_title("p(slope): flat within noise")
+    axes[1].legend(fontsize=7)
+    # c2(p) = p(2p-1) exact: cancellation point on the curve
+    pp = np.linspace(0.4, 1.3, 200)
+    axes[2].plot(pp, pp * (2 * pp - 1), color="#2563eb", label="c2 = p(2p-1) exact")
+    axes[2].scatter([0.92], [0.92 * (2 * 0.92 - 1)], s=80, color="red", zorder=5,
+                    label="cancellation (0.92, 0.7728)")
+    axes[2].axhline(1.5, ls=":", color="gray", label="GR c2 = 1.5")
+    axes[2].set_xlabel("p"); axes[2].set_ylabel("c2")
+    axes[2].set_title("c2(p): theorem of the ansatz")
+    axes[2].legend(fontsize=7)
+    fig.suptitle("Fig 66b — BU3: construction-to-p maps + exact c2(p) (D3/D4 partial)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig66b_twopn_bridge.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def fig67_orici_p_fit():
     from bh_graph.orici import measure_p
     import shutil
@@ -2106,6 +2145,7 @@ def main():
     fig64_green()
     fig65_flip()
     fig66_pulsar_2pn()
+    fig66b_twopn_bridge()
     fig67_orici_p_fit()
     fig68_kilonova_gap()
     fig68b_mergershed()

@@ -32,7 +32,7 @@ shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M
 shed $\epsilon(M,a)$ & $0.0168$ universal (Eq.~2 main) & calibrated + extrapolated (D8) & mass/ratio independence underived; BBH extension tested, not fitted \\
 upper-gap null & no feature at $44\,M_\odot$ & negative prediction (measured smooth) & $k$/spin/Love/congestion all smooth; edge left to stellar physics \\
 GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, POSSIS queued (D7) & non-detection at $p \sim 0.12$--$0.32$; epoch audit in \texttt{massgaps} \\
-$\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
+$\kappa \to c_2$ map & $c_2 = p(2p-1)$ & formula exact; bridge open & $c_2(p)$ theorem of $g_{rr}$ form; $\kappa \to$ metric + $\beta(N)$ open (D3/D4) \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
 echo $R$ & $10^{-80}$ ampl., $10^{-160}$ energy & dimensional estimate & $\propto\omega^2$ lattice scattering, not leg S-matrix; $\sim158$ orders margin \\\bottomrule
@@ -207,9 +207,16 @@ exact EMD on full neighbourhoods, deterministic bridges $n \propto r^{\beta(N)}$
 Measured: $N = 1020$ ($10\times 102$), $\beta = 1.24$, 80 graphs exact Floyd+LP
 ($\sim 545$\,s): $p = 0.913 \pm 0.049$ per graph, SEM $0.0055$, stacked $0.911$
 ($R^2 = 0.956$), 80/80 fits ok, range $0.79$--$1.05$. Distance to target
-$|0.913-0.92| = 0.007$ ($0.24\sigma$ in $p$, $\sim 0.09\sigma$ in $\dot\omega$),
-$5\times$ precision margin ($0.0055$ vs $0.028$). Flat control $p = 0.49$ is
-$-10\sigma$ dead.
+$|0.913-0.92| = 0.007$ ($0.10\sigma$ direct-mapping, $\sim 0.09\sigma$
+self-consistent in $\dot\omega$),
+$12.7\times$ precision margin ($0.0055$ vs $0.070$; erratum: the conversion
+was per-unit-$c_1$, now per-unit-$c_{\rm tot}$). Flat control $p = 0.49$ is
+$-10\sigma$ dead. Construction $\to$ $p$ maps (Fig.~66b, module
+\texttt{twopn}): $p(\beta)$ is the load-bearing control curve while
+$p({\rm slope})$ is flat within noise, so the fitted $0.015$ slope is not
+load-bearing; $c_2(p) = p(2p-1)$ is exact for the $g_{rr}$ ansatz and $w$
+is closed-form in the measured inputs --- the residual D3/D4 debt is the
+analytic $\kappa \to$ metric bridge plus $\beta(N)$ drift.
 
 \textbf{N-scale campaigns (BV).} CSR-direct shell graphs + Sinkhorn OR (no
 NetworkX): N=1020 reproduced ($0.9107$ vs $0.9134$); N=4000 $p = 0.9315 \pm
@@ -484,7 +491,8 @@ Modules follow the appendix letters of the v4.1 extended record:
 \path{weakfield} (BI,BQ), \path{legham} (BL),
 \path{pulsar}+\path{orici} gradient shells+\path{collapse} leg-shedding (BU),
 \path{uvscatter}+\path{sinkor}+\path{shellscale} (BV),
-\path{massgaps} (mass-gap null + GW190814 epoch audit).
+\path{massgaps} (mass-gap null + GW190814 epoch audit),
+\path{twopn} (BU3 2PN bridge + dDdC erratum).
 \par}
 
 Reproduce:

@@ -17,7 +17,7 @@ standard $\le0.3$/yr). 312 tests green, 69+2 figures. Protocol:
 
 | File | Old (main) | New (this branch) |
 |---|---|---|
-| `src/bh_graph/orici.py` | grid+hub BI, 3 shells, 6 graphs, $\sigma_p = 0.48$ | gradient shells $p_{adj}(s) = 0.85+0.015s$, 8–10 shells, exact EMD full neighborhoods, deterministic bridge counts $n \propto r^{\beta(N)}$ → $p = 0.913 \pm 0.049$ at N = 1020, SEM $0.0055$ (80 graphs exact, $0.24\sigma$ from target) |
+| `src/bh_graph/orici.py` | grid+hub BI, 3 shells, 6 graphs, $\sigma_p = 0.48$ | gradient shells $p_{adj}(s) = 0.85+0.015s$, 8–10 shells, exact EMD full neighborhoods, deterministic bridge counts $n \propto r^{\beta(N)}$ → $p = 0.913 \pm 0.049$ at N = 1020, SEM $0.0055$ (80 graphs exact, $0.10\sigma$ direct-mapping from target; erratum: was quoted $0.24\sigma$ under mis-normalized conversion) |
 | `src/bh_graph/pulsar.py` | — (new) | Iorio 2PN direct+total, $c_2(p) = p(2p-1)$, $w = 1.953$, $R+\dot\omega\to M$ inversion, $p$-precision bar, GR-battery 2PN margins (bending/Mercury hidden) |
 | `src/bh_graph/collapse.py` | grid→complete transition only | + leg-shedding: $e$ $0.5\to0.416$, $M_{ej} = \Delta k\,m_{leg}\times0.1$, blue+red AT2017gfo, gap table, band mags, O5 yield, kill rule |
 | `tests/` | 278 | +33 (pulsar 14, kilonova 13, orici 9) = 312 |
@@ -33,8 +33,9 @@ standard $\le0.3$/yr). 312 tests green, 69+2 figures. Protocol:
   $c_2 = 0.7728$, $c_{tot} = 4.8693$ → $0.00\sigma$.
 - Self-consistent $R+\dot\omega\to M$: $\Delta M = -11.2$ ppm naive
   ($-4.5$ ppm with GR $g_{rr}$), $\Delta\sin i = 3.7\times10^{-6}$, $s_{obs}$
-  passes. Old Kramer error $0.00068$ needed $\Delta p = 1.46$ (any $p$
-  passed); new $0.000013$ needs $\Delta p = 0.028$ (1σ) / $0.056$ (2σ).
+  passes. Old Kramer error $0.00068$ needed $\Delta p = 3.66$ (any $p$
+  passed); new $0.000013$ needs $\Delta p = 0.070$ (1σ) / $0.14$ (2σ)
+  (erratum: was $1.46$/$0.028$/$0.056$; conversion now per-unit-$c_{tot}$).
   We clear it: SEM $\approx 0.02$ at 8 graphs, $\approx 0.007$ at 80.
 
 ## Reconciliation with the toy-generator route (two roads to $c_2\approx0.77$)
@@ -115,8 +116,8 @@ extrapolated):** at $N = 1020$ ($10\times102$, the $1024$ class),
 $\beta = 1.24$, 80 graphs exact Floyd+LP (545 s): $p = 0.913\pm0.049$
 per graph, SEM $0.0055$, stacked $0.911$ (R² $0.956$), 80/80 fits ok,
 range $0.79$–$1.05$. Distance to target: $|0.913-0.92| = 0.007$
-($0.24\sigma$ in $p$, $\sim0.09\sigma$ in $\dot\omega$) — **within
-$1\sigma$**, with $5\times$ precision margin ($0.0055$ vs $0.028$).
+($0.10\sigma$ direct-mapping in $p$, $\sim0.09\sigma$ self-consistent in $\dot\omega$) — **within
+$1\sigma$**, with $12.7\times$ precision margin ($0.0055$ vs $0.070$).
 Per-graph scatter drops with $N$ ($0.06\to0.05$) as larger shells average
 better. To reproduce (`/tmp/p80_run.py` pattern, ~9 min):
 
@@ -130,7 +131,8 @@ print(r['mean'], r['std'], r['sem'], r['stacked_fit'])"
 
 ## Falsifiers (this branch)
 
-1. $p$ outside $0.92\pm0.056$ at $N = 1024$, 80 graphs → 2PN dead.
+1. $p$ outside $0.92\pm0.056$ at $N = 1024$, 80 graphs → 2PN dead. (Wire kept
+   as-is after the conversion erratum; now conservative at $\sim0.8\sigma_{\dot\omega}$.)
 2. Gap ($2.5$–$5\,M_\odot$) merger with deep limits and $M_{ej} < 0.01$ → shedding dead.
 3. $\sin i$ or $\gamma$ PK off by $>10^{-4}$ with self-consistent $M$ → inversion dead.
 4. NICER/GW $\Lambda(1.4) > 500$ with small radius → routing stiffness dead
