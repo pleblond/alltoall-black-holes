@@ -280,3 +280,62 @@ untestable on localized excursions (exact zeros — presupposition fails);
 p-recovery killed (1.5–1.7 vs 0.92 band, N-robust); LIV + echo nulls held
 with 18/160-order margins; 2PN gate held as gate-only. Zero deviations,
 zero dollars.*
+
+---
+
+## §6. Appendix — H-κB cut-edge/curvature probe (follow-up, preregistered)
+
+**Prereg:** `docs/derivation-prereg-HKB.md` (amendment committed before any
+H-κB computation; one pre-run calibration fix H-7, recorded there).
+**Artifact:** `results/vacuum/phase1b_cutedge.json` (18 s wall, exact
+backend). **Code:** `src/bh_graph/vacuum_cutedge.py` (12 tests).
+**Terminology:** "cut-edge" throughout (never "bridge").
+
+Hypothesis H-κB (CONJECTURE): mean Ollivier-κ rises toward 0 as cut-edge
+density falls, holding volume growth fixed. The probe's killer control:
+random k-regular expanders at matched (N,k) — near-zero cut-edge density
+with (expected) κ<0.
+
+### §6.1 Verdicts
+
+| Bar (prereg H-4) | Result | Verdict |
+|---|---|---|
+| K1: every pair cutfrac<0.01 AND κ CI entirely <−0.01 | 6/6 pairs: cutfrac exactly 0.0 (all 30 instances); κ CIs −0.70..−1.24 (upper edges ≤−0.70, 70× past the bar) | **NAIVE-DEAD** — record: "flatness requires lattice order, not mere redundancy" |
+| K2 cubic/L10: ρ<−0.5, MC 95% excludes 0 | ρ=−0.894, MC [−0.894,−0.894] | HOLDS (bar met; caveat §6.2) |
+| K2 fcc/L6 | cutfrac ≡ 0.00000 at ALL levels (ρ undefined) | untestable-by-construction → overall **PARTIAL-SCOPE-RESTRICTED** |
+| G-check A (growth-fixed premise) | slopes 2.05–2.16 (SC), 2.25–2.34 (FCC); all \|Δ\|<0.1 | HOLDS both series |
+| G-check B (scope demo, k=6) | lattice S(3)/S(2)=2.11 ∈[1.5,3.0]; expander 4.6 >3.5 | growth classes differ ✓ |
+| Tree anchor (validity) | cutfrac=1.0; mean-κ=−0.31 <−0.05 | VALID |
+| Across-class ρ (descriptive, no bar) | +0.15 (n=47) | pooling breaks monotonicity, as K1 predicts |
+
+Sanity: lattices cutfrac exactly 0.0 + max\|κ\|≤2.2e-16 on all 6 (Phase-1
+bar reused, no drift); no spare seeds needed (all 30 expanders connected);
+H-7 calibration CONFIRMED (intact slopes 2.088/2.275 vs predicted 2.09/2.28).
+
+### §6.2 Honesty caveat (measured, pre-registered confound H-5 now quantified)
+
+K2 "holds" on cubic by the bar — but the level-by-level data shows κ
+falling BEFORE any cut-edge appears, in BOTH series:
+
+- Cubic: mean-κ 0 → −0.096 → −0.217 while cutfrac ≡ 0.00000; the
+  keep=0.87 level sits at −0.334 with exactly ONE cut-edge in the graph
+  (0.00038 × 2610 edges); keep=0.73 at −0.522 with ~10 cut-edges.
+- FCC: mean-κ 0 → −0.28 across the series with cutfrac ≡ 0.00000
+  throughout (k=12 redundancy absorbs 27% deletion without a single
+  cut-edge) — κ responds to deletion/disorder with ZERO cut-edge signal.
+
+So even the within-class monotonicity is better described as "κ tracks
+deletion-induced disorder (degree defects), with cut-edges a lagging
+indicator" — the H-5 confound, measured. Combined with K1 (expanders at
+κ≈−1.2 with zero cut-edges), the probe's joint moral: cut-edge density
+neither predicts κ across classes nor leads it within them. The K2
+"HOLDS" on cubic is reported with this scope restriction, honestly: the
+bar counts ranks, and the ranks hold — but the mechanism is not cut-edges.
+
+### §6.3 Theory status
+
+- H-κB naive reading ("bridgeless ⇒ flat"): DEAD on bars (K1, 6/6 pairs).
+- No C1/C2/C3 movement (probe doesn't test them); D-items untouched;
+  BU pipeline untouched.
+- Deviation addendum: H-7 pre-run band fix only (pure combinatorics, zero
+  probe data seen); no post-data changes of any kind.
