@@ -3,6 +3,11 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v5.0** — Journal cut (`paper/v5/`): 9pp main + 9pp S1–S9 supplement, both
+  compiling warning-free with committed PDFs; 40 references all cited; new
+  survival-matrix figure (`scripts/generate_v5_figs.py`); N-scale/PPN/archival
+  tables; prose read-through (British spelling, S-numbered cross-refs). No
+  physics changes; v4.1 living document untouched as extended record.
 - **v4.1** — BV UV tortuosity-as-scattering + N-scale campaigns: legs as
   radial line defects ($\sigma = 4\ln 2$), soft cost $\ln 2$ gives dilute
   $c = 0.44$–$0.60$ (target $0.456$) with zero tuning; $p = 2c$,
