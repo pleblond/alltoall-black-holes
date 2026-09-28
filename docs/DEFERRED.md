@@ -67,3 +67,23 @@ Single GR input; derivation from wiring alone open.
 
 **Missing:** POSSIS refinement; i-band not claimed (one-zone κ=10
 over-traps). g-band verdicts robust; gap-KN ~1/yr O5 prediction stands.
+
+## D8 — Shedding efficiency ε(M,a) + upper-gap assignment — P1
+
+**Missing:** derivation of the shedding efficiency's mass, spin, and
+mass-ratio dependence from graph dynamics. Current status: `M_ej =
+0.0168 M_tot` exactly universal (shed fraction 0.168 × 10% efficiency,
+both fixed once on AT2017gfo; `collapse`, `massgaps`). Mass and
+q-independence are extrapolated, not derived — the highest-value attack
+surface on the universal (BBH) transient prediction.
+
+**Close criterion:** derive `ε(M,a,q)` from `K_max(N)` combinatorics,
+spin-ordered reabsorption, or remnant-trap physics with the shutoff
+location (if any) as output, not input. A derived shutoff between gap
+and BBH masses must land where it lands; inserting it at any observed
+scale is refused (same rule as the 44 M☉ graph null).
+
+**Related (not deferred — answered):** no graph feature at the
+pair-instability edge. `k(M)` zero curvature, smooth spin/Love running,
+He-core χ ~ 1e-8 (`massgaps`): the ~44 M☉ boundary belongs to
+stellar/nuclear physics. Negative prediction, main text.

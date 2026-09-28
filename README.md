@@ -18,8 +18,8 @@
 > J0737 2PN measured $p = 0.913\pm0.049$ (80 graphs, exact), gap kilonovae
 > with an O5 kill-or-confirm [`protocol`](docs/observation-protocol.md).
 
-> **Read the paper:** journal cut [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 9pp) ·
-> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 9pp) ·
+> **Read the paper:** journal cut [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 11pp) ·
+> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 11pp) ·
 > living record [`paper/paper.md`](paper/paper.md) (full draft) ·
 > [`paper/main.pdf`](paper/main.pdf) (compiled PDF)
 

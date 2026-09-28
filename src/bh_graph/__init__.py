@@ -311,6 +311,18 @@ from bh_graph.shellscale import (
     save_artifact, load_artifact,
     build_oracle, oracle_dist_matrix, oracle_spotcheck,
 )
+from bh_graph.massgaps import (
+    M_PISN_EDGE, M_GAP_LO, M_GAP_HI,
+    k_of_m_msun, k_loglog_slope, k_loglog_curvature, is_k_smooth_across,
+    spin_leg_ratio, hierarchical_leg_shift, is_spin_transition_smooth,
+    leg_band_entry_mass_msun, shedding_prediction,
+    gw190814_margin_mag, is_gw190814_excluded, is_gw190814_tense,
+    upper_gap_graph_verdict,
+    congestion_chi_astro, congestion_ladder, is_progenitor_dilute,
+    shedding_vs_mass_ratio, is_shedding_q_independent,
+    gw190814_peak_covered,
+    love_vs_mass, is_love_smooth_across_44,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -495,4 +507,16 @@ __all__ = [
     "gap_o5_yield", "falsifier_killed_by_nondetections",
     "kn_peak_lum_ratio", "gw230529_detection_prob", "is_gw230529_nondetection_consistent",
     "L_SUN_ERG_S", "RUBIN_SINGLE_VISIT_R", "DECAM_KN_DEPTH", "KILL_NONDETECTIONS",
+    "M_PISN_EDGE", "M_GAP_LO", "M_GAP_HI",
+    "k_of_m_msun", "k_loglog_slope", "k_loglog_curvature", "is_k_smooth_across",
+    "spin_leg_ratio", "hierarchical_leg_shift", "is_spin_transition_smooth",
+    "leg_band_entry_mass_msun", "shedding_prediction",
+    "gw190814_margin_mag", "is_gw190814_excluded", "is_gw190814_tense",
+    "upper_gap_graph_verdict",
+    "congestion_chi_astro", "congestion_ladder", "is_progenitor_dilute",
+    "shedding_vs_mass_ratio", "is_shedding_q_independent",
+    "gw190814_blue_mag", "gw190814_dist_sigma_mag", "gw190814_epoch_pdetect",
+    "gw190814_cfht_audit", "gw190814_growth_audit", "gw190814_combined_pdetect",
+    "gw190814_peak_covered",
+    "love_vs_mass", "is_love_smooth_across_44",
 ]
