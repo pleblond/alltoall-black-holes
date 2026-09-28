@@ -63,14 +63,32 @@ Sharpest near-term test after kilonova rate (2-3 yr timeline).
 **Missing:** `R_s = 2M` (BM reduction: `k(M)` iff `R_s(M)` given).
 Single GR input; derivation from wiring alone open.
 
-## D7 — Kilonova radiative transfer — analytic audit done, full RT queued
+## D7 — Kilonova radiative transfer — analytic systematics done, full RT queued
 
-**Update (GW190814 audit):** epoch-specific analytic audit shipped
-(`collapse.gw190814_*`, Fig 75, 15 tests): CFHT/GROWTH depths + coverage,
-POSSIS-inspired viewing/opacity/color surrogates (labelled, bounded),
-P(detect) ~0.71 g-only / ~0.87 g+i(color), p_miss ~0.29/0.13 = tension not
-exclusion; equatorial + lanthanide-mixed hiding window quantified;
-upper-gap no-feature (k smooth M^2 at 44.3 Msun) + He-core chi ~1e-8 done.
+**Update (round 4):** analytic viewing/opacity/dust systematics shipped
+(`massgaps.gw190814_*_sys`, `gw190814_systematics_table`, Fig 75b, 9 tests):
+POSSIS-inspired viewing (equatorial +1.25 g/+0.5 i) + Arnett opacity
+rescaling bound the hiding window (equatorial + κ_blue=2 → P~0.18).
 **Still missing:** full 3D POSSIS (morphology, Ye-dependent opacities,
-reprocessing); i-band direct not claimed (one-zone κ=10 over-traps,
-t_red ~30d at 0.35 Msun). g-band verdicts robust; gap-KN ~1/yr O5 stands.
+reprocessing); i-band direct not claimed (one-zone κ=10 over-traps).
+g-band verdicts robust; gap-KN ~1/yr O5 prediction stands.
+
+## D8 — Shedding efficiency ε(M,a) + upper-gap assignment — P1
+
+**Missing:** derivation of the shedding efficiency's mass, spin, and
+mass-ratio dependence from graph dynamics. Current status: `M_ej =
+0.0168 M_tot` exactly universal (shed fraction 0.168 × 10% efficiency,
+both fixed once on AT2017gfo; `collapse`, `massgaps`). Mass and
+q-independence are extrapolated, not derived — the highest-value attack
+surface on the universal (BBH) transient prediction.
+
+**Close criterion:** derive `ε(M,a,q)` from `K_max(N)` combinatorics,
+spin-ordered reabsorption, or remnant-trap physics with the shutoff
+location (if any) as output, not input. A derived shutoff between gap
+and BBH masses must land where it lands; inserting it at any observed
+scale is refused (same rule as the 44 M☉ graph null).
+
+**Related (not deferred — answered):** no graph feature at the
+pair-instability edge. `k(M)` zero curvature, smooth spin/Love running,
+He-core χ ~ 1e-8 (`massgaps`): the ~44 M☉ boundary belongs to
+stellar/nuclear physics. Negative prediction, main text.
