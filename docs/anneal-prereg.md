@@ -315,4 +315,5 @@ affected compute runs. Post-hoc amendments disqualify affected runs.
 
 | # | Date | Section | Change | Reason |
 |---|---|---|---|---|
-| — | — | — | (none yet) | — |
+| 1 | 2026-09-28 | §5–§6 | T_sym evaluated on cadence K_SYM = 25 accepted moves (cached between proposals), same mechanism as T_spec; when w_S = 0 (resp. w_L = 0) no WL (resp. eigsh) evaluation inside the loop at all — checkpoint values (§8) are always freshly computed, never cached. | Per-step cost stays O(1) amortized as §5 intends: full WL per proposal is O(K_WL·E) Python and would dominate wall time without changing the landscape (single-edge moves rarely change WL colors; cadence-25 refresh captures drift). Filed BEFORE any annealer compute; no run affected retroactively. |
+| 2 | 2026-09-28 | §6 | T0 calibration uses toggle-only probes (200 toggle proposals; median \|ΔC\| over constraint-passing probes; T0 = median/ln2; fallback T0 = 1.0 flagged). | Swaps carry ΔC ≡ 0 under the preregistered cadence caching, so the frozen 50/50 mix would measure the proposal mix rather than the cost scale. Still a pure scale (no outcome statistic enters). Filed BEFORE any annealer compute. |
