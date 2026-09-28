@@ -6,7 +6,7 @@ into a submittable pair (both compile; counts as of this commit):
 - `main.tex` — journal text, 9pp preprint single-column 11pt (≈6pp two-column).
   Motivation, 3 claims in §2, gravity to 1PN + 2PN preview, UV + QI,
   one-family compact objects + gap-KN prediction, falsifiers + conclusion.
-  4 figures (1 new survival matrix + 3 tested artifacts), 40 references.
+  4 figures (1 new survival matrix + 3 tested artifacts), 42 references.
 - `supplement.tex` — methods, 10pp: parameter audit, gravity/QI/BU/BV methods,
   N-scale table (300→16000, 6 points), PPN ledger, archival ledger, O5 protocol
   summary, kill list, module map. 11 ported evidence figures (lensing, Mercury,
@@ -29,7 +29,8 @@ with paper text. v5/main.tex:
    lead the cover with "No Neutron Stars" until routing-stiffness NICER derivation
    lands. Title reverts to bold form if BU survives O5.
 7. Moves install/streamlit/git notes to Data/Code availability; removes branch notes.
-8. Maps 5 main figures to existing tested artifacts (no new untested figures).
+8. Maps the 4 main figures to tested/generated artifacts (survival matrix
+   generated from the ledger, no new claims).
 
 ## What changed vs v4.1
 
@@ -50,10 +51,10 @@ Figures resolve via `../../figures/`.
 
 ## Next steps (for loop ticks)
 
-- [x] Install texlive and verify page counts (main 9pp preprint ≈6pp journal; supp 5pp)
+- [x] Install texlive and verify page counts (main 9pp preprint ≈6pp journal; supp 10pp)
 - [x] Add Fig.1 survival-matrix schematic (new TikZ, references ledger, no new claims)
 - [x] Expand references to ~40 (EOS/NICER/GWTC/LVK-testing-GR/POSSIS/Rubin + neighbours)
-- [x] Grow supplement toward ~12pp → reached 9pp with 10 ported figures (lensing/Mercury/UV-c/Page/N-scale/2PN/p-fit/O5/healing/dispersion)
+- [x] Grow supplement toward ~12pp → reached 10pp with 11 ported figures (lensing/Mercury/UV-c/Page/unitary-Page/N-scale/2PN/p-fit/O5/healing/dispersion)
 - [x] Clear LaTeX warnings (tables → p-columns, code → quote+path, math allowbreaks; only sub-5pt overfulls remain)
 - [ ] Prose polish pass on main.tex (read-through for typos, transitions, symbol consistency)
 - [ ] Optional twocolumn pass if venue requires strict 6pp (currently honest preprint count)

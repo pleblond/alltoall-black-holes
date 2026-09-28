@@ -8,8 +8,8 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   per-leg $T = (dM/dk)/\ln 2$ reading, finite-step $-1/4k$ correction,
   super-extremal NaN guard. Ported to v5 journal cut (abstract $T_H$/$\Omega_H$
   claim + supplement S3 note + module map; main body untouched, 9+9pp kept).
-- **v5.0** — Journal cut (`paper/v5/`): 9pp main + 9pp S1–S9 supplement, both
-  compiling warning-free with committed PDFs; 40 references all cited; new
+- **v5.0** — Journal cut (`paper/v5/`): 9pp main + 10pp S1–S10 supplement, both
+  compiling warning-free with committed PDFs; 42 references all cited; new
   survival-matrix figure (`scripts/generate_v5_figs.py`); N-scale/PPN/archival
   tables; prose read-through (British spelling, S-numbered cross-refs). No
   physics changes; v4.1 living document untouched as extended record.
