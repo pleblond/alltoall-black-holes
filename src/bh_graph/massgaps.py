@@ -24,15 +24,21 @@ parameter would be a fit, not a prediction, and is refused here.
 The model's genuine upper-mass story is instead the BBH-shedding audit:
 universal leg shedding (fitted once on AT2017gfo, mass-independent by
 construction) predicts m_g ~ 21-22 kilonovae for GW190814-like and BBH
-mergers. O1-O3 limits sit at the margin (GW190814: predicted m_g ~ 21.0
-vs ZTF ~ 21, DECam i/z deep but the model's i-band disclaimed); O5 Rubin
-ToO on nearby well-localized BBH will kill or confirm. If BBH are dark
-while gap mergers flash, a mass-dependent shutoff must be DERIVED (its
-location an output, not input) — currently open work, flagged, not hidden.
+mergers. The epoch-level GW190814 audit (round 3) uses CFHT MegaCam g-band
+(Vieira+2020: g 22.8 at 1.7d over 65.5%, g 23.6 at 6.6d over 35.9%) and
+GROWTH DECam i-band detection limits (Andreoni+2020, six epochs, up to 98%
+enclosed): combined detection probability ~0.68 (g-only, color-free) to
+~0.87 (g+i, g-i = 0.7 systematic) — genuine pressure (non-detection
+p-value ~0.13-0.32), short of exclusion. O5 Rubin ToO on nearby
+well-localized BBH will kill or confirm. If BBH are dark while gap mergers
+flash, a mass-dependent shutoff must be DERIVED (its location an output,
+not input) — currently open work, flagged, not hidden.
 
 Literature inputs (labeled, not derived): M_PISN_EDGE = 44.3 Msun
-(Nature Astron 2026, GWTC-4 chi_eff mixture); GW190814 DECam r ~ 23.5
-full-90% nights 0,1,2,3,6,16 (Morgan et al. 2020); ZTF g ~ 21 partial.
+(Nature Astron 2026, GWTC-4 chi_eff mixture); GW190814 d = 241^{+41}_{-45}
+Mpc (Abbott+2020); CFHT/GROWTH per-epoch depths+coverage above. Errata on
+record: v1 used a nominal ZTF g~21 depth, but ZTF conducted no targeted
+GW190814 follow-up — superseded by the CFHT/GROWTH epoch audit.
 """
 from __future__ import annotations
 
@@ -52,10 +58,22 @@ M_GAP_HI = 5.0
 GW190814_M1 = 23.2
 GW190814_M2 = 2.59
 GW190814_DIST_MPC = 241.0
-GW190814_ZTF_G_DEPTH = 21.0
-GW190814_DECAM_R_DEPTH = 23.5
+GW190814_DIST_SIGMA_MPC = 43.0  # final map 241^{+41}_{-45} (Abbott+2020); cf. initial 267+-52
+# CFHT MegaCam g-band (Vieira et al. 2020, Table 1): (t_days, depth_g, prob_coverage).
+GW190814_CFHT_G_EPOCHS = ((1.7, 22.8, 0.655), (6.6, 23.6, 0.359))
+# GROWTH reanalysis of DECam i-band (Andreoni et al. 2020, Table 1):
+# (t_days, detection_limit_i, enclosed_prob). Detection limits used (conservative).
+GW190814_GROWTH_I_EPOCHS = (
+    (0.46, 20.4, 0.94), (1.45, 21.0, 0.98), (2.41, 21.3, 0.98),
+    (3.43, 22.1, 0.98), (6.38, 22.8, 0.94), (16.37, 23.4, 0.63),
+)
+# GROWTH radiative-transfer ejecta bound (polar, NSBH geometry; context only —
+# geometry-dependent, not directly applicable to spherical two-component shedding).
+GROWTH_MEJ_LIMIT_POLAR = 0.04
 # Analytic lightcurve tolerance claimed by the model (mag).
 ANALYTIC_MAG_TOL = 1.0
+# Default blue color term g-i at ~1-3d (AT2017gfo-like early colors; systematic).
+G_MINUS_I_DEFAULT = 0.7
 
 
 def k_of_m_msun(m_msun: float) -> float:
@@ -191,41 +209,141 @@ def shedding_prediction(m1_msun: float, m2_msun: float, dist_mpc: float) -> dict
 
 
 def gw190814_margin_mag() -> dict[str, float]:
-    """GW190814: predicted m_g vs ZTF depth (positive margin = tension).
+    """GW190814: predicted m_g at the CFHT g 1.7d epoch vs its depth.
 
-    Predicted ~21.0 vs ZTF ~21.0 → margin ~0 ± 1 (analytic tol): marginal,
-    NOT excluded. The archival audit with per-epoch depths/coverage is
-    queued (same machinery as gw230529_detection_prob). nan if broken.
+    CORRECTION (round 3, on record): the v1 audit used a nominal ZTF g~21
+    depth, but ZTF conducted no targeted GW190814 follow-up. The direct
+    blue test is CFHT MegaCam g 22.8 at 1.7d (65.5% probability coverage,
+    Vieira+2020). Predicted m_g(1.7d) ~ 21.1 → margin ~ +1.7 mag of central
+    tension at 65% coverage — pressure, not exclusion (see epoch audit).
     """
-    pred = shedding_prediction(GW190814_M1, GW190814_M2, GW190814_DIST_MPC)
-    if not np.isfinite(pred["m_g"]):
+    pred = gw190814_blue_mag(1.7)
+    if not np.isfinite(pred):
         nan = float("nan")
-        return {"m_g_pred": nan, "margin": nan}
+        return {"m_g_pred": nan, "t_d": 1.7, "margin": nan}
     return {
-        "m_g_pred": float(pred["m_g"]),
-        "t_blue_d": float(pred["t_blue_d"]),
-        "margin": float(GW190814_ZTF_G_DEPTH - pred["m_g"]),
+        "m_g_pred": float(pred),
+        "t_d": 1.7,
+        "margin": float(GW190814_CFHT_G_EPOCHS[0][1] - pred),
     }
 
 
-def is_gw190814_excluded() -> bool:
-    """Boolean check: is universal shedding EXCLUDED by GW190814? (No: marginal.)
+def is_gw190814_excluded(threshold: float = 0.95) -> bool:
+    """Boolean check: epoch-combined detection probability above threshold?
 
-    Exclusion would need margin > analytic tolerance (predicted brighter
-    than limits by more than the ±1 mag theory error). Measured margin ~ 0.
+    Exclusion needs the full probabilistic audit (coverage x depth x
+    distance/theory errors per epoch), not a single-epoch margin:
+    combined P ~ 0.87 (g+i) / 0.68 (g-only) → not excluded at 0.95.
     """
-    r = gw190814_margin_mag()
-    return bool(np.isfinite(r["margin"]) and r["margin"] > ANALYTIC_MAG_TOL)
+    p = gw190814_combined_pdetect()
+    return bool(np.isfinite(p) and np.isfinite(threshold) and p > threshold)
 
 
-def is_gw190814_tense() -> bool:
-    """Boolean check: is GW190814 within the theory error of the limit? (Yes.)
+def is_gw190814_tense(threshold: float = 0.5) -> bool:
+    """Boolean check: combined detection probability above 50%?
 
-    |margin| <= tol means the event squeezes but does not kill shedding —
-    the reason a full archival audit is queued before O5.
+    Combined P ~ 0.68-0.87 → the non-detection sits at p-value ~0.13-0.32
+    (~1 sigma): genuine pressure on universal shedding, short of a kill.
     """
-    r = gw190814_margin_mag()
-    return bool(np.isfinite(r["margin"]) and abs(r["margin"]) <= ANALYTIC_MAG_TOL)
+    p = gw190814_combined_pdetect()
+    return bool(np.isfinite(p) and np.isfinite(threshold) and p > threshold)
+
+
+def gw190814_blue_mag(t_days: float, dist_mpc: float = GW190814_DIST_MPC) -> float:
+    """Apparent g of the blue component at time t (Arnett shape, BC = 0).
+
+    Same shape as collapse.kilonova_lightcurve_lum's blue term:
+    rise min(t/tb,1), exponential decline past peak. nan if invalid.
+    """
+    from bh_graph.collapse import (
+        leg_shedding_ejecta, kilonova_peak_lum_erg_s, kilonova_peak_time_days,
+        lum_to_abs_mag_bol, dist_modulus, V_BLUE_C, KAPPA_BLUE,
+    )
+
+    if not all(np.isfinite(v) for v in (t_days, dist_mpc)) or t_days < 0 or dist_mpc <= 0:
+        return float("nan")
+    ej = leg_shedding_ejecta(GW190814_M1, GW190814_M2)
+    lb = kilonova_peak_lum_erg_s(ej["M_blue"], V_BLUE_C, KAPPA_BLUE)
+    tb = kilonova_peak_time_days(ej["M_blue"], V_BLUE_C, KAPPA_BLUE)
+    dm = dist_modulus(dist_mpc)
+    if not all(np.isfinite(v) for v in (lb, tb, dm)) or lb <= 0 or tb <= 0:
+        return float("nan")
+    shape = min(t_days / tb, 1.0) * np.exp(-max(t_days - tb, 0.0) / tb)
+    if shape <= 0:
+        return float("inf")
+    return float(lum_to_abs_mag_bol(lb * shape) + dm)
+
+
+def gw190814_dist_sigma_mag() -> float:
+    """Distance spread in mag: 5*sigma_d/(d ln10) ~ 0.39 mag."""
+    return float(5.0 * GW190814_DIST_SIGMA_MPC / (GW190814_DIST_MPC * np.log(10.0)))
+
+
+def gw190814_epoch_pdetect(
+    t_days: float,
+    depth: float,
+    coverage: float,
+    sigma_theory_mag: float = ANALYTIC_MAG_TOL,
+    color_term: float = 0.0,
+) -> float:
+    """Per-epoch detection probability: coverage x Phi((depth-m)/sigma_tot).
+
+    sigma_tot = sqrt(theory^2 + dist^2); theory +-1 mag treated as 1-sigma
+    Gaussian (labeled approximation); color_term shifts model mag into the
+    observed band (0 for g, g-i for i). nan if invalid.
+    """
+    import math
+
+    vals = (t_days, depth, coverage, sigma_theory_mag, color_term)
+    if not all(np.isfinite(v) for v in vals):
+        return float("nan")
+    if not (t_days >= 0 and 0 <= coverage <= 1 and sigma_theory_mag > 0):
+        return float("nan")
+    m = gw190814_blue_mag(t_days) + color_term
+    if not np.isfinite(m):
+        return float("nan")
+    sig = math.sqrt(sigma_theory_mag**2 + gw190814_dist_sigma_mag()**2)
+    phi = 0.5 * (1.0 + math.erf((depth - m) / (sig * math.sqrt(2.0))))
+    return float(coverage * phi)
+
+
+def gw190814_cfht_audit() -> dict[str, object]:
+    """CFHT g-band epochs (color-free): per-epoch P and combined P."""
+    per = [
+        gw190814_epoch_pdetect(t, d, c) for (t, d, c) in GW190814_CFHT_G_EPOCHS
+    ]
+    p = 1.0 - float(np.prod([1.0 - v for v in per]))
+    return {"per_epoch": per, "p_combined": p}
+
+
+def gw190814_growth_audit(g_minus_i: float = G_MINUS_I_DEFAULT) -> dict[str, object]:
+    """GROWTH DECam i-band epochs with labeled color systematic."""
+    per = [
+        gw190814_epoch_pdetect(t, d, c, color_term=g_minus_i)
+        for (t, d, c) in GW190814_GROWTH_I_EPOCHS
+    ]
+    p = 1.0 - float(np.prod([1.0 - v for v in per]))
+    return {"per_epoch": per, "p_combined": p, "g_minus_i": g_minus_i}
+
+
+def gw190814_combined_pdetect(
+    include_i: bool = True, g_minus_i: float = G_MINUS_I_DEFAULT
+) -> float:
+    """Combined detection probability over independent epochs (labeled approx).
+
+    Epoch independence overstates slightly (shared distance + theory errors
+    correlate epochs); the g-only value is the robust lower edge, g+i the
+    color-conditional upper edge. nan if broken.
+    """
+    cfht = gw190814_cfht_audit()["per_epoch"]
+    per = list(cfht)
+    if include_i:
+        if not np.isfinite(g_minus_i):
+            return float("nan")
+        per = per + list(gw190814_growth_audit(g_minus_i)["per_epoch"])
+    if not all(np.isfinite(v) for v in per):
+        return float("nan")
+    return float(1.0 - np.prod([1.0 - v for v in per]))
 
 
 def upper_gap_graph_verdict() -> dict[str, object]:
@@ -326,30 +444,6 @@ def is_shedding_q_independent(m_tot_msun: float = 25.8, tol: float = 1e-9) -> bo
     if not np.all(np.isfinite(r["M_ej"])):
         return False
     return bool(float(np.max(r["M_ej"]) - np.min(r["M_ej"])) < tol)
-
-
-def gw190814_rband_margin_approx(g_minus_r: float = 0.5) -> dict[str, float]:
-    """GW190814 vs DECam r ~ 23.5: margin with LABELED color systematic.
-
-    DECam covered the full 90% region on nights 0,1,2,3,6,16 — spanning the
-    predicted blue peak (t ~ 1.9d), so the r-band at days 1-3 probes the
-    CLAIMED blue component (g-band model + color term), not the disclaimed
-    one-zone red tail. m_r ≈ m_g + (g-r): central margin ~ 2 mag of tension,
-    but the stack (analytic ±1 + color ±0.5 + distance ±0.35) keeps it short
-    of a robust kill. POSSIS colors needed for a verdict. nan if bad input.
-    """
-    pred = shedding_prediction(GW190814_M1, GW190814_M2, GW190814_DIST_MPC)
-    if not all(np.isfinite(v) for v in (pred["m_g"], g_minus_r)):
-        nan = float("nan")
-        return {"m_r_pred": nan, "margin": nan}
-    m_r = pred["m_g"] + g_minus_r
-    return {"m_r_pred": float(m_r), "margin": float(GW190814_DECAM_R_DEPTH - m_r)}
-
-
-def is_gw190814_decam_tense(g_minus_r: float = 0.5, sys_mag: float = 1.5) -> bool:
-    """Boolean check: DECam r-band margin positive beyond systematics?"""
-    r = gw190814_rband_margin_approx(g_minus_r)
-    return bool(np.isfinite(r["margin"]) and np.isfinite(sys_mag) and r["margin"] > sys_mag)
 
 
 def gw190814_peak_covered() -> bool:

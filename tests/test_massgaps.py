@@ -9,7 +9,7 @@ from bh_graph.massgaps import (
     upper_gap_graph_verdict,
     congestion_chi_astro, congestion_ladder, is_progenitor_dilute,
     shedding_vs_mass_ratio, is_shedding_q_independent,
-    gw190814_rband_margin_approx, is_gw190814_decam_tense, gw190814_peak_covered,
+    gw190814_peak_covered,
     love_vs_mass, is_love_smooth_across_44,
 )
 
@@ -60,10 +60,10 @@ def test_shedding_universal_mass_independent_fraction():
 
 def test_gw190814_marginal_not_excluded():
     r = gw190814_margin_mag()
-    assert abs(r["m_g_pred"] - 21.0) < 0.3
-    assert abs(r["t_blue_d"] - 1.9) < 0.3
-    assert not is_gw190814_excluded()  # margin ~0 < 1 mag tol
-    assert is_gw190814_tense()  # but squeezed: audit queued
+    assert abs(r["m_g_pred"] - 21.1) < 0.3  # m_g at CFHT 1.7d epoch
+    assert abs(r["margin"] - 1.7) < 0.3  # vs CFHT g 22.8: central tension
+    assert not is_gw190814_excluded()  # combined P < 0.95
+    assert is_gw190814_tense()  # combined P > 0.5: genuine pressure
 
 
 def test_upper_gap_verdict_null():
@@ -92,13 +92,30 @@ def test_shedding_flat_in_mass_ratio():
     assert np.all(np.isnan(bad["M_ej"]))
 
 
-def test_gw190814_decam_tension_quantified():
+def test_gw190814_epoch_audit():
+    from bh_graph.massgaps import (
+        gw190814_blue_mag, gw190814_epoch_pdetect, gw190814_cfht_audit,
+        gw190814_growth_audit, gw190814_combined_pdetect, gw190814_dist_sigma_mag,
+    )
+
     assert gw190814_peak_covered()  # t_blue ~1.9d inside nights 0-6
-    r = gw190814_rband_margin_approx()
-    assert abs(r["m_r_pred"] - 21.5) < 0.3
-    assert r["margin"] > 0  # central value: predicted brighter than limits
-    # But stacked systematics (analytic + color + distance ~1.5 mag) forbid a kill claim.
-    assert np.isnan(gw190814_rband_margin_approx(np.nan)["margin"])
+    assert abs(gw190814_dist_sigma_mag() - 0.39) < 0.03
+    # Blue lightcurve shape: rising at 0.46d, ~peak at 1.7-1.9d, faded by 6.6d.
+    m046, m17, m66 = (gw190814_blue_mag(t) for t in (0.46, 1.7, 6.6))
+    assert m046 > m17 and m66 > m17
+    assert np.isnan(gw190814_blue_mag(-1.0))
+    # CFHT g 1.7d dominates: P ~ 0.6 at 65.5% coverage.
+    p17 = gw190814_epoch_pdetect(1.7, 22.8, 0.655)
+    assert 0.5 < p17 < 0.75
+    assert np.isnan(gw190814_epoch_pdetect(1.7, 22.8, 1.5))
+    cfht = gw190814_cfht_audit()
+    assert 0.6 < cfht["p_combined"] < 0.8  # g-only, color-free
+    assert gw190814_combined_pdetect(include_i=False) == cfht["p_combined"]
+    full = gw190814_combined_pdetect()
+    assert 0.8 < full < 0.95  # g+i: pressure, not exclusion
+    assert np.isnan(gw190814_combined_pdetect(g_minus_i=np.nan))
+    # Redder color weakens the i-band contribution but CFHT g holds the floor.
+    assert gw190814_combined_pdetect(g_minus_i=1.2) > cfht["p_combined"] - 0.01
 
 
 def test_love_smooth_across_upper_gap():

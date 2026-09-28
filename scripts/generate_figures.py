@@ -1894,6 +1894,46 @@ def fig74_unitary_page():
     plt.close(fig)
 
 
+def fig75_gw190814_audit():
+    from bh_graph.massgaps import (
+        gw190814_blue_mag, GW190814_CFHT_G_EPOCHS, GW190814_GROWTH_I_EPOCHS,
+        G_MINUS_I_DEFAULT, gw190814_combined_pdetect,
+    )
+    fig, axes = plt.subplots(1, 2, figsize=(11, 3.8))
+    t = np.linspace(0.2, 20, 200)
+    mg = np.array([gw190814_blue_mag(v) for v in t])
+    # g-band: model blue curve + CFHT limits (color-free).
+    axes[0].plot(t, mg, color="#2563eb", label="model blue (g, BC=0)")
+    axes[0].fill_between(t, mg - 1.0, mg + 1.0, alpha=0.15, color="#2563eb",
+                         label="analytic +-1 mag")
+    for (te, dep, cov) in GW190814_CFHT_G_EPOCHS:
+        axes[0].annotate("", xy=(te, dep), xytext=(te, dep - 1.2),
+                         arrowprops=dict(arrowstyle="->", color="#dc2626"))
+        axes[0].text(te, dep + 0.15, f"{dep} ({cov:.0%})", fontsize=7,
+                     ha="center", color="#dc2626")
+    axes[0].set_ylim(24.5, 19.5); axes[0].set_xlabel("days post-merger")
+    axes[0].set_ylabel("apparent mag"); axes[0].set_title("g-band: curve vs CFHT limits")
+    axes[0].legend(fontsize=7)
+    # i-band: model blue + color term vs GROWTH detection limits.
+    mi = mg + G_MINUS_I_DEFAULT
+    axes[1].plot(t, mi, color="#7c3aed", label=f"model blue + (g-i)={G_MINUS_I_DEFAULT}")
+    axes[1].fill_between(t, mi - 1.0, mi + 1.0, alpha=0.15, color="#7c3aed")
+    for (te, dep, cov) in GW190814_GROWTH_I_EPOCHS:
+        axes[1].annotate("", xy=(te, dep), xytext=(te, dep - 1.2),
+                         arrowprops=dict(arrowstyle="->", color="#dc2626"))
+    axes[1].text(8, 20.6, "GROWTH i detection limits\n(94-98% enclosed, 63% at 16d)",
+                 fontsize=7, color="#dc2626")
+    axes[1].set_ylim(24.5, 19.5); axes[1].set_xlabel("days post-merger")
+    axes[1].set_ylabel("apparent mag"); axes[1].set_title("i-band: curve vs GROWTH limits")
+    axes[1].legend(fontsize=7)
+    pg = gw190814_combined_pdetect(include_i=False)
+    pfull = gw190814_combined_pdetect()
+    fig.suptitle(f"Fig 75 — GW190814 epoch audit: P(detect)={pg:.2f} (g) / {pfull:.2f} (g+i); tension, not exclusion")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig75_gw190814_audit.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1969,6 +2009,7 @@ def main():
     fig72_uv_ladder()
     fig73_uv_n4000()
     fig74_unitary_page()
+    fig75_gw190814_audit()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

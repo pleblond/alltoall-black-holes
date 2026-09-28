@@ -320,7 +320,7 @@ from bh_graph.massgaps import (
     upper_gap_graph_verdict,
     congestion_chi_astro, congestion_ladder, is_progenitor_dilute,
     shedding_vs_mass_ratio, is_shedding_q_independent,
-    gw190814_rband_margin_approx, is_gw190814_decam_tense, gw190814_peak_covered,
+    gw190814_peak_covered,
     love_vs_mass, is_love_smooth_across_44,
 )
 
@@ -515,6 +515,8 @@ __all__ = [
     "upper_gap_graph_verdict",
     "congestion_chi_astro", "congestion_ladder", "is_progenitor_dilute",
     "shedding_vs_mass_ratio", "is_shedding_q_independent",
-    "gw190814_rband_margin_approx", "is_gw190814_decam_tense", "gw190814_peak_covered",
+    "gw190814_blue_mag", "gw190814_dist_sigma_mag", "gw190814_epoch_pdetect",
+    "gw190814_cfht_audit", "gw190814_growth_audit", "gw190814_combined_pdetect",
+    "gw190814_peak_covered",
     "love_vs_mass", "is_love_smooth_across_44",
 ]
