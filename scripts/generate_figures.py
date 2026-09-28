@@ -95,6 +95,7 @@ from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase
 from bh_graph.kerr import kerr_newman_k, spin_budget_fraction
 from bh_graph.haar import page_curve_exact_bits, haar_entropy_samples
 from bh_graph.evaporation_unitary import evaporate_unitary
+from bh_graph.graphvk import evaporate_graph
 from bh_graph.monogamy import frontier, ckw_deficit
 from bh_graph.evaporation import page_curve_bits
 from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
@@ -1646,6 +1647,37 @@ def fig68_kilonova_gap():
     plt.close(fig)
 
 
+def fig68b_mergershed():
+    from bh_graph.mergershed import ejecta_derived, shed_fraction_q
+    q = np.linspace(0.05, 1.0, 200)
+    frac = np.array([shed_fraction_q(v) for v in q])
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    # left: derived q-shape vs flat prescription, with event markers
+    axes[0].plot(q, frac, color="#0f766e", label=r"derived $\eta\cdot2q/(1+q)^2$")
+    axes[0].axhline(0.168, ls="--", color="gray", label="flat prescription (0.168)")
+    axes[0].scatter([1.0], [shed_fraction_q(1.0)], s=80, color="red", zorder=5,
+                    label="AT2017gfo anchor (q~1)")
+    axes[0].scatter([2.59 / 23.2], [shed_fraction_q(2.59 / 23.2)], s=80, marker="^",
+                    color="#7c3aed", zorder=5, label="GW190814 (q~0.11)")
+    axes[0].set_xlabel("mass ratio q"); axes[0].set_ylabel("shed fraction")
+    axes[0].set_title("Derived shape: unequal mass sheds less")
+    axes[0].legend(fontsize=7)
+    # right: ejecta at GW190814 total mass under both laws (log scale)
+    m_tot = 23.2 + 2.59
+    m_der = np.array([ejecta_derived(m_tot / (1 + v), m_tot * v / (1 + v))["M_ej"] for v in q])
+    axes[1].plot(q, m_der, color="#0f766e", label="derived law")
+    axes[1].axhline(0.168 * m_tot * 0.1, ls="--", color="gray", label="flat prescription")
+    axes[1].axhline(0.01, ls=":", color="black", label="KN-capable threshold")
+    axes[1].set_yscale("log"); axes[1].set_xlabel("mass ratio q")
+    axes[1].set_ylabel("M_ej (Msun)")
+    axes[1].set_title(f"GW190814-mass ejecta: bright at any q (M_tot={m_tot})")
+    axes[1].legend(fontsize=7)
+    fig.suptitle("Fig 68b — BU2: graph-derived shedding shape (O5 adjudicates flat vs shaped)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig68b_mergershed_shape.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def fig69_o5_protocol():
     from bh_graph.collapse import (
         DECAM_KN_DEPTH, RUBIN_SINGLE_VISIT_R, gap_o5_yield, peak_apparent_mags,
@@ -1894,6 +1926,44 @@ def fig74_unitary_page():
     plt.close(fig)
 
 
+def fig74b_graphvk():
+    from bh_graph.graphvk import page_deviation
+    n = 8
+    t, s_exact = page_curve_exact_bits(n)
+    s_min = np.minimum(t, n - t)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    # left: V_k derived from graph Hamiltonians -- all:all tracks Page, chain sags
+    means = {}
+    n_seeds = 8
+    for kind, color, marker in [("complete", "#0f766e", "o"), ("chain", "#d97706", "s")]:
+        acc = np.zeros(n + 1)
+        for seed in range(n_seeds):
+            acc += evaporate_graph(n, kind=kind, dt=1.0, seed=seed)["S_rad"]
+        means[kind] = acc / n_seeds
+        axes[0].plot(t, means[kind], f"{marker}-", color=color, ms=4,
+                     label=f"graph V_k {kind} (dev {page_deviation(means[kind], s_exact):.2f} bits)")
+    axes[0].plot(t, s_min, "--", color="gray", label="min() idealization")
+    axes[0].plot(t, s_exact, color="#2563eb", label="Page exact (Haar avg)")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("S_rad (bits)")
+    axes[0].set_title("Graph-derived V_k: wiring decides Page")
+    axes[0].legend(fontsize=7)
+    # right: per-seed deviation from exact Page (same dt, same N)
+    devs_c = [page_deviation(evaporate_graph(n, kind="complete", dt=1.0, seed=s)["S_rad"], s_exact)
+              for s in range(n_seeds)]
+    devs_l = [page_deviation(evaporate_graph(n, kind="chain", dt=1.0, seed=s)["S_rad"], s_exact)
+              for s in range(n_seeds)]
+    axes[1].scatter([0] * n_seeds, devs_c, color="#0f766e", label="complete")
+    axes[1].scatter([1] * n_seeds, devs_l, color="#d97706", label="chain")
+    axes[1].set_xticks([0, 1]); axes[1].set_xticklabels(["complete", "chain"])
+    axes[1].set_ylabel("max |S_rad - S_exact| (bits)")
+    axes[1].set_title("Per-seed Page deviation (N=8, dt=1.0)")
+    axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 74b — D1 graph instance: V_k from adjacency (V^d V=I, S from rho_rad)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig74b_graphvk_page.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def fig75_gw190814_audit():
     from bh_graph.massgaps import (
         gw190814_blue_mag, GW190814_CFHT_G_EPOCHS, GW190814_GROWTH_I_EPOCHS,
@@ -2038,12 +2108,14 @@ def main():
     fig66_pulsar_2pn()
     fig67_orici_p_fit()
     fig68_kilonova_gap()
+    fig68b_mergershed()
     fig69_o5_protocol()
     fig70_uv_c()
     fig71_uv_pop()
     fig72_uv_ladder()
     fig73_uv_n4000()
     fig74_unitary_page()
+    fig74b_graphvk()
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
     print(f"wrote figures to {FIG}")
