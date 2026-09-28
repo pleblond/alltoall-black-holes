@@ -44,3 +44,28 @@ Pilot ~1–3 CPUh (~$1–2 wall); production ~20–60 CPUh/model
 (~$3–8 for the 3-model null, ~$8–25 full 12-model grid on 16 vCPU).
 Report the pilot's measured CPUh + seed-split noise (<0.15 mag bar)
 before launching production.
+
+## EC2 / local backend (no RunPod account needed)
+
+Same pre-registered grid, same artifacts — fan-out over local cores
+instead of one pod per model. Validated on Ubuntu 24.04 `c7i.4xlarge`.
+
+- `scripts/ec2_setup.sh` — fresh-box setup (toolchain, venv, branch
+  checkout, `~/d7/{bin,tables,work,logs}`). Idempotent; prints
+  `EC2_SETUP_OK`. Binary → `~/d7/bin/possis` (G2), tables →
+  `~/d7/tables` (G3).
+- `scripts/run_possis_grid.py` — grid driver: `--workers` concurrent
+  single-core jobs, per-job streaming `job.log`, JSONL
+  `progress.jsonl` heartbeat, atomic `run_state.json`
+  (pending/running/done/failed — any fresh session resumes from it),
+  atomic artifacts, final `manifest.json`. `--mock` validates the
+  whole path with the MOCK-NOT-RT surrogate (see
+  `tests/test_run_grid.py`, incl. fake-binary streaming tests).
+  Exit 0 all-done / 1 any-failed / 2 bad-args.
+
+```bash
+bash scripts/ec2_setup.sh                                   # once per box
+python scripts/run_possis_grid.py --mock --workers 12       # plumbing check
+python scripts/run_possis_grid.py --workers 12              # production (gated G1-G4)
+tail -f data/possis_grid_*/progress.jsonl                   # watch it
+```

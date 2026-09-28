@@ -399,7 +399,8 @@ def build_possis_run_config(
 def save_possis_artifact(path: str, config: dict, lightcurves: dict) -> bool:
     """Save a config-stamped artifact (config inside, runpod convention).
 
-    Returns True on success, False if the path/config is unusable.
+    Atomic (tmp + rename): a kill mid-write never leaves a half JSON that
+    looks done. Returns True on success, False if the path/config is unusable.
     IO errors are unexpected (try/except) but surface as False, not raises.
     """
     if not isinstance(path, str) or not path or not isinstance(config, dict):
@@ -415,8 +416,10 @@ def save_possis_artifact(path: str, config: dict, lightcurves: dict) -> bool:
         d = os.path.dirname(os.path.abspath(path))
         if d and not os.path.isdir(d):
             return False
-        with open(path, "w", encoding="utf-8") as f:
+        tmp = f"{path}.tmp-{os.getpid()}"
+        with open(tmp, "w", encoding="utf-8") as f:
             json.dump(payload, f, indent=1, sort_keys=True)
+        os.replace(tmp, path)
         return True
     except (OSError, TypeError, ValueError):
         return False
