@@ -475,8 +475,9 @@ GROWTH DECam i-band detection limits (up to $98\%$ enclosed
 \cite{GROWTH190814}) enter with a labelled $g-i = 0.7$ systematic.
 Per-epoch detection probabilities (coverage $\times$ depth against
 distance and $\pm 1$\,mag theory errors) combine to $P \approx 0.68$
-(g-only) and $0.88$ (g+i), shown against the limits in
-Fig.~\ref{fig:190814}: the non-detection sits at $p \sim 0.12$--$0.32$,
+(g-only, robust: no color term) and $0.88$ (g+i, assumes $g-i = 0.7$),
+shown against the limits in Fig.~\ref{fig:190814}: the non-detection sits
+at $p_{\mathrm{miss}} \sim 0.32$ (g-only) down to $\sim 0.12$ (with color),
 genuine pressure about one sigma from a kill. Under the fiducial
 analytic colors the deepest limits sit $\sim 1.6$\,mag below the
 predicted peak; this comparison is not yet decisive because ejecta
@@ -492,8 +493,8 @@ information than one that survives everything trivially.
 \includegraphics[width=0.95\linewidth]{fig75_gw190814_audit.png}
 \caption{Epoch-level GW190814 audit: model blue light curve ($\pm 1$\,mag analytic band)
 against CFHT g-band limits (left, color-free) and GROWTH i-band detection limits
-(right, $g-i = 0.7$ systematic). Combined $P(\mathrm{detect}) \approx 0.68$--$0.88$:
-tension, not exclusion. Module \texttt{massgaps}.}
+(right, $g-i = 0.7$ systematic). Combined $P(\mathrm{detect}) \approx 0.68$ (robust)
+to $0.88$ (color-conditional): tension, not exclusion. Module \texttt{massgaps}.}
 \label{fig:190814}
 \end{figure}
 
