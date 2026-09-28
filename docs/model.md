@@ -1,4 +1,4 @@
-# The model, stated first (v0.3)
+# The model, stated first (v0.4)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
@@ -23,6 +23,14 @@ Ollivier–Ricci limit (I6b, load-bearing, now with its measure postulated in
 new L0 postulate P4), and the Raychaudhuri open bridge (I6c → new DEFERRED
 item D9). I3 gains the BM reduction theorem stated exactly. Import IDs are
 otherwise stable; see §9.
+
+**v0.4 I1-matching release.** No number changes: I1 splits into the saturation
+postulate (I1a, `η_vN = ln2` by definition, toy-motivated by BN) and the
+thermodynamic import (I1b, `S = A/4`), with the patch `4ln2` as a stated
+matching theorem (pure arithmetic, equipartition reading included with the
+nat/bit units corrected). Postulate B stays retired with one clarifying
+sentence; the s-leg falsifier now tests I1a directly; I6c's Jacobson
+conclusion is guarded given-I1b. Import IDs otherwise stable; see §9.
 
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
@@ -155,7 +163,7 @@ continuum limit. Any result needing those lives in L1 or L2 and says so.
 ## 3. L1: the spacetime interface
 
 L1 adds a short list of imports. Everything in this section is of the form
-"**given** L0 + imports I1–I7 (I4 and I6 split into independently
+"**given** L0 + imports I1–I7 (I1, I4 and I6 split into independently
 dischargeable parts), **then** T4–T14." The imports are the price;
 the theorems are what the price buys.
 
@@ -163,20 +171,53 @@ the theorems are what the price buys.
 
 | ID | Import | Status | Source |
 |---|---|---|---|
-| I1 | Patch postulate: each exterior leg costs `4ln2 ≈ 2.77` Planck patches; `A(k) = 4ln2·k·l_p²`, `R(k) = √(A/4π)` | **derived** (BS: from measured von Neumann leg entanglement `η_vN = ln2` per leg with Planck-bits equipartition, closing the Jacobson chain at `G = 1`; legs saturate) | `horizon`, S1 |
+| I1a | Saturation postulate: exterior legs are saturated cut edges, hence `η_vN = ln2` nats/leg by definition of saturation; `S = k·ln2` | **postulated** (toy-motivated: BN `S/k` constancy `< 0.8%`, mean `ln2`) | `jacobson`, `qes`, S1 |
+| I1b | Thermodynamic import `S = A/4` (`G = ℏ = c = 1`); matching gives `A(k) = 4ln2·k·l_p²`, `R(k) = √(A/4π)` | **input** (imported); the `4ln2` itself is arithmetic (matching theorem below) | `horizon`, S1 |
 | I2 | Embedding rule: `k` legs need `k` Planck patches of ambient surface; interior size `N` buys no area | postulate (Bekenstein–Hawking / LQG-puncture picture in graph language) | `horizon`, `micro` |
-| I3 | Mass map `k(M) = A/4ln2·l_p² = (4π/ln2)M²/l_p² ∝ M²` (Schwarzschild units), i.e. `k = 1.51e77(M/M☉)²` | **input** (GR-consistency, not derived). BM reduction: given I1 + sphere geometry, `k(M)` is fixed iff `R_s(M)` is given; the circle is shrunk to the single statement `R_s = 2M`, whose derivation from wiring is open (D6) | `horizon.k_from_mass_via_rs`, `data.k_schwarzschild_sun`, S1 |
+| I3 | Mass map `k(M) = A/4ln2·l_p² = (4π/ln2)M²/l_p² ∝ M²` (Schwarzschild units), i.e. `k = 1.51e77(M/M☉)²` | **input** (GR-consistency, not derived). BM reduction: given the I1 matching (patch) + sphere geometry, `k(M)` is fixed iff `R_s(M)` is given; the circle is shrunk to the single statement `R_s = 2M`, whose derivation from wiring is open (D6) | `horizon.k_from_mass_via_rs`, `data.k_schwarzschild_sun`, S1 |
 | I4a | Equipartition over Planck bits: `E = M₁ = NT/2`, `N = k·PATCH` → `T(r) = M₁/2πr²` | **input** (postulated) | `entropic.screen_temperature`, S1 |
 | I4b | Bekenstein displacement: moving `M₂` by `dr` changes entropy by `dS = 2πM₂dr`; force `F = T·dS/dr` | **input** (postulated) | `entropic.entropy_gradient`, S1 |
 | I5 | Equivalence principle (Newtonian potential → `g_00`, redshifts) | **input** (postulated) | `redshift`, S1 |
 | I6a | Heat-kernel bridge: graph `a₁` → `∫R` identification | cited, not proved (curvature read relatively, weighted-minus-flat); load: none — AU supporting evidence only | `heatker`, S1 |
 | I6b | Ollivier–Ricci → Ricci continuum limit, with the P4 uniform measure | **input** (postulated); load-bearing for the T8 sign and the L2 `p` | `orici`, `weakfield`, S1 |
-| I6c | Raychaudhuri (focusing) for leg bundles + Jacobson-chain inputs (`T = κ/2π`, Clausius `dQ = T·dS`, `dS = ln2·dk` saturated) | open bridge (D9); load: only the "Einstein equations follow" conditional — T8–T11 do not depend on it | `jacobson`, S1 |
+| I6c | Raychaudhuri (focusing) for leg bundles + Jacobson-chain inputs (`T = κ/2π`, Clausius `dQ = T·dS`, `dS = ln2·dk` saturated) | open bridge (D9); load: only the "Einstein equations follow" conditional, stated given I1b (no double-counting of `η = 1/4`) — T8–T11 do not depend on it | `jacobson`, S1 |
 | I7 | Gap coefficient, crossover scales (`r_point`, `α = 1` congestion calibration, `A_min`) | heuristic / calibrated (see T6, T9) | `micro`, `redshift`, S1 |
+
+### The I1 matching theorem (patch from saturation + thermodynamics).
+
+**I1a (saturation postulate).** An exterior leg is a single edge crossing the
+cut between `G_N` and the ambient graph. By P2, cut entropy is bounded above by
+the crossing-edge count; the legs are postulated saturated, so each contributes
+exactly one independent bit: `η_vN = ln2` nats/leg *by definition of
+saturation*. Motivation (not proof): BN measured `S/k` constancy (`< 0.8%`)
+with mean `ln2` in random-star tensor networks
+(`jacobson.eta_constancy_deviation`, `eta_measured`). A horizon of `k`
+independent saturated legs then carries `S = k·ln2`.
+
+**I1b (thermodynamic import).** `S = A/4` (`G = ℏ = c = 1`), the
+Bekenstein–Hawking relation by which the Einstein equation emerges from
+thermodynamics.
+
+**Matching (theorem, pure arithmetic).** Equating the two expressions for `S`:
+`k·ln2 = A/4`, hence `A = 4ln2·k`, i.e. `A(k) = 4ln2·k·l_p²`. Each saturated
+leg is assigned a surface element of `4ln2·l_p²`. Equipartition reading (same
+result): `S = A/4` counts nats, so the area per nat is `4l_p²`; a leg carries
+`ln2` nats, hence `4ln2·l_p²` per leg. (Note: I4a's "Planck bits" are
+energy-sharing degrees of freedom, a distinct counting from I1a's entanglement
+nats — compatible, not identical.)
+
+**Status.** `ln2` follows from the definition of a saturated edge (postulated
+in I1a, toy-motivated by BN); `S = A/4` is imported (I1b); `4ln2` is the
+arithmetic consequence. Nothing here comes from pure graph kinematics: the
+matching is part of the model's definition of how legs interface with continuum
+geometry. Postulate B stays retired: its ¼-nat legs are replaced by saturated
+`ln2` legs, and the ¼ now appears only as the *area* coefficient, as output —
+which is also why I6c's Jacobson conclusion is stated given I1b. The s-leg
+falsifier (`s_leg ≤ l_p²/4` in any physical state class) tests I1a directly.
 
 ### The BM reduction theorem (I3, stated exactly).
 
-Given I1 (patch postulate) + sphere geometry (`A = 4πR²`), the mass map factors
+Given the I1 matching (patch) + sphere geometry (`A = 4πR²`), the mass map factors
 entirely through the radius map:
 
 `k(M) = 4π·R_s(M)² / PATCH_AREA·l_p²` — i.e. `k(M)` ⟺ `R_s(M)`.
@@ -198,16 +239,16 @@ Consequences of I1–I3 worth stating plainly:
   smoothly: extremal Kerr carries exactly half, extremal Reissner–Nordström
   exactly one quarter, the Schwarzschild budget at fixed `M` (patch-independent
   ratios). Normalization (audit v0.2): `kerr.kerr_newman_k` returns `A/lp²`
-  (patch-`1` units, exactly `PATCH_AREA`× the I1 leg count) and is consumed only
+  (patch-`1` units, exactly `PATCH_AREA`× the matched I1a+I1b leg count) and is consumed only
   by a monotonicity test; absolute leg counts use `data.k_schwarzschild_sun`.
   Nothing else about Kerr is assumed here — and nothing else about Kerr
   is claimed (see §5/D2).
 
 ### T4 (area law). Horizon area counts exterior legs, independent of `N`.
 
-`A(k) = 4ln2·k·l_p²` by I1; `R(k)` follows. Evaporation shrinks the horizon even
+`A(k) = 4ln2·k·l_p²` by the I1 matching; `R(k)` follows. Evaporation shrinks the horizon even
 if `N` stays fixed: wiring-only (`N` const) and standard (`N` shrinks with `k`)
-give identical `A(t)`. **Derived** given I1–I2. (`horizon`, `evaporation`.)
+give identical `A(t)`. **Derived** given the I1 matching + I2. (`horizon`, `evaporation`.)
 
 ### T5 (micro-hole pop). Pointlike below `k_crit`, horizon above — discontinuously.
 
@@ -221,9 +262,9 @@ k_crit   = 4π·r_point² / 4ln2·l_p²
 ```
 
 Default `r_point = √(4ln2)` (one leg cell, Planck units). Packing theorem (BK):
-given I1, no embedding exists for `k > ⌊4πr_foot²/4ln2·l_p²⌋` — the pop is
+given the I1 matching, no embedding exists for `k > ⌊4πr_foot²/4ln2·l_p²⌋` — the pop is
 forced. With an LQG-style minimal-area gap, area is `0` below threshold and
-`≥ A_min` above: no 0.2-Planck-area hole. **Derived** given I1–I2 plus the
+`≥ A_min` above: no 0.2-Planck-area hole. **Derived** given the I1 matching + I2 plus the
 stated `r_point`. (`micro`: `critical_k`, `is_pointlike`, `packing_kmax`,
 `pop_forced`, `embedding_radius`, `quantized_area`.)
 
@@ -314,7 +355,7 @@ the micro-derivation is adopted with the fit preserved in history.
 
 ### T12 (Kerr thermodynamics, conditional). `T_H`, `Ω_H`, first law — given `A(M,J)`.
 
-With `S = k·ln2` (saturated legs) and I1, `S = A/4`; importing `A(M,J)` gives
+With `S = k·ln2` (saturated legs) and the I1 matching, `S = A/4`; importing `A(M,J)` gives
 `S(M,J) = 2π[M²+√(M⁴−J²)]`, whose derivatives return the textbook `T_H` and
 `Ω_H = a/(r+²+a²)`, i.e. `dM = T·dS + Ω_H·dJ` (identities `< 1e−6`, independent
 finite-step `ΔM = TΔS + Ω_HΔJ` to `O(d²)`; super-extremal `|J| > M²` returns NaN,
@@ -471,7 +512,7 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 | D6 | Mass–radius from wiring | derive `R_s = 2M` from wiring alone | promotes I3 to derived (long-term) |
 | D7 | Kilonova radiative transfer | full 3D POSSIS (morphology, Ye-dependent opacities, reprocessing); `i`-band direct | decides whether the GW190814 non-detection is compatible with universal shedding or falsifies it; `g`-band verdicts already robust |
 | D8 | Shedding efficiency `ε(M,a,q)` + shutoff location | derive mass/spin/ratio dependence from `K_max(N)` combinatorics, spin-ordered reabsorption, or remnant-trap physics, with any shutoff location as *output* | highest-value attack surface on universal shedding; a derived shutoff between gap and BBH masses must land where it lands (same no-insertion rule as the 44 M☉ null) |
-| D9 | Raychaudhuri (focusing) for leg bundles | derive focusing for SI fronts on leg networks (seed: AT congestion slowdown); closes the Jacobson chain to Einstein's equations with measured `η = 1/4`, `G = 1` | promotes I6c from open bridge to derived; gates nothing else — T8–T11 stand without it |
+| D9 | Raychaudhuri (focusing) for leg bundles | derive focusing for SI fronts on leg networks (seed: AT congestion slowdown); closes the Jacobson chain to Einstein's equations with `η = 1/4` from I1b, `G = 1` | promotes I6c from open bridge to derived; gates nothing else — T8–T11 stand without it |
 
 Rule for all D-items: the closing derivation must output the number or location,
 not take it as input. Inserting an observed scale as a graph parameter is a fit,
@@ -514,10 +555,10 @@ Single table; every symbol in §1–§4 appears here with its home.
 | `K_max` | max exterior budget (normalization) | §1, `horizon.exterior_budget` |
 | `m_x` | neighborhood measure at `x` (P4: uniform, `p = 0`) | P4, `orici` |
 | `κ(x,y)` | Ollivier–Ricci curvature `1 − W₁(m_x,m_y)/d(x,y)` | T8/F4, `orici` |
-| `A(k)`, `R(k)` | `4ln2·k·l_p²`, `√(A/4π)` | I1, `horizon` |
-| `PATCH_AREA` | `4ln2` Planck areas per leg | I1, `horizon.PATCH_AREA` |
+| `A(k)`, `R(k)` | `4ln2·k·l_p²`, `√(A/4π)` | I1b, `horizon` |
+| `PATCH_AREA` | `4ln2` Planck areas per leg | I1b (via matching), `horizon.PATCH_AREA` |
 | `r_point`, `k_crit`, `R_obs` | point radius, `4πr²/4ln2`, piecewise radius | T5, `micro` |
-| `s_leg`, `η_vN` | per-leg entanglement (`ln2` saturated) | I1/T6, `qes` |
+| `s_leg`, `η_vN` | per-leg entanglement (`ln2` saturated) | I1a/T6, `qes` |
 | `S₀`, `k_page` | bulk entropy, island crossing | T6, `qes` |
 | `t_*`, `λ` | scrambling time, Lyapunov exponent | T2, `circuits`/`otoc` |
 | `S_rad`, `N_eff` | radiation entropy, effective qubit count | T7, `evaporation` |
@@ -591,8 +632,9 @@ dimensional estimate). Suite on this branch: 398 collected, 396 passed,
   is recorded in `docs/DEFERRED.md`, not by softening the criterion here.
 - A **killed** claim stays in §6 with its killer named. (Precedents: broad
   remnant DM, isotropic `b_crit`, naive `γ = 2`, linear LIV, flat `p = 0.49`.)
-- This document versions with the paper: v0.3 tracks v5.0 (imports-hardening
-  release; import IDs stable except the v0.3 splits I4→I4a/I4b, I6→I6a-c).
+- This document versions with the paper: v0.4 tracks v5.0 (I1-matching
+  release; import IDs stable except the splits I1→I1a/I1b (v0.4),
+  I4→I4a/I4b and I6→I6a-c (v0.3)).
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:
   T14 TeV absolutes follow the code (post-BS), not v5 prose (pre-BS).
