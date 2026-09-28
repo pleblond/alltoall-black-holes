@@ -3,7 +3,11 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
-- **unreleased** — H2 thermodynamic consistency: $T_H(M,J)$, $\Omega_H$, first
+- **unreleased** — D1 graph instance: `V_k = exp(-i H_graph dt)` derived
+  from hole adjacency (all:all → Page, chain sags; `graphvk` + 9 tests,
+  Fig 74b). D8 partial: shed shape `frac(q) = η·2q/(1+q)²` from merger
+  combinatorics (`mergershed` + 6 tests, Fig 68b). H2 thermodynamic
+  consistency: $T_H(M,J)$, $\Omega_H$, first
   law from $S = k\ln 2$ conditional on imported $A(M,J)$ (`thermo` + 10 tests);
   per-leg $T = (dM/dk)/\ln 2$ reading, finite-step $-1/4k$ correction,
   super-extremal NaN guard. Ported to v5 journal cut (abstract $T_H$/$\Omega_H$

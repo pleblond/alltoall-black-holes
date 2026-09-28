@@ -67,9 +67,9 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 |---|---|---|
 | `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 9pp main text + 10pp S1–S10 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
-| `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
+| `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75 + lettered) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 398 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 413 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -94,8 +94,8 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 398 tests (2 torch/GPU-only skip without torch)
-python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
+python -m pytest tests/ -q          # 413 tests (2 torch/GPU-only skip without torch)
+python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75 + lettered)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -148,7 +148,7 @@ pdflatex supplement.tex && pdflatex supplement.tex
   v5.0 adds: D2 qubit-toy unitary evaporation (graph
   dynamics open), H2 $T_H$/$\Omega_H$ in the main text, mass-gap null +
   universal BBH shedding + GW190814 epoch audit ($P \approx 0.68$–$0.88$,
-  tension), 46/46 references cited, 398 tests, 81 figure files.
+  tension), 46/46 references cited, 413 tests, 83 figure files.
 - **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
   equivalence principle, continuum limits (heat-kernel, Ollivier),
   Raychaudhuri for leg bundles, gap coefficient, crossover scales.
@@ -209,7 +209,7 @@ preview, UV+QI, one-family compact objects + gap-KN ~1/yr O5, upper-gap null
 [`supplement.pdf`](paper/v5/supplement.pdf) (11pp S1–S10 methods: audit,
 gravity/QI methods, N-scale table, PPN/archival ledgers, O5 protocol, kill
 list, module map; 5 main figures + 12 evidence figures, 46/46 references
-cited). 398 tests, 81 figure files (Figs 1–75).
+cited). 413 tests, 83 figure files (Figs 1–75 + lettered).
 New survival-matrix figure (`scripts/generate_v5_figs.py`); the mass-gaps
 module (upper-gap null, universal BBH shedding, GW190814 epoch audit) and
 ringdown wording ports landed after the cut.
