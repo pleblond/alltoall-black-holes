@@ -313,6 +313,10 @@ from bh_graph.massgaps import (
     leg_band_entry_mass_msun, shedding_prediction,
     gw190814_margin_mag, is_gw190814_excluded, is_gw190814_tense,
     upper_gap_graph_verdict,
+    congestion_chi_astro, congestion_ladder, is_progenitor_dilute,
+    shedding_vs_mass_ratio, is_shedding_q_independent,
+    gw190814_rband_margin_approx, is_gw190814_decam_tense, gw190814_peak_covered,
+    love_vs_mass, is_love_smooth_across_44,
 )
 
 __all__ = [
@@ -501,4 +505,8 @@ __all__ = [
     "leg_band_entry_mass_msun", "shedding_prediction",
     "gw190814_margin_mag", "is_gw190814_excluded", "is_gw190814_tense",
     "upper_gap_graph_verdict",
+    "congestion_chi_astro", "congestion_ladder", "is_progenitor_dilute",
+    "shedding_vs_mass_ratio", "is_shedding_q_independent",
+    "gw190814_rband_margin_approx", "is_gw190814_decam_tense", "gw190814_peak_covered",
+    "love_vs_mass", "is_love_smooth_across_44",
 ]

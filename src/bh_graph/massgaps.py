@@ -247,3 +247,136 @@ def upper_gap_graph_verdict() -> dict[str, object]:
         "leg_band_entry_msun": band_m,
         "graph_scale_at_44": False,  # the null, stated not hidden
     }
+
+
+# ---------------------------------------------------------------------------
+# Round 2: how far can analysis go? (a) congestion ladder, (b) q-flatness,
+# (c) GW190814 DECam r-band tension, (d) Love smoothness.
+# ---------------------------------------------------------------------------
+
+LP_KM = 1.616255e-38  # Planck length in km (CODATA, labeled constant)
+
+
+def congestion_chi_astro(m_msun: float, r_km: float) -> float:
+    """Congestion chi = k*PATCH*lp^2 / 4 pi r^2 for an astrophysical object.
+
+    chi << 1: legs dilute, graph corrections negligible (progenitor cores).
+    chi ~ 1: horizon bubble forced. nan if invalid.
+    """
+    from bh_graph.data import k_schwarzschild_sun
+    from bh_graph.horizon import PATCH_AREA
+
+    if not all(np.isfinite(v) for v in (m_msun, r_km)) or m_msun <= 0 or r_km <= 0:
+        return float("nan")
+    k = k_schwarzschild_sun(m_msun)
+    return float(k * PATCH_AREA * LP_KM**2 / (4.0 * np.pi * r_km**2))
+
+
+def congestion_ladder() -> dict[str, float]:
+    """chi from progenitor core to horizon: graph dilute until collapse.
+
+    He core / envelope: chi ~ 1e-8/1e-14 → PISN (core physics) cannot be
+    graph-modified; the 44 Msun edge must be stellar. NS surface: chi ~ 0.1
+    (mild). Gap masses at O(10 km) footprints: chi ~ 1, the
+    delocalized→horizon transition — footprint-conditional (AK), a hint
+    not a derivation. Horizon: chi = 1 by construction (check).
+    """
+    rsun_km = 6.957e5
+    return {
+        "he_core_30": congestion_chi_astro(30.0, 0.5 * rsun_km),
+        "rsg_env_30": congestion_chi_astro(30.0, 500.0 * rsun_km),
+        "ns_14_12km": congestion_chi_astro(1.4, 12.0),
+        "gap_36_10km": congestion_chi_astro(3.6, 10.0),
+        "horizon_44": congestion_chi_astro(44.0, 2.0 * 44.0 * 1.477),
+    }
+
+
+def is_progenitor_dilute() -> bool:
+    """Boolean check: He-core chi < 1e-6 (graph irrelevant to PISN)?"""
+    lad = congestion_ladder()
+    return bool(np.isfinite(lad["he_core_30"]) and lad["he_core_30"] < 1e-6)
+
+
+def shedding_vs_mass_ratio(m_tot_msun: float, q_grid=None) -> dict[str, np.ndarray]:
+    """M_ej vs mass ratio q = m2/m1 at fixed total mass: flat by construction.
+
+    The sharp discriminator vs tidal disruption (strongly q-dependent):
+    GW190814 (q ~ 0.11) must flash here, is swallowed whole in standard
+    NSBH theory. nan arrays if invalid.
+    """
+    from bh_graph.collapse import leg_shedding_ejecta
+
+    q = np.linspace(0.1, 1.0, 10) if q_grid is None else np.asarray(list(q_grid), dtype=float)
+    nan = np.full_like(q, np.nan, dtype=float)
+    if not np.isfinite(m_tot_msun) or m_tot_msun <= 0 or q.size == 0:
+        return {"q": q, "M_ej": nan}
+    if not np.all(np.isfinite(q)) or np.any(q <= 0):
+        return {"q": q, "M_ej": nan}
+    m_ej = np.array(
+        [leg_shedding_ejecta(m_tot_msun / (1.0 + v), m_tot_msun * v / (1.0 + v))["M_ej"]
+         for v in q],
+        dtype=float,
+    )
+    return {"q": q, "M_ej": m_ej}
+
+
+def is_shedding_q_independent(m_tot_msun: float = 25.8, tol: float = 1e-9) -> bool:
+    """Boolean check: M_ej flat in q (max-min < tol)?"""
+    r = shedding_vs_mass_ratio(m_tot_msun)
+    if not np.all(np.isfinite(r["M_ej"])):
+        return False
+    return bool(float(np.max(r["M_ej"]) - np.min(r["M_ej"])) < tol)
+
+
+def gw190814_rband_margin_approx(g_minus_r: float = 0.5) -> dict[str, float]:
+    """GW190814 vs DECam r ~ 23.5: margin with LABELED color systematic.
+
+    DECam covered the full 90% region on nights 0,1,2,3,6,16 — spanning the
+    predicted blue peak (t ~ 1.9d), so the r-band at days 1-3 probes the
+    CLAIMED blue component (g-band model + color term), not the disclaimed
+    one-zone red tail. m_r ≈ m_g + (g-r): central margin ~ 2 mag of tension,
+    but the stack (analytic ±1 + color ±0.5 + distance ±0.35) keeps it short
+    of a robust kill. POSSIS colors needed for a verdict. nan if bad input.
+    """
+    pred = shedding_prediction(GW190814_M1, GW190814_M2, GW190814_DIST_MPC)
+    if not all(np.isfinite(v) for v in (pred["m_g"], g_minus_r)):
+        nan = float("nan")
+        return {"m_r_pred": nan, "margin": nan}
+    m_r = pred["m_g"] + g_minus_r
+    return {"m_r_pred": float(m_r), "margin": float(GW190814_DECAM_R_DEPTH - m_r)}
+
+
+def is_gw190814_decam_tense(g_minus_r: float = 0.5, sys_mag: float = 1.5) -> bool:
+    """Boolean check: DECam r-band margin positive beyond systematics?"""
+    r = gw190814_rband_margin_approx(g_minus_r)
+    return bool(np.isfinite(r["margin"]) and np.isfinite(sys_mag) and r["margin"] > sys_mag)
+
+
+def gw190814_peak_covered() -> bool:
+    """Boolean check: predicted blue peak inside DECam's dense epochs (0-6d)?"""
+    pred = shedding_prediction(GW190814_M1, GW190814_M2, GW190814_DIST_MPC)
+    return bool(np.isfinite(pred["t_blue_d"]) and 0.0 <= pred["t_blue_d"] <= 6.0)
+
+
+def love_vs_mass(m_grid=None) -> dict[str, np.ndarray]:
+    """Tidal Love k2 ~ (lp/R_s)^2 across the upper gap: smooth, no feature.
+
+    Same-family compact objects → no EOS break at 44. Wrapper over
+    gwdata.love_number_estimate; the point is the absence of structure.
+    """
+    from bh_graph.gwdata import love_number_estimate
+
+    m = np.logspace(np.log10(5.0), np.log10(150.0), 50) if m_grid is None else np.asarray(
+        list(m_grid), dtype=float)
+    k2 = np.array([love_number_estimate(v) if v > 0 else np.nan for v in m], dtype=float)
+    return {"M": m, "k2": k2}
+
+
+def is_love_smooth_across_44(tol: float = 1e-9) -> bool:
+    """Boolean check: log-log slope of k2(M) is -2 everywhere (no break)?"""
+    r = love_vs_mass()
+    if not np.all(np.isfinite(r["k2"])) or np.any(r["k2"] <= 0):
+        return False
+    lm, lk = np.log(r["M"]), np.log(r["k2"])
+    slope = np.gradient(lk, lm)
+    return bool(np.all(np.abs(slope + 2.0) < tol))

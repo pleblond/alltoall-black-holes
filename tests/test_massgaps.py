@@ -7,6 +7,10 @@ from bh_graph.massgaps import (
     leg_band_entry_mass_msun, shedding_prediction,
     gw190814_margin_mag, is_gw190814_excluded, is_gw190814_tense,
     upper_gap_graph_verdict,
+    congestion_chi_astro, congestion_ladder, is_progenitor_dilute,
+    shedding_vs_mass_ratio, is_shedding_q_independent,
+    gw190814_rband_margin_approx, is_gw190814_decam_tense, gw190814_peak_covered,
+    love_vs_mass, is_love_smooth_across_44,
 )
 
 
@@ -67,3 +71,37 @@ def test_upper_gap_verdict_null():
     assert v["graph_scale_at_44"] is False
     assert v["k_smooth"] and v["spin_smooth"]
     assert abs(v["hierarchical_ratio"] - 0.857) < 0.005
+
+
+def test_congestion_ladder_progenitor_dilute():
+    lad = congestion_ladder()
+    assert lad["he_core_30"] < 1e-6  # PISN core: graph irrelevant
+    assert lad["rsg_env_30"] < lad["he_core_30"]
+    assert 0.05 < lad["ns_14_12km"] < 0.3  # mild congestion
+    assert 0.5 < lad["gap_36_10km"] < 2.0  # ~transition at 10 km footprint
+    assert abs(lad["horizon_44"] - 1.0) < 0.01  # construction check
+    assert is_progenitor_dilute()
+    assert np.isnan(congestion_chi_astro(-1.0, 10.0))
+
+
+def test_shedding_flat_in_mass_ratio():
+    assert is_shedding_q_independent()
+    r = shedding_vs_mass_ratio(25.8, q_grid=[0.11, 0.5, 1.0])
+    assert np.allclose(r["M_ej"], r["M_ej"][0])  # GW190814-like q=0.11 same as equal-mass
+    bad = shedding_vs_mass_ratio(-5.0)
+    assert np.all(np.isnan(bad["M_ej"]))
+
+
+def test_gw190814_decam_tension_quantified():
+    assert gw190814_peak_covered()  # t_blue ~1.9d inside nights 0-6
+    r = gw190814_rband_margin_approx()
+    assert abs(r["m_r_pred"] - 21.5) < 0.3
+    assert r["margin"] > 0  # central value: predicted brighter than limits
+    # But stacked systematics (analytic + color + distance ~1.5 mag) forbid a kill claim.
+    assert np.isnan(gw190814_rband_margin_approx(np.nan)["margin"])
+
+
+def test_love_smooth_across_upper_gap():
+    assert is_love_smooth_across_44()
+    r = love_vs_mass(m_grid=[10.0, 44.3, 100.0])
+    assert np.all(np.diff(r["k2"]) < 0)  # monotonic decrease, no break
