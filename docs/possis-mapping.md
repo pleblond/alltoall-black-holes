@@ -84,3 +84,21 @@ Reviewers: confirm (i) every ASSUMED row is acceptable as a fixed null,
 be affordable (§5 of `possis-survey.md`). Production launches only after this
 review + code-access + budget approvals are all recorded in
 `docs/possis-preregistration.md` §6.
+
+## Amendments (dated; parent text above is frozen at pre-reg `c869e16`)
+
+### A1 (2026-09-28) — surrogate transport vehicle for milestones 1–4
+
+Gates G2 (POSSIS source) / G3 (tables) still pending. Milestones 1–4 run on
+NMMA 1.0.1 built-in SVD grids (Bu2019nsbh + Ka2017; see
+`docs/D7_TRANSPORT_SPEC.md` §2–3 and `d7_public_models/SOURCES.md`) as
+SURROGATE-NOT-RT exploratory cells. Rows M1–M4 unchanged. G1–G9
+reinterpreted: E0 geometry is EXTERNAL-wedge (violates the spherical null —
+viewing dependence entirely external); E1/E2 spherical (null-consistent).
+No change to the frozen production grid.
+### A3 (2026-09-28) — VEL-1 + renormalization bound recorded
+
+VEL-1: F5/F6 characteristic velocities read as mass-weighted ⟨v⟩
+(central 0.14c; bracket [0.1, 0.3]; see transport spec §4). Headline
+renormalization bound: mass rescaling ≤2× per component (spec §5);
+beyond → sensitivity-only + exploratory label.

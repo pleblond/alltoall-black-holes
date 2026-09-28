@@ -155,3 +155,15 @@ Pre-registration commit (grid + statistic + thresholds fixed): `c869e16`
 (branch `cursor/d7-possis-rt-3175`; this pointer filled in a follow-up —
 the pointer commit changes no grid content).
 Pilot gate: G1+G4-pilot suffice for the 1-model pilot; production needs G1–G4.
+
+## Amendments (dated; §§1–6 frozen at `c869e16`)
+
+### A2 (2026-09-28) — surrogate analysis protocol (exploratory, pre-reg §5)
+
+SURROGATE-NOT-RT cells (NMMA Bu2019nsbh/Ka2017 per
+`docs/D7_TRANSPORT_SPEC.md`) are admitted as exploratory; they do not alter
+the frozen production grid, statistic, thresholds, or verdicts. Added
+protocol: per-E-model anchor gate (peak g within 18.0±1.0 at 40 Mpc before
+any 0.43 cell counts) + i-band promotion rule (anchor i-decline required
+before RT i enters verdicts) + 2× renormalization headline bound. No
+production launch is authorized by this amendment (gates G1–G4 unchanged).
