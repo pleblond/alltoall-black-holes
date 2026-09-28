@@ -11,7 +11,7 @@
 \title{Compact Objects as Almost-Perfect All:All Entanglement Graphs:\\
 \large From fast scrambling and weak-field gravity to a testable gap-kilonova prediction}
 \author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\
-\small Draft v5.0 --- main text (companion supplement with methods; 9pp preprint $\approx$ 6pp journal two-column) \\
+\small Draft v5.0 --- main text (companion supplement with methods; 11pp preprint $\approx$ 7pp journal two-column) \\
 \small\texttt{python scripts/generate\_figures.py} reproduces every figure; 356 tests}
 \date{\today}
 \begin{document}
@@ -42,8 +42,13 @@ AT2017gfo ($0.047\,M_\odot$ shed), the model predicts mass-gap mergers
 $2.5$--$5\,M_\odot$ are kilonova-bright at $\sim 1$/yr in O5 versus
 $\le 0.3$/yr in the standard picture. Ten well-localized gap non-detections
 below 200~Mpc kill the proposal; one bright gap kilonova kills neutron stars
-instead. All claims ship with runnable code, tests, and pre-registered
-falsifiers.
+instead. The same analysis predicts \emph{no} graph-scale feature at the
+$\sim 44\,M_\odot$ pair-instability edge now seen in GWTC-4 (leaving that
+boundary to stellar physics) while extending the shedding law to binary
+black holes ($M_{\mathrm{ej}} = 0.0168\,M_{\mathrm{tot}}$, independent of
+mass ratio) --- a universal transient prediction already pressured, but not
+excluded, by GW190814. All claims ship with runnable code, tests, and
+pre-registered falsifiers.
 \end{abstract}
 
 \noindent\textit{Roadmap.} \S\ref{sec:intro} motivates the model and states
@@ -298,7 +303,10 @@ confirms unbiased centroids with transmission deficit $\propto \omega^2$
 $\varepsilon = 0.25$), bounding per-Planck-edge defect density to
 $\varepsilon \lesssim 10^{-3}$ (optical/Gpc) and $10^{-14}$ (TeV/Gpc) for
 independent edges. Caveats: regular-lattice result, near-horizon running
-open, scalar sector only (no birefringence claimed).
+open, scalar sector only (no birefringence claimed); a hypothetical
+universal GW extrapolation is unconstraining ($\sim 10^{-82}$ at 100\,Hz,
+LVK $\alpha = 4$ safe by $\sim 10^{60}$ \cite{TestGR}, GW170817
+photon-side dominated \cite{Abbott2017}; no GW sector derived).
 
 \paragraph{Scrambling, Page, island-like turnover, mirror.}
 Circuits give $C(t) \sim e^{\lambda t}/N$ with $t^* = \log N/\lambda$ versus
@@ -323,6 +331,11 @@ $\sim 13\%$ against a $77\%$ margin and cannot flip the inequality).
 GW150914 posteriors (8350 samples, spin-aware both ends) give
 $P(\Delta k > 0) = 100\%$, median $0.57$: the area theorem in wiring language.
 GW250114 (SNR 80 \cite{GW250114}) confirms the area law, consistent with $k_f>k_1+k_2$;
+its Kerr ringdown is consistent by construction, not a passed prediction: the QNM spectrum is
+not derived from graph dynamics (fundamental damping calibrated, overtone ladder a
+Schwarzschild-like toy), and reproducing $\{220,221,440\}$ to GW250114 precision
+($\delta f_{220}\sim2\%$, $\delta\tau_{220}\sim10\%$, $\delta f_{221}\sim30\%$,
+$\delta f_{440}\sim$tens\%) is the open benchmark (Suppl.~S1/S3).
 GW241011 gives the strongest quadrupole bound to date \cite{GW241011} but we predict no
 $M_2(\chi)$, $g_{t\phi}$, $r_{\rm ISCO}$ yet (Suppl.~S1/S3) --- future $|\delta_Q|\gtrsim0.17$ ruled out.
 Hardware anchors (G\"arttner 2017 \cite{Garttner2017} all:all ions to $m = 8$-body OTOC; Mi 2021
@@ -333,7 +346,9 @@ prediction at $N = 53$ of $t^* \approx 7.9 \pm 0.7$ (all:all) versus $14.6$
 
 \paragraph{Nulls held.}
 No LHC thermal black holes \cite{LHCbh} ($k \approx 11$--$17$ at $3$--$13$\,TeV versus
-$k_{\mathrm{crit}} \approx 50$), no echoes ($R \sim 10^{-160}$), no EHT shadow
+$k_{\mathrm{crit}} \approx 50$), no lattice echoes (dimensional estimate: amplitude
+$R\sim(\omega/\omega_P)^2\sim10^{-80}$, energy $\sim10^{-160}$ at 100\,Hz, far below
+detectability; not a leg S-matrix derivation), no EHT shadow
 shift ($10^{-48}$, 47 orders below sensitivity). Remnant dark matter is
 excluded on the record except a narrow $\sim 0.4$-dex window at
 $\sim 4\times 10^5$\,g (photon bounds exceed by $40+$ orders elsewhere; induced-GW
@@ -369,8 +384,10 @@ $0.047\,M_\odot$ with $m_g \sim 18.0$ at 40~Mpc versus observed $17.5$ (inside
 the $\pm 1$ analytic tolerance; radiative-transfer refinement \cite{POSSIS} queued); gap events are \emph{brighter} at fixed
 distance (Table~\ref{tab:bright}). The $1.1$--$2.3\,M_\odot$ pulsar
 distribution is the low-$k$ tail ($k \sim 10^{77}$) of the same family; the
-gap is where $e_{\mathrm{int}} \sim e_{\mathrm{ext}}$, not a boundary between
-kinds. If correct, stable nuclear matter ends at $\sim 10^{15}$~g/cc with no
+gap carries no forbidden wiring sector, and is described (not derived) as
+the regime $e_{\mathrm{int}} \sim e_{\mathrm{ext}}$: that interpretation
+inherits its calibration from AT2017gfo and its mass independence has not
+been derived from graph dynamics (supplement S1). If correct, stable nuclear matter ends at $\sim 10^{15}$~g/cc with no
 hyperon/quark branch \cite{EOSrev} realised in nature, and $r$-process yields routed
 through AT2017gfo neutron ejecta are reinterpreted as shed-leg hadronisation
 --- a blunt implication we state so no reader misses it, while noting that
@@ -397,6 +414,102 @@ than GW170817 at fixed distance. Gap rate $= 0$ kills the proposal.}
 \label{fig:kn}
 \end{figure}
 
+\paragraph{No intrinsic graph scale at the upper mass gap.}
+GWTC-4 population analyses now locate a pair-instability edge at
+$44.3^{+5.9}_{-3.5}\,M_\odot$ (primary-mass $\chi_{\mathrm{eff}}$ mixture
+\cite{PISN GWTC4}), with a transition to a nearly entirely hierarchical,
+high-spin population at $46.2^{+12.6}_{-7.2}\,M_\odot$ \cite{HierGWTC4}.
+The graph model predicts \emph{no} feature at this scale, and we state this
+as a positive null rather than a failure: $k(M) \propto M^2$ has zero
+log-log curvature over $0.7$--$150\,M_\odot$ (a power law admits no
+preferred mass); spin orders legs smoothly (a hierarchical remnant at
+$a \sim 0.7$ carries $14\%$ fewer legs, a shift not a gap, continuous to
+exactly one half at extremality); tidal Love numbers run slope $-2$ with
+no break; and the only graph scale entering the LVK band (the leg-quantum
+line crossing $10$\,Hz at $\sim 32\,M_\odot$) is energetically invisible
+($dM/M \sim 10^{-81}$). A congestion ladder seals the assignment:
+$\chi \sim 10^{-8}$ in He cores and $\sim 10^{-14}$ in envelopes, so graph
+corrections where pair-instability happens are negligible in the model's
+own terms --- the $\sim 40$--$50\,M_\odot$ boundary belongs to stellar and
+nuclear physics (the C-burning rate \cite{PISN GWTC4}), not to graph
+congestion. Inserting $44\,M_\odot$ as a graph parameter would be a fit,
+not a prediction, and is refused (module \texttt{massgaps}, supplement S4).
+
+\paragraph{A universal electromagnetic counterpart from black-hole mergers.}
+The same shedding law that gives $0.047\,M_\odot$ at $1.4+1.4$ is
+mass-independent by construction:
+\begin{equation}
+\boxed{M_{\mathrm{ej}} = 0.0168\,M_{\mathrm{tot}}}
+\label{eq:shed}
+\end{equation}
+($16.8\%$ shed fraction $\times$ $10\%$ efficiency, both fixed once on
+AT2017gfo), and exactly independent of mass ratio $q$. The logic is
+falsifiable end to end: shedding rule $\to$ ejecta fraction $\to$
+kilonova light curve $\to$ optical transient --- for \emph{binary
+black-hole} mergers, including low-$q$ systems where conventional
+neutron-star disruption is absent (Table~\ref{tab:univ}). This is the
+model's most dangerous prediction: it was locked in by the AT2017gfo
+calibration before anyone asked what it implies at $30+30\,M_\odot$.
+
+\begin{table}[ht]\centering\small
+\caption{Universal-shedding predictions (Eq.~\ref{eq:shed}). ``Predicted'' marks
+forward consequences of the fixed calibration, not fits.}
+\label{tab:univ}
+\begin{tabular}{@{}l p{7.5cm}@{}}\toprule
+quantity & model prediction \\\midrule
+ejecta fraction & $M_{\mathrm{ej}}/M_{\mathrm{tot}} = 0.0168$ \\
+mass-ratio dependence & none (exact in the prescription) \\
+BBH mergers & kilonova-bright ($m_g \sim 22$ nearby, O5-testable) \\
+GW190814 ($23+2.6$, $q \sim 0.11$) & transient predicted; constrained at $p \sim 0.12$ (tension, not exclusion) \\
+O5/Rubin BBH ToO & decisive: detections confirm, clean sample kills \\\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{GW190814: existing stress test.}
+GW190814 ($23.2+2.6\,M_\odot$ at $241^{+41}_{-45}$\,Mpc \cite{GW190814})
+predicts $M_{\mathrm{ej}} = 0.43\,M_\odot$ (blue $0.087$), peaking at
+$m_g \approx 21.0$, $t \approx 1.9$\,d. The archival record is
+two-sided: CFHT MegaCam g-band (22.8 at 1.7\,d over $65.5\%$, 23.6 at
+6.6\,d over $35.9\%$ \cite{CFHT190814}) needs no color term, while six
+GROWTH DECam i-band detection limits (up to $98\%$ enclosed
+\cite{GROWTH190814}) enter with a labelled $g-i = 0.7$ systematic.
+Per-epoch detection probabilities (coverage $\times$ depth against
+distance and $\pm 1$\,mag theory errors) combine to $P \approx 0.68$
+(g-only, robust: no color term) and $0.88$ (g+i, assumes $g-i = 0.7$),
+shown against the limits in Fig.~\ref{fig:190814}: the non-detection sits
+at $p_{\mathrm{miss}} \sim 0.32$ (g-only) down to $\sim 0.12$ (with color),
+genuine pressure about one sigma from a kill. Under the fiducial
+analytic colors the deepest limits sit $\sim 1.6$\,mag below the
+predicted peak; this comparison is not yet decisive because ejecta
+color, composition, viewing angle, and radiation-transfer systematics
+remain unresolved. An analytic systematics grid (POSSIS-inspired viewing
+$0$--$1.25$\,mag + opacity $L \propto \kappa^{-0.65}$; supplement S4/S8,
+Fig.~75b) bounds the hiding window: equatorial + lanthanide-mixed
+($\kappa_{\mathrm{blue}} = 2$) drops $P$ to $\sim 0.18$. We keep this tension in the main text deliberately:
+a prediction already squeezed by an existing observation carries more
+information than one that survives everything trivially.
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.95\linewidth]{fig75_gw190814_audit.png}
+\caption{Epoch-level GW190814 audit: model blue light curve ($\pm 1$\,mag analytic band)
+against CFHT g-band limits (left, color-free) and GROWTH i-band detection limits
+(right, $g-i = 0.7$ systematic). Combined $P(\mathrm{detect}) \approx 0.68$ (robust)
+to $0.88$ (color-conditional): tension, not exclusion. Module \texttt{massgaps}.}
+\label{fig:190814}
+\end{figure}
+
+\paragraph{Discriminating follow-up.}
+The decisive next calculation is a radiation-transfer treatment of the
+predicted ejecta on a POSSIS color grid \cite{POSSIS}, propagating
+composition, viewing angle, distance-posterior, and ejecta-mass
+uncertainty event by event: this determines whether the GW190814
+non-detection is compatible with universal shedding or falsifies it.
+In parallel, the O5 protocol (\S\ref{sec:fals}, supplement S4 with archival
+detail in S9) extends
+to nearby well-localized BBH, where Rubin depths decide the question
+within the run. Either the deepest archival event or the next nearby
+one can kill Eq.~\ref{eq:shed}; both are priced in advance.
+
 %=====================================================================
 \section{Falsifiers and conclusion}
 \label{sec:fals}
@@ -410,6 +523,7 @@ current status, and timelines in Table~\ref{tab:kill}.
 \begin{tabular}{@{}l p{6.0cm} p{4.2cm} l@{}}\toprule
 wire & threshold & now & timeline \\\midrule
 Gap kilonovae & 10 qualifying gap mergers $< 200$\,Mpc, $< 100$\,deg$^2$, zero KN to $m < 24$ & 0 qualifying so far & O5 decisive \\
+BBH kilonovae & O5 nearby-BBH ToO sample clean to $m < 24$ (Eq.~\ref{eq:shed} predicts $m_g \sim 22$) & GW190814 $p \sim 0.12$, tension not kill & O5 \\
 NICER radius & $R_{1.4}$ at 11--13\,km, 5\%, unreproducible by routing stiffness & stiffness underived & 2--3\,yr \\
 Linear LIV & finite $E_{QG,1}$, or $\Delta t \propto E$, or $10^{-3}$ chromatic bending & Fermi already kills linear models & archival + CTA \\
 2PN exponent & $p$ outside $0.92 \pm 0.056$ at $N = 1024$ class, 80 graphs & $0.913 \pm 0.049$, passes $5\times$ & held to N=16000 \\
@@ -507,6 +621,10 @@ third-party figure data copied.
 \bibitem{Kitaev15} A.~Kitaev, talks on SYK (2015); J.~Maldacena and D.~Stanford, PRD 94, 106002 (2016).
 \bibitem{GW250114} A.~G.~Abac et al.\ (LVK), Phys.\ Rev.\ Lett.\ 135, 111403 (2025), arXiv:2508.XXXX; LIGO-P2500421: $33.6+32.2\,M_\odot$, SNR 80, area law + Kerr ringdown.
 \bibitem{GW241011} A.~G.~Abac et al.\ (LVK), ApJL 993, L21 (2025); LIGO-P2500402: GW241011+GW241110, strongest spin-quadrupole bound to date.
+\bibitem{PISN GWTC4} F.~Antonini et al., Nature Astron.\ (2026), arXiv:2509.04637: GWTC-4 PISN edge $\tilde{m} = 44.3^{+5.9}_{-3.5}\,M_\odot$ from $\chi_{\mathrm{eff}}$ mixture.
+\bibitem{HierGWTC4} C.~Plunkett et al.\ (SPINS), Phys.\ Rev.\ Lett.\ 137, 021404 (2026): hierarchical transition at $m_1 = 46.2^{+12.6}_{-7.2}\,M_\odot$ in GWTC-4.
+\bibitem{CFHT190814} N.~Vieira et al., ApJ 895, 96 (2020): CFHT MegaCam GW190814 limits ($g$ 22.8 at 1.7\,d, $65.5\%$).
+\bibitem{GROWTH190814} I.~Andreoni et al.\ (GROWTH), ApJ 890, 131 (2020): DECam GW190814 detection limits, six epochs to $98\%$ enclosed.
 \end{thebibliography}
 
 \end{document}

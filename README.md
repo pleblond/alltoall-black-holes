@@ -14,14 +14,15 @@
 > **New here?** Start with [`docs/model-explained.md`](docs/model-explained.md) —
 > a plain-language tour of the whole model (no physics background needed),
 > with pointers into the paper, code, and demo.
-> **v5.0** is the journal cut (9pp main + 10pp methods supplement, no new
-> physics): one compact-object family — **no neutron stars**
+> **v5.0** is the journal cut (11pp main + 11pp methods supplement):
+> one compact-object family — **no neutron stars**
 > ([`note`](docs/resuscitate-no-neutrons.md)) — J0737 2PN at
-> $p = 0.913\pm0.049$ (80 graphs, exact), and gap kilonovae at ~1/yr in O5
-> with a kill-or-confirm [`protocol`](docs/observation-protocol.md).
+> $p = 0.913\pm0.049$ (80 graphs, exact), gap kilonovae at ~1/yr in O5
+> with a kill-or-confirm [`protocol`](docs/observation-protocol.md),
+> plus an upper-gap null and a GW190814 audit (tension, not exclusion).
 
-> **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 9pp) ·
-> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 10pp, S1–S10) ·
+> **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 11pp) ·
+> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 11pp, S1–S10) ·
 > build [`notes`](paper/v5/README.md)
 
 ## Abstract
@@ -51,6 +52,11 @@ AT2017gfo ($0.047\,M_\odot$ shed), it predicts mass-gap mergers
 $2.5$–$5\,M_\odot$ are kilonova-bright at $\sim 1$/yr in O5 versus
 $\le 0.3$/yr in the standard picture — while meeting public
 LIGO–Virgo–KAGRA, ringdown, LHC-recast, and quantum-hardware data.
+It predicts no graph-scale feature at the $\sim 44\,M_\odot$
+pair-instability edge (a positive null, left to stellar physics) while
+extending the shedding law to binary black holes
+($M_{ej} = 0.0168\,M_{tot}$) — pressured, but not excluded, by an
+epoch-level GW190814 audit ($P$(detect) $\approx 0.68$–$0.88$).
 Falsifiers are pre-registered (supplement S6); one sub-claim (broad remnant
 dark matter) is already ruled out on the record, with a narrow surviving
 window. Postulates, derivations, and open gaps are labeled throughout.
@@ -61,9 +67,9 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 |---|---|---|
 | `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 9pp main text + 10pp S1–S10 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
-| `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–74) | MIT |
+| `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 377 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 398 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -80,7 +86,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`; mass-gaps `massgaps`.
 
 ## Quickstart
 
@@ -88,8 +94,8 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 377 tests (2 torch/GPU-only skip without torch)
-python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–74)
+python -m pytest tests/ -q          # 398 tests (2 torch/GPU-only skip without torch)
+python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -139,9 +145,10 @@ pdflatex supplement.tex && pdflatex supplement.tex
   v4.1 adds: tortuosity $c \approx 0.44$–$0.60$ from $\ln 2$ line-defect
   scattering ($p = 2c$, $\gamma = 2c$), UV pop as graph disconnection at
   $k_{crit}$, $p$ at N = 4000/8000/16000 ($0.9315$, $0.9382$, $0.9137$).
-  v5.0 adds (cut, not physics): D2 qubit-toy unitary evaporation (graph
-  dynamics open), H2 $T_H$/$\Omega_H$ in the main text, 42/42 references
-  cited, 377 tests, 79 figure files.
+  v5.0 adds: D2 qubit-toy unitary evaporation (graph
+  dynamics open), H2 $T_H$/$\Omega_H$ in the main text, mass-gap null +
+  universal BBH shedding + GW190814 epoch audit ($P \approx 0.68$–$0.88$,
+  tension), 46/46 references cited, 398 tests, 81 figure files.
 - **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
   equivalence principle, continuum limits (heat-kernel, Ollivier),
   Raychaudhuri for leg bundles, gap coefficient, crossover scales.
@@ -196,15 +203,17 @@ release:
 ## Status
 
 v5.0: journal cut of the v4.1 living document — [`main.pdf`](paper/v5/main.pdf)
-(9pp preprint ≈ 6pp two-column: motivation, 3 claims, gravity to 1PN + 2PN
-preview, UV+QI, one-family compact objects + gap-KN ~1/yr O5, falsifiers) +
-[`supplement.pdf`](paper/v5/supplement.pdf) (10pp S1–S10 methods: audit,
+(11pp preprint ≈ 7pp two-column: motivation, 3 claims, gravity to 1PN + 2PN
+preview, UV+QI, one-family compact objects + gap-KN ~1/yr O5, upper-gap null
++ GW190814 audit, falsifiers) +
+[`supplement.pdf`](paper/v5/supplement.pdf) (11pp S1–S10 methods: audit,
 gravity/QI methods, N-scale table, PPN/archival ledgers, O5 protocol, kill
-list, module map; 4 main figures + 11 evidence figures, 42/42 references
-cited). 377 tests, 79 figure files (Figs 1–74).
-New survival-matrix figure (`scripts/generate_v5_figs.py`).
-No physics changes; the v4.1 files stay in `paper/` as the archived extended
-record (v5 is canonical).
+list, module map; 5 main figures + 12 evidence figures, 46/46 references
+cited). 398 tests, 81 figure files (Figs 1–75).
+New survival-matrix figure (`scripts/generate_v5_figs.py`); the mass-gaps
+module (upper-gap null, universal BBH shedding, GW190814 epoch audit) and
+ringdown wording ports landed after the cut.
+The v4.1 files stay in `paper/` as the archived extended record (v5 is canonical).
 Build: `cd paper/v5 && pdflatex main.tex && pdflatex main.tex`
 then `pdflatex supplement.tex && pdflatex supplement.tex`
 (see [`paper/v5/README.md`](paper/v5/README.md)).

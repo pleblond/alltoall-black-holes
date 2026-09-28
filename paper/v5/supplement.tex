@@ -29,9 +29,13 @@ gradient slope & $0.015$ & fitted, labelled & $p_{\mathrm{adj}}(s) = 0.85+0.015s
 bridge $\beta(N)$ & 1.5@300; 1.28@600; 1.24@1020; 0.99@4k; 0.87@8k; 0.74@16k & recalibrated per $N$ & log-linear over 6 points; derivation queued \\
 $w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathrm{tot}} = c_1 + w c_2 = 4.8695$ at $p = 0.92$ \\
 shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
+shed $\epsilon(M,a)$ & $0.0168$ universal (Eq.~2 main) & calibrated + extrapolated (D8) & mass/ratio independence underived; BBH extension tested, not fitted \\
+upper-gap null & no feature at $44\,M_\odot$ & negative prediction (measured smooth) & $k$/spin/Love/congestion all smooth; edge left to stellar physics \\
+GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, POSSIS queued (D7) & non-detection at $p \sim 0.12$--$0.32$; epoch audit in \texttt{massgaps} \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
-Kerr $M_2$, $g_{t\phi}$, ISCO & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW241011 future wire \\\bottomrule
+Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
+echo $R$ & $10^{-80}$ ampl., $10^{-160}$ energy & dimensional estimate & $\propto\omega^2$ lattice scattering, not leg S-matrix; $\sim158$ orders margin \\\bottomrule
 \end{tabular}
 \end{table}
 
@@ -152,10 +156,18 @@ Tracked as D1 in \path{docs/DEFERRED.md}.
 \textbf{What Kerr means here (honesty note).} Only the Kerr--Newman area $A(M,a,Q)$ is assumed to
 set the leg budget $k_{\rm eff}=A/4\ln2$ (module \texttt{kerr}; extremal Kerr half, extremal RN
 quarter; ratios patch-independent). Not derived from the graph: spin-induced quadrupole $M_2=-Ma^2$,
-frame dragging $g_{t\phi}$, ISCO$(M,J)$, or the Kerr QNM spectrum (the overtone toy is Schwarzschild-like).
+frame dragging $g_{t\phi}$, ISCO$(M,J)$, or the Kerr QNM spectrum (the overtone toy is Schwarzschild-like;
+fundamental damping $\tau=11.24\,M$ calibrated, footprint corrections $1/2k$, $1/\sqrt{k}$ unobservable).
+Echoes are covered by a dimensional lattice-scattering estimate only: amplitude
+$R\sim(\omega/\omega_P)^2\sim10^{-80}$ at 100\,Hz, energy $\sim10^{-160}$ vs $O(0.01)$
+detectability ($\sim158$ orders of margin, module \texttt{gwdata}) --- not a leg S-matrix derivation.
+The exterior perturbation problem ($\delta\omega_{nlm}$ vs Kerr) is open.
 Hence GW250114 (SNR 80 area law + Kerr ringdown) and GW241011 (strongest $\delta\kappa$ bound to date,
 Kerr to factor $\sim$2 resp.\ $\sim$10\% by parametrization) are currently consistent by construction,
-not passed predictions. A future graph derivation $Q=-Ma^2(1+\delta_Q)$ with $|\delta_Q|\gtrsim0.17$
+not passed predictions. GW250114 provides the QNM benchmark ($\delta f_{220}\sim2\%$,
+$\delta\tau_{220}\sim10\%$, $\delta f_{221}\sim30\%$, $\delta f_{440}\sim$tens\%):
+a future graph-derived $|\delta\omega/\omega|$ above those thresholds fails.
+A future graph derivation $Q=-Ma^2(1+\delta_Q)$ with $|\delta_Q|\gtrsim0.17$
 would be ruled out by GW241011. Tracked as D2 in \path{docs/DEFERRED.md}.
 
 \textbf{Kerr thermodynamics (conditional check).} With $S = k\ln 2$ (saturated
@@ -256,6 +268,27 @@ BU. Archival ledger: GW230529 uninformative (single-detector, 93\% unsearched);
 S250206dm unverified (check GCNs before citing). Full plan:
 \path{docs/observation-protocol.md}. Figs.~66--69.
 
+\textbf{Mass-gap audit (module \texttt{massgaps}).} Lower gap: $k(M)$ log-log
+curvature $< 10^{-9}$ over $0.7$--$150\,M_\odot$ (no forbidden masses);
+$e_{\mathrm{int}} \sim e_{\mathrm{ext}}$ location descriptive (calibration
+inherited from AT2017gfo). Upper gap: spin-leg ratio $1 \to 0.857 \to 0.5$
+at $a = 0 \to 0.7 \to 1$ with no jump on $[0,0.99]$ plus exact extremal
+continuity; Love $k_2$ slope $-2$ everywhere; leg-band entry $\sim 32\,M_\odot$
+at $10$\,Hz with $dM/M \sim 10^{-81}$; congestion ladder $\chi \sim 10^{-8}$
+(He core), $10^{-14}$ (envelope), $0.12$ (NS surface), $\sim 1$ (gap masses
+at $10$\,km footprints, footprint-conditional), $1$ at horizons. Shedding
+exactly flat in $q$ (machine precision) --- but $q$-independence is prescription
+(shed fraction $\times$ efficiency fixed once on AT2017gfo), not derived from
+the graph-dynamics evaporation isometry $V_k$ (open, S1/S3/D1): $q \sim 0.11$
+(GW190814) flashing at the same fraction as $q = 1$ (GW170817) is the
+model's biggest theory bet. GW190814 epoch audit: CFHT g-band
+(Vieira+2020) and GROWTH i-band detection limits (Andreoni+2020) with
+per-epoch coverage $\times$ depth against distance ($241 \pm 43$\,Mpc) and
+$\pm 1$\,mag theory errors; combined $P \approx 0.68$ (g-only) / $0.88$
+(g+i at $g-i = 0.7$). Erratum on record: the first audit used a nominal ZTF
+depth, but ZTF ran no targeted GW190814 follow-up; superseded by the
+CFHT/GROWTH epoch tables above. Fig.~75 (main text). Analytic systematics (round 4): viewing $A_g \sin^2\theta$ ($A_g = 1.25$) + opacity-rescaled blue mags give the $P$ grid in Fig.~75b; the hiding window is bounded, not open-ended.
+
 \section{UV nulls and phenomenology (T, U, V, BD--BF)}
 
 TeV: $M_D = 1$\,TeV gives $k \approx 11$ ($3$\,TeV) -- $17$ ($13$\,TeV) vs
@@ -263,7 +296,10 @@ $k_{\mathrm{crit}} \approx 50$ --- thermal nulls expected, onset $\sim 550$\,TeV
 Echoes: $\Delta t = 4M\log(M/l_p)$, $0.03$--$0.3$\,s (GW150914 $0.11$\,s),
 in searched windows but $R \sim 10^{-160}$ unobservable. EHT:
 $l_p/2M \approx 10^{-48}$, 47 orders below sensitivity. Dispersion:
-$E_{QG,2} = \sqrt{8}\,E_P$, Fermi-safe by $10^8$. Chromatic lensing
+$E_{QG,2} = \sqrt{8}\,E_P$, Fermi-safe by $10^8$; universal GW
+extrapolation shifts 100\,Hz by $\sim 10^{-82}$ (LVK $\alpha = 4$, safe by
+$\sim 10^{60}$ --- a recorded null, not a falsifier; no GW sector
+claimed). Chromatic lensing
 $10^{-56}$--$10^{-32}$. Figs.~21--22, 39, 51--56.
 
 \begin{figure}[ht]\centering
@@ -281,7 +317,7 @@ AF quench ratio $< 1.3$; $\alpha$ outside $[9.0,12.4]$; $A \propto N$ in any
 TN calculation; thermal LHC excess below $k_{\mathrm{crit}}$;
 $s_{\mathrm{leg}} \le l_p^2/4$ in any physical state class; any linear-LIV
 signal; $p$ outside $0.92 \pm 0.056$ at $N = 1024$; graph-predicted $|\delta_Q|\gtrsim0.17$;
-10 gap non-detections.
+10 gap non-detections; O5 nearby-BBH ToO sample clean (universal shedding, Eq.~2 main).
 One sub-claim (broad remnant DM) already ruled out on the record.
 Figs.~37--39.
 
@@ -376,6 +412,7 @@ the ringdown time (left); timescale ladder from milliseconds to $10^{80}$\,s
 \label{tab:archival}
 \begin{tabular}{@{}l p{2.9cm} l p{4.5cm} p{4.2cm}@{}}\toprule
 event & masses & distance & localisation / EM & verdict \\\midrule
+GW190814 & $23.2 + 2.6$ ($q \sim 0.11$) & $241^{+41}_{-45}$\,Mpc & 23\,deg$^2$ (3-det.); CFHT g 22.8@1.7d 65.5\%, GROWTH i 6 epochs to 98\% & \textbf{tension}: $P(\mathrm{detect}) \approx 0.68$--$0.88$, $p \sim 0.12$; not excluded \\
 GW230529 & $2.5$--$4.5$ + $1.2$--$2.0$ & $\sim 197$\,Mpc & 24,200\,deg$^2$ (single-det.); ZTF 7\% to $g = 21.1$ & not a test: 93\% unsearched; $m_g \sim 21.2$ at depth edge \\
 S250206dm & mgBH candidate & --- & no counterpart (per notes) & unverified: check GCNs before citing \\\bottomrule
 \end{tabular}
@@ -388,7 +425,16 @@ Trigger (full plan \path{docs/observation-protocol.md}): $m_1 \in
 $L \propto t^{-1.3}$ tail. Yield: 1.5 gap/yr $\times$ 70\% $\approx 1.05$/yr
 ours vs $\le 0.3$/yr standard. Yield arithmetic in
 \path{collapse.gap_o5_yield}; brightness in
-\path{collapse.peak_apparent_mags}. Figs.~68--69.
+\path{collapse.peak_apparent_mags}; GW190814 epoch audit + systematics grid in
+\path{massgaps.gw190814_combined_pdetect} /
+\path{massgaps.gw190814_systematics_table}. Figs.~68--69, 75 (main text), 75b.
+
+BBH extension (this work): the same shedding law predicts $m_g \sim 22$
+transients for nearby BBH, so the ToO program extends to well-localized
+($< 100$\,deg$^2$) BBH within $200$\,Mpc with identical epochs and kill
+accounting kept separate from the gap sample (a clean BBH sample kills
+Eq.~2 main even if gap events flash). Full thresholds in
+\path{docs/observation-protocol.md}.
 
 \begin{figure}[ht]\centering
 \includegraphics[width=0.92\linewidth]{fig69_o5_protocol.png}
@@ -397,6 +443,17 @@ over Rubin/DECam depths (left); yield $\sim 1$/yr vs $\le 0.3$/yr standard
 (middle); the same $p$ keeps bending/Mercury 2PN pieces below VLBI/astrometry
 (right). \texttt{collapse}, \texttt{pulsar}.}
 \label{fig:sup-o5}
+\end{figure}
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.95\linewidth]{fig75b_gw190814_systematics.png}
+\caption{GW190814 analytic systematics (round 4; full POSSIS queued, D7).
+Left: $P(\mathrm{detect})$ $g$-only over viewing angle $\times$ blue opacity
+(CFHT epochs, no color term): fiducial face-on $\kappa = 0.5$ gives $0.68$;
+equatorial + lanthanide-mixed ($\kappa_{\mathrm{blue}} = 2$) drops to $\sim 0.18$.
+Right: face-on hiding bar per CFHT $g$ epoch ($g$ 1.7\,d needs $\sim 1.6$\,mag).
+Module \texttt{massgaps}.}
+\label{fig:sup-190814sys}
 \end{figure}
 
 \section{Module map and reproduction}
@@ -426,7 +483,8 @@ Modules follow the appendix letters of the v4.1 extended record:
 \path{foamgrid} (BF), \path{perwalk} (BG), \path{strain} (BH,BJ),
 \path{weakfield} (BI,BQ), \path{legham} (BL),
 \path{pulsar}+\path{orici} gradient shells+\path{collapse} leg-shedding (BU),
-\path{uvscatter}+\path{sinkor}+\path{shellscale} (BV).
+\path{uvscatter}+\path{sinkor}+\path{shellscale} (BV),
+\path{massgaps} (mass-gap null + GW190814 epoch audit).
 \par}
 
 Reproduce:
