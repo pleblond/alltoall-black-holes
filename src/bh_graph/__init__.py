@@ -21,6 +21,15 @@ from bh_graph.evaporation_unitary import (
 from bh_graph.qec import recovery_error, recovery_fidelity, recovery_threshold, is_recoverable
 from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary, all_quadratic
 from bh_graph.kerr import kerr_newman_area, kerr_newman_k, spin_budget_fraction, is_subextremal, is_extremal
+from bh_graph.kerrquad import (
+    kerr_multipole, kerr_quadrupole, kerr_octupole_current,
+    quadrupole_from_kappa, kappa_from_quadrupole, delta_q_from_kappa,
+    quadrupole_with_delta_q, is_quadrupole_ruled_out, is_qnm_deviation_ruled_out,
+    kerr_isco_radius, lense_thirring_omega,
+    toy_delta_q_finite_k, toy_delta_q_eint, toy_oblate_shell_quadrupole,
+    required_anisotropy_for_kerr, toy_kerr_deviation_summary,
+    GW241011_DELTA_Q_WIRE, GW250114_QNM_TOLERANCES, KERR_KAPPA, is_valid_spin,
+)
 from bh_graph.haar import (
     harmonic, page_entropy_exact_nats, page_entropy_exact_bits, page_curve_exact_bits,
     page_deficit_at_turnover, haar_state, subsystem_entropy_bits, haar_entropy_samples,
@@ -345,6 +354,13 @@ __all__ = [
     "recovery_error", "recovery_fidelity", "recovery_threshold", "is_recoverable",
     "log_slope_vs_p", "quadratic_coefficient", "qes_phase_boundary", "all_quadratic",
     "kerr_newman_area", "kerr_newman_k", "spin_budget_fraction", "is_subextremal", "is_extremal",
+    "kerr_multipole", "kerr_quadrupole", "kerr_octupole_current",
+    "quadrupole_from_kappa", "kappa_from_quadrupole", "delta_q_from_kappa",
+    "quadrupole_with_delta_q", "is_quadrupole_ruled_out", "is_qnm_deviation_ruled_out",
+    "kerr_isco_radius", "lense_thirring_omega",
+    "toy_delta_q_finite_k", "toy_delta_q_eint", "toy_oblate_shell_quadrupole",
+    "required_anisotropy_for_kerr", "toy_kerr_deviation_summary",
+    "GW241011_DELTA_Q_WIRE", "GW250114_QNM_TOLERANCES", "KERR_KAPPA", "is_valid_spin",
     "harmonic", "page_entropy_exact_nats", "page_entropy_exact_bits", "page_curve_exact_bits",
     "page_deficit_at_turnover", "haar_state", "subsystem_entropy_bits", "haar_entropy_samples",
     "psi_family", "rho_ab", "concurrence_2qubit", "one_tangle", "interior_pairwise_c2",
