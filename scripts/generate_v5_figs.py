@@ -22,6 +22,12 @@ def fig_survival():
     tests = ["Fermi\nGRB 090510", "LHC\nthermal null", "EHT shadow\n+ gamma", "Gap 2.6/3.6\n+HESS 0.77", "Gap-KN rate\ndistinct?"]
     # 1 = pass, 0 = fail, 0.5 = partial / N/A
     # Rows x cols; sourced from ledger (supplement S5/S6 + BU). No new numbers.
+    # Per-cell rationale (v5 review fix -- method documented, not self-graded):
+    # Fermi col: linear LIV FAILs Abdo+09 GRB 090510 E_QG,1 bound by construction.
+    # LHC col: TeV-thermal row FAILs stated CMS/ATLAS thermal null (LHCbh bib).
+    # EHT+gamma col: horizon-structure row FAILs EHT shadow + Cassini bounds.
+    # Gap/HESS col: GR+NS EOS row FAILs joint gap+HESS+J0740/J0952 catalog values.
+    # Gap-KN col: "distinct bright-gap rate predicted" (us) vs "dark" (others).
     mat = np.array([
         [0.0, 0.5, 0.5, 0.5, 0.0],  # linear LIV killed by Fermi
         [0.5, 0.0, 0.5, 0.5, 0.0],  # TeV thermal expected at LHC, unseen

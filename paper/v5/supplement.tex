@@ -22,33 +22,34 @@
 param & value & status & notes \\\midrule
 $k(M)$ map $\propto M^2$ & GR-consistency & input (circle admitted) & BM shrinks to $R_s = 2M$; not derived \\
 AT $\alpha$ & 1 & calibrated to Schwarzschild $c_{\mathrm{eff}}$ & matches $dr/dt$ exactly \\
-tortuosity $c$ & $1/2$ (BH fit) $\to$ $0.44$--$0.60$ (BV derived) & fit superseded by derivation & $\ln 2$ scattering, zero tuning; $p = 2c$, $\gamma = 2c$ \\
+tortuosity $c$ & $1/2$ (BH fit) $\to$ $0.44$--$0.60$ (BV brackets) & fit + consistency check & $\ln 2$ scattering, zero tuning; $p_{\mathrm{OR}} = 2c$ predicts $0.87$; $\gamma = 2c = 0.88$--$1.2$ brackets $1$ at $\sim 20\%$, not Cassini precision \\
 $s_{\mathrm{leg}}$ & $\ln 2$\,nats & measured saturation (BN/BS) & flip preserves $G = 1$ via Planck bits \\
 $k_{\mathrm{crit}}$ & $4\pi r^2/\sigma$ & heuristic $\to$ formalised (BK) & packing-forced pop; mixed mode disconnects (BV) \\
 gradient slope & $0.015$ & fitted, labelled & $p_{\mathrm{adj}}(s) = 0.85+0.015s$ \\
-bridge $\beta(N)$ & 1.5@300; 1.28@600; 1.24@1020; 0.99@4k; 0.87@8k; 0.74@16k & recalibrated per $N$ & log-linear over 6 points; derivation queued \\
-$w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathrm{tot}} = c_1 + w c_2 = 4.8695$ at $p = 0.92$ \\
-shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
-$\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
+bridge $\beta(N)$ & 1.5@300; 1.28@600; 1.24@1020; 0.99@4k; 0.87@8k; 0.74@16k & recalibrated per $N$ & log-linear over 6 points; derivation queued (D4) \\
+$w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathrm{tot}} = c_1 + w c_2 = 4.8695$ at $p_{\mathrm{OR}} = 0.92$ \\
+shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}} = 0.0168\,M_{\mathrm{tot}}$ equal-mass; $q$-dependence open (D8) \\
+$\kappa \to c_2$ map & $c_2 = p_{\mathrm{OR}}(2p_{\mathrm{OR}}-1)$ & ansatz (open derivation D3) & power-law vs $1/r^2$ disagree cross-applied; $p_{\mathrm{OR}}$ 2PN-only, 1PN held at $\gamma = 1$ \\
 evap.\ isometry $V_k$ & $k\to k-1$ imposed & open derivation (S3) & need $V_k:{\cal H}_k\to{\cal H}_{k-1}\otimes{\cal H}_{\rm leg}$ from graph dynamics \\
 Kerr $M_2$, $g_{t\phi}$, ISCO & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW241011 future wire \\\bottomrule
 \end{tabular}
 \end{table}
 
-Given $k(M)$: $1/r$ potential, $\gamma = 1$, $43''$/cy, $b_{\mathrm{crit}} = 3\sqrt{3}M$,
+Given $k(M)$: $1/r$ potential, $\gamma = 1$ (fitted $1/2$; BV brackets at $\sim 20\%$), $43''$/cy, $b_{\mathrm{crit}} = 3\sqrt{3}M$,
 Page/island-like/mirror follow as random-state/toy-code behaviour (genuine QES extremization
 and evaporation isometry $V_k$ open, S3). Not derived: mass--radius scaling itself, $\beta(N)$
-from geometry, $w$ from the graph Laplacian (Damour--Sch\"afer from wiring),
-NICER $M$--$R$--$\Lambda$ from routing stiffness, Kerr $M_2$/$g_{t\phi}$/ISCO/QNM from the graph.
+from geometry (D4), $w$ from the graph Laplacian (Damour--Sch\"afer from wiring, D4),
+$q$-dependent shedding (D8),
+NICER $M$--$R$--$\Lambda$ from routing stiffness (D5, incl.\ $4$-km-vs-$12$-km surface question), Kerr $M_2$/$g_{t\phi}$/ISCO/QNM from the graph (D2).
 
-Derived in-repo (new in v4.x): $p$ from exact Ollivier--Ricci (not hard-coded),
-$M(c_1,c_2)$ inversion, $M_{\mathrm{ej}}(M_{\mathrm{tot}})$ scaling, peak-time
+Derived in-repo (new in v4.x): $p_{\mathrm{OR}}$ from exact Ollivier--Ricci (not hard-coded),
+$M(c_1,c_2)$ inversion, $M_{\mathrm{ej}}(M_{\mathrm{tot}})$ scaling at equal mass, peak-time
 ordering, band mags, O5 yield arithmetic, $c$ from $\ln 2$ scattering, UV pop as
-graph disconnection, $p$ at $N = 4000/8000/16000$ with turnover measured.
+graph disconnection, $p_{\mathrm{OR}}$ at $N = 4000/8000/16000$ with turnover measured.
 
 Ruled out on the record: broad Planck-remnant dark matter (survives only in a
 $\sim 0.4$-dex EMD window at $\sim 4\times 10^5$\,g); isotropic $b_{\mathrm{crit}} = 8M$;
-naive $\gamma = 2$ strain; linear LIV; flat $p = 0.49$ ($-10\sigma$).
+naive $\gamma = 2$ strain; linear LIV; flat $p_{\mathrm{OR}} = 0.49$ ($-10\sigma$ on the same ansatz).
 
 \section{Gravity methods (AS, AT, AU, BB, BH, BI, BJ, BV)}
 
@@ -73,8 +74,8 @@ of Born, leaving $10^{-56}$--$10^{-32}$. Figs.~49, 55.
 
 \textbf{BH strain.} Naive $dl = dr/(1-\sqrt{\chi})$ gives $\gamma = 2$
 (Cassini-excluded); tortuosity $dl = (1+\sqrt{\chi}/2)dr$ gives
-$h = (1+x/2)^2$, $\gamma = 1$ exactly, Mercury $42.99''$/cy. Peel-off
-$-0.75\,M/a$ measured. PPN: $\gamma = 1$ derived, $\beta$ unresolved
+$h = (1+x/2)^2$, $\gamma = 1$ (fitted $1/2$), Mercury $42.99''$/cy. Peel-off
+$-0.75\,M/a$ measured. PPN: $\gamma = 1$ fitted (BV brackets at $\sim 20\%$), $\beta$ unresolved
 (coordinate-confused, not quoted), $\alpha_{1,2},\xi$, Nordtvedt untouched.
 Figs.~58, 60.
 
@@ -96,7 +97,7 @@ $42.99''$/cy by direct geodesic integration. \texttt{strain}.}
 \end{figure}
 
 \textbf{BI/BQ weak-field OR.} Grid+hub with flux stubs: radial OR negative in
-all configs (sign derived). Direct mode $p = 0.92 \pm 0.48$ ($L = 9$); $1/r$
+all configs (sign derived). Direct mode $p_{\mathrm{OR}} = 0.92 \pm 0.48$ ($L = 9$); $1/r$
 collapse beats $1/r^2$ (CV $0.47$ vs $0.60$). Green-function walk fails by leg
 shorting ($h$-steepness $9.2 \to 4.1$); AS temperature triply load-bearing.
 Figs.~59, 64.
@@ -104,7 +105,7 @@ Figs.~59, 64.
 \textbf{BV UV tortuosity-as-scattering.} Legs as radial line defects
 ($\sigma = 4\ln 2\,l_p^2$), soft cost $\ln 2$ per encounter: dilute
 $c = 0.44$--$0.60$ (target $0.456$, geometric $1/\sqrt{\pi} = 0.564$) with zero
-tuning; $p = 2c$, $\gamma = 2c$. Mixed mode ($0.75\,r_e$ core) rises then
+tuning, bracketing the BH $1/2$ at $\sim 20\%$; $p_{\mathrm{OR}} = 2c$ predicts $0.87$ at $k = 20$ ($0.2\sigma$ from BU), $\gamma = 2c = 0.88$--$1.2$ is the corresponding 1PN band (not Cassini precision). Mixed mode ($0.75\,r_e$ core) rises then
 disconnects at $k_{\mathrm{crit}}$ --- the pop without metric input. Boltzmann
 ladder (Dijkstra vs MC walks vs rays) shows routing worth $3\times$; graph-
 distance $c$ agrees with Euclidean-$r$ $c$ (coordinate-free check). Figs.~70--72.
@@ -113,7 +114,7 @@ distance $c$ agrees with Euclidean-$r$ $c$ (coordinate-free check). Figs.~70--72
 \includegraphics[width=0.85\linewidth]{fig70_uv_c.png}
 \caption{BV tortuosity from $\ln 2$ scattering: dilute $c = 0.44$--$0.60$
 with zero tuning against the BU-implied $0.456 \pm 0.025$ band and the
-geometric $1/\sqrt{\pi}$ line. Right axis shows $p = 2c$. Hard cylinders
+geometric $1/\sqrt{\pi}$ line. Right axis shows $p_{\mathrm{OR}} = 2c$. Hard cylinders
 (red $\times$) overshoot; soft and mixed modes agree. \texttt{uvscatter}.}
 \label{fig:sup-uvc}
 \end{figure}
@@ -169,40 +170,40 @@ distinctive Claim~2 prediction. \texttt{evaporation}.}
 \textbf{Gradient shells.} $p_{\mathrm{adj}}(s) = 0.85+0.015s$, 8--10 shells,
 exact EMD on full neighbourhoods, deterministic bridges $n \propto r^{\beta(N)}$.
 Measured: $N = 1020$ ($10\times 102$), $\beta = 1.24$, 80 graphs exact Floyd+LP
-($\sim 545$\,s): $p = 0.913 \pm 0.049$ per graph, SEM $0.0055$, stacked $0.911$
+($\sim 545$\,s): $p_{\mathrm{OR}} = 0.913 \pm 0.049$ per graph, SEM $0.0055$, stacked $0.911$
 ($R^2 = 0.956$), 80/80 fits ok, range $0.79$--$1.05$. Distance to target
-$|0.913-0.92| = 0.007$ ($0.24\sigma$ in $p$, $\sim 0.09\sigma$ in $\dot\omega$),
-$5\times$ precision margin ($0.0055$ vs $0.028$). Flat control $p = 0.49$ is
-$-10\sigma$ dead.
+$|0.913-0.92| = 0.007$ ($0.24\sigma$ in $p_{\mathrm{OR}}$, $\sim 0.09\sigma$ in $\dot\omega$),
+$5\times$ precision margin ($0.0055$ vs $0.028$). Flat control $p_{\mathrm{OR}} = 0.49$ is
+$-10\sigma$ dead on the same ansatz. $p_{\mathrm{OR}}$ enters only at 2PN; 1PN held at $\gamma = 1$.
 
 \textbf{N-scale campaigns (BV).} CSR-direct shell graphs + Sinkhorn OR (no
-NetworkX): N=1020 reproduced ($0.9107$ vs $0.9134$); N=4000 $p = 0.9315 \pm
-0.0032$ ($\beta = 0.99$); N=8000 $p = 0.9382 \pm 0.0030$ ($\beta = 0.87$,
-pods); N=16000 $p = 0.9137 \pm 0.0022$ ($\beta = 0.74$, GPU farm). Exact shell
+NetworkX): N=1020 reproduced ($0.9107$ vs $0.9134$); N=4000 $p_{\mathrm{OR}} = 0.9315 \pm
+0.0032$ ($\beta = 0.99$); N=8000 $p_{\mathrm{OR}} = 0.9382 \pm 0.0030$ ($\beta = 0.87$,
+pods); N=16000 $p_{\mathrm{OR}} = 0.9137 \pm 0.0022$ ($\beta = 0.74$, GPU farm). Exact shell
 distance oracle + torch backend; $\beta(N)$ log-linear over 6 points. Local-$p$
 turnover $0.63$--$0.69 \to 1.26$--$1.46$ measured (inner windows flatten --- the
-UV turnover). Kill wire: $p$ outside $0.92 \pm 0.056$ at $N = 1024$ class fails.
+UV turnover). Kill wire: $p_{\mathrm{OR}}$ outside $0.92 \pm 0.056$ at $N = 1024$ class fails.
 
 \textbf{2PN and pulsars.} $h = (1+x/2)^2$ gives $c_1 = 3.36$ vs GR $1.94$
 (73\% excess); naive fixed-$M$ gives B1913 $6.2\sigma$, J0737 $9.7\sigma$ vs
-real TOAs. With $c_2 = p(2p-1)$, $w = 1.953$:
-$c_{\mathrm{tot}} = 4.8693$ at $p = 0.92$ vs GR $4.8695$ ($0.00\sigma$
-fixed-$M$). Self-consistent $R+\dot\omega \to M$: $\Delta M = -11.2$\,ppm
+real TOAs. With $c_2 = p_{\mathrm{OR}}(2p_{\mathrm{OR}}-1)$, $w = 1.953$:
+$c_{\mathrm{tot}} = 4.8693$ at $p_{\mathrm{OR}} = 0.92$ vs GR $4.8695$ ($0.00\sigma$
+fixed-$M$, ansatz-conditional consistency check, not a blind prediction). Self-consistent $R+\dot\omega \to M$: $\Delta M = -11.2$\,ppm
 naive ($-4.5$\,ppm with GR $g_{rr}$), $\Delta\sin i = 3.7\times 10^{-6}$,
 $s_{\mathrm{obs}}$ passes at $0.36\sigma$; B1913 $0.01\sigma$. Bending/Mercury
 2PN pieces hide below VLBI/astrometry (Fig.~69, right). The companion
 toy-generator route (dense layers, $k_0 - c_2/r^2$ fits) crosses zero in
 $\kappa$ and needs a $\kappa$-tweak fudge; power-law fits better on our
 profiles ($R^2$ $0.91$ vs $0.81$) but the two $\kappa \to c_2$ maps disagree
-($0.82$ vs $3.14$) cross-applied --- hence the open-map label. $e_{\mathrm{int}}$
-weighting \emph{lowers} our $p$ ($0.94 \to 0.84$ at $0.9$, $0.78$ at $0.99$):
+($0.82$ vs $3.14$) cross-applied --- hence the open-map label (D3). $e_{\mathrm{int}}$
+weighting \emph{lowers} our $p_{\mathrm{OR}}$ ($0.94 \to 0.84$ at $0.9$, $0.78$ at $0.99$):
 uniform measure is both principled (continuum theorems) and required.
 
 \begin{figure}[ht]\centering
 \includegraphics[width=0.92\linewidth]{fig66_pulsar_2pn.png}
-\caption{2PN cancellation: model $c_{\mathrm{tot}}(p)$ crosses GR at $p = 0.92$
+\caption{2PN cancellation: model $c_{\mathrm{tot}}(p_{\mathrm{OR}})$ crosses GR at $p_{\mathrm{OR}} = 0.92$
 (left); fixed-mass J0737 residual vanishes there (middle, green $2\sigma$ band);
-self-consistent $\sin i$ passes for both GR and $p = 0.92$ (right).
+self-consistent $\sin i$ passes for both GR and $p_{\mathrm{OR}} = 0.92$ (right).
 \texttt{pulsar}.}
 \label{fig:sup-2pn}
 \end{figure}
@@ -210,25 +211,29 @@ self-consistent $\sin i$ passes for both GR and $p = 0.92$ (right).
 \begin{figure}[ht]\centering
 \includegraphics[width=0.92\linewidth]{fig67_orici_p_fit.png}
 \caption{Gradient-shell Ollivier--Ricci: stacked $|\kappa|(r)$ steepens with the
-gradient (left); per-graph $p$ histogram centres on target (middle); 80-graph
+gradient (left); per-graph $p_{\mathrm{OR}}$ histogram centres on target (middle); 80-graph
 SEM extrapolation clears the $1\sigma$/$2\sigma$ precision bars (right).
-Production N=1020: $p = 0.913 \pm 0.049$, SEM $0.0055$. \texttt{orici}.}
+Production N=1020: $p_{\mathrm{OR}} = 0.913 \pm 0.049$, SEM $0.0055$. \texttt{orici}.}
 \label{fig:sup-pfit}
 \end{figure}
 
 \textbf{Leg-shedding kilonovae.} $M_{\mathrm{ej}} = \Delta k\,m_{\mathrm{leg}}
 \times 0.1$, blue ($v \sim 0.3c$, $t_{\mathrm{peak}} \sim 0.6$--$1$\,d) + red
-($v \sim 0.1c$); $L \propto t^{-1.3}$ tail. Band mags assume BC $= 0$ and
+($v \sim 0.1c$); $L \propto t^{-1.3}$ tail. Equal-mass leading order:
+$M_{\mathrm{ej}} = 0.0168\,M_{\mathrm{tot}}$ in all rows by construction;
+$q$-dependence open (D8). Band mags assume BC $= 0$ and
 per-component peaks; POSSIS refinement queued. $g$-band verdicts robust;
 $i$-band NOT claimed (one-zone $\kappa = 10$ over-traps: $t_{\mathrm{red}}
 \sim 10$\,d vs observed $\sim 4$\,d decline, $m_i$ faint by $\sim 2$--$3$\,mag
 --- conservative for gap-$g$ detectability). Standard $2$--$28\%$ band is a
-literature EOS input, not derived.
+literature EOS input for gap+NS (Foucart-disruption-allowed), not derived; gap+gap standard $\sim 0$.
 
 \textbf{O5 protocol.} Trigger: $m_1 \in [2.5,5.0]\,M_\odot$, $< 200$\,Mpc,
-90\% area $< 100$\,deg$^2$ (multi-detector); Rubin ToO epochs 0.5/2/5\,d in
-$g+r+i+z$ (DECam/Gemini backup). Kill rule: 10 qualifying non-detections kill
-BU. Archival ledger: GW230529 uninformative (single-detector, 93\% unsearched);
+90\% area $< 100$\,deg$^2$ (multi-detector), split into Category B (decisive:
+$m_2 > 2.5\,M_\odot$ or Foucart $M_{\mathrm{rem}} = 0$ at 90\%) and Category A
+(gap+NS ambiguous); Rubin ToO epochs 0.5/2/5\,d in
+$g+r+i+z$ (DECam/Gemini backup). Kill rule: 10 qualifying Category-B non-detections kill
+BU. Archival ledger: GW230529 uninformative (single-detector, 93\% unsearched, Category A);
 S250206dm unverified (check GCNs before citing). Full plan:
 \path{docs/observation-protocol.md}. Figs.~66--69.
 
@@ -256,8 +261,8 @@ delays sit orders of magnitude below detectability across GeV--TeV (right).
 AF quench ratio $< 1.3$; $\alpha$ outside $[9.0,12.4]$; $A \propto N$ in any
 TN calculation; thermal LHC excess below $k_{\mathrm{crit}}$;
 $s_{\mathrm{leg}} \le l_p^2/4$ in any physical state class; any linear-LIV
-signal; $p$ outside $0.92 \pm 0.056$ at $N = 1024$; graph-predicted $|\delta_Q|\gtrsim0.17$;
-10 gap non-detections.
+signal; $p_{\mathrm{OR}}$ outside $0.92 \pm 0.056$ at $N = 1024$; graph-predicted $|\delta_Q|\gtrsim0.17$;
+10 Category-B gap non-detections; NICER $R_{1.4}$ / GW $\Lambda_{1.4}$ irreproducible by routing stiffness.
 One sub-claim (broad remnant DM) already ruled out on the record.
 Figs.~37--39.
 
@@ -265,11 +270,11 @@ Figs.~37--39.
 \label{sec:nscale}
 
 \begin{table}[ht]\centering\small
-\caption{Gradient-shell $p$ measurements: $\beta$ recalibrated per $N$ (log-linear over 6 points).
-All 80-graph production rows use exact distances; errors are per-graph std with SEM quoted in text.}
+\caption{Gradient-shell $p_{\mathrm{OR}}$ measurements: $\beta$ recalibrated per $N$ (log-linear over 6 points).
+All 80-graph production rows use exact distances; errors are per-graph std with SEM quoted in text. $p_{\mathrm{OR}}$ enters only at 2PN.}
 \label{tab:nscale}
 \begin{tabular}{@{}l l l p{5.8cm} l@{}}\toprule
-$N$ & shells $\times$ per-shell & $\beta$ & measured $p$ & backend \\\midrule
+$N$ & shells $\times$ per-shell & $\beta$ & measured $p_{\mathrm{OR}}$ & backend \\\midrule
 300 & $10\times 30$ & 1.50 & $0.94 \pm 0.06$ (4 graphs) & NetworkX exact \\
 600 & $10\times 60$ & 1.28 & $0.96 \pm 0.06$ & NetworkX exact \\
 1020 & $10\times 102$ & 1.24 & $0.913 \pm 0.049$, SEM $0.0055$, stacked $0.911$ (80 graphs) & Floyd+LP exact \\
@@ -306,15 +311,15 @@ Reproduce (N=1020, $\sim 9$\,min):
 \label{sec:ppn}
 
 \begin{table}[ht]\centering\small
-\caption{PPN status: only $\gamma$ is claimed. $\beta$ is coordinate-confused and not quoted.}
+\caption{PPN status: only $\gamma$ is claimed (fitted). $\beta$ is coordinate-confused and not quoted.}
 \label{tab:ppn}
 \begin{tabular}{@{}l l p{9.5cm}@{}}\toprule
 param & GR & this model \\\midrule
-$\gamma$ & 1 & 1 exactly (tortuosity $h = (1+x/2)^2$; BV $c \to \gamma = 2c$) \\
+$\gamma$ & 1 & 1 (fitted $1/2$; BV brackets $0.88$--$1.2$ at $\sim 20\%$, not Cassini precision) \\
 $\beta$ & 1 & unresolved (not quoted) \\
 $\alpha_{1,2}$, $\xi$ & 0 & untouched \\
 Nordtvedt & 0 & untouched \\
-2PN $c_{\mathrm{tot}}$ & 4.8695 & 4.8693 at $p = 0.92$ (J0737 $0.1\sigma$) \\\bottomrule
+2PN $c_{\mathrm{tot}}$ & 4.8695 & 4.8693 at $p_{\mathrm{OR}} = 0.92$ (J0737 $0.1\sigma$ conditional on ansatz) \\\bottomrule
 \end{tabular}
 \end{table}
 
@@ -348,29 +353,31 @@ the ringdown time (left); timescale ladder from milliseconds to $10^{80}$\,s
 \label{sec:ledger}
 
 \begin{table}[ht]\centering\footnotesize
-\caption{What exists today: no qualifying test yet. Only multi-detector, $<100$\,deg$^2$ gap events count.}
+\caption{What exists today: no qualifying test yet. Only multi-detector, $<100$\,deg$^2$ Category-B gap events count toward the kill rule.}
 \label{tab:archival}
 \begin{tabular}{@{}l p{2.9cm} l p{4.5cm} p{4.2cm}@{}}\toprule
 event & masses & distance & localisation / EM & verdict \\\midrule
-GW230529 & $2.5$--$4.5$ + $1.2$--$2.0$ & $\sim 197$\,Mpc & 24,200\,deg$^2$ (single-det.); ZTF 7\% to $g = 21.1$ & not a test: 93\% unsearched; $m_g \sim 21.2$ at depth edge \\
+GW230529 & $2.5$--$4.5$ + $1.2$--$2.0$ & $\sim 197$\,Mpc & 24,200\,deg$^2$ (single-det.); ZTF 7\% to $g = 21.1$ & not a test: 93\% unsearched; $m_g \sim 21.2$ at depth edge; Category A (NSBH-disruption allowed) \\
 S250206dm & mgBH candidate & --- & no counterpart (per notes) & unverified: check GCNs before citing \\\bottomrule
 \end{tabular}
 \end{table}
 
 Trigger (full plan \path{docs/observation-protocol.md}): $m_1 \in
-[2.5,5.0]\,M_\odot$, $< 200$\,Mpc, 90\% $< 100$\,deg$^2$; Rubin ToO
+[2.5,5.0]\,M_\odot$, $< 200$\,Mpc, 90\% $< 100$\,deg$^2$, Category B decisive
+($m_2 > 2.5\,M_\odot$ or Foucart $M_{\mathrm{rem}} = 0$ at 90\%), Category A
+ambiguous; Rubin ToO
 0.5/2/5\,d in $g+r+i+z$ (DECam/Gemini backup). Sought: fast blue
 ($v \sim 0.3c$, $t_{\mathrm{peak}} \sim 0.6$--$1$\,d) $\to$ slow red with
 $L \propto t^{-1.3}$ tail. Yield: 1.5 gap/yr $\times$ 70\% $\approx 1.05$/yr
-ours vs $\le 0.3$/yr standard. Yield arithmetic in
+ours vs $\le 0.3$/yr standard gap+NS ($\sim 0$ gap+gap). Yield arithmetic in
 \path{collapse.gap_o5_yield}; brightness in
 \path{collapse.peak_apparent_mags}. Figs.~68--69.
 
 \begin{figure}[ht]\centering
 \includegraphics[width=0.92\linewidth]{fig69_o5_protocol.png}
 \caption{O5 protocol: gap kilonovae visible in $g$-band to 200\,Mpc with margin
-over Rubin/DECam depths (left); yield $\sim 1$/yr vs $\le 0.3$/yr standard
-(middle); the same $p$ keeps bending/Mercury 2PN pieces below VLBI/astrometry
+over Rubin/DECam depths (left); yield $\sim 1$/yr vs $\le 0.3$/yr standard gap+NS
+(middle); the same $p_{\mathrm{OR}}$ keeps bending/Mercury 2PN pieces below VLBI/astrometry
 (right). \texttt{collapse}, \texttt{pulsar}.}
 \label{fig:sup-o5}
 \end{figure}

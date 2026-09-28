@@ -23,27 +23,34 @@ entanglement graph and a black-hole interior is an \emph{almost-perfect}
 all:all (complete) subgraph. Interior edges cost no exterior space; each of
 $k$ exterior legs costs $4\ln 2 \approx 2.77$ Planck patches of horizon area,
 so $A(k) = 4\ln 2\cdot k\,l_p^2$ independent of interior size $N$. From this
-wiring picture we recover fast scrambling ($t_* \sim \log N$), the
-Bekenstein--Hawking area law, the exact Page curve with Haar-typical
-fluctuations, island-like turnover (genuine QES extremization open,
-supplement S1/S3), Kerr thermodynamics (area; $M_2$, $g_{t\phi}$, ISCO open), and Hayden--Preskill
-mirror recovery. The same leg network yields weak-field gravity to first
+wiring picture, conditional on the inputs in supplement S1, we reproduce fast
+scrambling ($t_* \sim \log N$), the Bekenstein--Hawking area law (mass map
+assumed for consistency, not derived), the Page curve as random-state
+behaviour with Haar-typical fluctuations (leg surgery imposed; evaporation
+isometry $V_k$ open, S1/S3), island-like turnover (genuine QES extremization
+open, S1/S3), Kerr area thermodynamics (area only; $M_2$, $g_{t\phi}$, ISCO
+open), and Hayden--Preskill mirror recovery. The same leg network, with the
+thermodynamic postulates stated in S3 (Verlinde equipartition, Bekenstein
+bound, Jacobson route), reproduces weak-field gravity to first
 post-Newtonian order: Newton's $1/r^2$, Kepler orbits, textbook redshifts,
 full-strength light bending $4M/b$, Cassini-grade Shapiro delay, $\gamma = 1$
-exactly, and Mercury's $43''$/cy by direct geodesic integration. Lattice
-hopping gives quadratic-only dispersion ($E_{QG,1} = \infty$), safe from Fermi
-bounds by $\sim 10^8$. At second post-Newtonian order the double pulsar
-J0737 is matched to $0.1\sigma$ via a measured radial exponent
-$p = 0.913 \pm 0.049$ (80 graphs, $N = 1020$, exact; confirmed at
+from the fitted tortuosity coefficient, and Mercury's $43''$/cy by direct
+geodesic integration. Regular-lattice hopping gives quadratic-only dispersion
+($E_{QG,1} = \infty$; scalar sector, near-horizon running open), safe from
+Fermi bounds by $\sim 10^8$. At second post-Newtonian order the double pulsar
+J0737 passes a consistency check at $0.1\sigma$ conditional on the
+$\kappa \to c_2$ ansatz, via a measured radial exponent
+$p_{\mathrm{OR}} = 0.913 \pm 0.049$ (80 graphs, $N = 1020$, exact; confirmed at
 $N = 4000/8000/16000$). This promotes the toy to a testable model of
 \emph{all} compact objects: pulsars, mass-gap objects, and black holes as one
 $k \propto M^2$ family with no neutron-matter phase. Calibrated once on
 AT2017gfo ($0.047\,M_\odot$ shed), the model predicts mass-gap mergers
 $2.5$--$5\,M_\odot$ are kilonova-bright at $\sim 1$/yr in O5 versus
-$\le 0.3$/yr in the standard picture. Ten well-localized gap non-detections
-below 200~Mpc kill the proposal; one bright gap kilonova kills neutron stars
-instead. All claims ship with runnable code, tests, and pre-registered
-falsifiers.
+$\le 0.3$/yr standard for gap+NS (gap+gap standard $\sim 0$). Ten
+well-localized Category-B gap non-detections below 200~Mpc kill the proposal;
+one bright Category-B gap kilonova kills neutron-star EOS models instead
+(Cat.\ B: gap+gap or Foucart $M_{\mathrm{rem}} = 0$; Cat.\ A gap+NS ambiguous).
+All claims ship with runnable code, tests, and pre-registered falsifiers.
 \end{abstract}
 
 \noindent\textit{Roadmap.} \S\ref{sec:intro} motivates the model and states
@@ -71,7 +78,7 @@ standard picture did not expect: objects in the $2.5$--$5\,M_\odot$ mass gap
 (GW190814 at $2.6\,M_\odot$ \cite{GW190814}, GW230529 at $3.6\,M_\odot$ \cite{GW230529}), a central compact
 object below the minimum neutron-star mass (HESS~J1731 at $0.77\,M_\odot$
 \cite{Doroshenko2022}), and pulsars pressing against the maximum Tolman--
-Oppenheimer--Volkoff mass (J0740 at $2.14\,M_\odot$, J0952 at $2.35\,M_\odot$).
+Oppenheimer--Volkoff mass (J0740 at $2.08 \pm 0.07\,M_\odot$ \cite{Fonseca21,Cromartie20}, J0952 at $2.35 \pm 0.17\,M_\odot$ \cite{Romani22}).
 Each anomaly has its own candidate excuse; none was predicted.
 
 This paper explores one idea that addresses both sets jointly:
@@ -89,8 +96,8 @@ We formalise this as three claims (\S\ref{sec:model}), each implemented as
 runnable code in \texttt{src/bh\_graph/}. The model is phenomenological, not a
 UV-complete quantum gravity: it has no Hamiltonian derivation of the mass map,
 no Lorentz-invariant dynamics, and several labelled derivation debts
-(supplement \S1). Its value is that it \emph{derives} a large number of
-textbook numbers from a small number of inputs, fails loudly on
+(supplement \S1). Its value is that it \emph{reproduces} a large number of
+textbook numbers conditional on a small number of stated inputs, fails loudly on
 pre-registered wires when it is wrong, and makes one sharp sky prediction
 that the current observing run can kill or confirm.
 
@@ -113,6 +120,7 @@ while predicting a bright-gap rate distinct from the standard one.
 \begin{figure}[ht]\centering
 \includegraphics[width=0.92\linewidth]{figV5_survival.png}
 \caption{Survival matrix (visualisation of Table~\ref{tab:ledger}; no new numbers).
+Each cell is scored against a stated bound, not by author judgement: Fermi GRB~090510 linear bound \cite{Abdo2009} kills linear LIV; LHC thermal non-observation \cite{LHCbh} is the stated null the TeV-thermal row predicts against; EHT shadow + Cassini $\gamma$ \cite{EHT19,Bertotti03} are the quantitative bounds the horizon-structure row fails; gap/HESS masses are LVK/NICER catalog values the EOS row cannot jointly accommodate; gap-KN rate is scored as ``distinct rate predicted'' (us) vs ``dark'' (standard), not as a passed test.
 \texttt{scripts/generate\_v5\_figs.py}.}
 \label{fig:survival}
 \end{figure}
@@ -122,11 +130,11 @@ while predicting a bright-gap rate distinct from the standard one.
 \label{tab:ledger}
 \begin{tabular}{@{}l p{8.6cm} p{3.2cm}@{}}\toprule
 sector & headline & status / modules \\\midrule
-gravity & Newton, Kepler, redshift, $4M/b$, Shapiro, Mercury $42.99''$, $\gamma=1$ exactly, J0737 $0.1\sigma$ & pass (AS, AT, AU, BB, BH) \\
+gravity & Newton, Kepler, redshift, $4M/b$, Shapiro, Mercury $42.99''$, $\gamma=1$ (fitted $1/2$; BV brackets at $\sim 20\%$), J0737 $0.1\sigma$ conditional & pass (AS, AT, AU, BB, BH) \\
 quantum info & $\log N$ vs $N$ hierarchy, Page dip $0.72$\,bits, island-like pop, mirror, $k_f > k_1+k_2$ at 100\% & toy/random-state; $V_k$, QES open \\
 UV & quadratic-only LIV, $E_{QG,2} = \sqrt{8}\,E_P$, achromatic lensing $10^{-56}$--$10^{-32}$ & nulls held (T, BB, BD, BF) \\
 compact objects & gap 2.6/3.6, HESS 0.77, J0740/J0952, AT2017gfo, gap-KN $\sim 1$/yr & 5 anomalies, one law (BU) \\
-open & $p = 0.913 \pm 0.049$ matches GR; $c \approx 0.44$--$0.60$ derived (BV); $\kappa \to c_2$ map, $V_k$ isometry, Kerr $M_2$ open & measured; maps queued \\\bottomrule
+open & $p_{\mathrm{OR}} = 0.913 \pm 0.049$ passes J0737 check; $c \approx 0.44$--$0.60$ brackets $1/2$ (BV); $\kappa \to c_2$ map, $V_k$ isometry, Kerr $M_2$ open & measured; maps queued \\\bottomrule
 \end{tabular}
 \end{table}
 
@@ -262,19 +270,23 @@ $42.99''$/cy; a flat-$h$ hybrid gives $28.7''$/cy (PPN $2/3$). The
 second-order peel-off $(\mathrm{ours}-\mathrm{GR})/\mathrm{GR} = -0.75\,M/a$
 runs from $4.1\%$ at $20M$ to $2\times 10^{-8}$ at Mercury. Status of the
 coefficient: $1/2$ was \emph{fitted} to enforce $\gamma = 1$ in BH (unique
-coefficient, labelled fit); BV then \emph{derived} $c \approx 0.44$--$0.60$
-from $\ln 2$ line-defect scattering with zero tuning, predicting $p = 2c$
-and $\gamma = 2c$ (supplement \S2). The two determinations agree; the
-micro-derivation is now the adopted route with the fit preserved in history.
+coefficient, labelled fit); BV then derived $c \approx 0.44$--$0.60$
+from $\ln 2$ line-defect scattering with zero tuning, bracketing the fitted
+$1/2$ at $\sim 20\%$ (i.e.\ $\gamma = 2c = 0.88$--$1.2$; supplement \S2).
+This is a consistency check on the fitted coefficient, not a
+Cassini-precision ($10^{-5}$) derivation: $\gamma = 1$ exactly remains the
+BH fit, and the $k = 20$ point ($c = 0.437$, $p_{\mathrm{OR}} = 2c = 0.87$)
+sits $0.2\sigma$ from the gradient-shell measurement below.
 
 \paragraph{2PN preview (J0737).}
-With $g_{rr} = (1+U)^{2p}$ and $c_2(p) = p(2p-1)$, the 2PN periastron weight
+With $g_{rr} = (1+U)^{2p_{\mathrm{OR}}}$ and $c_2(p_{\mathrm{OR}}) = p_{\mathrm{OR}}(2p_{\mathrm{OR}}-1)$, the 2PN periastron weight
 $c_{\mathrm{tot}} = c_1 + w c_2$ with $w = 1.953$ must equal the GR value
-$4.8695$. The model's $c_1 = 3.36$ (vs GR $1.94$) is cancelled at $p = 0.92$.
+$4.8695$. The model's $c_1 = 3.36$ (vs GR $1.94$) is cancelled at $p_{\mathrm{OR}} = 0.92$.
+Here $p_{\mathrm{OR}}$ is the Ollivier--Ricci radial exponent ($|\kappa| \sim r^{-p_{\mathrm{OR}}}$); it enters \emph{only} at 2PN via the $\kappa \to c_2$ ansatz, while the 1PN coefficient is held at unity ($\gamma = 1$) from the BH sector and is not refit by $p_{\mathrm{OR}}$.
 Gradient-shell Ollivier--Ricci measurements give
-$p = 0.913 \pm 0.049$ (80 graphs, $N = 1020$, exact, SEM $0.0055$) and
-$0.93/0.94/0.91$ at $N = 4000/8000/16000$, landing J0737 \cite{Kramer2006} at $0.1\sigma$
-(B1913 passes at $0.01\sigma$ \cite{Weisberg2016}; supplement \S4). The flat $p = 0.49$ alternative is $-10\sigma$ dead. The
+$p_{\mathrm{OR}} = 0.913 \pm 0.049$ (80 graphs, $N = 1020$, exact, SEM $0.0055$) and
+$0.93/0.94/0.91$ at $N = 4000/8000/16000$, passing the J0737 \cite{Kramer2006} consistency check at $0.1\sigma$ conditional on the ansatz
+(B1913 passes at $0.01\sigma$ \cite{Weisberg2016}; supplement \S4). The flat $p_{\mathrm{OR}} = 0.49$ alternative is $-10\sigma$ dead on the same ansatz. The
 quantitative $\kappa \to c_2$ map remains ansatz-dependent (power-law vs
 $1/r^2$ disagree cross-applied) and is the open micro-derivation, now
 labelled rather than hidden.
@@ -348,15 +360,15 @@ $k = 1.51\times 10^{77}(M/M_\odot)^2$ with no matter phases, plus two shedding
 numbers calibrated \emph{once} on AT2017gfo \cite{Abbott2017}, addresses all five:
 
 \begin{table}[ht]\centering\footnotesize
-\caption{Five anomalies, one law. Shedding $e$: $0.5 \to 0.416$ plus 10\% efficiency, fixed on \#4.}
+\caption{Five anomalies, one law. Shedding $e$: $0.5 \to 0.416$ plus 10\% efficiency, fixed on \#4. Row 5: standard $\le 0.3$/yr is gap+NS only (Foucart-disruption-allowed \cite{Foucart18,Kunnumkai24}); gap+gap standard is $\sim 0$. Decisive test is Category B (gap+gap or Foucart $M_{\mathrm{rem}} = 0$); Category-A gap+NS bright KNe are ambiguous.}
 \label{tab:five}
 \begin{tabular}{@{}c p{3.4cm} p{4.2cm} p{6.2cm}@{}}\toprule
 \# & anomaly & standard & this model \\\midrule
-1 & Gap: GW190814 2.6, GW230529 3.6\,$M_\odot$ & impossible (NS $< 2.3$, BH $> 5$) & continuous $k = 1.0$--$2.0\times 10^{78}$; must flash \\
+1 & Gap: GW190814 2.6, GW230529 3.6\,$M_\odot$ & gap underpopulated; NSBH disruption possible \cite{Foucart18} & continuous $k = 1.0$--$2.0\times 10^{78}$; Cat.\ B must flash \\
 2 & Light: HESS J1731 $0.77\,M_\odot$ & below min $1.17\,M_\odot$, cannot form & low-$k$ tail $9\times 10^{76}$ \\
-3 & Heavy: J0740 2.14, J0952 2.35\,$M_\odot$ & EOS tension with NICER $R_{1.4}$ & more legs $7$--$8.4\times 10^{77}$, no EOS \\
+3 & Heavy: J0740 2.08, J0952 2.35\,$M_\odot$ \cite{Fonseca21,Romani22} & EOS tension with NICER $R_{1.4}$ & more legs $6.6$--$8.4\times 10^{77}$, no EOS \\
 4 & AT2017gfo $0.05\,M_\odot$ blue+red & neutron-rich EOS in tension & leg-shedding $0.047\,M_\odot$, $m_g$ 18.0 vs 17.5 \\
-5 & Next gap merger (prediction) & dark ($\le 0.3$/yr O5) & bright $\sim 1$/yr O5; 10 misses kill us \\\bottomrule
+5 & Next gap merger (prediction) & Cat.\ A can flash; Cat.\ B dark ($\le 0.3$/yr gap+NS) & bright $\sim 1$/yr O5; 10 Cat.\ B misses kill us \\\bottomrule
 \end{tabular}
 \end{table}
 
@@ -367,20 +379,33 @@ neutron-rich with ejecta mass $M_{\mathrm{ej}} = \Delta k\,m_{\mathrm{leg}}
 the factor-3 $k$-rounding debate cannot move it. The $1.4+1.4$ case gives
 $0.047\,M_\odot$ with $m_g \sim 18.0$ at 40~Mpc versus observed $17.5$ (inside
 the $\pm 1$ analytic tolerance; radiative-transfer refinement \cite{POSSIS} queued); gap events are \emph{brighter} at fixed
-distance (Table~\ref{tab:bright}). The $1.1$--$2.3\,M_\odot$ pulsar
+distance (Table~\ref{tab:bright}) as a consequence of larger $M_{\mathrm{tot}}$ plus the single calibration, not as independent evidence: the current law is equal-mass leading order with no mass-ratio dependence (unequal-mass pairs at fixed $M_{\mathrm{tot}}$ give identical $M_{\mathrm{ej}}$; $q$-dependence queued, supplement S1/D8). The $1.1$--$2.3\,M_\odot$ pulsar
 distribution is the low-$k$ tail ($k \sim 10^{77}$) of the same family; the
 gap is where $e_{\mathrm{int}} \sim e_{\mathrm{ext}}$, not a boundary between
 kinds. If correct, stable nuclear matter ends at $\sim 10^{15}$~g/cc with no
 hyperon/quark branch \cite{EOSrev} realised in nature, and $r$-process yields routed
 through AT2017gfo neutron ejecta are reinterpreted as shed-leg hadronisation
---- a blunt implication we state so no reader misses it, while noting that
+--- a blunt implication we state so no reader misses it.
+
+\paragraph{What the model does not yet reproduce (neutron-star observables).}
 NICER radii \cite{NICER19,NICER21} and tidal deformabilities from routing stiffness are not yet
-derived (queued, supplement \S4) and constitute the sharpest near-term test
-after the kilonova rate.
+derived (queued, supplement \S4/D5) and constitute the sharpest near-term test
+after the kilonova rate. Concretely: our $k(M)$ map gives a would-be horizon
+radius $R_s(1.4\,M_\odot) = 2M \approx 4.1$\,km, well inside the observed
+$R_{1.4} \approx 11$--$13$\,km; $R_s$ is not a stellar radius, and low-$k$
+objects are horizonless ($\chi < 1$, delocalized phase) with their
+$\sim 12$-km photosphere set by routing stiffness, which is underived. Targets:
+$R_{1.4} = 11.5 \pm 0.9$\,km and $\Lambda_{1.4} = 265^{+238}_{-104}$ (joint
+GW+NICER) or $\Lambda_{1.4} = 190^{+390}_{-120}$ (GW170817 alone)
+\cite{AbbottEOS18}; AT2017gfo Sr II \cite{Watson19} requires shed-leg
+hadronisation chemistry ($Y_e$, Sr) likewise open (D7). A NICER $R_{1.4}$ at
+$11$--$13$\,km (5\%) or a GW $\Lambda_{1.4}$ inconsistent with the derived
+stiffness at 90\% kills BU (Table~\ref{tab:kill}).
 
 \begin{table}[ht]\centering\small
 \caption{Gap-kilonova brightness ($g$-band, analytic BC $= 0$; $i$-band not claimed).
-AT2017gfo anchor: predicted 18.0 vs observed 17.5 at 40~Mpc. Rubin single-visit $r = 24.5$ \cite{Rubin19}.}
+AT2017gfo anchor: predicted 18.0 vs observed 17.5 at 40~Mpc. Rubin single-visit $r = 24.5$ \cite{Rubin19}.
+$M_{\mathrm{ej}} = 0.0168\,M_{\mathrm{tot}}$ in all rows by construction (equal-mass leading order; $q$-dependence open, D8).}
 \label{tab:bright}
 \begin{tabular}{lllll}\toprule
 $M_{\mathrm{tot}}$ & $M_{\mathrm{ej}}$ & 40~Mpc $m_g$ & 100~Mpc $m_g$ & 200~Mpc $m_g$ \\\midrule
@@ -409,31 +434,35 @@ current status, and timelines in Table~\ref{tab:kill}.
 \label{tab:kill}
 \begin{tabular}{@{}l p{6.0cm} p{4.2cm} l@{}}\toprule
 wire & threshold & now & timeline \\\midrule
-Gap kilonovae & 10 qualifying gap mergers $< 200$\,Mpc, $< 100$\,deg$^2$, zero KN to $m < 24$ & 0 qualifying so far & O5 decisive \\
-NICER radius & $R_{1.4}$ at 11--13\,km, 5\%, unreproducible by routing stiffness & stiffness underived & 2--3\,yr \\
+Gap kilonovae (Cat.\ B) & 10 qualifying Cat.\ B gap mergers $< 200$\,Mpc, $< 100$\,deg$^2$, zero KN to $m < 24$ & 0 qualifying so far & O5 decisive \\
+NICER radius / tidal & $R_{1.4}$ at 11--13\,km, 5\%, or $\Lambda_{1.4}$ at 90\%, unreproducible by routing stiffness & stiffness underived & 2--3\,yr \\
 Linear LIV & finite $E_{QG,1}$, or $\Delta t \propto E$, or $10^{-3}$ chromatic bending & Fermi already kills linear models & archival + CTA \\
-2PN exponent & $p$ outside $0.92 \pm 0.056$ at $N = 1024$ class, 80 graphs & $0.913 \pm 0.049$, passes $5\times$ & held to N=16000 \\
+2PN exponent & $p_{\mathrm{OR}}$ outside $0.92 \pm 0.056$ at $N = 1024$ class, 80 graphs & $0.913 \pm 0.049$, passes $5\times$ & held to N=16000 \\
 Kerr quadrupole & graph $|\delta_Q|\gtrsim0.17$ ($Q=-Ma^2(1+\delta_Q)$) & no $M_2$ yet & target (S1/S3) \\
 Lab quench & same-device grid$\to$all:all $t^*$ ratio $< 1.3$ (predicted $2$--$3\times$) & untested & when run \\\bottomrule
 \end{tabular}
 \end{table}
 
 The gap-kilonova protocol (supplement \S4, full trigger plan in
-\path{docs/observation-protocol.md}) requires multi-detector events only:
-single-detector non-detections such as GW230529 (24,200~deg$^2$, 7\% ZTF
+\path{docs/observation-protocol.md}) requires multi-detector events only and
+splits triggers by category: Category B (decisive) is gap primary
+$m_1 \in [2.5,5.0]\,M_\odot$ with $m_2 > 2.5\,M_\odot$ or Foucart
+$M_{\mathrm{rem}} = 0$ over the EOS/spin posterior at 90\% \cite{Foucart18};
+Category A (gap+NS, disruption allowed) is informative but ambiguous.
+Single-detector non-detections such as GW230529 (24,200~deg$^2$, 7\% ZTF
 coverage to $g = 21.1$ at $\sim 197$~Mpc, our $m_g \sim 21.2$ at the depth
-edge) are uninformative either way and do not count. Expected O5 yield is
+edge; Category A) are uninformative either way and do not count. Expected O5 yield is
 $\sim 1.05$/yr (ours, 1.5 gap events/yr $\times$ 70\% DECam-like) versus
-$\le 0.3$/yr standard. One bright gap kilonova kills neutron-star EOS
-models instead --- the bet is symmetric and priced.
+$\le 0.3$/yr standard for gap+NS ($\sim 0$ for gap+gap). One bright Category-B
+gap kilonova kills neutron-star EOS models instead --- the bet is symmetric and priced.
 
 \paragraph{Conclusion.}
 Starting from ``all:all entanglement is zero-length connectivity'' we have
-derived fast scrambling, the area law, the Page curve with island-like turnover, Kerr
-thermodynamics (area; $M_2$, $g_{t\phi}$, ISCO open), Newtonian gravity with its sign, textbook redshifts,
-full-strength bending and Shapiro delay with $\gamma = 1$, Mercury's
-$43''$/cy, quadratic-only UV dispersion, and the J0737 2PN lock --- all from
-one wiring picture with all failures and open maps kept on the ledger. The
+reproduced fast scrambling, the area law (mass map assumed), the Page curve as random-state behaviour with island-like turnover, Kerr
+area thermodynamics (area only; $M_2$, $g_{t\phi}$, ISCO open), Newtonian gravity with its sign (thermodynamic postulates assumed), textbook redshifts,
+full-strength bending and Shapiro delay with $\gamma = 1$ (fitted), Mercury's
+$43''$/cy, quadratic-only UV dispersion (regular lattice), and the J0737 2PN consistency check --- all from
+one wiring picture conditional on the S1 inputs, with all failures and open maps kept on the ledger. The
 price is abandoning neutron matter above $\sim 10^{15}$~g/cc. The reward, if
 the sky cooperates, is the first quantum-gravity model with a kilonova
 prediction distinct from astrophysics in the current run. If the compact-object
@@ -445,8 +474,8 @@ Full methods in the supplement. Gradient shells
 $p_{\mathrm{adj}}(s) = 0.85+0.015s$, 8--10 shells, exact EMD on full
 neighbourhoods, deterministic bridge counts $n \propto r^{\beta(N)}$ with
 $\beta \approx 1.5/1.28/1.24$ at $N = 300/600/1020$ (log-linear to
-$0.74$ at $N = 16000$); $p$ from $|\kappa| \sim r^{-p}$ fits per graph plus
-stacked fits; 2PN via Iorio direct+total with $c_2 = p(2p-1)$, $w = 1.953$,
+$0.74$ at $N = 16000$); $p_{\mathrm{OR}}$ from $|\kappa| \sim r^{-p_{\mathrm{OR}}}$ fits per graph plus
+stacked fits (2PN only; 1PN held at $\gamma = 1$); 2PN via Iorio direct+total with $c_2 = p_{\mathrm{OR}}(2p_{\mathrm{OR}}-1)$, $w = 1.953$,
 $R+\dot\omega \to M$ inversion; shedding $M_{\mathrm{ej}}(M_{\mathrm{tot}})$
 with blue+red components, band mags, O5 yield arithmetic. Randomness seeded;
 tolerances recorded in-test.
@@ -505,8 +534,15 @@ third-party figure data copied.
 \bibitem{Witten84} E.~Witten, Phys.\ Rev.\ D 30, 272 (1984), strange/quark matter.
 \bibitem{Amelino13} G.~Amelino-Camelia, Living Rev.\ Rel.\ 16, 5 (2013), LIV review.
 \bibitem{Kitaev15} A.~Kitaev, talks on SYK (2015); J.~Maldacena and D.~Stanford, PRD 94, 106002 (2016).
-\bibitem{GW250114} A.~G.~Abac et al.\ (LVK), Phys.\ Rev.\ Lett.\ 135, 111403 (2025), arXiv:2508.XXXX; LIGO-P2500421: $33.6+32.2\,M_\odot$, SNR 80, area law + Kerr ringdown.
+\bibitem{GW250114} A.~G.~Abac et al.\ (LVK), Phys.\ Rev.\ Lett.\ 135, 111403 (2025), arXiv:2509.08054 [gr-qc]; LIGO-P2500421: $33.6+32.2\,M_\odot$, SNR 80, area law + Kerr ringdown.
 \bibitem{GW241011} A.~G.~Abac et al.\ (LVK), ApJL 993, L21 (2025); LIGO-P2500402: GW241011+GW241110, strongest spin-quadrupole bound to date.
+\bibitem{Fonseca21} E.~Fonseca et al., ApJL 915, L12 (2021), arXiv:2104.00880; J0740 $2.08 \pm 0.07\,M_\odot$ via Shapiro delay.
+\bibitem{Cromartie20} H.~T.~Cromartie et al., Nature Astron.\ 4, 72 (2020); J0740 $2.14 \pm 0.10\,M_\odot$ (superseded by \cite{Fonseca21}).
+\bibitem{Romani22} R.~W.~Romani et al., ApJL 934, L17 (2022), arXiv:2207.05124; J0952-0607 $2.35 \pm 0.17\,M_\odot$ (tightened to $\pm 0.11$ in 2025 update).
+\bibitem{Foucart18} F.~Foucart et al., Phys.\ Rev.\ D 98, 081501 (2018), arXiv:1807.00011; NSBH remnant-mass formula.
+\bibitem{Kunnumkai24} S.~Kunnumkai et al., Phys.\ Rev.\ D 112, 123005 (2025), arXiv:2409.10651; GW230529 KN $2$--$28\%$, O5 mgNSBH $2$--$3\%$ per event.
+\bibitem{AbbottEOS18} B.~P.~Abbott et al.\ (LVK), Phys.\ Rev.\ Lett.\ 121, 161101 (2018); $\Lambda_{1.4} = 190^{+390}_{-120}$, $R \approx 10.8$\,km.
+\bibitem{Watson19} D.~Watson et al., Nature 574, 497 (2019); Sr II in AT2017gfo.
 \end{thebibliography}
 
 \end{document}
