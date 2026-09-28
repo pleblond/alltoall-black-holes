@@ -95,6 +95,7 @@ from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase
 from bh_graph.kerr import kerr_newman_k, spin_budget_fraction
 from bh_graph.haar import page_curve_exact_bits, haar_entropy_samples
 from bh_graph.evaporation_unitary import evaporate_unitary
+from bh_graph.graphvk import evaporate_graph
 from bh_graph.monogamy import frontier, ckw_deficit
 from bh_graph.evaporation import page_curve_bits
 from bh_graph.otoc import otoc_alltoall, otoc_chain_avg
@@ -1894,6 +1895,44 @@ def fig74_unitary_page():
     plt.close(fig)
 
 
+def fig74b_graphvk():
+    from bh_graph.graphvk import page_deviation
+    n = 8
+    t, s_exact = page_curve_exact_bits(n)
+    s_min = np.minimum(t, n - t)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    # left: V_k derived from graph Hamiltonians -- all:all tracks Page, chain sags
+    means = {}
+    n_seeds = 8
+    for kind, color, marker in [("complete", "#0f766e", "o"), ("chain", "#d97706", "s")]:
+        acc = np.zeros(n + 1)
+        for seed in range(n_seeds):
+            acc += evaporate_graph(n, kind=kind, dt=1.0, seed=seed)["S_rad"]
+        means[kind] = acc / n_seeds
+        axes[0].plot(t, means[kind], f"{marker}-", color=color, ms=4,
+                     label=f"graph V_k {kind} (dev {page_deviation(means[kind], s_exact):.2f} bits)")
+    axes[0].plot(t, s_min, "--", color="gray", label="min() idealization")
+    axes[0].plot(t, s_exact, color="#2563eb", label="Page exact (Haar avg)")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("S_rad (bits)")
+    axes[0].set_title("Graph-derived V_k: wiring decides Page")
+    axes[0].legend(fontsize=7)
+    # right: per-seed deviation from exact Page (same dt, same N)
+    devs_c = [page_deviation(evaporate_graph(n, kind="complete", dt=1.0, seed=s)["S_rad"], s_exact)
+              for s in range(n_seeds)]
+    devs_l = [page_deviation(evaporate_graph(n, kind="chain", dt=1.0, seed=s)["S_rad"], s_exact)
+              for s in range(n_seeds)]
+    axes[1].scatter([0] * n_seeds, devs_c, color="#0f766e", label="complete")
+    axes[1].scatter([1] * n_seeds, devs_l, color="#d97706", label="chain")
+    axes[1].set_xticks([0, 1]); axes[1].set_xticklabels(["complete", "chain"])
+    axes[1].set_ylabel("max |S_rad - S_exact| (bits)")
+    axes[1].set_title("Per-seed Page deviation (N=8, dt=1.0)")
+    axes[1].legend(fontsize=8)
+    fig.suptitle("Fig 74b — D1 graph instance: V_k from adjacency (V^d V=I, S from rho_rad)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig74b_graphvk_page.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def fig75_gw190814_audit():
     from bh_graph.massgaps import (
         gw190814_blue_mag, GW190814_CFHT_G_EPOCHS, GW190814_GROWTH_I_EPOCHS,
@@ -2044,6 +2083,7 @@ def main():
     fig72_uv_ladder()
     fig73_uv_n4000()
     fig74_unitary_page()
+    fig74b_graphvk()
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
     print(f"wrote figures to {FIG}")
