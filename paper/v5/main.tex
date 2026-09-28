@@ -128,10 +128,10 @@ while predicting a bright-gap rate distinct from the standard one.
 \begin{tabular}{@{}l p{8.6cm} p{3.2cm}@{}}\toprule
 sector & headline & status / modules \\\midrule
 gravity & Newton, Kepler, redshift, $4M/b$, Shapiro, Mercury $42.99''$, $\gamma=1$ exactly, J0737 $0.1\sigma$ & pass (AS, AT, AU, BB, BH) \\
-quantum info & $\log N$ vs $N$ hierarchy, Page dip $0.72$\,bits, island-like pop, mirror, $k_f > k_1+k_2$ at 100\% & qubit $V_t$ done; graph $V_k$, QES open \\
+quantum info & $\log N$ vs $N$ hierarchy, Page dip $0.72$\,bits, island-like pop, mirror, $k_f > k_1+k_2$ at 100\% & $V_t$ done; graph $V_k$ at small-$N$ ED; QES open \\
 UV & quadratic-only LIV, $E_{QG,2} = \sqrt{8}\,E_P$, achromatic lensing $10^{-56}$--$10^{-32}$ & nulls held (T, BB, BD, BF) \\
 compact objects & gap 2.6/3.6, HESS 0.77, J0740/J0952, AT2017gfo, gap-KN $\sim 1$/yr & 5 anomalies, one law (BU) \\
-open & $p = 0.913 \pm 0.049$ matches GR; $c \approx 0.44$--$0.60$ derived (BV); $\kappa \to c_2$ map, $V_k$ isometry, Kerr $M_2$ open & measured; maps queued \\\bottomrule
+open & $p = 0.913 \pm 0.049$ matches GR; $c \approx 0.44$--$0.60$ derived (BV); $\kappa \to c_2$ map, Kerr $M_2$ open ($V_k$ beyond small-$N$ ED open) & measured; maps queued \\\bottomrule
 \end{tabular}
 \end{table}
 
@@ -186,7 +186,9 @@ units (module \texttt{horizon.k\_from\_mass\_schwarzschild}). We state
 plainly that this map is \emph{assumed for consistency, not derived}:
 the reduction theorem (BM in the extended record; supplement \S1) shrinks the circle to the single statement $R_s = 2M$, but the
 derivation of the mass--radius relation from wiring alone remains open
-(supplement \S1). Monogamy bounds $e_{\mathrm{int}} + e_{\mathrm{ext}} \le 1$
+(supplement \S1). The Michell route (BM2, supplement \S2) now derives
+$R = 2GM/c^2$ from entropic Newton $+$ lattice $c$ $+$ one labelled escape
+assumption, shrinking the circle to those postulates. Monogamy bounds $e_{\mathrm{int}} + e_{\mathrm{ext}} \le 1$
 in the linear toy (Fig.~\ref{fig:mono}), with the exact Coffman--Kundu--
 Wootters frontier \cite{Coffman2000} $\tau_{A|BE} - C^2_{AB} - C^2_{AE} \ge 0$ verified on a
 25-point grid and lying strictly below the linear bound (e.g.\ $x+y = 0.70$
@@ -316,8 +318,8 @@ $k \ge N/2+1+\log_2 100$, sealing at $k \to 0$. Evaporation as leg surgery
 ($k \to k-1$ per step) reproduces the Page curve
 $S_{\mathrm{rad}} = \min(t, N_{\mathrm{eff}}-t)$ with the exact Page dip
 $0.72$\,bits and Haar-typical spread, identically whether $N$ shrinks with
-$k$ or stays fixed --- area tracks wiring alone (qubit-toy unitary completion $V_t$ tested,
-Suppl.~S3; graph-dynamics $V_k$ open, Suppl.~S1/S3). Kerr--Newman
+$k$ or stays fixed --- area tracks wiring alone (unitary completion $V_t$ tested;
+graph-dynamics $V_k$ at small-$N$ ED, Suppl.~S3). Kerr--Newman
 ($r_+ = M+\sqrt{M^2-a^2-Q^2}$, $A = 4\pi(r_+^2+a^2)$) costs legs monotonically
 in spin at fixed $M$ (extremal Kerr half, extremal Reissner--Nordstr\"om
 quarter the Schwarzschild budget, patch-independent ratios); the Kerr Page
@@ -443,7 +445,11 @@ mass-independent by construction:
 \label{eq:shed}
 \end{equation}
 ($16.8\%$ shed fraction $\times$ $10\%$ efficiency, both fixed once on
-AT2017gfo), and exactly independent of mass ratio $q$. The logic is
+AT2017gfo), and exactly independent of mass ratio $q$. A graph-derived
+refinement gives $\mathrm{frac}(q) = \eta\cdot2q/(1+q)^2$ (BU2, supplement
+S4), dimming low-$q$ events (GW190814 $\sim 0.4$\,mag) while keeping them
+kilonova-bright; the flat law is kept as the O5 falsifier and the sample
+adjudicates flat-vs-shaped. The logic is
 falsifiable end to end: shedding rule $\to$ ejecta fraction $\to$
 kilonova light curve $\to$ optical transient --- for \emph{binary
 black-hole} mergers, including low-$q$ systems where conventional
@@ -458,7 +464,7 @@ forward consequences of the fixed calibration, not fits.}
 \begin{tabular}{@{}l p{7.5cm}@{}}\toprule
 quantity & model prediction \\\midrule
 ejecta fraction & $M_{\mathrm{ej}}/M_{\mathrm{tot}} = 0.0168$ \\
-mass-ratio dependence & none (exact in the prescription) \\
+mass-ratio dependence & none in flat law; derived shape $2q/(1+q)^2$ (S4) \\
 BBH mergers & kilonova-bright ($m_g \sim 22$ nearby, O5-testable) \\
 GW190814 ($23+2.6$, $q \sim 0.11$) & transient predicted; constrained at $p \sim 0.12$ (tension, not exclusion) \\
 O5/Rubin BBH ToO & decisive: detections confirm, clean sample kills \\\bottomrule

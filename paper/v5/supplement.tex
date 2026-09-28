@@ -20,7 +20,7 @@
 \caption{Every number with a status. ``Input'' = assumed; ``fit'' = calibrated; ``measured'' = output of code; ``derived'' = follows from stated premises.}
 \begin{tabular}{@{}p{3.4cm} p{3.4cm} p{2.6cm} p{4.4cm}@{}}\toprule
 param & value & status & notes \\\midrule
-$k(M)$ map $\propto M^2$ & GR-consistency & input (circle admitted) & BM shrinks to $R_s = 2M$; not derived \\
+$k(M)$ map $\propto M^2$ & GR-consistency & derived modulo postulates (BM2) & Michell $R = 2GM/c^2$ from Newton+$c$+escape; postulates open (D6) \\
 AT $\alpha$ & 1 & calibrated to Schwarzschild $c_{\mathrm{eff}}$ & matches $dr/dt$ exactly \\
 tortuosity $c$ & $1/2$ (BH fit) $\to$ $0.44$--$0.60$ (BV derived) & fit superseded by derivation & $\ln 2$ scattering, zero tuning; $p = 2c$, $\gamma = 2c$ \\
 $s_{\mathrm{leg}}$ & $\ln 2$\,nats & measured saturation (BN/BS) & flip preserves $G = 1$ via Planck bits \\
@@ -29,11 +29,11 @@ gradient slope & $0.015$ & fitted, labelled & $p_{\mathrm{adj}}(s) = 0.85+0.015s
 bridge $\beta(N)$ & 1.5@300; 1.28@600; 1.24@1020; 0.99@4k; 0.87@8k; 0.74@16k & recalibrated per $N$ & log-linear over 6 points; derivation queued \\
 $w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathrm{tot}} = c_1 + w c_2 = 4.8695$ at $p = 0.92$ \\
 shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
-shed $\epsilon(M,a)$ & $0.0168$ universal (Eq.~2 main) & calibrated + extrapolated (D8) & mass/ratio independence underived; BBH extension tested, not fitted \\
+shed $\epsilon(M,a)$ & $0.0168$ universal (Eq.~2 main) & shape derived, $\epsilon$ open (D8) & $\mathrm{frac}(q) = \eta\cdot2q/(1+q)^2$; $\eta$ replaces $e_{\rm final}$; O5 flat-vs-shaped \\
 upper-gap null & no feature at $44\,M_\odot$ & negative prediction (measured smooth) & $k$/spin/Love/congestion all smooth; edge left to stellar physics \\
 GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, POSSIS queued (D7) & non-detection at $p \sim 0.12$--$0.32$; epoch audit in \texttt{massgaps} \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
-evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
+evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ at small-$N$ ED (S3) & $V_k{=}e^{-iH_{\rm graph}dt}$; all:all$\to$Page, chain sags; large-$N$/QES open (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
 echo $R$ & $10^{-80}$ ampl., $10^{-160}$ energy & dimensional estimate & $\propto\omega^2$ lattice scattering, not leg S-matrix; $\sim158$ orders margin \\\bottomrule
 \end{tabular}
@@ -41,7 +41,8 @@ echo $R$ & $10^{-80}$ ampl., $10^{-160}$ energy & dimensional estimate & $\propt
 
 Given $k(M)$: $1/r$ potential, $\gamma = 1$, $43''$/cy, $b_{\mathrm{crit}} = 3\sqrt{3}M$,
 Page/island-like/mirror follow as random-state/toy-code behaviour (genuine QES extremization
-and graph-dynamics $V_k$ open, S3; qubit-toy $V_t$ done). Not derived: mass--radius scaling itself, $\beta(N)$
+open, S3; graph-dynamics $V_k$ at small-$N$ ED, Fig.~74b). Not derived: full mass--radius relation
+from wiring (Michell radius modulo postulates, Fig.~3b), $\beta(N)$
 from geometry, $w$ from the graph Laplacian (Damour--Sch\"afer from wiring),
 NICER $M$--$R$--$\Lambda$ from routing stiffness, Kerr $M_2$/$g_{t\phi}$/ISCO/QNM from the graph.
 
@@ -49,6 +50,8 @@ Derived in-repo (new in v4.x): $p$ from exact Ollivier--Ricci (not hard-coded),
 $M(c_1,c_2)$ inversion, $M_{\mathrm{ej}}(M_{\mathrm{tot}})$ scaling, peak-time
 ordering, band mags, O5 yield arithmetic, $c$ from $\ln 2$ scattering, UV pop as
 graph disconnection, $p$ at $N = 4000/8000/16000$ with turnover measured.
+New in v5.x: graph $V_k \to$ Page at small $N$ (Fig.~74b), shed $q$-shape
+(Fig.~68b), Michell $R = 2GM/c^2$ (Fig.~3b).
 
 Ruled out on the record: broad Planck-remnant dark matter (survives only in a
 $\sim 0.4$-dex EMD window at $\sim 4\times 10^5$\,g); isotropic $b_{\mathrm{crit}} = 8M$;
@@ -60,6 +63,24 @@ naive $\gamma = 2$ strain; linear LIV; flat $p = 0.49$ ($-10\sigma$).
 $F = M_1M_2/r^2$ exact (slope $-2$ to $10^{-9}$); leapfrog orbits close,
 $T^2 \propto r^3$. Flux $\propto 1/r^2$ distinguished from force (temperature
 corrects). Fig.~43.
+
+\textbf{BM2 Michell radius.} Integrating the model's own force $r \to \infty$
+gives $\Phi = -GM/r$ (tested against \texttt{quad} to $10^{-8}$), hence
+$v_{\mathrm{esc}} = \sqrt{2GM/r}$; with lattice $c$ and one labelled
+corpuscular escape assumption ($v_{\mathrm{esc}} < c$ escapes), the trapping
+surface sits at $R = 2GM/c^2$ with no Schwarzschild metric imported. $k(M)$
+through the Michell radius coincides with the GR-consistent map to machine
+precision (module \texttt{michell}, Fig.~\ref{fig:sup-michell}). Open: the
+postulates behind Newton, the escape assumption, and the full metric (D6).
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig3b_michell.png}
+\caption{Michell route: escape velocity crosses $c$ exactly at $R = 2M$ (left,
+trapped region shaded); $k(M)$ through the Michell radius coincides with the
+GR-consistent map (right) --- same numbers, GR-free provenance.
+Module \texttt{michell} (D6 circle-shrink).}
+\label{fig:sup-michell}
+\end{figure}
 
 \textbf{AT redshift.} GPS $+5.29\times 10^{-10}$ and Pound--Rebka
 $2.55\times 10^{-15}$ derived with no new parameters. Congestion fronts give
@@ -148,9 +169,17 @@ Haar/Page expectation (mean dev.\ $0.002$ bits, $N=8$), and finite-depth all:all
 Page by depth $\sim5$/step without assuming Haar. The QES/island crossing
 $S_{\rm no}=ks_{\rm leg}$ vs $S_{\rm isl}=k\ln2+\max(S_0-ks_{\rm leg},0)$ is a two-saddle
 competition plus a discrete min-cut analogue (module \texttt{qes}), not an extremization of
-$S_{\rm gen}=A/4G+S_{\rm matter}$ from a gravitational path integral. The remaining missing theorem is the
-graph-dynamics evaporation isometry $V_k:{\cal H}_{{\rm graph},k}\to{\cal H}_{{\rm graph},k-1}\otimes{\cal H}_{\rm leg}$:
-derive (not merely allow) a scrambling $V_k$ from the graph Hamiltonian/adjacency.
+$S_{\rm gen}=A/4G+S_{\rm matter}$ from a gravitational path integral. The
+graph-dynamics evaporation isometry is now closed at small-$N$ exact
+diagonalization (module \path{graphvk}, Fig.~\ref{fig:sup-graphvk}): per-step
+$V_k = e^{-iH_{\rm graph}dt}$ derived from the hole adjacency (disordered
+Heisenberg, one random XYZ term per edge), $V_k^\dagger V_k = I$ verified
+including a composed-map inner-product test, $S_{\rm rad}$ from $\rho_{\rm rad}$
+tracks exact Page under all:all dynamics (mean dev.\ $< 0.25$\,bits at $N = 8$,
+typically $\sim 0.01$) while the same $dt$ on a chain sags below Page (mean
+dev.\ $> 0.4$); changing the graph changes $V$ ($\|U_{\rm complete} -
+U_{\rm chain}\| > 1$). Remaining: large-$N$ limit, $k$-backreaction on the
+interior spectrum, emission energy spectrum, and $S_{\rm gen}$ extremization.
 Tracked as D1 in \path{docs/DEFERRED.md}.
 
 \textbf{What Kerr means here (honesty note).} Only the Kerr--Newman area $A(M,a,Q)$ is assumed to
@@ -198,6 +227,16 @@ Haar/Page expectation including the $0.72$-bit dip, computed from $\rho_{\rm rad
 finite-depth all:all circuits (right) converge to Page by depth $\sim5$/step without assuming Haar.
 Module \texttt{evaporation\_unitary} (D2).}
 \label{fig:sup-upage}
+\end{figure}
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig74b_graphvk_page.png}
+\caption{Graph-derived $V_k$: all:all hole Hamiltonians track exact Page (left,
+mean dev.\ $< 0.25$\,bits, $N = 8$) while chain Hamiltonians at the same $dt$
+sag below it; per-seed deviations separate cleanly (right). The scrambling
+hierarchy of Sec.~1 at Hamiltonian level, without assuming Haar.
+Module \texttt{graphvk} (D1 graph instance).}
+\label{fig:sup-graphvk}
 \end{figure}
 
 \section{Compact objects and 2PN (BU)}
@@ -261,6 +300,25 @@ $i$-band NOT claimed (one-zone $\kappa = 10$ over-traps: $t_{\mathrm{red}}
 --- conservative for gap-$g$ detectability). Standard $2$--$28\%$ band is a
 literature EOS input, not derived.
 
+\textbf{Derived shed shape (BU2).} Cross-bond counting with $1/N$ dilution
+forced by extensivity + all:all symmetry gives
+$\mathrm{frac}(q) = \eta\cdot2q/(1+q)^2$ via monogamy ($N$ cancels, so mass
+independence is exact in the large-$N$ limit); one $\eta = 0.336$ replaces
+$e_{\mathrm{final}}$ (anchor $\mathrm{frac}(1) = 0.168$), $\eta < 1$ predicted
+and held, $\epsilon = 0.1$ stays astrophysics (module \texttt{mergershed},
+Fig.~\ref{fig:sup-shedshape}). GW190814 dims $\sim 0.4$\,mag vs the flat law
+but stays bright ($M_{\mathrm{ej}} \approx 0.157\,M_\odot$); the flat law is
+kept as the O5 falsifier and the sample adjudicates flat-vs-shaped (D8).
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{fig68b_mergershed_shape.png}
+\caption{Derived shedding shape $\eta\cdot2q/(1+q)^2$ vs the flat prescription
+(left, AT2017gfo anchor + GW190814 marker); ejecta at GW190814 total mass stays
+far above the kilonova-capable threshold at any $q$ under both laws (right).
+Module \texttt{mergershed} (D8 partial).}
+\label{fig:sup-shedshape}
+\end{figure}
+
 \textbf{O5 protocol.} Trigger: $m_1 \in [2.5,5.0]\,M_\odot$, $< 200$\,Mpc,
 90\% area $< 100$\,deg$^2$ (multi-detector); Rubin ToO epochs 0.5/2/5\,d in
 $g+r+i+z$ (DECam/Gemini backup). Kill rule: 10 qualifying non-detections kill
@@ -277,11 +335,13 @@ continuity; Love $k_2$ slope $-2$ everywhere; leg-band entry $\sim 32\,M_\odot$
 at $10$\,Hz with $dM/M \sim 10^{-81}$; congestion ladder $\chi \sim 10^{-8}$
 (He core), $10^{-14}$ (envelope), $0.12$ (NS surface), $\sim 1$ (gap masses
 at $10$\,km footprints, footprint-conditional), $1$ at horizons. Shedding
-exactly flat in $q$ (machine precision) --- but $q$-independence is prescription
+exactly flat in $q$ (machine precision) --- but flatness was prescription
 (shed fraction $\times$ efficiency fixed once on AT2017gfo), not derived from
 the graph-dynamics evaporation isometry $V_k$ (open, S1/S3/D1): $q \sim 0.11$
-(GW190814) flashing at the same fraction as $q = 1$ (GW170817) is the
-model's biggest theory bet. GW190814 epoch audit: CFHT g-band
+(GW190814) flashing at the same fraction as $q = 1$ (GW170817) was the
+model's biggest theory bet. The BU2 derived shape
+($\mathrm{frac} \propto 2q/(1+q)^2$, above) now predicts low-$q$ dimming
+instead, kept alongside the flat law so O5 adjudicates. GW190814 epoch audit: CFHT g-band
 (Vieira+2020) and GROWTH i-band detection limits (Andreoni+2020) with
 per-epoch coverage $\times$ depth against distance ($241 \pm 43$\,Mpc) and
 $\pm 1$\,mag theory errors; combined $P \approx 0.68$ (g-only) / $0.88$
@@ -484,7 +544,9 @@ Modules follow the appendix letters of the v4.1 extended record:
 \path{weakfield} (BI,BQ), \path{legham} (BL),
 \path{pulsar}+\path{orici} gradient shells+\path{collapse} leg-shedding (BU),
 \path{uvscatter}+\path{sinkor}+\path{shellscale} (BV),
-\path{massgaps} (mass-gap null + GW190814 epoch audit).
+\path{massgaps} (mass-gap null + GW190814 epoch audit),
+\path{graphvk} (D1 graph $V_k$), \path{mergershed} (BU2 shed shape),
+\path{michell} (BM2 Michell radius).
 \par}
 
 Reproduce:

@@ -179,6 +179,35 @@ def fig3_horizon_area():
     plt.close(fig)
 
 
+def fig3b_michell():
+    from bh_graph.michell import escape_velocity, k_from_michell, michell_radius
+    m = 10.0
+    r = np.linspace(2.0, 80.0, 400)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    # left: escape velocity crosses c exactly at R = 2M
+    axes[0].plot(r, escape_velocity(r, m), color="#0f766e", label=r"$v_{esc}(r)$")
+    axes[0].axhline(1.0, ls="--", color="gray", label="c = 1 (lattice)")
+    axes[0].axvline(michell_radius(m), ls=":", color="red",
+                    label=f"R = 2M = {michell_radius(m):.0f}")
+    axes[0].axvspan(2.0, michell_radius(m), alpha=0.12, color="red", label="trapped")
+    axes[0].set_xlabel("r (Planck lengths)"); axes[0].set_ylabel("v_esc / c")
+    axes[0].set_title("Michell surface: v_esc = c at R = 2M")
+    axes[0].legend(fontsize=7)
+    # right: k(M) through the Michell radius coincides with the GR-consistent map
+    mm = np.linspace(0.5, 3.0, 200)
+    axes[1].plot(mm, [k_from_michell(v) for v in mm], color="#0f766e",
+                 label="k via Michell R (no GR input)")
+    axes[1].plot(mm, k_from_mass_schwarzschild(mm), "--", color="#7c3aed",
+                 label="GR-consistent map")
+    axes[1].set_xlabel("M (Planck masses)"); axes[1].set_ylabel("k")
+    axes[1].set_title("Same k(M): provenance replaced, numbers kept")
+    axes[1].legend(fontsize=7)
+    fig.suptitle("Fig 3b — BM2: Rs = 2M from entropic Newton + c (metric never imported)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig3b_michell.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def fig4_monogamy():
     e_int, e_ext = monogamy_frontier(100)
     fig = plt.figure(figsize=(5, 4))
@@ -2043,6 +2072,7 @@ def main():
     fig1_scrambling()
     fig2_graph_sketches()
     fig3_horizon_area()
+    fig3b_michell()
     fig4_monogamy()
     fig5_phase_transition()
     fig6_quantized()
