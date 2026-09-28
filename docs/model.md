@@ -160,6 +160,9 @@ Consequences of I1–I3 worth stating plainly:
   ratios). Normalization (audit v0.2): `kerr.kerr_newman_k` returns `A/lp²`
   (patch-`1` units, exactly `PATCH_AREA`× the I1 leg count) and is consumed only
   by a monotonicity test; absolute leg counts use `data.k_schwarzschild_sun`.
+  `kerr_newman_k` is a legacy patch-1 area convention, not the normalized leg
+  count — it must not be used as an absolute `k` without dividing by
+  `PATCH_AREA` (rename queued as future housekeeping, no behavior change here).
   Nothing else about Kerr is assumed here — and nothing else about Kerr
   is claimed (see §5/D2).
 
@@ -218,9 +221,11 @@ QEC mirror: recovery error `err(k) = min(1/2, 2^{N/2+1−k})` reaches 99% at
 `k ≥ N/2+1+log₂100`, sealing at `k → 0` (Hayden–Preskill primitive).
 (`evaporation`, `evaporation_unitary`, `haar`, `qec`, `kerrpage`.)
 
-### T8 (Newton + Kepler + sign). `F = M₁M₂/r²` exact, orbits close, attraction signed.
+### T8 (Newton + Kepler + sign). `F = M₁M₂/r²` by exact algebra given I4, orbits close, attraction signed.
 
-Leg screens + I4 give `F = M₁M₂/r²` exact to `1e−9` in log-log slope, with
+Leg screens + I4 give `F = M₁M₂/r²` by exact multiplication of the chain
+(`T·dS/dr`, pinned with `==` in `test_chain_multiplies_to_newton`); the fitted
+log-log slope verifies to `1e−9` numerically, with
 closed leapfrog orbits and `T² ∝ r³`. Raw link-flux scales as channels
 (`∝ 1/r²`) and would give `1/r³` as energy; the temperature factor over the
 `r`-dependent screen corrects it to `1/r²` — both implemented so the
@@ -248,13 +253,14 @@ bending `4M/b` (the naive `2M/b` bet was lost on the record). Chromatic
 extension uses *phase* velocity `1/24`, not group `1/8`: the `r`-independent
 factor drops out of the Born integral, leaving fractional chromaticity
 `~1e−56` (optical) to `~1e−32` (10 TeV). Shapiro delay reproduces
-`R_s·ln(4r₁r₂/b²)` to 5%, passing Cassini with `γ = 1` exactly. An isotropic
+`R_s·ln(4r₁r₂/b²)` to 5%, passing Cassini with `γ = 1` under the calibrated
+spatial-sector coefficient. An isotropic
 reading would give `b_crit = 8M`, 54% above GR's `3√3M` and excluded by EHT at
 `~3.6σ`: the isotropic reading dies, not the core — transverse propagation must
 be essentially unimpeded, as an all:all interior demands. (`lensing`, `chroma`,
 `shapiro`, `bcrit`.)
 
-### T11 (spatial sector + Mercury). `γ = 1` exactly, `42.99″`/cy by direct integration.
+### T11 (spatial sector + Mercury). Fitted `γ = 1` (independent BV micro-derivation consistent), `42.99″`/cy by direct integration.
 
 Purely temporal models give closed Newtonian ellipses (`0` vs `43″`/cy): light
 never needed `g_rr`, orbits do. Tortuosity `dl = (1+√χ/2)dr` gives
@@ -321,8 +327,11 @@ narrow `~0.4`-dex window at `~4e5` g. (`data`, `gwdata`, `posteriors`,
 
 ## 4. L2: compact-object phenomenology (calibrated)
 
-L2 is one law plus two shedding numbers, calibrated **once** on AT2017gfo, with
-everything else forward. It is the most testable layer and the least derived.
+L2 is one mass–leg law plus six explicitly labelled phenomenological
+calibrations/prescriptions (F1–F6). F1–F4 concern the spatial/PN phenomenology;
+F5–F6 concern ejecta shedding. The shedding sector is calibrated **once** on
+AT2017gfo; the remaining quantities are fitted, solved, or prescribed as
+labelled below. It is the most testable layer and the least derived.
 Its claims must be defeasible without touching L0/L1.
 
 ### The one law
@@ -427,7 +436,7 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 | D4 | `β(N)` and `w` from geometry | derive `β(N)` from `N(r)` geometry, `w` from the graph Laplacian (Damour–Schäfer from wiring) | promotes F2/F3 to derived |
 | D5 | NICER `M-R-Λ` + tidal deformability from routing stiffness | derive `R_1.4`, `M-R`, `Λ` | sharpest near-term test after kilonova rate (2–3 yr): `R_1.4` at 11–13 km, 5%, unreproducible by routing stiffness kills L2 compactness |
 | D6 | Mass–radius from wiring | derive `R_s = 2M` from wiring alone | promotes I3 to derived (long-term) |
-| D7 | Kilonova radiative transfer | full 3D POSSIS (morphology, Ye-dependent opacities, reprocessing); `i`-band direct | decides whether the GW190814 non-detection is compatible with universal shedding or falsifies it; `g`-band verdicts already robust |
+| D7 | Kilonova radiative transfer | validated multidimensional RT on public ejecta models/transformations compatible with the F5/F6 bulk prescription (morphology, velocity structure per VEL-1, Ye-dependent opacities/reprocessing, viewing-angle dependence, direct `i`-band); pipeline must pass the AT2017gfo anchor/control gate before its GW190814 result promotes the analytic verdict (POSSIS primary implementation) | decides whether the GW190814 non-detection is compatible with universal shedding or falsifies it; `g`-band verdicts already robust |
 | D8 | Shedding efficiency `ε(M,a,q)` + shutoff location | derive mass/spin/ratio dependence from `K_max(N)` combinatorics, spin-ordered reabsorption, or remnant-trap physics, with any shutoff location as *output* | highest-value attack surface on universal shedding; a derived shutoff between gap and BBH masses must land where it lands (same no-insertion rule as the 44 M☉ null) |
 
 Rule for all D-items: the closing derivation must output the number or location,
@@ -521,8 +530,9 @@ references cited). The v4.1 living document stays archived as the extended
 record; v5 is canonical.
 
 **Provenance layers (v0.2 audit).** Checked numbers fall in three layers with no
-contradictions except the TeV absolutes (fixed in T14): test-pinned exact
-(shed `0.168`, `c₂(0.92) = 0.7728`, log-log slope `2.0`, `γ = 1` to `1e-6`,
+numerical contradictions except the TeV absolutes (fixed in T14): test-pinned
+(shed `0.168`, `c₂(0.92) = 0.7728`, log-log slope `2.0`, fitted-form `γ = 1`
+to `1e-6` with BV interval consistent,
 `p = 0.913 ± 0.049` / SEM `0.0055` / 80-of-80 in `data/p80_n1020_beta124.json`),
 test-pinned envelopes (B1913 `6.2σ` / J0737 `9.7σ` naive bands, J0737 `< 0.1σ`
 resuscitated, GW190814 `P = 0.68 ± 0.02`, chromaticity `< 1e-50/1e-30`),

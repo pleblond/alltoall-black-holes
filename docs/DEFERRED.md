@@ -85,8 +85,11 @@ Single GR input; derivation from wiring alone open.
 (`massgaps.gw190814_*_sys`, `gw190814_systematics_table`, Fig 75b, 9 tests):
 POSSIS-inspired viewing (equatorial +1.25 g/+0.5 i) + Arnett opacity
 rescaling bound the hiding window (equatorial + κ_blue=2 → P~0.18).
-**Still missing:** full 3D POSSIS (morphology, Ye-dependent opacities,
-reprocessing); i-band direct not claimed (one-zone κ=10 over-traps).
+**Still missing:** validated multidimensional RT per the D7 v2 work package
+(public-data ejecta compatible with F5/F6 bulk parameters, morphology +
+velocity structure + Ye-dependent opacities/reprocessing, viewing-angle
+dependence, direct i-band after the AT2017gfo anchor gate passes; POSSIS
+primary). i-band direct not claimed until then (one-zone κ=10 over-traps).
 g-band verdicts robust; gap-KN ~1/yr O5 prediction stands.
 
 ## D8 — Shedding efficiency ε(M,a) + upper-gap assignment — P1
