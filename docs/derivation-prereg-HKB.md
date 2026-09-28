@@ -63,9 +63,10 @@ cut-edges — nonzero = bug, halt) and lattice edge-sample max|κ|<1e-6
 
 **Leg 2 — monotonicity within the lattice-like class.**
 
-- **G-check A (growth-fixed premise)** iff |slope(m)−slope(0)|<0.75 for
-  every deletion level m AND slope(0)∈3±0.5, per series. Else that series
-  is INCONCLUSIVE (premise fails) and excluded from K2.
+- **G-check A (growth-fixed premise)** iff slope(0)∈[1.5,3.0] AND
+  |slope(m)−slope(0)|<0.75 for every deletion level m, per series. Else that
+  series is INCONCLUSIVE (premise fails) and excluded from K2. (Band
+  calibrated pre-run, see §H-7 — NOT 3±0.5.)
 - **K2 (monotonicity HOLDS)** iff Spearman ρ(cutfrac, mean-κ) over a
   series' valid levels satisfies ρ<−0.5 AND the 95% MC interval excludes 0
   (MC: 2000 draws, seed=7, per-level mean-κ ~ Normal(mean, SE); cutfrac
@@ -100,3 +101,17 @@ halt-and-investigate (machinery suspect), no verdicts from this probe.
 - Deliverables: `src/bh_graph/vacuum_cutedge.py` +
   `tests/test_vacuum_cutedge.py` + `results/vacuum/phase1b_cutedge.json` +
   report appendix. Same branch (append to Phase 1); PR #46 updated.
+
+## H-7. Pre-run calibration fix (G-check A band; no probe data seen)
+
+As first written, G-check A required slope(0)∈3±0.5. Unit-test arithmetic
+showed this band is miscalibrated: the 4-point log-log fit over r=1..4 of
+EXACT cubic balls gives slope 2.09 (SC shells 6,18,38,66 → B=7,25,63,129)
+and 2.28 (FCC shells 12,42,92,162 → B=13,55,147,309) — lower-order terms
+dominate at small r; 3 is the ASYMPTOTIC exponent, unreachable on 4
+points. The original band would fail deterministically on intact lattices.
+Correction (pure combinatorics; zero HKB probe measurements involved):
+slope(0)∈[1.5,3.0], which contains both exact values with margin and still
+excludes exponential-type growth (k=6 tree-like balls give ≈3.4 over the
+same range). The comparative clause (|Δ|<0.75, the actual premise test) is
+unchanged. Fix committed before the probe ran; recorded here, not silent.
