@@ -13,6 +13,11 @@ from bh_graph.qes import (
     build_core_boundary_flow, min_cut_value, min_cut_scaling,
 )
 from bh_graph.evaporation import page_curve_bits, page_time, evaporate, is_evaporated
+from bh_graph.evaporation_unitary import (
+    haar_random_unitary, is_isometry, is_unitary, apply_subset_unitary,
+    random_two_qubit_gate, scramble_subset_circuit, build_emission_isometry,
+    page_curve_from_state, evaporate_unitary, is_page_like, is_pure_at_endpoints,
+)
 from bh_graph.qec import recovery_error, recovery_fidelity, recovery_threshold, is_recoverable
 from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary, all_quadratic
 from bh_graph.kerr import kerr_newman_area, kerr_newman_k, spin_budget_fraction, is_subextremal, is_extremal
@@ -318,6 +323,9 @@ __all__ = [
     "qes_candidates", "qes_page_k", "qes_dominant", "has_qes_transition",
     "build_core_boundary_flow", "min_cut_value", "min_cut_scaling",
     "page_curve_bits", "page_time", "evaporate", "is_evaporated",
+    "haar_random_unitary", "is_isometry", "is_unitary", "apply_subset_unitary",
+    "random_two_qubit_gate", "scramble_subset_circuit", "build_emission_isometry",
+    "page_curve_from_state", "evaporate_unitary", "is_page_like", "is_pure_at_endpoints",
     "recovery_error", "recovery_fidelity", "recovery_threshold", "is_recoverable",
     "log_slope_vs_p", "quadratic_coefficient", "qes_phase_boundary", "all_quadratic",
     "kerr_newman_area", "kerr_newman_k", "spin_budget_fraction", "is_subextremal", "is_extremal",

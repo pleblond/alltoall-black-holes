@@ -432,6 +432,32 @@ natural next calculation.
 
 ![Fig 12](../figures/fig12_kerr.png)
 
+## Appendix H2. Thermodynamic consistency: Hawking temperature from leg entropy (conditional)
+
+(`bh_graph.thermo`, no figure — analytic check.) The logic is
+$S = k\ln 2 + A = 4\ln 2\cdot k\,l_p^2 \Rightarrow S = A/4\ell_P^2$, then
+$A(M,J)$ imported $\Rightarrow S(M,J) \Rightarrow T_H, \Omega_H$: the novel
+graph input is the leg entropy; the Kerr area map is imported. Given those
+inputs, the Hawking temperature follows by ordinary differentiation — no
+separate temperature postulate is needed. Schwarzschild: $k(M) =
+(4\pi/\ln 2)M^2$, $dS/dM = 8\pi M$, hence $T_H = 1/8\pi M$. Leg-cost reading:
+$T_H = (dM/dk)/\ln 2$, the energy cost of an exterior leg over the entropy
+it carries. Kerr: $S(M,J) = 2\pi[M^2+\sqrt{M^4-J^2}]$ gives
+$T_H = \sqrt{M^4-J^2}/4\pi M(M^2+\sqrt{M^4-J^2})$ and
+$\Omega_H = J/2M(M^2+\sqrt{M^4-J^2}) = a/(r_+^2+a^2)$, i.e.\ $dM = T\,dS +
+\Omega_H\,dJ$ closes numerically (thermodynamic identities $< 10^{-6}$ plus
+an independent finite-step $\Delta M = T\Delta S + \Omega_H\Delta J$ check
+to $O(d^2)$). Super-extremal $|J| > M^2$ returns NaN, never the extremal
+value. Finite-step correction $T_k = (M(k+1)-M(k))/\ln 2$ under the one-leg
+energy assignment differs from continuum $T$ by $-1/4k$ ($\sim 10^{-77}$
+stellar-mass; relevant only near Planck / extremality; forward-difference
+vs symmetric/detailed-balance identification left open). **Scope, stated
+plainly:** this is *conditional* consistency —
+importing $S(M,J)$ and differentiating necessarily returns $T(M,J)$. Deriving
+$M(k,J)$ from graph dynamics (rather than importing $A(M,J)$) remains the
+open debt (Appendices BM, BL); extremality ($T \to 0$ at finite $k$) and
+censorship have no microscopic account yet.
+
 ## Appendix I. Exact Page curve with Haar-typical fluctuations
 
 (`bh_graph.haar`, Fig 13.) Page's exact $S(m,n) = H(mn) - H(n) - (m-1)/2n$
@@ -1144,6 +1170,22 @@ open; scalar only, no birefringence prediction.
 > GRB limits $E_{QG,2} \gtrsim 10^{11}$ GeV) lie approximately eight orders
 > of magnitude below this Planck-scale threshold, ensuring full compatibility
 > with existing observational data.
+
+GW note (hypothetical universal extrapolation, not a claimed constraint):
+if the same quadratic law applied to GWs, a 100 Hz component shifts by
+$\Delta v/c \sim 10^{-82}$ ($\sim 10^{-65}$ s over a Gpc), because
+$E_{GW} \sim 10^{-22}$ GeV samples the $E^2$ law $\sim 10^{44}$ below
+GeV photons. In LVK language $E^2 = (pc)^2 + A_{\alpha}(pc)^{\alpha}$
+($\alpha = 2$ excluded — no dispersion), quadratic-in-$v$ maps to
+$\alpha = 4$ with $A_4 = -2/3E_{QG,2}^{-2} \sim -6\times10^{-82}$
+peV$^{-2}$ vs bound $\sim 10^{-21}$ peV$^{-2}$: safe by $\sim 10^{60}$;
+for a representative $E_{\gamma} = 10^{-4}$ GeV photon the model photon-side
+shift is $\sim 10^{-47}$, already $\sim 10^{32}$ below the observed
+fractional-speed bound (the precise multimessenger comparison depends on the
+photon-energy distribution and source-emission delay). GW propagation therefore cannot
+constrain this UV term — Fermi already wins — and we claim no GW-sector
+derivation; a dangerous GW signal would have to come from graph geometry,
+not hopping.
 
 ![Fig 51](../figures/fig51_dispersion.png)
 

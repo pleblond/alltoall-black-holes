@@ -63,7 +63,7 @@ and the un-derived gap coefficient.
 
 Module map (each with tests): Sec 1 `graphs`, `scrambling`; Sec 2 `horizon`;
 Sec 3 `micro`; A `circuits`; B `maxent`; C `qes`; D `evaporation`; F `qec`;
-G `robustness`; H `kerr`; I `haar`; J `monogamy`; L `otoc`, `pheno`;
+G `robustness`; H `kerr`; H2 `thermo`; I `haar`; J `monogamy`; L `otoc`, `pheno`;
 M `tn`; N `kerrpage`; O `syk`; Q `data`; R `litcompare`; T `tev`;
 U `echoes`; W `posteriors`; X `ds`; Y `krylov`; Z–AC `collapse`,
 `cosmic`, `lunch`, `remnant`; AE `bounds`; AF (protocol); AG `healing`;
@@ -115,7 +115,8 @@ cd paper && pdflatex main.tex && pdflatex main.tex
 
 - **Derived in-repo:** $\log N$ scrambling, $k^*(N)$ fixed point,
   QES/island crossing, Page curve + fluctuations, CKW frontier,
-  Hayden–Preskill mirror, Kerr Page delay, $1/r^2$ + Kepler + redshifts,
+  Hayden–Preskill mirror, Kerr Page delay, conditional Hawking $T_H(M,J)$ +
+  first law from $S = k\ln 2$ (H2, $M(k,J)$ still imported), $1/r^2$ + Kepler + redshifts,
   tortoise freezing, congestion phases, charge endpoints, evacuation
   ordering, MP spectrum, greybody switch, $\alpha = 11.24$ match,
   quadratic-only LIV ($E_{QG,1} = \infty$, $E_{QG,2} = \sqrt{8}\,E_P$).

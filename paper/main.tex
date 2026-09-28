@@ -3,7 +3,7 @@
 \geometry{margin=1in}
 \graphicspath{{../figures/}}
 \title{No Neutron Stars: Black Holes, Pulsars, and Gap Objects as Almost-Perfect All:All Entanglement Graphs}
-\author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\ \small Draft v4.1 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (356 tests)}
+\author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\ \small Draft v4.1 --- computational companion \\ \small\texttt{src/bh\_graph} + \texttt{scripts/generate\_figures.py} reproduce all figures (377 tests)}
 \date{\today}
 \begin{document}
 \maketitle
@@ -78,8 +78,10 @@ Appendix~C shows the pop is a computed QES/island crossing at
 $k_{\rm page}=S_0/(2s_{\rm leg}-\ln2\,l_p^2)$, existing iff $s_{\rm leg}>\ln2\,l_p^2/2$.
 
 \section{Discussion}
-Evaporation = leg surgery with exact Page curve (Appendices~D, I) and
-Hayden--Preskill mirror past $k\sim N/2$ (Appendix~F). Open: deriving
+Evaporation as unitary leg surgery: the qubit toy produces the
+finite-dimensional Page curve from reduced-state entropy (Appendices~D, I;
+completion Fig.~74), and Hayden--Preskill mirror works past $k\sim N/2$
+(Appendix~F). Open: deriving
 $\varepsilon$ and $r_{\rm point}$ coefficients from a UV embedding; Kerr
 Page curve with spin budget; OTOC Lyapunov check (Appendix~L).
 Ringdown: dimensional lattice-scattering estimate gives negligible echo energy
@@ -106,7 +108,12 @@ crossing iff $s_{\rm leg}>\ln2/2$. Explicit core+legs min-cut agrees.
 
 \section{Page curve from leg surgery (Fig.~10)}
 $S_{\rm rad}(t)=\min(t,N_{\rm eff}-t)$; area identical for wiring-only vs
-standard evaporation: $A$ tracks $k$ alone.
+standard evaporation: $A$ tracks $k$ alone. Unitary completion (Fig.~74):
+explicit emission isometry $V_t$ per step ($V_t^\dagger V_t=I$ verified),
+$S_{\rm rad}$ computed from $\rho_{\rm rad}$ tracks the finite-dimensional
+Haar/Page expectation (mean dev.\ $0.002$ bits, $N=8$); finite-depth all:all
+circuits converge to Page by
+depth $\sim5$/step without assuming Haar.
 
 \section{QEC mirror (Fig.~11)}
 $err(k)=\min(1/2,2^{N/2+1-k})$; 99\% threshold
@@ -119,6 +126,10 @@ sharp QES boundary at $s_{\rm leg}=\ln2/2$.
 \section{Kerr--Newman (Fig.~12)}
 $r_+=M+\sqrt{M^2-a^2-Q^2}$, $A=4\pi(r_+^2+a^2)$; spin budget
 $1-A(M,a)/A(M,0)\to1/2$ at extremality. Area law survives.
+Conditional thermo check (\texttt{bh\_graph.thermo}): $S=k\ln2+A=4\ln2\cdot k$
+plus $R_s=2M$ gives $T_H=1/8\pi M$ ($T=(dM/dk)/\ln2$ per-leg reading); Kerr
+$S(M,J)$ returns $T_H(M,J)$, $\Omega_H$, $dM=T\,dS+\Omega_H\,dJ$; finite-$k$
+shift $-1/4k$. Consistency, not derivation of $M(k,J)$.
 
 \section{Exact Page curve (Fig.~13)}
 $S(m,n)=H(mn)-H(n)-(m-1)/2n$ nats; $-1/2$ nat dip at turnover; Haar samples
@@ -265,6 +276,10 @@ Tangential must be fast (all:all); target window $[4.42,5.98]M$ locked.
 \section{Lattice dispersion (Fig.~51)}
 $v_g$ even in $k$: no linear term (Fermi linear bounds evaded by symmetry).
 $E_{QG,2}=\sqrt8\,E_P$, $10^8\times$ above Fermi quadratic bound.
+GW note (universal extrapolation only, scalar-sector derivation):
+100\,Hz shifts $\sim10^{-82}$; LVK $\alpha{=}4$,
+$A_4{=}-2/3E_{QG,2}^{-2}$, safe by $\sim10^{60}$ — GW propagation
+cannot constrain this UV term.
 
 \section{Footprint ringdown (Figs.~52--53)}
 Mass comb $1/2k$; estimated lattice-echo amplitude $R\sim(\omega/\omega_P)^2\sim10^{-80}$
