@@ -3,14 +3,15 @@
 v5 restructures the v4.1 living document (1758 lines, 68 appendices, 77 figures)
 into a submittable pair (both compile; counts as of this commit):
 
-- `main.tex` — journal text, 11pp preprint single-column 11pt (≈7pp two-column).
+- `main.tex` — journal text, 12pp preprint single-column 11pt (≈8pp two-column).
   Motivation, 3 claims in §2, gravity to 1PN + 2PN preview, UV + QI,
   one-family compact objects + gap-KN prediction, falsifiers + conclusion.
-  5 figures (1 new survival matrix + 4 tested artifacts), 44 references.
+  5 figures (1 new survival matrix + 4 tested artifacts), 46 references.
 - `supplement.tex` — methods, 11pp: parameter audit, gravity/QI/BU/BV methods,
   N-scale table (300→16000, 6 points), PPN ledger, archival ledger, O5 protocol
-  summary, kill list, module map. 11 ported evidence figures (lensing, Mercury,
-  UV-c, Page, unitary-Page, N-scale, 2PN, p-fit, O5, healing, dispersion). Zero LaTeX warnings.
+  summary, kill list, module map. 12 ported evidence figures (lensing, Mercury,
+  UV-c, Page, unitary-Page, N-scale, 2PN, p-fit, O5, healing, dispersion,
+  systematics). Zero LaTeX warnings.
 
 ## What changed vs the uploaded V5-Rewrite draft
 
@@ -29,11 +30,14 @@ with paper text. v5/main.tex:
    lead the cover with "No Neutron Stars" until routing-stiffness NICER derivation
    lands. Title reverts to bold form if BU survives O5.
 7. Moves install/streamlit/git notes to Data/Code availability; removes branch notes.
-8. Maps 5 main figures to existing tested artifacts (no new untested figures).
+8. Maps the 5 main figures to tested/generated artifacts (survival matrix
+   generated from the ledger, no new claims).
 
 ## What changed vs v4.1
 
-- No physics changes. All numbers identical (p=0.913±0.049, 0.93/0.94/0.91 at
+- No physics changes at the cut; post-cut additions (mass-gaps null +
+  GW190814 audit, ringdown wording) extend beyond v4.1. All v4.1 numbers
+  identical (p=0.913±0.049, 0.93/0.94/0.91 at
   4k/8k/16k, 0.047 M☉, ~1/yr O5, 42.99", γ=1, E_QG,2=√8 E_P).
 - v4.1 `paper.md` + `main.tex`/`main.pdf` untouched as extended record.
 - Honesty ledger preserved and tightened (S1 table).
@@ -42,7 +46,7 @@ with paper text. v5/main.tex:
 
 ```bash
 cd paper/v5
-pdflatex main.tex && pdflatex main.tex            # main.pdf, 11pp
+pdflatex main.tex && pdflatex main.tex            # main.pdf, 12pp
 pdflatex supplement.tex && pdflatex supplement.tex # supplement.pdf, 11pp
 ```
 
@@ -50,10 +54,10 @@ Figures resolve via `../../figures/`.
 
 ## Next steps (for loop ticks)
 
-- [x] Install texlive and verify page counts (main 9pp preprint ≈6pp journal; supp 5pp)
+- [x] Install texlive and verify page counts (main 12pp preprint ≈8pp journal; supp 11pp)
 - [x] Add Fig.1 survival-matrix schematic (new TikZ, references ledger, no new claims)
 - [x] Expand references to ~40 (EOS/NICER/GWTC/LVK-testing-GR/POSSIS/Rubin + neighbours)
-- [x] Grow supplement toward ~12pp → reached 9pp with 10 ported figures (lensing/Mercury/UV-c/Page/N-scale/2PN/p-fit/O5/healing/dispersion)
+- [x] Grow supplement toward ~12pp → reached 11pp with 12 ported figures (lensing/Mercury/UV-c/Page/unitary-Page/N-scale/2PN/p-fit/O5/healing/dispersion/systematics)
 - [x] Clear LaTeX warnings (tables → p-columns, code → quote+path, math allowbreaks; only sub-5pt overfulls remain)
 - [ ] Prose polish pass on main.tex (read-through for typos, transitions, symbol consistency)
 - [ ] Optional twocolumn pass if venue requires strict 6pp (currently honest preprint count)

@@ -1,4 +1,4 @@
-# Black Holes as Almost-Perfect All:All Entanglement Graphs: Interior Collapse, Horizon Wiring, and the Micro-Hole Phase Transition
+# Compact Objects as Almost-Perfect All:All Entanglement Graphs: From fast scrambling and weak-field gravity to a testable gap-kilonova prediction
 
 **Philippe Leblond**
 
@@ -7,98 +7,117 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22929076.svg)](https://doi.org/10.5281/zenodo.22929076)
 
 > A reproducible model: black-hole interiors are almost-perfect all:all
-> entanglement graphs, horizon area counts exterior legs ($A = k\,l_p^2$),
+> entanglement graphs, horizon area counts exterior legs ($A = 4\ln 2\,k\,l_p^2$),
 > and micro-holes undergo a point-to-horizon phase transition. Every claim
 > ships with runnable code, tests, and figures.
 
 > **New here?** Start with [`docs/model-explained.md`](docs/model-explained.md) —
 > a plain-language tour of the whole model (no physics background needed),
 > with pointers into the paper, code, and demo.
-> **New in v4.0:** **no neutron stars** ([`note`](docs/resuscitate-no-neutrons.md)) —
-> J0737 2PN measured $p = 0.913\pm0.049$ (80 graphs, exact), gap kilonovae
-> with an O5 kill-or-confirm [`protocol`](docs/observation-protocol.md).
+> **v5.0** is the journal cut (12pp main + 11pp methods supplement):
+> one compact-object family — **no neutron stars**
+> ([`note`](docs/resuscitate-no-neutrons.md)) — J0737 2PN at
+> $p = 0.913\pm0.049$ (80 graphs, exact), gap kilonovae at ~1/yr in O5
+> with a kill-or-confirm [`protocol`](docs/observation-protocol.md),
+> plus an upper-gap null and a GW190814 audit (tension, not exclusion).
 
-> **Read the paper:** journal cut [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 11pp) ·
-> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 11pp) ·
-> living record [`paper/paper.md`](paper/paper.md) (full draft) ·
-> [`paper/main.pdf`](paper/main.pdf) (compiled PDF)
+> **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 12pp) ·
+> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 11pp, S1–S10) ·
+> build [`notes`](paper/v5/README.md)
 
 ## Abstract
 
-We study a toy model in which spacetime connectivity is an entanglement graph
-and a black-hole interior is an almost-perfect all:all (complete) subgraph.
-Internal edges cost no exterior space; each of $k$ exterior legs costs about
-$4\ln 2 \approx 2.77$ Planck patches of horizon area (derived from measured
-leg entanglement). From two postulates the model reproduces
-fast scrambling ($t_* \sim \log N$), the Bekenstein–Hawking area law, the
-exact Page curve with Haar-typical fluctuations, island/QES takeover, Kerr
-thermodynamics, and Hayden–Preskill mirror recovery. An entropic argument on
-leg screens yields Newton's $1/r^2$ law, Kepler orbits, textbook
-gravitational redshifts (GPS, Pound–Rebka), full first-order light bending,
-Cassini-grade Shapiro delay, $\gamma = 1$, Mercury's $43''$/cy from a
-derived spatial-curvature sector, and three routes toward the Einstein–Hilbert
-action. It predicts a micro-hole
-point-to-horizon phase transition, a collapse-as-scrambling transition, and
-lab-testable scrambling hierarchies, while meeting public LIGO–Virgo–KAGRA,
-ringdown, LHC-recast, and quantum-hardware data. Falsifiers are pre-registered
-(Appendix AN); one sub-claim (broad remnant dark matter) is already ruled
-out on the record, with a narrow surviving window. Postulates, derivations,
-and open gaps are labeled throughout — including the tortuosity
-micro-derivation behind $g_{rr}$ (derived in BV from $\ln 2$ scattering)
-and the un-derived gap coefficient.
+We study a phenomenological model in which spacetime connectivity is an
+entanglement graph and a black-hole interior is an almost-perfect all:all
+(complete) subgraph. Interior edges cost no exterior space; each of $k$
+exterior legs costs $4\ln 2 \approx 2.77$ Planck patches of horizon area
+(derived from measured leg entanglement), so $A(k) = 4\ln 2\cdot k\,l_p^2$
+independent of interior size $N$. From this wiring picture we recover fast
+scrambling ($t_* \sim \log N$), the Bekenstein–Hawking area law, the exact
+Page curve with Haar-typical fluctuations, island-like turnover (genuine QES
+extremization open), Kerr thermodynamics (area, $T_H$/$\Omega_H$; higher
+multipoles open), and Hayden–Preskill mirror recovery. The same leg network
+yields weak-field gravity to first post-Newtonian order: Newton's $1/r^2$
+law, Kepler orbits, textbook gravitational redshifts (GPS, Pound–Rebka),
+full first-order light bending, Cassini-grade Shapiro delay, $\gamma = 1$
+exactly, and Mercury's $43''$/cy by direct geodesic integration. Lattice
+hopping gives quadratic-only dispersion ($E_{QG,1} = \infty$), safe from
+Fermi bounds by $\sim 10^8$. At second post-Newtonian order the double
+pulsar J0737 matches to $0.1\sigma$ via a measured radial exponent
+$p = 0.913\pm0.049$ (80 graphs, $N = 1020$, exact; confirmed at
+$N = 4000/8000/16000)$, promoting the toy to a testable model of all
+compact objects: pulsars, mass-gap objects, and black holes as one
+$k \propto M^2$ family with no neutron-matter phase. Calibrated once on
+AT2017gfo ($0.047\,M_\odot$ shed), it predicts mass-gap mergers
+$2.5$–$5\,M_\odot$ are kilonova-bright at $\sim 1$/yr in O5 versus
+$\le 0.3$/yr in the standard picture — while meeting public
+LIGO–Virgo–KAGRA, ringdown, LHC-recast, and quantum-hardware data.
+It predicts no graph-scale feature at the $\sim 44\,M_\odot$
+pair-instability edge (a positive null, left to stellar physics) while
+extending the shedding law to binary black holes
+($M_{ej} = 0.0168\,M_{tot}$) — pressured, but not excluded, by an
+epoch-level GW190814 audit ($P$(detect) $\approx 0.68$–$0.88$).
+Falsifiers are pre-registered (supplement S6); one sub-claim (broad remnant
+dark matter) is already ruled out on the record, with a narrow surviving
+window. Postulates, derivations, and open gaps are labeled throughout.
 
 ## Contents
 
 | Path | Description | License |
 |---|---|---|
-| [`paper/paper.md`](paper/paper.md) | Full draft (Secs 1–3 + Appendices A–BS + BU, BV) | CC BY 4.0 |
-| `paper/main.tex`, [`paper/main.pdf`](paper/main.pdf) | LaTeX source + compiled PDF | CC BY 4.0 |
-| `paper/v5/`, [`paper/v5/main.pdf`](paper/v5/main.pdf), [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) | Journal cut: main text + methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
+| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 9pp main text + 10pp S1–S10 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
-| `scripts/generate_figures.py` | Regenerates all `figures/fig*.png` | MIT |
-| `tests/` | 356 pytest checks (derivations, data, falsifiers) | MIT |
+| `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
+| `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
+| `tests/` | 398 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
+| `paper/` (unlinked) | Archived v4.1 living-document sources, retained for provenance | CC BY 4.0 |
 
 Module map (each with tests): Sec 1 `graphs`, `scrambling`; Sec 2 `horizon`;
-Sec 3 `micro`; A `circuits`; B `maxent`; C `qes`; D `evaporation`; F `qec`;
+Sec 3 `micro`; A `circuits`; B `maxent`; C `qes`; D `evaporation`,
+`evaporation_unitary`; F `qec`;
 G `robustness`; H `kerr`; H2 `thermo`; I `haar`; J `monogamy`; L `otoc`, `pheno`;
-M `tn`; N `kerrpage`; O `syk`; Q `data`; R `litcompare`; T `tev`;
+M `tn`; N `kerrpage`; O `syk`; Q `data`, `gwdata`; R `litcompare`; T `tev`;
 U `echoes`; W `posteriors`; X `ds`; Y `krylov`; Z–AC `collapse`,
 `cosmic`, `lunch`, `remnant`; AE `bounds`; AF (protocol); AG `healing`;
 AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`; mass-gaps `massgaps`.
 
 ## Quickstart
 
 Requires Python ≥ 3.10.
 
 ```bash
-pip install -e .
-python -m pytest tests/ -q          # 356 tests
-python scripts/generate_figures.py  # writes figures/fig*.png
+pip install -e ".[dev]"             # runtime + pytest/ruff
+python -m pytest tests/ -q          # 398 tests (2 torch/GPU-only skip without torch)
+python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
+python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
 
-Compile the paper (needs `pdflatex`):
+Compile the paper (needs `pdflatex`, TeX Live 2023):
 
 ```bash
-cd paper && pdflatex main.tex && pdflatex main.tex
+cd paper/v5 && pdflatex main.tex && pdflatex main.tex
+pdflatex supplement.tex && pdflatex supplement.tex
 ```
 
 ## Reproducibility
 
-- All figures are generated artifacts: delete `figures/` and re-run the
-  script; every number in the paper traces to a tested function.
+- All figures are generated artifacts: delete `figures/` and re-run both
+  scripts (`generate_figures.py`, `generate_v5_figs.py`); every number in
+  the paper traces to a tested function.
 - External data is fetched live with committed fallbacks: GWOSC catalog
   medians (fallback: bundled literature values), GW150914 posteriors
   (cached under `data/`, DOI 10.7935/82H3-HH23), PBHbounds curves
-  (vendored under `data/pbhbounds/`, see `ATTRIBUTION.md`).
+  (vendored under `data/pbhbounds/`, see `data/pbhbounds/ATTRIBUTION.md`).
 - Randomness is seeded throughout; test tolerances are recorded in-test.
+  Two GPU-only Sinkhorn tests skip when torch is absent.
 
 ## Data provenance
 
@@ -114,7 +133,7 @@ cd paper && pdflatex main.tex && pdflatex main.tex
 ## Honesty ledger (what is derived vs assumed)
 
 - **Derived in-repo:** $\log N$ scrambling, $k^*(N)$ fixed point,
-  QES/island crossing, Page curve + fluctuations, CKW frontier,
+  island-like turnover (genuine QES extremization open), Page curve + fluctuations, CKW frontier,
   Hayden–Preskill mirror, Kerr Page delay, conditional Hawking $T_H(M,J)$ +
   first law from $S = k\ln 2$ (H2, $M(k,J)$ still imported), $1/r^2$ + Kepler + redshifts,
   tortoise freezing, congestion phases, charge endpoints, evacuation
@@ -126,6 +145,10 @@ cd paper && pdflatex main.tex && pdflatex main.tex
   v4.1 adds: tortuosity $c \approx 0.44$–$0.60$ from $\ln 2$ line-defect
   scattering ($p = 2c$, $\gamma = 2c$), UV pop as graph disconnection at
   $k_{crit}$, $p$ at N = 4000/8000/16000 ($0.9315$, $0.9382$, $0.9137$).
+  v5.0 adds: D2 qubit-toy unitary evaporation (graph
+  dynamics open), H2 $T_H$/$\Omega_H$ in the main text, mass-gap null +
+  universal BBH shedding + GW190814 epoch audit ($P \approx 0.68$–$0.88$,
+  tension), 46/46 references cited, 398 tests, 81 figure files.
 - **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
   equivalence principle, continuum limits (heat-kernel, Ollivier),
   Raychaudhuri for leg bundles, gap coefficient, crossover scales.
@@ -154,38 +177,45 @@ Dual-licensed (see `LICENSE.md`):
 
 ## Citation / Zenodo
 
-Cite via `CITATION.cff`. To publish on Zenodo:
+Cite via `CITATION.cff`. The repo lives at
+`https://github.com/pleblond/alltoall-black-holes` with the Zenodo–GitHub
+integration enabled (metadata prefills from `.zenodo.json`). To cut the
+release:
 
-1. Push this repo to GitHub (already mirrored at
-   `https://github.com/pleblond/alltoall-black-holes`).
-2. In Zenodo, enable the GitHub integration and flip the switch for the
-   repository — metadata is prefilled from `.zenodo.json`.
-3. Create a GitHub Release (e.g. `v4.0.0`); Zenodo archives a snapshot and
-   mints a DOI. Add the DOI badge here and to `CITATION.cff`
-   (`identifiers:`) afterwards.
+1. Merge to `main` and create a GitHub Release tagged `v5.0.0`; Zenodo
+   archives a snapshot and mints a version DOI.
+2. Add the version-DOI badge here and under `identifiers:` in
+   `CITATION.cff` afterwards (the badge above is the concept DOI covering
+   all versions).
 
 ```bibtex
 @software{leblond2026alltoall,
   author  = {Leblond, Philippe},
-  title   = {Black Holes as Almost-Perfect All:All Entanglement Graphs},
-  version = {4.0.0},
+  title   = {Compact Objects as Almost-Perfect All:All Entanglement Graphs: From fast scrambling and weak-field gravity to a testable gap-kilonova prediction},
+  version = {5.0.0},
   year    = {2026},
   doi     = {10.5281/zenodo.22929076},
   url     = {https://github.com/pleblond/alltoall-black-holes},
-  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v4.0.0 version DOI mints on Zenodo release}
+  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.0.0 version DOI mints on Zenodo release}
 }
 ```
 
 ## Status
 
 v5.0: journal cut of the v4.1 living document — [`main.pdf`](paper/v5/main.pdf)
-(9pp preprint ≈ 6pp two-column: motivation, 3 claims, gravity to 1PN + 2PN
-preview, UV+QI, one-family compact objects + gap-KN ~1/yr O5, falsifiers) +
-[`supplement.pdf`](paper/v5/supplement.pdf) (9pp S1–S9 methods: audit, N-scale
-table, PPN/archival ledgers, O5 protocol, kill list, 10 evidence figures).
-40 references, new survival-matrix figure (`scripts/generate_v5_figs.py`).
-No physics changes; v4.1 files untouched as the extended record.
-Build: `cd paper/v5 && pdflatex main.tex && pdflatex supplement.tex`
+(12pp preprint ≈ 8pp two-column: motivation, 3 claims, gravity to 1PN + 2PN
+preview, UV+QI, one-family compact objects + gap-KN ~1/yr O5, upper-gap null
++ GW190814 audit, falsifiers) +
+[`supplement.pdf`](paper/v5/supplement.pdf) (11pp S1–S10 methods: audit,
+gravity/QI methods, N-scale table, PPN/archival ledgers, O5 protocol, kill
+list, module map; 5 main figures + 12 evidence figures, 46/46 references
+cited). 398 tests, 81 figure files (Figs 1–75).
+New survival-matrix figure (`scripts/generate_v5_figs.py`); the mass-gaps
+module (upper-gap null, universal BBH shedding, GW190814 epoch audit) and
+ringdown wording ports landed after the cut.
+The v4.1 files stay in `paper/` as the archived extended record (v5 is canonical).
+Build: `cd paper/v5 && pdflatex main.tex && pdflatex main.tex`
+then `pdflatex supplement.tex && pdflatex supplement.tex`
 (see [`paper/v5/README.md`](paper/v5/README.md)).
 v4.1: BV UV tortuosity-as-scattering on top of v4.0 — 4 assumptions
 $\to$ 3 (tortuosity $1/2$ derived from $\ln 2$); N = 4000/8000/16000
