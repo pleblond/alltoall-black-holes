@@ -136,3 +136,25 @@ conditional to derived.
 
 **Kill relevance:** none (gates no theorem in T8–T11); mathematical completion
 of the AU triptych's third route.
+
+## D10 — Vacuum/ambient selection (minimality) — P1 next cycle
+
+**Missing:** which ambient graph is realized: the constrained ensemble +
+selection principle beyond the structural P5 (connected, bridgeless,
+large-world). Current status: L0 machinery shipped — `ambient` pins the
+reference extremes (A1 diameter/gap duals, A2 speed floor, A3 tree floor,
+A4 isoperimetric `d_iso` estimator separating 1D/2D/3D/trees, A5 pinch-off
+complement) with 12 tests. No ensemble, no Hamiltonian, no dimension input.
+
+**Close criterion:** exhibit a connected, bridgeless, large-world ensemble
+whose measured outputs are `d_iso → 3` at large scales (dimension as output,
+never input) and approximately Ollivier-flat with the P4 measure, and show it
+is edge-minimal among qualifying ensembles. A sparser connected/bridgeless/
+large-world ensemble meeting the same outputs falsifies the minimality half;
+an ensemble failing `d_iso → 3`, needing `⟨v⟩ > 5` to hold flatness +
+large-world, or showing any macroscopic bridge (single-edge tear) kills that
+candidate. The `z = 4` + flat tension (random 4-regular `⟨κ⟩ < 0` measured)
+is adjudicated by the annealer, not by postulate.
+
+**Kill relevance:** gates P5's physical content; selects the vacuum the L1/L2
+phenomenology lives in.

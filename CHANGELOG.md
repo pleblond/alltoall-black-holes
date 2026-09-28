@@ -3,6 +3,13 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased** — L0 ambient/vacuum kinematics (`ambient` + 12 tests):
+  ripping vocabulary (edge-connectivity, bridge fraction, rip-cost profile,
+  cut-dimension estimator `d_iso` separating 1D/2D/3D/trees, pinch-off
+  complement) + reference-family theorems A1–A5; `docs/model.md` v0.5 adds
+  vacuum postulate P5 (connected, bridgeless, large-world) and queues vacuum
+  selection/minimality as D10 (dimension as output, never input). Suite: 425
+  collected, 423 passed, 2 torch/GPU-only skipped.
 - **unreleased** — H2 thermodynamic consistency: $T_H(M,J)$, $\Omega_H$, first
   law from $S = k\ln 2$ conditional on imported $A(M,J)$ (`thermo` + 10 tests);
   per-leg $T = (dM/dk)/\ln 2$ reading, finite-step $-1/4k$ correction,

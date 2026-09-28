@@ -37,7 +37,8 @@ def test_a1_diameter_dual():
         assert is_diameter_maximal(build_chain(n))
         assert max_diameter_connected(n) == n - 1
     # non-path connected graphs sit strictly below n-1
-    assert diameter_of(build_cycle(8)) == 4 < 7
+    assert diameter_of(build_cycle(8)) == 4
+    assert diameter_of(build_cycle(8)) < max_diameter_connected(8)
     assert not is_diameter_maximal(build_cycle(8))
     assert not is_diameter_minimal(build_chain(5))
 
@@ -118,6 +119,7 @@ def test_a4_iso_dimension_values():
 def test_a4_random_regular_z4_is_orici_negative():
     # D10 tension pin: z=4 random graphs are NOT flat (cubic z=6 is).
     from bh_graph.graphs import build_random_regular
+
     g = build_random_regular(30, 4, seed=0)
     assert mean_curvature(g, max_edges=8) < -0.05
 

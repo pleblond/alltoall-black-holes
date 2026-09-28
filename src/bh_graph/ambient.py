@@ -23,15 +23,16 @@ complement) and pins the reference-family extremes as tested theorems:
 No dynamics, no Hamiltonian, no dimension input, no continuum limit: L0
 machinery only. Vacuum *selection* (which ensemble, minimality) is D10.
 """
+
 from __future__ import annotations
 
 import networkx as nx
 import numpy as np
 
-
 # ---------------------------------------------------------------------------
 # Validity checks (boolean, no exceptions for normal inputs).
 # ---------------------------------------------------------------------------
+
 
 def is_valid_n(n, lo: int = 1) -> bool:
     """Boolean check: n an integer >= lo."""
@@ -46,6 +47,7 @@ def is_connected_nonempty(g: nx.Graph) -> bool:
 # ---------------------------------------------------------------------------
 # Builders (ambient-side reference families; K_N / path / grid-2D live in graphs).
 # ---------------------------------------------------------------------------
+
 
 def build_cycle(n: int) -> nx.Graph | None:
     """Cycle C_n: minimal bridgeless connected graph (m = n). None if invalid."""
@@ -72,6 +74,7 @@ def build_balanced_tree(branching: int = 2, height: int = 3) -> nx.Graph | None:
 # ---------------------------------------------------------------------------
 # A1: diameter extremes (dual of T1).
 # ---------------------------------------------------------------------------
+
 
 def diameter_of(g: nx.Graph) -> int:
     """Graph diameter; -1 if empty/disconnected (no exceptions)."""
@@ -110,6 +113,7 @@ def diameter_vs_log(g: nx.Graph) -> float:
 # A2: spectral-gap extremes + finite-speed floor.
 # ---------------------------------------------------------------------------
 
+
 def gap_complete_exact(n) -> float:
     """A2 value: spectral gap of K_N is exactly n. nan if invalid."""
     if not is_valid_n(n, 1):
@@ -143,6 +147,7 @@ def spread_floor(g: nx.Graph, source) -> int:
 # A3: tree floor (minimum entanglement subject to connected).
 # ---------------------------------------------------------------------------
 
+
 def min_edges_connected(n) -> float:
     """A3 value: fewest edges of a connected n-node graph is n-1 (trees)."""
     if not is_valid_n(n, 1):
@@ -173,6 +178,7 @@ def edge_connectivity_of(g: nx.Graph) -> int:
 # ---------------------------------------------------------------------------
 # A4: isoperimetric (rip-cost) profile + cut-dimension estimator.
 # ---------------------------------------------------------------------------
+
 
 def ball_profile(g: nx.Graph, source, max_r: int | None = None) -> dict[int, dict[str, int]]:
     """Per-radius ball volume |B(r)| and edge-boundary |dB(r)| from source.
@@ -253,6 +259,7 @@ def boundary_volume_ratio(profile: dict[int, dict[str, int]], r: int) -> float:
 # A5: pinch-off complement (BH and vacuum are the two sides of one cut).
 # ---------------------------------------------------------------------------
 
+
 def pinch_complement(g: nx.Graph, interior) -> dict:
     """Cut the interior|ambient edges; report both sides + leg count k.
 
@@ -274,11 +281,13 @@ def pinch_complement(g: nx.Graph, interior) -> dict:
         return out
     cut = [(u, v) for u, v in g.edges() if (u in inside) != (v in inside)]
     k = len(cut)
-    out.update({
-        "ok": True,
-        "k": int(k),
-        "interior": g.subgraph(inside).copy(),
-        "ambient": g.subgraph(outside).copy(),
-        "decoupled": bool(is_baby_universe_limit(k)),
-    })
+    out.update(
+        {
+            "ok": True,
+            "k": int(k),
+            "interior": g.subgraph(inside).copy(),
+            "ambient": g.subgraph(outside).copy(),
+            "decoupled": bool(is_baby_universe_limit(k)),
+        }
+    )
     return out
