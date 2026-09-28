@@ -36,6 +36,22 @@ from bh_graph.kerraniso import (
     zonal_anisotropy, measure_anisotropy, calibration_curve,
     is_anisotropy_detected, POLAR, EQUATORIAL, MIXED,
 )
+from bh_graph.kerrcomplete import (
+    is_valid_complete_delta, gradient_shell_graph_completeness,
+    zone_intra_density, measure_completeness_anisotropy, completeness_curve,
+    gradient_shell_graph_p2complete, caps_band_degree_gap,
+    measure_p2complete_response, p2complete_curve,
+)
+from bh_graph.kerrp2 import (
+    p2_legendre, attach_latitudes, edge_p2, radial_edges_with_kappa,
+    p2_amplitude, measure_p2_anisotropy, p2_curve, compare_estimators,
+    p2_node_weights, gradient_shell_graph_p2bridge, bridge_p2_mean,
+    measure_p2_response, p2_response_curve,
+)
+from bh_graph.kerrchiral import (
+    is_valid_bias, chiral_weights, transition_probs, equatorial_ring,
+    azimuthal_drift, drift_profile, fit_drift_exponent, bias_response,
+)
 from bh_graph.haar import (
     harmonic, page_entropy_exact_nats, page_entropy_exact_bits, page_curve_exact_bits,
     page_deficit_at_turnover, haar_state, subsystem_entropy_bits, haar_entropy_samples,
@@ -371,6 +387,16 @@ __all__ = [
     "edge_zone", "bridge_polar_fraction", "shell_kappa_profile_by_zone",
     "zonal_anisotropy", "measure_anisotropy", "calibration_curve",
     "is_anisotropy_detected", "POLAR", "EQUATORIAL", "MIXED",
+    "is_valid_complete_delta", "gradient_shell_graph_completeness",
+    "zone_intra_density", "measure_completeness_anisotropy", "completeness_curve",
+    "gradient_shell_graph_p2complete", "caps_band_degree_gap",
+    "measure_p2complete_response", "p2complete_curve",
+    "p2_legendre", "attach_latitudes", "edge_p2", "radial_edges_with_kappa",
+    "p2_amplitude", "measure_p2_anisotropy", "p2_curve", "compare_estimators",
+    "p2_node_weights", "gradient_shell_graph_p2bridge", "bridge_p2_mean",
+    "measure_p2_response", "p2_response_curve",
+    "is_valid_bias", "chiral_weights", "transition_probs", "equatorial_ring",
+    "azimuthal_drift", "drift_profile", "fit_drift_exponent", "bias_response",
     "harmonic", "page_entropy_exact_nats", "page_entropy_exact_bits", "page_curve_exact_bits",
     "page_deficit_at_turnover", "haar_state", "subsystem_entropy_bits", "haar_entropy_samples",
     "psi_family", "rho_ab", "concurrence_2qubit", "one_tangle", "interior_pairwise_c2",

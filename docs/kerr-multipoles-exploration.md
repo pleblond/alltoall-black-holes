@@ -213,14 +213,76 @@ Net for D2: the imposed→measured map exists, is monotone, and its sign flip
 constraint any derivation must route through — see the sign story in Route A.
 Spin-from-dynamics (work-order step 4) remains the hard, open step.
 
+> **Channel correction (see §4c).** The index-half "polar/equatorial" zones
+> above are NORTH-vs-SOUTH hemispheres (corr(zone-step, P2) ≈ −0.08), so
+> these binary slopes live in the dipole-like hemispheric channel, not the
+> quadrupole channel. Numbers stand; framing corrected in §4c.
+
+## 4c. Three-way comparison + quadrupole channel (parallel run, this branch)
+
+Three lines ran in parallel as independent modules; a follow-up then closed
+the loop they jointly exposed. All imposed-proxy calibration — nothing derived.
+
+**Line 1 — completeness (`kerrcomplete`, hemispheric channel).**
+Latitude-dependent intra-shell completeness `δ ∈ ±0.3` (N=90, 12 graphs):
+slope `dε_OR/dδ = +0.19`, monotone, `n_ok = 12/12` everywhere (no
+starvation). Response ~2× stronger than bridges — but OPPOSITE sign:
+the denser zone shows LARGER `|κ|`. Bridges dilute curvature;
+completeness deepens it (bigger neighborhoods → larger W₁ on radial edges).
+Asymmetric (ceiling saturation at `+δ`, an artifact of base `p ~ 0.85–0.9`).
+
+**Line 2 — P2 estimator (`kerrp2`, readout).** The continuous estimator `B`
+(`|κ| ≈ A(1+B·P2)`) stays finite 16/16 at every `ε_bridge` including ±0.9,
++1.0, +1.5 where binary starves — dynamic range extended to the full valid
+(−1, 2). But `B` is flat (≈0 ± 0.02) where binary shows −0.09: the imposed
+hemispheric field is nearly orthogonal to the even P2 harmonic. The null
+is a consistency check that exposed the hemispheric-vs-quadrupole category
+error — the run's most valuable output (correction noted in §4b).
+
+**Line 3 — Route B chiral (`kerrchiral`, frame dragging).** Drift linear in
+bias (slope 0.13, through zero), but radial exponent **−0.6 ± 0.1** —
+neither Lense–Thirring (−3) nor flat (0); consistent with ~1/r walk geometry
+flattened by radial diffusion. Uniform chiral bias does NOT reproduce
+`2J/r³`; matching GR needs `b(r) ~ 1/r²·⁵⁻³` — a fit unless it emerges from
+dynamics. (Only exponents compare; drift units are rad/walk-step.)
+
+**Follow-up — true quadrupole channel (P2-weighted imposition + `B` readout).**
+P2-even bridge weights (`w = 1+ε·P2`, caps vs band): slope `dB/dε = −0.040`
+(24 graphs, `n_ok` 24/24, monotone-ish). P2-weighted completeness:
+slope `dB/dδ = +0.12` (12 graphs, cleanly monotone). Artifact:
+`data/kerrp2_calibration.json`.
+
+2×2 channel table (signs agree within each wiring across channels; wirings
+oppose each other in both — the opposition is structural):
+
+| wiring \ channel | hemispheric (binary `ε_OR`) | quadrupole (`B`) |
+|---|---|---|
+| bridges | −0.07…−0.14 | −0.040 |
+| completeness | +0.19 | +0.12 |
+
+For the Route A sign story (§4): the dilution-flip argument now rests on the
+quadrupole-channel P2-bridge slope (−0.04, same sign as hemispheric) — caps
+bridge excess → band `|κ|` excess (oblate curvature). Equatorial correlation
+(fewer independent equatorial bridges ≈ caps excess of independent bridges)
+still yields the Kerr-oblate sign. Conclusion unchanged, footing firmer.
+Weak-response caveat persists (`max |B| ~ 0.05`): Kerr-scale needs the open
+axisymmetric `κ → metric` map or stronger deformation.
+
+Scorecard: (1) completeness stronger than bridges? YES (~2–3×, opposite sign,
+no starvation). (2) P2 estimator validates + extends? Extends YES; validates
+NO — null exposed the hemispheric error. (3) Uniform bias → LT? NO
+(exponent −0.6). Follow-up: quadrupole channel shipped, signs structural.
+
 ## 5. Suggested work order
 
 1. **Scaffold (done, this branch):** `kerrquad` + tests + this note. No paper
    changes; no claim changes.
 2. **Route A calibration (done, this branch):** `kerraniso` + artifact above;
    `ε_OR` vs `ε_Kerr` comparison now quantitative (weak-response caveat applies).
-3. **Route B calibration:** directed azimuthal overlay → `Ω_graph(b, r)` fit
-   → required-`b(χ)` curve.
+   Channel-corrected + extended in §4c (`kerrcomplete`, `kerrp2`, 2×2 table).
+3. **Route B calibration (done, this branch):** `kerrchiral` — drift linear in
+   bias, exponent −0.6 ± 0.1 (not LT −3, not flat 0); uniform bias ruled out
+   as an LT mechanism, `b(r)` profile question posed.
 4. **Spin-labeled dynamics (the hard step):** replace imposed anisotropy/bias
    with a graph-dynamical spin proxy (e.g. conserved circulation of a routing
    field, angular-momentum-weighted leg measure) and re-measure. This is where
@@ -255,6 +317,9 @@ against Bardeen / Lense–Thirring / GW250114.
 - Scaffold: `src/bh_graph/kerrquad.py`, `tests/test_kerrquad.py`.
 - Route A calibration: `src/bh_graph/kerraniso.py`, `tests/test_kerraniso.py`,
   `data/kerraniso_calibration.json`.
+- Three-way + quadrupole channel: `src/bh_graph/kerrcomplete.py`,
+  `src/bh_graph/kerrp2.py`, `src/bh_graph/kerrchiral.py` (+ tests),
+  `data/kerrp2_calibration.json`.
 - Area/thermo baseline: `src/bh_graph/kerr.py`, `src/bh_graph/thermo.py`,
   `src/bh_graph/kerrpage.py`.
 - Radial-sector template to imitate: `src/bh_graph/orici.py`
