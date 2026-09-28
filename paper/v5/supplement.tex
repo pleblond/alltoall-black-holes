@@ -31,7 +31,7 @@ $w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathr
 shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
 shed $\epsilon(M,a)$ & $0.0168$ universal (Eq.~2 main) & calibrated + extrapolated (D8) & mass/ratio independence underived; BBH extension tested, not fitted \\
 upper-gap null & no feature at $44\,M_\odot$ & negative prediction (measured smooth) & $k$/spin/Love/congestion all smooth; edge left to stellar physics \\
-GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, POSSIS queued (D7) & non-detection at $p \sim 0.12$--$0.32$; epoch audit in \texttt{massgaps} \\
+GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, RT staged (D7) & non-detection at $p \sim 0.12$--$0.32$; audit in \texttt{massgaps}, RT pre-reg in \texttt{possis} \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
@@ -289,6 +289,8 @@ $\pm 1$\,mag theory errors; combined $P \approx 0.68$ (g-only) / $0.88$
 depth, but ZTF ran no targeted GW190814 follow-up; superseded by the
 CFHT/GROWTH epoch tables above. Fig.~75 (main text). Analytic systematics (round 4): viewing $A_g \sin^2\theta$ ($A_g = 1.25$) + opacity-rescaled blue mags give the $P$ grid in Fig.~75b; the hiding window is bounded, not open-ended.
 
+\textbf{D7 RT pipeline (staged, no production run yet).} The leg-shedding to POSSIS (Bulla 2019/2023) mapping is fixed in \path{docs/possis-mapping.md}: ejecta masses from \path{collapse} (GW190814 $0.43$, gap50 $0.084$, GW170817 $0.047\,M_\odot$) with a spherical two-component null (fixed $0.2$/$0.8$ split, $v = 0.3$/$0.1c$, $Y_e = 0.30$/$0.15$, $\rho \propto r^{-3}$, Tanaka tables, abs-mode) plus pre-registered wedge/Y$_{e}$-mix sensitivity branches that are never fitted. The pre-registration (\path{docs/possis-preregistration.md}, module \path{possis}, Fig.~76) fixes 3 ejecta $\times$ 4 configs $= 12$ models $\times$ 11 angles, the exact per-epoch $coverage \times \Phi((depth - m_{RT})/\sigma)$ statistic with $\sigma_{RT} = 0.5$\,mag, and hiding-bounds verdicts (fraction of angles surviving at $P < 0.50$, AT2017gfo anchor must-not-break at $0.5$\,mag); production is gated on mapping review, POSSIS source access, pinned tables, and CPU-budget approval, and any off-grid run is exploratory-labelled. The analytic verdicts above stand until pre-registered RT supersedes them cell by cell.
+
 \section{UV nulls and phenomenology (T, U, V, BD--BF)}
 
 TeV: $M_D = 1$\,TeV gives $k \approx 11$ ($3$\,TeV) -- $17$ ($13$\,TeV) vs
@@ -484,7 +486,8 @@ Modules follow the appendix letters of the v4.1 extended record:
 \path{weakfield} (BI,BQ), \path{legham} (BL),
 \path{pulsar}+\path{orici} gradient shells+\path{collapse} leg-shedding (BU),
 \path{uvscatter}+\path{sinkor}+\path{shellscale} (BV),
-\path{massgaps} (mass-gap null + GW190814 epoch audit).
+\path{massgaps} (mass-gap null + GW190814 epoch audit),
+\path{possis} (D7 RT mapping + pre-registration + hiding bounds; staged, no production run).
 \par}
 
 Reproduce:

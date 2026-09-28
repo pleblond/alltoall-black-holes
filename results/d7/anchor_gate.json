@@ -1,0 +1,43 @@
+{
+ "E0": {
+  "i_decline_days": [
+   1.5,
+   2.0
+  ],
+  "n_cells": 2,
+  "pass_g": true,
+  "pass_i": false,
+  "peak_g_app": [
+   17.99866675657065,
+   18.31771778956182
+  ]
+ },
+ "E1": {
+  "i_decline_days": [
+   2.5,
+   2.5,
+   1.5
+  ],
+  "n_cells": 3,
+  "pass_g": false,
+  "pass_i": false,
+  "peak_g_app": [
+   18.937583686580687,
+   19.26919457831967,
+   19.00750881694146
+  ]
+ },
+ "E2": {
+  "i_decline_days": [
+   3.5,
+   3.0
+  ],
+  "n_cells": 2,
+  "pass_g": false,
+  "pass_i": true,
+  "peak_g_app": [
+   16.976077771822265,
+   22.63121482666844
+  ]
+ }
+}

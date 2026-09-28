@@ -73,7 +73,7 @@ Sharpest near-term test after kilonova rate (2-3 yr timeline).
 **Missing:** `R_s = 2M` (BM reduction: `k(M)` iff `R_s(M)` given).
 Single GR input; derivation from wiring alone open.
 
-## D7 — Kilonova radiative transfer — analytic systematics done, full RT queued
+## D7 — Kilonova radiative transfer — pipeline staged, production gated (narrowed, not closed)
 
 **Update (round 4):** analytic viewing/opacity/dust systematics shipped
 (`massgaps.gw190814_*_sys`, `gw190814_systematics_table`, Fig 75b, 9 tests):
@@ -82,6 +82,37 @@ rescaling bound the hiding window (equatorial + κ_blue=2 → P~0.18).
 **Still missing:** full 3D POSSIS (morphology, Ye-dependent opacities,
 reprocessing); i-band direct not claimed (one-zone κ=10 over-traps).
 g-band verdicts robust; gap-KN ~1/yr O5 prediction stands.
+
+**Update (D7 pipeline, 2026-09-28, branch `cursor/d7-possis-rt-3175`):**
+survey + mapping + pre-registration + pipeline staged; NO production RT yet
+(no pod launched, no budget spent, POSSIS source access pending).
+Shipped: `docs/possis-survey.md` (Bulla 2019/2023 inputs, Tanaka tables
+~2–10 GB, pilot ~1–3 CPUh ~$1–2 / production-null ~60–180 CPUh ~$3–8 /
+full 12-model ~200–700 CPUh ~$8–25 on 16 vCPU, CPU-only — no GPU),
+`docs/possis-mapping.md` (M1–M4 derived ejecta + G1–G9 labelled null,
+spherical two-component null, wedge/Ye-mix sensitivity branches, staged for
+review), `docs/possis-preregistration.md` (3 ejecta × 4 configs = 12 models
+× 11 angles = 132 lightcurves; exact Phi statistic with pre-registered
+`sig_RT=0.5`; hiding-bounds verdicts; anchor must-not-break bar),
+`bh_graph/possis.py` + `tests/test_possis.py` (8 tests: grid, statistic twin
+vs analytic, hiding bounds, artifact IO, MOCK pilot), `runpod/possis_*`
+(CPU-pod wrapper, Dockerfile staged, config-stamped `data/possis_*.json`),
+`data/possis_pilot_mock.json` + Fig 76 (mock plumbing, MOCK-NOT-RT).
+Production gated on G1 mapping review + G2 source + G3 tables + G4 budget
+(pre-reg §6); any run outside the grid is exploratory-labelled. The round-4
+analytic verdicts stand until pre-registered RT supersedes them cell by cell.
+
+**Update (D7 public-data package v2, 2026-09-28, same branch):** NMMA
+built-in SVD grids (Bu2019nsbh + Ka2017, pinned in `d7_public_models/`)
+evaluated as SURROGATE-NOT-RT exploratory cells per spec
+`docs/D7_TRANSPORT_SPEC.md` (amendments A1–A3 to the frozen parent docs).
+Anchor gate: E0 passes g (18.00/18.32) but fails i-decline (no i
+promotion); E1 fails g as specified (fixed Xlan=1e-3 too red);
+E2 brackets. GW190814 (0.43) is 4–17× outside every published grid →
+sensitivity-only; the §12 named outcome applies (transport cannot
+adjudicate at headline level; analytic tension-not-exclusion stands).
+gap50 forward predictions (in-grid) corroborate analytic g to ~0.2 mag.
+Full account: `docs/D7_REPORT.md`, machine-readable `results/d7/`.
 
 ## D8 — Shedding efficiency ε(M,a) + upper-gap assignment — P1
 
