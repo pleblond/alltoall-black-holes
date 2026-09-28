@@ -33,7 +33,13 @@ def kerr_newman_area(m, a=0.0, q=0.0):
 
 
 def kerr_newman_k(m, a=0.0, q=0.0, lp: float = 1.0):
-    """Effective independent exterior legs k_eff = A/lp^2."""
+    """Effective exterior legs in Planck-area units: k = A/lp^2 (patch=1 convention).
+
+    NOTE (audit v0.2): this is PATCH_AREA x the I1 leg count used by
+    horizon/data (k_legs = A/4ln2 lp^2). Only ratios and monotonicity consume
+    it (see test_kerr), which are patch-independent; absolute leg counts use
+    data.k_schwarzschild_sun. See docs/model.md I3.
+    """
     return np.asarray(kerr_newman_area(m, a, q), dtype=float) / lp**2
 
 

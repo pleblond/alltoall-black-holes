@@ -58,6 +58,8 @@ def evaporate(
         "k": k,
         "N": n,
         "area": np.asarray(horizon_area(k, lp), dtype=float),
+        # Audit v0.2: legacy patch=1 radius (differs by sqrt(PATCH_AREA) from
+        # horizon_radius); unconsumed — tests/figures use area/k. Do not use.
         "radius": np.sqrt(np.maximum(k, 0.0) * lp**2 / (4.0 * np.pi)),
         "S_rad": np.asarray(page_curve_bits(t, steps), dtype=float),
     }
