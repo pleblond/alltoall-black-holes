@@ -1,10 +1,20 @@
-# The model, stated first (v0.1)
+# The model, stated first (v0.2)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
-`paper/v5/supplement.tex`, `docs/DEFERRED.md`, or the cited `src/bh_graph/`
-module. Where the code and the paper disagree on wording, the code wins and the
-disagreement is flagged.
+`paper/v5/supplement.tex`, `docs/DEFERRED.md`, the cited `src/bh_graph/`
+module, or committed `data/` artifacts. Where the code and the paper disagree,
+the code wins and the disagreement is flagged.
+
+**v0.2 audit release.** Every symbol → module → test citation resolved; every
+load-bearing literal recomputed or test-pinned (suite: 398 collected,
+396 passed, 2 torch/GPU-only skipped); kill wires aligned across paper,
+protocol, and code. Fixes vs v0.1: TeV absolutes corrected to post-BS values
+(v5 prose preserves pre-BS numbers with identical ratios — flagged
+paper-side), Kerr leg normalization stated explicitly, `pheno` restored to the
+module map, D-tag collision disambiguated. Two code-side flags (comment-only
+notes added, zero behavior change): `evaporate()["radius"]` legacy convention,
+`kerr_newman_k` patch-1 units. See §8 provenance layers and §9.
 
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
@@ -147,7 +157,10 @@ Consequences of I1–I3 worth stating plainly:
   `r+ = M+√(M²−a²−Q²)` setting `k_eff = A/4ln2` (**input**). Spin orders legs
   smoothly: extremal Kerr carries exactly half, extremal Reissner–Nordström
   exactly one quarter, the Schwarzschild budget at fixed `M` (patch-independent
-  ratios). Nothing else about Kerr is assumed here — and nothing else about Kerr
+  ratios). Normalization (audit v0.2): `kerr.kerr_newman_k` returns `A/lp²`
+  (patch-`1` units, exactly `PATCH_AREA`× the I1 leg count) and is consumed only
+  by a monotonicity test; absolute leg counts use `data.k_schwarzschild_sun`.
+  Nothing else about Kerr is assumed here — and nothing else about Kerr
   is claimed (see §5/D2).
 
 ### T4 (area law). Horizon area counts exterior legs, independent of `N`.
@@ -286,14 +299,18 @@ derived. (`dispersion`, `foamgrid`.)
 
 ### T14 (merger battery + nulls held). Area theorem in wiring language; nulls, not anomalies.
 
-All 32 confident GWTC-3 BBH medians satisfy `k_f > k₁+k₂` (median fractional
+All 32 confident GWTC-3 BBH medians (live GWOSC fetch; 8-event bundled fallback
+offline) satisfy `k_f > k₁+k₂` (median fractional
 creation `0.77` at `0.04` radiated; spin neglected but `a_f ~ 0.7` costs `~13%`
 against a `77%` margin). GW150914 posteriors (8350 samples, spin-aware both
 ends) give `P(Δk > 0) = 100%`, median `0.57`. Healing `dA/dt` with
 `τ = 11.24M` (3.5 ms at GW150914 mass); ladder healing/scrambling/Page/
 evaporation separated by `~66×` to `1e80` s; MSS `λ/2πT = 0.50–0.68`
 (`α ∈ [9.0,12.4]`, `11.24` inside). Nulls held: no LHC thermal black holes
-(`k ≈ 11–17` at 3–13 TeV vs `k_crit ≈ 50`, onset `~550` TeV), no lattice echoes
+(`k ≈ 4.0–6.1` at 3–13 TeV vs `k_crit ≈ 18.1` at `r = 2l_D`, `M_D = 1` TeV,
+`n = 6`, ratios `0.22–0.33`, onset `~550` TeV; recomputed from `tev.k_add` /
+`k_crit_tev` — v5 prose preserves the pre-BS absolutes `11–17` vs `50` with
+identical ratios, flagged paper-side), no lattice echoes
 (amplitude `R ~ (ω/ω_P)² ~ 1e−80`, energy `~1e−160` at 100 Hz — dimensional
 estimate, not a leg S-matrix derivation), no EHT shadow shift (`1e−48`, 47
 orders below sensitivity). Remnant dark matter excluded on the record except a
@@ -398,6 +415,9 @@ graph; inserting `44 M☉` as a graph parameter is refused. (`massgaps`.)
 
 Each item: what is missing, what would close it, what it gates. Tracked in
 `docs/DEFERRED.md`; the paper's kill table wires the falsifiable ones.
+Tag convention: D1–D8 here always mean DEFERRED items; the appendix-letter tag
+(D2) (= module `evaporation_unitary`) is always written as the module name —
+supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 
 | ID | Missing | Close criterion | Gates / kill relevance |
 |---|---|---|---|
@@ -473,7 +493,7 @@ Single table; every symbol in §1–§4 appears here with its home.
 
 ## 8. Map to code, tests, figures
 
-- **L0**: `graphs`, `scrambling`, `circuits`, `otoc`, `krylov`, `syk`, `bigsyk`,
+- **L0**: `graphs`, `scrambling`, `circuits`, `otoc`+`pheno`, `krylov`, `syk`, `bigsyk`,
   `sparse24`, `monogamy`, `qec`, `robustness`, `fission`, `klanguage`,
   `collapse` (grid→complete part), `concentration`.
 - **L1**: `horizon`, `micro`, `qes`, `evaporation`, `evaporation_unitary`,
@@ -500,6 +520,18 @@ Counts above are v5.0 (`main.pdf` 12pp + `supplement.pdf` 11pp, S1–S10, 46/46
 references cited). The v4.1 living document stays archived as the extended
 record; v5 is canonical.
 
+**Provenance layers (v0.2 audit).** Checked numbers fall in three layers with no
+contradictions except the TeV absolutes (fixed in T14): test-pinned exact
+(shed `0.168`, `c₂(0.92) = 0.7728`, log-log slope `2.0`, `γ = 1` to `1e-6`,
+`p = 0.913 ± 0.049` / SEM `0.0055` / 80-of-80 in `data/p80_n1020_beta124.json`),
+test-pinned envelopes (B1913 `6.2σ` / J0737 `9.7σ` naive bands, J0737 `< 0.1σ`
+resuscitated, GW190814 `P = 0.68 ± 0.02`, chromaticity `< 1e-50/1e-30`),
+figure-computed (`25` trials `N = 8…128`, depth-`5` convergence scan,
+deficit orderings), and paper-quoted (`0.002`-bit tracking, `42.99`,
+`0.57`/`100%` posteriors, `32` live BBH, MSS `0.50–0.68`, `1e-80/1e-160`
+dimensional estimate). Suite on this branch: 398 collected, 396 passed,
+2 torch/GPU-only skipped.
+
 ---
 
 ## 9. Promotion rules (how this document changes)
@@ -514,9 +546,10 @@ record; v5 is canonical.
   is recorded in `docs/DEFERRED.md`, not by softening the criterion here.
 - A **killed** claim stays in §6 with its killer named. (Precedents: broad
   remnant DM, isotropic `b_crit`, naive `γ = 2`, linear LIV, flat `p = 0.49`.)
-- This document versions with the paper: v0.1 tracks v5.0. Any number changed
-  here must change in the same PR in the S1 audit table or be flagged as a
-  deliberate divergence.
+- This document versions with the paper: v0.2 tracks v5.0 (audit release).
+  Any number changed here must change in the same PR in the S1 audit table or
+  be flagged as a deliberate divergence. One deliberate divergence stands:
+  T14 TeV absolutes follow the code (post-BS), not v5 prose (pre-BS).
 
 ---
 

@@ -4,6 +4,12 @@ Single tracker for open derivations deliberately **not** claimed in v5.
 Each item: what is missing, why it matters, what would close it.
 Honesty ledger in `paper/v5/supplement.tex` S1 points here.
 
+**Tag note (audit v0.2):** `Dn` below means DEFERRED item n. The appendix-letter
+tag (D2) (= module `evaporation_unitary`, the closed qubit-toy instance under
+D1) is unrelated to DEFERRED-D2 (Kerr multipoles); `docs/model.md` always
+writes the module name. `supplement.tex` S1/S3 still uses bare (D2) for both —
+flagged for the paper flow (needs PDF rebuild).
+
 ## D1 — Evaporation isometry V_k (Page/QES) — P0 next cycle
 
 **Missing:** unitary/isometric evaporation map from graph dynamics:
@@ -13,7 +19,7 @@ with 0.72-bit dip is imposed/sampled (`evaporation`, `haar`); QES crossing
 is a two-saddle competition + discrete min-cut analogue (`qes`), not
 `S_gen = A/4G + S_matter` extremized from a gravitational path integral.
 Update (PR #10): the qubit-toy instance is closed — `evaporation_unitary`
-(D2) constructs per-step `V_t`, proves `V†V=I` (incl. a composed-map
+(appendix tag D2 — not DEFERRED-D2) constructs per-step `V_t`, proves `V†V=I` (incl. a composed-map
 inner-product test), and computes `S_rad` from `rho_rad` (tracks Haar/Page
 to 0.002 bits; all:all circuits converge by depth ~5). What remains is the
 graph instance: derive `V_k` from graph dynamics, not merely choose one.
