@@ -2039,6 +2039,51 @@ def fig75b_gw190814_systematics():
     plt.close(fig)
 
 
+def fig76_tidal_stiffness():
+    from bh_graph.massgaps import LP_KM
+    from bh_graph.tidal import (
+        LAMBDA_14, LAMBDA_14_HI, LAMBDA_14_LO,
+        dstar_compatibility_km, fission_floor_sigma, lambda_shape_flat_r,
+        sigma_pinned_gw170817,
+    )
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    # Lambda(M) shape under flat R: GW170817 pins sigma, rest predicted
+    m = np.logspace(np.log10(0.7), np.log10(60.0), 200)
+    sh = lambda_shape_flat_r(m)
+    axes[0].loglog(m, sh["Lambda"], color="#0f766e", label="derived shape (flat R)")
+    axes[0].axhspan(LAMBDA_14_LO, LAMBDA_14_HI, alpha=0.15, color="red",
+                    label="GW170817 band (pins sigma)")
+    axes[0].scatter([1.4], [LAMBDA_14], s=80, color="red", zorder=5)
+    axes[0].scatter([3.6], [lambda_shape_flat_r([3.6])["Lambda"][0]], s=80,
+                    marker="^", color="#7c3aed", zorder=5, label="gap 3.6 (pred ~2.7)")
+    axes[0].set_xlabel("M (Msun)"); axes[0].set_ylabel("Lambda")
+    axes[0].set_title("Tides fall as M^-5 (BBH BH-like)")
+    axes[0].legend(fontsize=7)
+    # sigma viability: tidal band vs fission floor over d*
+    dstar = np.logspace(37, 41, 200)
+    floor = np.array([fission_floor_sigma(d_star_lp=d) for d in dstar])
+    sig = sigma_pinned_gw170817()
+    slo = sig * LAMBDA_14 / LAMBDA_14_HI
+    shi = sig * LAMBDA_14 / LAMBDA_14_LO
+    axes[1].loglog(dstar, floor, color="#dc2626", label="fission floor (p=2)")
+    axes[1].axhspan(slo, shi, alpha=0.15, color="#0f766e", label="tidal sigma band")
+    axes[1].axhline(sig, ls="--", color="#0f766e")
+    axes[1].axvline(dstar_compatibility_km() / LP_KM, ls=":", color="black",
+                    label="compat. edge ~32 km")
+    axes[1].set_xlabel("fission separation d* (lp)"); axes[1].set_ylabel("sigma")
+    axes[1].set_title("Compatible iff d* >~ 30 km")
+    axes[1].legend(fontsize=7)
+    # phase-dependent Love: delocalized NS-like vs horizon suppressed
+    axes[2].bar(["delocalized\n(1.4, tides)", "horizon\n(1.4, dim.)"],
+                [0.051, 1.5e-77], color=["#0f766e", "#6b7280"])
+    axes[2].set_yscale("log"); axes[2].set_ylabel("k2")
+    axes[2].set_title("Same model, two tidal phases")
+    fig.suptitle("Fig 76 — BU4: tidal stiffness pins sigma; fission + NICER confrontation (D5 partial)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig76_tidal_stiffness.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -2118,6 +2163,7 @@ def main():
     fig74b_graphvk()
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
+    fig76_tidal_stiffness()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
