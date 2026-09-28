@@ -151,5 +151,7 @@ exploratory number supersede an analytic or pre-registered verdict.
 - [ ] G4 budget approval (pilot ~$1–2 CPU; production-null ~$3–8; full ~$8–25;
       user sign-off, no GPU — high-end CPU only):
 
-Pre-registration commit (filled at commit time): `<hash>`
+Pre-registration commit (grid + statistic + thresholds fixed): `c869e16`
+(branch `cursor/d7-possis-rt-3175`; this pointer filled in a follow-up —
+the pointer commit changes no grid content).
 Pilot gate: G1+G4-pilot suffice for the 1-model pilot; production needs G1–G4.
