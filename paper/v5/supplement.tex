@@ -158,6 +158,18 @@ Kerr to factor $\sim$2 resp.\ $\sim$10\% by parametrization) are currently consi
 not passed predictions. A future graph derivation $Q=-Ma^2(1+\delta_Q)$ with $|\delta_Q|\gtrsim0.17$
 would be ruled out by GW241011. Tracked as D2 in \path{docs/DEFERRED.md}.
 
+\textbf{Kerr thermodynamics (conditional check).} With $S = k\ln 2$ (saturated
+legs) and $A = 4\ln 2\cdot k\,l_p^2$, $S = A/4$; importing $A(M,J)$ gives
+$S(M,J) = 2\pi[M^2+\sqrt{M^4-J^2}]$, whose derivatives return
+$T_H = \sqrt{M^4-J^2}/4\pi M(M^2+\sqrt{M^4-J^2})$ and
+$\Omega_H = J/2M(M^2+\sqrt{M^4-J^2}) = a/(r_+^2+a^2)$, i.e.\
+$dM = T\,dS + \Omega_H\,dJ$ (module \texttt{thermo}: identities $< 10^{-6}$,
+independent finite-step $\Delta M = T\Delta S + \Omega_H\Delta J$ to $O(d^2)$;
+super-extremal $|J| > M^2$ returns NaN, never clamped). Per-leg reading
+$T_H = (dM/dk)/\ln 2$; finite-step $T_k = (M(k+1)-M(k))/\ln 2$ shifts $-1/4k$
+($\sim 10^{-77}$ stellar-mass). Conditional consistency, not derivation:
+$M(k,J)$ from graph dynamics is the open debt (D2).
+
 \begin{figure}[ht]\centering
 \includegraphics[width=0.92\linewidth]{fig10_page.png}
 \caption{Leg-surgery evaporation: radiation entropy follows the Page curve
@@ -394,7 +406,7 @@ Modules follow the appendix letters of the v4.1 extended record:
 \path{graphs}, \path{scrambling}, \path{horizon}, \path{micro},
 \path{circuits} (A), \path{maxent} (B), \path{qes} (C),
 \path{evaporation} (D), \path{evaporation_unitary} (D2), \path{qec} (F), \path{robustness} (G),
-\path{kerr} (H), \path{haar} (I), \path{monogamy} (J),
+\path{kerr} (H), \path{thermo} (H2), \path{haar} (I), \path{monogamy} (J),
 \path{otoc}+\path{pheno} (L), \path{tn} (M), \path{kerrpage} (N),
 \path{syk} (O), \path{data} (Q), \path{litcompare} (R), \path{tev} (T),
 \path{echoes} (U), \path{posteriors} (W), \path{ds} (X),
