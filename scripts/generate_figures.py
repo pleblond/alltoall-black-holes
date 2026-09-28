@@ -2039,6 +2039,39 @@ def fig75b_gw190814_systematics():
     plt.close(fig)
 
 
+def fig79_fluxrace():
+    from bh_graph.fluxrace import (
+        CRUNCH_MASS_PLANCK, evaporation_flux_trajectory, flux_ratio_of_m,
+    )
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    # ratio vs mass: safe until trans-Planckian
+    m = np.logspace(-2, 40, 300)
+    axes[0].loglog(m, [flux_ratio_of_m(v) for v in m], color="#0f766e")
+    axes[0].axhline(1.0, ls="--", color="red", label="crunch line")
+    axes[0].axvline(CRUNCH_MASS_PLANCK, ls=":", color="red", label="0.032 M_Pl")
+    axes[0].axvline(1e38, ls=":", color="gray", label="stellar")
+    axes[0].set_xlabel("M (Planck masses)"); axes[0].set_ylabel("required/channel")
+    axes[0].set_title("Flux race won by ~M^2")
+    axes[0].legend(fontsize=7)
+    # trajectory at M0 = 10: required shuts off early, channel persists
+    tr = evaporation_flux_trajectory(10.0, 100.0)
+    axes[1].loglog(tr["k"], tr["required"], color="#2563eb", label="required")
+    axes[1].loglog(tr["k"], tr["channel"], color="#0f766e", label="channel")
+    axes[1].set_xlabel("k legs remaining"); axes[1].set_ylabel("flux (nats/t_Pl)")
+    axes[1].set_title("Drain finishes in first 8% (M0=10)")
+    axes[1].legend(fontsize=7)
+    # ratio along the trajectory: never threatened
+    axes[2].semilogx(tr["k"], tr["ratio"], color="#7c3aed")
+    axes[2].axhline(1.0, ls="--", color="red", label="crunch line")
+    axes[2].set_xlabel("k legs remaining"); axes[2].set_ylabel("ratio")
+    axes[2].set_title("Peak ratio ~1e-5 at M=10")
+    axes[2].legend(fontsize=7)
+    fig.suptitle("Fig 79 — D1 flux race: no late-time crunch (channels win)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig79_fluxrace.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -2118,6 +2151,7 @@ def main():
     fig74b_graphvk()
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
+    fig79_fluxrace()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

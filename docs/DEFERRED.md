@@ -32,6 +32,11 @@ graph changes `V` (`||U_complete - U_chain|| > 1`, `is_adjacency_sensitive`).
 Fig 74b. What remains: large-`N`/thermodynamic limit, `k`-backreaction on the
 interior spectrum, emission energy/mass spectrum, and `S_gen` extremization
 from a gravitational path integral (QES still two-saddle + min-cut analogue).
+Update (flux branch): the §9 subtler race (required evacuation flux vs
+per-leg channel capacity) is run and won: ratio `1/960M²` (Hawking rate
+imported, Bremermann-per-leg postulated, both labeled), crunch only at
+trans-Planckian `0.032 M_Pl`; required flux additionally shuts off once
+drained (Fig 79, `fluxrace`). No late-time non-adiabatic crunch.
 
 **Kill relevance:** none currently (no observed BH Page curve); referee
 honesty issue, not a falsifier.
