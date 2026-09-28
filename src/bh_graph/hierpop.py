@@ -291,3 +291,69 @@ def tilt_averaged_creation(
         "dk_p95": float(np.percentile(dk, 95)),
         "af_median": float(np.median(np.abs(af))),
     }
+
+
+# Kill-list wires 7-8 (Appendix AN): per-event Kerr wiring audit of catalog
+# PE rows. No fits here — pure area audit of MEASURED (m1, chi1, m2, chi2,
+# mf, af) medians. Empty registry -> 'awaiting data', never a pass.
+MASS_SPLIT_MSUN = 45.0  # GWTC-5 hierarchical-transition scale (input, not predicted)
+DK_FRAC_BAND = (0.3, 0.95)  # wire-8 band: config spread 0.38-0.81 + ~0.1 fit slack
+
+
+def event_kerr_creation(ev: dict) -> dict[str, float]:
+    """Per-event Kerr dk_frac from a PE row (patch-independent ratio).
+
+    ev: {m1, chi1, m2, chi2, mf, af} with masses in M_sun, spin magnitudes.
+    """
+    a1 = float(kerr_area_geom(ev["m1"], ev["chi1"]))
+    a2 = float(kerr_area_geom(ev["m2"], ev["chi2"]))
+    af_area = float(kerr_area_geom(ev["mf"], ev["af"]))
+    dk = af_area - a1 - a2
+    return {"dk_frac": dk / (a1 + a2), "dk_positive": bool(dk > 0)}
+
+
+def surplus_audit(events: list[dict]) -> dict:
+    """Wire 7: KILL (shared with GR) if any event median shows dk < 0."""
+    if not events:
+        return {"status": "awaiting data", "kill": False}
+    fracs = [event_kerr_creation(ev)["dk_frac"] for ev in events]
+    return {
+        "status": "evaluated", "n": len(events), "min_frac": float(min(fracs)),
+        "kill": bool(min(fracs) < 0.0),
+    }
+
+
+def surplus_verdict(events: list[dict]) -> str:
+    r = surplus_audit(events)
+    if r["status"] == "awaiting data":
+        return "awaiting per-event Kerr (mass, spin) rows"
+    if r["kill"]:
+        return "KILL wiring surplus (dk < 0; area theorem violated)"
+    return f"alive (all {r['n']} events create legs; min frac {r['min_frac']:.2f})"
+
+
+def selfsimilarity_audit(events: list[dict]) -> dict:
+    """Wire 8: KILL if either mass bin median dk_frac leaves DK_FRAC_BAND."""
+    if not events:
+        return {"status": "awaiting data", "kill": False}
+    lo_rows = [ev for ev in events if max(ev["m1"], ev["m2"]) < MASS_SPLIT_MSUN]
+    hi_rows = [ev for ev in events if max(ev["m1"], ev["m2"]) >= MASS_SPLIT_MSUN]
+    if not lo_rows or not hi_rows:
+        return {"status": "awaiting data", "kill": False,
+                "have_lo": len(lo_rows), "have_hi": len(hi_rows)}
+    med = lambda rows: float(np.median([event_kerr_creation(ev)["dk_frac"] for ev in rows]))
+    med_lo, med_hi = med(lo_rows), med(hi_rows)
+    blo, bhi = DK_FRAC_BAND
+    return {
+        "status": "evaluated", "median_lo": med_lo, "median_hi": med_hi,
+        "kill": bool(not (blo <= med_lo <= bhi) or not (blo <= med_hi <= bhi)),
+    }
+
+
+def selfsimilarity_verdict(events: list[dict]) -> str:
+    r = selfsimilarity_audit(events)
+    if r["status"] == "awaiting data":
+        return "awaiting per-event rows in both mass bins"
+    if r["kill"]:
+        return "KILL self-similarity (bin median outside [0.3, 0.95])"
+    return f"alive (bin medians {r['median_lo']:.2f} / {r['median_hi']:.2f} in band)"

@@ -818,9 +818,9 @@ naive "last legs carry the most, always" was wrong and is now the diagnostic.
 
 ![Fig 36](../figures/fig36_bandwidth.png)
 
-## Appendix AN. Pre-registered kill list (six live wires)
+## Appendix AN. Pre-registered kill list (eight live wires)
 
-One appendix, six executable falsifiers — thresholds fixed *before* the data:
+One appendix, eight executable falsifiers — thresholds fixed *before* the data:
 
 1. **AF quench** (`gridcirc`, Fig 37). Same-device grid$\to$all:all quench at
 $N \ge 36$: predicted $t^*_{grid}/t^*_{all} \approx 2$--$3\times$ (simulated
@@ -852,6 +852,18 @@ channel stays untestable (2PN excess $\sim3\times10^{-6}\ll$ VLBI $10^{-4}$,
 shown hidden); the periastron channel now tests the combination
 $c_{tot} = c_1+w c_2$ directly — measured $0.913\pm0.049$ passes J0737 at
 $0.1\sigma$, so wire 6 survives via cancellation, not via $c_1$ alone.
+7. **Wiring-surplus audit** (`hierpop`, BW). Per-event Kerr $dk$ from catalog
+PE medians $(m_1, \chi_1, m_2, \chi_2, M_f, a_f)$ — pure area audit, no fits.
+**KILL if any confident BBH shows median $dk < 0$.** Shared with GR (it is
+the Hawking area theorem in wiring units), hence a weak wire — but the audit
+is the model's lens on every future catalog, so it stays armed. Scaffold
+reports "awaiting data" until per-event Kerr rows land.
+8. **Creation self-similarity** (`hierpop`, BW). Same rows, binned by primary
+mass at $45\,M_\odot$: the borrowed-map framework predicts no systematic
+trend (configuration band $0.38$–$0.81$). **KILL if either bin's median
+per-event Kerr $dk/(k_1+k_2)$ falls outside $[0.3, 0.95]$** ($\sim 0.1$ fit
+slack included). A mass-dependent area deficit would break the framework
+that wires the high-mass population to the low-mass one.
 
 ![Fig 37](../figures/fig37_quench.png)
 ![Fig 38](../figures/fig38_selfattack.png)
@@ -1839,8 +1851,8 @@ wiring-dependent dynamics (remnant/kick) sector, and inspiral physics stays
 OUT of scope as in BF. This appendix is therefore an audit with numbers,
 not an anomaly explanation, kept on record so the high-mass/high-spin
 candidate stays dead unless a future wiring-dependent map revives it.
-Falsifiers (shared with GR, hence weak): any per-event Kerr $dk < 0$ kills
-both; a strong $dk$-vs-mass trend across $45\,M_\odot$ would break the
-borrowed-map framework.
+Kills armed on the AN list: wire 7 (any per-event Kerr $dk < 0$, shared
+with GR) and wire 8 (bin-median $dk$ outside $[0.3, 0.95]$ across
+$45\,M_\odot$); both scaffolds report "awaiting data" today.
 
 ![Fig 74](../figures/fig74_hierpop.png)

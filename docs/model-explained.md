@@ -342,6 +342,11 @@ quantitative falsifiers (Appendix AN):
    $2.5$–$5\,M_\odot$ merger within 200 Mpc must flash ($m_g\sim21$,
    $\sim1$/yr vs standard $\le0.3$/yr). Ten clean non-detections kill
    no-neutron-stars; one flash kills neutron-star theory instead.
+9. **Wiring audit (catalogs, BW).** Every confident binary merger must
+   satisfy the Kerr area theorem ($dk > 0$ per event — shared with GR,
+   hence a weak wire), and mass-bin-median leg creation must stay inside
+   $[0.3, 0.95]$ on both sides of $45\,M_\odot$. A systematic
+   mass-dependent area deficit breaks the wiring framework.
 
 One sub-claim has already died this way (Planck-mass remnant dark matter,
 ruled out by abundance arithmetic plus published bounds — kept on record

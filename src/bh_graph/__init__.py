@@ -311,7 +311,9 @@ from bh_graph.hierpop import (
     kerr_area_geom, wiring_efficiency, legs_per_msun2, remnant, chi_eff,
     leg_creation_spinning, area_theorem_holds_kerr, max_remnant_spin,
     remnant_spin_allowed, gate_binds, merge_population, sample_powerlaw_masses,
-    sample_1g_spins, tilt_averaged_creation,
+    sample_1g_spins, tilt_averaged_creation, event_kerr_creation,
+    surplus_verdict, selfsimilarity_verdict, surplus_audit, selfsimilarity_audit,
+    MASS_SPLIT_MSUN, DK_FRAC_BAND,
 )
 
 __all__ = [
@@ -498,5 +500,7 @@ __all__ = [
     "kerr_area_geom", "wiring_efficiency", "legs_per_msun2", "remnant", "chi_eff",
     "leg_creation_spinning", "area_theorem_holds_kerr", "max_remnant_spin",
     "remnant_spin_allowed", "gate_binds", "merge_population", "sample_powerlaw_masses",
-    "sample_1g_spins", "tilt_averaged_creation",
+    "sample_1g_spins", "tilt_averaged_creation", "event_kerr_creation",
+    "surplus_verdict", "selfsimilarity_verdict", "surplus_audit", "selfsimilarity_audit",
+    "MASS_SPLIT_MSUN", "DK_FRAC_BAND",
 ]

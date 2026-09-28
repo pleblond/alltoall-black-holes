@@ -3,6 +3,7 @@ import numpy as np
 from bh_graph.hierpop import (
     area_theorem_holds_kerr,
     chi_eff,
+    event_kerr_creation,
     final_spin,
     gate_binds,
     is_physical_config,
@@ -18,6 +19,8 @@ from bh_graph.hierpop import (
     remnant_spin_allowed,
     sample_1g_spins,
     sample_powerlaw_masses,
+    selfsimilarity_verdict,
+    surplus_verdict,
     tilt_averaged_creation,
     wiring_efficiency,
 )
@@ -136,3 +139,31 @@ def test_tilt_averaged_creation():
     aligned = leg_creation_spinning(30.0, 0.7, 1.0, 30.0, 0.7, 1.0)["frac"]
     assert abs(aligned - 0.4449) < 0.001
     assert aligned < t["dk_median"]
+
+
+GW150914_ROW = {"m1": 35.6, "chi1": 0.0, "m2": 30.6, "chi2": 0.0, "mf": 63.1, "af": 0.68}
+# Illustrative GW190521 medians (142 M_sun, af ~ 0.72): arithmetic anchor only.
+GW190521_ROW = {"m1": 85.0, "chi1": 0.0, "m2": 66.0, "chi2": 0.0, "mf": 142.0, "af": 0.72}
+
+
+def test_event_kerr_creation_anchors():
+    assert abs(event_kerr_creation(GW150914_ROW)["dk_frac"] - 0.57) < 0.02
+    assert event_kerr_creation(GW150914_ROW)["dk_positive"]
+    assert abs(event_kerr_creation(GW190521_ROW)["dk_frac"] - 0.475) < 0.02
+
+
+def test_wire7_empty_awaiting_alive_kill():
+    assert surplus_verdict([]) == "awaiting per-event Kerr (mass, spin) rows"
+    assert surplus_verdict([GW150914_ROW, GW190521_ROW]).startswith("alive")
+    # Synthetic area-theorem violator: remnant far too small for its parents.
+    bad = {"m1": 30.0, "chi1": 0.0, "m2": 30.0, "chi2": 0.0, "mf": 40.0, "af": 0.0}
+    assert surplus_verdict([GW150914_ROW, bad]).startswith("KILL")
+
+
+def test_wire8_empty_awaiting_alive_kill():
+    assert selfsimilarity_verdict([]) == "awaiting per-event rows in both mass bins"
+    assert selfsimilarity_verdict([GW150914_ROW]).startswith("awaiting")  # lo bin only
+    assert selfsimilarity_verdict([GW150914_ROW, GW190521_ROW]).startswith("alive")
+    # Synthetic high-bin outlier: near-no-loss remnant pushes frac above band.
+    bad_hi = {"m1": 50.0, "chi1": 0.0, "m2": 50.0, "chi2": 0.0, "mf": 99.0, "af": 0.0}
+    assert selfsimilarity_verdict([GW150914_ROW, bad_hi]).startswith("KILL")

@@ -76,7 +76,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 370 tests
+python -m pytest tests/ -q          # 373 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -137,6 +137,8 @@ cd paper && pdflatex main.tex && pdflatex main.tex
   v4.0 arms: $p$ outside $0.92\pm0.056$ at $N = 1024$ (measured
   $0.913\pm0.049$, passes); 10 well-localized gap non-detections $<200$ Mpc
   kill the resuscitation (protocol in `docs/observation-protocol.md`).
+  BW arms (AN wires 7–8): any per-event Kerr $dk < 0$ (shared with GR);
+  mass-bin-median $dk$ outside $[0.3, 0.95]$ across $45\,M_\odot$.
 
 ## License
 
@@ -179,7 +181,7 @@ NR remnant map (BMR2012 + BR09, labeled) plus leg translation: 2G remnants
 carry ~14% fewer legs per M², creation spans 0.38–0.81 by configuration
 (not generation), area-theorem gate never binds (margin > 0.05), and the
 45 M_sun scale stays a stellar input. Verdict: audit, not anomaly — no
-distinctive P(M, chi). 370 tests, 78 figure files (Figs 1–74).
+distinctive P(M, chi). 373 tests, 78 figure files (Figs 1–74).
 v4.1: BV UV tortuosity-as-scattering on top of v4.0 — 4 assumptions
 $\to$ 3 (tortuosity $1/2$ derived from $\ln 2$); N = 4000/8000/16000
 campaigns hold $p = 0.93/0.94/0.91$ with turnover $0.63$–$0.69 \to 1.26$–$1.46$
