@@ -72,6 +72,14 @@ Sharpest near-term test after kilonova rate (2-3 yr timeline).
 
 **Missing:** `R_s = 2M` (BM reduction: `k(M)` iff `R_s(M)` given).
 Single GR input; derivation from wiring alone open.
+Update (this branch): circle shrunk via the Michell route — `michell`
+derives `R = 2GM/c²` from entropic Newton (force→potential→`v_esc` chain
+tested by numerical integration) + lattice `c` + one labelled corpuscular
+escape assumption (`v_esc < c` escapes), with no Schwarzschild metric
+imported; `k(M)` through the Michell radius coincides with the
+GR-consistent map to machine precision (Fig 3b). Still open: the
+equipartition/Bekenstein postulates behind Newton, the escape assumption
+itself, and any full metric (radius only, not `g_μν`).
 
 ## D7 — Kilonova radiative transfer — analytic systematics done, full RT queued
 
