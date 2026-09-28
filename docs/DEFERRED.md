@@ -32,6 +32,13 @@ graph changes `V` (`||U_complete - U_chain|| > 1`, `is_adjacency_sensitive`).
 Fig 74b. What remains: large-`N`/thermodynamic limit, `k`-backreaction on the
 interior spectrum, emission energy/mass spectrum, and `S_gen` extremization
 from a gravitational path integral (QES still two-saddle + min-cut analogue).
+Update (large-`N` branch): sparse Krylov evolution (`graphvkn`, identical
+disorder convention, cross-checked to machine precision) pushes the same
+protocol to `N = 14`: all:all stays Page-like (dev 0.005 at `N = 12`) while
+the chain gap WIDENS with `N` (0.88 → 1.14 → 1.42 at `N = 8/10/12`) — the
+hierarchy sharpens, not a small-`N` artifact (Fig 74c). Hole-energy drain
+recorded as a diagnostic. Still open: thermodynamic limit, backreaction
+theory, emission spectrum, `S_gen`.
 
 **Kill relevance:** none currently (no observed BH Page curve); referee
 honesty issue, not a falsifier.
