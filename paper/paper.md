@@ -417,6 +417,27 @@ natural next calculation.
 
 ![Fig 12](../figures/fig12_kerr.png)
 
+## Appendix H2. Thermodynamic consistency: Hawking temperature from leg entropy (conditional)
+
+(`bh_graph.thermo`, no figure — analytic check.) Given the stated inputs
+$S = k\ln 2$ (saturated legs) and $A = 4\ln 2\cdot k\,l_p^2$, so $S = A/4$,
+plus the imported GR maps $R_s = 2M$ and $A(M,a) = 4\pi(r_+^2+a^2)$, the
+Hawking temperature follows by ordinary differentiation — no separate
+temperature postulate is needed. Schwarzschild: $k(M) = (4\pi/\ln 2)M^2$,
+$dS/dM = 8\pi M$, hence $T_H = 1/8\pi M$. Leg-cost reading:
+$T_H = (dM/dk)/\ln 2$, the energy cost of an exterior leg over the entropy
+it carries. Kerr: $S(M,J) = 2\pi[M^2+\sqrt{M^4-J^2}]$ gives
+$T_H = \sqrt{M^4-J^2}/4\pi M(M^2+\sqrt{M^4-J^2})$ and
+$\Omega_H = J/2M(M^2+\sqrt{M^4-J^2}) = a/(r_+^2+a^2)$, i.e.\ $dM = T\,dS +
+\Omega_H\,dJ$ closes numerically (first-law residual $< 10^{-6}$). Finite-$k$
+correction $T_k = (M(k+1)-M(k))/\ln 2$ differs from continuum $T$ by
+$-1/4k$ ($\sim 10^{-77}$ stellar-mass; relevant only near Planck /
+extremality). **Scope, stated plainly:** this is *conditional* consistency —
+importing $S(M,J)$ and differentiating necessarily returns $T(M,J)$. Deriving
+$M(k,J)$ from graph dynamics (rather than importing $A(M,J)$) remains the
+open debt (Appendices BM, BL); extremality ($T \to 0$ at finite $k$) and
+censorship have no microscopic account yet.
+
 ## Appendix I. Exact Page curve with Haar-typical fluctuations
 
 (`bh_graph.haar`, Fig 13.) Page's exact $S(m,n) = H(mn) - H(n) - (m-1)/2n$

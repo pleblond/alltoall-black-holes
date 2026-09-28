@@ -3,6 +3,9 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased** — H2 thermodynamic consistency: $T_H(M,J)$, $\Omega_H$, first
+  law from $S = k\ln 2$ conditional on imported $A(M,J)$ (`thermo` + 8 tests);
+  per-leg $T = (dM/dk)/\ln 2$ reading, finite-$k$ $-1/4k$ correction.
 - **v4.1** — BV UV tortuosity-as-scattering + N-scale campaigns: legs as
   radial line defects ($\sigma = 4\ln 2$), soft cost $\ln 2$ gives dilute
   $c = 0.44$–$0.60$ (target $0.456$) with zero tuning; $p = 2c$,
