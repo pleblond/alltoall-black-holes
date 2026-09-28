@@ -3,6 +3,12 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **Next (unreleased)** — BW hierarchical wiring audit: borrowed NR remnant
+  map (Barausse–Morozova–Rezzolla 2012 E_rad + Barausse–Rezzolla 2009 a_f,
+  labeled) with leg translation k = A/4ln2. 2G wiring efficiency 0.86,
+  creation 0.38–0.81 by configuration, a_f,max gate never binds, 45 M_sun
+  stays stellar input. Verdict recorded: audit, not anomaly (no
+  distinctive P(M, chi)). 370 tests, 78 figure files (Figs 1–74).
 - **v4.1** — BV UV tortuosity-as-scattering + N-scale campaigns: legs as
   radial line defects ($\sigma = 4\ln 2$), soft cost $\ln 2$ gives dilute
   $c = 0.44$–$0.60$ (target $0.456$) with zero tuning; $p = 2c$,

@@ -1783,3 +1783,64 @@ Soft-$c$ systematics mapped honestly: even-L decline $0.59 \to 0.38$
 offset (L=25: $0.32$) — all inside the armed $[0.3, 0.8]$ wire, and fixed-$k$
 across-$L$ is apples-to-oranges ($R_s$/box changes); the matched comparison
 is the $c(k)$ curve at fixed $L$.
+
+![Fig 70](../figures/fig70_uv_c.png)
+![Fig 71](../figures/fig71_uv_pop.png)
+![Fig 72](../figures/fig72_uv_ladder.png)
+![Fig 73](../figures/fig73_uv_n4000.png)
+
+## Appendix BW. Hierarchical mergers in wiring language: audit, not anomaly (Fig 74)
+
+(`bh_graph.hierpop`; appended after v4.1.) GWTC-5 finds rapidly-spinning
+components ($\chi \sim 0.7$) at two mass scales, $10$–$20\,M_\odot$ and above
+$\sim 45\,M_\odot$, with broadened/symmetric $\chi_{eff}$ at high mass —
+consistent with hierarchical (2G+) assembly in dense environments
+(GWTC-5 population paper; transitions paper; four-subpopulations paper).
+The question for this model: $J \to A(M,J) \to k(M,J)$ bookkeeping says
+mergers create legs with spin affecting the surplus — does that predict a
+distinctive joint distribution $P(M, \chi)$?
+
+**Method (borrowed dynamics, labeled).** Remnant mass/spin come from
+published NR fits, not from wiring: $E_{rad}$ from Barausse–Morozova–Rezzolla
+2012 (ApJ 758:63, Eq. 18; anchors $0.04827$ at $q = 1$ nonspinning, $0.0995$
+extremal aligned, exact $0.05719\,\nu$ test-particle limit) and $a_f$ from
+Barausse–Rezzolla 2009 (ApJ 704:L40; anchor $0.686$ at $q = 1$ nonspinning).
+Misaligned spins enter via aligned projections (BMR2012 Fig. 1: $\sim 10\%$
+at $q = 1$); Kerr areas use magnitudes. The graph postulate contributes only
+the leg translation $k = A/(4\ln 2)$. Cross-checks pass: the fits predict
+GW190521's $M_f = 143.9$ vs catalog $142$ (nonspinning approx), and
+GW150914's Kerr $dk/(k_1+k_2) = 0.56$ vs $0.57$ from PE medians (W).
+
+**Wiring efficiency (Fig 74a).** $e(\chi) = A(\chi)/A(0) =
+(1+\sqrt{1-\chi^2})/2$: 2G remnants ($\chi \sim 0.69$) carry $\sim 14\%$
+fewer legs per $M^2$ than 1G holes; aligned 3G ($\sim 0.89$) $\sim 27\%$
+fewer. Hierarchical remnants are wiring-efficient — spin orders legs.
+
+**Creation spans configurations, not generations (Fig 74b).** At $q = 1$:
+1G+1G nonspinning $0.56$; aligned 2G+2G $0.44$ (remnant spin-up + high
+$E_{rad}$ shrink $A_f$); isotropic 2G+2G $\sim 0.81$ (progenitor areas
+shrink while cancelled projections keep the remnant $\sim 0.69$); mixed
+$(0.5, -0.5)$ $0.68$. Unequal $q$ lowers it ($0.38$ at $q = 0.5$).
+Population medians sit $\sim 0.5$ across generations only because mixing
+$q$/tilts washes out channel differences. $dk$ does not tag generation.
+
+**The gate never binds (Fig 74c).** The area-theorem ceiling $a_{f,max}$
+from $A_f = A_1 + A_2$ sits at $0.99$–$1.0$ for all physical remnants vs
+actual $a_f \sim 0.6$–$0.94$ (margin $> 0.05$ everywhere; thinnest at
+aligned $0.9+0.9$). Only hypothetical $E_{rad} > 10\%$ or $a_f > 0.99$
+remnants would violate — wiring bookkeeping never gates hierarchical
+assembly. The $45\,M_\odot$ scale is stellar (PISN) physics, a 1G-cap
+INPUT (Fig 74d): nothing in $k(M, \chi)$ breaks there.
+
+**Verdict: no distinctive $P(M, \chi)$.** Spin evolution across generations
+is set by orbital-angular-momentum dominance inside the borrowed remnant map
+($\to \sim 0.7$); the surplus is a consequence, never a cause — there is no
+wiring-dependent dynamics (remnant/kick) sector, and inspiral physics stays
+OUT of scope as in BF. This appendix is therefore an audit with numbers,
+not an anomaly explanation, kept on record so the high-mass/high-spin
+candidate stays dead unless a future wiring-dependent map revives it.
+Falsifiers (shared with GR, hence weak): any per-event Kerr $dk < 0$ kills
+both; a strong $dk$-vs-mass trend across $45\,M_\odot$ would break the
+borrowed-map framework.
+
+![Fig 74](../figures/fig74_hierpop.png)

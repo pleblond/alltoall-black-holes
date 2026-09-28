@@ -104,6 +104,8 @@ from bh_graph.syk import syk_hamiltonian, ising_chain_hamiltonian, otoc_curve, s
 from bh_graph.data import load_events, catalog_leg_audit
 from bh_graph.litcompare import head_to_head
 from bh_graph import uvscatter as _uv
+from bh_graph import hierpop as _hp
+from bh_graph.posteriors import median_analysis as _w_med
 
 FIG = Path(__file__).resolve().parent.parent / "figures"
 FIG.mkdir(exist_ok=True, parents=True)
@@ -1863,6 +1865,84 @@ def fig73_uv_n4000():
     plt.close(fig)
 
 
+def fig74_hierpop():
+    fig, axes = plt.subplots(2, 2, figsize=(12, 9))
+    # (a) wiring efficiency along the hierarchical sequence
+    chi = np.linspace(0, 1, 200)
+    axes[0, 0].plot(chi, _hp.wiring_efficiency(chi), color="#2563eb")
+    for c, lab in [(0.15, "1G ~0.15"), (0.686, "2G 0.69"), (0.885, "align 3G 0.89")]:
+        axes[0, 0].scatter([c], [_hp.wiring_efficiency(c)], s=60, zorder=3)
+        axes[0, 0].annotate(f"{lab}\ne={_hp.wiring_efficiency(c):.3f}", (c, _hp.wiring_efficiency(c)),
+                            textcoords="offset points", xytext=(6, -14), fontsize=7)
+    axes[0, 0].set_xlabel("spin magnitude chi")
+    axes[0, 0].set_ylabel("wiring efficiency e = A(chi)/A(0)")
+    axes[0, 0].set_title("(a) 2G remnants carry ~14% fewer legs per M^2")
+    # (b) fractional leg creation vs mass ratio by spin configuration
+    qs = np.linspace(0.2, 1.0, 17)
+    for (s1, t1, s2, t2, sty, lab) in [
+            (0.0, 1.0, 0.0, 1.0, "o-", "nonspinning"),
+            (0.7, 1.0, 0.7, 1.0, "s--", "aligned 0.7+0.7"),
+            (0.5, 1.0, 0.5, -1.0, "^:", "mixed 0.5-0.5")]:
+        dk = [_hp.leg_creation_spinning(30.0, s1, t1, 30.0 * q, s2, t2)["frac"] for q in qs]
+        axes[0, 1].plot(qs, dk, sty, label=lab, ms=4)
+    iso_med, iso_lo, iso_hi = [], [], []
+    for q in qs:
+        t = _hp.tilt_averaged_creation(30.0, 0.7, 30.0 * q, 0.7, n=400, seed=7)
+        iso_med.append(t["dk_median"]); iso_lo.append(t["dk_p5"]); iso_hi.append(t["dk_p95"])
+    axes[0, 1].plot(qs, iso_med, "d-", ms=4, color="#16a34a", label="isotropic 0.7 med")
+    axes[0, 1].fill_between(qs, iso_lo, iso_hi, color="#16a34a", alpha=0.15)
+    w = _w_med()
+    axes[0, 1].scatter([30.6 / 35.6], [w["frac"]], s=80, marker="*",
+                       color="#dc2626", zorder=4, label="GW150914 Kerr (W)")
+    g21 = _hp.leg_creation_spinning(85.0, 0.0, 1.0, 66.0, 0.0, 1.0)
+    axes[0, 1].scatter([66.0 / 85.0], [g21["frac"]], s=60, marker="D",
+                       color="#9333ea", zorder=4, label="GW190521 pred (nonspin)")
+    axes[0, 1].set_xlabel("mass ratio q")
+    axes[0, 1].set_ylabel("fractional leg creation dk/(k1+k2)")
+    axes[0, 1].set_title("(b) Creation spans 0.38-0.81 by configuration")
+    axes[0, 1].legend(fontsize=7)
+    # (c) area-theorem gate: physical remnants far below af,max
+    ers = np.linspace(0.001, 0.29, 120)
+    gate = [_hp.max_remnant_spin(30.0, 0.0, 30.0, 0.0, 60 * (1 - e)) for e in ers]
+    axes[1, 0].plot(ers, gate, color="#dc2626", label="gate af,max (q=1, nonspin prog)")
+    axes[1, 0].fill_between(ers, gate, 1.02, color="#dc2626", alpha=0.12, label="forbidden")
+    pts = [(1.0, 0.0, 0.0), (1.0, 0.7, 0.7), (1.0, 0.9, 0.9),
+           (0.5, 0.0, 0.0), (0.5, 0.7, 0.1), (0.25, 0.0, 0.0)]
+    for q, a1, a2 in pts:
+        r = _hp.remnant(30.0, 30.0 * q, a1, a2)
+        axes[1, 0].scatter([r["erad"]], [abs(r["af"])], s=50, zorder=3)
+        axes[1, 0].annotate(f"q={q} a={a1},{a2}", (r["erad"], abs(r["af"])),
+                            fontsize=6, xytext=(4, 4), textcoords="offset points")
+    axes[1, 0].set_xlabel("radiated fraction E_rad/M")
+    axes[1, 0].set_ylabel("remnant spin af")
+    axes[1, 0].set_ylim(0.3, 1.03)
+    axes[1, 0].set_title("(c) Wiring gate never binds (margin > 0.05)")
+    axes[1, 0].legend(fontsize=7)
+    # (d) generations toy in the mass-spin plane
+    m1g = _hp.sample_powerlaw_masses(1200, seed=11)
+    s1g = _hp.sample_1g_spins(1200, seed=12)
+    g2 = _hp.merge_population(m1g[:600], s1g[:600], m1g[600:], s1g[600:], seed=13)
+    g23 = _hp.merge_population(g2["Mf"][:600], g2["af"][:600], m1g[:600], s1g[:600], seed=14)
+    g3 = _hp.merge_population(g2["Mf"][:300], g2["af"][:300], g2["Mf"][300:], g2["af"][300:], seed=15)
+    axes[1, 1].scatter(m1g, s1g, s=8, alpha=0.5, label="1G input")
+    axes[1, 1].scatter(g2["Mf"], g2["af"], s=8, alpha=0.5, label="2G")
+    axes[1, 1].scatter(g23["Mf"], g23["af"], s=8, alpha=0.5, label="2G+1G")
+    axes[1, 1].scatter(g3["Mf"], g3["af"], s=12, alpha=0.7, label="3G")
+    axes[1, 1].axvline(45, ls="--", color="black", lw=1)
+    axes[1, 1].annotate("45 Msun: PISN input,\nnot predicted", (45, 0.92),
+                        fontsize=7, ha="left", va="top")
+    axes[1, 1].set_xlabel("mass (M_sun)")
+    axes[1, 1].set_ylabel("spin magnitude")
+    axes[1, 1].set_xlim(0, 120)
+    axes[1, 1].set_ylim(0, 1.0)
+    axes[1, 1].set_title("(d) Generations overlap: no P(M,chi) tag from wiring")
+    axes[1, 1].legend(fontsize=7)
+    fig.suptitle("Fig 74 — BW: hierarchical wiring audit (borrowed NR map + leg translation)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig74_hierpop.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -1937,6 +2017,7 @@ def main():
     fig71_uv_pop()
     fig72_uv_ladder()
     fig73_uv_n4000()
+    fig74_hierpop()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

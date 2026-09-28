@@ -68,7 +68,7 @@ AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
-AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`.
+AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`; BW `hierpop`.
 
 ## Quickstart
 
@@ -76,7 +76,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e .
-python -m pytest tests/ -q          # 356 tests
+python -m pytest tests/ -q          # 370 tests
 python scripts/generate_figures.py  # writes figures/fig*.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
 ```
@@ -174,6 +174,12 @@ Cite via `CITATION.cff`. To publish on Zenodo:
 
 ## Status
 
+Next (unreleased): BW hierarchical wiring audit on top of v4.1 — borrowed
+NR remnant map (BMR2012 + BR09, labeled) plus leg translation: 2G remnants
+carry ~14% fewer legs per M², creation spans 0.38–0.81 by configuration
+(not generation), area-theorem gate never binds (margin > 0.05), and the
+45 M_sun scale stays a stellar input. Verdict: audit, not anomaly — no
+distinctive P(M, chi). 370 tests, 78 figure files (Figs 1–74).
 v4.1: BV UV tortuosity-as-scattering on top of v4.0 — 4 assumptions
 $\to$ 3 (tortuosity $1/2$ derived from $\ln 2$); N = 4000/8000/16000
 campaigns hold $p = 0.93/0.94/0.91$ with turnover $0.63$–$0.69 \to 1.26$–$1.46$

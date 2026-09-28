@@ -306,6 +306,13 @@ from bh_graph.shellscale import (
     save_artifact, load_artifact,
     build_oracle, oracle_dist_matrix, oracle_spotcheck,
 )
+from bh_graph.hierpop import (
+    is_physical_config, isco_radius, isco_energy, radiated_fraction, final_spin,
+    kerr_area_geom, wiring_efficiency, legs_per_msun2, remnant, chi_eff,
+    leg_creation_spinning, area_theorem_holds_kerr, max_remnant_spin,
+    remnant_spin_allowed, gate_binds, merge_population, sample_powerlaw_masses,
+    sample_1g_spins, tilt_averaged_creation,
+)
 
 __all__ = [
     "build_complete", "build_chain", "build_grid_2d", "build_random_regular",
@@ -487,4 +494,9 @@ __all__ = [
     "gap_o5_yield", "falsifier_killed_by_nondetections",
     "kn_peak_lum_ratio", "gw230529_detection_prob", "is_gw230529_nondetection_consistent",
     "L_SUN_ERG_S", "RUBIN_SINGLE_VISIT_R", "DECAM_KN_DEPTH", "KILL_NONDETECTIONS",
+    "is_physical_config", "isco_radius", "isco_energy", "radiated_fraction", "final_spin",
+    "kerr_area_geom", "wiring_efficiency", "legs_per_msun2", "remnant", "chi_eff",
+    "leg_creation_spinning", "area_theorem_holds_kerr", "max_remnant_spin",
+    "remnant_spin_allowed", "gate_binds", "merge_population", "sample_powerlaw_masses",
+    "sample_1g_spins", "tilt_averaged_creation",
 ]
