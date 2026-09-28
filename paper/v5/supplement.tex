@@ -13,6 +13,54 @@
 \maketitle
 \tableofcontents
 
+\section*{S0: Symbol ledger (v5.1)}
+\phantomsection\addcontentsline{toc}{section}{S0: Symbol ledger (v5.1)}
+\label{sec:s0}
+
+Table~\ref{tab:s0} maps every overloaded bare symbol to its subscripted v5.1
+form; Table~\ref{tab:s0b} covers further collisions found in audit. Main text
+uses the subscripted form from v5.1 onward; v5.0 bare symbols are kept in git
+history for reproducibility. Code identifiers are unchanged in this pass
+(rename queued); the ledger is normative for prose and equations. A bare
+$\alpha,\varepsilon,p,c$ appearing as a knob after v5.1 is a bug. Statistics
+symbols ($p_{\mathrm{val}}$, $R^2_{\mathrm{fit}}$, $\chi^2_{\mathrm{stat}}$) are
+standard and never knobs. S1 below already uses subscripted forms; S2--S10
+adopt them progressively (full rename queued, values unchanged).
+
+\begin{table}[ht]\centering\footnotesize
+\caption{Symbol ledger, core six: bare $\to$ subscripted v5.1. ``Where'' is the defining appendix/section.}
+\label{tab:s0}
+\begin{tabular}{@{}l p{3.9cm} p{8.7cm}@{}}\toprule
+bare & v5.1 & meaning (value; where) \\\midrule
+$\alpha$ & $\alpha_{\mathrm{AT}}$, $\alpha_{\mathrm{growth}}$,\newline $\alpha_{\mathrm{BS}}$, $\alpha_{\mathrm{heal}}$, $\alpha_{\mathrm{LVK}}$, $\alpha_{\mathrm{BG}}$, $\alpha_{\mathrm{BV}}$, $\alpha_{\mathrm{PPN1,2}}$ & $\alpha_{\mathrm{AT}}$: stay exponent $s(r)=(R_s/r)^{\alpha_{\mathrm{AT}}}$; 1 matches Schwarzschild $dr/dt$ (calibrated), 2 naive (AT). $\alpha_{\mathrm{growth}}$: toy slope $k(N)=k_0+\alpha_{\mathrm{growth}}N$, default 2.0 (Sec3). $\alpha_{\mathrm{BS}}$: fixed point $k^*/N=1$ under running $\varepsilon$ (B/BS). $\alpha_{\mathrm{heal}}$: $\tau_{\mathrm{heal}}=\alpha_{\mathrm{heal}}M=11.24M$, LVK $[9.0,12.4]$ (AG/AH/AN). $\alpha_{\mathrm{LVK}}$: dispersion exponent, model $\to4$ (BD). $\alpha_{\mathrm{BG}}$: trajectory exponent $1\to2$ (BG). $\alpha_{\mathrm{BV}}$: edge-cost amplitude $=\ln2$ soft (BV). $\alpha_{\mathrm{PPN1,2}}$: PPN frame params, 0 untouched (BJ). \\
+$\varepsilon$ ($\epsilon$) & $\varepsilon_{\mathrm{node}}$, $\varepsilon_{\mathrm{TN}}$, $\varepsilon_{\mathrm{foam}}$, $\varepsilon_{\mathrm{Cl}}$, $\varepsilon_{\mathrm{shed}}$, $\varepsilon_{\mathrm{Sink}}$ & $\varepsilon_{\mathrm{node}}$: per-node energy $E=\varepsilon_{\mathrm{node}}N$, runs $c_{\mathrm{BS}}/\sqrt N$ (B/BR/BS). $\varepsilon_{\mathrm{TN}}\equiv\varepsilon_{\mathrm{node}}(25)\approx0.047\,l_p^{-1}$ at $N_{\mathrm{match}}=25$ (M). $\varepsilon_{\mathrm{foam}}$: per-edge defect $c^2=1+\varepsilon_{\mathrm{foam}}M$; sim 0.25; bounds $10^{-3}$ opt/Gpc, $10^{-14}$ TeV/Gpc (BF). $\varepsilon_{\mathrm{Cl}}=\kappa_{\mathrm{surf}}/8\pi$, $G=1$ (AU/BO). $\varepsilon_{\mathrm{shed}}=0.1$ in $M_{\mathrm{ej}}=\Delta k\,m_{\mathrm{leg}}\varepsilon_{\mathrm{shed}}$ (BU). $\varepsilon_{\mathrm{Sink}}=0.01$, annealed $1.0\to0.01$ (BV). \\
+$p$ & $p_{\mathrm{gate}}$, $p_{\mathrm{edge}}$, $p_{\mathrm{OR}}$, $p_{\mathrm{adj}}(s)$, $p_{\mathrm{tens}}$ (+ $p_{\mathrm{val}}$ stats) & $p_{\mathrm{gate}}$: per-encounter success, $t_*\approx\log_2N/\log_2(1+p_{\mathrm{gate}})$ (A/G). $p_{\mathrm{edge}}=c_{\mathrm{compact}}^6$ long-range edge prob (AA). $p_{\mathrm{OR}}$: $|\kappa|\sim r^{-p_{\mathrm{OR}}}$, target 0.92, $0.913\pm0.049$ N1020 etc (BI/BU/BV). $p_{\mathrm{adj}}(s)=0.85+0.015s$ shell adjacency (BU). $p_{\mathrm{tens}}$: exponent in $E(d)=\sigma_{\mathrm{tens}}(d/l_p)^{p_{\mathrm{tens}}}$ open (AX). $p_{\mathrm{val}}$: stats $p$ ($\chi^2$), never a knob. \\
+$c$ & $c_{\mathrm{light}}$, $c_{\mathrm{tort}}$, $c_1,c_2,c_{\mathrm{tot}}$, $c_{\mathrm{BS}}$, $c_{\mathrm{compact}}$ & $c_{\mathrm{light}}=299792458$ exact ($=1$ geom.) (pulsar/redshift). $c_{\mathrm{tort}}$: $dl=(1+c_{\mathrm{tort}}\sqrt\chi)dr$; BH fit $1/2\to$ BV $0.44$--$0.60$; $p_{\mathrm{OR}}=2c_{\mathrm{tort}}$, $\gamma_{\mathrm{PPN}}=2c_{\mathrm{tort}}$ (BH/BV). $c_1=3.36$ vs GR $1.94$; $c_2=p_{\mathrm{OR}}(2p_{\mathrm{OR}}-1)$; $c_{\mathrm{tot}}=c_1+w_{\mathrm{2PN}}c_2$, GR $4.8695$ vs $4.8693$ (BU). $c_{\mathrm{BS}}=\sqrt{4\ln2/16\pi}$ in $\varepsilon_{\mathrm{node}}=c_{\mathrm{BS}}/\sqrt N$ (BS). $c_{\mathrm{compact}}\in[0,1]$, $\gamma_{\mathrm{coll}}=6/3$ (AA). \\
+$k$ & $k_*$ (legs), $k_{\mathrm{wave}}$ & $k_*$: every leg count ($k,k_{\mathrm{crit}},k_{\mathrm{page}},k_{\min},k_{\mathrm{eff}},k_f,k_1,k_2,k_\odot,k_0$); $A=k{\cdot}4\ln2\,l_p^2$ (Secs2--3). $k_{\mathrm{wave}}$: lattice wavenumber $\omega=2J|\sin k_{\mathrm{wave}}a/2|$; $k_{\mathrm{wave}}\leftrightarrow-k_{\mathrm{wave}}$ kills linear LIV (BD). \\
+$R$ ($r$) & $R_*$ (radii), $R_{\mathrm{amp}}$, $R_{\mathrm{echo}}$, $R_{\mathrm{J0737}}$ (+ $R^2_{\mathrm{fit}}$ stats) & $R_*$: every radius ($R(k),R_{\mathrm{obs}},R_b,R_s{=}2M,r_{\mathrm{point}},r_{\mathrm{foot}}$) (Secs2--3/AK/AO/BK). $R_{\mathrm{amp}}\sim(\omega/\omega_P)^2\sim10^{-80}$ at 100\,Hz amplitude (Disc/BE). $R_{\mathrm{echo}}\equiv R_{\mathrm{amp}}^2\sim10^{-160}$ energy vs $O(0.01)$ (Disc/BE). $R_{\mathrm{J0737}}=x_B/x_A=1.0714\pm0.0011$ (BU). $R^2_{\mathrm{fit}}$: fit statistic (0.956 etc), never a knob. \\\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]\centering\footnotesize
+\caption{Further collisions found in audit: subscripted v5.1 forms. All values unchanged; subscripts only disambiguate.}
+\label{tab:s0b}
+\begin{tabular}{@{}l p{3.9cm} p{8.7cm}@{}}\toprule
+bare & v5.1 & meaning (value; where) \\\midrule
+$w$ & $w_{\mathrm{2PN}}$, $w_{\mathrm{edge}}$ & $w_{\mathrm{2PN}}=1.953$ in $c_{\mathrm{tot}}=c_1+w_{\mathrm{2PN}}c_2$ (BU). $w_{\mathrm{edge}}=1+\alpha_{\mathrm{BV}}e^{-d^2/2r_e^2}$ Dijkstra cost (BV). \\
+$\sigma$ & $\sigma_{\mathrm{leg}}$, $\sigma_{\mathrm{tens}}$, $\sigma_{\mathrm{stat}}$, $\sigma_{\mathrm{PS}}$ & $\sigma_{\mathrm{leg}}=4\ln2\,l_p^2$ leg cross-section (BV). $\sigma_{\mathrm{tens}}$ in $E(d)$ open (AX). $\sigma_{\mathrm{stat}}$ per-graph std, e.g.\ $0.049$ (BU/BV). $\sigma_{\mathrm{PS}}(M,z)$ rms variance (AP). \\
+$\gamma$ & $\gamma_{\mathrm{PPN}}$, $\gamma_{\mathrm{coll}}$, $\gamma_{\mathrm{PS}}$, $\gamma_{\mathrm{PK}}$ & $\gamma_{\mathrm{PPN}}=1$ (BH/BJ). $\gamma_{\mathrm{coll}}=6$ sharp/$3$ gradual (AA). $\gamma_{\mathrm{PS}}=0.16\,[0.12,0.22]$ (AP). $\gamma_{\mathrm{PK}}$ Einstein delay (BU). \\
+$\beta$ & $\beta_{\mathrm{bridge}}$, $\beta_{\mathrm{PPN}}$, $\beta_{\mathrm{therm}}$, $\beta_{\mathrm{PBH}}$ & $\beta_{\mathrm{bridge}}(N)$ $1.5\to0.74$ (BU/BV). $\beta_{\mathrm{PPN}}$ unresolved ($=1$ GR, BJ). $\beta_{\mathrm{therm}}=1/T$ $0.5,1,2$ (AH/BA). $\beta_{\mathrm{PBH}}(M)$ abundance (AC/AE/AR). \\
+$s/S$ & $s_{\mathrm{shell}}$, $s_{\mathrm{obs}}$, $s_{\mathrm{stay}}$, $S_*$ & $s_{\mathrm{shell}}$ in $p_{\mathrm{adj}}(s)$ (BU). $s_{\mathrm{obs}}=\sin i=0.99974$ (BU). $s_{\mathrm{stay}}(r)=(R_s/r)^{\alpha_{\mathrm{AT}}}$ (AT). $S_*$ entropies $S_{\mathrm{rad}},S_{\mathrm{BH}},S_0$ capital (C/D/I). \\
+$T$ & $T_H$, $T_{\mathrm{evap}}$, $T_0$, $T_{\mathrm{trans}}$ & $T_H$ Hawking (H2). $T_{\mathrm{evap}}$ in $M(t)=M_0(1-t/T_{\mathrm{evap}})^{1/3}$ (N). $T_0\approx1.35$ clean-lattice ruler (BV). $T_{\mathrm{trans}}(E)$ greybody (AJ). \\
+$\chi$ & $\chi_{\mathrm{cong}}$, $\chi_{\mathrm{spin}}$, $\chi^2_{\mathrm{stat}}$ & $\chi_{\mathrm{cong}}=k{\cdot}4\ln2\,l_p^2/4\pi r^2\equiv x^2$ (AK/BV). $\chi_{\mathrm{spin}}$ $\chi_z$ aligned (W). $\chi^2_{\mathrm{stat}}$ (AN). \\
+$\kappa$ & $\kappa_{\mathrm{OR}}$, $\kappa_{\mathrm{opac}}$, $\kappa_{\mathrm{surf}}$ & $\kappa_{\mathrm{OR}}$ Ollivier-Ricci (AU/BI/BU/BV). $\kappa_{\mathrm{opac}}$ $0.5$ blue/$10$ red (BU). $\kappa_{\mathrm{surf}}$ in $\varepsilon_{\mathrm{Cl}}=\kappa_{\mathrm{surf}}/8\pi$ (AU). \\
+$\tau$ & $\tau_{\mathrm{heal}}$, $\tau_{\mathrm{opt}}$ & $\tau_{\mathrm{heal}}=11.24M$ ($\equiv\tau_{220}$, AG). $\tau_{\mathrm{opt}}=c_{\mathrm{tort}}x$ optical depth (BV). \\
+$\lambda$ & $\lambda_{\mathrm{Lyap}}$, $\lambda_{\mathrm{Ham}}$, $\lambda_{\mathrm{wave}}$, $\lambda_{\mathrm{mfp}}$ & $\lambda_{\mathrm{Lyap}}$ OTOC (L/AH). $\lambda_{\mathrm{Ham}}=0.1/1.0/3.0$ leg coupling (BL). $\lambda_{\mathrm{wave}}=8\to32$ cells (BF). $\lambda_{\mathrm{mfp}}=r\sqrt{4\pi/k}$ (BV). \\
+$G$ & $G_{\mathrm{graph}}$, $G_{\mathrm{Newton}}$ & $G_{\mathrm{graph}}$ ($G_N$ interior graph, Sec1) vs $G_{\mathrm{Newton}}$ ($=1$ geom.; $6.67430\times10^{-11}$ SI). \\
+$M$ & $M_D$, $M_P$, $M_\odot$, $M_*$ & $M_D{=}1$\,TeV fund.\ scale (T) vs $M_P$ Planck vs $M_\odot$ vs $M_*$ PS char.\ mass (AP); already subscripted, listed to block $M_D/M_P$ confusion. \\\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Parameter audit and honesty ledger}
 \label{sec:audit}
 
@@ -21,34 +69,34 @@
 \begin{tabular}{@{}p{3.4cm} p{3.4cm} p{2.6cm} p{4.4cm}@{}}\toprule
 param & value & status & notes \\\midrule
 $k(M)$ map $\propto M^2$ & GR-consistency & input (circle admitted) & BM shrinks to $R_s = 2M$; not derived \\
-AT $\alpha$ & 1 & calibrated to Schwarzschild $c_{\mathrm{eff}}$ & matches $dr/dt$ exactly \\
-tortuosity $c$ & $1/2$ (BH fit) $\to$ $0.44$--$0.60$ (BV derived) & fit superseded by derivation & $\ln 2$ scattering, zero tuning; $p = 2c$, $\gamma = 2c$ \\
+AT $\alpha_{\mathrm{AT}}$ & 1 & calibrated to Schwarzschild $c_{\mathrm{eff}}$ & matches $dr/dt$ exactly \\
+tortuosity $c_{\mathrm{tort}}$ & $1/2$ (BH fit) $\to$ $0.44$--$0.60$ (BV derived) & fit superseded by derivation & $\ln 2$ scattering, zero tuning; $p_{\mathrm{OR}} = 2c_{\mathrm{tort}}$, $\gamma_{\mathrm{PPN}} = 2c_{\mathrm{tort}}$ \\
 $s_{\mathrm{leg}}$ & $\ln 2$\,nats & measured saturation (BN/BS) & flip preserves $G = 1$ via Planck bits \\
-$k_{\mathrm{crit}}$ & $4\pi r^2/\sigma$ & heuristic $\to$ formalised (BK) & packing-forced pop; mixed mode disconnects (BV) \\
+$k_{\mathrm{crit}}$ & $4\pi r^2/\sigma_{\mathrm{leg}}$ & heuristic $\to$ formalised (BK) & packing-forced pop; mixed mode disconnects (BV) \\
 gradient slope & $0.015$ & fitted, labelled & $p_{\mathrm{adj}}(s) = 0.85+0.015s$ \\
-bridge $\beta(N)$ & 1.5@300; 1.28@600; 1.24@1020; 0.99@4k; 0.87@8k; 0.74@16k & recalibrated per $N$ & log-linear over 6 points; derivation queued \\
-$w = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathrm{tot}} = c_1 + w c_2 = 4.8695$ at $p = 0.92$ \\
-shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
-$\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
+bridge $\beta_{\mathrm{bridge}}(N)$ & 1.5@300; 1.28@600; 1.24@1020; 0.99@4k; 0.87@8k; 0.74@16k & recalibrated per $N$ & log-linear over 6 points; derivation queued \\
+$w_{\mathrm{2PN}} = 1.953$ & solved from cancellation & fitted (solved, not tuned) & $c_{\mathrm{tot}} = c_1 + w_{\mathrm{2PN}} c_2 = 4.8695$ at $p_{\mathrm{OR}} = 0.92$ \\
+shed $e_{\mathrm{ext}}$ + $\varepsilon_{\mathrm{shed}}$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M_{\mathrm{ej}}$ norm-independent \\
+$\kappa_{\mathrm{OR}} \to c_2$ map & $c_2 = p_{\mathrm{OR}}(2p_{\mathrm{OR}}-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW241011 future wire \\\bottomrule
 \end{tabular}
 \end{table}
 
-Given $k(M)$: $1/r$ potential, $\gamma = 1$, $43''$/cy, $b_{\mathrm{crit}} = 3\sqrt{3}M$,
+Given $k(M)$: $1/r$ potential, $\gamma_{\mathrm{PPN}} = 1$, $43''$/cy, $b_{\mathrm{crit}} = 3\sqrt{3}M$,
 Page/island-like/mirror follow as random-state/toy-code behaviour (genuine QES extremization
-and graph-dynamics $V_k$ open, S3; qubit-toy $V_t$ done). Not derived: mass--radius scaling itself, $\beta(N)$
-from geometry, $w$ from the graph Laplacian (Damour--Sch\"afer from wiring),
+and graph-dynamics $V_k$ open, S3; qubit-toy $V_t$ done). Not derived: mass--radius scaling itself, $\beta_{\mathrm{bridge}}(N)$
+from geometry, $w_{\mathrm{2PN}}$ from the graph Laplacian (Damour--Sch\"afer from wiring),
 NICER $M$--$R$--$\Lambda$ from routing stiffness, Kerr $M_2$/$g_{t\phi}$/ISCO/QNM from the graph.
 
-Derived in-repo (new in v4.x): $p$ from exact Ollivier--Ricci (not hard-coded),
+Derived in-repo (new in v4.x): $p_{\mathrm{OR}}$ from exact Ollivier--Ricci (not hard-coded),
 $M(c_1,c_2)$ inversion, $M_{\mathrm{ej}}(M_{\mathrm{tot}})$ scaling, peak-time
-ordering, band mags, O5 yield arithmetic, $c$ from $\ln 2$ scattering, UV pop as
-graph disconnection, $p$ at $N = 4000/8000/16000$ with turnover measured.
+ordering, band mags, O5 yield arithmetic, $c_{\mathrm{tort}}$ from $\ln 2$ scattering, UV pop as
+graph disconnection, $p_{\mathrm{OR}}$ at $N = 4000/8000/16000$ with turnover measured.
 
 Ruled out on the record: broad Planck-remnant dark matter (survives only in a
 $\sim 0.4$-dex EMD window at $\sim 4\times 10^5$\,g); isotropic $b_{\mathrm{crit}} = 8M$;
-naive $\gamma = 2$ strain; linear LIV; flat $p = 0.49$ ($-10\sigma$).
+naive $\gamma_{\mathrm{PPN}} = 2$ strain; linear LIV; flat $p_{\mathrm{OR}} = 0.49$ ($-10\sigma$).
 
 \section{Gravity methods (AS, AT, AU, BB, BH, BI, BJ, BV)}
 
