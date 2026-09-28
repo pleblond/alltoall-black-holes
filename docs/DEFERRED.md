@@ -97,6 +97,15 @@ spin-ordered reabsorption, or remnant-trap physics with the shutoff
 location (if any) as output, not input. A derived shutoff between gap
 and BBH masses must land where it lands; inserting it at any observed
 scale is refused (same rule as the 44 M☉ graph null).
+Update (this branch): mass-ratio SHAPE + mass independence derived —
+`mergershed` gets `frac(q) = η·2q/(1+q)²` from cross-bond counting with
+`1/N` dilution forced by extensivity + all:all symmetry (monogamy
+displaces `dS/s_leg` legs; `N` cancels). One calibration `η = 0.336`
+replaces `e_final` (anchor `frac(1) = 0.168`); `η < 1` predicted and held;
+`ε = 0.1` stays an astrophysics input. GW190814 dims ~0.4 mag vs the flat
+prescription but stays kilonova-bright (`M_ej ≈ 0.157 M☉`); the flat
+`collapse` law is kept as the O5 falsifier and the sample adjudicates
+flat-vs-shaped (Fig 68b). Still open: `ε(M,a)` shutoff derivation.
 
 **Related (not deferred — answered):** no graph feature at the
 pair-instability edge. `k(M)` zero curvature, smooth spin/Love running,

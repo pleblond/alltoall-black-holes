@@ -1647,6 +1647,37 @@ def fig68_kilonova_gap():
     plt.close(fig)
 
 
+def fig68b_mergershed():
+    from bh_graph.mergershed import ejecta_derived, shed_fraction_q
+    q = np.linspace(0.05, 1.0, 200)
+    frac = np.array([shed_fraction_q(v) for v in q])
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    # left: derived q-shape vs flat prescription, with event markers
+    axes[0].plot(q, frac, color="#0f766e", label=r"derived $\eta\cdot2q/(1+q)^2$")
+    axes[0].axhline(0.168, ls="--", color="gray", label="flat prescription (0.168)")
+    axes[0].scatter([1.0], [shed_fraction_q(1.0)], s=80, color="red", zorder=5,
+                    label="AT2017gfo anchor (q~1)")
+    axes[0].scatter([2.59 / 23.2], [shed_fraction_q(2.59 / 23.2)], s=80, marker="^",
+                    color="#7c3aed", zorder=5, label="GW190814 (q~0.11)")
+    axes[0].set_xlabel("mass ratio q"); axes[0].set_ylabel("shed fraction")
+    axes[0].set_title("Derived shape: unequal mass sheds less")
+    axes[0].legend(fontsize=7)
+    # right: ejecta at GW190814 total mass under both laws (log scale)
+    m_tot = 23.2 + 2.59
+    m_der = np.array([ejecta_derived(m_tot / (1 + v), m_tot * v / (1 + v))["M_ej"] for v in q])
+    axes[1].plot(q, m_der, color="#0f766e", label="derived law")
+    axes[1].axhline(0.168 * m_tot * 0.1, ls="--", color="gray", label="flat prescription")
+    axes[1].axhline(0.01, ls=":", color="black", label="KN-capable threshold")
+    axes[1].set_yscale("log"); axes[1].set_xlabel("mass ratio q")
+    axes[1].set_ylabel("M_ej (Msun)")
+    axes[1].set_title(f"GW190814-mass ejecta: bright at any q (M_tot={m_tot})")
+    axes[1].legend(fontsize=7)
+    fig.suptitle("Fig 68b — BU2: graph-derived shedding shape (O5 adjudicates flat vs shaped)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig68b_mergershed_shape.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def fig69_o5_protocol():
     from bh_graph.collapse import (
         DECAM_KN_DEPTH, RUBIN_SINGLE_VISIT_R, gap_o5_yield, peak_apparent_mags,
@@ -2077,6 +2108,7 @@ def main():
     fig66_pulsar_2pn()
     fig67_orici_p_fit()
     fig68_kilonova_gap()
+    fig68b_mergershed()
     fig69_o5_protocol()
     fig70_uv_c()
     fig71_uv_pop()
