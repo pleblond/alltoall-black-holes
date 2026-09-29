@@ -251,3 +251,151 @@ def measure_graph(g: nx.Graph, seed: int = 0,
     return {"diso": diso, "kappa": kappa, "z": z, "lw": lw,
             "basin": basin_membership(diso, kappa, z["z_mean"], lw, n),
             "label": "exploratory"}
+
+
+# ---------------------------------------------------------------------------
+# Round-2 (V2): shell estimator with r_min + upper-V window, N-aware B4.
+# ---------------------------------------------------------------------------
+
+# Frozen V2 estimator geometry (round-2 prereg §7; selected on pristine
+# controls only — see docs/ANNEAL2_REPORT.md estimator-dev appendix).
+R_MIN_V2 = 2
+F_UP_V2 = 0.5
+
+# Re-frozen V2 basin bars (round-2 prereg §9; values re-derived, margins new).
+DISO_TARGET_V2 = 3.0
+DISO_TOL_V2 = 0.75
+DISO_R2_MIN_V2 = 0.75
+KAPPA_ABS_MAX_V2 = 0.06
+Z_MEAN_MAX_V2 = 8.0
+F_B4_V2 = 0.5  # B4: diameter >= F_B4 * (pristine open-cubic control diam at N)
+
+
+def _bfs_shell_profile_v2(g: nx.Graph, source, r_min: int = R_MIN_V2,
+                          f_up: float = F_UP_V2) -> tuple[np.ndarray, np.ndarray]:
+    """(V(r), S(r)) for r_min <= r while V(r) <= f_up * N (V2 window)."""
+    n = g.number_of_nodes()
+    dist = nx.single_source_shortest_path_length(g, source)
+    if len(dist) < 8:
+        return np.array([]), np.array([])
+    maxr = max(dist.values())
+    shells = np.zeros(maxr + 1, dtype=float)
+    for r in dist.values():
+        shells[r] += 1.0
+    vols: list[float] = []
+    area: list[float] = []
+    cum = float(shells[: max(int(r_min), 0)].sum())
+    for r in range(max(int(r_min), 0), maxr + 1):
+        cum += shells[r]
+        if cum > float(f_up) * n:
+            break
+        vols.append(cum)
+        area.append(shells[r])
+    return np.array(vols), np.array(area)
+
+
+def diso_estimate_v2(g: nx.Graph, n_dseeds: int = N_DSEEDS,
+                     seed: int = 0, r_min: int = R_MIN_V2,
+                     f_up: float = F_UP_V2) -> dict:
+    """d_iso V2 via shell growth with r_min + upper-V window.
+
+    Same slope window a in (-0.2, 0.95), >= 4 points/seed, >= 8 kept seeds,
+    median aggregate as V1; only the shell window changes (round-2 §7).
+    {d, err, r2, n_kept, n_tried, r_min, f_up, ok}.
+    """
+    bad = {"d": float("nan"), "err": float("nan"), "r2": float("nan"),
+           "n_kept": 0, "n_tried": int(n_dseeds), "r_min": int(r_min),
+           "f_up": float(f_up), "ok": False}
+    nodes = list(g.nodes())
+    if len(nodes) < 8 or not is_valid_measure_params(n_dseeds, 1):
+        return bad
+    rng = np.random.default_rng(seed)
+    picks = [nodes[int(rng.integers(len(nodes)))] for _ in range(n_dseeds)]
+    ds: list[float] = []
+    ses: list[float] = []
+    r2s: list[float] = []
+    for s in picks:
+        vols, area = _bfs_shell_profile_v2(g, s, r_min=r_min, f_up=f_up)
+        if len(vols) < 4:
+            continue
+        fit = _ols_loglog(vols, area)
+        a = fit["a"]
+        if not np.isfinite(a) or not (-0.2 < a < 0.95):
+            continue
+        d = 1.0 / (1.0 - a)
+        if not np.isfinite(d) or d <= 0:
+            continue
+        ds.append(d)
+        se = fit["se_a"] / (1.0 - a) ** 2 if np.isfinite(fit["se_a"]) else np.nan
+        ses.append(se)
+        r2s.append(fit["r2"])
+    if len(ds) < 8:
+        out = dict(bad)
+        out["n_kept"] = len(ds)
+        return out
+    arr = np.array(ds)
+    sem = float(arr.std(ddof=1) / np.sqrt(len(arr))) if len(arr) > 1 else float("nan")
+    med_se = float(np.nanmedian(ses)) if np.any(np.isfinite(ses)) else float("nan")
+    err = float(np.nanmax([sem, med_se])) if np.any(np.isfinite([sem, med_se])) else float("nan")
+    return {"d": float(np.median(arr)), "err": err,
+            "r2": float(np.nanmedian(r2s)), "n_kept": len(ds),
+            "n_tried": int(n_dseeds), "r_min": int(r_min),
+            "f_up": float(f_up), "ok": True}
+
+
+def lw_diameter_bar_v2(d_ctrl: float) -> float:
+    """Frozen N-aware B4 bar: diameter >= F_B4 * control diameter (§9)."""
+    return float(F_B4_V2 * float(d_ctrl))
+
+
+def basin_membership_v2(diso: dict, kappa: dict, z_mean: float,
+                        lw: dict, d_ctrl: float) -> dict:
+    """Frozen V2 §9 B1–B4 bars (d_ctrl = pristine control diam at survey N).
+
+    {B1..B4, member, margins, bars}. d_ctrl is explicit (prereg table value),
+    never inferred from the measured graph.
+    """
+    try:
+        b1 = bool(diso.get("ok") and abs(float(diso["d"]) - DISO_TARGET_V2) <= DISO_TOL_V2
+                  and float(diso["r2"]) >= DISO_R2_MIN_V2)
+        m1 = float(DISO_TOL_V2 - abs(float(diso.get("d", np.nan)) - DISO_TARGET_V2))
+    except (TypeError, ValueError):
+        b1, m1 = False, float("nan")
+    try:
+        b2 = bool(kappa.get("ok") and abs(float(kappa["mean"])) <= KAPPA_ABS_MAX_V2)
+        m2 = float(KAPPA_ABS_MAX_V2 - abs(float(kappa.get("mean", np.nan))))
+    except (TypeError, ValueError):
+        b2, m2 = False, float("nan")
+    try:
+        b3 = bool(np.isfinite(z_mean) and float(z_mean) <= Z_MEAN_MAX_V2)
+        m3 = float(Z_MEAN_MAX_V2 - float(z_mean))
+    except (TypeError, ValueError):
+        b3, m3 = False, float("nan")
+    try:
+        bar = lw_diameter_bar_v2(d_ctrl)
+        b4 = bool(lw.get("ok") and float(lw["diameter"]) >= bar)
+        m4 = float(float(lw.get("diameter", np.nan)) - bar)
+    except (TypeError, ValueError):
+        b4, m4 = False, float("nan")
+        bar = float("nan")
+    return {"B1_diso": b1, "B2_kappa": b2, "B3_sparse": b3, "B4_lw": b4,
+            "member": bool(b1 and b2 and b3 and b4),
+            "margins": {"B1": m1, "B2": m2, "B3": m3, "B4": m4},
+            "bars": {"B4_bar": bar, "d_ctrl": float(d_ctrl)}}
+
+
+def measure_graph_v2(g: nx.Graph, d_ctrl: float, seed: int = 0,
+                     n_dseeds: int = N_DSEEDS,
+                     max_edges: int = KAPPA_MAX_EDGES,
+                     n_dist_samples: int = N_DIST_SAMPLES,
+                     r_min: int = R_MIN_V2,
+                     f_up: float = F_UP_V2) -> dict:
+    """Full V2 outcome bundle for one graph (V2 runner checkpoints call this)."""
+    diso = diso_estimate_v2(g, n_dseeds=n_dseeds, seed=seed, r_min=r_min,
+                            f_up=f_up)
+    kappa = kappa_sample_mean(g, max_edges=max_edges, seed=seed + 1)
+    z = coordination(g)
+    lw = large_world_stats(g, n_dist_samples=n_dist_samples, seed=seed + 2)
+    return {"diso": diso, "kappa": kappa, "z": z, "lw": lw,
+            "basin": basin_membership_v2(diso, kappa, z["z_mean"], lw, d_ctrl),
+            "label": "exploratory"}
