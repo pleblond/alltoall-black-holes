@@ -195,3 +195,24 @@ def test_diffusion_overshoot_shrinks_with_L():
         ps.append(m["fit"]["p"])
     assert ps[0] > ps[1] > ps[2] > 3.0, ps
     assert abs(ps[2] - 3.0) < 0.4, ps
+
+
+def test_no_emergent_3d_on_radial_shells():
+    # Total-emergence candidate FAILS on radial-only shells (no 2-sphere
+    # factor, nothing 3D in the wiring): shortest sees the quasi-1D radial
+    # chain (p ~ 1.4), diffusion sees sub-1D blobs (shells mix instantly
+    # into super-nodes; p ~ 0.6). Bracket broken, both far from 3.
+    # L2-like config (ps=30, ns=10), 4 fixed seeds. If a future construction
+    # (area-scaling shells?) brackets 3 here, this test flips -- and that
+    # flip is promotion evidence for D3/D4/D6, not a regression.
+    from bh_graph.orici import gradient_shell_graph
+
+    for seed in range(4):
+        g = gradient_shell_graph(per_shell=30, n_shells=10, gradient=True, seed=seed)
+        src = (5, 0)
+        ms = ed.measure_emergent_dimension(g, source=src, kind="shortest", n_radii=25)
+        md = ed.measure_emergent_dimension(g, source=src, kind="diffusion", t=5.0, n_radii=25)
+        assert 1.2 < ms["fit"]["p"] < 1.7, (seed, ms["fit"])
+        assert ms["fit"]["r2"] > 0.9
+        assert md["fit"]["p"] < 0.8, (seed, md["fit"])
+        assert md["fit"]["r2"] > 0.85

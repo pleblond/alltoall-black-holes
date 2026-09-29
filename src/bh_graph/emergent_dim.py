@@ -58,9 +58,13 @@ Distance-candidate ledger (tested, honest negatives kept):
     not spatial separation. Kept as documented rejection.
 
 IR fixed point at 3 WITHOUT imposing 3 is NOT claimed: the 3D lattice control
-imposes 3 via construction (circular for emergence), and shell graphs give
-p ~ 1.2-1.5 (radial toys, no 2-sphere factor). The protocol is the contribution;
-the fixed point is the open D3/D4/D6 route.
+imposes 3 via construction (circular for emergence). The first honest
+non-3D candidate -- radial shell graphs -- FAILS the bracket (shortest
+~1.4 quasi-1D, diffusion ~0.6 sub-1D, pinned): radial-only structure has
+no 2-sphere factor, so nothing can generate area scaling ~r^2. Diagnosis:
+total emergence needs shells (or equivalent) with 2D-like internal
+information geometry, so radial x area = volume ~r^3. The protocol +
+bracket is the contribution; the fixed point is the open D3/D4/D6 route.
 """
 
 from __future__ import annotations
