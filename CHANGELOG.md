@@ -3,6 +3,15 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v5.1** — D10b tension-cost program (releases model-docs v0.6 below):
+  zero-fit cost candidates for tense-region `d(i,j)` (tortuosity-import
+  partial recovery, `c_eff`-import flips with full dip → overshoot →
+  asymptote fingerprint on the 9×9 plug, conditional on the χ/x bridges);
+  T15 cost dominance (L0 theorem + witness-node corollary, violation
+  census); tension-imprint conjecture (explicitly conjecture-grade, with
+  falsifiers + P5-promotion criteria); κ interface profile (D10b
+  reformulated after monotone tracking failed); D11 far-field tail
+  exponent filed. 435 tests, 81 figure files.
 - **model-docs v0.6** — Relaxed vacuum:
   P0→P0' flip (vacuum = isostatic 2D fabric, 4 edges/node; BH interior =
   maximum-tension extreme), observer map `M_O` (P4 as one instance),

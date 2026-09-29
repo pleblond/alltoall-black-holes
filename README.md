@@ -69,7 +69,7 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 425 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 435 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -94,7 +94,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 425 tests (2 torch/GPU-only skip without torch)
+python -m pytest tests/ -q          # 435 tests (2 torch/GPU-only skip without torch)
 python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
@@ -193,8 +193,8 @@ Cite via `CITATION.cff`. The repo lives at
 integration enabled (metadata prefills from `.zenodo.json`). To cut the
 release:
 
-1. Merge to `main` and create a GitHub Release tagged `v5.0.0`; Zenodo
-   archives a snapshot and mints a version DOI.
+1. Merge to `main` and create a GitHub Release tagged `vX.Y.Z` (e.g.
+   `v5.1.0`); Zenodo archives a snapshot and mints a version DOI.
 2. Add the version-DOI badge here and under `identifiers:` in
    `CITATION.cff` afterwards (the badge above is the concept DOI covering
    all versions).
@@ -203,16 +203,21 @@ release:
 @software{leblond2026alltoall,
   author  = {Leblond, Philippe},
   title   = {Compact Objects as Almost-Perfect All:All Entanglement Graphs: From fast scrambling and weak-field gravity to a testable gap-kilonova prediction},
-  version = {5.0.0},
+  version = {5.1.0},
   year    = {2026},
   doi     = {10.5281/zenodo.22929076},
   url     = {https://github.com/pleblond/alltoall-black-holes},
-  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.0.0 version DOI mints on Zenodo release}
+  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.1.0 version DOI mints on Zenodo release}
 }
 ```
 
 ## Status
 
+v5.1: model-docs v0.6 + D10b tension-cost program — [`main.pdf`](paper/v5/main.pdf)
+(12pp) + [`supplement.pdf`](paper/v5/supplement.pdf) (13pp S1–S11 methods,
+48/48 references cited); relaxed-vacuum essay (`docs/relaxed-vacuum.md`);
+T15 cost dominance (L0 theorem); tension-imprint conjecture (explicitly
+conjectural); D11 tail exponent filed. 435 tests, 81 figure files (Figs 1–75).
 v5.0: journal cut of the v4.1 living document — [`main.pdf`](paper/v5/main.pdf)
 (12pp preprint ≈ 8pp two-column: motivation, 3 claims, gravity to 1PN + 2PN
 preview, UV+QI, one-family compact objects + gap-KN ~1/yr O5, upper-gap null
