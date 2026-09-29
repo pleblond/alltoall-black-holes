@@ -256,7 +256,6 @@ def measure_graph(g: nx.Graph, seed: int = 0,
 # ---------------------------------------------------------------------------
 # Round-2 (V2): shell estimator with r_min + upper-V window, N-aware B4.
 # ---------------------------------------------------------------------------
-
 # Frozen V2 estimator geometry (round-2 prereg §7; selected on pristine
 # controls only — see docs/ANNEAL2_REPORT.md estimator-dev appendix).
 R_MIN_V2 = 2
@@ -348,6 +347,48 @@ def lw_diameter_bar_v2(d_ctrl: float) -> float:
     return float(F_B4_V2 * float(d_ctrl))
 
 
+def large_world_stats_v2(g: nx.Graph,
+                         n_dist_samples: int = N_DIST_SAMPLES,
+                         seed: int = 0) -> dict:
+    """Large-world outcomes, Johnson-backed (exact, survey-N feasible).
+
+    Same quantities as large_world_stats ({diameter, mean_dist_sampled,
+    n_dist_samples, ok}): exact diameter + sampled mean pairwise distance,
+    from ONE scipy-Johnson all-pairs matrix instead of O(N) Python BFS
+    walks. ok=False on disconnected graphs (diameter undefined there).
+    """
+    bad = {"diameter": -1, "mean_dist_sampled": float("nan"),
+           "n_dist_samples": 0, "ok": False}
+    try:
+        if not nx.is_connected(g):
+            return bad
+        from bh_graph.sinkor import all_pairs_johnson
+
+        dist, idx = all_pairs_johnson(g)
+        if dist is None or idx is None or not np.all(np.isfinite(dist)):
+            return bad
+        nodes = list(g.nodes())
+        order = [idx[v] for v in nodes]
+        diam = int(np.max(dist))
+        rng = np.random.default_rng(seed)
+        dists: list[float] = []
+        n = len(nodes)
+        for _ in range(max(int(n_dist_samples), 1)):
+            iu = int(rng.integers(n))
+            iv = int(rng.integers(n))
+            if iu == iv:
+                continue
+            dists.append(float(dist[order[iu], order[iv]]))
+        if not dists:
+            return {"diameter": diam, "mean_dist_sampled": float("nan"),
+                    "n_dist_samples": 0, "ok": True}
+        return {"diameter": diam,
+                "mean_dist_sampled": float(np.mean(dists)),
+                "n_dist_samples": len(dists), "ok": True}
+    except Exception:
+        return bad
+
+
 def basin_membership_v2(diso: dict, kappa: dict, z_mean: float,
                         lw: dict, d_ctrl: float) -> dict:
     """Frozen V2 §9 B1–B4 bars (d_ctrl = pristine control diam at survey N).
@@ -395,7 +436,7 @@ def measure_graph_v2(g: nx.Graph, d_ctrl: float, seed: int = 0,
                             f_up=f_up)
     kappa = kappa_sample_mean(g, max_edges=max_edges, seed=seed + 1)
     z = coordination(g)
-    lw = large_world_stats(g, n_dist_samples=n_dist_samples, seed=seed + 2)
+    lw = large_world_stats_v2(g, n_dist_samples=n_dist_samples, seed=seed + 2)
     return {"diso": diso, "kappa": kappa, "z": z, "lw": lw,
             "basin": basin_membership_v2(diso, kappa, z["z_mean"], lw, d_ctrl),
             "label": "exploratory"}

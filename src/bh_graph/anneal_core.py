@@ -76,15 +76,17 @@ def _relabel(g: nx.Graph) -> nx.Graph:
     return nx.convert_node_labels_to_integers(g)
 
 
-def build_er_sparse(n: int, seed: int) -> tuple[nx.Graph, dict]:
-    """ER G(n, 6/(n-1)) rejection-sampled to connected (<=200 tries).
+def build_er_sparse(n: int, seed: int, max_tries: int = 200) -> tuple[nx.Graph, dict]:
+    """ER G(n, 6/(n-1)) rejection-sampled to connected (<=max_tries).
 
     Fallback: largest component + isolates attached to uniform random hosts.
-    Returns (graph, info{fallback, tries}).
+    Returns (graph, info{fallback, tries}). V1 froze 200 tries; V2 passes 25
+    (connectivity probability -> 0 at survey N, so 200 tries only burn wall;
+    the fallback is the typical path there — round-2 prereg §3).
     """
     n = int(n)
     p = 6.0 / max(n - 1, 1)
-    for t in range(200):
+    for t in range(max(int(max_tries), 1)):
         g = nx.erdos_renyi_graph(n, p, seed=int(seed) + t)
         if nx.is_connected(g):
             return g, {"fallback": False, "tries": t + 1}
@@ -95,10 +97,10 @@ def build_er_sparse(n: int, seed: int) -> tuple[nx.Graph, dict]:
     for comp in comps[1:]:
         for v in comp:
             g.add_edge(v, host[int(rng.integers(len(host)))])
-    return g, {"fallback": True, "tries": 200}
+    return g, {"fallback": True, "tries": int(max_tries)}
 
 
-def build_rr6(n: int, seed: int) -> tuple[nx.Graph, dict]:
+def build_rr6(n: int, seed: int, er_tries: int = 200) -> tuple[nx.Graph, dict]:
     """Random 6-regular, connected (<=50 seed offsets) else er-sparse fallback."""
     n = int(n)
     for t in range(50):
@@ -108,7 +110,7 @@ def build_rr6(n: int, seed: int) -> tuple[nx.Graph, dict]:
             continue
         if nx.is_connected(g):
             return g, {"fallback": False, "tries": t + 1}
-    g, info = build_er_sparse(n, seed)
+    g, info = build_er_sparse(n, seed, max_tries=er_tries)
     info = dict(info)
     info["fallback"] = "rr6->er-sparse"
     return g, info
@@ -590,12 +592,13 @@ def is_valid_hid(hid: int) -> bool:
 # V2 seed builders (int-labeled 0..N-1; deterministic given seed).
 # ---------------------------------------------------------------------------
 
-# (sx, sy, sz, periodic): open fragments at survey N (B4-reachable by
-# construction — verified in the reachability table, round-2 prereg §3).
+# (sx, sy, sz, periodic): PERIODIC at every N (bulk without boundary
+# contamination — the V2 shell estimator is seed-flaky on open fragments
+# at survey N, rock-solid on periodic tilings; round-2 prereg §3/§7).
 _CUBIC_DIMS_V2 = {
     216: (6, 6, 6, True), 512: (8, 8, 8, True),
-    1000: (10, 10, 10, False), 2000: (10, 10, 20, False),
-    4000: (20, 10, 20, False),
+    1000: (10, 10, 10, True), 2000: (10, 10, 20, True),
+    4000: (20, 10, 20, True),
 }
 # (cx, cy, cz) conventional cells x 8 atoms: N exact at every V2 N.
 _DIAMOND_CELLS_V2 = {
@@ -615,7 +618,7 @@ def _build_cubic_dims(sx: int, sy: int, sz: int, periodic: bool) -> nx.Graph:
 
 
 def build_cubic_v2(n: int) -> nx.Graph:
-    """V2 cubic seed: periodic at 216/512 (legacy), open fragment at survey N."""
+    """V2 cubic seed: periodic at every N (bulk test, round-2 prereg §3)."""
     dims = _CUBIC_DIMS_V2.get(int(n))
     if dims is None:
         raise ValueError("cubic V2 N only: 216/512/1000/2000/4000")
@@ -708,9 +711,9 @@ def build_seed_v2(seed_id: str, n: int, seed: int) -> tuple[nx.Graph, dict]:
     if not is_valid_seed_id_v2(seed_id) or not is_valid_n_v2(n):
         raise ValueError("bad V2 seed_id or N (round-2 prereg §3)")
     if seed_id == "er-sparse":
-        return build_er_sparse(n, seed)
+        return build_er_sparse(n, seed, max_tries=25)
     if seed_id == "rr6":
-        return build_rr6(n, seed)
+        return build_rr6(n, seed, er_tries=25)
     if seed_id == "cubic":
         return build_cubic_v2(n), {"fallback": False, "tries": 1}
     if seed_id == "diamond":
@@ -1062,6 +1065,7 @@ def anneal_v2(seed_id: str, n: int, hid: int, steps: int, seed: int,
             trace.append({"step": int(k), "T": float(T),
                           "C_cheap": float(c_cheap_cur),
                           "C_exp": float(c_exp_old),
+                          "E": int(st.ecount),
                           "accepted": int(counters["n_accepted"]),
                           "block_rejects": int(counters["n_block_reject"])})
     checkpoints["final"] = _fresh_checkpoint_v2(st, weights)

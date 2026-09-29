@@ -42,13 +42,11 @@ def test_v2_registry_frozen():
 
 
 def test_cubic_v2_counts_and_coordination():
-    for n, lo, hi in ((216, 6.0, 6.0), (512, 6.0, 6.0), (1000, 5.0, 6.0),
-                      (2000, 5.0, 6.0), (4000, 5.0, 6.0)):
+    for n in (216, 512, 1000, 2000, 4000):
         g = build_cubic_v2(n)
         assert g.number_of_nodes() == n
         assert nx.is_connected(g)
-        z = float(np.mean([d for _, d in g.degree()]))
-        assert lo <= z <= hi, (n, z)
+        assert all(d == 6 for _, d in g.degree()), f"cubic-{n} not 6-regular"
 
 
 def test_diamond_v2_4regular_connected():
@@ -77,6 +75,8 @@ def test_build_seed_v2_rejects_bad():
             raise AssertionError(f"must raise: {sid}/{n}")
     g, info = build_seed_v2("fcc", 1000, 0)
     assert g.number_of_nodes() == 1000 and info["fallback"] is False
+    g, info = build_seed_v2("er-sparse", 1000, 0)
+    assert nx.is_connected(g) and info["tries"] <= 25  # V2 fast-fallback cap
 
 
 def test_state_v2_incremental_matches_recount():

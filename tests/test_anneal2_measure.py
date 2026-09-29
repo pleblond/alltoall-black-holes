@@ -26,7 +26,7 @@ def test_diso_v2_cubic_1000_passes():
     g, _ = build_seed_v2("cubic", 1000, 0)
     r = diso_estimate_v2(g, seed=11)
     assert _in_bar_v2(r), r
-    assert 2.3 <= r["d"] <= 3.0, r  # measured 2.61 (controls-only dev)
+    assert 3.2 <= r["d"] <= 3.6, r  # measured 3.42 periodic (controls-only)
 
 
 def test_diso_v2_fcc_1000_passes():
@@ -96,8 +96,25 @@ def test_basin_v2_all_bars_and_vetoes():
 
 def test_measure_graph_v2_bundle_labels_exploratory():
     g, _ = build_seed_v2("cubic", 1000, 0)
-    b = measure_graph_v2(g, 27.0, seed=424242)
+    b = measure_graph_v2(g, 15.0, seed=424242)
     assert set(b) == {"diso", "kappa", "z", "lw", "basin", "label"}
     assert b["label"] == "exploratory"
-    assert abs(b["z"]["z_mean"] - 5.4) < 1e-12
+    assert abs(b["z"]["z_mean"] - 6.0) < 1e-12
+    assert b["lw"]["diameter"] == 15
     assert b["kappa"]["ok"] and abs(b["kappa"]["mean"]) <= 0.06
+
+
+def test_lw_v2_matches_v1_exact():
+    """Johnson-backed LW stats equal the V1 BFS quantities exactly."""
+    from bh_graph.anneal_core import build_cubic_v2
+    from bh_graph.anneal_measure import large_world_stats, large_world_stats_v2
+
+    for g in (build_cubic_v2(216), nx.erdos_renyi_graph(60, 0.15, seed=0),
+              nx.path_graph(50), nx.random_regular_graph(3, 60, seed=2)):
+        a = large_world_stats(g, seed=5)
+        b = large_world_stats_v2(g, seed=5)
+        assert b["ok"] and b["diameter"] == a["diameter"] == nx.diameter(g)
+        assert abs(b["mean_dist_sampled"] - a["mean_dist_sampled"]) < 1e-9
+        assert b["n_dist_samples"] == a["n_dist_samples"]
+    disc = nx.disjoint_union(nx.complete_graph(5), nx.complete_graph(5))
+    assert not large_world_stats_v2(disc)["ok"]

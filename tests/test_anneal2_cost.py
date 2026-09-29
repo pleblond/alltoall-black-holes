@@ -130,10 +130,10 @@ def test_spectral_no_skip_zero_regression():
     """
     import math
 
-    from bh_graph.anneal_core import build_cubic_v2
+    from bh_graph.anneal_core import _build_cubic_dims
     from bh_graph.anneal_cost import spectral_term
 
-    s = spectral_term(build_cubic_v2(4000))
+    s = spectral_term(_build_cubic_dims(20, 10, 20, False))
     assert s["ok"] and s["method"] == "eigsh"
     assert abs(s["lambda2"] - (2 - 2 * math.cos(math.pi / 20))) < 1e-6
 

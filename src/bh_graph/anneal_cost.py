@@ -136,7 +136,7 @@ def symmetry_term(g: nx.Graph, iterations: int = K_WL) -> float:
     return float(wl_color_count(g, iterations) / n)
 
 
-def spectral_term(g: nx.Graph, maxiter: int = 2000) -> dict:
+def spectral_term(g: nx.Graph, maxiter: int = 300) -> dict:
     """T_spec = lambda2(L) / zbar via sparse eigsh (intrinsic: spectrum).
 
     {value, lambda2, zbar, ok, method}. method in {eigsh, dense, fail}.
@@ -148,7 +148,10 @@ def spectral_term(g: nx.Graph, maxiter: int = 2000) -> dict:
     lambda3 instead of 0.0246), which silently corrupts lambda2. V2 uses
     k=6 with zero detection (smallest < 1e-8 -> lambda2 is next; else the
     smallest returned IS lambda2), dense for n <= 64, and a connected-graph
-    sanity retry with an alternate fixed start vector. Deterministic.
+    sanity retry with an alternate fixed start vector. maxiter = 300:
+    loopy graphs converge in << 300 iterations (validated vs dense), while
+    tree-like spectra (near-zero cluster) fail fast (~0.1 s) into the
+    caller's hold path instead of burning 2000 iterations (~2 s). Deterministic.
     """
     bad = {"value": float("nan"), "lambda2": float("nan"),
            "zbar": float("nan"), "ok": False, "method": "fail"}
