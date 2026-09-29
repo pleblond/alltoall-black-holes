@@ -2039,6 +2039,45 @@ def fig75b_gw190814_systematics():
     plt.close(fig)
 
 
+def fig76_plateau():
+    from bh_graph.micro import critical_k, packing_kmax
+    from bh_graph.horizon import mass_from_k
+    from bh_graph.remnant import sigma_of_k, remnant_temperature
+    from bh_graph.tev import sigma_add_of_mass_pb, plateau_cross_section_pb
+    kc = critical_k()
+    k = np.linspace(0, 60, 600)
+    sig = sigma_of_k(k)
+    t_froz = remnant_temperature(k, below="frozen")
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.8))
+    axes[0].loglog(np.maximum(k, 1e-3), np.maximum(sig, 1e-3), color="#0f766e")
+    axes[0].axvline(kc, color="red", linestyle="--", label=f"k_crit = {kc:.1f}")
+    axes[0].set_xlabel("k (exterior legs)")
+    axes[0].set_ylabel("sigma (lp^2, area convention)")
+    axes[0].set_title("4D: flat plateau, then ~k ~ M^2")
+    axes[0].legend(fontsize=8)
+    axes[1].plot(k, t_froz, color="#7c3aed", label="frozen at T(kc)")
+    axes[1].axvline(kc, color="red", linestyle="--")
+    axes[1].set_xlabel("k")
+    axes[1].set_ylabel("T (Planck, labeled assumption)")
+    axes[1].set_title("Truncated spectrum, no burst (assumed)")
+    axes[1].legend(fontsize=8)
+    m = np.linspace(1, 60, 300)
+    sadd = np.array([sigma_add_of_mass_pb(float(mm)) for mm in m])
+    axes[2].semilogy(m, sadd, color="#0369a1")
+    axes[2].axhline(plateau_cross_section_pb(), color="red", linestyle="--",
+                    label=f"plateau {plateau_cross_section_pb():.1f} pb")
+    axes[2].set_xlabel("M (TeV, MD=1, n=6)")
+    axes[2].set_ylabel("sigma (pb, cross convention)")
+    axes[2].set_title("ADD: non-thermal plateau below onset")
+    axes[2].legend(fontsize=8)
+    mc = mass_from_k(packing_kmax())
+    fig.suptitle(f"Fig 76 — Remnant plateau (Mc ~ {mc:.2f} Mp sub-Planckian 4D; "
+                 "T-cutoff assumed, ADD branch observable)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig76_plateau.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -2118,6 +2157,7 @@ def main():
     fig74b_graphvk()
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
+    fig76_plateau()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

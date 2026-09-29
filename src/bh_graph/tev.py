@@ -68,3 +68,46 @@ def thermal_null_scan(
     m = np.asarray(list(m_grid_tev), dtype=float)
     k = np.array([k_add(float(mm), m_d_tev, n_extra) for mm in m])
     return {"M": m, "k": k, "pointlike": k < k_crit_tev(r_point_over_lD)}
+
+
+# --- v6: ADD plateau cross-section (observable branch) ---
+# Below k_crit the brane observer sees constant geometric size
+# (non-thermal point defects); above, Myers-Perry growth. Returns pb
+# (1 pb = 1e-40 m^2). Convention: "cross" = pi R^2 default.
+
+PB_M2 = 1e-40
+
+
+def plateau_cross_section_pb(
+    m_d_tev: float = 1.0, r_point_over_lD: float = 2.0, convention: str = "cross"
+) -> float:
+    """Plateau geometric size in pb at the ADD fundamental scale."""
+    r_m = r_point_over_lD * l_d_meters(m_d_tev)
+    area_m2 = FOUR_PI * r_m**2
+    if convention == "cross":
+        area_m2 /= 4.0
+    return float(area_m2 / PB_M2)
+
+
+def sigma_add_of_mass_pb(
+    m_tev: float,
+    m_d_tev: float = 1.0,
+    n_extra: int = 6,
+    r_point_over_lD: float = 2.0,
+    convention: str = "cross",
+) -> float:
+    """Brane sigma(M): plateau below k_crit, Myers-Perry pi Rs^2 above."""
+    if is_pointlike_lhc(m_tev, m_d_tev, n_extra, r_point_over_lD):
+        return plateau_cross_section_pb(m_d_tev, r_point_over_lD, convention)
+    rs = rs_add_meters(m_tev, m_d_tev, n_extra)
+    area_m2 = FOUR_PI * rs**2
+    if convention == "cross":
+        area_m2 /= 4.0
+    return float(area_m2 / PB_M2)
+
+
+def is_plateau_lhc(
+    m_tev: float, m_d_tev: float = 1.0, n_extra: int = 6, r_point_over_lD: float = 2.0
+) -> bool:
+    """Boolean check: is this mass on the ADD plateau branch?"""
+    return is_pointlike_lhc(m_tev, m_d_tev, n_extra, r_point_over_lD)

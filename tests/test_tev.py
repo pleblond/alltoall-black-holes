@@ -1,5 +1,6 @@
 from bh_graph.tev import (
     l_d_meters, rs_add_meters, k_add, k_crit_tev, is_pointlike_lhc, thermal_null_scan,
+    plateau_cross_section_pb, sigma_add_of_mass_pb, is_plateau_lhc,
 )
 import numpy as np
 
@@ -23,3 +24,13 @@ def test_lhc_reach_pointlike_for_reasonable_rpoint():
     assert is_pointlike_lhc(5.0, 1.0, 6, 2.0)
     s = thermal_null_scan([3.0, 5.0, 8.0, 13.0], 1.0, 6, 2.0)
     assert bool(s["pointlike"][0])  # low end firmly pointlike
+
+
+def test_add_plateau_branch():
+    # LHC-reach masses sit on the plateau (non-thermal, constant sigma).
+    assert bool(is_plateau_lhc(5.0, 1.0, 6, 2.0))
+    p = plateau_cross_section_pb(1.0, 2.0)
+    assert p > 0
+    assert sigma_add_of_mass_pb(3.0) == sigma_add_of_mass_pb(5.0) == p
+    # cross = area / 4 convention.
+    assert abs(p - plateau_cross_section_pb(1.0, 2.0, "area") / 4.0) < 1e-12
