@@ -1,0 +1,43 @@
+{
+ "klein": {
+  "predicted": 2.0,
+  "d": 1.8641519686140389,
+  "r2": 0.9999325290122447,
+  "pass": true,
+  "N_R12": 313,
+  "kappa_interior": {
+   "mean": 0.0,
+   "sem": 0.0,
+   "n": 20,
+   "n_interior_edges": 144
+  }
+ },
+ "z3": {
+  "predicted": 3.0,
+  "d": 2.769439615348274,
+  "r2": 0.999895685276269,
+  "pass": true,
+  "N_R12": 2625,
+  "kappa_interior": {
+   "mean": 1.1102230246251565e-16,
+   "sem": 0.0,
+   "n": 20,
+   "n_interior_edges": 876
+  }
+ },
+ "heis": {
+  "predicted": 4.0,
+  "d": 3.865661471099777,
+  "r2": 0.9999059072155148,
+  "pass": true,
+  "N_R12": 8871,
+  "kappa_interior": {
+   "mean": -1.0,
+   "sem": 0.0,
+   "n": 20,
+   "n_interior_edges": 816
+  }
+ },
+ "elapsed_s": 0.4359109401702881,
+ "calibration_z3": "METHOD-OK"
+}
