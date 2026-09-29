@@ -289,7 +289,7 @@ failed informatively.
 | vacuum = relaxed isostatic 2D fabric, `<z>=4` | **postulated (P0')** | `model.md` §2, this doc §2–§4 |
 | observer sees `M_O(G)`; P4 is one instance | postulated (P0/P4 box) | `model.md` §1–§2 |
 | `d_G / d_I / d_obs` + `d_eff` protocol | defined + implemented | `model.md` §1 box, `emergent_dim` |
-| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (21 tests) |
+| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (23 tests) |
 | convergence `p(L)` monotone, gap `~1/√L` | **measured** | BFS series test |
 | resistance / communicability rejected | **measured (negative)** | rejection test |
 | shell no-emergence pin (~1.4 / ~0.6) | **measured (negative)** | shell test |
@@ -299,6 +299,8 @@ failed informatively.
 | amplitude scaling | **measured (loose)** | min-ratio ↓, peak ↑, far-field `A(χ)` grow with χ; fixed windows don't scale (scale grows with tension, GR-like) |
 | κ-profile (D10b) | **measured (first)** | interface pattern (boundary −0.93/−0.31, core +0.89/~0); monotone-tracking FAILED, criterion reformulated, confirmation pending |
 | tension-imprint conjecture | **conjectured** | `model.md` §5: fingerprint universality under the fixed ceff rule; falsifiers + promotion to P5 stated; not a postulate yet |
+| T15 cost dominance | **derived (theorem)** | `model.md` §2: shortcuts priced ≥ hop-saving can't inflate balls; ∩-blip pins an underpriced shortcut (z=1 U-side 0.2000, tort blip 9>5 + flip 2.020) |
+| far-field tail exponent | **open** | D11: `1/r` (χ~2 to `5Rc`) vs `1/r²` (χ~1 to `6Rc`); `L ≥ 200` asymptotics needed |
 | `d_I = 2` for vacuum fabric | predicted (follows from P0' + protocol) | queued for simulator (D10) |
 | 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10) |
 | tension → `κ` map (`z−4` to curvature) | **open** | D10 |

@@ -163,14 +163,21 @@ flip needs `c* ≈ 0.58`, diagnostic); `c_eff`-import `w = 1 + χ` (AT light
 sector, saturating `x = χ/(1+χ)` bridge) flips clique (3.43, big overshoot)
 and mild plug (1.73 → 2.02 vs 1.92, modest +5% overshoot) — overshoot-side
 only, dip-phase (U-shape) open, amplitude unclaimed. Fingerprint + amplitude
-(21 tests): 9×9 χ~1 plug shows full dip (−0.18) → overshoot (+0.79 peak) →
+(23 tests): 9×9 χ~1 plug shows full dip (−0.18) → overshoot (+0.79 peak) →
 asymptote (+0.09) shape-match conditional on the ceff bridge; dip-min ratio
 deepens (0.20/0.077/0.016), overshoot peak grows (0.79/0.94/2.91), far-field
-`E ~ A(χ)Rc/r` with non-universal `A` (deficit ∝ tension); κ-profile is an
+`E ~ A(χ)Rc/r` with non-universal `A` (deficit ∝ tension; tail exponent
+filed as D11); κ-profile is an
 interface pattern (boundary-negative, core-positive), not monotone tracking
 (criterion (b) refined to profile); flip lives in `z_vac ~ [2,5]` containing
 P0' 4; conductance-weighted diffusion improves the heat trap (r² 0.54 →
-0.78) without cleaning it. `emergent_dim` protocol +
+0.78) without cleaning it. T15 cost-dominance theorem (`model.md` §2):
+shortcuts priced ≥ hop-saving cannot inflate balls — c_eff at `z_vac=1`
+satisfies it (max `V_w/V_0 = 0.2000`, no flip), tortuosity-import at
+`z_vac=4` violates it on all 32 diagonals (fractional blip `V_w(1.9)=9>5`,
+hidden from integer sampling, mid-window flips 2.020); c_eff at vacuum
+`z_vac=4` violates on exactly the 24 boundary diagonals, locating the flip.
+`emergent_dim` protocol +
 two-distance bracket ready; shell no-emergence pin shows what failure looks like.
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
@@ -192,3 +199,25 @@ feeds D3 (κ→c₂ via tension) and D6 (R_s from the tension profile).
 Generalization stated as the tension-imprint conjecture (`model.md` §5):
 fingerprint universality under the fixed ceff rule, with falsifiers and
 P5-promotion criteria; the cost rule stays conjecture-grade until they are met.
+
+## D11 — Far-field tail exponent of the tension fingerprint (D10b)
+
+**Missing:** the asymptotic law of the excess-slope tail `E(r) = p_w − p_0`
+far from a tensed region. Two shadow accountings compete: a *wedge* shadow
+(delayed nodes `~ Rc·r` in 2D) gives deficit `D = 1 − V_w/V_0 ~ Rc/r` hence
+`E ~ 1/r`; a *fixed* shadow (constant delayed interior `~ Rc²`) gives
+`E ~ 1/r²`. L=120 probe (strength trio, `Rc`-relative windows): χ~1 tail is
+`1/r²`-like to `6Rc` (`E·r²` flat: `A = E·r/Rc` falls 0.30 → 0.16 as `1/r`);
+χ~2 is `1/r`-like to `5Rc` (`A` flat 0.64 → 0.63) then bursty; χ~5 bursty
+throughout. Windows past `~6Rc` are boundary-contaminated on L=120
+(half-width 60; χ~1 `k=10` window fully clipped, `E = 0.0000`), so neither
+law is established — the exponent may be tension-dependent or one law may
+be a transient of the other.
+
+**Close criterion:** measured `E(r)` tail on `L ≥ 200` with clean
+(`Rc`-relative, unclipped) windows to `10Rc`, deciding `1/r` vs `1/r²` vs
+tension-dependent crossover, with the winning accounting derived from the
+cost rule rather than fitted.
+
+**Kill relevance:** none directly — a shape detail, not the shape itself.
+Feeds the tension-imprint conjecture amplitude clause (`model.md` §5).

@@ -633,3 +633,80 @@ def test_weighted_diffusion_partially_untraps():
     assert r2_w > 0.7, (p_w, r2_w, n_w)
     assert 0.8 < p_w < 1.2, (p_w, r2_w, n_w)
     assert n_w >= 4, (p_w, r2_w, n_w)
+
+
+def _split_costs(g0, g, w):
+    """(grid-edge costs, [(shortcut edge, cost, dist0)]) under weight fn w."""
+    grid = set(map(tuple, map(sorted, g0.edges())))
+    gc, sc = [], []
+    for u, v in g.edges():
+        if tuple(sorted((u, v))) in grid:
+            gc.append(w(u, v))
+        else:
+            sc.append(((u, v), w(u, v), nx.shortest_path_length(g0, u, v)))
+    return gc, sc
+
+
+def test_t15_dominant_costs_stay_u_side():
+    # T15 conclusion (premise holds): c_eff costs at z_vac=1 on the mild
+    # 5x5 plug price every shortcut at/above its hop-saving (min shortcut
+    # 6.00 >= 2, min grid 2.50 >= 1) -> dist_w >= dist0 pointwise (zero
+    # violations), V_w <= V0 at every radius (max ratio 0.2000), mid
+    # window (8,20) stays below control (1.838 vs 1.920, r2 0.74).
+    L, c = 40, 20
+    g0, gm = _mild_plug_grid(L, c)
+    src = c * L + c
+    w = ed.ceff_cost_fn(gm, z_vac=1.0)
+    gc, sc = _split_costs(g0, gm, w)
+    assert len(sc) == 32, len(sc)
+    assert min(gc) >= 1.0, min(gc)
+    assert all(cost >= d0 for _, cost, d0 in sc)
+    assert abs(min(cost for _, cost, _ in sc) - 6.0) < 1e-9
+    assert abs(min(gc) - 2.5) < 1e-9
+    d_bfs = nx.single_source_shortest_path_length(gm, src)
+    d_w = nx.single_source_dijkstra_path_length(gm, src, weight=w)
+    assert all(d_w[v] >= d_bfs[v] - 1e-9 for v in gm.nodes())
+    r0, v0 = ed.ball_volumes_bfs(g0, src)
+    _, vw = ed.ball_volumes_weighted(gm, src, weight=w, radii=r0)
+    ratio = vw / v0
+    assert abs(ratio.max() - 0.2) < 1e-12, ratio.max()
+    assert ratio.max() <= 0.25
+    p0, _ = _window_pr(r0, v0, 8, 20)
+    pw, r2 = _window_pr(r0, vw, 8, 20)
+    assert 1.75 < pw < 1.90, (pw, r2)
+    assert 0.6 < r2 < 0.9, (pw, r2)
+    assert pw < p0, (pw, p0)
+
+
+def test_t15_cheap_shortcuts_blip_and_flip():
+    # T15 contrapositive (premise fails): tortuosity-import costs at
+    # z_vac=4 underprice all 32 diagonals (max 1.50 < 2) -> a fractional
+    # blip V_w(1.9) = 9 > V0 = 5 that integer sampling cannot see (no
+    # excess at any BFS radius), and the mid window (8,20) flips above
+    # control (2.020 vs 1.920, r2 1.0000). Cross-check: c_eff at vacuum
+    # z_vac=4 violates on exactly the 24 boundary diagonals (min 1.50),
+    # locating the observed flip at the plug boundary.
+    L, c = 40, 20
+    g0, gm = _mild_plug_grid(L, c)
+    src = c * L + c
+    wt = ed.tension_cost_fn(gm, z_vac=4.0)
+    _, sc = _split_costs(g0, gm, wt)
+    assert len(sc) == 32, len(sc)
+    assert all(cost < d0 for _, cost, d0 in sc)
+    assert abs(max(cost for _, cost, _ in sc) - 1.5) < 1e-9
+    r0, v0 = ed.ball_volumes_bfs(g0, src)
+    _, vw = ed.ball_volumes_weighted(gm, src, weight=wt, radii=r0)
+    assert not any(a > b + 1e-9 for a, b in zip(vw, v0))
+    _, (vw_frac,) = ed.ball_volumes_weighted(gm, src, weight=wt, radii=[1.9])
+    assert v0[0] == 5.0, v0[0]
+    assert vw_frac == 9.0, vw_frac
+    p0, _ = _window_pr(r0, v0, 8, 20)
+    pw, r2 = _window_pr(r0, vw, 8, 20)
+    assert 1.95 < pw < 2.10, (pw, r2)
+    assert r2 > 0.99, (pw, r2)
+    assert pw > p0, (pw, p0)
+    wc = ed.ceff_cost_fn(gm, z_vac=4.0)
+    _, scc = _split_costs(g0, gm, wc)
+    bad = [cost for _, cost, d0 in scc if cost < d0 - 1e-9]
+    assert len(bad) == 24, len(bad)
+    assert abs(min(bad) - 1.5) < 1e-9, min(bad)

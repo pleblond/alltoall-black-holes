@@ -75,7 +75,7 @@ follows, and what is still missing.
   a solved weight, one ansatz map, and one extrapolation prescription. Killing L2
   must not kill L0/L1.
 
-Open derivations (D1–D8 in `docs/DEFERRED.md`) are fenced in §5 and referenced
+Open derivations (D1–D11 in `docs/DEFERRED.md`) are fenced in §5 and referenced
 from the exact postulate or theorem they would promote. Nothing in §2–§4 depends
 on them silently.
 
@@ -258,6 +258,34 @@ chain is already `> 5×` slower at `N = 64`. OTOC form `C(t) ~ e^{λt}/N`,
 At `t = 0` the witness family has interior concurrence 1 and exterior tangle 0
 (baby-universe endpoint); at `t = π/2` it is fully product `(0,0)`. This is a
 theorem of quantum mechanics applied to the wiring, not an extra postulate.
+
+### T15 (cost dominance). Shortcuts priced at or above their hop-saving cannot inflate balls; any inflation pins an underpriced shortcut.
+
+Let `G₀` be a grid graph with shortest-path distance `dist₀`, and `G` be
+`G₀` plus extra (shortcut) edges. Price edges with `w_e ≥ 1` on grid edges
+and `w_e ≥ dist₀(u,v)` on shortcut edges. Then `dist_w ≥ dist₀` pointwise,
+hence `V_w(r) ≤ V₀(r)` for every `r` (U-side: balls shrink, rulers stretch —
+the GR side). Proof: project any weighted `s–t` path to a grid walk by
+replacing each shortcut `(u,v)` with a `dist₀(u,v)`-hop grid path; the
+projected walk has `H ≤ cost(path)` hops and `H ≥ dist₀(s,t)`, so every
+path costs at least `dist₀(s,t)`; minimizing gives `dist_w ≥ dist₀`, and
+`V_w(r) ⊆ V₀(r)` follows. Contrapositive: any radius with `V_w(r) > V₀(r)`
+(∩-blip) pins a shortcut edge with `w_e < dist₀(u,v)`. **Derived**, pure
+graph kinematics, zero tuning. (`emergent_dim`, D10b.)
+
+Instances pinned (L=40 mild 5×5 king plug, center source, mid window
+(8,20), control `p = 1.920`): `c_eff` costs at `z_vac = 1` satisfy the
+premise (min shortcut `6.00 ≥ 2`, min grid `2.50 ≥ 1`) → max `V_w/V₀ =
+0.2000`, mid `p = 1.838` (`r² = 0.74`), no flip, zero pointwise
+`dist_w ≥ dist₀` violations. Tortuosity-import costs at `z_vac = 4` violate
+it (all 32 diagonals `w ≤ 1.50 < 2`) → fractional blip `V_w(1.9) = 9 >
+V₀ = 5` invisible to integer sampling (no excess at any BFS radius),
+mid-window flips to `p = 2.020` (`r² = 1.0000`). Use: T15 is the
+admissibility diagnostic for D10b cost rules — a rule must satisfy the
+premise on shortcut edges or own its ∩-blips. Applied to the `c_eff` rule
+at vacuum `z_vac = 4`: 24 boundary diagonals violate (`w < 2`, min 1.50;
+8 interior diagonals marginal at `w = 2`), which licenses the observed
+flip via the contrapositive and locates it at the plug boundary.
 
 ### Explicitly not in L0.
 
@@ -637,7 +665,8 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 | D7 | Kilonova radiative transfer | validated multidimensional RT on public ejecta models/transformations compatible with the F5/F6 bulk prescription (morphology, velocity structure per VEL-1, Ye-dependent opacities/reprocessing, viewing-angle dependence, direct `i`-band); pipeline must pass the AT2017gfo anchor/control gate before its GW190814 result promotes the analytic verdict (POSSIS primary implementation) | decides whether the GW190814 non-detection is compatible with universal shedding or falsifies it; `g`-band verdicts already robust |
 | D8 | Shedding efficiency `ε(M,a,q)` + shutoff location | derive mass/spin/ratio dependence from `K_max(N)` combinatorics, spin-ordered reabsorption, or remnant-trap physics, with any shutoff location as *output* | highest-value attack surface on universal shedding; a derived shutoff between gap and BBH masses must land where it lands (same no-insertion rule as the 44 M☉ null) |
 | D9 | Raychaudhuri (focusing) for leg bundles | derive focusing for SI fronts on leg networks (seed: AT congestion slowdown); closes the Jacobson chain to Einstein's equations with `η = 1/4` from I1b, `G = 1` | promotes I6c from open bridge to derived; gates nothing else — T8–T11 stand without it |
-| D10 | Tension spectrum: simulator d-dip around mass + tension→`κ` map (v0.6) | (a) an over-coordinated (tense) region in the graph shows the GR fingerprint shape (near dip, overshoot, →3⁺) under info-side `d_eff`; relaxed `z≈4` regions show `d=2` fabric / `d=3` reconstruction as applicable; (b) Ollivier–Ricci `κ` tracks over-coordination (`z−4`) quantitatively | P0' first quantitative wire; failure of (a) shape-match after the mapping is fixed refutes P0'. v0.6 probe: bare shortest-path rejected for tense regions (inverted far side: shortcuts shrink balls, GR needs stretched rulers); D10b: tortuosity-import costs partially recover (no flip), `c_eff`-import costs give full dip → overshoot → asymptote on 9×9 mild plug (conditional on bridge); amplitude scales loosely with χ; κ is an interface pattern (criterion (b) reformulated); tension-imprint conjecture stated in §5 |
+| D10 | Tension spectrum: simulator d-dip around mass + tension→`κ` map (v0.6) | (a) an over-coordinated (tense) region in the graph shows the GR fingerprint shape (near dip, overshoot, →3⁺) under info-side `d_eff`; relaxed `z≈4` regions show `d=2` fabric / `d=3` reconstruction as applicable; (b) Ollivier–Ricci `κ` tracks over-coordination (`z−4`) quantitatively | P0' first quantitative wire; failure of (a) shape-match after the mapping is fixed refutes P0'. v0.6 probe: bare shortest-path rejected for tense regions (inverted far side: shortcuts shrink balls, GR needs stretched rulers); D10b: tortuosity-import costs partially recover (no flip), `c_eff`-import costs give full dip → overshoot → asymptote on 9×9 mild plug (conditional on bridge); amplitude scales loosely with χ; κ is an interface pattern (criterion (b) reformulated); tension-imprint conjecture stated in §5; T15 cost-dominance is the cost-rule diagnostic |
+| D11 | Far-field tail exponent of the tension fingerprint (D10b) | measured `E(r)` tail on `L ≥ 200` with clean windows to `10Rc`: `1/r` (wedge shadow, delayed nodes `~ Rc·r`) vs `1/r²` (fixed shadow, deficit `~ Rc²`) | feeds the tension-imprint conjecture amplitude clause; no direct kill wire (shape detail, not shape itself) |
 
 Rule for all D-items: the closing derivation must output the number or location,
 not take it as input. Inserting an observed scale as a graph parameter is a fit,
@@ -679,6 +708,9 @@ two bridges (χ-analogy, x-map) to one — or deriving either — promotes the
 cost rule to a P5/import and closes D10a (shape+amplitude). The rule stays
 conjecture-grade until then: single-family confirmation, two bridges, and
 mild selection (the rule that flips among two tried). Not a postulate yet.
+T15 (cost dominance, §2) is the admissibility diagnostic for any D10b
+candidate: shortcuts priced below their hop-saving are located, not
+averaged away.
 
 ---
 
@@ -715,6 +747,9 @@ Stated so no reader misses them:
 - No P5 cost postulate yet: the tension-imprint conjecture (§5) is
   conjecture-grade (single-family confirmation, two bridges, mild
   selection) with stated falsifiers and promotion criteria.
+- No far-field tail exponent: `1/r` vs `1/r²` unresolved on `L = 120`
+  (χ~1 looks `1/r²`-like to `6Rc`, χ~2 looks `1/r`-like to `5Rc`, then
+  bursty/clipped); needs `L ≥ 200` asymptotics (open D11).
 
 ---
 
