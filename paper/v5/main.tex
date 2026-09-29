@@ -12,7 +12,7 @@
 \large From fast scrambling and weak-field gravity to a testable gap-kilonova prediction}
 \author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\
 \small Draft v5.0 --- main text (companion supplement with methods; 12pp preprint $\approx$ 8pp journal two-column) \\
-\small\texttt{python scripts/generate\_figures.py} reproduces every figure; 398 tests}
+\small\texttt{python scripts/generate\_figures.py} reproduces every figure; 425 tests}
 \date{\today}
 \begin{document}
 \maketitle
@@ -222,6 +222,23 @@ $s_{\mathrm{leg}} > \ln 2\,l_p^2/2$ (an explicit falsifiable assumption;
 modules \texttt{micro}, \texttt{qes}). The horizon interior is mostly empty
 routing buffer. Prediction: micro-holes are \emph{not} scaled-down
 Schwarzschild holes but point defects until a critical exterior budget.
+
+\paragraph{Vacuum: the relaxed fabric.}
+The vacuum is the most relaxed state that is still a fabric: a homogeneous
+isostatic 2D entanglement mesh with mean coordination $\langle z\rangle = 4$ ---
+Maxwell marginal rigidity \cite{Maxwell1864}, rigid with zero self-stress ---
+carrying no coordinates, boundary, or excitation. Black-hole interiors ($K_N$,
+Claim~1) are the maximum-tension extreme, maximally far from vacuum; mass is
+tense vacuum (over-coordination $z - 4$ reconstructed as curvature). An observer
+never sees the graph $G$ directly but a reconstruction $M_O(G)$ through a
+restricted information-access channel (of which the uniform Ollivier measure is
+one instance); objective spacetime is the $M_O$-invariant part of $G$'s
+information structure, in the spirit of entanglement equilibrium
+\cite{Jacobson2016}. Observed dimension is then the infrared scaling exponent
+$d_{\mathrm{obs}} = \lim_{r\to\mathrm{IR}} d\ln V/d\ln r \simeq 3$ (conjecture),
+measured by the \texttt{emergent\_dim} protocol (supplement S11): exact 3D-ness
+holds only at zero tension, with mass imprinting a computed GR fingerprint
+(near dip, overshoot, $\to 3^+$) as the D10 simulator target.
 
 %=====================================================================
 \section{Weak-field gravity to 1PN, with a 2PN preview}
@@ -527,6 +544,7 @@ BBH kilonovae & O5 nearby-BBH ToO sample clean to $m < 24$ (Eq.~\ref{eq:shed} pr
 NICER radius & $R_{1.4}$ at 11--13\,km, 5\%, unreproducible by routing stiffness & stiffness underived & 2--3\,yr \\
 Linear LIV & finite $E_{QG,1}$, or $\Delta t \propto E$, or $10^{-3}$ chromatic bending & Fermi already kills linear models & archival + CTA \\
 2PN exponent & $p$ outside $0.92 \pm 0.056$ at $N = 1024$ class, 80 graphs & $0.913 \pm 0.049$, passes $5\times$ & held to N=16000 \\
+Tension spectrum & simulator $d_{\mathrm{eff}}(l)$ shape-mismatch (dip/overshoot/$\to3^+$) after mapping fixed & GR side computed; bare shortest-path rejected & open (S11) \\
 Kerr quadrupole & graph $|\delta_Q|\gtrsim0.17$ ($Q=-Ma^2(1+\delta_Q)$) & no $M_2$ yet & target (S1/S3) \\
 Lab quench & same-device grid$\to$all:all $t^*$ ratio $< 1.3$ (predicted $2$--$3\times$) & untested & when run \\\bottomrule
 \end{tabular}
@@ -552,7 +570,9 @@ price is abandoning neutron matter above $\sim 10^{15}$~g/cc. The reward, if
 the sky cooperates, is the first quantum-gravity model with a kilonova
 prediction distinct from astrophysics in the current run. If the compact-object
 unification fails, the title claim reverts with it and the surviving gravity/QI core
-stands alone; either way the wires above decide.
+stands alone; either way the wires above decide. Foundations now state the vacuum
+explicitly (relaxed isostatic fabric, \S\ref{sec:model}; methods S11), with its
+dimensional fingerprint as the next quantitative wire.
 
 \paragraph{Methods summary.}
 Full methods in the supplement. Gradient shells
@@ -625,6 +645,8 @@ third-party figure data copied.
 \bibitem{HierGWTC4} C.~Plunkett et al.\ (SPINS), Phys.\ Rev.\ Lett.\ 137, 021404 (2026): hierarchical transition at $m_1 = 46.2^{+12.6}_{-7.2}\,M_\odot$ in GWTC-4.
 \bibitem{CFHT190814} N.~Vieira et al., ApJ 895, 96 (2020): CFHT MegaCam GW190814 limits ($g$ 22.8 at 1.7\,d, $65.5\%$).
 \bibitem{GROWTH190814} I.~Andreoni et al.\ (GROWTH), ApJ 890, 131 (2020): DECam GW190814 detection limits, six epochs to $98\%$ enclosed.
+\bibitem{Maxwell1864} J.~C.~Maxwell, Phil.\ Mag.\ 27, 294 (1864): counting of frames; isostatic (marginally rigid) networks.
+\bibitem{Jacobson2016} T.~Jacobson, Phys.\ Rev.\ Lett.\ 116, 201101 (2016): entanglement equilibrium; Einstein equation from maximal vacuum entanglement.
 \end{thebibliography}
 
 \end{document}

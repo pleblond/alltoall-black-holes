@@ -32,6 +32,9 @@ shed $e$ + $\epsilon$ & $0.5\to0.416$ + 10\% & calibrated once on AT2017gfo & $M
 shed $\epsilon(M,a)$ & $0.0168$ universal (Eq.~2 main) & calibrated + extrapolated (D8) & mass/ratio independence underived; BBH extension tested, not fitted \\
 upper-gap null & no feature at $44\,M_\odot$ & negative prediction (measured smooth) & $k$/spin/Love/congestion all smooth; edge left to stellar physics \\
 GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, POSSIS queued (D7) & non-detection at $p \sim 0.12$--$0.32$; epoch audit in \texttt{massgaps} \\
+vacuum P0' & isostatic 2D, $\langle z\rangle = 4$ & postulated (v0.6) & BH = max-tension extreme; $d_I = 2$ predicted; $M_O$ reconstruction \\
+$d_{\mathrm{eff}}$ protocol & $d\ln V/d\ln r$ bracket & measured (12 tests) & shortest below + diffusion above on lattices; shells fail (S11) \\
+D10 tension map & GR dip/overshoot/$\to3^+$ & GR computed; graph open & bare shortest-path rejected (inverted); weighted costs queued \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
@@ -48,11 +51,14 @@ NICER $M$--$R$--$\Lambda$ from routing stiffness, Kerr $M_2$/$g_{t\phi}$/ISCO/QN
 Derived in-repo (new in v4.x): $p$ from exact Ollivier--Ricci (not hard-coded),
 $M(c_1,c_2)$ inversion, $M_{\mathrm{ej}}(M_{\mathrm{tot}})$ scaling, peak-time
 ordering, band mags, O5 yield arithmetic, $c$ from $\ln 2$ scattering, UV pop as
-graph disconnection, $p$ at $N = 4000/8000/16000$ with turnover measured.
+graph disconnection, $p$ at $N = 4000/8000/16000$ with turnover measured,
+$d_{\mathrm{eff}}$ bracket + convergence + shell/tense-plug pins (v0.6, S11).
 
 Ruled out on the record: broad Planck-remnant dark matter (survives only in a
 $\sim 0.4$-dex EMD window at $\sim 4\times 10^5$\,g); isotropic $b_{\mathrm{crit}} = 8M$;
-naive $\gamma = 2$ strain; linear LIV; flat $p = 0.49$ ($-10\sigma$).
+naive $\gamma = 2$ strain; linear LIV; flat $p = 0.49$ ($-10\sigma$); bare
+shortest-path $d(i,j)$ for tense regions (inverted vs GR);
+resistance/communicability distances (S11).
 
 \section{Gravity methods (AS, AT, AU, BB, BH, BI, BJ, BV)}
 
@@ -317,6 +323,7 @@ AF quench ratio $< 1.3$; $\alpha$ outside $[9.0,12.4]$; $A \propto N$ in any
 TN calculation; thermal LHC excess below $k_{\mathrm{crit}}$;
 $s_{\mathrm{leg}} \le l_p^2/4$ in any physical state class; any linear-LIV
 signal; $p$ outside $0.92 \pm 0.056$ at $N = 1024$; graph-predicted $|\delta_Q|\gtrsim0.17$;
+simulator $d_{\mathrm{eff}}$ shape-mismatch after the cost mapping is fixed (D10/P0' wire);
 10 gap non-detections; O5 nearby-BBH ToO sample clean (universal shedding, Eq.~2 main).
 One sub-claim (broad remnant DM) already ruled out on the record.
 Figs.~37--39.
@@ -460,7 +467,7 @@ Module \texttt{massgaps}.}
 
 {\sloppy\footnotesize
 Modules follow the appendix letters of the v4.1 extended record:
-\path{graphs}, \path{scrambling}, \path{horizon}, \path{micro},
+\path{graphs}, \path{scrambling}, \path{emergent_dim} (L0 dimensions), \path{horizon}, \path{micro},
 \path{circuits} (A), \path{maxent} (B), \path{qes} (C),
 \path{evaporation} (D), \path{evaporation_unitary} (D2), \path{qec} (F), \path{robustness} (G),
 \path{kerr} (H), \path{thermo} (H2), \path{haar} (I), \path{monogamy} (J),
@@ -494,5 +501,58 @@ Reproduce:
 \path{python scripts/generate_figures.py}\\
 \path{streamlit run app.py}
 \end{quote}
+
+\section{Emergent-dimension methods (L0)}
+\label{sec:emergent}
+
+\textbf{Protocol.} For a graph state, pick an information-transfer distance
+$d(i,j)$ (NOT bare adjacency: shortest-path is the documented failure mode on
+$K_N$, diameter 1 at every $N$), build balls $B(r) = \{j : d(i,j) \le r\}$,
+measure capacity $V(r)$, and fit $d_{\mathrm{eff}}(r) = d\ln V/d\ln r$.
+Observed dimension is the infrared conjecture $d_{\mathrm{obs}} =
+\lim_{r\to\mathrm{IR}} d_{\mathrm{eff}}(r) \simeq 3$ (module
+\texttt{emergent\_dim}; 12 tests). Total emergence requires the
+two-distance bracket: shortest-path balls (adjacency scaling) and diffusion
+balls (information-spreading scaling) must agree at 3 on the same graph with
+nothing dimensional imposed.
+
+\textbf{Ruler validation (imposed lattices, circular for emergence).}
+Shortest-path converges from below (exact BFS shells): chain $0.92 \to 0.96 \to
+0.98$ ($N = 60/200/600$), 2D $1.67 \to 1.77 \to 1.82 \to 1.87$
+($L = 20/40/60/100$), 3D $2.25 \to 2.46 \to 2.56 \to 2.63$ ($L = 7/11/15/21$),
+gaps $\sim 1/\sqrt{L}$ (Manhattan-diamond shape + open box). Diffusion
+recovers dimension from above at tuned $t$ (chain $t = 20 \to \sim 1$, 2D
+$t = 5 \to \sim 2$, 3D $L = 7$, $t = 5 \to \sim 3.3$); the 3D overshoot shrinks
+with size ($3.56 \to 3.34 \to 3.14$ at $L = 5/7/9$, $t = 5$). Degree-3/4/6
+lattices all scale 2D: dimension comes from 2D-ness, not coordination.
+
+\textbf{Rejections (negative pins).} Effective resistance fails in 2D
+(log-growth $\to$ spurious large $p$); communicability fails on chains
+(similarity, not separation). Radial shells fail both sides (shortest
+$\sim 1.4$, diffusion $\sim 0.6$): radial-only wiring gives $\sim$1D with no
+$2$-sphere factor --- the missing-area diagnosis that motivates P0'. On $K_N$,
+shortest is trivial and diffusion uniform, by design (T1: no interior geometry).
+
+\textbf{Tense plug (D10a).} A $5\times5$ clique plug at the centre of a
+$40\times40$ grid: tense-centre mid-window ($r = 8$--$20$) scaling dips below
+fabric ($\sim 1.52$ vs $\sim 1.89$ control) and recovers from below ---
+\emph{inverted} vs the GR far side (above 3). Bare shortest-path is therefore
+\emph{rejected} as $d(i,j)$ for tense regions: shortcuts shrink balls while GR
+mass stretches rulers. Costs must be congestion-weighted (D10b gates D10a),
+consistent with the light sector ($c_{\mathrm{eff}} \to 0$, tortuosity), which
+never counts hops. Companion pin: far-source near balls ($r = 2$--$6$) are
+bit-identical to control --- relaxed fabric next to tension measures exactly
+relaxed.
+
+\textbf{GR fingerprint (D10 target, computed).} Weak-field uniform star, proper
+balls of proper radius $l$: $d_{\mathrm{eff}} \approx 2.990$ at $l = 30M$
+(near dip), $3.030$ at $100M$ (overshoot), $3.010$ at $1000M$, $3.0017$ at
+$10000M$ ($\to 3^+$ as $\sim 1/l$); amplitude $O(M/l)$, $\sim 10^{-9}$ at
+Earth's surface. The far-field overshoot is structural: a localised mass leaves
+$V(l) = \mathrm{flat} - \mathrm{deficit}$, so $V/V_{\mathrm{flat}}$ rises
+toward 1, which \emph{is} $d_{\mathrm{eff}} > 3$. Close criterion (D10a): a
+tensed simulator region reproduces this \emph{shape} under info-side
+$d_{\mathrm{eff}}$ once the cost mapping is fixed; shape failure refutes P0'.
+Reproduce: \path{pytest tests/test_emergent_dim.py -q}.
 
 \end{document}

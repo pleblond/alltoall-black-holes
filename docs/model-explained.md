@@ -62,6 +62,48 @@ wavelength approaches the spacing (tested in Appendix BD: quadratic
 suppression, $10^8$ below Fermi bounds) or where the wiring is
 inhomogeneous — which is what a horizon is.
 
+## 2b. Vacuum: the most relaxed fabric (v0.6)
+
+If spacetime is what the information graph *looks like* from outside, then
+"relaxing spacetime" gets it backwards — like editing a photo to fix the
+scene. The relaxing has to happen in the underlying information; spacetime
+inherits whatever the rested graph looks like. (The technical version of
+this move is Jacobson's entanglement equilibrium: rest the entanglement and
+the Einstein equations follow.)
+
+So what does fully rested information look like? The model's answer: a
+uniform two-dimensional mesh where each node holds **4 entanglement links**
+— the unique point at which a 2D mesh is stiff enough to be a fabric but
+carries zero built-in stress (engineers call it marginally rigid: fewer
+links and it flops, more links and it stores tension). Everything else is
+tension on top of that rest state:
+
+- **Vacuum** = rested mesh (4 links each). Perfectly flat, perfectly 3D —
+  the only place that is *exactly* 3D, because dimension itself is exact
+  only at zero tension.
+- **Mass** = same mesh under tension (extra links). Not different stuff —
+  mass *looks like* vacuum wearing a stress pattern, which we read as
+  curvature. Near a mass, the effective dimension wobbles slightly off 3
+  (computed: a dip, then an overshoot, settling to 3 far away).
+- **Black-hole interior** = maximum tension (every node linked to every
+  other). The farthest thing from vacuum there is — which is why it has no
+  interior distance at all (see §3).
+
+And where does the *third* dimension come from, if the mesh is 2D? From
+depth: 2D mesh (area) × layers of tension/scale (depth) = 3D volume, the
+same way a hologram stores a 3D scene on a 2D plate. Whether that third
+dimension comes out *exactly right* with nothing 3D put in is the open
+experiment (tracked as D10) — the first honest attempt failed
+instructively, and the failure pointed at exactly what is missing. A second
+probe sharpened the lesson: a tense patch (extra links) inside a relaxed
+mesh makes nearby balls grow *slower* than flat — the shortcuts front-load
+the ball — while real gravity needs the opposite (rulers *stretched* near
+mass, balls underfull). So raw hop-counting is the wrong ruler wherever
+tension lives; the ruler must charge extra for congested links, exactly as
+the light sector already does (signals slow near mass rather than hopping
+faster). The full
+story, with numbers and status labels, is in `docs/relaxed-vacuum.md`.
+
 ## 3. All:all wiring, and why it kills interior distance
 
 Compare two wirings of $N$ nodes. In a **local** graph (a grid: each node
@@ -372,19 +414,22 @@ with a narrow surviving window at $\sim 4\times10^5$ g).
 - **Missing pieces, named:** the exact gap coefficient (tortuosity's
   $\sqrt{\chi}$-linearity, formerly the load-bearing assumption behind $g_{rr}$
   and Mercury, is now derived from $\ln 2$ scattering in Appendix BV), a formation story for delocalized
-  giants, unitary leg-surgery dynamics (evaporation is currently a Markov
-  chain on $k$), and the information-flux race in the final non-adiabatic
+  giants, graph-dynamics leg-surgery (the qubit toy now has an explicit unitary
+  completion; deriving it from graph dynamics is open), the 2D + scale → 3D
+  emergence mechanism (open D3/D4/D6/D10), and the information-flux race in the final non-adiabatic
   moments (per-leg channel capacity vs. required evacuation flux).
 
 ## 12. Where to go next
 
-- **The paper proper:** `paper/paper.md` (readable draft, Secs 1–3 +
-  appendices) and `paper/main.pdf` (compiled LaTeX) — same narrative, every
-  claim with equations, derivations, and honesty-labeled assumptions.
+- **The paper proper:** `paper/v5/main.pdf` (journal cut: motivation, 3
+  claims, gravity to 1PN + 2PN preview, UV+QI, one-family compact objects,
+  falsifiers) and `paper/v5/supplement.pdf` (methods, honesty ledger,
+  N-scaling, module map) — every claim with equations, derivations, and
+  honesty-labeled assumptions.
 - **See it run:** `streamlit run app.py` opens an interactive explorer:
   scrambling races across graph families, horizon growth leg by leg,
   evaporation, Page curves, and every appendix with sliders.
-- **Check the homework:** `python -m pytest tests/ -q` runs 240+ checks
+- **Check the homework:** `python -m pytest tests/ -q` runs 425 checks
   (every numbered claim in the paper has at least one); `python
   scripts/generate_figures.py` regenerates all figures from code.
 - **Cite it:** see `CITATION.cff` (DOI via Zenodo in `README.md`).
