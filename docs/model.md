@@ -637,7 +637,7 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 | D7 | Kilonova radiative transfer | validated multidimensional RT on public ejecta models/transformations compatible with the F5/F6 bulk prescription (morphology, velocity structure per VEL-1, Ye-dependent opacities/reprocessing, viewing-angle dependence, direct `i`-band); pipeline must pass the AT2017gfo anchor/control gate before its GW190814 result promotes the analytic verdict (POSSIS primary implementation) | decides whether the GW190814 non-detection is compatible with universal shedding or falsifies it; `g`-band verdicts already robust |
 | D8 | Shedding efficiency `ε(M,a,q)` + shutoff location | derive mass/spin/ratio dependence from `K_max(N)` combinatorics, spin-ordered reabsorption, or remnant-trap physics, with any shutoff location as *output* | highest-value attack surface on universal shedding; a derived shutoff between gap and BBH masses must land where it lands (same no-insertion rule as the 44 M☉ null) |
 | D9 | Raychaudhuri (focusing) for leg bundles | derive focusing for SI fronts on leg networks (seed: AT congestion slowdown); closes the Jacobson chain to Einstein's equations with `η = 1/4` from I1b, `G = 1` | promotes I6c from open bridge to derived; gates nothing else — T8–T11 stand without it |
-| D10 | Tension spectrum: simulator d-dip around mass + tension→`κ` map (v0.6) | (a) an over-coordinated (tense) region in the graph shows the GR fingerprint shape (near dip, overshoot, →3⁺) under info-side `d_eff`; relaxed `z≈4` regions show `d=2` fabric / `d=3` reconstruction as applicable; (b) Ollivier–Ricci `κ` tracks over-coordination (`z−4`) quantitatively | P0' first quantitative wire; failure of (a) shape-match after the mapping is fixed refutes P0'. v0.6 probe: bare shortest-path rejected for tense regions (inverted far side: shortcuts shrink balls, GR needs stretched rulers); D10b: tortuosity-import costs partially recover (no flip), `c_eff`-import costs give full dip → overshoot → asymptote on 9×9 mild plug (conditional on bridge); amplitude scales loosely with χ; κ is an interface pattern (criterion (b) reformulated) |
+| D10 | Tension spectrum: simulator d-dip around mass + tension→`κ` map (v0.6) | (a) an over-coordinated (tense) region in the graph shows the GR fingerprint shape (near dip, overshoot, →3⁺) under info-side `d_eff`; relaxed `z≈4` regions show `d=2` fabric / `d=3` reconstruction as applicable; (b) Ollivier–Ricci `κ` tracks over-coordination (`z−4`) quantitatively | P0' first quantitative wire; failure of (a) shape-match after the mapping is fixed refutes P0'. v0.6 probe: bare shortest-path rejected for tense regions (inverted far side: shortcuts shrink balls, GR needs stretched rulers); D10b: tortuosity-import costs partially recover (no flip), `c_eff`-import costs give full dip → overshoot → asymptote on 9×9 mild plug (conditional on bridge); amplitude scales loosely with χ; κ is an interface pattern (criterion (b) reformulated); tension-imprint conjecture stated in §5 |
 
 Rule for all D-items: the closing derivation must output the number or location,
 not take it as input. Inserting an observed scale as a graph parameter is a fit,
@@ -660,6 +660,25 @@ Amplitude `O(M/l)` (`~10⁻⁹` at Earth's surface: structure, not a laboratory
 signal). The simulator must reproduce this *shape* around tensed regions
 (D10a); the relaxation principle itself lives on `G` (coordination → 4),
 never on spacetime. Full explanation: `docs/relaxed-vacuum.md` §1, §5.
+
+**Tension-imprint conjecture (fingerprint universality; D10b).** Under
+information-transfer costs set by local congestion via the *fixed* ceff rule
+(`w = 1+χ`, `χ_v = max(0,deg−4)/4`, saturating `x = χ/(1+χ)` bridge), *every*
+localized tension region in relaxed fabric imprints the GR fingerprint shape
+on info-side `d_eff` — dip, then overshoot, then asymptote to fabric — with
+dip depth, overshoot height, and far-field coefficient scaling monotonically
+in χ, plus the κ interface profile (boundary-negative, core-positive).
+Evidence (not proof): 9×9 χ~1 full shape (dip −0.18 → peak +0.79 → +0.09);
+amplitude trio (dip-min 0.20/0.077/0.016, peak 0.79/0.94/2.91, far-field `A`
+growing with χ); κ first measurement (clique −0.93/+0.89, mild −0.31/~0);
+flip window `z_vac ~ [2,5]` containing P0' 4. Falsifiers: (i) a localized
+tension geometry with no U-shape under the fixed rule (no re-tuning); (ii)
+κ-profile absent on independent geometries; (iii) amplitude anti-scaling
+with χ. Promotion: confirmation on ≥2 new plug geometries plus reducing the
+two bridges (χ-analogy, x-map) to one — or deriving either — promotes the
+cost rule to a P5/import and closes D10a (shape+amplitude). The rule stays
+conjecture-grade until then: single-family confirmation, two bridges, and
+mild selection (the rule that flips among two tried). Not a postulate yet.
 
 ---
 
@@ -686,10 +705,16 @@ Stated so no reader misses them:
 - No microscopic 3D lattice postulated (v0.5): `d_G ≠ d_I ≠ d_obs` in general;
   no Lorentz-invariant dynamics; no Born rule / double-slit derivation (needs
   D1); no Casimir `1/d⁴` derivation (ontology only: constrained `G_vac`, not void).
-- No simulator d-dip yet (v0.6, queued D10): the GR fingerprint shape is a
-  target, not a graph result. No 2D + scale → 3D mechanism (open D3/D4/D6);
-  no tension→`κ` map (`z−4` to curvature, open D10b); no isostatic-stability
+- Simulator d-dip: DEMONSTRATED conditional on the ceff cost bridge (9×9
+  mild-plug dip → overshoot → asymptote + amplitude scaling, D10b) — shape
+  is a graph result, but the bridges (χ-analogy, x-map) are assumed, not
+  derived. No 2D + scale → 3D mechanism (open D3/D4/D6);
+  tension→`κ` is a measured interface profile awaiting independent-geometry
+  confirmation (D10b, criterion reformulated); no isostatic-stability
   derivation under graph dynamics (needs D1).
+- No P5 cost postulate yet: the tension-imprint conjecture (§5) is
+  conjecture-grade (single-family confirmation, two bridges, mild
+  selection) with stated falsifiers and promotion criteria.
 
 ---
 

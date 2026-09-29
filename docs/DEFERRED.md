@@ -189,3 +189,6 @@ curves from graph construction + dynamics, not take GR as input.
 shape-match after the mapping is fixed refutes the relaxed-vacuum postulate;
 success promotes curvature-as-self-stress from ontology to measurement and
 feeds D3 (κ→c₂ via tension) and D6 (R_s from the tension profile).
+Generalization stated as the tension-imprint conjecture (`model.md` §5):
+fingerprint universality under the fixed ceff rule, with falsifiers and
+P5-promotion criteria; the cost rule stays conjecture-grade until they are met.

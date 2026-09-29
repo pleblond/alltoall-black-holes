@@ -298,6 +298,7 @@ failed informatively.
 | D10a fingerprint shape | **measured (conditional)** | 9×9 mild plug: dip → overshoot → asymptote under zero-fit ceff costs; conditional on the χ/x bridges (derivation open) |
 | amplitude scaling | **measured (loose)** | min-ratio ↓, peak ↑, far-field `A(χ)` grow with χ; fixed windows don't scale (scale grows with tension, GR-like) |
 | κ-profile (D10b) | **measured (first)** | interface pattern (boundary −0.93/−0.31, core +0.89/~0); monotone-tracking FAILED, criterion reformulated, confirmation pending |
+| tension-imprint conjecture | **conjectured** | `model.md` §5: fingerprint universality under the fixed ceff rule; falsifiers + promotion to P5 stated; not a postulate yet |
 | `d_I = 2` for vacuum fabric | predicted (follows from P0' + protocol) | queued for simulator (D10) |
 | 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10) |
 | tension → `κ` map (`z−4` to curvature) | **open** | D10 |
