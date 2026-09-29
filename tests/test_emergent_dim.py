@@ -233,6 +233,18 @@ def _window_p(radii, volumes, lo, hi):
     return float(p)
 
 
+def _window_pr(radii, volumes, lo, hi):
+    r = np.asarray(radii, dtype=float)
+    v = np.asarray(volumes, dtype=float)
+    m = (r >= lo) & (r <= hi) & np.isfinite(v) & (v > 0)
+    assert int(m.sum()) >= 3
+    x = np.log(r[m])
+    y = np.log(v[m])
+    p, b = np.polyfit(x, y, 1)
+    r2 = 1.0 - np.sum((y - (p * x + b)) ** 2) / np.sum((y - y.mean()) ** 2)
+    return float(p), float(r2)
+
+
 def test_tense_plug_dips_and_far_field_locally_relaxed():
     # D10a (v0.6): 5x5 clique plug at the center of a 40x40 relaxed grid.
     # Tense-center mid-window scaling dips below fabric (~1.52 vs ~1.89):
@@ -261,3 +273,122 @@ def test_tense_plug_dips_and_far_field_locally_relaxed():
     # r <= 6 from (33,33) touches neither the box edge (33+6=39 <= 39)
     # nor the plug (dist >= 11), so the balls are identical graphs.
     assert abs(pf_near - p0_near) < 1e-12, (pf_near, p0_near)
+
+
+def _clique_plug_grid(L=40, c=20):
+    """40x40 grid + 5x5 maximum-tension (clique) plug at center."""
+    g0 = _sorted_grid_2d(L)
+    g = g0.copy()
+    plug = [x * L + y for x in range(c - 2, c + 3) for y in range(c - 2, c + 3)]
+    for i in range(len(plug)):
+        for j in range(i + 1, len(plug)):
+            g.add_edge(plug[i], plug[j])
+    return g0, g
+
+
+def _mild_plug_grid(L=40, c=20):
+    """40x40 grid + 5x5 mild-tension plug (king-move diagonals, z -> 8)."""
+    g0 = _sorted_grid_2d(L)
+    gm = g0.copy()
+    for x in range(c - 2, c + 3):
+        for y in range(c - 2, c + 3):
+            for dx, dy in ((1, 1), (1, -1)):
+                x2, y2 = x + dx, y + dy
+                if c - 2 <= x2 <= c + 2 and c - 2 <= y2 <= c + 2:
+                    gm.add_edge(x * L + y, x2 * L + y2)
+    return g0, gm
+
+
+def test_tension_costs_preserve_relaxed_fabric():
+    # D10b: chi = 0 on relaxed fabric (deg <= 4) -> w == 1 exactly, so
+    # weighted V(r) is bit-identical to BFS V(r) under both cost rules,
+    # at center and at a far source. 3D ruler slope preserved (|dp| ~ 0.01:
+    # uniform-ish costs rescale r, not p; boundary cost steps cost some r2).
+    L, c = 40, 20
+    g0, _ = _clique_plug_grid(L, c)
+    src_c, src_f = c * L + c, 33 * L + 33
+    r0, v0 = ed.ball_volumes_bfs(g0, src_c)
+    rf, vf = ed.ball_volumes_bfs(g0, src_f)
+    for cost_fn in (ed.tension_cost_fn(g0), ed.ceff_cost_fn(g0)):
+        _, vw0 = ed.ball_volumes_weighted(g0, src_c, weight=cost_fn, radii=r0)
+        assert np.array_equal(v0, vw0)
+        _, vwf = ed.ball_volumes_weighted(g0, src_f, weight=cost_fn, radii=rf)
+        assert np.array_equal(vf, vwf)
+    g3 = nx.convert_node_labels_to_integers(nx.grid_graph([9, 9, 9]))
+    s3 = 4 * 81 + 4 * 9 + 4
+    r3, v3 = ed.ball_volumes_bfs(g3, s3)
+    _, vw3 = ed.ball_volumes_weighted(
+        g3, s3, weight=ed.tension_cost_fn(g3), radii=r3
+    )
+    p3, _ = _window_pr(r3, v3, 3, 6)
+    pw3, r2w3 = _window_pr(r3, vw3, 3, 6)
+    assert abs(pw3 - p3) < 0.15, (pw3, p3)
+    assert r2w3 > 0.8, r2w3
+
+
+def test_tortuosity_costs_partially_recover_clique():
+    # D10b candidate 1 (w = 1 + c*sqrt(chi), c = 1/2 imported from T11,
+    # zero free params): clique-plug mid-window recovers 1.60 -> 1.86
+    # toward control 1.92 but does NOT flip (pre-registered flip FAILED:
+    # V/V0 still falls 1.14 -> 1.05, overfull catching down). Diagnostic
+    # bracket pinned: c = 1.0 flips (2.21), so c* in (0.5, 1.0) -- the
+    # import falls short by ~15-20%, quantifying the gap (no fit claimed).
+    L, c = 40, 20
+    g0, g = _clique_plug_grid(L, c)
+    src_c = c * L + c
+    r0, v0 = ed.ball_volumes_bfs(g0, src_c)
+    rc, vc = ed.ball_volumes_bfs(g, src_c)
+    _, vwc = ed.ball_volumes_weighted(
+        g, src_c, weight=ed.tension_cost_fn(g), radii=r0
+    )
+    p0, _ = _window_pr(r0, v0, 8, 20)
+    pc, _ = _window_pr(rc, vc, 8, 20)
+    pw, r2w = _window_pr(r0, vwc, 8, 20)
+    assert 1.8 < p0 < 2.0, p0
+    assert 1.5 < pc < 1.7, pc
+    assert pc < pw < p0, (pc, pw, p0)
+    assert 1.75 < pw < 1.90, pw
+    assert r2w > 0.99, r2w
+    _, vwc1 = ed.ball_volumes_weighted(
+        g, src_c, weight=ed.tension_cost_fn(g, c=1.0), radii=r0
+    )
+    pw1, r2w1 = _window_pr(r0, vwc1, 8, 20)
+    assert pw1 > p0, (pw1, p0)
+    assert 2.05 < pw1 < 2.35, pw1
+    assert r2w1 > 0.99, r2w1
+
+
+def test_ceff_costs_flip_clique_and_mild():
+    # D10b candidate 2 (w = 1 + chi: cost = 1/c_eff, AT light sector;
+    # x = chi/(1+chi) saturating map is the labeled bridge): clique-plug
+    # mid-window flips to 3.43 (clean power law, r2 > 0.95 -- big
+    # overshoot, amplitude not claimed). Mild plug (z -> 8): unweighted
+    # dips to 1.73 (shortcuts), weighted flips to 2.02, just above
+    # control 1.92 -- the modest-amplitude overshoot-side regime. Near
+    # window (3-8) on the clique is transient (r2 ~ 0.79, plug boundary
+    # inside the window), not a clean power law -- pinned by its absence
+    # here: only mid-window flips are claimed.
+    L, c = 40, 20
+    g0, g = _clique_plug_grid(L, c)
+    _, gm = _mild_plug_grid(L, c)
+    src_c = c * L + c
+    r0, v0 = ed.ball_volumes_bfs(g0, src_c)
+    rm, vm = ed.ball_volumes_bfs(gm, src_c)
+    _, uwc = ed.ball_volumes_weighted(
+        g, src_c, weight=ed.ceff_cost_fn(g), radii=r0
+    )
+    _, uwm = ed.ball_volumes_weighted(
+        gm, src_c, weight=ed.ceff_cost_fn(gm), radii=r0
+    )
+    p0, _ = _window_pr(r0, v0, 8, 20)
+    pm, _ = _window_pr(rm, vm, 8, 20)
+    pcw, r2cw = _window_pr(r0, uwc, 8, 20)
+    pmw, r2mw = _window_pr(r0, uwm, 8, 20)
+    assert 1.8 < p0 < 2.0, p0
+    assert 1.6 < pm < p0 - 0.1, (pm, p0)
+    assert pm < pmw, (pm, pmw)
+    assert p0 < pmw < 2.1, (p0, pmw)
+    assert r2mw > 0.95, r2mw
+    assert pcw > p0, (pcw, p0)
+    assert 3.2 < pcw < 3.6, pcw
+    assert r2cw > 0.95, r2cw

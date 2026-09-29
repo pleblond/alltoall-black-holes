@@ -157,7 +157,12 @@ from below (**inverted** vs GR far side — bare shortest-path rejected as
 `d(i,j)` for tense regions, pinned), ad-hoc excess-degree costs flip toward
 the GR side (mechanism check, `α` not derived), diffusion collapses on the
 clique plug (heat trap, no power law); far-source near balls bit-identical
-to control (relaxed-near-tension pin). `emergent_dim` protocol +
+to control (relaxed-near-tension pin). D10b cost candidates (15 tests): tortuosity-import `w = 1 + c√χ` (`c = 1/2` from T11, zero-fit)
+partially recovers the clique plug (1.60 → 1.86 vs control 1.92, no flip;
+flip needs `c* ≈ 0.58`, diagnostic); `c_eff`-import `w = 1 + χ` (AT light
+sector, saturating `x = χ/(1+χ)` bridge) flips clique (3.43, big overshoot)
+and mild plug (1.73 → 2.02 vs 1.92, modest +5% overshoot) — overshoot-side
+only, dip-phase (U-shape) open, amplitude unclaimed. `emergent_dim` protocol +
 two-distance bracket ready; shell no-emergence pin shows what failure looks like.
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region

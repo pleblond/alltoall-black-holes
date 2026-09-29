@@ -65,6 +65,24 @@ no 2-sphere factor, so nothing can generate area scaling ~r^2. Diagnosis:
 total emergence needs shells (or equivalent) with 2D-like internal
 information geometry, so radial x area = volume ~r^3. The protocol +
 bracket is the contribution; the fixed point is the open D3/D4/D6 route.
+
+D10b tension costs (tested, zero-fit imports from independent sectors):
+  - tension_chi: chi_v = max(0, deg(v) - 4)/4, graph analog of model
+    congestion chi = leg-area / footprint-area (the analogy is the
+    labeled bridge). Zero on relaxed fabric.
+  - tension_cost_fn (candidate 1): w = 1 + c*sqrt(chi), c = 1/2 imported
+    from T11 tortuosity (BV-bracketed 0.44-0.60). Clique plug recovers
+    1.60 -> 1.86 toward control 1.92 but does NOT flip (pre-registered
+    flip failed informatively); flip needs c* ~ 0.58 (diagnostic).
+  - ceff_cost_fn (candidate 2): w = 1 + chi, cost = 1/c_eff from the AT
+    light sector with saturating x = chi/(1+chi) bridge. Flips clique
+    mid-window to 3.43 (clean, big overshoot) and mild plug 1.73 -> 2.02
+    vs control 1.92 (modest +5% overshoot). Overshoot-side only: static
+    local costs show no dip-phase (U-shape open). Past threshold the
+    plug routes around and V(r) saturates (cost-height insensitive).
+  - ball_volumes_weighted: Dijkstra V(r) with source counting, same
+    convention as BFS balls. Controls: weighted V bit-identical to BFS
+    on relaxed fabric (both rules); 3D ruler slope preserved (|dp| ~ 0.01).
 """
 
 from __future__ import annotations
@@ -234,6 +252,92 @@ def ball_volumes_bfs(
         return np.asarray([]), np.asarray([])
     rhi = dmax if r_max is None else max(1, min(int(r_max), dmax))
     radii_arr = np.arange(1, rhi + 1, dtype=float)
+    vols = np.array([float(np.sum(vals <= r)) for r in radii_arr], dtype=float)
+    return radii_arr, vols
+
+
+def tension_chi(g: nx.Graph, z_vac: float = 4.0) -> dict:
+    """Node congestion chi_v = max(0, deg(v) - z_vac) / z_vac (D10b).
+
+    Graph analog of model congestion chi = leg-area / footprint-area
+    (congestion.py): edges per node relative to isostatic capacity. Zero on
+    relaxed fabric (deg <= 4), positive on tense regions. The continuum <->
+    graph analogy is the labeled D10b bridge, not a derivation.
+    """
+    if z_vac <= 0:
+        return {v: 0.0 for v in g.nodes()}
+    return {v: max(0.0, (float(g.degree(v)) - z_vac) / z_vac) for v in g.nodes()}
+
+
+def tension_cost_fn(g: nx.Graph, z_vac: float = 4.0, c: float = 0.5):
+    """Edge-cost function w_e = 1 + c * sqrt(chi_e) (D10b candidate 1).
+
+    chi_e is the endpoint mean of tension_chi. Form AND coefficient are
+    imported from the independently tested T11 tortuosity sector
+    (dl = (1 + sqrt(chi)/2) dr, c = 1/2 exact; BV ln2 micro-derivation
+    0.44-0.60 brackets it). Nothing here is fitted to d_eff: the shape of
+    weighted d_eff around tense regions is a genuine prediction of the
+    import. Returns a weight fn (u, v, data) for Dijkstra. On relaxed
+    2D fabric (deg <= 4 everywhere) costs are identically 1, so control
+    V(r) is bit-identical to unweighted.
+    """
+    chi = tension_chi(g, z_vac=z_vac)
+
+    def weight(u, v, _data=None):
+        xe = 0.5 * (chi.get(u, 0.0) + chi.get(v, 0.0))
+        return 1.0 + c * float(np.sqrt(max(0.0, xe)))
+
+    return weight
+
+
+def ceff_cost_fn(g: nx.Graph, z_vac: float = 4.0):
+    """Edge-cost function w_e = 1 + chi_e (D10b candidate 2).
+
+    Pedigree: traversal cost = 1/c_eff from the AT light sector
+    (c_eff = 1 - x, redshift.ceff_profile), with saturating compactness
+    x = chi/(1 + chi) mapping graph congestion onto [0, 1). Maximum
+    tension (K_N-like, chi -> large) maps toward horizon-like
+    (c_eff -> 0, costly to cross). The x <-> chi map is a labeled
+    bridge; the 1/c_eff form is imported, nothing fitted to d_eff.
+    On relaxed fabric (chi = 0) costs are identically 1.
+    """
+    chi = tension_chi(g, z_vac=z_vac)
+
+    def weight(u, v, _data=None):
+        xe = 0.5 * (chi.get(u, 0.0) + chi.get(v, 0.0))
+        return 1.0 + max(0.0, xe)
+
+    return weight
+
+
+def ball_volumes_weighted(
+    g: nx.Graph, source, weight=None, radii=None, n_radii: int = 24
+) -> tuple[np.ndarray, np.ndarray]:
+    """V(r) via single-source Dijkstra (weighted analog of BFS balls).
+
+    The source node counts toward V (same convention as ball_volumes_bfs).
+    radii follows ball_volumes: explicit grid to count at (pass BFS radii
+    for exact apples-to-apples control comparisons), else linspace over
+    [min positive distance, max distance]. Unknown source or empty graph
+    gives empty arrays (no exceptions).
+    """
+    if source not in g or len(g) == 0:
+        return np.asarray([]), np.asarray([])
+    dist = nx.single_source_dijkstra_path_length(g, source, weight=weight)
+    vals = np.array([d for d in dist.values() if np.isfinite(d)], dtype=float)
+    if len(vals) == 0:
+        return np.asarray([]), np.asarray([])
+    if radii is None:
+        pos = vals[vals > 0]
+        dmax = float(np.max(vals))
+        if len(pos) == 0 or not np.isfinite(dmax) or dmax <= 0 or n_radii < 2:
+            return np.asarray([]), np.asarray([])
+        radii_arr = np.linspace(float(np.min(pos)), dmax, int(n_radii))
+    else:
+        radii_arr = np.asarray(list(radii), dtype=float)
+        radii_arr = radii_arr[np.isfinite(radii_arr)]
+        if len(radii_arr) == 0:
+            return np.asarray([]), np.asarray([])
     vols = np.array([float(np.sum(vals <= r)) for r in radii_arr], dtype=float)
     return radii_arr, vols
 

@@ -220,6 +220,7 @@ graph. The scoreboard:
 | radial shells | no | ~1.4 | ~0.6 | ✗ FAIL (pinned; no 2-sphere factor) |
 | `K_N` | no | trivial (1) | uniform | ✗ by design (T1: no interior geometry) |
 | tense 2D plug (D10a) | no | dips below fabric, recovers from below (**inverted** vs GR far side) | collapses (heat trap, no power law) | ✗ unweighted; excess-degree costs flip toward GR side (mechanism check, α ad hoc) |
+| tense plug + imported costs (D10b) | no | tortuosity-import: partial recovery (1.60→1.86, no flip); c_eff-import: flips (clique 3.43, mild 2.02 vs 1.92) | open (weighted diffusion untested) | overshoot-side only; dip-phase open; cost-saturation past threshold |
 | 2D isostatic + scale | no | open | open | **the prize (D3/D4/D6 + D10)** |
 
 The tense-plug row refines D10 rather than closing it: shortcuts shrink
@@ -231,6 +232,20 @@ sector, which never counts hops: T9–T11 use `c_eff → 0` and tortuosity
 `dl = (1+√χ/2)dr`, i.e. stretched rulers from congestion. The far-field
 companion result is clean: near balls around a far source are bit-identical
 to control — relaxed fabric next to tension measures exactly relaxed.
+
+Two zero-fit cost candidates import the ruler from independent sectors.
+Tortuosity-import (`w = 1 + c√χ`, `c = 1/2` from T11, BV-bracketed) recovers
+the clique plug partway (1.60 → 1.86 vs control 1.92) but does not flip;
+the flip needs `c* ≈ 0.58` (diagnostic bracket, not a fit — the import
+falls short by ~15–20%, which quantifies the gap rather than closing it).
+`c_eff`-import (`w = 1 + χ`, AT light sector with the saturating
+`x = χ/(1+χ)` bridge) flips both plugs: clique mid-window 3.43 (clean
+power law, big overshoot — amplitude unclaimed) and mild plug
+1.73 → 2.02 vs control 1.92 (modest +5% overshoot, the fingerprint
+regime). Past threshold the plug routes around and `V(r)` goes insensitive
+to cost height (cost-saturation). Static local costs give the
+overshoot-side only; the dip-phase (U-shape) mechanism stays open, as does
+weighted diffusion (heat-trap remedy untested).
 
 The shell failure is doing its job: it localizes the gap (radial-only ⇒
 ~1D; area factor missing) instead of allowing a false success. What would
@@ -256,11 +271,12 @@ failed informatively.
 | vacuum = relaxed isostatic 2D fabric, `<z>=4` | **postulated (P0')** | `model.md` §2, this doc §2–§4 |
 | observer sees `M_O(G)`; P4 is one instance | postulated (P0/P4 box) | `model.md` §1–§2 |
 | `d_G / d_I / d_obs` + `d_eff` protocol | defined + implemented | `model.md` §1 box, `emergent_dim` |
-| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (12 tests) |
+| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (15 tests) |
 | convergence `p(L)` monotone, gap `~1/√L` | **measured** | BFS series test |
 | resistance / communicability rejected | **measured (negative)** | rejection test |
 | shell no-emergence pin (~1.4 / ~0.6) | **measured (negative)** | shell test |
-| GR fingerprint (dip, overshoot, →3⁺) | **computed (GR side)** | this doc §5; graph-side: unweighted measured (**inverted** side, shortest rejected for tense regions), cost-weighted mechanism check flips toward GR side, derived costs open (D10b) |
+| GR fingerprint (dip, overshoot, →3⁺) | **computed (GR side)** | this doc §5; graph-side: unweighted measured (**inverted** side, shortest rejected for tense regions), tortuosity-import costs partial recovery (no flip), c_eff-import costs flip overshoot-side (dip-phase open, D10b) |
+| tension costs (D10b candidates) | **measured** | `tension_cost_fn` (partial recovery, c* diagnostic), `ceff_cost_fn` (clique + mild flips); fabric-identity + 3D-ruler controls |
 | `d_I = 2` for vacuum fabric | predicted (follows from P0' + protocol) | queued for simulator (D10) |
 | 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10) |
 | tension → `κ` map (`z−4` to curvature) | **open** | D10 |
