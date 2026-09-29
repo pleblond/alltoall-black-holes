@@ -75,7 +75,37 @@ def bekenstein_check(n, k, eps: float = 0.1, lp: float = 1.0) -> np.ndarray | bo
     """Boolean: does (N,k) satisfy holographic bound S_int <= A/4?
 
     S_int = N log 2, A = k lp^2. Returns True where satisfied.
+
+    NOTE (v6 audit): leg-units form with patch = 1 (pre-BS). Physical
+    areas use PATCH_AREA per leg; prefer bekenstein_check_physical for
+    saturation-gated claims. Kept for backwards compatibility.
     """
     s_int = np.asarray(n, dtype=float) * np.log(2)
     a_over_4 = np.asarray(k, dtype=float) * lp**2 / 4.0
     return s_int <= a_over_4
+
+
+def bekenstein_check_physical(n, k, lp: float = 1.0) -> np.ndarray | bool:
+    """Boolean: holographic bound with BS physical areas.
+
+    S_int = N ln 2 <= A/4 = k PATCH_AREA lp^2 / 4 = k ln 2 lp^2.
+    Saturation (equality up to tolerance) is the gate for conditional
+    packing = Page coincidence claims; see qes.sgen_scan.
+    """
+    from bh_graph.horizon import PATCH_AREA
+
+    s_int = np.asarray(n, dtype=float) * np.log(2)
+    a_over_4 = np.asarray(k, dtype=float) * PATCH_AREA * lp**2 / 4.0
+    return s_int <= a_over_4
+
+
+def is_saturated(n, k, lp: float = 1.0, rtol: float = 1e-9) -> np.ndarray | bool:
+    """Boolean check: is (N,k) at Bekenstein saturation (physical areas)?"""
+    from bh_graph.horizon import PATCH_AREA
+
+    s_int = np.asarray(n, dtype=float) * np.log(2)
+    a_over_4 = np.asarray(k, dtype=float) * PATCH_AREA * lp**2 / 4.0
+    out = np.isclose(s_int, a_over_4, rtol=rtol)
+    if np.ndim(out) == 0:
+        return bool(out)
+    return out

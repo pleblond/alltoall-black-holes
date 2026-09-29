@@ -7,6 +7,7 @@ from bh_graph.circuits import circuit_cover_time, mean_cover_time, predicted_all
 from bh_graph.maxent import (
     maxent_k_linear, selfconsistent_k_quadratic, legs_per_node,
     fixed_point_iteration, random_tensor_page_saturation, bekenstein_check,
+    bekenstein_check_physical, is_saturated,
 )
 from bh_graph.qes import (
     qes_candidates, qes_page_k, qes_dominant, has_qes_transition,
@@ -336,6 +337,7 @@ __all__ = [
     "circuit_cover_time", "mean_cover_time", "predicted_alltoall_log", "circuit_scaling",
     "maxent_k_linear", "selfconsistent_k_quadratic", "legs_per_node",
     "fixed_point_iteration", "random_tensor_page_saturation", "bekenstein_check",
+    "bekenstein_check_physical", "is_saturated",
     "qes_candidates", "qes_page_k", "qes_dominant", "has_qes_transition",
     "build_core_boundary_flow", "min_cut_value", "min_cut_scaling",
     "page_curve_bits", "page_time", "evaporate", "is_evaporated",
