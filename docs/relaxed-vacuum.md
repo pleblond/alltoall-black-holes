@@ -1,12 +1,13 @@
 # The relaxed vacuum: why 3D must emerge from rested information
 
-*Companion to `docs/model.md` v0.6 (P0' postulate) and the `emergent_dim`
+*Companion to `docs/model.md` v0.6–v0.6.1 (P0' postulate) and the `emergent_dim`
 protocol. This document explains the reasoning; `model.md` states the
 definitions. Nothing here is claimed as derived unless it names its test.*
 
 Reading guide: §1–§2 are philosophy (why relaxation belongs to the
 information side). §3–§4 are the postulate (2D, 4 edges, and what each word
-costs). §5–§6 are consequences (only vacuum is perfectly 3D; mass is tense
+costs). §5–§6 are consequences (only vacuum reconstructs as perfectly 3D;
+mass is tense
 vacuum). §7 is the verdict on total emergence today (bracket method, first
 failure, what would flip it). §8 maps every claim to definition / measured /
 open. Readers who only want the postulate can read §3–§4 and §8.
@@ -94,7 +95,8 @@ Maxwell's, and it fits on an index card:
 
 - `N` nodes in `d` dimensions have `Nd` degrees of freedom.
 - `M` edges impose `M` constraints (one fixed distance each).
-- Rigid ⟺ constraints balance freedom: `M = Nd`.
+- Rigid ⟺ constraints balance freedom: `M = Nd − d(d+1)/2` (`2N−3` in 2D
+  free; bulk `<z> → 4`).
 - Mean coordination `<z> = 2M/N` (each edge touches two nodes).
 
 Hence the isostatic point is `<z> = 2d` — **in 2D: `<z> = 4`**.
@@ -117,7 +119,10 @@ A control the model already ran pins down what 4 does *not* do: degree-3
 honeycomb, degree-4 square, and degree-6 triangular lattices *all* scale as
 2D (`p ≈ 1.6–1.9`, every `r2 > 0.997`). Dimension comes from 2D-ness, not
 from the coordination number. The 4 therefore buys **stability without
-stress**, not dimensionality. Dimensionality is bought in §4.
+stress**, not dimensionality. Dimensionality is bought in §4. The postulate
+means *generic* isostatic: the square grid is the non-generic control with
+the right coordination that still shears (distinguished axis); see the P0'
+box in `model.md` (v0.6.1).
 
 ---
 
@@ -149,7 +154,7 @@ are the real prize.
 
 ---
 
-## 5. Only vacuum is perfectly 3D
+## 5. Only vacuum reconstructs as perfectly 3D (flat IR readout)
 
 If dimension is the infrared scaling exponent of accessible information
 volume (`d_obs = lim_IR d ln V / d ln r`), and tension perturbs information
@@ -176,10 +181,12 @@ localized mass leaves `V(l) = flat − deficit`, so `V/V_flat` rises toward
 `~10⁻⁹` at Earth's surface (directly unmeasurable), large near horizons and
 in strongly tensed simulator graphs (measurable — this is D10).
 
-So "only vacuum is perfectly 3D" is not mysticism; it is the statement that
+So "only vacuum reconstructs as perfectly 3D" is not mysticism; it is the statement that
 3 is the *vacuum limit* of a tension-dependent scaling exponent, with mass
 as a dimensional perturbation. Curvature and dimensional deviation are two
-readings of one tension pattern.
+readings of one tension pattern. (v0.6 alias: "only vacuum is perfectly 3D" —
+retitled v0.6.1 so `d_I = 2` on the fabric and `d_obs = 3` in reconstruction
+do not collide; "relaxed" names `G`, "flat" names the IR readout.)
 
 ---
 
@@ -193,8 +200,14 @@ the setting of that dial:
 tension →   z = 4        z > 4              z >> 4         z = N−1
             vacuum       planets, stars     neutron-star-    BH interior
             (relaxed,    (mild self-        like compact    (max tension,
-            exactly 3D)  stress, d≈3)       objects         T1–T3 regime)
+            flat readout stress, d≈3)       objects         T1–T3 regime)
+            d_obs=3)
 ```
+
+Tension is read on two ledgers (spec box v0.6.1): combinatorial
+over-coordination (`z − 4`) and metric contraction (`w < d_0`); D10/T15
+address the second. The map from either or both to curvature through `M_O`
+stays open (D10).
 
 "Mass is not looking different" because at the information level there is
 nothing else it could be made of: mass *looks like* vacuum plus a tension

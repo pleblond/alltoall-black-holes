@@ -1,4 +1,4 @@
-# The model, stated first (v0.6)
+# The model, stated first (v0.6.1)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
@@ -53,6 +53,18 @@ shortest-path inverted vs GR, rejected as `d(i,j)` for tense regions;
 D10b costs gate D10a), and the companion essay
 `docs/relaxed-vacuum.md` (full explanation). L0 theorems, L1 imports, L2
 calibrations unchanged; import IDs stable.
+
+**v0.6.1 P0' lock release.** No number changes:
+P0' clarification only. Adds the "2D chosen, 4 forced" box (§2): 2D is the
+postulate (area-factor motivation), `<z> = 4` its Maxwell consequence
+(`M = 2N-3` finite, `<z> → 4` bulk; the 2 is the rank of the constraint
+model, not a chart on `G`); vacuum is generic isostatic (square grid is the
+non-generic control); self-stress `(z-4)` and metric contraction (`w < d_0`)
+are named as two ledgers with the map left open (D10); the four in `<z> = 4`
+is disclaimed from `S = A/4`, `4ln2`, and spacetime dimension 4; and
+"relaxed" is reserved for `G` at `<z> = 4` while the IR readout is called
+flat / `d_obs = 3`. Postulate stack, T1–T3, D-fences, and cost bridges
+unchanged; import IDs stable.
 
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
@@ -146,26 +158,70 @@ principle lives on `G` (coordination → 4), never on spacetime: optimizing
 `M_O(G)` cannot change `G`, and "relaxed spacetime" would smuggle flatness
 in as the target. Full explanation: `docs/relaxed-vacuum.md`.
 
+**v0.6.1 terminology.** "Relaxed" names `G` at `<z> = 4`. The IR readout is
+called flat or `d_obs = 3`, never a second vacuum: `d_I = 2` on the fabric
+and `d_obs = 3` in reconstruction do not collide.
+
 ---
 
 ## 2. L0 postulates and theorems
 
-### P0' (vacuum postulate, v0.6). The vacuum is the most relaxed state that is still a fabric: isostatic 2D, four edges per node.
+### P0' (vacuum postulate, v0.6; clarified v0.6.1). The vacuum is the most relaxed state that is still a fabric: isostatic 2D, four edges per node.
 
 `G_vac = (V,E,I)` is the homogeneous 2D entanglement fabric with mean
 coordination `<z> = 4` — no coordinates, no distinguished node, direction,
-location, boundary, or macroscopic excitation. "Most relaxed" is Maxwell
-marginal rigidity: `N` nodes in 2D have `2N` degrees of freedom, `M` edges
-impose `M` constraints, and `<z> = 2M/N = 4` is the unique rigid-with-zero-
-self-stress point (floppy below, stressed above). Black-hole interiors `G_N`
-(P1) are the **maximum-tension extreme** (degree `N−1`), maximally far from
-vacuum; stars, planets, and Casimir cavities live on the tension spectrum
-between them. Curvature is self-stress: over-coordination (`z − 4`)
-reconstructed through `M_O` (quantitative map open, D10). An observer never
-sees `G` directly; an observer sees `M_O(G)` where `M_O` is a restricted
-coarse-graining / information-access channel (see P4 box). Objective
-spacetime is defined as the part of `G`'s information structure invariant
-under all admissible `M_O`.
+location, boundary, or macroscopic excitation.
+
+**Box — 2D chosen, 4 forced (v0.6.1, no new postulate).** 2D and 4 are not
+two independent virtues. 2D is the postulate; 4 is its Maxwell consequence.
+
+- **Choice (2D).** 2D is postulated to supply the area factor: 3D volume
+  factorizes as radial × area (`r³ = r × r²`), the radial structure already
+  exists (leg screens, shells, tension depth), and the vacuum is the `r²`
+  factor. Maxwell counting does *not* prefer 2D — in 3D the same logic
+  would give `<z> = 6`. 2D is allowed to be chosen; the 2D + scale → 3D
+  mechanism stays open (D3/D4/D6).
+- **Consequence (4).** For central-force constraints `<z> = 2d`, so in 2D
+  the marginal point is uniquely 4: below 4 the graph is floppy
+  (trees/paths: most relaxed as a *metric*, too floppy to be a 2-fabric);
+  at 4 it is isostatic, rigid with zero self-stress; above 4 it carries
+  self-stress, the tension spectrum up to `K_N` at degree `N−1`. The 4 buys
+  rigidity with zero self-stress, not dimensionality.
+- **Precise count.** The finite free-framework Maxwell count is `M = 2N−3`
+  (`2N` degrees of freedom minus 3 rigid motions: 2 translations +
+  1 rotation), hence `<z> = 2M/N → 4` in bulk. `<z> = 4` is bulk shorthand;
+  periodic/bulk boundary terms differ by `O(1/N)`.
+- **No-coordinates reading.** The 2 in `2N` is the rank of the constraint
+  model used for Maxwell counting, not a chart on `G`. No `(x,y)` is
+  assigned to nodes at L0.
+- **Generic.** Vacuum is a *generic* isostatic 2D framework. The square
+  grid is the non-generic control: it has the right coordination and still
+  shears, because that embedding has a distinguished axis. P0's "no
+  distinguished direction" is the generic/kagome-class point, not `Z²`.
+  Control on record: honeycomb / square / triangular patches all scale as
+  2D (`p ≈ 1.6–1.9`, every `r² > 0.997`) — dimension comes from 2D-ness,
+  not from the coordination number.
+
+"Most relaxed" is Maxwell marginal rigidity at that forced point.
+Black-hole interiors `G_N` (P1) are the **maximum-tension extreme** (degree
+`N−1`), maximally far from vacuum; stars, planets, and Casimir cavities
+live on the tension spectrum between them. Tension has two ledgers, kept
+separate: (i) the combinatorial ledger, over-coordination (`z − 4`) as
+self-stress count; (ii) the metric ledger, contraction (`w < d_0`,
+`dist_w < dist_0`) as information-distance shortening. An extra
+fair-priced brace overconstrains without shortening information distances;
+an underpriced edge contracts `d(i,j)` even off the Maxwell line. D10 /
+T15 / the weighted-graph cost test address the second ledger. The
+quantitative map from either or both ledgers to curvature reconstructed
+through `M_O` is open (D10); P0' names both and does not define one as the
+other. An observer never sees `G` directly; an observer sees `M_O(G)`
+where `M_O` is a restricted coarse-graining / information-access channel
+(see P4 box). Objective spacetime is defined as the part of `G`'s
+information structure invariant under all admissible `M_O`.
+
+Fours disclaimer: the 4 in `<z> = 4` is unrelated to the `S = A/4` area
+coefficient, the `4ln2` patch, and spacetime dimension 4 (which is
+correctly never set as `d_G`).
 
 History: v0.5 P0 defined vacuum as perfect all:all (maximally connected,
 minimally distinguished). That put black holes — the most extreme objects —
@@ -174,6 +230,8 @@ definition (kept in git history) and replaced by P0'. Homogeneity ("no
 distinguished node/relation") survives unchanged; only the wiring density of
 the homogeneous state changed (sparse-rigid 4, not dense-complete `N−1`).
 T1–T3 are untouched: they were always statements about the tense extreme.
+v0.6.1 clarifies the 2D/4 lock, the finite count, genericity, the two
+tension ledgers, and the fours disclaimer with no postulate change.
 Full explanation: `docs/relaxed-vacuum.md`.
 
 ### P1 (wiring postulate). Black-hole interiors are almost-perfect all:all graphs.
@@ -696,7 +754,7 @@ communicability, not shortest path — see `emergent_dim`); 2. build `B(r)`;
 per its close criterion; a negative result localizes which part of the
 information geometry needs another principle.
 
-**v0.6 conjecture: only vacuum is perfectly 3D (D10 target).** `d_obs ≡ 3`
+**v0.6 conjecture, retitled v0.6.1: only vacuum reconstructs as perfectly 3D (flat IR readout; D10 target).** `d_obs ≡ 3`
 exactly holds only in the zero-tension limit; mass imprints a dimensional
 fingerprint. GR side, computed (weak-field uniform star, proper balls of
 proper radius `l`): near-field dip (`d_eff ≈ 2.99` at `l = 30M`), overshoot
@@ -776,9 +834,9 @@ Single table; every symbol in §1–§4 appears here with its home.
 | Symbol | Definition | Home |
 |---|---|---|
 | `N` | interior node count | §1, `graphs` |
-| `z` | mean coordination (edges per node) | P0' (v0.6): `4` in vacuum |
-| `G`, `G_vac` | information graph `(V,E,I)`; relaxed vacuum state | P0' (v0.6), `emergent_dim` |
-| `M_O` | observer reconstruction map (restricted channel) | P0'/P4 box (v0.5–v0.6) |
+| `z` | mean coordination (edges per node) | P0' (v0.6–v0.6.1): `4` in vacuum |
+| `G`, `G_vac` | information graph `(V,E,I)`; relaxed vacuum state | P0' (v0.6–v0.6.1), `emergent_dim` |
+| `M_O` | observer reconstruction map (restricted channel) | P0'/P4 box (v0.5–v0.6.1) |
 | `d(i,j)`, `B(r)`, `V(r)`, `d_eff` | info-transfer distance, ball, capacity, `d ln V / d ln r` | §1 box (v0.5), `emergent_dim` |
 | `d_G`, `d_I`, `d_obs` | microscopic / information / observed dimension | §1 box (v0.5) |
 | `k` | exterior leg count | §1, `horizon` |
@@ -852,8 +910,8 @@ resuscitated, GW190814 `P = 0.68 ± 0.02`, chromaticity `< 1e-50/1e-30`),
 figure-computed (`25` trials `N = 8…128`, depth-`5` convergence scan,
 deficit orderings), and paper-quoted (`0.002`-bit tracking, `42.99`,
 `0.57`/`100%` posteriors, `32` live BBH, MSS `0.50–0.68`, `1e-80/1e-160`
-dimensional estimate). Suite at v0.6: 425 collected, 423 passed,
-2 torch/GPU-only skipped.
+dimensional estimate). Suite at v0.6–v0.6.1: 425 collected, 423 passed,
+2 torch/GPU-only skipped (v0.6.1 adds no tests).
 
 ---
 
@@ -877,7 +935,10 @@ dimensional estimate). Suite at v0.6: 425 collected, 423 passed,
   the only-vacuum-is-3D conjecture, D10 (with the D10a tense-plug inversion
   pin: bare shortest-path rejected for tense regions), and
   `docs/relaxed-vacuum.md`, with
-  no number changes and stable import IDs.
+  no number changes and stable import IDs. v0.6.1 clarifies the P0' 2D/4
+  lock, the finite Maxwell count, genericity, the two tension ledgers, the
+  fours disclaimer, and relaxed-vs-flat terminology, with no number changes
+  and stable import IDs.
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:
   T14 TeV absolutes follow the code (post-BS), not v5 prose (pre-BS).
