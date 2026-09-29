@@ -42,6 +42,16 @@ distance must be derived from information-access, not adjacency. I6a/b are
 restated as given-L0-vacuum-plus-`M_O` conditionals; D3/D4/D6 gain an explicit
 close-route via the `d_eff -> 3` IR test. See §1–§3, §5–§6 deltas.
 
+**v0.6 relaxed-vacuum release (this branch, draft).** No number changes:
+vacuum postulate flip + consequences. P0 (all:all) is retired as the vacuum
+definition and replaced by P0' (relaxed isostatic 2D fabric, `<z> = 4`;
+`K_N` interiors re-labeled as the maximum-tension extreme, T1–T3 untouched).
+Adds the tension spectrum, the `d_I = 2` vacuum prediction, the only-vacuum-
+is-perfectly-3D conjecture with its GR-side fingerprint, new DEFERRED item
+D10 (simulator d-dip + tension→`κ` map), and the companion essay
+`docs/relaxed-vacuum.md` (full explanation). L0 theorems, L1 imports, L2
+calibrations unchanged; import IDs stable.
+
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
 figures, and measurements are cited as *evidence about* the model, never as its
@@ -84,8 +94,9 @@ These are undefined terms. Everything else is built from them.
 |---|---|---|
 | node | indivisible Planck-scale element | lives at `~1e-35` m; no internal structure |
 | edge | unit of entanglement between nodes | cut edge-count bounds entanglement entropy across the cut |
-| `G` | the information graph `(V,E,I)` | no coordinates; see P0; `G_N` and ambient graph are subgraphs of `G` |
-| `G_vac` | vacuum information state | homogeneous, maximally unconstrained; defined in P0 (v0.5) |
+| `G` | the information graph `(V,E,I)` | no coordinates; see P0'; `G_N` and ambient graph are subgraphs of `G` |
+| `G_vac` | vacuum information state | relaxed isostatic 2D fabric; defined in P0' (v0.6) |
+| `z` | mean coordination (edges per node) | `4` in vacuum; tension dial (v0.6) |
 | `G_N` | interior graph on `N` nodes | the object under study; boundary between interior and ambient is the cut |
 | ambient graph | the rest of the network | exterior legs terminate here; one realization of `G_vac` with excitations |
 | `M_O` | observer reconstruction map | restricted coarse-graining / information-access channel; P4 is one instance (v0.5) |
@@ -126,23 +137,42 @@ distance is the documented failure mode on `K_N` (always 1); the supported
 `d(i,j)` instances are effective resistance / commute-time, diffusion, and
 communicability distances (see `emergent_dim.info_distance_matrix`).
 
+**v0.6 prediction.** P0' predicts `d_I = 2` for the vacuum fabric itself
+(2D wiring, measured by the same protocol); `d_obs = 3` then requires the
+2D + scale → 3D reconstruction (radial × area = volume). The relaxation
+principle lives on `G` (coordination → 4), never on spacetime: optimizing
+`M_O(G)` cannot change `G`, and "relaxed spacetime" would smuggle flatness
+in as the target. Full explanation: `docs/relaxed-vacuum.md`.
+
 ---
 
 ## 2. L0 postulates and theorems
 
-### P0 (vacuum postulate, v0.5). The vacuum is the homogeneous, maximally unconstrained information state.
+### P0' (vacuum postulate, v0.6). The vacuum is the most relaxed state that is still a fabric: isostatic 2D, four edges per node.
 
-`G_vac = (V,E,I)` with no coordinates, no distinguished node, direction,
-location, boundary, or macroscopic excitation, and maximal symmetry under
-whatever graph transformations are physically irrelevant (graph automorphisms).
-"Maximally unconstrained" means minimally distinguished, not few edges:
-perfect all:all is maximally edge-constrained but minimally distinguished.
-Black-hole interiors `G_N` (P1) are defects/excitations of `G_vac` where the
-failure to be perfect *is* the observable. The ambient graph of §1 is one
-realization of `G_vac` with excitations. An observer never sees `G` directly;
-an observer sees `M_O(G)` where `M_O` is a restricted coarse-graining /
-information-access channel (see P4 box). Objective spacetime is defined as the
-part of `G`'s information structure invariant under all admissible `M_O`.
+`G_vac = (V,E,I)` is the homogeneous 2D entanglement fabric with mean
+coordination `<z> = 4` — no coordinates, no distinguished node, direction,
+location, boundary, or macroscopic excitation. "Most relaxed" is Maxwell
+marginal rigidity: `N` nodes in 2D have `2N` degrees of freedom, `M` edges
+impose `M` constraints, and `<z> = 2M/N = 4` is the unique rigid-with-zero-
+self-stress point (floppy below, stressed above). Black-hole interiors `G_N`
+(P1) are the **maximum-tension extreme** (degree `N−1`), maximally far from
+vacuum; stars, planets, and Casimir cavities live on the tension spectrum
+between them. Curvature is self-stress: over-coordination (`z − 4`)
+reconstructed through `M_O` (quantitative map open, D10). An observer never
+sees `G` directly; an observer sees `M_O(G)` where `M_O` is a restricted
+coarse-graining / information-access channel (see P4 box). Objective
+spacetime is defined as the part of `G`'s information structure invariant
+under all admissible `M_O`.
+
+History: v0.5 P0 defined vacuum as perfect all:all (maximally connected,
+minimally distinguished). That put black holes — the most extreme objects —
+*closest* to vacuum, which reads backwards; P0 is retired as the vacuum
+definition (kept in git history) and replaced by P0'. Homogeneity ("no
+distinguished node/relation") survives unchanged; only the wiring density of
+the homogeneous state changed (sparse-rigid 4, not dense-complete `N−1`).
+T1–T3 are untouched: they were always statements about the tense extreme.
+Full explanation: `docs/relaxed-vacuum.md`.
 
 ### P1 (wiring postulate). Black-hole interiors are almost-perfect all:all graphs.
 
@@ -186,7 +216,7 @@ Discharge condition: derive the measure from graph dynamics, or exhibit an
 alternative measure preserving the T8 sign and the L2 `p` (related: D1, D3).
 
 **v0.5 observer box.** P4 is one explicit instance of the observer
-reconstruction map `M_O` from P0: physical distance is not adjacency, it is
+reconstruction map `M_O` from P0': physical distance is not adjacency, it is
 `d(i,j) = f(information-transfer cost_ij)` as reconstructed through `M_O`.
 The `0.94 → 0.84` degradation is evidence *about* which `M_O` the L2 fit
 selects, not a definition of `M_O`. Promoting P4 to derived means exhibiting
@@ -201,8 +231,9 @@ in 1 step for any `N`, versus `~N/2` for a chain `P_N`, `~2√N` for a
 tuning. (`graphs`, `scrambling`.)
 
 **v0.5 corollary.** T1 shows spatial distance must be derived from
-information-access, not adjacency. The complete graph is fundamentally
-non-geometric while producing a geometric exterior via `M_O` (P0/P4 box).
+information-access, not adjacency. The complete graph — the P0' tension
+extreme — is fundamentally
+non-geometric while producing a geometric exterior via `M_O` (P0'/P4 box).
 Graph distance is the documented failure mode (`d = 1` everywhere on `K_N`);
 physical distance is `d(i,j) = f(information-transfer cost)` reconstructed
 through `M_O`. Light / information inside `K_N` is 1 step; what we call `c`
@@ -256,7 +287,7 @@ the theorems are what the price buys.
 | I6c | Raychaudhuri (focusing) for leg bundles + Jacobson-chain inputs (`T = κ/2π`, Clausius `dQ = T·dS`, `dS = ln2·dk` saturated) | open bridge (D9); load: only the "Einstein equations follow" conditional, stated given I1b (no double-counting of `η = 1/4`) — T8–T11 do not depend on it | `jacobson`, S1 |
 | I7 | Gap coefficient, crossover scales (`r_point`, `α = 1` congestion calibration, `A_min`) | heuristic / calibrated (see T6, T9) | `micro`, `redshift`, S1 |
 
-**v0.5 restatement.** Given L0 vacuum P0 + `M_O` = P4 uniform measure, then
+**v0.5 restatement.** Given L0 vacuum P0' + `M_O` = P4 uniform measure, then
 Ollivier–Ricci sign = attraction T8. Promoting I6 to derived = exhibiting an
 `M_O` (measure + info-transfer distance + coarse-graining) that gives
 `d_eff -> 3` in the IR and negative radial `κ` without tuning. I6a stays
@@ -589,7 +620,7 @@ graph; inserting `44 M☉` as a graph parameter is refused. (`massgaps`.)
 
 Each item: what is missing, what would close it, what it gates. Tracked in
 `docs/DEFERRED.md`; the paper's kill table wires the falsifiable ones.
-Tag convention: D1–D9 here always mean DEFERRED items; the appendix-letter tag
+Tag convention: D1–D10 here always mean DEFERRED items; the appendix-letter tag
 (D2) (= module `evaporation_unitary`) is always written as the module name —
 supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 
@@ -604,6 +635,7 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 | D7 | Kilonova radiative transfer | validated multidimensional RT on public ejecta models/transformations compatible with the F5/F6 bulk prescription (morphology, velocity structure per VEL-1, Ye-dependent opacities/reprocessing, viewing-angle dependence, direct `i`-band); pipeline must pass the AT2017gfo anchor/control gate before its GW190814 result promotes the analytic verdict (POSSIS primary implementation) | decides whether the GW190814 non-detection is compatible with universal shedding or falsifies it; `g`-band verdicts already robust |
 | D8 | Shedding efficiency `ε(M,a,q)` + shutoff location | derive mass/spin/ratio dependence from `K_max(N)` combinatorics, spin-ordered reabsorption, or remnant-trap physics, with any shutoff location as *output* | highest-value attack surface on universal shedding; a derived shutoff between gap and BBH masses must land where it lands (same no-insertion rule as the 44 M☉ null) |
 | D9 | Raychaudhuri (focusing) for leg bundles | derive focusing for SI fronts on leg networks (seed: AT congestion slowdown); closes the Jacobson chain to Einstein's equations with `η = 1/4` from I1b, `G = 1` | promotes I6c from open bridge to derived; gates nothing else — T8–T11 stand without it |
+| D10 | Tension spectrum: simulator d-dip around mass + tension→`κ` map (v0.6) | (a) an over-coordinated (tense) region in the graph shows the GR fingerprint shape (near dip, overshoot, →3⁺) under info-side `d_eff`; relaxed `z≈4` regions show `d=2` fabric / `d=3` reconstruction as applicable; (b) Ollivier–Ricci `κ` tracks over-coordination (`z−4`) quantitatively | P0' first quantitative wire; failure of (a) shape-match after the mapping is fixed refutes P0' |
 
 Rule for all D-items: the closing derivation must output the number or location,
 not take it as input. Inserting an observed scale as a graph parameter is a fit,
@@ -616,6 +648,16 @@ communicability, not shortest path — see `emergent_dim`); 2. build `B(r)`;
 `d_eff -> 3` without imposing 3? A positive result promotes the D-item
 per its close criterion; a negative result localizes which part of the
 information geometry needs another principle.
+
+**v0.6 conjecture: only vacuum is perfectly 3D (D10 target).** `d_obs ≡ 3`
+exactly holds only in the zero-tension limit; mass imprints a dimensional
+fingerprint. GR side, computed (weak-field uniform star, proper balls of
+proper radius `l`): near-field dip (`d_eff ≈ 2.99` at `l = 30M`), overshoot
+(`≈ 3.03` at `100M`, `≈ 3.010` at `1000M`), asymptote `→ 3⁺` as `~1/l`.
+Amplitude `O(M/l)` (`~10⁻⁹` at Earth's surface: structure, not a laboratory
+signal). The simulator must reproduce this *shape* around tensed regions
+(D10a); the relaxation principle itself lives on `G` (coordination → 4),
+never on spacetime. Full explanation: `docs/relaxed-vacuum.md` §1, §5.
 
 ---
 
@@ -642,6 +684,10 @@ Stated so no reader misses them:
 - No microscopic 3D lattice postulated (v0.5): `d_G ≠ d_I ≠ d_obs` in general;
   no Lorentz-invariant dynamics; no Born rule / double-slit derivation (needs
   D1); no Casimir `1/d⁴` derivation (ontology only: constrained `G_vac`, not void).
+- No simulator d-dip yet (v0.6, queued D10): the GR fingerprint shape is a
+  target, not a graph result. No 2D + scale → 3D mechanism (open D3/D4/D6);
+  no tension→`κ` map (`z−4` to curvature, open D10b); no isostatic-stability
+  derivation under graph dynamics (needs D1).
 
 ---
 
@@ -652,8 +698,9 @@ Single table; every symbol in §1–§4 appears here with its home.
 | Symbol | Definition | Home |
 |---|---|---|
 | `N` | interior node count | §1, `graphs` |
-| `G`, `G_vac` | information graph `(V,E,I)`; homogeneous vacuum state | P0 (v0.5), `emergent_dim` |
-| `M_O` | observer reconstruction map (restricted channel) | P0/P4 box (v0.5) |
+| `z` | mean coordination (edges per node) | P0' (v0.6): `4` in vacuum |
+| `G`, `G_vac` | information graph `(V,E,I)`; relaxed vacuum state | P0' (v0.6), `emergent_dim` |
+| `M_O` | observer reconstruction map (restricted channel) | P0'/P4 box (v0.5–v0.6) |
 | `d(i,j)`, `B(r)`, `V(r)`, `d_eff` | info-transfer distance, ball, capacity, `d ln V / d ln r` | §1 box (v0.5), `emergent_dim` |
 | `d_G`, `d_I`, `d_obs` | microscopic / information / observed dimension | §1 box (v0.5) |
 | `k` | exterior leg count | §1, `horizon` |
@@ -687,9 +734,10 @@ Single table; every symbol in §1–§4 appears here with its home.
 
 - **L0**: `graphs`, `scrambling`, `circuits`, `otoc`+`pheno`, `krylov`, `syk`, `bigsyk`,
   `sparse24`, `monogamy`, `qec`, `robustness`, `fission`, `klanguage`,
-  `collapse` (grid→complete part), `concentration`, `emergent_dim` (v0.5:
+  `collapse` (grid→complete part), `concentration`, `emergent_dim` (v0.5–v0.6:
   `d(i,j)` / `B(r)` / `V(r)` / `d_eff(r)` protocol, `K_N` shortest-path
-  failure pinned).
+  failure pinned; v0.6: BFS convergence series, diffusion overshoot-shrink,
+  shell no-emergence pin; explanation: `docs/relaxed-vacuum.md`).
 - **L1**: `horizon`, `micro`, `qes`, `evaporation`, `evaporation_unitary`,
   `haar`, `maxent`, `tn`, `kerr`, `kerrpage`, `thermo`, `entropic`, `redshift`,
   `heatker`, `orici` (AU signs), `jacobson`, `lensing`, `chroma`, `shapiro`,
@@ -724,7 +772,7 @@ resuscitated, GW190814 `P = 0.68 ± 0.02`, chromaticity `< 1e-50/1e-30`),
 figure-computed (`25` trials `N = 8…128`, depth-`5` convergence scan,
 deficit orderings), and paper-quoted (`0.002`-bit tracking, `42.99`,
 `0.57`/`100%` posteriors, `32` live BBH, MSS `0.50–0.68`, `1e-80/1e-160`
-dimensional estimate). Suite on this branch: 398 collected, 396 passed,
+dimensional estimate). Suite on this branch: 424 collected, 422 passed,
 2 torch/GPU-only skipped.
 
 ---
@@ -743,7 +791,11 @@ dimensional estimate). Suite on this branch: 398 collected, 396 passed,
   remnant DM, isotropic `b_crit`, naive `γ = 2`, linear LIV, flat `p = 0.49`.)
 - This document versions with the paper: v0.4 tracks v5.0 (I1-matching
   release; import IDs stable except the splits I1→I1a/I1b (v0.4),
-  I4→I4a/I4b and I6→I6a-c (v0.3)).
+  I4→I4a/I4b and I6→I6a-c (v0.3)). v0.5 (this branch, draft) adds P0/M_O/
+  dimensions + `emergent_dim` with no number changes; v0.6 (this branch,
+  draft) flips P0→P0' (relaxed isostatic vacuum), adds the tension spectrum,
+  the only-vacuum-is-3D conjecture, D10, and `docs/relaxed-vacuum.md`, with
+  no number changes and stable import IDs.
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:
   T14 TeV absolutes follow the code (post-BS), not v5 prose (pre-BS).

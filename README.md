@@ -149,12 +149,21 @@ pdflatex supplement.tex && pdflatex supplement.tex
   dynamics open), H2 $T_H$/$\Omega_H$ in the main text, mass-gap null +
   universal BBH shedding + GW190814 epoch audit ($P \approx 0.68$–$0.88$,
   tension), 46/46 references cited, 398 tests, 81 figure files.
+  Unreleased model-docs draft (PR branch, `docs/model.md` v0.6): emergent-dimension
+  protocol (`emergent_dim`, 11 tests) — two-distance bracket on imposed lattices,
+  monotone `p(L)` convergence, diffusion overshoot-shrink, resistance/communicability
+  rejections, radial-shell no-emergence pin; GR-side dimensional fingerprint
+  (dip/overshoot/→3⁺) computed as the D10 simulator target.
 - **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
   equivalence principle, continuum limits (heat-kernel, Ollivier),
   Raychaudhuri for leg bundles, gap coefficient, crossover scales.
   v4.0 fits (labeled): gradient slope $0.015$, bridge $\beta(N)$
   ($1.5$@300, $1.28$@600, $1.24$@1020), $w = 1.953$, shed $e$
   $0.5\to0.416$ + $10\%$ efficiency, $\kappa\to c_2$ map ansatz.
+  Unreleased v0.6 draft adds: P0' relaxed vacuum (isostatic 2D fabric, 4 edges/node;
+  BH interior re-labeled maximum-tension extreme), observer map $M_O$ (P4 as one instance),
+  only-vacuum-is-perfectly-3D conjecture (graph side open, D10). Full story:
+  `docs/relaxed-vacuum.md`.
 - **Ruled out (on record):** broad Planck-remnant dark matter (survives
   only in a $\sim 0.4$-dex EMD window at $\sim 4\times10^5$ g).
 - **Falsifiers armed:** AF quench ratio $< 1.3$, $\alpha$ outside

@@ -142,3 +142,27 @@ conditional to derived.
 
 **Kill relevance:** none (gates no theorem in T8–T11); mathematical completion
 of the AU triptych's third route.
+
+## D10 — Tension spectrum: simulator d-dip around mass + tension→κ map (v0.6)
+
+**Missing:** (a) the graph-side reproduction of the GR dimensional
+fingerprint: an over-coordinated (tense, `z > 4`) region must show near dip +
+overshoot + `→3⁺` under info-side `d_eff`, while relaxed `z ≈ 4` regions
+show fabric `d = 2` / reconstructed `d = 3` as applicable; (b) a quantitative
+tension→curvature map: Ollivier–Ricci `κ` tracking over-coordination (`z−4`).
+Current status: GR side computed (`docs/relaxed-vacuum.md` §5: dip 2.990 at
+`30M`, overshoot 3.030 at `100M`, `→3⁺` as `~1/l`); graph side unmeasured;
+`emergent_dim` protocol + two-distance bracket ready; shell no-emergence pin
+shows what failure looks like.
+
+**Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
+matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the
+simulator mapping is fixed, with amplitude scaling in the tension; relaxed
+control regions show `d = 2` fabric scaling; (b) `κ` vs `(z−4)` fitted with
+stated residuals on the same graphs. Both (a) and (b) must output their
+curves from graph construction + dynamics, not take GR as input.
+
+**Kill relevance:** P0' first quantitative wire. Failure of the (a)
+shape-match after the mapping is fixed refutes the relaxed-vacuum postulate;
+success promotes curvature-as-self-stress from ontology to measurement and
+feeds D3 (κ→c₂ via tension) and D6 (R_s from the tension profile).

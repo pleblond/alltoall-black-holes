@@ -3,6 +3,14 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (model-docs v0.6 draft, PR branch)** — Relaxed vacuum:
+  P0→P0' flip (vacuum = isostatic 2D fabric, 4 edges/node; BH interior =
+  maximum-tension extreme), observer map `M_O` (P4 as one instance),
+  `d_G/d_I/d_obs` + `d_eff` protocol (`emergent_dim`, 11 tests: bracket,
+  convergence, rejections, shell no-emergence pin), only-vacuum-is-3D
+  conjecture with GR fingerprint (dip/overshoot/→3⁺) as D10 simulator
+  target, new `docs/relaxed-vacuum.md` essay. No number changes; LaTeX
+  integration queued after simulator runs.
 - **unreleased** — H2 thermodynamic consistency: $T_H(M,J)$, $\Omega_H$, first
   law from $S = k\ln 2$ conditional on imported $A(M,J)$ (`thermo` + 10 tests);
   per-leg $T = (dM/dk)/\ln 2$ reading, finite-step $-1/4k$ correction,

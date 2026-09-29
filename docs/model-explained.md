@@ -62,6 +62,41 @@ wavelength approaches the spacing (tested in Appendix BD: quadratic
 suppression, $10^8$ below Fermi bounds) or where the wiring is
 inhomogeneous — which is what a horizon is.
 
+## 2b. Vacuum: the most relaxed fabric (v0.6)
+
+If spacetime is what the information graph *looks like* from outside, then
+"relaxing spacetime" gets it backwards — like editing a photo to fix the
+scene. The relaxing has to happen in the underlying information; spacetime
+inherits whatever the rested graph looks like. (The technical version of
+this move is Jacobson's entanglement equilibrium: rest the entanglement and
+the Einstein equations follow.)
+
+So what does fully rested information look like? The model's answer: a
+uniform two-dimensional mesh where each node holds **4 entanglement links**
+— the unique point at which a 2D mesh is stiff enough to be a fabric but
+carries zero built-in stress (engineers call it marginally rigid: fewer
+links and it flops, more links and it stores tension). Everything else is
+tension on top of that rest state:
+
+- **Vacuum** = rested mesh (4 links each). Perfectly flat, perfectly 3D —
+  the only place that is *exactly* 3D, because dimension itself is exact
+  only at zero tension.
+- **Mass** = same mesh under tension (extra links). Not different stuff —
+  mass *looks like* vacuum wearing a stress pattern, which we read as
+  curvature. Near a mass, the effective dimension wobbles slightly off 3
+  (computed: a dip, then an overshoot, settling to 3 far away).
+- **Black-hole interior** = maximum tension (every node linked to every
+  other). The farthest thing from vacuum there is — which is why it has no
+  interior distance at all (see §3).
+
+And where does the *third* dimension come from, if the mesh is 2D? From
+depth: 2D mesh (area) × layers of tension/scale (depth) = 3D volume, the
+same way a hologram stores a 3D scene on a 2D plate. Whether that third
+dimension comes out *exactly right* with nothing 3D put in is the open
+experiment (tracked as D10) — the first honest attempt failed
+instructively, and the failure pointed at exactly what is missing. The full
+story, with numbers and status labels, is in `docs/relaxed-vacuum.md`.
+
 ## 3. All:all wiring, and why it kills interior distance
 
 Compare two wirings of $N$ nodes. In a **local** graph (a grid: each node
