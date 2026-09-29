@@ -1,4 +1,4 @@
-# The model, stated first (v0.4)
+# The model, stated first (v0.6)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
@@ -48,7 +48,9 @@ definition and replaced by P0' (relaxed isostatic 2D fabric, `<z> = 4`;
 `K_N` interiors re-labeled as the maximum-tension extreme, T1–T3 untouched).
 Adds the tension spectrum, the `d_I = 2` vacuum prediction, the only-vacuum-
 is-perfectly-3D conjecture with its GR-side fingerprint, new DEFERRED item
-D10 (simulator d-dip + tension→`κ` map), and the companion essay
+D10 (simulator d-dip + tension→`κ` map), the D10a tense-plug pin (bare
+shortest-path inverted vs GR, rejected as `d(i,j)` for tense regions;
+D10b costs gate D10a), and the companion essay
 `docs/relaxed-vacuum.md` (full explanation). L0 theorems, L1 imports, L2
 calibrations unchanged; import IDs stable.
 
@@ -737,7 +739,9 @@ Single table; every symbol in §1–§4 appears here with its home.
   `collapse` (grid→complete part), `concentration`, `emergent_dim` (v0.5–v0.6:
   `d(i,j)` / `B(r)` / `V(r)` / `d_eff(r)` protocol, `K_N` shortest-path
   failure pinned; v0.6: BFS convergence series, diffusion overshoot-shrink,
-  shell no-emergence pin; explanation: `docs/relaxed-vacuum.md`).
+  shell no-emergence pin, tense-plug inversion pin (shortest-path rejected
+  for tense regions, far-field near-balls identical to control);
+  explanation: `docs/relaxed-vacuum.md`).
 - **L1**: `horizon`, `micro`, `qes`, `evaporation`, `evaporation_unitary`,
   `haar`, `maxent`, `tn`, `kerr`, `kerrpage`, `thermo`, `entropic`, `redshift`,
   `heatker`, `orici` (AU signs), `jacobson`, `lensing`, `chroma`, `shapiro`,
@@ -772,7 +776,7 @@ resuscitated, GW190814 `P = 0.68 ± 0.02`, chromaticity `< 1e-50/1e-30`),
 figure-computed (`25` trials `N = 8…128`, depth-`5` convergence scan,
 deficit orderings), and paper-quoted (`0.002`-bit tracking, `42.99`,
 `0.57`/`100%` posteriors, `32` live BBH, MSS `0.50–0.68`, `1e-80/1e-160`
-dimensional estimate). Suite on this branch: 424 collected, 422 passed,
+dimensional estimate). Suite on this branch: 425 collected, 423 passed,
 2 torch/GPU-only skipped.
 
 ---
@@ -794,7 +798,9 @@ dimensional estimate). Suite on this branch: 424 collected, 422 passed,
   I4→I4a/I4b and I6→I6a-c (v0.3)). v0.5 (this branch, draft) adds P0/M_O/
   dimensions + `emergent_dim` with no number changes; v0.6 (this branch,
   draft) flips P0→P0' (relaxed isostatic vacuum), adds the tension spectrum,
-  the only-vacuum-is-3D conjecture, D10, and `docs/relaxed-vacuum.md`, with
+  the only-vacuum-is-3D conjecture, D10 (with the D10a tense-plug inversion
+  pin: bare shortest-path rejected for tense regions), and
+  `docs/relaxed-vacuum.md`, with
   no number changes and stable import IDs.
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:

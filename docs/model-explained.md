@@ -94,7 +94,14 @@ depth: 2D mesh (area) × layers of tension/scale (depth) = 3D volume, the
 same way a hologram stores a 3D scene on a 2D plate. Whether that third
 dimension comes out *exactly right* with nothing 3D put in is the open
 experiment (tracked as D10) — the first honest attempt failed
-instructively, and the failure pointed at exactly what is missing. The full
+instructively, and the failure pointed at exactly what is missing. A second
+probe sharpened the lesson: a tense patch (extra links) inside a relaxed
+mesh makes nearby balls grow *slower* than flat — the shortcuts front-load
+the ball — while real gravity needs the opposite (rulers *stretched* near
+mass, balls underfull). So raw hop-counting is the wrong ruler wherever
+tension lives; the ruler must charge extra for congested links, exactly as
+the light sector already does (signals slow near mass rather than hopping
+faster). The full
 story, with numbers and status labels, is in `docs/relaxed-vacuum.md`.
 
 ## 3. All:all wiring, and why it kills interior distance
@@ -407,19 +414,22 @@ with a narrow surviving window at $\sim 4\times10^5$ g).
 - **Missing pieces, named:** the exact gap coefficient (tortuosity's
   $\sqrt{\chi}$-linearity, formerly the load-bearing assumption behind $g_{rr}$
   and Mercury, is now derived from $\ln 2$ scattering in Appendix BV), a formation story for delocalized
-  giants, unitary leg-surgery dynamics (evaporation is currently a Markov
-  chain on $k$), and the information-flux race in the final non-adiabatic
+  giants, graph-dynamics leg-surgery (the qubit toy now has an explicit unitary
+  completion; deriving it from graph dynamics is open), the 2D + scale → 3D
+  emergence mechanism (open D3/D4/D6/D10), and the information-flux race in the final non-adiabatic
   moments (per-leg channel capacity vs. required evacuation flux).
 
 ## 12. Where to go next
 
-- **The paper proper:** `paper/paper.md` (readable draft, Secs 1–3 +
-  appendices) and `paper/main.pdf` (compiled LaTeX) — same narrative, every
-  claim with equations, derivations, and honesty-labeled assumptions.
+- **The paper proper:** `paper/v5/main.pdf` (journal cut: motivation, 3
+  claims, gravity to 1PN + 2PN preview, UV+QI, one-family compact objects,
+  falsifiers) and `paper/v5/supplement.pdf` (methods, honesty ledger,
+  N-scaling, module map) — every claim with equations, derivations, and
+  honesty-labeled assumptions.
 - **See it run:** `streamlit run app.py` opens an interactive explorer:
   scrambling races across graph families, horizon growth leg by leg,
   evaporation, Page curves, and every appendix with sliders.
-- **Check the homework:** `python -m pytest tests/ -q` runs 240+ checks
+- **Check the homework:** `python -m pytest tests/ -q` runs 425 checks
   (every numbered claim in the paper has at least one); `python
   scripts/generate_figures.py` regenerates all figures from code.
 - **Cite it:** see `CITATION.cff` (DOI via Zenodo in `README.md`).

@@ -256,7 +256,7 @@ failed informatively.
 | vacuum = relaxed isostatic 2D fabric, `<z>=4` | **postulated (P0')** | `model.md` §2, this doc §2–§4 |
 | observer sees `M_O(G)`; P4 is one instance | postulated (P0/P4 box) | `model.md` §1–§2 |
 | `d_G / d_I / d_obs` + `d_eff` protocol | defined + implemented | `model.md` §1 box, `emergent_dim` |
-| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (11 tests) |
+| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (12 tests) |
 | convergence `p(L)` monotone, gap `~1/√L` | **measured** | BFS series test |
 | resistance / communicability rejected | **measured (negative)** | rejection test |
 | shell no-emergence pin (~1.4 / ~0.6) | **measured (negative)** | shell test |
