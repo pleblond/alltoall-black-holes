@@ -26,11 +26,22 @@ are future work and must preserve the controls below.
 
 Controls (tested): chain -> 1, 2D grid -> 2, 3D grid -> 3 under "shortest"
 (Manhattan balls approach the Euclidean exponent from below with finite-size
-corrections: 2D ~1.85 at 20x20, 3D ~2.5-2.6 at 9^3-11^3; trend toward the
-continuum value as L grows, pinned with tolerances).
+corrections; exact integer-shell series via ball_volumes_bfs, pinned trends).
 K_N under "shortest" is trivial (is_shortest_path_trivial); under
 "resistance" it is uniform (no scaling window). Shell/weakfield graphs give
 nontrivial profiles whose IR exponent is measured, never imposed.
+
+Convergence (tested finite-size series, volume window v>=v_min, V<=0.6*Vmax):
+  - shortest: p(L) rises monotonically toward d from BELOW (Manhattan-diamond
+    shape + open boundaries; gap ~ O(1/sqrt(L))): chain 0.92->0.96->0.98
+    (N=60/200/600); grid2d 1.67->1.77->1.82->1.87 (L=20/40/60/100);
+    grid3d 2.25->2.46->2.56->2.63 (L=7/11/15/21). r2 >= 0.996 throughout.
+  - diffusion at tuned t: p(L) falls toward d from ABOVE (overshoot shrinks
+    as boundaries recede): 3D t=5 gives 3.56->3.34->3.14 (L=5/7/9).
+    Together shortest and diffusion BRACKET 3 (2.63 < 3 < 3.14 at L=9...21).
+  - diffusion t at fixed L is an RG flow (L=9: t=1->6.68 grain, t=3->3.45,
+    t=5->3.14 best, t=10->3.27, t=40->3.76 saturation): the IR exponent is
+    read at intermediate t*, too small sees the lattice, too large sees the box.
 
 Distance-candidate ledger (tested, honest negatives kept):
   - "shortest": recovers lattice dimension; FAILS on K_N by design (T1).
@@ -38,10 +49,10 @@ Distance-candidate ledger (tested, honest negatives kept):
     (grows ~log r in 2D, bounded in 3D: power-law fit gives spurious p ~ 4-7).
     Resistance is commute cost, not spatial distance, for d >= 2.
   - "diffusion": recovers approximate dimension at tuned t (chain t=20 -> ~1.1,
-    grid2d t=5 -> ~2.2, grid3d L=5 t=5 -> ~3.6, L=7 t=3-5 -> ~3.3-3.4):
-    t is the coarse-graining / RG scale. Small t sees the grain (poor fits),
-    tuned t sees the IR exponent; 3D overshoots by ~10-15% on small open
-    lattices (boundary effects, pinned with tolerance -- not claimed exact).
+    grid2d t=5 -> ~2.2, grid3d t=5: L=5 -> ~3.6, L=7 -> ~3.3, L=9 -> ~3.1):
+    t is the coarse-graining / RG scale. Small t sees the grain, tuned t sees
+    the IR exponent, huge t saturates on the box; 3D overshoot shrinks with L
+    (boundary effects, pinned with tolerance -- not claimed exact).
   - "communicability": FAILS (chain ~1.9 vs 1, grid2d ~5.2 vs 2): Estrada
     distance measures walk-profile similarity (symmetric endpoints look close),
     not spatial separation. Kept as documented rejection.
@@ -196,6 +207,30 @@ def ball_volumes(
         if len(radii_arr) == 0:
             return np.asarray([]), np.asarray([])
     vols = np.array([int(np.sum(row <= r)) for r in radii_arr], dtype=float)
+    return radii_arr, vols
+
+
+def ball_volumes_bfs(
+    g: nx.Graph, source, r_max: int | None = None
+) -> tuple[np.ndarray, np.ndarray]:
+    """Exact integer-shell V(r) via single-source shortest paths.
+
+    Returns (radii, volumes) with radii = 1..r_max (default: eccentricity of
+    source). O(N + M): enables large-L finite-size scaling without the O(N^3)
+    Floyd matrix. Unknown source gives empty arrays (no exceptions).
+    """
+    if source not in g:
+        return np.asarray([]), np.asarray([])
+    dist = nx.single_source_shortest_path_length(g, source)
+    vals = np.array(list(dist.values()), dtype=float)
+    if len(vals) == 0:
+        return np.asarray([]), np.asarray([])
+    dmax = int(np.max(vals))
+    if dmax < 1:
+        return np.asarray([]), np.asarray([])
+    rhi = dmax if r_max is None else max(1, min(int(r_max), dmax))
+    radii_arr = np.arange(1, rhi + 1, dtype=float)
+    vols = np.array([float(np.sum(vals <= r)) for r in radii_arr], dtype=float)
     return radii_arr, vols
 
 

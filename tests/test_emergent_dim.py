@@ -150,3 +150,48 @@ def test_rejected_distances_pinned():
     )
     assert np.isfinite(mc["fit"]["p"])
     assert abs(mc["fit"]["p"] - 1.0) > 0.5, mc["fit"]
+
+
+def _bfs_p(g, source, v_min, frac=0.6):
+    r, v = ed.ball_volumes_bfs(g, source)
+    f = ed.fit_dimension(r, v, v_min=v_min, v_max_frac=frac)
+    assert f["r2"] > 0.99, f
+    assert f["n_points"] >= 4, f
+    return f["p"]
+
+
+def test_shortest_converges_from_below():
+    # Exact integer shells (BFS, no binning): p(L) rises monotonically toward
+    # d from below. Gap ~ O(1/sqrt(L)): Manhattan-diamond shape + open box.
+    # Chain: 0.92 -> 0.96 -> 0.98 (N=60/200/600).
+    ps = [_bfs_p(build_chain(n), n // 2, 5) for n in (60, 200, 600)]
+    assert ps[0] < ps[1] < ps[2] < 1.0
+    assert ps[2] > 0.95, ps
+    # 2D: 1.67 -> 1.77 -> 1.82 -> 1.87 (L=20/40/60/100).
+    ps2 = [_bfs_p(build_grid_2d(L), (L // 2) * L + L // 2, 5) for L in (20, 40, 60, 100)]
+    assert ps2[0] < ps2[1] < ps2[2] < ps2[3] < 2.0
+    assert ps2[3] > 1.8, ps2
+    # 3D: 2.25 -> 2.46 -> 2.56 -> 2.63 (L=7/11/15/21).
+    ps3 = []
+    for L in (7, 11, 15, 21):
+        g = nx.convert_node_labels_to_integers(nx.grid_graph([L, L, L]))
+        c = L // 2
+        ps3.append(_bfs_p(g, c * L * L + c * L + c, 10))
+    assert ps3[0] < ps3[1] < ps3[2] < ps3[3] < 3.0
+    assert ps3[3] > 2.5, ps3
+
+
+def test_diffusion_overshoot_shrinks_with_L():
+    # 3D t=5: 3.56 (L=5) -> 3.34 (L=7) -> 3.14 (L=9): overshoot shrinks as
+    # boundaries recede. Together with shortest-from-below, 3 is bracketed.
+    ps = []
+    for L in (5, 7, 9):
+        g = nx.convert_node_labels_to_integers(nx.grid_graph([L, L, L]))
+        c = L // 2
+        m = ed.measure_emergent_dimension(
+            g, source=c * L * L + c * L + c, kind="diffusion", t=5.0, n_radii=25
+        )
+        assert m["fit"]["r2"] > 0.95
+        ps.append(m["fit"]["p"])
+    assert ps[0] > ps[1] > ps[2] > 3.0, ps
+    assert abs(ps[2] - 3.0) < 0.4, ps
