@@ -35,7 +35,10 @@ GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, POSSIS queued (D
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
-echo $R$ & $10^{-80}$ ampl., $10^{-160}$ energy & dimensional estimate & $\propto\omega^2$ lattice scattering, not leg S-matrix; $\sim158$ orders margin \\\bottomrule
+echo $R$ & $10^{-80}$ ampl., $10^{-160}$ energy & dimensional estimate & $\propto\omega^2$ lattice scattering, not leg S-matrix; $\sim158$ orders margin \\
+plateau $\sigma$ & $4\pi r^2$ area / $\pi r^2$ cross & convention explicit (v6) & flat below $k_{\mathrm{crit}}$ ($34.8/8.71\,l_p^2$), $\propto k$ above; $M_c \approx 0.83\,M_P$ \\
+below-$k_c$ $T$ & frozen at $T(k_c)$ or $0$ & assumption, not derived & truncated spectrum vs stable remnant; Kerr extremality implies neither \\
+$S_{\mathrm{gen}}(X)$ toy & $2^N$ scan, $N \le 16$ & conditional (gate-tested) & coincides with packing iff saturation gate passes; path-integral D1 open \\\bottomrule
 \end{tabular}
 \end{table}
 
@@ -148,7 +151,12 @@ Haar/Page expectation (mean dev.\ $0.002$ bits, $N=8$), and finite-depth all:all
 Page by depth $\sim5$/step without assuming Haar. The QES/island crossing
 $S_{\rm no}=ks_{\rm leg}$ vs $S_{\rm isl}=k\ln2+\max(S_0-ks_{\rm leg},0)$ is a two-saddle
 competition plus a discrete min-cut analogue (module \texttt{qes}), not an extremization of
-$S_{\rm gen}=A/4G+S_{\rm matter}$ from a gravitational path integral. The remaining missing theorem is the
+$S_{\rm gen}=A/4G+S_{\rm matter}$ from a gravitational path integral. New in v6: a small-$N$
+enumerative $S_{\rm gen}(X)$ subset toy ($2^N$ scan, $N \le 16$, Fig.~77) with frozen dictionary
+($w_{\rm ext} = s_{\rm bulk} = \ln 2$) that coincides with the packing pop iff the saturation
+gate passes (footprint $k_{\rm crit} = S_0/\ln 2$) and provably diverges otherwise --- a
+conditional toy, not a unification proof, and the tuned footprint is labeled calibration.
+The remaining missing theorem is the
 graph-dynamics evaporation isometry $V_k:{\cal H}_{{\rm graph},k}\to{\cal H}_{{\rm graph},k-1}\otimes{\cal H}_{\rm leg}$:
 derive (not merely allow) a scrambling $V_k$ from the graph Hamiltonian/adjacency.
 Tracked as D1 in \path{docs/DEFERRED.md}.

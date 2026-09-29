@@ -129,7 +129,7 @@ def sgen_of_subset(mask, n: int, k_total: int, w_int: float = 5.0,
     if s_bulk is None:
         s_bulk = float(np.log(2.0))
     m = int(mask)
-    size = bin(m).count("1")
+    size = m.bit_count()
     internal_cut = size * (int(n) - size)
     legs_in = _legs_on_subset(int(n), int(k_total), m)
     return float(w_int * internal_cut + w_ext * (int(k_total) - legs_in) + s_bulk * size)
@@ -157,7 +157,7 @@ def sgen_scan(n: int, k_grid, w_int: float = 5.0,
         for mask in range(2 ** int(n)):
             v = sgen_of_subset(mask, int(n), k, w_int, w_ext, s_bulk)
             if v < best - 1e-12:
-                best, bsize = v, bin(mask).count("1")
+                best, bsize = v, mask.bit_count()
         s_min.append(best)
         sizes.append(bsize)
         s_no.append(w_ext * k)
