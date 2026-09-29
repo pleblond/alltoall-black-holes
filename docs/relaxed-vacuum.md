@@ -221,6 +221,7 @@ graph. The scoreboard:
 | `K_N` | no | trivial (1) | uniform | ✗ by design (T1: no interior geometry) |
 | tense 2D plug (D10a) | no | dips below fabric, recovers from below (**inverted** vs GR far side) | collapses (heat trap, no power law) | ✗ unweighted; excess-degree costs flip toward GR side (mechanism check, α ad hoc) |
 | tense plug + imported costs (D10b) | no | tortuosity-import: partial recovery (1.60→1.86, no flip); c_eff-import: flips (clique 3.43, mild 2.02 vs 1.92) | open (weighted diffusion untested) | overshoot-side only; dip-phase open; cost-saturation past threshold |
+| 9×9 mild plug + c_eff (D10a) | no | FULL fingerprint: dip −0.18 → overshoot +0.79 → asymptote +0.09 (all clean) | partial (r² 0.54→0.78, no clean window) | ✓ shape conditional on bridge; amplitude scales (min↓, H↑, A(χ)); κ = interface pattern |
 | 2D isostatic + scale | no | open | open | **the prize (D3/D4/D6 + D10)** |
 
 The tense-plug row refines D10 rather than closing it: shortcuts shrink
@@ -247,6 +248,23 @@ to cost height (cost-saturation). Static local costs give the
 overshoot-side only; the dip-phase (U-shape) mechanism stays open, as does
 weighted diffusion (heat-trap remedy untested).
 
+The dip-phase resolved on a wider plug: a 9×9 χ~1 plug under the same
+zero-fit `c_eff` rule shows the FULL fingerprint — dip (E = −0.18,
+r² = 0.89) → overshoot (peak +0.79, r² = 1.0) → asymptote (+0.09) — the
+D10a shape-match conditional on the bridge. (The 5×5 dip lives at r ≤ 3,
+below window resolution; the clique dip is a violent transient.) Amplitude
+scales with tension in the loose sense: dip-min ratio deepens
+(0.20/0.077/0.016), overshoot peak grows (0.79/0.94/2.91), peak sits at
+~1 tension-radius, far-field `E ~ A(χ)Rc/r` with non-universal `A`
+(deficit ∝ tension). Fixed windows do NOT scale — the fingerprint scale
+itself grows with tension, as GR features sit at fixed l/M. The κ half
+redirected: κ is an interface pattern (boundary-negative — the T8
+attraction signature — core-positive, nonlinear in χ), not monotone
+tracking; criterion (b) reformulated to profile-with-confirmation-pending.
+The flip lives in `z_vac ~ [2,5]`, containing the independently-fixed P0'
+value 4. Conductance-weighted diffusion improves the heat trap (r²
+0.54 → 0.78) without cleaning it.
+
 The shell failure is doing its job: it localizes the gap (radial-only ⇒
 ~1D; area factor missing) instead of allowing a false success. What would
 flip the verdict, in increasing strength:
@@ -271,12 +289,15 @@ failed informatively.
 | vacuum = relaxed isostatic 2D fabric, `<z>=4` | **postulated (P0')** | `model.md` §2, this doc §2–§4 |
 | observer sees `M_O(G)`; P4 is one instance | postulated (P0/P4 box) | `model.md` §1–§2 |
 | `d_G / d_I / d_obs` + `d_eff` protocol | defined + implemented | `model.md` §1 box, `emergent_dim` |
-| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (15 tests) |
+| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (21 tests) |
 | convergence `p(L)` monotone, gap `~1/√L` | **measured** | BFS series test |
 | resistance / communicability rejected | **measured (negative)** | rejection test |
 | shell no-emergence pin (~1.4 / ~0.6) | **measured (negative)** | shell test |
 | GR fingerprint (dip, overshoot, →3⁺) | **computed (GR side)** | this doc §5; graph-side: unweighted measured (**inverted** side, shortest rejected for tense regions), tortuosity-import costs partial recovery (no flip), c_eff-import costs flip overshoot-side (dip-phase open, D10b) |
 | tension costs (D10b candidates) | **measured** | `tension_cost_fn` (partial recovery, c* diagnostic), `ceff_cost_fn` (clique + mild flips); fabric-identity + 3D-ruler controls |
+| D10a fingerprint shape | **measured (conditional)** | 9×9 mild plug: dip → overshoot → asymptote under zero-fit ceff costs; conditional on the χ/x bridges (derivation open) |
+| amplitude scaling | **measured (loose)** | min-ratio ↓, peak ↑, far-field `A(χ)` grow with χ; fixed windows don't scale (scale grows with tension, GR-like) |
+| κ-profile (D10b) | **measured (first)** | interface pattern (boundary −0.93/−0.31, core +0.89/~0); monotone-tracking FAILED, criterion reformulated, confirmation pending |
 | `d_I = 2` for vacuum fabric | predicted (follows from P0' + protocol) | queued for simulator (D10) |
 | 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10) |
 | tension → `κ` map (`z−4` to curvature) | **open** | D10 |

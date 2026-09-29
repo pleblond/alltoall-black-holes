@@ -83,6 +83,15 @@ D10b tension costs (tested, zero-fit imports from independent sectors):
   - ball_volumes_weighted: Dijkstra V(r) with source counting, same
     convention as BFS balls. Controls: weighted V bit-identical to BFS
     on relaxed fabric (both rules); 3D ruler slope preserved (|dp| ~ 0.01).
+
+Fingerprint + amplitude (tested, conditional on the ceff bridge):
+  - 9x9 chi~1 plug: dip (E = -0.18) -> overshoot (peak +0.79) -> asymptote
+    (+0.09), all clean -- the D10a shape-match. 5x5 dip below resolution.
+  - amplitude scales loosely with chi (1/2/5): dip-min 0.20/0.077/0.016,
+    peak 0.79/0.94/2.91, far-field E ~ A(chi)Rc/r (A non-universal).
+  - kappa is an interface pattern (boundary-negative, core-positive),
+    not monotone tracking; flip window z_vac ~ [2,5] contains P0' 4;
+    conductance-weighted diffusion improves the trap (r2 0.54 -> 0.78).
 """
 
 from __future__ import annotations

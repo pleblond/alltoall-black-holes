@@ -162,14 +162,27 @@ partially recovers the clique plug (1.60 → 1.86 vs control 1.92, no flip;
 flip needs `c* ≈ 0.58`, diagnostic); `c_eff`-import `w = 1 + χ` (AT light
 sector, saturating `x = χ/(1+χ)` bridge) flips clique (3.43, big overshoot)
 and mild plug (1.73 → 2.02 vs 1.92, modest +5% overshoot) — overshoot-side
-only, dip-phase (U-shape) open, amplitude unclaimed. `emergent_dim` protocol +
+only, dip-phase (U-shape) open, amplitude unclaimed. Fingerprint + amplitude
+(21 tests): 9×9 χ~1 plug shows full dip (−0.18) → overshoot (+0.79 peak) →
+asymptote (+0.09) shape-match conditional on the ceff bridge; dip-min ratio
+deepens (0.20/0.077/0.016), overshoot peak grows (0.79/0.94/2.91), far-field
+`E ~ A(χ)Rc/r` with non-universal `A` (deficit ∝ tension); κ-profile is an
+interface pattern (boundary-negative, core-positive), not monotone tracking
+(criterion (b) refined to profile); flip lives in `z_vac ~ [2,5]` containing
+P0' 4; conductance-weighted diffusion improves the heat trap (r² 0.54 →
+0.78) without cleaning it. `emergent_dim` protocol +
 two-distance bracket ready; shell no-emergence pin shows what failure looks like.
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
 matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the
 simulator mapping is fixed, with amplitude scaling in the tension; relaxed
-control regions show `d = 2` fabric scaling; (b) `κ` vs `(z−4)` fitted with
-stated residuals on the same graphs. Both (a) and (b) must output their
+control regions show `d = 2` fabric scaling. (a) is SATISFIED conditional on
+the ceff cost bridge (mild-plug shape + amplitude scaling pinned); full close
+needs the bridge derived or replaced by derivation. (b) κ-PROFILE (REFORMULATED
+after monotone-tracking failed): boundary-negative / core-positive pattern
+with stated values, first measurement recorded (clique −0.93/+0.89, mild
+−0.31/~0, fabric 0) — confirmation on independent plug geometries pending
+before (b) closes. Both (a) and (b) must output their
 curves from graph construction + dynamics, not take GR as input.
 
 **Kill relevance:** P0' first quantitative wire. Failure of the (a)

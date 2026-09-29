@@ -392,3 +392,244 @@ def test_ceff_costs_flip_clique_and_mild():
     assert pcw > p0, (pcw, p0)
     assert 3.2 < pcw < 3.6, pcw
     assert r2cw > 0.95, r2cw
+
+
+_JUMPS_KING = ((1, 1), (1, -1))
+_JUMPS_AXIAL2 = ((2, 0), (-2, 0), (0, 2), (0, -2))
+_JUMPS_DIAG2 = (
+    (2, 2), (2, -2), (-2, 2), (-2, -2),
+    (2, 1), (2, -1), (-2, 1), (-2, -1),
+    (1, 2), (1, -2), (-1, 2), (-1, -2),
+)
+
+
+def _jump_plug_grid(L, c, h, jumps):
+    """Grid + (2h+1)x(2h+1) tension plug with deterministic extra jumps."""
+    g0 = _sorted_grid_2d(L)
+    gm = g0.copy()
+    for x in range(c - h, c + h + 1):
+        for y in range(c - h, c + h + 1):
+            for dx, dy in jumps:
+                x2, y2 = x + dx, y + dy
+                if c - h <= x2 <= c + h and c - h <= y2 <= c + h:
+                    gm.add_edge(x * L + y, x2 * L + y2)
+    plug = {
+        x * L + y for x in range(c - h, c + h + 1)
+        for y in range(c - h, c + h + 1)
+    }
+    return g0, gm, plug
+
+
+def _excess_profile(g0, g, src, r0, v0, windows):
+    """E(r) = p_w - p_0 over sliding windows (+ r2 of each weighted fit)."""
+    _, vw = ed.ball_volumes_weighted(
+        g, src, weight=ed.ceff_cost_fn(g), radii=r0
+    )
+    out = {}
+    for lo, hi in windows:
+        p0, _ = _window_pr(r0, v0, lo, hi)
+        pw, r2 = _window_pr(r0, vw, lo, hi)
+        out[(lo, hi)] = (pw - p0, r2)
+    return out, vw
+
+
+def test_ceff_fingerprint_dip_overshoot_asymptote():
+    # D10a shape-match (conditional on the ceff bridge): 9x9 chi~1 plug
+    # shows dip (E = -0.18, r2 0.89) -> overshoot (E = +0.79 peak, r2 1.0)
+    # -> asymptote (|E| ~ 0.0). GR analog: 2.990 -> 3.030 -> 3.0017.
+    # Amplitude unclaimed (tension far above weak-field); shape is the pin.
+    # L=60: the (24-29) asymptote window must sit inside half-width 30 --
+    # Manhattan balls clip beyond it (an L=40 run passes for the wrong reason).
+    L, c, h = 60, 30, 4
+    g0, gm, _ = _jump_plug_grid(L, c, h, _JUMPS_KING)
+    src = c * L + c
+    r0, v0 = ed.ball_volumes_bfs(g0, src)
+    E, _ = _excess_profile(g0, gm, src, r0, v0, [(2, 7), (8, 13), (24, 29)])
+    dip, r2d = E[(2, 7)]
+    over, r2o = E[(8, 13)]
+    asym, _ = E[(24, 29)]
+    assert -0.3 < dip < -0.1, dip
+    assert r2d > 0.85, r2d
+    assert 0.6 < over < 1.0, over
+    assert r2o > 0.95, r2o
+    assert abs(asym) < 0.15, asym
+
+
+def test_amplitude_scales_with_tension():
+    # D10a amplitude clause (loose form): dip-min ratio deepens
+    # (0.20 -> 0.077 -> 0.016) and overshoot peak H grows
+    # (0.79 -> 0.94 -> 2.91) monotonically with chi. Fixed dip/overshoot
+    # WINDOWS do not scale (dip compresses below resolution, asymptote
+    # recedes) -- the fingerprint scale itself grows with tension, as GR
+    # features sit at fixed l/M. chi~5 is bursty (shell bursts, pinned
+    # by the H range, not by clean windows).
+    L, c, h = 40, 20, 4
+    g0 = _sorted_grid_2d(L)
+    levels = {
+        "chi1": _JUMPS_KING,
+        "chi2": _JUMPS_KING + _JUMPS_AXIAL2,
+        "chi5": _JUMPS_KING + _JUMPS_AXIAL2 + _JUMPS_DIAG2,
+    }
+    src = c * L + c
+    r0, v0 = ed.ball_volumes_bfs(g0, src)
+    wins = [(2, 7), (4, 9), (6, 11), (8, 13), (10, 15), (14, 19)]
+    mins, peaks = [], []
+    for jumps in levels.values():
+        _, gm, _ = _jump_plug_grid(L, c, h, jumps)
+        E, vw = _excess_profile(g0, gm, src, r0, v0, wins)
+        mins.append(float(np.min(np.asarray(vw) / np.asarray(v0))))
+        peaks.append(max(e for e, _ in E.values()))
+    assert 0.15 < mins[0] < 0.25, mins
+    assert 0.05 < mins[1] < 0.12, mins
+    assert 0.005 < mins[2] < 0.04, mins
+    assert mins[0] > mins[1] > mins[2], mins
+    assert 0.6 < peaks[0] < 1.0, peaks
+    assert 0.8 < peaks[1] < 1.1, peaks
+    assert 2.5 < peaks[2] < 3.2, peaks
+    assert peaks[0] < peaks[1] < peaks[2], peaks
+
+
+def test_farfield_coefficient_grows_with_tension():
+    # E(r) ~ A(chi)*Rc/r in the far field (GR form M/l per chi, but the
+    # coefficient is NOT universal: A ~ 0.2/0.63/1.0 for chi = 1/2/5 --
+    # deficit scales ~linearly with tension). Pinned at 5Rc on L=120
+    # (box-filling; r >> Rc required, 3Rc too close; L=60 clips).
+    L, c, h = 120, 60, 4
+    g0 = _sorted_grid_2d(L)
+    src = c * L + c
+    r0, v0 = ed.ball_volumes_bfs(g0, src)
+    coeffs = []
+    for jumps in (_JUMPS_KING, _JUMPS_KING + _JUMPS_AXIAL2):
+        _, gm, plug = _jump_plug_grid(L, c, h, jumps)
+        w = ed.ceff_cost_fn(gm)
+        dist = nx.single_source_dijkstra_path_length(gm, src, weight=w)
+        rc = max(dist[n] for n in plug)
+        _, vw = ed.ball_volumes_weighted(gm, src, weight=w, radii=r0)
+        lo = 5 * rc
+        p0, _ = _window_pr(r0, v0, lo, lo + 8)
+        pw, _ = _window_pr(r0, vw, lo, lo + 8)
+        coeffs.append((pw - p0) * (lo + 4) / rc)
+    assert 0.1 < coeffs[0] < 0.35, coeffs
+    assert 0.45 < coeffs[1] < 0.85, coeffs
+    assert coeffs[0] < coeffs[1], coeffs
+
+
+def test_kappa_interface_profile_not_monotone_tracking():
+    # D10b kappa half, REDIRECTED: kappa does not track chi monotonically
+    # (pre-registered ordering failed). Measured map is an interface
+    # pattern: fabric ~0, boundary strongly negative (clique -0.93, mild
+    # -0.31 -- the T8 attraction signature at the tension interface),
+    # core positive on the clique (+0.89, sphere-like) and ~0 on mild
+    # tension (nonlinear response). Seeded edge sampling; L=20 Floyd.
+    from bh_graph import orici
+
+    L, c = 20, 10
+    _, gclique = _clique_plug_grid(L, c)
+    plug5 = {
+        x * L + y for x in range(c - 2, c + 3)
+        for y in range(c - 2, c + 3)
+    }
+    _, gmild, plug9 = _jump_plug_grid(L, c, 4, _JUMPS_KING)
+
+    def class_means(gg, plugset):
+        dist = nx.floyd_warshall_numpy(gg)
+        idx = {v: i for i, v in enumerate(gg.nodes())}
+        classes = {"internal": [], "boundary": [], "fabric": []}
+        for u, v in gg.edges():
+            iu, iv = u in plugset, v in plugset
+            cls = (
+                "internal" if iu and iv
+                else ("boundary" if iu or iv else "fabric")
+            )
+            classes[cls].append((u, v))
+        rng = np.random.default_rng(0)
+        means = {}
+        for cls, edges in classes.items():
+            sel = edges if len(edges) <= 15 else [
+                edges[i] for i in rng.choice(len(edges), 15, replace=False)
+            ]
+            ks = [
+                orici.ollivier_curvature(gg, u, v, _dist=dist, _idx=idx)
+                for u, v in sel
+            ]
+            means[cls] = float(np.mean(ks))
+        return means
+
+    mc = class_means(gclique, plug5)
+    assert abs(mc["fabric"]) < 0.05, mc
+    assert mc["boundary"] < -0.5, mc
+    assert mc["internal"] > 0.5, mc
+    mm = class_means(gmild, plug9)
+    assert abs(mm["fabric"]) < 0.05, mm
+    assert mm["boundary"] < -0.1, mm
+    assert abs(mm["internal"]) < 0.1, mm
+
+
+def test_flip_window_contains_isostatic_point():
+    # R1 redirect: the mild-plug flip is NOT normalization-robust (/1
+    # fails) -- it lives in a cost window z_vac ~ [2, 5]. The P0'
+    # isostatic value 4 sits INSIDE the window (fixed by Maxwell, not
+    # chosen for the flip): corroboration, not tuning. Clique flips
+    # wider (even z=8); extreme costs freeze balls (z=1 clique p ~ 0).
+    L = 40
+    g0, gm = _mild_plug_grid(L, 20)
+    src = 20 * L + 20
+    r0, v0 = ed.ball_volumes_bfs(g0, src)
+    p0, _ = _window_pr(r0, v0, 8, 20)
+    results = {}
+    for zc in (1.0, 2.0, 4.0, 6.0):
+        _, vw = ed.ball_volumes_weighted(
+            gm, src, weight=ed.ceff_cost_fn(gm, z_vac=zc), radii=r0
+        )
+        pw, _ = _window_pr(r0, vw, 8, 20)
+        results[zc] = pw
+    assert results[1.0] < p0, (results, p0)
+    assert results[2.0] > p0, (results, p0)
+    assert results[4.0] > p0, (results, p0)
+    assert results[6.0] < p0, (results, p0)
+    assert 1.9 < results[4.0] < 2.1, results
+
+
+def test_weighted_diffusion_partially_untraps():
+    # Heat trap reproduced (unweighted clique diffusion: p ~ 0.2,
+    # r2 ~ 0.5, no clean window) + partial remedy: conductance-weighted
+    # Laplacian (conductance = 1/w_ceff, probe-grade, not yet promoted
+    # to the module) improves to r2 ~ 0.78 at t=40 but stays below the
+    # 0.85 clean-window bar. Improvement pinned, cleanliness unclaimed.
+    from scipy.linalg import expm
+
+    L, c = 20, 10
+    _, g = _clique_plug_grid(L, c)
+    src = c * L + c
+
+    def diff_fit(gg, t, cond=None):
+        nodes = list(gg.nodes())
+        idx = {v: i for i, v in enumerate(nodes)}
+        if cond is None:
+            wmat = nx.to_numpy_array(gg, nodelist=nodes)
+        else:
+            n = len(nodes)
+            wmat = np.zeros((n, n))
+            for u, v in gg.edges():
+                i, j = idx[u], idx[v]
+                cc = cond(u, v)
+                wmat[i, j] = wmat[j, i] = cc
+        lap = np.diag(wmat.sum(axis=1)) - wmat
+        kmat = expm(-float(t) * lap)
+        dg = np.diag(kmat)
+        dist = np.sqrt(
+            np.maximum(dg[:, None] + dg[None, :] - 2.0 * kmat, 0.0)
+        )
+        np.fill_diagonal(dist, 0.0)
+        r, v = ed.ball_volumes(dist, idx[src], n_radii=25)
+        f = ed.fit_dimension(r, v)
+        return f["p"], f["r2"], f["n_points"]
+
+    p_trap, r2_trap, _ = diff_fit(g, 5.0)
+    assert p_trap < 0.5, (p_trap, r2_trap)
+    assert r2_trap < 0.6, (p_trap, r2_trap)
+    w = ed.ceff_cost_fn(g)
+    p_w, r2_w, n_w = diff_fit(g, 40.0, cond=lambda u, v: 1.0 / w(u, v))
+    assert r2_w > 0.7, (p_w, r2_w, n_w)
+    assert 0.8 < p_w < 1.2, (p_w, r2_w, n_w)
+    assert n_w >= 4, (p_w, r2_w, n_w)
