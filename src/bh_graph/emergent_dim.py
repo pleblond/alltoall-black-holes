@@ -37,9 +37,11 @@ Distance-candidate ledger (tested, honest negatives kept):
   - "resistance": recovers 1D only (= shortest on chains); FAILS in 2D/3D
     (grows ~log r in 2D, bounded in 3D: power-law fit gives spurious p ~ 4-7).
     Resistance is commute cost, not spatial distance, for d >= 2.
-  - "diffusion": recovers dimension at large t (chain t=20 -> ~1.1, grid2d
-    t=5 -> ~2.2, grid3d L=5 t=5 -> ~3.6): t is the coarse-graining / RG scale.
-    Small t sees the grain (poor fits), large t sees the IR exponent.
+  - "diffusion": recovers approximate dimension at tuned t (chain t=20 -> ~1.1,
+    grid2d t=5 -> ~2.2, grid3d L=5 t=5 -> ~3.6, L=7 t=3-5 -> ~3.3-3.4):
+    t is the coarse-graining / RG scale. Small t sees the grain (poor fits),
+    tuned t sees the IR exponent; 3D overshoots by ~10-15% on small open
+    lattices (boundary effects, pinned with tolerance -- not claimed exact).
   - "communicability": FAILS (chain ~1.9 vs 1, grid2d ~5.2 vs 2): Estrada
     distance measures walk-profile similarity (symmetric endpoints look close),
     not spatial separation. Kept as documented rejection.

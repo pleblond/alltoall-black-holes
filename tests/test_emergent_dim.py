@@ -128,6 +128,13 @@ def test_diffusion_recovers_dimension_at_large_t():
     m2 = ed.measure_emergent_dimension(g2, source=6 * 12 + 6, kind="diffusion", t=5.0, n_radii=30)
     assert m2["fit"]["r2"] > 0.95
     assert abs(m2["fit"]["p"] - 2.0) < 0.4, m2["fit"]
+    # 3D small open lattice: tuned t gives ~3.3 (overshoot documented, not exact).
+    g3 = nx.convert_node_labels_to_integers(nx.grid_graph([7, 7, 7]))
+    m3 = ed.measure_emergent_dimension(
+        g3, source=3 * 49 + 3 * 7 + 3, kind="diffusion", t=5.0, n_radii=25
+    )
+    assert m3["fit"]["r2"] > 0.95
+    assert abs(m3["fit"]["p"] - 3.0) < 0.6, m3["fit"]
 
 
 def test_rejected_distances_pinned():
