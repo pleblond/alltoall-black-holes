@@ -12,6 +12,8 @@ from bh_graph.maxent import (
 from bh_graph.qes import (
     qes_candidates, qes_page_k, qes_dominant, has_qes_transition,
     build_core_boundary_flow, min_cut_value, min_cut_scaling,
+    is_sgen_feasible, sgen_of_subset, sgen_scan, saturation_gate,
+    tuned_footprint, SGEN_N_MAX,
 )
 from bh_graph.evaporation import page_curve_bits, page_time, evaporate, is_evaporated
 from bh_graph.evaporation_unitary import (
@@ -343,6 +345,8 @@ __all__ = [
     "bekenstein_check_physical", "is_saturated",
     "qes_candidates", "qes_page_k", "qes_dominant", "has_qes_transition",
     "build_core_boundary_flow", "min_cut_value", "min_cut_scaling",
+    "is_sgen_feasible", "sgen_of_subset", "sgen_scan", "saturation_gate",
+    "tuned_footprint", "SGEN_N_MAX",
     "page_curve_bits", "page_time", "evaporate", "is_evaporated",
     "haar_random_unitary", "is_isometry", "is_unitary", "apply_subset_unitary",
     "random_two_qubit_gate", "scramble_subset_circuit", "build_emission_isometry",

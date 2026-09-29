@@ -2078,6 +2078,39 @@ def fig76_plateau():
     plt.close(fig)
 
 
+def fig77_sgen_pop():
+    from bh_graph.qes import sgen_scan, tuned_footprint
+    from bh_graph.micro import R_POINT, critical_k, embedding_radius
+    n = 8
+    k = np.arange(0, 21)
+    out = sgen_scan(n, k)
+    r0 = tuned_footprint(n)
+    r_def = embedding_radius(k, R_POINT, 1.0)
+    r_tun = embedding_radius(k, r0, 1.0)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.8))
+    axes[0].plot(k, out["S_no"], color="gray", linestyle="--", label="S_no")
+    axes[0].plot(k, out["S_min"], color="#0f766e", label="S_min (2^N scan)")
+    axes[0].axvline(8, color="red", linestyle=":", label="k* = 8")
+    axes[0].set_xlabel("k"); axes[0].set_ylabel("S (nats)")
+    axes[0].set_title("S_gen min crosses S_no at k* = N")
+    axes[0].legend(fontsize=8)
+    axes[1].step(k, out["island_size"], color="#7c3aed", where="mid")
+    axes[1].axvline(8, color="red", linestyle=":")
+    axes[1].set_xlabel("k"); axes[1].set_ylabel("|X| (island size)")
+    axes[1].set_title("Island jumps 0 -> N (w_int large)")
+    axes[2].plot(k, r_def, color="#0369a1", label=f"default (pop {critical_k():.1f})")
+    axes[2].plot(k, r_tun, color="#dc2626", label=f"tuned r0 (pop {critical_k(r0):.1f})")
+    axes[2].axvline(8, color="red", linestyle=":")
+    axes[2].set_xlabel("k"); axes[2].set_ylabel("R / lp")
+    axes[2].set_title("Radius pop aligns only if tuned")
+    axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 77 — S_gen scan N=8: coincidence conditional on saturation gate "
+                 "(tuned r0 is calibration, not proof; analytic R, no springs)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig77_sgen_pop.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -2158,6 +2191,7 @@ def main():
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
     fig76_plateau()
+    fig77_sgen_pop()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
