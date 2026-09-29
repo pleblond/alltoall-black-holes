@@ -62,12 +62,16 @@ currently consistent by construction, not passed predictions.
 **Missing:** quantitative Ollivier-Ricci `κ` to 2PN coefficient `c2` map.
 `c2 = p(2p-1)` is ansatz; power-law vs `1/r^2` disagree cross-applied.
 See supplement S4 / BU. Kill wire `p = 0.92 ± 0.056` held to N=16000.
+**v0.5 route:** curvature as failure of `V(r)` to scale uniformly via
+`d_eff(r) = d ln V / d ln r` (`emergent_dim` protocol + controls; diffusion
+viable at large t, resistance/communicability rejected on record).
 
 ## D4 — β(N), w from geometry — ongoing
 
 **Missing:** bridge exponent `β(N)` (log-linear over 6 points, recalibrated
 per N) and 2PN weight `w = 1.953` (solved from cancellation) derived from
 graph Laplacian / Damour-Schafer from wiring.
+**v0.5 route:** `β(N)` from `N(r)` implied by `V(r)` scaling (`emergent_dim`).
 
 ## D5 — NICER M-R-Λ + tidal deformability — P1
 
@@ -78,6 +82,8 @@ Sharpest near-term test after kilonova rate (2-3 yr timeline).
 
 **Missing:** `R_s = 2M` (BM reduction: `k(M)` iff `R_s(M)` given).
 Single GR input; derivation from wiring alone open.
+**v0.5 route:** `R_s` as radius where embedding `k` legs into `M_O(G_vac)`
+forces a surface (T5 pop + `d_eff -> 3` IR fixed point, still open).
 
 ## D7 — Kilonova radiative transfer — analytic systematics done, full RT queued
 

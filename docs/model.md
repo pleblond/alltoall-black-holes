@@ -32,6 +32,16 @@ nat/bit units corrected). Postulate B stays retired with one clarifying
 sentence; the s-leg falsifier now tests I1a directly; I6c's Jacobson
 conclusion is guarded given-I1b. Import IDs otherwise stable; see §9.
 
+**v0.5 vacuum-kinematics release (this branch, draft).** No number changes:
+L0 kinematics clarification only. Adds explicit vacuum state P0 (perfect
+all:all, defined before P1), formalizes the observer reconstruction map
+`M_O` of which P4 is one instance, and names the three dimensions
+`d_G / d_I / d_obs` with the `d_eff(r) = d ln V / d ln r` measurement
+protocol (`emergent_dim` module + tests). T1 gains the corollary that spatial
+distance must be derived from information-access, not adjacency. I6a/b are
+restated as given-L0-vacuum-plus-`M_O` conditionals; D3/D4/D6 gain an explicit
+close-route via the `d_eff -> 3` IR test. See §1–§3, §5–§6 deltas.
+
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
 figures, and measurements are cited as *evidence about* the model, never as its
@@ -74,20 +84,65 @@ These are undefined terms. Everything else is built from them.
 |---|---|---|
 | node | indivisible Planck-scale element | lives at `~1e-35` m; no internal structure |
 | edge | unit of entanglement between nodes | cut edge-count bounds entanglement entropy across the cut |
+| `G` | the information graph `(V,E,I)` | no coordinates; see P0; `G_N` and ambient graph are subgraphs of `G` |
+| `G_vac` | vacuum information state | homogeneous, maximally unconstrained; defined in P0 (v0.5) |
 | `G_N` | interior graph on `N` nodes | the object under study; boundary between interior and ambient is the cut |
-| ambient graph | the rest of the network | exterior legs terminate here |
+| ambient graph | the rest of the network | exterior legs terminate here; one realization of `G_vac` with excitations |
+| `M_O` | observer reconstruction map | restricted coarse-graining / information-access channel; P4 is one instance (v0.5) |
+| `d(i,j)`, `B(r)`, `V(r)`, `d_eff` | info-transfer distance, ball, capacity, effective dimension | `d_eff = d ln V / d ln r`; see §1 dimensions box (v0.5) |
+| `d_G`, `d_I`, `d_obs` | microscopic / information / observed dimension | distinct in general; `d_obs -> 3` is the IR conjecture (v0.5) |
 | `k` | exterior leg count (edges crossing the cut) | the model's central quantity; `k << N²` for black holes |
 | `e_int`, `e_ext` | interior / exterior entanglement fractions | normalized wiring budgets; see P3 |
 | `K_max` | max exterior budget (normalization) | toy-level; physical predictions must be `K_max`-independent where claimed |
 | `m_x` | neighborhood measure at node `x` | canonical form postulated in P4; the only measure any theorem uses |
 | `H_graph,k`, `H_leg` | graph / leg Hilbert spaces | used only where unitarity is explicitly constructed (qubit toy, see T7); no general graph Hamiltonian is postulated |
 
-What is **not** primitive: mass, radius, temperature, metric, area. Those enter
-in L1 as interface maps, each labeled.
+What is **not** primitive: mass, radius, temperature, metric, area, coordinates.
+Those enter in L1 as interface maps, each labeled. In particular no `(x,y,z)`
+is assigned to nodes of `G` at L0 (v0.5).
+
+### Dimensions box (v0.5). Three notions of dimension, kept separate.
+
+- `d_G` — microscopic graph dimension: whatever dimension (if any) describes
+  the raw information network. For `K_N`, trivial (diameter 1, T1).
+- `d_I` — information dimension: reconstructed from information-transfer /
+  entanglement scaling.
+- `d_obs` — observed spatial dimension: reconstructed by macroscopic observers
+  via `M_O`.
+
+Definitions (measurement protocol, `emergent_dim`):
+
+```
+d(i,j)   = f(information-transfer cost_ij)   # NOT shortest-path adjacency on K_N
+B(r)     = {j : d(i,j) <= r}
+V(r)     = information capacity of B(r)       # node count proxy; see module
+d_eff(r) = d ln V(r) / d ln r
+d_obs    = lim_{r -> IR} d_eff(r)  ~=  3  (conjecture)
+```
+
+The microscopic value `d_G` is not set to 3. The model must calculate
+`d_eff(r)` and exhibit an IR fixed point at 3 without imposing 3. Shortest-path
+distance is the documented failure mode on `K_N` (always 1); the supported
+`d(i,j)` instances are effective resistance / commute-time, diffusion, and
+communicability distances (see `emergent_dim.info_distance_matrix`).
 
 ---
 
 ## 2. L0 postulates and theorems
+
+### P0 (vacuum postulate, v0.5). The vacuum is the homogeneous, maximally unconstrained information state.
+
+`G_vac = (V,E,I)` with no coordinates, no distinguished node, direction,
+location, boundary, or macroscopic excitation, and maximal symmetry under
+whatever graph transformations are physically irrelevant (graph automorphisms).
+"Maximally unconstrained" means minimally distinguished, not few edges:
+perfect all:all is maximally edge-constrained but minimally distinguished.
+Black-hole interiors `G_N` (P1) are defects/excitations of `G_vac` where the
+failure to be perfect *is* the observable. The ambient graph of §1 is one
+realization of `G_vac` with excitations. An observer never sees `G` directly;
+an observer sees `M_O(G)` where `M_O` is a restricted coarse-graining /
+information-access channel (see P4 box). Objective spacetime is defined as the
+part of `G`'s information structure invariant under all admissible `M_O`.
 
 ### P1 (wiring postulate). Black-hole interiors are almost-perfect all:all graphs.
 
@@ -130,12 +185,30 @@ postulated is the *choice*; the curvature values themselves are measured.
 Discharge condition: derive the measure from graph dynamics, or exhibit an
 alternative measure preserving the T8 sign and the L2 `p` (related: D1, D3).
 
+**v0.5 observer box.** P4 is one explicit instance of the observer
+reconstruction map `M_O` from P0: physical distance is not adjacency, it is
+`d(i,j) = f(information-transfer cost_ij)` as reconstructed through `M_O`.
+The `0.94 → 0.84` degradation is evidence *about* which `M_O` the L2 fit
+selects, not a definition of `M_O`. Promoting P4 to derived means exhibiting
+the `M_O` (measure + distance + coarse-graining) that gives `d_eff -> 3` and
+negative radial `κ` without tuning.
+
 ### T1 (no interior distance). `K_N` has diameter exactly 1 at every `N`.
 
 Mean distance 1, spectral gap `N`. Deterministic SI/operator spread covers `K_N`
 in 1 step for any `N`, versus `~N/2` for a chain `P_N`, `~2√N` for a
 `√N×√N` grid, and `~log N` for a random 3-regular expander. **Derived**, zero
 tuning. (`graphs`, `scrambling`.)
+
+**v0.5 corollary.** T1 shows spatial distance must be derived from
+information-access, not adjacency. The complete graph is fundamentally
+non-geometric while producing a geometric exterior via `M_O` (P0/P4 box).
+Graph distance is the documented failure mode (`d = 1` everywhere on `K_N`);
+physical distance is `d(i,j) = f(information-transfer cost)` reconstructed
+through `M_O`. Light / information inside `K_N` is 1 step; what we call `c`
+outside is egress through the `k << N²` bottleneck given monogamy and
+congestion (see T8–T11 `c_eff`). (`emergent_dim` pins the failure and the
+supported distances.)
 
 ### T2 (fast scrambling). Finite-speed circuits give `t_* ~ log N` on all:all.
 
@@ -182,6 +255,15 @@ the theorems are what the price buys.
 | I6b | Ollivier–Ricci → Ricci continuum limit, with the P4 uniform measure | **input** (postulated); load-bearing for the T8 sign and the L2 `p` | `orici`, `weakfield`, S1 |
 | I6c | Raychaudhuri (focusing) for leg bundles + Jacobson-chain inputs (`T = κ/2π`, Clausius `dQ = T·dS`, `dS = ln2·dk` saturated) | open bridge (D9); load: only the "Einstein equations follow" conditional, stated given I1b (no double-counting of `η = 1/4`) — T8–T11 do not depend on it | `jacobson`, S1 |
 | I7 | Gap coefficient, crossover scales (`r_point`, `α = 1` congestion calibration, `A_min`) | heuristic / calibrated (see T6, T9) | `micro`, `redshift`, S1 |
+
+**v0.5 restatement.** Given L0 vacuum P0 + `M_O` = P4 uniform measure, then
+Ollivier–Ricci sign = attraction T8. Promoting I6 to derived = exhibiting an
+`M_O` (measure + info-transfer distance + coarse-graining) that gives
+`d_eff -> 3` in the IR and negative radial `κ` without tuning. I6a stays
+cited/load-none; I6b stays the load-bearing input; I6c stays the D9 open
+bridge. Curvature in this language is failure of information neighborhoods
+`V(r)` to scale uniformly; matter changes info structure, `M_O` reads it as
+`R_μνρσ`.
 
 ### The I1 matching theorem (patch from saturation + thermodynamics).
 
@@ -515,10 +597,10 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 |---|---|---|---|
 | D1 | Graph evaporation isometry `V_k: H_graph,k → H_graph,k−1 ⊗ H_leg` from graph dynamics; genuine QES extremization | derive (not choose) a scrambling `V_k` from the graph Hamiltonian/adjacency; reduced radiation spectrum follows Page under all:all dynamics; extremize `S_gen` from a path integral | promotes T6/T7 from scoped to full; no current falsifier (no observed BH Page curve) — referee-honesty issue |
 | D2 | Kerr multipoles from the graph: `M₂ = −Ma²`, `g_tφ`, `r_ISCO(M,J)`, Kerr QNM spectrum | derive `Q = −Ma²(1+δ_Q)` without assuming Kerr; exterior perturbation `δω_nlm` vs Kerr | future wires: graph `|δ_Q| ≳ 0.17` ruled out by GW241011; QNM benchmark from GW250114 (`δf_220~2%`, `δτ_220~10%`, `δf_221~30%`, `δf_440~tens%`); GW250114/GW241011 currently consistent *by construction*, not passed predictions |
-| D3 | Quantitative Ollivier–Ricci `κ → c₂` map | derive the map; resolve power-law vs `1/r²` disagreement | promotes F4 to derived; kill wire `p = 0.92 ± 0.056` at `N = 1024` class held to N=16000 |
-| D4 | `β(N)` and `w` from geometry | derive `β(N)` from `N(r)` geometry, `w` from the graph Laplacian (Damour–Schäfer from wiring) | promotes F2/F3 to derived |
+| D3 | Quantitative Ollivier–Ricci `κ → c₂` map | derive the map; resolve power-law vs `1/r²` disagreement | promotes F4 to derived; kill wire `p = 0.92 ± 0.056` at `N = 1024` class held to N=16000; v0.5 route: curvature as failure of `V(r)` to scale uniformly via `d_eff(r)` (`emergent_dim`) |
+| D4 | `β(N)` and `w` from geometry | derive `β(N)` from `N(r)` geometry, `w` from the graph Laplacian (Damour–Schäfer from wiring) | promotes F2/F3 to derived; v0.5 route: `β(N)` from `N(r)` implied by `V(r)` scaling (`emergent_dim`) |
 | D5 | NICER `M-R-Λ` + tidal deformability from routing stiffness | derive `R_1.4`, `M-R`, `Λ` | sharpest near-term test after kilonova rate (2–3 yr): `R_1.4` at 11–13 km, 5%, unreproducible by routing stiffness kills L2 compactness |
-| D6 | Mass–radius from wiring | derive `R_s = 2M` from wiring alone | promotes I3 to derived (long-term) |
+| D6 | Mass–radius from wiring | derive `R_s = 2M` from wiring alone | promotes I3 to derived (long-term); v0.5 route: `R_s` as radius where embedding `k` legs into `M_O(G_vac)` forces a surface (T5 pop + `d_eff -> 3` fixed point) |
 | D7 | Kilonova radiative transfer | validated multidimensional RT on public ejecta models/transformations compatible with the F5/F6 bulk prescription (morphology, velocity structure per VEL-1, Ye-dependent opacities/reprocessing, viewing-angle dependence, direct `i`-band); pipeline must pass the AT2017gfo anchor/control gate before its GW190814 result promotes the analytic verdict (POSSIS primary implementation) | decides whether the GW190814 non-detection is compatible with universal shedding or falsifies it; `g`-band verdicts already robust |
 | D8 | Shedding efficiency `ε(M,a,q)` + shutoff location | derive mass/spin/ratio dependence from `K_max(N)` combinatorics, spin-ordered reabsorption, or remnant-trap physics, with any shutoff location as *output* | highest-value attack surface on universal shedding; a derived shutoff between gap and BBH masses must land where it lands (same no-insertion rule as the 44 M☉ null) |
 | D9 | Raychaudhuri (focusing) for leg bundles | derive focusing for SI fronts on leg networks (seed: AT congestion slowdown); closes the Jacobson chain to Einstein's equations with `η = 1/4` from I1b, `G = 1` | promotes I6c from open bridge to derived; gates nothing else — T8–T11 stand without it |
@@ -526,6 +608,14 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 Rule for all D-items: the closing derivation must output the number or location,
 not take it as input. Inserting an observed scale as a graph parameter is a fit,
 not a prediction, and is refused (precedent: 44 M☉).
+
+**v0.5 measurement protocol (D3/D4/D6).** For many states in `src/bh_graph/`:
+1. compute `d(i,j)` from information-transfer (resistance / diffusion /
+communicability, not shortest path — see `emergent_dim`); 2. build `B(r)`;
+3. measure `V(r)`; 4. compute `d_eff(r) = d ln V / d ln r`. Ask: does
+`d_eff -> 3` without imposing 3? A positive result promotes the D-item
+per its close criterion; a negative result localizes which part of the
+information geometry needs another principle.
 
 ---
 
@@ -549,6 +639,9 @@ Stated so no reader misses them:
 - Ruled out on the record (kept visible): broad Planck-remnant dark matter
   (survives only in a `~0.4`-dex EMD window at `~4e5` g); isotropic
   `b_crit = 8M`; naive `γ = 2` strain; linear LIV; flat `p = 0.49`.
+- No microscopic 3D lattice postulated (v0.5): `d_G ≠ d_I ≠ d_obs` in general;
+  no Lorentz-invariant dynamics; no Born rule / double-slit derivation (needs
+  D1); no Casimir `1/d⁴` derivation (ontology only: constrained `G_vac`, not void).
 
 ---
 
@@ -559,6 +652,10 @@ Single table; every symbol in §1–§4 appears here with its home.
 | Symbol | Definition | Home |
 |---|---|---|
 | `N` | interior node count | §1, `graphs` |
+| `G`, `G_vac` | information graph `(V,E,I)`; homogeneous vacuum state | P0 (v0.5), `emergent_dim` |
+| `M_O` | observer reconstruction map (restricted channel) | P0/P4 box (v0.5) |
+| `d(i,j)`, `B(r)`, `V(r)`, `d_eff` | info-transfer distance, ball, capacity, `d ln V / d ln r` | §1 box (v0.5), `emergent_dim` |
+| `d_G`, `d_I`, `d_obs` | microscopic / information / observed dimension | §1 box (v0.5) |
 | `k` | exterior leg count | §1, `horizon` |
 | `e_int`, `e_ext` | interior / exterior entanglement fractions | P3, `horizon`/`monogamy` |
 | `K_max` | max exterior budget (normalization) | §1, `horizon.exterior_budget` |
@@ -590,7 +687,9 @@ Single table; every symbol in §1–§4 appears here with its home.
 
 - **L0**: `graphs`, `scrambling`, `circuits`, `otoc`+`pheno`, `krylov`, `syk`, `bigsyk`,
   `sparse24`, `monogamy`, `qec`, `robustness`, `fission`, `klanguage`,
-  `collapse` (grid→complete part), `concentration`.
+  `collapse` (grid→complete part), `concentration`, `emergent_dim` (v0.5:
+  `d(i,j)` / `B(r)` / `V(r)` / `d_eff(r)` protocol, `K_N` shortest-path
+  failure pinned).
 - **L1**: `horizon`, `micro`, `qes`, `evaporation`, `evaporation_unitary`,
   `haar`, `maxent`, `tn`, `kerr`, `kerrpage`, `thermo`, `entropic`, `redshift`,
   `heatker`, `orici` (AU signs), `jacobson`, `lensing`, `chroma`, `shapiro`,
