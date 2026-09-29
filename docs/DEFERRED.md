@@ -62,12 +62,16 @@ currently consistent by construction, not passed predictions.
 **Missing:** quantitative Ollivier-Ricci `κ` to 2PN coefficient `c2` map.
 `c2 = p(2p-1)` is ansatz; power-law vs `1/r^2` disagree cross-applied.
 See supplement S4 / BU. Kill wire `p = 0.92 ± 0.056` held to N=16000.
+**v0.5 route:** curvature as failure of `V(r)` to scale uniformly via
+`d_eff(r) = d ln V / d ln r` (`emergent_dim` protocol + controls; diffusion
+viable at large t, resistance/communicability rejected on record).
 
 ## D4 — β(N), w from geometry — ongoing
 
 **Missing:** bridge exponent `β(N)` (log-linear over 6 points, recalibrated
 per N) and 2PN weight `w = 1.953` (solved from cancellation) derived from
 graph Laplacian / Damour-Schafer from wiring.
+**v0.5 route:** `β(N)` from `N(r)` implied by `V(r)` scaling (`emergent_dim`).
 
 ## D5 — NICER M-R-Λ + tidal deformability — P1
 
@@ -78,6 +82,8 @@ Sharpest near-term test after kilonova rate (2-3 yr timeline).
 
 **Missing:** `R_s = 2M` (BM reduction: `k(M)` iff `R_s(M)` given).
 Single GR input; derivation from wiring alone open.
+**v0.5 route:** `R_s` as radius where embedding `k` legs into `M_O(G_vac)`
+forces a surface (T5 pop + `d_eff -> 3` IR fixed point, still open).
 
 ## D7 — Kilonova radiative transfer — analytic systematics done, full RT queued
 
@@ -136,3 +142,32 @@ conditional to derived.
 
 **Kill relevance:** none (gates no theorem in T8–T11); mathematical completion
 of the AU triptych's third route.
+
+## D10 — Tension spectrum: simulator d-dip around mass + tension→κ map (v0.6)
+
+**Missing:** (a) the graph-side reproduction of the GR dimensional
+fingerprint: an over-coordinated (tense, `z > 4`) region must show near dip +
+overshoot + `→3⁺` under info-side `d_eff`, while relaxed `z ≈ 4` regions
+show fabric `d = 2` / reconstructed `d = 3` as applicable; (b) a quantitative
+tension→curvature map: Ollivier–Ricci `κ` tracking over-coordination (`z−4`).
+Current status: GR side computed (`docs/relaxed-vacuum.md` §5: dip 2.990 at
+`30M`, overshoot 3.030 at `100M`, `→3⁺` as `~1/l`); graph side: v0.6 probe
+(L=100) shows unweighted tense plugs dip below fabric dimension and recover
+from below (**inverted** vs GR far side — bare shortest-path rejected as
+`d(i,j)` for tense regions, pinned), ad-hoc excess-degree costs flip toward
+the GR side (mechanism check, `α` not derived), diffusion collapses on the
+clique plug (heat trap, no power law); far-source near balls bit-identical
+to control (relaxed-near-tension pin). `emergent_dim` protocol +
+two-distance bracket ready; shell no-emergence pin shows what failure looks like.
+
+**Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
+matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the
+simulator mapping is fixed, with amplitude scaling in the tension; relaxed
+control regions show `d = 2` fabric scaling; (b) `κ` vs `(z−4)` fitted with
+stated residuals on the same graphs. Both (a) and (b) must output their
+curves from graph construction + dynamics, not take GR as input.
+
+**Kill relevance:** P0' first quantitative wire. Failure of the (a)
+shape-match after the mapping is fixed refutes the relaxed-vacuum postulate;
+success promotes curvature-as-self-stress from ontology to measurement and
+feeds D3 (κ→c₂ via tension) and D6 (R_s from the tension profile).

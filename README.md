@@ -22,7 +22,7 @@
 > plus an upper-gap null and a GW190814 audit (tension, not exclusion).
 
 > **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 12pp) ·
-> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 11pp, S1–S10) ·
+> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 13pp, S1–S11) ·
 > build [`notes`](paper/v5/README.md)
 
 ## Abstract
@@ -65,11 +65,11 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 
 | Path | Description | License |
 |---|---|---|
-| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 9pp main text + 10pp S1–S10 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
+| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 12pp main text + 13pp S1–S11 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 398 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 425 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -94,7 +94,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 398 tests (2 torch/GPU-only skip without torch)
+python -m pytest tests/ -q          # 425 tests (2 torch/GPU-only skip without torch)
 python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
@@ -149,12 +149,23 @@ pdflatex supplement.tex && pdflatex supplement.tex
   dynamics open), H2 $T_H$/$\Omega_H$ in the main text, mass-gap null +
   universal BBH shedding + GW190814 epoch audit ($P \approx 0.68$–$0.88$,
   tension), 46/46 references cited, 398 tests, 81 figure files.
+  Unreleased model-docs draft (PR branch, `docs/model.md` v0.6): emergent-dimension
+  protocol (`emergent_dim`, 12 tests) — two-distance bracket on imposed lattices,
+  monotone `p(L)` convergence, diffusion overshoot-shrink, resistance/communicability
+  rejections, radial-shell no-emergence pin, tense-plug inversion pin (bare
+  shortest-path rejected as `d(i,j)` for tense regions; far-field near-balls
+  identical to control); GR-side dimensional fingerprint
+  (dip/overshoot/→3⁺) computed as the D10 simulator target.
 - **Postulated / borrowed:** Verlinde equipartition + Bekenstein bound,
   equivalence principle, continuum limits (heat-kernel, Ollivier),
   Raychaudhuri for leg bundles, gap coefficient, crossover scales.
   v4.0 fits (labeled): gradient slope $0.015$, bridge $\beta(N)$
   ($1.5$@300, $1.28$@600, $1.24$@1020), $w = 1.953$, shed $e$
   $0.5\to0.416$ + $10\%$ efficiency, $\kappa\to c_2$ map ansatz.
+  Unreleased v0.6 draft adds: P0' relaxed vacuum (isostatic 2D fabric, 4 edges/node;
+  BH interior re-labeled maximum-tension extreme), observer map $M_O$ (P4 as one instance),
+  only-vacuum-is-perfectly-3D conjecture (graph side open, D10). Full story:
+  `docs/relaxed-vacuum.md`.
 - **Ruled out (on record):** broad Planck-remnant dark matter (survives
   only in a $\sim 0.4$-dex EMD window at $\sim 4\times10^5$ g).
 - **Falsifiers armed:** AF quench ratio $< 1.3$, $\alpha$ outside
