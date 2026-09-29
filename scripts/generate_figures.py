@@ -2111,6 +2111,32 @@ def fig77_sgen_pop():
     plt.close(fig)
 
 
+def fig78_complexity_flat():
+    from bh_graph.micro import R_POINT, embedding_radius
+    d = 2 ** 4
+    psi0 = np.zeros(d)
+    psi0[0] = 1.0
+    t = np.linspace(0, 20, 100)
+    a_s, b_s = lanczos(syk_hamiltonian(8, seed=1), psi0)
+    cs = spread_complexity(a_s, b_s, t)
+    r = embedding_radius(np.full_like(t, 6.0))
+    fig, ax1 = plt.subplots(figsize=(7, 3.8))
+    ax1.plot(t, cs, color="#0f766e", label="spread complexity C(t), SYK N=8")
+    ax1.set_xlabel("t")
+    ax1.set_ylabel("C(t)", color="#0f766e")
+    ax1.tick_params(axis="y", labelcolor="#0f766e")
+    ax2 = ax1.twinx()
+    ax2.plot(t, r, color="#7c3aed", linestyle="--", label="R(t), k=6 < k_crit")
+    ax2.set_ylabel("R / lp", color="#7c3aed")
+    ax2.tick_params(axis="y", labelcolor="#7c3aed")
+    ax2.set_ylim(R_POINT * 0.9, R_POINT * 1.1)
+    fig.suptitle("Fig 78 — Complexity grows while area frozen (fixed k; "
+                 "illustration, no C~Nt / CV claim)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig78_complexity_flat.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -2192,6 +2218,7 @@ def main():
     fig75b_gw190814_systematics()
     fig76_plateau()
     fig77_sgen_pop()
+    fig78_complexity_flat()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

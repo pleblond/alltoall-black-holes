@@ -36,3 +36,16 @@ def test_syk_spreads_further_than_chain():
     cc = spread_complexity(a_c, b_c, t)
     assert cs.max() > 1.5 * cc.max()  # explores far more Krylov space
     assert cs[-10:].mean() > cc[-10:].mean()  # higher late-time plateau
+
+
+def test_complexity_rises_while_radius_flat():
+    # Fixed k < k_crit: embedding radius frozen, spread complexity grows.
+    # Illustration only: no C~Nt or Complexity=Volume claim.
+    from bh_graph.micro import R_POINT, embedding_radius
+    psi0 = _setup()
+    t = np.linspace(0, 20, 100)
+    a, b = lanczos(syk_hamiltonian(8, seed=1), psi0)
+    c = spread_complexity(a, b, t)
+    r = embedding_radius(np.full_like(t, 6.0))
+    assert bool(np.all(r == R_POINT))  # area frozen
+    assert c[-10:].mean() > c[:10].mean()  # complexity grew
