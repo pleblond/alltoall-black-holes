@@ -219,7 +219,18 @@ graph. The scoreboard:
 | 3D lattices | **yes** (construction) | → 3 from below | → 3 from above | ✓ (ruler validation, circular for emergence) |
 | radial shells | no | ~1.4 | ~0.6 | ✗ FAIL (pinned; no 2-sphere factor) |
 | `K_N` | no | trivial (1) | uniform | ✗ by design (T1: no interior geometry) |
+| tense 2D plug (D10a) | no | dips below fabric, recovers from below (**inverted** vs GR far side) | collapses (heat trap, no power law) | ✗ unweighted; excess-degree costs flip toward GR side (mechanism check, α ad hoc) |
 | 2D isostatic + scale | no | open | open | **the prize (D3/D4/D6 + D10)** |
+
+The tense-plug row refines D10 rather than closing it: shortcuts shrink
+distances (balls overfull near tension ⇒ `d < d_vac` outside), while GR mass
+stretches rulers (balls underfull ⇒ `d > 3` outside) — so bare shortest-path
+is *rejected* as `d(i,j)` for tense regions, and the costs must be
+congestion-weighted (D10b gates D10a). This matches the model's own light
+sector, which never counts hops: T9–T11 use `c_eff → 0` and tortuosity
+`dl = (1+√χ/2)dr`, i.e. stretched rulers from congestion. The far-field
+companion result is clean: near balls around a far source are bit-identical
+to control — relaxed fabric next to tension measures exactly relaxed.
 
 The shell failure is doing its job: it localizes the gap (radial-only ⇒
 ~1D; area factor missing) instead of allowing a false success. What would
@@ -249,7 +260,7 @@ failed informatively.
 | convergence `p(L)` monotone, gap `~1/√L` | **measured** | BFS series test |
 | resistance / communicability rejected | **measured (negative)** | rejection test |
 | shell no-emergence pin (~1.4 / ~0.6) | **measured (negative)** | shell test |
-| GR fingerprint (dip, overshoot, →3⁺) | **computed (GR side)** | this doc §5; graph-side open (D10) |
+| GR fingerprint (dip, overshoot, →3⁺) | **computed (GR side)** | this doc §5; graph-side: unweighted measured (**inverted** side, shortest rejected for tense regions), cost-weighted mechanism check flips toward GR side, derived costs open (D10b) |
 | `d_I = 2` for vacuum fabric | predicted (follows from P0' + protocol) | queued for simulator (D10) |
 | 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10) |
 | tension → `κ` map (`z−4` to curvature) | **open** | D10 |

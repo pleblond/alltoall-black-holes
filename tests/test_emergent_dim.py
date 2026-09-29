@@ -216,3 +216,48 @@ def test_no_emergent_3d_on_radial_shells():
         assert ms["fit"]["r2"] > 0.9
         assert md["fit"]["p"] < 0.8, (seed, md["fit"])
         assert md["fit"]["r2"] > 0.85
+
+
+def _sorted_grid_2d(L):
+    """2D grid with sorted integer labels: label(x, y) = x * L + y."""
+    g = nx.convert_node_labels_to_integers(nx.grid_2d_graph(L, L), ordering="sorted")
+    return g
+
+
+def _window_p(radii, volumes, lo, hi):
+    r = np.asarray(radii, dtype=float)
+    v = np.asarray(volumes, dtype=float)
+    m = (r >= lo) & (r <= hi) & np.isfinite(v) & (v > 0)
+    assert int(m.sum()) >= 3
+    p, _ = np.polyfit(np.log(r[m]), np.log(v[m]), 1)
+    return float(p)
+
+
+def test_tense_plug_dips_and_far_field_locally_relaxed():
+    # D10a (v0.6): 5x5 clique plug at the center of a 40x40 relaxed grid.
+    # Tense-center mid-window scaling dips below fabric (~1.52 vs ~1.89):
+    # shortcuts front-load the ball, so subsequent growth runs below 2D
+    # (INVERTED vs the GR far side, which sits above 3 -- bare shortest
+    # path is rejected as d(i,j) for tense regions; costs must be
+    # congestion-weighted, D10b). Far-source near balls are bit-identical
+    # to control: relaxed fabric next to tension measures exactly relaxed.
+    L, c = 40, 20
+    g0 = _sorted_grid_2d(L)
+    g = g0.copy()
+    plug = [x * L + y for x in range(c - 2, c + 3) for y in range(c - 2, c + 3)]
+    for i in range(len(plug)):
+        for j in range(i + 1, len(plug)):
+            g.add_edge(plug[i], plug[j])
+    src_c, src_f = c * L + c, 33 * L + 33
+    r0, v0 = ed.ball_volumes_bfs(g0, src_c)
+    rc, vc = ed.ball_volumes_bfs(g, src_c)
+    rf, vf = ed.ball_volumes_bfs(g, src_f)
+    p0_mid = _window_p(r0, v0, 8, 20)
+    pc_mid = _window_p(rc, vc, 8, 20)
+    assert 1.8 < p0_mid < 2.0, p0_mid
+    assert 1.2 < pc_mid < p0_mid - 0.2, (pc_mid, p0_mid)
+    p0_near = _window_p(r0, v0, 2, 6)
+    pf_near = _window_p(rf, vf, 2, 6)
+    # r <= 6 from (33,33) touches neither the box edge (33+6=39 <= 39)
+    # nor the plug (dist >= 11), so the balls are identical graphs.
+    assert abs(pf_near - p0_near) < 1e-12, (pf_near, p0_near)

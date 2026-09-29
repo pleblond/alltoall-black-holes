@@ -151,9 +151,14 @@ overshoot + `→3⁺` under info-side `d_eff`, while relaxed `z ≈ 4` regions
 show fabric `d = 2` / reconstructed `d = 3` as applicable; (b) a quantitative
 tension→curvature map: Ollivier–Ricci `κ` tracking over-coordination (`z−4`).
 Current status: GR side computed (`docs/relaxed-vacuum.md` §5: dip 2.990 at
-`30M`, overshoot 3.030 at `100M`, `→3⁺` as `~1/l`); graph side unmeasured;
-`emergent_dim` protocol + two-distance bracket ready; shell no-emergence pin
-shows what failure looks like.
+`30M`, overshoot 3.030 at `100M`, `→3⁺` as `~1/l`); graph side: v0.6 probe
+(L=100) shows unweighted tense plugs dip below fabric dimension and recover
+from below (**inverted** vs GR far side — bare shortest-path rejected as
+`d(i,j)` for tense regions, pinned), ad-hoc excess-degree costs flip toward
+the GR side (mechanism check, `α` not derived), diffusion collapses on the
+clique plug (heat trap, no power law); far-source near balls bit-identical
+to control (relaxed-near-tension pin). `emergent_dim` protocol +
+two-distance bracket ready; shell no-emergence pin shows what failure looks like.
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
 matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the
