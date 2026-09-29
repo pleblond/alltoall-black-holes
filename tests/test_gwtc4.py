@@ -1,9 +1,15 @@
 """W2 tests: GWTC-4.0 O4a loud-event audit on pinned GWOSC medians (offline-safe)."""
+
 import numpy as np
 
 from bh_graph.gwtc4 import (
-    BUNDLED_O4A_SAMPLE, LOUD_O4A, kerr_leg_audit, legs_created,
-    fission_line_excluded, loud_event_table, erad_chi_fit,
+    BUNDLED_O4A_SAMPLE,
+    LOUD_O4A,
+    erad_chi_fit,
+    fission_line_excluded,
+    kerr_leg_audit,
+    legs_created,
+    loud_event_table,
 )
 
 

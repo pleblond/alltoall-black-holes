@@ -26,9 +26,11 @@ Legs are physical (k ~ 1e78-80 via posteriors.kerr_legs_msun), never the
 patch-1 solar-mass toy units (k ~ 1e5) in which absolute leg counts are
 meaningless and only fractions survive.
 """
+
 from __future__ import annotations
 
 import json
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -92,7 +94,7 @@ def load_gwtc4_events(
             pass
     try:
         return fetch_gwtc4_events(catalog)
-    except Exception:
+    except (urllib.error.URLError, OSError, ValueError, KeyError):
         return dict(BUNDLED_O4A_SAMPLE)
 
 
@@ -141,10 +143,7 @@ def loud_event_table() -> dict[str, dict[str, float]]:
         m1, m2, mf, _, _ = BUNDLED_O4A_SAMPLE[name]
         out[name] = kerr_leg_audit(m1, m2, mf)
     p = gw250114_prediction()
-    out["GW250114(paper-medians)"] = {
-        **kerr_leg_audit(M1_MEDIAN, M2_MEDIAN, p["mf"], af=p["af"]),
-        "eta_note": "AY convention; O4b PE not public",
-    }
+    out["GW250114(paper-medians)"] = kerr_leg_audit(M1_MEDIAN, M2_MEDIAN, p["mf"], af=p["af"])
     return out
 
 
@@ -153,7 +152,7 @@ def erad_chi_arrays(
 ) -> tuple[np.ndarray, np.ndarray]:
     """(chi_eff, Erad) median arrays for a catalog sample."""
     chi = np.array([v[3] for v in events.values()], dtype=float)
-    erad = np.array([(v[0] + v[1] - v[2]) / (v[0] + v[1]) for v in events.values()])
+    erad = np.array([(v[0] + v[1] - v[2]) / (v[0] + v[1]) for v in events.values()], dtype=float)
     return chi, erad
 
 
@@ -168,5 +167,9 @@ def erad_chi_fit(
     chi, erad = erad_chi_arrays(events)
     r = float(np.corrcoef(chi, erad)[0, 1])
     slope, intercept = np.polyfit(chi, erad, 1)
-    return {"pearson_r": r, "slope": float(slope), "intercept": float(intercept),
-            "n": float(len(chi))}
+    return {
+        "pearson_r": r,
+        "slope": float(slope),
+        "intercept": float(intercept),
+        "n": float(len(chi)),
+    }
