@@ -3,7 +3,7 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
-- **unreleased (model-docs v0.6 draft, PR branch)** — Relaxed vacuum:
+- **model-docs v0.6** — Relaxed vacuum:
   P0→P0' flip (vacuum = isostatic 2D fabric, 4 edges/node; BH interior =
   maximum-tension extreme), observer map `M_O` (P4 as one instance),
   `d_G/d_I/d_obs` + `d_eff` protocol (`emergent_dim`, 12 tests: bracket,

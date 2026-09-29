@@ -32,7 +32,7 @@ nat/bit units corrected). Postulate B stays retired with one clarifying
 sentence; the s-leg falsifier now tests I1a directly; I6c's Jacobson
 conclusion is guarded given-I1b. Import IDs otherwise stable; see §9.
 
-**v0.5 vacuum-kinematics release (this branch, draft).** No number changes:
+**v0.5 vacuum-kinematics release.** No number changes:
 L0 kinematics clarification only. Adds explicit vacuum state P0 (perfect
 all:all, defined before P1), formalizes the observer reconstruction map
 `M_O` of which P4 is one instance, and names the three dimensions
@@ -42,7 +42,7 @@ distance must be derived from information-access, not adjacency. I6a/b are
 restated as given-L0-vacuum-plus-`M_O` conditionals; D3/D4/D6 gain an explicit
 close-route via the `d_eff -> 3` IR test. See §1–§3, §5–§6 deltas.
 
-**v0.6 relaxed-vacuum release (this branch, draft).** No number changes:
+**v0.6 relaxed-vacuum release.** No number changes:
 vacuum postulate flip + consequences. P0 (all:all) is retired as the vacuum
 definition and replaced by P0' (relaxed isostatic 2D fabric, `<z> = 4`;
 `K_N` interiors re-labeled as the maximum-tension extreme, T1–T3 untouched).
@@ -776,7 +776,7 @@ resuscitated, GW190814 `P = 0.68 ± 0.02`, chromaticity `< 1e-50/1e-30`),
 figure-computed (`25` trials `N = 8…128`, depth-`5` convergence scan,
 deficit orderings), and paper-quoted (`0.002`-bit tracking, `42.99`,
 `0.57`/`100%` posteriors, `32` live BBH, MSS `0.50–0.68`, `1e-80/1e-160`
-dimensional estimate). Suite on this branch: 425 collected, 423 passed,
+dimensional estimate). Suite at v0.6: 425 collected, 423 passed,
 2 torch/GPU-only skipped.
 
 ---
@@ -795,9 +795,9 @@ dimensional estimate). Suite on this branch: 425 collected, 423 passed,
   remnant DM, isotropic `b_crit`, naive `γ = 2`, linear LIV, flat `p = 0.49`.)
 - This document versions with the paper: v0.4 tracks v5.0 (I1-matching
   release; import IDs stable except the splits I1→I1a/I1b (v0.4),
-  I4→I4a/I4b and I6→I6a-c (v0.3)). v0.5 (this branch, draft) adds P0/M_O/
-  dimensions + `emergent_dim` with no number changes; v0.6 (this branch,
-  draft) flips P0→P0' (relaxed isostatic vacuum), adds the tension spectrum,
+  I4→I4a/I4b and I6→I6a-c (v0.3)). v0.5 adds P0/M_O/
+  dimensions + `emergent_dim` with no number changes; v0.6
+  flips P0→P0' (relaxed isostatic vacuum), adds the tension spectrum,
   the only-vacuum-is-3D conjecture, D10 (with the D10a tense-plug inversion
   pin: bare shortest-path rejected for tense regions), and
   `docs/relaxed-vacuum.md`, with

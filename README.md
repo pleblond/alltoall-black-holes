@@ -149,7 +149,7 @@ pdflatex supplement.tex && pdflatex supplement.tex
   dynamics open), H2 $T_H$/$\Omega_H$ in the main text, mass-gap null +
   universal BBH shedding + GW190814 epoch audit ($P \approx 0.68$–$0.88$,
   tension), 46/46 references cited, 398 tests, 81 figure files.
-  Unreleased model-docs draft (PR branch, `docs/model.md` v0.6): emergent-dimension
+  Model-docs v0.6 (`docs/model.md`): emergent-dimension
   protocol (`emergent_dim`, 12 tests) — two-distance bracket on imposed lattices,
   monotone `p(L)` convergence, diffusion overshoot-shrink, resistance/communicability
   rejections, radial-shell no-emergence pin, tense-plug inversion pin (bare
