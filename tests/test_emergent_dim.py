@@ -685,7 +685,10 @@ def test_t15_cheap_shortcuts_blip_and_flip():
     # excess at any BFS radius), and the mid window (8,20) flips above
     # control (2.020 vs 1.920, r2 1.0000). Cross-check: c_eff at vacuum
     # z_vac=4 violates on exactly the 24 boundary diagonals (min 1.50),
-    # locating the observed flip at the plug boundary.
+    # all arriving early from endpoint balls (witness corollary), and the
+    # center-source profile carries a genuine fractional blip (peak 1.077
+    # at r=13.75, first excess 7.75) invisible at integer radii. The slope
+    # flip is the blip's window-averaged shadow.
     L, c = 40, 20
     g0, gm = _mild_plug_grid(L, c)
     src = c * L + c
@@ -707,6 +710,40 @@ def test_t15_cheap_shortcuts_blip_and_flip():
     assert pw > p0, (pw, p0)
     wc = ed.ceff_cost_fn(gm, z_vac=4.0)
     _, scc = _split_costs(g0, gm, wc)
-    bad = [cost for _, cost, d0 in scc if cost < d0 - 1e-9]
+    bad = [(e, cost) for e, cost, d0 in scc if cost < d0 - 1e-9]
     assert len(bad) == 24, len(bad)
-    assert abs(min(bad) - 1.5) < 1e-9, min(bad)
+    assert abs(min(cost for _, cost in bad) - 1.5) < 1e-9
+    for (u, v), _ in bad:
+        du = nx.single_source_dijkstra_path_length(gm, u, weight=wc)
+        assert du[v] < 2.0 - 1e-9, (u, v, du[v])
+    _, vw_int = ed.ball_volumes_weighted(gm, src, weight=wc, radii=r0)
+    assert not any(a > b + 1e-9 for a, b in zip(vw_int, v0))
+    dw = nx.single_source_dijkstra_path_length(gm, src, weight=wc)
+    crit = np.array(sorted(set(dw.values())))
+    vw_c = np.array([sum(1 for n in gm if dw[n] <= r) for r in crit])
+    v0_c = np.array([v0[int(r) - 1] if int(r) >= 1 else 1.0 for r in crit])
+    rat = vw_c / v0_c
+    assert 1.07 < rat.max() < 1.09, rat.max()
+    assert 13.5 < crit[rat.argmax()] < 14.0, crit[rat.argmax()]
+    assert 7.5 < crit[vw_c > v0_c].min() < 8.0
+
+
+def test_t15_violation_need_not_blip():
+    # T15 converse is false for volumes: 5-chain, shortcut (0,2) at
+    # 1.5 < 2 (genuine violation, witness arrives early at 1.5 < 2), but
+    # overpriced grid edges (5, premise-compliant) mask it: V_w <= V0 at
+    # every critical radius. Guards the exact logical boundary.
+    g0 = nx.path_graph(5)
+    g = g0.copy()
+    g.add_edge(0, 2)
+    costs = {(0, 1): 5.0, (1, 2): 5.0, (2, 3): 5.0, (3, 4): 5.0,
+             (0, 2): 1.5}
+    w = lambda u, v, _d=None: costs[tuple(sorted((u, v)))]
+    assert w(0, 2) < nx.shortest_path_length(g0, 0, 2)
+    d0 = nx.single_source_shortest_path_length(g0, 0)
+    dw = nx.single_source_dijkstra_path_length(g, 0, weight=w)
+    assert dw[2] < d0[2], (dw[2], d0[2])
+    for r in sorted(set(dw.values())):
+        vw = sum(1 for n in g if dw[n] <= r)
+        v0 = sum(1 for n in g0 if d0[n] <= r)
+        assert vw <= v0, (r, vw, v0)

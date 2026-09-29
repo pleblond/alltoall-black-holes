@@ -163,7 +163,7 @@ flip needs `c* ≈ 0.58`, diagnostic); `c_eff`-import `w = 1 + χ` (AT light
 sector, saturating `x = χ/(1+χ)` bridge) flips clique (3.43, big overshoot)
 and mild plug (1.73 → 2.02 vs 1.92, modest +5% overshoot) — overshoot-side
 only, dip-phase (U-shape) open, amplitude unclaimed. Fingerprint + amplitude
-(23 tests): 9×9 χ~1 plug shows full dip (−0.18) → overshoot (+0.79 peak) →
+(24 tests): 9×9 χ~1 plug shows full dip (−0.18) → overshoot (+0.79 peak) →
 asymptote (+0.09) shape-match conditional on the ceff bridge; dip-min ratio
 deepens (0.20/0.077/0.016), overshoot peak grows (0.79/0.94/2.91), far-field
 `E ~ A(χ)Rc/r` with non-universal `A` (deficit ∝ tension; tail exponent
@@ -176,7 +176,9 @@ shortcuts priced ≥ hop-saving cannot inflate balls — c_eff at `z_vac=1`
 satisfies it (max `V_w/V_0 = 0.2000`, no flip), tortuosity-import at
 `z_vac=4` violates it on all 32 diagonals (fractional blip `V_w(1.9)=9>5`,
 hidden from integer sampling, mid-window flips 2.020); c_eff at vacuum
-`z_vac=4` violates on exactly the 24 boundary diagonals, locating the flip.
+`z_vac=4` violates on exactly the 24 boundary diagonals (witness: all 24
+arrive early from endpoint balls; center-source volume blip peaks 1.077
+at r=13.75, likewise hidden at integers).
 `emergent_dim` protocol +
 two-distance bracket ready; shell no-emergence pin shows what failure looks like.
 

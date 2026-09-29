@@ -273,6 +273,16 @@ path costs at least `dist₀(s,t)`; minimizing gives `dist_w ≥ dist₀`, and
 (∩-blip) pins a shortcut edge with `w_e < dist₀(u,v)`. **Derived**, pure
 graph kinematics, zero tuning. (`emergent_dim`, D10b.)
 
+Corollary (witness node). An underpriced shortcut `(u,v)` always announces
+itself from its own endpoints: `dist_w(u,v) ≤ w_e < dist₀(u,v)`, so `v`
+joins the `u`-centered weighted ball strictly before the unweighted one.
+The converse of T15 is false for volumes: a violation need not produce any
+`V_w > V₀` blip (a 5-chain with a shortcut at `1.5 < 2` and overpriced grid
+edges has `V_w ≤ V₀` at every radius — the early arrival is masked in the
+counts). What the contrapositive fires on is a volume blip, not a slope
+flip: a window with `p_w > p_0` can in principle be catch-up growth with
+`V_w ≤ V₀` everywhere.
+
 Instances pinned (L=40 mild 5×5 king plug, center source, mid window
 (8,20), control `p = 1.920`): `c_eff` costs at `z_vac = 1` satisfy the
 premise (min shortcut `6.00 ≥ 2`, min grid `2.50 ≥ 1`) → max `V_w/V₀ =
@@ -284,8 +294,14 @@ mid-window flips to `p = 2.020` (`r² = 1.0000`). Use: T15 is the
 admissibility diagnostic for D10b cost rules — a rule must satisfy the
 premise on shortcut edges or own its ∩-blips. Applied to the `c_eff` rule
 at vacuum `z_vac = 4`: 24 boundary diagonals violate (`w < 2`, min 1.50;
-8 interior diagonals marginal at `w = 2`), which licenses the observed
-flip via the contrapositive and locates it at the plug boundary.
+8 interior diagonals marginal at `w = 2`), all 24 arrive early from
+endpoint-centered balls, and the center-source profile carries a genuine
+fractional volume blip (peak `V_w/V₀ = 1.077` at `r = 13.75`; excess over
+33 of 58 critical radii spanning 7.75–39.75) that integer sampling cannot
+see (zero excess at any BFS radius). The contrapositive fires on the blip
+(a violation must exist); the violator census locates it at the plug
+boundary. The mid-window slope flip (2.020) is the blip's window-averaged
+shadow.
 
 ### Explicitly not in L0.
 
