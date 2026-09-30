@@ -655,7 +655,28 @@ rank-3 claims must clear lam3/lam4 >> 6; (ii) eigenvector geography
 is part of the test — genuine v3 must decorrelate from radial /
 tortuosity fields (new D12 falsifier clause); (iii) radial
 detrending is queued as an open method problem (must use a
-graph-internal radial proxy, never coordinates). 
+graph-internal radial proxy, never coordinates).
+Observer-relative locality formalism (ADOPTED from review dialogue,
+D12 core): coordinate-free network G = (V,E,I,D), observer-rooted
+A_O with G1 ~_O G2 (already filed) PLUS: (i) operational
+C_O(r) ∝ r² WITHOUT assuming Σ_O(r) = S² (area-scaling as pure
+counting, no smuggled sphere); (ii) generalized emergence formula
+C(r) ∝ r^d_H + independent depth ⟹ V ∝ R^{d_H+1}; (iii) no global
+X — X_O ≠ X_P in general, with relational transition maps T_OP on
+shared domains + cocycle condition (charts→manifold inversion, not
+manifold→charts); (iv) observer-relative locality predicate
+L_O(A,B;ε) = Θ(ε − ρ_O(A,B)) with IR compatibility required only
+macroscopically; (v) two-theorem skeleton (emergence + compatibility)
+with shell-independence dV_O ∝ C_O(r)dr as THE attack point —
+operationalize via shell mutual information / cut-capacity freshness
+(X_r ⊥ X_{r+dr} at coarse scales), queued as codeable. CRITICAL GAP
+FLAGGED (the d_H = 2 input): on 2D fabric, naive shell counting gives
+|shell| ~ r¹ (nodes AND cut capacity both linear) — so C_O ∝ r² does
+NOT follow from 2D shells, and assuming it begs the question (2+1=3
+in a trenchcoat). Candidate rescue: PAIRWISE relational counting
+(~|shell|² ~ r²) as the source of d_H = 2 — i.e., the holographic
+exponent counts relations, not nodes. Queued: derive-or-refute C_O
+scaling from graph structure before any emergence claim. 
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
