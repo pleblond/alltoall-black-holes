@@ -198,7 +198,15 @@ replicates the T-knob at order 2 — T0 = 2 reaches (1, 4, 4),
 matching-or-beating the ungated default on every stream. The knob
 (not strict, not ungated) is now the answer at orders 2 AND 3.
 Chain-workhorse upgrade (pair → pair_anneal) queued as mechanical
-follow-up; endpoints heal fully either way.
+follow-up; endpoints heal fully either way. SURVEYED, REJECTED on
+cost-benefit (filed-not-shipped): pair_anneal600 → triple30 reaches
+s5 1→0 (p 2.0412 bit-identical — healed state looks like an
+attractor), s6 4→1 (better than pair-fuel 4→2), s7 4→0, dmg4 4→0,
+torus 2→0/2→0 — endpoints equal-or-better everywhere, but SLOWER
+nearly everywhere (census evals: pair600 1.4 s vs 3-5 s; torus
+chains ~2x). Consistent story kept: pair = fast chain fuel,
+pair_anneal = best standalone order-2; no test churn for equal
+endpoints at higher cost.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
