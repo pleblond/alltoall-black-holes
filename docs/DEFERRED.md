@@ -1297,7 +1297,17 @@ geometry/labels/pricing classes) → spontaneous destabilization
 persistence + ensembles all pre-registered. NEXT ARTIFACT:
 written D14 falsifier pre-registration (estimators + numbers +
 pass/fail); apparatus first (Φ(n_0,k) re-analysis pinned in
-tests). P0' RESTATEMENT (conditional — model.md NOT rewritten:
+tests). APPARATUS VALIDATED (test_weighted.py — phi_stats +
+tolerance contour): Φ-slice ns=20/Lw=10 = 0.900→0.657→0.167→0
+(nV 36,23,5,0; 4/40 priced already at k=0); Lw=1 rows Φ≡1
+analytic; Φ·λ=violfrac to 1e-12 everywhere; mean-lies exhibit
+STRONGER than filed (k=1: mean_inv_eta 1.12 "healed" vs Φ=0.657
+— distribution mandatory, mean disqualified as headline);
+washout NON-MONOTONE (ns=5/Lw=10 violfrac 0.0032→0.0065→0:
+concentration before washout; nV monotone ↓); tolerance
+contour TOL=2/760 crossed at k=3 (ns=20/Lw=10), k=2
+(ns=5/Lw=10), never for Lw=1/Lw=3 — measurement chain green
+before any U-run depends on it. P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the

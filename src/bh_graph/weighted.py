@@ -148,6 +148,17 @@ def excess_stats(g: nx.Graph) -> dict:
     return {"lambda": lam, "ebar": ebar, "elong": sum(le) / max(len(le), 1), "fabfid": fid}
 
 
+def _long_prices_spans(gw: nx.Graph, gplain: nx.Graph):
+    """Shared endpoint-BFS: (n_edges, [(L, d0-span)]) over long edges."""
+    E = list(gw.edges(data=True))
+    longs = [(float(d.get("L", 1.0)), a, b) for a, b, d in E if _manhattan(a, b) > 1]
+    if not longs:
+        return len(E), []
+    ends = {n for _, a, b in longs for n in (a, b)}
+    dist = {s: dict(nx.single_source_shortest_path_length(gplain, s)) for s in ends}
+    return len(E), [(L, dist[a][b]) for L, a, b in longs]
+
+
 def pricing_flow_stats(gw: nx.Graph, gplain: nx.Graph) -> dict:
     """(lambda, violfrac, marginratio) campaign flow variables.
 
@@ -158,14 +169,34 @@ def pricing_flow_stats(gw: nx.Graph, gplain: nx.Graph) -> dict:
     over). d_0 comes from endpoint-only BFS on gplain (cheaper than
     all-pairs; longs are sparse). Length attr "L" (default 1.0).
     """
-    E = list(gw.edges(data=True))
-    longs = [(a, b, d) for a, b, d in E if _manhattan(a, b) > 1]
-    lam = len(longs) / len(E)
-    if not longs:
+    nE, ps = _long_prices_spans(gw, gplain)
+    lam = len(ps) / nE
+    if not ps:
         return {"lambda": lam, "violfrac": 0.0, "marginratio": 1.0}
-    ends = {n for a, b, _d in longs for n in (a, b)}
-    dist = {s: dict(nx.single_source_shortest_path_length(gplain, s)) for s in ends}
-    spans = [dist[a][b] for a, b, _d in longs]
-    viol = sum(1 for (_a, _b, d), s in zip(longs, spans) if float(d.get("L", 1.0)) < s)
-    mr = sum(float(d.get("L", 1.0)) / s for (_a, _b, d), s in zip(longs, spans)) / len(longs)
-    return {"lambda": lam, "violfrac": viol / len(E), "marginratio": mr}
+    viol = sum(1 for L, s in ps if L < s)
+    mr = sum(L / s for L, s in ps) / len(ps)
+    return {"lambda": lam, "violfrac": viol / nE, "marginratio": mr}
+
+
+def phi_stats(gw: nx.Graph, gplain: nx.Graph) -> dict:
+    """Phi-surface apparatus: P(eta>1) over longs + eta distribution.
+
+    eta = d_0-span / L per long edge (shortcut relevance; >1 =
+    operational shortcut). phi = fraction of LONGS violated (cf.
+    violfrac = fraction of ALL edges; phi * lambda = violfrac).
+    etas sorted ascending; mean_inv_eta = mean(L/d) = marginratio,
+    kept alongside phi to exhibit distribution-vs-mean (mean can
+    cross 1 while violations persist). Length attr "L" (default 1.0).
+    """
+    _nE, ps = _long_prices_spans(gw, gplain)
+    if not ps:
+        return {"phi": 0.0, "n_longs": 0, "n_viol": 0, "etas": [], "mean_inv_eta": 1.0}
+    etas = sorted(s / L for L, s in ps)
+    nviol = sum(1 for e in etas if e > 1)
+    return {
+        "phi": nviol / len(etas),
+        "n_longs": len(etas),
+        "n_viol": nviol,
+        "etas": etas,
+        "mean_inv_eta": sum(1 / e for e in etas) / len(etas),
+    }

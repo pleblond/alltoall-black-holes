@@ -58,7 +58,9 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   level 3, Lw=1 analytic never-heals, Lw=3 separatrix-adjacent;
   pricing irrelevant above span scale, count relevant — vacuum
   RG-protected, no pumping needed; knot-env phase 2 queued).
-  527 tests.
+  Phi-apparatus validated (Phi-slice + tolerance contour pinned,
+  distribution-over-mean exhibit, non-monotone washout).
+  528 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

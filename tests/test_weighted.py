@@ -242,3 +242,77 @@ def test_violation_washout_campaign():
     assert r3[-1]["violfrac"] < r3[-1]["lambda"], r3[-1]
     assert 0.18 < r3[-1]["violfrac"] < 0.20, r3[-1]
     assert r3[-1]["marginratio"] < 1.0, r3[-1]
+
+
+def test_phi_surface_slice_and_tolerance_contour():
+    # D14 Phi-apparatus validation on frozen campaign states: the
+    # Phi(n0,k) slice with the tolerance target contour drawn. Phi =
+    # P(eta>1) over longs (eta = span/L); violfrac = Phi*lambda
+    # (identity pinned to 1e-12 every row/level -- float association
+    # in the last ulp forbids ==). Rows (seed 0):
+    # ns=20/Lw=10 washes out Phi 0.900 -> 0.657 -> 0.167 -> 0.000
+    # (nV 36,23,5,0; 4/40 longs already priced at k=0); Lw=1 rows
+    # have Phi IDENTICALLY 1 (nV == nL every level -- analytic);
+    # Lw=3 partial (Phi k3 = 11/18, never crosses). DISTRIBUTION >
+    # MEAN exhibit: ns=20/Lw=10 k=1 has mean_inv_eta 1.12 ("healed"
+    # by the mean) while Phi = 0.657 (23/35 still operational) --
+    # the mean lies by more than a factor of honest. NON-MONOTONE
+    # washout: ns=5/Lw=10 violfrac 0.0032 -> 0.0065 -> 0.000
+    # (blocking first CONCENTRATES, then washes out) while nV falls
+    # monotonically 10 -> 5 -> 0 -> 0. TOLERANCE CONTOUR (TOL =
+    # 2/760 per-edge from binary MDS collapse; assumes density-like
+    # transfer 20x20 -> 40x40 and operational-weighted ~ binary --
+    # stated assumptions, not results): first-pass level is k=3 @
+    # ns=20/Lw=10, k=2 @ ns=5/Lw=10, never within 4 levels for
+    # Lw=1 (both ns) and Lw=3 (ns=20). k=0 ns=5 rows sit at 0.0032,
+    # boundary-adjacent but correctly FAIL (> 0.00263).
+    from bh_graph.weighted import phi_stats, pricing_flow_stats
+
+    TOL = 2 / 760
+
+    def run(ns, Lw):
+        gw = nx.grid_2d_graph(40, 40)
+        gp = nx.grid_2d_graph(40, 40)
+        if ns:
+            nx.connected_double_edge_swap(gw, ns, seed=0)
+        nx.set_edge_attributes(gw, 1.0, "L")
+        if ns and Lw > 1:
+            for u, v in gw.edges():
+                if abs(u[0] - v[0]) + abs(u[1] - v[1]) > 1:
+                    gw[u][v]["L"] = float(Lw)
+        rows = []
+        for _ in range(4):
+            p, q = phi_stats(gw, gp), pricing_flow_stats(gw, gp)
+            assert abs(p["phi"] * q["lambda"] - q["violfrac"]) < 1e-12
+            rows.append((p, q))
+            gw, gp = block_coarsen(gw), block_coarsen(gp)
+        return rows
+
+    def first_pass(rows):
+        for k, (_p, q) in enumerate(rows):
+            if q["violfrac"] <= TOL:
+                return k
+        return None
+
+    r = run(20, 10)
+    assert [p["n_viol"] for p, _ in r] == [36, 23, 5, 0]
+    assert [p["n_longs"] for p, _ in r] == [40, 35, 30, 18]
+    assert abs(r[0][0]["phi"] - 0.9) < 1e-12
+    assert r[-1][0]["phi"] == 0.0
+    assert r[1][0]["mean_inv_eta"] > 1.0
+    assert r[1][0]["phi"] > 0.6, r[1][0]
+    assert first_pass(r) == 3
+    r = run(5, 10)
+    assert [p["n_viol"] for p, _ in r] == [10, 5, 0, 0]
+    v = [q["violfrac"] for _, q in r]
+    assert v[1] > v[0] > TOL, v
+    assert v[2] == 0.0
+    assert first_pass(r) == 2
+    for ns in (5, 20):
+        r = run(ns, 1)
+        assert all(p["n_viol"] == p["n_longs"] for p, _ in r)
+        assert all(p["phi"] == 1.0 for p, _ in r)
+        assert first_pass(r) is None
+    r = run(20, 3)
+    assert r[-1][0]["n_viol"] == 11 and r[-1][0]["n_longs"] == 18
+    assert first_pass(r) is None
