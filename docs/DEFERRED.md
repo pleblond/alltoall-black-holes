@@ -186,15 +186,19 @@ T0-robustness (1/2/5 all clear) but stream lottery (tseed 106
 stalls at 1, filed-not-shipped: 200 s). Neither pole dominates
 because stall topology differs (direct descent vs neutral
 intermediates); the knob, not a fixed rule, is the answer.
-Gated-pair audit (MEASURED, filed-not-shipped): ungated pair accepts
+Gated-pair audit (MEASURED, test_update_rule.py + filed): ungated pair accepts
 net-harmful moves at 3/50 (all seed6) + 11 neutral across seeds
-5/6/7 — essentially self-gating, but strict-gated pair WEAKLY
-DOMINATES everywhere: seed5 1→0 (order 2 alone fully heals!),
-seed6 10→2, seed7 4→4, same cost. No duality at order 2 (neutral
-moves never load-bearing on these streams). QUEUED: gate-default
-adoption + full D1 re-pin cycle (downstream chain setups shift;
-triple/quad/anneal demos need new stall states) — mechanical but
-touches ~8 tests, budgeted as its own cycle, not snuck into a tick.
+5/6/7 — essentially self-gating. CORRECTION to the first filing
+(crude give-up-on-reject wrapper suggested weak dominance 1→0/10→2):
+the principled in-loop gate shows DUALITY at order 2 as well —
+strict gives (4, 2, 4) vs ungated (1, 10, 4): helps s6, HURTS s5
+(neutral intermediates load-bearing there). Adoption REJECTED (a
+worse-on-s5 default is bad science); instead rule_pair_anneal
+replicates the T-knob at order 2 — T0 = 2 reaches (1, 4, 4),
+matching-or-beating the ungated default on every stream. The knob
+(not strict, not ungated) is now the answer at orders 2 AND 3.
+Chain-workhorse upgrade (pair → pair_anneal) queued as mechanical
+follow-up; endpoints heal fully either way.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum

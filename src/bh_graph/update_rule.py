@@ -694,6 +694,89 @@ def rule_triple_anneal(h: nx.Graph, ctx: dict) -> bool:
     return False
 
 
+def rule_pair_anneal(h: nx.Graph, ctx: dict) -> bool:
+    """T-knob annealing at order 2: pair proposals + T acceptance.
+
+    Order-2 gate duality (ungated pair 1/10/4 vs strict 4/2/4 on
+    s5/s6/s7 -- neither dominates; strict helps s6 but hurts s5)
+    resolves the same way as order 3: T0 = 2 matches-or-beats the
+    ungated default on every stream (1/4/4 -- strictly better on s6)
+    with strict-decrease semantics at T0 = 0 (neutral rejected, else
+    drift-churn). Same proposals/locality as rule_pair; plain grid is
+    a fixed point. Kept alongside (not default): chain endpoints heal
+    fully either way; workhorse upgrade queued (mechanical).
+    """
+    import math
+
+    radius = ctx.get("radius", 3)
+    smax = ctx.get("max_span", 3)
+    E = list(h.edges())
+    m = len(E)
+    before = total_longs(h, radius, smax)
+    if before == 0:
+        return False
+    T0 = ctx.get("T0", 2.0)
+    for _ in range(ctx.get("proposals", 50)):
+        a, b = E[ctx["rng"].randrange(m)]
+        if edge_span(h, a, b, radius) <= smax:
+            continue
+        cands = []
+        for _ in range(60):
+            x, y = E[ctx["rng"].randrange(m)]
+            if len({a, b, x, y}) < 4:
+                continue
+            if (x, y) in cands or (y, x) in cands:
+                continue
+            cands.append((x, y))
+        cands.sort(key=lambda e: edge_span(h, e[0], e[1], radius), reverse=True)
+        cands = cands[:12]
+        for i in range(len(cands)):
+            for j in range(i + 1, len(cands)):
+                (c, d), (e, f) = cands[i], cands[j]
+                if len({a, b, c, d, e, f}) < 6:
+                    continue
+                h.remove_edge(a, b)
+                h.remove_edge(c, d)
+                h.remove_edge(e, f)
+                acc = None
+                for mt in _matchings6([a, b, c, d, e, f]):
+                    if any(h.has_edge(u, v) for u, v in mt):
+                        continue
+                    h.add_edge(*mt[0])
+                    h.add_edge(*mt[1])
+                    h.add_edge(*mt[2])
+                    ok = all(edge_span(h, u, v, radius) <= smax for u, v in mt)
+                    ok = ok and nx.is_connected(h)
+                    h.remove_edge(*mt[0])
+                    h.remove_edge(*mt[1])
+                    h.remove_edge(*mt[2])
+                    if ok:
+                        acc = mt
+                        break
+                if acc is None:
+                    h.add_edge(a, b)
+                    h.add_edge(c, d)
+                    h.add_edge(e, f)
+                    continue
+                h.add_edge(*acc[0])
+                h.add_edge(*acc[1])
+                h.add_edge(*acc[2])
+                dd = total_longs(h, radius, smax) - before
+                if dd < 0 or (dd == 0 and T0 > 0):
+                    return True
+                frac = ctx.get("step", 0) / max(ctx.get("total", 1), 1)
+                T = T0 * (ctx.get("Tend", 0.05) / T0) ** frac if T0 > 0 else 0.0
+                if T > 0 and ctx["rng"].random() < math.exp(-dd / T):
+                    return True
+                h.remove_edge(*acc[0])
+                h.remove_edge(*acc[1])
+                h.remove_edge(*acc[2])
+                h.add_edge(a, b)
+                h.add_edge(c, d)
+                h.add_edge(e, f)
+    return False
+
+
 def rule_slide(h: nx.Graph, ctx: dict) -> bool:
     """Edge-slide reel-in: slide a long edge's endpoint toward shorter span.
 

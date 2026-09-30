@@ -417,3 +417,34 @@ def test_triple_anneal_fixes_plain_point():
     g, src = _grid20()
     _, _, acc = evolve(g, rule_triple_anneal, 5, seed=5, src=src)
     assert acc == 0
+
+
+def test_pair_anneal_matches_or_beats_both_poles():
+    # T-knob replicates at order 2: pair_anneal T0=2 reaches (1, 4, 4)
+    # on seeds 5/6/7 -- matches-or-beats the ungated pair default
+    # (1, 10, 4) on EVERY stream, strictly better on seed 6. (Strict
+    # T0=0 gives (4, 2, 4): helps s6, hurts s5 -- order-2 duality,
+    # filed.) Kept alongside pair: chain endpoints heal fully either
+    # way; workhorse upgrade queued as mechanical follow-up.
+    from bh_graph.update_rule import rule_pair_anneal, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    for pseed, longs_exp, acc_exp, pmax in (
+        (5, 1, 15, 2.15),
+        (6, 4, 16, 2.0),
+        (7, 4, 10, 2.0),
+    ):
+        traj, h, acc = evolve(dam, rule_pair_anneal, 600, seed=pseed, src=src, T0=2.0)
+        assert total_longs(h) == longs_exp, (pseed, total_longs(h))
+        assert acc == acc_exp, (pseed, acc)
+        assert traj[-1] < pmax, (pseed, traj[-1])
+        assert nx.is_connected(h)
+
+
+def test_pair_anneal_fixes_plain_point():
+    from bh_graph.update_rule import rule_pair_anneal
+
+    g, src = _grid20()
+    _, _, acc = evolve(g, rule_pair_anneal, 5, seed=5, src=src)
+    assert acc == 0
