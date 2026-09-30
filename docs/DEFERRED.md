@@ -1575,7 +1575,71 @@ VACUUM pricing globally — C2 inherits a working price
 mechanism, owes the beta-scale + formation; (ii) knot effect
 needs dynamical chi (traffic feedback) or bigger apparatus;
 (iii) substitution sign under feedback UNKNOWN (may flip —
-filed caution stands). P0' RESTATEMENT (conditional — model.md NOT rewritten:
+filed caution stands). C2-DESIGN (review roadmap + sign
+analysis — A CLOSED, no more static pricing): C2 question:
+can traffic-price feedback GENERATE pricing scale (order-one
+in => basin out)? Loop chi_n=chi(G,w_n), w_{n+1}=F(w_n,chi_n),
+topology FROZEN (feedback before formation). SIGN ANALYSIS
+(lead result, pre-code): CONGESTION-feedback ATTENUATES
+(negative feedback: expensive sheds load => chi(w*)<chi_0 =>
+w* below static; Wardrop-like homogenization pressure =
+hierarchy unstable; all-or-nothing betweenness =>
+FLAPPING risk: priced-out => chi collapses => fallback =>
+oscillation; (alpha,cadence) = damping) — its role is
+STABILITY/SHAPE, never scale. ATROPHY-feedback (idle =>
+expensive) AMPLIFIES (positive feedback on idle links) but
+needs cap (runaway; cap-scale = beta-scale in disguise — NO
+FREE LUNCH) or budget principle (sum w = B, scale from B —
+CANDIDATE, needs justification, NOT adopted) or saturating
+form w*=1+beta(1-chihat(w*)) (Form-1 + dynamical chi +
+complement: bounded by beta, implicit fixed point). 2x2
+MATRIX: (betw,cong) = A-continuity, expect attenuation/flap
+(RUN); (betw,atr) = EXCLUDED analytically (interior chi
+lowest => priced highest — inverted hierarchy, knots die
+first; exclusion filed, not run); (walk,cong) = knot-hostile
+IF walks trap in cliques (VERIFY walk-traffic pops first —
+assert nothing); (walk,atr) = SCALE candidate IF pops split
+(interior flow-trapped/high, weak low). C2 = TWO feedback
+laws (sign fork IS the experiment), not one. CONTINUITY
+SELECTOR (design criterion): walk-chi continuous in w =>
+fixed-point theory applies (Brouwer + Jacobian); betw-chi
+discontinuous => expect cycles, pre-register cycle analysis
++ time-average <Phi> fallback (flickering locality
+observable if limit cycle). SCALE RECURSION (honest): every
+variant bottoms at a scale (beta/cap/B); C2 owes MECHANISM
+(direction + amplification-vs-attenuation + stability),
+scale origin stays owed (phase diagram, not T_c;
+"order-one" amplification needs derived gain, never bare
+measurement). CHI-UPDATE CADENCE m (every-m-ticks) =
+design parameter (timescale separation + exact-betw cost
+~7s/tick — recomputing every tick infeasible; principled:
+traffic equilibrates slower than prices adjust... or noted
+either way). C2 CONTROLS: embeddedness run as REGRESSION
+control (static chi => must reproduce A-control EXACTLY —
+code-path check). PASS/FAIL (adopted): STRONG (order-one =>
+basin + stable); PARTIAL (amplification insufficient =
+mechanism-only); FAILURE (stuck ~1 / collapse / runaway
+without useful regime). C1-SKIP ENDORSED (analytic reason:
+static-chi Form-1 unplanted relaxes to w*=G(chi) => sectors
+= chi-level-sets BY CONSTRUCTION — cannot surprise;
+skipped as principled, runnable cheap later as complement).
+M_O AUDITS (after viable C2 ONLY — audit what works):
+Laplacian/exit/Kron = three independent R testing
+M_O U ~= U_eff M_O = D12 [U,R]~0 CENTRAL EQUATION (link
+filed — audits ARE D12's experimental program); SEQUENCE:
+Kron first (exact, parameter-free), diffusion/exit after
+(t-scale = shopping hazard — pre-register from spectral gap
+1/lambda_2 or equivalent intrinsic rule); TRAP WARNING:
+w-as-PHYSICS (conductances in Laplacian = diffusion
+process) allowed, w-as-RULER (d^w-based eta) stays FORBIDDEN
+— eta rulers topological always. (Uploaded-conversation
+reference opaque to agent — responding to summary only.)
+ROADMAP LOCKED: A [done] -> C2 feedback [NEXT] -> M_O audits
+-> dynamic topology + knots -> primordial falsifier. NEXT
+UNIT: walk-traffic pops spike (decides matrix) -> DUAL
+derivation (betw-cong + walk-atr fixed points/stability;
+cycle-analysis for discontinuous cell) -> preregister both
++ exclusions -> run same apparatus. P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
