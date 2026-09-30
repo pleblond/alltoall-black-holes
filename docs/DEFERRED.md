@@ -950,7 +950,18 @@ blurs 2D, never builds 3D. Binary "weak" links are maximally
 strong — no binary knob is weak. The ε in G_vac = G_near-2D +
 εG_global has no unweighted meaning beyond count-fraction (already
 razor-thin per N*); weak wiring must be WEIGHTED (coupling
-strength), queued as the L0 state upgrade G = (V, E, w). 
+strength), queued as the L0 state upgrade G = (V, E, w).
+(n,k) GROUND FLOOR (from D14 review dialogue — adopted):
+fundamental ontology = universal tick n + state S_n + update U
+(state+time+update, NOT spacetime); space/d_O/curvature emergent
+at M_O. (n,k) separation rigorous: n = U-evolution, k = R-scale;
+[U,R]≈0 (evolution–coarse-graining commutation) is D12's central
+consistency equation for admissible (U,blocking) pairs. DEBT
+LOGGED (not claimed): universal tick = preferred simultaneity,
+so emergent Lorentz (or its precise failure mode) is owed at M_O
+level — tick-vs-M_O-time mapping is D12's ground floor; the
+Lorentz question sits on this ledger. D14's η(n,k) surface is the
+joint object both items read.
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
@@ -1200,7 +1211,44 @@ stays first (cheap, frozen; Δy_w sign constrains what w-dynamics
 must reproduce), gated w-origin second, tolerance cross-check
 riding along. L0-independence intact (origin story lives at
 P0'/D14; L0 theorems still cite no U). The wall is now: WHERE
-DO THE WEIGHTS COME FROM. P0' RESTATEMENT (conditional — model.md NOT rewritten:
+DO THE WEIGHTS COME FROM. POST-CAMPAIGN AMENDMENT #3 (review
+dialogue — price-as-state + (n,k) separation): weights
+REFRAMED as L0 state variables in S_n=(G_n,{w^(n)},...),
+S_{n+1}=U(S_n) (CA analogy adopted — state needs specified
+update, not conservation). (χ,Q,F) GATE v2: conservation
+DEMOTED from admission requirement to discoverable property of
+U (bonus, not ticket); gate's anti-magic work restated as (i)
+blindness (F reads L0 state only), (ii) update-form (genuine
+evolution with memory, not assignment), (iii) no inserted
+hierarchy (bifurcation = attractor outcome, measured).
+Self-pricing reassessed: passes (i) (span is L0-computable),
+FAILS (ii)/(iii) (w:=span is hand-written pricing) → benchmark
+status stands, right reason now. (n,k) SEPARATION ADOPTED
+RIGOROUSLY: n = state-machine time (U), k = RG scale (R);
+campaign retrospectively = η(n=fixed,k) with dw/dn=0; program
+object is now the η(n,k) SURFACE (η=d_fabric^(k)(n)/w^(k)(n));
+[U,R]≈0 askable as RG-consistency condition on (U,blocking)
+pairs → LINKED to D12 commutation over-arch (D12's central
+equation; D12 note filed). D14 SHARP FORM: price-space phase
+separation — U from uniform w≡1 spontaneously bifurcates P(w,n)
+into low-price/high-traffic (→knots) vs high-price/weak
+(→vacuum); topology-follows-price REQUIRES H(S_n) reading w
+(stated mechanism, not hope) → ORDER: E-fixed re-pricing U
+FIRST (bifurcation with frozen topology = stronger, no
+topological help), H-dependence stage two; needs bifurcation
+order parameter (bimodality/mode weights) + sector membership
+(planted sectors first — third application of the rule).
+ATTRACTION = decreasing relational price (w_AB(n+1)<w_AB(n) at
+L0, d_O shrinking at observer level — no movement-through-space
+needed); observable = co-movement of inter-knot path-price
+d_w(A,B;n) vs reconstructed d_O(A,B;n) under running U (no
+direct edge needed); sign of dw_AB/dn is MEASURED dynamical
+outcome, never assumed; memory terms (inertia-adjacent)
+admissible via F reading w^(n). FALSIFIER TEETH: uniform w≡1
+init does the work through TRAJECTORY P(w,n) (one-step jump =
+imprinting/inserted; gradual differentiation = generated);
+report (n,k) surface slice (P(η>1) at multiple k); pre-register
+knot persistence criteria (ripening already filed). P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
