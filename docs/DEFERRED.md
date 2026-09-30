@@ -286,10 +286,21 @@ coordination disease strikes a curvature objective too: it is not
 about which macroscopic quantity is optimized. κ-first targeting
 would stay blind but needs ~100s of proposals per accept
 (minutes per accept — infeasible in-suite, not shipped).
-Queued: damage-recovery-under-blind-U as the key discriminator,
-triangle-class landing measurement, non-maximization blind
-dynamics (curvature-driven or degree-isostatic rules whose fixed
-points might coincide with the vacuum rather than outrank it).
+TRIANGLE-LANDING FOLLOW-UP (MEASURED, test_blind_u.py — blind
+triangulation does NOT find the Delaunay class): mid-flow pin at
+1000 steps (not stationary — still accepting at 2000: tri 239 →
+290, acc 205 → 253) reads tri 239, clustering 0.33, squares 152,
+longs 163, p 2.51 → ~2.78 — dense-cluster morphology, non-planar,
+super-2D ball growth. Degree histogram frozen {2:4, 3:72, 4:324}:
+swap dynamics preserves the degree sequence, so no swap-only rule
+from the square grid can ENTER the Delaunay class (degrees ~6,
+planar) — reachability confines the tournament to the
+degree-sequence fiber (slides or the right starting fiber needed).
+Maximizing the Delaunay motif joins motif-count maximization as
+misdirected. Queued: damage-recovery-under-blind-U as the key
+discriminator, non-maximization blind dynamics (curvature-driven
+or degree-isostatic rules whose fixed points might coincide with
+the vacuum rather than outrank it).
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum

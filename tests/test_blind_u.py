@@ -8,6 +8,7 @@ locality (blind Goodhart); the triangle rule leaves the square basin.
 L=20, damage ns=10 seed 3 (30 longs, 323 squares).
 """
 import random
+from collections import Counter
 
 import networkx as nx
 
@@ -188,3 +189,28 @@ def test_kappa_descent_frozen():
     _, h, acc = evolve(dam, rule_kappa_flat, 5, seed=5, src=src)
     assert acc == 0, acc
     assert total_longs(h) == 30
+
+
+def test_triangle_climb_characterized():
+    # Blind triangulation does NOT flow toward Delaunay-like fabric.
+    # Mid-flow pin at 1000 steps (NOT stationary -- still accepting at
+    # 2000): triangles 0 -> 239, clustering 0.33, but non-planar,
+    # longs 163, p 2.51 climbing toward ~2.8 (dense-cluster
+    # morphology, not fabric). Degree histogram frozen {2:4, 3:72,
+    # 4:324}: swap dynamics preserves the degree sequence, so no
+    # swap-only rule from the square grid can even ENTER the
+    # Delaunay class (degrees ~6, planar) -- reachability confines
+    # the tournament to the degree-sequence fiber (slides or the
+    # right starting fiber needed). Maximizing the Delaunay motif
+    # does not find the Delaunay class.
+    g, src = _grid20()
+    _, h, acc = evolve(g, rule_triangle, 1000, seed=5, src=src)
+    assert acc == 205, acc
+    assert ntris(h) == 239, ntris(h)
+    assert nsquares(h) == 152, nsquares(h)
+    assert total_longs(h) == 163, total_longs(h)
+    assert 0.32 < nx.average_clustering(h) < 0.34
+    plan, _ = nx.check_planarity(h)
+    assert plan is False
+    assert Counter(d for _, d in h.degree()) == {2: 4, 3: 72, 4: 324}
+    assert nx.is_connected(h)
