@@ -250,7 +250,10 @@ the definition (a single-node "observer" recovers nothing), and neither
 Partial-credit ladder:
 (i) criterion stated + non-circularity argued; (ii) two instances agree on
 vacuum fabric; (iii) agreement extends to tensed regions (fingerprint
-shape under both).
+shape under both). Prerequisite (fiber control): verify `M_O`
+preimages exist at the reconstruction resolution — distinct
+`G_a ≠ G_b` sharing a macro-state — else C3's twin-histories test is
+untestable.
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
@@ -272,6 +275,8 @@ toward 2 with radius (1.9196 → 1.9603 fractional); plus the plug sign
 pattern (35<38 hops vs +5.0 weighted) as pre-registration for stage 1.
 Briefly filed as stage 1, demoted on review: first-passage here *is*
 hop distance — compatibility with a cone is not observation of one.
+Second substrate family (hexagonal/noisy-regular) queued to de-brittle
+the control.
 
 **Close criterion (staged, all open):** (1) `U → T_U, ≺_U`: stated local
 update rule + counterfactual-influence arrival times (OTOC-threshold
@@ -292,7 +297,9 @@ Autonomy-before-GR: snapshots resembling GR whose next step needs hidden
 `M_O(U(G_a)) ≃ M_O(U(G_b))`, ε–δ in macro-profile distance, RG-weakened
 `ΔM → 0` in the IR); presupposes D12 fiber control. Roof: macro-states
 as `~_macro` dynamical-equivalence classes; `M_O` must factor through
-them (well-definedness ⟺ C3).
+them (well-definedness ⟺ C3). Stage 4 vs C5: stage 4 reconstructs
+the interval from `(≺_U, τ, M_O)`; C5 demands that interval's
+*evolution* match GR — reconstruction vs dynamics, tested separately.
 
 **Kill relevance:** feeds D1 (dynamics) and D12 (same-`M_O` falsifier: the
 interval map must coincide with the spatial `M_O`). No direct kill wire

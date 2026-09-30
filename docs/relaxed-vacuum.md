@@ -395,14 +395,20 @@ modes at cut value; cut value is boundary size) — so a measured
 explanatory burden sits entirely in the second half, *why `M_O` reads
 channels as scales*. The non-geometric probe in this cluster is
 cost-weighted boundary capacity vs `r` (conductances can break the
-geometric scaling — it can surprise). Measured: deficit at `r ≤ 4`
+geometric scaling — it can surprise). In the vacuum the geometric
+baseline is exact, not a fit — diamond perimeter law `cut(r) = 8r+4`
+on unclipped `r ∈ [5,18]` (`r=19` first clipped boundary: 154) —
+so the channel probe inherits an analytic control. Measured: deficit
+at `r ≤ 4`
 (83.7/133.8/76.5/5.9 on the clique plug — tension suppresses near-field
 capacity), exact recovery from `r = 5` (first boundary clearing the
 plug's edge-shadow). The count behaves geometrically; the skeleton
 stands, explanatory work still in `M_O`.
 
-**Why this could work (grounding).** Malament's theorem: causal order +
-volume determine the metric. Our two measurement programs map onto it
+**Why this could work (grounding).** Malament's theorem: causal order fixes
+the conformal class (on distinguishing spacetimes); volume — or a time
+function — fixes the remaining factor, so order + volume determine the
+metric. Our two measurement programs map onto it
 exactly — causal relations (this section's road) + `V(r)` (`emergent_dim`)
 — so metric reconstruction from graph observables has a real theorem
 behind it, not just an analogy. The hard parts are inherited honestly:
@@ -487,7 +493,7 @@ and `M_O` to instantiate); recorded here so the program knows its roof.
 | far-field tail exponent | **open** | D11: `1/r` (χ~2 to `5Rc`) vs `1/r²` (χ~1 to `6Rc`); `L ≥ 200` asymptotics needed |
 | SI static shells `V(r)~r²` | **measured (control)** | exact `1+2r(r+1)` bit-pinned L=40/80; fractional p 1.9196→1.9603; plug sign pattern (35<38, +5.0) pre-registered for D13.1 |
 | scale-multiplicity mechanism `n_s~r` | **conjectured (skeleton)** | this doc §8: `s` undefined; RG-log baseline gives wrong profile; linear-vs-log must be measured, not assumed |
-| boundary channel capacity | **measured** | clique plug: deficit `r≤4` (83.7/133.8/76.5/5.9), exact recovery `r≥5`; count re-measures 2D-ness (skeleton intact) |
+| boundary channel capacity | measured (control) | clique plug: deficit `r≤4` (83.7/133.8/76.5/5.9), exact recovery `r≥5`; count re-measures 2D-ness (skeleton intact) |
 | reconstruction universality | **open** | D12: ∀ `M_O ∈ A_macro(G)` converge in the IR (access floor graph-internal; no "3D"/"Lorentzian" in the definition) |
 | causal order / cone / clocks | **open** | D13: D13.0 control measured; stages 1–4 open (`U→T_U`, same-`M_O` cone, clocks, interval) |
 | same-`M_O` + dynamics coherence | **open (criterion)** | this doc §8: one map yields `R³` + cone (C1–C5 ladder, twin-histories test, `~_macro` classes), or the program is fitting |
