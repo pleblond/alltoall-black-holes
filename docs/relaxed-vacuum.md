@@ -518,6 +518,10 @@ volume and MDS readouts. Holographic+relational reframing adopted (`M_O`
 demoted to readout of a dynamically generated metric); Tier-1 MDS
 calibration pinned with a per-substrate bar (Delaunay radial-tortuosity
 bowl: `v3 ↔ r²` at 0.93, so eigenvector geography joins the test).
+Shell-counting dilemma sketched against the emergence derivation: honest
+per-shell counts never reach `r²` while cumulative `r²` violates
+independence by construction (`d_H=2` XOR independence; pairwise rescue
+refuted, non-geometric or non-shell escapes open).
 
 **Why this could work (grounding).** Malament's theorem: causal order fixes
 the conformal class (on distinguishing spacetimes); volume — or a time
