@@ -443,7 +443,13 @@ be a transient of the other.
 **Close criterion:** measured `E(r)` tail on `L ≥ 200` with clean
 (`Rc`-relative, unclipped) windows to `10Rc`, deciding `1/r` vs `1/r²` vs
 tension-dependent crossover, with the winning accounting derived from the
-cost rule rather than fitted.
+cost rule rather than fitted. DECIDED (test_emergent_dim.py, L=200/240/250):
+χ~1 → 1/r² (E·r² flat 0.633..0.642, k=3..10 — fixed shadow); χ~2 → 1/r
+(E·r flat 6.12..6.67, k=2..10 — wedge shadow); χ~5 unsettled-but-bounded
+(E·r still falling 7.90 → 7.15 at k=6..10, neither law firm). The
+exponent is TENSION-DEPENDENT. Accounting derivation from the cost rule
+remains sketched (delay-region geometry), not derived — D11 closes on
+the measurement.
 
 **Kill relevance:** none directly — a shape detail, not the shape itself.
 Feeds the tension-imprint conjecture amplitude clause (`model.md` §5).
@@ -489,6 +495,14 @@ class `[G]_{U,O}` — microscopic graphs may fluctuate
 indistinguishability is then exactly what emergence predicts, and
 the vacuum measure over graphs (or its dynamical universality
 class) replaces the winning tessellation as the derivation target.
+Observer-indexed extension (user construction, spiked next):
+M_O(G, o) with a 2D sky chart (angle × shell from vantage o) plus
+relational depth D(o, v) (communicability / resistance / diffusion
+time / channels) re-embedding the chart into an apparent 3D view;
+V_O(R) ~ R^3 is the output test per depth candidate (D10 killer
+design). Adds vantage-covariance as a second universality axis:
+views from distinct o must agree up to IR translation; sky-shape
+(concentration vs dilution of solid angle) is a new falsifier. 
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric

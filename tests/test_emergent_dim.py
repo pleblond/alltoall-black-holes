@@ -797,3 +797,62 @@ def test_disk_boundary_cut_dips_at_plug():
     assert 130 < rows[1][0] - rows[1][1] < 140
     assert 70 < rows[2][0] - rows[2][1] < 80
     assert 5.5 < rows[3][0] - rows[3][1] < 6.0
+
+
+def _d11_tail(L, jumps, ks):
+    """E(r), E*r, E*r^2/100 at Rc-relative windows; returns (rc, rows)."""
+    c, h = L // 2, 4
+    g0 = _sorted_grid_2d(L)
+    src = c * L + c
+    r0, v0 = ed.ball_volumes_bfs(g0, src)
+    _, gm, plug = _jump_plug_grid(L, c, h, jumps)
+    w = ed.ceff_cost_fn(gm)
+    dist = nx.single_source_dijkstra_path_length(gm, src, weight=w)
+    rc = max(dist[n] for n in plug)
+    _, vw = ed.ball_volumes_weighted(gm, src, weight=w, radii=r0)
+    rows = []
+    for k in ks:
+        lo = k * rc
+        assert lo + 8 <= L // 2, (L, k, rc)  # unclipped by construction
+        p0, _ = _window_pr(r0, v0, lo, lo + 8)
+        pw, _ = _window_pr(r0, vw, lo, lo + 8)
+        E = pw - p0
+        rows.append((E, E * (lo + 4), E * (lo + 4) ** 2 / 100))
+    return rc, rows
+
+
+def test_d11_chi1_tail_is_inverse_square():
+    # D11 CLOSES for chi~1: E*r^2/100 flat (0.633..0.642, k=3..10 at
+    # L=200, all unclipped to 10Rc) while E*r falls 2.33 -> 0.78 --
+    # fixed-shadow accounting wins, 1/r rejected.
+    rc, rows = _d11_tail(200, _JUMPS_KING, (3, 4, 5, 6, 8, 10))
+    assert 7.5 < rc < 8.0, rc
+    flat = [r[2] for r in rows]
+    assert all(0.60 < x < 0.67 for x in flat), flat
+    lin = [r[1] for r in rows]
+    assert all(b < a for a, b in zip(lin, lin[1:])), lin
+
+
+def test_d11_chi2_tail_is_inverse_linear():
+    # D11 CLOSES for chi~2: E*r flat (6.12..6.67, k=2..10 at L=240,
+    # unclipped) while E*r^2 rises 1.6 -> 6.4 -- wedge-shadow wins,
+    # 1/r^2 rejected. Exponent is tension-dependent (cf chi~1).
+    rc, rows = _d11_tail(240, _JUMPS_KING + _JUMPS_AXIAL2, (2, 3, 4, 5, 6, 8, 10))
+    assert 9.9 < rc < 10.1, rc
+    lin = [r[1] for r in rows]
+    assert all(6.0 < x < 6.8 for x in lin), lin
+    sq = [r[2] for r in rows]
+    assert all(b > a for a, b in zip(sq, sq[1:])), sq
+
+
+def test_d11_chi5_tail_unsettled_but_bounded():
+    # chi~5 does NOT settle by 10Rc (L=250): E*r still falling
+    # (7.90 -> 7.43 -> 7.15 at k=6,8,10), E*r^2 still rising --
+    # intermediate/bursty strong-tension regime, neither law firm.
+    # Bounded and positive; bigger-L asymptotics stay open.
+    rc, rows = _d11_tail(250, _JUMPS_KING + _JUMPS_AXIAL2 + _JUMPS_DIAG2, (6, 8, 10))
+    assert 11.0 < rc < 11.8, rc
+    lin = [r[1] for r in rows]
+    assert lin[2] < lin[0], lin
+    assert all(6.5 < x < 8.5 for x in lin), lin
+    assert all(r[0] > 0 for r in rows), rows
