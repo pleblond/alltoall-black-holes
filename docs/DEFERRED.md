@@ -88,7 +88,22 @@ killing them (count 30 → 39 while p falls — span-sum is a poor
 proxy); no local potential tracks p well (corr ≤ 0.58 — p is
 source-relative/lottery-noisy, span-census is the more honest global
 health stat). Queued escape: neutral moves / annealing on long-count
-(stochastic U is filed-legal) / coordinated multi-swaps.
+(stochastic U is filed-legal) / coordinated multi-swaps. Escape
+results (MEASURED): neutral drift is WORSE than strict (longs 30 →
+22 — local delta doesn't bound global longs, detour rerouting
+leaks); blind-proposal annealing stalls (greedy) or explodes
+(longs → 101 at T0=5 — proposals matter more than acceptance, not
+shipped); census-gated targeted annealing reaches longs 11 (T0=0,
+p 1.97) / longs 9 (T0=2, p 2.26) — temperature trades p for longs;
+strict→anneal chains and drift⇄strict ratchets don't clear the
+locked core. Tournament table from damage (p 2.362, longs 30):
+null (2.362, 30); greedy-twin (1.835, 88 — games p, triples
+longs!); guillotine (2.132, 6); drift (2.129, 22); anneal (1.97,
+11)/(2.26, 9); scramble (1.786, 297). HEADLINE: p-healing ≠
+healing — the D1 falsifier must judge (p, longs) jointly, and no
+single-swap rule clears both. Next: coordinated multi-swap moves
+or new move classes (degree-changing repair? edge-slide?), then
+the cross-candidate tournament this harness was built for.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum

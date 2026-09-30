@@ -116,15 +116,19 @@ def evolve(
     target: float | None = None,
     proposals: int = 50,
     swaps_per_step: int = 4,
+    T0: float = 2.0,
+    Tend: float = 0.05,
 ) -> tuple[list[float], nx.Graph, int]:
     """Run rule for steps; return (p-trajectory, final graph, accepted)."""
     if src is None:
         src = next(iter(g0.nodes()))
     h = g0.copy()
     ctx = {"rng": random.Random(seed), "src": src, "target": target,
-           "proposals": proposals, "swaps_per_step": swaps_per_step}
+           "proposals": proposals, "swaps_per_step": swaps_per_step,
+           "T0": T0, "Tend": Tend, "total": steps}
     traj, acc = [], 0
-    for _ in range(steps):
+    for s in range(steps):
+        ctx["step"] = s
         acc += rule(h, ctx)
         traj.append(locality_p(h, src))
     return traj, h, acc
@@ -197,4 +201,111 @@ def rule_guillotine(h: nx.Graph, ctx: dict) -> bool:
                 h.remove_edge(u2, v2)
                 h.add_edge(a, b)
                 h.add_edge(x, y)
+    return False
+
+
+def _first_neutral_move(h: nx.Graph, ctx: dict):
+    """Scan for the first swap not growing local longs; None if none found."""
+    radius = ctx.get("radius", 3)
+    smax = ctx.get("max_span", 3)
+    E = list(h.edges())
+    m = len(E)
+    for _ in range(ctx.get("proposals", 40)):
+        i = ctx["rng"].randrange(m)
+        a, b = E[i]
+        if edge_span(h, a, b, radius) <= smax:
+            continue
+        cands = []
+        for _ in range(60):
+            x, y = E[ctx["rng"].randrange(m)]
+            if len({a, b, x, y}) < 4:
+                continue
+            if (x, y) in cands or (y, x) in cands:
+                continue
+            cands.append((x, y))
+        cands.sort(key=lambda e: edge_span(h, e[0], e[1], radius), reverse=True)
+        for x, y in cands:
+            old = (edge_span(h, a, b, radius) > smax) + (edge_span(h, x, y, radius) > smax)
+            for (u1, v1), (u2, v2) in (((a, x), (b, y)), ((a, y), (b, x))):
+                if h.has_edge(u1, v1) or h.has_edge(u2, v2):
+                    continue
+                h.remove_edge(a, b)
+                h.remove_edge(x, y)
+                h.add_edge(u1, v1)
+                h.add_edge(u2, v2)
+                new = (edge_span(h, u1, v1, radius) > smax) + (edge_span(h, u2, v2, radius) > smax)
+                h.remove_edge(u1, v1)
+                h.remove_edge(u2, v2)
+                h.add_edge(a, b)
+                h.add_edge(x, y)
+                if new <= old:
+                    return (a, b, x, y, u1, v1, u2, v2)
+    return None
+
+
+def _apply(h, mv):
+    a, b, x, y, u1, v1, u2, v2 = mv
+    h.remove_edge(a, b)
+    h.remove_edge(x, y)
+    h.add_edge(u1, v1)
+    h.add_edge(u2, v2)
+
+
+def _revert(h, mv):
+    a, b, x, y, u1, v1, u2, v2 = mv
+    h.remove_edge(u1, v1)
+    h.remove_edge(u2, v2)
+    h.add_edge(a, b)
+    h.add_edge(x, y)
+
+
+def total_longs(h: nx.Graph, radius: int = 3, smax: int = 3) -> int:
+    """Global census: edges with span > smax (the honest health stat)."""
+    return sum(1 for u, v in h.edges() if edge_span(h, u, v, radius) > smax)
+
+
+def rule_drift(h: nx.Graph, ctx: dict) -> bool:
+    """Neutral-tolerant long-count descent: apply first non-growing move.
+
+    Strict guillotine stalls on locked configs; allowing neutral moves
+    was meant to cross plateaus -- measured WORSE (longs leak globally
+    through detour rerouting). Kept as the documented failure: local
+    delta does not bound global longs. See rule_anneal for the census
+    gate that fixes the leak.
+    """
+    mv = _first_neutral_move(h, ctx)
+    if mv is None:
+        return False
+    _apply(h, mv)
+    return True
+
+
+def rule_anneal(h: nx.Graph, ctx: dict) -> bool:
+    """Census-gated annealing on global long-count (stochastic U).
+
+    TARGETED proposals (long-first scan) + global-census acceptance:
+    keep iff census doesn't grow, or uphill with prob exp(-dT/T) on a
+    geometric schedule. Targeting is load-bearing -- blind (uniform
+    random) proposals stall greedy at 29 longs and explode to 101 under
+    T0=5 (measured, not shipped): proposals matter more than acceptance.
+    """
+    import math
+
+    mv = _first_neutral_move(h, ctx)
+    if mv is None:
+        return False
+    radius = ctx.get("radius", 3)
+    smax = ctx.get("max_span", 3)
+    before = total_longs(h, radius, smax)
+    _apply(h, mv)
+    after = total_longs(h, radius, smax)
+    d = after - before
+    if d <= 0:
+        return True
+    frac = ctx.get("step", 0) / max(ctx.get("total", 1), 1)
+    T0 = ctx.get("T0", 2.0)
+    T = T0 * (ctx.get("Tend", 0.05) / T0) ** frac if T0 > 0 else 0.0
+    if T > 0 and ctx["rng"].random() < math.exp(-d / T):
+        return True
+    _revert(h, mv)
     return False

@@ -48,7 +48,11 @@ def test_scramble_kills_locality():
     assert max(traj) - min(traj) > 0.5, traj
 
 
-def test_greedy_heals_to_class_not_microstate():
+def test_greedy_games_p_ignores_global():
+    # Twin-targeted greedy perfects p (residual < 1e-5) into a different
+    # microstate -- but global longs TRIPLE (30 -> 88): each accepted swap
+    # churns remote detours p cannot see. p-healing is gameable; the D1
+    # falsifier must judge (p, longs) jointly. Existence probe only.
     g, src = _grid20()
     target = locality_p(g, src)
     dam = inject_shortcuts(g, 10, 3)
@@ -57,6 +61,9 @@ def test_greedy_heals_to_class_not_microstate():
     assert acc > 10, acc
     ov = len(_edgeset(g) & _edgeset(h))
     assert 600 < ov < 760, ov
+    from bh_graph.update_rule import total_longs
+
+    assert total_longs(h) == 88, total_longs(h)
 
 
 def test_plain_vacuum_is_greedy_fixed_point():
@@ -140,3 +147,55 @@ def test_locked_configs_have_no_single_swap_repair():
                 h.add_edge(x, y)
         locked += ok == 0
     assert locked == 4, locked
+
+
+def test_drift_leaks_globally():
+    # Neutral-tolerant drift was meant to cross plateaus -- measured
+    # WORSE than strict (longs 30 -> 22 over 400 steps): local delta
+    # does not bound global longs (detour rerouting leaks). p falls
+    # anyway (2.36 -> 2.13), another p/longs decoupling exhibit.
+    from bh_graph.update_rule import rule_drift, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    traj, h, acc = evolve(dam, rule_drift, 400, seed=5, src=src)
+    assert total_longs(h) == 22, total_longs(h)
+    assert traj[-1] < 2.2, traj[-1]
+    assert acc > 100, acc
+    assert nx.is_connected(h)
+
+
+def test_anneal_temperature_trades_p_for_longs():
+    # Census-gated annealing (targeted proposals): T0=0 reaches longs 11
+    # with p < 2.0; T0=2 reaches FEWER longs (9) but p > 2.2 -- uphill
+    # acceptance explores long-reducing rearrangements p dislikes. No
+    # temperature heals both: single-swap dynamics is insufficient.
+    from bh_graph.update_rule import rule_anneal, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    t0, h0, _ = evolve(dam, rule_anneal, 300, seed=5, src=src, T0=0.0)
+    assert total_longs(h0) == 11, total_longs(h0)
+    assert t0[-1] < 2.0, t0[-1]
+    t2, h2, _ = evolve(dam, rule_anneal, 300, seed=5, src=src, T0=2.0)
+    assert total_longs(h2) == 9, total_longs(h2)
+    assert t2[-1] > 2.2, t2[-1]
+
+
+def test_tournament_no_rule_heals_both():
+    # D1 first-pass headline: (p, longs) from damage (2.362, 30) --
+    # null (2.362, 30) persists; greedy (1.835, 88) games p; guillotine
+    # (2.132, 6) minimizes longs; anneal splits the difference; scramble
+    # (1.786, 297) maximizes damage. Rankings disagree across the two
+    # scoreboards: healing must be judged jointly, and no single-swap
+    # rule clears both. Next: coordinated moves / new move classes.
+    from bh_graph.update_rule import rule_anneal, rule_guillotine, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    tg, hg, _ = evolve(dam, rule_guillotine, 150, seed=5, src=src)
+    ta, ha, _ = evolve(dam, rule_anneal, 300, seed=5, src=src, T0=0.0)
+    assert total_longs(hg) == 6 and tg[-1] > 2.1
+    assert total_longs(ha) == 11 and ta[-1] < 2.0
+    _, hs, _ = evolve(dam, rule_scramble, 20, seed=7, src=src)
+    assert total_longs(hs) == 297, total_longs(hs)
