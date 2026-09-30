@@ -621,7 +621,27 @@ resistance 4.18 (log-growth explodes volume), -log(communicability)
 observer-3D does not fall out of standard relational distances.
 Surviving static route is multiplicity-weighted counting (the D10
 skeleton, w unprincipled); dynamical depth via U-influence queued
-behind D1. Vantage-covariance queued behind depth discovery. 
+behind D1. Vantage-covariance queued behind depth discovery.
+Holographic+relational reframing (ADOPTED user construction): the
+sharp formulation is holographic DOFs + pairwise relational distance
+d(i,j) = f(interaction_ij) → emergent localization, with M_O demoted
+from dimension-manufacturer to readout of a dynamically generated
+metric. The test is distance-geometry: cMDS of D² (B = −½JD²J) must
+show N-stable λ1,λ2,λ3 dominance (λ3/λ4 gap persisting as N grows;
+rank growing with N kills it); f must pass all five admissibility
+criteria (no smuggled 3D — that's where the guard now lives). MDS
+readout on statics (MEASURED NEGATIVE, filed-not-shipped spike,
+L=20/30 grids): calibration first — grid-hop control shows λ1,λ2
+dominance (GoF2 ≈ 0.8, λ2/λ3 ≈ 6.8) with decaying tail + negmass
+0.30, so the honest bar is an N-stable λ3/λ4 gap, never exact rank;
+resistance shows no gap anywhere (GoF3 0.32); −logC is 2-dominant
+with its λ3/λ4 gap SHRINKING 2.44 → 1.23 from L=20 → 30 (wrong
+direction). No rank-3 selection under MDS either — second
+independent negative for statics, and the pipeline is validated (it
+does not hallucinate 3D). The missing piece is now crisp: an
+ATTRACTIVE relational dynamics generating d(i,j) (D1's U is repair
+dynamics, not attraction) — design queued; Tier-1 MDS control sweep
+queued behind it. 
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
