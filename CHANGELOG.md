@@ -70,7 +70,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   Lw10-slice recovered dynamically at beta=350, gradualism,
   Delta-y_w split — substitution at price level, selection
   dominates Phi level; gateway shell confirmed; C2 briefed).
-  531 tests.
+  Walk spike: spec amended pre-data (exact primary, window
+  rule, stationary null, cross-sign corrected) then KILLED
+  static walk-atrophy (ordering 0/8 + inverted signal;
+  susceptibility = conductance math; static-chi exhausted).
+  533 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

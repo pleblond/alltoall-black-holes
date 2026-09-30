@@ -274,25 +274,127 @@ def edge_chi(g: nx.Graph, kind: str = "betweenness") -> dict:
     return out
 
 
+def edge_populations(g: nx.Graph, knot_nodes) -> dict:
+    """{pop: [sorted edge keys]} fabric/weak/interior (tuple grid).
+
+    interior = both endpoints in knot_nodes; weak = span>1;
+    fabric = span-1. Single assignment implementation shared by
+    population_chi and walk-traffic analysis (no drift).
+    """
+    knot_nodes = set(knot_nodes)
+    pops: dict = {"fabric": [], "weak": [], "interior": []}
+    for u, v in g.edges():
+        e = tuple(sorted((u, v)))
+        if u in knot_nodes and v in knot_nodes:
+            pops["interior"].append(e)
+        elif _manhattan(u, v) > 1:
+            pops["weak"].append(e)
+        else:
+            pops["fabric"].append(e)
+    return pops
+
+
+def walk_traffic(g: nx.Graph, T: int, W: int, seed, weight=None) -> dict:
+    """Finite-horizon random-walk edge traffic {(u,v) sorted: fraction}.
+
+    W walks of T steps from uniform starts (seeded `random.Random`;
+    reproducible). Transitions uniform (weight None) or propto 1/w
+    (weight = {(u,v) sorted: price}). Fractions sum to 1.0 exactly
+    (every step traverses exactly one edge). Finite horizon is
+    load-bearing: infinite-horizon stationary traffic is uniform
+    1/E over edges (no signal), so T selects the transient regime.
+    """
+    import bisect
+    import random
+
+    rng = random.Random(seed)
+    nodes = list(g.nodes())
+    nbrs = {}
+    for n in nodes:
+        vs = list(g.neighbors(n))
+        if weight is None:
+            nbrs[n] = (vs, None)
+        else:
+            cw, tot = [], 0.0
+            for v in vs:
+                e = (n, v) if n < v else (v, n)
+                tot += 1.0 / weight[e]
+                cw.append(tot)
+            nbrs[n] = (vs, cw)
+    counts: dict = {}
+    for _ in range(W):
+        u = nodes[rng.randrange(len(nodes))]
+        for _ in range(T):
+            vs, cw = nbrs[u]
+            v = vs[rng.randrange(len(vs))] if cw is None else vs[bisect.bisect(cw, rng.random() * cw[-1])]
+            e = (u, v) if u < v else (v, u)
+            counts[e] = counts.get(e, 0) + 1
+            u = v
+    norm = W * T
+    out = {tuple(sorted(e)): 0.0 for e in g.edges()}
+    for e, c in counts.items():
+        out[e] = c / norm
+    return out
+
+
+def walk_traffic_exact(g: nx.Graph, T: int, weight=None) -> dict:
+    """Exact finite-horizon walk edge traffic {(u,v) sorted: fraction}.
+
+    Uniform injection p_0(i)=1/N, T-step distribution propagation
+    p_{t+1}=p_t P with P_ij propto 1 (weight None) or 1/w_ij
+    (conductance form; weight = {(u,v) sorted: price}); chi_e(T) =
+    (1/T) sum_t [p_t(i)P_ij + p_t(j)P_ji]. Deterministic (no seeds):
+    the PRIMARY walk observable; Monte Carlo walk_traffic is the
+    implementation check. O(T*M) sparse. Fractions sum to 1.0.
+    Anchors: T=1 equals (1/N)(1/d_i+1/d_j) closed form; T->inf
+    tends to uniform 1/M (unweighted) — traffic signal is
+    TRANSIENT-only, never stationary.
+    """
+    nodes = list(g.nodes())
+    idx = {n: k for k, n in enumerate(nodes)}
+    nbrs = [list(g.neighbors(n)) for n in nodes]
+    if weight is None:
+        trans = [[1.0 / len(vs)] * len(vs) for vs in nbrs]
+    else:
+        trans = []
+        for n, vs in zip(nodes, nbrs):
+            inv = []
+            for v in vs:
+                e = (n, v) if n < v else (v, n)
+                inv.append(1.0 / weight[e])
+            tot = sum(inv)
+            trans.append([x / tot for x in inv])
+    n = len(nodes)
+    p = [1.0 / n] * n
+    acc: dict = {}
+    for _ in range(T):
+        pn = [0.0] * n
+        for i, vs in enumerate(nbrs):
+            pi = p[i]
+            if pi == 0.0:
+                continue
+            for v, pr in zip(vs, trans[i]):
+                j = idx[v]
+                f = pi * pr
+                pn[j] += f
+                a, b = nodes[i], v
+                e = (a, b) if a < b else (b, a)
+                acc[e] = acc.get(e, 0.0) + f
+        p = pn
+    out = {tuple(sorted(e)): 0.0 for e in g.edges()}
+    for e, c in acc.items():
+        out[e] = c / T
+    return out
+
+
 def population_chi(g: nx.Graph, knot_nodes, kind: str = "betweenness") -> dict:
     """Per-population static-chi table for experiment-A design (tuple grid).
 
-    kinds: see edge_chi. Populations: "fabric" (span-1, non-interior),
-    "weak" (span>1, non-interior), "interior" (both endpoints in
-    knot_nodes). Returns {pop: [values]} in edge order.
+    kinds: see edge_chi. Populations: see edge_populations.
+    Returns {pop: [values]} in edge order.
     """
-    knot_nodes = set(knot_nodes)
     tab = edge_chi(g, kind)
-    pops: dict = {"fabric": [], "weak": [], "interior": []}
-    for u, v in g.edges():
-        if u in knot_nodes and v in knot_nodes:
-            pop = "interior"
-        elif _manhattan(u, v) > 1:
-            pop = "weak"
-        else:
-            pop = "fabric"
-        pops[pop].append(tab[tuple(sorted((u, v)))])
-    return pops
+    return {pop: [tab[e] for e in es] for pop, es in edge_populations(g, knot_nodes).items()}
 
 
 def planted_knot_state(size=40, ns=20, seed=0, knot_center=(20, 20), knot_rad=2):

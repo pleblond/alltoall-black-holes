@@ -586,3 +586,105 @@ def test_experiment_A_relaxation():
     far_w = sorted(wfin[e] for e in weak_keys if min(rr[e[0]], rr[e[1]]) >= 8)
     assert abs(st.median(near_w) - 8.934) < 0.01 and abs(st.median(far_w) - 11.242) < 0.01
     assert abs((st.median(near_w) - 1) / (st.median(far_w) - 1) - 0.7746) < 0.002
+
+
+def test_walk_spike_kill_shape():
+    # Walk-spike verdict (exact finite-horizon propagation PRIMARY):
+    # MECHANICS (3x3 grid): T=1 equals closed form (1/N)(1/di+1/dj)
+    # to 1e-12; fractions sum to 1.0; deterministic (bit-identical
+    # reruns); keys cover all edges. KILL SHAPE (reduced A-state
+    # 20x20 ns=5 3x3-knot; full-spec 40x40 T-scan {1..320} filed in
+    # DEFERRED: strict interior>fabric>weak at 0/8 horizons):
+    # strict ordering False at T=10,40,80 (reduced reproduces the
+    # kill); interior medians LOWEST everywhere (trapping intuition
+    # dead per-edge: region-time spread over clique edges);
+    # fabric~weak TIED within 5% (no weak/fabric lever in walk-chi,
+    # order unstable across scales -- full-state fab barely above,
+    # reduced weak barely above); deviation-from-uniform shrinks
+    # monotonically T=40 -> T=320 (stationary flattening, graceful).
+    # SUSCEPTIBILITY (reduced, T=40): A_weak(10) within 0.02 of the
+    # analytic stationary null 1/(10(1-f)+f) (avoidance =
+    # conductance normalization, structural contribution ~0);
+    # A_fab(10) > 0.7 retained. MC-CHECK (W=20000 seed 0):
+    # Monte Carlo agrees with exact on ordering + fabric median
+    # within 10% (implementation verified; exact has no seeds/W).
+    import statistics as st
+
+    from bh_graph.weighted import (
+        edge_populations,
+        planted_knot_state,
+        walk_traffic,
+        walk_traffic_exact,
+    )
+
+    g = nx.grid_2d_graph(3, 3)
+    e1 = walk_traffic_exact(g, 1)
+    N = g.number_of_nodes()
+    d = dict(g.degree())
+    assert max(abs(e1[e] - (1 / N) * sum(1 / d[n] for n in e)) for e in e1) < 1e-12
+    assert abs(sum(e1.values()) - 1.0) < 1e-9
+    assert e1 == walk_traffic_exact(g, 1)
+    assert set(e1) == {tuple(sorted(e)) for e in g.edges()}
+
+    g, kn, _, _ = planted_knot_state(size=20, ns=5, seed=0, knot_center=(10, 10), knot_rad=1)
+    pops = edge_populations(g, kn)
+    M = g.number_of_edges()
+
+    def meds(T, weight=None):
+        tab = walk_traffic_exact(g, T, weight=weight)
+        return {p: st.median([tab[e] for e in es]) for p, es in pops.items()}
+
+    for T in (10, 40, 80):
+        m = meds(T)
+        assert not (m["interior"] > m["fabric"] > m["weak"]), (T, m)
+    m = meds(40)
+    assert m["interior"] < m["fabric"] and m["interior"] < m["weak"], m
+    assert abs(m["fabric"] - m["weak"]) / m["fabric"] < 0.05, m
+
+    def dev(T):
+        m = meds(T)
+        return max(abs(m[p] - 1 / M) / (1 / M) for p in m)
+
+    assert dev(320) < dev(40), (dev(320), dev(40))
+
+    w = {e: 1.0 for p in pops.values() for e in p}
+    for e in pops["weak"]:
+        w[e] = 10.0
+    m10 = meds(40, weight=w)
+    f = len(pops["weak"]) / M
+    assert abs(m10["weak"] / m["weak"] - 1 / (10 * (1 - f) + f)) < 0.02
+    assert m10["fabric"] / m["fabric"] > 0.7
+
+    mc = walk_traffic(g, 40, 20000, 0)
+    mm = {p: st.median([mc[e] for e in es]) for p, es in pops.items()}
+    assert (mm["interior"] > mm["fabric"] > mm["weak"]) == (m["interior"] > m["fabric"] > m["weak"])
+    assert abs(mm["fabric"] / m["fabric"] - 1) < 0.10
+
+
+def test_betweenness_cross_sign_indefinite():
+    # Filed analytic correction, verified (not cited): 5-node graph
+    # (sa=1, at=1, sb=2, bt=3, xs=1), all-pairs demand; raising ONLY
+    # w_sa 1->5: own-edge sa 5->2 (nonpositive, kept); cross-edge at
+    # 3->2 DECREASES (abandoned route sheds with repriced edge --
+    # sign-indefinite proven, unique shortest paths both ends, no
+    # tie artifact) while sb 3->4 and bt 1->4 increase. So:
+    # own-effect <=0 (fixed demand/normalization); cross-effects
+    # unrestricted. "Fabric absorbs" / "higher beta needed" are
+    # hypotheses, never corollaries.
+    h = nx.Graph()
+    h.add_edge("s", "a", w=1)
+    h.add_edge("a", "t", w=1)
+    h.add_edge("s", "b", w=2)
+    h.add_edge("b", "t", w=3)
+    h.add_edge("x", "s", w=1)
+
+    def bet():
+        return {tuple(sorted(e)): v for e, v in nx.edge_betweenness_centrality(h, weight="w", normalized=False).items()}
+
+    b1 = bet()
+    h["s"]["a"]["w"] = 5
+    b5 = bet()
+    assert (b1[("a", "s")], b5[("a", "s")]) == (5.0, 2.0)
+    assert (b1[("a", "t")], b5[("a", "t")]) == (3.0, 2.0)
+    assert (b1[("b", "s")], b5[("b", "s")]) == (3.0, 4.0)
+    assert (b1[("b", "t")], b5[("b", "t")]) == (1.0, 4.0)

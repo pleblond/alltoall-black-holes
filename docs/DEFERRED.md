@@ -1680,7 +1680,72 @@ has NO intrinsic timescale => m=1 ideal, m=4 cost-compromise
 (before implementation): fixed-point predictions,
 Jacobian-where-continuous / cycles-where-not, Phi(n,k),
 <Phi>, price distributions, embeddedness exact-null
-regression, + banked A(l) curve. P0' RESTATEMENT (conditional — model.md NOT rewritten:
+regression, + banked A(l) curve. WALK-SPIKE AMENDMENTS
+(ADOPTED pre-data — both reviewers converge; analytic
+corrections, spec v1->v2, appended never silent): (a) EXACT
+finite-horizon propagation PRIMARY (deterministic O(TM), no
+seeds/W); Monte Carlo DEMOTED to implementation check (one
+config: ordering agree + fab-med within 10%; W-escalation
+DROPPED — mismatch = bug, stop). (b) PLATEAU -> BROAD WINDOW
+(signal MUST vanish at stationarity (uniform 1/M) —
+near-stationary plateau would count AGAINST; window =
+contiguous strict block spanning >=4x; scan extended
+{1,5,10,20,40,80,160,320} (exact is cheap); T=1 closed-form
+anchor + T=320 flattening expectation (not gated)).
+(c) RADIUS justification STRUCK (diffusive sqrt(T), not T);
+T=40 = protocol value, intrinsic justification OWED (debt:
+T-from-state-machine — relaxation/mixing/intrinsic clock).
+(d) STATIONARY NULL banked alongside A(l) (from conductances;
+difference = structural contribution); pass NARROWED
+(feasibility-under-protocol, never discovered mechanism).
+(e) NORMALIZATION narrowed (sample-only; P(alpha w)=P(w)
+relative-routing; beta/M regime visible — scale stays open).
+(f) CROSS-EFFECTS corrected to SIGN-INDEFINITE (5-node
+counterexample VERIFIED bit-exact + PINNED: at 3->2 while
+sb 3->4, sa 5->2, bt 1->4); own<=0 kept (fixed demand);
+"fabric absorbs"/"higher beta" demoted to HYPOTHESES;
+two-point beta limits (both-fail = failure-at-settings, NO
+boundary location); concave-D [chi(w')-chi(w)]·(w'-w)<=0
+ADOPTED-conditional (saturation/cadence/discrete TBD in
+derivation); flapping = cadence-vs-stepsize distinguished;
+cycle fallback = <Phi(w(t))> + basin-time fraction (never
+Phi(<w>)). (g) GAIN-vs-RESPONSE: single-edge probes HELD OUT
+from gain derivation (validation set; uniform-lambda
+calibrates). (h) INJECTION/LIFETIME = mechanism-part
+(uniform starts + T = source protocol, not neutral
+measurement; alternatives deferred). (i) KILL SCOPE: this
+construction only. WALK-SPIKE VERDICT: leg1 ORDERING KILL
+(0/8 strict horizons; interior monotone 5.0e-05->2.2e-04
+toward uniform, NEVER crossing fabric~0.00031; T=1 anchor
+bit-exact 2.7e-20; analytic sandwich confirmed inverted-
+at-1/equal-at-inf). WORSE THAN MISS: signal INVERTED
+(interior LOWEST everywhere => atrophy would price knots
+HIGHEST — catastrophic inversion, knots die first);
+fab~=weak TIED within 1-4% (order unstable across scales:
+full fab barely above, reduced weak barely above) => NO
+weak/fabric lever either. leg2 PASS-AS-FEASIBILITY (A(10)
+0.1036/1.0135 tracks stationary null 0.1011/1.0108 to ~2%
+at ALL lambda — avoidance = conductance math, structural
+~0; single-edge = uniform (0.102 — avoidance LOCAL
+per-edge, no collective component; held-out banked).
+MC-check passes (ordering agree False=False, fab-ratio
+1.004). T-freeze fallback executed (no window -> T=40 for
+lambda-probe, banked anyway — pre-stated). OVERALL: static
+walk-atrophy KILLED (preregistered gate, decisive 0/8 +
+inverted signal). CONSEQUENCE (labeled by status):
+(walk,cong) effectively dead — NOT gated (measured-
+consequence: tied weak~=fabric => no differentiation
+lever; gated kill applies to atrophy only). Static-chi
+EXHAUSTED for scale ((betw,atr) excluded analytically;
+(walk,.) voided empirically; (betw,cong) = attenuation
+control, never scale) => C2-scale needs GENUINELY-
+DYNAMICAL state variables (stateful traffic? budgets? —
+new design AFTER betw-cong run). ORDER: betw-cong feedback
+run FIRST (close static chapter; fully derived) ->
+dynamical-chi design. (Spike process note: comprehension-
+recompute bug 3040x (spike-only, fixed; deterministic-
+identical results — determinism-check value demonstrated).)
+P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
