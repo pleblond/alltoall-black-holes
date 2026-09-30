@@ -15,8 +15,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   D10a derivation
   negatives (walk anti-tortuosity, residence α≈0.78); D11 tail closed
   (tension-dependent exponent, χ~5 slow crossover to 20Rc); D10b κ-profile closed (disk confirmation);
-  observer-indexed `M_O` filed + static depth bake-off negative.
-  491 tests.
+  observer-indexed `M_O` filed + static depth bake-off negative
+  (volume + MDS readouts); Tier-1 MDS calibration pinned (Delaunay
+  radial-tortuosity bowl diagnosed, per-substrate bar + v3-geography
+  falsifier clause).
+  493 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

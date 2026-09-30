@@ -641,7 +641,21 @@ independent negative for statics, and the pipeline is validated (it
 does not hallucinate 3D). The missing piece is now crisp: an
 ATTRACTIVE relational dynamics generating d(i,j) (D1's U is repair
 dynamics, not attraction) — design queued; Tier-1 MDS control sweep
-queued behind it. 
+queued behind it. Tier-1 MDS calibration (MEASURED, test_mds.py):
+grid/tri/hex/gabriel/knn hop all show lam1,lam2 dominance (GoF2 >
+0.7, lam2/lam3 > 3, lam3/lam4 < 2.5) — but the DELAUNAY reference
+member shows lam1,2,3 co-dominant (lam3/lam4 ~ 5-6, all 5 seeds;
+lam3/lam1 GROWS 0.53 → 0.79 from N=400 → 1600). Diagnosed, not a
+dimension: v3 correlates 0.93 with centered r² and 0.85 with
+per-node tortuosity — a RADIAL TORTUOSITY BOWL (hop grows
+superlinearly with Euclidean radius in the open disordered box;
+cMDS embeds the warp as a bowl axis). Consequences: (i) the MDS bar
+is per-substrate — del-hop's null INCLUDES lam3, so del-based
+rank-3 claims must clear lam3/lam4 >> 6; (ii) eigenvector geography
+is part of the test — genuine v3 must decorrelate from radial /
+tortuosity fields (new D12 falsifier clause); (iii) radial
+detrending is queued as an open method problem (must use a
+graph-internal radial proxy, never coordinates). 
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
