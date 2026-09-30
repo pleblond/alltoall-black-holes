@@ -279,8 +279,17 @@ permutation-covariant, coarse-graining stable, operational, frozen
 rule — D10)}. The access floor is part of the definition (a
 single-node "observer" recovers nothing); `V_O ~ R³` is the output
 test, never an input. Target: ∀ `M_O ∈ A_macro(G)`,
-`M_O(G) ∼ M` up to coordinate/coarse-graining equivalence. Queued
-audit: P4 (uniform Ollivier) against criteria 1–5.
+`M_O(G) ∼ M` up to coordinate/coarse-graining equivalence. P4 audit
+(uniform Ollivier, `orici`, p=0): (1) graph-internal PASS (uniform
+neighborhood measures + hop metric; no coordinates or target
+dimension); (2) permutation-covariant PASS + TEST (relabeling leaves
+the κ multiset unchanged); (3) coarse-graining stable OPEN (locality
+suggests small perturbations stay local, but no quantitative modulus
+vs reconstruction resolution — drift probe queued); (4) operational
+PARTIAL (EMD computable from neighborhood data in principle, but
+global-EMD + full-neighborhood readout exceeds local-observer access —
+needs access-cost accounting); (5) frozen rule PASS (p=0 uniform
+prescription is state-independent).
 Partial-credit ladder:
 (i) criterion stated + non-circularity argued; (ii) two instances agree on
 vacuum fabric; (iii) agreement extends to tensed regions (fingerprint
@@ -313,8 +322,10 @@ Substrate family MEASURED (de-brittling landed): triangular (shells
 6n, cuts 12r+6) and hexagonal (shells 3n, alternating cut law)
 positive controls reproduce `d_G → 2` with lattice-dependent
 prefactors under one frozen rule; gated-wall negative control keeps
-bit-identical `~r²` balls with collapsed cuts. Noisy-regular family
-member still queued.
+bit-identical `~r²` balls with collapsed cuts. Noisy-grid disorder
+control MEASURED (q=0.10 edge deletion: jittered shells, `p = 1.909`,
+linear cuts — statistical pins, no lattice law); degree-preserving
+rewire variant queued as the next disorder control.
 
 **Close criterion (staged):** (1) `U → T_U, ≺_U`: stated local
 update rule + counterfactual-influence machinery:

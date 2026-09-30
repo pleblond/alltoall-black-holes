@@ -16,6 +16,7 @@ import numpy as np
 from bh_graph.graphs import (
     build_gated_wall_grid,
     build_hex_lattice,
+    build_noisy_grid,
     build_triangular_lattice,
 )
 from bh_graph.scrambling import hop_arrival_times
@@ -107,3 +108,27 @@ def test_gated_walls_identical_balls_collapsed_cuts():
     assert all(b >= a for a, b in pairwise(deficits)), deficits
     assert deficits[-1] >= 15, deficits
     assert 1.87 < _window_p(vols, 6, 14) < 1.91, _window_p(vols, 6, 14)
+
+
+def test_noisy_grid_stays_2d_with_jitter():
+    # Disordered substrate control (q=0.10 edge deletion, first
+    # connected seeded draw): microscopics differ (spread degrees,
+    # jittered shells) while ball growth stays ~r^2 and cuts stay
+    # linear -- statistical pins, not exact ints (no lattice law).
+    g = build_noisy_grid(40, q=0.10, seed=0)
+    assert nx.is_connected(g)
+    degs = [d for _, d in g.degree()]
+    assert min(degs) <= 3 < max(degs)
+    assert g.number_of_edges() < 2 * 40 * 39
+    src = 20 * 40 + 20
+    shells, cuts, vols = _shells_cuts_vols(g, src, 18)
+    for r in range(5, 16):
+        assert abs(shells[r] / (4 * r) - 1) <= 0.12, (r, shells[r])
+    p = _window_p(vols, 6, 14)
+    assert 1.88 < p < 1.93, p
+    rr = np.arange(1, 19, dtype=float)
+    cc = np.array(cuts, dtype=float)
+    slope, icept = np.polyfit(rr, cc, 1)
+    r2 = 1 - float(np.sum((cc - (slope * rr + icept)) ** 2) / np.sum((cc - cc.mean()) ** 2))
+    assert 6.8 < slope < 7.5, slope
+    assert r2 > 0.99, r2

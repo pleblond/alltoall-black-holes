@@ -128,3 +128,24 @@ def test_packing_closure_planckian():
     assert 1.2 < a1020 < 2.0
     assert np.isnan(packing_implied_spacing(-5, 1.5))
     assert np.isnan(packing_implied_spacing(30, float("nan")))
+
+
+def test_p4_permutation_covariant():
+    # D12 criterion 2 for the P4 (uniform-measure Ollivier) instance:
+    # random relabeling leaves the edge-curvature multiset unchanged
+    # (allclose: LP input order changes floating-point summation).
+    import random
+
+    g = nx.grid_2d_graph(5, 5)
+    dist = nx.floyd_warshall_numpy(g)
+    idx = {v: i for i, v in enumerate(g.nodes())}
+    k0 = sorted(ollivier_curvature(g, u, v, _dist=dist, _idx=idx) for u, v in g.edges())
+    rng = random.Random(0)
+    nodes = list(g.nodes())
+    perm = nodes[:]
+    rng.shuffle(perm)
+    h = nx.relabel_nodes(g, dict(zip(nodes, perm)))
+    disth = nx.floyd_warshall_numpy(h)
+    idxh = {v: i for i, v in enumerate(h.nodes())}
+    k1 = sorted(ollivier_curvature(h, u, v, _dist=disth, _idx=idxh) for u, v in h.edges())
+    assert np.allclose(k0, k1, atol=1e-9)

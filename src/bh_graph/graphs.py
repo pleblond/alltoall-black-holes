@@ -6,6 +6,8 @@ complete graph destroys distance and scrambles in log N time.
 """
 from __future__ import annotations
 
+import random
+
 import networkx as nx
 
 
@@ -93,6 +95,30 @@ def build_gated_wall_grid(n_side: int = 40, wall_step: int = 4, gate_row: int | 
             if y != gate_row:
                 g.remove_edge((x, y), (x + 1, y))
     return nx.convert_node_labels_to_integers(g, ordering="sorted")
+
+
+def build_noisy_grid(n_side: int = 40, q: float = 0.10, seed: int = 0) -> nx.Graph:
+    """Square grid with fraction `q` of edges randomly deleted (seeded).
+
+    Disordered substrate control: microscopics differ (spread degrees,
+    jittered shells) while ball growth stays ~r^2. Rejection-samples
+    consecutive seeds from `seed` until the draw is connected, so the
+    output is deterministic and always connected.
+    """
+    if n_side < 1:
+        raise ValueError("n_side must be >= 1")
+    if not 0.0 <= q < 1.0:
+        raise ValueError("q must be in [0, 1)")
+    base = nx.grid_2d_graph(n_side, n_side)
+    edges = list(base.edges())
+    n_drop = int(q * len(edges))
+    for s in range(seed, seed + 1000):
+        rng = random.Random(s)
+        g = base.copy()
+        g.remove_edges_from(rng.sample(edges, n_drop))
+        if nx.is_connected(g):
+            return nx.convert_node_labels_to_integers(g, ordering="sorted")
+    raise RuntimeError(f"no connected draw in 1000 seeds from {seed} (q={q} too high?)")
 
 
 def num_edges_complete(n: int) -> int:

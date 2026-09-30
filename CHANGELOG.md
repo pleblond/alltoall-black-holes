@@ -9,8 +9,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   defining autonomy condition (quotient form refuted by two-bit swap);
   D13.0 static control measured (analytic `V_G`, exact `8r+4` cut law,
   disk-boundary cut capacity, hop/weighted sign pattern); Malament as
-  conditional motivation with `V_U` spacetime-volume leg; paper v5 S11 +
-  ledger updated. 440 tests.
+  conditional motivation with `V_U` spacetime-volume leg; `M_O` quotient
+  + five admissibility criteria; stage-1 spec (`V_U`/`Ṽ_U`, controls,
+  cones); substrate family (tri/hex/noisy +, gated-wall −); P4 audit
+  ((1)(2)(5) pass, (3) open, (4) partial); paper v5 S11 + ledger
+  updated. 445 tests.
 - **v5.1** — D10b tension-cost program (releases model-docs v0.6 below):
   zero-fit cost candidates for tense-region `d(i,j)` (tortuosity-import
   partial recovery, `c_eff`-import flips with full dip → overshoot →
