@@ -17,6 +17,7 @@ from bh_graph.graphs import (
     build_gated_wall_grid,
     build_hex_lattice,
     build_noisy_grid,
+    build_rewired_grid,
     build_triangular_lattice,
 )
 from bh_graph.scrambling import hop_arrival_times
@@ -132,3 +133,23 @@ def test_noisy_grid_stays_2d_with_jitter():
     r2 = 1 - float(np.sum((cc - (slope * rr + icept)) ** 2) / np.sum((cc - cc.mean()) ** 2))
     assert 6.8 < slope < 7.5, slope
     assert r2 > 0.99, r2
+
+
+def test_rewired_grid_shortcuts_break_2d():
+    # Shortcut-fragility control (20 degree-preserving swaps): edge
+    # count and degree multiset exactly preserved, but long-range swaps
+    # accelerate balls past ~r^2 (V14 ~909 vs plain 421, p ~2.6) --
+    # the opposite failure from gated-wall bottlenecks. Direction +
+    # bands are the claim (robust across seeds); swap-dependent values
+    # are not exact-pinned (networkx unpinned above 3.2).
+    g = build_rewired_grid(40, n_swaps=20, seed=0)
+    assert nx.is_connected(g)
+    assert g.number_of_edges() == 2 * 40 * 39
+    plain = nx.grid_2d_graph(40, 40)
+    assert sorted(d for _, d in g.degree()) == sorted(d for _, d in plain.degree())
+    src = 20 * 40 + 20
+    shells, _, vols = _shells_cuts_vols(g, src, 18)
+    assert 700 < vols[14] < 1200, vols[14]
+    assert max(shells[r] - 4 * r for r in range(5, 15)) > 0
+    p = _window_p(vols, 6, 14)
+    assert 2.3 < p < 2.9, p

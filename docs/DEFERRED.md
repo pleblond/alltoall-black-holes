@@ -283,9 +283,9 @@ test, never an input. Target: ∀ `M_O ∈ A_macro(G)`,
 (uniform Ollivier, `orici`, p=0): (1) graph-internal PASS (uniform
 neighborhood measures + hop metric; no coordinates or target
 dimension); (2) permutation-covariant PASS + TEST (relabeling leaves
-the κ multiset unchanged); (3) coarse-graining stable OPEN (locality
-suggests small perturbations stay local, but no quantitative modulus
-vs reconstruction resolution — drift probe queued); (4) operational
+the κ multiset unchanged); (3) coarse-graining stable PASS on grids (single-edge flip moves κ
+only within 3 hops, far drift < 1e-9 — measured modulus;
+plug/curved backgrounds untested); (4) operational
 PARTIAL (EMD computable from neighborhood data in principle, but
 global-EMD + full-neighborhood readout exceeds local-observer access —
 needs access-cost accounting); (5) frozen rule PASS (p=0 uniform
@@ -324,8 +324,10 @@ positive controls reproduce `d_G → 2` with lattice-dependent
 prefactors under one frozen rule; gated-wall negative control keeps
 bit-identical `~r²` balls with collapsed cuts. Noisy-grid disorder
 control MEASURED (q=0.10 edge deletion: jittered shells, `p = 1.909`,
-linear cuts — statistical pins, no lattice law); degree-preserving
-rewire variant queued as the next disorder control.
+linear cuts — statistical pins, no lattice law); rewired-grid
+fragility control MEASURED (20 degree-preserving swaps: identical
+degrees, balls accelerated past `~r²` — V14 ~909 vs 421, `p ~ 2.6` —
+the opposite failure from gated-wall bottlenecks).
 
 **Close criterion (staged):** (1) `U → T_U, ≺_U`: stated local
 update rule + counterfactual-influence machinery:

@@ -419,7 +419,9 @@ prefactor, as required. Gated-wall negative control: bit-identical
 `∼r²` balls with collapsed cuts, so `d_G ≃ 2` is not sufficient for
 channel scaling. Noisy-grid disorder control (q=0.10): jittered
 microscopics, `p = 1.909`, linear cuts — `d_G → 2` survives disorder
-under statistical pins. The killer result — same frozen `M_O` → `d_obs → 3`
+under statistical pins. Rewired-grid fragility control (20
+degree-preserving swaps): identical degrees, balls accelerated past
+`∼r²` — shortcuts break 2D-ness from the other side. The killer result — same frozen `M_O` → `d_obs → 3`
 on every positive member — awaits `M_O` itself.
 
 **Why this could work (grounding).** Malament's theorem: causal order fixes
@@ -542,7 +544,7 @@ dynamics.
 | SI static shells `V(r)~r²` | **measured (control)** | exact `1+2r(r+1)` bit-pinned L=40/80; fractional p 1.9196→1.9603; plug sign pattern (35<38, +5.0) pre-registered for D13.1 |
 | scale-multiplicity mechanism `n_s~r` | **conjectured (skeleton)** | this doc §8: `s` undefined; RG-log baseline gives wrong profile; linear-vs-log must be measured, not assumed |
 | disk-boundary cut capacity | measured (control) | clique plug: deficit `r≤4` (83.7/133.8/76.5/5.9), exact recovery `r≥5`; one particular cut (not min-cut); count re-measures 2D-ness (skeleton intact) |
-| substrate family `G_vac` | measured (control) | tri (6n shells, 12r+6 cuts) + hex (3n, alternating law) + noisy-grid (q=0.10, statistical) positive: `d_G→2`; gated-wall negative: identical balls, collapsed cuts |
+| substrate family `G_vac` | measured (control) | tri/hex (exact laws) + noisy-grid (statistical) positive: `d_G→2`; gated-wall (bottleneck) + rewired-grid (shortcuts) negative: balls ≠ channels |
 | reconstruction universality | **open** | D12: ∀ `M_O ∈ A_macro(G)` converge in the IR (access floor graph-internal; no "3D"/"Lorentzian" in the definition) |
 | causal order / cone / clocks | **open** | D13: D13.0 control measured; stages 1–4 open (`U→T_U`, same-`M_O` cone, clocks, interval) |
 | same-`M_O` + dynamics coherence | **open (criterion)** | this doc §8: one map yields `R³` + cone (C1–C5 ladder, twin-histories test, `~_macro` classes), or the program is fitting |

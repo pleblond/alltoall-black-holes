@@ -149,3 +149,41 @@ def test_p4_permutation_covariant():
     idxh = {v: i for i, v in enumerate(h.nodes())}
     k1 = sorted(ollivier_curvature(h, u, v, _dist=disth, _idx=idxh) for u, v in h.edges())
     assert np.allclose(k0, k1, atol=1e-9)
+
+
+def test_p4_drift_localizes_to_flip():
+    # D12 criterion 3 probe for the P4 instance: a single-edge flip
+    # moves kappa only in its neighborhood -- far-field drift is fp
+    # dust, near-field carries the response (grid-tested modulus;
+    # plug/curved backgrounds untested).
+    g = nx.grid_2d_graph(10, 10)
+    flip = ((4, 5), (5, 5))
+    h = g.copy()
+    h.remove_edge(*flip)
+    assert nx.is_connected(h)
+    dist0 = nx.floyd_warshall_numpy(g)
+    idx0 = {v: i for i, v in enumerate(g.nodes())}
+    dist1 = nx.floyd_warshall_numpy(h)
+    idx1 = {v: i for i, v in enumerate(h.nodes())}
+    k0 = {e: ollivier_curvature(g, *e, _dist=dist0, _idx=idx0) for e in g.edges()}
+    k1 = {e: ollivier_curvature(h, *e, _dist=dist1, _idx=idx1) for e in h.edges()}
+    total, far, near = 0.0, 0.0, 0.0
+    for e in g.edges():
+        if e not in k1:
+            continue
+        u, v = e
+        dd = min(
+            nx.shortest_path_length(g, u, flip[0]),
+            nx.shortest_path_length(g, u, flip[1]),
+            nx.shortest_path_length(g, v, flip[0]),
+            nx.shortest_path_length(g, v, flip[1]),
+        )
+        w = abs(k1[e] - k0[e])
+        total += w
+        if dd >= 4:
+            far += w
+        if dd <= 1:
+            near += w
+    assert total > 0.1, total
+    assert far < 1e-9, far
+    assert near / total > 0.99, (near, total)

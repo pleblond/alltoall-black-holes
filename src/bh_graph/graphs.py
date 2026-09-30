@@ -121,5 +121,21 @@ def build_noisy_grid(n_side: int = 40, q: float = 0.10, seed: int = 0) -> nx.Gra
     raise RuntimeError(f"no connected draw in 1000 seeds from {seed} (q={q} too high?)")
 
 
+def build_rewired_grid(n_side: int = 40, n_swaps: int = 20, seed: int = 0) -> nx.Graph:
+    """Square grid with `n_swaps` degree-preserving double-edge swaps (seeded).
+
+    Shortcut-fragility control: edge count and degree multiset preserved,
+    but long-range swaps accelerate ball growth past ~r^2 -- the opposite
+    failure from gated-wall bottlenecks. Stays connected by construction.
+    """
+    if n_side < 1:
+        raise ValueError("n_side must be >= 1")
+    if n_swaps < 0:
+        raise ValueError("n_swaps must be >= 0")
+    g = nx.grid_2d_graph(n_side, n_side)
+    nx.connected_double_edge_swap(g, n_swaps, seed=seed)
+    return nx.convert_node_labels_to_integers(g, ordering="sorted")
+
+
 def num_edges_complete(n: int) -> int:
     return n * (n - 1) // 2
