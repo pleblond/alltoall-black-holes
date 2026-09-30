@@ -1639,7 +1639,48 @@ ROADMAP LOCKED: A [done] -> C2 feedback [NEXT] -> M_O audits
 UNIT: walk-traffic pops spike (decides matrix) -> DUAL
 derivation (betw-cong + walk-atr fixed points/stability;
 cycle-analysis for discontinuous cell) -> preregister both
-+ exclusions -> run same apparatus. P0' RESTATEMENT (conditional — model.md NOT rewritten:
++ exclusions -> run same apparatus. WALK-SPIKE SPEC (FROZEN —
+spike decides fork mechanically): walk-chi = FINITE-horizon
+transient traffic (infinite-horizon stationary edge-traversal
+is EXACTLY uniform 1/E — pi_i/d_i=1/2E per direction — so T
+is load-bearing, not a detail): W=50000 walks, horizon T,
+uniform starts/neighbor choice, seeds {0,1}; chi_e =
+traversals/(W*T) (intrinsic fraction, no scale trap).
+ORDERING hypothesis: interior > fabric > weak (trapping >
+wandering > stumbling). T-scan {10,20,40,80}; PASS = strict
+median ordering at >=3 of 4 (robustness); T-FREEZE RULE
+(pre-stated): T=40 (~system radius 78/2, recorded before
+seeing) IF in plateau ELSE plateau midpoint. PRECISION RULE
+(not shopping): orderings agree both seeds else raise W.
+SUSCEPTIBILITY: weighted walks P(i->j) propto 1/w (reduces to
+uniform at w=1 — continuity); PRIMARY uniform-lambda probe on
+all weak links lambda in {1,2,5,10,20} (hand-set measurement,
+Lw-campaign logic); avoidance A(lambda)=chi_weak(l)/chi_weak(1):
+PROCEED if A(10)<0.3, KILL if >0.5, gray judged+reported;
+fabric-retention A_fab(10)>0.7 REQUIRED (differentiation
+sustained). SECONDARY single-edge lambda (3 representative
+weak links) for local gain. DECISION: both legs pass =>
+derive walk-atrophy (saturating, GAIN-FED from banked A(l));
+either kills => kill static walk-atrophy WITH leg+numbers
+(scale then needs budget/other-chi — decided then, not now).
+DATAFLOW FILED: spike -> A(l) gain -> derivation -> lock ->
+code (derivation consumes spike numbers). BETW-CONG
+DERIVATION (parallel, spike-independent): analytic core =
+per-edge OWN-effect <=0 (raising e never adds e to shortest
+paths — own-chi monotone nonincreasing in own-w) + CROSS >=0
+(reroute); predictions: weak w* BELOW static (attenuation
+factor = this run's number), fabric at/above static
+(absorption), basin needs HIGHER beta than static-350
+(measured gap), flapping possible (cycle + <Phi> fallback
+armed, no Jacobian — discontinuous). Runs beta in {35,350}
+only (narrower question). CADENCE HONESTY: shortest-path chi
+has NO intrinsic timescale => m=1 ideal, m=4 cost-compromise
+(7s/eval); pre-registered m=1 VALIDATION run at beta=350
+(must agree qualitatively else cadence artifact). FREEZE LIST
+(before implementation): fixed-point predictions,
+Jacobian-where-continuous / cycles-where-not, Phi(n,k),
+<Phi>, price distributions, embeddedness exact-null
+regression, + banked A(l) curve. P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
