@@ -308,7 +308,12 @@ as the spatial control, read causally). The plug *accelerates* hop-fronts
 (corner 35 < 38 — the shortcut signature, consistent with T1/D10a
 inversion), while ceff-weighted first-passage *delays* (corner +5.0 — the
 cost signature, cf. T9). Bare hops invert, costs recover: the D10a/D10b
-lesson repeats at the causal level with trivial dynamics.
+lesson repeats at the causal level with trivial dynamics. In one line:
+
+> **Shorter topological path ⇏ shorter physical distance.**
+> The plug gives `Δd_hop < 0` (35 < 38) with `ΔT_physical > 0` (+5.0):
+> raw adjacency says "closer", propagation physics says "farther" —
+> a minimal demonstration of why P0' needs `M_O` at all.
 
 **Events, order, cone, clocks (sketch).** The road, compressed: add one
 microscopic ingredient — a local update rule `G_n → G_{n+1}` (this is D1,
@@ -342,7 +347,24 @@ RG expectation `n_s ~ log r`, which gives the *wrong* profile (`r log r`).
 The mechanism earns its keep if and only if `s` is defined independently
 of the desired output and the linear-vs-log profile is then measured.
 Recorded as D10's leading 2D+scale candidate; derivation or measurement
-promotes it, nothing else does.
+promotes it, nothing else does. One refinement: distinguish `n_levels(r)`
+(hierarchy depth, expect `~ log r`) from `n_channels(r)` (distinguishable
+information channels across scales — min-cut multiplicity, transfer
+modes, crossing rank, channel capacity). The mechanism needs the
+*channels* linear, and the count must be purely graph-theoretic, never
+defined using the target dimension (counting along the `r`-shell by
+construction would put the answer in). Honesty note: on any 2D-like
+graph, channel counts scale `~ r` for geometric reasons (Menger caps
+modes at cut value; cut value is boundary size) — so a measured
+`n_channels ∝ r` re-measures 2D-ness. Necessary, not sufficient: the
+explanatory burden sits entirely in the second half, *why `M_O` reads
+channels as scales*. The non-geometric probe in this cluster is
+cost-weighted boundary capacity vs `r` (conductances can break the
+geometric scaling — it can surprise). Measured: deficit at `r ≤ 4`
+(83.7/133.8/76.5/5.9 on the clique plug — tension suppresses near-field
+capacity), exact recovery from `r = 5` (first boundary clearing the
+plug's edge-shadow). The count behaves geometrically; the skeleton
+stands, explanatory work still in `M_O`.
 
 **Why this could work (grounding).** Malament's theorem: causal order +
 volume determine the metric. Our two measurement programs map onto it
@@ -356,11 +378,56 @@ preferred-frame artifacts (T13's quadratic-only LIV is the existing
 asset); manifoldlikeness is the causal-set hard problem, related to, not
 reinvented.
 
-**The falsifier.** The same `M_O` must perform *both* the `2+scale → 3`
+**The falsifiers.** The same `M_O` must perform *both* the `2+scale → 3`
 reconstruction and the microscopic-order → Lorentzian-cone reconstruction.
 If space and time end up needing different reconstruction maps, the
 program is fitting, not deriving. (This is D12's universality question
-made concrete.)
+made concrete.) The universality target, stated with its quantifier:
+
+> **∀ `M_O ∈ A_macro(G)`, `M_O(G)` ∼ `M`** (up to coordinate /
+> coarse-graining equivalence) — where `A_macro` is defined from
+> graph-internal admissibility/access criteria alone, and neither "3D"
+> nor "Lorentzian" may occur in its definition.
+
+Snapshot emergence is cheap; the over-arching falsifier is dynamical
+coherence — graph evolution must map consistently into spacetime
+evolution (`M_O ∘ U ≃ U_eff ∘ M_O`), in increasing strength:
+
+> **C1 coherence:** successive reconstructions form a well-defined evolution.
+> **C2 locality:** `U_eff` is local in reconstructed spacetime.
+> **C3 autonomy:** `U_eff(M_n)` needs no hidden `G_n`.
+> **C4 universality:** same frozen `M_O`, `U` across admissible states.
+> **C5 GR limit:** `U_eff → GR` in the IR (measured, never demanded).
+
+Each level presupposes the previous; C4 is a quantifier upgrading C1–C3
+from "on this trajectory" to "across `A_macro`". Autonomy-before-GR in
+bold ink: snapshots resembling a GR solution whose next step needs
+microscopic information is *not* emergent spacetime physics. The sharp
+operational form is the twin-histories test: find `G_a ≠ G_b` with
+`M_O(G_a) = M_O(G_b) = M`, evolve both, and demand
+`M_O(U(G_a)) ≃ M_O(U(G_b))` — it tests whether the information `M_O`
+discards is actually irrelevant to macroscopic evolution. The measurable
+form is ε–δ in macro-profile distance (the RG-weakened version,
+`ΔM → 0` in the IR, is probably the right target); it presupposes fiber
+control — twins require understanding `M_O`'s preimages, which is D12
+work. Note the sequencing: D10a close → freeze `M_O` → compression test;
+counting phenomena before the bridges are derived would let construction
+inputs masquerade as evidence.
+
+The roof over all of it: define macroscopic states dynamically, not by
+hand-chosen coarse-graining. Two graphs are macro-equivalent when they
+have the same observable future under `U` over the IR horizon:
+
+> **`G_a ~_macro G_b` ⟺ `M_O(UⁿG_a) ≃ M_O(UⁿG_b)`.**
+> An emergent spacetime state is an equivalence class of microscopic
+> graphs with indistinguishable macroscopic dynamics.
+
+Given candidate `(U, M_O)`, `~_macro` is derived, and the consistency
+demand is that `M_O` factor through the classes — well-definedness on
+classes ⟺ autonomy (C3). The architecture becomes `(G,U) → dynamical
+equivalence classes → (M,U_eff) → local autonomous 3+1 physics`, rather
+than merely `G → 3D geometry`. Currently a target definition (needs `U`
+and `M_O` to instantiate); recorded here so the program knows its roof.
 
 ---
 
@@ -371,7 +438,7 @@ made concrete.)
 | vacuum = relaxed isostatic 2D fabric, `<z>=4` | **postulated (P0')** | `model.md` §2, this doc §2–§4 |
 | observer sees `M_O(G)`; P4 is one instance | postulated (P0/P4 box) | `model.md` §1–§2 |
 | `d_G / d_I / d_obs` + `d_eff` protocol | defined + implemented | `model.md` §1 box, `emergent_dim` |
-| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (24 tests) |
+| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (25 tests) |
 | convergence `p(L)` monotone, gap `~1/√L` | **measured** | BFS series test |
 | resistance / communicability rejected | **measured (negative)** | rejection test |
 | shell no-emergence pin (~1.4 / ~0.6) | **measured (negative)** | shell test |
@@ -385,9 +452,10 @@ made concrete.)
 | far-field tail exponent | **open** | D11: `1/r` (χ~2 to `5Rc`) vs `1/r²` (χ~1 to `6Rc`); `L ≥ 200` asymptotics needed |
 | SI causal shells `V(t)~t²` | **measured** | `test_scrambling.py` (5 tests): control p = 1.920; plug accelerates hop-fronts (35<38); ceff-weighted delays (+5.0) |
 | scale-multiplicity mechanism `n_s~r` | **conjectured (skeleton)** | this doc §8: `s` undefined; RG-log baseline gives wrong profile; linear-vs-log must be measured, not assumed |
-| reconstruction universality | **open** | D12: all independently-admissible `M_O` converge in the IR; admissibility from `G`, not output |
+| boundary channel capacity | **measured** | clique plug: deficit `r≤4` (83.7/133.8/76.5/5.9), exact recovery `r≥5`; count re-measures 2D-ness (skeleton intact) |
+| reconstruction universality | **open** | D12: ∀ `M_O ∈ A_macro(G)` converge in the IR (access floor graph-internal; no "3D"/"Lorentzian" in the definition) |
 | causal order / cone / clocks | **open** | D13 (staged): substrate `t²` measured; order-dimension, cone, clock rate, interval reconstruction open |
-| same-`M_O` falsifier | **open (criterion)** | this doc §8: one map must yield both `R³` and the Lorentzian cone, or the program is fitting |
+| same-`M_O` + dynamics coherence | **open (criterion)** | this doc §8: one map yields `R³` + cone (C1–C5 ladder, twin-histories test, `~_macro` classes), or the program is fitting |
 | `d_I = 2` for vacuum fabric | predicted (follows from P0' + protocol) | queued for simulator (D10) |
 | 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10); leading candidate: scale multiplicity `n_s~r` (this doc §8, skeleton) |
 | tension → `κ` map (`z−4` to curvature) | **open** | D10 |

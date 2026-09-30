@@ -747,3 +747,37 @@ def test_t15_violation_need_not_blip():
         vw = sum(1 for n in g if dw[n] <= r)
         v0 = sum(1 for n in g0 if d0[n] <= r)
         assert vw <= v0, (r, vw, v0)
+
+
+def test_channel_capacity_dips_at_plug():
+    # n_channels made concrete (D10 candidate): boundary-cut size of
+    # center disks on the 5x5-clique grid, unweighted vs
+    # ceff-conductance-weighted (same gm edge set). Geometric baseline
+    # ~r (p = 0.9513, r2 1.0); weighted == unweighted exactly once the
+    # disk boundary clears the plug's edge-shadow (r >= 5); deficit > 0
+    # for r <= 4 (83.7/133.8/76.5/5.9: tension suppresses near-field
+    # channel capacity). The count re-measures 2D-ness -- explanatory
+    # work stays in M_O's use of channels as scales (essay §8).
+    g0, g = _clique_plug_grid(40, 20)
+    src = 20 * 40 + 20
+    w = ed.ceff_cost_fn(g, z_vac=4.0)
+    d0 = nx.single_source_shortest_path_length(g0, src)
+    rows = []
+    for r in range(1, 20):
+        disk = {v for v in g0 if d0[v] <= r}
+        be = [(u, v) for u, v in g.edges() if (u in disk) != (v in disk)]
+        unw = float(len(be))
+        wei = sum(1.0 / w(u, v) for u, v in be)
+        rows.append((unw, wei))
+    rr = np.arange(1, 20, dtype=float)
+    uu = np.array([x[0] for x in rows])
+    ww = np.array([x[1] for x in rows])
+    p, r2 = _window_pr(rr, uu, 6, 19)
+    assert 0.9 < p < 1.1, (p, r2)
+    assert r2 > 0.99, (p, r2)
+    assert np.all(ww[4:] == uu[4:])
+    assert all(u > wv for u, wv in rows[:4])
+    assert 80 < rows[0][0] - rows[0][1] < 90
+    assert 130 < rows[1][0] - rows[1][1] < 140
+    assert 70 < rows[2][0] - rows[2][1] < 80
+    assert 5.5 < rows[3][0] - rows[3][1] < 6.0

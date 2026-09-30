@@ -165,7 +165,7 @@ flip needs `c* ≈ 0.58`, diagnostic); `c_eff`-import `w = 1 + χ` (AT light
 sector, saturating `x = χ/(1+χ)` bridge) flips clique (3.43, big overshoot)
 and mild plug (1.73 → 2.02 vs 1.92, modest +5% overshoot) — overshoot-side
 only, dip-phase (U-shape) open, amplitude unclaimed. Fingerprint + amplitude
-(24 tests): 9×9 χ~1 plug shows full dip (−0.18) → overshoot (+0.79 peak) →
+(25 tests): 9×9 χ~1 plug shows full dip (−0.18) → overshoot (+0.79 peak) →
 asymptote (+0.09) shape-match conditional on the ceff bridge; dip-min ratio
 deepens (0.20/0.077/0.016), overshoot peak grows (0.79/0.94/2.91), far-field
 `E ~ A(χ)Rc/r` with non-universal `A` (deficit ∝ tension; tail exponent
@@ -240,10 +240,12 @@ stands: why resistance / diffusion / communicability distance, and why
 couldn't another reasonable reconstruction give 4D, 7D, or no smooth
 geometry at all?
 
-**Close criterion:** an admissibility criterion derived from `G`'s
-information-access constraints alone (not from the output geometry), plus
-≥2 admissible `M_O` instances converging to the same IR `d_eff` and
-curvature sign on the same graph family. Partial-credit ladder:
+**Close criterion:** define `A_macro(G)` = {`M_O` : graph-internal
+admissibility/access criteria satisfied} — the access floor is part of
+the definition (a single-node "observer" recovers nothing), and neither
+"3D" nor "Lorentzian" may occur in it. Target: ∀ `M_O ∈ A_macro(G)`,
+`M_O(G) ∼ M` up to coordinate/coarse-graining equivalence.
+Partial-credit ladder:
 (i) criterion stated + non-circularity argued; (ii) two instances agree on
 vacuum fabric; (iii) agreement extends to tensed regions (fingerprint
 shape under both).
@@ -270,6 +272,16 @@ redshift profile from capacity/congestion, unimported; (4) interval:
 reconstructed `g_μν` from causal relations + `V(r)` (Malament-shaped)
 reproducing the T8–T11 battery. Each stage closes independently; GR is
 the check, never the input.
+
+**Over-arching falsifier (C1–C5, essay §8):** `M_O ∘ U ≃ U_eff ∘ M_O`
+with coherence → locality → autonomy → universality → GR limit, each
+level presupposing the previous (C4 quantifies C1–C3 across `A_macro`).
+Autonomy-before-GR: snapshots resembling GR whose next step needs hidden
+`G_n` fail. Operational form: twin histories (`M_O(G_a) = M_O(G_b)` ⇒
+`M_O(U(G_a)) ≃ M_O(U(G_b))`, ε–δ in macro-profile distance, RG-weakened
+`ΔM → 0` in the IR); presupposes D12 fiber control. Roof: macro-states
+as `~_macro` dynamical-equivalence classes; `M_O` must factor through
+them (well-definedness ⟺ C3).
 
 **Kill relevance:** feeds D1 (dynamics) and D12 (same-`M_O` falsifier: the
 interval map must coincide with the spatial `M_O`). No direct kill wire
