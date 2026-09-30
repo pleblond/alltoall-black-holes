@@ -2,6 +2,7 @@
 
 import networkx as nx
 import numpy as np
+from itertools import pairwise
 
 from bh_graph import emergent_dim as ed
 from bh_graph.graphs import build_chain, build_complete, build_grid_2d
@@ -830,7 +831,7 @@ def test_d11_chi1_tail_is_inverse_square():
     flat = [r[2] for r in rows]
     assert all(0.60 < x < 0.67 for x in flat), flat
     lin = [r[1] for r in rows]
-    assert all(b < a for a, b in zip(lin, lin[1:])), lin
+    assert all(b < a for a, b in pairwise(lin)), lin
 
 
 def test_d11_chi2_tail_is_inverse_linear():
@@ -842,7 +843,7 @@ def test_d11_chi2_tail_is_inverse_linear():
     lin = [r[1] for r in rows]
     assert all(6.0 < x < 6.8 for x in lin), lin
     sq = [r[2] for r in rows]
-    assert all(b > a for a, b in zip(sq, sq[1:])), sq
+    assert all(b > a for a, b in pairwise(sq)), sq
 
 
 def test_d11_chi5_tail_unsettled_but_bounded():
