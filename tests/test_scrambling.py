@@ -1,6 +1,13 @@
 import networkx as nx
-from bh_graph.graphs import build_complete, build_chain, build_grid_2d
-from bh_graph.scrambling import infection_time, graph_diameter, mean_path_length
+import numpy as np
+
+from bh_graph.graphs import build_chain, build_complete, build_grid_2d
+from bh_graph.scrambling import (
+    arrival_times,
+    graph_diameter,
+    infection_time,
+    mean_path_length,
+)
 
 
 def test_complete_has_diameter_one_and_cover_one():
@@ -25,3 +32,61 @@ def test_local_graphs_slower_than_complete():
     assert t_chain > t_all
     assert t_grid > t_all
     assert nx.diameter(build_chain(n)) == n - 1
+
+
+def _sorted_grid_2d(L):
+    return nx.convert_node_labels_to_integers(nx.grid_2d_graph(L, L), ordering="sorted")
+
+
+def _clique_plug_grid(L=40, c=20):
+    g0 = _sorted_grid_2d(L)
+    g = g0.copy()
+    plug = [x * L + y for x in range(c - 2, c + 3) for y in range(c - 2, c + 3)]
+    for i in range(len(plug)):
+        for j in range(i + 1, len(plug)):
+            g.add_edge(plug[i], plug[j])
+    return g0, g, plug
+
+
+def test_si_shells_grow_like_t2_and_plug_accelerates():
+    # D13 stage 1 (corrected roadmap target): raw causal growth on 2D
+    # fabric is t^2, NOT t^3 (t^3 at graph level would contradict P0').
+    # Control cumulative V(t) fits p = 1.920 (r2 1.0) over t in [8,20] --
+    # same numbers as the spatial control, read causally. The clique plug
+    # accelerates hop-fronts (shortcut signature, cf. T1/D10a inversion):
+    # corner arrival 35 < 38, cover 37 < 40.
+    L, c = 40, 20
+    g0, g, _ = _clique_plug_grid(L, c)
+    src, corner = c * L + c, 39 * L + 39
+    d0 = arrival_times(g0, src)
+    t = np.arange(1, 41)
+    v = np.array([sum(1 for n in d0 if d0[n] <= r) for r in t])
+    m = (t >= 8) & (t <= 20)
+    p, _ = np.polyfit(np.log(t[m]), np.log(v[m]), 1)
+    assert 1.85 < p < 2.0, p
+    dp = arrival_times(g, src)
+    assert d0[corner] == 38, d0[corner]
+    assert dp[corner] == 35, dp[corner]
+    assert max(dp.values()) == 37, max(dp.values())
+    assert max(d0.values()) == 40, max(d0.values())
+
+
+def test_weighted_first_passage_delays_at_plug():
+    # Cost signature (cf. T9): ceff-weighted arrival (Dijkstra) runs
+    # strictly later than hop arrival -- the delay lives in the cost
+    # layer, mirroring the D10a/D10b structure at the causal level.
+    # Corner delay exactly 5.0; all plug nodes delayed except the source
+    # itself (arrives at 0 under both readings).
+    from bh_graph import emergent_dim as ed
+
+    L, c = 40, 20
+    g0, g, plug = _clique_plug_grid(L, c)
+    src, corner = c * L + c, 39 * L + 39
+    dp = arrival_times(g, src)
+    d0 = arrival_times(g0, src)
+    w = ed.ceff_cost_fn(g, z_vac=4.0)
+    dw = nx.single_source_dijkstra_path_length(g, src, weight=w)
+    assert abs(dw[corner] - d0[corner] - 5.0) < 1e-9, dw[corner]
+    delayed = [n for n in plug if dw[n] > dp[n] + 1e-9]
+    assert len(delayed) == 24, len(delayed)
+    assert set(plug) - set(delayed) == {src}

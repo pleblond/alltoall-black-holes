@@ -18,10 +18,11 @@ the interior has no metric extent — it is "one dot".
 from __future__ import annotations
 
 from collections import deque
+
 import networkx as nx
 import numpy as np
 
-from bh_graph.graphs import build_complete, build_chain, build_grid_2d, build_random_regular
+from bh_graph.graphs import build_chain, build_complete, build_grid_2d, build_random_regular
 
 
 def infection_time(g: nx.Graph, seed: int = 0) -> int:
@@ -96,7 +97,7 @@ def scrambling_scaling(ns: list[int], seed: int = 0) -> dict[str, dict[int, dict
             "gap": float(2 * (1 - np.cos(np.pi / n))) if n > 1 else 0.0,
         }
         # grid (snap to square)
-        side = max(1, int(round(n**0.5)))
+        side = max(1, round(n**0.5))
         n_sq = side * side
         g = build_grid_2d(side)
         out["grid (2D local)"][n_sq] = {
@@ -119,3 +120,17 @@ def scrambling_scaling(ns: list[int], seed: int = 0) -> dict[str, dict[int, dict
 def is_valid_graph(g: nx.Graph) -> bool:
     """Boolean check (no exceptions for control flow): connected and nonempty."""
     return len(g) > 0 and nx.is_connected(g)
+
+
+def arrival_times(g: nx.Graph, seed: int = 0) -> dict:
+    """Per-node SI first-passage times from `seed` (BFS layers).
+
+    Causal reading of BFS: under trivial one-hop-per-step dynamics, the
+    arrival time T(seed, v) is the first step at which v can be
+    influenced. Cumulative shell volumes V(t) = |{v: T <= t}| are the
+    L0 causal-growth observable (D13 stage 1): t^2 on 2D fabric, NOT
+    t^3 (a t^3 substrate would contradict P0'). Empty graph gives {}.
+    """
+    if len(g) == 0 or seed not in g:
+        return {}
+    return dict(nx.single_source_shortest_path_length(g, seed))

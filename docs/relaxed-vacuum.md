@@ -8,8 +8,10 @@ Reading guide: §1–§2 are philosophy (why relaxation belongs to the
 information side). §3–§4 are the postulate (2D, 4 edges, and what each word
 costs). §5–§6 are consequences (only vacuum is perfectly 3D; mass is tense
 vacuum). §7 is the verdict on total emergence today (bracket method, first
-failure, what would flip it). §8 maps every claim to definition / measured /
-open. Readers who only want the postulate can read §3–§4 and §8.
+failure, what would flip it). §8 is the open road on time and causal order
+(substrate target, scale-multiplicity mechanism, same-`M_O` falsifier).
+§9 maps every claim to definition / measured /
+open. Readers who only want the postulate can read §3–§4 and §9.
 
 ---
 
@@ -282,7 +284,87 @@ failed informatively.
 
 ---
 
-## 8. Status map (what is what)
+## 8. Time and causal order (open road)
+
+Everything so far is space: `d(i,j) → V(r) → d_eff → 3`. Time is untouched —
+L0 has no dynamics (D1), and "why spacetime?" is strictly bigger than "why
+space?". This section records the open road as a notebook, not a claim: the
+corrected substrate target (measured), one candidate mechanism (unmeasured),
+and the falsifier that would make the program real.
+
+**The corrected target.** An early version of this road asked for causal
+growth `V(t) ~ t³` at the graph level. That contradicts P0': on a 2D fabric
+with finite-speed local propagation, raw causal balls must grow as `t²` —
+`t³` at substrate level would smuggle back a 3D substrate. The honest target
+splits by level:
+
+> **`V_G ~ t²` at substrate (L0), `V_O ~ R³` after `M_O` reconstruction.**
+> The physics is the map `(fabric neighborhood, scale) → R` that changes
+> the effective dimensionality — the same map whose spatial half is D10.
+
+The substrate half is now measured: SI first-passage shells on relaxed
+fabric fit `p = 1.920` over `t ∈ [8,20]` (`test_scrambling`, same numbers
+as the spatial control, read causally). The plug *accelerates* hop-fronts
+(corner 35 < 38 — the shortcut signature, consistent with T1/D10a
+inversion), while ceff-weighted first-passage *delays* (corner +5.0 — the
+cost signature, cf. T9). Bare hops invert, costs recover: the D10a/D10b
+lesson repeats at the causal level with trivial dynamics.
+
+**Events, order, cone, clocks (sketch).** The road, compressed: add one
+microscopic ingredient — a local update rule `G_n → G_{n+1}` (this is D1,
+now gating time itself, not just evaporation). Each elementary change is an
+event; influence-dependence gives a partial order `e_i ≺ e_j` (comparable =
+timelike-related, incomparable = spacelike-separated). Finite information
+speed per update yields a causal cone `r_max ∝ n`, hence an effective
+`c_eff` as the vacuum's maximum propagation rate — not a postulate. Clocks
+are internal: a repeatable subsystem cycle counts proper time along its
+trajectory, and finite update capacity shared with motion/connectivity is
+the candidate microscopic source of `dτ < dt` (`congestion.py` is the
+repo-native starting point for a capacity model; T9's `c_eff → 0` freezing
+already tells a clock-rate story, T11's tortuosity a transfer-cost story —
+the road's `g_tt ← clock rate / g_rr ← transfer cost` split independently
+re-derives our light/spatial-sector factorization).
+
+Three orderings must not be confused: `n` (microscopic update index),
+`≺` (fundamental causal order), `τ` (observer clock time). Just as
+`d_G ≠ d_obs`, expect `n ≠ t_obs`: time undergoes reconstruction exactly
+as space does.
+
+**Candidate mechanism: scale multiplicity.** Suppose a raw 2D shell
+`dV_G ~ r dr` carries an accessible scale multiplicity `n_s(r)`, so the
+reconstructed volume is `dV_O ~ n_s(r) dV_G`. Then `n_s(r) ~ r` gives
+`dV_O ~ r²dr`, i.e. `V_O ~ R³` — the second `r` factor is *counted
+scales*, not a third graph direction. Status: skeleton only. `s` has no
+definition yet (candidates: coarse-graining depth, boundary-leg channels —
+note circumference itself grows as `r`, which would ground both factors in
+2D geometry — bond dimension across cuts), and the baseline to beat is the
+RG expectation `n_s ~ log r`, which gives the *wrong* profile (`r log r`).
+The mechanism earns its keep if and only if `s` is defined independently
+of the desired output and the linear-vs-log profile is then measured.
+Recorded as D10's leading 2D+scale candidate; derivation or measurement
+promotes it, nothing else does.
+
+**Why this could work (grounding).** Malament's theorem: causal order +
+volume determine the metric. Our two measurement programs map onto it
+exactly — causal relations (this section's road) + `V(r)` (`emergent_dim`)
+— so metric reconstruction from graph observables has a real theorem
+behind it, not just an analogy. The hard parts are inherited honestly:
+order dimension is a measurement problem, not a theorem (a generic partial
+order isn't 1+3 — spatial `d_eff` and causal-order dimension must agree
+independently); Lorentz symmetry must be demonstrated against
+preferred-frame artifacts (T13's quadratic-only LIV is the existing
+asset); manifoldlikeness is the causal-set hard problem, related to, not
+reinvented.
+
+**The falsifier.** The same `M_O` must perform *both* the `2+scale → 3`
+reconstruction and the microscopic-order → Lorentzian-cone reconstruction.
+If space and time end up needing different reconstruction maps, the
+program is fitting, not deriving. (This is D12's universality question
+made concrete.)
+
+---
+
+## 9. Status map (what is what)
 
 | claim | status | home |
 |---|---|---|
@@ -301,8 +383,13 @@ failed informatively.
 | tension-imprint conjecture | **conjectured** | `model.md` §5: fingerprint universality under the fixed ceff rule; falsifiers + promotion to P5 stated; not a postulate yet |
 | T15 cost dominance | **derived (theorem)** | `model.md` §2: shortcuts priced ≥ hop-saving can't inflate balls; ∩-blip pins an underpriced shortcut (z=1 U-side 0.2000, tort blip 9>5 + flip 2.020, ceff-z=4 blip 1.077 at r=13.75) |
 | far-field tail exponent | **open** | D11: `1/r` (χ~2 to `5Rc`) vs `1/r²` (χ~1 to `6Rc`); `L ≥ 200` asymptotics needed |
+| SI causal shells `V(t)~t²` | **measured** | `test_scrambling.py` (5 tests): control p = 1.920; plug accelerates hop-fronts (35<38); ceff-weighted delays (+5.0) |
+| scale-multiplicity mechanism `n_s~r` | **conjectured (skeleton)** | this doc §8: `s` undefined; RG-log baseline gives wrong profile; linear-vs-log must be measured, not assumed |
+| reconstruction universality | **open** | D12: all independently-admissible `M_O` converge in the IR; admissibility from `G`, not output |
+| causal order / cone / clocks | **open** | D13 (staged): substrate `t²` measured; order-dimension, cone, clock rate, interval reconstruction open |
+| same-`M_O` falsifier | **open (criterion)** | this doc §8: one map must yield both `R³` and the Lorentzian cone, or the program is fitting |
 | `d_I = 2` for vacuum fabric | predicted (follows from P0' + protocol) | queued for simulator (D10) |
-| 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10) |
+| 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10); leading candidate: scale multiplicity `n_s~r` (this doc §8, skeleton) |
 | tension → `κ` map (`z−4` to curvature) | **open** | D10 |
 | Born rule / double-slit dynamics | open (needs D1) | non-claim |
 | Casimir `1/d⁴` from frustrated relaxation | open (ontology only) | non-claim |

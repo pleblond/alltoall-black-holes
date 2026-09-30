@@ -23,6 +23,8 @@ Update (PR #10): the qubit-toy instance is closed — `evaporation_unitary`
 inner-product test), and computes `S_rad` from `rho_rad` (tracks Haar/Page
 to 0.002 bits; all:all circuits converge by depth ~5). What remains is the
 graph instance: derive `V_k` from graph dynamics, not merely choose one.
+Scope note (D13): D1's dynamics now also gates emergent time itself
+(update rule → causal order → cone → clocks), not just evaporation/QES.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
@@ -179,6 +181,9 @@ hidden from integer sampling, mid-window flips 2.020); c_eff at vacuum
 `z_vac=4` violates on exactly the 24 boundary diagonals (witness: all 24
 arrive early from endpoint balls; center-source volume blip peaks 1.077
 at r=13.75, likewise hidden at integers).
+Leading 2D+scale candidate mechanism: scale multiplicity `n_s(r) ∝ r`
+(`dV_O ~ n_s·dV_G → R³`); `s` undefined, RG-log baseline gives the wrong
+profile — linear-vs-log must be measured, not assumed (essay §8).
 `emergent_dim` protocol +
 two-distance bracket ready; shell no-emergence pin shows what failure looks like.
 
@@ -223,3 +228,49 @@ cost rule rather than fitted.
 
 **Kill relevance:** none directly — a shape detail, not the shape itself.
 Feeds the tension-imprint conjecture amplitude clause (`model.md` §5).
+
+## D12 — Reconstruction universality: why admissible M_O converge
+
+**Missing:** the reason independently-admissible observer reconstruction
+maps recover the same macroscopic geometry. `model.md` defines objective
+spacetime as the part of `G`'s information structure invariant under all
+admissible `M_O` — but names no independent admissibility criterion, so
+"admissible" risks meaning "gives 3D" (circular). The critic's question
+stands: why resistance / diffusion / communicability distance, and why
+couldn't another reasonable reconstruction give 4D, 7D, or no smooth
+geometry at all?
+
+**Close criterion:** an admissibility criterion derived from `G`'s
+information-access constraints alone (not from the output geometry), plus
+≥2 admissible `M_O` instances converging to the same IR `d_eff` and
+curvature sign on the same graph family. Partial-credit ladder:
+(i) criterion stated + non-circularity argued; (ii) two instances agree on
+vacuum fabric; (iii) agreement extends to tensed regions (fingerprint
+shape under both).
+
+**Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
+But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
+refutes the P0' reconstruction program (same-`M_O` falsifier, essay §8).
+
+## D13 — Emergent causal order: update rule → cone → clocks → interval (staged)
+
+**Missing:** the temporal half of "why spacetime?". L0 has no dynamics
+(D1); D1's scope now includes time itself, not just evaporation/QES.
+Target, split by level (corrected): `V_G ~ t²` at substrate, `V_O ~ R³`
+after `M_O`; microscopic index `n`, causal order `≺`, and clock time `τ`
+are three distinct orderings (`n ≠ t_obs` as `d_G ≠ d_obs`).
+
+**Close criterion (staged):** (1) substrate cone: stated local update rule
++ measured universal finite cone on relaxed fabric with `V(t) ~ t²`
+(trivial-dynamics baseline PINNED: SI shells `p = 1.920`,
+`test_scrambling`); (2) order dimension: causal-order dimension measured
+independently, agreeing with spatial `d_eff` (1+3 output, not input);
+(3) clock rate: internal-cycle clock with `dτ/dt(χ)` reproducing the T9
+redshift profile from capacity/congestion, unimported; (4) interval:
+reconstructed `g_μν` from causal relations + `V(r)` (Malament-shaped)
+reproducing the T8–T11 battery. Each stage closes independently; GR is
+the check, never the input.
+
+**Kill relevance:** feeds D1 (dynamics) and D12 (same-`M_O` falsifier: the
+interval map must coincide with the spatial `M_O`). No direct kill wire
+until stage 3+.
