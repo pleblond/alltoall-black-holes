@@ -186,6 +186,15 @@ T0-robustness (1/2/5 all clear) but stream lottery (tseed 106
 stalls at 1, filed-not-shipped: 200 s). Neither pole dominates
 because stall topology differs (direct descent vs neutral
 intermediates); the knob, not a fixed rule, is the answer.
+Gated-pair audit (MEASURED, filed-not-shipped): ungated pair accepts
+net-harmful moves at 3/50 (all seed6) + 11 neutral across seeds
+5/6/7 — essentially self-gating, but strict-gated pair WEAKLY
+DOMINATES everywhere: seed5 1→0 (order 2 alone fully heals!),
+seed6 10→2, seed7 4→4, same cost. No duality at order 2 (neutral
+moves never load-bearing on these streams). QUEUED: gate-default
+adoption + full D1 re-pin cycle (downstream chain setups shift;
+triple/quad/anneal demos need new stall states) — mechanical but
+touches ~8 tests, budgeted as its own cycle, not snuck into a tick.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
