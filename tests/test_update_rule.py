@@ -230,7 +230,7 @@ def test_slide_guillotine_hybrid_frozen():
     g, src = _grid20()
     dam = inject_shortcuts(g, 10, 3)
     t1, h, _ = evolve(dam, rule_slide, 150, seed=5, src=src, radius=6)
-    t2, h, _ = evolve(h, rule_guillotine, 150, seed=6, src=src)
+    _t2, h, _ = evolve(h, rule_guillotine, 150, seed=6, src=src)
     t3, h, _ = evolve(h, rule_slide, 150, seed=7, src=src, radius=6)
     assert total_longs(h) == 5, total_longs(h)
     assert t3[-1] == t1[-1], (t3[-1], t1[-1])
