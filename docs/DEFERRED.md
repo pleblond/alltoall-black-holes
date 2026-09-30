@@ -710,7 +710,29 @@ dynamical property, and biased/attractive variants are the queued
 hunt. Methods note: the FIRST FPT implementation (non-persistent
 frontier) produced capped garbage reading high-rank — caught by the
 volume cross-check (balls all size 1), fixed, corrected numbers
-pinned. Cross-readout validation works. 
+pinned. Cross-readout validation works.
+FABRIC-HOLD VERDICT (P0' level, filed on review question "should we
+revisit the fabric?"): NO — the 2D fabric premise is the
+best-supported part of the program (d_H + d_s + Tier-1 universality +
+N* protection problem, multi-legged), and the alternatives are (a)
+3D substrate: circular, kills the emergence program's point; (b)
+non-integer fabric: Tier-1 pins 2 robustly, and d_H+1 would give the
+wrong integer anyway; (c) shortcut-mixed fabric: N* work shows that
+is damage, not vacuum; (d) DYNAMICAL fabric class [G]_{U,O}: the only
+live refinement — already queued, not a retreat. The emergence
+failures to date are failures of specific MECHANISMS (static
+distances, shell counting, unbiased SI), never of the premise — and
+the attractive-dynamics route is untested. Right response to the
+dilemma: stop asking static fabric geometry for 3D (that question is
+closed, multiply negative) and put all weight on the
+dynamical-distance hunt. PRE-REGISTERED TRIAL CONDITION (against
+sunk-cost drift): if a FAIR hunt over attractive/bias dynamics
+classes (state-, tension-, curvature-coupled β + U-influence depths)
+finds no rank-3 selection with N-stable gap and non-radial v3, the
+fabric premise itself goes on trial. Next fabric work is not
+revisiting 2D but upgrading static → dynamical: D1→fabric feedback
+(stability tournament — do the healing Us preserve d_G ≃ 2 on
+vacuum? U(G_vac) ∈ C_vac), now testable since U candidates exist. 
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
