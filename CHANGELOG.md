@@ -50,6 +50,8 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   Weight-selection pre-registration filed (binding criteria +
   triple-readout protocol); self-pricing first entrant (MDS
   blurred, sweep dominated, 16 census violations).
+  Weighted-RG pre-registered (flow diagram, separatrix hunt,
+  coarsening pilot next; draft agnostic).
   525 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay

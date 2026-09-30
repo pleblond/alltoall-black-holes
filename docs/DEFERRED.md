@@ -1070,7 +1070,29 @@ permitted provided w_global ≪ w_fabric. The y_λ ≈ 1.5 RG pressure
 cited earlier is binary-sector (maximally-strong links); weighted
 RG flow vs w is OPEN — weak couplings may be irrelevant/marginal
 (RG-natural separation) or relevant (pumping still needed):
-measurement queued, not assumed. Curvature conjecture sharpened
+measurement queued, not assumed. WEIGHTED-RG PRE-REGISTRATION
+(review dialogue — highest-information experiment, draft stays
+AGNOSTIC: pumping vs persistence decided by measurement, not
+assumption): binary y_λ ≈ 1.5 covers maximal-strength links only;
+for G_vac = G_fabric + εG_global measure the FLOW on a (density,
+weight) grid, (λ,ε) → (λ',ε') under the SAME 2×2 blocking as the
+binary study (L40→5). Three outcomes, all informative: y_w<0
+(washout → vacuum RG-protected, no pumping needed); y_w=0
+(marginal IR weak sector); y_w>0 (amplification → segregation
+mechanism required). Target output is a FLOW DIAGRAM with possible
+separatrix ε_c(λ) (below → 2D fixed point; above → nonlocal
+phase), not a single exponent. Design pre-registrations: (i)
+excess-length variable e = L−1 (0 = lattice), λ = fraction of
+edges with e>0 — report (λ',e') flow, infer relevance from fixed
+points; (ii) weight-coarsening rule chosen by PILOT then FROZEN:
+candidates min/mean of crossing lengths, decided on controls
+(monotone sane flow) before the campaign; (iii) CONTROLS: λ=0
+stays 2D; maximal-coupling row must REPRODUCE binary y_λ ≈ 1.5
+(reduction check on the apparatus). Phase 2 (queued): knot-
+environment flow y_w^knot-env vs y_w^vac — the attractive split
+(vacuum-irrelevant, knot-relevant) making locality an RG property
+and curvature a defect-induced departure. Priority: coarsening
+pilot is the immediate next spike. Curvature conjecture sharpened
 via Prop 1: dominating weak links (w ≥ d_0) are geometrically
 INVISIBLE, so curvature must live in small underpricing margins
 (δw = d_0 − w > 0 small → δd_O small) — vacuum weak wiring as
