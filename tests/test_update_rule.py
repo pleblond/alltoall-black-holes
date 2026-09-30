@@ -514,3 +514,24 @@ def test_hex_needs_fabric_relative_radius():
     assert total_longs(dam, 3, 5) == 0
     assert total_longs(g, 5, 5) == 2
     assert total_longs(dam, 5, 5) == 54
+
+
+def test_pair_fully_heals_triangular():
+    # Coordination need is substrate-dependent: on the denser
+    # triangular lattice (1121 edges, degree ~6) pair600 ALONE clears
+    # 24 -> 0 (square needs the triple endgame after pair600 -> 1) --
+    # more straddling partners per long edge. Healed p reads plain to
+    # 4dp (1.7234): full (p, longs) healing, no decoupling residual.
+    from bh_graph.graphs import build_triangular_lattice
+    from bh_graph.update_rule import rule_pair, total_longs
+
+    g = build_triangular_lattice(20)
+    src = next(iter(g.nodes()))
+    plain = locality_p(g, src)
+    dam = inject_shortcuts(g, 10, 3)
+    assert total_longs(dam, 3, 2) == 24
+    traj, h, acc = evolve(dam, rule_pair, 600, seed=5, src=src, max_span=2)
+    assert acc == 13, acc
+    assert total_longs(h, 3, 2) == 0
+    assert abs(traj[-1] - plain) < 1e-9, (traj[-1], plain)
+    assert nx.is_connected(h)

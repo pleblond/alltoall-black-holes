@@ -229,6 +229,12 @@ signature resolves (plain 568×5 + 2×6 boundary floor) and damage
 reads 54 longs. No hex healing claimed yet (the 2-long plain floor
 breaks the fixed-point premise) — queued behind boundary-aware
 gating; pair/triple on triangular queued next.
+COORDINATION-IS-SUBSTRATE-DEPENDENT (MEASURED,
+test_update_rule.py): on the denser triangular lattice (1121 edges,
+degree ~6) pair600 ALONE clears 24 → 0 (acc 13, p reads plain to
+1e-9 — full (p, longs) healing, no decoupling residual), where
+square needs the triple endgame after pair600 → 1: more straddling
+partners per long edge lower the required coordination order.
 BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
 locality should characterize STABLE STATES of U, not appear in U's
 objective function. The D1 verdict sharpens: direct microscopic
