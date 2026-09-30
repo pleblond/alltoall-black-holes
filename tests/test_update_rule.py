@@ -342,3 +342,32 @@ def test_pair_triple_chain_heals_torus():
         assert acc > 0, acc
         assert traj[-1] < pmax, (pseed, traj[-1])
         assert nx.is_connected(h2)
+
+
+def test_quad_ungated_scrambles_endgame():
+    # Census-gate ablation (order 4): on the seed-5 pair-stall (1 long),
+    # UNGATED 5-edge moves accept every step (10/10) while HARMING
+    # (longs 1 -> 5) -- all-short-local does not imply global repair at
+    # order 4; the strict gate (reject unless global longs decrease) is
+    # load-bearing. Gated quad20 clears the seed-6 corner 2 -> 0 (filed,
+    # not shipped: 30 s recipe) via detour-graft repairs that keep the
+    # long edge while rebuilding its detour.
+    from bh_graph.update_rule import rule_pair, rule_quad, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    _, h, _ = evolve(dam, rule_pair, 600, seed=5, src=src)
+    assert total_longs(h) == 1
+    traj, h2, acc = evolve(h, rule_quad, 10, seed=207, src=src, gated=False)
+    assert total_longs(h2) == 5, total_longs(h2)
+    assert acc == 10, acc
+    assert traj[-1] < 2.1, traj[-1]
+    assert nx.is_connected(h2)
+
+
+def test_quad_fixes_plain_point():
+    from bh_graph.update_rule import rule_quad
+
+    g, src = _grid20()
+    _, _, acc = evolve(g, rule_quad, 5, seed=5, src=src)
+    assert acc == 0

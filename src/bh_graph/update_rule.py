@@ -120,6 +120,7 @@ def evolve(
     Tend: float = 0.05,
     radius: int = 3,
     max_span: int = 3,
+    gated: bool = True,
 ) -> tuple[list[float], nx.Graph, int]:
     """Run rule for steps; return (p-trajectory, final graph, accepted)."""
     if src is None:
@@ -128,7 +129,7 @@ def evolve(
     ctx = {"rng": random.Random(seed), "src": src, "target": target,
            "proposals": proposals, "swaps_per_step": swaps_per_step,
            "T0": T0, "Tend": Tend, "total": steps,
-           "radius": radius, "max_span": max_span}
+           "radius": radius, "max_span": max_span, "gated": gated}
     traj, acc = [], 0
     for s in range(steps):
         ctx["step"] = s
@@ -419,6 +420,27 @@ def _matchings8():
 _MATCHINGS8 = _matchings8()
 
 
+def _matchings10():
+    """All 945 perfect matchings on 10 endpoints (index form, cached)."""
+    out = []
+
+    def rec(avail, cur):
+        if not avail:
+            out.append(tuple(cur))
+            return
+        a = avail[0]
+        for i in range(1, len(avail)):
+            b = avail[i]
+            rest = avail[1:i] + avail[i + 1 :]
+            rec(rest, cur + [(a, b)])
+
+    rec(list(range(10)), [])
+    return out
+
+
+_MATCHINGS10 = _matchings10()
+
+
 def _visible_set(h: nx.Graph, node, edges: list, smax: int) -> list:
     """Edges with an endpoint within BFS-cutoff smax of node (radius-local)."""
     d = dict(nx.single_source_shortest_path_length(h, node, cutoff=smax))
@@ -494,6 +516,96 @@ def rule_triple(h: nx.Graph, ctx: dict) -> bool:
                     h.add_edge(u, v)
                 return True
             for e in old:
+                h.add_edge(*e)
+    return False
+
+
+def rule_quad(h: nx.Graph, ctx: dict) -> bool:
+    """Corner specialist: visibility-chained 5-edge re-pairing (order 4).
+
+    For triple-locked residuals (the seed-6 corner pair): graft each end
+    of a long edge onto a visible partner, chain TWO further edges off
+    the leftovers, accept the first all-short + connected re-pairing
+    (945 matchings). Chained sampling hits ~4e-4 on the corner stall --
+    and the repairs are DETOUR GRAFTS: the matching keeps the long edge
+    itself while the other four re-pairings rebuild its short detour
+    (repair by neighborhood restructuring, not dissolution). STRICT
+    CENSUS GATE (load-bearing): accept only if global longs strictly
+    decrease -- ungated order-4 moves are net scramblers (seed-6 corner:
+    2 -> 8 longs in 20 accepts while p falls to 1.86, gaming the window
+    exactly like greedy-twin). Coordination order must be paired with
+    global gating, else bigger moves do bigger harm. Same
+    locality/globality as rule_triple; plain grid is a fixed point.
+    Slowest specialist (~3 s/search) -- chain after triple.
+    `gated=False` disables the census gate (ablation: ungated order-4
+    is a net scrambler, pinned in test_update_rule.py).
+    """
+    radius = ctx.get("radius", 3)
+    smax = ctx.get("max_span", 3)
+    E = list(h.edges())
+    longs = [e for e in E if edge_span(h, e[0], e[1], radius) > smax]
+    if not longs:
+        return False
+    before = len(longs)
+    for _ in range(ctx.get("proposals", 12)):
+        a, b = longs[ctx["rng"].randrange(len(longs))]
+        others = [e for e in E if e != (a, b) and e != (b, a)]
+        Va = _visible_set(h, a, others, smax)
+        Vb = _visible_set(h, b, others, smax)
+        if not Va or not Vb:
+            continue
+        for _ in range(ctx.get("triple_tries", 100)):
+            e2 = Va[ctx["rng"].randrange(len(Va))]
+            e3 = Vb[ctx["rng"].randrange(len(Vb))]
+            if e2 == e3:
+                continue
+            picked = [(a, b), e2, e3]
+            seeds = [e2[0], e2[1], e3[0], e3[1]]
+            chained = True
+            for _ in range(2):
+                pool = set()
+                for v in seeds:
+                    pool.update(_visible_set(h, v, others, smax))
+                for p in picked:
+                    pool.discard(p)
+                if not pool:
+                    chained = False
+                    break
+                en = sorted(pool)[ctx["rng"].randrange(len(pool))]
+                picked.append(en)
+                seeds = [en[0], en[1]]
+            if not chained:
+                continue
+            pts = [v for e in picked for v in e]
+            if len(set(pts)) < 10:
+                continue
+            for e in picked:
+                h.remove_edge(*e)
+            acc = None
+            for mt_idx in _MATCHINGS10:
+                mt = tuple((pts[i], pts[j]) for i, j in mt_idx)
+                if any(h.has_edge(u, v) for u, v in mt):
+                    continue
+                for u, v in mt:
+                    h.add_edge(u, v)
+                ok = all(edge_span(h, u, v, radius) <= smax for u, v in mt)
+                ok = ok and nx.is_connected(h)
+                for u, v in mt:
+                    h.remove_edge(u, v)
+                if ok:
+                    acc = mt
+                    break
+            if acc is not None:
+                for u, v in acc:
+                    h.add_edge(u, v)
+                if not ctx.get("gated", True) or total_longs(h, radius, smax) < before:
+                    return True
+                for u, v in acc:
+                    h.remove_edge(u, v)
+                for e in picked:
+                    h.add_edge(*e)
+                continue
+            for e in picked:
                 h.add_edge(*e)
     return False
 

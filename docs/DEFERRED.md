@@ -153,7 +153,20 @@ rule triple60 adds 0 accepts (stalled, not slow). Boundary-free
 torus control heals 2/2 fast (pair→2/3, triple30→0, p 1.86/2.03):
 triple-lock localizes to boundaries (n=1 lock + n=2 clears —
 hypothesis). Corners have grid-degree 2 with fragile detours; bulk
-healing is unobstructed at order 3.
+healing is unobstructed at order 3. Order-4 corner specialist
+(MEASURED, test_update_rule.py + filed): visibility-chained 5-edge
+re-pairing (945 matchings) hits the corner stall at ~4e-4 — via
+DETOUR GRAFTS that keep the long edge itself while the other four
+re-pairings rebuild its short detour (repair by neighborhood
+restructuring, not dissolution). Strict census gate is LOAD-BEARING:
+ungated order-4 accepts 10/10 while harming (longs 1→5 pinned;
+corner 2→8 with p falling to 1.86, greedy-style window-gaming by a
+local rule); gated quad20 clears the corner 2→0 (p frozen at
+1.8255 throughout — the ultimate decoupling exhibit: full healing
+invisible to the window), filed-not-shipped (30 s). Control-theory
+lesson: coordination order must be paired with global gating, else
+bigger moves do bigger harm. Full chain pair→triple→quad heals
+every tried seed (5, 6, 7 open + torus 2/2).
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
