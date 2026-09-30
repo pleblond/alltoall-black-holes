@@ -244,6 +244,13 @@ is unfazed (guillotine10 takes 0 accepts). Healing works:
 guillotine300 takes hex damage 54 → 17 toward the floor —
 single-swap repair now partial everywhere (square 30 → 6, tri
 24 → 13, hex 54 → 17), complete nowhere without coordination.
+DELAUNAY JOINS (MEASURED, test_update_rule.py — Tier-1 reference
+member): Poisson-Delaunay (400 nodes, 1179 edges) shows a clean
+span-2 signature (0 longs, no floor), damage adds 21,
+guillotine150 → 7 while pair600 alone clears to 0: dense
+triangulated substrates (ordered tri + disordered Delaunay) heal
+at order 2 — coordination need tracks density, and disorder is
+no obstacle (triangulation helps: more straddling partners).
 BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
 locality should characterize STABLE STATES of U, not appear in U's
 objective function. The D1 verdict sharpens: direct microscopic

@@ -580,3 +580,29 @@ def test_guillotine_heals_hex_toward_floor():
     assert acc == 17, acc
     assert total_longs(h, 5, 5) == 17, total_longs(h, 5, 5)
     assert nx.is_connected(h)
+
+
+def test_pair_fully_heals_delaunay():
+    # Tier-1 reference member joins the battery: Poisson-Delaunay (400
+    # nodes, 1179 edges) has a clean span-2 signature (0 longs, no
+    # floor -- triangulation leaves no leaf edges); damage adds 21;
+    # guillotine150 partially heals (21 -> 7) while pair600 alone
+    # clears to 0 (acc 10, connected). Dense triangulated substrates
+    # heal at order 2 -- coordination need tracks density/order, with
+    # triangular lattice showing the same signature (24 -> 0).
+    from bh_graph.graphs import build_poisson_delaunay
+    from bh_graph.update_rule import edge_span, rule_guillotine, rule_pair, total_longs
+
+    g = build_poisson_delaunay(n_points=400, seed=0)
+    assert g.number_of_edges() == 1179
+    assert all(edge_span(g, u, v) == 2 for u, v in g.edges())
+    dam = inject_shortcuts(g, 10, 3)
+    assert total_longs(dam, 3, 2) == 21
+    src = next(iter(g.nodes()))
+    _, hg, ag = evolve(dam, rule_guillotine, 150, seed=5, src=src, max_span=2)
+    assert ag == 10, ag
+    assert total_longs(hg, 3, 2) == 7
+    _, hp, ap = evolve(dam, rule_pair, 600, seed=5, src=src, max_span=2)
+    assert ap == 10, ap
+    assert total_longs(hp, 3, 2) == 0
+    assert nx.is_connected(hp)
