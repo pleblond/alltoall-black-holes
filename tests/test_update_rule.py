@@ -448,3 +448,28 @@ def test_pair_anneal_fixes_plain_point():
     g, src = _grid20()
     _, _, acc = evolve(g, rule_pair_anneal, 5, seed=5, src=src)
     assert acc == 0
+
+
+def _grid30():
+    g = nx.convert_node_labels_to_integers(nx.grid_2d_graph(30, 30), ordering="sorted")
+    return g, 15 * 30 + 15
+
+
+def test_chain_heals_l30():
+    # Size robustness (only non-L=20 D1 pin): L=30 damage (27 longs) ->
+    # pair_anneal600 -> 6 -> strict order-3 anneal -> 0, connected.
+    # T0=2 also clears (acc=23 vs strict acc=6 -- uphill tolerance only
+    # wastes here); ungated triple churns instead (30 accepts net -5,
+    # filed). Healing is not an L=20 artifact.
+    from bh_graph.update_rule import rule_pair_anneal, rule_triple_anneal, total_longs
+
+    g, src = _grid30()
+    dam = inject_shortcuts(g, 10, 3)
+    assert total_longs(dam) == 27
+    _, h, _ = evolve(dam, rule_pair_anneal, 600, seed=5, src=src, T0=2.0)
+    assert total_longs(h) == 6, total_longs(h)
+    traj, h2, acc = evolve(h, rule_triple_anneal, 60, seed=105, src=src, T0=0.0)
+    assert total_longs(h2) == 0, total_longs(h2)
+    assert acc == 6, acc
+    assert traj[-1] < 2.1, traj[-1]
+    assert nx.is_connected(h2)

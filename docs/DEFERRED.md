@@ -210,7 +210,11 @@ torus 2→0/2→0 — endpoints equal-or-better everywhere, but SLOWER
 nearly everywhere (census evals: pair600 1.4 s vs 3-5 s; torus
 chains ~2x). Consistent story kept: pair = fast chain fuel,
 pair_anneal = best standalone order-2; no test churn for equal
-endpoints at higher cost.
+endpoints at higher cost. SIZE ROBUSTNESS (MEASURED,
+test_update_rule.py): L=30 damage (27 longs) → pair_anneal600 → 6 →
+strict order-3 anneal60 → 0, connected (T0 = 2 also clears, acc 23
+vs strict 6 — uphill tolerance only wastes here; ungated triple
+churns: 30 accepts net −5). Healing is not an L=20 artifact.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
