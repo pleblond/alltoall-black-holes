@@ -273,6 +273,12 @@ was purely the missing gate — strict-gated order-3 (T0=0) clears
 the medial pair1200 stall 6 → 0 in ONE accept (connected). Full
 chain heals medial; gate duality is substrate-universal (square
 dmg4: same strict-clears/ungated-churns split).
+KNN MOSTLY-HEALS (MEASURED, test_update_rule.py): k-NN (1436
+edges) has a near-gapped signature (floor 15 @smax2, ~1%) with
+separable damage (+20 → 35); guillotine heals to the floor (35 →
+16) while pair600 overshoots below it (35 → 9) — second overshoot
+exhibit after Gabriel (milder): below-floor census cannot
+distinguish repair from class drift; exact-floor targeting open.
 BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
 locality should characterize STABLE STATES of U, not appear in U's
 objective function. The D1 verdict sharpens: direct microscopic

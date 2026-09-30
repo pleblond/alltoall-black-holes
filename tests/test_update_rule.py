@@ -681,3 +681,29 @@ def test_strict_triple_clears_medial():
     assert acc == 1, acc
     assert total_longs(h2, 3, 2) == 0
     assert nx.is_connected(h2)
+
+
+def test_knn_heals_to_floor_pair_overshoots():
+    # k-NN (400 nodes, 1436 edges): near-gapped span signature (floor
+    # 15 @smax2, ~1% of edges); damage +20 (35, separable). Guillotine
+    # heals to the floor (35 -> 16, acc 18); pair600 overshoots BELOW
+    # it (35 -> 9, acc 22, connected) -- second overshoot exhibit
+    # after Gabriel (milder): below-floor census cannot distinguish
+    # repair from class drift. k-NN mostly-heals; exact-floor
+    # targeting open.
+    from bh_graph.graphs import build_knn
+    from bh_graph.update_rule import rule_guillotine, rule_pair, total_longs
+
+    g = build_knn(n_points=400, seed=0)
+    assert g.number_of_edges() == 1436
+    assert total_longs(g, 3, 2) == 15
+    dam = inject_shortcuts(g, 10, 3)
+    assert total_longs(dam, 3, 2) == 35
+    src = next(iter(g.nodes()))
+    _, hg, ag = evolve(dam, rule_guillotine, 150, seed=5, src=src, max_span=2)
+    assert ag == 18, ag
+    assert total_longs(hg, 3, 2) == 16
+    _, hp, ap = evolve(dam, rule_pair, 600, seed=5, src=src, max_span=2)
+    assert ap == 22, ap
+    assert total_longs(hp, 3, 2) == 9, total_longs(hp, 3, 2)
+    assert nx.is_connected(hp)
