@@ -610,6 +610,90 @@ def rule_quad(h: nx.Graph, ctx: dict) -> bool:
     return False
 
 
+def rule_triple_anneal(h: nx.Graph, ctx: dict) -> bool:
+    """Census-annealing at order 3: chained triple proposals + T acceptance.
+
+    Temperature-knob unification of the gate duality: T0 = 0 is strict
+    gating (accept iff global longs strictly drop -- clears dmg4 both
+    streams in 0.5 s; neutral moves rejected, else drift-churn); T0 > 0
+    tolerates neutral + uphill moves on a geometric schedule
+    (clears seed7 where strict stalls -- needs neutral intermediates).
+    T0 in {1, 2, 5} all clear seed7 (T0-robust); streams are lottery
+    (tseed 106 stalls at 1, filed). Same visibility-chained proposals
+    and locality as rule_triple; plain grid is a fixed point.
+    """
+    import math
+
+    radius = ctx.get("radius", 3)
+    smax = ctx.get("max_span", 3)
+    E = list(h.edges())
+    longs = [e for e in E if edge_span(h, e[0], e[1], radius) > smax]
+    if not longs:
+        return False
+    before = len(longs)
+    for _ in range(ctx.get("proposals", 12)):
+        a, b = longs[ctx["rng"].randrange(len(longs))]
+        others = [e for e in E if e != (a, b) and e != (b, a)]
+        Va = _visible_set(h, a, others, smax)
+        Vb = _visible_set(h, b, others, smax)
+        if not Va or not Vb:
+            continue
+        for _ in range(ctx.get("triple_tries", 100)):
+            e2 = Va[ctx["rng"].randrange(len(Va))]
+            e3 = Vb[ctx["rng"].randrange(len(Vb))]
+            if e2 == e3:
+                continue
+            pool = set()
+            for v in (e2[0], e2[1], e3[0], e3[1]):
+                pool.update(_visible_set(h, v, others, smax))
+            pool.discard((a, b))
+            pool.discard((b, a))
+            pool.discard(e2)
+            pool.discard(e3)
+            if not pool:
+                continue
+            e4 = sorted(pool)[ctx["rng"].randrange(len(pool))]
+            pts = [a, b, e2[0], e2[1], e3[0], e3[1], e4[0], e4[1]]
+            if len(set(pts)) < 8:
+                continue
+            old = [(a, b), (e2[0], e2[1]), (e3[0], e3[1]), (e4[0], e4[1])]
+            for e in old:
+                h.remove_edge(*e)
+            acc = None
+            for mt_idx in _MATCHINGS8:
+                mt = tuple((pts[i], pts[j]) for i, j in mt_idx)
+                if any(h.has_edge(u, v) for u, v in mt):
+                    continue
+                for u, v in mt:
+                    h.add_edge(u, v)
+                ok = all(edge_span(h, u, v, radius) <= smax for u, v in mt)
+                ok = ok and nx.is_connected(h)
+                for u, v in mt:
+                    h.remove_edge(u, v)
+                if ok:
+                    acc = mt
+                    break
+            if acc is None:
+                for e in old:
+                    h.add_edge(*e)
+                continue
+            for u, v in acc:
+                h.add_edge(u, v)
+            d = total_longs(h, radius, smax) - before
+            T0 = ctx.get("T0", 2.0)
+            if d < 0 or (d == 0 and T0 > 0):
+                return True
+            frac = ctx.get("step", 0) / max(ctx.get("total", 1), 1)
+            T = T0 * (ctx.get("Tend", 0.05) / T0) ** frac if T0 > 0 else 0.0
+            if T > 0 and ctx["rng"].random() < math.exp(-d / T):
+                return True
+            for u, v in acc:
+                h.remove_edge(u, v)
+            for e in old:
+                h.add_edge(*e)
+    return False
+
+
 def rule_slide(h: nx.Graph, ctx: dict) -> bool:
     """Edge-slide reel-in: slide a long edge's endpoint toward shorter span.
 

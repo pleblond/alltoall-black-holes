@@ -3,17 +3,18 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
-- **unreleased** — D1 update-rule tournament (harness + 9 rules; single-move
+- **unreleased** — D1 update-rule tournament (harness + 10 rules; single-move
   insufficiency verdict; (`p`, longs) joint falsifier; coordinated
   double-swap breaks the single-move floor, longs 30 → 1, pair-locked
   residual; visibility-chained triple endgame fully heals, longs → 0
   on two seeds, triple-lock localizes to boundaries (torus 2/2);
   census-gated order-4 detour-graft clears corners, ungated ablation
-  pinned as scrambler); D10a derivation
+  pinned as scrambler; T-knob order-3 anneal unifies gate duality);
+  D10a derivation
   negatives (walk anti-tortuosity, residence α≈0.78); D11 tail closed
   (tension-dependent exponent, χ~5 slow crossover to 20Rc); D10b κ-profile closed (disk confirmation);
   observer-indexed `M_O` filed + static depth bake-off negative.
-  485 tests.
+  488 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

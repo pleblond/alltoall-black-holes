@@ -371,3 +371,49 @@ def test_quad_fixes_plain_point():
     g, src = _grid20()
     _, _, acc = evolve(g, rule_quad, 5, seed=5, src=src)
     assert acc == 0
+
+
+def test_triple_anneal_strict_clears_dmg4():
+    # Gate-duality pole 1 (T0 = 0, strict decrease): dmg4 pair-stall (6
+    # longs, ungated churns) clears to 0 on BOTH streams in ~0.5 s --
+    # neutral moves must be REJECTED here (<= gate reintroduces drift:
+    # 149 s, stalls at 1). Direct greedy descent exists; exploration
+    # only wastes.
+    from bh_graph.update_rule import rule_pair, rule_triple_anneal, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 4)
+    _, h, _ = evolve(dam, rule_pair, 600, seed=5, src=src)
+    assert total_longs(h) == 6
+    for tseed, acc_exp in ((105, 5), (106, 6)):
+        traj, h2, acc = evolve(h, rule_triple_anneal, 60, seed=tseed, src=src, T0=0.0)
+        assert total_longs(h2) == 0, (tseed, total_longs(h2))
+        assert acc == acc_exp, (tseed, acc)
+        assert traj[-1] < 2.2, (tseed, traj[-1])
+        assert nx.is_connected(h2)
+
+
+def test_triple_anneal_uphill_clears_seed7():
+    # Gate-duality pole 2 (T0 = 2, uphill tolerance): seed-7 pair-stall
+    # (4 longs, strict stalls at 1) clears to 0 -- the path needs neutral
+    # intermediates the strict gate rejects. T0 in {1, 2, 5} all clear
+    # (T0-robust); streams are lottery (tseed 106 stalls at 1, filed).
+    from bh_graph.update_rule import rule_pair, rule_triple_anneal, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    _, h, _ = evolve(dam, rule_pair, 600, seed=7, src=src)
+    assert total_longs(h) == 4
+    traj, h2, acc = evolve(h, rule_triple_anneal, 60, seed=105, src=src, T0=2.0)
+    assert total_longs(h2) == 0, total_longs(h2)
+    assert acc == 6, acc
+    assert traj[-1] < 2.0, traj[-1]
+    assert nx.is_connected(h2)
+
+
+def test_triple_anneal_fixes_plain_point():
+    from bh_graph.update_rule import rule_triple_anneal
+
+    g, src = _grid20()
+    _, _, acc = evolve(g, rule_triple_anneal, 5, seed=5, src=src)
+    assert acc == 0

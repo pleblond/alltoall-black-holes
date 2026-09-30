@@ -177,7 +177,15 @@ NOT universally better — it clears dmg4 both streams in 0.5 s
 reaches 0 (the path needs neutral intermediates; gated burns 118 s
 in the minimum). Neither dominates: the strict gate trades waste
 for local minima. Queued design: census-ANNEALING at order ≥3
-(uphill tolerance), plus a gated-pair audit.
+(uphill tolerance), plus a gated-pair audit. LANDED
+(test_update_rule.py): rule_triple_anneal unifies both poles behind
+a temperature knob — T0 = 0 (strict DECREASE; neutral rejected,
+else <=-gate drift-churn: 149 s stall at 1) clears dmg4 both
+streams in 0.5 s; T0 = 2 clears seed7 (strict stalls at 1) with
+T0-robustness (1/2/5 all clear) but stream lottery (tseed 106
+stalls at 1, filed-not-shipped: 200 s). Neither pole dominates
+because stall topology differs (direct descent vs neutral
+intermediates); the knob, not a fixed rule, is the answer.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
