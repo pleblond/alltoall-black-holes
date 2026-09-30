@@ -7,11 +7,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   insufficiency verdict; (`p`, longs) joint falsifier; coordinated
   double-swap breaks the single-move floor, longs 30 → 1, pair-locked
   residual; visibility-chained triple endgame fully heals, longs → 0
-  on two seeds); D10a derivation
+  on two seeds, triple-lock localizes to boundaries (torus 2/2)); D10a derivation
   negatives (walk anti-tortuosity, residence α≈0.78); D11 tail closed
   (tension-dependent exponent, χ~5 slow crossover to 20Rc); D10b κ-profile closed (disk confirmation);
   observer-indexed `M_O` filed + static depth bake-off negative.
-  482 tests.
+  483 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

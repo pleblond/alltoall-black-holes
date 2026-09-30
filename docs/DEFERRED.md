@@ -146,6 +146,14 @@ while seed 6 reads near-plain 1.83 WITH 2 longs left — the (p, longs)
 plane stays 2D down to the floor. D1 verdict upgraded: locality CAN
 be restored, at coordination order 3 with detour-aware proposals —
 protection demands coordination, not just locality of moves.
+Triple-lock (MEASURED, test_update_rule.py + filed): the seed-6
+residual is a CORNER pair ((379,399),(398,399) sharing (19,19)) —
+single-swap exhaustive 0 repairs each, chained 100k sample 0 hits,
+rule triple60 adds 0 accepts (stalled, not slow). Boundary-free
+torus control heals 2/2 fast (pair→2/3, triple30→0, p 1.86/2.03):
+triple-lock localizes to boundaries (n=1 lock + n=2 clears —
+hypothesis). Corners have grid-degree 2 with fragile detours; bulk
+healing is unobstructed at order 3.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum

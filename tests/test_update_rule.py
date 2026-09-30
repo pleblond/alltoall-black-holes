@@ -319,3 +319,26 @@ def test_triple_fixes_plain_point():
     g, src = _grid20()
     _, _, acc = evolve(g, rule_triple, 5, seed=5, src=src)
     assert acc == 0
+
+
+def test_pair_triple_chain_heals_torus():
+    # Boundary-free control: on the 20x20 torus the pair -> triple chain
+    # clears to longs 0 on BOTH seeds (fast: ~2 s, p 1.86/2.03) -- the
+    # only triple-lock seen (seed-6 open grid, corner pair (379,399) /
+    # (398,399): single-swap exhaustive 0, chained 100k 0 hits) sits on
+    # the boundary. Triple-lock localizes to boundaries (n=1 lock +
+    # n=2 torus clears: hypothesis, not proof).
+    from bh_graph.graphs import build_torus_grid
+    from bh_graph.update_rule import rule_pair, rule_triple, total_longs
+
+    for pseed, tseed, pmax in ((5, 105, 1.9), (7, 106, 2.1)):
+        g = build_torus_grid(20)
+        src = 10 * 20 + 10
+        dam = inject_shortcuts(g, 10, 3)
+        _, h, _ = evolve(dam, rule_pair, 600, seed=pseed, src=src)
+        assert total_longs(h) > 0
+        traj, h2, acc = evolve(h, rule_triple, 30, seed=tseed, src=src)
+        assert total_longs(h2) == 0, (pseed, total_longs(h2))
+        assert acc > 0, acc
+        assert traj[-1] < pmax, (pseed, traj[-1])
+        assert nx.is_connected(h2)
