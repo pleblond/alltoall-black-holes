@@ -260,6 +260,14 @@ Gabriel-ness rather than healing toward it. Census healing is
 well-posed only on gapped signatures (square/tri/hex/Delaunay);
 the density prediction stands untestable here (blocked by the
 methods limit, not refuted).
+MEDIAL MIXED (MEASURED, test_update_rule.py): medial-quad (1179
+nodes, 2340 edges) shows a clean span-2 signature (every edge in a
+triangle — 0 longs), damage adds 60, pair grinds slowly (60 → 18
+@600 → 6 @1200 — slow, not stuck), but the chained triple endgame
+CHURNS (6 → 29, acc 30/30): all-short-local acceptance without
+global gating does not imply repair on medial. Endgame behavior is
+substrate-dependent (triple heals square, churns medial); gated
+order-3 on medial queued; no full heal claimed there.
 BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
 locality should characterize STABLE STATES of U, not appear in U's
 objective function. The D1 verdict sharpens: direct microscopic

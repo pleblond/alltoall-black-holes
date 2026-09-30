@@ -633,3 +633,30 @@ def test_gabriel_broad_spectrum_breaks_census():
     assert acc == 14, acc
     assert total_longs(h, 6, 6) == 6, total_longs(h, 6, 6)
     assert nx.is_connected(h)
+
+
+def test_medial_pair_grinds_triple_churns():
+    # Disordered quad morphology: medial-quad (1179 nodes, 2340 edges)
+    # has a clean span-2 signature (every edge in a triangle -- 0
+    # longs); damage adds 60. Pair GRINDS slowly (60 -> 18 @600 ->
+    # 6 @1200, acc 8 -> 10: slow, not stuck); but the chained triple
+    # endgame CHURNS (6 -> 29 with acc 30/30): all-short-local
+    # acceptance does not imply global repair here. Endgame behavior
+    # is substrate-dependent (triple heals square, churns medial) --
+    # no full heal claimed on medial; gated-triple queued.
+    from bh_graph.graphs import build_medial_quad
+    from bh_graph.update_rule import edge_span, rule_pair, rule_triple, total_longs
+
+    g = build_medial_quad(n_points=400, seed=0)
+    assert g.number_of_edges() == 2340
+    assert all(edge_span(g, u, v) == 2 for u, v in g.edges())
+    dam = inject_shortcuts(g, 10, 3)
+    assert total_longs(dam, 3, 2) == 60
+    src = next(iter(g.nodes()))
+    _, h, acc = evolve(dam, rule_pair, 1200, seed=5, src=src, max_span=2)
+    assert acc == 10, acc
+    assert total_longs(h, 3, 2) == 6
+    _, h2, acc2 = evolve(h, rule_triple, 30, seed=105, src=src, max_span=2)
+    assert acc2 == 30, acc2
+    assert total_longs(h2, 3, 2) == 29, total_longs(h2, 3, 2)
+    assert nx.is_connected(h2)
