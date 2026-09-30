@@ -1801,7 +1801,46 @@ reference opaque to agent; independent pointer toward
 statefulness, not evidence.) ROADMAP (narrowed, locked):
 A-static-congestion [done] -> betw-cong feedback [NEXT] ->
 close static-chi -> {stateful q | principled budget Q} ->
-formation/dynamic topology -> M_O audits.
+formation/dynamic topology -> M_O audits. BETW-CONG
+DERIVATION (LOCKED closure run — docs-only turn; code next):
+LAW w'=(1-a)w+a(1+b*betw_e(w;n)), betw = exact weighted edge-
+betweenness recomputed every m ticks; a=0.2, n=64 ticks,
+beta in {35,350}, m=4 production + m=1 VALIDATION at 350;
+deterministic. Embeddedness regression control same runner
+(static chi => A-control EXACT — runner-machinery check).
+BOUNDEDNESS (analytic): normalized betw <=1 => w*<=1+beta
+ALWAYS — runaway impossible; branch restated converge /
+cycle / saturate-at-cap (persistent non-convergence ~beta).
+FIXED POINT w*=1+beta*b(w*) implicit, existence NOT
+guaranteed (discontinuous) — converge (residual<tol) vs
+cycle (amplitude/period + <Phi(w(t))> + basin-time fraction,
+never Phi(<w>)). ATTENUATION (status-labeled): weak own
+w*_med < static = THEOREM-direction (own<=0), magnitude =
+run's number; fabric = HYPOTHESIS (sign-indefinite, either
+informative); beta=350 basin = HYPOTHESIS (attenuation may
+exit — THE closure question, never corollary); interior ~1
+(checked, ungated). REROUTING MAP (PRIMARY anatomy, banked
+FOR q-design): R1 per-pop Delta-chi medians (weak<=0
+expected; fab/int measured); R2 r_O-binned fabric Delta-chi
+median+q90 (gateway pile-up? diffuse? corridor? —
+positions not verdicts); R3 top-20 gaining fabric edges
+listed (ungated); R4 chi_med(n) trajectories + late-time
+per-edge variance (flap amplitude); R5 concave-D
+[Delta-chi]*[Delta-w]<=0 to FP tol — EXECUTABLE analytic
+check (violation = bug/tie-subtlety, never physics). Map's
+VARIANCE structure (slow/transient swinging loads) = banked
+q-design input (q remembers slow variables; design AFTER
+closure). FLAPPING PROTOCOL (conditional, pre-registered):
+cycles at (m=4,a=0.2) => run (m=1,a=0.2) then (m=4,a=0.1);
+attribute cadence (m=1 kills) / step-size (a/2 kills) /
+physical (both persist). m=1 bar: SAME branch + SAME basin
+in/out as m=4. OUTCOMES: IN-BASIN-STABLE (vacuum mechanism,
+scale unexplained) / OUT (open-loop-only) / CYCLES (<Phi>
+verdict) — ALL close static-chi. TEST/FILE SPLIT: tests pin
+reduced-state mechanics + qualitative closure (attenuation
+direction, concave-D, determinism, m-shape, fast m=1
+machinery); full-state verdict (factor, basin, cycles, map)
+filed from spike (precedent). NEXT: code closure run.
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
