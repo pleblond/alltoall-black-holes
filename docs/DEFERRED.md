@@ -1158,7 +1158,49 @@ P(η|r_O,knot); keep y_w^knot vs y_w^vac as the compact claim.
 Cross-check queued (not a result): binary tolerance bound (~2
 operational longs/400 nodes ≈ violfrac 0.003) lands exactly on
 campaign ns=5 level-0 violfrac 0.003 — tolerance may calibrate
-how close to zero P(η>1) must get. P0' RESTATEMENT (conditional — model.md NOT rewritten:
+how close to zero P(η>1) must get. POST-CAMPAIGN AMENDMENT #2
+(review dialogue — D14 becomes the origin of the pricing
+hierarchy): campaign result reframed as CONDITIONAL (stability,
+not origin): w_long≳d_span ⟹ RG washout; explains stability of
+an appropriately-priced vacuum, NOT why the inequality holds —
+old D14 ("why does U remove long edges?") REPLACED by "what
+dynamics drives η below unity for vacuum links?" (η=d_fabric/w
+adopted last round). Scale-relative sharpening: washout at
+k*≈log2(span0/Lw) must land FINER than observer readout scale,
+so required-Lw is a function of observation depth (deeper
+readout → higher Lw owed) — hierarchy target is a curve, not a
+number; tolerance end pinned by P(η>1)≲tol (a few operational
+shortcuts survivable, not literal zero). (χ,Q,F) GATE ADOPTED
+(blocking for all w-rule entrants): each states micro variable
+χ, conserved ledger Q, map F with w=F(χ,...) intensive/emergent
+(temperature-like, NOT conserved — no invented Σw=const);
+retroactive bite: self-pricing (w=span) FAILS (span is readout,
+not stuff) → demoted to benchmark; structural-χ rules
+(curvature etc.) disfavored unless Q found → gate pushes toward
+flow/capacity χ. TRAFFIC SIGN ARGUMENT (filed, kills naive
+story): congestion pricing (w↑ with load J) has WRONG sign
+(busy fabric→expensive, idle weak links→cheap — backwards);
+needed sign is HEBBIAN/use-cheapens (busy→cheap fabric+knots,
+idle→expensive vacuum links); differentiation needs
+nonlinearity or conserved per-node budget allocated by use
+(linear w=J/C with demand-following capacity sits ≈const).
+KNOT PHASE-2 PRE-DESIGN (locked): planted-knot pilot FIRST
+(membership exact by construction — per-edge η_K/η_0 needs same
+graph + masked d_0, separate matched-plain run has no node
+correspondence; discovered knots later); DUAL reference (η_0
+masked-background PRIMARY — ruler fixed, clean price-flow
+claim; η_K operational secondary — anatomy; ratio η_K/η_0 =
+d_K/d_0 separates price-flow from path-shortening); r_O binned
+in d_0 NEVER d_K (operational metric compresses bins near
+knot — ruler would infect the coordinate); headline Δy_w =
+y_w^knot−y_w^vac > 0 with ESTIMATOR pre-registered (log-slope
+vs washout-level shift Δk*, zero-handling for successful
+washout — log 0 bites exactly when it works). ORDER: knot pilot
+stays first (cheap, frozen; Δy_w sign constrains what w-dynamics
+must reproduce), gated w-origin second, tolerance cross-check
+riding along. L0-independence intact (origin story lives at
+P0'/D14; L0 theorems still cite no U). The wall is now: WHERE
+DO THE WEIGHTS COME FROM. P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
