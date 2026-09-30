@@ -513,7 +513,11 @@ replicates at order 2, gate-default adoption rejected)) — protection demands c
 `χ~5` slow crossover, `q` 1.19 → 1.10 to 20Rc). κ-profile (D10b,
 closed): disk plug confirms the interface pattern (mild-disk
 matches mild-square). Observer-indexed `M_O(G,o)`
-filed (vantage-covariance axis); static depth bake-off negative.
+filed (vantage-covariance axis); static depth bake-off negative under
+volume and MDS readouts. Holographic+relational reframing adopted (`M_O`
+demoted to readout of a dynamically generated metric); Tier-1 MDS
+calibration pinned with a per-substrate bar (Delaunay radial-tortuosity
+bowl: `v3 ↔ r²` at 0.93, so eigenvector geography joins the test).
 
 **Why this could work (grounding).** Malament's theorem: causal order fixes
 the conformal class (on distinguishing spacetimes); volume — or a time
