@@ -268,6 +268,11 @@ CHURNS (6 → 29, acc 30/30): all-short-local acceptance without
 global gating does not imply repair on medial. Endgame behavior is
 substrate-dependent (triple heals square, churns medial); gated
 order-3 on medial queued; no full heal claimed there.
+MEDIAL HEALS UNDER GATE (MEASURED, test_update_rule.py): the churn
+was purely the missing gate — strict-gated order-3 (T0=0) clears
+the medial pair1200 stall 6 → 0 in ONE accept (connected). Full
+chain heals medial; gate duality is substrate-universal (square
+dmg4: same strict-clears/ungated-churns split).
 BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
 locality should characterize STABLE STATES of U, not appear in U's
 objective function. The D1 verdict sharpens: direct microscopic

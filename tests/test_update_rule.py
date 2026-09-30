@@ -660,3 +660,24 @@ def test_medial_pair_grinds_triple_churns():
     assert acc2 == 30, acc2
     assert total_longs(h2, 3, 2) == 29, total_longs(h2, 3, 2)
     assert nx.is_connected(h2)
+
+
+def test_strict_triple_clears_medial():
+    # The medial churn was purely the missing gate: strict-gated
+    # order-3 (T0=0) clears the pair1200 stall 6 -> 0 in ONE accept
+    # (connected) -- a single 4-edge re-pairing restructuring
+    # neighborhoods. Full chain heals medial; gate duality is
+    # substrate-universal (square dmg4 shows the same strict-clears
+    # pattern where ungated churns).
+    from bh_graph.graphs import build_medial_quad
+    from bh_graph.update_rule import rule_pair, rule_triple_anneal, total_longs
+
+    g = build_medial_quad(n_points=400, seed=0)
+    src = next(iter(g.nodes()))
+    dam = inject_shortcuts(g, 10, 3)
+    _, h, _ = evolve(dam, rule_pair, 1200, seed=5, src=src, max_span=2)
+    assert total_longs(h, 3, 2) == 6
+    _, h2, acc = evolve(h, rule_triple_anneal, 20, seed=105, src=src, max_span=2, T0=0.0)
+    assert acc == 1, acc
+    assert total_longs(h2, 3, 2) == 0
+    assert nx.is_connected(h2)
