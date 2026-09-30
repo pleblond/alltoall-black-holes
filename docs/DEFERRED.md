@@ -166,7 +166,18 @@ local rule); gated quad20 clears the corner 2→0 (p frozen at
 invisible to the window), filed-not-shipped (30 s). Control-theory
 lesson: coordination order must be paired with global gating, else
 bigger moves do bigger harm. Full chain pair→triple→quad heals
-every tried seed (5, 6, 7 open + torus 2/2).
+every tried seed (5, 6, 7 open + torus 2/2). ROBUSTNESS + GATE
+DUALITY (MEASURED, filed-not-shipped): across damage seeds (ns=10,
+L=20), the pair→triple chain fully clears 3/5 (dmg0/2/5 →0 in ~2 s)
+and stalls 2 (dmg1 →1-2 with a BOUNDARY residual (18,2)-(19,2),
+n=2 for boundary-localized locks; dmg4 ungated →1 in 60 s / →3
+with churn: 30 accepts, p rising to 2.22). Strict-gated triple is
+NOT universally better — it clears dmg4 both streams in 0.5 s
+(100x: churn was pure waste) but STALLS seed7 at 1 where ungated
+reaches 0 (the path needs neutral intermediates; gated burns 118 s
+in the minimum). Neither dominates: the strict gate trades waste
+for local minima. Queued design: census-ANNEALING at order ≥3
+(uphill tolerance), plus a gated-pair audit.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
