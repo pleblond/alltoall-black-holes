@@ -122,3 +122,47 @@ def rule_triangle(h: nx.Graph, ctx: dict) -> bool:
     calibrated longs cannot judge a triangulated morphology.
     """
     return _motif_rule(h, ctx, _tris_touching)
+
+
+def rule_square_metropolis(h: nx.Graph, ctx: dict) -> bool:
+    """Finite-T Metropolis on touched 4-cycles (fixed T = ctx T0).
+
+    Greedy's sampler sibling: accept iff connected and (delta > 0 or
+    rand < exp(delta / T)); neutrals always accept (proper Metropolis).
+    Same admissibility as rule_square. Measured NEGATIVE: no healing
+    window -- T = 0.25 climbs PAST the vacuum square count (damaged:
+    323 -> 413 over 1000 steps while longs rise to 140; plain grid
+    itself reaches 375 > 361 in 200 steps, so the grid is a greedy
+    fixed point but NOT the motif optimum -- square-dense non-grid
+    graphs outrank it), and T = 1.0 melts toward drift (squares ~140,
+    longs ~345). Motif-count maximization is misdirected, not merely
+    insufficient: its optimum is not the vacuum.
+    """
+    import math
+
+    T = ctx.get("T0", 1.0)
+    E = list(h.edges())
+    for _ in range(ctx.get("proposals", 50)):
+        (a, b), (c, d) = ctx["rng"].sample(E, 2)
+        if len({a, b, c, d}) < 4:
+            continue
+        if ctx["rng"].random() < 0.5:
+            (u1, v1), (u2, v2) = (a, d), (c, b)
+        else:
+            (u1, v1), (u2, v2) = (a, c), (b, d)
+        if h.has_edge(u1, v1) or h.has_edge(u2, v2):
+            continue
+        S = {a, b, c, d}
+        before = len(_squares_touching(h, S))
+        h.remove_edge(a, b)
+        h.remove_edge(c, d)
+        h.add_edge(u1, v1)
+        h.add_edge(u2, v2)
+        delta = len(_squares_touching(h, S)) - before
+        if nx.is_connected(h) and (delta > 0 or ctx["rng"].random() < math.exp(delta / T)):
+            return True
+        h.remove_edge(u1, v1)
+        h.remove_edge(u2, v2)
+        h.add_edge(a, b)
+        h.add_edge(c, d)
+    return False

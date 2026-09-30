@@ -11,7 +11,7 @@ import random
 
 import networkx as nx
 
-from bh_graph.blind_u import nsquares, ntris, rule_square, rule_triangle
+from bh_graph.blind_u import nsquares, ntris, rule_square, rule_square_metropolis, rule_triangle
 from bh_graph.update_rule import (
     evolve,
     inject_shortcuts,
@@ -114,3 +114,36 @@ def test_motif_delta_matches_global():
             g.add_edge(a, b)
             g.add_edge(c, d)
         done += 1
+
+
+def test_grid_not_square_optimal():
+    # The plain grid (361 squares) is a greedy fixed point but NOT the
+    # motif optimum: low-T Metropolis (T = 0.25, 200 steps, neutrals
+    # accept) wanders to 375 squares with 31 longs. Square-dense
+    # non-grid graphs outrank the vacuum -- motif maximization cannot
+    # select it even in principle.
+    g, src = _grid20()
+    _, h, acc = evolve(g, rule_square_metropolis, 200, seed=5, src=src, T0=0.25)
+    assert acc == 37, acc
+    assert nsquares(h) == 375, nsquares(h)
+    assert total_longs(h) == 31, total_longs(h)
+    assert nx.is_connected(h)
+
+
+def test_square_metropolis_has_no_healing_window():
+    # Finite-T sampling does not rescue motif optimization. From damage:
+    # T = 0.25 climbs PAST the vacuum (323 -> 413 squares over 1000
+    # steps while longs rise 30 -> 140 -- the landscape slopes away
+    # from the grid toward square-dense non-grids); T = 1.0 melts
+    # toward drift (squares ~140, longs ~345). No temperature heals.
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    _, h, acc = evolve(dam, rule_square_metropolis, 1000, seed=5, src=src, T0=0.25)
+    assert acc == 742, acc
+    assert nsquares(h) == 413, nsquares(h)
+    assert total_longs(h) == 140, total_longs(h)
+    assert nx.is_connected(h)
+    _, h2, acc2 = evolve(dam, rule_square_metropolis, 200, seed=5, src=src, T0=1.0)
+    assert acc2 == 200, acc2
+    assert nsquares(h2) == 143, nsquares(h2)
+    assert total_longs(h2) == 345, total_longs(h2)

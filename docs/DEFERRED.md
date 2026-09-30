@@ -266,9 +266,20 @@ motifs WITHOUT healing (squares 323 → 341, longs 30 → 35, p past
 the square basin (tri 0 → 115, sq → 162, longs → 162) toward a
 class needing substrate-agnostic measurement; touched-set delta ==
 global motif gradient pinned (correctness of local acceptance).
-Queued: finite-T Metropolis variants (greedy stalls at 341 < 361),
-κ-homogenizing rewiring, damage-recovery-under-blind-U as the key
-discriminator, triangle-class landing measurement.
+METROPOLIS FOLLOW-UP (MEASURED, test_blind_u.py — finite-T does not
+rescue motif optimization): the grid is NOT the square optimum —
+T = 0.25 from plain vacuum reaches 375 > 361 squares (31 longs),
+so square-dense non-grids outrank it and motif maximization cannot
+select the vacuum even in principle; T = 0.25 from damage climbs
+323 → 413 over 1000 steps while longs rise 30 → 140 (the 200-step
+342 was slow climbing past, not a stall near the grid); T = 1.0
+melts toward drift (squares ~140, longs ~345). No healing window:
+motif-count maximization is misdirected, not merely insufficient.
+Queued: κ-homogenizing rewiring, damage-recovery-under-blind-U as
+the key discriminator, triangle-class landing measurement,
+non-maximization blind dynamics (e.g. curvature-driven or
+degree-isostatic rules whose fixed points might coincide with the
+vacuum rather than outrank it).
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
