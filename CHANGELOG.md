@@ -3,23 +3,20 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
-- **unreleased** — Causal-order roadmap (D12/D13): reconstruction
-  universality + staged emergent time filed (essay §8, `DEFERRED.md`);
-  C1–C5 dynamics-coherence ladder with twin-histories criterion as the
-  defining autonomy condition (quotient form refuted by two-bit swap);
-  D13.0 static control measured (analytic `V_G`, exact `8r+4` cut law,
-  disk-boundary cut capacity, hop/weighted sign pattern); Malament as
-  conditional motivation with `V_U` spacetime-volume leg; `M_O` quotient
-  + five admissibility criteria; stage-1 spec (`V_U`/`Ṽ_U`, controls,
-  cones); substrate family (tri/hex/noisy +, gated-wall/rewired −);
-  P4 audit ((1)(2)(3)(5) pass, (4) partial; drift modulus flat+plug-tested);
-  rewire sweep (rise-collapse, N* flat α≈0, multi-seed bands);
-  scaled-window α≈0 confirmation (f*→0) + leverage dose-response;
-  D1 C_vac-preservation target, RG-relevance investigation ("critical"
-  dropped), extended division of labor; protected-locality headline +
-  two-problems split + D1 injection falsifier + α bookkeeping;
-  RG-blocking flow (λ 0.013→0.31, y≈1.5 rough);
-  paper v5 S11 + ledger updated. 451 tests.
+- **v5.2** — Causal-order roadmap + substrate family + spectral leg:
+  D12/D13 filed (reconstruction universality, staged emergent time, essay
+  §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form
+  refuted by two-bit swap); D13.0 static control (analytic `V_G`, exact
+  `8r+4` cut law, disk-boundary cut capacity); Malament conditional with
+  `V_U` spacetime-volume leg; `M_O` quotient + five admissibility criteria;
+  stage-1 spec (`V_U`/`Ṽ_U`, controls); Tier-1 substrate family pinned
+  (tri/hex/Delaunay-reference/Lloyd/Gabriel/k-NN/medial-quad +,
+  gated-wall/shortcut −, span-limited rewire preserves 2D); P4 audit
+  ((1)(2)(3)(5) pass, (4) partial); rewire sweep (N* = O(1), f*→0
+  hypothesis) + RG blocking (λ 0.013→0.31, y≈1.5 rough);
+  ensemble ontology (`[G]_{~_O}` object, info-minimality); spectral
+  dimension second leg (torus anchor + family band); Schaeffer-exact +
+  Lloyd-spectral queued with diagnoses; Tier-2 cancelled. 457 tests.
 - **v5.1** — D10b tension-cost program (releases model-docs v0.6 below):
   zero-fit cost candidates for tense-region `d(i,j)` (tortuosity-import
   partial recovery, `c_eff`-import flips with full dip → overshoot →
