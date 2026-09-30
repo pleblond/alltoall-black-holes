@@ -39,7 +39,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   shipped (SI first-passage, MDS null 2-dominant); tolerance curve
   (binary longs collapse MDS 2-dominance at 2 longs — forces
   weighted L0 state).
-  520 tests.
+  D10 weighted-audit adoption (event-sweep + edge census from
+  weighted-graph-paper, 3-vertex cross-checks, weight-tolerance
+  recovery Lw=20 near-vacuum; T15 cites Prop 1, D11 re-analysis
+  queued).
+  524 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

@@ -681,6 +681,36 @@ linear, deriving neither candidate's form. Remaining honest paths:
 tighten the BV ln2 bracket to c = 1/2 analytically (pen-and-paper),
 or the congestion route via D1 update-capacity (gated on U). The
 imports stay labeled.
+WEIGHTED-AUDIT ADOPTION (Leblond, pleblond/weighted-graph-paper —
+"Distance, Volume, and Apparent Dimension in Weighted Graphs"):
+the paper's Prop 1 (cost dominance) generalizes our T15 and its
+endpoint witnesses generalize our witness-node corollary — T15 now
+cites Prop 1 as the parent theorem (paper refresh queued); its Prop 2
+(arrival-event sweep) is ADOPTED as our weighted-measurement
+discipline (Sec 7 audit order: specify → census edges → complete
+arrival profiles → fit last), implemented in bh_graph/weighted.py
+(cross-checked against the paper's exact 3-vertex blind spot:
+integer radii agree, excess on [3/2,2), max ratio 3/2; dominance
+restoration removes all inflation — test_weighted.py). Our T15
+fractional blips (9>5 @1.9, 1.077 @13.75, both integer-hidden) are
+instances of the paper's blind-spot phenomenon; ball_volumes_weighted
+(linspace/integer grids) is flagged for event-sweep upgrade wherever
+inequalities are certified. Slope identities (Eq 15/17: p_w − p_0 =
+slope of log R) reframe D11: excess slope is ratio-recovery, not
+inflation — D11-tail re-analysis under this lens QUEUED (check E-tails
+against R_x profiles; Eq 22 deficit-recovery may describe them).
+L0 STATE UPGRADE (ADOPTED direction, machinery queued): G = (V,E,w)
+with w_ij as L0 DOF (coupling strength); unweighted results stand as
+the w∈{0,1} strong-backbone sector. First weighted result (MEASURED,
+test_weighted.py): weight-tolerance recovers geometry — the same 30
+damage longs read binary-collapse at Lw=1 (GoF2 0.385) but
+near-vacuum at Lw=20 (GoF2 0.684, lam2/lam3 5.49 past the 2D bar);
+continuity in weight is the weak knob binary lacks (lam2/lam3 dips
+to 1.36 at Lw=5 mid-transition, filed as-is). Weight-selection
+principle required before further results (graph-internal, blind,
+pre-registered — candidates: interaction counts, U-dynamical
+attractor, w(χ)); model.md L0-box update queued with the paper
+refresh.
 
 ## D11 — Far-field tail exponent of the tension fingerprint (D10b)
 
