@@ -498,12 +498,18 @@ clean IR discriminator at reachable scales. Update-rule search
 damage — null persists, scramble kills (297 longs), greedy-twin
 games `p` (1e-6) while tripling longs (30 → 88), local guillotine
 stalls on provably locked configs (30 → 6), drift leaks (→ 22),
-annealing trades `p` for longs, edge-slide best (→ 5) with `p`
-frozen — so single-move local dynamics cannot restore locality,
-and the falsifier must judge (`p`, longs) jointly. Tail exponent
+annealing trades `p` for longs, edge-slide best single-move (→ 5)
+with `p` frozen — so single-move local dynamics cannot restore
+locality, and the falsifier must judge (`p`, longs) jointly.
+Second pass: coordinated double-swap breaks the floor (→ 1,
+pair-locked residual) and the visibility-chained triple endgame
+fully heals (→ 0, two seeds + torus 2/2; residual triple-lock
+localizes to boundaries) — protection demands coordination order
+3 with detour-aware proposals. Tail exponent
 (D11, closed): tension-dependent (`χ~1 → 1/r²`, `χ~2 → 1/r`,
-`χ~5` bounded-open). κ-profile (D10b, closed): disk plug
-confirms the interface pattern. Observer-indexed `M_O(G,o)`
+`χ~5` slow crossover, `q` 1.19 → 1.10 to 20Rc). κ-profile (D10b,
+closed): disk plug confirms the interface pattern (mild-disk
+matches mild-square). Observer-indexed `M_O(G,o)`
 filed (vantage-covariance axis); static depth bake-off negative.
 
 **Why this could work (grounding).** Malament's theorem: causal order fixes
