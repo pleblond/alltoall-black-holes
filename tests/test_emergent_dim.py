@@ -860,6 +860,30 @@ def test_d11_chi5_tail_unsettled_but_bounded():
     assert all(r[0] > 0 for r in rows), rows
 
 
+def test_d11_chi5_tail_slow_crossover_to_linear():
+    # chi~5 at L=480 to 20Rc: a SLOW crossover, not a fixed intermediate
+    # law -- fitted q = 1.19 over k=6..14, q = 1.10 over k=14..20; E*r
+    # still monotone-falling (7.90 -> 6.55) with shrinking steps, E*r^2
+    # still rising. 1/r (wedge shadow) supported asymptotically but NOT
+    # yet firm at 20Rc -- the honest pin is the crossover, not the limit.
+    rc, rows = _d11_tail(
+        480, _JUMPS_KING + _JUMPS_AXIAL2 + _JUMPS_DIAG2, (6, 8, 10, 12, 14, 16, 18, 20)
+    )
+    assert 11.0 < rc < 11.8, rc
+    lin = [r[1] for r in rows]
+    assert all(b < a for a, b in pairwise(lin)), lin
+    assert 6.4 < lin[-1] < 6.7, lin
+    sq = [r[2] for r in rows]
+    assert all(b > a for a, b in pairwise(sq)), sq
+    rr = np.array([k * rc + 4 for k in (6, 8, 10, 12, 14, 16, 18, 20)])
+    ee = np.array([r[0] for r in rows])
+    q_all = -np.polyfit(np.log(rr), np.log(ee), 1)[0]
+    q_late = -np.polyfit(np.log(rr[-4:]), np.log(ee[-4:]), 1)[0]
+    assert 1.10 < q_all < 1.25, q_all
+    assert 1.00 < q_late < 1.20, q_late
+    assert q_late < q_all, (q_late, q_all)
+
+
 def test_kappa_interface_confirmed_on_disk_plug():
     # D10b kappa half, CLOSED: independent corner-free geometry (disk,
     # R=3, 29 nodes ~ matched area to 5x5) reproduces the interface
