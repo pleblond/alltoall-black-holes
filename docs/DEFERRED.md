@@ -1008,3 +1008,54 @@ the interval from `(≺_U, V_U, τ, M_O)`; C5 demands that interval's
 **Kill relevance:** feeds D1 (dynamics) and D12 (same-`M_O` falsifier: the
 interval map must coincide with the spatial `M_O`). No direct kill wire
 until stage 3+.
+
+## D14 — Cosmogony: phase separation into knots + low-dimensional vacuum (sketch, for later)
+
+**Hypothesis (filed from review dialogue, no code):** the 2D fabric is
+not an eternal starting condition but the RESIDUAL phase of a
+primordial connectivity phase transition: homogeneous high-density
+G_* (dimension d_*, unchosen — to be measured, never tuned) undergoes
+aggregation G_* → G_dense + G_depleted, with dimensional bifurcation
+d_knot > d_* > d_fabric and the residue flowing toward d_I ≃ 2 (then
+M_O → d_obs ≃ 3). Matter = concentrated phase (converges with the
+BH-as-maximal-tension story, extended to ordinary matter as stored
+excess connectivity); vacuum = depleted phase. Big Bang = graph phase
+transition; expansion = conversion into vacuum phase (V_obs grows as
+network enters the spatially-realized phase — space appearing between
+structures, not objects flying through a container); rapid early
+conversion = INFLATION CANDIDATE (not inflation: acceleration,
+homogeneity, graceful exit, and — sharpest — the near-scale-invariant
+perturbation spectrum are all missing rungs). Conservation structure
+kept as design constraint: Q_total = Q_vac + Q_knot = const (any
+aggregation U must state its conserved quantity; our swaps already
+conserve degrees + edge count). Gravity sharpens: the redistribution
+creating a knot necessarily distorts surrounding residue (δG_vac →
+δd_O → curvature) — mass and curvature from one event.
+REFRAME (adopted as the better D1 question): "Why does U
+phase-separate into knots + low-dimensional vacuum?" replaces "How
+does U repair the lattice?" — the N* protection problem dissolves
+(the lattice isn't eternal, it's the residue) and blind-U stays
+consistent (separation is what U does, not what it optimizes).
+Required mechanism, sharply: U must PUMP long-range connectivity OUT
+of the residue INTO knots (fighting the measured RG-relevant shortcut
+amplification y_λ ≈ 1.5 — the anti-separation pressure to beat).
+FALSIFIER (pre-registered campaign, queued behind exhibiting ONE
+separating U — existence before universality): homogeneous graphs at
+broad d_* (3.7/5/8…), simple conserved blind aggregation U, no
+dimensional targets; measure per-phase d(t) (spectral/information).
+Pass = knots stabilize + residue → ≃2 robustly across initial
+ensembles; fail = U must be told "make residue 2D" (learned nothing).
+Methods problems (open, not blockers): per-phase dimension needs
+pre-registered knot membership (threshold/scale choice is the tuning
+hazard); arrest vs completion (partial separation is FINE — we
+observe both phases); ripening (small knots evaporating into one
+giant knot = bad, unless BH-like = good — must be shown, not hoped).
+Resonance noted: the triangle-rule dense clusters (clustering 0.40,
+p → 2.8) are baby knots — aggregation-like flow already seen, just
+never separation. Level placement: P0'-level origin story (downstream
+of exhibiting U); L0 conditionals untouched per the independence
+discipline; no U, no theorems — sketch only.
+
+**Kill relevance:** none until a separating U is exhibited; then the
+basin-breadth test above is the wire (single-ensemble separation =
+curiosity, broad-basin = genuine attractor).
