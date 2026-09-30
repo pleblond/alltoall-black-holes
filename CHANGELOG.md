@@ -15,7 +15,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   generalizes 24→13, hex needs fabric-relative radius), blind-U
   reframing adopted (stationary-ensemble vacuum, U-admissibility,
   drift/square/triangle first entrants, Metropolis no-window +
-  grid-not-optimum negative));
+  grid-not-optimum negative, kappa frozen-descent negative));
   D10a derivation
   negatives (walk anti-tortuosity, residence α≈0.78); D11 tail closed
   (tension-dependent exponent, χ~5 slow crossover to 20Rc); D10b κ-profile closed (disk confirmation);
@@ -26,7 +26,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   independence on 2D fabric, pairwise rescue refuted, escapes open)
   with MDS-route independence clarified; first dynamical distance
   shipped (SI first-passage, MDS null 2-dominant).
-  506 tests.
+  508 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

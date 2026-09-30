@@ -11,7 +11,15 @@ import random
 
 import networkx as nx
 
-from bh_graph.blind_u import nsquares, ntris, rule_square, rule_square_metropolis, rule_triangle
+from bh_graph.blind_u import (
+    kappa2_census,
+    nsquares,
+    ntris,
+    rule_kappa_flat,
+    rule_square,
+    rule_square_metropolis,
+    rule_triangle,
+)
 from bh_graph.update_rule import (
     evolve,
     inject_shortcuts,
@@ -147,3 +155,36 @@ def test_square_metropolis_has_no_healing_window():
     assert acc2 == 200, acc2
     assert nsquares(h2) == 143, nsquares(h2)
     assert total_longs(h2) == 345, total_longs(h2)
+
+
+def test_kappa_sees_damage():
+    # Curvature carries a strong damage signal (exact OR, Johnson
+    # cache): plain grid reads mean kappa^2 0.0 (flat); swap damage
+    # reads ~0.065 with the 30 longs at mean|k| ~0.93. Tolerant bands
+    # (solver-version robust), tight enough to be meaningful.
+    from bh_graph.update_rule import edge_span
+
+    g, _ = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    cp = kappa2_census(g)
+    assert cp["mean_k2"] < 1e-9, cp["mean_k2"]
+    cd = kappa2_census(dam)
+    assert 0.06 < cd["mean_k2"] < 0.07, cd["mean_k2"]
+    klong = [k for e, k in zip(dam.edges(), cd["ks"]) if edge_span(dam, *e) > 3]
+    assert len(klong) == 30
+    assert 0.9 < sum(abs(k) for k in klong) / 30 < 0.95
+
+
+def test_kappa_descent_frozen():
+    # ...but kappa^2 descent cannot act on it: 0 accepts on plain over
+    # 3 steps (flat fixed point) AND 0 on damage over 5 steps (longs
+    # frozen at 30) -- improving single swaps run <=1/300 even
+    # long-anchored (filed spike). Strong signal, no accessible
+    # direction: the coordination disease strikes a curvature objective.
+    g, src = _grid20()
+    _, _, acc = evolve(g, rule_kappa_flat, 3, seed=5, src=src)
+    assert acc == 0, acc
+    dam = inject_shortcuts(g, 10, 3)
+    _, h, acc = evolve(dam, rule_kappa_flat, 5, seed=5, src=src)
+    assert acc == 0, acc
+    assert total_longs(h) == 30

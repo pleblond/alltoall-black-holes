@@ -166,3 +166,79 @@ def rule_square_metropolis(h: nx.Graph, ctx: dict) -> bool:
         h.add_edge(a, b)
         h.add_edge(c, d)
     return False
+
+
+def kappa2_census(h: nx.Graph) -> dict:
+    """Mean kappa^2 over all edges (external diagnostic, exact OR LP).
+
+    Shared Johnson distance cache; deterministic for a fixed scipy
+    build (pins use tolerant bands, not exact floats). Plain L=20 grid
+    reads 0.0 (flat); swap damage reads ~0.065 with longs at mean|k|
+    ~0.93 -- curvature SEES the damage the descent below cannot fix.
+    """
+    from bh_graph.orici import ollivier_curvature
+    from bh_graph.sinkor import all_pairs_johnson
+
+    dist, idx = all_pairs_johnson(h)
+    ks = [ollivier_curvature(h, u, v, _dist=dist, _idx=idx) for u, v in h.edges()]
+    return {"mean_k2": sum(k * k for k in ks) / len(ks), "ks": ks}
+
+
+def _incident_edges(h: nx.Graph, S: set) -> list:
+    out = []
+    for s in S:
+        for w in h[s]:
+            e = (s, w) if s < w else (w, s)
+            if e not in out:
+                out.append(e)
+    return out
+
+
+def rule_kappa_flat(h: nx.Graph, ctx: dict) -> bool:
+    """Blind curvature-flattening: strict descent on touched mean-kappa^2.
+
+    Propose random double-edge swaps; accept the first strictly
+    reducing mean kappa^2 over edges incident to the touched set (exact
+    OR LP, one Johnson cache per step -- distances are step-fresh but
+    proposal-stale, a documented approximation) that keeps the graph
+    connected. Fully blind: kappa is graph-internal, no calibration.
+    Measured FROZEN (test_blind_u.py): 0 accepts on plain (flat fixed
+    point) AND 0 on damage over 5-15 steps -- improving single swaps
+    run <=1/300 even long-anchored (filed spike), so descent has no
+    accessible direction despite the strong signal (longs carry |k|
+    ~0.93). The coordination disease strikes a curvature objective:
+    single-swap optimization of a macroscopic objective locks whatever
+    the objective is.
+    """
+    from bh_graph.orici import ollivier_curvature
+    from bh_graph.sinkor import all_pairs_johnson
+
+    dist, idx = all_pairs_johnson(h)
+    E = list(h.edges())
+
+    def mk(edges):
+        return sum(ollivier_curvature(h, u, v, _dist=dist, _idx=idx) ** 2 for u, v in edges) / len(edges)
+
+    for _ in range(ctx.get("proposals", 12)):
+        (a, b), (c, d) = ctx["rng"].sample(E, 2)
+        if len({a, b, c, d}) < 4:
+            continue
+        if ctx["rng"].random() < 0.5:
+            (u1, v1), (u2, v2) = (a, d), (c, b)
+        else:
+            (u1, v1), (u2, v2) = (a, c), (b, d)
+        if h.has_edge(u1, v1) or h.has_edge(u2, v2):
+            continue
+        S = {a, b, c, d}
+        before = mk(_incident_edges(h, S))
+        h.remove_edge(a, b)
+        h.remove_edge(c, d)
+        h.add_edge(u1, v1)
+        h.add_edge(u2, v2)
+        if mk(_incident_edges(h, S)) < before and nx.is_connected(h):
+            return True
+        h.remove_edge(u1, v1)
+        h.remove_edge(u2, v2)
+        h.add_edge(a, b)
+        h.add_edge(c, d)
+    return False

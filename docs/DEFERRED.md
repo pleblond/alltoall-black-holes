@@ -275,11 +275,21 @@ select the vacuum even in principle; T = 0.25 from damage climbs
 342 was slow climbing past, not a stall near the grid); T = 1.0
 melts toward drift (squares ~140, longs ~345). No healing window:
 motif-count maximization is misdirected, not merely insufficient.
-Queued: κ-homogenizing rewiring, damage-recovery-under-blind-U as
-the key discriminator, triangle-class landing measurement,
-non-maximization blind dynamics (e.g. curvature-driven or
-degree-isostatic rules whose fixed points might coincide with the
-vacuum rather than outrank it).
+KAPPA FOLLOW-UP (MEASURED, test_blind_u.py — strong signal, no
+accessible direction): curvature SEES swap damage (exact OR:
+plain mean kappa^2 0.0 flat; damaged ~0.065 with longs at
+mean|k| ~0.93, pinned in tolerant bands) yet strict kappa^2
+descent is FROZEN — 0 accepts on plain (flat fixed point) and 0
+on damage over 5 steps, because improving single swaps run 0/300
+blind and 1/300 even long-anchored (filed spikes). The
+coordination disease strikes a curvature objective too: it is not
+about which macroscopic quantity is optimized. κ-first targeting
+would stay blind but needs ~100s of proposals per accept
+(minutes per accept — infeasible in-suite, not shipped).
+Queued: damage-recovery-under-blind-U as the key discriminator,
+triangle-class landing measurement, non-maximization blind
+dynamics (curvature-driven or degree-isostatic rules whose fixed
+points might coincide with the vacuum rather than outrank it).
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
