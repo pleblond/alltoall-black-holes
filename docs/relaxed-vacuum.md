@@ -521,7 +521,10 @@ bowl: `v3 ↔ r²` at 0.93, so eigenvector geography joins the test).
 Shell-counting dilemma sketched against the emergence derivation: honest
 per-shell counts never reach `r²` while cumulative `r²` violates
 independence by construction (`d_H=2` XOR independence; pairwise rescue
-refuted, non-geometric or non-shell escapes open).
+refuted, non-geometric or non-shell escapes open). Dilemma binds hop
+shells only — MDS route independent; first dynamical distance (SI
+first-passage) reads 2-dominant, so rank-3 selection stays a nontrivial
+dynamical property to hunt.
 
 **Why this could work (grounding).** Malament's theorem: causal order fixes
 the conformal class (on distinguishing spacetimes); volume — or a time
