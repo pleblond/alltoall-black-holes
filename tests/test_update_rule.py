@@ -707,3 +707,28 @@ def test_knn_heals_to_floor_pair_overshoots():
     assert ap == 22, ap
     assert total_longs(hp, 3, 2) == 9, total_longs(hp, 3, 2)
     assert nx.is_connected(hp)
+
+
+def test_chain_heals_lloyd():
+    # Last Tier-1 member: Lloyd-relaxed Delaunay (400 nodes, 1190
+    # edges) has a clean span-2 signature (0 longs); damage adds 19.
+    # Pair grinds slowly (19 -> 6 @600 -> 1 @1200: regularization
+    # slows order-2 vs Poisson-Delaunay's 21 -> 0 @600 -- mechanism
+    # open, possibly less straddling diversity); strict-gated order-3
+    # clears the last long (1 -> 0, acc 1). Full chain heals Lloyd.
+    from bh_graph.graphs import build_lloyd_delaunay
+    from bh_graph.update_rule import edge_span, rule_pair, rule_triple_anneal, total_longs
+
+    g = build_lloyd_delaunay(n_points=400, iters=20, seed=0)
+    assert g.number_of_edges() == 1190
+    assert all(edge_span(g, u, v) == 2 for u, v in g.edges())
+    dam = inject_shortcuts(g, 10, 3)
+    assert total_longs(dam, 3, 2) == 19
+    src = next(iter(g.nodes()))
+    _, h, acc = evolve(dam, rule_pair, 1200, seed=5, src=src, max_span=2)
+    assert acc == 13, acc
+    assert total_longs(h, 3, 2) == 1
+    _, h2, acc2 = evolve(h, rule_triple_anneal, 30, seed=105, src=src, max_span=2, T0=0.0)
+    assert acc2 == 1, acc2
+    assert total_longs(h2, 3, 2) == 0
+    assert nx.is_connected(h2)

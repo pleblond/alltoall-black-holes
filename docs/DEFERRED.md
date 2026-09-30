@@ -279,6 +279,15 @@ separable damage (+20 → 35); guillotine heals to the floor (35 →
 16) while pair600 overshoots below it (35 → 9) — second overshoot
 exhibit after Gabriel (milder): below-floor census cannot
 distinguish repair from class drift; exact-floor targeting open.
+LLOYD HEALS VIA CHAIN (MEASURED, test_update_rule.py — last Tier-1
+member): Lloyd-relaxed Delaunay (1190 edges) shows a clean span-2
+signature (0 longs), damage adds 19, pair grinds slowly (19 → 6
+@600 → 1 @1200 — regularization slows order-2 vs Poisson-
+Delaunay's 21 → 0 @600; mechanism open), strict-gated order-3
+clears the last long (1 → 0). Cross-candidate battery now spans
+square/torus/tri/hex/Delaunay/Gabriel-limit/medial/kNN/Lloyd:
+healing is universal on gapped signatures, with order, speed, and
+floor behavior substrate-dependent.
 BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
 locality should characterize STABLE STATES of U, not appear in U's
 objective function. The D1 verdict sharpens: direct microscopic

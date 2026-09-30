@@ -24,7 +24,8 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   broad-spectrum census limit (descent overshoots below plain),
   medial mixed (pair grinds 60→6, ungated triple churns 6→29,
   strict gate clears 6→0 in one accept), k-NN mostly-heals
-  (guillotine to floor 16, pair overshoots to 9));
+  (guillotine to floor 16, pair overshoots to 9), Lloyd heals
+  via chain (pair grinds to 1, strict clears));
   D10a derivation
   negatives (walk anti-tortuosity, residence α≈0.78); D11 tail closed
   (tension-dependent exponent, χ~5 slow crossover to 20Rc); D10b κ-profile closed (disk confirmation);
@@ -35,7 +36,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   independence on 2D fabric, pairwise rescue refuted, escapes open)
   with MDS-route independence clarified; first dynamical distance
   shipped (SI first-passage, MDS null 2-dominant).
-  517 tests.
+  518 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form
