@@ -1982,7 +1982,11 @@ ratio ~3.5 — structural hierarchy is O(few);
 basin-entry weak_med in indicative interval (2.00,11.00)
 (beta=35/350 static brackets; shape-transfer approximate)
 => gain-free candidacy MARGINAL, undecidable by
-derivation. POSED DISCRIMINATOR (designed NOT run —
+derivation. ERRATUM (post-measurement): Lbar 26.7 was
+pure-grid; swapped+clique Lbar ~14.3 (measured 14.26;
+small-world shortening; Sig chi = 14.268 confirms the
+identity) => corrected sketch ratio ~6.2 = measured 6.216;
+O(few) claim stands, estimate superseded. POSED DISCRIMINATOR (designed NOT run —
 zero-free-parameter pricing w_e=max(1,J_e/Jbar),
 J=static betw, Jbar over non-interior edges per
 mask-exclusion precedent, fabric-safe by lattice-unit
