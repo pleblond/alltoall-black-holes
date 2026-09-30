@@ -33,8 +33,10 @@ shed $\epsilon(M,a)$ & $0.0168$ universal (Eq.~2 main) & calibrated + extrapolat
 upper-gap null & no feature at $44\,M_\odot$ & negative prediction (measured smooth) & $k$/spin/Love/congestion all smooth; edge left to stellar physics \\
 GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, POSSIS queued (D7) & non-detection at $p \sim 0.12$--$0.32$; epoch audit in \texttt{massgaps} \\
 vacuum P0' & isostatic 2D, $\langle z\rangle = 4$ & postulated (v0.6) & BH = max-tension extreme; $d_I = 2$ predicted; $M_O$ reconstruction \\
-$d_{\mathrm{eff}}$ protocol & $d\ln V/d\ln r$ bracket & measured (12 tests) & shortest below + diffusion above on lattices; shells fail (S11) \\
+$d_{\mathrm{eff}}$ protocol & $d\ln V/d\ln r$ bracket & measured (25 tests) & shortest below + diffusion above on lattices; shells fail (S11) \\
 D10 tension map & GR dip/overshoot/$\to3^+$ & GR computed; graph open & bare shortest-path rejected (inverted); weighted costs queued \\
+D12 reconstruction & $\forall M_O \in \mathcal{A}_{\mathrm{macro}}$ same IR & open program & access floor + non-circularity; 2nd admissible $M_O$ w/ non-3D IR refutes \\
+D13 causal order & D13.0 control measured; stages 1--4 open & static control measured (S11) & analytic $V_G$, $8r{+}4$ cut law; $U \to$ cone $\to$ clocks $\to$ interval; twins define C3 \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
@@ -554,5 +556,47 @@ toward 1, which \emph{is} $d_{\mathrm{eff}} > 3$. Close criterion (D10a): a
 tensed simulator region reproduces this \emph{shape} under info-side
 $d_{\mathrm{eff}}$ once the cost mapping is fixed; shape failure refutes P0'.
 Reproduce: \path{pytest tests/test_emergent_dim.py -q}.
+
+\textbf{Reconstruction universality (D12, open).} The observer map $M_O$
+is not unique on its face: closeness, resistance, diffusion, and
+communicability distances are all candidate reconstructions. D12 demands
+an access class $\mathcal{A}_{\mathrm{macro}}(G)$ defined from $G$ alone
+--- the information-access floor is part of the definition, and neither
+``3D'' nor ``Lorentzian'' may occur in it --- such that every admissible
+$M_O$ recovers the same infrared $M$ up to coordinate/coarse-graining
+equivalence. Falsifier: a second admissible $M_O$ giving robustly non-3D
+IR on relaxed fabric refutes the P0$'$ reconstruction program. Partial
+credit runs criterion stated $\to$ two instances agree on vacuum $\to$
+agreement extends to tensed regions.
+
+\textbf{Staged causal order (D13).} Time undergoes reconstruction exactly
+as space does: the microscopic update index $n$, the causal order
+$\prec_U$, and clock time $\tau$ are three distinct orderings. The
+static control (D13.0) is measured: the analytic Manhattan law
+$V_G(r) = 1+2r(r+1)$ bit-pinned at $L = 40/80$, the exact diamond
+perimeter cut law $\mathrm{cut}(r) = 8r+4$ on unclipped $r \in [5,18]$,
+disk-boundary cut capacity deficit at $r \le 4$ with exact recovery from
+$r = 5$, and the hop/weighted plug sign pattern ($35 < 38$ hops vs
+$+5.0$ weighted delay) pre-registered for dynamical confirmation. BFS
+first-passage is hop distance, so this control is static geometry, not
+propagation. Open stages: (1) $U \to T_U, \prec_U$ via
+counterfactual-influence arrival times; (2) observed cone under the
+\emph{same} $M_O$ producing $R^3$; (3) internal clocks $d\tau/dt(\chi)$
+reproducing the T9 profile unimported; (4) interval $g_{\mu\nu}$ from
+$(\prec_U, V_U, M_O)$, where the spacetime-volume observable $V_U$
+(e.g.\ calibrated event counts in causal diamonds) is independently
+defined --- spatial $V(r)$ is reachability, not event volume. Malament's
+theorem is motivation conditional on the continuum correspondence (order
+fixes the conformal class; $V_U$ the factor), not an earned mapping.
+Reproduce: \path{pytest tests/test_scrambling.py -q}.
+
+\textbf{Dynamics coherence (C1--C5, over-arching).} $M_O \circ U \simeq
+U_{\mathrm{eff}} \circ M_O$ in five levels: coherence $\to$ locality
+$\to$ autonomy $\to$ universality across $\mathcal{A}_{\mathrm{macro}}$
+$\to$ GR limit in the IR, each presupposing the previous. Autonomy (C3)
+is defined by the twin-histories criterion
+$M_O(G_a) = M_O(G_b) \Rightarrow M_O(U(G_a)) \simeq M_O(U(G_b))$;
+factoring $M_O$ through future-equivalence classes does \emph{not} imply
+it (two-bit swap counterexample: singleton classes, failing twins).
 
 \end{document}

@@ -23,6 +23,10 @@ Update (PR #10): the qubit-toy instance is closed — `evaporation_unitary`
 inner-product test), and computes `S_rad` from `rho_rad` (tracks Haar/Page
 to 0.002 bits; all:all circuits converge by depth ~5). What remains is the
 graph instance: derive `V_k` from graph dynamics, not merely choose one.
+Scope note (D13): D1's dynamics now also gates emergent time itself
+(update rule → causal order → cone → clocks), not just evaporation/QES.
+D13-input desideratum (not a close criterion): candidate `U` should be
+local and fabric-compatible so D13 stage 1 can run on it.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
@@ -163,7 +167,7 @@ flip needs `c* ≈ 0.58`, diagnostic); `c_eff`-import `w = 1 + χ` (AT light
 sector, saturating `x = χ/(1+χ)` bridge) flips clique (3.43, big overshoot)
 and mild plug (1.73 → 2.02 vs 1.92, modest +5% overshoot) — overshoot-side
 only, dip-phase (U-shape) open, amplitude unclaimed. Fingerprint + amplitude
-(24 tests): 9×9 χ~1 plug shows full dip (−0.18) → overshoot (+0.79 peak) →
+(25 tests): 9×9 χ~1 plug shows full dip (−0.18) → overshoot (+0.79 peak) →
 asymptote (+0.09) shape-match conditional on the ceff bridge; dip-min ratio
 deepens (0.20/0.077/0.016), overshoot peak grows (0.79/0.94/2.91), far-field
 `E ~ A(χ)Rc/r` with non-universal `A` (deficit ∝ tension; tail exponent
@@ -179,6 +183,9 @@ hidden from integer sampling, mid-window flips 2.020); c_eff at vacuum
 `z_vac=4` violates on exactly the 24 boundary diagonals (witness: all 24
 arrive early from endpoint balls; center-source volume blip peaks 1.077
 at r=13.75, likewise hidden at integers).
+Leading 2D+scale candidate mechanism: scale multiplicity `n_s(r) ∝ r`
+(`dV_O ~ n_s·dV_G → R³`); `s` undefined, RG-log baseline gives the wrong
+profile — linear-vs-log must be measured, not assumed (essay §8).
 `emergent_dim` protocol +
 two-distance bracket ready; shell no-emergence pin shows what failure looks like.
 
@@ -223,3 +230,83 @@ cost rule rather than fitted.
 
 **Kill relevance:** none directly — a shape detail, not the shape itself.
 Feeds the tension-imprint conjecture amplitude clause (`model.md` §5).
+
+## D12 — Reconstruction universality: why admissible M_O converge
+
+**Missing:** the reason independently-admissible observer reconstruction
+maps recover the same macroscopic geometry. `model.md` defines objective
+spacetime as the part of `G`'s information structure invariant under all
+admissible `M_O` — but names no independent admissibility criterion, so
+"admissible" risks meaning "gives 3D" (circular). The critic's question
+stands: why resistance / diffusion / communicability distance, and why
+couldn't another reasonable reconstruction give 4D, 7D, or no smooth
+geometry at all?
+
+**Close criterion:** define `A_macro(G)` = {`M_O` : graph-internal
+admissibility/access criteria satisfied} — the access floor is part of
+the definition (a single-node "observer" recovers nothing), and neither
+"3D" nor "Lorentzian" may occur in it. Target: ∀ `M_O ∈ A_macro(G)`,
+`M_O(G) ∼ M` up to coordinate/coarse-graining equivalence.
+Partial-credit ladder:
+(i) criterion stated + non-circularity argued; (ii) two instances agree on
+vacuum fabric; (iii) agreement extends to tensed regions (fingerprint
+shape under both). Prerequisite (fiber control): verify `M_O`
+preimages exist at the reconstruction resolution — distinct
+`G_a ≠ G_b` sharing a macro-state — else C3's twin-histories test is
+untestable.
+
+**Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
+But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
+refutes the P0' reconstruction program (same-`M_O` falsifier, essay §8).
+
+## D13 — Emergent causal order: update rule → cone → clocks → interval (staged)
+
+**Missing:** the temporal half of "why spacetime?". L0 has no dynamics
+(D1); D1's scope now includes time itself, not just evaporation/QES
+(D1 provides `U`; D13 asks whether `U` becomes time — the items share
+their object). Target, split by level (corrected): `V_G ~ t²` at
+substrate, `V_O ~ R³` after `M_O`; microscopic index `n`, causal order
+`≺_U`, and clock time `τ` are three distinct orderings (`n ≠ t_obs` as
+`d_G ≠ d_obs`).
+
+**Control (D13.0, MEASURED):** static P0' substrate geometry: analytic
+`V_G(r) = 1+2r(r+1)`, bit-pinned at L=40/80, finite-window fits rising
+toward 2 with radius (1.9196 → 1.9603 fractional); plus the plug sign
+pattern (35<38 hops vs +5.0 weighted) as pre-registration for stage 1.
+Briefly filed as stage 1, demoted on review: first-passage here *is*
+hop distance — compatibility with a cone is not observation of one.
+Second substrate family (hexagonal/noisy-regular) queued to de-brittle
+the control.
+
+**Close criterion (staged, all open):** (1) `U → T_U, ≺_U`: stated local
+update rule + counterfactual-influence arrival times (OTOC-threshold
+form, ε-robust cone speed) and derived causal order (never adjacency
+repackaged); (2) `(≺_U, M_O) → cone`: observed causal cone compatible
+with the *same* `M_O` producing `R³`, order-dimension agreeing with
+`d_eff` (1+3 output, not input); (3) clocks: internal-cycle clock with
+`dτ/dt(χ)` reproducing the T9 profile from capacity/congestion,
+unimported; (4) interval: `g_μν` from `(≺_U, V_U, M_O)`
+(Malament-shaped: order fixes the conformal class, spacetime-volume
+observable `V_U` — e.g. calibrated event counts in causal diamonds,
+independently defined — fixes the factor; spatial `V(r)` is
+reachability, not event volume) reproducing the T8–T11 battery. Each
+stage closes independently; GR is
+the check, never the input, and only at stage 4.
+
+**Over-arching falsifier (C1–C5, essay §8):** `M_O ∘ U ≃ U_eff ∘ M_O`
+with coherence → locality → autonomy → universality → GR limit, each
+level presupposing the previous (C4 quantifies C1–C3 across `A_macro`).
+Autonomy-before-GR: snapshots resembling GR whose next step needs hidden
+`G_n` fail. Operational form: twin histories (`M_O(G_a) = M_O(G_b)` ⇒
+`M_O(U(G_a)) ≃ M_O(U(G_b))`, ε–δ in macro-profile distance, RG-weakened
+`ΔM → 0` in the IR); presupposes D12 fiber control. Roof: macro-states
+as `~_macro` dynamical-equivalence classes; factoring `M_O` through
+them does NOT imply autonomy (two-bit swap counterexample: singleton
+classes, failing twins — essay §8), so the twin criterion stays
+defining. Stage 4 vs C5: stage 4 reconstructs
+the interval from `(≺_U, V_U, τ, M_O)`; C5 demands that interval's
+*evolution* match GR — reconstruction vs dynamics, tested separately.
+
+**Kill relevance:** feeds D1 (dynamics) and D12 (same-`M_O` falsifier: the
+interval map must coincide with the spatial `M_O`). No direct kill wire
+until stage 3+.

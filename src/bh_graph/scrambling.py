@@ -17,30 +17,19 @@ the interior has no metric extent — it is "one dot".
 """
 from __future__ import annotations
 
-from collections import deque
 import networkx as nx
 import numpy as np
 
-from bh_graph.graphs import build_complete, build_chain, build_grid_2d, build_random_regular
+from bh_graph.graphs import build_chain, build_complete, build_grid_2d, build_random_regular
 
 
 def infection_time(g: nx.Graph, seed: int = 0) -> int:
-    """Steps for SI spread from `seed` to cover the whole graph (= eccentricity of seed)."""
-    if len(g) == 0:
-        return 0
-    if len(g) == 1:
-        return 0
-    seen = {seed}
-    q: deque[tuple[int, int]] = deque([(seed, 0)])
-    t_max = 0
-    while q:
-        u, t = q.popleft()
-        t_max = max(t_max, t)
-        for v in g.neighbors(u):
-            if v not in seen:
-                seen.add(v)
-                q.append((v, t + 1))
-    return t_max
+    """Steps for SI spread from `seed` to cover the whole graph (= eccentricity of seed).
+
+    Single BFS via hop_arrival_times (unknown seed gives 0, not an
+    exception, per the no-exceptions house rule).
+    """
+    return max(hop_arrival_times(g, seed).values(), default=0)
 
 
 def graph_diameter(g: nx.Graph) -> int:
@@ -96,7 +85,7 @@ def scrambling_scaling(ns: list[int], seed: int = 0) -> dict[str, dict[int, dict
             "gap": float(2 * (1 - np.cos(np.pi / n))) if n > 1 else 0.0,
         }
         # grid (snap to square)
-        side = max(1, int(round(n**0.5)))
+        side = max(1, round(n**0.5))
         n_sq = side * side
         g = build_grid_2d(side)
         out["grid (2D local)"][n_sq] = {
@@ -119,3 +108,18 @@ def scrambling_scaling(ns: list[int], seed: int = 0) -> dict[str, dict[int, dict
 def is_valid_graph(g: nx.Graph) -> bool:
     """Boolean check (no exceptions for control flow): connected and nonempty."""
     return len(g) > 0 and nx.is_connected(g)
+
+
+def hop_arrival_times(g: nx.Graph, seed: int = 0) -> dict[int, int]:
+    """Per-node SI first-passage times from `seed` (BFS layers).
+
+    Under trivial one-hop-per-step dynamics, first-passage time equals
+    hop distance -- so this is a STATIC cover observable (D13 control),
+    not a causal measurement: compatibility with a finite-speed cone is
+    not observation of one. Genuine arrival times T_U need an update
+    rule U (D1) plus counterfactual-influence readout (D13 stage 1).
+    Empty graph gives {}.
+    """
+    if len(g) == 0 or seed not in g:
+        return {}
+    return dict(nx.single_source_shortest_path_length(g, seed))

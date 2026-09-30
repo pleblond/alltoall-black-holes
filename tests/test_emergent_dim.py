@@ -283,7 +283,7 @@ def _clique_plug_grid(L=40, c=20):
     for i in range(len(plug)):
         for j in range(i + 1, len(plug)):
             g.add_edge(plug[i], plug[j])
-    return g0, g
+    return g0, g, plug
 
 
 def _mild_plug_grid(L=40, c=20):
@@ -305,7 +305,7 @@ def test_tension_costs_preserve_relaxed_fabric():
     # at center and at a far source. 3D ruler slope preserved (|dp| ~ 0.01:
     # uniform-ish costs rescale r, not p; boundary cost steps cost some r2).
     L, c = 40, 20
-    g0, _ = _clique_plug_grid(L, c)
+    g0, _, _ = _clique_plug_grid(L, c)
     src_c, src_f = c * L + c, 33 * L + 33
     r0, v0 = ed.ball_volumes_bfs(g0, src_c)
     rf, vf = ed.ball_volumes_bfs(g0, src_f)
@@ -334,7 +334,7 @@ def test_tortuosity_costs_partially_recover_clique():
     # bracket pinned: c = 1.0 flips (2.21), so c* in (0.5, 1.0) -- the
     # import falls short by ~15-20%, quantifying the gap (no fit claimed).
     L, c = 40, 20
-    g0, g = _clique_plug_grid(L, c)
+    g0, g, _ = _clique_plug_grid(L, c)
     src_c = c * L + c
     r0, v0 = ed.ball_volumes_bfs(g0, src_c)
     rc, vc = ed.ball_volumes_bfs(g, src_c)
@@ -369,7 +369,7 @@ def test_ceff_costs_flip_clique_and_mild():
     # inside the window), not a clean power law -- pinned by its absence
     # here: only mid-window flips are claimed.
     L, c = 40, 20
-    g0, g = _clique_plug_grid(L, c)
+    g0, g, _ = _clique_plug_grid(L, c)
     _, gm = _mild_plug_grid(L, c)
     src_c = c * L + c
     r0, v0 = ed.ball_volumes_bfs(g0, src_c)
@@ -524,7 +524,7 @@ def test_kappa_interface_profile_not_monotone_tracking():
     from bh_graph import orici
 
     L, c = 20, 10
-    _, gclique = _clique_plug_grid(L, c)
+    _, gclique, _ = _clique_plug_grid(L, c)
     plug5 = {
         x * L + y for x in range(c - 2, c + 3)
         for y in range(c - 2, c + 3)
@@ -599,7 +599,7 @@ def test_weighted_diffusion_partially_untraps():
     from scipy.linalg import expm
 
     L, c = 20, 10
-    _, g = _clique_plug_grid(L, c)
+    _, g, _ = _clique_plug_grid(L, c)
     src = c * L + c
 
     def diff_fit(gg, t, cond=None):
@@ -676,6 +676,15 @@ def test_t15_dominant_costs_stay_u_side():
     assert 1.75 < pw < 1.90, (pw, r2)
     assert 0.6 < r2 < 0.9, (pw, r2)
     assert pw < p0, (pw, p0)
+    # Theorem-vs-diagnostic dissociation: in window (10,20) the slope
+    # comparison reverses (2.517 > 1.928, catch-up growth) while volumes
+    # stay <= 0.2 -- slopes are window diagnostics, the ratio and zero
+    # violations carry the window-free theorem.
+    p0b, _ = _window_pr(r0, v0, 10, 20)
+    pwb, r2b = _window_pr(r0, vw, 10, 20)
+    assert pwb > p0b, (pwb, p0b)
+    assert 2.4 < pwb < 2.65, (pwb, r2b)
+    assert r2b > 0.75, (pwb, r2b)
 
 
 def test_t15_cheap_shortcuts_blip_and_flip():
@@ -747,3 +756,44 @@ def test_t15_violation_need_not_blip():
         vw = sum(1 for n in g if dw[n] <= r)
         v0 = sum(1 for n in g0 if d0[n] <= r)
         assert vw <= v0, (r, vw, v0)
+
+
+def test_disk_boundary_cut_dips_at_plug():
+    # Disk-boundary cut capacity (D10 candidate): cut size of center
+    # disks on the 5x5-clique grid, unweighted vs
+    # ceff-conductance-weighted (same gm edge set). Disk is drawn in
+    # the G0 metric; the cut counts edges of G. This is one particular
+    # cut (an upper bound on center-exterior flow), not the min-cut or
+    # an end-to-end channel count -- multiplicity reading needs a
+    # terminal/access model. Geometric baseline is
+    # the exact diamond perimeter law: cut(r) = |shell r| + |shell
+    # r+1| = 4r + 4(r+1) = 8r+4 on unclipped r in [5,18] (r=19 is
+    # the first clipped boundary, 154 < 8*19+4=156). Weighted ==
+    # unweighted once the disk boundary clears the plug's edge-shadow
+    # (r >= 5); deficit > 0 for r <= 4 (tension suppresses near-field
+    # channel capacity; band magnitudes are this-construction
+    # regression). The count re-measures 2D-ness -- explanatory work
+    # stays in M_O's use of channels as scales (essay §8).
+    g0, g, _ = _clique_plug_grid(40, 20)
+    src = 20 * 40 + 20
+    w = ed.ceff_cost_fn(g, z_vac=4.0)
+    d0 = nx.single_source_shortest_path_length(g0, src)
+    rows = []
+    for r in range(1, 20):
+        disk = {v for v in g0 if d0[v] <= r}
+        be = [(u, v) for u, v in g.edges() if (u in disk) != (v in disk)]
+        unw = float(len(be))
+        wei = sum(1.0 / w(u, v) for u, v in be)
+        rows.append((unw, wei))
+    uu = np.array([x[0] for x in rows])
+    ww = np.array([x[1] for x in rows])
+    for r, u in zip(range(1, 20), uu):
+        if 5 <= r <= 18:
+            assert u == 8 * r + 4, (r, u)
+    assert uu[18] == 154, uu[18]  # r=19: first clipped boundary
+    assert np.allclose(ww[4:], uu[4:], atol=1e-12)
+    assert all(u > wv for u, wv in rows[:4])
+    assert 80 < rows[0][0] - rows[0][1] < 90
+    assert 130 < rows[1][0] - rows[1][1] < 140
+    assert 70 < rows[2][0] - rows[2][1] < 80
+    assert 5.5 < rows[3][0] - rows[3][1] < 6.0

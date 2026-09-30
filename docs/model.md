@@ -75,7 +75,7 @@ follows, and what is still missing.
   a solved weight, one ansatz map, and one extrapolation prescription. Killing L2
   must not kill L0/L1.
 
-Open derivations (D1–D11 in `docs/DEFERRED.md`) are fenced in §5 and referenced
+Open derivations (D1–D13 in `docs/DEFERRED.md`) are fenced in §5 and referenced
 from the exact postulate or theorem they would promote. Nothing in §2–§4 depends
 on them silently.
 
@@ -287,7 +287,11 @@ Instances pinned (L=40 mild 5×5 king plug, center source, mid window
 (8,20), control `p = 1.920`): `c_eff` costs at `z_vac = 1` satisfy the
 premise (min shortcut `6.00 ≥ 2`, min grid `2.50 ≥ 1`) → max `V_w/V₀ =
 0.2000`, mid `p = 1.838` (`r² = 0.74`), no flip, zero pointwise
-`dist_w ≥ dist₀` violations. Tortuosity-import costs at `z_vac = 4` violate
+`dist_w ≥ dist₀` violations. Slope verdicts are window diagnostics, not
+theorem content: in (10,20) the z=1 comparison reverses (`2.517 > 1.928`,
+catch-up growth) while the window-free facts (ratio ≤ 0.2, zero
+violations) stand; the tort flip holds in all 11 scanned windows.
+Tortuosity-import costs at `z_vac = 4` violate
 it (all 32 diagonals `w ≤ 1.50 < 2`) → fractional blip `V_w(1.9) = 9 >
 V₀ = 5` invisible to integer sampling (no excess at any BFS radius),
 mid-window flips to `p = 2.020` (`r² = 1.0000`). Use: T15 is the
@@ -666,7 +670,7 @@ graph; inserting `44 M☉` as a graph parameter is refused. (`massgaps`.)
 
 Each item: what is missing, what would close it, what it gates. Tracked in
 `docs/DEFERRED.md`; the paper's kill table wires the falsifiable ones.
-Tag convention: D1–D10 here always mean DEFERRED items; the appendix-letter tag
+Tag convention: D1–D13 here always mean DEFERRED items; the appendix-letter tag
 (D2) (= module `evaporation_unitary`) is always written as the module name —
 supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 
@@ -683,6 +687,8 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 | D9 | Raychaudhuri (focusing) for leg bundles | derive focusing for SI fronts on leg networks (seed: AT congestion slowdown); closes the Jacobson chain to Einstein's equations with `η = 1/4` from I1b, `G = 1` | promotes I6c from open bridge to derived; gates nothing else — T8–T11 stand without it |
 | D10 | Tension spectrum: simulator d-dip around mass + tension→`κ` map (v0.6) | (a) an over-coordinated (tense) region in the graph shows the GR fingerprint shape (near dip, overshoot, →3⁺) under info-side `d_eff`; relaxed `z≈4` regions show `d=2` fabric / `d=3` reconstruction as applicable; (b) Ollivier–Ricci `κ` tracks over-coordination (`z−4`) quantitatively | P0' first quantitative wire; failure of (a) shape-match after the mapping is fixed refutes P0'. v0.6 probe: bare shortest-path rejected for tense regions (inverted far side: shortcuts shrink balls, GR needs stretched rulers); D10b: tortuosity-import costs partially recover (no flip), `c_eff`-import costs give full dip → overshoot → asymptote on 9×9 mild plug (conditional on bridge); amplitude scales loosely with χ; κ is an interface pattern (criterion (b) reformulated); tension-imprint conjecture stated in §5; T15 cost-dominance is the cost-rule diagnostic |
 | D11 | Far-field tail exponent of the tension fingerprint (D10b) | measured `E(r)` tail on `L ≥ 200` with clean windows to `10Rc`: `1/r` (wedge shadow, delayed nodes `~ Rc·r`) vs `1/r²` (fixed shadow, deficit `~ Rc²`) | feeds the tension-imprint conjecture amplitude clause; no direct kill wire (shape detail, not shape itself) |
+| D12 | Reconstruction universality: why admissible `M_O` converge (essay §8) | admissibility criterion from `G`'s access constraints + ≥2 admissible `M_O` converging to the same IR geometry | meta-criterion over D3/D4/D6/D10; a second admissible `M_O` with robustly non-3D IR refutes the P0' program |
+| D13 | Emergent causal order: control + 4 stages (essay §8) | D13.0 control measured (`t²`, sign pattern); open: (1) `U→T_U,≺_U`; (2) cone under same `M_O`; (3) clocks unimported; (4) Malament interval → T8–T11 | extends D1 (D1 provides `U`); same-`M_O` + C1–C5 falsifier with D12 |
 
 Rule for all D-items: the closing derivation must output the number or location,
 not take it as input. Inserting an observed scale as a graph parameter is a fit,
@@ -766,6 +772,10 @@ Stated so no reader misses them:
 - No far-field tail exponent: `1/r` vs `1/r²` unresolved on `L = 120`
   (χ~1 looks `1/r²`-like to `6Rc`, χ~2 looks `1/r`-like to `5Rc`, then
   bursty/clipped); needs `L ≥ 200` asymptotics (open D11).
+- No emergent-time derivation: `n`/`≺_U`/`τ` distinguished and the D13.0
+  control measured (`t²` + plug sign pattern), but no update rule, no
+  `T_U`/`≺_U` measurement, no clock model (D13 stages 1–4 open; D1
+  provides `U`).
 
 ---
 

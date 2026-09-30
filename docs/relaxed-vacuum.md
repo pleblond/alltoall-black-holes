@@ -8,8 +8,10 @@ Reading guide: §1–§2 are philosophy (why relaxation belongs to the
 information side). §3–§4 are the postulate (2D, 4 edges, and what each word
 costs). §5–§6 are consequences (only vacuum is perfectly 3D; mass is tense
 vacuum). §7 is the verdict on total emergence today (bracket method, first
-failure, what would flip it). §8 maps every claim to definition / measured /
-open. Readers who only want the postulate can read §3–§4 and §8.
+failure, what would flip it). §8 is the open road on time and causal order
+(substrate target, scale-multiplicity mechanism, same-`M_O` falsifier).
+§9 maps every claim to definition / measured /
+open. Readers who only want the postulate can read §3–§4 and §9.
 
 ---
 
@@ -282,14 +284,227 @@ failed informatively.
 
 ---
 
-## 8. Status map (what is what)
+## 8. Time and causal order (open road)
+
+Everything so far is space: `d(i,j) → V(r) → d_eff → 3`. Time is untouched —
+L0 has no dynamics (D1), and "why spacetime?" is strictly bigger than "why
+space?". This section records the open road as a notebook, not a claim: the
+corrected substrate target (measured), one candidate mechanism (unmeasured),
+and the falsifier that would make the program real.
+
+**The corrected target.** An early version of this road asked for causal
+growth `V(t) ~ t³` at the graph level. That contradicts P0': on a 2D fabric
+with finite-speed local propagation, raw causal balls must grow as `t²` —
+`t³` at substrate level would smuggle back a 3D substrate. The honest target
+splits by level:
+
+> **`V_G ~ t²` at substrate (L0), `V_O ~ R³` after `M_O` reconstruction.**
+> The physics is the map `(fabric neighborhood, scale) → R` that changes
+> the effective dimensionality — the same map whose spatial half is D10.
+
+The substrate half is measured **as a control, not a causal result**
+(this was briefly filed as D13 stage 1 and demoted on review — the
+correction stays on the record): first-passage here *is* hop distance,
+so this is one measurement (static P0' geometry), not two pieces of
+evidence. And the exponent is not estimated — it is derived. Unclipped
+Manhattan balls obey `V(r) = 1+2r(r+1)` exactly (bit-pinned at L=40/80),
+so local slope `p_eff(r) = r(4r+2)/(2r²+2r+1) → 2⁻`: finite-window fits
+(1.77–1.96 unclipped, e.g. 1.920 on the pre-specified `r ∈ [8,20]`) are
+known finite-radius behavior of an analytically 2D object, rising toward
+2 with radius (fractional-window 1.9196 → 1.9603 from L=40 to L=80).
+Clipped windows (e.g. `[8,30]` on L=40) are invalid, not evidence of
+instability. Hierarchy: analytic `p = 2` → finite-radius control
+`p_fit < 2` → `p_fit → 2` before clipping:
+
+> **Compatibility with a finite-speed cone is not observation of one.**
+> P0' predicts analytically 2D substrate ball growth; measured
+> finite-grid exponents verify the implementation and expected
+> finite-radius convergence — not emergent dimensionality, not causal
+> dynamics.
+
+Calling BFS depth `t` would declare "1 edge = 1 time step" — exactly
+the dynamical structure D1 must derive, hence the demotion.
+
+The plug dissociates hop distance from candidate physical cost (corner
+35 < 38, yet ceff-weighted +5.0 — the static sign pattern a future
+`U`-experiment must reproduce dynamically as `T_U^plug > T_U^vac).
+In one line:
+
+> **Shorter topological path ⇏ shorter physical distance.**
+> The plug gives `Δd_hop < 0` (35 < 38) with `ΔT_candidate > 0` (+5.0):
+> raw adjacency says "closer", candidate cost says "farther" —
+> a minimal demonstration of why P0' needs `M_O` at all.
+
+**Genuine stage 1: `U → T_U, ≺_U`.** A state `X_n` on the graph plus a
+local rule `X_{n+1} = U_G(X_n)`; perturb locally, run twin systems, and
+define influence counterfactually —
+`I(s→v,n) = D(X_n(v), X'_n(v))`, arrival
+`T_U(s,v) = min{n : I > ε}`. This is the OTOC-threshold arrival time
+generalized (`otoc`, T2, already measures influence spreading under
+unitary dynamics) — stage 1 needs `U` on the fabric, not a new readout
+concept. `T_U` need not equal `d_hop`: that difference is where the
+physics lives. Two well-definedness demands: cone speed must be
+ε-robust in the IR (or "arrival" is threshold artifact), and causal
+order must come from counterfactuals — `e_i ≺_U e_j` iff changing
+`e_i` can change `e_j` under `U` — never from adjacency repackaged as
+`d_hop ≤ n`. In short: **D1 provides `U`; D13 asks whether `U` becomes
+time.**
+
+**Events, order, cone, clocks (sketch).** The road, compressed: add one
+microscopic ingredient — a local update rule `G_n → G_{n+1}` (this is D1,
+now gating time itself, not just evaporation). Each elementary change is an
+event; influence-dependence gives a partial order `e_i ≺ e_j` (comparable =
+timelike-related, incomparable = spacelike-separated). Finite information
+speed per update yields a causal cone `r_max ∝ n`, hence an effective
+`c_eff` as the vacuum's maximum propagation rate — not a postulate. Clocks
+are internal: a repeatable subsystem cycle counts proper time along its
+trajectory, and finite update capacity shared with motion/connectivity is
+the candidate microscopic source of `dτ < dt` (`congestion.py` is the
+repo-native starting point for a capacity model; T9's `c_eff → 0` freezing
+already tells a clock-rate story, T11's tortuosity a transfer-cost story —
+the road's `g_tt ← clock rate / g_rr ← transfer cost` split independently
+re-derives our light/spatial-sector factorization).
+
+Three orderings must not be confused: `n` (microscopic update index),
+`≺` (fundamental causal order), `τ` (observer clock time). Just as
+`d_G ≠ d_obs`, expect `n ≠ t_obs`: time undergoes reconstruction exactly
+as space does.
+
+**Candidate mechanism: scale multiplicity.** Suppose a raw 2D shell
+`dV_G ~ r dr` carries an accessible scale multiplicity `n_s(r)`, so the
+reconstructed volume is `dV_O ~ n_s(r) dV_G`. Then `n_s(r) ~ r` gives
+`dV_O ~ r²dr`, i.e. `V_O ~ R³` — the second `r` factor is *counted
+scales*, not a third graph direction. Status: skeleton only. `s` has no
+definition yet (candidates: coarse-graining depth, boundary-leg channels —
+note circumference itself grows as `r`, which would ground both factors in
+2D geometry — bond dimension across cuts), and the baseline to beat is the
+RG expectation `n_s ~ log r`, which gives the *wrong* profile (`r log r`).
+The mechanism earns its keep if and only if `s` is defined independently
+of the desired output and the linear-vs-log profile is then measured.
+Recorded as D10's leading 2D+scale candidate; derivation or measurement
+promotes it, nothing else does. One refinement: distinguish `n_levels(r)`
+(hierarchy depth, expect `~ log r`) from `n_channels(r)` (distinguishable
+information channels across scales — min-cut multiplicity, transfer
+modes, crossing rank, channel capacity). The mechanism needs the
+*channels* linear, and the count must be purely graph-theoretic, never
+defined using the target dimension (counting along the `r`-shell by
+construction would put the answer in). Honesty note: on any 2D-like
+graph, channel counts scale `~ r` for geometric reasons — so a measured
+`n_channels ∝ r` re-measures 2D-ness. Necessary, not sufficient: the
+explanatory burden sits entirely in the second half, *why `M_O` reads
+channels as scales*. Second honesty note, on what is actually measured:
+the pinned observable is disk-boundary cut capacity — the capacity of
+one particular cut — not a min-cut, end-to-end count, or transfer rank.
+Menger/max-flow relates disjoint paths to the *minimum* cut for
+specified terminals; a boundary cut only upper-bounds center–exterior
+flow (independent check on the plain grid: 52 crossing at `r = 6` —
+exactly `8r+4` — against a center–exterior min-cut of 4). Reading the
+scaling as independent channel multiplicity needs a terminal/access
+model first. The non-geometric probe in this cluster is
+cost-weighted boundary capacity vs `r` (conductances can break the
+geometric scaling — it can surprise). In the vacuum the geometric
+baseline is exact, not a fit — diamond perimeter law `cut(r) = 8r+4`
+on unclipped `r ∈ [5,18]` (`r=19` first clipped boundary: 154) —
+so the cut-capacity probe inherits an analytic control. Measured: deficit
+at `r ≤ 4`
+(83.7/133.8/76.5/5.9 on the clique plug — tension suppresses near-field
+capacity), exact recovery from `r = 5` (first boundary clearing the
+plug's edge-shadow). The count behaves geometrically; the skeleton
+stands, explanatory work still in `M_O`.
+
+**Why this could work (grounding).** Malament's theorem: causal order fixes
+the conformal class (on distinguishing spacetimes); volume — or a time
+function — fixes the remaining factor, so order + volume determine the
+metric. This is motivation conditional on establishing the continuum
+correspondence, not a mapping we have earned: in a suitable continuum
+limit, causal order determines the conformal geometry, and a spacetime
+volume measure fixes the remaining factor — and the current spatial-ball
+probes do not yet establish that volume correspondence. `V(r)` is a
+radial reachability profile, not a spacetime event volume: a conformal
+rescaling `Ω(t)²g` with `Ω(0) = 1` preserves both the causal order and
+the `t = 0` slice ball volumes while changing proper times elsewhere,
+so slice volumes cannot fix the factor. The missing leg is an
+independently defined spacetime-volume observable — e.g. calibrated
+event counts in causal diamonds — recorded under D13 stage 4. The hard
+parts are inherited honestly:
+order dimension is a measurement problem, not a theorem (a generic partial
+order isn't 1+3 — spatial `d_eff` and causal-order dimension must agree
+independently); Lorentz symmetry must be demonstrated against
+preferred-frame artifacts (T13's quadratic-only LIV is the existing
+asset); manifoldlikeness is the causal-set hard problem, related to, not
+reinvented.
+
+**The falsifiers.** The same `M_O` must perform *both* the `2+scale → 3`
+reconstruction and the microscopic-order → Lorentzian-cone reconstruction.
+If space and time end up needing different reconstruction maps, the
+program is fitting, not deriving. (This is D12's universality question
+made concrete.) The universality target, stated with its quantifier:
+
+> **∀ `M_O ∈ A_macro(G)`, `M_O(G)` ∼ `M`** (up to coordinate /
+> coarse-graining equivalence) — where `A_macro` is defined from
+> graph-internal admissibility/access criteria alone, and neither "3D"
+> nor "Lorentzian" may occur in its definition.
+
+Snapshot emergence is cheap; the over-arching falsifier is dynamical
+coherence — graph evolution must map consistently into spacetime
+evolution (`M_O ∘ U ≃ U_eff ∘ M_O`), in increasing strength:
+
+> **C1 coherence:** successive reconstructions form a well-defined evolution.
+> **C2 locality:** `U_eff` is local in reconstructed spacetime.
+> **C3 autonomy:** `U_eff(M_n)` needs no hidden `G_n`.
+> **C4 universality:** same frozen `M_O`, `U` across admissible states.
+> **C5 GR limit:** `U_eff → GR` in the IR (measured, never demanded).
+
+Each level presupposes the previous; C4 is a quantifier upgrading C1–C3
+from "on this trajectory" to "across `A_macro`". Autonomy-before-GR in
+bold ink: snapshots resembling a GR solution whose next step needs
+microscopic information is *not* emergent spacetime physics. The sharp
+operational form is the twin-histories test: find `G_a ≠ G_b` with
+`M_O(G_a) = M_O(G_b) = M`, evolve both, and demand
+`M_O(U(G_a)) ≃ M_O(U(G_b))` — it tests whether the information `M_O`
+discards is actually irrelevant to macroscopic evolution. The measurable
+form is ε–δ in macro-profile distance (the RG-weakened version,
+`ΔM → 0` in the IR, is probably the right target); it presupposes fiber
+control — twins require understanding `M_O`'s preimages, which is D12
+work. Note the sequencing: D10a close → freeze `M_O` → compression test;
+counting phenomena before the bridges are derived would let construction
+inputs masquerade as evidence.
+
+The roof over all of it: define macroscopic states dynamically, not by
+hand-chosen coarse-graining. Two graphs are macro-equivalent when they
+have the same observable future under `U` over the IR horizon:
+
+> **`G_a ~_macro G_b` ⟺ `M_O(UⁿG_a) ≃ M_O(UⁿG_b)`.**
+> An emergent spacetime state is an equivalence class of microscopic
+> graphs with indistinguishable macroscopic dynamics.
+
+Given candidate `(U, M_O)`, `~_macro` is derived, and the classes are
+where an effective dynamics would live *if* autonomy holds — but
+factoring the observation through them does not establish autonomy and
+must not be substituted for the twin-histories criterion above. Two-bit
+counterexample: `G = (x,h)`, `M_O(x,h) = x`, `U(x,h) = (h,x)`. Twins
+`(0,0)`, `(0,1)` share observation `0`, yet their next observations
+differ (`0` vs `1`), so no autonomous `U_eff` exists — while observable
+histories distinguish all four states, the classes are singletons, and
+`M_O` factors through them trivially. The quotient condition passes
+exactly the hidden-state dependency C3 must reject. The defining
+condition stays one-step — `M_O ∘ U` factors through `M_O` (twins;
+induction extends it to all steps) — with the ε–δ / IR relaxation
+formulated from that, not from the quotient. The architecture becomes `(G,U) → dynamical
+equivalence classes → (M,U_eff) → local autonomous 3+1 physics`, rather
+than merely `G → 3D geometry`. Currently a target definition (needs `U`
+and `M_O` to instantiate); recorded here so the program knows its roof.
+
+---
+
+## 9. Status map (what is what)
 
 | claim | status | home |
 |---|---|---|
 | vacuum = relaxed isostatic 2D fabric, `<z>=4` | **postulated (P0')** | `model.md` §2, this doc §2–§4 |
 | observer sees `M_O(G)`; P4 is one instance | postulated (P0/P4 box) | `model.md` §1–§2 |
 | `d_G / d_I / d_obs` + `d_eff` protocol | defined + implemented | `model.md` §1 box, `emergent_dim` |
-| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (24 tests) |
+| bracket on imposed lattices (below + above) | **measured** | `test_emergent_dim.py` (25 tests) |
 | convergence `p(L)` monotone, gap `~1/√L` | **measured** | BFS series test |
 | resistance / communicability rejected | **measured (negative)** | rejection test |
 | shell no-emergence pin (~1.4 / ~0.6) | **measured (negative)** | shell test |
@@ -301,8 +516,14 @@ failed informatively.
 | tension-imprint conjecture | **conjectured** | `model.md` §5: fingerprint universality under the fixed ceff rule; falsifiers + promotion to P5 stated; not a postulate yet |
 | T15 cost dominance | **derived (theorem)** | `model.md` §2: shortcuts priced ≥ hop-saving can't inflate balls; ∩-blip pins an underpriced shortcut (z=1 U-side 0.2000, tort blip 9>5 + flip 2.020, ceff-z=4 blip 1.077 at r=13.75) |
 | far-field tail exponent | **open** | D11: `1/r` (χ~2 to `5Rc`) vs `1/r²` (χ~1 to `6Rc`); `L ≥ 200` asymptotics needed |
+| SI static shells `V(r)~r²` | **measured (control)** | exact `1+2r(r+1)` bit-pinned L=40/80; fractional p 1.9196→1.9603; plug sign pattern (35<38, +5.0) pre-registered for D13.1 |
+| scale-multiplicity mechanism `n_s~r` | **conjectured (skeleton)** | this doc §8: `s` undefined; RG-log baseline gives wrong profile; linear-vs-log must be measured, not assumed |
+| disk-boundary cut capacity | measured (control) | clique plug: deficit `r≤4` (83.7/133.8/76.5/5.9), exact recovery `r≥5`; one particular cut (not min-cut); count re-measures 2D-ness (skeleton intact) |
+| reconstruction universality | **open** | D12: ∀ `M_O ∈ A_macro(G)` converge in the IR (access floor graph-internal; no "3D"/"Lorentzian" in the definition) |
+| causal order / cone / clocks | **open** | D13: D13.0 control measured; stages 1–4 open (`U→T_U`, same-`M_O` cone, clocks, interval) |
+| same-`M_O` + dynamics coherence | **open (criterion)** | this doc §8: one map yields `R³` + cone (C1–C5 ladder, twin-histories test, `~_macro` classes), or the program is fitting |
 | `d_I = 2` for vacuum fabric | predicted (follows from P0' + protocol) | queued for simulator (D10) |
-| 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10) |
+| 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10); leading candidate: scale multiplicity `n_s~r` (this doc §8, skeleton) |
 | tension → `κ` map (`z−4` to curvature) | **open** | D10 |
 | Born rule / double-slit dynamics | open (needs D1) | non-claim |
 | Casimir `1/d⁴` from frustrated relaxation | open (ontology only) | non-claim |
