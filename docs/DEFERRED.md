@@ -278,11 +278,11 @@ small-f sensitivity. Two emergence problems, kept separate (essay
 §8): L0 locality (P0' + D1 — why U maintains a low-dimensional
 connectivity class) vs observer dimensionality (D10 + D12 — why M_O
 reconstructs 2+scale as 3D). Tier-1 substrate filing (universality
-class, not lattice luck): Poisson-Delaunay (spiked, builder+pin
-queued) — planar, mean degree 5.97, shells ≈ 8n, linear cuts
+class, not lattice luck): Poisson-Delaunay (PINNED,
+test_substrate_family.py) — planar, mean degree 5.97, shells ≈ 8n, linear cuts
 (R² > 0.996), p ≈ 1.92..2.06, survives q = 0.10 deletion, dies on
-20 swaps (p ≈ 2.50..2.67); Delaunay-medial quadrangulation (spiked,
-confirmed) — 4-regular interior reproduces d_G → 2, so quad vs
+20 swaps (p ≈ 2.50..2.67); Delaunay-medial quadrangulation (PINNED)
+— 4-regular interior reproduces d_G → 2, so quad vs
 triangulation does not select the dimension. Schaeffer-exact-UIPQ:
 ATTEMPTED, FAILED with diagnosis — free-walk-plus-shift labels are
 not conditioned well-labeled trees (post-hoc shift ≠ Doob
