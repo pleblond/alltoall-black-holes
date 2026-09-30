@@ -139,6 +139,23 @@ def build_rewired_grid(n_side: int = 40, n_swaps: int = 20, seed: int = 0) -> nx
     return nx.convert_node_labels_to_integers(g, ordering="sorted")
 
 
+def build_torus_grid(n_side: int = 60) -> nx.Graph:
+    """Square lattice with periodic boundary conditions (seeded-trivial).
+
+    Spectral anchor: no boundary means the heat-trace d_s(t) shows a
+    wide plateau at 2 before finite-size falloff. Node id = x*n_side+y.
+    """
+    if n_side < 3:
+        raise ValueError("n_side must be >= 3")
+    g = nx.Graph()
+    g.add_nodes_from(range(n_side * n_side))
+    for x in range(n_side):
+        for y in range(n_side):
+            g.add_edge(x * n_side + y, ((x + 1) % n_side) * n_side + y)
+            g.add_edge(x * n_side + y, x * n_side + (y + 1) % n_side)
+    return g
+
+
 def build_short_rewired_grid(
     n_side: int = 40, n_swaps: int = 80, span: int = 2, seed: int = 0
 ) -> nx.Graph:
@@ -271,6 +288,9 @@ def build_lloyd_delaunay(
     Hyperuniformity probe: centroidal relaxation evens out density
     fluctuations while keeping the graph planar-local. Default `iters`
     is converged at N=1600 (under-relaxed draws lean super-quadratic).
+    Valid regime is N ~= 1600 / iters ~= 20: the unclipped boundary
+    migration coalesces points at larger N×iters (mean degree 1.52 at
+    N=6400/iters=20, 0.04 at iters=80) — boundary-clipped Lloyd queued.
     Node i is relaxed point i.
     """
     pts = lloyd_relax(poisson_points(n_points, box, seed), iters)

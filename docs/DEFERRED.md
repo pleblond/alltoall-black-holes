@@ -325,9 +325,19 @@ smuggle unrequested long-range order; the max-entropy program
 (P(G|C_vac) ∝ e^{-λI(G)}, derive the typical graph from the
 constraints) is QUEUED behind formulating the C_vac constraint
 set without circularity (shortcut-absence still open). Spectral
-leg (next measurement): heat-kernel d_s → 2? on every Tier-1
-member — universality second leg if all agree, static
-discriminator if they split (either outcome decisive);
+leg (MEASURED, test_spectral.py): heat-trace d_s(t) on the
+boundary-free 60×60 torus holds (1.95, 2.05) over t ∈ [10,100]
+(method anchor — finite-size falloff only past t ~ 150); Weyl
+counting fits land every Tier-1 member in one band (1.90, 2.15):
+torus 2.049, open 1.947, tri 2.018, hex 1.983, Delaunay 2.103,
+Gabriel 2.021, k-NN 1.926, medial 1.931. k-NN's 1.514 at N=1600
+is a slow diffusive-crossover transient (clustering traps), not
+a split — converges up with N as Delaunay converges down
+(2.223 → 2.103). Lloyd EXCLUDED from spectral comparison: the
+unclipped relaxation coalesces points above N≈1600 (mean degree
+1.52 at N=6400/iters=20, 0.04 at iters=80 — degenerate input,
+not physics); boundary-clipped Lloyd queued. d_s is now the
+second universality leg beside d_H;
 diffusion-anisotropy precursor (second-moment tensor of K(t))
 pre-registers the minimize-preferred-frame criterion for D13.
 
@@ -475,7 +485,9 @@ selection criterion minimize-observable-preferred-frame-structure
 under coarse-graining (variational form: maximize macroscopic
 symmetry subject to minimum microscopic structure). Static
 precursor runnable now: diffusion-anisotropy tensor of `K(t)`
-(D10 spectral leg).
+(D10 spectral leg). Tier-2 static members (Kagome/Dice, Penrose,
+stealthy HU) CANCELLED per direction: Tier-1 already spans
+topology × degree × order, further static d_G adds no axis.
 
 **Over-arching falsifier (C1–C5, essay §8):** `M_O ∘ U ≃ U_eff ∘ M_O`
 with coherence → locality → autonomy → universality → GR limit, each
