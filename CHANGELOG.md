@@ -74,7 +74,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   rule, stationary null, cross-sign corrected) then KILLED
   static walk-atrophy (ordering 0/8 + inverted signal;
   susceptibility = conductance math; static-chi exhausted).
-  533 tests.
+  Betw-cong closure done (feedback attenuates both cadences,
+  m=1 in-basin cross=3 att 0.684, m=4 basin exit = cadence
+  artifact, rerouting map banked, concave-D holds; static-chi
+  CLOSED).
+  534 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

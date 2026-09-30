@@ -688,3 +688,100 @@ def test_betweenness_cross_sign_indefinite():
     assert (b1[("a", "t")], b5[("a", "t")]) == (3.0, 2.0)
     assert (b1[("b", "s")], b5[("b", "s")]) == (3.0, 4.0)
     assert (b1[("b", "t")], b5[("b", "t")]) == (1.0, 4.0)
+
+
+def test_betw_cong_closure():
+    # Betw-cong closure (feedback w'=(1-a)w+a(1+b*chi(w)), chi =
+    # weighted edge-betweenness recomputed every m ticks; alpha=0.2
+    # beta=350). FULL-STATE verdict (40x40, 64 ticks, filed in
+    # DEFERRED): feedback ATTENUATES toward the basin, both cadences
+    # (m=1 weak_med 7.842 att 0.684; m=4 weak_med 6.913 att 0.591;
+    # static 11.004) with fabric median UP (2.547/2.09 -- rerouted
+    # load lands on fabric). m=1 (physical branch) IN basin:
+    # endpoint (39,27,13,0) cross=3, basin-fraction 1.0 over 7 late
+    # snaps; weak chi_med 0.0286->~0.019 by t=8 then flat, no
+    # ringing; concave-D -5.00. m=4 OUT of basin ((39,26,13,1)/None,
+    # basin-frac 0.0, residual 18.7 vs m=1's 9.3, ~150x noisier
+    # weak-var) with overshoot+ring flapping = CADENCE ARTIFACT
+    # (m/tau~1 ringing with stale chi; m=1 kills it). Rerouting map
+    # (m=1): weak sheds (dchi_med -0.00634), fabric median flat
+    # (-0.0002) with q90 tails gaining in ALL r_O bins (no gateway
+    # pile-up), top gainers scattered far corridors (r_O 21-27).
+    # STATIC-CHI CLOSED: no scale-separation mechanism in static chi
+    # (2x2 collapse). REDUCED-STATE pins (12x12 ns=6 3x3-knot, 8
+    # ticks): determinism bit-exact; embeddedness-control freezes
+    # weak bit-exact; cadence checkpoint structure (m=1: 9, m=4:
+    # 0/4/8); attenuation direction BOTH cadences (weak below,
+    # fabric above the same-tick static run); R1 weak sheds both,
+    # fabric median non-gaining both; concave-D <0 both; endpoint
+    # Phi rows identical across cadences (m-agreement: cadence never
+    # flips the qualitative answer at tame scale).
+    import statistics as st
+
+    from bh_graph.weighted import (
+        edge_populations,
+        feedback_trajectory,
+        form1_trajectory,
+        knot_block_mask,
+        planted_knot_state,
+        radial_eta_profile,
+        weighted_edge_betweenness,
+    )
+
+    BINS = {"near": (0, 2), "mid": (3, 7), "far": (8, 10**9)}
+    gw0, kn, gp0, _ = planted_knot_state(size=12, ns=6, seed=0, knot_center=(6, 6), knot_rad=1)
+    pops = edge_populations(gw0, kn)
+    key_of = {tuple(sorted(e)): e for e in gw0.edges()}
+    w1 = dict.fromkeys([tuple(sorted(e)) for e in gw0.edges()], 1.0)
+
+    def rows(wdict):
+        gw = gw0.copy()
+        nx.set_edge_attributes(gw, {key_of[e]: w for e, w in wdict.items()}, "L")
+        gp = gp0.copy()
+        out = []
+        for k in range(4):
+            pr = radial_eta_profile(gw, gp, knot_block_mask(kn, k), BINS)
+            nV = sum(pr["bins"][b]["n_viol"] for b in BINS)
+            nL = sum(pr["bins"][b]["n_longs"] for b in BINS)
+            out.append((nV, nL))
+            gw, gp = block_coarsen(gw), block_coarsen(gp)
+        return out
+
+    # mechanics: determinism + control freeze + cadence structure
+    traj_a, _ = feedback_trajectory(gw0, kind="betweenness", beta=350.0, n_ticks=8, m=1)
+    traj_b, _ = feedback_trajectory(gw0, kind="betweenness", beta=350.0, n_ticks=8, m=1)
+    assert max(abs(traj_a[t][e] - traj_b[t][e]) for t in range(9) for e in traj_a[0]) == 0.0
+    traj_c, _ = feedback_trajectory(gw0, kind="embeddedness", beta=1.0, n_ticks=8)
+    assert max(abs(traj_c[t][e] - 1.0) for t in range(9) for e in pops["weak"]) == 0.0
+    _, chist1 = feedback_trajectory(gw0, kind="betweenness", beta=350.0, n_ticks=8, m=1)
+    _, chist4 = feedback_trajectory(gw0, kind="betweenness", beta=350.0, n_ticks=8, m=4)
+    assert [t for t, _ in chist1] == list(range(9))
+    assert [t for t, _ in chist4] == [0, 4, 8]
+
+    # qualitative: attenuation direction vs same-tick static run
+    chi0 = weighted_edge_betweenness(gw0, w1)
+    traj_s, _ = form1_trajectory(chi0, alpha=0.2, beta=350.0, n_ticks=8)
+    sw = st.median(traj_s[-1][e] for e in pops["weak"])
+    sf = st.median(traj_s[-1][e] for e in pops["fabric"])
+    assert abs(sw - 16.32) < 0.05 and abs(sf - 6.32) < 0.05, (sw, sf)
+    for m, (ew, ef) in ((1, (13.03, 7.82)), (4, (8.69, 6.55))):
+        traj, chist = feedback_trajectory(gw0, kind="betweenness", beta=350.0, n_ticks=8, m=m)
+        wfin = traj[-1]
+        _, chiF = chist[-1]
+        mw = st.median(wfin[e] for e in pops["weak"])
+        mf = st.median(wfin[e] for e in pops["fabric"])
+        assert abs(mw - ew) < 0.05 and abs(mf - ef) < 0.05, (m, mw, mf)
+        assert mw < sw and mf > sf, (m, mw, sw, mf, sf)
+        dw = st.median([chiF[e] - chi0[e] for e in pops["weak"]])
+        df = st.median([chiF[e] - chi0[e] for e in pops["fabric"]])
+        assert dw < -1e-3 and df < 1e-3, (m, dw, df)
+        dot = sum((chiF[e] - chi0[e]) * (wfin[e] - 1.0) for e in wfin)
+        assert dot < -1.0, (m, dot)
+
+    # basin outcome identical across cadences at tame scale
+    assert rows(traj_a[0]) == [(8, 8), (5, 5), (1, 1), (1, 1)]
+    healed = [(0, 8), (0, 5), (0, 1), (0, 1)]
+    assert rows(traj_s[-1]) == healed
+    assert rows(traj_a[-1]) == healed
+    traj4, _ = feedback_trajectory(gw0, kind="betweenness", beta=350.0, n_ticks=8, m=4)
+    assert rows(traj4[-1]) == healed

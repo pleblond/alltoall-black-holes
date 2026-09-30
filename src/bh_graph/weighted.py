@@ -435,6 +435,52 @@ def form1_trajectory(chi: dict, alpha=0.2, beta=350.0, n_ticks=64, w_init=1.0):
     return traj, {e: 1 + beta * chi[e] for e in chi}
 
 
+def weighted_edge_betweenness(g: nx.Graph, w: dict) -> dict:
+    """Exact weighted edge betweenness {(u,v) sorted: value}.
+
+    Shortest paths under w-costs (w = {(u,v) sorted: price}).
+    Deterministic. Discontinuous in w (all-or-nothing assignment
+    flips) — the flapping source in feedback dynamics.
+    """
+    raw_of = {tuple(sorted(e)): e for e in g.edges()}
+    h = g.copy()
+    nx.set_edge_attributes(h, {raw_of[e]: w[e] for e in raw_of}, "W")
+    raw = nx.edge_betweenness_centrality(h, weight="W")
+    return {tuple(sorted(e)): v for e, v in raw.items()}
+
+
+def feedback_trajectory(gw_topo: nx.Graph, kind="betweenness", alpha=0.2, beta=350.0,
+                        n_ticks=64, m=4, w_init=1.0):
+    """Form-1 feedback w'=(1-a)w+a(1+b*chi(w)); chi recomputed every m ticks.
+
+    kind="betweenness": exact weighted edge-betweenness of current w
+    (recomputed at ticks 0,m,2m,...,n_ticks — n_ticks included, so
+    endpoint chi is fresh). kind="embeddedness": static chi computed
+    once (regression-control mode; m ignored) — must reproduce the
+    experiment-A control exactly. Deterministic. Returns (trajectory
+    [w0..wn] as list of dicts keyed by sorted edge, chi_hist
+    [(tick, chi_dict)]).
+    """
+    edges = [tuple(sorted(e)) for e in gw_topo.edges()]
+    w = dict.fromkeys(edges, float(w_init))
+    traj = [dict(w)]
+    if kind == "embeddedness":
+        chi = edge_chi(gw_topo, "embeddedness")
+        for _ in range(n_ticks):
+            w = {e: (1 - alpha) * w[e] + alpha * (1 + beta * chi[e]) for e in edges}
+            traj.append(dict(w))
+        return traj, [(0, chi)]
+    chi = weighted_edge_betweenness(gw_topo, w)
+    chi_hist = [(0, chi)]
+    for t in range(n_ticks):
+        w = {e: (1 - alpha) * w[e] + alpha * (1 + beta * chi[e]) for e in edges}
+        traj.append(dict(w))
+        if (t + 1) % m == 0:
+            chi = weighted_edge_betweenness(gw_topo, w)
+            chi_hist.append((t + 1, chi))
+    return traj, chi_hist
+
+
 def fabric_price_profile(gw: nx.Graph, gref: nx.Graph, knotmask, bins: dict) -> dict:
     """Per-r_O-bin fabric-price stats {bin: (median, q90, n)} (prereg W).
 

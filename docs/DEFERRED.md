@@ -1841,6 +1841,47 @@ reduced-state mechanics + qualitative closure (attenuation
 direction, concave-D, determinism, m-shape, fast m=1
 machinery); full-state verdict (factor, basin, cycles, map)
 filed from spike (precedent). NEXT: code closure run.
+BETW-CONG VERDICT (closure run executed 40x40/64 ticks;
+static-chi CLOSED): runner check PASSES (embeddedness control
+bit-exact maxdev 0.0, Lw1 rows frozen). beta=35 m=4:
+weak_med 1.826 (att 0.826), residual 1.05, latevar 0.066,
+rows (40,35,29,18)/None. beta=350 m=4: weak_med 6.913 (att
+0.591), residual 18.7, latevar 8.96, rows (39,26,13,1)/None
+— OUT of basin, basin-frac 0.0, R4 overshoot+ring. beta=350
+m=1 (PHYSICAL branch): weak_med 7.842 (att 0.684), fab_med
+2.5468 (static 2.0933 — UP, rerouted load lands on fabric),
+residual 9.289, endpoint (39,27,13,0) cross=3, basin-frac 1.0
+(7/7 late snaps cross=3); R4 weak chi_med 0.0286->~0.019 by
+t=8 then flat, NO ringing; weak-var med 0.018 vs m=4's 2.638
+(~150x quieter). PROTOCOL VERDICT: m=4 flapping + basin exit
+= CADENCE ARTIFACT (m/tau~1 ringing with stale chi — m=1
+kills flapping AND restores basin; a=0.1 step correctly
+skipped per protocol); both cadences attenuate (same branch
+direction — basin membership was the artifact). REROUTING MAP
+(m=1, banked for q-design): R1 weak -0.00634 (sheds) / fab
+-0.000204 (median flat) / int +2e-06; R2 fab q90 near
+0.00615 / mid 0.00818 / far 0.00622 (tails gain in ALL bins,
+mid highest — NO gateway pile-up); R3 top gainers scattered
+far corridors (r_O mostly 21-27); R4 above; R5 concave-D
+-5.00 <= 0 (m=4: -1.03/-14.09 <= 0 — check held both
+branches, no bug). RESIDUAL HONESTY: endpoint 9.289 max-norm
+= median-converged + edge-level flapping (discontinuous chi,
+expected; boundedness w*<=1+beta holds) — basin verdict via
+basin-fraction + endpoint cross, never residual-gated.
+OUTCOME: IN-BASIN-MEDIAN-STABLE (feedback retains basin with
+attenuated factor; beta=350 scale still inserted =
+unexplained; edge flapping footnoted). STATIC-CHI CLOSED
+(full 2x2 collapse complete — (betw,cong) cell verdict now
+measured: attenuation-only; no scale separation in any
+static chi). GAPS (honest): beta=35 m=1 unattributed
+(unverified, cadence-by-analogy only — out of preregistered
+scope); fixed-point existence still open (median-stable,
+not max-norm). TEST/FILE HONORED: test_betw_cong_closure
+pins reduced-state mechanics + qualitative (determinism,
+control, cadence structure, attenuation direction, R1,
+concave-D, Phi m-agreement); full-state verdict HERE.
+NEXT: genuinely-dynamical state-variable design (stateful q
+with H-gate/bounded-memory/mu-debt, or principled budget Q).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
