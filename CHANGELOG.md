@@ -47,7 +47,10 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   residue, pre-registered falsifier — no code; revised per review:
   concentrate-strong/leave-weak target, weighted ontology, P0'
   restatement criteria, marginal-pricing conjecture).
-  524 tests.
+  Weight-selection pre-registration filed (binding criteria +
+  triple-readout protocol); self-pricing first entrant (MDS
+  blurred, sweep dominated, 16 census violations).
+  525 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

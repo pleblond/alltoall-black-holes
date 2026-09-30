@@ -711,6 +711,24 @@ principle required before further results (graph-internal, blind,
 pre-registered — candidates: interaction counts, U-dynamical
 attractor, w(χ)); model.md L0-box update queued with the paper
 refresh.
+WEIGHT-SELECTION PRE-REGISTRATION (binding on all entrants): a
+weight rule must be (a) graph-internal — function of local graph
+state only (degrees, spans, κ, traffic), no coordinates/reference
+embedding; (b) blind — no M_O, no target dimension, no plain-grid
+comparison inside the rule (plain grid allowed in EXTERNAL scoring
+only); (c) stated whole before the tournament, ≤2 parameters.
+Scoring is the TRIPLE READOUT (pinned protocol): MDS profile
+(geometry) + event-sweep domination (inflation) + underpriced
+census (contraction) — the paper's §2.2 lesson that no one readout
+substitutes for the others. First entrant (MEASURED, testable,
+test_weighted.py): SELF-PRICING w_e = span_e (zero parameters) —
+on 30-long damage MDS stays blurred (GoF2 0.402 vs 0.769 vacuum /
+0.385 binary), sweep shows full domination (maxR 1.0, no positive
+intervals), census lists 16 violations: contraction-without-
+inflation (Counterexample-A regime on damage). Softens, does not
+restore — the baseline every later rule must beat. Queued: w(χ)
+tension rule, traffic-weighted (SI-count) rule, marginal-boundary
+rule (w at domination edge — needs blind d_0 proxy, open problem).
 
 ## D11 — Far-field tail exponent of the tension fingerprint (D10b)
 

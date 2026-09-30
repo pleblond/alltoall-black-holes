@@ -98,3 +98,44 @@ def test_weight_tolerance_recovers_geometry():
     assert 0.68 < rows[20][0] < 0.69, rows[20]
     assert 5.4 < rows[20][1] < 5.6, rows[20]
     assert all(r[2] < 2.0 for r in rows.values()), rows
+
+
+def test_self_pricing_softens_but_not_restores():
+    # First weight-selection candidate (blind, graph-internal, ZERO
+    # parameters): w_e = span_e, each edge costs its own detour
+    # (radius 8). On 30-long damage: MDS stays blurred (GoF2 0.402
+    # vs vacuum 0.769 vs binary 0.385 -- softened, not restored);
+    # event sweep vs plain-hop shows FULL domination (maxR 1.0, no
+    # positive intervals -- costs globally high); yet the census
+    # lists 16 violations (contraction without inflation: the
+    # Counterexample-A regime, now measured on damage). Triple
+    # readout (MDS profile + sweep domination + census violations)
+    # is the scoring protocol for all future weight rules.
+    import numpy as np
+
+    from bh_graph.update_rule import edge_span, inject_shortcuts
+    from bh_graph.weighted import underpriced_census, volume_comparison
+
+    def cmds(D):
+        D2 = np.asarray(D, dtype=float) ** 2
+        n = D2.shape[0]
+        J = np.eye(n) - np.ones((n, n)) / n
+        w, _ = np.linalg.eigh(-0.5 * J @ D2 @ J)
+        return w[::-1]
+
+    g = nx.convert_node_labels_to_integers(nx.grid_2d_graph(20, 20), ordering="sorted")
+    src = 10 * 20 + 10
+    dam = inject_shortcuts(g, 10, 3)
+    h = dam.copy()
+    nx.set_edge_attributes(h, {e: float(edge_span(h, *e, 8)) for e in h.edges()}, "w")
+    ev = cmds(nx.floyd_warshall_numpy(h, weight="w"))
+    pos = ev[ev > 0].sum()
+    assert 0.40 < ev[:2].sum() / pos < 0.41, ev[:4]
+    assert 1.7 < ev[1] / ev[2] < 1.9, ev[:4]
+    d0 = dict(nx.single_source_shortest_path_length(g, src))
+    dw = nx.single_source_dijkstra_path_length(h, src, weight="w")
+    comp = volume_comparison({k: d0[k] for k in h.nodes()}, dw)
+    assert comp["max_ratio"] == 1.0
+    assert comp["positive_intervals"] == []
+    d0ap = {n: dict(d) for n, d in nx.all_pairs_shortest_path_length(g)}
+    assert len(underpriced_census(h, d0ap, weight="w")) == 16
