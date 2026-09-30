@@ -12,7 +12,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   conditional motivation with `V_U` spacetime-volume leg; `M_O` quotient
   + five admissibility criteria; stage-1 spec (`V_U`/`Ṽ_U`, controls,
   cones); substrate family (tri/hex/noisy +, gated-wall/rewired −);
-  P4 audit ((1)(2)(3)(5) pass, (4) partial; drift modulus grid-tested);
+  P4 audit ((1)(2)(3)(5) pass, (4) partial; drift modulus flat+plug-tested);
   rewire sweep (rise-collapse, N* flat α≈0, multi-seed bands);
   scaled-window α≈0 confirmation (f*→0) + leverage dose-response;
   D1 C_vac-preservation target, RG-relevance investigation ("critical"

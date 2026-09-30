@@ -151,13 +151,8 @@ def test_p4_permutation_covariant():
     assert np.allclose(k0, k1, atol=1e-9)
 
 
-def test_p4_drift_localizes_to_flip():
-    # D12 criterion 3 probe for the P4 instance: a single-edge flip
-    # moves kappa only in its neighborhood -- far-field drift is fp
-    # dust, near-field carries the response (grid-tested modulus;
-    # plug/curved backgrounds untested).
-    g = nx.grid_2d_graph(10, 10)
-    flip = ((4, 5), (5, 5))
+def _drift_fractions(g, flip):
+    """Total/near/far kappa-drift under removal of `flip` (P4, p=0)."""
     h = g.copy()
     h.remove_edge(*flip)
     assert nx.is_connected(h)
@@ -184,6 +179,25 @@ def test_p4_drift_localizes_to_flip():
             far += w
         if dd <= 1:
             near += w
+    return total, far, near
+
+
+def test_p4_drift_localizes_to_flip():
+    # D12 criterion 3 probe for the P4 instance: a single-edge flip
+    # moves kappa only in its neighborhood -- far-field drift is fp
+    # dust, near-field carries the response. Holds on flat and
+    # curved (clique-plug) backgrounds alike.
+    flip = ((4, 5), (5, 5))
+    total, far, near = _drift_fractions(nx.grid_2d_graph(10, 10), flip)
+    assert total > 0.1, total
+    assert far < 1e-9, far
+    assert near / total > 0.99, (near, total)
+    g = nx.grid_2d_graph(10, 10)
+    plug = [(4, 4), (4, 5), (5, 4), (5, 5)]
+    for i in range(4):
+        for j in range(i + 1, 4):
+            g.add_edge(plug[i], plug[j])
+    total, far, near = _drift_fractions(g, ((4, 4), (4, 3)))
     assert total > 0.1, total
     assert far < 1e-9, far
     assert near / total > 0.99, (near, total)

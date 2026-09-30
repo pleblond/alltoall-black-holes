@@ -316,9 +316,9 @@ test, never an input. Target: ∀ `M_O ∈ A_macro(G)`,
 (uniform Ollivier, `orici`, p=0): (1) graph-internal PASS (uniform
 neighborhood measures + hop metric; no coordinates or target
 dimension); (2) permutation-covariant PASS + TEST (relabeling leaves
-the κ multiset unchanged); (3) coarse-graining stable PASS on grids (single-edge flip moves κ
-only within 3 hops, far drift < 1e-9 — measured modulus;
-plug/curved backgrounds untested); (4) operational
+the κ multiset unchanged); (3) coarse-graining stable PASS on flat and plug backgrounds
+(single-edge flip moves κ only within 3 hops, far drift < 1e-9 —
+measured modulus); (4) operational
 PARTIAL (EMD computable from neighborhood data in principle, but
 global-EMD + full-neighborhood readout exceeds local-observer access —
 needs access-cost accounting); (5) frozen rule PASS (p=0 uniform
