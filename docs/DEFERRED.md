@@ -1484,7 +1484,57 @@ program OVER, traffic needed for mechanism; MECHANISM-ONLY
 (feedback boosting substitution); SUFFICIENT (cross) =>
 celebrate skeptically (re-run all 4 detectors). CANDIDATES
 LOCKED at 2 (embeddedness control + betweenness sensitive);
-density-proximity stays flagged/unrun. P0' RESTATEMENT (conditional — model.md NOT rewritten:
+density-proximity stays flagged/unrun. FORM-1 DERIVATION
+(LOCKED pre-A, 12-step table — docs-only turn; NO A-code shares
+a turn with derivation, firewall hygiene): (1) STORY: toll
+proportional to traffic load, static (loaded links cost more);
+w_base=1 fixed BY CONVENTION (lattice unit = init value;
+degenerate, not a parameter). (2) g(b;beta)=1+beta*b
+(betweenness), g_emb(e)=1+beta*e (control); RAW chi (beta
+absorbs scale; no normalized b-hat — hidden-third-param trap
+refused). (3) F: w'=(1-alpha)w+alpha*(1+beta*chi),
+DETERMINISTIC, alpha=0.2, n=64 ticks. (4) w*(chi)=1+beta*chi
+edgewise. (5) STABILITY |1-alpha|<1 <=> alpha in (0,2);
+alpha=0.2 monotone, inside. (6) TAU=-1/ln(0.8)~4.48 ticks; 64
+ticks ~14tau, residual 0.8^64~6e-7 (converged). (7) BANKED CHI
+IN: medians weak 0.02858 / fabric 0.003124 / interior 5.3e-05;
+near/far weak 0.02267/0.02926. Beta-grid {3.5,35,350,3500} =
+decades around 1/b_weak-med~35 — CHI-SCALE calibration
+(instrument-to-sample), NOT basin contact (basin sealed until
+#10). Control beta_emb=1 ARBITRARY (weak/fabric chi=0 =>
+result beta-independent by analyticity; separate beta per
+candidate — scales differ 1000x, same-beta would be
+numerology). (8) PREDICTED w* medians: beta=3.5:
+weak 1.10 / fab 1.011 / int 1.000; beta=35: 2.00 / 1.11 /
+1.002; beta=350: 11.0 / 2.09 / 1.02; beta=3500: 101 / 11.9 /
+1.19. Near/far weak @350: 8.93/11.24 (excess ratio 0.775,
+beta-independent). (9) GUARDS: ratio (w*_f-1)/(w*_w-1)=1/9.15
+at EVERY beta (beta cancels — sweep-wide identity check);
+absolute med_f<~3 TRIPS at beta>~640 PREDICTED (trip-there =
+linearity confirmed + cost noted; trip-below = anomaly);
+relative med_f<med_w. (10) BASIN OVERLAY (FIRST CONTACT):
+beta=3.5 (~Lw1-analog) => NEVER cross; beta=35 (w*~2.0, gap
+between Lw1/Lw3 rows) => partial fall, NO cross k<=3;
+beta=350 (~Lw10-analog) => CROSS k~2-3 following Lw=10 slice
+shape (shape prediction); beta=3500 (w*~101 > max span 78) =>
+cross k<=1 (near-immediate washout). beta=350<->Lw10 alignment
+DISCOVERED here (grid came from chi-scale), never selected.
+Weak is a DISTRIBUTION (spans vary) — median overlay
+approximate, exact Phi measured. (11) DELTA-y_w:
+embeddedness EXACTLY 0 + ZERO MOTION (w_weak(n)=1 to 1e-9;
+violation = leak/bug, STOP); betweenness Delta>0 via
+SUBSTITUTION (near excess 0.775x far => near cheaper =>
+delayed washout; direction beta-independent); magnitude modest
+=> MECHANISM-ONLY likely at beta<=350. (12) LOCKED
+INTERPRETATION: control pass = frozen-weak + Delta=0;
+sensitive checks per beta = edgewise w* convergence (tol) +
+1/9.15 ratio + shape/cross + sign + gateway W_fabric
+shell-vs-halo + 3-part guard; outcome table
+NULL/MECH-ONLY/SUFFICIENT x TOL contour + filed C2 branches.
+NO re-choice of g/beta past this point (re-choice = NEW
+candidate + fresh pre-registration). NEXT: code experiment A
+(5 relaxation runs: control + 4 beta; trajectories + Phi(n,k)
+surfaces + profiles). P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
