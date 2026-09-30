@@ -1880,8 +1880,65 @@ not max-norm). TEST/FILE HONORED: test_betw_cong_closure
 pins reduced-state mechanics + qualitative (determinism,
 control, cadence structure, attenuation direction, R1,
 concave-D, Phi m-agreement); full-state verdict HERE.
-NEXT: genuinely-dynamical state-variable design (stateful q
-with H-gate/bounded-memory/mu-debt, or principled budget Q).
+REVIEW-CLOSURE ADOPTED (post-verdict review — agreed +
+filed): SLOGAN: static congestion pricing ->(endogenous
+feedback) attenuated-but-stable vacuum pricing (NOT
+amplification, NOT collapse); scale origin UNRESOLVED,
+scale stability under feedback DEMONSTRATED at tested
+beta=350 ("stable" = median-stable + basin-frac 1.0, edge
+flapping footnoted — qualifier load-bearing). TWO-FLAPPING
+DISTINCTION (locked vocabulary): MACROSCOPIC cadence
+ringing (m=4 overshoot->ring->basin-exit, killed by m=1 =
+discretized feedback-delay artifact) vs MICROSCOPIC
+assignment flapping (endpoint residual 9.29, intrinsic
+shortest-path discontinuity — m=1 does NOT kill it; never
+conflated — the distinction was worth the m=1 run). FORMAL
+2x2 CLOSE (restated, final): (betw,cong) useful open-loop +
+feedback preserves basin at 350 / (betw,atr) excluded by
+ordering / (walk,atr) preregistered empirical kill /
+(walk,cong) no structural lever; no principled g(chi)
+search remains (monotone-order). BETA-35 HONESTY SHARPENING
+(reviewer-caught, fixed): NO basin statement at beta=35/m=1
+whatsoever — neither fails nor passes; beta=35 m=4 numbers
+are cadence-suspect RAW DATA only; "cadence-by-analogy"
+language STRUCK (smuggled a verdict by analogy).
+UTILIZATION-HISTORY PRIOR for q (adopted as PRIOR, not
+theorem): rerouting non-knot-local (no gateway pile-up,
+far-corridor gainers) => memory tracks edge/path
+UTILIZATION history (accumulated/decaying traffic J_e),
+not knot proximity; second leg H-gate sourcing (traffic
+locally observable per edge; knot-proximity has NO machine
+source — knots are observer-identified); prior selects the
+utilization FAMILY, not the member (normalized vs raw J,
+which traffic notion = derivation work). NEXT-UNIT LOCK
+(derivation BEFORE code — no memory implementation until
+derived): SHARPENED QUESTION: can temporal accumulation
+generate the pricing scale static state cannot? CANDIDATE
+FORM q_e(n+1)=(1-mu)q_e(n)+J_e(n), w=F(q) (sign /
+normalization / mu UNCHOSEN — derivation first).
+STEADY-STATE DANGER (mu-debt's first concrete entry):
+steady traffic => q*=J*/mu => 1/mu = beta~350 in disguise
+unless escaped; linear-accumulation steady gain is ALWAYS
+kernel-integral (generalized beyond one form). FORK:
+bounded stateful traffic => does amplification emerge from
+feedback structure? YES (gain set by graph / implicit
+fixed-point structure) -> candidate mechanism / ONLY-AS-1/mu
+-> timescale debt = scale debt, renamed not solved / NO ->
+memory doesn't solve D14 scale (formation/topology branch
+inherits per roadmap). ACCEPTANCE CRITERION for YES: gain
+formula contains NO mu (mu only in rates/timescales).
+DERIVATION MUST ADDRESS: (i) normalized-J / budget routes
+to mu-free RELATIVE prices (w~q/Sigq => steady relative ~
+J*/SigJ* — absolute gain then lives in F = beta-in-costume
+unless derived); (ii) nonlinear-H escapes and their
+smuggled scales (thresholds ARE scales); (iii) what counts
+as feedback-structure amplification (implicit q->w->routing
+->J->q fixed point, criticality, conserved redistribution).
+DEBT-IDENTIFICATION RULE: any gain reducing to a free
+parameter (mu, threshold, uninterpreted Q_total, F-gain) is
+NAMED as that debt, never as emergence.
+NEXT: stateful-scale derivation unit (docs-only,
+pre-registered above — answers NOT derived this turn).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
