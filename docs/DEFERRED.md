@@ -490,7 +490,10 @@ cost rule rather than fitted. DECIDED (test_emergent_dim.py, L=200/240/250):
 (E·r flat 6.12..6.67, k=2..10 — wedge shadow); χ~5 SLOW CROSSOVER
 (L=480 to 20Rc: fitted q = 1.19 over k=6..14 → 1.10 over k=14..20,
 E·r still monotone-falling 7.90 → 6.55 with shrinking steps) —
-1/r supported asymptotically but not firm at 20Rc; the pinned claim
+1/r supported asymptotically but not firm at 20Rc; L=600 extension
+to 25Rc (filed, not shipped: E·r 6.55 → 6.44 still falling, late
+q ≈ 1.09) confirms the crossover is very slow, not yet the limit;
+the pinned claim
 is the crossover, not the limit. The
 exponent is TENSION-DEPENDENT. Accounting derivation from the cost rule
 remains sketched (delay-region geometry), not derived — D11 closes on
