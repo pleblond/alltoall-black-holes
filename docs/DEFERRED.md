@@ -1371,7 +1371,45 @@ HATCHES pre-listed (close in pre-registration): F-param budget,
 chi-choice justification, bins frozen (done), init fixed
 (w=1). STAGE-GRADED GATE: A = pre-registered simplicity +
 measured profile (relaxation ok); D = full no-insertion +
-instability + ensembles (origin claims wait for D). P0' RESTATEMENT (conditional — model.md NOT rewritten:
+instability + ensembles (origin claims wait for D). A-ARCHITECTURE
+LOCK (review agreement + chi-constraint derivation): A MOTTOS —
+"does structure drive prices toward the washout basin?"
+(relaxation/selection; static chi) vs "does homogeneity
+spontaneously destabilize?" (instability; dynamical chi ONLY —
+gamma/noise/t* diagnostics gated to C2/D; running them on
+relaxation manufactures false verdicts). C-FORK TABLE ADOPTED
+(A planted/E-frozen/static-chi; B anatomy-of-A; C1 unplanted
+E-frozen; C2 dynamical-chi/E-formation; D primordial
+falsifier); C1-negative expected (repricing manufactures no
+matter topology) AND C1-positive kept discovery-capable
+(price-sector WITHOUT topological knot would forbid premature
+price-sector=knot identification). FIXED-POINT-FIRST DISCIPLINE
+(strict): derive w*(chi), stability |dF/dw|<1, move/direction/
+boundedness/timescale/basin-reach/sign-prediction BEFORE any
+A numerics; tooth = TARGET-VARIABLE EXCLUSION (chi may not
+contain d_0/span/any ruler quantity — span-reading F collapses
+to self-pricing; checkable at pre-registration: list inputs,
+ruler among them = reject). Form-1 defense filed: G hand-written
+but blind+simple+preregistered, basin banked INDEPENDENTLY — G
+landing judged, not inserted. LOCAL-STATIC-CHI IMPOSSIBILITY
+(derived pre-code): swap endpoints are locally fabric-identical
+(deg 4, Jaccard ~0 — grid-edge endpoints also share 0 common
+neighbors), so NO graph-local static chi separates weak longs
+from fabric shorts; embeddedness/degree give knot-vs-everything
+(wrong split: fabric priced with weak). CONSEQUENCES: (a)
+NEGATIVE-CONTROL DESIGN — run embeddedness/Jaccard F predicting
+Delta-y_w=0 (near/far weak share chi~0 => identical flow);
+predicted-null-returning-null validates chain, returning
+non-null = apparatus-bug detector; control BEFORE sensitive
+candidate, always. (b) SENSITIVE chi must be GLOBAL
+(betweenness: weak-high/fabric-mid/knot-low hypothesized under
+congestion sign — grid-central fabric may spoil; VERIFY BY
+SPIKE: population distributions on A-state before committing)
+or DYNAMICAL (traffic — C2 territory); if betweenness fails to
+three-way-split, A-static has NO sensitive candidate => early
+result that pricing needs dynamical chi. NEXT: chi-measurement
+spike -> commit F + analytic w*/stability -> lock
+pre-registration -> code A. P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
