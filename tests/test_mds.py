@@ -94,3 +94,20 @@ def test_shell_mds_rank_is_order_one():
         pos = ev[ev > 0].sum()
         assert ev[0] / ev[1] < 1.01, (r, ev[:4])
         assert 0.76 < ev[:2].sum() / pos < 0.78, (r, ev[:4])
+
+
+def test_fpt_mds_two_dominant():
+    # First DYNAMICAL distance null (D12): mean SI first-passage time
+    # (beta=0.5, K=100, 10x10 grid) reads cleanly 2-dominant under MDS
+    # (GoF2 ~ 0.89, lam2/lam3 ~ 17.5 -- MORE Euclidean than hop's 6.8:
+    # stochastic averaging smooths lattice anisotropy). Dynamical
+    # generation alone does not select 3D -- rank-3 remains a nontrivial
+    # dynamical property to hunt (biased/attractive variants queued).
+    from bh_graph.scrambling import si_fpt_matrix
+
+    g = nx.convert_node_labels_to_integers(nx.grid_2d_graph(10, 10), ordering="sorted")
+    ev, _ = _cmds(si_fpt_matrix(g, 0.5, 100, seed=0))
+    pos = ev[ev > 0].sum()
+    assert ev[:2].sum() / pos > 0.85, ev[:4]
+    assert ev[1] / ev[2] > 12.0, ev[:4]
+    assert (-ev[ev < 0]).sum() / pos < 0.1, ev[:4]

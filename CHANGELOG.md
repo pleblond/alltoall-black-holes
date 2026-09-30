@@ -19,8 +19,10 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   (volume + MDS readouts); Tier-1 MDS calibration pinned (Delaunay
   radial-tortuosity bowl diagnosed, per-substrate bar + v3-geography
   falsifier clause); shell-counting dilemma sketched (d_H=2 XOR
-  independence on 2D fabric, pairwise rescue refuted, escapes open).
-  494 tests.
+  independence on 2D fabric, pairwise rescue refuted, escapes open)
+  with MDS-route independence clarified; first dynamical distance
+  shipped (SI first-passage, MDS null 2-dominant).
+  495 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

@@ -692,7 +692,25 @@ C_O counting something non-geometric with r² scaling (new physics),
 or non-shell composition of depth × transverse. Pairwise-counting
 rescue REFUTED as stated (~|shell|² counts constrained pairs, true
 DOFs ~ rank ~ O(1)) — pairs overcount by arithmetic, independence
-fails by triangle inequality. 
+fails by triangle inequality.
+DILEMMA SCOPE (load-bearing clarification): the dilemma kills the
+SHELL-COUNTING route FOR HOP SHELLS only — the MDS-rank route is
+independent and unaffected (it never counts shells). Under a
+dynamical metric, shells redefine (equidistant sets under ρ) and
+C(r) reopens empirically: IF some dynamics yields MDS-3, its shells
+must show r² transverse counts, resolving the dilemma by measurement
+rather than derivation. So the dilemma concentrates ALL weight on
+dynamics design — no static escape remains. First dynamical distance
+(SHIPPED, scrambling.si_fpt_matrix + test_mds.py): mean SI
+first-passage time (β = 0.5, K = 100, 10×10) reads cleanly
+2-dominant (GoF2 0.89, λ2/λ3 17.5 — MORE Euclidean than hop:
+stochastic averaging smooths lattice anisotropy). Dynamical
+generation alone does not select 3D — rank-3 is a nontrivial
+dynamical property, and biased/attractive variants are the queued
+hunt. Methods note: the FIRST FPT implementation (non-persistent
+frontier) produced capped garbage reading high-rank — caught by the
+volume cross-check (balls all size 1), fixed, corrected numbers
+pinned. Cross-readout validation works. 
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
