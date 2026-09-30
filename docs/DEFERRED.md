@@ -1330,7 +1330,48 @@ separation; zero knot physics on primary). RULER-TRAP RULE
 ruler (first draft put swaps in d_K → trivial total "healing").
 Verdict: apparatus validated, null established — real Delta-y_w
 needs w-dynamics (E-fixed re-pricing U with knot present is the
-next experiment). P0' RESTATEMENT (conditional — model.md NOT rewritten:
+next experiment). FROZEN-KNOT STOP (review verdict, adopted):
+static dense knot changes the METRIC (d_K/d_0<1 near, interior
+strongest, gone once blocking unresolves the knot) but NOT the
+weak-link pricing flow (Phi_0 bit-identical) — experimentally
+separated; no further frozen-knot runs (zero Delta-y_w info;
+would only re-map the ruler). C(r,k) = 1-<d_K/d_0> ADOPTED as
+curvature-CANDIDATE diagnostic (naming discipline: candidate
+until dynamics; pilot values k=0 near 0.13/far 0.04, k=3 0 —
+derived from pinned means). RULER COROLLARY: rulers stay
+TOPOLOGICAL-only, never price-weighted (eta=d^w/w is
+self-referential — trap's second form); consequence: experiment
+A factorizes (E frozen -> C static backdrop, w dynamic -> Phi
+dynamic) — A isolates pricing BY CONSTRUCTION; no dynamical-C
+move until E-dynamics (C2/D). Metric bubble stays KINEMATIC
+(two rulers, two descriptions — gravity-talk gated on
+dynamics). CIRCULARITY DETECTORS (named set, checked every
+run): (i) rulers contain neither test population nor prices
+(m_ratio~0.05 episode = standing demo); (ii) labels independent
+of outcome (bidirectional); (iii) init far from answer
+(primordial severity); (iv) trajectory not endpoint (MI
+diagnostics). EXPERIMENT-A PRE-DESIGN (locked): planted knot,
+E FROZEN, w(0)=1, primitive static-chi F (suggested:
+common-neighbor embeddedness, Hebbian sign + uniform drift, <=2
+params, ALL pre-registered); question ONLY Delta-y_w != 0;
+strongest outcome Delta-y_w>0 DESPITE d_K/d_0<1 (price dynamics
+fighting geometric shortening); all signs informative (0 =
+geometry-only knot; <0 = reinforced washout). STAGING: static
+chi admits A (relaxation answers spatial differentiation) but
+CANNOT show bifurcation (w->w*=G(chi), gamma<0 at best; gamma>0
+needs dynamical chi/memory — C2/D territory); A bundles
+analytic-fixed-point convergence (verification, like Lw=1 row)
++ spatial profile P(eta|r) (discovery) in one run. SEQUENCE
+A->B->C->D ADOPTED: B = post-processing of A's trajectory
+(P(eta|r,K,n,k) + C backdrop, cheap); C FORKS (C1 = unplanted
+E-frozen weak-generation, expected informative-negative since
+w*=G(chi) gives chi-level-sets -> motivates C2 = E-dynamics
+H(w) or dynamical-chi U); D = filed falsifier. A ESCAPE
+HATCHES pre-listed (close in pre-registration): F-param budget,
+chi-choice justification, bins frozen (done), init fixed
+(w=1). STAGE-GRADED GATE: A = pre-registered simplicity +
+measured profile (relaxation ok); D = full no-insertion +
+instability + ensembles (origin claims wait for D). P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
