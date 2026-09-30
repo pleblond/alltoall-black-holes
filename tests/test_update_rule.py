@@ -732,3 +732,33 @@ def test_chain_heals_lloyd():
     assert acc2 == 1, acc2
     assert total_longs(h2, 3, 2) == 0
     assert nx.is_connected(h2)
+
+
+def test_selfcal_census_reproduces_gapped():
+    # Self-calibrating census (span > median, no smax table) reproduces
+    # the fixed census exactly on gapped signatures: square 0/30, tri
+    # 0/24, hex 2/54 (leaf floor included), Delaunay 0/21. Gabriel
+    # stays unseparated (326/349) -- broad spectra admit no span
+    # threshold (the Gabriel limit, restated calibration-free).
+    from bh_graph.graphs import (
+        build_gabriel,
+        build_hex_lattice,
+        build_poisson_delaunay,
+        build_triangular_lattice,
+    )
+    from bh_graph.update_rule import total_longs_selfcal
+
+    g, _ = _grid20()
+    cases = [
+        (g, 3, 0, 30),
+        (build_triangular_lattice(20), 3, 0, 24),
+        (build_hex_lattice(20), 5, 2, 54),
+        (build_poisson_delaunay(n_points=400, seed=0), 3, 0, 21),
+    ]
+    for h, radius, plain_exp, dam_exp in cases:
+        assert total_longs_selfcal(h, radius) == plain_exp
+        dam = inject_shortcuts(h, 10, 3)
+        assert total_longs_selfcal(dam, radius) == dam_exp, (plain_exp, dam_exp)
+    gb = build_gabriel(n_points=400, seed=0)
+    assert total_longs_selfcal(gb, 6) == 326
+    assert total_longs_selfcal(inject_shortcuts(gb, 10, 3), 6) == 349

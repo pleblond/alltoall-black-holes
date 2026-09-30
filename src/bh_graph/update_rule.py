@@ -11,6 +11,7 @@ and is NOT a local rule, honest label).
 from __future__ import annotations
 
 import random
+import statistics
 
 import networkx as nx
 import numpy as np
@@ -266,6 +267,21 @@ def _revert(h, mv):
 def total_longs(h: nx.Graph, radius: int = 3, smax: int = 3) -> int:
     """Global census: edges with span > smax (the honest health stat)."""
     return sum(1 for u, v in h.edges() if edge_span(h, u, v, radius) > smax)
+
+
+def total_longs_selfcal(h: nx.Graph, radius: int = 3) -> int:
+    """Median-relative long census: edges with span above the median span.
+
+    Self-calibrating: no per-fabric smax table (the smuggling point of
+    total_longs). Reproduces the fixed census exactly on gapped
+    signatures (square/tri/hex-incl-floor/del, pinned). Broad-spectrum
+    Gabriel stays unseparated (326/349) -- no threshold method splits
+    overlapping distributions. Radius stays a parameter (hex needs 5):
+    radius self-calibration (e.g. grow-until-median-stabilizes) queued.
+    """
+    spans = [edge_span(h, u, v, radius) for u, v in h.edges()]
+    med = statistics.median(spans)
+    return sum(1 for s in spans if s > med)
 
 
 def rule_drift(h: nx.Graph, ctx: dict) -> bool:

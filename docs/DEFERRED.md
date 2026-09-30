@@ -288,6 +288,14 @@ clears the last long (1 → 0). Cross-candidate battery now spans
 square/torus/tri/hex/Delaunay/Gabriel-limit/medial/kNN/Lloyd:
 healing is universal on gapped signatures, with order, speed, and
 floor behavior substrate-dependent.
+SELF-CALIBRATING CENSUS (MEASURED, test_update_rule.py — smuggling
+point removed): total_longs_selfcal (span > median, no smax table)
+reproduces the fixed census exactly on gapped signatures (square
+0/30, tri 0/24, hex 2/54 incl. leaf floor, Delaunay 0/21).
+Gabriel stays unseparated (326/349) — the limit restated
+calibration-free: no threshold splits overlapping distributions.
+Radius stays a parameter (hex needs 5); grow-until-median-
+stabilizes queued.
 BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
 locality should characterize STABLE STATES of U, not appear in U's
 objective function. The D1 verdict sharpens: direct microscopic
