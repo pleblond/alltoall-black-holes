@@ -194,3 +194,47 @@ def test_rewire_sweep_rise_collapse_and_flat_threshold():
     for seed in seeds:
         assert curves[(30, seed)][-1] < 1.0, (seed, curves[(30, seed)][-1])
         assert curves[(60, seed)][-1] > 2.5, (seed, curves[(60, seed)][-1])
+
+
+def _swapped_grid(near_k, far_k, L=40):
+    """Plain grid with K hand-placed swaps: levered (span ~30 landing
+    within r<=5 of center) or far (both ends outside r=18)."""
+    g = nx.grid_2d_graph(L, L)
+    for i in range(near_k):
+        a, b = (15 - i, 20), (16 - i, 20)
+        cc, dd = (2, 2 + 3 * i), (2, 3 + 3 * i)
+        g.remove_edge(a, b)
+        g.remove_edge(cc, dd)
+        g.add_edge(a, cc)
+        g.add_edge(b, dd)
+    for i in range(far_k):
+        a, b = (1, 2 + i), (1, 3 + i)
+        cc, dd = (37, 30 - i), (37, 31 - i)
+        g.remove_edge(a, b)
+        g.remove_edge(cc, dd)
+        g.add_edge(a, cc)
+        g.add_edge(b, dd)
+    assert nx.is_connected(g)
+    return nx.convert_node_labels_to_integers(g, ordering="sorted")
+
+
+def test_levered_swaps_dose_response():
+    # Shortcut-leverage mechanism: hand-placed swaps near the source
+    # raise p monotonically with dose (1.89 -> 2.11 -> 2.16 -> 2.21 ->
+    # 2.23 for K=0,1,3,5,10; first swap alone +0.22), while 10 far
+    # swaps leave shells bit-identical. Dissolves the placement
+    # lottery: rise needs levered swaps (span x nearness), not swaps.
+    # Hand-placed geometry is version-safe (no RNG draws pinned).
+    src = 20 * 40 + 20
+    ps = []
+    for k in (0, 1, 3, 5, 10):
+        g = _swapped_grid(k, 0)
+        assert g.number_of_edges() == 2 * 40 * 39
+        _, _, vols = _shells_cuts_vols(g, src, 18)
+        ps.append(_window_p(vols, 6, 14))
+    assert ps[0] < ps[1] < ps[2] < ps[3] < ps[4], ps
+    for p, lo, hi in zip(ps, (1.87, 2.09, 2.13, 2.19, 2.21), (1.91, 2.13, 2.18, 2.23, 2.25)):
+        assert lo < p < hi, (p, lo, hi)
+    g = _swapped_grid(0, 10)
+    shells, _, _ = _shells_cuts_vols(g, src, 18)
+    assert shells == [1] + [4 * r for r in range(1, 19)], shells
