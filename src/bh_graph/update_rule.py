@@ -128,3 +128,73 @@ def evolve(
         acc += rule(h, ctx)
         traj.append(locality_p(h, src))
     return traj, h, acc
+
+
+def edge_span(h: nx.Graph, u, v, radius: int = 3) -> int:
+    """Shortest u-v path avoiding the direct edge, searched to depth radius.
+
+    Returns radius+1 when no alternative path is found within radius
+    (treated as "long"). Strictly radius-ball local.
+    """
+    seen = {u}
+    frontier = [u]
+    for depth in range(1, radius + 1):
+        nxt = []
+        for x in frontier:
+            for y in h[x]:
+                if (x == u and y == v) or (x == v and y == u):
+                    continue
+                if y == v:
+                    return depth
+                if y not in seen:
+                    seen.add(y)
+                    nxt.append(y)
+        frontier = nxt
+    return radius + 1
+
+
+def rule_guillotine(h: nx.Graph, ctx: dict) -> bool:
+    """Local shortcut guillotine: rewire edges with span > max_span.
+
+    Genuinely local: detection (BFS within radius of the edge) and repair
+    (swap with a sampled partner, accepted only if both new edges are
+    short) use span evals that are each radius-ball local; partner
+    sampling is global-uniform with long-edge preference (documented mild
+    globality). Long-edge count decreases monotonically, so it terminates
+    with zero long edges (inverse swaps always qualify). Plain grid is an
+    automatic fixed point (every edge spans exactly 3). Threshold is
+    fabric-relative (grid 3, triangular/Delaunay 2, hex 5).
+    """
+    radius = ctx.get("radius", 3)
+    smax = ctx.get("max_span", 3)
+    E = list(h.edges())
+    m = len(E)
+    for _ in range(ctx.get("proposals", 40)):
+        i = ctx["rng"].randrange(m)
+        a, b = E[i]
+        if edge_span(h, a, b, radius) <= smax:
+            continue
+        cands = []
+        for _ in range(60):
+            x, y = E[ctx["rng"].randrange(m)]
+            if len({a, b, x, y}) < 4:
+                continue
+            if (x, y) in cands or (y, x) in cands:
+                continue
+            cands.append((x, y))
+        cands.sort(key=lambda e: edge_span(h, e[0], e[1], radius), reverse=True)
+        for x, y in cands:
+            for (u1, v1), (u2, v2) in (((a, x), (b, y)), ((a, y), (b, x))):
+                if h.has_edge(u1, v1) or h.has_edge(u2, v2):
+                    continue
+                h.remove_edge(a, b)
+                h.remove_edge(x, y)
+                h.add_edge(u1, v1)
+                h.add_edge(u2, v2)
+                if edge_span(h, u1, v1, radius) <= smax and edge_span(h, u2, v2, radius) <= smax:
+                    return True
+                h.remove_edge(u1, v1)
+                h.remove_edge(u2, v2)
+                h.add_edge(a, b)
+                h.add_edge(x, y)
+    return False

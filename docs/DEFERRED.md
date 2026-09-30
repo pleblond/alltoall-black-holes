@@ -70,7 +70,25 @@ battery: apply the same normalized damage to each candidate
 plug insertion) and measure relaxation τ_heal(G, δG) under U —
 candidates identical in equilibrium may differ sharply in
 locality restoration. Selection rule (conceptual):
-G_vac = argmax stability of the M_O-equivalence class.
+G_vac = argmax stability of the M_O-equivalence class. First rules
+(MEASURED, test_update_rule.py, L=20): harness (locality-p, shortcut
+injection, evolve) validated — null persists damage bit-identically,
+scramble kills (2.51 → 1.79 collapse). Twin-targeted greedy heals
+p = 2.36 → p_plain to 1e-6 into a DIFFERENT microstate (699/760
+overlap) — class healing, existence probe only (global target, not a
+local rule); plain is its fixed point. Genuinely-local guillotine
+(radius-3 edge-span evals, no twin): plain-grid span signature is
+exactly 3 on all 760 edges; rule heals longs 30 → 6, p 2.36 → 2.13,
+then STALLS — exhaustive check proves 4 of 6 residual longs admit
+zero both-short single-swap repairs (locked, incl. short-range edges
+whose plaquette detours were destroyed). Mechanism lessons: repair
+needs long×long straddling (re-pairing a long with a local edge
+always leaves one long); total-span descent splits longs instead of
+killing them (count 30 → 39 while p falls — span-sum is a poor
+proxy); no local potential tracks p well (corr ≤ 0.58 — p is
+source-relative/lottery-noisy, span-census is the more honest global
+health stat). Queued escape: neutral moves / annealing on long-count
+(stochastic U is filed-legal) / coordinated multi-swaps.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
