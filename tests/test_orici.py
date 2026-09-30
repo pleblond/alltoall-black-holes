@@ -128,3 +128,76 @@ def test_packing_closure_planckian():
     assert 1.2 < a1020 < 2.0
     assert np.isnan(packing_implied_spacing(-5, 1.5))
     assert np.isnan(packing_implied_spacing(30, float("nan")))
+
+
+def test_p4_permutation_covariant():
+    # D12 criterion 2 for the P4 (uniform-measure Ollivier) instance:
+    # random relabeling leaves the edge-curvature multiset unchanged
+    # (allclose: LP input order changes floating-point summation).
+    import random
+
+    g = nx.grid_2d_graph(5, 5)
+    dist = nx.floyd_warshall_numpy(g)
+    idx = {v: i for i, v in enumerate(g.nodes())}
+    k0 = sorted(ollivier_curvature(g, u, v, _dist=dist, _idx=idx) for u, v in g.edges())
+    rng = random.Random(0)
+    nodes = list(g.nodes())
+    perm = nodes[:]
+    rng.shuffle(perm)
+    h = nx.relabel_nodes(g, dict(zip(nodes, perm)))
+    disth = nx.floyd_warshall_numpy(h)
+    idxh = {v: i for i, v in enumerate(h.nodes())}
+    k1 = sorted(ollivier_curvature(h, u, v, _dist=disth, _idx=idxh) for u, v in h.edges())
+    assert np.allclose(k0, k1, atol=1e-9)
+
+
+def _drift_fractions(g, flip):
+    """Total/near/far kappa-drift under removal of `flip` (P4, p=0)."""
+    h = g.copy()
+    h.remove_edge(*flip)
+    assert nx.is_connected(h)
+    dist0 = nx.floyd_warshall_numpy(g)
+    idx0 = {v: i for i, v in enumerate(g.nodes())}
+    dist1 = nx.floyd_warshall_numpy(h)
+    idx1 = {v: i for i, v in enumerate(h.nodes())}
+    k0 = {e: ollivier_curvature(g, *e, _dist=dist0, _idx=idx0) for e in g.edges()}
+    k1 = {e: ollivier_curvature(h, *e, _dist=dist1, _idx=idx1) for e in h.edges()}
+    total, far, near = 0.0, 0.0, 0.0
+    for e in g.edges():
+        if e not in k1:
+            continue
+        u, v = e
+        dd = min(
+            nx.shortest_path_length(g, u, flip[0]),
+            nx.shortest_path_length(g, u, flip[1]),
+            nx.shortest_path_length(g, v, flip[0]),
+            nx.shortest_path_length(g, v, flip[1]),
+        )
+        w = abs(k1[e] - k0[e])
+        total += w
+        if dd >= 4:
+            far += w
+        if dd <= 1:
+            near += w
+    return total, far, near
+
+
+def test_p4_drift_localizes_to_flip():
+    # D12 criterion 3 probe for the P4 instance: a single-edge flip
+    # moves kappa only in its neighborhood -- far-field drift is fp
+    # dust, near-field carries the response. Holds on flat and
+    # curved (clique-plug) backgrounds alike.
+    flip = ((4, 5), (5, 5))
+    total, far, near = _drift_fractions(nx.grid_2d_graph(10, 10), flip)
+    assert total > 0.1, total
+    assert far < 1e-9, far
+    assert near / total > 0.99, (near, total)
+    g = nx.grid_2d_graph(10, 10)
+    plug = [(4, 4), (4, 5), (5, 4), (5, 5)]
+    for i in range(4):
+        for j in range(i + 1, 4):
+            g.add_edge(plug[i], plug[j])
+    total, far, near = _drift_fractions(g, ((4, 4), (4, 3)))
+    assert total > 0.1, total
+    assert far < 1e-9, far
+    assert near / total > 0.99, (near, total)

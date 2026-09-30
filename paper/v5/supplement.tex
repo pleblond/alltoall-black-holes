@@ -35,8 +35,8 @@ GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, POSSIS queued (D
 vacuum P0' & isostatic 2D, $\langle z\rangle = 4$ & postulated (v0.6) & BH = max-tension extreme; $d_I = 2$ predicted; $M_O$ reconstruction \\
 $d_{\mathrm{eff}}$ protocol & $d\ln V/d\ln r$ bracket & measured (25 tests) & shortest below + diffusion above on lattices; shells fail (S11) \\
 D10 tension map & GR dip/overshoot/$\to3^+$ & GR computed; graph open & bare shortest-path rejected (inverted); weighted costs queued \\
-D12 reconstruction & $\forall M_O \in \mathcal{A}_{\mathrm{macro}}$ same IR & open program & access floor + non-circularity; 2nd admissible $M_O$ w/ non-3D IR refutes \\
-D13 causal order & D13.0 control measured; stages 1--4 open & static control measured (S11) & analytic $V_G$, $8r{+}4$ cut law; $U \to$ cone $\to$ clocks $\to$ interval; twins define C3 \\
+D12 reconstruction & $\forall M_O \in \mathcal{A}_{\mathrm{macro}}$ same IR & open program & access floor + non-circularity; P4 audit 1,2,3,5 pass, 4 partial \\
+D13 causal order & D13.0 control measured; stages 1--4 open & static control measured (S11) & $V_G$, $8r{+}4$ law; family (tri/hex/Del/Lloyd/Gab/kNN/medial +, gated-wall/rewired $-$); sweep: N* O(1) range, f*→0 hypoth.; spectral $d_s$ band; twins C3 \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
@@ -567,7 +567,10 @@ $M_O$ recovers the same infrared $M$ up to coordinate/coarse-graining
 equivalence. Falsifier: a second admissible $M_O$ giving robustly non-3D
 IR on relaxed fabric refutes the P0$'$ reconstruction program. Partial
 credit runs criterion stated $\to$ two instances agree on vacuum $\to$
-agreement extends to tensed regions.
+agreement extends to tensed regions. P4 (uniform Ollivier) audited
+against the five: criteria 1, 2, 3, 5 pass (permutation-covariance
+and drift-localization tested, the latter on flat and plug
+backgrounds), 4 partial.
 
 \textbf{Staged causal order (D13).} Time undergoes reconstruction exactly
 as space does: the microscopic update index $n$, the causal order
@@ -577,7 +580,34 @@ $V_G(r) = 1+2r(r+1)$ bit-pinned at $L = 40/80$, the exact diamond
 perimeter cut law $\mathrm{cut}(r) = 8r+4$ on unclipped $r \in [5,18]$,
 disk-boundary cut capacity deficit at $r \le 4$ with exact recovery from
 $r = 5$, and the hop/weighted plug sign pattern ($35 < 38$ hops vs
-$+5.0$ weighted delay) pre-registered for dynamical confirmation. BFS
+$+5.0$ weighted delay) pre-registered for dynamical confirmation.
+Substrate family measured under one frozen rule:
+triangular/hexagonal/noisy-grid controls reproduce $d_G \to 2$ (exact
+shell/cut laws on the lattices, statistical pins under disorder);
+Tier-1 extension: Poisson-Delaunay (reference member), Lloyd-relaxed,
+Gabriel, k-NN, and Delaunay-medial quadrangulation all give $d_G \to 2$
+with linear cuts, die on levered swaps, and survive $q = 0.05$ deletion,
+while span-limited swaps preserve 2D-ness --- degeneracy across
+topology/degree/order is the expected universality signature, and the
+physical object is the class $[G]_{\sim_O}$, not a winning tessellation.
+Spectral dimension is the second leg: torus heat-trace $d_s(t)$ holds
+$(1.95, 2.05)$ over $t \in [10,100]$, and Weyl counting fits land every
+member in $(1.90, 2.15)$. Exact-UIPQ sampling stays queued (free-walk
+labels are not conditioned well-labeled trees); Lloyd is excluded from
+spectral comparison (unclipped relaxation coalesces points above
+$N \approx 1600$).
+gated-wall negative control keeps ${\sim}r^2$ balls with collapsed
+cuts; rewired-grid fragility control plus rewiring-fraction sweeps
+give measured $N^*_{\rm med} = (20,10,10)$ at $L = 40/60/80$ ($N^* =
+O(1)$ consistent, $\alpha \simeq 0$ over the tested range; asymptotic
+$f^* \to 0$ hypothesis) with hand-placed dose-response dissolving the
+placement lottery. RG blocking ($2{\times}2$, L40 $\to$ 5) flows
+rewired long-edge density $0.013 \to 0.31$ against plain $0.0$
+(rough $y_\lambda \approx 1.5$). Headline: low-dimensional locality is not generic;
+it must be protected — vacuum as a dynamically protected locality
+class whose preservation ($U(G_{\rm vac}) \in \mathcal C_{\rm vac}$,
+self-healing vs amplification under shortcut injection) is now a D1
+falsifier. BFS
 first-passage is hop distance, so this control is static geometry, not
 propagation. Open stages: (1) $U \to T_U, \prec_U$ via
 counterfactual-influence arrival times; (2) observed cone under the
@@ -588,7 +618,7 @@ $(\prec_U, V_U, M_O)$, where the spacetime-volume observable $V_U$
 defined --- spatial $V(r)$ is reachability, not event volume. Malament's
 theorem is motivation conditional on the continuum correspondence (order
 fixes the conformal class; $V_U$ the factor), not an earned mapping.
-Reproduce: \path{pytest tests/test_scrambling.py -q}.
+Reproduce: \path{pytest tests/test_scrambling.py tests/test_substrate_family.py tests/test_spectral.py -q}.
 
 \textbf{Dynamics coherence (C1--C5, over-arching).} $M_O \circ U \simeq
 U_{\mathrm{eff}} \circ M_O$ in five levels: coherence $\to$ locality

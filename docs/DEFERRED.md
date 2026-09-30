@@ -10,6 +10,18 @@ D1) is unrelated to DEFERRED-D2 (Kerr multipoles); `docs/model.md` always
 writes the module name. `supplement.tex` S1/S3 still uses bare (D2) for both —
 flagged for the paper flow (needs PDF rebuild).
 
+## Program pipeline (P0'/D10/D1/D13/D12 + commutation)
+
+Vacuum graph family → graph-internal admissible `M_O` → 2+scale → 3
+reconstruction → explicit `U` → `δ_U(s,v;n)` → `V_U(n)`, `≺_U` →
+same frozen `M_O` → observed causal geometry → `M_O U ≃ U_eff M_O`.
+Division of labor: P0' identifies the vacuum connectivity class; D10
+asks why observers reconstruct 3D from it; D1 asks what dynamics
+preserves/evolves it; D13 asks whether that dynamics generates causal
+time; D12 asks whether the reconstruction is universal;
+`M_O U ≃ U_eff M_O` asks whether the whole construction becomes
+autonomous spacetime physics.
+
 ## D1 — Evaporation isometry V_k (Page/QES) — P0 next cycle
 
 **Missing:** unitary/isometric evaporation map from graph dynamics:
@@ -26,7 +38,39 @@ graph instance: derive `V_k` from graph dynamics, not merely choose one.
 Scope note (D13): D1's dynamics now also gates emergent time itself
 (update rule → causal order → cone → clocks), not just evaporation/QES.
 D13-input desideratum (not a close criterion): candidate `U` should be
-local and fabric-compatible so D13 stage 1 can run on it.
+local and fabric-compatible so D13 stage 1 can run on it. Stabilizer
+question (rewire sweep): what dynamics keeps the `d_G ≃ 2` phase
+stable against shortcut proliferation (`N* ∼ O(10)` flat in L)?
+Preservation target: `U(G_vac) ∈ C_vac` — microscopic evolution may
+fluctuate (`G_n ≠ G_{n+1}`) while the IR class stays invariant
+(`[G_n]_IR = [G_{n+1}]_IR ∈ C_vac`): vacuum as invariant dynamical
+universality class. Then `M_O` quotienting irrelevant fluctuations
+gives `M_O(G_n) ≃ M_O(G_{n+1})` — stable vacuum atop a changing
+graph (the commutation link). Falsifier protocol (gated on U):
+evolve `G_0 → G_1 → …` from `G_vac` and require `G_n ∈ C_vac ∀n`
+in equilibrium, up to fluctuations — operationally `⟨Λ⟩_U` in the
+vacuum basin for a locality functional Λ (candidates: window-p;
+N* itself; distance-to-C_vac; Λ undefined — open). Then inject
+shortcuts (`G → G + δG_shortcut`) and watch: persist/amplify kills
+the candidate; `δG_shortcut → G_vac` (self-healing) means locality
+is an attractor — no perfectly local vacuum graph need be
+postulated. Statistical form (stochastic/quantum U): ensemble
+concentration `P_U(G ∉ C_vac) → 0` in the IR limit — vacuum as
+dynamical phase (this licenses "phase"; no rewiring phase
+transition is claimed). Acquired constraint: find a simple U for
+which locality, unitarity/information conservation, and the vacuum
+structure are simultaneously natural. Stability tournament
+(QUEUED behind U, protocol fixed on review): initialize EVERY
+Tier-1 candidate (triangular, hex, square, Delaunay, Gabriel, …)
+and evolve under EXACTLY the same U; measure escape
+P(U^t G ∈ C_vac) per candidate — vacuum selection as attractor /
+stationary ensemble (P_U(G) = P_U(U(G))), not static p. Healing
+battery: apply the same normalized damage to each candidate
+(shortcut injection, edge deletion, degree defect, bottleneck,
+plug insertion) and measure relaxation τ_heal(G, δG) under U —
+candidates identical in equilibrium may differ sharply in
+locality restoration. Selection rule (conceptual):
+G_vac = argmax stability of the M_O-equivalence class.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
@@ -188,6 +232,124 @@ Leading 2D+scale candidate mechanism: scale multiplicity `n_s(r) ∝ r`
 profile — linear-vs-log must be measured, not assumed (essay §8).
 `emergent_dim` protocol +
 two-distance bracket ready; shell no-emergence pin shows what failure looks like.
+`M_O` formal upgrade (adopted): observer `O` is defined by a
+graph-internal accessible observable algebra `A_O(G)`; observational
+equivalence `G_1 ~_O G_2 ⟺ A(G_1) = A(G_2) ∀A ∈ A_O`, and
+`M_O(G) = [G]_{~_O}` — an operational quotient, not a free
+graph-to-manifold embedding (a clever-enough free map could make
+anything look 3D). Admissibility requires all five: (1) graph-internal
+(no target dimension, coordinates, metric, GR quantity, or desired
+phenomenology in the definition); (2) permutation-covariant
+(relabeling cannot change reconstructed physics); (3) coarse-graining
+stable (`A_O`-invisible perturbations don't move the macroscopic
+reconstruction); (4) operational (every quantity obtainable by
+interactions available to `O`); (5) frozen rule (state-independent
+prescription). `V_O(R) ~ R³` is an output test, never an input:
+admissible-from-graph-internal-criteria ⟹ measure `d_obs`, not the
+reverse. Substrate family (D13.0, MEASURED): triangular/hexagonal
+positive controls reproduce `d_G → 2` with lattice-dependent
+prefactors under one frozen measurement rule; gated-wall negative
+control keeps bit-identical `~r²` balls with collapsed cut capacity —
+`d_G ≃ 2` is not sufficient for channel scaling. Killer result queued:
+same frozen `M_O` → `d_obs → 3` on every positive family member
+(per-`M_O` tuning proves nothing). Vacuum-class sketch (from the
+rewire sweep): degree sequence fixed does NOT imply 2D information
+geometry — ~20 swaps in 3120 edges take V(14) 421 → ~909 with p ~ 2.6.
+Candidate mesoscopic characterization: `G_vac ∈ C_2 ⟺ V_G(r) ~ r²`
+over an expanding pre-boundary regime — but this risks circularity
+(P0' says "vacuum is 2D"; defining vacuum graphs as "graphs whose
+balls are 2D" defines the result). The primitive property sought is
+absence of sufficiently long-range shortcuts, to be formulated via
+graph-internal hierarchy, not coordinates (shortcut-absence
+hypothesis, open). Sweep results (L=30/40/60, 5 seeds): few swaps
+inflate (p > 2, placement lottery — typically 4/5 seeds rise by
+ns=20), many swaps saturate (p → 0); N* (first ns with p > 2.2) has
+median ≤ 40 at every L — O(10) shortcuts regardless of size (α ≈ 0
+on L=30..60, fixed window). Scaled windows LANDED (L=40/60/80, [0.15L,0.35L]). Bookkeeping:
+MEASURED — N*_med = (20,10,10); INFERENCE supported — N* = O(1)
+consistent (α ≈ 0 over the tested range; rejects N* ∝ |E| there);
+HYPOTHESIS — asymptotic f* = N*/|E| → 0. Headline: low-dimensional
+locality is not generic; it must be protected. Working gloss (not a
+new postulate): vacuum is a dynamically protected low-dimensional
+information-locality class — something P0' + D1 must eventually
+explain. Shortcut density is a candidate RG-relevant perturbation
+(y_λ > 0? — investigation, not established). First RG-blocking
+measurement SUPPORTS relevance: 2×2 blocking (L40 → 5) keeps
+plain-grid long-edge fraction exactly 0.0 at every level while
+ns=20 rewired flows 0.013 → 0.044 → 0.14 → 0.31 (>1.8× per step,
+every seed; rough y_λ ≈ 1.5 from 24× over 3 steps). Long COUNT
+falls (40 → ~18, some merge into short edges) while the DENSITY
+rises 24× — the density is the relevant quantity. y_λ ≈ 1.5 is a
+first estimate, not a quoted exponent (one blocking scheme, one f). Within-L caveat: at fixed
+absolute ns the departure peaks mid-window and dilutes outward —
+the relevance statement is f* → 0, not within-L growth. Small
+systems saturate while large still inflate (ns=320: L=30 p < 1 <
+2.5 < L=60 p). No sharp jump seen: smooth crossover with extreme
+small-f sensitivity. Two emergence problems, kept separate (essay
+§8): L0 locality (P0' + D1 — why U maintains a low-dimensional
+connectivity class) vs observer dimensionality (D10 + D12 — why M_O
+reconstructs 2+scale as 3D). Tier-1 substrate filing (universality
+class, not lattice luck): Poisson-Delaunay (PINNED,
+test_substrate_family.py) — planar, mean degree 5.97, shells ≈ 8n, linear cuts
+(R² > 0.996), p ≈ 1.92..2.06, survives q = 0.10 deletion, dies on
+20 swaps (p ≈ 2.50..2.67); Delaunay-medial quadrangulation (PINNED)
+— 4-regular interior reproduces d_G → 2, so quad vs
+triangulation does not select the dimension. Schaeffer-exact-UIPQ:
+ATTEMPTED, FAILED with diagnosis — free-walk-plus-shift labels are
+not conditioned well-labeled trees (post-hoc shift ≠ Doob
+conditioning; root label free instead of 1; min->1 labelings only),
+so the sampler never was uniform over well-labeled trees; the
+observable symptom is parallel-edge concentration collapsing the
+map origin to a degree-1 leaf (shells[1] = 1 all seeds) with
+seed-unstable bulk p (1.69..3.24 at n=2000). Exact-Brownian
+benchmark stays QUEUED behind the conditioned-labels sampler
+(mobiles/BDFG route); the medial quad carries quadrangulation
+evidence meanwhile. Lloyd-relaxed Delaunay (PINNED, iters=20 converged:
+p = 1.91/2.08; Lloyd5 seed-0 p ≈ 2.3 was under-relaxation
+artifact) and Gabriel/k-NN graphs (PINNED: connected, p ≈
+1.92..2.02, linear cuts; Gabriel strictly sparser at ~2/3
+Delaunay edges) plus short-only rewire (PINNED: span ≤ 2 swaps
+keep p ≈ 1.77..1.96 at ns=20/80 — the rewire kill comes from
+span, not rewiring as such). Ensemble ontology (ADOPTED on
+review): Tier-1 degeneracy across topology/degree/order is the
+EXPECTED signature, not a missing discriminator —
+G_△ ∼_O G_hex ∼_O G_□ ∼_O G_Del ∼_O G_Gabriel is positive
+universality evidence. The physical object is the class [G]_{~_O}
+(prospectively the dynamical class [G]_{U,O}), possibly an
+ensemble E_vac = {G : P_vac(G)} rather than one graph;
+Poisson-Delaunay is frozen as REFERENCE MEMBER (gauge choice for
+reproducibility), never "the" vacuum. Companion principle to the
+five admissibility criteria: don't put information into the
+vacuum that observation doesn't require — crystalline candidates
+smuggle unrequested long-range order; the max-entropy program
+(P(G|C_vac) ∝ e^{-λI(G)}, derive the typical graph from the
+constraints) is QUEUED behind formulating the C_vac constraint
+set without circularity (shortcut-absence still open). Spectral
+leg (MEASURED, test_spectral.py): heat-trace d_s(t) on the
+boundary-free 60×60 torus holds (1.95, 2.05) over t ∈ [10,100]
+(method anchor — finite-size falloff only past t ~ 150); Weyl
+counting fits land every Tier-1 member in one band (1.90, 2.15):
+torus 2.049, open 1.947, tri 2.018, hex 1.983, Delaunay 2.103,
+Gabriel 2.021, k-NN 1.926, medial 1.931. k-NN's 1.514 at N=1600
+is a slow diffusive-crossover transient (clustering traps), not
+a split — converges up with N as Delaunay converges down
+(2.223 → 2.103). Lloyd EXCLUDED from spectral comparison: the
+unclipped relaxation coalesces points above N≈1600 (mean degree
+1.52 at N=6400/iters=20, 0.04 at iters=80 — degenerate input,
+not physics); boundary-clipped Lloyd queued. d_s is now the
+second universality leg beside d_H;
+diffusion-anisotropy precursor (second-moment tensor of K(t))
+SUPERSEDED by measurement: covariance is blind to 4-fold
+(square-lattice heat is x↔y symmetric → A ≡ 0 exactly while
+diamonds persist); angular-4-fold-power F4 replacement shows
+lattice F4 already < 0.01 by t=10 (fast CLT isotropization)
+while Poisson-fabric F4 sits at fluctuation level 0.01..0.11
+with square-box boundary imprint at large r — no clean IR
+discriminator at these scales. Fair lattice-vs-fabric IR
+comparison (F4-decay exponents at matched radius) queued behind
+toroidal point-set builds + the D13.5 propagation law; NOT
+pinned. It pre-registers the minimize-preferred-frame criterion
+for D13 as a questioned precursor, not evidence.
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
 matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the
@@ -242,18 +404,36 @@ stands: why resistance / diffusion / communicability distance, and why
 couldn't another reasonable reconstruction give 4D, 7D, or no smooth
 geometry at all?
 
-**Close criterion:** define `A_macro(G)` = {`M_O` : graph-internal
-admissibility/access criteria satisfied} — the access floor is part of
-the definition (a single-node "observer" recovers nothing), and neither
-"3D" nor "Lorentzian" may occur in it. Target: ∀ `M_O ∈ A_macro(G)`,
-`M_O(G) ∼ M` up to coordinate/coarse-graining equivalence.
+**Close criterion:** `A_macro(G)` = {`M_O(G) = [G]_{~_O}` : `A_O`
+satisfies the five admissibility criteria (graph-internal,
+permutation-covariant, coarse-graining stable, operational, frozen
+rule — D10)}. The access floor is part of the definition (a
+single-node "observer" recovers nothing); `V_O ~ R³` is the output
+test, never an input. Target: ∀ `M_O ∈ A_macro(G)`,
+`M_O(G) ∼ M` up to coordinate/coarse-graining equivalence. P4 audit
+(uniform Ollivier, `orici`, p=0): (1) graph-internal PASS (uniform
+neighborhood measures + hop metric; no coordinates or target
+dimension); (2) permutation-covariant PASS + TEST (relabeling leaves
+the κ multiset unchanged); (3) coarse-graining stable PASS on flat and plug backgrounds
+(single-edge flip moves κ only within 3 hops, far drift < 1e-9 —
+measured modulus); (4) operational
+PARTIAL (EMD computable from neighborhood data in principle, but
+global-EMD + full-neighborhood readout exceeds local-observer access —
+needs access-cost accounting); (5) frozen rule PASS (p=0 uniform
+prescription is state-independent).
 Partial-credit ladder:
 (i) criterion stated + non-circularity argued; (ii) two instances agree on
 vacuum fabric; (iii) agreement extends to tensed regions (fingerprint
 shape under both). Prerequisite (fiber control): verify `M_O`
 preimages exist at the reconstruction resolution — distinct
 `G_a ≠ G_b` sharing a macro-state — else C3's twin-histories test is
-untestable.
+untestable. Dynamical extension (on review): once D1 exists the
+universality object upgrades from `[G]_{~_O}` to the dynamical
+class `[G]_{U,O}` — microscopic graphs may fluctuate
+(`G_1 → G_2 → …`) while `M_O(G_1) ≃ M_O(G_2)`; Tier-1
+indistinguishability is then exactly what emergence predicts, and
+the vacuum measure over graphs (or its dynamical universality
+class) replaces the winning tessellation as the derivation target.
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
@@ -275,23 +455,49 @@ toward 2 with radius (1.9196 → 1.9603 fractional); plus the plug sign
 pattern (35<38 hops vs +5.0 weighted) as pre-registration for stage 1.
 Briefly filed as stage 1, demoted on review: first-passage here *is*
 hop distance — compatibility with a cone is not observation of one.
-Second substrate family (hexagonal/noisy-regular) queued to de-brittle
-the control.
+Substrate family MEASURED (de-brittling landed): triangular (shells
+6n, cuts 12r+6) and hexagonal (shells 3n, alternating cut law)
+positive controls reproduce `d_G → 2` with lattice-dependent
+prefactors under one frozen rule; gated-wall negative control keeps
+bit-identical `~r²` balls with collapsed cuts. Noisy-grid disorder
+control MEASURED (q=0.10 edge deletion: jittered shells, `p = 1.909`,
+linear cuts — statistical pins, no lattice law); rewired-grid
+fragility control MEASURED (20 degree-preserving swaps: identical
+degrees, balls accelerated past `~r²` — V14 ~909 vs 421, `p ~ 2.6` —
+the opposite failure from gated-wall bottlenecks).
 
-**Close criterion (staged, all open):** (1) `U → T_U, ≺_U`: stated local
-update rule + counterfactual-influence arrival times (OTOC-threshold
-form, ε-robust cone speed) and derived causal order (never adjacency
-repackaged); (2) `(≺_U, M_O) → cone`: observed causal cone compatible
+**Close criterion (staged):** (1) `U → T_U, ≺_U`: stated local
+update rule + counterfactual-influence machinery:
+`δ_U(s,v;n) = D(R_v[X_n^{(s)}], R_v[X_n])` from a do-intervention at
+`s` (minimal standardized perturbation; graph, `U`, boundaries, and
+noise realization held fixed — paired randomness for stochastic `U`),
+influence ball `B_U(s,n;ε)` with `V_U(s,n;ε) = |B_U|` plus integrated
+`Ṽ_U(s,n) = Σ_v f(δ_U)` so ε-sensitivity is signal, not embarrassment
+(`D`, `f` unfrozen); `V_U ≠ V_BFS` by construction. Order
+`s ≺_U (v,n)` from intervention, not correlation. Required controls:
+null (no intervention → δ = 0), disconnected (paths cut → δ = 0),
+speed-limit (radius-`q` `U`: `d_hop > qn` → δ = 0) — the last giving
+analytic `C_U^max` against which measured `C_U^influence` can be
+narrower; (2) `(≺_U, M_O) → cone`: observed causal cone compatible
 with the *same* `M_O` producing `R³`, order-dimension agreeing with
 `d_eff` (1+3 output, not input); (3) clocks: internal-cycle clock with
 `dτ/dt(χ)` reproducing the T9 profile from capacity/congestion,
 unimported; (4) interval: `g_μν` from `(≺_U, V_U, M_O)`
-(Malament-shaped: order fixes the conformal class, spacetime-volume
-observable `V_U` — e.g. calibrated event counts in causal diamonds,
-independently defined — fixes the factor; spatial `V(r)` is
-reachability, not event volume) reproducing the T8–T11 battery. Each
+(Malament-shaped: order fixes the conformal class, the stage-1
+influence volume `V_U` (event counts in causal balls) fixes the
+factor; spatial `V(r)` is reachability, not event volume) reproducing the T8–T11 battery. Each
 stage closes independently; GR is
-the check, never the input, and only at stage 4.
+the check, never the input, and only at stage 4. (5) dispersion /
+isotropy (QUEUED behind a local propagation law): same law on all
+Tier-1 candidates, measure `ω(k)` — IR `ω² = c²k² + a_4k⁴ + …`,
+angular `c(θ)`, anisotropy/birefringence-like corrections;
+selection criterion minimize-observable-preferred-frame-structure
+under coarse-graining (variational form: maximize macroscopic
+symmetry subject to minimum microscopic structure). Static
+precursor runnable now: diffusion-anisotropy tensor of `K(t)`
+(D10 spectral leg). Tier-2 static members (Kagome/Dice, Penrose,
+stealthy HU) CANCELLED per direction: Tier-1 already spans
+topology × degree × order, further static d_G adds no axis.
 
 **Over-arching falsifier (C1–C5, essay §8):** `M_O ∘ U ≃ U_eff ∘ M_O`
 with coherence → locality → autonomy → universality → GR limit, each
