@@ -277,7 +277,24 @@ systems saturate while large still inflate (ns=320: L=30 p < 1 <
 small-f sensitivity. Two emergence problems, kept separate (essay
 §8): L0 locality (P0' + D1 — why U maintains a low-dimensional
 connectivity class) vs observer dimensionality (D10 + D12 — why M_O
-reconstructs 2+scale as 3D).
+reconstructs 2+scale as 3D). Tier-1 substrate filing (universality
+class, not lattice luck): Poisson-Delaunay (spiked, builder+pin
+queued) — planar, mean degree 5.97, shells ≈ 8n, linear cuts
+(R² > 0.996), p ≈ 1.92..2.06, survives q = 0.10 deletion, dies on
+20 swaps (p ≈ 2.50..2.67); Delaunay-medial quadrangulation (spiked,
+confirmed) — 4-regular interior reproduces d_G → 2, so quad vs
+triangulation does not select the dimension. Schaeffer-exact-UIPQ:
+ATTEMPTED, FAILED with diagnosis — free-walk-plus-shift labels are
+not conditioned well-labeled trees (post-hoc shift ≠ Doob
+conditioning; root label free instead of 1; min->1 labelings only),
+so the sampler never was uniform over well-labeled trees; the
+observable symptom is parallel-edge concentration collapsing the
+map origin to a degree-1 leaf (shells[1] = 1 all seeds) with
+seed-unstable bulk p (1.69..3.24 at n=2000). Exact-Brownian
+benchmark stays QUEUED behind the conditioned-labels sampler
+(mobiles/BDFG route); the medial quad carries quadrangulation
+evidence meanwhile. Lloyd-relaxed Delaunay (hyperuniformity
+tightening hypothesis) and Gabriel/k-NN graphs: queued, spiked next.
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
 matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the
