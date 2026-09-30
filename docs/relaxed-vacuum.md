@@ -493,7 +493,18 @@ and filed as questioned, not evidence: covariance is exactly
 blind to 4-fold (lattice heat is x↔y symmetric), and the angular
 replacement shows fast lattice isotropization against
 fluctuation-level fabric noise with box-boundary imprint — no
-clean IR discriminator at reachable scales.
+clean IR discriminator at reachable scales. Update-rule search
+(D1, first pass, closed): six rules tournamented against shortcut
+damage — null persists, scramble kills (297 longs), greedy-twin
+games `p` (1e-6) while tripling longs (30 → 88), local guillotine
+stalls on provably locked configs (30 → 6), drift leaks (→ 22),
+annealing trades `p` for longs, edge-slide best (→ 5) with `p`
+frozen — so single-move local dynamics cannot restore locality,
+and the falsifier must judge (`p`, longs) jointly. Tail exponent
+(D11, closed): tension-dependent (`χ~1 → 1/r²`, `χ~2 → 1/r`,
+`χ~5` bounded-open). κ-profile (D10b, closed): disk plug
+confirms the interface pattern. Observer-indexed `M_O(G,o)`
+filed (vantage-covariance axis); static depth bake-off negative.
 
 **Why this could work (grounding).** Malament's theorem: causal order fixes
 the conformal class (on distinguishing spacetimes); volume — or a time

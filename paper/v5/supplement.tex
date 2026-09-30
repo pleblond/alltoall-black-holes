@@ -34,9 +34,10 @@ upper-gap null & no feature at $44\,M_\odot$ & negative prediction (measured smo
 GW190814 & $P(\mathrm{detect}) \approx 0.68$--$0.88$ & tension, POSSIS queued (D7) & non-detection at $p \sim 0.12$--$0.32$; epoch audit in \texttt{massgaps} \\
 vacuum P0' & isostatic 2D, $\langle z\rangle = 4$ & postulated (v0.6) & BH = max-tension extreme; $d_I = 2$ predicted; $M_O$ reconstruction \\
 $d_{\mathrm{eff}}$ protocol & $d\ln V/d\ln r$ bracket & measured (25 tests) & shortest below + diffusion above on lattices; shells fail (S11) \\
-D10 tension map & GR dip/overshoot/$\to3^+$ & GR computed; graph open & bare shortest-path rejected (inverted); weighted costs queued \\
-D12 reconstruction & $\forall M_O \in \mathcal{A}_{\mathrm{macro}}$ same IR & open program & access floor + non-circularity; P4 audit 1,2,3,5 pass, 4 partial \\
+D10 tension map & GR dip/overshoot/$\to3^+$ & GR computed; graph open & bare shortest-path rejected (inverted); D11 tail tension-dep.\ ($\chi$1 $1/r^2$, $\chi$2 $1/r$); $\kappa$-profile closed (disk confirms) \\
+D12 reconstruction & $\forall M_O \in \mathcal{A}_{\mathrm{macro}}$ same IR & open program & access floor + non-circularity; P4 audit 1,2,3,5 pass, 4 partial; vantage axis filed; static depth negative \\
 D13 causal order & D13.0 control measured; stages 1--4 open & static control measured (S11) & $V_G$, $8r{+}4$ law; family (tri/hex/Del/Lloyd/Gab/kNN/medial +, gated-wall/rewired $-$); sweep: N* O(1) range, f*→0 hypoth.; spectral $d_s$ band; twins C3 \\
+$U$-rule search & locality protection by $U$ & tournament open; single-move insufficient & 6 rules stall w/ residual longs; ($p$,longs) joint falsifier; $p$-healing gameable \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
@@ -544,7 +545,12 @@ mass stretches rulers. Costs must be congestion-weighted (D10b gates D10a),
 consistent with the light sector ($c_{\mathrm{eff}} \to 0$, tortuosity), which
 never counts hops. Companion pin: far-source near balls ($r = 2$--$6$) are
 bit-identical to control --- relaxed fabric next to tension measures exactly
-relaxed.
+relaxed. Far-field tail (D11, closed): $\chi{\sim}1$ decays $1/r^2$
+($E{\cdot}r^2$ flat to $10R_c$), $\chi{\sim}2$ decays $1/r$ ($E{\cdot}r$
+flat to $10R_c$), $\chi{\sim}5$ bounded but unsettled --- the exponent is
+tension-dependent. $\kappa$-profile (D10b, closed): corner-free disk plug
+reproduces the boundary-negative/core-positive pattern quantitatively
+($+0.90$/$-0.86$/$0.00$ vs clique $+0.89$/$-0.93$/$\sim$0).
 
 \textbf{GR fingerprint (D10 target, computed).} Weak-field uniform star, proper
 balls of proper radius $l$: $d_{\mathrm{eff}} \approx 2.990$ at $l = 30M$
@@ -570,7 +576,10 @@ credit runs criterion stated $\to$ two instances agree on vacuum $\to$
 agreement extends to tensed regions. P4 (uniform Ollivier) audited
 against the five: criteria 1, 2, 3, 5 pass (permutation-covariance
 and drift-localization tested, the latter on flat and plug
-backgrounds), 4 partial.
+backgrounds), 4 partial. Observer-indexed extension filed
+($M_O(G,o)$: sky chart + relational depth, vantage-covariance as a
+second universality axis); static depth bake-off negative (best
+principled $d_{\mathrm{obs}} = 2.28$ vs tuned-null $2.73$).
 
 \textbf{Staged causal order (D13).} Time undergoes reconstruction exactly
 as space does: the microscopic update index $n$, the causal order
@@ -618,7 +627,13 @@ $(\prec_U, V_U, M_O)$, where the spacetime-volume observable $V_U$
 defined --- spatial $V(r)$ is reachability, not event volume. Malament's
 theorem is motivation conditional on the continuum correspondence (order
 fixes the conformal class; $V_U$ the factor), not an earned mapping.
-Reproduce: \path{pytest tests/test_scrambling.py tests/test_substrate_family.py tests/test_spectral.py -q}.
+Companion constraint on $U$ (D1, first pass): six update rules
+tournamented against shortcut damage all stall with residual longs
+(best: slide rule, 30 $\to$ 5) while $p$-healing proves gameable
+(greedy perfects $p$ to $10^{-6}$ while tripling longs) --- locality
+protection needs coordinated moves or new physics, judged on
+($p$, longs) jointly.
+Reproduce: \path{pytest tests/test_scrambling.py tests/test_substrate_family.py tests/test_spectral.py tests/test_update_rule.py -q}.
 
 \textbf{Dynamics coherence (C1--C5, over-arching).} $M_O \circ U \simeq
 U_{\mathrm{eff}} \circ M_O$ in five levels: coherence $\to$ locality

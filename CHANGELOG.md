@@ -3,6 +3,12 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased** — D1 update-rule tournament (harness + 6 rules; single-move
+  insufficiency verdict; (`p`, longs) joint falsifier); D10a derivation
+  negatives (walk anti-tortuosity, residence α≈0.78); D11 tail closed
+  (tension-dependent exponent); D10b κ-profile closed (disk confirmation);
+  observer-indexed `M_O` filed + static depth bake-off negative.
+  475 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form
