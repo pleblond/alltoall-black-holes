@@ -535,3 +535,48 @@ def test_pair_fully_heals_triangular():
     assert total_longs(h, 3, 2) == 0
     assert abs(traj[-1] - plain) < 1e-9, (traj[-1], plain)
     assert nx.is_connected(h)
+
+
+def test_hex_floor_is_unhealable_leaf_edges():
+    # The hex 2-long plain floor (radius 5, smax 5) is two LEAF-anchored
+    # edges (degree-1 endpoints: no detour can ever exist, at any
+    # radius) -- a permanent census floor, not damage. Interior census
+    # (excluding leaf-anchored edges, a graph-internal mask stable
+    # under degree-preserving swaps) reads 0 on plain. The rule itself
+    # is unfazed: guillotine10 takes 0 accepts (no both-short repair
+    # exists for leaf edges, correctly).
+    from bh_graph.graphs import build_hex_lattice
+    from bh_graph.update_rule import edge_span, rule_guillotine, total_longs
+
+    g = build_hex_lattice(20)
+    floor = [(u, v) for u, v in g.edges() if edge_span(g, u, v, 5) > 5]
+    assert len(floor) == 2
+    assert all(g.degree(u) == 1 or g.degree(v) == 1 for u, v in floor)
+    interior = sum(
+        1 for u, v in g.edges()
+        if edge_span(g, u, v, 5) > 5 and g.degree(u) > 1 and g.degree(v) > 1
+    )
+    assert interior == 0
+    src = next(iter(g.nodes()))
+    _, h, acc = evolve(g, rule_guillotine, 10, seed=5, src=src, radius=5, max_span=5)
+    assert acc == 0, acc
+    assert total_longs(h, 5, 5) == 2
+
+
+def test_guillotine_heals_hex_toward_floor():
+    # Hex damage (54 longs @radius5/smax5) heals 54 -> 17 over 300
+    # guillotine steps (acc 17, connected) -- grinding toward the
+    # leaf floor of 2, same partial-healing signature as square
+    # (30 -> 6) and triangular (24 -> 13): single-swap repair works
+    # everywhere, completes nowhere (except via coordination).
+    from bh_graph.graphs import build_hex_lattice
+    from bh_graph.update_rule import rule_guillotine, total_longs
+
+    g = build_hex_lattice(20)
+    src = next(iter(g.nodes()))
+    dam = inject_shortcuts(g, 10, 3)
+    assert total_longs(dam, 5, 5) == 54
+    _, h, acc = evolve(dam, rule_guillotine, 300, seed=5, src=src, radius=5, max_span=5)
+    assert acc == 17, acc
+    assert total_longs(h, 5, 5) == 17, total_longs(h, 5, 5)
+    assert nx.is_connected(h)

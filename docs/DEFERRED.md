@@ -235,6 +235,15 @@ degree ~6) pair600 ALONE clears 24 → 0 (acc 13, p reads plain to
 1e-9 — full (p, longs) healing, no decoupling residual), where
 square needs the triple endgame after pair600 → 1: more straddling
 partners per long edge lower the required coordination order.
+HEX FLOOR RESOLVED (MEASURED, test_update_rule.py): the 2-long
+plain floor is two LEAF-anchored edges (degree-1 endpoints — no
+detour can ever exist at any radius), a permanent census floor,
+not damage; the interior census (leaf-anchored edges excluded —
+graph-internal mask, swap-stable) reads 0 on plain, and the rule
+is unfazed (guillotine10 takes 0 accepts). Healing works:
+guillotine300 takes hex damage 54 → 17 toward the floor —
+single-swap repair now partial everywhere (square 30 → 6, tri
+24 → 13, hex 54 → 17), complete nowhere without coordination.
 BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
 locality should characterize STABLE STATES of U, not appear in U's
 objective function. The D1 verdict sharpens: direct microscopic
