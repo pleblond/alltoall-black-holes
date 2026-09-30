@@ -148,15 +148,21 @@ def excess_stats(g: nx.Graph) -> dict:
     return {"lambda": lam, "ebar": ebar, "elong": sum(le) / max(len(le), 1), "fabfid": fid}
 
 
-def _long_prices_spans(gw: nx.Graph, gplain: nx.Graph):
-    """Shared endpoint-BFS: (n_edges, [(L, d0-span)]) over long edges."""
+def _long_records(gw: nx.Graph, gplain: nx.Graph):
+    """(n_edges, [(u, v, L, d0-span)]) over span>1 edges; endpoint BFS."""
     E = list(gw.edges(data=True))
-    longs = [(float(d.get("L", 1.0)), a, b) for a, b, d in E if _manhattan(a, b) > 1]
+    longs = [(a, b, float(d.get("L", 1.0))) for a, b, d in E if _manhattan(a, b) > 1]
     if not longs:
         return len(E), []
-    ends = {n for _, a, b in longs for n in (a, b)}
+    ends = {n for a, b, _ in longs for n in (a, b)}
     dist = {s: dict(nx.single_source_shortest_path_length(gplain, s)) for s in ends}
-    return len(E), [(L, dist[a][b]) for L, a, b in longs]
+    return len(E), [(a, b, L, dist[a][b]) for a, b, L in longs]
+
+
+def _long_prices_spans(gw: nx.Graph, gplain: nx.Graph):
+    """Shared endpoint-BFS: (n_edges, [(L, d0-span)]) over long edges."""
+    nE, recs = _long_records(gw, gplain)
+    return nE, [(L, s) for _, _, L, s in recs]
 
 
 def pricing_flow_stats(gw: nx.Graph, gplain: nx.Graph) -> dict:
@@ -200,3 +206,45 @@ def phi_stats(gw: nx.Graph, gplain: nx.Graph) -> dict:
         "etas": etas,
         "mean_inv_eta": sum(1 / e for e in etas) / len(etas),
     }
+
+
+def knot_block_mask(knot_nodes, k: int) -> set:
+    """Block-image of a planted knot mask after k 2x2 blocking levels."""
+    f = 2**k
+    return {(x // f, y // f) for x, y in knot_nodes}
+
+
+def radial_eta_profile(gw: nx.Graph, gref: nx.Graph, knotmask, bins: dict) -> dict:
+    """r_O-binned eta stats for the planted-knot pilot (frozen rule).
+
+    r_O(x) = min d_ref(x, knotmask) via one super-node BFS on gref
+    (the RULER graph -- background plain for eta_0, plain+knot for
+    eta_K; weak links belong in NEITHER ruler). Longs with both
+    endpoints in the mask are "interior" (excluded from weak bins);
+    the rest bin by min endpoint r_O. Returns per-bin (n_longs,
+    n_viol, phi), interior ditto, per-edge spans {(u,v): d_ref}
+    (sorted keys; eta_K/eta_0 = d_K/d_0 per edge, L cancels),
+    per-edge bin labels, and weak records [(u,v,L,span)].
+    """
+    h = gref.copy()
+    h.add_node("SUPER")
+    for z in knotmask:
+        if z in h:
+            h.add_edge("SUPER", z)
+    dh = dict(nx.single_source_shortest_path_length(h, "SUPER"))
+    r = {n: dh[n] - 1 for n in gref.nodes()}
+    _, recs = _long_records(gw, gref)
+    weak = [rc for rc in recs if not (rc[0] in knotmask and rc[1] in knotmask)]
+    inter = [rc for rc in recs if rc[0] in knotmask and rc[1] in knotmask]
+    out: dict = {"bins": {}, "interior": {}, "spans": {}, "bin_of": {}, "records": weak}
+    for name, (lo, hi) in bins.items():
+        sel = [(u, v, L, s) for u, v, L, s in weak if lo <= min(r[u], r[v]) <= hi]
+        nv = sum(1 for _, _, L, s in sel if L < s)
+        out["bins"][name] = {"n_longs": len(sel), "n_viol": nv, "phi": nv / max(len(sel), 1)}
+        for u, v, _, _ in sel:
+            out["bin_of"][tuple(sorted((u, v)))] = name
+    nv = sum(1 for _, _, L, s in inter if L < s)
+    out["interior"] = {"n_longs": len(inter), "n_viol": nv, "phi": nv / max(len(inter), 1)}
+    for u, v, _, s in weak:
+        out["spans"][tuple(sorted((u, v)))] = s
+    return out

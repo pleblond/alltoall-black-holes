@@ -60,7 +60,10 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   RG-protected, no pumping needed; knot-env phase 2 queued).
   Phi-apparatus validated (Phi-slice + tolerance contour pinned,
   distribution-over-mean exhibit, non-monotone washout).
-  528 tests.
+  Knot pilot done (dual ruler + r_O bins; campaign reproduced
+  bit-identically, metric bubble, no bundle mixing, ruler-trap
+  rule; Delta-y_w needs w-dynamics).
+  529 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

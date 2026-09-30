@@ -1307,7 +1307,30 @@ washout NON-MONOTONE (ns=5/Lw=10 violfrac 0.0032→0.0065→0:
 concentration before washout; nV monotone ↓); tolerance
 contour TOL=2/760 crossed at k=3 (ns=20/Lw=10), k=2
 (ns=5/Lw=10), never for Lw=1/Lw=3 — measurement chain green
-before any U-run depends on it. P0' RESTATEMENT (conditional — model.md NOT rewritten:
+before any U-run depends on it. KNOT PILOT (MEASURED,
+test_weighted.py — apparatus + null, NOT the Delta-y_w test):
+planted 5x5 clique, ns=20/Lw=10, dual ruler + r_O bins (frozen
+super-node rule, block-imaged mask). Weak Phi_0 global =
+36/40,23/35,5/30,0/18 BIT-IDENTICAL to campaign (reduction
+passes; null as constructed — frozen eta_0 cannot vary
+spatially). Weak Phi_K = 35,20,5,0 (knot heals 1,3,0,0 marginal
+nearby longs via path-shortening — small, localized, right
+sign). METRIC BUBBLE: k=0 interior eta_0 260/260 violated
+(thick vs fabric) vs eta_K 260/0 (clique distance 1 — local vs
+itself). d_K/d_0 ≤1 everywhere; k=0 means near 0.87 vs far 0.96
+(localized dip); k=3 exactly 1.000 — 5x5 knot DISSOLVED to one
+block (knot visibility under R is scale-dependent; deep-k knot
+studies need bigger knots or knot-tracking blocking — method
+note). NO min-rule bundle mixing (zero dragged L at all levels
+— weak prices survive near dense L=1 structure). k=1 near-bin
+fast washout (1/7 vs far 9/9) VERIFIED as span-selection (near
+spans ≤11, far ≥12 — proximity binning selects pair
+separation; zero knot physics on primary). RULER-TRAP RULE
+(caught in spike, filed as design law): weak links in NEITHER
+ruler (first draft put swaps in d_K → trivial total "healing").
+Verdict: apparatus validated, null established — real Delta-y_w
+needs w-dynamics (E-fixed re-pricing U with knot present is the
+next experiment). P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the

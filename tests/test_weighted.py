@@ -316,3 +316,88 @@ def test_phi_surface_slice_and_tolerance_contour():
     r = run(20, 3)
     assert r[-1][0]["n_viol"] == 11 and r[-1][0]["n_longs"] == 18
     assert first_pass(r) is None
+
+
+def test_knot_pilot_dual_reference():
+    # Planted-knot pilot (5x5 clique @center 40x40, ns=20 seed 0,
+    # Lw=10; frozen weights; r_O bins near/mid/far in the RULER
+    # metric, frozen super-node rule; knot mask block-imaged per
+    # level; interior = both endpoints in mask, excluded from weak
+    # bins). DUAL ruler: eta_0 via pure plain (PRIMARY), eta_K via
+    # plain+knot (weak links in NEITHER ruler -- first spike draft
+    # put swaps in d_K and trivially "healed" everything, caught
+    # before pinning). Results: (i) weak Phi_0 global nV/nL =
+    # 36/40, 23/35, 5/30, 0/18 -- BIT-IDENTICAL campaign
+    # reproduction (reduction control: knot untouched under fixed
+    # ruler); (ii) weak Phi_K nV = 35,20,5,0 -- knot heals 1,3,0,0
+    # marginal nearby longs via path-shortening (small, localized,
+    # correct sign); (iii) METRIC BUBBLE: k=0 interior eta_0 =
+    # 260/260 violated (thick vs fabric) vs eta_K = 260/0 (clique
+    # distance 1 <= L -- local vs itself); (iv) d_K/d_0 <= 1 every
+    # edge/level, k=0 means near 0.87 < far 0.96 (localized dip),
+    # k=3 exactly 1.000 (5x5 knot dissolved to one block -- knot
+    # persistence under R is scale-dependent, filed); (v) NO
+    # min-rule bundle mixing: zero weak records with L < 10 at any
+    # level (weak prices survive even near dense L=1 structure);
+    # (vi) k=1 near-bin fast washout (1/7 vs far 9/9) is SELECTION
+    # (near spans max 11, far spans min 12 -- proximity binning
+    # selects pair separation; zero knot physics on the primary, as
+    # constructed). Verdict: apparatus validated, null established
+    # -- the real Delta-y_w test needs w-dynamics (frozen eta_0
+    # cannot vary spatially by construction).
+    from bh_graph.weighted import knot_block_mask, radial_eta_profile
+
+    BINS = {"near": (0, 2), "mid": (3, 7), "far": (8, 10**9)}
+    gw = nx.grid_2d_graph(40, 40)
+    nx.connected_double_edge_swap(gw, 20, seed=0)
+    kn = {(x, y) for x in range(18, 23) for y in range(18, 23)}
+    for a in kn:
+        for b in kn:
+            if a < b and not gw.has_edge(a, b):
+                gw.add_edge(a, b)
+    nx.set_edge_attributes(gw, 1.0, "L")
+    for u, v in gw.edges():
+        if abs(u[0] - v[0]) + abs(u[1] - v[1]) > 1 and not (u in kn and v in kn):
+            gw[u][v]["L"] = 10.0
+    gKr = nx.grid_2d_graph(40, 40)
+    for a in kn:
+        for b in kn:
+            if a < b and not gKr.has_edge(a, b):
+                gKr.add_edge(a, b)
+    gp = nx.grid_2d_graph(40, 40)
+
+    v0g, vKg, nLg, means = [], [], [], []
+    for k in range(4):
+        m = knot_block_mask(kn, k)
+        p0 = radial_eta_profile(gw, gp, m, BINS)
+        pK = radial_eta_profile(gw, gKr, m, BINS)
+        v0g.append(sum(p0["bins"][b]["n_viol"] for b in BINS))
+        vKg.append(sum(pK["bins"][b]["n_viol"] for b in BINS))
+        nLg.append(sum(p0["bins"][b]["n_longs"] for b in BINS))
+        assert sum(1 for _, _, L, _ in p0["records"] if L < 10.0) == 0
+        mr = {}
+        for b in BINS:
+            es = [e for e, bb in p0["bin_of"].items() if bb == b]
+            assert all(pK["spans"][e] <= p0["spans"][e] for e in es)
+            if es:
+                mr[b] = sum(pK["spans"][e] / p0["spans"][e] for e in es) / len(es)
+        means.append(mr)
+        if k == 0:
+            assert p0["interior"] == {"n_longs": 260, "n_viol": 260, "phi": 1.0}
+            assert pK["interior"] == {"n_longs": 260, "n_viol": 0, "phi": 0.0}
+        if k == 1:
+            nb, fb = p0["bins"]["near"], p0["bins"]["far"]
+            assert (nb["n_viol"], nb["n_longs"]) == (1, 7)
+            assert (fb["n_viol"], fb["n_longs"]) == (9, 9)
+            nsp = [p0["spans"][e] for e, bb in p0["bin_of"].items() if bb == "near"]
+            fsp = [p0["spans"][e] for e, bb in p0["bin_of"].items() if bb == "far"]
+            assert max(nsp) <= 11 and min(fsp) >= 12, (nsp, fsp)
+        if k >= 2:
+            assert p0["bins"]["far"]["n_longs"] == 0
+        gw, gKr, gp = block_coarsen(gw), block_coarsen(gKr), block_coarsen(gp)
+
+    assert v0g == [36, 23, 5, 0] and nLg == [40, 35, 30, 18]
+    assert vKg == [35, 20, 5, 0]
+    assert means[0]["near"] < 0.90, means[0]
+    assert means[0]["far"] > 0.95, means[0]
+    assert all(v == 1.0 for v in means[3].values()), means[3]
