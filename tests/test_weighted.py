@@ -8,7 +8,14 @@ inflation anywhere). Conventions: counting measure, center included.
 """
 import networkx as nx
 
-from bh_graph.weighted import arrival_profile, underpriced_census, volume_comparison
+from bh_graph.weighted import (
+    arrival_profile,
+    block_coarsen,
+    excess_stats,
+    long_fraction,
+    underpriced_census,
+    volume_comparison,
+)
 
 
 def _three_vertex(cost):
@@ -139,3 +146,45 @@ def test_self_pricing_softens_but_not_restores():
     assert comp["positive_intervals"] == []
     d0ap = {n: dict(d) for n, d in nx.all_pairs_shortest_path_length(g)}
     assert len(underpriced_census(h, d0ap, weight="w")) == 16
+
+
+def test_coarsening_pilot_freezes_min_rule():
+    # Weighted-RG pilot (2x2 blocking, L40 -> 5, ns=20 seed 0, tuple
+    # grid; weak links = topologically long edges at length Lw):
+    # (i) uniform controls flow IDENTICALLY under min/mean and the
+    # Lw=1 row reproduces the binary lambda-flow 0.013 -> 0.310
+    # (reduction check on the apparatus); (ii) lambda-flow is
+    # topological (bit-identical across rules AND Lw); (iii) min
+    # keeps fabric fidelity 1.000 at every level while mean smears
+    # to 0.900 by level 3 -- min FROZEN as the campaign rule
+    # (transport-faithful: parallel paths, best wins); (iv) long-edge
+    # excess frozen (9.00 at every level @Lw=10 -- pilot-scale hint
+    # that strength may be marginal while count is relevant; the
+    # campaign decides, not this pin).
+    from itertools import pairwise
+    def run(Lw, rule):
+        g = nx.grid_2d_graph(40, 40)
+        nx.connected_double_edge_swap(g, 20, seed=0)
+        nx.set_edge_attributes(g, 1.0, "L")
+        if Lw > 1:
+            for u, v in g.edges():
+                if abs(u[0] - v[0]) + abs(u[1] - v[1]) > 1:
+                    g[u][v]["L"] = float(Lw)
+        lam, st = [long_fraction(g)], [excess_stats(g)]
+        for _ in range(3):
+            g = block_coarsen(g, rule)
+            lam.append(long_fraction(g))
+            st.append(excess_stats(g))
+        return lam, st
+
+    lam_min1, _ = run(1, "min")
+    lam_mean1, _ = run(1, "mean")
+    assert lam_min1 == lam_mean1
+    assert all(b > a for a, b in pairwise(lam_min1))
+    assert 0.25 < lam_min1[-1] < 0.36, lam_min1
+    lam_min10, st_min10 = run(10, "min")
+    _, st_mean10 = run(10, "mean")
+    assert lam_min10 == lam_min1
+    assert all(s["fabfid"] == 1.0 for s in st_min10)
+    assert 0.89 < st_mean10[-1]["fabfid"] < 0.91, st_mean10[-1]
+    assert all(abs(s["elong"] - 9.0) < 1e-9 for s in st_min10), st_min10

@@ -1092,7 +1092,18 @@ stays 2D; maximal-coupling row must REPRODUCE binary y_λ ≈ 1.5
 environment flow y_w^knot-env vs y_w^vac — the attractive split
 (vacuum-irrelevant, knot-relevant) making locality an RG property
 and curvature a defect-induced departure. Priority: coarsening
-pilot is the immediate next spike. Curvature conjecture sharpened
+pilot is the immediate next spike. COARSENING PILOT (MEASURED,
+test_weighted.py — min-rule FROZEN): uniform controls flow
+identically under min/mean and the Lw=1 row reproduces binary
+λ-flow 0.013→0.310 (reduction check PASSES); λ-flow is topological
+(bit-identical across rules AND Lw); min keeps fabric fidelity
+1.000 at every level while mean smears to 0.900 by level 3
+(transport-faithful wins: parallel paths, best wins). Pilot-scale
+hint (not pinned as physics): long-edge excess frozen (9.00 every
+level @Lw=10) while λ grows — strength looks marginal, count
+relevant (the reviewer's y_w=0 case); the (λ,ε) campaign decides.
+Campaign next: (λ,ε) grid flow + separatrix hunt under frozen
+min-rule. Curvature conjecture sharpened
 via Prop 1: dominating weak links (w ≥ d_0) are geometrically
 INVISIBLE, so curvature must live in small underpricing margins
 (δw = d_0 − w > 0 small → δd_O small) — vacuum weak wiring as

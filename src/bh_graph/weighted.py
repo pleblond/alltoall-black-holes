@@ -97,3 +97,52 @@ def underpriced_census(h: nx.Graph, d0_allpairs: dict, weight=None) -> list:
         if w < r:
             out.append((u, v, w, r))
     return out
+
+
+def block_coarsen(g: nx.Graph, rule: str = "min") -> nx.Graph:
+    """2x2 block coarse-graining with weighted multi-edge merger (tuple grid).
+
+    Same blocking as the binary RG study (coords //2, self-loops drop);
+    merged multi-edges combine lengths by rule: "min" (transport-
+    faithful: parallel paths, best wins — FROZEN by pilot) or "mean".
+    Length attr "L" (default 1.0). Rule "min" keeps fabric fidelity
+    1.000 where "mean" smears to 0.900 by level 3 (pinned pilot).
+    """
+    h = nx.Graph()
+    acc: dict = {}
+    for u, v, d in g.edges(data=True):
+        a = (u[0] // 2, u[1] // 2)
+        b = (v[0] // 2, v[1] // 2)
+        if a == b:
+            continue
+        e = (a, b) if a < b else (b, a)
+        acc.setdefault(e, []).append(float(d.get("L", 1.0)))
+    for e, ws in acc.items():
+        h.add_edge(*e, L=(min(ws) if rule == "min" else sum(ws) / len(ws)))
+    return h
+
+
+def _manhattan(a, b) -> int:
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+
+def long_fraction(g: nx.Graph) -> float:
+    """Fraction of edges spanning >1 Manhattan unit (shortcut density)."""
+    edges = list(g.edges())
+    return sum(1 for a, b in edges if _manhattan(a, b) > 1) / len(edges)
+
+
+def excess_stats(g: nx.Graph) -> dict:
+    """(lambda, ebar, elong, fabfid) flow variables for weighted RG.
+
+    lambda = long-edge fraction; ebar = mean excess (L-1) over all
+    edges; elong = mean excess over long edges (0.0 if none); fabfid
+    = fraction of span-1 fabric edges with length exactly 1.0.
+    """
+    E = list(g.edges(data=True))
+    lam = sum(1 for a, b, _d in E if _manhattan(a, b) > 1) / len(E)
+    ebar = sum(d.get("L", 1.0) - 1 for _a, _b, d in E) / len(E)
+    le = [d.get("L", 1.0) - 1 for a, b, d in E if _manhattan(a, b) > 1]
+    fab = [(a, b, d) for a, b, d in E if _manhattan(a, b) == 1]
+    fid = sum(1 for _a, _b, d in fab if d.get("L", 1.0) == 1.0) / max(len(fab), 1)
+    return {"lambda": lam, "ebar": ebar, "elong": sum(le) / max(len(le), 1), "fabfid": fid}

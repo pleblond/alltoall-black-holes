@@ -52,7 +52,9 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   blurred, sweep dominated, 16 census violations).
   Weighted-RG pre-registered (flow diagram, separatrix hunt,
   coarsening pilot next; draft agnostic).
-  525 tests.
+  Coarsening pilot done (min-rule frozen, reduction passes;
+  excess-frozen hint; campaign next).
+  526 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form
