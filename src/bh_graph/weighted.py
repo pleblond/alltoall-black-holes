@@ -146,3 +146,26 @@ def excess_stats(g: nx.Graph) -> dict:
     fab = [(a, b, d) for a, b, d in E if _manhattan(a, b) == 1]
     fid = sum(1 for _a, _b, d in fab if d.get("L", 1.0) == 1.0) / max(len(fab), 1)
     return {"lambda": lam, "ebar": ebar, "elong": sum(le) / max(len(le), 1), "fabfid": fid}
+
+
+def pricing_flow_stats(gw: nx.Graph, gplain: nx.Graph) -> dict:
+    """(lambda, violfrac, marginratio) campaign flow variables.
+
+    lambda = long-edge fraction (topological, Manhattan span > 1);
+    violfrac = fraction of ALL edges underpriced (L < d_0 span on the
+    co-blocked plain — Prop-1 violations per unit edge); marginratio =
+    mean L/d_0 over long edges (1 = exactly priced; <1 under, >1
+    over). d_0 comes from endpoint-only BFS on gplain (cheaper than
+    all-pairs; longs are sparse). Length attr "L" (default 1.0).
+    """
+    E = list(gw.edges(data=True))
+    longs = [(a, b, d) for a, b, d in E if _manhattan(a, b) > 1]
+    lam = len(longs) / len(E)
+    if not longs:
+        return {"lambda": lam, "violfrac": 0.0, "marginratio": 1.0}
+    ends = {n for a, b, _d in longs for n in (a, b)}
+    dist = {s: dict(nx.single_source_shortest_path_length(gplain, s)) for s in ends}
+    spans = [dist[a][b] for a, b, _d in longs]
+    viol = sum(1 for (_a, _b, d), s in zip(longs, spans) if float(d.get("L", 1.0)) < s)
+    mr = sum(float(d.get("L", 1.0)) / s for (_a, _b, d), s in zip(longs, spans)) / len(longs)
+    return {"lambda": lam, "violfrac": viol / len(E), "marginratio": mr}

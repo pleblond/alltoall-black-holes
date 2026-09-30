@@ -1102,8 +1102,24 @@ identically under min/mean and the Lw=1 row reproduces binary
 hint (not pinned as physics): long-edge excess frozen (9.00 every
 level @Lw=10) while λ grows — strength looks marginal, count
 relevant (the reviewer's y_w=0 case); the (λ,ε) campaign decides.
-Campaign next: (λ,ε) grid flow + separatrix hunt under frozen
-min-rule. Curvature conjecture sharpened
+CAMPAIGN (MEASURED, test_weighted.py — washout verdict): (ns,Lw)
+grid under frozen min-rule, levels 0–3, co-blocked plain as
+reference, flow variables (λ,violfrac,marginratio). λ-flow
+topological (bit-identical across Lw, third confirmation:
+0.013→0.310 @ns=20); pricing sector IRRELEVANT above span scale —
+Lw=10 washes out (violfrac 0.012→0.000 by level 3, margin ratio
+0.51→2.86 crossing 1: fixed weights outlive shrinking spans,
+defects become overpriced/geometrically invisible); Lw=1 NEVER
+heals (violfrac==λ every level — analytic: min long-span 2 > 1);
+Lw=3 partial (0.310→0.190, margin 0.86 — separatrix-adjacent, one
+more level would cross). Washout level k*≈log2(span0/Lw); ns=0
+controls stay (0,0) (2D fixed point stable). Reviewer's y_w<0
+case CONFIRMED for correctly-priced weak links: vacuum is
+RG-protected in the pricing direction, NO pumping needed — count
+relevant, pricing irrelevant. Caveats: frozen weights, no U;
+washed-out defects persist as overpriced dead weight (margin
+~2.9) a real U might prune. Phase 2 still queued (knot-env
+split y_w^knot-env vs y_w^vac). Curvature conjecture sharpened
 via Prop 1: dominating weak links (w ≥ d_0) are geometrically
 INVISIBLE, so curvature must live in small underpricing margins
 (δw = d_0 − w > 0 small → δd_O small) — vacuum weak wiring as

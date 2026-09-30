@@ -188,3 +188,57 @@ def test_coarsening_pilot_freezes_min_rule():
     assert all(s["fabfid"] == 1.0 for s in st_min10)
     assert 0.89 < st_mean10[-1]["fabfid"] < 0.91, st_mean10[-1]
     assert all(abs(s["elong"] - 9.0) < 1e-9 for s in st_min10), st_min10
+
+
+def test_violation_washout_campaign():
+    # Weighted-RG (lambda, eps) campaign under FROZEN min-rule (L40 ->
+    # 5, tuple grid, co-blocked plain as reference; weak links priced
+    # Lw on exactly the long edges). Verdict: pricing sector
+    # IRRELEVANT above span scale (washout, reviewer's y_w < 0 case),
+    # topological sector RELEVANT (lambda grows regardless of Lw).
+    # Rows pinned (ns=20 seed 0): lambda-flow identical across Lw
+    # (topological, third confirmation); Lw=1 never heals (violfrac
+    # == lambda every level -- ANALYTIC: min long-span 2 > 1, so
+    # every long is underpriced at every level); Lw=10 washes out
+    # (violfrac 0.012 -> 0.000 by level 3, margin ratio 0.51 -> 2.86
+    # crossing 1 -- fixed weights outlive shrinking spans, defects
+    # become overpriced/geometrically invisible); Lw=3 partial
+    # (0.310 -> 0.190, margin 0.86 -- near the separatrix, one more
+    # level would cross). Washout level k* ~= log2(span0/Lw). Control
+    # ns=0: lambda = viol = 0 at every level (stays 2D). Vacuum is
+    # RG-protected in the pricing direction: no pumping needed for
+    # correctly-priced weak links. Caveat: frozen weights, no U --
+    # washed-out defects persist as overpriced dead weight (margin
+    # ~2.9), a real U might prune them (weight-rule design note).
+    from bh_graph.weighted import pricing_flow_stats
+
+    def run(ns, Lw):
+        gw = nx.grid_2d_graph(40, 40)
+        gp = nx.grid_2d_graph(40, 40)
+        if ns:
+            nx.connected_double_edge_swap(gw, ns, seed=0)
+        nx.set_edge_attributes(gw, 1.0, "L")
+        if ns and Lw > 1:
+            for u, v in gw.edges():
+                if abs(u[0] - v[0]) + abs(u[1] - v[1]) > 1:
+                    gw[u][v]["L"] = float(Lw)
+        rows = []
+        for _ in range(4):
+            rows.append(pricing_flow_stats(gw, gp))
+            gw, gp = block_coarsen(gw), block_coarsen(gp)
+        return rows
+
+    ctl = run(0, 1)
+    assert all(r["lambda"] == 0.0 and r["violfrac"] == 0.0 for r in ctl)
+    r1, r3, r10 = run(20, 1), run(20, 3), run(20, 10)
+    lam1 = [r["lambda"] for r in r1]
+    assert [r["lambda"] for r in r3] == lam1
+    assert [r["lambda"] for r in r10] == lam1
+    assert all(r["violfrac"] == r["lambda"] for r in r1), r1
+    assert 0.30 < lam1[-1] < 0.32, lam1
+    assert r10[-1]["violfrac"] == 0.0, r10
+    assert r10[0]["marginratio"] < 1.0 < r10[-1]["marginratio"], r10
+    assert 2.8 < r10[-1]["marginratio"] < 2.9, r10[-1]
+    assert r3[-1]["violfrac"] < r3[-1]["lambda"], r3[-1]
+    assert 0.18 < r3[-1]["violfrac"] < 0.20, r3[-1]
+    assert r3[-1]["marginratio"] < 1.0, r3[-1]
