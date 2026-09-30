@@ -125,11 +125,12 @@ def is_valid_graph(g: nx.Graph) -> bool:
 def arrival_times(g: nx.Graph, seed: int = 0) -> dict:
     """Per-node SI first-passage times from `seed` (BFS layers).
 
-    Causal reading of BFS: under trivial one-hop-per-step dynamics, the
-    arrival time T(seed, v) is the first step at which v can be
-    influenced. Cumulative shell volumes V(t) = |{v: T <= t}| are the
-    L0 causal-growth observable (D13 stage 1): t^2 on 2D fabric, NOT
-    t^3 (a t^3 substrate would contradict P0'). Empty graph gives {}.
+    Under trivial one-hop-per-step dynamics, first-passage time equals
+    hop distance -- so this is a STATIC cover observable (D13 control),
+    not a causal measurement: compatibility with a finite-speed cone is
+    not observation of one. Genuine arrival times T_U need an update
+    rule U (D1) plus counterfactual-influence readout (D13 stage 1).
+    Empty graph gives {}.
     """
     if len(g) == 0 or seed not in g:
         return {}

@@ -48,13 +48,15 @@ def _clique_plug_grid(L=40, c=20):
     return g0, g, plug
 
 
-def test_si_shells_grow_like_t2_and_plug_accelerates():
-    # D13 stage 1 (corrected roadmap target): raw causal growth on 2D
-    # fabric is t^2, NOT t^3 (t^3 at graph level would contradict P0').
-    # Control cumulative V(t) fits p = 1.920 (r2 1.0) over t in [8,20] --
-    # same numbers as the spatial control, read causally. The clique plug
-    # accelerates hop-fronts (shortcut signature, cf. T1/D10a inversion):
-    # corner arrival 35 < 38, cover 37 < 40.
+def test_static_shells_grow_like_t2_and_plug_shortcuts():
+    # D13 control (demoted from stage 1: first-passage here IS hop
+    # distance, so this is one measurement -- static P0' geometry
+    # compatible with a finite-speed cone, not observation of one).
+    # Control cumulative V(r) fits p = 1.920 (r2 1.0) over r in [8,20]:
+    # t^2 substrate, NOT t^3 (t^3 would contradict P0'). The clique plug
+    # shortcuts hop-fronts (corner 35 < 38, cover 37 < 40) -- the static
+    # sign pattern the future U-experiment must reproduce dynamically
+    # as T_U^plug > T_U^vac (D13 stage 1).
     L, c = 40, 20
     g0, g, _ = _clique_plug_grid(L, c)
     src, corner = c * L + c, 39 * L + 39
@@ -72,11 +74,11 @@ def test_si_shells_grow_like_t2_and_plug_accelerates():
 
 
 def test_weighted_first_passage_delays_at_plug():
-    # Cost signature (cf. T9): ceff-weighted arrival (Dijkstra) runs
-    # strictly later than hop arrival -- the delay lives in the cost
-    # layer, mirroring the D10a/D10b structure at the causal level.
-    # Corner delay exactly 5.0; all plug nodes delayed except the source
-    # itself (arrives at 0 under both readings).
+    # Static dissociation (cf. T9): ceff-weighted distance runs strictly
+    # later than hop distance -- adjacency vs candidate physical cost,
+    # not yet propagation (no U). Corner delay exactly 5.0; all plug
+    # nodes delayed except the source itself (0 under both readings).
+    # Dynamical confirmation (T_U^plug > T_U^vac) queued on D13.1.
     from bh_graph import emergent_dim as ed
 
     L, c = 40, 20

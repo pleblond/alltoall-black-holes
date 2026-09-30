@@ -25,6 +25,8 @@ to 0.002 bits; all:all circuits converge by depth ~5). What remains is the
 graph instance: derive `V_k` from graph dynamics, not merely choose one.
 Scope note (D13): D1's dynamics now also gates emergent time itself
 (update rule → causal order → cone → clocks), not just evaporation/QES.
+D13-input desideratum (not a close criterion): candidate `U` should be
+local and fabric-compatible so D13 stage 1 can run on it.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
@@ -257,21 +259,29 @@ refutes the P0' reconstruction program (same-`M_O` falsifier, essay §8).
 ## D13 — Emergent causal order: update rule → cone → clocks → interval (staged)
 
 **Missing:** the temporal half of "why spacetime?". L0 has no dynamics
-(D1); D1's scope now includes time itself, not just evaporation/QES.
-Target, split by level (corrected): `V_G ~ t²` at substrate, `V_O ~ R³`
-after `M_O`; microscopic index `n`, causal order `≺`, and clock time `τ`
-are three distinct orderings (`n ≠ t_obs` as `d_G ≠ d_obs`).
+(D1); D1's scope now includes time itself, not just evaporation/QES
+(D1 provides `U`; D13 asks whether `U` becomes time — the items share
+their object). Target, split by level (corrected): `V_G ~ t²` at
+substrate, `V_O ~ R³` after `M_O`; microscopic index `n`, causal order
+`≺_U`, and clock time `τ` are three distinct orderings (`n ≠ t_obs` as
+`d_G ≠ d_obs`).
 
-**Close criterion (staged):** (1) substrate cone: stated local update rule
-+ measured universal finite cone on relaxed fabric with `V(t) ~ t²`
-(trivial-dynamics baseline PINNED: SI shells `p = 1.920`,
-`test_scrambling`); (2) order dimension: causal-order dimension measured
-independently, agreeing with spatial `d_eff` (1+3 output, not input);
-(3) clock rate: internal-cycle clock with `dτ/dt(χ)` reproducing the T9
-redshift profile from capacity/congestion, unimported; (4) interval:
-reconstructed `g_μν` from causal relations + `V(r)` (Malament-shaped)
+**Control (D13.0, MEASURED):** static P0' substrate geometry `V_G ~ r²`
+(SI shells `p = 1.920`, `test_scrambling`) plus the plug sign pattern
+(35<38 hops vs +5.0 weighted) as pre-registration for stage 1. Briefly
+filed as stage 1, demoted on review: first-passage here *is* hop
+distance — compatibility with a cone is not observation of one.
+
+**Close criterion (staged, all open):** (1) `U → T_U, ≺_U`: stated local
+update rule + counterfactual-influence arrival times (OTOC-threshold
+form, ε-robust cone speed) and derived causal order (never adjacency
+repackaged); (2) `(≺_U, M_O) → cone`: observed causal cone compatible
+with the *same* `M_O` producing `R³`, order-dimension agreeing with
+`d_eff` (1+3 output, not input); (3) clocks: internal-cycle clock with
+`dτ/dt(χ)` reproducing the T9 profile from capacity/congestion,
+unimported; (4) interval: `g_μν` from `(≺_U, τ, M_O)` (Malament-shaped)
 reproducing the T8–T11 battery. Each stage closes independently; GR is
-the check, never the input.
+the check, never the input, and only at stage 4.
 
 **Over-arching falsifier (C1–C5, essay §8):** `M_O ∘ U ≃ U_eff ∘ M_O`
 with coherence → locality → autonomy → universality → GR limit, each

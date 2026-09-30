@@ -684,7 +684,7 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 | D10 | Tension spectrum: simulator d-dip around mass + tension→`κ` map (v0.6) | (a) an over-coordinated (tense) region in the graph shows the GR fingerprint shape (near dip, overshoot, →3⁺) under info-side `d_eff`; relaxed `z≈4` regions show `d=2` fabric / `d=3` reconstruction as applicable; (b) Ollivier–Ricci `κ` tracks over-coordination (`z−4`) quantitatively | P0' first quantitative wire; failure of (a) shape-match after the mapping is fixed refutes P0'. v0.6 probe: bare shortest-path rejected for tense regions (inverted far side: shortcuts shrink balls, GR needs stretched rulers); D10b: tortuosity-import costs partially recover (no flip), `c_eff`-import costs give full dip → overshoot → asymptote on 9×9 mild plug (conditional on bridge); amplitude scales loosely with χ; κ is an interface pattern (criterion (b) reformulated); tension-imprint conjecture stated in §5; T15 cost-dominance is the cost-rule diagnostic |
 | D11 | Far-field tail exponent of the tension fingerprint (D10b) | measured `E(r)` tail on `L ≥ 200` with clean windows to `10Rc`: `1/r` (wedge shadow, delayed nodes `~ Rc·r`) vs `1/r²` (fixed shadow, deficit `~ Rc²`) | feeds the tension-imprint conjecture amplitude clause; no direct kill wire (shape detail, not shape itself) |
 | D12 | Reconstruction universality: why admissible `M_O` converge (essay §8) | admissibility criterion from `G`'s access constraints + ≥2 admissible `M_O` converging to the same IR geometry | meta-criterion over D3/D4/D6/D10; a second admissible `M_O` with robustly non-3D IR refutes the P0' program |
-| D13 | Emergent causal order, staged (essay §8) | (1) cone + `V(t)~t²` (trivial baseline pinned: SI shells p = 1.920); (2) order-dimension agrees with `d_eff`; (3) clock `dτ/dt(χ)` unimported; (4) Malament-shaped interval reproduces T8–T11 | extends D1 (dynamics gates time); same-`M_O` falsifier with D12 |
+| D13 | Emergent causal order: control + 4 stages (essay §8) | D13.0 control measured (`t²`, sign pattern); open: (1) `U→T_U,≺_U`; (2) cone under same `M_O`; (3) clocks unimported; (4) Malament interval → T8–T11 | extends D1 (D1 provides `U`); same-`M_O` + C1–C5 falsifier with D12 |
 
 Rule for all D-items: the closing derivation must output the number or location,
 not take it as input. Inserting an observed scale as a graph parameter is a fit,
@@ -768,9 +768,10 @@ Stated so no reader misses them:
 - No far-field tail exponent: `1/r` vs `1/r²` unresolved on `L = 120`
   (χ~1 looks `1/r²`-like to `6Rc`, χ~2 looks `1/r`-like to `5Rc`, then
   bursty/clipped); needs `L ≥ 200` asymptotics (open D11).
-- No emergent-time derivation: `n`/`≺`/`τ` distinguished and substrate `t²`
-  pinned, but no update rule, no order-dimension measurement, no clock
-  model (open D13; D1 scope extended to time itself).
+- No emergent-time derivation: `n`/`≺_U`/`τ` distinguished and the D13.0
+  control measured (`t²` + plug sign pattern), but no update rule, no
+  `T_U`/`≺_U` measurement, no clock model (D13 stages 1–4 open; D1
+  provides `U`).
 
 ---
 

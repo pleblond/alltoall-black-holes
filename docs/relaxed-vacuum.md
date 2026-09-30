@@ -302,18 +302,40 @@ splits by level:
 > The physics is the map `(fabric neighborhood, scale) → R` that changes
 > the effective dimensionality — the same map whose spatial half is D10.
 
-The substrate half is now measured: SI first-passage shells on relaxed
-fabric fit `p = 1.920` over `t ∈ [8,20]` (`test_scrambling`, same numbers
-as the spatial control, read causally). The plug *accelerates* hop-fronts
-(corner 35 < 38 — the shortcut signature, consistent with T1/D10a
-inversion), while ceff-weighted first-passage *delays* (corner +5.0 — the
-cost signature, cf. T9). Bare hops invert, costs recover: the D10a/D10b
-lesson repeats at the causal level with trivial dynamics. In one line:
+The substrate half is measured **as a control, not a causal result**
+(this was briefly filed as D13 stage 1 and demoted on review — the
+correction stays on the record): SI first-passage shells fit `p = 1.920`
+over `r ∈ [8,20]`, but first-passage here *is* hop distance, so this is
+one measurement (static P0' geometry), not two pieces of evidence:
+
+> **Compatibility with a finite-speed cone is not observation of one.**
+> Calling BFS depth `t` declares "1 edge = 1 time step" — exactly the
+> dynamical structure D1 is supposed to derive.
+
+The plug dissociates hop distance from candidate physical cost (corner
+35 < 38, yet ceff-weighted +5.0 — the static sign pattern a future
+`U`-experiment must reproduce dynamically as `T_U^plug > T_U^vac).
+In one line:
 
 > **Shorter topological path ⇏ shorter physical distance.**
-> The plug gives `Δd_hop < 0` (35 < 38) with `ΔT_physical > 0` (+5.0):
-> raw adjacency says "closer", propagation physics says "farther" —
+> The plug gives `Δd_hop < 0` (35 < 38) with `ΔT_candidate > 0` (+5.0):
+> raw adjacency says "closer", candidate cost says "farther" —
 > a minimal demonstration of why P0' needs `M_O` at all.
+
+**Genuine stage 1: `U → T_U, ≺_U`.** A state `X_n` on the graph plus a
+local rule `X_{n+1} = U_G(X_n)`; perturb locally, run twin systems, and
+define influence counterfactually —
+`I(s→v,n) = D(X_n(v), X'_n(v))`, arrival
+`T_U(s,v) = min{n : I > ε}`. This is the OTOC-threshold arrival time
+generalized (`otoc`, T2, already measures influence spreading under
+unitary dynamics) — stage 1 needs `U` on the fabric, not a new readout
+concept. `T_U` need not equal `d_hop`: that difference is where the
+physics lives. Two well-definedness demands: cone speed must be
+ε-robust in the IR (or "arrival" is threshold artifact), and causal
+order must come from counterfactuals — `e_i ≺_U e_j` iff changing
+`e_i` can change `e_j` under `U` — never from adjacency repackaged as
+`d_hop ≤ n`. In short: **D1 provides `U`; D13 asks whether `U` becomes
+time.**
 
 **Events, order, cone, clocks (sketch).** The road, compressed: add one
 microscopic ingredient — a local update rule `G_n → G_{n+1}` (this is D1,
@@ -450,11 +472,11 @@ and `M_O` to instantiate); recorded here so the program knows its roof.
 | tension-imprint conjecture | **conjectured** | `model.md` §5: fingerprint universality under the fixed ceff rule; falsifiers + promotion to P5 stated; not a postulate yet |
 | T15 cost dominance | **derived (theorem)** | `model.md` §2: shortcuts priced ≥ hop-saving can't inflate balls; ∩-blip pins an underpriced shortcut (z=1 U-side 0.2000, tort blip 9>5 + flip 2.020, ceff-z=4 blip 1.077 at r=13.75) |
 | far-field tail exponent | **open** | D11: `1/r` (χ~2 to `5Rc`) vs `1/r²` (χ~1 to `6Rc`); `L ≥ 200` asymptotics needed |
-| SI causal shells `V(t)~t²` | **measured** | `test_scrambling.py` (5 tests): control p = 1.920; plug accelerates hop-fronts (35<38); ceff-weighted delays (+5.0) |
+| SI static shells `V(r)~r²` | **measured (control)** | `test_scrambling.py` (5 tests): p = 1.920; plug sign pattern (35<38 hops, +5.0 weighted) pre-registered for D13.1 |
 | scale-multiplicity mechanism `n_s~r` | **conjectured (skeleton)** | this doc §8: `s` undefined; RG-log baseline gives wrong profile; linear-vs-log must be measured, not assumed |
 | boundary channel capacity | **measured** | clique plug: deficit `r≤4` (83.7/133.8/76.5/5.9), exact recovery `r≥5`; count re-measures 2D-ness (skeleton intact) |
 | reconstruction universality | **open** | D12: ∀ `M_O ∈ A_macro(G)` converge in the IR (access floor graph-internal; no "3D"/"Lorentzian" in the definition) |
-| causal order / cone / clocks | **open** | D13 (staged): substrate `t²` measured; order-dimension, cone, clock rate, interval reconstruction open |
+| causal order / cone / clocks | **open** | D13: D13.0 control measured; stages 1–4 open (`U→T_U`, same-`M_O` cone, clocks, interval) |
 | same-`M_O` + dynamics coherence | **open (criterion)** | this doc §8: one map yields `R³` + cone (C1–C5 ladder, twin-histories test, `~_macro` classes), or the program is fitting |
 | `d_I = 2` for vacuum fabric | predicted (follows from P0' + protocol) | queued for simulator (D10) |
 | 2D + scale → 3D mechanism | **open** | D3/D4/D6 (+ D10); leading candidate: scale multiplicity `n_s~r` (this doc §8, skeleton) |
