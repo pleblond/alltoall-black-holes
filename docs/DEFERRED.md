@@ -129,6 +129,15 @@ is PAIR-LOCKED (0 repairing re-pairings in an exhaustive 287661-
 triple scan, measured-not-shipped, 35 s): the lock hierarchy
 deepens with coordination order (single-swap locks 4, double-swap
 locks 1). Next: triple-swap / 4-edge moves, then the tournament.
+Triple-swap endgame (MEASURED, not shipped): 4-edge joint re-pairing
+(105 matchings) unlocks the pair-locked residual in principle — 2
+repairing triples in 320k sampled (rate ~6e-6) — but both hits need
+a FAR partner (d_res 5 and 6 from the residual); radius-3 ball
+exhaustive scan finds 0/147440. Repair partners live outside any
+small geographic shortlist, so blind/heavy-sampled triple rules
+cannot hit in-suite and no rule_triple is shipped: viable
+order-3 rules need detour-aware (not distance-based) proposals — a
+new rule class, open design. D1 rests here until that design lands.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
@@ -462,8 +471,11 @@ be a transient of the other.
 tension-dependent crossover, with the winning accounting derived from the
 cost rule rather than fitted. DECIDED (test_emergent_dim.py, L=200/240/250):
 χ~1 → 1/r² (E·r² flat 0.633..0.642, k=3..10 — fixed shadow); χ~2 → 1/r
-(E·r flat 6.12..6.67, k=2..10 — wedge shadow); χ~5 unsettled-but-bounded
-(E·r still falling 7.90 → 7.15 at k=6..10, neither law firm). The
+(E·r flat 6.12..6.67, k=2..10 — wedge shadow); χ~5 SLOW CROSSOVER
+(L=480 to 20Rc: fitted q = 1.19 over k=6..14 → 1.10 over k=14..20,
+E·r still monotone-falling 7.90 → 6.55 with shrinking steps) —
+1/r supported asymptotically but not firm at 20Rc; the pinned claim
+is the crossover, not the limit. The
 exponent is TENSION-DEPENDENT. Accounting derivation from the cost rule
 remains sketched (delay-region geometry), not derived — D11 closes on
 the measurement.
