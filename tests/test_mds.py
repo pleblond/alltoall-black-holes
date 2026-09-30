@@ -111,3 +111,36 @@ def test_fpt_mds_two_dominant():
     assert ev[:2].sum() / pos > 0.85, ev[:4]
     assert ev[1] / ev[2] > 12.0, ev[:4]
     assert (-ev[ev < 0]).sum() / pos < 0.1, ev[:4]
+
+
+def test_observer_geometry_fragile_to_binary_longs():
+    # Tolerance curve, unweighted baseline (square L=20, damage seed 3):
+    # binary "weak" wiring is an oxymoron -- 2 longs collapse MDS
+    # 2-dominance (lam2/lam3 6.82 -> 1.93, GoF2 0.769 -> 0.632); by 30
+    # longs GoF2 0.385, participation ratio 3.3 -> 10.3, kappa^2
+    # 0.0645. lam3/lam4 never gaps (~1.1-1.7): weak binary wiring
+    # blurs 2D, never builds 3D. The measurement that forces weights:
+    # no binary knob is weak (a binary long edge is maximally strong).
+    from bh_graph.blind_u import kappa2_census
+    from bh_graph.update_rule import inject_shortcuts, locality_p, total_longs
+
+    g = nx.convert_node_labels_to_integers(nx.grid_2d_graph(20, 20), ordering="sorted")
+    src = 10 * 20 + 10
+    rows = {
+        # ns: (longs, p-band, l23-band, gof2-band, k2-band-or-None)
+        0: (0, (1.83, 1.84), (6.5, 7.0), (0.76, 0.78), 0.0),
+        1: (2, (1.91, 1.92), (1.8, 2.1), (0.62, 0.65), None),
+        10: (30, (2.36, 2.37), (1.8, 2.1), (0.37, 0.40), 0.0645),
+    }
+    for ns, (longs_exp, pb, l23b, g2b, k2) in rows.items():
+        h = inject_shortcuts(g, ns, 3)
+        assert total_longs(h) == longs_exp
+        assert pb[0] < locality_p(h, src) < pb[1], ns
+        ev, _ = _ev_profile(h)
+        pos = ev[ev > 0].sum()
+        assert l23b[0] < ev[1] / ev[2] < l23b[1], (ns, ev[:4])
+        assert g2b[0] < ev[:2].sum() / pos < g2b[1], (ns, ev[:4])
+        assert ev[2] / ev[3] < 2.0, (ns, ev[:4])
+        if k2 is not None:
+            got = kappa2_census(h)["mean_k2"]
+            assert abs(got - k2) < (1e-9 if k2 == 0.0 else 0.005), (ns, got)

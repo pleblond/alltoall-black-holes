@@ -885,7 +885,17 @@ finds no rank-3 selection with N-stable gap and non-radial v3, the
 fabric premise itself goes on trial. Next fabric work is not
 revisiting 2D but upgrading static → dynamical: D1→fabric feedback
 (stability tournament — do the healing Us preserve d_G ≃ 2 on
-vacuum? U(G_vac) ∈ C_vac), now testable since U candidates exist. 
+vacuum? U(G_vac) ∈ C_vac), now testable since U candidates exist.
+TOLERANCE CURVE, unweighted baseline (MEASURED, test_mds.py —
+forces weights): on square L=20, 2 binary longs collapse MDS
+2-dominance (lam2/lam3 6.82 → 1.93, GoF2 0.769 → 0.632); by 30
+longs GoF2 0.385, participation ratio 3.3 → 10.3, kappa^2 0.0645;
+lam3/lam4 never gaps (~1.1–1.7, pinned < 2.0): weak binary wiring
+blurs 2D, never builds 3D. Binary "weak" links are maximally
+strong — no binary knob is weak. The ε in G_vac = G_near-2D +
+εG_global has no unweighted meaning beyond count-fraction (already
+razor-thin per N*); weak wiring must be WEIGHTED (coupling
+strength), queued as the L0 state upgrade G = (V, E, w). 
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
