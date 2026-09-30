@@ -421,7 +421,24 @@ channel scaling. Noisy-grid disorder control (q=0.10): jittered
 microscopics, `p = 1.909`, linear cuts — `d_G → 2` survives disorder
 under statistical pins. Rewired-grid fragility control (20
 degree-preserving swaps): identical degrees, balls accelerated past
-`∼r²` — shortcuts break 2D-ness from the other side. The killer result — same frozen `M_O` → `d_obs → 3`
+`∼r²` — shortcuts break 2D-ness from the other side. The two
+failures form a triangle around the vacuum:
+
+> P0′ vacuum (`V ∼ r²`) sits between bottlenecks (too little access)
+> and shortcuts (too much access) — both failing directions preserve
+> mundane local statistics while destroying large-scale accessibility.
+
+The vacuum is therefore not empty, not random, not merely regular —
+it is organized connectivity, a low-dimensional phase of the
+information graph stabilized against shortcut proliferation (with
+matter/defects as departures from the phase). Whether `d_G = 2`
+sits between the two directions in a mathematically critical sense
+is now an investigation, not a postulate. Sweep numbers (L=30/40/60,
+5 seeds): `N* ∼ O(10)` flat in size (α ≈ 0, fixed window —
+scaled-window confirmation queued); placement lottery (one draw in
+five dodges at ns=20); saturation collapse at high `f_rw` with small
+systems collapsing first. No sharp jump: smooth crossover with
+extreme small-`f` sensitivity. The killer result — same frozen `M_O` → `d_obs → 3`
 on every positive member — awaits `M_O` itself.
 
 **Why this could work (grounding).** Malament's theorem: causal order fixes

@@ -36,7 +36,9 @@ graph instance: derive `V_k` from graph dynamics, not merely choose one.
 Scope note (D13): D1's dynamics now also gates emergent time itself
 (update rule → causal order → cone → clocks), not just evaporation/QES.
 D13-input desideratum (not a close criterion): candidate `U` should be
-local and fabric-compatible so D13 stage 1 can run on it.
+local and fabric-compatible so D13 stage 1 can run on it. Stabilizer
+question (rewire sweep): what dynamics keeps the `d_G ≃ 2` phase
+stable against shortcut proliferation (`N* ∼ O(10)` flat in L)?
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
@@ -218,7 +220,23 @@ prefactors under one frozen measurement rule; gated-wall negative
 control keeps bit-identical `~r²` balls with collapsed cut capacity —
 `d_G ≃ 2` is not sufficient for channel scaling. Killer result queued:
 same frozen `M_O` → `d_obs → 3` on every positive family member
-(per-`M_O` tuning proves nothing).
+(per-`M_O` tuning proves nothing). Vacuum-class sketch (from the
+rewire sweep): degree sequence fixed does NOT imply 2D information
+geometry — ~20 swaps in 3120 edges take V(14) 421 → ~909 with p ~ 2.6.
+Candidate mesoscopic characterization: `G_vac ∈ C_2 ⟺ V_G(r) ~ r²`
+over an expanding pre-boundary regime — but this risks circularity
+(P0' says "vacuum is 2D"; defining vacuum graphs as "graphs whose
+balls are 2D" defines the result). The primitive property sought is
+absence of sufficiently long-range shortcuts, to be formulated via
+graph-internal hierarchy, not coordinates (shortcut-absence
+hypothesis, open). Sweep results (L=30/40/60, 5 seeds): few swaps
+inflate (p > 2, placement lottery — typically 4/5 seeds rise by
+ns=20), many swaps saturate (p → 0); N* (first ns with p > 2.2) has
+median ≤ 40 at every L — O(10) shortcuts regardless of size (α ≈ 0
+on L=30..60, fixed window; scaled-window confirmation queued). Small
+systems saturate while large still inflate (ns=320: L=30 p < 1 <
+2.5 < L=60 p). No sharp jump seen: smooth crossover with extreme
+small-f sensitivity.
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
 matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the

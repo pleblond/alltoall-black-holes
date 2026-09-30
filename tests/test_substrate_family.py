@@ -140,16 +140,57 @@ def test_rewired_grid_shortcuts_break_2d():
     # count and degree multiset exactly preserved, but long-range swaps
     # accelerate balls past ~r^2 (V14 ~909 vs plain 421, p ~2.6) --
     # the opposite failure from gated-wall bottlenecks. Direction +
-    # bands are the claim (robust across seeds); swap-dependent values
+    # bands are the claim, held on each of 3 seeds (statistical
+    # consequence, not a pinned realization); swap-dependent values
     # are not exact-pinned (networkx unpinned above 3.2).
     g = build_rewired_grid(40, n_swaps=20, seed=0)
     assert nx.is_connected(g)
     assert g.number_of_edges() == 2 * 40 * 39
     plain = nx.grid_2d_graph(40, 40)
     assert sorted(d for _, d in g.degree()) == sorted(d for _, d in plain.degree())
-    src = 20 * 40 + 20
-    shells, _, vols = _shells_cuts_vols(g, src, 18)
-    assert 700 < vols[14] < 1200, vols[14]
-    assert max(shells[r] - 4 * r for r in range(5, 15)) > 0
-    p = _window_p(vols, 6, 14)
-    assert 2.3 < p < 2.9, p
+    for seed in (0, 1, 2):
+        g = build_rewired_grid(40, n_swaps=20, seed=seed)
+        src = 20 * 40 + 20
+        shells, _, vols = _shells_cuts_vols(g, src, 18)
+        assert 700 < vols[14] < 1200, (seed, vols[14])
+        assert max(shells[r] - 4 * r for r in range(5, 15)) > 0, seed
+        p = _window_p(vols, 6, 14)
+        assert 2.3 < p < 2.9, (seed, p)
+
+
+def test_rewire_sweep_rise_collapse_and_flat_threshold():
+    # Rewiring-fraction sweep (f_rw = N_swaps/|E|): FEW swaps inflate
+    # mid-window balls (p > 2; placement lottery, so only a majority
+    # is pinned: >=3/5 seeds rise by ns=20 at every L); MANY swaps
+    # saturate balls (p -> 0). Small systems saturate while large ones
+    # still inflate (L=30 p<1 < 2.5<p_L=60 at ns=320). Instability
+    # threshold N* (first ns with p>2.2): every seed crosses by ns=80
+    # with median <= 40 at all L -- O(10) shortcuts regardless of
+    # size (alpha ~= 0 on L=30..60, fixed window; scaled-window
+    # confirmation queued).
+    ls = (30, 40, 60)
+    sw = (0, 5, 10, 20, 40, 80, 160, 320)
+    seeds = (0, 1, 2, 3, 4)
+    curves = {}
+    for L in ls:
+        c = L // 2
+        for seed in seeds:
+            ps = []
+            for ns in sw:
+                g = build_rewired_grid(L, n_swaps=ns, seed=seed)
+                _, _, vols = _shells_cuts_vols(g, c * L + c, 18)
+                ps.append(_window_p(vols, 6, 14))
+            curves[(L, seed)] = ps
+    for L in ls:
+        risen = sum(1 for seed in seeds if curves[(L, seed)][3] > 2.2)
+        assert risen >= 3, (L, risen)
+        nstars = []
+        for seed in seeds:
+            cross = [ns for ns, p in zip(sw, curves[(L, seed)]) if p > 2.2]
+            assert cross, (L, seed)
+            nstars.append(min(cross))
+        assert max(nstars) <= 80, (L, nstars)
+        assert sorted(nstars)[2] <= 40, (L, nstars)
+    for seed in seeds:
+        assert curves[(30, seed)][-1] < 1.0, (seed, curves[(30, seed)][-1])
+        assert curves[(60, seed)][-1] > 2.5, (seed, curves[(60, seed)][-1])
