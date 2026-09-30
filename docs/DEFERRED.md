@@ -901,7 +901,14 @@ N* protection problem, multi-legged), and the alternatives are (a)
 3D substrate: circular, kills the emergence program's point; (b)
 non-integer fabric: Tier-1 pins 2 robustly, and d_H+1 would give the
 wrong integer anyway; (c) shortcut-mixed fabric: N* work shows that
-is damage, not vacuum; (d) DYNAMICAL fabric class [G]_{U,O}: the only
+is damage, not vacuum — SUPERSEDED IN PART by the weighted upgrade
+(review amendment): "shortcut" splits into strong shortcut (damage,
+binary-sector verdict stands) vs weak global coupling (vacuum-
+compatible per the weight-tolerance result: Lw=20 reads near-
+vacuum). Amended ontology: vacuum = near-2D strong backbone +
+weak global relational wiring; matter = locally concentrated
+strong/high-density connectivity; BH = extreme connectivity/tension
+limit. (d) DYNAMICAL fabric class [G]_{U,O}: the only
 live refinement — already queued, not a retreat. The emergence
 failures to date are failures of specific MECHANISMS (static
 distances, shell counting, unbiased SI), never of the premise — and
@@ -1036,9 +1043,28 @@ phase-separate into knots + low-dimensional vacuum?" replaces "How
 does U repair the lattice?" — the N* protection problem dissolves
 (the lattice isn't eternal, it's the residue) and blind-U stays
 consistent (separation is what U does, not what it optimizes).
-Required mechanism, sharply: U must PUMP long-range connectivity OUT
-of the residue INTO knots (fighting the measured RG-relevant shortcut
-amplification y_λ ≈ 1.5 — the anti-separation pressure to beat).
+Required mechanism, sharply (REVISED per review — the first
+"pump long-range connectivity OUT" formulation was too strong):
+phase separation must concentrate STRONG connectivity into knots
+while leaving a near-2D WEAKLY globally coupled residue —
+G_* → G_dense + (G_near-2D + εG_global); E_global^vac ≠ ∅ is
+permitted provided w_global ≪ w_fabric. The y_λ ≈ 1.5 RG pressure
+cited earlier is binary-sector (maximally-strong links); weighted
+RG flow vs w is OPEN — weak couplings may be irrelevant/marginal
+(RG-natural separation) or relevant (pumping still needed):
+measurement queued, not assumed. Curvature conjecture sharpened
+via Prop 1: dominating weak links (w ≥ d_0) are geometrically
+INVISIBLE, so curvature must live in small underpricing margins
+(δw = d_0 − w > 0 small → δd_O small) — vacuum weak wiring as
+marginally-priced (parallel to marginal rigidity noted, not
+claimed). P0' RESTATEMENT (conditional — model.md NOT rewritten:
+D14 has no U): IF a separating U is exhibited + basin breadth
+passes + residue → 2 with weak-global residue characterized, THEN
+P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
+depleted stationary phase of U" with d_I^vac ≃ 2 as PREDICTION
+(Maxwell survives as basin characterization, not origin; "why 2"
+moves from postulate to dynamics-output — the U must still
+actually output 2).
 FALSIFIER (pre-registered campaign, queued behind exhibiting ONE
 separating U — existence before universality): homogeneous graphs at
 broad d_* (3.7/5/8…), simple conserved blind aggregation U, no

@@ -44,7 +44,9 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   recovery Lw=20 near-vacuum; T15 cites Prop 1, D11 re-analysis
   queued).
   D14 cosmogony sketch filed (phase-separation origin, knots +
-  residue, pre-registered falsifier — no code).
+  residue, pre-registered falsifier — no code; revised per review:
+  concentrate-strong/leave-weak target, weighted ontology, P0'
+  restatement criteria, marginal-pricing conjecture).
   524 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
