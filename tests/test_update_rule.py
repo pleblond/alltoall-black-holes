@@ -199,3 +199,46 @@ def test_tournament_no_rule_heals_both():
     assert total_longs(ha) == 11 and ta[-1] < 2.0
     _, hs, _ = evolve(dam, rule_scramble, 20, seed=7, src=src)
     assert total_longs(hs) == 297, total_longs(hs)
+
+
+def test_slide_reels_in_then_freezes():
+    # New move class (endpoint slides, radius-6 gradient -- radius 3
+    # blinds reel-in: 1 accept): longs 30 -> 5 over 150 steps (beats
+    # guillotine's 6) but p stuck at 2.32 -- 5 levered longs hold the
+    # window. Degrees drift (max 6, min 2): weaker conservation.
+    import numpy as np
+
+    from bh_graph.update_rule import rule_slide, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    traj, h, acc = evolve(dam, rule_slide, 150, seed=5, src=src, radius=6)
+    assert total_longs(h) == 5, total_longs(h)
+    assert 2.30 < traj[-1] < 2.33, traj[-1]
+    assert acc > 40, acc
+    d = np.array([dd for _, dd in h.degree()])
+    assert d.min() >= 2 and d.max() <= 8, (d.min(), d.max())
+    assert nx.is_connected(h)
+
+
+def test_slide_guillotine_hybrid_frozen():
+    # Move-class hybrid cannot escape either: slide150 -> guillotine150
+    # -> slide150 leaves longs == 5 and p bit-identical -- joint fixed
+    # point of both rules. Single-move local dynamics is exhausted.
+    from bh_graph.update_rule import rule_guillotine, rule_slide, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    t1, h, _ = evolve(dam, rule_slide, 150, seed=5, src=src, radius=6)
+    t2, h, _ = evolve(h, rule_guillotine, 150, seed=6, src=src)
+    t3, h, _ = evolve(h, rule_slide, 150, seed=7, src=src, radius=6)
+    assert total_longs(h) == 5, total_longs(h)
+    assert t3[-1] == t1[-1], (t3[-1], t1[-1])
+
+
+def test_slide_fixes_plain_point():
+    from bh_graph.update_rule import rule_slide
+
+    g, src = _grid20()
+    _, _, acc = evolve(g, rule_slide, 20, seed=5, src=src, radius=6)
+    assert acc == 0

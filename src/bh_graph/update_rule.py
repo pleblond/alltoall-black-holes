@@ -118,6 +118,8 @@ def evolve(
     swaps_per_step: int = 4,
     T0: float = 2.0,
     Tend: float = 0.05,
+    radius: int = 3,
+    max_span: int = 3,
 ) -> tuple[list[float], nx.Graph, int]:
     """Run rule for steps; return (p-trajectory, final graph, accepted)."""
     if src is None:
@@ -125,7 +127,8 @@ def evolve(
     h = g0.copy()
     ctx = {"rng": random.Random(seed), "src": src, "target": target,
            "proposals": proposals, "swaps_per_step": swaps_per_step,
-           "T0": T0, "Tend": Tend, "total": steps}
+           "T0": T0, "Tend": Tend, "total": steps,
+           "radius": radius, "max_span": max_span}
     traj, acc = [], 0
     for s in range(steps):
         ctx["step"] = s
@@ -308,4 +311,39 @@ def rule_anneal(h: nx.Graph, ctx: dict) -> bool:
     if T > 0 and ctx["rng"].random() < math.exp(-d / T):
         return True
     _revert(h, mv)
+    return False
+
+
+def rule_slide(h: nx.Graph, ctx: dict) -> bool:
+    """Edge-slide reel-in: slide a long edge's endpoint toward shorter span.
+
+    New move class beyond swaps: pick (a,b) with span > smax, try sliding
+    each endpoint along its neighbors ((a,b) -> (a,w), w in N(b)), accept
+    the first strictly span-reducing slide that keeps degrees >= 2 and
+    the graph connected. Total edges fixed; degrees drift (documented:
+    weaker conservation than swaps). Reel-in can reach what swaps can't.
+    """
+    radius = ctx.get("radius", 3)
+    smax = ctx.get("max_span", 3)
+    E = list(h.edges())
+    m = len(E)
+    for _ in range(ctx.get("proposals", 40)):
+        a, b = E[ctx["rng"].randrange(m)]
+        sab = edge_span(h, a, b, radius)
+        if sab <= smax:
+            continue
+        for (u, v) in ((a, b), (b, a)):
+            nbrs = list(h[v])
+            ctx["rng"].shuffle(nbrs)
+            for w in nbrs:
+                if w == u or h.has_edge(u, w):
+                    continue
+                if h.degree(v) - 1 < 2 or h.degree(u) < 2:
+                    continue
+                h.remove_edge(u, v)
+                h.add_edge(u, w)
+                if edge_span(h, u, w, radius) < sab and nx.is_connected(h):
+                    return True
+                h.remove_edge(u, w)
+                h.add_edge(u, v)
     return False

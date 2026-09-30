@@ -103,7 +103,18 @@ longs!); guillotine (2.132, 6); drift (2.129, 22); anneal (1.97,
 healing — the D1 falsifier must judge (p, longs) jointly, and no
 single-swap rule clears both. Next: coordinated multi-swap moves
 or new move classes (degree-changing repair? edge-slide?), then
-the cross-candidate tournament this harness was built for.
+the cross-candidate tournament this harness was built for. New
+move class (MEASURED): edge-slide reel-in (radius-6 span gradient;
+radius 3 blinds it — 1 accept) reaches longs 5 (best yet) but p
+stuck at 2.32 — 5 levered longs hold the window while greedy's 88
+hide from it: the (p, longs) plane is genuinely 2D. Slide ⇄
+guillotine hybrid FROZEN bit-identically (joint fixed point).
+VERDICT: single-move local dynamics (strict/neutral/annealed
+swaps, slides, hybrids) cannot restore locality from swap damage
+— all stall with residual longs. Locality protection needs
+coordinated moves, global search, or new physics (a publishable
+constraint on U). D1 first-pass CLOSED; tournament harness stands
+ready for future entrants.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
