@@ -473,3 +473,44 @@ def test_chain_heals_l30():
     assert acc == 6, acc
     assert traj[-1] < 2.1, traj[-1]
     assert nx.is_connected(h2)
+
+
+def test_triangular_healing_generalizes():
+    # Cross-candidate battery, first pin: triangular lattice (fabric-
+    # relative smax=2) has a clean span signature (all 1121 edges span
+    # exactly 2, 0 longs); swap damage adds 24 longs with p reading
+    # 2.34 (same damage signature as square 2.362); guillotine30 heals
+    # 24 -> 13, connected. Locality repair is not square-grid luck.
+    from bh_graph.graphs import build_triangular_lattice
+    from bh_graph.update_rule import edge_span, rule_guillotine, total_longs
+
+    g = build_triangular_lattice(20)
+    assert all(edge_span(g, u, v) == 2 for u, v in g.edges())
+    assert total_longs(g, 3, 2) == 0
+    dam = inject_shortcuts(g, 10, 3)
+    assert total_longs(dam, 3, 2) == 24
+    src = next(iter(g.nodes()))
+    assert locality_p(dam, src) > 2.3
+    _, h, acc = evolve(dam, rule_guillotine, 30, seed=5, src=src, max_span=2)
+    assert total_longs(h, 3, 2) == 13, total_longs(h, 3, 2)
+    assert acc == 6, acc
+    assert nx.is_connected(h)
+
+
+def test_hex_needs_fabric_relative_radius():
+    # Harness methods finding: radius must be fabric-relative, not just
+    # smax. Hex plaquettes (length 6) are invisible at radius 3 (every
+    # plain edge reads 4 = radius+1, damage reads 0 longs @smax5 --
+    # blind). At radius 5 the signature resolves (plain 568x5 + 2x6
+    # boundary floor) and damage reads 54 longs. No healing claimed on
+    # hex yet (2-long plain floor breaks the fixed-point premise) --
+    # queued behind boundary-aware gating.
+    from bh_graph.graphs import build_hex_lattice
+    from bh_graph.update_rule import edge_span, total_longs
+
+    g = build_hex_lattice(20)
+    assert all(edge_span(g, u, v, 3) == 4 for u, v in g.edges())
+    dam = inject_shortcuts(g, 10, 3)
+    assert total_longs(dam, 3, 5) == 0
+    assert total_longs(g, 5, 5) == 2
+    assert total_longs(dam, 5, 5) == 54

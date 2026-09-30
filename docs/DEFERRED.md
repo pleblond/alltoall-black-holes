@@ -215,6 +215,19 @@ test_update_rule.py): L=30 damage (27 longs) → pair_anneal600 → 6 →
 strict order-3 anneal60 → 0, connected (T0 = 2 also clears, acc 23
 vs strict 6 — uphill tolerance only wastes here; ungated triple
 churns: 30 accepts net −5). Healing is not an L=20 artifact.
+CROSS-CANDIDATE BATTERY, first pins (MEASURED,
+test_update_rule.py): triangular lattice generalizes — clean span
+signature (all 1121 edges span exactly 2, 0 longs @smax2), swap
+damage adds 24 longs with p 2.34 (same damage signature as square
+2.362), guillotine30 heals 24 → 13 connected: locality repair is
+not square-grid luck. Hex exposes a harness methods finding:
+RADIUS must be fabric-relative, not just smax — hex plaquettes
+(length 6) are invisible at radius 3 (every plain edge reads
+radius+1, damage reads 0 longs @smax5, blind); at radius 5 the
+signature resolves (plain 568×5 + 2×6 boundary floor) and damage
+reads 54 longs. No hex healing claimed yet (the 2-long plain floor
+breaks the fixed-point premise) — queued behind boundary-aware
+gating; pair/triple on triangular queued next.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
