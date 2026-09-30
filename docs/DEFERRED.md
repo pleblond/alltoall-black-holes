@@ -676,7 +676,23 @@ NOT follow from 2D shells, and assuming it begs the question (2+1=3
 in a trenchcoat). Candidate rescue: PAIRWISE relational counting
 (~|shell|² ~ r²) as the source of d_H = 2 — i.e., the holographic
 exponent counts relations, not nodes. Queued: derive-or-refute C_O
-scaling from graph structure before any emergence claim. 
+scaling from graph structure before any emergence claim.
+Shell-counting DILEMMA (SKETCH, test_mds.py leg pinned — not a theorem):
+on 2D fabric, honest per-shell counts give nodes ~ r¹, cut capacity
+8r+4 (pinned law), shell-MDS rank O(1) (scale-invariant ring profile,
+GoF2 = 0.772 at every radius — pinned), entropy extensive ~ r¹ —
+NOTHING reaches r² per shell; while the only natural r² count
+(cumulative ball volume/entropy) violates shell-independence BY
+CONSTRUCTION (inner shells re-counted at every outer radius). So
+d_H = 2 XOR shell-independence: the emergence derivation cannot have
+both from shell counting. Nonlinear-depth escape closes too: d_obs = 3
+needs dr/dρ ~ ρ²/r ⟺ ρ ~ r^{2/3}, i.e. exactly the tuned-null
+hop^0.667 already filed unprincipled. Escapes left open (honest):
+C_O counting something non-geometric with r² scaling (new physics),
+or non-shell composition of depth × transverse. Pairwise-counting
+rescue REFUTED as stated (~|shell|² counts constrained pairs, true
+DOFs ~ rank ~ O(1)) — pairs overcount by arithmetic, independence
+fails by triangle inequality. 
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric

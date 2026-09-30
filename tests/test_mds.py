@@ -70,3 +70,27 @@ def test_mds_delaunay_bowl_control():
     with np.errstate(divide="ignore", invalid="ignore"):
         tort = np.nanmean(np.where(De > 0, D / np.maximum(De, 1e-9), np.nan), axis=1)
     assert abs(np.corrcoef(V[:, 2], tort)[0, 1]) > 0.8
+
+
+def test_shell_mds_rank_is_order_one():
+    # Dilemma-lemma leg (D12): within-shell hop MDS on the L=40 grid is
+    # a scale-invariant ring profile -- lam1 == lam2 dominant pair,
+    # GoF2 = 0.772 at EVERY radius 5..14, rank O(1). Shells carry no
+    # growing independent relational content: honest per-shell counts
+    # (nodes ~r, cut 8r+4, MDS rank O(1)) never reach r^2, while the
+    # only r^2 count (cumulative ball) violates shell-independence by
+    # construction. d_H = 2 XOR independence on 2D fabric.
+    L = 40
+    g = nx.convert_node_labels_to_integers(nx.grid_2d_graph(L, L), ordering="sorted")
+    src = (L // 2) * L + L // 2
+    d = dict(nx.single_source_shortest_path_length(g, src))
+    Dfull = nx.floyd_warshall_numpy(g)
+    nodes = list(g.nodes())
+    idx = {v: i for i, v in enumerate(nodes)}
+    for r in (5, 8, 11, 14):
+        sh = [v for v in nodes if d[v] == r]
+        ii = [idx[v] for v in sh]
+        ev, _ = _cmds(Dfull[np.ix_(ii, ii)])
+        pos = ev[ev > 0].sum()
+        assert ev[0] / ev[1] < 1.01, (r, ev[:4])
+        assert 0.76 < ev[:2].sum() / pos < 0.78, (r, ev[:4])
