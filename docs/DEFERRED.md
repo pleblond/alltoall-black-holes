@@ -502,7 +502,17 @@ time / channels) re-embedding the chart into an apparent 3D view;
 V_O(R) ~ R^3 is the output test per depth candidate (D10 killer
 design). Adds vantage-covariance as a second universality axis:
 views from distinct o must agree up to IR translation; sky-shape
-(concentration vs dilution of solid angle) is a new falsifier. 
+(concentration vs dilution of solid angle) is a new falsifier.
+Static depth bake-off (MEASURED NEGATIVE, L=40 grid, V_O(R) exponent
+d_obs; tuned-null hop^0.667 gives 2.73 = finite-size R^3): hop 1.82,
+resistance 4.18 (log-growth explodes volume), -log(communicability)
+1.32, (hop^2·res)^{1/3} 2.28 (best, still short), sqrt(hop·(-logC))
+1.54. Within-shell dispersion: -logC spread ~ r^1.15-1.32
+(superlinear!), resistance ~ r^0.2-0.4. NOTHING principled reaches 3:
+observer-3D does not fall out of standard relational distances.
+Surviving static route is multiplicity-weighted counting (the D10
+skeleton, w unprincipled); dynamical depth via U-influence queued
+behind D1. Vantage-covariance queued behind depth discovery. 
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
