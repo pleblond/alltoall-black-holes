@@ -278,3 +278,45 @@ def test_scaled_window_sweep_flat_threshold():
         assert sorted(nstars)[2] <= 40, (L, nstars)
         for seed in seeds:
             assert curves[(L, seed)][-1] < 1.0, (L, seed)
+
+
+def _block_once(g):
+    """2x2 block coarse-graining (tuple-labeled grid); multi-edges merge."""
+    h = nx.Graph()
+    for u, v in g.edges():
+        a = (u[0] // 2, u[1] // 2)
+        b = (v[0] // 2, v[1] // 2)
+        if a != b:
+            h.add_edge(a, b)
+    return h
+
+
+def _long_frac(g):
+    """Fraction of edges spanning >1 Manhattan unit (effective shortcut density)."""
+    edges = list(g.edges())
+    long = sum(1 for a, b in edges if abs(a[0] - b[0]) + abs(a[1] - b[1]) > 1)
+    return long / len(edges)
+
+
+def test_rg_blocking_shortcut_density_grows():
+    # RG blocking (2x2, L40 -> 5): plain grid keeps long-edge
+    # fraction exactly 0.0 at every level (blocking preserves
+    # locality), while ns=20 rewired flows 0.013 -> 0.31 --
+    # effective shortcut density grows >1.8x per step on every seed
+    # (measured min 2.2x; rough y_lambda ~= 1.5). First direct
+    # evidence that shortcut density is RG-relevant.
+    for ns in (0, 20):
+        for seed in (0, 1, 2):
+            g = nx.grid_2d_graph(40, 40)
+            if ns:
+                nx.connected_double_edge_swap(g, ns, seed=seed)
+            flow = [_long_frac(g)]
+            for _ in range(3):
+                g = _block_once(g)
+                flow.append(_long_frac(g))
+            if ns == 0:
+                assert flow == [0.0, 0.0, 0.0, 0.0], flow
+            else:
+                assert all(b > a for a, b in pairwise(flow)), (seed, flow)
+                assert all(b / a > 1.8 for a, b in pairwise(flow)), (seed, flow)
+                assert 0.25 < flow[-1] < 0.36, (seed, flow)

@@ -18,7 +18,8 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   D1 C_vac-preservation target, RG-relevance investigation ("critical"
   dropped), extended division of labor; protected-locality headline +
   two-problems split + D1 injection falsifier + α bookkeeping;
-  paper v5 S11 + ledger updated. 450 tests.
+  RG-blocking flow (λ 0.013→0.31, y≈1.5 rough);
+  paper v5 S11 + ledger updated. 451 tests.
 - **v5.1** — D10b tension-cost program (releases model-docs v0.6 below):
   zero-fit cost candidates for tense-region `d(i,j)` (tortuosity-import
   partial recovery, `c_eff`-import flips with full dip → overshoot →

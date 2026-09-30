@@ -435,10 +435,12 @@ postulate — something P0' + D1 must explain), with matter/defects as
 departures from the phase. Headline: low-dimensional locality is not
 generic; it must be protected. "Phase" here means dynamical phase of
 `U` (ensemble concentration `P_U(G ∉ C_vac) → 0`), explicitly not a
-rewiring phase transition — no critical point is claimed. Whether shortcut
-density is RG-relevant (y_λ > 0) is now an investigation: the large
-`∂d_eff/∂f` at 0 is compatible with relevance but establishes no
-exponent (full RG blocking queued). Sweep numbers (L=40/60/80,
+rewiring phase transition — no critical point is claimed. Shortcut
+density looks RG-relevant (y_λ > 0): first blocking measurement
+supports it — 2×2 blocking flows rewired long-edge density 0.013 →
+0.31 over three steps against plain exactly 0.0 (rough y_λ ≈ 1.5,
+a first estimate from one scheme at one f, not a quoted exponent).
+Sweep numbers (L=40/60/80,
 scaled windows, 5 seeds): measured `N*_med` = (20,10,10), so `N* =
 O(1)` is consistent (α ≈ 0 over the tested range, rejecting `N* ∝
 |E|` there); asymptotic f* → 0 remains hypothesis; placement lottery

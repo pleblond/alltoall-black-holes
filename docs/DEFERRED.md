@@ -262,7 +262,14 @@ locality is not generic; it must be protected. Working gloss (not a
 new postulate): vacuum is a dynamically protected low-dimensional
 information-locality class — something P0' + D1 must eventually
 explain. Shortcut density is a candidate RG-relevant perturbation
-(y_λ > 0? — investigation, not established; full RG blocking queued). Within-L caveat: at fixed
+(y_λ > 0? — investigation, not established). First RG-blocking
+measurement SUPPORTS relevance: 2×2 blocking (L40 → 5) keeps
+plain-grid long-edge fraction exactly 0.0 at every level while
+ns=20 rewired flows 0.013 → 0.044 → 0.14 → 0.31 (>1.8× per step,
+every seed; rough y_λ ≈ 1.5 from 24× over 3 steps). Long COUNT
+falls (40 → ~18, some merge into short edges) while the DENSITY
+rises 24× — the density is the relevant quantity. y_λ ≈ 1.5 is a
+first estimate, not a quoted exponent (one blocking scheme, one f). Within-L caveat: at fixed
 absolute ns the departure peaks mid-window and dilutes outward —
 the relevance statement is f* → 0, not within-L growth. Small
 systems saturate while large still inflate (ns=320: L=30 p < 1 <
