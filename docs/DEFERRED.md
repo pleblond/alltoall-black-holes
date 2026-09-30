@@ -251,6 +251,15 @@ guillotine150 → 7 while pair600 alone clears to 0: dense
 triangulated substrates (ordered tri + disordered Delaunay) heal
 at order 2 — coordination need tracks density, and disorder is
 no obstacle (triangulation helps: more straddling partners).
+GABRIEL LIMIT (MEASURED, test_update_rule.py — harness operating
+envelope): sparse disordered Gabriel (745 edges) has a broad span
+spectrum (2..7 at radius 6; floor 15 vs dam 28 @smax6 — no gapped
+signature), and guillotine descent overshoots BELOW the natural
+level (plain 15 → 7, dam 28 → 6): the rule rewires away from
+Gabriel-ness rather than healing toward it. Census healing is
+well-posed only on gapped signatures (square/tri/hex/Delaunay);
+the density prediction stands untestable here (blocked by the
+methods limit, not refuted).
 BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
 locality should characterize STABLE STATES of U, not appear in U's
 objective function. The D1 verdict sharpens: direct microscopic

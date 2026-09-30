@@ -606,3 +606,30 @@ def test_pair_fully_heals_delaunay():
     assert ap == 10, ap
     assert total_longs(hp, 3, 2) == 0
     assert nx.is_connected(hp)
+
+
+def test_gabriel_broad_spectrum_breaks_census():
+    # Harness operating envelope: sparse disordered Gabriel fabric has a
+    # broad span spectrum (2..7 at radius 6 -- no gapped signature:
+    # floor 15 @smax6 vs dam 28), and descent overshoots BELOW the
+    # natural level (plain 15 -> 7 in 20 steps, dam 28 -> 6 in 100) --
+    # the rule rewires away from Gabriel-ness (densifying detours)
+    # rather than healing toward it. Census healing is well-posed only
+    # on gapped signatures (square/tri/hex/Delaunay); the density
+    # prediction is untestable here (blocked, not refuted).
+    from bh_graph.graphs import build_gabriel
+    from bh_graph.update_rule import rule_guillotine, total_longs
+
+    g = build_gabriel(n_points=400, seed=0)
+    assert g.number_of_edges() == 745
+    assert total_longs(g, 6, 6) == 15
+    dam = inject_shortcuts(g, 10, 3)
+    assert total_longs(dam, 6, 6) == 28
+    src = next(iter(g.nodes()))
+    _, h0, acc0 = evolve(g, rule_guillotine, 20, seed=5, src=src, radius=6, max_span=6)
+    assert acc0 == 5, acc0
+    assert total_longs(h0, 6, 6) == 7
+    _, h, acc = evolve(dam, rule_guillotine, 100, seed=5, src=src, radius=6, max_span=6)
+    assert acc == 14, acc
+    assert total_longs(h, 6, 6) == 6, total_longs(h, 6, 6)
+    assert nx.is_connected(h)
