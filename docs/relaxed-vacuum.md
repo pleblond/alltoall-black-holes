@@ -429,17 +429,27 @@ failures form a triangle around the vacuum:
 > mundane local statistics while destroying large-scale accessibility.
 
 The vacuum is therefore not empty, not random, not merely regular —
-it is organized connectivity, a low-dimensional phase of the
-information graph stabilized against shortcut proliferation (with
-matter/defects as departures from the phase). Whether shortcut
+it is organized connectivity: vacuum is a dynamically protected
+low-dimensional information-locality class (working gloss, not a new
+postulate — something P0' + D1 must explain), with matter/defects as
+departures from the phase. Headline: low-dimensional locality is not
+generic; it must be protected. "Phase" here means dynamical phase of
+`U` (ensemble concentration `P_U(G ∉ C_vac) → 0`), explicitly not a
+rewiring phase transition — no critical point is claimed. Whether shortcut
 density is RG-relevant (y_λ > 0) is now an investigation: the large
 `∂d_eff/∂f` at 0 is compatible with relevance but establishes no
 exponent (full RG blocking queued). Sweep numbers (L=40/60/80,
-scaled windows, 5 seeds): `N*` medians 20/10/10 — α ≈ 0 confirmed,
-so the critical fraction f* → 0 with size; placement lottery (one
-draw in five dodges at ns=20); saturation collapse at high `f_rw`
-with small systems collapsing first. No sharp jump and no critical
-point claimed: smooth crossover with extreme small-`f` sensitivity. The killer result — same frozen `M_O` → `d_obs → 3`
+scaled windows, 5 seeds): measured `N*_med` = (20,10,10), so `N* =
+O(1)` is consistent (α ≈ 0 over the tested range, rejecting `N* ∝
+|E|` there); asymptotic f* → 0 remains hypothesis; placement lottery
+(one draw in five dodges at ns=20); saturation collapse at high
+`f_rw` with small systems collapsing first. No sharp jump and no
+critical point claimed: smooth crossover with extreme small-`f`
+sensitivity. Derivation hierarchy, revised: information graph →
+protected locality → 2D vacuum fabric → (`M_O`) → 3D observed
+space. Two emergence problems, kept separate: (1) L0 locality — why
+does `U` maintain a low-dimensional connectivity class? (2) observer
+dimensionality — why does `M_O` reconstruct 2+scale as 3D? The killer result — same frozen `M_O` → `d_obs → 3`
 on every positive member — awaits `M_O` itself.
 
 **Why this could work (grounding).** Malament's theorem: causal order fixes

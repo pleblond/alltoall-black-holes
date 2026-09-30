@@ -166,8 +166,8 @@ def test_rewire_sweep_rise_collapse_and_flat_threshold():
     # still inflate (L=30 p<1 < 2.5<p_L=60 at ns=320). Instability
     # threshold N* (first ns with p>2.2): every seed crosses by ns=80
     # with median <= 40 at all L -- O(10) shortcuts regardless of
-    # size (alpha ~= 0 on L=30..60, fixed window; scaled-window
-    # confirmation queued).
+    # size (alpha ~= 0 over L=30..60; asymptotic f* -> 0 remains
+    # hypothesis -- see scaled-window test).
     ls = (30, 40, 60)
     sw = (0, 5, 10, 20, 40, 80, 160, 320)
     seeds = (0, 1, 2, 3, 4)
@@ -244,8 +244,9 @@ def test_scaled_window_sweep_flat_threshold():
     # Scaled-window sweep: windows [0.15L, 0.35L] at L=40/60/80.
     # Plain baselines rise toward 2 with L; N* (first ns with p>2.2)
     # stays O(10) at every size (all seeds cross by ns=80, median <=
-    # 40) while |E| grows 4x -- the critical fraction f* -> 0 with L
-    # (alpha ~= 0, now confirmed on scaled windows). Heavy rewiring
+    # 40) while |E| grows 4x -- measured N*_med=(20,10,10), so N*=O(1)
+    # is consistent (alpha ~= 0 over L=40..80); asymptotic f* -> 0
+    # remains hypothesis. Heavy rewiring
     # saturates every seed at every size (ns=640: p < 1.0).
     ls = (40, 60, 80)
     sw = (0, 5, 10, 20, 40, 80, 160, 320, 640)

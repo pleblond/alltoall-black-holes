@@ -46,7 +46,20 @@ fluctuate (`G_n ≠ G_{n+1}`) while the IR class stays invariant
 (`[G_n]_IR = [G_{n+1}]_IR ∈ C_vac`): vacuum as invariant dynamical
 universality class. Then `M_O` quotienting irrelevant fluctuations
 gives `M_O(G_n) ≃ M_O(G_{n+1})` — stable vacuum atop a changing
-graph (the commutation link).
+graph (the commutation link). Falsifier protocol (gated on U):
+evolve `G_0 → G_1 → …` from `G_vac` and require `G_n ∈ C_vac ∀n`
+in equilibrium, up to fluctuations — operationally `⟨Λ⟩_U` in the
+vacuum basin for a locality functional Λ (candidates: window-p;
+N* itself; distance-to-C_vac; Λ undefined — open). Then inject
+shortcuts (`G → G + δG_shortcut`) and watch: persist/amplify kills
+the candidate; `δG_shortcut → G_vac` (self-healing) means locality
+is an attractor — no perfectly local vacuum graph need be
+postulated. Statistical form (stochastic/quantum U): ensemble
+concentration `P_U(G ∉ C_vac) → 0` in the IR limit — vacuum as
+dynamical phase (this licenses "phase"; no rewiring phase
+transition is claimed). Acquired constraint: find a simple U for
+which locality, unitarity/information conservation, and the vacuum
+structure are simultaneously natural.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
@@ -241,17 +254,23 @@ hypothesis, open). Sweep results (L=30/40/60, 5 seeds): few swaps
 inflate (p > 2, placement lottery — typically 4/5 seeds rise by
 ns=20), many swaps saturate (p → 0); N* (first ns with p > 2.2) has
 median ≤ 40 at every L — O(10) shortcuts regardless of size (α ≈ 0
-on L=30..60, fixed window). Scaled-window confirmation LANDED
-(L=40/60/80, windows [0.15L,0.35L]): N* medians 20/10/10 — α ≈ 0
-holds, so the critical fraction f* = N*/|E| → 0 with size (≤80
-swaps flip a 12,640-edge fabric). Shortcut density is therefore a
-candidate RG-relevant perturbation (y_λ > 0? — investigation, not
-established; full RG blocking queued). Within-L caveat: at fixed
+on L=30..60, fixed window). Scaled windows LANDED (L=40/60/80, [0.15L,0.35L]). Bookkeeping:
+MEASURED — N*_med = (20,10,10); INFERENCE supported — N* = O(1)
+consistent (α ≈ 0 over the tested range; rejects N* ∝ |E| there);
+HYPOTHESIS — asymptotic f* = N*/|E| → 0. Headline: low-dimensional
+locality is not generic; it must be protected. Working gloss (not a
+new postulate): vacuum is a dynamically protected low-dimensional
+information-locality class — something P0' + D1 must eventually
+explain. Shortcut density is a candidate RG-relevant perturbation
+(y_λ > 0? — investigation, not established; full RG blocking queued). Within-L caveat: at fixed
 absolute ns the departure peaks mid-window and dilutes outward —
 the relevance statement is f* → 0, not within-L growth. Small
 systems saturate while large still inflate (ns=320: L=30 p < 1 <
 2.5 < L=60 p). No sharp jump seen: smooth crossover with extreme
-small-f sensitivity.
+small-f sensitivity. Two emergence problems, kept separate (essay
+§8): L0 locality (P0' + D1 — why U maintains a low-dimensional
+connectivity class) vs observer dimensionality (D10 + D12 — why M_O
+reconstructs 2+scale as 3D).
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
 matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the
