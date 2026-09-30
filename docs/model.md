@@ -162,10 +162,13 @@ self-stress point (floppy below, stressed above). Black-hole interiors `G_N`
 vacuum; stars, planets, and Casimir cavities live on the tension spectrum
 between them. Curvature is self-stress: over-coordination (`z − 4`)
 reconstructed through `M_O` (quantitative map open, D10). An observer never
-sees `G` directly; an observer sees `M_O(G)` where `M_O` is a restricted
-coarse-graining / information-access channel (see P4 box). Objective
-spacetime is defined as the part of `G`'s information structure invariant
-under all admissible `M_O`.
+sees `G` directly; an observer sees `M_O(G) = [G]_{∼_O}`, the quotient of
+microscopic states by observational equivalence under the observer's
+graph-internal accessible algebra `A_O` (P4 is one candidate instance).
+Admissibility requires five: graph-internal, permutation-covariant,
+coarse-graining stable, operational, frozen rule (D10/D12); `V_O ~ R³`
+is the output test, never an input. Objective spacetime is defined as
+the part of `G`'s information structure invariant under all admissible `M_O`.
 
 History: v0.5 P0 defined vacuum as perfect all:all (maximally connected,
 minimally distinguished). That put black holes — the most extreme objects —
@@ -685,10 +688,10 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 | D7 | Kilonova radiative transfer | validated multidimensional RT on public ejecta models/transformations compatible with the F5/F6 bulk prescription (morphology, velocity structure per VEL-1, Ye-dependent opacities/reprocessing, viewing-angle dependence, direct `i`-band); pipeline must pass the AT2017gfo anchor/control gate before its GW190814 result promotes the analytic verdict (POSSIS primary implementation) | decides whether the GW190814 non-detection is compatible with universal shedding or falsifies it; `g`-band verdicts already robust |
 | D8 | Shedding efficiency `ε(M,a,q)` + shutoff location | derive mass/spin/ratio dependence from `K_max(N)` combinatorics, spin-ordered reabsorption, or remnant-trap physics, with any shutoff location as *output* | highest-value attack surface on universal shedding; a derived shutoff between gap and BBH masses must land where it lands (same no-insertion rule as the 44 M☉ null) |
 | D9 | Raychaudhuri (focusing) for leg bundles | derive focusing for SI fronts on leg networks (seed: AT congestion slowdown); closes the Jacobson chain to Einstein's equations with `η = 1/4` from I1b, `G = 1` | promotes I6c from open bridge to derived; gates nothing else — T8–T11 stand without it |
-| D10 | Tension spectrum: simulator d-dip around mass + tension→`κ` map (v0.6) | (a) an over-coordinated (tense) region in the graph shows the GR fingerprint shape (near dip, overshoot, →3⁺) under info-side `d_eff`; relaxed `z≈4` regions show `d=2` fabric / `d=3` reconstruction as applicable; (b) Ollivier–Ricci `κ` tracks over-coordination (`z−4`) quantitatively | P0' first quantitative wire; failure of (a) shape-match after the mapping is fixed refutes P0'. v0.6 probe: bare shortest-path rejected for tense regions (inverted far side: shortcuts shrink balls, GR needs stretched rulers); D10b: tortuosity-import costs partially recover (no flip), `c_eff`-import costs give full dip → overshoot → asymptote on 9×9 mild plug (conditional on bridge); amplitude scales loosely with χ; κ is an interface pattern (criterion (b) reformulated); tension-imprint conjecture stated in §5; T15 cost-dominance is the cost-rule diagnostic |
+| D10 | Tension spectrum: simulator d-dip around mass + tension→`κ` map (v0.6) | (a) an over-coordinated (tense) region in the graph shows the GR fingerprint shape (near dip, overshoot, →3⁺) under info-side `d_eff`; relaxed `z≈4` regions show `d=2` fabric / `d=3` reconstruction as applicable; (b) Ollivier–Ricci `κ` tracks over-coordination (`z−4`) quantitatively | P0' first quantitative wire; failure of (a) shape-match after the mapping is fixed refutes P0'. v0.6 probe: bare shortest-path rejected for tense regions (inverted far side: shortcuts shrink balls, GR needs stretched rulers); D10b: tortuosity-import costs partially recover (no flip), `c_eff`-import costs give full dip → overshoot → asymptote on 9×9 mild plug (conditional on bridge); amplitude scales loosely with χ; κ is an interface pattern (criterion (b) reformulated); tension-imprint conjecture stated in §5; T15 cost-dominance is the cost-rule diagnostic; `M_O` = quotient + five criteria; substrate family measured (tri/hex +, gated-wall −) |
 | D11 | Far-field tail exponent of the tension fingerprint (D10b) | measured `E(r)` tail on `L ≥ 200` with clean windows to `10Rc`: `1/r` (wedge shadow, delayed nodes `~ Rc·r`) vs `1/r²` (fixed shadow, deficit `~ Rc²`) | feeds the tension-imprint conjecture amplitude clause; no direct kill wire (shape detail, not shape itself) |
-| D12 | Reconstruction universality: why admissible `M_O` converge (essay §8) | admissibility criterion from `G`'s access constraints + ≥2 admissible `M_O` converging to the same IR geometry | meta-criterion over D3/D4/D6/D10; a second admissible `M_O` with robustly non-3D IR refutes the P0' program |
-| D13 | Emergent causal order: control + 4 stages (essay §8) | D13.0 control measured (`t²`, sign pattern); open: (1) `U→T_U,≺_U`; (2) cone under same `M_O`; (3) clocks unimported; (4) Malament interval → T8–T11 | extends D1 (D1 provides `U`); same-`M_O` + C1–C5 falsifier with D12 |
+| D12 | Reconstruction universality: why admissible `M_O` converge (essay §8) | quotient `M_O(G)=[G]_{∼_O}` + five admissibility criteria (D10); ≥2 admissible `M_O` converging to the same IR geometry | meta-criterion over D3/D4/D6/D10; a second admissible `M_O` with robustly non-3D IR refutes the P0' program |
+| D13 | Emergent causal order: control + 4 stages (essay §8) | D13.0 static control measured (analytic `V_G`, `8r+4` law, substrate family ±, sign pattern); stage-1 spec filed (`V_U`/`Ṽ_U`, do-intervention, 3 controls); open: (1) `U→T_U,≺_U`; (2) cone under same `M_O`; (3) clocks unimported; (4) Malament interval → T8–T11 | extends D1 (D1 provides `U`); same-`M_O` + C1–C5 falsifier with D12 |
 
 Rule for all D-items: the closing derivation must output the number or location,
 not take it as input. Inserting an observed scale as a graph parameter is a fit,

@@ -10,6 +10,16 @@ D1) is unrelated to DEFERRED-D2 (Kerr multipoles); `docs/model.md` always
 writes the module name. `supplement.tex` S1/S3 still uses bare (D2) for both —
 flagged for the paper flow (needs PDF rebuild).
 
+## Program pipeline (D10/D12/D13 + commutation)
+
+Vacuum graph family → graph-internal admissible `M_O` → 2+scale → 3
+reconstruction → explicit `U` → `δ_U(s,v;n)` → `V_U(n)`, `≺_U` →
+same frozen `M_O` → observed causal geometry → `M_O U ≃ U_eff M_O`.
+Division of labor: D10 asks whether space emerges; D13 whether causal
+time emerges; D12 whether the reconstruction is universal rather than
+chosen; commutation whether the resulting spacetime has autonomous
+dynamics.
+
 ## D1 — Evaporation isometry V_k (Page/QES) — P0 next cycle
 
 **Missing:** unitary/isometric evaporation map from graph dynamics:
@@ -188,6 +198,27 @@ Leading 2D+scale candidate mechanism: scale multiplicity `n_s(r) ∝ r`
 profile — linear-vs-log must be measured, not assumed (essay §8).
 `emergent_dim` protocol +
 two-distance bracket ready; shell no-emergence pin shows what failure looks like.
+`M_O` formal upgrade (adopted): observer `O` is defined by a
+graph-internal accessible observable algebra `A_O(G)`; observational
+equivalence `G_1 ~_O G_2 ⟺ A(G_1) = A(G_2) ∀A ∈ A_O`, and
+`M_O(G) = [G]_{~_O}` — an operational quotient, not a free
+graph-to-manifold embedding (a clever-enough free map could make
+anything look 3D). Admissibility requires all five: (1) graph-internal
+(no target dimension, coordinates, metric, GR quantity, or desired
+phenomenology in the definition); (2) permutation-covariant
+(relabeling cannot change reconstructed physics); (3) coarse-graining
+stable (`A_O`-invisible perturbations don't move the macroscopic
+reconstruction); (4) operational (every quantity obtainable by
+interactions available to `O`); (5) frozen rule (state-independent
+prescription). `V_O(R) ~ R³` is an output test, never an input:
+admissible-from-graph-internal-criteria ⟹ measure `d_obs`, not the
+reverse. Substrate family (D13.0, MEASURED): triangular/hexagonal
+positive controls reproduce `d_G → 2` with lattice-dependent
+prefactors under one frozen measurement rule; gated-wall negative
+control keeps bit-identical `~r²` balls with collapsed cut capacity —
+`d_G ≃ 2` is not sufficient for channel scaling. Killer result queued:
+same frozen `M_O` → `d_obs → 3` on every positive family member
+(per-`M_O` tuning proves nothing).
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
 matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the
@@ -242,11 +273,14 @@ stands: why resistance / diffusion / communicability distance, and why
 couldn't another reasonable reconstruction give 4D, 7D, or no smooth
 geometry at all?
 
-**Close criterion:** define `A_macro(G)` = {`M_O` : graph-internal
-admissibility/access criteria satisfied} — the access floor is part of
-the definition (a single-node "observer" recovers nothing), and neither
-"3D" nor "Lorentzian" may occur in it. Target: ∀ `M_O ∈ A_macro(G)`,
-`M_O(G) ∼ M` up to coordinate/coarse-graining equivalence.
+**Close criterion:** `A_macro(G)` = {`M_O(G) = [G]_{~_O}` : `A_O`
+satisfies the five admissibility criteria (graph-internal,
+permutation-covariant, coarse-graining stable, operational, frozen
+rule — D10)}. The access floor is part of the definition (a
+single-node "observer" recovers nothing); `V_O ~ R³` is the output
+test, never an input. Target: ∀ `M_O ∈ A_macro(G)`,
+`M_O(G) ∼ M` up to coordinate/coarse-graining equivalence. Queued
+audit: P4 (uniform Ollivier) against criteria 1–5.
 Partial-credit ladder:
 (i) criterion stated + non-circularity argued; (ii) two instances agree on
 vacuum fabric; (iii) agreement extends to tensed regions (fingerprint
@@ -275,21 +309,33 @@ toward 2 with radius (1.9196 → 1.9603 fractional); plus the plug sign
 pattern (35<38 hops vs +5.0 weighted) as pre-registration for stage 1.
 Briefly filed as stage 1, demoted on review: first-passage here *is*
 hop distance — compatibility with a cone is not observation of one.
-Second substrate family (hexagonal/noisy-regular) queued to de-brittle
-the control.
+Substrate family MEASURED (de-brittling landed): triangular (shells
+6n, cuts 12r+6) and hexagonal (shells 3n, alternating cut law)
+positive controls reproduce `d_G → 2` with lattice-dependent
+prefactors under one frozen rule; gated-wall negative control keeps
+bit-identical `~r²` balls with collapsed cuts. Noisy-regular family
+member still queued.
 
-**Close criterion (staged, all open):** (1) `U → T_U, ≺_U`: stated local
-update rule + counterfactual-influence arrival times (OTOC-threshold
-form, ε-robust cone speed) and derived causal order (never adjacency
-repackaged); (2) `(≺_U, M_O) → cone`: observed causal cone compatible
+**Close criterion (staged):** (1) `U → T_U, ≺_U`: stated local
+update rule + counterfactual-influence machinery:
+`δ_U(s,v;n) = D(R_v[X_n^{(s)}], R_v[X_n])` from a do-intervention at
+`s` (minimal standardized perturbation; graph, `U`, boundaries, and
+noise realization held fixed — paired randomness for stochastic `U`),
+influence ball `B_U(s,n;ε)` with `V_U(s,n;ε) = |B_U|` plus integrated
+`Ṽ_U(s,n) = Σ_v f(δ_U)` so ε-sensitivity is signal, not embarrassment
+(`D`, `f` unfrozen); `V_U ≠ V_BFS` by construction. Order
+`s ≺_U (v,n)` from intervention, not correlation. Required controls:
+null (no intervention → δ = 0), disconnected (paths cut → δ = 0),
+speed-limit (radius-`q` `U`: `d_hop > qn` → δ = 0) — the last giving
+analytic `C_U^max` against which measured `C_U^influence` can be
+narrower; (2) `(≺_U, M_O) → cone`: observed causal cone compatible
 with the *same* `M_O` producing `R³`, order-dimension agreeing with
 `d_eff` (1+3 output, not input); (3) clocks: internal-cycle clock with
 `dτ/dt(χ)` reproducing the T9 profile from capacity/congestion,
 unimported; (4) interval: `g_μν` from `(≺_U, V_U, M_O)`
-(Malament-shaped: order fixes the conformal class, spacetime-volume
-observable `V_U` — e.g. calibrated event counts in causal diamonds,
-independently defined — fixes the factor; spatial `V(r)` is
-reachability, not event volume) reproducing the T8–T11 battery. Each
+(Malament-shaped: order fixes the conformal class, the stage-1
+influence volume `V_U` (event counts in causal balls) fixes the
+factor; spatial `V(r)` is reachability, not event volume) reproducing the T8–T11 battery. Each
 stage closes independently; GR is
 the check, never the input, and only at stage 4.
 
