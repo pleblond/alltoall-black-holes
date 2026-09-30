@@ -1,8 +1,9 @@
 """v0.5: emergent-dimension protocol controls + K_N failure pins."""
 
+from itertools import pairwise
+
 import networkx as nx
 import numpy as np
-from itertools import pairwise
 
 from bh_graph import emergent_dim as ed
 from bh_graph.graphs import build_chain, build_complete, build_grid_2d
@@ -899,3 +900,44 @@ def test_kappa_interface_confirmed_on_disk_plug():
     assert abs(means["fabric"]) < 0.05, means
     assert means["boundary"] < -0.5, means
     assert means["internal"] > 0.5, means
+
+
+def test_kappa_mild_disk_matches_mild_square():
+    # Tension x shape matrix complete: mild-tension disk (king-move
+    # diagonals inside R=3) gives internal -0.05 (~0), boundary -0.23
+    # (negative, gentler than square -0.31: corner-free is milder),
+    # fabric 0.00 -- same mild pattern as the 9x9 square mild plug.
+    from bh_graph import orici
+
+    L, c, R = 20, 10, 3
+    g0 = _sorted_grid_2d(L)
+    g = g0.copy()
+    disk = {
+        x * L + y
+        for x in range(L) for y in range(L)
+        if (x - c) ** 2 + (y - c) ** 2 <= R * R
+    }
+    for v in disk:
+        x, y = v // L, v % L
+        for dx, dy in ((1, 1), (1, -1), (-1, 1), (-1, -1)):
+            w = (x + dx) * L + (y + dy)
+            if w in disk:
+                g.add_edge(v, w)
+    dist = nx.floyd_warshall_numpy(g)
+    idx = {v: i for i, v in enumerate(g.nodes())}
+    classes = {"internal": [], "boundary": [], "fabric": []}
+    for u, v in g.edges():
+        iu, iv = u in disk, v in disk
+        cls = "internal" if iu and iv else ("boundary" if iu or iv else "fabric")
+        classes[cls].append((u, v))
+    rng = np.random.default_rng(0)
+    means = {}
+    for cls, edges in classes.items():
+        sel = edges if len(edges) <= 15 else [
+            edges[i] for i in rng.choice(len(edges), 15, replace=False)
+        ]
+        ks = [orici.ollivier_curvature(g, u, v, _dist=dist, _idx=idx) for u, v in sel]
+        means[cls] = float(np.mean(ks))
+    assert abs(means["fabric"]) < 0.05, means
+    assert means["boundary"] < -0.1, means
+    assert abs(means["internal"]) < 0.1, means
