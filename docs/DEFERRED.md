@@ -59,7 +59,18 @@ concentration `P_U(G ∉ C_vac) → 0` in the IR limit — vacuum as
 dynamical phase (this licenses "phase"; no rewiring phase
 transition is claimed). Acquired constraint: find a simple U for
 which locality, unitarity/information conservation, and the vacuum
-structure are simultaneously natural.
+structure are simultaneously natural. Stability tournament
+(QUEUED behind U, protocol fixed on review): initialize EVERY
+Tier-1 candidate (triangular, hex, square, Delaunay, Gabriel, …)
+and evolve under EXACTLY the same U; measure escape
+P(U^t G ∈ C_vac) per candidate — vacuum selection as attractor /
+stationary ensemble (P_U(G) = P_U(U(G))), not static p. Healing
+battery: apply the same normalized damage to each candidate
+(shortcut injection, edge deletion, degree defect, bottleneck,
+plug insertion) and measure relaxation τ_heal(G, δG) under U —
+candidates identical in equilibrium may differ sharply in
+locality restoration. Selection rule (conceptual):
+G_vac = argmax stability of the M_O-equivalence class.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
@@ -293,8 +304,32 @@ map origin to a degree-1 leaf (shells[1] = 1 all seeds) with
 seed-unstable bulk p (1.69..3.24 at n=2000). Exact-Brownian
 benchmark stays QUEUED behind the conditioned-labels sampler
 (mobiles/BDFG route); the medial quad carries quadrangulation
-evidence meanwhile. Lloyd-relaxed Delaunay (hyperuniformity
-tightening hypothesis) and Gabriel/k-NN graphs: queued, spiked next.
+evidence meanwhile. Lloyd-relaxed Delaunay (PINNED, iters=20 converged:
+p = 1.91/2.08; Lloyd5 seed-0 p ≈ 2.3 was under-relaxation
+artifact) and Gabriel/k-NN graphs (PINNED: connected, p ≈
+1.92..2.02, linear cuts; Gabriel strictly sparser at ~2/3
+Delaunay edges) plus short-only rewire (PINNED: span ≤ 2 swaps
+keep p ≈ 1.77..1.96 at ns=20/80 — the rewire kill comes from
+span, not rewiring as such). Ensemble ontology (ADOPTED on
+review): Tier-1 degeneracy across topology/degree/order is the
+EXPECTED signature, not a missing discriminator —
+G_△ ∼_O G_hex ∼_O G_□ ∼_O G_Del ∼_O G_Gabriel is positive
+universality evidence. The physical object is the class [G]_{~_O}
+(prospectively the dynamical class [G]_{U,O}), possibly an
+ensemble E_vac = {G : P_vac(G)} rather than one graph;
+Poisson-Delaunay is frozen as REFERENCE MEMBER (gauge choice for
+reproducibility), never "the" vacuum. Companion principle to the
+five admissibility criteria: don't put information into the
+vacuum that observation doesn't require — crystalline candidates
+smuggle unrequested long-range order; the max-entropy program
+(P(G|C_vac) ∝ e^{-λI(G)}, derive the typical graph from the
+constraints) is QUEUED behind formulating the C_vac constraint
+set without circularity (shortcut-absence still open). Spectral
+leg (next measurement): heat-kernel d_s → 2? on every Tier-1
+member — universality second leg if all agree, static
+discriminator if they split (either outcome decisive);
+diffusion-anisotropy precursor (second-moment tensor of K(t))
+pre-registers the minimize-preferred-frame criterion for D13.
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
 matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the
@@ -372,7 +407,13 @@ vacuum fabric; (iii) agreement extends to tensed regions (fingerprint
 shape under both). Prerequisite (fiber control): verify `M_O`
 preimages exist at the reconstruction resolution — distinct
 `G_a ≠ G_b` sharing a macro-state — else C3's twin-histories test is
-untestable.
+untestable. Dynamical extension (on review): once D1 exists the
+universality object upgrades from `[G]_{~_O}` to the dynamical
+class `[G]_{U,O}` — microscopic graphs may fluctuate
+(`G_1 → G_2 → …`) while `M_O(G_1) ≃ M_O(G_2)`; Tier-1
+indistinguishability is then exactly what emergence predicts, and
+the vacuum measure over graphs (or its dynamical universality
+class) replaces the winning tessellation as the derivation target.
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
@@ -426,7 +467,15 @@ unimported; (4) interval: `g_μν` from `(≺_U, V_U, M_O)`
 influence volume `V_U` (event counts in causal balls) fixes the
 factor; spatial `V(r)` is reachability, not event volume) reproducing the T8–T11 battery. Each
 stage closes independently; GR is
-the check, never the input, and only at stage 4.
+the check, never the input, and only at stage 4. (5) dispersion /
+isotropy (QUEUED behind a local propagation law): same law on all
+Tier-1 candidates, measure `ω(k)` — IR `ω² = c²k² + a_4k⁴ + …`,
+angular `c(θ)`, anisotropy/birefringence-like corrections;
+selection criterion minimize-observable-preferred-frame-structure
+under coarse-graining (variational form: maximize macroscopic
+symmetry subject to minimum microscopic structure). Static
+precursor runnable now: diffusion-anisotropy tensor of `K(t)`
+(D10 spectral leg).
 
 **Over-arching falsifier (C1–C5, essay §8):** `M_O ∘ U ≃ U_eff ∘ M_O`
 with coherence → locality → autonomy → universality → GR limit, each
