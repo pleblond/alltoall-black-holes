@@ -171,7 +171,11 @@ DUALITY (MEASURED, filed-not-shipped): across damage seeds (ns=10,
 L=20), the pair→triple chain fully clears 3/5 (dmg0/2/5 →0 in ~2 s)
 and stalls 2 (dmg1 →1-2 with a BOUNDARY residual (18,2)-(19,2),
 n=2 for boundary-localized locks; dmg4 ungated →1 in 60 s / →3
-with churn: 30 accepts, p rising to 2.22). Strict-gated triple is
+with churn: 30 accepts, p rising to 2.22). Order-4 generalizes
+PARTIALLY to edge locks: dmg1 triple-stall (top-edge + bottom-edge
+pair) + gated quad20 →1 (top-edge cleared, bottom-edge (18,2)-(19,2)
+persists, acc=1) — but 372 s for 20 steps (~19 s/exhausted step)
+makes deeper pursuit prohibitive in-suite; filed-not-shipped. Strict-gated triple is
 NOT universally better — it clears dmg4 both streams in 0.5 s
 (100x: churn was pure waste) but STALLS seed7 at 1 where ungated
 reaches 0 (the path needs neutral intermediates; gated burns 118 s
