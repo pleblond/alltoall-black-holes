@@ -676,6 +676,15 @@ def test_t15_dominant_costs_stay_u_side():
     assert 1.75 < pw < 1.90, (pw, r2)
     assert 0.6 < r2 < 0.9, (pw, r2)
     assert pw < p0, (pw, p0)
+    # Theorem-vs-diagnostic dissociation: in window (10,20) the slope
+    # comparison reverses (2.517 > 1.928, catch-up growth) while volumes
+    # stay <= 0.2 -- slopes are window diagnostics, the ratio and zero
+    # violations carry the window-free theorem.
+    p0b, _ = _window_pr(r0, v0, 10, 20)
+    pwb, r2b = _window_pr(r0, vw, 10, 20)
+    assert pwb > p0b, (pwb, p0b)
+    assert 2.4 < pwb < 2.65, (pwb, r2b)
+    assert r2b > 0.75, (pwb, r2b)
 
 
 def test_t15_cheap_shortcuts_blip_and_flip():

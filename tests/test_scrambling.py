@@ -48,24 +48,36 @@ def _clique_plug_grid(L=40, c=20):
     return g0, g, plug
 
 
-def test_static_shells_grow_like_t2_and_plug_shortcuts():
-    # D13 control (demoted from stage 1: first-passage here IS hop
-    # distance, so this is one measurement -- static P0' geometry
-    # compatible with a finite-speed cone, not observation of one).
-    # Control cumulative V(r) fits p = 1.920 (r2 1.0) over r in [8,20]:
-    # t^2 substrate, NOT t^3 (t^3 would contradict P0'). The clique plug
-    # shortcuts hop-fronts (corner 35 < 38, cover 37 < 40) -- the static
-    # sign pattern the future U-experiment must reproduce dynamically
-    # as T_U^plug > T_U^vac (D13 stage 1).
-    L, c = 40, 20
-    g0, g, _ = _clique_plug_grid(L, c)
-    src, corner = c * L + c, 39 * L + 39
+def test_static_shells_match_exact_2d_law_and_plug_shortcuts():
+    # D13.0 control: P0' predicts ANALYTICALLY 2D substrate ball growth,
+    # V(r) = 1+2r(r+1), so local slope p_eff(r) -> 2- (no exponent is
+    # estimated; finite-window decimals are known finite-radius
+    # behavior). Pins bit-exact match on all unclipped radii at L=40/80
+    # (implementation check) plus finite-size approach: fractional-
+    # window [0.2L, 0.5L] p rises toward 2 with L (1.9196 -> 1.9603).
+    # Plug sign pattern (35<38, cover 37<40) pre-registered for
+    # dynamical confirmation (D13.1).
+    ps = []
+    for L, plo, phi in ((40, 1.90, 1.94), (80, 1.94, 1.98)):
+        g0 = _sorted_grid_2d(L)
+        c = L // 2
+        src = c * L + c
+        d0 = arrival_times(g0, src)
+        edge = min(c, L - 1 - c)
+        for r in range(1, edge + 1):
+            v = sum(1 for n in d0 if d0[n] <= r)
+            assert v == 1 + 2 * r * (r + 1), (L, r, v)
+        rr = np.arange(1, edge + 1, dtype=float)
+        vv = np.array([sum(1 for n in d0 if d0[n] <= r) for r in rr])
+        lo, hi = int(0.2 * L), min(int(0.5 * L), edge)
+        m = (rr >= lo) & (rr <= hi)
+        p, _ = np.polyfit(np.log(rr[m]), np.log(vv[m]), 1)
+        assert plo < p < phi, (L, p)
+        ps.append(p)
+    assert ps[1] > ps[0], ps
+    g0, g, _ = _clique_plug_grid(40, 20)
+    src, corner = 20 * 40 + 20, 39 * 40 + 39
     d0 = arrival_times(g0, src)
-    t = np.arange(1, 41)
-    v = np.array([sum(1 for n in d0 if d0[n] <= r) for r in t])
-    m = (t >= 8) & (t <= 20)
-    p, _ = np.polyfit(np.log(t[m]), np.log(v[m]), 1)
-    assert 1.85 < p < 2.0, p
     dp = arrival_times(g, src)
     assert d0[corner] == 38, d0[corner]
     assert dp[corner] == 35, dp[corner]

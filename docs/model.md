@@ -287,7 +287,11 @@ Instances pinned (L=40 mild 5×5 king plug, center source, mid window
 (8,20), control `p = 1.920`): `c_eff` costs at `z_vac = 1` satisfy the
 premise (min shortcut `6.00 ≥ 2`, min grid `2.50 ≥ 1`) → max `V_w/V₀ =
 0.2000`, mid `p = 1.838` (`r² = 0.74`), no flip, zero pointwise
-`dist_w ≥ dist₀` violations. Tortuosity-import costs at `z_vac = 4` violate
+`dist_w ≥ dist₀` violations. Slope verdicts are window diagnostics, not
+theorem content: in (10,20) the z=1 comparison reverses (`2.517 > 1.928`,
+catch-up growth) while the window-free facts (ratio ≤ 0.2, zero
+violations) stand; the tort flip holds in all 11 scanned windows.
+Tortuosity-import costs at `z_vac = 4` violate
 it (all 32 diagonals `w ≤ 1.50 < 2`) → fractional blip `V_w(1.9) = 9 >
 V₀ = 5` invisible to integer sampling (no excess at any BFS radius),
 mid-window flips to `p = 2.020` (`r² = 1.0000`). Use: T15 is the

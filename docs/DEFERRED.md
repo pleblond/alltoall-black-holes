@@ -266,11 +266,12 @@ substrate, `V_O ~ R³` after `M_O`; microscopic index `n`, causal order
 `≺_U`, and clock time `τ` are three distinct orderings (`n ≠ t_obs` as
 `d_G ≠ d_obs`).
 
-**Control (D13.0, MEASURED):** static P0' substrate geometry `V_G ~ r²`
-(SI shells `p = 1.920`, `test_scrambling`) plus the plug sign pattern
-(35<38 hops vs +5.0 weighted) as pre-registration for stage 1. Briefly
-filed as stage 1, demoted on review: first-passage here *is* hop
-distance — compatibility with a cone is not observation of one.
+**Control (D13.0, MEASURED):** static P0' substrate geometry: analytic
+`V_G(r) = 1+2r(r+1)`, bit-pinned at L=40/80, finite-window fits rising
+toward 2 with radius (1.9196 → 1.9603 fractional); plus the plug sign
+pattern (35<38 hops vs +5.0 weighted) as pre-registration for stage 1.
+Briefly filed as stage 1, demoted on review: first-passage here *is*
+hop distance — compatibility with a cone is not observation of one.
 
 **Close criterion (staged, all open):** (1) `U → T_U, ≺_U`: stated local
 update rule + counterfactual-influence arrival times (OTOC-threshold

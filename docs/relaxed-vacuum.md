@@ -304,13 +304,26 @@ splits by level:
 
 The substrate half is measured **as a control, not a causal result**
 (this was briefly filed as D13 stage 1 and demoted on review — the
-correction stays on the record): SI first-passage shells fit `p = 1.920`
-over `r ∈ [8,20]`, but first-passage here *is* hop distance, so this is
-one measurement (static P0' geometry), not two pieces of evidence:
+correction stays on the record): first-passage here *is* hop distance,
+so this is one measurement (static P0' geometry), not two pieces of
+evidence. And the exponent is not estimated — it is derived. Unclipped
+Manhattan balls obey `V(r) = 1+2r(r+1)` exactly (bit-pinned at L=40/80),
+so local slope `p_eff(r) = r(4r+2)/(2r²+2r+1) → 2⁻`: finite-window fits
+(1.77–1.96 unclipped, e.g. 1.920 on the pre-specified `r ∈ [8,20]`) are
+known finite-radius behavior of an analytically 2D object, rising toward
+2 with radius (fractional-window 1.9196 → 1.9603 from L=40 to L=80).
+Clipped windows (e.g. `[8,30]` on L=40) are invalid, not evidence of
+instability. Hierarchy: analytic `p = 2` → finite-radius control
+`p_fit < 2` → `p_fit → 2` before clipping:
 
 > **Compatibility with a finite-speed cone is not observation of one.**
-> Calling BFS depth `t` declares "1 edge = 1 time step" — exactly the
-> dynamical structure D1 is supposed to derive.
+> P0' predicts analytically 2D substrate ball growth; measured
+> finite-grid exponents verify the implementation and expected
+> finite-radius convergence — not emergent dimensionality, not causal
+> dynamics.
+
+Calling BFS depth `t` would declare "1 edge = 1 time step" — exactly
+the dynamical structure D1 must derive, hence the demotion.
 
 The plug dissociates hop distance from candidate physical cost (corner
 35 < 38, yet ceff-weighted +5.0 — the static sign pattern a future
@@ -472,7 +485,7 @@ and `M_O` to instantiate); recorded here so the program knows its roof.
 | tension-imprint conjecture | **conjectured** | `model.md` §5: fingerprint universality under the fixed ceff rule; falsifiers + promotion to P5 stated; not a postulate yet |
 | T15 cost dominance | **derived (theorem)** | `model.md` §2: shortcuts priced ≥ hop-saving can't inflate balls; ∩-blip pins an underpriced shortcut (z=1 U-side 0.2000, tort blip 9>5 + flip 2.020, ceff-z=4 blip 1.077 at r=13.75) |
 | far-field tail exponent | **open** | D11: `1/r` (χ~2 to `5Rc`) vs `1/r²` (χ~1 to `6Rc`); `L ≥ 200` asymptotics needed |
-| SI static shells `V(r)~r²` | **measured (control)** | `test_scrambling.py` (5 tests): p = 1.920; plug sign pattern (35<38 hops, +5.0 weighted) pre-registered for D13.1 |
+| SI static shells `V(r)~r²` | **measured (control)** | exact `1+2r(r+1)` bit-pinned L=40/80; fractional p 1.9196→1.9603; plug sign pattern (35<38, +5.0) pre-registered for D13.1 |
 | scale-multiplicity mechanism `n_s~r` | **conjectured (skeleton)** | this doc §8: `s` undefined; RG-log baseline gives wrong profile; linear-vs-log must be measured, not assumed |
 | boundary channel capacity | **measured** | clique plug: deficit `r≤4` (83.7/133.8/76.5/5.9), exact recovery `r≥5`; count re-measures 2D-ness (skeleton intact) |
 | reconstruction universality | **open** | D12: ∀ `M_O ∈ A_macro(G)` converge in the IR (access floor graph-internal; no "3D"/"Lorentzian" in the definition) |
