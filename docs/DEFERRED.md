@@ -1441,7 +1441,50 @@ A-static = exact-null control + weak-positive attempt; likely
 outcome null-or-micro DECIDES the traffic question
 (dynamical-chi C2 as the real mechanism) — program learns
 either way. NEXT: commit Form-1 F x2 candidates + analytic
-w*/stability -> lock pre-registration -> code A. P0' RESTATEMENT (conditional — model.md NOT rewritten:
+w*/stability -> lock pre-registration -> code A. FORM-1
+PRE-DERIVATION LOCK (review agreement + fabric-ratio
+derivation): analytic null is F-AGNOSTIC (any deterministic
+F(w,chi) from uniform init with chi constant => identical
+trajectories) => DETERMINISM REQUIRED for A-candidates
+(stochastic U deferred to C2 with expectation-form
+predictions); nonzero embeddedness Delta-y_w = leak or
+nondeterminism bug, nothing else. FABRIC GUARD (3 checkable
+parts, derived not chosen): (i) absolute med(w_fabric) <~ 3
+(Lw=10-analog: weak-med ~10 => fabric-med ~2); (ii) relative
+med_f < med_w (hierarchy un-inverted at medians); (iii) RATIO
+CHECK (w*_f-1)/(w*_w-1) ~= 0.003124/0.02858 ~= 1/9.15 from
+banked medians — SECOND end-to-end analytic confirmation
+alongside w* convergence (match = Form-1-linear confirmed;
+deviation = leak/bug). MONOTONE-OVERLAP THEOREM (structural):
+fabric-max chi 0.041 > weak-med chi 0.029 => ANY monotone g
+prices some fabric above typical weak (band-pass un-overlap
+unprincipled, excluded); superlinear g separates medians more
+but max-tail stays inverted regardless — overlap ACCEPTED as
+structural for betweenness-chi, monitored via q90, never
+pretended away. G-SELECTION PROTOCOL (temporal order IS the
+anti-circularity): intrinsic story -> g -> w* -> basin overlay,
+reported EVEN ON MISS; re-choice after miss = NEW candidate +
+fresh pre-registration. NORMALIZATION TRAP flagged: no
+normalized b-hat (hidden third param) — raw b, beta absorbs
+scale, report effective sensitivity beta*b_weak-med;
+pre-registration counts constants. SUBSTITUTION SIGN with
+C2-FLIP CAUTION: A claims only topology->redistribution->
+differential pricing (no curvature words); static substitution
+(near-weak cheaper) may REVERSE under traffic feedback
+(cheap->busy->expensive) — C2 sign change reads as feedback
+physics, never contradiction; do not over-extrapolate A's
+sign. GATEWAY-SHELL PREREG: W_fabric(r,n) median + q90,
+r(e)=min-endpoint (consistent with longs); prediction banked:
+NO broad halo + high-price gateway TAIL (shell = tail
+phenomenon: q90-median gap is the detector; halo would move
+the median); trajectory + endpoint. OUTCOME TABLE (sufficiency
+line = banked TOL contour): NULL (Delta~=0) => static-chi
+program OVER, traffic needed for mechanism; MECHANISM-ONLY
+(Delta>0, no cross) => signal weak => C2 as AMPLIFIER
+(feedback boosting substitution); SUFFICIENT (cross) =>
+celebrate skeptically (re-run all 4 detectors). CANDIDATES
+LOCKED at 2 (embeddedness control + betweenness sensitive);
+density-proximity stays flagged/unrun. P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
