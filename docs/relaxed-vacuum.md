@@ -505,7 +505,8 @@ Second pass: coordinated double-swap breaks the floor (→ 1,
 pair-locked residual) and the visibility-chained triple endgame
 fully heals (→ 0, two seeds + torus 2/2; residual triple-lock
 localizes to boundaries; census-gated order-4 detour-graft clears
-corners while ungated order-4 scrambles) — protection demands coordination order
+corners while ungated order-4 scrambles; T-knob order-3 anneal splits
+the gate duality (strict clears dmg4, T0=2 clears seed7)) — protection demands coordination order
 3 with detour-aware proposals. Tail exponent
 (D11, closed): tension-dependent (`χ~1 → 1/r²`, `χ~2 → 1/r`,
 `χ~5` slow crossover, `q` 1.19 → 1.10 to 20Rc). κ-profile (D10b,

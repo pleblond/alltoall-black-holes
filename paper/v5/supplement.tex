@@ -37,7 +37,7 @@ $d_{\mathrm{eff}}$ protocol & $d\ln V/d\ln r$ bracket & measured (25 tests) & sh
 D10 tension map & GR dip/overshoot/$\to3^+$ & GR computed; graph open & bare shortest-path rejected (inverted); D11 tail tension-dep.\ ($\chi$1 $1/r^2$, $\chi$2 $1/r$, $\chi$5 crossover $q{\to}1.1$); $\kappa$-profile closed (disk, mild-disk confirm) \\
 D12 reconstruction & $\forall M_O \in \mathcal{A}_{\mathrm{macro}}$ same IR & open program & access floor + non-circularity; P4 audit 1,2,3,5 pass, 4 partial; vantage axis filed; static depth negative \\
 D13 causal order & D13.0 control measured; stages 1--4 open & static control measured (S11) & $V_G$, $8r{+}4$ law; family (tri/hex/Del/Lloyd/Gab/kNN/medial +, gated-wall/rewired $-$); sweep: N* O(1) range, f*→0 hypoth.; spectral $d_s$ band; twins C3 \\
-$U$-rule search & locality protection by $U$ & order-4 chain heals all tried & 9 rules; triple bulk, gated quad corners; ($p$,longs) joint falsifier \\
+$U$-rule search & locality protection by $U$ & order-4 chain heals all tried & 10 rules; T-knob order-3 anneal; ($p$,longs) joint falsifier \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
@@ -639,7 +639,10 @@ triple endgame fully heals (longs $\to$ 0, two seeds plus torus 2/2;
 triple-lock localizes to boundaries) --- locality protection
 demands coordination order 3 with detour-aware proposals, order 4
 with a strict census gate for corners (ungated order-4 scrambles:
-10/10 accepts while longs $1{\to}5$).
+10/10 accepts while longs $1{\to}5$). Gate duality filed and split
+by a temperature knob: strict order-3 clears dmg4 in 0.5\,s but
+stalls seed7, $T_0{=}2$ annealing clears seed7 --- neither pole
+dominates (stall topology differs).
 Reproduce: \path{pytest tests/test_scrambling.py tests/test_substrate_family.py tests/test_spectral.py tests/test_update_rule.py -q}.
 
 \textbf{Dynamics coherence (C1--C5, over-arching).} $M_O \circ U \simeq
