@@ -1124,7 +1124,41 @@ via Prop 1: dominating weak links (w ≥ d_0) are geometrically
 INVISIBLE, so curvature must live in small underpricing margins
 (δw = d_0 − w > 0 small → δd_O small) — vacuum weak wiring as
 marginally-priced (parallel to marginal rigidity noted, not
-claimed). P0' RESTATEMENT (conditional — model.md NOT rewritten:
+claimed). POST-CAMPAIGN AMENDMENT (review dialogue — topology vs
+geometry split): the campaign measures λ↑ while f_viol→0 along
+the SAME flow (Lw=10: f_viol 0.012→0, margin 0.51→2.86) —
+topological relevance and geometric relevance flow in OPPOSITE
+directions (T15 made pointwise, now with explicit RG
+realization). Vacuum condition upgrades from N_long→0 to
+P_vac(η>1)→0 in IR with shortcut relevance η_ij^(k) =
+d_fabric^(k)/w_ij^(k) ADOPTED as the next-stage order parameter
+(per-edge inverse margin; DISTRIBUTION, not mean — campaign
+level-2 already shows mean-margin 1.82 lying while violfrac sits
+at 0.024; ensemble = longs, fabric η=1 exactly). Slogan adopted:
+"L0 need not become local; locality emerges because nonlocal
+relations become too expensive to define geometry" (G_vac =
+G_near-2D + G_globally-intertwined, constrained by PRICING, not
+topology). Three sharpenings kept prominent: (a) D14 SPLITS —
+(i) fabric formation (cheap local reference: UNSOLVED, still
+owes a U) vs (ii) weak-link washout given fabric (SOLVED frozen;
+span-shrinking presupposes a coarsenable lattice — "differentiate
+the pricing hierarchy" addresses (ii), not (i)); (b) PUMPING
+MOVES, not retires — washout is conditional on primordial Lw≳2,
+so if G_* starts binary-like (all w≈1, never washes out)
+something must RAISE prices: edge-space pumping becomes
+price-space pumping, and w(χ)/traffic is LOAD-BEARING (if w_k
+renormalizes down with span, washout dies); re-pricing U needs
+its own conservation ledger (prices aren't moved stuff — state
+the invariant or argue none exists); (c) KNOT-ENV DESIGN TRAP
+pre-flagged — reference plain near a knot is ambiguous (knot in
+or out of d_fabric?) and the null runs AGAINST the signal (dense
+knot shortens fabric paths → η down → faster washout), so
+pre-register reference + relational radius r_O before measuring
+P(η|r_O,knot); keep y_w^knot vs y_w^vac as the compact claim.
+Cross-check queued (not a result): binary tolerance bound (~2
+operational longs/400 nodes ≈ violfrac 0.003) lands exactly on
+campaign ns=5 level-0 violfrac 0.003 — tolerance may calibrate
+how close to zero P(η>1) must get. P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
