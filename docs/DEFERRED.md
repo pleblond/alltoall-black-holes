@@ -69,7 +69,8 @@ battery: apply the same normalized damage to each candidate
 (shortcut injection, edge deletion, degree defect, bottleneck,
 plug insertion) and measure relaxation τ_heal(G, δG) under U —
 candidates identical in equilibrium may differ sharply in
-locality restoration. Selection rule (conceptual):
+locality restoration. Selection rule (conceptual, SUPERSEDED — see
+BLIND-U REFRAMING below; kept for history):
 G_vac = argmax stability of the M_O-equivalence class. First rules
 (MEASURED, test_update_rule.py, L=20): harness (locality-p, shortcut
 injection, evolve) validated — null persists damage bit-identically,
@@ -228,6 +229,46 @@ signature resolves (plain 568×5 + 2×6 boundary floor) and damage
 reads 54 longs. No hex healing claimed yet (the 2-long plain floor
 breaks the fixed-point premise) — queued behind boundary-aware
 gating; pair/triple on triangular queued next.
+BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
+locality should characterize STABLE STATES of U, not appear in U's
+objective function. The D1 verdict sharpens: direct microscopic
+optimization of macroscopic locality requires nonlocal information
+and unbounded coordination order (the 1→2→3→4-move lock hierarchy
+now reads as climbing an artificial landscape, not converging on
+the true U) — evidence that locality is not the microscopic
+objective. Order-5+ search ON HOLD until blind-U results are in;
+the "coordination is just what repair costs" alternative stays
+on record as not-refuted (error correction also needs nonlocal
+syndromes) — the blind tournament is the trial. Vacuum principle
+PROMOTED (supersedes argmax-stability): V = {μ : U_*μ = μ}, the
+stationary ensemble of an observer-blind U; the win condition is
+G ~ μ_vac ⟹ M_O(G) local for generic O. U-admissibility criteria
+(filed, mirror the five M_O criteria): coordinate-free,
+permutation-equivariant, observer-blind (no p, N_long, M_O, or
+reference graph in the rule), graph-local information, stochastic
+if necessary, simplicity pre-registered (short description, few
+parameters, stated before the tournament — a tuned 20-term H is
+smuggling; note the why-this-U burden is acknowledged, not
+dissolved). Observer-blind ≠ objective-free: sums of graph-local
+motif terms (local Hamiltonians) are allowed; reference-embedding
+quantities are not. N_long DEMOTED to external diagnostic
+(implementation already graph-internal given (radius, smax); the
+calibration is the smuggling point — self-calibrating census
+queued). L0-INDEPENDENCE DISCIPLINE (adopted): no L0 proof may
+cite U's objective, M_O's definition, or the selection principle
+— L0 states conditionals, emergence decides which antecedents are
+actual. First tournament results (MEASURED, test_blind_u.py):
+pure drift from vacuum → p 1.26, longs 733/760, squares 361 → 6
+(blindness alone insufficient — negative control); blind square
+hill-climb fixes plain vacuum (0 accepts) yet from damage recovers
+motifs WITHOUT healing (squares 323 → 341, longs 30 → 35, p past
+2.4 — blind Goodhart: greedy ≠ sampling); triangle drive leaves
+the square basin (tri 0 → 115, sq → 162, longs → 162) toward a
+class needing substrate-agnostic measurement; touched-set delta ==
+global motif gradient pinned (correctness of local acceptance).
+Queued: finite-T Metropolis variants (greedy stalls at 341 < 361),
+κ-homogenizing rewiring, damage-recovery-under-blind-U as the key
+discriminator, triangle-class landing measurement.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum

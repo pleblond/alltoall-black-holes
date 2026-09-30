@@ -508,7 +508,15 @@ localizes to boundaries; census-gated order-4 detour-graft clears
 corners while ungated order-4 scrambles; T-knob order-3 anneal splits
 the gate duality (strict clears dmg4, T0=2 clears seed7; knob
 replicates at order 2, gate-default adoption rejected)) — protection demands coordination order
-3 with detour-aware proposals. Tail exponent
+3 with detour-aware proposals. Blind-U reframing adopted: U must not
+know `M_O` — locality should characterize stable states of U, not its
+objective (lock hierarchy reinterpreted as artificial-landscape
+evidence; vacuum promoted to stationary ensemble `V = {μ : U_*μ =
+μ}`; N_long demoted to external diagnostic; L0-independence
+discipline filed). First blind entrants: drift's attractor is
+nonlocal (733 longs — blindness alone insufficient); blind square
+hill-climb fixes vacuum yet recovers motifs without healing (blind
+Goodhart); triangle drive exits the square basin. Tail exponent
 (D11, closed): tension-dependent (`χ~1 → 1/r²`, `χ~2 → 1/r`,
 `χ~5` slow crossover, `q` 1.19 → 1.10 to 20Rc). κ-profile (D10b,
 closed): disk plug confirms the interface pattern (mild-disk
