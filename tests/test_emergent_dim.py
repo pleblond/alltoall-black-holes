@@ -857,3 +857,45 @@ def test_d11_chi5_tail_unsettled_but_bounded():
     assert lin[2] < lin[0], lin
     assert all(6.5 < x < 8.5 for x in lin), lin
     assert all(r[0] > 0 for r in rows), rows
+
+
+def test_kappa_interface_confirmed_on_disk_plug():
+    # D10b kappa half, CLOSED: independent corner-free geometry (disk,
+    # R=3, 29 nodes ~ matched area to 5x5) reproduces the interface
+    # pattern quantitatively (internal +0.90, boundary -0.86, fabric
+    # 0.00 vs clique +0.89/-0.93/~0) -- boundary negativity is a genuine
+    # tension-interface effect, not a square-corner artifact.
+    from bh_graph import orici
+
+    L, c, R = 20, 10, 3
+    g0 = _sorted_grid_2d(L)
+    g = g0.copy()
+    disk = {
+        x * L + y
+        for x in range(L) for y in range(L)
+        if (x - c) ** 2 + (y - c) ** 2 <= R * R
+    }
+    assert len(disk) == 29, len(disk)
+    disk = sorted(disk)
+    for i in range(len(disk)):
+        for j in range(i + 1, len(disk)):
+            g.add_edge(disk[i], disk[j])
+    plugset = set(disk)
+    dist = nx.floyd_warshall_numpy(g)
+    idx = {v: i for i, v in enumerate(g.nodes())}
+    classes = {"internal": [], "boundary": [], "fabric": []}
+    for u, v in g.edges():
+        iu, iv = u in plugset, v in plugset
+        cls = "internal" if iu and iv else ("boundary" if iu or iv else "fabric")
+        classes[cls].append((u, v))
+    rng = np.random.default_rng(0)
+    means = {}
+    for cls, edges in classes.items():
+        sel = edges if len(edges) <= 15 else [
+            edges[i] for i in rng.choice(len(edges), 15, replace=False)
+        ]
+        ks = [orici.ollivier_curvature(g, u, v, _dist=dist, _idx=idx) for u, v in sel]
+        means[cls] = float(np.mean(ks))
+    assert abs(means["fabric"]) < 0.05, means
+    assert means["boundary"] < -0.5, means
+    assert means["internal"] > 0.5, means

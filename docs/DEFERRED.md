@@ -403,8 +403,11 @@ the ceff cost bridge (mild-plug shape + amplitude scaling pinned); full close
 needs the bridge derived or replaced by derivation. (b) κ-PROFILE (REFORMULATED
 after monotone-tracking failed): boundary-negative / core-positive pattern
 with stated values, first measurement recorded (clique −0.93/+0.89, mild
-−0.31/~0, fabric 0) — confirmation on independent plug geometries pending
-before (b) closes. Both (a) and (b) must output their
+−0.31/~0, fabric 0) — CLOSED by corner-free disk-plug confirmation
+(R=3, 29 nodes): internal +0.90, boundary −0.86, fabric 0.00, matching
+the clique pattern quantitatively, so boundary negativity is a genuine
+tension-interface effect, not a square-corner artifact. Both (a) and (b)
+must output their
 curves from graph construction + dynamics, not take GR as input.
 
 **Kill relevance:** P0' first quantitative wire. Failure of the (a)
