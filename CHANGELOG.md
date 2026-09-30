@@ -78,7 +78,9 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   m=1 in-basin cross=3 att 0.684, m=4 basin exit = cadence
   artifact, rerouting map banked, concave-D holds; static-chi
   CLOSED).
-  534 tests.
+  Gain-free discriminator run (zero-parameter pricing fails,
+  debt confirmed, threshold narrowed to (6.2,11.0)).
+  535 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

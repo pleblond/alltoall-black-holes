@@ -785,3 +785,71 @@ def test_betw_cong_closure():
     assert rows(traj_a[-1]) == healed
     traj4, _ = feedback_trajectory(gw0, kind="betweenness", beta=350.0, n_ticks=8, m=4)
     assert rows(traj4[-1]) == healed
+
+
+def test_gain_free_discriminator():
+    # Gain-free discriminator (zero-free-parameter pricing w =
+    # max(1, J/Jbar), J = static betweenness, Jbar over
+    # non-interior edges; full 40x40 state, ~7s). VERDICT: FAILS
+    # (rows (39,30,20,4)/None — no TOL crossing) => debt
+    # CONFIRMED per pre-registered interpretation (basin reach
+    # needs nonlinearity/gain = named debt; YES prong stays
+    # logically open but its natural structural candidate fails;
+    # formation/topology inherits). Numbers: Jbar 0.004598,
+    # weak_med 6.216 (= chi_med/Jbar — median weak edge priced
+    # purely by traffic ratio), fab_med EXACTLY 1.0 (median
+    # fabric below mean, clipped to the ontological floor),
+    # max_w 11.707 (hierarchy PEAK reaches static-beta=350
+    # median scale ~11 — right order at top, insufficient mass
+    # at median). DOSE-RESPONSE (secondary product): rows sit
+    # strictly between the locked static brackets at every k
+    # (beta=35 weak_med 2.0: (40,34,29,17)/None; beta=350
+    # weak_med 11.0: (36,23,7,0)/cross=3) — Phi rows monotone
+    # in weak_med across three points, narrowing the indicative
+    # basin-entry threshold to (6.2,11.0) (shape-transfer
+    # approximate: clipped-ratio vs affine).
+    import statistics as st
+
+    from bh_graph.weighted import (
+        edge_chi,
+        edge_populations,
+        knot_block_mask,
+        planted_knot_state,
+        radial_eta_profile,
+    )
+
+    TOL = 2 / 760
+    BINS = {"near": (0, 2), "mid": (3, 7), "far": (8, 10**9)}
+    gw0, kn, gp0, _ = planted_knot_state()
+    pops = edge_populations(gw0, kn)
+    key_of = {tuple(sorted(e)): e for e in gw0.edges()}
+    chi = edge_chi(gw0, "betweenness")
+
+    pool = [chi[e] for e in pops["weak"]] + [chi[e] for e in pops["fabric"]]
+    jbar = sum(pool) / len(pool)
+    assert abs(jbar - 0.004598) < 1e-6, jbar
+    w = {e: max(1.0, chi[e] / jbar) for e in chi}
+    mw = st.median(w[e] for e in pops["weak"])
+    mf = st.median(w[e] for e in pops["fabric"])
+    assert abs(mw - 6.2163) < 1e-3 and mf == 1.0, (mw, mf)
+    assert min(w.values()) == 1.0
+    assert abs(max(w.values()) - 11.7066) < 1e-3
+    assert 2.00 < mw < 11.00  # locked static brackets (MEDS table)
+
+    gw = gw0.copy()
+    nx.set_edge_attributes(gw, {key_of[e]: v for e, v in w.items()}, "L")
+    gp = gp0.copy()
+    rows, cross = [], None
+    for k in range(4):
+        pr = radial_eta_profile(gw, gp, knot_block_mask(kn, k), BINS)
+        nV = sum(pr["bins"][b]["n_viol"] for b in BINS)
+        nL = sum(pr["bins"][b]["n_longs"] for b in BINS)
+        rows.append((nV, nL))
+        if nV / gw.number_of_edges() <= TOL and cross is None:
+            cross = k
+        gw, gp = block_coarsen(gw), block_coarsen(gp)
+    assert rows == [(39, 40), (30, 35), (20, 30), (4, 18)] and cross is None
+    lo = [(36, 40), (23, 35), (7, 30), (0, 18)]  # beta=350 (heals)
+    hi = [(40, 40), (34, 35), (29, 30), (17, 18)]  # beta=35 (fails)
+    for k in range(4):
+        assert lo[k][0] < rows[k][0] < hi[k][0], (k, rows[k])

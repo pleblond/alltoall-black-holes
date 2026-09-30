@@ -1801,8 +1801,8 @@ reference opaque to agent; independent pointer toward
 statefulness, not evidence.) ROADMAP (narrowed, locked):
 A-static-congestion [done] -> betw-cong feedback [done] ->
 static-chi CLOSED [done] -> stateful-scale derivation [done] ->
-gain-free discriminator [NEXT] -> {formation/dynamic topology}
--> M_O audits. BETW-CONG
+gain-free discriminator [done] -> {formation/dynamic topology}
+[NEXT: design] -> M_O audits. BETW-CONG
 DERIVATION (LOCKED closure run — docs-only turn; code next):
 LAW w'=(1-a)w+a(1+b*betw_e(w;n)), betw = exact weighted edge-
 betweenness recomputed every m ticks; a=0.2, n=64 ticks,
@@ -1999,6 +1999,31 @@ Memory's scale candidacy SUSPENDED (not killed —
 discriminator + YES-criterion are the live paths).
 NEXT: gain-free discriminator run (cheap static run —
 code next turn).
+DISCRIMINATOR VERDICT (executed full-state, ~7s): FAILS —
+rows (39,30,20,4)/None, no TOL crossing => debt CONFIRMED
+per pre-registered interpretation (basin reach needs
+nonlinearity/gain = NAMED debt; YES prong logically open
+but its natural structural candidate fails;
+formation/topology inherits). Numbers: Jbar(nonint)
+0.004598, weak_med 6.216 (pure traffic ratio), fab_med
+EXACTLY 1.0 (median fabric clipped to ontological floor),
+max_w 11.707 — hierarchy PEAK reaches static-beta=350
+median scale (~11) but MEDIAN (6.2) sits in the dead
+interval: right order at top, insufficient mass at median
+(shape AND magnitude defeat it). DOSE-RESPONSE (secondary):
+rows strictly between locked static brackets at every k
+(beta=35 (40,34,29,17)/None, beta=350 (36,23,7,0)/cross=3)
+— Phi monotone in weak_med over three points (2.0/6.2/11.0),
+indicative basin-entry threshold NARROWED to (6.2,11.0)
+(shape-transfer approximate). D14 STATUS: static pricing
+can reach the basin (A) and survive feedback (closure) but
+its GAIN is debt by elimination (linear/memory/budget
+audited, structural candidate failed) — magnitude origin
+now belongs to formation/dynamic topology or an
+unexhibited structural number. Test pins full-state rows +
+medians + dose-response (test_gain_free_discriminator).
+NEXT: formation/dynamic-topology DESIGN unit (docs-only
+pre-registration first — derive-then-code rhythm holds).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
