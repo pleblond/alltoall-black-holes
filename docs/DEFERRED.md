@@ -10,15 +10,17 @@ D1) is unrelated to DEFERRED-D2 (Kerr multipoles); `docs/model.md` always
 writes the module name. `supplement.tex` S1/S3 still uses bare (D2) for both —
 flagged for the paper flow (needs PDF rebuild).
 
-## Program pipeline (D10/D12/D13 + commutation)
+## Program pipeline (P0'/D10/D1/D13/D12 + commutation)
 
 Vacuum graph family → graph-internal admissible `M_O` → 2+scale → 3
 reconstruction → explicit `U` → `δ_U(s,v;n)` → `V_U(n)`, `≺_U` →
 same frozen `M_O` → observed causal geometry → `M_O U ≃ U_eff M_O`.
-Division of labor: D10 asks whether space emerges; D13 whether causal
-time emerges; D12 whether the reconstruction is universal rather than
-chosen; commutation whether the resulting spacetime has autonomous
-dynamics.
+Division of labor: P0' identifies the vacuum connectivity class; D10
+asks why observers reconstruct 3D from it; D1 asks what dynamics
+preserves/evolves it; D13 asks whether that dynamics generates causal
+time; D12 asks whether the reconstruction is universal;
+`M_O U ≃ U_eff M_O` asks whether the whole construction becomes
+autonomous spacetime physics.
 
 ## D1 — Evaporation isometry V_k (Page/QES) — P0 next cycle
 
@@ -39,6 +41,12 @@ D13-input desideratum (not a close criterion): candidate `U` should be
 local and fabric-compatible so D13 stage 1 can run on it. Stabilizer
 question (rewire sweep): what dynamics keeps the `d_G ≃ 2` phase
 stable against shortcut proliferation (`N* ∼ O(10)` flat in L)?
+Preservation target: `U(G_vac) ∈ C_vac` — microscopic evolution may
+fluctuate (`G_n ≠ G_{n+1}`) while the IR class stays invariant
+(`[G_n]_IR = [G_{n+1}]_IR ∈ C_vac`): vacuum as invariant dynamical
+universality class. Then `M_O` quotienting irrelevant fluctuations
+gives `M_O(G_n) ≃ M_O(G_{n+1})` — stable vacuum atop a changing
+graph (the commutation link).
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
@@ -233,7 +241,14 @@ hypothesis, open). Sweep results (L=30/40/60, 5 seeds): few swaps
 inflate (p > 2, placement lottery — typically 4/5 seeds rise by
 ns=20), many swaps saturate (p → 0); N* (first ns with p > 2.2) has
 median ≤ 40 at every L — O(10) shortcuts regardless of size (α ≈ 0
-on L=30..60, fixed window; scaled-window confirmation queued). Small
+on L=30..60, fixed window). Scaled-window confirmation LANDED
+(L=40/60/80, windows [0.15L,0.35L]): N* medians 20/10/10 — α ≈ 0
+holds, so the critical fraction f* = N*/|E| → 0 with size (≤80
+swaps flip a 12,640-edge fabric). Shortcut density is therefore a
+candidate RG-relevant perturbation (y_λ > 0? — investigation, not
+established; full RG blocking queued). Within-L caveat: at fixed
+absolute ns the departure peaks mid-window and dilutes outward —
+the relevance statement is f* → 0, not within-L growth. Small
 systems saturate while large still inflate (ns=320: L=30 p < 1 <
 2.5 < L=60 p). No sharp jump seen: smooth crossover with extreme
 small-f sensitivity.

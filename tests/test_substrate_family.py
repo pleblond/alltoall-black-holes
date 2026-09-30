@@ -238,3 +238,42 @@ def test_levered_swaps_dose_response():
     g = _swapped_grid(0, 10)
     shells, _, _ = _shells_cuts_vols(g, src, 18)
     assert shells == [1] + [4 * r for r in range(1, 19)], shells
+
+
+def test_scaled_window_sweep_flat_threshold():
+    # Scaled-window sweep: windows [0.15L, 0.35L] at L=40/60/80.
+    # Plain baselines rise toward 2 with L; N* (first ns with p>2.2)
+    # stays O(10) at every size (all seeds cross by ns=80, median <=
+    # 40) while |E| grows 4x -- the critical fraction f* -> 0 with L
+    # (alpha ~= 0, now confirmed on scaled windows). Heavy rewiring
+    # saturates every seed at every size (ns=640: p < 1.0).
+    ls = (40, 60, 80)
+    sw = (0, 5, 10, 20, 40, 80, 160, 320, 640)
+    seeds = (0, 1, 2, 3, 4)
+    curves = {}
+    for L in ls:
+        c = L // 2
+        lo, hi = int(0.15 * L), int(0.35 * L)
+        for seed in seeds:
+            ps = []
+            for ns in sw:
+                g = build_rewired_grid(L, n_swaps=ns, seed=seed)
+                _, _, vols = _shells_cuts_vols(g, c * L + c, hi)
+                ps.append(_window_p(vols, lo, hi))
+            curves[(L, seed)] = ps
+    plains = {L: curves[(L, 0)][0] for L in ls}
+    assert plains[40] < plains[60] < plains[80], plains
+    for L, plo, phi in ((40, 1.87, 1.91), (60, 1.91, 1.95), (80, 1.93, 1.97)):
+        assert plo < plains[L] < phi, (L, plains[L])
+    for L in ls:
+        risen = sum(1 for seed in seeds if curves[(L, seed)][3] > 2.2)
+        assert risen >= 3, (L, risen)
+        nstars = []
+        for seed in seeds:
+            cross = [ns for ns, p in zip(sw, curves[(L, seed)]) if p > 2.2]
+            assert cross, (L, seed)
+            nstars.append(min(cross))
+        assert max(nstars) <= 80, (L, nstars)
+        assert sorted(nstars)[2] <= 40, (L, nstars)
+        for seed in seeds:
+            assert curves[(L, seed)][-1] < 1.0, (L, seed)

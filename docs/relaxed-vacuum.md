@@ -431,14 +431,15 @@ failures form a triangle around the vacuum:
 The vacuum is therefore not empty, not random, not merely regular —
 it is organized connectivity, a low-dimensional phase of the
 information graph stabilized against shortcut proliferation (with
-matter/defects as departures from the phase). Whether `d_G = 2`
-sits between the two directions in a mathematically critical sense
-is now an investigation, not a postulate. Sweep numbers (L=30/40/60,
-5 seeds): `N* ∼ O(10)` flat in size (α ≈ 0, fixed window —
-scaled-window confirmation queued); placement lottery (one draw in
-five dodges at ns=20); saturation collapse at high `f_rw` with small
-systems collapsing first. No sharp jump: smooth crossover with
-extreme small-`f` sensitivity. The killer result — same frozen `M_O` → `d_obs → 3`
+matter/defects as departures from the phase). Whether shortcut
+density is RG-relevant (y_λ > 0) is now an investigation: the large
+`∂d_eff/∂f` at 0 is compatible with relevance but establishes no
+exponent (full RG blocking queued). Sweep numbers (L=40/60/80,
+scaled windows, 5 seeds): `N*` medians 20/10/10 — α ≈ 0 confirmed,
+so the critical fraction f* → 0 with size; placement lottery (one
+draw in five dodges at ns=20); saturation collapse at high `f_rw`
+with small systems collapsing first. No sharp jump and no critical
+point claimed: smooth crossover with extreme small-`f` sensitivity. The killer result — same frozen `M_O` → `d_obs → 3`
 on every positive member — awaits `M_O` itself.
 
 **Why this could work (grounding).** Malament's theorem: causal order fixes
@@ -532,10 +533,15 @@ and twins ask whether `U` descends to it. The full pipeline reads:
 vacuum graph family → graph-internal admissible `M_O` → 2+scale → 3
 reconstruction → explicit `U` → `δ_U` → `V_U`, `≺_U` → same frozen
 `M_O` → observed causal geometry → `M_O U ≃ U_eff M_O`. Division of
-labor: D10 asks whether space emerges, D13 whether causal time
-emerges, D12 whether the reconstruction is universal rather than
-chosen, commutation whether the resulting spacetime has autonomous
-dynamics.
+labor: P0' identifies the vacuum connectivity class; D10 asks why
+observers reconstruct 3D from it; D1 asks what dynamics
+preserves/evolves it; D13 asks whether that dynamics generates
+causal time; D12 asks whether the reconstruction is universal;
+`M_O U ≃ U_eff M_O` asks whether the whole construction becomes
+autonomous spacetime physics. If microscopic `U` preserves the
+class while `M_O` quotients its irrelevant fluctuations,
+`M_O(G_n) ≃ M_O(G_{n+1})` describes a stable vacuum atop a
+changing graph.
 
 ---
 

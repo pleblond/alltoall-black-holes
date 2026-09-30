@@ -14,7 +14,10 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   cones); substrate family (tri/hex/noisy +, gated-wall/rewired −);
   P4 audit ((1)(2)(3)(5) pass, (4) partial; drift modulus grid-tested);
   rewire sweep (rise-collapse, N* flat α≈0, multi-seed bands);
-  paper v5 S11 + ledger updated. 448 tests.
+  scaled-window α≈0 confirmation (f*→0) + leverage dose-response;
+  D1 C_vac-preservation target, RG-relevance investigation ("critical"
+  dropped), extended division of labor;
+  paper v5 S11 + ledger updated. 450 tests.
 - **v5.1** — D10b tension-cost program (releases model-docs v0.6 below):
   zero-fit cost candidates for tense-region `d(i,j)` (tortuosity-import
   partial recovery, `c_eff`-import flips with full dip → overshoot →
