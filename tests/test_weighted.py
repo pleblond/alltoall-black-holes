@@ -401,3 +401,48 @@ def test_knot_pilot_dual_reference():
     assert means[0]["near"] < 0.90, means[0]
     assert means[0]["far"] > 0.95, means[0]
     assert all(v == 1.0 for v in means[3].values()), means[3]
+
+
+def test_chi_table_three_way_split():
+    # Chi-measurement spike verdict (experiment-A fork): static-chi
+    # distributions by population on the knot+swap A-state.
+    # EXACTNESS (3x3 grid + diagonal (0,0)-(1,1), knot =
+    # {(1,1),(1,2)}): 11 fabric / 1 weak / 1 interior; weak
+    # embeddedness == 2 (common {(1,0),(0,1)}), jaccard == 1/3,
+    # interior degree_sum == 8 (5+3). VERDICT (reduced A-state
+    # 20x20 ns=5 3x3-knot seed 0; full A-state 40x40 medians filed
+    # in DEFERRED, same shape): embeddedness weak max == fabric
+    # max == 0 -- local-chi impossibility CONFIRMED empirically,
+    # embeddedness-F predicts Delta-y_w EXACTLY 0 (null control
+    # locked); betweenness medians ordered weak 0.0566 > fabric
+    # 0.0104 > interior 0.0011 -- three-way split TYPICAL but tails
+    # overlap (full-state fabric max 0.041 > weak med 0.029:
+    # congestion-F prices central fabric high -- side effect to
+    # monitor, Phi-verdict safe since fabric eta <= 1 always).
+    import statistics as st
+
+    from bh_graph.weighted import population_chi
+
+    g = nx.grid_2d_graph(3, 3)
+    g.add_edge((0, 0), (1, 1))
+    kn = {(1, 1), (1, 2)}
+    t = population_chi(g, kn, "embeddedness")
+    assert {p: len(v) for p, v in t.items()} == {"fabric": 11, "weak": 1, "interior": 1}
+    assert t["weak"] == [2]
+    assert population_chi(g, kn, "jaccard")["weak"] == [1 / 3]
+    assert population_chi(g, kn, "degree_sum")["interior"] == [8]
+
+    g = nx.grid_2d_graph(20, 20)
+    nx.connected_double_edge_swap(g, 5, seed=0)
+    kn = {(x, y) for x in range(9, 12) for y in range(9, 12)}
+    for a in kn:
+        for b in kn:
+            if a < b and not g.has_edge(a, b):
+                g.add_edge(a, b)
+    t = population_chi(g, kn, "embeddedness")
+    assert max(t["weak"]) == 0 and max(t["fabric"]) == 0
+    assert min(t["interior"]) > 0
+    t = population_chi(g, kn, "betweenness")
+    mw, mf, mi = (st.median(t[p]) for p in ("weak", "fabric", "interior"))
+    assert mw > mf > mi, (mw, mf, mi)
+    assert max(t["fabric"]) > mw  # tails overlap: central fabric priced high

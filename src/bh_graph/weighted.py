@@ -248,3 +248,44 @@ def radial_eta_profile(gw: nx.Graph, gref: nx.Graph, knotmask, bins: dict) -> di
     for u, v, _, s in weak:
         out["spans"][tuple(sorted((u, v)))] = s
     return out
+
+
+def population_chi(g: nx.Graph, knot_nodes, kind: str = "betweenness") -> dict:
+    """Per-population static-chi table for experiment-A design (tuple grid).
+
+    kinds: "embeddedness" (common-neighbor count), "jaccard",
+    "degree_sum", "betweenness" (exact edge betweenness).
+    Populations: "fabric" (span-1, non-interior), "weak" (span>1,
+    non-interior), "interior" (both endpoints in knot_nodes).
+    Returns {pop: [values]} in edge order. Betweenness keys
+    normalized (sorted endpoints).
+    """
+    knot_nodes = set(knot_nodes)
+    pops: dict = {"fabric": [], "weak": [], "interior": []}
+    edges: dict = {"fabric": [], "weak": [], "interior": []}
+    for u, v in g.edges():
+        if u in knot_nodes and v in knot_nodes:
+            pop = "interior"
+        elif _manhattan(u, v) > 1:
+            pop = "weak"
+        else:
+            pop = "fabric"
+        edges[pop].append((u, v))
+    if kind == "betweenness":
+        raw = nx.edge_betweenness_centrality(g)
+        tab = {tuple(sorted(e)): val for e, val in raw.items()}
+        for pop, es in edges.items():
+            pops[pop] = [tab[tuple(sorted(e))] for e in es]
+        return pops
+    nbr = {n: set(g.neighbors(n)) for n in g.nodes()}
+    for pop, es in edges.items():
+        for u, v in es:
+            if kind == "embeddedness":
+                pops[pop].append(len(nbr[u] & nbr[v]))
+            elif kind == "jaccard":
+                pops[pop].append(len(nbr[u] & nbr[v]) / len(nbr[u] | nbr[v]))
+            elif kind == "degree_sum":
+                pops[pop].append(g.degree(u) + g.degree(v))
+            else:
+                raise ValueError(f"unknown chi kind: {kind}")
+    return pops

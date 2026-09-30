@@ -1409,7 +1409,39 @@ or DYNAMICAL (traffic — C2 territory); if betweenness fails to
 three-way-split, A-static has NO sensitive candidate => early
 result that pricing needs dynamical chi. NEXT: chi-measurement
 spike -> commit F + analytic w*/stability -> lock
-pre-registration -> code A. P0' RESTATEMENT (conditional — model.md NOT rewritten:
+pre-registration -> code A. CHI-SPIKE VERDICT (MEASURED,
+test_weighted.py — A-static fork resolved): full A-state
+(40x40 ns=20 5x5-knot): embeddedness weak=fabric=0 EXACT
+(3040+40 all zero; interior 23) — local-chi impossibility
+CONFIRMED empirically; embeddedness-F predicts Delta-y_w
+EXACTLY 0 (null control LOCKED). degree_sum same shape (med 8
+both; fabric max 30 = knot-touching edges). betweenness
+THREE-WAY TYPICAL: medians weak 0.0286 / fabric 0.0031 /
+interior 0.00005 (q-bands: weak 0.0185-0.0404, fabric
+0.0020-0.0049) with OVERLAPPING tails (fabric max 0.041 >
+weak med; interior max 0.0095 = gateway load) => congestion-F
+side effect: central fabric + gateway shell price high —
+monitor via fabric-price readout (Phi-verdict safe: fabric
+eta<=1 always). Near/far weak betweenness: 0.0227 / 0.0238 /
+0.0293 — NO difference (substitution micro-hint near<far,
+underpowered n=6; A-run settles it DETERMINISTICALLY: chi
+exact given G) => betweenness-F predicts WEAK Delta-y_w>0 via
+SUBSTITUTION (clique steals load from nearby weak -> cheaper
+-> slower washout — hoped sign via real mechanism, likely
+small). Load-halo ABSENT (near fabric med ~= far) => no
+price-halo prediction. GATEWAY ANATOMY predicted (max-fabric
+edge sits near knot 0.041 => congestion prices a SHELL around
+the knot — check P(w|r=0 fabric) in A-run; neutral until
+measured). r_O-as-chi REJECTED (label smuggling — checkable
+form of the no-labels clause: proximity-to-known-knot =
+labels). Density-proximity (dist-to-high-degree) flagged GRAY
+(blind-admissible but label-laundering in function — flagged
+third candidate only, after the two clean ones). VERDICT:
+A-static = exact-null control + weak-positive attempt; likely
+outcome null-or-micro DECIDES the traffic question
+(dynamical-chi C2 as the real mechanism) — program learns
+either way. NEXT: commit Form-1 F x2 candidates + analytic
+w*/stability -> lock pre-registration -> code A. P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
