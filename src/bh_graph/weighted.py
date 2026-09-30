@@ -250,19 +250,40 @@ def radial_eta_profile(gw: nx.Graph, gref: nx.Graph, knotmask, bins: dict) -> di
     return out
 
 
-def population_chi(g: nx.Graph, knot_nodes, kind: str = "betweenness") -> dict:
-    """Per-population static-chi table for experiment-A design (tuple grid).
+def edge_chi(g: nx.Graph, kind: str = "betweenness") -> dict:
+    """Per-edge static chi {(u,v) sorted: value} (tuple grid).
 
     kinds: "embeddedness" (common-neighbor count), "jaccard",
     "degree_sum", "betweenness" (exact edge betweenness).
-    Populations: "fabric" (span-1, non-interior), "weak" (span>1,
-    non-interior), "interior" (both endpoints in knot_nodes).
-    Returns {pop: [values]} in edge order. Betweenness keys
-    normalized (sorted endpoints).
+    """
+    if kind == "betweenness":
+        raw = nx.edge_betweenness_centrality(g)
+        return {tuple(sorted(e)): val for e, val in raw.items()}
+    if kind not in ("embeddedness", "jaccard", "degree_sum"):
+        raise ValueError(f"unknown chi kind: {kind}")
+    nbr = {n: set(g.neighbors(n)) for n in g.nodes()}
+    out = {}
+    for u, v in g.edges():
+        e = tuple(sorted((u, v)))
+        if kind == "embeddedness":
+            out[e] = len(nbr[u] & nbr[v])
+        elif kind == "jaccard":
+            out[e] = len(nbr[u] & nbr[v]) / len(nbr[u] | nbr[v])
+        else:
+            out[e] = g.degree(u) + g.degree(v)
+    return out
+
+
+def population_chi(g: nx.Graph, knot_nodes, kind: str = "betweenness") -> dict:
+    """Per-population static-chi table for experiment-A design (tuple grid).
+
+    kinds: see edge_chi. Populations: "fabric" (span-1, non-interior),
+    "weak" (span>1, non-interior), "interior" (both endpoints in
+    knot_nodes). Returns {pop: [values]} in edge order.
     """
     knot_nodes = set(knot_nodes)
+    tab = edge_chi(g, kind)
     pops: dict = {"fabric": [], "weak": [], "interior": []}
-    edges: dict = {"fabric": [], "weak": [], "interior": []}
     for u, v in g.edges():
         if u in knot_nodes and v in knot_nodes:
             pop = "interior"
@@ -270,22 +291,74 @@ def population_chi(g: nx.Graph, knot_nodes, kind: str = "betweenness") -> dict:
             pop = "weak"
         else:
             pop = "fabric"
-        edges[pop].append((u, v))
-    if kind == "betweenness":
-        raw = nx.edge_betweenness_centrality(g)
-        tab = {tuple(sorted(e)): val for e, val in raw.items()}
-        for pop, es in edges.items():
-            pops[pop] = [tab[tuple(sorted(e))] for e in es]
-        return pops
-    nbr = {n: set(g.neighbors(n)) for n in g.nodes()}
-    for pop, es in edges.items():
-        for u, v in es:
-            if kind == "embeddedness":
-                pops[pop].append(len(nbr[u] & nbr[v]))
-            elif kind == "jaccard":
-                pops[pop].append(len(nbr[u] & nbr[v]) / len(nbr[u] | nbr[v]))
-            elif kind == "degree_sum":
-                pops[pop].append(g.degree(u) + g.degree(v))
-            else:
-                raise ValueError(f"unknown chi kind: {kind}")
+        pops[pop].append(tab[tuple(sorted((u, v)))])
     return pops
+
+
+def planted_knot_state(size=40, ns=20, seed=0, knot_center=(20, 20), knot_rad=2):
+    """Canonical experiment-A state: grid + swaps + clique knot (topology).
+
+    Returns (gw_topo, knot_nodes, gplain, gknot_ref): swapped grid with
+    planted clique, planted node set, pure plain ruler, plain+knot
+    ruler. Weights NOT set (w-dynamics runs from uniform 1).
+    """
+    gw = nx.grid_2d_graph(size, size)
+    if ns:
+        nx.connected_double_edge_swap(gw, ns, seed=seed)
+    cx, cy = knot_center
+    kn = {(x, y) for x in range(cx - knot_rad, cx + knot_rad + 1) for y in range(cy - knot_rad, cy + knot_rad + 1)}
+    for a in kn:
+        for b in kn:
+            if a < b and not gw.has_edge(a, b):
+                gw.add_edge(a, b)
+    gk = nx.grid_2d_graph(size, size)
+    for a in kn:
+        for b in kn:
+            if a < b and not gk.has_edge(a, b):
+                gk.add_edge(a, b)
+    return gw, kn, nx.grid_2d_graph(size, size), gk
+
+
+def form1_trajectory(chi: dict, alpha=0.2, beta=350.0, n_ticks=64, w_init=1.0):
+    """Form-1 relaxation w'=(1-a)w+a(1+b*chi) from uniform init.
+
+    chi = {edge: value} (any hashable edge keys). Deterministic.
+    Returns (trajectory [w0..wn] as list of dicts, w_star dict).
+    """
+    w = dict.fromkeys(chi, float(w_init))
+    traj = [dict(w)]
+    for _ in range(n_ticks):
+        w = {e: (1 - alpha) * w[e] + alpha * (1 + beta * chi[e]) for e in chi}
+        traj.append(dict(w))
+    return traj, {e: 1 + beta * chi[e] for e in chi}
+
+
+def fabric_price_profile(gw: nx.Graph, gref: nx.Graph, knotmask, bins: dict) -> dict:
+    """Per-r_O-bin fabric-price stats {bin: (median, q90, n)} (prereg W).
+
+    Fabric = span-1 non-interior edges; r(e) = min endpoint r_O via
+    one super-node BFS on gref (same frozen rule as radial_eta).
+    Length attr "L" (default 1.0). Median = halo detector, q90 =
+    shell/tail detector.
+    """
+    import statistics as st
+
+    h = gref.copy()
+    h.add_node("SUPER")
+    for z in knotmask:
+        if z in h:
+            h.add_edge("SUPER", z)
+    dh = dict(nx.single_source_shortest_path_length(h, "SUPER"))
+    r = {n: dh[n] - 1 for n in gref.nodes()}
+    out = {}
+    for name, (lo, hi) in bins.items():
+        ws = sorted(
+            float(d.get("L", 1.0))
+            for u, v, d in gw.edges(data=True)
+            if _manhattan(u, v) == 1
+            and not (u in knotmask and v in knotmask)
+            and lo <= min(r[u], r[v]) <= hi
+        )
+        q = st.quantiles(ws, n=10) if len(ws) >= 10 else [ws[-1]] * 9
+        out[name] = (st.median(ws), q[8], len(ws)) if ws else (1.0, 1.0, 0)
+    return out

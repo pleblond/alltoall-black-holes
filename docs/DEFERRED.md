@@ -1534,7 +1534,48 @@ NULL/MECH-ONLY/SUFFICIENT x TOL contour + filed C2 branches.
 NO re-choice of g/beta past this point (re-choice = NEW
 candidate + fresh pre-registration). NEXT: code experiment A
 (5 relaxation runs: control + 4 beta; trajectories + Phi(n,k)
-surfaces + profiles). P0' RESTATEMENT (conditional — model.md NOT rewritten:
+surfaces + profiles). EXPERIMENT-A VERDICT (MEASURED,
+test_weighted.py — mechanism demonstrated, Delta-y_w split):
+control BIT-EXACT (weak w(n)==1.0, maxdev 0.0, all rows frozen
+at Lw1 slice, Delta=0 — analytic null holds, NO leak).
+Tick-0 all 5 runs == Lw1 slice (40/40,35/35,30/30,18/18 —
+uniform-init reduction, 5-way identity). w* convergence
+edgewise (maxdev matches excess*0.8^64 theory); R_fw=0.10929
+SWEEP-WIDE all four beta (linearity end-to-end); medians hit
+locked table (beta=350: 11.004/2.093). Per-beta: 3.5 frozen,
+never cross; 35 partial (34/35,29/30,17/18), no cross; 350
+CROSSES k=3 with (36,23,7,0) vs banked Lw10 (36,23,5,0) —
+k=0,1,3 EXACT recovery of hand-planted washout by DYNAMICAL
+pricing, k=2 +2 = HETEROGENEITY COST (w* spread vs uniform Lw;
+direction filed); 3500 crosses k=0 (saturated ceiling, no
+Delta resolution — as filed). Gradualism beta=350 tick8
+strictly between (relaxation, NOT imprinting). DELTA-y_w
+SPLIT (locked sign prediction FALSIFIED at Phi level —
+honest): w*-level substitution CONFIRMED (near/far 8.934/
+11.242, excess ratio 0.7746); Phi-level runs WRONG way (final
+k=1: near 1/7 vs far 9/9 — SELECTION dominates: near spans
+<=11 vs far >=12, DISJOINT support kills span-matching) —
+substitution real at price level, washout-delay NOT detected
+at Phi level. OUTCOME: global basin reach YES at beta>=350
+(Form-1 maps the beta phase diagram; beta-SCALE origin —
+why ~350 — OWED to C2, like T_c: measured boundary, not
+derived constant); knot-differential washout NO (needs
+matched-span apparatus = bigger knot, or dynamical chi where
+feedback may amplify past selection — sign unknown, no
+extrapolation). Gateway shell CONFIRMED (W_fabric medians
+flat ~2.0 = no halo; q90 near 4.79 > far 3.99 despite
+n=113<<2551 = tail shell). Guard: 350 passes (2.09<3); 3500
+trips to 11.9 WITH ratio intact (predicted trip =
+linearity confirmation). B-STATUS: radial anatomy banked
+in-test (near/far rows + W_fabric trajectories' endpoint) —
+B satisfied for the GLOBAL effect via A post-processing (as
+filed); knot-differential anatomy limited by selection
+(same caveat). C2 BRIEF: (i) static congestion suffices for
+VACUUM pricing globally — C2 inherits a working price
+mechanism, owes the beta-scale + formation; (ii) knot effect
+needs dynamical chi (traffic feedback) or bigger apparatus;
+(iii) substitution sign under feedback UNKNOWN (may flip —
+filed caution stands). P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the

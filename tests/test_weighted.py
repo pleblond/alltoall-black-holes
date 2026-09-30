@@ -446,3 +446,143 @@ def test_chi_table_three_way_split():
     mw, mf, mi = (st.median(t[p]) for p in ("weak", "fabric", "interior"))
     assert mw > mf > mi, (mw, mf, mi)
     assert max(t["fabric"]) > mw  # tails overlap: central fabric priced high
+
+
+def test_experiment_A_relaxation():
+    # EXPERIMENT A (Form-1 relaxation, planted knot, E frozen, w0=1):
+    # control (embeddedness, beta=1) + betweenness beta-grid
+    # {3.5,35,350,3500} (alpha=0.2, 64 ticks). VERDICT vs locked
+    # predictions: (i) CONTROL EXACT: weak w(n)==1.0 bit-identical
+    # all 65 ticks (maxdev 0.0), all Phi rows frozen at the Lw1
+    # slice (40/40,35/35,30/30,18/18), Delta=0 -- analytic null
+    # holds end-to-end, no leak. (ii) TICK-0 of ALL 5 runs ==
+    # Lw1 slice (uniform init = binary reduction, 5-way identity).
+    # (iii) w* CONVERGENCE edgewise (maxdev < 2e-4, theory
+    # excess*0.8^64). (iv) R_fw = 1/9.15 SWEEP-WIDE (0.10929 all
+    # four beta -- linearity confirmed end-to-end). (v) MEDIANS hit
+    # the locked table (beta=350: weak 11.004 / fabric 2.093).
+    # (vi) BETA=3.5 frozen (w*~1.1 moves nothing, never cross);
+    # BETA=35 partial (34/35,29/30,17/18 -- marginal healing, no
+    # cross); BETA=350 CROSSES k=3 with (36,23,7,0) vs banked
+    # Lw10 (36,23,5,0) -- k=0,1,3 EXACT, k=2 +2 = heterogeneity
+    # cost (dynamical w* spread vs uniform planted Lw; direction
+    # filed); BETA=3500 crosses k=0 (saturated, ceiling -- no
+    # Delta resolution, as filed). (vii) GRADUALISM beta=350 tick8
+    # (36,25,9,2) strictly between tick0 and final k=1,2,3
+    # (relaxation, not imprinting). (viii) DELTA-y_w SPLIT-LEVEL
+    # VERDICT (prediction FLIP filed honestly): w*-level
+    # substitution CONFIRMED (near/far weak medians 8.934/11.242,
+    # excess ratio 0.7746 ~= 0.775); Phi-level runs the WRONG way
+    # (final k=1: near 1/7 vs far 9/9 -- SELECTION dominates:
+    # near pairs are short pairs, spans <=11 vs >=12, disjoint
+    # support kills matching) -- substitution invisible beneath
+    # selection at Phi level. So: global basin reach YES (beta>=350
+    # dynamically enters banked basin -- mechanism demonstrated,
+    # beta-SCALE origin still owed to C2); knot-differential
+    # washout NO at Phi level (needs matched-span apparatus or
+    # dynamical chi). (ix) GATEWAY SHELL: W_fabric medians flat
+    # (all ~2.0, no halo) with q90 near 4.79 > far 3.99 DESPITE
+    # n=113<<2551 (tail signal = shell, as banked). (x) GUARD:
+    # beta=350 fabric-med 2.09 < 3; beta=3500 trips to 11.9 WITH
+    # ratio intact (predicted trip = linearity confirmation).
+    import statistics as st
+
+    from bh_graph.weighted import (
+        edge_chi,
+        fabric_price_profile,
+        form1_trajectory,
+        knot_block_mask,
+        planted_knot_state,
+        radial_eta_profile,
+    )
+
+    TOL = 2 / 760
+    BINS = {"near": (0, 2), "mid": (3, 7), "far": (8, 10**9)}
+    gw0, kn, gp0, _ = planted_knot_state()
+    key_of = {tuple(sorted(e)): e for e in gw0.edges()}
+    chi_emb = edge_chi(gw0, "embeddedness")
+    chi_bet = edge_chi(gw0, "betweenness")
+    weak_keys = [
+        tuple(sorted(e))
+        for e in gw0.edges()
+        if abs(e[0][0] - e[1][0]) + abs(e[0][1] - e[1][1]) > 1 and not (e[0] in kn and e[1] in kn)
+    ]
+    fabric_keys = [
+        tuple(sorted(e))
+        for e in gw0.edges()
+        if abs(e[0][0] - e[1][0]) + abs(e[0][1] - e[1][1]) == 1 and not (e[0] in kn and e[1] in kn)
+    ]
+    LW1 = [(40, 40), (35, 35), (30, 30), (18, 18)]
+
+    def rows(traj, t):
+        gw = gw0.copy()
+        nx.set_edge_attributes(gw, {key_of[e]: w for e, w in traj[t].items()}, "L")
+        gp = gp0.copy()
+        out, nfs, cross = [], [], None
+        for k in range(4):
+            pr = radial_eta_profile(gw, gp, knot_block_mask(kn, k), BINS)
+            nV = sum(pr["bins"][b]["n_viol"] for b in BINS)
+            nL = sum(pr["bins"][b]["n_longs"] for b in BINS)
+            out.append((nV, nL))
+            nfs.append(
+                (pr["bins"]["near"]["n_viol"], pr["bins"]["near"]["n_longs"],
+                 pr["bins"]["far"]["n_viol"], pr["bins"]["far"]["n_longs"])
+            )
+            if nV / gw.number_of_edges() <= TOL and cross is None:
+                cross = k
+            gw, gp = block_coarsen(gw), block_coarsen(gp)
+        return out, nfs, cross
+
+    # control: bit-exact freeze
+    traj_c, _ = form1_trajectory(chi_emb, alpha=0.2, beta=1.0, n_ticks=64)
+    assert max(abs(traj_c[t][e] - 1.0) for t in range(65) for e in weak_keys) == 0.0
+    for t in (0, 8, 64):
+        r, _, c = rows(traj_c, t)
+        assert r == LW1 and c is None
+
+    MEDS = {3.5: (1.100, 1.0109), 35: (2.000, 1.1093), 350: (11.004, 2.0933), 3500: (101.04, 11.933)}
+    for beta, (ew, ef) in MEDS.items():
+        traj, ws = form1_trajectory(chi_bet, alpha=0.2, beta=beta, n_ticks=64)
+        assert max(abs(traj[-1][e] - ws[e]) for e in chi_bet) < 2e-4
+        mw, mf = st.median(traj[-1][e] for e in weak_keys), st.median(traj[-1][e] for e in fabric_keys)
+        assert abs(mw - ew) < 0.02 and abs(mf - ef) < 0.02, (beta, mw, mf)
+        assert abs((mf - 1) / (mw - 1) - 1 / 9.15) < 1e-3, (beta, mf, mw)
+        r0, _, _ = rows(traj, 0)
+        assert r0 == LW1
+        rf, nfs, cross = rows(traj, 64)
+        if beta == 3.5:
+            assert rf == LW1 and cross is None
+        elif beta == 35:
+            assert rf == [(40, 40), (34, 35), (29, 30), (17, 18)] and cross is None
+        elif beta == 350:
+            assert rf == [(36, 40), (23, 35), (7, 30), (0, 18)] and cross == 3
+            assert (rf[0][0], rf[1][0], rf[3][0]) == (36, 23, 0)  # banked Lw10 k=0,1,3
+            r8, _, _ = rows(traj, 8)
+            assert r8 == [(36, 40), (25, 35), (9, 30), (2, 18)]
+            for k in (1, 2, 3):
+                assert LW1[k][0] > r8[k][0] > rf[k][0], (k, r8, rf)
+            assert nfs[0][:2] == (5, 6) and nfs[0][2:] == (23, 26)
+            assert nfs[1][:2] == (1, 7) and nfs[1][2:] == (9, 9)
+            gw = gw0.copy()
+            nx.set_edge_attributes(gw, {key_of[e]: w for e, w in traj[-1].items()}, "L")
+            wf = fabric_price_profile(gw, gp0, kn, BINS)
+            assert all(1.8 < wf[b][0] < 2.2 for b in BINS), wf
+            assert wf["near"][1] > wf["far"][1], wf
+            assert mf < 3
+        else:
+            assert rf == [(0, 40), (0, 35), (0, 30), (0, 18)] and cross == 0
+            assert mf > 3
+
+    # w*-level substitution (beta=350): near/far weak medians + ratio
+    traj, _ = form1_trajectory(chi_bet, alpha=0.2, beta=350.0, n_ticks=64)
+    h = gp0.copy()
+    h.add_node("SUPER")
+    for z in kn:
+        h.add_edge("SUPER", z)
+    dh = dict(nx.single_source_shortest_path_length(h, "SUPER"))
+    rr = {n: dh[n] - 1 for n in gp0.nodes()}
+    wfin = traj[-1]
+    near_w = sorted(wfin[e] for e in weak_keys if min(rr[e[0]], rr[e[1]]) <= 2)
+    far_w = sorted(wfin[e] for e in weak_keys if min(rr[e[0]], rr[e[1]]) >= 8)
+    assert abs(st.median(near_w) - 8.934) < 0.01 and abs(st.median(far_w) - 11.242) < 0.01
+    assert abs((st.median(near_w) - 1) / (st.median(far_w) - 1) - 0.7746) < 0.002

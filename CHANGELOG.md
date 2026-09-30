@@ -66,7 +66,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   Chi-spike verdict (local-chi impossibility confirmed, null
   control locked, betweenness three-way-typical with overlaps,
   substitution micro-prediction, gateway anatomy, r_O rejected).
-  530 tests.
+  Experiment A done (Form-1 relaxation x5: control bit-exact,
+  Lw10-slice recovered dynamically at beta=350, gradualism,
+  Delta-y_w split — substitution at price level, selection
+  dominates Phi level; gateway shell confirmed; C2 briefed).
+  531 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form
