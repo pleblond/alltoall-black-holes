@@ -1745,6 +1745,63 @@ run FIRST (close static chapter; fully derived) ->
 dynamical-chi design. (Spike process note: comprehension-
 recompute bug 3040x (spike-only, fixed; deterministic-
 identical results — determinism-check value demonstrated).)
+STATIC-CHI HEADSTONE (review verdict adopted — closure, not
+mere negative): 2x2 collapse = (betw,cong) attenuation-control
+/ (betw,atr) analytic exclusion / (walk,cong) no-lever (tied)
+/ (walk,atr) empirical kill (inverted). Kill sentence: chi_K
+< chi_F ~= chi_W => atrophy gives w_K > w_F ~= w_W — actively
+attacks knot, barely separates weak from fabric.
+MONOTONE-ORDER UNIFICATION (two applications, one root):
+monotone g preserves order structures — (i) overlap theorem
+(cannot un-overlap tails), (ii) kill sentence (cannot invert
+rank); g-shopping provably futile both directions.
+Susceptibility as NEGATIVE CONTROL adopted (0.104 vs 0.101
+null, single-edge 0.102 = uniform 0.104 => avoidance is
+EDGE-LOCAL conductance response, collective rerouting ~0.002
+— "network self-organization amplifies" dead for walks
+specifically). NO-CHI-SHOPPING RULE (enforcement): any future
+static-chi proposal must FIRST state its 2x2 cell + why it
+escapes that cell's verdict. Worked preemptive kill:
+current-flow/random-walk betweenness reduplicates the
+BETWEENNESS COLUMN (s-t absorbing flows use shortcuts like
+shortest paths: weak-high/interior-low predicted same shape;
+atrophy inverted, congestion attenuation-only) — smoother
+(linear-solve continuous => fixed-point theory, no flapping)
+but same verdicts; admissible ONLY as follow-up smoothed
+attenuation experiment if betw-cong flaps uninterpretable,
+never scale candidate without new argument. BETW-CONG AS
+CLOSURE (locked questions): attenuation factor? beta=350
+still in basin? fixed points vs cycles? cadence-sensitive?
+Outcomes all useful (stable-in-basin = vacuum-pricing
+mechanism with unexplained scale; out = open-loop-only;
+cycles = <Phi(w(t))> + basin-fraction verdict). Then
+static-chi CLOSED whatever the answer. ABSTRACTION-LEVEL RULE
+for what follows: no new scalar chi(G,w) — next variables
+must be STATEFUL (q with memory: identical instantaneous
+traffic, different price via history — S_n=(G,w,q,...)) or
+PRINCIPLED-BUDGET (sum Q = const with physical Q
+interpretation BEFORE implementation — uninterpreted Q_total
+= beta-in-costume, rejected in advance). Sign of stateful-F
+NOT chosen yet (derive from machine-supplied
+conserved/current quantities first). H-GATE: gate v2 applies
+to H equally (blind reads, update-form, no inserted targets —
+memory exempts nothing); BOUNDED MEMORY (scalar q_e, fixed dim
+— unbounded histories = infinite state, excluded); MU-DEBT
+(memory timescale mu needs intrinsic source — same ledger as
+T). WALK-CAMPAIGN
+METHODOLOGICAL VERDICT (preserved prominently, never buried):
+smoothness + globality of an observable are NOT enough — it
+must carry structural information beyond its stationary
+transport law (walk-chi's ordering dies at stationarity AND
+its avoidance is pure conductance math). This is the filter
+against unconstrained model-building next stage.
+(Uploaded-conversation boundary-response/memory remark: noted
+convergence (dense interiors may need storage/memory) —
+reference opaque to agent; independent pointer toward
+statefulness, not evidence.) ROADMAP (narrowed, locked):
+A-static-congestion [done] -> betw-cong feedback [NEXT] ->
+close static-chi -> {stateful q | principled budget Q} ->
+formation/dynamic topology -> M_O audits.
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
