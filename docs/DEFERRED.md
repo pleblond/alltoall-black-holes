@@ -1248,7 +1248,56 @@ admissible via F reading w^(n). FALSIFIER TEETH: uniform w≡1
 init does the work through TRAJECTORY P(w,n) (one-step jump =
 imprinting/inserted; gradual differentiation = generated);
 report (n,k) surface slice (P(η>1) at multiple k); pre-register
-knot persistence criteria (ripening already filed). P0' RESTATEMENT (conditional — model.md NOT rewritten:
+knot persistence criteria (ripening already filed). POST-CAMPAIGN
+AMENDMENT #4 (review dialogue — falsifier-protocol core, D14 as
+dynamical selection): Φ(n,k) ≡ P(η>1) on frozen-then-blocked
+S_n^{(k)} ADOPTED as the program object (surface, not a number);
+∂_nΦ = U-dynamics, ∂_kΦ = RG observation — factorized claims:
+(a) U delivers S_n into washout basin, (b) frozen-R flows to
+Φ≈0 inside it. CAMPAIGN RETRO-FRAME: frozen result = slice
+Φ(n_0,k) = the BASIN MAP (Lw≳2, k*≈log2(span0/Lw)) — half the
+claim already banked, not a pilot; U-run owes only the
+trajectory δ(w−1) → basin. Cost structure: U runs once
+(n-direction, expensive), R post-processes each frozen state
+(k-direction, cheap) — surface costs one trajectory. TARGET
+CONTOUR: pass = trajectory crosses Φ(n,k_obs)≲tol and stays
+(tol≈2 operational longs/400 nodes from binary tolerance;
+0.003≈0.003 cross-check calibrates the contour — re-analysis
+of campaign states in Φ language queued as apparatus validation
+before any U-run). TRAJECTORY-IS-EVIDENCE: endpoint alone
+meaningless (w^(1)=F(desired geometry) = reconstruction
+disguised as dynamics); record full P(w,n): δ(w−1) → broad →
+{P_knot,P_vac}. FIRST-TICK DIAGNOSTIC (severe, with structural
+null): Δw^(0) spread at n=1 always expected (S_0 structure
+varies; neighborhood-reading F reflects it) — suspicion =
+CLASSIFICATION at n=1, quantified as MI curve I(w^(n);
+sector_final): imprinting saturates n≈1, instability grows over
+many ticks behind σ_w∼e^{γn} linear phase; ε-noise test pinned
+to t*(ε)∼(1/γ)ln(A/ε) with γ matching linear-phase fit (two
+independent measures of one number = brutal version).
+INDEPENDENT LABELS, BIDIRECTIONAL: sectors from topology
+WITHOUT w (density/k-core/community on G_n; planted in pilots)
+→ P(w|sector) as outcome, PLUS reverse (w-labels → structural
+correlates); both directions must agree — disagreement means
+price sectors ≠ density sectors (complicates knots=dense=cheap
+interestingly). RIPENING (separate falsifier): observe to
+n≫t_form (10× suggested, pre-registered multiple);
+stationarity P_knot(s,n)→P*_knot(s) via named distribution test
+across late windows (KS or similar); N_knots→0 = clean fail,
+→1 = fail with BH-consolation on separate argument only (one
+knot ≠ matter population); "fraction in knots" restated for
+gate v2 (edge-mass/topological share, or discovered conserved
+Q — no required ledger). ENSEMBLES: 2–3 pre-registered
+NON-GEOMETRIC primordial families (random regular, ER, high-d)
+× seeds — start FAR from the answer (near-lattice S_0 smuggles
+it). LOAD-BEARING CLAIM (adopted verbatim in spirit):
+homogeneous w≡1 + observer-blind U (no target dimension/
+geometry/labels/pricing classes) → spontaneous destabilization
+(γ>0) → persistent knots + Φ→0 vacuum, trajectory + surface +
+persistence + ensembles all pre-registered. NEXT ARTIFACT:
+written D14 falsifier pre-registration (estimators + numbers +
+pass/fail); apparatus first (Φ(n_0,k) re-analysis pinned in
+tests). P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
 P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
