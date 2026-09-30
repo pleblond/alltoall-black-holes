@@ -399,6 +399,105 @@ def rule_pair(h: nx.Graph, ctx: dict) -> bool:
     return False
 
 
+def _matchings8():
+    """All 105 perfect matchings on 8 endpoints (index form, cached)."""
+    out = []
+    for i in range(1, 8):
+        rest = [j for j in range(1, 8) if j != i]
+        c = rest[0]
+        for k in range(1, 6):
+            d = rest[k]
+            rest2 = [p for l_, p in enumerate(rest[1:], 1) if l_ != k]
+            e = rest2[0]
+            for m in range(1, 4):
+                f = rest2[m]
+                g, h = [p for n, p in enumerate(rest2[1:], 1) if n != m]
+                out.append(((0, i), (c, d), (e, f), (g, h)))
+    return out
+
+
+_MATCHINGS8 = _matchings8()
+
+
+def _visible_set(h: nx.Graph, node, edges: list, smax: int) -> list:
+    """Edges with an endpoint within BFS-cutoff smax of node (radius-local)."""
+    d = dict(nx.single_source_shortest_path_length(h, node, cutoff=smax))
+    return [e for e in edges if e[0] in d or e[1] in d]
+
+
+def rule_triple(h: nx.Graph, ctx: dict) -> bool:
+    """Endgame triple-swap: visibility-chained 4-edge re-pairing.
+
+    Order-3 coordination for pair-locked residuals: graft each endpoint
+    of a long edge onto a visible partner edge (BFS-cutoff ball, local),
+    chain the 4th edge off the leftovers' visibility, accept the first
+    all-short + connected re-pairing (105 matchings). Chained sampling
+    hits ~9e-4 vs ~6e-6 blind (140x) on the seed-5 pair-locked residual;
+    blind triple rules cannot hit in-suite, so the chaining is the rule.
+    Every eval (visibility balls, spans) is radius-local; sampling among
+    visible sets is the same mild globality as the guillotine. Plain grid
+    is a fixed point. Slow specialist (~1 s/search) -- chain after pair.
+    Long-first targeting (not random-edge skip): random picks starve in
+    the endgame (1 long in 760 edges), so each step enumerates the long
+    list and samples triples per long.
+    """
+    radius = ctx.get("radius", 3)
+    smax = ctx.get("max_span", 3)
+    E = list(h.edges())
+    longs = [e for e in E if edge_span(h, e[0], e[1], radius) > smax]
+    if not longs:
+        return False
+    for _ in range(ctx.get("proposals", 12)):
+        a, b = longs[ctx["rng"].randrange(len(longs))]
+        others = [e for e in E if e != (a, b) and e != (b, a)]
+        Va = _visible_set(h, a, others, smax)
+        Vb = _visible_set(h, b, others, smax)
+        if not Va or not Vb:
+            continue
+        for _ in range(ctx.get("triple_tries", 100)):
+            e2 = Va[ctx["rng"].randrange(len(Va))]
+            e3 = Vb[ctx["rng"].randrange(len(Vb))]
+            if e2 == e3:
+                continue
+            pool = set()
+            for v in (e2[0], e2[1], e3[0], e3[1]):
+                pool.update(_visible_set(h, v, others, smax))
+            pool.discard((a, b))
+            pool.discard((b, a))
+            pool.discard(e2)
+            pool.discard(e3)
+            if not pool:
+                continue
+            e4 = sorted(pool)[ctx["rng"].randrange(len(pool))]
+            pts = [a, b, e2[0], e2[1], e3[0], e3[1], e4[0], e4[1]]
+            if len(set(pts)) < 8:
+                continue
+            old = [(a, b), (e2[0], e2[1]), (e3[0], e3[1]), (e4[0], e4[1])]
+            for e in old:
+                h.remove_edge(*e)
+            acc = None
+            for mt_idx in _MATCHINGS8:
+                mt = tuple((pts[i], pts[j]) for i, j in mt_idx)
+                if any(h.has_edge(u, v) for u, v in mt):
+                    continue
+                for u, v in mt:
+                    h.add_edge(u, v)
+                ok = all(edge_span(h, u, v, radius) <= smax for u, v in mt)
+                ok = ok and nx.is_connected(h)
+                for u, v in mt:
+                    h.remove_edge(u, v)
+                if ok:
+                    acc = mt
+                    break
+            if acc is not None:
+                for u, v in acc:
+                    h.add_edge(u, v)
+                return True
+            for e in old:
+                h.add_edge(*e)
+    return False
+
+
 def rule_slide(h: nx.Graph, ctx: dict) -> bool:
     """Edge-slide reel-in: slide a long edge's endpoint toward shorter span.
 

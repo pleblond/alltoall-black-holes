@@ -274,3 +274,48 @@ def test_pair_fixes_plain_point():
     g, src = _grid20()
     _, _, acc = evolve(g, rule_pair, 20, seed=5, src=src)
     assert acc == 0
+
+
+def test_pair_triple_chain_fully_heals():
+    # D1 HEADLINE: pair600 (longs 30 -> 1) + visibility-chained triple
+    # endgame clears the pair-locked residual -- longs == 0, connected.
+    # First complete locality restoration in the tournament. p = 2.04 at
+    # zero longs (plain 1.83): mild (p, longs) decoupling persists even
+    # fully healed -- detour-length distribution still slightly off.
+    from bh_graph.update_rule import rule_pair, rule_triple, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    _, h, _ = evolve(dam, rule_pair, 600, seed=5, src=src)
+    assert total_longs(h) == 1
+    traj, h2, acc = evolve(h, rule_triple, 30, seed=105, src=src)
+    assert total_longs(h2) == 0, total_longs(h2)
+    assert acc > 0, acc
+    assert traj[-1] < 2.1, traj[-1]
+    assert nx.is_connected(h2)
+
+
+def test_pair_triple_chain_heals_second_seed():
+    # Not single-seed luck: seed 7 (pair600 -> 4 longs) also clears to 0
+    # under the chained triple endgame (p 1.95). Seed 6 reaches 2 longs
+    # in 30 steps with p reading near-plain 1.83 (filed, not shipped:
+    # 62 s) -- slow residuals persist, and p-plain coexists with longs.
+    from bh_graph.update_rule import rule_pair, rule_triple, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    _, h, _ = evolve(dam, rule_pair, 600, seed=7, src=src)
+    assert total_longs(h) == 4
+    traj, h2, acc = evolve(h, rule_triple, 30, seed=106, src=src)
+    assert total_longs(h2) == 0, total_longs(h2)
+    assert acc > 0, acc
+    assert traj[-1] < 2.0, traj[-1]
+    assert nx.is_connected(h2)
+
+
+def test_triple_fixes_plain_point():
+    from bh_graph.update_rule import rule_triple
+
+    g, src = _grid20()
+    _, _, acc = evolve(g, rule_triple, 5, seed=5, src=src)
+    assert acc == 0

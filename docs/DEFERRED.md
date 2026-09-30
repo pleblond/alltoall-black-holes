@@ -129,15 +129,23 @@ is PAIR-LOCKED (0 repairing re-pairings in an exhaustive 287661-
 triple scan, measured-not-shipped, 35 s): the lock hierarchy
 deepens with coordination order (single-swap locks 4, double-swap
 locks 1). Next: triple-swap / 4-edge moves, then the tournament.
-Triple-swap endgame (MEASURED, not shipped): 4-edge joint re-pairing
-(105 matchings) unlocks the pair-locked residual in principle — 2
-repairing triples in 320k sampled (rate ~6e-6) — but both hits need
-a FAR partner (d_res 5 and 6 from the residual); radius-3 ball
-exhaustive scan finds 0/147440. Repair partners live outside any
-small geographic shortlist, so blind/heavy-sampled triple rules
-cannot hit in-suite and no rule_triple is shipped: viable
-order-3 rules need detour-aware (not distance-based) proposals — a
-new rule class, open design. D1 rests here until that design lands.
+Triple-swap endgame (MEASURED, test_update_rule.py): 4-edge joint
+re-pairing (105 matchings) unlocks the pair-locked residual — blind
+sampling hits ~6e-6 with necessarily far partners (d_res 5-6; radius-3
+ball exhaustive 0/147440), but CHAINED VISIBILITY works: graft each
+residual endpoint onto a span-visible partner edge (BFS-cutoff balls,
+radius-local), chain the 4th edge off the leftovers — hit rate jumps
+140x to ~9e-4 (17/19825; the blind hit's partners split Va/Vb/far
+exactly as the design predicts). rule_triple (long-first targeting —
+random-edge picks starve at 1 long in 760 edges) clears pair-stall to
+longs == 0 on seeds 5 AND 7 (p 2.04/1.95, connected): the FIRST
+COMPLETE locality restoration in the tournament. Caveats: seed 6
+reaches only 2 longs in 30 steps (62 s, filed-not-shipped — slow
+residuals persist); p at zero longs reads 2.04/1.95 vs plain 1.83
+while seed 6 reads near-plain 1.83 WITH 2 longs left — the (p, longs)
+plane stays 2D down to the floor. D1 verdict upgraded: locality CAN
+be restored, at coordination order 3 with detour-aware proposals —
+protection demands coordination, not just locality of moves.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
