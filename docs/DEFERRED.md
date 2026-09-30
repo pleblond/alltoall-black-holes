@@ -1799,9 +1799,10 @@ against unconstrained model-building next stage.
 convergence (dense interiors may need storage/memory) —
 reference opaque to agent; independent pointer toward
 statefulness, not evidence.) ROADMAP (narrowed, locked):
-A-static-congestion [done] -> betw-cong feedback [NEXT] ->
-close static-chi -> {stateful q | principled budget Q} ->
-formation/dynamic topology -> M_O audits. BETW-CONG
+A-static-congestion [done] -> betw-cong feedback [done] ->
+static-chi CLOSED [done] -> stateful-scale derivation [done] ->
+gain-free discriminator [NEXT] -> {formation/dynamic topology}
+-> M_O audits. BETW-CONG
 DERIVATION (LOCKED closure run — docs-only turn; code next):
 LAW w'=(1-a)w+a(1+b*betw_e(w;n)), betw = exact weighted edge-
 betweenness recomputed every m ticks; a=0.2, n=64 ticks,
@@ -1939,6 +1940,65 @@ parameter (mu, threshold, uninterpreted Q_total, F-gain) is
 NAMED as that debt, never as emergence.
 NEXT: stateful-scale derivation unit (docs-only,
 pre-registered above — answers NOT derived this turn).
+STATEFUL-SCALE DERIVATION (executed docs-only — answers
+derived this turn): LINEAR KILL (theorem-direction, no run
+needed): LTI memory q=K*J + affine w=1+gq => steady
+w*=1+(g*SigK)J* — IDENTICAL to static congestion with
+beta=g*SigK (first-order: q*=J*/mu as flagged); memory
+contributes TRANSIENTS ONLY (timescale 1/mu; higher-order
+kernels ring — temporal structure, not scale). Memory axis:
+mu=1 IS static (one-tick lag, same steady); mu->0 windup
+(no steady state, excluded by bounded-memory); interior =
+static-with-transients. Linear memory KILLED as scale
+mechanism. STRUCTURAL-NUMBER CRITERION (YES-prong
+admission): dimensionless machine => every number is
+STRUCTURAL (counts, spectral values, lattice unit, path
+masses) or DEBT (modeler-chosen) — gain ~350 must be
+structural; YES prong currently UNOCCUPIED (no candidate
+exhibited). CHARACTERISTIC-SCALE LEMMA: smooth
+nonlinearity f carries free scale |f'/f''|
+(operating-point/crossover — free unless derived);
+scale-free power laws carry free (prefactor, exponent);
+thresholds/saturations carry free scales in J/q units;
+criticality fixes SHAPES (exponents), never AMPLITUDES.
+Nonlinearity buys shape freedom; magnitude stays debt.
+FEEDBACK AUDIT: closed-loop cartoon g/(1-loop) — loop->1
+amplifies but distance-to-critical is TUNING (debt); SOC
+removes tuning but magnitudes are cutoff-set (structural
+ONLY if cutoff is machine-structural — unoccupied);
+positive feedback => saturation-set switches (saturation =
+scale; unsaturated => unbounded, excluded); our m=4
+ringing exhibits the general fact (feedback structure
+mints TIMESCALES/oscillations, not scale); implicit
+q->w->routing->J->q fixed point REDISTRIBUTES given gain
+(measured: attenuation 0.684) — modulation, never minting.
+BUDGET ROUTE: Sigq=Q or normalized J => steady RELATIVE
+prices mu-free (w~q/Sigq => relative ~ J*/SigJ* exactly)
+— but absolute gain lives in F (debt) UNLESS gain-free
+ratio pricing. TRAFFIC-RATIO SCALE (filed numbers only,
+no code): normalized betw => Sig chi = Lbar; mean chi =
+Lbar/E ~ 26.7/3380 ~ 0.0079; weak chi_med 0.0286 =>
+ratio ~3.5 — structural hierarchy is O(few);
+basin-entry weak_med in indicative interval (2.00,11.00)
+(beta=35/350 static brackets; shape-transfer approximate)
+=> gain-free candidacy MARGINAL, undecidable by
+derivation. POSED DISCRIMINATOR (designed NOT run —
+zero-free-parameter pricing w_e=max(1,J_e/Jbar),
+J=static betw, Jbar over non-interior edges per
+mask-exclusion precedent, fabric-safe by lattice-unit
+clip — 1 is ontological, not free): HEALS => D14 scale
+dissolves into traffic structure (YES prong occupied, no
+memory needed) / FAILS => debt confirmed
+(nonlinearity/gain required => named debt;
+formation/topology inherits). NO directional prediction
+(marginal 3.5 in (2,11) — interpretation pre-registered,
+outcome open). FORK VERDICT: linear NO (proven);
+nonlinear/feedback ONLY-AS-debt (lemma + audit);
+structural YES unoccupied pending discriminator.
+Memory's scale candidacy SUSPENDED (not killed —
+discriminator + YES-criterion are the live paths).
+NEXT: gain-free discriminator run (cheap static run —
+code next turn).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
