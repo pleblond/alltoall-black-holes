@@ -36,7 +36,7 @@ vacuum P0' & isostatic 2D, $\langle z\rangle = 4$ & postulated (v0.6) & BH = max
 $d_{\mathrm{eff}}$ protocol & $d\ln V/d\ln r$ bracket & measured (25 tests) & shortest below + diffusion above on lattices; shells fail (S11) \\
 D10 tension map & GR dip/overshoot/$\to3^+$ & GR computed; graph open & bare shortest-path rejected (inverted); weighted costs queued \\
 D12 reconstruction & $\forall M_O \in \mathcal{A}_{\mathrm{macro}}$ same IR & open program & access floor + non-circularity; P4 audit 1,2,3,5 pass, 4 partial \\
-D13 causal order & D13.0 control measured; stages 1--4 open & static control measured (S11) & $V_G$, $8r{+}4$ law; family (tri/hex/noisy +, gated-wall/rewired $-$); sweep: N* O(1) range, f*→0 hypoth.; twins C3 \\
+D13 causal order & D13.0 control measured; stages 1--4 open & static control measured (S11) & $V_G$, $8r{+}4$ law; family (tri/hex/Del/Lloyd/Gab/kNN/medial +, gated-wall/rewired $-$); sweep: N* O(1) range, f*→0 hypoth.; spectral $d_s$ band; twins C3 \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
@@ -584,6 +584,18 @@ $+5.0$ weighted delay) pre-registered for dynamical confirmation.
 Substrate family measured under one frozen rule:
 triangular/hexagonal/noisy-grid controls reproduce $d_G \to 2$ (exact
 shell/cut laws on the lattices, statistical pins under disorder);
+Tier-1 extension: Poisson-Delaunay (reference member), Lloyd-relaxed,
+Gabriel, k-NN, and Delaunay-medial quadrangulation all give $d_G \to 2$
+with linear cuts, die on levered swaps, and survive $q = 0.05$ deletion,
+while span-limited swaps preserve 2D-ness --- degeneracy across
+topology/degree/order is the expected universality signature, and the
+physical object is the class $[G]_{\sim_O}$, not a winning tessellation.
+Spectral dimension is the second leg: torus heat-trace $d_s(t)$ holds
+$(1.95, 2.05)$ over $t \in [10,100]$, and Weyl counting fits land every
+member in $(1.90, 2.15)$. Exact-UIPQ sampling stays queued (free-walk
+labels are not conditioned well-labeled trees); Lloyd is excluded from
+spectral comparison (unclipped relaxation coalesces points above
+$N \approx 1600$).
 gated-wall negative control keeps ${\sim}r^2$ balls with collapsed
 cuts; rewired-grid fragility control plus rewiring-fraction sweeps
 give measured $N^*_{\rm med} = (20,10,10)$ at $L = 40/60/80$ ($N^* =
@@ -606,7 +618,7 @@ $(\prec_U, V_U, M_O)$, where the spacetime-volume observable $V_U$
 defined --- spatial $V(r)$ is reachability, not event volume. Malament's
 theorem is motivation conditional on the continuum correspondence (order
 fixes the conformal class; $V_U$ the factor), not an earned mapping.
-Reproduce: \path{pytest tests/test_scrambling.py -q}.
+Reproduce: \path{pytest tests/test_scrambling.py tests/test_substrate_family.py tests/test_spectral.py -q}.
 
 \textbf{Dynamics coherence (C1--C5, over-arching).} $M_O \circ U \simeq
 U_{\mathrm{eff}} \circ M_O$ in five levels: coherence $\to$ locality

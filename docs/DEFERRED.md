@@ -339,7 +339,17 @@ unclipped relaxation coalesces points above N≈1600 (mean degree
 not physics); boundary-clipped Lloyd queued. d_s is now the
 second universality leg beside d_H;
 diffusion-anisotropy precursor (second-moment tensor of K(t))
-pre-registers the minimize-preferred-frame criterion for D13.
+SUPERSEDED by measurement: covariance is blind to 4-fold
+(square-lattice heat is x↔y symmetric → A ≡ 0 exactly while
+diamonds persist); angular-4-fold-power F4 replacement shows
+lattice F4 already < 0.01 by t=10 (fast CLT isotropization)
+while Poisson-fabric F4 sits at fluctuation level 0.01..0.11
+with square-box boundary imprint at large r — no clean IR
+discriminator at these scales. Fair lattice-vs-fabric IR
+comparison (F4-decay exponents at matched radius) queued behind
+toroidal point-set builds + the D13.5 propagation law; NOT
+pinned. It pre-registers the minimize-preferred-frame criterion
+for D13 as a questioned precursor, not evidence.
 
 **Close criterion:** (a) measured `d_eff(l)` profile around a tensed region
 matches the GR fingerprint *shape* (dip, overshoot, asymptote) after the

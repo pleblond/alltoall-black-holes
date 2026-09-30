@@ -454,6 +454,47 @@ does `U` maintain a low-dimensional connectivity class? (2) observer
 dimensionality — why does `M_O` reconstruct 2+scale as 3D? The killer result — same frozen `M_O` → `d_obs → 3`
 on every positive member — awaits `M_O` itself.
 
+The family since grew past lattices, and the growth changed the
+ontology. Poisson-Delaunay (planar, `⟨z⟩ ≈ 6`, `p ≈ 1.94..2.06`,
+linear cuts), Lloyd-relaxed Delaunay (converged 20 iterations,
+`p ≈ 1.91..2.08`), Gabriel (`p ≈ 1.93..1.98` at two-thirds the
+edges), k-NN (`p ≈ 1.92..2.02`), and the Delaunay-medial
+quadrangulation (4-regular interior, `p = 2.00`) all reproduce
+`d_G → 2` under the same frozen rule — different topology,
+different degree, different local order, same macroscopic
+reading — while 20 levered swaps kill 2D-ness on Delaunay exactly
+as on the grid, and span-limited swaps (≤ 2 grid steps, 80 of
+them) preserve it. So the rewire kill comes from span, not from
+rewiring as such, and `G_△ ∼_O G_hex ∼_O G_□ ∼_O G_Del ∼_O
+G_Gabriel` is now measured degeneracy across five constructions.
+The lesson, adopted on review: this degeneracy is the expected
+signature, not a missing discriminator. The physical object is
+the class `[G]_{∼_O}` — prospectively a dynamical class
+`[G]_{U,O}`, possibly an ensemble `E_vac` rather than one graph —
+and Poisson-Delaunay is frozen as a *reference member* the way a
+gauge is frozen: for reproducibility, never as "the" vacuum.
+Companion principle to the five admissibility criteria: don't put
+information into the vacuum that observation doesn't require —
+crystals smuggle unrequested long-range order, and the max-entropy
+program (derive the typical graph from the `C_vac` constraints) is
+queued behind formulating those constraints without circularity.
+Spectral dimension is the second universality leg: heat-trace
+`d_s(t)` holds (1.95, 2.05) over a full decade on the
+boundary-free torus (method anchor), and Weyl counting fits land
+every Tier-1 member in one band (1.90, 2.15) — including k-NN,
+whose 1.51 at N=1600 is a slow diffusive-crossover transient
+converging up with N. Static `d_G` members are hereby declared
+done (Tier-2 cancelled): no further tessellation can add an axis.
+What could still discriminate is dynamics, not geometry —
+`U`-stability tournament and healing times across candidates (D1,
+gated on `U`), and IR dispersion/isotropy under a real
+propagation law (D13). A diffusion-anisotropy precursor was tried
+and filed as questioned, not evidence: covariance is exactly
+blind to 4-fold (lattice heat is x↔y symmetric), and the angular
+replacement shows fast lattice isotropization against
+fluctuation-level fabric noise with box-boundary imprint — no
+clean IR discriminator at reachable scales.
+
 **Why this could work (grounding).** Malament's theorem: causal order fixes
 the conformal class (on distinguishing spacetimes); volume — or a time
 function — fixes the remaining factor, so order + volume determine the
