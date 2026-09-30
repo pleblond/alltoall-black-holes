@@ -285,8 +285,12 @@ repackaged); (2) `(≺_U, M_O) → cone`: observed causal cone compatible
 with the *same* `M_O` producing `R³`, order-dimension agreeing with
 `d_eff` (1+3 output, not input); (3) clocks: internal-cycle clock with
 `dτ/dt(χ)` reproducing the T9 profile from capacity/congestion,
-unimported; (4) interval: `g_μν` from `(≺_U, τ, M_O)` (Malament-shaped)
-reproducing the T8–T11 battery. Each stage closes independently; GR is
+unimported; (4) interval: `g_μν` from `(≺_U, V_U, M_O)`
+(Malament-shaped: order fixes the conformal class, spacetime-volume
+observable `V_U` — e.g. calibrated event counts in causal diamonds,
+independently defined — fixes the factor; spatial `V(r)` is
+reachability, not event volume) reproducing the T8–T11 battery. Each
+stage closes independently; GR is
 the check, never the input, and only at stage 4.
 
 **Over-arching falsifier (C1–C5, essay §8):** `M_O ∘ U ≃ U_eff ∘ M_O`
@@ -296,9 +300,11 @@ Autonomy-before-GR: snapshots resembling GR whose next step needs hidden
 `G_n` fail. Operational form: twin histories (`M_O(G_a) = M_O(G_b)` ⇒
 `M_O(U(G_a)) ≃ M_O(U(G_b))`, ε–δ in macro-profile distance, RG-weakened
 `ΔM → 0` in the IR); presupposes D12 fiber control. Roof: macro-states
-as `~_macro` dynamical-equivalence classes; `M_O` must factor through
-them (well-definedness ⟺ C3). Stage 4 vs C5: stage 4 reconstructs
-the interval from `(≺_U, τ, M_O)`; C5 demands that interval's
+as `~_macro` dynamical-equivalence classes; factoring `M_O` through
+them does NOT imply autonomy (two-bit swap counterexample: singleton
+classes, failing twins — essay §8), so the twin criterion stays
+defining. Stage 4 vs C5: stage 4 reconstructs
+the interval from `(≺_U, V_U, τ, M_O)`; C5 demands that interval's
 *evolution* match GR — reconstruction vs dynamics, tested separately.
 
 **Kill relevance:** feeds D1 (dynamics) and D12 (same-`M_O` falsifier: the

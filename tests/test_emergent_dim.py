@@ -758,11 +758,14 @@ def test_t15_violation_need_not_blip():
         assert vw <= v0, (r, vw, v0)
 
 
-def test_channel_capacity_dips_at_plug():
-    # n_channels made concrete (D10 candidate): boundary-cut size of
-    # center disks on the 5x5-clique grid, unweighted vs
+def test_disk_boundary_cut_dips_at_plug():
+    # Disk-boundary cut capacity (D10 candidate): cut size of center
+    # disks on the 5x5-clique grid, unweighted vs
     # ceff-conductance-weighted (same gm edge set). Disk is drawn in
-    # the G0 metric; the cut counts edges of G. Geometric baseline is
+    # the G0 metric; the cut counts edges of G. This is one particular
+    # cut (an upper bound on center-exterior flow), not the min-cut or
+    # an end-to-end channel count -- multiplicity reading needs a
+    # terminal/access model. Geometric baseline is
     # the exact diamond perimeter law: cut(r) = |shell r| + |shell
     # r+1| = 4r + 4(r+1) = 8r+4 on unclipped r in [5,18] (r=19 is
     # the first clipped boundary, 154 < 8*19+4=156). Weighted ==

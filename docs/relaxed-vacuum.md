@@ -389,16 +389,23 @@ modes, crossing rank, channel capacity). The mechanism needs the
 *channels* linear, and the count must be purely graph-theoretic, never
 defined using the target dimension (counting along the `r`-shell by
 construction would put the answer in). Honesty note: on any 2D-like
-graph, channel counts scale `~ r` for geometric reasons (Menger caps
-modes at cut value; cut value is boundary size) — so a measured
+graph, channel counts scale `~ r` for geometric reasons — so a measured
 `n_channels ∝ r` re-measures 2D-ness. Necessary, not sufficient: the
 explanatory burden sits entirely in the second half, *why `M_O` reads
-channels as scales*. The non-geometric probe in this cluster is
+channels as scales*. Second honesty note, on what is actually measured:
+the pinned observable is disk-boundary cut capacity — the capacity of
+one particular cut — not a min-cut, end-to-end count, or transfer rank.
+Menger/max-flow relates disjoint paths to the *minimum* cut for
+specified terminals; a boundary cut only upper-bounds center–exterior
+flow (independent check on the plain grid: 52 crossing at `r = 6` —
+exactly `8r+4` — against a center–exterior min-cut of 4). Reading the
+scaling as independent channel multiplicity needs a terminal/access
+model first. The non-geometric probe in this cluster is
 cost-weighted boundary capacity vs `r` (conductances can break the
 geometric scaling — it can surprise). In the vacuum the geometric
 baseline is exact, not a fit — diamond perimeter law `cut(r) = 8r+4`
 on unclipped `r ∈ [5,18]` (`r=19` first clipped boundary: 154) —
-so the channel probe inherits an analytic control. Measured: deficit
+so the cut-capacity probe inherits an analytic control. Measured: deficit
 at `r ≤ 4`
 (83.7/133.8/76.5/5.9 on the clique plug — tension suppresses near-field
 capacity), exact recovery from `r = 5` (first boundary clearing the
@@ -408,10 +415,18 @@ stands, explanatory work still in `M_O`.
 **Why this could work (grounding).** Malament's theorem: causal order fixes
 the conformal class (on distinguishing spacetimes); volume — or a time
 function — fixes the remaining factor, so order + volume determine the
-metric. Our two measurement programs map onto it
-exactly — causal relations (this section's road) + `V(r)` (`emergent_dim`)
-— so metric reconstruction from graph observables has a real theorem
-behind it, not just an analogy. The hard parts are inherited honestly:
+metric. This is motivation conditional on establishing the continuum
+correspondence, not a mapping we have earned: in a suitable continuum
+limit, causal order determines the conformal geometry, and a spacetime
+volume measure fixes the remaining factor — and the current spatial-ball
+probes do not yet establish that volume correspondence. `V(r)` is a
+radial reachability profile, not a spacetime event volume: a conformal
+rescaling `Ω(t)²g` with `Ω(0) = 1` preserves both the causal order and
+the `t = 0` slice ball volumes while changing proper times elsewhere,
+so slice volumes cannot fix the factor. The missing leg is an
+independently defined spacetime-volume observable — e.g. calibrated
+event counts in causal diamonds — recorded under D13 stage 4. The hard
+parts are inherited honestly:
 order dimension is a measurement problem, not a theorem (a generic partial
 order isn't 1+3 — spatial `d_eff` and causal-order dimension must agree
 independently); Lorentz symmetry must be demonstrated against
@@ -463,9 +478,19 @@ have the same observable future under `U` over the IR horizon:
 > An emergent spacetime state is an equivalence class of microscopic
 > graphs with indistinguishable macroscopic dynamics.
 
-Given candidate `(U, M_O)`, `~_macro` is derived, and the consistency
-demand is that `M_O` factor through the classes — well-definedness on
-classes ⟺ autonomy (C3). The architecture becomes `(G,U) → dynamical
+Given candidate `(U, M_O)`, `~_macro` is derived, and the classes are
+where an effective dynamics would live *if* autonomy holds — but
+factoring the observation through them does not establish autonomy and
+must not be substituted for the twin-histories criterion above. Two-bit
+counterexample: `G = (x,h)`, `M_O(x,h) = x`, `U(x,h) = (h,x)`. Twins
+`(0,0)`, `(0,1)` share observation `0`, yet their next observations
+differ (`0` vs `1`), so no autonomous `U_eff` exists — while observable
+histories distinguish all four states, the classes are singletons, and
+`M_O` factors through them trivially. The quotient condition passes
+exactly the hidden-state dependency C3 must reject. The defining
+condition stays one-step — `M_O ∘ U` factors through `M_O` (twins;
+induction extends it to all steps) — with the ε–δ / IR relaxation
+formulated from that, not from the quotient. The architecture becomes `(G,U) → dynamical
 equivalence classes → (M,U_eff) → local autonomous 3+1 physics`, rather
 than merely `G → 3D geometry`. Currently a target definition (needs `U`
 and `M_O` to instantiate); recorded here so the program knows its roof.
@@ -493,7 +518,7 @@ and `M_O` to instantiate); recorded here so the program knows its roof.
 | far-field tail exponent | **open** | D11: `1/r` (χ~2 to `5Rc`) vs `1/r²` (χ~1 to `6Rc`); `L ≥ 200` asymptotics needed |
 | SI static shells `V(r)~r²` | **measured (control)** | exact `1+2r(r+1)` bit-pinned L=40/80; fractional p 1.9196→1.9603; plug sign pattern (35<38, +5.0) pre-registered for D13.1 |
 | scale-multiplicity mechanism `n_s~r` | **conjectured (skeleton)** | this doc §8: `s` undefined; RG-log baseline gives wrong profile; linear-vs-log must be measured, not assumed |
-| boundary channel capacity | measured (control) | clique plug: deficit `r≤4` (83.7/133.8/76.5/5.9), exact recovery `r≥5`; count re-measures 2D-ness (skeleton intact) |
+| disk-boundary cut capacity | measured (control) | clique plug: deficit `r≤4` (83.7/133.8/76.5/5.9), exact recovery `r≥5`; one particular cut (not min-cut); count re-measures 2D-ness (skeleton intact) |
 | reconstruction universality | **open** | D12: ∀ `M_O ∈ A_macro(G)` converge in the IR (access floor graph-internal; no "3D"/"Lorentzian" in the definition) |
 | causal order / cone / clocks | **open** | D13: D13.0 control measured; stages 1–4 open (`U→T_U`, same-`M_O` cone, clocks, interval) |
 | same-`M_O` + dynamics coherence | **open (criterion)** | this doc §8: one map yields `R³` + cone (C1–C5 ladder, twin-histories test, `~_macro` classes), or the program is fitting |
