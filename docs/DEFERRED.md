@@ -414,6 +414,17 @@ feeds D3 (κ→c₂ via tension) and D6 (R_s from the tension profile).
 Generalization stated as the tension-imprint conjecture (`model.md` §5):
 fingerprint universality under the fixed ceff rule, with falsifiers and
 P5-promotion criteria; the cost rule stays conjecture-grade until they are met.
+D10a bridge-derivation attempts (MEASURED NEGATIVES, not pinned):
+(i) random-walk first-passage across the plug ladder DECREASES with
+χ (416 → 304 → 263 → 232 steps, plain → mild → x2 → x3; clique 237)
+— tense regions conduct faster, so √χ-as-traversal-delay has no
+walk derivation (anti-tortuosity); (ii) plug residence (center exit
+time) scales as exitT/exitT0 ~ (1+χ)^0.78 with a mild→clique jump
+(10.4 → 12.0 → 14.2 → 14.8 → 32.9) — sublinear but neither √χ nor
+linear, deriving neither candidate's form. Remaining honest paths:
+tighten the BV ln2 bracket to c = 1/2 analytically (pen-and-paper),
+or the congestion route via D1 update-capacity (gated on U). The
+imports stay labeled.
 
 ## D11 — Far-field tail exponent of the tension fingerprint (D10b)
 
