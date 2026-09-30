@@ -314,6 +314,91 @@ def rule_anneal(h: nx.Graph, ctx: dict) -> bool:
     return False
 
 
+def _matchings6(pts):
+    """All 15 perfect matchings on 6 endpoints (3-edge re-pairings)."""
+    a = pts[0]
+    out = []
+    for i in range(1, 6):
+        b = pts[i]
+        rest = [p for j, p in enumerate(pts[1:], 1) if j != i]
+        c = rest[0]
+        for k in range(1, 4):
+            d = rest[k]
+            e, f = [p for l_, p in enumerate(rest[1:], 1) if l_ != k]
+            out.append(((a, b), (c, d), (e, f)))
+    return out
+
+
+def rule_pair(h: nx.Graph, ctx: dict) -> bool:
+    """Coordinated double-swap: re-pair THREE edges jointly, all-short accept.
+
+    First multi-edge move class: pick a long edge, shortlist 12
+    long-first partners, try all 66 partner pairs x 15 endpoint matchings,
+    accept the first re-pairing whose THREE new edges are all short.
+    Breaks the single-move floor (pair600: longs 30 -> 1, p 2.36 -> 2.11
+    seed 5; seed 6 converges slower, longs 10 at 600 steps -> 4 with
+    p 2.01 at 1200 -- slow, not stuck).
+    Same mild globality as the guillotine (global-uniform partner
+    sampling; every span eval radius-local); plain grid is a fixed point.
+    Connectivity-guarded (unguarded seed 6 fragments a 4-node island --
+    healing must not disconnect the vacuum).
+    The last residual is PAIR-LOCKED (0 repairing re-pairings in an
+    exhaustive 287661-triple scan -- measured, not shipped: 35 s): the
+    lock hierarchy deepens with coordination order (single-swap locks 4,
+    double-swap locks 1). Next: triple-swap / 4-edge moves.
+    """
+    radius = ctx.get("radius", 3)
+    smax = ctx.get("max_span", 3)
+    E = list(h.edges())
+    m = len(E)
+    for _ in range(ctx.get("proposals", 40)):
+        a, b = E[ctx["rng"].randrange(m)]
+        if edge_span(h, a, b, radius) <= smax:
+            continue
+        cands = []
+        for _ in range(60):
+            x, y = E[ctx["rng"].randrange(m)]
+            if len({a, b, x, y}) < 4:
+                continue
+            if (x, y) in cands or (y, x) in cands:
+                continue
+            cands.append((x, y))
+        cands.sort(key=lambda e: edge_span(h, e[0], e[1], radius), reverse=True)
+        cands = cands[:12]
+        for i in range(len(cands)):
+            for j in range(i + 1, len(cands)):
+                (c, d), (e, f) = cands[i], cands[j]
+                if len({a, b, c, d, e, f}) < 6:
+                    continue
+                h.remove_edge(a, b)
+                h.remove_edge(c, d)
+                h.remove_edge(e, f)
+                acc = None
+                for mt in _matchings6([a, b, c, d, e, f]):
+                    if any(h.has_edge(u, v) for u, v in mt):
+                        continue
+                    h.add_edge(*mt[0])
+                    h.add_edge(*mt[1])
+                    h.add_edge(*mt[2])
+                    ok = all(edge_span(h, u, v, radius) <= smax for u, v in mt)
+                    ok = ok and nx.is_connected(h)
+                    h.remove_edge(*mt[0])
+                    h.remove_edge(*mt[1])
+                    h.remove_edge(*mt[2])
+                    if ok:
+                        acc = mt
+                        break
+                if acc is not None:
+                    h.add_edge(*acc[0])
+                    h.add_edge(*acc[1])
+                    h.add_edge(*acc[2])
+                    return True
+                h.add_edge(a, b)
+                h.add_edge(c, d)
+                h.add_edge(e, f)
+    return False
+
+
 def rule_slide(h: nx.Graph, ctx: dict) -> bool:
     """Edge-slide reel-in: slide a long edge's endpoint toward shorter span.
 

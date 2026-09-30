@@ -114,7 +114,21 @@ swaps, slides, hybrids) cannot restore locality from swap damage
 — all stall with residual longs. Locality protection needs
 coordinated moves, global search, or new physics (a publishable
 constraint on U). D1 first-pass CLOSED; tournament harness stands
-ready for future entrants.
+ready for future entrants. Second-pass entrant (MEASURED,
+test_update_rule.py): coordinated double-swap (3-edge joint
+re-pairing, all-short + connectivity-guarded accept) breaks the
+single-move floor — pair600 seed 5 reaches longs 1 with p 2.11,
+seed 6 descends 10@600 → 4 with p 2.01@1200 (slow, not stuck),
+seed 7 longs 4 with p 1.98: first rule near-clearing BOTH axes.
+Existence scan behind it: 745/11370 long²×any triples admit an
+all-short re-pairing (long³ alone: 0/20 — straddling needs a
+short partner). Two lessons: (i) the connectivity guard is
+load-bearing — unguarded seed 6 fragments a 4-node island and its
+p 1.93 is partly a disconnection artifact; (ii) the last residual
+is PAIR-LOCKED (0 repairing re-pairings in an exhaustive 287661-
+triple scan, measured-not-shipped, 35 s): the lock hierarchy
+deepens with coordination order (single-swap locks 4, double-swap
+locks 1). Next: triple-swap / 4-edge moves, then the tournament.
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum

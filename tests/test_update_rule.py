@@ -242,3 +242,35 @@ def test_slide_fixes_plain_point():
     g, src = _grid20()
     _, _, acc = evolve(g, rule_slide, 20, seed=5, src=src, radius=6)
     assert acc == 0
+
+
+def test_pair_breaks_single_move_floor():
+    # Coordinated double-swap (3-edge joint re-pairing, all-short accept,
+    # connectivity-guarded): first rule to nearly clear BOTH axes --
+    # pair600 seed 5 reaches longs 1 with p 2.11; seed 6 converges slower
+    # (longs 10 at 600 steps -> 4 with p 2.01 at 1200: slow, not stuck).
+    # Both beat every single-move rule's long-count (guillotine 6, slide
+    # 5, anneal 9/11). Unguarded seed 6 fragments a 4-node island -- the
+    # guard is load-bearing, not cosmetic.
+    from bh_graph.update_rule import rule_pair, total_longs
+
+    g, src = _grid20()
+    dam = inject_shortcuts(g, 10, 3)
+    t5, h5, a5 = evolve(dam, rule_pair, 600, seed=5, src=src)
+    assert total_longs(h5) == 1, total_longs(h5)
+    assert t5[-1] < 2.15, t5[-1]
+    assert a5 > 5, a5
+    assert nx.is_connected(h5)
+    t6, h6, a6 = evolve(dam, rule_pair, 1200, seed=6, src=src)
+    assert total_longs(h6) == 4, total_longs(h6)
+    assert t6[-1] < 2.05, t6[-1]
+    assert a6 > 5, a6
+    assert nx.is_connected(h6)
+
+
+def test_pair_fixes_plain_point():
+    from bh_graph.update_rule import rule_pair
+
+    g, src = _grid20()
+    _, _, acc = evolve(g, rule_pair, 20, seed=5, src=src)
+    assert acc == 0
