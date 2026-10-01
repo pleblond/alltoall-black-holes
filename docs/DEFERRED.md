@@ -3332,3 +3332,22 @@ T=80→160 + interior-gate-t*<75→t*<150 (2×-measured-edge-peak-77.2 (P1.1b-
 arithmetic-precedent!); all-thresholds-STAND). RERUN (gated-on-amendment-
 commit!): full-script (passed-stages-must-REPLICATE-identically (bonus-
 determinism-check!) + affected-stages-decided).
+
+SLIT-CAMPAIGN-2-filed (beast; post-Amendment-1): REPLICATED (0a/0b/shut/1-
+identical-to-run-1 (determinism-✓!)); SLIT-2-PASS (2g-exact-linear (R²=1.0!) +
+2e (ctalk=2e-4/L2=0.002/amp_kill=0.010/eraser=1e-14/minus=3e-5 (script-fix-
+confirmed!))); SLIT-3-PASS (φ-half=0.5000/π=4e-33/t*=77.2-interior-160/
+single-arm-exact/arm-ratio=3.66!). J2 (amended-window-[5,20]): T*=13.8 (SECOND-
+misfire (run-1: 2.4-pre-arrival; run-2: 13.8-wrap-zone-VOID (T*<12!)); line-
+weight-NON-UNIMODAL-on-ring (comparable-peaks-2.4/13.8 (0.0953-both!) +
+arrival-5.7-in-valley!) ⟹ argmax-rule-IS-WRONG-FUNCTIONAL-for-rings (method-
+finding!)); pattern-at-13.8: V=0.706/rmsR=0.210-✓-but-L2=0.046-vs-0.05 (near-
+miss (envelope-dip-contamination-suspected (2-lobe-E-has-V-too!))).
+SLIT-AMENDMENT-2 (J2-clock-FINAL (pre-committed (no-further-J2-timing (outcome-
+filed-as-is!)); thresholds-UNCHANGED)): REPLACE-argmax-with-FIXED-T_J=6.0
+(= arrival-5.67 (D=7/v=1.235-P1.1b-filed!) rounded-up (+0.3-fringe-margin);
+P1.1b-fixed-T-from-prior-v-precedent!; wrap-17.5-far (arithmetic!)); T*<12-
+gate-RETIRE (no-T* (fixed-time)); detW/purity/corr/norm-gates-STAND (detW-void
+⟹ J2-VOID (timing (not-physics!))). ADD-descriptive (NOT-criteria!): J2-nmax +
+envelope-V(E) (envelope-vs-fringe-diagnosis!). RERUN (gated-on-commit!):
+full-script (replication-check-×3!) + J2-decided-final.
