@@ -3485,3 +3485,21 @@ trapping-evidence (resonant-buildup-150×-bg (result-in-itself!)); bank-
 STANDS; records-REGENERATED (deterministic-re-run (T/B-bitwise-identical-
 verified + T_asymp-field (S3-reuse-precedent (protocol-identical!)))). NEXT:
 TUN-4-re-records-on-beast + verdict (gated on amendment-commit!).
+
+TUN-4-VERDICT (PASS (beast (re-records (T/B/R-bitwise-identical-to-
+pilot-1-✓ (reuse-verified!))))): 6/6: (a)-accounting-≤1.3e-12-every-
+frame-all-25-✓; (b)-T_asymp/T_pred-∈-[0.963,1.069]-all-25-✓ (within-7%-
+(full-curve-heights+shape-NO-FIT!)); (c)-contrast-86.8≥10-✓ (pred-93×!);
+(d)-upper-max/bg-86.8≥5-✓; (e)-lower-max/bg-20.5≥5-✓; (f)-argmaxU=−5.826-
+EXACT-AND-argmaxL=−7.418-EXACT (d=0.000-both! (TM-addresses-✓)). FILED:
+B-trapping-0.152/0.048-vs-bg-8.4e-4 (181×/57×-buildup (resonant-dwell-
+result!)); box-descent-upper-−5.826-vs-−5.236-(Δ−0.59-✓±0.7)-lower-−7.418-
+vs-−7.236-(Δ−0.18-✓) (thin-wall-penetration (filed!)); widths-inferred-
+narrow (w_pred-{0.0097,0.0585}-≪-σ_E (heights-match (direct-resolution-
+packet-limited (filed!)))). ⟹ RESONANT-TUNNELING-ESTABLISHED (pre-
+registered-scan + frozen-geometry + predicted-addresses (no-tuning!)).
+TUN-CAMPAIGN-COMPLETE (TUN-0/1/2/3/4-ALL-PASS): single-barrier-box +
+double-barrier-resonances (graph-wave-tunneling/evanescent-transmission
++ resonant-tunneling (uniquely-quantum-claim-NOT-made (locked!))).
+FORMATION-EXTENSION-QUEUED (read-only-D5∞ (no-core-potential (ban-
+stands!))) (future-work (NOT-this-campaign!)).
