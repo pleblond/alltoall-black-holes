@@ -2308,6 +2308,49 @@ micro-rules (compass in L0 -- pay the H-gate-like price openly), or
 (b) spontaneous symmetry breaking (uniform rule + dynamics picks an
 orientation -- needs a nonlinear SSB mechanism, queued), or (c) no
 chirality. S2 emergence (D15.3) must confront (a)/(b), not just J.
+Reviewer's scorecard-trilemma ADOPTED alongside (phenomenological
+cut, compatible): scalar+symmetric/pinned, scalar+broken-R/mixing
+nonunitary, scalar+broken-C/unitary chiral. Ours is the design
+trilemma (how to get breaking); theirs the outcome trilemma (what
+breaking+algebra gives). Both filed; the wire uses both.
+
+**D15.3a VERDICT (MEMORYLESS NO-GO, proved + pinned,
+test_j2memoryless.py -- 5 tests, suite 572 passed + 2 GPU-skipped):
+the "memoryless two-component" horn is CLOSED by theorem.**
+First-order + TI + generator-blind (uniform weights; sheet-dependence
+allowed) + linear + norm-preserving real update on J2 => ALL
+neighbour couplings EXACTLY 0; survivor is on-site orthogonal. Proof:
+generator-blindness makes all four coarse blocks EQUAL (K_{2,2}), so
+M(k) = E + F(k) A with ONE scalar F(k) = 2(cos kx + cos ky) over
+[-4,4]; unitarity makes (M^dagger M - I)(k) a matrix polynomial in F
+vanishing on an interval => A^dagger A = 0 => A = 0. Holds for any
+component count m (scalar case: solution set exactly {(w_e, w)} =
+{(+-1, 0)}). Pins: scalar grid 5x5 both directions (23 falsified on
+9x9 k-grid, 2 trivial exact 0.0) + flat-band mechanism (lam_- = w_e
+everywhere, lam_+(0,0) = w_e + 8w); matrix affine-coefficient
+identities to 1e-12 + violating-F existence + orthogonal survivor;
+sheet-dependent affine form exact + violating k; labeled escape
+(Weyl ||A_{+x} - A_{+y}||_F = 1.0, midpoint deviation sqrt(2) --
+labels break the affine premise, that is WHY rung 3 escapes).
+Reviewer's sharpened question answered for memoryless: NO -- a
+memoryless uniform real rule cannot produce pin-breaking +
+norm-preserving dynamics (it cannot even transport). At least one
+must give: TIME (memory/second-order + energy norm), SPACE (labels),
+or ALGEBRA (J/complex). bloch_matrix generalized to n x n blocks
+(backward compatible; 2x2 behaviour unchanged).
+
+**D15.3b QUEUED (second-order S2 emergence, design-first):** the
+surviving S2 horn is memory: X(t+1) = 2X(t) - X(t-1) + (spatial)X
+with energy norm, components UNLABELED X_i = (a_i, b_i) per the
+reviewer's guard (derive preservers of Q first; call them (q,p) ONLY
+if dynamics singles out conjugate structure -- "conjugate pair" must
+not smuggle J). Open - mechanical: sheet sectors still decouple
+k-independently under generator-blind spatial ops (<c>-pin covers
+any temporal order for the SHEET factor); live question is
+(a,b)-polarization within a sector (k-dependent? winding? expected
+trivial Berry for real scalar second-order -- MEASURE). Pre-register
+before code: invariant, stencil, J-commutator + Berry diagnostics,
+trilemma horn (a)/(b) stated upfront.
 
 **Cross-track note (for vacuum/geometry, NOT implemented here):**
 paper's isotropy no-go vs coarse-isotropy coexistence shows
@@ -2326,4 +2369,7 @@ contrast into a NECESSITY result: <c>-invariant (hence any
 Aut-invariant, "purely structural") rules cannot fire the detector or
 be unitary -- the L0 trilemma (labeled rules / SSB / no chirality)
 is now the wire: any chirality claim must state which horn it takes.
+D15.3a closes the memoryless horn by theorem (uniform first-order
+norm-preserving => on-site only): remaining live horns are memory
+(D15.3b, pre-register first), labels, or SSB.
 

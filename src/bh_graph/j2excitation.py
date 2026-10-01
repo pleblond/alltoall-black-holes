@@ -251,9 +251,10 @@ def fit_blocks_lstsq(
 # Bloch / sector diagnostics
 # ---------------------------------------------------------------------------
 
-def bloch_matrix(blocks: dict[tuple[int, int], np.ndarray], kx: float, ky: float) -> np.ndarray:
-    """2x2 Bloch matrix M(k) = sum_delta A_delta exp(i k.d)."""
-    m = np.zeros((2, 2), dtype=complex)
+def bloch_matrix(blocks, kx: float, ky: float) -> np.ndarray:
+    """Bloch matrix M(k) = sum_delta A_delta exp(i k.d) (any square block size)."""
+    n = next(iter(blocks.values())).shape[0]
+    m = np.zeros((n, n), dtype=complex)
     for (dx, dy), a in blocks.items():
         m = m + np.asarray(a, dtype=complex) * np.exp(1j * (kx * dx + ky * dy))
     return m
