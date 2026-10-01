@@ -3,6 +3,14 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (MALUS-0 prereg)** — Malus track opened on PR #65 P1.1
+  wave tail: internal-sector experiment preregistered (sheet-swap
+  algebra, M0-ALG exact identities + M0-DYN 3-packet protocol on
+  L28, M0-GATE decision table; MALUS-1/2 gated on M0-POSITIVE);
+  derived prediction M0-NULL (H*P_anti = 0, symmetric = double
+  square, n_zero = N/2 + nodal; L28: 784+54 = 838 reproduces
+  banked P1.1b); sheet apparatus (`malus.py`) + 10 pins.
+
 - **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked
   (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
