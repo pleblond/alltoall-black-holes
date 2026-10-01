@@ -39,7 +39,24 @@ Two subtleties, both pinned in tests/test_j2qw.py:
 Honest labels: this control ASSUMES complex amplitudes + unitarity (the
 paper's starting point), so it calibrates the detector and reproduces
 the precedent -- it does not derive quantum phase. Derivation (S2 -> S3
-emergence) is queued as D15.2.
+emergence) is queued as D15.3.
+
+D15.2 (compass ablation) adds the forward coarse map z -> blocks for
+GENERAL scalar weights plus the <c>-swap diagnostic. <c>-PIN THEOREM
+(proved by inspection of the J2 pattern, verified computationally in
+tests/test_j2compass.py): a <c>-swap-invariant weight set (z_{h1} =
+z_{h2}, z_{h1c} = z_{h2c}, z_{h1^-1} = z_{h2^-1}, z_{h1^-1 c} =
+z_{h2^-1 c}) yields bisymmetric blocks A_delta = [[a,b],[b,a]], hence
+[sigma_x, M(k)] = 0 for all k, hence k-INDEPENDENT eigenvectors and
+[P_sym, M(k)] = 0 exactly -- for ANY complex weights, unitary or not.
+Moreover M(pi,0) = M(0,pi) = 0 matrix (forced zeros), so NO
+<c>-invariant scalar rule is unitary (unitarity needs |lam| = 1
+everywhere). Contrapositives: detector firing ([P,M(k)] != 0) and
+micro-unitarity EACH require breaking h1 <-> h2, i.e. distinguishing
+x from y at micro level -- a compass. D15.0 is the edge-blind special
+case (constant z is <c>-invariant). Necessity is proven at the weakest
+level (<c> is one inner automorphism; any Aut-invariant "purely
+structural" rule inherits the null).
 """
 from __future__ import annotations
 
@@ -234,15 +251,63 @@ def cone_velocity(blocks: dict[tuple[int, int], np.ndarray], direction, q: float
     return float(np.max(np.abs(np.angle(w))) / q)
 
 
+#: h1 <-> h2 swap pairs under conjugation by c (the compass symmetry).
+J2_C_SWAP: dict[tuple[int, int, int], tuple[int, int, int]] = {
+    (1, 0, 0): (0, 1, 0),
+    (0, 1, 0): (1, 0, 0),
+    (1, 0, 1): (0, 1, 1),
+    (0, 1, 1): (1, 0, 1),
+    (-1, 0, 0): (0, -1, 0),
+    (0, -1, 0): (-1, 0, 0),
+    (-1, 0, 1): (0, -1, 1),
+    (0, -1, 1): (-1, 0, 1),
+}
+
+
+def is_c_invariant(z: dict, tol: float = 1e-9) -> bool:
+    """Boolean check: z_{c(h)} == z_h on all four swap pairs (tol)."""
+    seen = set()
+    for h, hp in J2_C_SWAP.items():
+        if h in seen:
+            continue
+        seen.add(h)
+        seen.add(hp)
+        if abs(z[h] - z[hp]) > tol:
+            return False
+    return True
+
+
+def coarse_blocks_from_z(z: dict) -> dict[tuple[int, int], np.ndarray]:
+    """Forward J2 coarse map for GENERAL scalar weights (paper Sec. V).
+
+    A_{+x} = [[z_x, z_xc], [z_yc, z_y]] with x = h1, y = h2 (and the
+    three companions for -x/+y/-y). Inverse of the weyl_z_set read-off:
+    coarse_blocks_from_z(weyl_z_set()) reproduces weyl_coarse_blocks().
+    """
+    zx, zxc = z[(1, 0, 0)], z[(1, 0, 1)]
+    zy, zyc = z[(0, 1, 0)], z[(0, 1, 1)]
+    zxi, zxic = z[(-1, 0, 0)], z[(-1, 0, 1)]
+    zyi, zyic = z[(0, -1, 0)], z[(0, -1, 1)]
+    return {
+        (1, 0): np.array([[zx, zxc], [zyc, zy]], dtype=complex),
+        (-1, 0): np.array([[zxi, zxic], [zyic, zyi]], dtype=complex),
+        (0, 1): np.array([[zy, zyc], [zxc, zx]], dtype=complex),
+        (0, -1): np.array([[zyi, zyic], [zxic, zxi]], dtype=complex),
+    }
+
+
 __all__ = [
+    "J2_C_SWAP",
     "J2_GENS",
     "bloch_eigenvalues",
     "bloch_matrix",
     "build_j2_torus",
+    "coarse_blocks_from_z",
     "commutator_norm",
     "cone_velocity",
     "hadamard",
     "impulse_blocks_qw",
+    "is_c_invariant",
     "is_closed_under_successors",
     "j2_inv",
     "j2_mul",

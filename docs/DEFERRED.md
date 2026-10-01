@@ -2255,19 +2255,59 @@ norm-preserving/unitary) is load-bearing independently of state
 algebra -- D15.0 vs D15.1 differ on BOTH axes (S0/S1+diffusive vs
 S1/S3+unitary); isolating them is D15.2a/b below.
 
-**Queued (reordered):** D15.2a S2 -> S3 emergence (the derivation bet:
-(q,p) real pair under a reversible energy-conserving rule chosen for
-NON-complex reasons -- does [F, J] = 0 with J the complex structure
-emerge? apparatus: J-commutator diagnostic + norm audit; smuggling
-hazard: writing the rule in psi-language first and translating --
-forbidden by pre-registration; second-order-schema note: q'' = -Kq
-with K > 0 symmetric admits psi = K^1/4 q + i K^-1/4 p evolving
-unitarily under sqrt(K) -- the K^1/2 choice is the audit point).
-D15.2b labels-without-unitarity (positive generator weights,
-non-unitary: flat-band splitting expected but decaying/growing modes,
-winding 0 -- isolates what labels alone buy; queued behind D15.2a).
-D15.2c nonlinear updates (previous D15.2). D15.4 S-channel continuum
-(previous D15.4, still gated-open for S only).
+**Queued (reordered):** D15.2 compass ablation (BELOW -- done, the
+reviewer's phase-vs-direction question answered analytically).
+D15.3 S2 -> S3 emergence (the derivation bet: (q,p) real pair under a
+reversible energy-conserving rule chosen for NON-complex reasons --
+does [F, J] = 0 with J the complex structure emerge? apparatus:
+J-commutator diagnostic + norm audit; smuggling guard: writing the
+rule in psi-language first and translating -- forbidden by
+pre-registration; second-order-schema note: q'' = -Kq with K > 0
+symmetric admits psi = K^1/4 q + i K^-1/4 p evolving unitarily under
+sqrt(K) -- the K^1/2 choice is the audit point; NEW CONSTRAINT from
+D15.2: the S2 rule must ALSO effectively break <c> -- a uniform
+generator-blind S2 rule inherits the <c>-pin null, so emergence needs
+symmetry-breaking besides/instead of J). D15.2b labels-without-unitarity
+(FOLDED into D15.2 rung 1/2 -- real weights, no separate experiment
+needed). D15.2c nonlinear updates (still queued). D15.4 S-channel
+continuum (still gated-open for S only).
+
+**D15.2 VERDICT (MEASURED, test_j2compass.py -- 6 tests, suite 567
+passed + 2 GPU-skipped): compass NECESSARY, not sufficient.**
+<c>-PIN THEOREM (analytic, in j2qw.py docstring): <c>-swap-invariant
+weights (z_{h1} = z_{h2}, z_{h1c} = z_{h2c}, z_{h1^-1} = z_{h2^-1},
+z_{h1^-1 c} = z_{h2^-1 c}) give bisymmetric blocks, hence [sigma_x,
+M(k)] = 0 for all k, hence k-independent eigenvectors and [P_sym,
+M(k)] = 0 EXACTLY -- for ANY complex weights, unitary or not; and
+M(pi,0) = M(0,pi) = 0 matrix (forced zeros), so NO <c>-invariant
+scalar rule is unitary. Contrapositives: detector firing AND
+micro-unitarity EACH require breaking h1 <-> h2 = distinguishing x
+from y at micro level. Necessity proven at the weakest level (<c> is
+one inner automorphism; any Aut-invariant "purely structural" rule
+inherits the null). Ablation scorecard (reviewer's hierarchy adopted;
+each rung adds exactly one level, ALL weights real -- complex on-site
+phases never needed): rung 0 = D15.0 edge-blind (constant z, c-inv
+special case, forward map reproduces (1/8)J BIT-identically): no
+second band. Rung 1 = fixed c-invariant (0.3,0.1,0.2,0.4): second
+band + velocity (eigs (0,0) = {2,0}, (0.5,0.3) = {1.8329-0.1550j,
+0.3100j}) but commutator EXACTLY 0.0, overlap 1.0, M(pi,0) = 0
+(deviation from unitary 1.0). Rung 2 = fixed c-BROKEN real
+non-unitary: k-state joins (commutators 0.04919168/0.12354866,
+overlap 0.98049331 < 1) but bands decay (|eigs| = 0.47676/0.67242),
+gap 0.3 at k = 0 (no cone), Eq. 9 violated (0.705). Rung 3 = Weyl
+(reference row, D15.1): cone + v = 1/sqrt(2), no forced zero
+(eigs(pi,0) = {+i,-i}). S1a edge-blind-signed needs NO separate
+experiment (corollary of the pin: edge-blind subset c-invariant);
+S1b labeled-signed is DONE here (rungs 1-2, all real).
+
+**L0 TRILEMMA (filed, forces the S2 design):** a state-machine rule
+treating h1-edges differently from h2-edges NAMES generators, and
+names break Aut-invariance. D15.2 proves Aut/<c>-invariant rules
+cannot reach chirality (or unitarity). So L0 must pick: (a) labeled
+micro-rules (compass in L0 -- pay the H-gate-like price openly), or
+(b) spontaneous symmetry breaking (uniform rule + dynamics picks an
+orientation -- needs a nonlinear SSB mechanism, queued), or (c) no
+chirality. S2 emergence (D15.3) must confront (a)/(b), not just J.
 
 **Cross-track note (for vacuum/geometry, NOT implemented here):**
 paper's isotropy no-go vs coarse-isotropy coexistence shows
@@ -2281,8 +2321,9 @@ constraint on falsifiers, no code.
 dynamics" must exhibit the update rule whose M(k) carries two live
 bands with k-dependent eigenvectors -- edge-blind diffusive rules are
 excluded by measurement. D15.1 sharpens the teeth into a contrast:
-unitary + labels activate the sector (cone pinned), so the remaining
-live question is which MINIMAL ingredient suffices -- D15.2a (real
-reversible pair -> emergent complex structure) and D15.2b (labels
-without unitarity) decide from opposite sides.
+unitary + labels activate the sector (cone pinned). D15.2 turns the
+contrast into a NECESSITY result: <c>-invariant (hence any
+Aut-invariant, "purely structural") rules cannot fire the detector or
+be unitary -- the L0 trilemma (labeled rules / SSB / no chirality)
+is now the wire: any chirality claim must state which horn it takes.
 
