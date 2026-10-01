@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
+  opened on formation-design-2031 head: P1.0 formation null banked
+  (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
+  preregistered (ring-400 + torus-grid-30, 6-criterion pass gate),
+  P1.2 one-way G→ψ derivation locked (H=-J·A hopping-only, S-bracket
+  {1,10,100}), B0/B1 frozen-scattering preregistered (z>3 residence/
+  delay, 5× delocalized binding), B2/B3 gated on derived feedback
+  (invention ban-list); wave sector + detectors + one-way runner
+  (`ballistic.py`) + elist_window capture + 13 pins (589 collected).
+
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
   wanderers + 1 slither anecdote), 0/6 persistent handedness

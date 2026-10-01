@@ -1,0 +1,273 @@
+"""P1 directed/ballistic motion: wave sector + one-way G->psi coupling (D14-P1).
+
+Single-particle tight-binding wave on a graph, with the formation graph
+G_t entering ONLY as the instantaneous hopping geometry. This module is
+the P1 apparatus: psi-propagator, momentum preparation, ballistic
+detectors, and the one-way coupled runner. There is NO psi->G channel
+here (by construction: formation trajectories are consumed as frozen
+input, never steered).
+
+LOCKED conventions (P1-PREREG, docs/DEFERRED.md):
+  H(G) = -J * A(G) (adjacency hopping, hbar = 1, J = 1 default).
+    No onsite terms, no degree terms, no core detector, no
+    distance-to-core, no binding potential, no force law. On
+    z-regular graphs H = J*(L - z*I) up to an identity shift
+    (global phase only), i.e. equivalent to the Laplacian walk.
+  Evolution psi(t+dt) = exp(-i*H*dt) psi via Krylov (expm_multiply);
+    deterministic given inputs; norm pinned (unitary to tol).
+  One-way coupling: psi evolves under piecewise-constant H(G_t) with
+    S substeps of dt per formation sweep (fiducial S = 10, dt = 0.1;
+    verdict bracket S in {1, 10, 100} locked in prereg).
+  Momentum k is defined ONLY on coordinate substrates (chain/ring,
+    torus grid, J2 background coords); bare soup admits no k
+    (translation invariance required -- honest restriction).
+  Detector bins (Stage-0 precedent): MSD exponent alpha < 0.7
+    confined / 0.7-1.3 diffusive / > 1.3 directed.
+"""
+
+from __future__ import annotations
+
+import math
+
+import networkx as nx
+import numpy as np
+from scipy.sparse.linalg import expm_multiply
+
+J_DEFAULT = 1.0
+DT_DEFAULT = 0.1
+STEPS_PER_SWEEP_DEFAULT = 10
+
+
+def node_order(g: nx.Graph) -> list:
+    """Deterministic Hilbert index map: sorted node labels."""
+    return sorted(g.nodes())
+
+
+def index_of(order: list) -> dict:
+    """Node -> Hilbert position (build once, reuse for masks)."""
+    return {v: i for i, v in enumerate(order)}
+
+
+def adjacency_csr(g: nx.Graph, order: list | None = None):
+    """Adjacency as CSR in `order` (default: sorted labels)."""
+    if order is None:
+        order = node_order(g)
+    return nx.to_scipy_sparse_array(g, nodelist=order, format="csr", dtype=float)
+
+
+def hamiltonian(g: nx.Graph, j: float = J_DEFAULT, order: list | None = None):
+    """Tight-binding H(G) = -J * A(G) (LOCKED: hopping only)."""
+    return -float(j) * adjacency_csr(g, order)
+
+
+def is_hermitian_ok(h, atol: float = 1e-12) -> bool:
+    """Boolean check: H == H^dagger within atol (never raises)."""
+    d = (h - h.conj().T).tocoo()
+    return bool(np.all(np.abs(d.data) < atol))
+
+
+def is_normalized_ok(psi: np.ndarray, atol: float = 1e-9) -> bool:
+    """Boolean check: <psi|psi> == 1 within atol (never raises)."""
+    return bool(abs(float(np.vdot(psi, psi).real) - 1.0) < atol)
+
+
+def packet_spread_ok(sigma: float, periods) -> bool:
+    """Boolean check: sigma << smallest period (branch-cut safety)."""
+    if periods is None:
+        return True
+    return bool(sigma < min(periods) / 6.0)
+
+
+def _as_vec(x, d: int) -> np.ndarray:
+    v = np.asarray(x, dtype=float).reshape(-1)
+    if v.shape != (d,):
+        raise ValueError(f"expected dim {d}, got shape {v.shape}")
+    return v
+
+
+def min_image_disp(r: np.ndarray, r0: np.ndarray, periods) -> np.ndarray:
+    """Minimal-image displacement r - r0 (None periods -> plain)."""
+    d = np.asarray(r, dtype=float) - np.asarray(r0, dtype=float)
+    if periods is not None:
+        for a, L in enumerate(periods):
+            if L is not None:
+                d[..., a] -= np.round(d[..., a] / L) * L
+    return d
+
+
+def gaussian_packet(
+    coords: dict,
+    order: list,
+    r0,
+    k,
+    sigma: float,
+    periods=None,
+) -> np.ndarray:
+    """Momentum-carrying Gaussian: env(-d^2/4s^2) * phase(k.d), normalized.
+
+    coords maps node -> position tuple; k matches coord dim. psi(-k) is
+    the complex conjugate of psi(+k) (real envelope -- pinned).
+    Requires sigma << period (see packet_spread_ok); k needs a
+    coordinate substrate (no bare-soup momenta).
+    """
+    d = len(next(iter(coords.values())))
+    r0v, kv = _as_vec(r0, d), _as_vec(k, d)
+    pos = np.array([coords[v] for v in order], dtype=float)
+    disp = min_image_disp(pos, r0v, periods)
+    env = np.exp(-np.sum(disp * disp, axis=1) / (4.0 * sigma * sigma))
+    psi = env * np.exp(1.0j * (disp @ kv))
+    return psi / np.linalg.norm(psi)
+
+
+def com(psi: np.ndarray, coords: dict, order: list, periods=None) -> np.ndarray:
+    """Probability center of mass (circular mean on periodic axes)."""
+    d = len(next(iter(coords.values())))
+    pos = np.array([coords[v] for v in order], dtype=float)
+    w = np.abs(np.asarray(psi, dtype=np.complex128)) ** 2
+    w = w / w.sum()
+    out = np.zeros(d)
+    for a in range(d):
+        L = periods[a] if periods is not None else None
+        if L is None:
+            out[a] = float(w @ pos[:, a])
+        else:
+            ang = 2.0 * math.pi * pos[:, a] / L
+            z = np.sum(w * np.exp(1.0j * ang))
+            out[a] = (float(np.angle(z)) / (2.0 * math.pi) * L) % L
+    return out
+
+
+def unwrap_trace(rs: np.ndarray, periods) -> np.ndarray:
+    """Unwrap a circular-mean COM trace along periodic axes."""
+    rs = np.asarray(rs, dtype=float)
+    if periods is None:
+        return rs.copy()
+    out = rs.copy()
+    for a, L in enumerate(periods):
+        if L is not None:
+            out[:, a] = np.unwrap(rs[:, a] * 2.0 * math.pi / L) / (2.0 * math.pi) * L
+    return out
+
+
+def msd_exponent_rs(rs: np.ndarray, ts: np.ndarray) -> float:
+    """Log-log slope of |R(t)-R(0)|^2 vs t over the second half."""
+    rs = np.asarray(rs, dtype=float)
+    ts = np.asarray(ts, dtype=float)
+    d2 = np.sum((rs - rs[0]) ** 2, axis=1)
+    lo = len(d2) // 2
+    slope, _ = np.polyfit(np.log(ts[lo:]), np.log(np.maximum(d2[lo:], 1e-300)), 1)
+    return float(slope)
+
+
+def velocity_autocorr(rs: np.ndarray, ts: np.ndarray) -> np.ndarray:
+    """Normalized C_v(tau) = <dR(t).dR(t+tau)> / <dR.dR> (finite steps)."""
+    rs = np.asarray(rs, dtype=float)
+    ts = np.asarray(ts, dtype=float)
+    v = (rs[1:] - rs[:-1]) / (ts[1:] - ts[:-1])[:, None]
+    c0 = float(np.mean(np.sum(v * v, axis=1)))
+    if c0 == 0:
+        return np.zeros(len(v))
+    return np.array(
+        [float(np.mean(np.sum(v[: len(v) - t] * v[t:], axis=1))) / c0 for t in range(len(v))]
+    )
+
+
+def fit_velocity(rs: np.ndarray, ts: np.ndarray) -> dict:
+    """Least-squares velocity of an (unwrapped) COM trace."""
+    rs = np.asarray(rs, dtype=float)
+    ts = np.asarray(ts, dtype=float)
+    v = np.array([np.polyfit(ts, rs[:, a], 1)[0] for a in range(rs.shape[1])])
+    return {"v": v, "speed": float(np.linalg.norm(v))}
+
+
+def tb_chain_velocity(k: float, j: float = J_DEFAULT, a: float = 1.0) -> float:
+    """Analytic group velocity on the 1D chain: v_g = 2*J*a*sin(k*a).
+
+    Derived from H = -J*A: E(k) = -2*J*cos(k*a) (NOT the dispersion.py
+    convention, which uses omega = 2J|sin(ka/2)| -- pinned separately).
+    """
+    return float(2.0 * j * a * math.sin(k * a))
+
+
+def evolve_fixed(psi0: np.ndarray, h, dt: float, n_steps: int) -> dict:
+    """Exact-unitary evolution under fixed H (Krylov, deterministic).
+
+    Returns psi rows (n_steps+1, N) including psi0, plus per-row norms.
+    """
+    psi0 = np.asarray(psi0, dtype=np.complex128)
+    tail = expm_multiply(-1.0j * h, psi0, start=dt, stop=n_steps * dt, num=n_steps)
+    psi = np.vstack([psi0[None, :], np.asarray(tail, dtype=np.complex128)])
+    return {"psi": psi, "norms": np.linalg.norm(psi, axis=1)}
+
+
+def graphs_from_saved(saved: dict, nodes: list) -> dict:
+    """Reconstruct nx graphs from formation_run saved/elists records.
+
+    saved maps sweep -> edge list (tuples or [a, b] lists); nodes is the
+    frozen node set. Sorted by sweep. Read-only w.r.t. formation.
+    """
+    out = {}
+    for sw in sorted(saved):
+        g = nx.Graph()
+        g.add_nodes_from(nodes)
+        g.add_edges_from((e[0], e[1]) for e in saved[sw])
+        out[sw] = g
+    return out
+
+
+def oneway_run(
+    graphs: list,
+    psi0: np.ndarray,
+    order: list,
+    dt: float = DT_DEFAULT,
+    steps_per_state: int = STEPS_PER_SWEEP_DEFAULT,
+    j: float = J_DEFAULT,
+) -> dict:
+    """One-way G->psi evolution: psi rides frozen H(G_t), G never reads psi.
+
+    graphs: time-ordered nx graphs with identical node sets. Each state
+    holds for steps_per_state substeps of dt. Returns psi rows
+    (1 + len(graphs)*steps_per_state, N) + norms. Deterministic.
+    """
+    psi = np.asarray(psi0, dtype=np.complex128)
+    want = set(order)
+    rows = [psi.copy()]
+    for g in graphs:
+        if set(g.nodes()) != want:
+            raise ValueError("one-way graphs must share one node set")
+        h = -float(j) * nx.to_scipy_sparse_array(g, nodelist=order, format="csr", dtype=float)
+        tail = expm_multiply(
+            -1.0j * h, psi, start=dt, stop=steps_per_state * dt, num=steps_per_state
+        )
+        tail = np.asarray(tail, dtype=np.complex128)
+        psi = tail[-1]
+        rows.extend(t for t in tail)
+    psi_all = np.array(rows)
+    return {"psi": psi_all, "norms": np.linalg.norm(psi_all, axis=1)}
+
+
+def region_weight(psi: np.ndarray, idx) -> float:
+    """Probability weight on a Hilbert-index region (residence readout)."""
+    p = np.abs(np.asarray(psi, dtype=np.complex128)) ** 2
+    return float(np.sum(p[np.asarray(list(idx), dtype=int)]))
+
+
+def residence(weights, ts) -> float:
+    """Time-integrated region weight (trapezoid rule)."""
+    return float(np.trapezoid(np.asarray(weights, dtype=float), np.asarray(ts, dtype=float)))
+
+
+def ipr(psi: np.ndarray) -> float:
+    """Inverse participation ratio sum |psi|^4 (1 = localized, 1/N = uniform)."""
+    p = np.abs(np.asarray(psi, dtype=np.complex128)) ** 2
+    return float(np.sum(p * p))
+
+
+def ring_coords(n: int) -> dict:
+    """1D ring coordinates {v: (float(v),)} with period n."""
+    return {v: (float(v),) for v in range(n)}
+
+
+def torus_grid_coords(L: int) -> dict:
+    """Torus-grid coordinates matching graphs.build_torus_grid ids (x*L+y)."""
+    return {x * L + y: (float(x), float(y)) for x in range(L) for y in range(L)}
