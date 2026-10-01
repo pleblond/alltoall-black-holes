@@ -3,6 +3,14 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (SPEC-0 verdict)** — Bound-state spectroscopy result SPEC0
+  (beast, 56 graphs): L1 median eKmax 4.69 vs 5.0 FAIL (near-miss in
+  L28/L42 split 4.53/6.33); L2/L3/L4 pass as written (L4 dust-vacuous,
+  disclosed); rewired matches formed (p=0.084 NS) ⟹ core edge states
+  (E* below band, K-weight 27-68%) are density-driven hub effects, not
+  object-specific spectra; SPEC-1/2 MOOT per prereg, STOP with followup
+  proposed (density-calibrated bars, L42 clusters).
+
 - **unreleased (SPEC prereg)** — Bound-state spectroscopy campaign opened
   on PR-#65 tail (P1 amendment-7): SPEC-0 frozen spectral anatomy preregistered
   (H_K=-A_K, 18 formed + 38 controls, L1-L4 fire incl. MW dominance + size

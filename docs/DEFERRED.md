@@ -3319,6 +3319,57 @@ filed here with JSON artifacts referenced, never pinned. P1/P2/P3 untouched
 (no polarity/handedness readouts in any SPEC run).
 
 NEXT: SPEC-0 campaign (gated on prereg-commit!).
+
+## SPEC-0-VERDICT (SPEC0 (beast; 56 graphs, 536s, 8 workers; acc-bad=0
+norm-bad=0; artifacts spec0_parts/{spec0_graphs,spec0_results,
+spec0_bare_repair}.json + vecs_*.npz (top-5 evecs per formed state)))
+
+FIRE-RULE (locked): L1 median-formed-eKmax=4.69 vs 5.0 FAIL (6%-below);
+L2 MW-formed>pooled(D1+rewired) p=8.1e-05 PASS; L3 3-runs-hit
+(L28-d0+L42-d0+L42-d1) PASS; L4 IPRmax-ratio-L42/L28=1.00 PASS (VACUOUS,
+see (a)). ALL-required => FIRE=False => SPEC0 (no localized/resonant
+modes beyond controls at the preregistered bar). S1 iso-med=1.19 (weak);
+S2 outband-frac=1.00 (ALL formed top-modes outside bare band); S3
+wcontrast=NaN (empty bare windows when S2=1.0, see (c)).
+
+ANATOMY (filed): formed = dense core (~30% nodes hold ALL edges, hubs
+z=45-61) + ~65-70% dust (z=0: 1022/1568 L28, 2472/3528 L42). Core edge
+states below band (E* -8.7..-11.6, S2=1.0) with K-weight 27-68%,
+enrichment 4.3-8.8 (L28-med-4.53 (11/12-states-zero-qual-modes) vs
+L42-med-6.33 (6/6-states-14-to-40-qual-modes, BOTH band edges)); mode
+footprints K-scale (IPR^-1 ~130-190 nodes vs |K|~134-246). Branch/sheet
+null: W~0.24/0.52/0.24 (random-in-bare-basis) + sheets~0.5/0.5 (no
+polarization). Candidate-IPR-ratio-L42/L28=0.69-descriptive (between
+extended-0.44 and localized-1.0).
+
+CONTROLS: D1 extended (eKmax~1.32-1.54 in-band, 0-qual-all-18);
+REWIRED-MATCHES-FORMED (med-4.33/5.85-vs-4.53/6.33; formed-vs-rewired-only
+MW-p=0.084-NS (L2-pooled-significance-driven-by-D1!); qual-pattern-identical
+incl.-L28-d0-s2000-2-qual-coincidence; multi-mode-L42-clusters-reproduced)
+=> core-edge-states-are-DENSITY/degree-driven (same-hubs-same-labels),
+NOT wiring-specific. Bare floor REPAIRED (see (b)): per-mask-eKmax
+med-2.3 max-11.46 (flat-band-CLS-lottery AT-E=0); formed distinction is
+ENERGY (S2-outside-band), not enrichment alone.
+
+OWNED-LIMITATIONS: (a) L4-as-written measured dust degeneracy
+(IPRmax=1.0-exact-both-sizes from 65-70%-z=0) not K-robustness (pass
+vacuous; candidate-IPR-0.69 filed as the intended quantity);
+(b) bare-ran-with-empty-masks (implementation-bug-vs-prereg-text;
+repaired-post-verdict-matched-masks; NO-fire-impact (B-excluded-null));
+(c) S3-NaN-by-construction when S2=1.0 (no-bare-modes-near-outside-band-E*;
+S2-itself-is-the-spectral readout); (d) L1-near-miss inside L28/L42-split
+(4.53-vs-6.33): threshold-placement-lesson for followups, NO-post-hoc-moves.
+
+INTERPRETATION: below-band core ground states concentrating on K EXIST but
+(i) sit below the preregistered absolute bar in median and (ii) are fully
+reproduced by degree-preserving rewiring => generic dense-lump hub effect,
+not an object-specific discrete spectrum. No wiring-specific bound states.
+
+DECISION: SPEC0; SPEC-1/2-MOOT-per-prereg (prediction-before-scan gates
+unmet); STOP. FOLLOWUP-PROPOSED (fresh-prereg + review, NOT-run):
+density-calibrated bars (rewired-distribution per size), candidate-IPR L4,
+L42-multi-level-cluster replication target (14-40-modes) with a
+beat-rewired (not match-rewired) bar.
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
