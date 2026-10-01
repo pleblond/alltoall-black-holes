@@ -11,6 +11,11 @@ import numpy as np
 
 from bh_graph.ballistic import (
     adjacency_csr,
+    branch_mixing,
+    branch_projectors,
+    branch_purify,
+    branch_weight,
+    chiral_gamma_diag,
     com,
     evolve_fixed,
     fit_velocity,
@@ -21,6 +26,8 @@ from bh_graph.ballistic import (
     ipr,
     is_hermitian_ok,
     is_normalized_ok,
+    is_projector_ok,
+    j2_branch_parity,
     msd_exponent_rs,
     node_order,
     oneway_run,
@@ -33,7 +40,14 @@ from bh_graph.ballistic import (
     unwrap_trace,
     velocity_autocorr,
 )
-from bh_graph.formation import formation_run, soup_graph, state_from_nx, triangle_count
+from bh_graph.formation import (
+    formation_run,
+    j2_torus_coords,
+    j2_torus_graph,
+    soup_graph,
+    state_from_nx,
+    triangle_count,
+)
 from bh_graph.graphs import build_torus_grid
 
 
@@ -183,3 +197,50 @@ def test_torus_grid_packet_moves():
     )
     v = fit_velocity(rs, ts)["v"]
     assert v[0] > 0.5 and abs(v[1]) < 0.1 * v[0]  # along +x, no transverse drift
+
+
+def _j2_branch_setup(L=8):
+    g = j2_torus_graph(L)
+    order = node_order(g)
+    c3 = j2_torus_coords(L)
+    coords = {v: (float(x), float(y)) for v, (x, y, _) in c3.items()}
+    h = hamiltonian(g, order=order).toarray()
+    return g, order, coords, c3, h, branch_projectors(h)
+
+
+def test_branch_projector_algebra():
+    _, order, _, c3, h, br = _j2_branch_setup()
+    n = len(order)
+    assert is_projector_ok(br["P_plus"]) and is_projector_ok(br["P_minus"])
+    assert not is_projector_ok(2 * br["P_plus"])  # 2P not idempotent
+    assert np.abs(br["P_plus"] @ br["P_minus"]).max() < 1e-12  # orthogonal
+    assert br["n_zero"] >= n // 2  # extensive flat zero band (N/2 + nodal)
+    gam = np.diag(chiral_gamma_diag(j2_branch_parity(c3), order))
+    assert np.abs(gam @ h @ gam + h).max() < 1e-12  # {Gamma, H} = 0
+    assert np.abs(gam @ br["P_plus"] @ gam - br["P_minus"]).max() < 1e-12
+
+
+def test_branch_momentum_locking_and_purify():
+    _, order, coords, _, _, br = _j2_branch_setup()
+    lo = gaussian_packet(coords, order, (2.0, 4.0), (0.3, 0.0), 1.2, periods=(8, 8))
+    assert packet_spread_ok(1.2, (8, 8))
+    assert branch_weight(lo, br["P_minus"]) > 0.95  # k locks to minus branch
+    hi = gaussian_packet(coords, order, (2.0, 4.0), (0.3 + np.pi, np.pi), 1.2, periods=(8, 8))
+    assert branch_weight(hi, br["P_plus"]) > 0.95  # k+Q locks to plus branch
+    pure, retained = branch_purify(lo, br["P_minus"])
+    assert is_normalized_ok(pure) and abs(retained - branch_weight(lo, br["P_minus"])) < 1e-12
+    assert branch_weight(pure, br["P_minus"]) > 1 - 1e-12  # exact purity
+
+
+def test_free_branch_mixing_exact_zero():
+    _, order, coords, _, h, br = _j2_branch_setup()
+    psi = gaussian_packet(coords, order, (2.0, 4.0), (0.3, 0.0), 1.2, periods=(8, 8))
+    rec = evolve_fixed(psi, h, 0.2, 20)
+    assert branch_mixing([branch_weight(p, br["P_minus"]) for p in rec["psi"]]) < 1e-8
+    assert branch_mixing([0.5, 0.5, 0.5]) == 0.0  # unit: flat trace
+
+
+def test_fit_velocity_r2_unit():
+    ts = np.arange(0.0, 10.0, 0.5)
+    assert fit_velocity(np.array([[0.9 * t] for t in ts]), ts)["r2"] > 0.999  # linear
+    assert fit_velocity(np.zeros((len(ts), 1)), ts)["r2"] == 1.0  # stationary

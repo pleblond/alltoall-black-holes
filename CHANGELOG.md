@@ -13,6 +13,17 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   (invention ban-list); wave sector + detectors + one-way runner
   (`ballistic.py`) + elist_window capture + 13 pins (589 collected).
 
+- **unreleased (P1 amendment-1)** — D14-P1 branch structure (pre-data):
+  scalar J2 walk = dispersive band + extensive flat zero band
+  (same-k doublets need a coin: deferred, coin undefined on
+  irregular graphs); branches as exact chiral E-sign halves,
+  matched pairs via partner momenta (k, k+Q), mixing as
+  deviation-from-initial (exact-zero free null); P1.1b bare-J2
+  control added (5 packets, R²/purity/no-wrap gates); B0 gains
+  mixing fire rule (>1e-6, ≥2 runs); B1 gains descriptive
+  oscillation/profile followups (Dirac-fitting banned); branch
+  projectors + R² fit + 4 pins (593 collected).
+
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
   wanderers + 1 slither anecdote), 0/6 persistent handedness

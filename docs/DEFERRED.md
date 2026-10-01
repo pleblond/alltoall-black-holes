@@ -3040,6 +3040,46 @@ radiation-pressure-rule (invention-FORBIDDEN (derivation-owed!)));
 B3-killer = k→-k⟹v→-v-on-persistent-composite (+linear-COM +
 C_v>0 + zero-k-null + mass-bounds + not-elongation-axis!). NEXT:
 P1.1-pilot (gated on prereg-commit!).
+P1-AMENDMENT-1 (paper-derived-branch-input (PRE-DATA (zero-P1-runs-
+executed (pins-only-so-far!) (commit-predates-ALL-P1-runs!)))):
+BRANCH-STRUCTURE-FINDING (apparatus-validation (not-campaign-data!)):
+scalar-(coinless-CTQW)-J2-walk = ONE-dispersive-band (E∈[-8,+8])
++ EXTENSIVE-flat-zero-band (N/2 + nodal-extras (L28: 838/1568!));
+same-k-±ω-doublets-DO-NOT-EXIST (need-a-coin (discrete-time!)).
+⟹ branches := E-sign-halves-via-exact-chiral-projectors (P±-of-H_
+bare ([P,H]=0 (bipartite-q=x+y (filed-S11!)))); matched-±-packets
+:= partner-momenta-(k, k+Q) (Q=(π,π) (branch-momentum-LOCKING
+(raw-Gaussian-≥99.9%-pure (tails-only-impurity!)))); mixing :=
+deviation-from-INITIAL-branch-weight (NOT-impurity (initial-out-
+of-branch = prep-geometry (filed-separately!))); free-null-EXACT-
+zero (construction (not-statistics!)). COINED-WALK-considered-+
+DEFERRED (reason: coin-undefined-on-irregular-formed-graphs
+(degree-varying-hubs/pendants (coin-update-across-rewiring-IS-
+new-law (breaks-minimal-G_t-coupling!)))). GUARDRAIL (quoted):
+branch-sign = spectral-fact (NOT-matter/antimatter-or-charge!).
+P1.1b-BARE-J2 (ADDED (P1.1a-ring/torus-STANDS (single-band-v_g-
+detector-validation!))): L28-bare (σ=4, k=(±0.3,0)-×-partners +
+zero-k (5-packets!), T=12-dt=0.1 (no-wrap-round-number (disp<L/2-
+gated-post-hoc!))); VALIDITY-gates: raw-purity-≥80%-per-packet
++ R²>0.99-displacement-fit (±k-only (interference-gate!)) + norm-
+1e-8; PASS ⟺ ALL: (a)-α>1.3-both-branches; (b)-k→-k-reversal-
+10%-per-branch; (c)-conjugation-v_+(k+Q)+v_-(k)≈0-15% (looser
+(different-packets/curvature!)); (d)-zero-k-speed<5%; (e)-free-
+mixing-<1e-6 (sanity (construction-zero!)). ANY-fail⟹P1.1b-
+INVALID-STOP (same-rule-as-P1.1a!). B0-ADD-observable: M(t) =
+branch-flip-deviation (bare-basis (in/out-states!)); B0-mixing-
+FIRES ⟺ max-M>1e-6-in-≥2-runs (10⁶×-above-Krylov-noise (~1e-12!)
+(free-null-exact-zero!)); MECHANISM-filed: triangles-break-
+bipartiteness-break-chiral-symmetry-couple-branches (odd-cycle-
+content-IS-the-mixer (measurable-not-fitted!)). B0-headline-
+geometry-LOCKED: x-directed + approach-sign-rule (y-directed +
+flipped = robustness-appendix (headline-null-stands-even-if-
+appendix-fires (no-shopping!))). B1-FOLLOWUP-descriptive (NOT-
+criteria!): trapped-weight-branch-oscillation-frequency
+(Zitter-like (operational-mass-scale-candidate!)) + spatial-
+flip-profile (core-vs-bulk!) + flat-band-exchange-weight
+(MEASURE (no-Dirac-fitting (explicit-ban!))). P2/P3-untouched-
+STANDS. NEXT: P1.1a+P1.1b-pilot (gated on amendment-commit!).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

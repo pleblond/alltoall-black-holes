@@ -23,6 +23,12 @@ LOCKED conventions (P1-PREREG, docs/DEFERRED.md):
     (translation invariance required -- honest restriction).
   Detector bins (Stage-0 precedent): MSD exponent alpha < 0.7
     confined / 0.7-1.3 diffusive / > 1.3 directed.
+  Branches (P1-AMENDMENT-1): spectral E-sign halves via exact chiral
+    projectors on bipartite graphs; matched +/- packets via partner
+    momenta (k, k+Q), Q = (pi, pi); mixing = deviation-from-initial
+    branch weight (free null exact-zero). The scalar J2 walk carries
+    one dispersive band + an extensive flat zero band (same-k
+    +/-doublets would need a coin -- deferred, see prereg).
 """
 
 from __future__ import annotations
@@ -173,11 +179,20 @@ def velocity_autocorr(rs: np.ndarray, ts: np.ndarray) -> np.ndarray:
 
 
 def fit_velocity(rs: np.ndarray, ts: np.ndarray) -> dict:
-    """Least-squares velocity of an (unwrapped) COM trace."""
+    """Least-squares velocity of an (unwrapped) COM trace.
+
+    r2 is the goodness of the linear displacement-norm fit (validity
+    gate for no-wrap windows: interference-corrupted COM fails R^2).
+    """
     rs = np.asarray(rs, dtype=float)
     ts = np.asarray(ts, dtype=float)
     v = np.array([np.polyfit(ts, rs[:, a], 1)[0] for a in range(rs.shape[1])])
-    return {"v": v, "speed": float(np.linalg.norm(v))}
+    d = np.linalg.norm(rs - rs[0], axis=1)
+    slope, intercept = np.polyfit(ts, d, 1)
+    ss_res = float(np.sum((d - (slope * ts + intercept)) ** 2))
+    ss_tot = float(np.sum((d - d.mean()) ** 2))
+    r2 = 1.0 - ss_res / ss_tot if ss_tot > 0 else 1.0
+    return {"v": v, "speed": float(np.linalg.norm(v)), "r2": float(r2)}
 
 
 def tb_chain_velocity(k: float, j: float = J_DEFAULT, a: float = 1.0) -> float:
@@ -266,6 +281,71 @@ def ipr(psi: np.ndarray) -> float:
 def ring_coords(n: int) -> dict:
     """1D ring coordinates {v: (float(v),)} with period n."""
     return {v: (float(v),) for v in range(n)}
+
+
+def branch_projectors(h, tol: float = 1e-9) -> dict:
+    """Spectral branch projectors of H via dense diagonalization.
+
+    P_plus (E > tol) / P_minus (E < -tol); |E| <= tol modes belong to
+    neither (flat-band / nodal weight is filed, never forced). On
+    bipartite graphs the chiral symmetry makes this the exact +/-
+    branch split ([P, H] = 0: free evolution preserves branch weight
+    exactly, so the free mixing null is exact, not statistical).
+    """
+    hd = h.toarray() if hasattr(h, "toarray") else np.asarray(h, dtype=float)
+    w, v = np.linalg.eigh(hd)
+    vp, vm = v[:, w > tol], v[:, w < -tol]
+    return {
+        "P_plus": vp @ vp.T,
+        "P_minus": vm @ vm.T,
+        "n_zero": int(np.sum(np.abs(w) <= tol)),
+        "evals": w,
+    }
+
+
+def is_projector_ok(p: np.ndarray, atol: float = 1e-9) -> bool:
+    """Boolean check: P^2 = P and P = P^dagger within atol (never raises)."""
+    p = np.asarray(p, dtype=float)
+    return bool(np.abs(p @ p - p).max() < atol and np.abs(p - p.T).max() < atol)
+
+
+def branch_weight(psi: np.ndarray, p: np.ndarray) -> float:
+    """Branch weight <psi|P|psi> (readout basis for mixing)."""
+    psi = np.asarray(psi, dtype=np.complex128)
+    return float(np.vdot(psi, np.asarray(p, dtype=float) @ psi).real)
+
+
+def branch_purify(psi: np.ndarray, p: np.ndarray) -> tuple:
+    """Project psi onto a branch (renormalized) + retained weight.
+
+    Returns (psi_pure, retained). Retained weight is the prep validity
+    readout (filed per run; gates locked in prereg, not tuned).
+    """
+    psi = np.asarray(psi, dtype=np.complex128)
+    q = np.asarray(p, dtype=float) @ psi
+    retained = float(np.vdot(q, q).real)
+    return q / np.linalg.norm(q), retained
+
+
+def branch_mixing(weights) -> float:
+    """Max deviation of a branch-weight trace from its initial value.
+
+    Mixing is deviation-from-initial (not impurity: the raw packet's
+    initial out-of-branch weight is prep geometry, filed separately).
+    Free evolution on the projector's own graph gives ~0 exactly.
+    """
+    w = np.asarray(list(weights), dtype=float)
+    return float(np.abs(w - w[0]).max())
+
+
+def j2_branch_parity(coords3: dict) -> dict:
+    """Chiral-sublattice map {node: (x+y) mod 2} from J2 (x, y, b) coords."""
+    return {v: (x + y) & 1 for v, (x, y, _) in coords3.items()}
+
+
+def chiral_gamma_diag(parity: dict, order: list) -> np.ndarray:
+    """Diagonal of the chiral operator Gamma = (-1)^q in `order`."""
+    return np.array([1.0 if parity[v] == 0 else -1.0 for v in order])
 
 
 def torus_grid_coords(L: int) -> dict:
