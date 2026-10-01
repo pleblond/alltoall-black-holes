@@ -398,3 +398,35 @@ winding Ŵ(t) = W(t)/W_planted(0) (fraction of initial winding retained):
 - P3.0-REDO bar (same gate, restated quantities): 2/2 blobs healthy +
   flips exact + m=0 ~0 + random t=0 filed + E_blob filed. P3-A gated on
   P3.0-REDO-positive. Zero evolution steps run to date (blinding holds).
+
+## Amendment-4 (region radius r10, committed PRE-evolution-data)
+
+Seed: P3.0-REDO t=0 readouts (filed below, NO verdict weight): apparatus
+CORRECT (quantization fp-exact, mirror-imprint exact, conjugation exact,
+(G,RG) mirror exact to 1e-16, m=0 exact 0, exclusion 0) but REGION-STARVED:
+S^T_4 holds 1 (blob 0) / 8 (blob 1) fully-inside kept triangles -- floor
+>= 100 FAILS 2/2. Diagnosis (structural): blob triangles are
+TORUS-SPANNING (rewired long edges): ~700 touch the lump (min-dist) but
+~0 fit fully inside a small ball (max-dist). Seam analysis (filed): the
+P3.0-original +-56 poison was the mindisp-SEAM domain wall (psi sign flip
+at dist 14), NOT the theta branch cut (e^{itheta} is continuous across
+2pi jumps -- invisible to psi-based W); Stokes handles wraps; regions
+avoiding the seam read TRUE core charge (REDO +-1/+-2 correct). Fix
+(rule-based on structural counts, no W/tau seen): smallest torus-ball
+meeting floor >= 100 on 8/8 with seam margin. Measured kept-tris curve
+(blobs 0-7): r4: 0-8; r6: 12-48; r8: 81-186 (fails 2/8: 81, 94); r10:
+258-525 (passes 8/8); r12: 787-1215. LOCKED: primary r=10 (W^T_10,
+seam margin 4), robustness {8, 12} (filed; r12 margin 2, caveat filed).
+sigma=6 STANDS (boundary rho(10)=0.25 healthy; deterministic evolution
+has no weak-amplitude noise; exclusion(t) tracked). Floor >= 100 STANDS
+(now met: min 258). Health/tau/bar/blinding: STAND. Random-control note
+(filed expectation): W_raw_rand(0) ~ O(sqrt(B)) vs E ~ O(10-100) ==>
+normalized random starts mostly < 0.5 (contrast half likely vacuous;
+planted-persistence half remains a real discovery bar; traces filed).
+- P3.0-REDO verdict: APPARATUS-CORRECT BUT REGION-STARVED (2/2 below
+  floor; gate correctly holds P3-A; blinding preserved -- zero evolution
+  steps run). P3.0-REREDO (r10, same bar) gates P3-A.
+- Superseded S^T_4 t=0 readouts (filed, no weight): blob0: W(+1)=+1.00
+  (1 tri!), W(-1)=-1.00, W(0)=0, W(rand)=+1/0; blob1: W(+1)=+2.00 (8
+  tris), W(-1)=-2.00, W(0)=0, W(rand)=+3/+1; all quant_resid 0, excl 0;
+  (G,RG) diff ~1e-16 both; E(+1)=E(-1) exact both.
