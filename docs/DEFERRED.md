@@ -3247,3 +3247,88 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+TUN-PREREG (FROZEN-2026-10-01 (commit-predates-ALL-TUN-runs!);
+evanescent-transmission/tunneling-campaign (NOT-P1 (separate-branch
+(cursor/tunneling-tun-d55e (based-on-PR#65-tail (P1.1-apparatus-
+inheritance!)))))). QUESTION (wave-mechanics (NOT-claimed-uniquely-
+quantum!)): can-the-validated-scalar-J2-wave-transmit-through-a-
+graph-region-in-which-its-incident-mode-is-non-propagating (with-
+barrier-width/strength-dependence-matching-evanescent-prediction?).
+PROVENANCE (fork (read-only-inheritance!)): P1.1-apparatus (complex-
+scalar-ψ + H=-A-hopping-ONLY (LOCKED (no-onsite/degree/core/potential
+/force-law (same-ban-as-P1!))) + Gaussian-k-packets + Krylov-exact-
+unitary + norm/accounting-gates); NO-formation + NO-DNLS + NO-
+detector-model. BARRIER (geometry-ONLY (bond-removal (no-new-law!))):
+full-width-wall (columns-[28,28+L_B)-of-J2-torus-L96 (N=18432!)) with-
+ALL-y-displacement-bonds-removed (x-bonds-intact-everywhere (wall-
+stays-connected (no-trivial-T=0!)); node-labels-unchanged (matched-
+controls-share-labels!)). PACKETS (per-E0 (σx=6-σy=8 (spread-gates-
+6<16-AND-8<16-✓!) + x0=10-y0=48 + k=(kx0,0)-kx0=acos(|E0|/4-1) +
+dt=0.1-J=1)): E0-grid-{-5.0,-5.5,-6.0,-6.5,-7.0} (kx0-{1.3181,1.1864,
+1.0472,0.8957,0.7227} + v-{3.8730,3.7081,3.4641,3.1225,2.6458}) +
+below-threshold-control-E0=-3.0 (kx0=1.8235-v=3.8730). T_SEP-LOCKED-
+FORMULA (per-cell (from-TUN-0-banked-v_in (same-E0!))): T_sep =
+ceil_up_0.5(((wall_hi - x0) + 3σx + 2)/v_in) (transmitted-center-
+clears-wall_hi-by-3σx+2 (reflected-clears-symmetrically (verified-
+arithmetic-per-cell (gap-≥6-columns-everwhere!))); banked-v-rules
+(expected-values-from-analytic-v-filed-below (change-filed-not-tuned
+(if-any!))). EXPECTED-T_SEP: TUN-2-{-5.5}: LB-{0..6,8}→{10.5,11.0,
+11.0,11.5,11.5,12.0,12.0,12.5}; TUN-3-{LB4}: E0-{-5.0,-5.5,-6.0,-6.5,
+-7.0,-3.0}→{11.0,11.5,12.5,13.5,16.0,11.0}.
+TUN-0-BARRIER-FREE-CALIBRATION (6-free-runs (one-per-E0 (bare-L96-J2
++ run-length-= max-T_sep-over-that-E0's-cells (11.0/12.5/12.5/13.5/
+16.0/11.0 (all-disp<L/2=48-✓!))) + banks-v_in/E_in/spread/W-/norm/
+arrival-profile-per-E0): PASS ⟺ ALL-per-E0: (a)-|v-v_g|/|v_g|<10%
+(P1.1a-criterion!); (b)-E_in+6σ_E<0-AND-E_in-6σ_E>-8 (minus-purity-by-
+energy-support (E-sign-=branch (tails-stay-E<0 (tails-beyond-6σ-weight
+~1e-9!)))); (c)-norm-maxdev<1e-8; (d)-α>1.3; (e)-wrap-weight-(cols-≥90)
+-at-t_run<1e-6; (f)-disp<L/2. ANY-fail⟹TUN-0-INVALID-STOP (fix-
+apparatus + re-prereg (NO-barrier-runs-until-TUN-0-PASS!)).
+TUN-1-FORBIDDEN-BARRIER (NO-dynamics (spectral-demonstration (pre-
+run!))): wall-nodes-degree-≤4 (pinned-builder!) ⟹ Gershgorin-wall-
+spectrum-⊆[-4,4] ⟹ E0-grid-{-5.0,...,-7.0}-ALL-STRICTLY-BELOW (−4
+(FORBIDDEN (no-propagating-wall-mode-at-E0!))); control-E0=-3.0-
+INSIDE (propagating (contrast!)); κ(E0)=arccosh(|E0|/4) = {0.693147,
+0.841019,0.962424,1.066732,1.158810} (evanescent (κ-real->0!));
+wall-bipartite-pinned (chiral-symmetry-exact (no-branch-mixing-by-
+construction!)) + wall-connected-pinned. FILED-by-tun1-stage.
+TUN-2-WIDTH-LAW (E0=-5.5 (κ=0.841019-2κ=1.682039!) + L_B∈{0,1,2,3,4,5,
+6,8} (8-cells (deterministic (no-seeds (one-run-per-cell!))))): FROZEN-
+PREDICTIONS (k-averaged-transfer-matrix-T_pred (stationary-theory-
+ONLY (pinned-predictor (never-fitted!))): LB-{0,1,2,3,4,5,6,8}→T_pred-
+{1.0,0.4611895,0.1035743,0.02092973,0.004275479,0.0009019985,
+0.0001980578,0.00001119983}. PASS ⟺ ALL: (a)-T+R+B=1-to-1e-9-every-
+frame-every-cell (hard-accounting!); (b)-T/T_pred∈[1/3,3]-for-L_B∈
+{1..6} (absolute-prediction (prefactor-included!)); (c)-log-slope-over-
+{2..5}-within-30%-of-−2κ (exponential-law!); (d)-T>1e-10-for-L_B∈{1..6}
+(finite-transmission!); (e)-T(L_B=0)>0.99 (no-barrier-control!); (f)-
+T(L_B=8)<1e-4 (near-zero-wide-barrier!); (g)-wall-residence-STRICTLY-
+decreasing-across-columns-for-L_B=6 (evanescent-interior-shape!); (h)-
+interior-asym-res(lo)/res(lo+5)>10-for-L_B=6 (decay-from-incident-side
+(single-mode-theory-~4400 (threshold-440×-below (margin-huge!)))). FILED
+(non-firing!): monotonic-T-in-L_B + interior-slope-values + com_y-drift
++ LB8-ratio + E-conservation-drift.
+TUN-3-STRENGTH-LAW (L_B=4-frozen + E0-grid-{-5.0,-5.5,-6.0,-6.5,-7.0}
++ control-E0=-3.0 (6-cells (E0=-5.5-L_B=4-RUN-ONCE (shared-with-TUN-2
+(filed-in-both (roles-split (no-double-dip!)))))): FROZEN-PREDICTIONS:
+E0-{-5.0,-5.5,-6.0,-6.5,-7.0}→T_pred-{0.01011864,0.004275479,0.001922993,
+0.0008727812,0.0003727038} (24×-range (κ↑⟹T↓!)); control-E0=-3.0→T_pred-
+0.7098799 (propagating-O(1)!). PASS ⟺ ALL: (a)-accounting-1e-9 (stands!);
+(b)-T-STRICTLY-decreasing-over-E0-grid (strength-law (κ↑⟹T↓!)); (c)-T/
+T_pred∈[1/3,3]-all-5-grid-points; (d)-control-T/T_pred∈[1/3,3]-AND-T>0.3
+(below-threshold-propagating (wall-per-se-does-not-kill-transmission!));
+(e)-no-barrier-control-cited-from-TUN-2-LB0 (T>0.99 (TUN-2-owns-it!)).
+FILED: control-interior-asym/monotonicity (propagating-contrast (~O(1)/
+non-monotonic-expected (descriptive!))) + com_y + E-drift.
+TUN-4-DOUBLE-BARRIER (GATED (design-ONLY-after-TUN-2+TUN-3-PASS-banked!)):
+symmetric-double-wall + pristine-well (geometry-frozen-in-TUN-4-amendment
++ pre-registered-energy-scan + resonance-predictions-from-isolated-well-
+modes (computed-pre-scan-from-H (no-tuning-after-seeing-resonances!))).
+FORMATION-EXTENSION (LATER (read-only-D5∞ (no-core-dependent-potential
+(manufacture-ban!)))). INTERPRETATION (locked!): TUN-PASS ⟺ TUN-0-PASS +
+TUN-1-filed + TUN-2-PASS + TUN-3-PASS (box: spectrally-forbidden +
+evanescent-interior + finite-T + predicted-width-dependence (graph-wave-
+tunneling/EVANESCENT-TRANSMISSION (classical-coherent-waves-do-this-too
+(uniquely-quantum-claim-REQUIRES-later-particle/detection-model!)))). NEXT:
+TUN-0-calibration-on-beast (gated on prereg-commit!).
