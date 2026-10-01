@@ -2139,3 +2139,99 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## D15 — Excitation/matter: emergent internal degrees from J2 scalar dynamics
+
+**Track split (adopted):** the vacuum/geometry track (D14 formation)
+selects the substrate independently; this track asks what scalar
+excitations on J2 do. The two tracks must NOT converge by construction:
+if D14 independently selects a J2-like vacuum AND this track finds
+effective spinorial/chiral modes from scalar microscopic dynamics, the
+convergence is significant precisely because neither was chosen to
+produce the other. Confirmation-bias guard: the D'Ariano-Erba-Perinotti
+result below makes J2 more interesting, never a target substrate.
+
+**Paper precedent (filed, not reproduced):** D'Ariano-Erba-Perinotti,
+Phys Rev A 100, 012105 (2019): a coinless SCALAR QUANTUM walk (complex
+amplitudes, unitary update, s = 1) on the J2 extension coarse-grains to
+a spinorial walk on Z^2, and Weyl/Dirac walks arise this way in d <= 3.
+What the paper establishes: J2 topology has enough hidden cell
+structure for scalar microscopic QUANTUM dynamics to coarse-grain into
+spinorial dynamics. What it does NOT establish: scalar CLASSICAL
+energy dynamics (E_i >= 0, no phase) generating quantum spin. The gap
+is exactly: interference/unitarity are not free. Their no-go (no
+isotropic scalar QW coarse-graining into an arbitrary 2D coin) makes
+the J2 choice less arbitrary -- but the confirmation-bias guard above
+stands regardless.
+
+**Sharp experiment (pre-registered, D15.0):** quotient pi: J2 -> Z^2 is
+exact (J2 probe: quotient shells 4r, strict interior with 4 square
+neighbours + micro-multiplicity 4 per coarse edge). For coarse cell x
+retain the micro-vector Psi_x(t) = (E_{x,0}, E_{x,1}) instead of summing
+it, and ask whether the microscopic scalar update induces an effective
+coarse update Psi_x(t+1) = sum_delta A_delta Psi_{x+delta}(t). Derive
+A_delta from the actual rule (impulse response + least-squares fit over
+trajectories -- two independent derivations of one object), then inspect
+spectrum/symmetries. First question is NOT "can we reproduce spin?" but
+"does our scalar-energy update possess multiple coherent propagation
+sectors associated with the hidden cell structure?" Weyl/Dirac
+comparison only afterward, never by reverse engineering.
+
+**Microscopic rules (pre-registered, both linear/edge-blind/phase-free):**
+D15-RW (primary, energy-faithful): E'_v = mean_{u ~ v} E_u -- conserves
+total on regular graphs, preserves E >= 0. D15-WAVE (signed
+field/displacement, the self-supported-wave candidate): E(t+1) = 2E(t) -
+E(t-1) + c2 (P - I) E(t), c2 = 0.5 -- oscillates, so it needs a signed
+field and is NOT an energy level (honest label).
+
+**D15.0 VERDICT (MEASURED, test_j2excitation.py -- 11 tests, suite 551
+passed + 2 GPU-skipped): single propagating sector, NO chiral sector.**
+Both sheets of a J2 cell share IDENTICAL neighbour sets (4 adjacent
+cells x 2 sheets: K_{2,2} between neighbouring cells, verified
+computationally), so edge-blind updates are sheet-blind by structure.
+All four A_delta equal (1/8)J exactly (impulse response 0.125 entries,
+max deviation 0.0; independent least-squares fit over 4 random
+trajectories x 181 interior cells recovers them to 1e-9, residual
+3.3e-16). Bloch matrix M(k) = F(k)(1/8)J: lam+(k) = (cos kx + cos ky)/2
+(square RW dispersion, pinned at (0,0)->1, (pi,0)->0, (pi,pi)->-1,
+(pi/2,0)->1/2, (0.3,0.7)->0.86008934) and lam-(k) = 0 IDENTICALLY (flat
+dead band). Chirality null: blocks rank 1 (svd 0.25/0), symmetric
+projector commutes with M(k) EXACTLY (0.0) at every probed k --
+eigenvectors k-independent ([1,1]/[1,-1]), no spin-momentum locking,
+no Dirac cone can form. Sector decoupling is exact: RW kills D in ONE
+tick (max|D| < 1e-12 on all interior cells, stays 0) while S/2 tracks
+the square-lattice RW bit-identically for 5 ticks (0.0 deviation);
+WAVE traps D on its launch cell (leak 0.0 for 8 ticks, D_0(t) follows
+the local-oscillator recurrence exactly, flat band Omega =
+arccos(1-c2/2) = 0.7227 at c2 = 0.5, zero group velocity at all k)
+while S/2 tracks the square wave bit-identically for 6 ticks. Packet
+verdict: S spreads (support 1 -> 9 in 2 ticks, peak 2.0 -> 0.5), D is
+extinguished in one tick. Bottom line: IR geometry same (square),
+hidden structure exposes exactly one NON-propagating sector -- UV
+combinatorics (dense C4, degree 8) does not reach the propagation
+spectrum for phase-free edge-blind rules. Topology alone is
+insufficient; phases are load-bearing for chirality. This sharpens --
+not closes -- the gap: the paper's rank-2 chiral blocks vs our rank-1
+sheet-blind blocks is now a measured contrast, not a suspicion.
+
+**Queued (in order, none started):** D15.1 generator-labeled positive
+weights (apparatus: general-weight Bloch matrix + winding diagnostic;
+question: flat-band splitting without unitarity -- expected dispersive
+but non-Hermitian/contractive, winding 0; measurement decides).
+D15.2 nonlinear/saturating updates (coherent structures? solitons? --
+linear A_delta language breaks, needs new order parameters).
+D15.3 paper-QW positive control (implement the unitary scalar QW on J2
+with the paper's z-constraints, verify coarse A_delta match Fig.1
+matrices, compare spectra -- what phases buy, exactly). D15.4
+continuum/long-wavelength limit of the S-channel vs relativistic
+equations (only after sectors established -- gated on D15.0, now open
+for the S-channel alone; no D-channel continuum exists to take).
+
+**Kill relevance:** D15.0 is a null with teeth: any future claim that
+"J2 microstructure yields spinorial propagation from scalar-energy
+dynamics" must exhibit the update rule whose A_delta are rank-2 with
+k-dependent eigenvectors -- edge-blind phase-free rules are excluded
+by measurement. D15.1 decides whether generator labels escape the null
+(positive weights only, still no phases); D15.3 decides what the
+minimal phase structure buys.
+
