@@ -3,6 +3,64 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
+  (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
+  wanderers + 1 slither anecdote), 0/6 persistent handedness
+  (achiral plateau) ⟹ STOP debt-free route for pure D5∞ (polarity
+  paused: individuals yes, circulation-sign no); C0-with-debts
+  guilt-free; k4sets + endpoint logging + 2 pins (576 collected).
+
+- **unreleased (formation J2-orientation)** — D14/D15 orientation fork
+  (32 runs, J2-torus L28/42 ×16 dyn, exact-symmetry soup): verdict
+  (c) ISOTROPIC (cores form, T0=0 bootstraps, radial SSB preserved,
+  but elongation 0.20 random-axis shape noise, quadrant signs
+  null-consistent, sheet 0.49-0.50) ⟹ Aut(J2) survey complete
+  (translations broken only) ⟹ STOP per chain (D5∞-radial is
+  wrong-kind SSB); D15 stays closed (criterion stands, first
+  candidate excluded); j2_torus_graph/coords + 2 pins (574
+  collected).
+
+- **unreleased (formation SSB-1)** — D14/D15 same-soup campaign (60
+  runs, 2N×3 soups×10 dyn, identity 6/6): verdict SPONTANEOUS
+  (same-soup core-Jaccard 0.076/0.033 ≈ across-soup ≈ random,
+  vs imprint-threshold 0.8; Gini 0.76-0.79, IPR 4-4.8×
+  delocalized) ⟹ D15 REOPENS (finite-scale ✓ + SSB ✓);
+  symmetry restated as statistical-S_N-of-law (not Aut);
+  aging decisive (late/early slope 0.16-0.63, approach to fixed
+  point); in-situ gates exact (D5∞ step, κ2 Metropolis);
+  κ2@3600 supply-collapse (0/217k gain≥3); K5 D5∞ flicker
+  (death 0.48/sweep) vs κ2-nuc survival; +3 same-soup pins
+  (572 collected).
+- **unreleased (formation anatomy)** — D14 D5∞ frustration anatomy
+  (kmax-4 derivation): offline 30-run anatomy (kmax-4 locked all-N,
+  EXCHANGE churn jac≤0.31/pers≤0.49 vs κ2@1600 static jac→1.0,
+  opportunity-stock ×1.25-3.15) + 12 instrumented reruns (T-match
+  12/12; D5∞ plateau net≈0 balanced, gain-only gate confirmed; K5
+  raw flicker 16-25 births/run vs κ2@3600 zero-formation → Γ+/Γ−
+  birth-refinement); supply-sketch count_4≈200 vs 171-229; steady
+  verdict (T×2 declined, drift disclosed); D15 stays closed; move
+  logging (log_stride/log_window/k5_window, zero-perturbation) +
+  2 new tests (569 collected).
+
+- **unreleased (formation pilot-2)** — D14 C2-PILOT-2 triangle-closure
+  (D5κ/D5∞/D35; 66 union-runs + 6-repair κ2-ladder; local-remote race,
+  bit-identical 66/66): verdict NO-coexistence (CONDENSATION 9
+  (κ2@1600, K≈90/141, dust-bulk-89%), FRUSTRATED 15 (D5∞ all-N,
+  kmax-4 churn-limit, N-independent K~100-400, hubs), POISSON+ 39
+  (incl. κ2@3600/6400 plateau → thermo-Poisson, N*-bracket
+  (1600,3600]); P1 refuted, P2/P4/P6/P7/P8 confirmed, P3
+  single-point-consistent, P5 supported, P9 refuted; mirror-broken
+  (kinetics); refined bracket (frustration-as-selector lead);
+  12 new tests (567 collected).
+- **unreleased (formation pilot)** — D14 C2-PILOT-1 topological formation
+  (E-conserving relocation on ER/RR soup; D1 null + D3 floppy-gated
+  kinetics; 54-run grid N=1600/3600): verdict DARK (sweep-proven 0/54
+  WEAK over 20× floor range; no non-dust bimodality anywhere; D3 hope
+  dead — 13 dust-shedding arrests + 23 stillborns, zero active; D1 null
+  holds — Poisson equilibrium var≈mean all 18); arrest⟺rigid+dust
+  theorem 13/13; detector saga letter→mass→gap→floor (Poisson-tail
+  islands quantitative); amendments 2 (STRONG re-homed to geometric
+  formation) + 3/4 (valley calibration); 15 new tests (555 collected).
 - **v5.3** — D1 update-rule tournament (third pass) + D14 pricing-hierarchy
   closure + J2 micro/macro probe: tournament harness + 11 rules
   (single-move insufficiency, (`p`, longs) joint falsifier; coordinated

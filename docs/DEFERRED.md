@@ -1884,8 +1884,8 @@ reference opaque to agent; independent pointer toward
 statefulness, not evidence.) ROADMAP (narrowed, locked):
 A-static-congestion [done] -> betw-cong feedback [done] ->
 static-chi CLOSED [done] -> stateful-scale derivation [done] ->
-gain-free discriminator [done] -> {formation/dynamic topology}
-[NEXT: design] -> M_O audits. BETW-CONG
+gain-free discriminator [done] -> formation DESIGN [done-pre-reg]
+-> formation PILOT [NEXT] -> M_O audits. BETW-CONG
 DERIVATION (LOCKED closure run — docs-only turn; code next):
 LAW w'=(1-a)w+a(1+b*betw_e(w;n)), betw = exact weighted edge-
 betweenness recomputed every m ticks; a=0.2, n=64 ticks,
@@ -2111,6 +2111,855 @@ unexhibited structural number. Test pins full-state rows +
 medians + dose-response (test_gain_free_discriminator).
 NEXT: formation/dynamic-topology DESIGN unit (docs-only
 pre-registration first — derive-then-code rhythm holds).
+FORMATION DESIGN (C2 pre-registration — docs-only; pilot gated
+on this): INHERITANCE: D14 scale = debt by elimination
+(static/feedback/memory/budget/structural-ratio audited);
+formation asks topology-not-prices (YES-prong currency native:
+counts/cuts/spectra structural); serves the P0' conditional
+(separating U + basin breadth + residue→2). MACHINE (minimal):
+fixed-N, E-conserving EDGE RELOCATION (remove (a,b), add random
+non-edge (c,d) — degrees CHANGE (degree-preserving swaps
+FROZEN-OUT at design: histogram-frozen, bimodalization
+impossible — caught before code); E conserved exactly (budget =
+edge count, working interpretation: entanglement units —
+ADOPTED, flagged revisable); proposals blind-uniform (H-clean).
+G_* ENSEMBLE (sketch: homogeneous dense, d_* measured-never-
+tuned): ER zbar∈{8,16} + random-regular z=8 (3 ensembles) ×
+N∈{1600,3600} × seeds{0,1,2}; d_* MEASURED per G_* (filed);
+SOUP-VALIDITY executable: initial histogram UNIMODAL (else
+invalid run). DRIVERS: D1 NULL (pure random relocation —
+required; prediction: stays unimodal (entropy); violation =
+bug-hunt trigger); D3 FLOPPY-GATED KINETICS (primary: execute
+iff loser-endpoint floppy (local z<4, KCM/Fredrickson-Andersen
+class — threshold MECHANISTIC not objective (filed
+distinction: kinetic-gate vs target-valued acceptance);
+mechanism sketch (HOPE not claim): floppy-losers shed + blind
+gainers => depleted-floppy / dense-rigid segregation;
+PREDICTION: bimodalize, fabric mode≈4 (falsifiable));
+threshold∈{3,4,5} FACTOR (marginality predicts 4 special;
+identical behavior = reinterpret branch); gainer-gated /
+symmetric variants QUEUED contingent (design amendment
+required). D2 tension-energy QUEUED (blocker: linear
+tension-energy flat (no selective pressure); interaction form
+underived; concave-by-choice = inserted-by-construction); D4
+tournament-transfer QUEUED (transfer status; gate-key
+re-derivation needed — healing gates key on known-damage
+counts, formation has no non-inserted badness). H-GATE (bites
+hardest — locked clauses): H1 no target-valued acceptance
+(accept/reject may not reference distance-to-fabric, z=4-as-
+goal, 2D-ness, outcome quantities — forbidden-inputs list,
+TARGET-VARIABLE-EXCLUSION precedent); H2 objectives need
+interpretation-first (uninterpreted = rejected in advance;
+budget-Q rule generalized); H3 blind reads + update-form (D1
+form; census/evaluative gates BANNED for formation (no
+non-inserted badness); MECHANISTIC/kinetic gates only). RUN
+PROTOCOL: stop = arrest (no executes for W=20 sweeps) OR
+stationarity (histogram L1 < 0.02 over 50 sweeps — labeled)
+OR T_max=2000 cap (labeled). GRID: full @N=1600 (3 ens × 3
+seeds × (D1 + D3×{3,4,5}) = 36 runs) + scaling subset @N=3600
+(D1 + D3@4; 18 runs) = 54 runs. READOUTS — PRIMARY
+(algorithm-free): coordination-histogram bimodality via
+valley-depth ratio (two highest local maxima, valley-min /
+lower-peak < 0.5 = bimodal — LABELED; histograms FILED as the
+evidence, statistic is the gate) + mode locations (MEASURED,
+no targets); SECONDARY: degree-assortativity rise (nx,
+segregation signature); knot-ID (TWO detectors, agreement
+required — ID claims only); CONTINGENT: d_G on depleted phase
+(UNGATED characterization — planarization NOT claimed);
+Φ-basin under gain-free pricing on formed state (STRONG
+reading — banked apparatus, zero new choices). WEAK vs STRONG
+(locked split): WEAK = spontaneous bimodalization + mode
+locations (topology result); STRONG = discriminator flips to
+HEALS on formed state (D14 kill-or-confirm). DEPLETION vs
+PLANARIZATION SPLIT (scoping honesty): pilot tests
+DEPLETION/segregation ONLY; 2D-ness of residue queued as
+D14(ii-b) (nothing here selects planarity — filed gap, not
+oversight). DEBT TABLE: N/E (finite-size → scaling subset or
+labeled); G_* density (CHOICE → 3-ensemble robustness or
+initial-condition-labeled); threshold 4 (mechanistic +
+factor-tested); W/T_max/tol (protocol, labeled); valley 0.5
+(labeled conventional); detectors (choice → dual-agreement);
+Φ/discriminator (banked, zero new). OUTCOME TABLE:
+WEAK-YES+STRONG-YES => formation SOLVES D14 scale (promote
+D-track); WEAK-YES+STRONG-NO => KIND-not-DEGREE (partial:
+debt narrows to amplification-on-formed-topology; memory /
+budget revisit ON formed states = contingent branch);
+WEAK-NO => D3 insufficient (no auto-escalate); DARK
+(D1+D3+D2+D4 all WEAK-NO) => formation doubted; YES-prong
+empty-by-exhaustion; D14 scale TERMINALLY unexplained
+(ledger records exhaustion — filed in advance). STOP RULE:
+D3 WEAK-NO => design amendment required before D2/D4 (no
+silent queue-burn). EXECUTABLE CHECKS: E-conserved exactly
+every tick; D1-unimodal (bug-hunt if violated); N-scaling
+persistence (vanishes-with-N => finite-size artifact =>
+WEAK-NO-by-scaling downgrade, pre-registered); soup-validity
+(above). STAGE-GATE: C2 mechanism demo ONLY (no origin
+claims); D-promotion checklist (ensembles + instability +
+no-insertion proof + N-scaling + G_*-robustness + independent
+replication) — D fenced. APPARATUS (new code): G_*
+constructors + D3 driver + histogram/valley/assortativity
+readouts (all else banked: Φ, discriminator, cuts, d_G).
+NEXT: formation PILOT (code next go — gated on this pre-reg).
+FORMATION DESIGN AMENDMENT (review-forced: connectivity +
+seed/absorbing — preconditions for running; pilot still
+gated): CONNECTIVITY POLICY (reviewer's lean ADOPTED):
+fragmentation ALLOWED (no guard — guard would be evaluative,
+H1-banned; vacuum-connectedness is an L0 outcome fact, not a
+dynamical license (steering-to-answer confusion filed));
+HEALTH READOUTS HARD: giant-component fraction ≥ 0.9 GATES
+WEAK-YES (0.9 labeled conventional); component-size
+distribution FILED full (not gated); STRONG readouts run ON
+GIANT (percolation practice); giant < 0.9 => STRONG UNTESTED
+(validity, not verdict). ABSORBING-STATE CHARACTERIZATION
+(derived at design — reframes D3's hope): D3-OR arrest ⟺
+rigid (z≥4) subgraph + isolated (z=0) dust (proof: z∈{1,2,3}
+nodes always own an executable edge ⇒ absent at arrest) =>
+arrested end-states are WRONG-kind AUTOMATICALLY (reviewer's
+feared artifact = CHARACTERISTIC failure mode, not accident
+— sharp > vague); D3's hope is ACTIVE steady state
+(gainer-rescue sustains floppy bulk), NOT arrest-into-phases.
+STOP-RULE INTERPRETATIONS (locked): arrest => dust-expected
+=> health-gated (PREDICTION: arrested runs score WEAK-NO);
+stationarity => WEAK-candidate; T_max cap => UNRESOLVED
+(transient-too-slow; extension needs amendment). SEED ISSUE
+(KCM sense: initial excitations): RR-8 D3 STILLBORN (theorem:
+all z=8 ⇒ zero executable at tick 0); ER-16 near-certain
+stillborn (~0.15 expected floppy); ER-8 runnable (~4%);
+STILLBORN-RULE: zero executes in first W=20 sweeps ⇒ run
+INVALID (not WEAK-NO); expected-invalids RUN as negative
+controls on validity machinery (informative: KCM
+arrest-needs-seeds); HAND-SEEDING BANNED (planting;
+C2-unplanted violation); D1 never stillborn (ungated
+relocation always executable — one-liner). WEAK-YES AMENDED
+(was: bimodal + modes): bimodal (valley<0.5) AND lower-mode
+≥ 2 (BULK LINE, principled: z<2 ⇒ no cycles through node ⇒
+cannot be mesh bulk — excludes dust/hair without targeting)
+AND giant ≥ 0.9; NO upper-mode target (would be
+target-valued — restraint filed; contrast measured).
+DISAMBIGUATIONS (pre-amble gaps closed): loser-gate = OR
+(either endpoint floppy — most permissive; failure-under-OR
+⇒ failure-under-AND (heuristic, LABELED); AND queued
+contingent); gainer = uniform random non-edge (both
+endpoints blind). NON-INTERFERENCE AUDIT (strong-win
+license): D3 inputs {degrees/counts} ∩ discriminator inputs
+{static betw, mean} = ∅ (formal disjointness; correlation
+caveat filed honestly: both graph quantities, possibly
+value-correlated — unengineered claim rests on
+input-disjointness + pre-registration, labeled). STRONG-WIN
+INTERPRETATION (reviewer's box ADOPTED): observer-blind
+kinetic instability redistributes fixed E into persistent
+phases AND the resulting topology independently makes the
+previously-insufficient gain-free rule sufficient — neither
+stage designed against the other's target (the meeting is
+unengineered).
+NEXT: formation PILOT (code next go — gated on pre-reg + amendment).
+FORMATION DESIGN AMENDMENT-2 (design correction, PRE-DATA —
+strong-clause incoherence caught before any run):
+STRONG-as-filed (Φ-basin on formed state, `banked apparatus')
+is CATEGORY-BROKEN for this pilot: relocation-formation on ER
+soup NEVER produces geometry (no positions/embeddings), and
+Φ/η (spans, rulers, longs) REQUIRE extrinsic geometry
+(self-ruler via phases = circular (target leaks into ruler —
+RULER-TRAP precedent) + new apparatus (violates `zero new
+choices')). CORRECTION: this pilot (C2-PILOT-1, TOPOLOGICAL
+formation) tests WEAK ONLY (spontaneous segregation; ceiling
+= KIND-not-DEGREE partial, pre-registered branch);
+STRONG (discriminator flip) RE-HOMED to C2-PILOT-2
+(GEOMETRIC formation — future design: formation WITH
+positions/embeddings) — re-homed, NOT dropped
+(outcome-table STRONG-YES cell unreachable-here, filed).
+DEEPER LESSON (filed): D14 scale is GEOMETRIC (pricing ~
+spans); topological formation can supply KIND never test
+DEGREE. CHARACTERIZATION (not verdict): on WEAK-YES states
+file J-histogram + max/mean + p90/mean + median/mean, J̄ =
+all-edge mean (no-mask default, labeled), vs indicative
+(6.2,11.0) (threshold-transfer approximate², NO verdict —
+informs geometric design). BLINDNESS (moot-but-filed): no
+pricing/traffic quantities touched pre-amendment (nothing
+run at all — genuinely pre-data).
+NEXT: formation PILOT (code now — gated on pre-reg + amendments).
+FORMATION DESIGN AMENDMENT-3 (detector calibration, POST-ER-data
+(24 runs) but PRE-VERDICT — guarded-valley analysis locked
+BEFORE any guarded number is computed): TRIGGER: null
+false-positive — D1-s1-ER-8-1600 letter-valley 0.000 via an
+ISOLATED TAIL SINGLETON (mode (18,1) beyond a gap; valley=0
+over [7,18] → ratio 0/1 = 0 → WEAK-YES-by-letter ON THE NULL
+(lower-mode 7 ≥ 2 ✓, giant 1.0 ✓)). DIAGNOSIS: letter valley
+(top-two local maxima, raw counts) admits measure-zero peaks
+(singletons beyond gaps trip via valley=0). FIX (locked):
+mass-guarded valley — maxima need count ≥ 2 (minimal
+non-singleton: a phase ≠ one node — definitional, pre-reg
+intent `dense knots + depleted fabric' (both macroscopic));
+library default min_mass=2, letter = min_mass=1. ROBUSTNESS
+(locked): guarded verdicts must be INVARIANT over guard ∈
+[2,65] (any value identical → value untuned, only existence
+matters); if variant → file variant + escalate (no silent
+tuning). DUAL REPORT (locked): letter-verdicts filed (D1-s1
+YES-by-letter = documented false positive) + guarded
+verdicts (primary post-calibration). CALIBRATION STATUS:
+detector fixed on NULL behavior (not on D3 outcomes — all 54
+guarded verdicts computed AFTER this lock, uniformly from
+raw filed hists, no re-runs needed).
+AMENDMENT-3 ESCALATION (locked procedure FIRED — rule below
+locked BEFORE any gap-aware number is computed): guard-
+robustness FAILED with 10 VARIANTS: D1 tail islands (mass
+2-6 beyond gaps: 1600-rr8-s0/s2-d1, 3600-er16-s0-d1,
+3600-rr8-s2-d1 (+3 mode-only)) flip WEAK under mass-2
+(4/54 WEAK-guarded, ALL on the NULL); D3@3 dust (16-20)
+flips the bimodal flag (WEAK stays NO via lower-mode).
+Pattern: the discriminator is the GAP, not the mass
+(connected-tail peaks (mass 6, 12) give shallow valleys
+(0.833, unimodal ✓); only beyond-gap islands trip
+(valley=0)). ADOPTED (locked): connected-support
+(gap-aware) valley — intervals with interior empty bins =
+disconnected islands, not saddles → 1.0. NOT TUNING: binary
+topological property (NO tunable value — nothing to tune);
+textbook bimodality (saddle, not gap); agrees with
+mass-guard on all non-artifact cases HERE (provable:
+D3-arrest support = {0}∪[thr,∞) (theorem) → any D3 gap
+touches z=1 (excluded by lower-mode≥2 anyway) → D3 WEAK-NO
+under EVERY statistic; only divergence = tail islands
+(artifact)). TRIPLE REPORT (locked): letter + mass-2 +
+gap-aware (all filed; gap-aware primary). CAVEAT (locked):
+gap-aware may under-call complete separation in future
+drivers — revisit if gapped non-dust support appears.
+FORMATION DESIGN AMENDMENT-4 (detector RESTART — locked
+BEFORE any floor/sweep number is computed): TRIGGER:
+gap-aware INSUFFICIENT (2 null-WEAKs persist:
+singleton-BRIDGED islands (1600-rr8-s0-d1 (18,4),
+3600-er16-s0-d1 (30,4): interior min 1 (not 0!) →
+connected → valley 1/4 = 0.25 trips)). ACKNOWLEDGED:
+patch-chain (letter→mass→gap→floor); STOP patching
+mechanisms. PRINCIPLED RESTART: `phase' = macroscopic
+CONSTITUTIVELY (any operationalization needs a
+macroscopicity scale — the floor is part of the question's
+meaning, not a tuning knob). LOCKED: fractional floor
+(peaks need count ≥ max(2, ⌈frac·N⌉) (scale-free);
+gap-aware stays ON; library UNCHANGED (fractional =
+analysis-level min_mass)); SWEEP frac ∈ {0.1%, 0.25%,
+0.5%, 1%, 2%, 5%, 10%}; PRIMARY 1% (log-central in
+[0.1,10], locked for centrality, not outcomes).
+PREDICTION (filed): WEAK 0/54 over [0.5%,10%] (20× —
+formalization-independence); floors below max-fluctuation
+(~0.33%) admit fluctuations (artifacts EXPECTED there —
+a floor must exceed fluctuation scale to mean macroscopic).
+VERDICT RULE (locked): sweep-unanimous-DARK over [0.5%,10%]
+→ DARK (sweep-proven); else file all + conclude cautiously
+(no shopping). MECHANISM CHECK (locked): islands claimed as
+Poisson-tail sparseness — VERIFY (expected tail counts vs
+observed + bulk var vs Poisson; filed either way; verdict
+robust to mechanism (mass alone decides)).
+C2-PILOT-1 VERDICT: DARK (SWEEP-PROVEN — 54/54 runs):
+floor-sweep WEAK = 0/54 UNANIMOUS over [0.5%,10%] (20×);
+floors below fluctuation scale admit artifacts (0.10%:
+2/54, 0.25%: 1/54 — as predicted). DETECTOR SAGA (filed):
+letter 6/54 → mass-2 4/54 → gap-aware 2/54 (ALL on D1
+null) → floor-sweep 0/54. NO non-dust bimodality
+ANYWHERE (no two macroscopic bulks in any of 54 hists).
+D1 NULL (18/18): cap + full activity (rate_tail == E0
+EXACT, slope +0.000) + unimodal + POISSON EQUILIBRIUM
+(var≈mean all 18 (7.4-8.5 vs 8; 15.3-16.5 vs 16) —
+D1 = Poissonizer (no regularization (guess refuted)));
+drift ER 0.055-0.152 (≈ noise floor 0.106 PREDICTED ✓),
+RR 1.71-1.73 (delta-broadening transient); |assort| ≤
+0.029 (mixed). D3 (13 arrest + 23 stillborn, ZERO
+active — active-steady-state HOPE DEAD): arrests ALL
+rigid+dust (13/13 theorem checks; ncomp = dust+1 EXACT
+(all non-giant comps singletons); dust thr3 ~1% (16-20),
+thr4 ~4% (65-68 @1600, 145-163 @3600), thr5 ~11%
+(171-190); giants 0.99/0.96/0.88-0.89 (thr5 < 0.9!);
+arrest ≤ 34 sweeps, execs 3-803); stillborns RR-8 12/12
+(theorem) + ER-16 11/12 (one marginal-live: 3 execs,
+1 dust — Poisson-tail lottery). ISLANDS = Poisson-tail
+sparseness QUANTITATIVE (obs z≥18 vs expected: 4v2.3,
+1v2.4, 5v2.6, 7v6.2, 8v6.0, 4v5.7, ..., ER-16 bullseye
+(543v556, 1252v1234 — all ~2σ)). SOUPS 18/18 valid
+(gap-aware); DETERMINISM 23/23 exact cross-process
+(stillborn finals); E-CONSERVATION 54/54. GATE LESSON:
+literal stationarity gate = freeze-detector (noise
+0.1 ≫ tol 0.02 — never fires on active runs; filed,
+unchanged; settled-active read via characterization).
+DESIGN LESSON (big): NO CONCENTRATION PATHWAY —
+loser-shedding + diffuse-gain → dust-or-nothing
+PROVABLY (no mechanism concentrates!); knots need
+concentration. LEADS (design next turn): D5
+triangle-closure (LEAD: local, blind-legal,
+concentrates CLUSTERING (knot-like) vs fabric) /
+D4 gainer-bias (PA-mimetic → hubs (≠ knots!)) /
+C2-PILOT-2 geometric (positions + spatial rewiring
+(STRONG home)). DARK branch = pivot knobs (pointer
+filed; next design gated on go).
+REVIEW RESPONSE (DARK comments — agreed + sharpened, filed):
+DICHOTOMY > 0/54 (accepted as headline: mechanistic
+closure, not parameterization-failure). D3-final =
+dust + TRUNCATED-Poisson-bulk VERIFIED: bulk (z≥thr)
+var 6.1-7.6 vs mean 8.0-9.0 (sub-Poisson (left-
+truncation!) + densified (E fixed, fewer mouths));
+L1-vs-Poisson ORDERS drivers: D1 0.03-0.10 (noise
+floor, 1/√N-ish) < D3@3 0.06-0.11 < D3@4 0.13-0.17
+< D3@5 0.35-0.40 (departure = dust + truncation).
+DEPARTURE-FROM-POISSON ADOPTED as primary formation
+metric (reviewer's opponent-framing; floor calibrated
+~0.03-0.10 here). POISSONIZER = CONJECTURE + M/M/∞
+SKETCH (filed, not theorem): single-node mean-field
+(constant immigration λ=2E0/N (uniform gainer) +
+linear emigration μz (uniform loser) → Poisson(λ/μ)
+= Poisson(z̄)); gaps: same-node gain+loss correl.,
+non-edge saturation (sparse ✓), E-coupling
+(mean-field!); evidence 18/18 + both-sided transient
+(delta→Poisson (RR), Poisson→Poisson (ER-stat.)).
+CLASS-CLOSURE (stronger than D3-closed): ANY
+local-loss-gate × uniform-gain → dust + Poisson-bulk
+(gain-side theorem (M/M/∞-sketch) ⟹ NO concentration
+possible in-class) — licenses NO-D3-RESCUE rigorously
+(any loss-variant (thr6? triangle-unclosing?) stays
+in-class; gain-side change = D4/D5 (new mechanism,
+not rescue)). TRIPTYCH + 2×2 (loss×gain): D1 =
+(diffuse,diffuse) → Poisson; D3 = (gated-loss,
+diffuse-gain) → dust+trunc-Pois; D5 = (diffuse-loss,
+gated-gain) → ??? (D3-MIRROR!); D35 = (gated,gated)
+→ ??? (design scopes; mirrors static-χ 2×2 close).
+D5 NEXT (agreed) + D4 BEHIND (double reason: PA→hubs
+is KNOWN (not discovery) + wrong object (C_hub≪1;
+D4 = degree-concentration, D5 = clustering-
+concentration (right observable!))). CLIQUE-
+CONDENSATION pre-reg ADOPTED (K-scaling O(1)/N^α/O(N)
++ count (one-vs-MANY!) + sizes). GEOMETRY RULING
+(agreed): positions-in-law = ruler (RULER-TRAP
+precedent) → geometric = BENCHMARK-ONLY (labeled,
+non-discovery); C2-PILOT-2 = D5 (topological!).
+STRONG PARKED (filed, not dropped): Φ needs geometry
+⟹ untestable-in-D5; homes = geometric-benchmark
+(labeled) OR topology-native basin (η-without-spans?
+open design). J2 SYMMETRY (filed, no coupling):
+state-space ≠ mechanism (U must activate) — both
+tracks converge methodologically; programs stay
+INDEPENDENT.
+D5 DESIGN BRIEF (LOCKED SCOPE — docs-only
+derivation next go (no code!)): (i) pure-closure
+fixed points (cluster-graph + triangle-free
+remainder? derive!); (ii) condensation scaling
+(K(N) test, ≥3 N (1600/3600/6400? cost!));
+(iii) H-gate-clean rule (D1-loser + closure-biased
+gainer? 2×2 scope (D5? D35?)); (iv) extensive-vs-
+condensation discriminator (K + count + sizes +
+scaling); (v) metric (departure-L1 (floor!) + truss/
+clustering readouts); (vi) K-ESTIMATOR decision
+(max-clique NP-hard! lead: k-truss profile
+(computable) + alternatives); (vii) outcome table
+(extensive/coexistence vs condensation vs dust-like
+vs Poisson (no-effect!)) + failure pre-regs
+(clique-condensation + clustered-hub? enumerate!).
+NEXT: docs-only D5 derivation (gated on go).
+D5 DERIVATION (docs-only — 7 locked items, no code):
+RULE (H-gate-clean, LOCKED): D5κ (soft): loser =
+uniform edge + gainer = uniform non-edge (blind-
+propose ✓) + ACCEPT w.p. min(1,exp(κ·Δt_net))
+(Δt_net = Δt_gain−Δt_loss (common-neighbors (±)
+(1-hop-local ✓))); κ=0 ⟹ D1 EXACTLY (null-
+continuous ✓; D1 legs REUSED as κ=0 (no re-run!)).
+D5∞ (hard, D3-MIRROR): accept iff gain-Δt ≥ 1
+(loss-side free (gain-gate-ONLY (mirrors D3's
+loss-gate-only!))). D35 = D3-thr4-loser × κ1-net-
+gainer (one cell). H-AUDIT (filed): reads N(a),
+N(b),N(c),N(d) only (1-hop (vs floppy 0-hop
+(precedent-compatible))); NO labels/dimension/
+z̄-targets/bimodality/global-density/geometry ✓;
+κ = temperature (biases FLUX not STATE (emergent!)).
+κ-BUG CAUGHT (design-before-code vindicated):
+gain-only-Metropolis min(1,e^{κΔt_gain}) with
+Δt_gain ≥ 0 ALWAYS ACCEPTS (= D1! no bias!) —
+MUST be net-Δt (loss-side in accept!) for bias.
+STRAUSS (literature-connected): D5κ-stationary ∝
+exp(κ·T) (T = #triangles) = Strauss-triangle-ERGM
+(canonical (E-fixed!)); reviewer's clique-
+condensation = STRAUSS DEGENERACY (known
+phenomenon (grand-canonical jumps sparse↔complete;
+canonical ⟹ one-clique + remainder (derive below!))).
+PURE (κ=∞) FIXED POINTS (exact): absorbing ⟺ all
+non-edges Δt=0 ⟺ DISJOINT-CLIQUES + TRIANGLE-FREE-
+remainder (cluster-graph + forest (no-op-exclusion
+(filed!) blocks self-heal; intra-full + cross-Δt0
+⟹ nothing executable ✓). REACHABILITY (derived):
+pump-phase (+1 triangle/move (close-wedge (+1) vs
+soup-loss (~0.04)) → ~240k closes (~37 sweeps!))
+then hair-exchange ACTIVE-STEADY (clique-edges ↔
+sticky-hairs (both Δt≥1-executable; hairs re-attach
+(never leave))) ⟹ bare-clique UNREACHABLE; steady
+= clique + STICKY-HAIRS + dust-bulk (K fluctuates!).
+CONDENSATION SCALING (extremal): max-triangles at
+fixed-E = clique K_m (m(m−1)/2 ≤ E) + edge-soak
+remainder ⟹ K ≈ √(2E) = √(z̄N) (113 @1600 (7.1%),
+170 @3600 (4.7%), 226 @6400 (3.5%)) ⟹ α = 1/2
+(MESOSCOPIC (reviewer's middle branch!) — share
+SHRINKS with N (vs O(N) flat (discriminator!))).
+E-STARVATION (mirror-manifest!): K=113 eats 6328/6400
+edges ⟹ bulk ≈ DUST (72 strays, z̄≈0.1) — D5∞ =
+clique + DUST-BULK (~90%!) (INVERTED D3 (dust +
+Poisson-bulk (diffuse-gain keeps-E-in-bulk;
+concentrating-gain HOGS-E-into-clique!))).
+COARSENING (no-coexistence-prediction): one-K_m
+(m³/6 tris) BEATS two-K_{m/√2} (m³/4.24 (same E!))
+(superlinear (K³ vs K²!) ⟹ concentration wins ⟹
+Ostwald-pressure (big eats small (churn-mediated!))
+⟹ steady-coexistence needs ANTI-COARSENING (absent
+in D5!) ⟹ PREDICT condensation-or-Poisson (NOT
+coexistence); transient-many possible (metastable!
+⟹ count(t) readout (Ostwald-check (mandatory!))).
+NUCLEATION BARRIER (bistability): Strauss-first-
+order-ish ⟹ metastable-Poisson (no-nucleation-in-T)
+vs nucleated-clique ⟹ κ_c(T) KINETIC (barrier-
+crossing-in-T (not thermodynamic!)); κ = noise
+(anneal-window: ∞/2 quench (multi-transient (slow-
+coarsen!)) vs 1/0.5 anneal (cleaner-single!) vs
+0.25 hot (washed-out (Poisson+!))); κ_c ↓ in z̄
+(ER-16 seeds 683 tris vs 85 (nucleates easier!)).
+K-ESTIMATOR (LOCKED): LEAD = k-truss (binary-search
+k_max + log-profile + macro-floored (1% (amend-4!)
+) top-truss components); CROSS = Charikar-peeling
+(dense-subgraph (fast!)); EXCLUDED = max-clique
+(NP-hard!). Baselines: ER-soup T ≈ z̄³/6 (85/683),
+RR T ≈ (z̄−1)³/6 (~57); wedges ~51k (z̄=8);
+k_max,init ≈ 3-5 (soup-validity-D5: ≤4 (verify!)).
+DISCRIMINATOR (5 cells, LOCKED): dense objects =
+top-truss components ≥1% (COUNT!) + count(k)
+PROFILE (mid-k hiding!) + K (max size) + sizes +
+K(N) + count(t): CONDENSATION (count=1, meso-K
+(α≈1/2!), T-pumped, departure-LARGE, dust-bulk
+(predicted D5∞ + D5κ-large!)) / COEXISTENCE
+(count≥2 PERSISTENT (discovery! (surprise (no
+anti-coarsening!)))) / POISSON (no macro-truss
+(k_max≈3-4), departure≈noise (small-κ/barrier!)) /
+DEFECT (count=1, O(1)-K) / COARSENING (count(t)↓
+(transient-many (Ostwald (no-steady-coexistence!))).
+PRIMARY VERDICT: extensive-coexistence? (count≥2 +
+persistent (YES/NO)). VALLEY = AUXILIARY-ONLY
+(detector-scope honesty: clique = high-z ISLAND
+(disconnected!) ⟹ gap-aware → 1.0 (under-calls by
+design (bulk-phase detector!)); file mass-bimodal
+(island-listed!) as characterization). NO GIANT-
+GATE (condensation ⟹ small-giant BY CONSTRUCTION
+(~10-15%!); giant = characterization (inverted!)).
+METRIC SUITE (locked): departure-L1 (floor 1/√N
+(calibrated 0.03-0.10!) — PREDICT s-jump at κ_c
+(noise → LARGE (~1+ (90%-dust-bulk vs Pois(8)!))));
+T (= Hamiltonian (trace T(t) (pump!))) + C (global
++ per-node mean) + truss-profile + count/K/sizes +
+K(N) + count(t) + top-z-node-C (hub-vs-clique:
+≈1 (clique!) vs ≪1 (PA-hub!) (reviewer's test!)).
+SCOPE (LOCKED, 72 runs): (A) BEHAVIOR @N=1600:
+{D5κ0.25, D5κ0.5, D5κ1, D5κ2, D5∞, D35} × {ER-8,
+ER-16, RR-8} × seeds012 (54 (κ-grid spans hot→
+cold→quench (soup-scale κ~0.1-1 (Δt~O(1-10)!))));
+(B) LADDER: {D5∞, D5κ1} × ER-8 × seeds012 ×
+{1600,3600,6400} (18 (K(N) α̂ ± (3-pt (rough
+(pilot-scale!))))). T_max 2000 (precedent) + stops:
+D5κ (cap/stationary (soft (never arrest/stillborn!)));
+D5∞ (arrest (absorbing-class!) / cap (exchange-
+active!)); D35 (stillborn? (D3-loser (RR (precedent!)
++ ER-16-lottery!)) / arrest (dust+clique-frozen?!) /
+cap). Stationary-gate = freeze-detector (known-
+limitation (reuse + characterization-reading!)).
+OUTCOME TABLE + FAILURES (locked): cells (5, above)
++ D35-cell (dust+clique (predicted!) vs dust+Poisson
+(gain-ineffective (κ1-too-small?!))); FAILURES:
+clique-condensation (reviewer's ✓ (K-meso + count-1
++ dust-bulk!)); barrier-freeze (Poisson-persistence
+(kinetic! (contingent T×2 rerun (barrier-test!))));
+clustered-hub (top-z-C ≈1 (in-clique (not separate
+(consolidated!)) vs ≪1 (PA-like (anomaly!))).
+PREDICTIONS (falsifiable battery): P1 (D5∞ →
+count-1 meso-clique + sticky-hairs + dust-bulk
+(90%!), ACTIVE (K-fluctuating!)); P2 (D5κ: L1(κ)
+jumps at κ_c(T) (noise → LARGE)); P3 (κ sets RATE
+not SIZE (K ≈ c(κ)√(z̄N) (α=1/2 ∀ nucleating κ;
+c↑κ (tightness!))); P4 (κ_c ↓ in z̄); P5 (no
+steady-coexistence (count≥2 ⟹ count(t)↓)); P6
+(D35 → dust + clique (not dust+Poisson!)); P7
+(valley-aux: gap-aware-1.0 + mass-bimodal); P8
+(bulk-E-starvation (bulk-z̄ ↓ as clique grows));
+P9 (κ-moderate nucleates CLEANEST (anneal-window!)).
+P6-REVISION (pre-campaign (smoke-mechanics N=400
+(not grid!) + derived timescale-rule (not tuned!)):
+D35 SMOKE ARRESTS at 25sw/58exec (T +12 only) ⟹
+LOSS-FREEZE (25-34sw) ≪ CLOSURE-NUCLEATION (100s-sw)
+⟹ D35-gain-STARVED (κ1) ⟹ REVISED-P6: D35 → dust +
+rigid-bulk (D3-like (T-elevated (+O(10-50) (gain-
+scraps!)))) (NOT dust+clique!). DERIVED: D35-arrest
+⟺ D3-arrest-condition (rigid+dust (gain-soft can't
+arrest (only hard-loss-gate can!))). CONTINGENT
+followup (not this campaign): D3×∞ (hard-gain
+(25sw×E0×16% ≈ 25k closes (MAY nucleate!)).
+COST (filed): Δt/set-∩ O(z̄) (sweep ~2-4× D1);
+(A) ~20-45min + (B) 6400-cap ~3min/run-worst +
+truss-post ~10s/run ⟹ ~1-2.5h (tmux-backgroundable
+(precedent!)). NEXT: C2-PILOT-2 (code+run, gated
+on go).
+REVIEW RESPONSE (D5-derivation comments — agreed +
+sharpened, filed): STRAUSS (proof (3-line, filed):
+π(G)P(G→G') = e^{κT}·q·min(1,e^{κΔT}) =
+q·min(e^{κT},e^{κT'}) (symmetric ✓); q symmetric
+⟸ E-fixed (same E (loser 1/E) + same non-edge-count
+(gainer (1/(C(N,2)−E))) both directions; cap-self-
+loops trivially balance (filed!)) + TEST-LIST
+(locked for code turn: propose-mechanism (uniform-
+marginals (pilot-1-pinned!) + cap-determinism (dense-
+graph None-forcing (new!))) + acceptance-EXACT
+(synthetic Δt (κ=1: +2→1.0, −1→e^{−1} (tol!);
+κ=0→1.0 (D1-exactness!))) + κ0≡D1 same-seed
+trajectory-equality (rng-parity (accept-draw ONLY
+if Δt_net<0 AND κ>0 (short-circuit (locked!)))) +
+Δt-accounting (synthetic (gain/loss/net exact!)) +
+truss-units (synthetic clique+scraps (k_max/count/
+K/sizes exact!) + Charikar-cross-check)).
+TWO-SIDED (elevated to STRUCTURAL REQUIREMENT
+(predictive: IF P1 confirms THEN single-sided
+insufficient (bracketing!) → size-selection (next-
+question (below!)))); D35 = TWO-GATED-ONE-
+DIRECTIONAL (poor→poorer + clustered→richer (same
+polarization (no restoring force!) — two-gated ≠
+two-sided (filed distinction!))). TRIPWIRE (locked):
+α̂(κ)-systematic-variation ⟹ BEYOND-EXTREMAL (flag
+(investigate (not verdict-flip!)); K = top-truss-
+size (core (halo excluded (filed!)))). COUNT(t)
+DISCIPLINE (locked): sampled every 10 sweeps (filed
+full-trace); coexistence-claim needs count≥2 FLAT
+over trailing-half (qualitative-evident (reader-
+sees!) + coarsening-fit count~t^{−β} (characteriza-
+tion (not gate!))); NO verdicts from single
+snapshots (1→10→6→3→1 ≠ multi-knot (filed!)).
+D35-LENS (pre-registered discovery-lens (not post-
+hoc!)): IF D35 count≥2-persistent THEN moat-
+hypothesis (floppy-shedding digs DUST-MOATS (z→0
+rings) insulating knots (no-edges ⟹ no-merger-path
+⟹ topological-insulation (THIRD thing (neither
+selection nor slow-merger!))); measure z-profile
+vs knot-distance (moat = dip!)) + extended-T
+rerun (T×2 (contingent (locked!))).
+ARREST-PROTOCOL (locked, triggered iff count≥2-
+persistent-in-T): (i) κ-test (lifetime ↓ as κ↓
+(arrest melts!) vs K* κ-robust (selection!));
+(ii) T-extension (T×2 (count↓ (arrest!) vs flat
+(selection?!))); (iii) quench-then-anneal
+(nucleate (∞/2) → anneal (1/0.5) (count↓ (no-
+selection!) vs persist (selection?! (contingent
+(not in 72!)))). SCOPE-REPAIR (AMENDMENT-5, filed
+PRE-REPAIR-DATA (post-66 (prediction-completing
+(not shopping!))): ladder locked {D5∞,D5κ1} but κ1-
+BARREN (no nucleation (all-N!)) + D5∞-frustrated
+(no clique!) ⟹ P3 (α=1/2 ∀ nucleating κ) UNTEST-
+ABLE (condensed-branch (κ2!) has NO scaling leg)
+⟹ κ2-SUBSTITUTION (6 runs: κ2 × ER-8 × seeds012 ×
+{3600,6400} (same-N/seeds (minimal-repair!)));
+tripwire-within-rule needs κ1.5-ladder (followup
+(not now!)). BRACKETING (adopted): D3 (no-
+concentration) … D5 (unbounded-concentration) ⟹
+NEXT-QUESTION (adopted, gates post-campaign turn):
+what graph-internal mechanism creates a preferred
+finite concentration scale? 72 FROZEN (no changes).
+C2-PILOT-2 VERDICT (66 + 6-repair; PRIMARY:
+extensive-coexistence? NO — no count≥2-persistent-
+NUCLEATED (k5-level!) anywhere): CONDENSATION 9
+(D5κ2@1600 (T→184-619k, K=85-91/140-143 (c=0.78/
+0.88 (single-point-extremal-consistent!), count-1,
+dust-bulk-89% (bulk-z=0.29 (starved!)), FROZEN
+(rate-0.4%), C≈0.85-0.93, topz-C≈0.8-0.9 (clique!),
+nuc=20 (ER-16!) vs 210-300 (ER-8!))); FRUSTRATED 15
+(D5∞-ALL-N (kmax=4 (CHURN-LIMIT!), K~100-400 (N-
+INDEPENDENT (α̂≈0!), hubs (topz-C≈0.05 (C≪1!)),
+T-SATURATED (3.5-11k (not pumped!)), giant 0.28-
+0.54, dust-majority-67% + z~21-sponge (saddle-
+connected (6400-gap-aware-bimodal (DUST-BARRED!)),
+ACTIVE-7% (exchange (not frozen!)))); POISSON+ 39
+(κ≤1-all-N (dep≈noise, kmax=3, k5-clean!) + κ2@
+3600/6400-repair (PLATEAU (slope≈0, rate-90%
+(ACTIVE!)) ⟹ thermo-Poisson (κ2<κ_c (likely!)));
+κ1-macro-k3-scraps (7-8 pieces (soup→0 (DEPARTURE!
+(enriched (NOT-nuclei (k_max=soup (no-new-scale!),
+k5-clean (locked-tracker-decides!)))))); D3-LIKE 6
+(D35-ER-8 (arrest-26-28, T+6-8 (scraps ✓ (revised-
+P6-CONFIRMED!)))); STILLBORN 9 (D35-ER-16/RR-8
+(D3-inheritance!)); DEFECT/COARSENING 0; protocols
+UNTRIGGERED (filed!). P1-P9: P1 REFUTED (frustrat-
+ed-instead (activity-subclaim-✓!)); P2 ✓ (L1-jump
+(κ_c∈(1,2)!)); P3 single-point-consistent + N*-
+BRACKET (ladder-straddles (α̂-unfittable!)); P4 ✓-
+rate (10×!); P5 SUPPORTED (κ2-single-from-birth
+(no-multi-transient!)); P6 ✓-revised; P7 ✓ (gap-
+1.0 (2/2!) + floor-nuance); P8 ✓-κ2; P9 REFUTED
+(anneal-window-EMPTY (κ≤1-barren!)). N*-BRACKET
+(NEW!): κ2-nucleates ⟺ N≲N*∈(1600,3600] (T=2000
+(plateau (likely-thermo!))) + growth-erosion-post-
+hoc (DILUTION (uniform-propose (attention∝K²/N²!)
+vs churn-erosion (crossover=N* (labeled!))) +
+κ3-PREDICTION (N*↑κ (followup!)). MIRROR-BROKEN
+(kinetics!): D5∞-hard (non-equilibrium (frustrat-
+ed!)) ≠ κ→∞-limit (extremal (equilibrium-only!)).
+REFINED-BRACKET: D3 (none) … D5∞ (frustrated
+(bounded-kmax-4 (SELF-LIMITING (proto-size-
+selection?! (churn-balance (LEAD (not-claim!))))))
+… D5κ2 (unbounded!) ⟹ next-question ADVANCED
+(frustration-as-selector?). RACE: local-won (head-
+start!) + remote-66/66-minutes-later + BIT-
+IDENTICAL-66/66 (cross-machine-trajectory-
+determinism (hist+T-trace+exec (filed!))); remote
+faster-per-worker (user-vindicated (3×6400 in
+4min!)). ΔT-BUGFIX (pre-campaign (overlap-
+correction (tests-caught (incremental≡exact!)) +
+smoke-void (re-smoked!)). LOCK-GAPS (filed): (i)
+discriminator-at-k_max=soup (resolved-by-k5-
+tracker!); (ii) k5-trace-blind-to-k4 (1-snapshot
+(mild!)); (iii) ladder-κ-gap (repaired! (κ1.5-
+followup!)); (iv) valley-island-scope. FOLLOWUPS
+(filed (not-now!)): κ1.5-ladder; κ3-6400; D3×∞;
+κ-grid×N-grid (κ_c(N)!); kmax-4-theory. NEXT:
+review-turn or next-design (gated on go).
+REVIEW RESPONSE (pilot-2 comments — agreed +
+sharpened, filed): BRACKET-HEADLINE (adopted):
+D3 (depletion (dust/arrest!)) … D5κ≤1 (entropy
+(Poisson+!)) … D5κ2-1600 (concentration (clique!))
+… D5∞ (FRUSTRATED (kmax-4-sponge!)). HARD≠ZERO-T
+(elevated): D5∞ restricts the ACCESSIBLE-TRANSITION-
+GRAPH (not reweights-configurations ⟹ Strauss/
+extremal reasoning INAPPLICABLE (equilibrium-only!)
+— beyond-this-experiment (filed!)). Γ+/Γ−-SKETCH
+(filed-rough (next-unit-derives!)): growth ∝ K²/N²
+(propose-dilution!) vs erosion ∝ (K²/E0)·e^{−κK}
+⟹ K_c ∝ (1/κ)·lnN (3.0→3.7 (WEAK (both-reachable!)))
+⟹ N*-bottleneck = SEED-SURVIVAL (dilution-starves-
+seeds-before-critical (not K_c-reach!)) — TESTABLE
+(K5-birth/death-vs-N (anatomy-reruns!)). SWEEPS-
+DEPRIORITIZED (agreed (reordered!)): κ1.5 (anatomy
+(useful (not-mechanistic!))); κ3-6400 AFTER
+derivation (quantitative-prediction-first (not
+probably-nucleates!)). D15-GATE (agreed (NOT-
+INVOKED!)): closed-until (D5∞-finite-scale +
+SSB-shown (automorphism-break (measure-open
+(orbit-structure? (next-unit-scopes!)))); conver-
+gence-if-any (unforced (neither-track-modified!)).
+INSTANCE (agreed): idle-remote = burning-$ (user-
+stops (no-API-creds-here (ssh-only!))).
+ANATOMY-LOCK (NEXT-UNIT (docs+anatomy (NO-new-
+conditions!)): (A) OFFLINE (saved-states!):
+kmax(t)/k4-count(t)/k4-Jaccard(t)/core-persistence
+(EXCHANGE-vs-STATIC (fixed-K* vs stationary-phase-
+with-churn (ontology-fit!)!) + T-plateau-shape
+(have!) + opportunity-stock (wedges(t)/T(t)!);
+(B) INSTRUMENTED-RERUNS (SAME-trajectories
+(verify-T-match!) + move-columns (t_loss/t_gain/
+accept (supply-demand-at-plateau!) + K5-birth/
+death (seed-rates-vs-N (κ2@1600-vs-3600 (N*-mech!
+)))); (C) DERIVATION (kmax-4-from-mechanics
+(supply-demand-balance!) + Γ+/Γ−-scaling (N* +
+fixed-point-math (stability-sign!)) + plateau-vs-
+transient (kmax(t)-flat (+CONTINGENT-T×2 (trigger:
+offline-flat-confirmed (decide-after-offline!)))
++ finite-time-churn-NULL (explicit!)); (D) D15-
+GATE-STATUS (closed (until-scale+SSB!)). NEXT:
+D5∞-anatomy (gated on go).
+D5∞-ANATOMY VERDICT (A: offline 30 runs (15 D5∞ + 9 κ2@1600 +
+6 κ2@big, every-100th saves); B: 12 instrumented reruns
+(D5∞@1600×3 plateau + κ2@1600×3×2 nuc/plateau + κ2@3600×3
+plateau), T-match 12/12 (9 main + 3 repair ⟹ logging perturbs
+nothing); INSTRUMENT: log_stride/log_window (deterministic-
+stride move columns, no RNG consumed) + k5_window (per-sweep
+k5) + 2 pins (suite 567+2skip: local 445s, beast 182s)):
+(A) OFFLINE — D5∞-ALL-N (15/15): kmax=4 LOCKED (300/300
+saves min-4 (never-3!), max-5 with only 0-2 single-save
+flickers/run (never-≥6-sustained!)); k4count early-1-4-pieces
+→ late-1-2 (consolidation (not coarsening-to-static!));
+EXCHANGE (not static!): Jaccard 0.02-0.31 (1600) / 0-0.16
+(3600) / 0-0.10 (6400), persistence ≤0.49/0.33/0.20 (vs
+static-1.0!); churn-band drifts ~2×-up over run (piece-
+consolidation) but stays churning; opportunity-stock (wedges)
+×1.25 (1600) / ×2.3 (3600) / ×3.15 (6400) (slow densifica-
+tion under LOCKED scale!). CONTRASTS: κ2@1600 (STATIC!):
+kmax 4→75-79 (ER8/RR8) / 21→136-137 (ER16 (nucleated-pre-
+100!)), jac/pers→1.0, wedges-×12, T-still-+1.8-2%/100sw
+(frozen-membership + slow-accretion!); κ2@big (thermo-
+Poisson!): kmax-3-4-flicker, k4count-0-always, wedges-
+×0.99-1.01, T-±0.25% (zero-concentration!).
+(B) RERUNS (supply-demand): D5∞-plateau: accept-6.8-7.0%,
+A-loss-1.65-1.66 vs A-gain-1.66-1.71 (net-+0.00-0.05 ≈ 0
+(balanced-pump↔churn!)); rejected-ALL-t_gain=0-at-same-
+t_loss (gain-only-gate-✓!); supply-bottom-heavy (P(g≥1)=
+6.9%, P(g≥2)=3.1-3.3%, P(g≥3)=1.1-1.2%, P(g≥4)=0.3%).
+κ2-nuc-window: accept-58-71%, R-loss-2.5-6.4 (hub-edge-
+protection-✓!). κ2@1600-plateau: accept-0.5%, R-loss-83-84
+(erosion-e^{−κK}-dead-✓!), accepted-net-+0.9-1.6 (slow-
+accretion!). κ2@3600-plateau: accept-89%, net-|·|≤0.001
+(detailed-balance-like!). K5-birth/death-per-450sw: D5∞-
+floored-0/0 BUT raw-16-25/16-25 (sub-floor-flicker (~2sw-
+episodes!) ⟹ seeds-FORM-and-churn-KILLS!); κ2@1600-nuc:
+floored-births-1-2/deaths-0-1 (SURVIVAL!); κ2@1600-plateau:
+present-450/450; κ2@3600: raw-0/0-over-1350 (seeds-NEVER-
+FORM ⟹ dilution-suppresses-FORMATION (not-just-survival!)
+⟹ Γ+/Γ−-REFINEMENT: N*-bottleneck-acts-at-BIRTH!).
+(C) DERIVATION (kmax-4-supply-sketch (filed-rough!)): count_4
+≈ E0·P(g≥2) = 197-211 vs observed-k4-node-mass-171/213/229
+(scale-match (units-caveat: edge-budget-vs-node-mass!));
+count_5 ≈ E0·P(g≥3) ≈ 70, count_6 ≈ E0·P(g≥4) ≈ 20 (below-
+sustained-membership ⟹ raw-flicker-only!) ⟹ kmax=4-is-
+where-supply-crosses-macroscopicity. PLATEAU-vs-TRANSIENT:
+kmax-exactly-flat-1900sw + T-drift-+0.5%/100sw (sub-%-slow-
+densification (DISCLOSED!)) + churn-band-bounded ⟹ STEADY
+(scale-stationary (strict-fixed-point-UNCLAIMED!)) ⟹ T×2-
+NOT-triggered (decided: extension-wouldn't-change-verdict!).
+FINITE-TIME-CHURN-NULL (explicit!): IF-churn-were-transient-
+coarsening-THEN-jac→1; observed-jac-band-bounded-≤0.28-+
+k5-raw-flicker-sustained (no-runaway!) ⟹ null-REJECTED-on-
+this-horizon.
+(D) D15-GATE: stays-CLOSED (finite-scale-✓ (kmax-4-locked!)
+BUT SSB-NOT-shown (automorphism-break-unmeasured (next-
+unit-scopes-measure!))). FOLLOWUPS (filed!): κ1.5-ladder;
+κ3-6400 (NOW-quantitative (N*(κ)-from-birth-suppression!));
+SSB-measure-scoping; D3×∞. NEXT: review-turn or next-design
+(gated on go).
+AGING+RATES (analysis-only followups (Units-1+2 (no-new-runs!))):
+(1) AGING-DECISIVE (case-(a)!): D5∞-late/early-T-slope-ratio
+0.16-0.63-ALL-15-runs (uniform-deceleration ⟹ approach-to-
+fixed-point (NOT-persistent-pumping!) ⟹ "steady"-filing-
+UPGRADED (aging-with-measured-deceleration!)); opportunity-
+halves: 100→1000-×1.2-2.85 vs 1000→2000-×1.03-1.12; late-
+abs-drift-↑N (+9-21/+20-34/+51-66-per-100sw) BUT relative-
+~0.4-0.5%-ALL-N (bigger-N-further-in-absolute (predicted-
+✓!)); κ2@1600-ratio-0.19-0.23-TIGHT (dust-depletion-
+deceleration!); κ2@big-flat-throughout (|slope|≤7 (true-
+flat!)). (2) RATES-MEASURED: D5∞-gate-perfect-step
+(P(acc|0)=0.000/P(acc|≥1)=1.000 (n=95k!)); κ2-in-situ-
+Metropolis-EXACT (P(−1)=0.127-0.133-vs-0.135,
+P(−2)=0.015-0.020-vs-0.018!); κ2@3600-P(gain≥3)=0/217520
+(ABSOLUTE-supply-collapse ⟹ birth-bottleneck-at-SUPPLY
+(conversion-undefined-0/0!)); K5-normalized: D5∞-birth/
+elig=6-7e-4 + death/K5-sweep=0.478 (~2sw-episodes,
+65/65-balanced (flicker-regime (good-stats!))); κ2-nuc-
+1-birth/0-deaths (present-96%-of-window (SURVIVAL-regime
+(birth-stats-too-thin-to-normalize (honest-small-n!))));
+MECHANISTIC-contrast-stands-on-DEATHS (0.48/sweep-vs-0!)
++ presence (10%-vs-96%!). Γ(4)-inequality: turnover-
+DEMONSTRATED (sustained-mass-+-churning-membership ⟹ both-
+directions->0!) with per-opportunity-normalization-DEFERRED
+(needs-k4win-logging (one-line-followup!)).
+SSB-1-VERDICT (same-soup-campaign (60-runs (2N×3-soups×
+10-dyn (d==S-identity-included!)), NO-lib-change (soup/
+dynamics-already-split!) + 3-pins (non-mutation (load-
+bearing!) + same-same-identical + same-diff-diverges)):
+identity-T-match-6/6 (apparatus-✓!); PRIMARY (floored-k4-
+core-Jaccard): same-soup-med-0.076@1600/0.033@3600 vs
+across-soup-0.070/0.032 vs random-0.067/0.032 (within-10%
+(≪-pre-reg-2×-band!) ⟹ INDISTINGUISHABLE-FROM-RANDOM
+(max-same-soup-0.119/0.060 (vs-imprint-threshold-0.8!)));
+SECONDARIES: Gini-0.76/0.79 (|m|-large!) + IPR-4-4.8×-
+delocalized (localized-with-varying-support!)). VERDICT:
+SPONTANEOUS (soup-imprints-NOTHING (dynamics-selects-
+among-~C(N,K)-equivalent-attractors!) ⟹ TEXTBOOK-
+BREAKING-of-statistical-S_N). SYMMETRY-RESTATEMENT
+(filed!): breakable-object = S_N-invariance-of-the-LAW
+(NOT-Aut (ER-draws-trivial-Aut-w.h.p. (classical!)));
+broken-variable = core/dust-partition. ⟹ D15-REOPENS
+(gate-both-halves-✓ (finite-scale-✓ + SSB-✓!)). NEXT:
+D15-design (gated on go).
+J2-ORIENTATION VERDICT ((c)-ISOTROPIC (32-runs (L28/42
+(J2-torus (N=1568/3528)) ×16-dyn (ONE-soup-each (exact-
+symmetry (imprinting-impossible-by-construction!))); new-
+soup-kind-j2_torus_graph+j2_torus_coords+2-pins (D14-side
+(robustness (soup-justification-filed!))))): cores-FORM
+(kmax-4 (+5-flickers!) + k4-89-280 + T0=0→ER-like-T*
+(triangle-free-bootstrap-✓!)); RADIAL-SSB-PRESERVED
+(loc-J-0.069/0.028≈random!); ORIENTATION-ABSENT: core-
+elongation-0.20-vs-null-0.11 (perm-p≤0.001 (REAL-but-
+WEAK-shape-noise!)) with FULL-CIRCLE-random-axes;
+global-edge-x/y-≤8% (ensemble-1.008/1.014!); quadrant-
+signs-null-consistent (6/32-unanimous-vs-4-expected
+(p≈0.28!)); quadrant-|m|-2-4×-independent-noise (=cor-
+related-clustering-noise (no-coherence!)); SHEET-
+SYMMETRY-PRESERVED (core-b0-0.49-0.50!). AUT(J2)-SURVEY-
+COMPLETE (D5∞!): translations-BROKEN (localization!) +
+orientation-PRESERVED + sheet-PRESERVED ⟹ NO-h1-vs-h2-
+distinction ⟹ compass-consumption-HAS-NO-INPUT; weak-
+formation-consumption-FORBIDDEN (age-rule-is-formation-
+side (principle-bites!)); radial-transfer-INCOHERENT-
+or-FORBIDDEN (rewired-≠J2 (apparatus-inapplicable!) /
+statistical-painting = hand-arranging!). ⟹ STOP-per-
+chain (D5∞-radial = WRONG-KIND (filed-precise (not-
+mushy!))); D15-STAYS-CLOSED (first-SSB-candidate-
+TESTED-and-EXCLUDED (radial-SSB-≠-pin-breaking!);
+admission-criterion-STANDS (provisional-amendment-MOOT
+(no-instability-to-admit!))). LIVE (not-now!): other-
+rules-orientation (D14-side!); D15′-real-space (own-
+prereg!); disordered-compass-theory (off-scorecard-
+endpoint (dissolves-detector (not-fires!))); sub-
+quadrant-texture (pin-irrelevant-per-uniformity-
+premise!). NEXT: review-turn or next-design (gated
+on go).
+COUNT-VS-N (analysis-only (existing-anatomy!)): late-
+k4-piece-count saturates ~1-ALL-N (means-1.15/1.28/1.06
+(1500-2000!); ≥2-full-run-freq-0.37/0.33/0.08 (N-↓ (floor-
+artifact-partly (floor-16/36/64!)))) ⟹ spontaneous-multi-
+object-scenes RARE/TRANSIENT (single-sponge-+-dust!) ⟹
+polarity-steps-5-7 (interactions/conversion/annihilation)
+UNTESTABLE-in-spontaneous-formation ⟹ prepared-two-blob-
+initials-NEEDED (flagged-for-non-interference-review
+(states-not-rules (scattering-methodology (proposed!)))).
+STAGE-0-PREREG (FROZEN-2026-10-01 (~17:35-UTC (commit-
+predates-reruns!)); individuals-+-kinematics-+-handed-
+ness (polarity-Step-0!)): INPUTS: J2-torus-L28-D5∞-reruns-
+d0-d3 + L42-d0-d1 (plateau-1500-2000 (SAME-trajectories
+(T-match-6/6-GATED (apparatus-invalid-if-fail!)))); NEW-
+COLUMNS: k4sets (per-sweep-floored-k4-node-sets (frozen-
+definition!)) + endpoint-moves (stride-logged-(sw,a,b,c,
+d,loss,gain,accepted) (observation-only (pins: T-match-
+with/without-logging!))). O1-BLOB-KINEMATICS: core-
+centroid (circular-mean (background-coords!)) MSD(τ)∝τ^α:
+α<0.7-CONFINED / 0.7-1.3-DIFFUSIVE / >1.3-DIRECTED
+(prespecified-bins!). O2-HANDEDNESS-H: per-accepted-move-
+angular-impulse-about-window-centroid-o (L=(r_a-o)×u +
+(r_b-o)×v (u=r_c-r_a, v=r_d-r_b (minimal-torus-disp!)));
+H=ΣL/(n·L²); persistent ⟺ 5/5-100sw-blocks-same-sign
+AND |Σ|>max-|shuffled| (10-order-shuffles (same-o!));
+across-run-signs-vary-expected (exact-symmetry!). O3
+(descriptive!): k4-mass-CV + axis-angle-diffusion (vs-
+ballistic!). DECISION: STAGE-0-POSITIVE ⟺ (O1-DIRECTED-
+or-rotating OR O2-persistent-vs-shuffled) in-≥2-runs;
+else-NULL (file-"D5∞-plateau-achiral" (STOP-debt-free-
+route-for-pure-D5∞ (C0-with-debts-guilt-free!))). NON-
+INTERFERENCE: same-trajectories (T-gated!) + frozen-
+k4 + plateau-window (anatomy-consistent!) + J2-soup
+(filed-justification (readout-basis!)). NEXT: Stage-0-
+reruns (gated on prereg-commit!).
+STAGE-0-AMENDMENT-1 (NULL-CORRECTION (committed-PRE-
+analysis (reruns-done/unopened (order-preserved!)))):
+O2-"order-shuffle"-null is VACUOUS (H-a-sum (order-
+invariant!) ⟹ shuffle-cannot-move-it (prereg-bug
+(owned!))); REPLACED-by per-move-SIGN-randomization
+(10-draws (each-move-L-sign-flipped-p=0.5 (tests-
+coherent-handedness-across-moves (the-actual-claim!))));
+bar-unchanged (|H_obs|>max-|H_signrand|); block-sign-
+stability (5/5) + everything-else-stands. Original-
+text-preserved-in-git-history (7761f49).
+STAGE-0-VERDICT (NULL (6/6-reruns (L28×4+L42×2 (plateau-
+1500-2000)); T-match-6/6-GATE-PASS!)): O1: 0/6-DIRECTED
+(3-CONFINED (α≈0 (rms-2-4 (sit+jiggle!))) + 3-DIFFUSIVE
+(α≈0.75-1.05 (wander-torus-scale (REAL (uncorrelated-
+steps (NOT-piece-flicker!))))) + 1-slither-ANECDOTE
+(L42-d0: x-rod-sliding-along-x (y-pinned-spread-1.0-vs-
+42.6!) (axis-aligned-mobility? (N=1 (followup!))))); O2:
+0/6-PERSISTENT (|H|-in-null-envelope (1-magnitude-exceed-
+with-flipping-blocks (correctly-rejected (bar-works!)));
+blocks-mixed-everywhere; signs-3+/3- (symmetric-noise!));
+O3: mass-CV-0.13-0.27 (stable!) + axes-static/diffusive/
+jitter (L28-d0-super diffusive-RESOLVED-as-jitter+drift
+(up-steps-0.53 + cut-crossings + ani-coupled-noise (NOT-
+spinning!))); empties-≤0.4%. ⟹ D5∞-PLATEAU-ACHIRAL
+(filed!); INDIVIDUALS-YES (trackable (Step-0-half-✓!))
+BUT CIRCULATION-SIGN-NO ⟹ POLARITY-PAUSED (no-grounded-
+binary-candidate (circulation-was-#1!)); ⟹ STOP-debt-
+free-route-for-pure-D5∞ (per-prereg!) ⟹ C0-WITH-DEBTS-
+GUILT-FREE (debt-free-attempt-MADE-and-COSTED (not-
+skipped!)). C0-INPUT: mobile-trackable-blobs (diffusive-
+wanderers + sitters (heterogeneity-mechanism-OPEN!));
+formation-provides-localization+mobility (ψ-must-provide-
+rest!). NEXT: C0-merge+prereg (gated on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
