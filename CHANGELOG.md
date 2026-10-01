@@ -3,6 +3,17 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (formation anatomy)** — D14 D5∞ frustration anatomy
+  (kmax-4 derivation): offline 30-run anatomy (kmax-4 locked all-N,
+  EXCHANGE churn jac≤0.31/pers≤0.49 vs κ2@1600 static jac→1.0,
+  opportunity-stock ×1.25-3.15) + 12 instrumented reruns (T-match
+  12/12; D5∞ plateau net≈0 balanced, gain-only gate confirmed; K5
+  raw flicker 16-25 births/run vs κ2@3600 zero-formation → Γ+/Γ−
+  birth-refinement); supply-sketch count_4≈200 vs 171-229; steady
+  verdict (T×2 declined, drift disclosed); D15 stays closed; move
+  logging (log_stride/log_window/k5_window, zero-perturbation) +
+  2 new tests (569 collected).
+
 - **unreleased (formation pilot-2)** — D14 C2-PILOT-2 triangle-closure
   (D5κ/D5∞/D35; 66 union-runs + 6-repair κ2-ladder; local-remote race,
   bit-identical 66/66): verdict NO-coexistence (CONDENSATION 9

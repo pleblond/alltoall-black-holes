@@ -137,3 +137,24 @@ def test_E_conservation_D5():
     ):
         r = formation_run(st, drv, 4, 0, t_max=20, **kw)
         assert r["e_final"] == r["e0"]
+
+
+def test_log_moves_shape_and_purity():
+    st = state_from_nx(soup_graph("er", 100, 8, 0))
+    r = formation_run(st, "d5k", 4, 0, t_max=15, kappa=1.0, log_stride=10)
+    assert len(r["moves"]) > 100
+    assert all(len(m) == 4 and isinstance(m[0], int) for m in r["moves"])
+    assert any(m[3] for m in r["moves"]) and any(not m[3] for m in r["moves"])
+    r2 = formation_run(st, "d5k", 4, 0, t_max=15, kappa=1.0, log_stride=10)
+    assert r["moves"] == r2["moves"]  # deterministic log
+    r0 = formation_run(st, "d5k", 4, 0, t_max=15, kappa=1.0)
+    assert r["hist_final"] == r0["hist_final"]  # observation-pure
+    assert r["executes_trace"] == r0["executes_trace"]
+    assert r["t_trace"] == r0["t_trace"]
+
+
+def test_k5_window():
+    st = state_from_nx(soup_graph("er", 100, 8, 0))
+    r = formation_run(st, "d5k", 4, 0, t_max=30, kappa=1.0, k5_window=(11, 29))
+    assert sorted(r["k5win"]) == [x for x in range(11, 30) if x % 10 != 0]
+    assert all(v[0] >= 0 for v in r["k5win"].values())

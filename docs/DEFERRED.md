@@ -2757,6 +2757,64 @@ offline-flat-confirmed (decide-after-offline!)))
 + finite-time-churn-NULL (explicit!)); (D) D15-
 GATE-STATUS (closed (until-scale+SSB!)). NEXT:
 D5∞-anatomy (gated on go).
+D5∞-ANATOMY VERDICT (A: offline 30 runs (15 D5∞ + 9 κ2@1600 +
+6 κ2@big, every-100th saves); B: 12 instrumented reruns
+(D5∞@1600×3 plateau + κ2@1600×3×2 nuc/plateau + κ2@3600×3
+plateau), T-match 12/12 (9 main + 3 repair ⟹ logging perturbs
+nothing); INSTRUMENT: log_stride/log_window (deterministic-
+stride move columns, no RNG consumed) + k5_window (per-sweep
+k5) + 2 pins (suite 567+2skip: local 445s, beast 182s)):
+(A) OFFLINE — D5∞-ALL-N (15/15): kmax=4 LOCKED (300/300
+saves min-4 (never-3!), max-5 with only 0-2 single-save
+flickers/run (never-≥6-sustained!)); k4count early-1-4-pieces
+→ late-1-2 (consolidation (not coarsening-to-static!));
+EXCHANGE (not static!): Jaccard 0.02-0.31 (1600) / 0-0.16
+(3600) / 0-0.10 (6400), persistence ≤0.49/0.33/0.20 (vs
+static-1.0!); churn-band drifts ~2×-up over run (piece-
+consolidation) but stays churning; opportunity-stock (wedges)
+×1.25 (1600) / ×2.3 (3600) / ×3.15 (6400) (slow densifica-
+tion under LOCKED scale!). CONTRASTS: κ2@1600 (STATIC!):
+kmax 4→75-79 (ER8/RR8) / 21→136-137 (ER16 (nucleated-pre-
+100!)), jac/pers→1.0, wedges-×12, T-still-+1.8-2%/100sw
+(frozen-membership + slow-accretion!); κ2@big (thermo-
+Poisson!): kmax-3-4-flicker, k4count-0-always, wedges-
+×0.99-1.01, T-±0.25% (zero-concentration!).
+(B) RERUNS (supply-demand): D5∞-plateau: accept-6.8-7.0%,
+A-loss-1.65-1.66 vs A-gain-1.66-1.71 (net-+0.00-0.05 ≈ 0
+(balanced-pump↔churn!)); rejected-ALL-t_gain=0-at-same-
+t_loss (gain-only-gate-✓!); supply-bottom-heavy (P(g≥1)=
+6.9%, P(g≥2)=3.1-3.3%, P(g≥3)=1.1-1.2%, P(g≥4)=0.3%).
+κ2-nuc-window: accept-58-71%, R-loss-2.5-6.4 (hub-edge-
+protection-✓!). κ2@1600-plateau: accept-0.5%, R-loss-83-84
+(erosion-e^{−κK}-dead-✓!), accepted-net-+0.9-1.6 (slow-
+accretion!). κ2@3600-plateau: accept-89%, net-|·|≤0.001
+(detailed-balance-like!). K5-birth/death-per-450sw: D5∞-
+floored-0/0 BUT raw-16-25/16-25 (sub-floor-flicker (~2sw-
+episodes!) ⟹ seeds-FORM-and-churn-KILLS!); κ2@1600-nuc:
+floored-births-1-2/deaths-0-1 (SURVIVAL!); κ2@1600-plateau:
+present-450/450; κ2@3600: raw-0/0-over-1350 (seeds-NEVER-
+FORM ⟹ dilution-suppresses-FORMATION (not-just-survival!)
+⟹ Γ+/Γ−-REFINEMENT: N*-bottleneck-acts-at-BIRTH!).
+(C) DERIVATION (kmax-4-supply-sketch (filed-rough!)): count_4
+≈ E0·P(g≥2) = 197-211 vs observed-k4-node-mass-171/213/229
+(scale-match (units-caveat: edge-budget-vs-node-mass!));
+count_5 ≈ E0·P(g≥3) ≈ 70, count_6 ≈ E0·P(g≥4) ≈ 20 (below-
+sustained-membership ⟹ raw-flicker-only!) ⟹ kmax=4-is-
+where-supply-crosses-macroscopicity. PLATEAU-vs-TRANSIENT:
+kmax-exactly-flat-1900sw + T-drift-+0.5%/100sw (sub-%-slow-
+densification (DISCLOSED!)) + churn-band-bounded ⟹ STEADY
+(scale-stationary (strict-fixed-point-UNCLAIMED!)) ⟹ T×2-
+NOT-triggered (decided: extension-wouldn't-change-verdict!).
+FINITE-TIME-CHURN-NULL (explicit!): IF-churn-were-transient-
+coarsening-THEN-jac→1; observed-jac-band-bounded-≤0.28-+
+k5-raw-flicker-sustained (no-runaway!) ⟹ null-REJECTED-on-
+this-horizon.
+(D) D15-GATE: stays-CLOSED (finite-scale-✓ (kmax-4-locked!)
+BUT SSB-NOT-shown (automorphism-break-unmeasured (next-
+unit-scopes-measure!))). FOLLOWUPS (filed!): κ1.5-ladder;
+κ3-6400 (NOW-quantitative (N*(κ)-from-birth-suppression!));
+SSB-measure-scoping; D3×∞. NEXT: review-turn or next-design
+(gated on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
