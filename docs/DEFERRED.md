@@ -3090,6 +3090,30 @@ substrate!))); bar-unchanged (positivity (not-magnitude!)). (2)-torus-
 T=40→25 (no-wrap-guarantee (disp≈24<L=30 (was-38-wrap!)); α-range-
 thins-to-2× (ring-carries-range-role!)). Everything-else-stands.
 NEXT: P1.1a+P1.1b-pilot (gated on amendment-commit!).
+P1.1a-VERDICT (PASS (beast (12s!)); ring-400 + torus-grid-30 (T=120/
+25 (amended!))): ring: v=±0.9583-vs-2sin(0.5)=0.9589 (0.006%!);
+reversal-exact (±0.9583!); zero-k-0.0000; α=2.00/2.00; C_v-bins-
++1.000-all-10 (perfect-persistence!); norm-7e-13; disp=115<200-✓.
+torus: v=+0.9668/-0.9647-vs-0.9589 (0.8%!); transverse-0.0000;
+α=2.05/2.04; C_v-+0.996; norm-2e-14; disp=24.2<30-✓. ALL-22-
+substrate-checks-PASS (11+11!) ⟹ ballistic-detector-VALIDATED
+(ψ-only→directed-no-object (control-row-✓!)). NOTE-filed: zero-k-α
+= fit-noise-on-stationary-COM (ring-0.00/torus-2.72/J2-3.21 (disp=
+0.0-all!)) ⟹ α-meaningless-when-stationary (criteria-correctly-
+use-speed-for-zero-k (no-impact!)).
+P1-AMENDMENT-3 (J2-window-shortening (PRE-RERUN (pilot-1-opened:
+physics-PASS + gate-MISS (both-filed (below-vs-above!)))): T=12→10
+(measured-v=1.235 ⟹ disp≈12.3<L/2=14 (arithmetic (not-tuning!)));
+same-5-packets/same-gates/same-criteria; ring/torus-STAND (passed
+(rerun-replicates!))). P1.1b-PILOT-1-filed (SUPERSEDED (gate-miss
+(no-verdict-drawn (discipline!))): ALL-physics-PASS-with-margin
+(α=2.12-2.15 (vs-1.3!); reversal-exact (1.2246/1.2353!); conjugation-
+exact; purity-100.00%-all-5 (w0=0.0000!); mixing-2e-13 (vs-1e-6!);
+zero-k-exact-null (disp=0.0!); n_zero=838-filed!) BUT nowrap-gate-
+MISS (disp=14.8-15.0-vs-14 (7%-over (T=12-round-number-too-long!)));
+R²=0.9993-0.9995 (COM-clean (no-interference-signature (gate-was-
+conservative (center-based!)))). NEXT: pilot-2-T10 (gated on
+amendment-commit!).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

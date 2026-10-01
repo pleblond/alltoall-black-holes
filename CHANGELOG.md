@@ -29,6 +29,12 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   positivity (T=120 ring = 7.7 packet-crossings, not 10);
   torus-grid T=40→25 (no-wrap guarantee, disp 24<30).
 
+- **unreleased (P1 pilot-1)** — D14-P1 wave-only results (beast):
+  P1.1a PASS (ring v=0.9583 vs 0.9589, α=2.00, C_v=+1.000;
+  torus v=0.967/0.965, α=2.05/2.04, C_v=+0.996; 22/22 checks);
+  P1.1b pilot-1 superseded (physics all-pass, nowrap gate missed
+  7% at T=12) → amendment-3 (T=10, same gates/criteria).
+
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
   wanderers + 1 slither anecdote), 0/6 persistent handedness
