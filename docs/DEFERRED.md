@@ -2937,6 +2937,29 @@ coherent-handedness-across-moves (the-actual-claim!))));
 bar-unchanged (|H_obs|>max-|H_signrand|); block-sign-
 stability (5/5) + everything-else-stands. Original-
 text-preserved-in-git-history (7761f49).
+STAGE-0-VERDICT (NULL (6/6-reruns (L28×4+L42×2 (plateau-
+1500-2000)); T-match-6/6-GATE-PASS!)): O1: 0/6-DIRECTED
+(3-CONFINED (α≈0 (rms-2-4 (sit+jiggle!))) + 3-DIFFUSIVE
+(α≈0.75-1.05 (wander-torus-scale (REAL (uncorrelated-
+steps (NOT-piece-flicker!))))) + 1-slither-ANECDOTE
+(L42-d0: x-rod-sliding-along-x (y-pinned-spread-1.0-vs-
+42.6!) (axis-aligned-mobility? (N=1 (followup!))))); O2:
+0/6-PERSISTENT (|H|-in-null-envelope (1-magnitude-exceed-
+with-flipping-blocks (correctly-rejected (bar-works!)));
+blocks-mixed-everywhere; signs-3+/3- (symmetric-noise!));
+O3: mass-CV-0.13-0.27 (stable!) + axes-static/diffusive/
+jitter (L28-d0-super diffusive-RESOLVED-as-jitter+drift
+(up-steps-0.53 + cut-crossings + ani-coupled-noise (NOT-
+spinning!))); empties-≤0.4%. ⟹ D5∞-PLATEAU-ACHIRAL
+(filed!); INDIVIDUALS-YES (trackable (Step-0-half-✓!))
+BUT CIRCULATION-SIGN-NO ⟹ POLARITY-PAUSED (no-grounded-
+binary-candidate (circulation-was-#1!)); ⟹ STOP-debt-
+free-route-for-pure-D5∞ (per-prereg!) ⟹ C0-WITH-DEBTS-
+GUILT-FREE (debt-free-attempt-MADE-and-COSTED (not-
+skipped!)). C0-INPUT: mobile-trackable-blobs (diffusive-
+wanderers + sitters (heterogeneity-mechanism-OPEN!));
+formation-provides-localization+mobility (ψ-must-provide-
+rest!). NEXT: C0-merge+prereg (gated on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

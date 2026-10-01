@@ -3,6 +3,13 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
+  (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
+  wanderers + 1 slither anecdote), 0/6 persistent handedness
+  (achiral plateau) ⟹ STOP debt-free route for pure D5∞ (polarity
+  paused: individuals yes, circulation-sign no); C0-with-debts
+  guilt-free; k4sets + endpoint logging + 2 pins (576 collected).
+
 - **unreleased (formation J2-orientation)** — D14/D15 orientation fork
   (32 runs, J2-torus L28/42 ×16 dyn, exact-symmetry soup): verdict
   (c) ISOTROPIC (cores form, T0=0 bootstraps, radial SSB preserved,
