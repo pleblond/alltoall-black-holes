@@ -8,6 +8,7 @@ local z < threshold). State is plain-Python (dict-of-sets + indexed edge
 list) for a fast hot loop; nx adapters at the boundary. Deterministic
 given seed (random.Random + sorted construction; see per-function notes).
 """
+
 from __future__ import annotations
 
 import random
@@ -201,8 +202,16 @@ def assortativity(st: dict) -> float:
     return (sxy - sx * sx) / denom
 
 
-def formation_run(st0: dict, driver: str, thr: int, seed: int, w_arrest: int = 20,
-                  stat_window: int = 50, stat_tol: float = 0.02, t_max: int = 2000) -> dict:
+def formation_run(
+    st0: dict,
+    driver: str,
+    thr: int,
+    seed: int,
+    w_arrest: int = 20,
+    stat_window: int = 50,
+    stat_tol: float = 0.02,
+    t_max: int = 2000,
+) -> dict:
     """Run D1 (ungated) / D3 (floppy-gated, OR) relocation to a stop rule.
 
     Sweep = E0 proposals (attempts incl. blocks/Nones). Stops: stillborn
@@ -250,10 +259,14 @@ def formation_run(st0: dict, driver: str, thr: int, seed: int, w_arrest: int = 2
         if sw > w_arrest and sum(per_sweep[-w_arrest:]) == 0:
             stop = "arrest"
             break
-        if sw >= stat_window and sw % 10 == 0 and sw - stat_window in snaps:
-            if l1_hist(snaps[sw], snaps[sw - stat_window], n) < stat_tol:
-                stop = "stationary"
-                break
+        if (
+            sw >= stat_window
+            and sw % 10 == 0
+            and sw - stat_window in snaps
+            and l1_hist(snaps[sw], snaps[sw - stat_window], n) < stat_tol
+        ):
+            stop = "stationary"
+            break
     if stop is None:
         stop = "cap"
     hf = coord_hist(st)

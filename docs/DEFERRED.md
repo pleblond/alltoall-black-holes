@@ -2349,6 +2349,46 @@ VERDICT RULE (locked): sweep-unanimous-DARK over [0.5%,10%]
 Poisson-tail sparseness — VERIFY (expected tail counts vs
 observed + bulk var vs Poisson; filed either way; verdict
 robust to mechanism (mass alone decides)).
+C2-PILOT-1 VERDICT: DARK (SWEEP-PROVEN — 54/54 runs):
+floor-sweep WEAK = 0/54 UNANIMOUS over [0.5%,10%] (20×);
+floors below fluctuation scale admit artifacts (0.10%:
+2/54, 0.25%: 1/54 — as predicted). DETECTOR SAGA (filed):
+letter 6/54 → mass-2 4/54 → gap-aware 2/54 (ALL on D1
+null) → floor-sweep 0/54. NO non-dust bimodality
+ANYWHERE (no two macroscopic bulks in any of 54 hists).
+D1 NULL (18/18): cap + full activity (rate_tail == E0
+EXACT, slope +0.000) + unimodal + POISSON EQUILIBRIUM
+(var≈mean all 18 (7.4-8.5 vs 8; 15.3-16.5 vs 16) —
+D1 = Poissonizer (no regularization (guess refuted)));
+drift ER 0.055-0.152 (≈ noise floor 0.106 PREDICTED ✓),
+RR 1.71-1.73 (delta-broadening transient); |assort| ≤
+0.029 (mixed). D3 (13 arrest + 23 stillborn, ZERO
+active — active-steady-state HOPE DEAD): arrests ALL
+rigid+dust (13/13 theorem checks; ncomp = dust+1 EXACT
+(all non-giant comps singletons); dust thr3 ~1% (16-20),
+thr4 ~4% (65-68 @1600, 145-163 @3600), thr5 ~11%
+(171-190); giants 0.99/0.96/0.88-0.89 (thr5 < 0.9!);
+arrest ≤ 34 sweeps, execs 3-803); stillborns RR-8 12/12
+(theorem) + ER-16 11/12 (one marginal-live: 3 execs,
+1 dust — Poisson-tail lottery). ISLANDS = Poisson-tail
+sparseness QUANTITATIVE (obs z≥18 vs expected: 4v2.3,
+1v2.4, 5v2.6, 7v6.2, 8v6.0, 4v5.7, ..., ER-16 bullseye
+(543v556, 1252v1234 — all ~2σ)). SOUPS 18/18 valid
+(gap-aware); DETERMINISM 23/23 exact cross-process
+(stillborn finals); E-CONSERVATION 54/54. GATE LESSON:
+literal stationarity gate = freeze-detector (noise
+0.1 ≫ tol 0.02 — never fires on active runs; filed,
+unchanged; settled-active read via characterization).
+DESIGN LESSON (big): NO CONCENTRATION PATHWAY —
+loser-shedding + diffuse-gain → dust-or-nothing
+PROVABLY (no mechanism concentrates!); knots need
+concentration. LEADS (design next turn): D5
+triangle-closure (LEAD: local, blind-legal,
+concentrates CLUSTERING (knot-like) vs fabric) /
+D4 gainer-bias (PA-mimetic → hubs (≠ knots!)) /
+C2-PILOT-2 geometric (positions + spatial rewiring
+(STRONG home)). DARK branch = pivot knobs (pointer
+filed; next design gated on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

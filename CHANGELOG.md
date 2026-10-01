@@ -3,6 +3,15 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (formation pilot)** — D14 C2-PILOT-1 topological formation
+  (E-conserving relocation on ER/RR soup; D1 null + D3 floppy-gated
+  kinetics; 54-run grid N=1600/3600): verdict DARK (sweep-proven 0/54
+  WEAK over 20× floor range; no non-dust bimodality anywhere; D3 hope
+  dead — 13 dust-shedding arrests + 23 stillborns, zero active; D1 null
+  holds — Poisson equilibrium var≈mean all 18); arrest⟺rigid+dust
+  theorem 13/13; detector saga letter→mass→gap→floor (Poisson-tail
+  islands quantitative); amendments 2 (STRONG re-homed to geometric
+  formation) + 3/4 (valley calibration); 15 new tests (555 collected).
 - **v5.3** — D1 update-rule tournament (third pass) + D14 pricing-hierarchy
   closure + J2 micro/macro probe: tournament harness + 11 rules
   (single-move insufficiency, (`p`, longs) joint falsifier; coordinated
