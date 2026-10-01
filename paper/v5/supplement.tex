@@ -16,7 +16,7 @@
 \section{Parameter audit and honesty ledger}
 \label{sec:audit}
 
-\begin{table}[ht]\centering\scriptsize
+\begin{table}[ht]\centering\scriptsize\renewcommand{\arraystretch}{0.94}
 \caption{Every number with a status. ``Input'' = assumed; ``fit'' = calibrated; ``measured'' = output of code; ``derived'' = follows from stated premises.}
 \begin{tabular}{@{}p{3.4cm} p{3.4cm} p{2.6cm} p{4.4cm}@{}}\toprule
 param & value & status & notes \\\midrule
@@ -37,7 +37,9 @@ $d_{\mathrm{eff}}$ protocol & $d\ln V/d\ln r$ bracket & measured (25 tests) & sh
 D10 tension map & GR dip/overshoot/$\to3^+$ & GR computed; graph open & bare shortest-path rejected (inverted); D11 tail tension-dep.\ ($\chi$1 $1/r^2$, $\chi$2 $1/r$, $\chi$5 crossover $q{\to}1.1$); $\kappa$-profile closed (disk, mild-disk confirm) \\
 D12 reconstruction & $\forall M_O \in \mathcal{A}_{\mathrm{macro}}$ same IR & open program & P4 audit 1,2,3,5 pass, 4 partial; vantage axis filed; static depth neg.\ (vol+MDS); MDS bar per-substrate (del bowl) \\
 D13 causal order & D13.0 control measured; stages 1--4 open & static control measured (S11) & $V_G$, $8r{+}4$ law; family (tri/hex/Del/Lloyd/Gab/kNN/medial +, gated-wall/rewired $-$); sweep: N* O(1) range, f*→0 hypoth.; spectral $d_s$ band; twins C3 \\
-$U$-rule search & locality protection by $U$ & order-4 chain heals all tried & 11 rules; T-knob orders 2+3; ($p$,longs) joint falsifier \\
+$U$-rule search & locality protection by $U$ & third pass: blind-$U$ + substrate census & blind-$U$ + admissibility; 7-substrate coord.\ verdicts; self-cal.\ census \\
+D14 pricing origin & hierarchy gain $\sim$350 & debt by elimination (measured) & basin + feedback OK (0.68); linear mem = static; ratio fails; formation inherits \\
+J2 micro/macro probe & quotient = square lattice & measured (probe, tier deferred) & shells $8r$/cuts $32r{+}16$/quotient $4r$ exact; bipartite; perturb.\ family-typical \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
@@ -495,6 +497,9 @@ Modules follow the appendix letters of the v4.1 extended record:
 \path{pulsar}+\path{orici} gradient shells+\path{collapse} leg-shedding (BU),
 \path{uvscatter}+\path{sinkor}+\path{shellscale} (BV),
 \path{massgaps} (mass-gap null + GW190814 epoch audit).
+Update-rule and dimension programs: \path{update_rule} (D1 tournament),
+\path{blind_u} (D1 blind-$U$), \path{weighted} (D10/D14 pricing),
+\path{spectral} (D10 second leg).
 \par}
 
 Reproduce:
@@ -662,7 +667,8 @@ stalls seed7, $T_0{=}2$ annealing clears seed7 --- neither pole
 dominates (stall topology differs). The knob replicates at order 2
 (pair\_anneal matches-or-beats pair on every stream); gate-default
 adoption rejected (worse-on-s5 default is bad science).
-Reproduce: \path{pytest tests/test_scrambling.py tests/test_substrate_family.py tests/test_spectral.py tests/test_update_rule.py -q}.
+Reproduce: \path{pytest tests/test_scrambling.py tests/test_substrate_family.py tests/test_spectral.py -q} (D13);
+\path{pytest tests/test_update_rule.py tests/test_blind_u.py tests/test_weighted.py tests/test_j2.py -q} (D1/D14/J2).
 
 \textbf{Dynamics coherence (C1--C5, over-arching).} $M_O \circ U \simeq
 U_{\mathrm{eff}} \circ M_O$ in five levels: coherence $\to$ locality
@@ -672,5 +678,60 @@ is defined by the twin-histories criterion
 $M_O(G_a) = M_O(G_b) \Rightarrow M_O(U(G_a)) \simeq M_O(U(G_b))$;
 factoring $M_O$ through future-equivalence classes does \emph{not} imply
 it (two-bit swap counterexample: singleton classes, failing twins).
+
+\textbf{Update-rule tournament, third pass (D1).} Blind-$U$ reframing
+adopted: stationary-ensemble vacuum with $U$-admissibility (drift /
+square / triangle first entrants; Metropolis no-window, grid-not-optimum,
+and kappa frozen-descent negatives; triangle-landing misdirection plus
+degree-fiber reachability). Cross-candidate battery opened (triangular
+healing generalizes $24{\to}13$; hex needs fabric-relative radius).
+Coordination need is substrate-dependent: triangular pair alone fully
+heals ($24{\to}0$, $p$ bit-plain); hex floor resolved (leaf edges,
+interior census $0$, guillotine $54{\to}17$); Delaunay reference heals
+at order 2 (pair600 $21{\to}0$); Gabriel hits a broad-spectrum census
+limit (descent overshoots below plain); medial mixed (strict gate
+$6{\to}0$ in one accept); k-NN mostly-heals (floor 16); Lloyd heals via
+chain (pair grinds to 1, strict clears). Self-calibrating census
+(median-relative; exact on gapped, Gabriel unseparated).
+Reproduce: \path{pytest tests/test_update_rule.py tests/test_blind_u.py -q}.
+
+\textbf{Pricing-hierarchy origin (D14).} Weighted-graph audit adopted
+(event sweep + edge census; 3-vertex cross-checks; weight-tolerance
+recovery at $L_w{=}20$; T15 cites Prop.~1). Weighted RG: $L_w{=}10$
+washes out by level 3 (pricing irrelevant above span scale; vacuum
+RG-protected, no pumping needed); $\Phi$-apparatus with tolerance
+contour; knot pilot (dual ruler, no bundle mixing, ruler-trap law).
+Experiment~A (Form-1 relaxation): control bit-exact, $\beta{=}350$
+recovers the banked slice ($(36,23,7,0)$ vs $(36,23,5,0)$), $\Delta
+y_w$ split (substitution at price level, span-selection at $\Phi$
+level). Walk-atrophy killed ($0/8$ horizons plus inverted signal;
+avoidance is conductance math). Betw-congestion closure: feedback
+attenuates ($m{=}1$: factor $0.684$, in-basin cross at $k{=}3$; $m{=}4$
+exit is a cadence artifact), concave-$D$ holds --- static $\chi$
+closed. Stateful-scale derivation: linear memory equals static (LTI
+steady map), nonlinearity buys shape not magnitude
+(characteristic-scale lemma), YES-prong criterion (gain must be a
+structural number; unoccupied). Gain-free discriminator fails
+(weak median $6.2$, rows $(39,30,20,4)$, no crossing; threshold
+narrowed to $(6.2,11.0)$): the gain is debt by elimination, and
+magnitude origin passes to formation/dynamic topology.
+Reproduce: \path{pytest tests/test_weighted.py -q}.
+
+\textbf{J2 micro/macro probe (D10).} $J_2 = \mathbb{Z}^2 \rtimes
+\mathbb{Z}_2$ walk graph (degree 8; substrate of
+D'Ariano--Erba--Perinotti, Phys.\ Rev.\ A 100, 012106 (2019)),
+pre-registered as a probe, not Tier-1-track (index 2 over
+$\mathbb{Z}^2$, hence quasi-isometric to the square lattice:
+long-scale $d{=}2$ is a control). Quotient verified computationally
+(1861 cells, every edge square-adjacent, 1741 interior cells square-4
+with micro-multiplicity 4, quotient shells exactly $4r$); exact micro
+laws (shells $8r$ for $r \ge 3$, cuts $32r{+}16$ for $r \ge 2$);
+bipartite correction filed ($q{=}x{+}y$ bipartition, odd returns vanish
+exactly --- a pre-registered aperiodic prediction falsified with
+mechanism); 4-cycle census $26072$ at $R{=}18$ ($\sim$20$\times$
+square-equivalent); perturbation family-typical (swaps $2/3$ kill,
+$q$-deletion robust) --- no tier claim; banked for the queued
+isotropy program.
+Reproduce: \path{pytest tests/test_j2.py -q}.
 
 \end{document}
