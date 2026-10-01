@@ -2584,6 +2584,60 @@ COST (filed): Δt/set-∩ O(z̄) (sweep ~2-4× D1);
 truss-post ~10s/run ⟹ ~1-2.5h (tmux-backgroundable
 (precedent!)). NEXT: C2-PILOT-2 (code+run, gated
 on go).
+REVIEW RESPONSE (D5-derivation comments — agreed +
+sharpened, filed): STRAUSS (proof (3-line, filed):
+π(G)P(G→G') = e^{κT}·q·min(1,e^{κΔT}) =
+q·min(e^{κT},e^{κT'}) (symmetric ✓); q symmetric
+⟸ E-fixed (same E (loser 1/E) + same non-edge-count
+(gainer (1/(C(N,2)−E))) both directions; cap-self-
+loops trivially balance (filed!)) + TEST-LIST
+(locked for code turn: propose-mechanism (uniform-
+marginals (pilot-1-pinned!) + cap-determinism (dense-
+graph None-forcing (new!))) + acceptance-EXACT
+(synthetic Δt (κ=1: +2→1.0, −1→e^{−1} (tol!);
+κ=0→1.0 (D1-exactness!))) + κ0≡D1 same-seed
+trajectory-equality (rng-parity (accept-draw ONLY
+if Δt_net<0 AND κ>0 (short-circuit (locked!)))) +
+Δt-accounting (synthetic (gain/loss/net exact!)) +
+truss-units (synthetic clique+scraps (k_max/count/
+K/sizes exact!) + Charikar-cross-check)).
+TWO-SIDED (elevated to STRUCTURAL REQUIREMENT
+(predictive: IF P1 confirms THEN single-sided
+insufficient (bracketing!) → size-selection (next-
+question (below!)))); D35 = TWO-GATED-ONE-
+DIRECTIONAL (poor→poorer + clustered→richer (same
+polarization (no restoring force!) — two-gated ≠
+two-sided (filed distinction!))). TRIPWIRE (locked):
+α̂(κ)-systematic-variation ⟹ BEYOND-EXTREMAL (flag
+(investigate (not verdict-flip!)); K = top-truss-
+size (core (halo excluded (filed!)))). COUNT(t)
+DISCIPLINE (locked): sampled every 10 sweeps (filed
+full-trace); coexistence-claim needs count≥2 FLAT
+over trailing-half (qualitative-evident (reader-
+sees!) + coarsening-fit count~t^{−β} (characteriza-
+tion (not gate!))); NO verdicts from single
+snapshots (1→10→6→3→1 ≠ multi-knot (filed!)).
+D35-LENS (pre-registered discovery-lens (not post-
+hoc!)): IF D35 count≥2-persistent THEN moat-
+hypothesis (floppy-shedding digs DUST-MOATS (z→0
+rings) insulating knots (no-edges ⟹ no-merger-path
+⟹ topological-insulation (THIRD thing (neither
+selection nor slow-merger!))); measure z-profile
+vs knot-distance (moat = dip!)) + extended-T
+rerun (T×2 (contingent (locked!))).
+ARREST-PROTOCOL (locked, triggered iff count≥2-
+persistent-in-T): (i) κ-test (lifetime ↓ as κ↓
+(arrest melts!) vs K* κ-robust (selection!));
+(ii) T-extension (T×2 (count↓ (arrest!) vs flat
+(selection?!))); (iii) quench-then-anneal
+(nucleate (∞/2) → anneal (1/0.5) (count↓ (no-
+selection!) vs persist (selection?! (contingent
+(not in 72!)))). BRACKETING (adopted): D3 (no-
+concentration) … D5 (unbounded-concentration) ⟹
+NEXT-QUESTION (adopted, gates post-campaign turn):
+what graph-internal mechanism creates a preferred
+finite concentration scale? 72 FROZEN (no changes).
+NEXT: C2-PILOT-2 campaign (gated on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
