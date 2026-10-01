@@ -3,6 +3,14 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (COH prereg)** — COH phase-coherence campaign opened on
+  P1-ballistic tail (PR #65): bare-J2 two-path interferometry preregistered
+  (COH-0 calibration, COH-1 controlled phase, COH-2 V(Dl)/V(T)/V(Dt),
+  COH-3 spectral-spread tau ~ 1/dE; superposition prep + recombination by
+  addition, 8-phase V fits, normalized C = V/|S| headline, later
+  formed/nonlinear/path-record controls queued); `coherence.py` apparatus
+  (J2 reflections, pair algebra, phi/fringe fits, spectral spread) + 12 pins.
+
 - **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked
   (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
