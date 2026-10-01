@@ -276,4 +276,42 @@ no T-match needed). Suite stays green (parallel xdist on beast).
   fires only on J (J^2=-I, J^T G J=G, [U,J]=0). Own prereg. D15 untouched
   until then.
 
-## Verdicts (append below; nothing above this line changes post-freeze)
+## Verdicts (append below; nothing above this line changes post-freeze
+except via numbered amendments, pre-data, same discipline as D14)
+
+## Amendment-1 (orientation correction, committed PRE-data, pre-implementation)
+
+Seed: while specifying `winding()` I found by analytic check (wheel-graph
+counterexample: canonical a<b<c face orientation reads W = -10/11 for a
+genuine m=1 lattice vortex) that canonical label orientation does NOT
+telescope: interior bonds fail to cancel, Stokes fails, the sum is
+orientation noise, not winding. Face-sum REQUIRES consistently oriented
+faces. Fix (locked):
+
+- Faces are oriented by signed area in the J2 readout coords: for triangle
+  (a,b,c), e1 = mindisp(a->b), e2 = mindisp(a->c) (minimal torus
+  displacement in (x,y)); sign = sign(e1_x e2_y - e1_y e2_x); cyclic order
+  flipped to make orientation positive. Deterministic given coords.
+- DEGENERATE triangles (zero signed area: collinear or same-(x,y) sheet
+  pairs) are EXCLUDED from W (like amplitude exclusions); degenerate
+  fraction filed per run; >5% ==> flag (systematic, hits all initials
+  equally). Exclusion keeps the R-flip EXACT (R permutes non-degenerate
+  triangles, flipping each orientation; pinned).
+- Charter softened (owned over-promise): the observable is LOOP-FREE
+  (Stokes face-sum: no loop-finding, no principal axis, no centroid loop)
+  with face orientation from the J2 readout basis (filed justification,
+  same standing as Stage-0 kinematics). Fully intrinsic (ER-ready)
+  orientation is QUEUED, not claimed.
+- Added pin 5b: Stokes consistency -- K4 (tetrahedron) outward-oriented
+  faces sum to 0 for seed-fixed random psi (each bond twice, opposite).
+- Wheel-graph pins gain synthetic circle coords (rim on circle, hub at
+  center: signed area orients correctly). J2 flip tests verify exactness
+  INCLUDING degenerate handling. Health gate unchanged (amplitude
+  exclusion < 5% AND |W-round(W)| < 0.1); degenerate fraction filed
+  alongside. Bar, tau rule, cells, replacements, blinding: all stand.
+- Lattice-vortex note confirmed by the same analysis: the planted twist's
+  +-1 charge sits on the CENTRAL (centroid) triangles where the lattice
+  angle field is singular (XY-model logic, rho > 0 everywhere is fine);
+  all other triangles read ~0. W(S) = net vortex charge in S.
+
+Original text preserved in git history (dcab8b2).
