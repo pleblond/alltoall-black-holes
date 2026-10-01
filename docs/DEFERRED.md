@@ -2389,6 +2389,68 @@ D4 gainer-bias (PA-mimetic → hubs (≠ knots!)) /
 C2-PILOT-2 geometric (positions + spatial rewiring
 (STRONG home)). DARK branch = pivot knobs (pointer
 filed; next design gated on go).
+REVIEW RESPONSE (DARK comments — agreed + sharpened, filed):
+DICHOTOMY > 0/54 (accepted as headline: mechanistic
+closure, not parameterization-failure). D3-final =
+dust + TRUNCATED-Poisson-bulk VERIFIED: bulk (z≥thr)
+var 6.1-7.6 vs mean 8.0-9.0 (sub-Poisson (left-
+truncation!) + densified (E fixed, fewer mouths));
+L1-vs-Poisson ORDERS drivers: D1 0.03-0.10 (noise
+floor, 1/√N-ish) < D3@3 0.06-0.11 < D3@4 0.13-0.17
+< D3@5 0.35-0.40 (departure = dust + truncation).
+DEPARTURE-FROM-POISSON ADOPTED as primary formation
+metric (reviewer's opponent-framing; floor calibrated
+~0.03-0.10 here). POISSONIZER = CONJECTURE + M/M/∞
+SKETCH (filed, not theorem): single-node mean-field
+(constant immigration λ=2E0/N (uniform gainer) +
+linear emigration μz (uniform loser) → Poisson(λ/μ)
+= Poisson(z̄)); gaps: same-node gain+loss correl.,
+non-edge saturation (sparse ✓), E-coupling
+(mean-field!); evidence 18/18 + both-sided transient
+(delta→Poisson (RR), Poisson→Poisson (ER-stat.)).
+CLASS-CLOSURE (stronger than D3-closed): ANY
+local-loss-gate × uniform-gain → dust + Poisson-bulk
+(gain-side theorem (M/M/∞-sketch) ⟹ NO concentration
+possible in-class) — licenses NO-D3-RESCUE rigorously
+(any loss-variant (thr6? triangle-unclosing?) stays
+in-class; gain-side change = D4/D5 (new mechanism,
+not rescue)). TRIPTYCH + 2×2 (loss×gain): D1 =
+(diffuse,diffuse) → Poisson; D3 = (gated-loss,
+diffuse-gain) → dust+trunc-Pois; D5 = (diffuse-loss,
+gated-gain) → ??? (D3-MIRROR!); D35 = (gated,gated)
+→ ??? (design scopes; mirrors static-χ 2×2 close).
+D5 NEXT (agreed) + D4 BEHIND (double reason: PA→hubs
+is KNOWN (not discovery) + wrong object (C_hub≪1;
+D4 = degree-concentration, D5 = clustering-
+concentration (right observable!))). CLIQUE-
+CONDENSATION pre-reg ADOPTED (K-scaling O(1)/N^α/O(N)
++ count (one-vs-MANY!) + sizes). GEOMETRY RULING
+(agreed): positions-in-law = ruler (RULER-TRAP
+precedent) → geometric = BENCHMARK-ONLY (labeled,
+non-discovery); C2-PILOT-2 = D5 (topological!).
+STRONG PARKED (filed, not dropped): Φ needs geometry
+⟹ untestable-in-D5; homes = geometric-benchmark
+(labeled) OR topology-native basin (η-without-spans?
+open design). J2 SYMMETRY (filed, no coupling):
+state-space ≠ mechanism (U must activate) — both
+tracks converge methodologically; programs stay
+INDEPENDENT.
+D5 DESIGN BRIEF (LOCKED SCOPE — docs-only
+derivation next go (no code!)): (i) pure-closure
+fixed points (cluster-graph + triangle-free
+remainder? derive!); (ii) condensation scaling
+(K(N) test, ≥3 N (1600/3600/6400? cost!));
+(iii) H-gate-clean rule (D1-loser + closure-biased
+gainer? 2×2 scope (D5? D35?)); (iv) extensive-vs-
+condensation discriminator (K + count + sizes +
+scaling); (v) metric (departure-L1 (floor!) + truss/
+clustering readouts); (vi) K-ESTIMATOR decision
+(max-clique NP-hard! lead: k-truss profile
+(computable) + alternatives); (vii) outcome table
+(extensive/coexistence vs condensation vs dust-like
+vs Poisson (no-effect!)) + failure pre-regs
+(clique-condensation + clustered-hub? enumerate!).
+NEXT: docs-only D5 derivation (gated on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
