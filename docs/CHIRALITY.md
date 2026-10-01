@@ -591,3 +591,123 @@ churn2_*.pkl x2, formation pickles, logs; 6.8M total; also under /tmp);
 suite green (beast, parallel xdist).
 NEXT: P3-D prereg (nonlinear psi designs + H-gate proof) or PI redirect
 (gated on go).
+
+## P3-D — nonlinear psi (DESIGN FROZEN-2026-10-01; RUN GATED ON PI REVIEW)
+
+Status: DESIGN ONLY. This section freezes the law, invariants, scales,
+cells, readout, bar, and tripwires. NO P3-D RUNS ARE AUTHORIZED (zero
+campaign-graph execution: no blob/J2 psi evolutions, no new t=0 psi
+readouts; the kappa ladder and transition prediction below use ONLY
+already-measured P3-A numbers). Stage-gate: DESIGN (frozen here) ->
+PI REVIEW -> IMPLEMENT+PIN (stepper, square readout, invariants,
+R-covariance; synthetics only) -> RUN (153 evolutions) -> VERDICT.
+Reviewer prompts adopted: formation-free control (with the
+triangle-hole fix below), 0.15 floor as FORMAL null (bar already
+floor-safe: 0.5 ~= 3x floor), transition preregistered against measured
+tau_dephase ~ 1/spread.
+
+### Law (smallest H-gate-clean nonlinear wave law)
+
+Focusing on-site cubic DNLS (single physical parameter kappa):
+
+i dpsi_v/dt = SUM_u H_vu psi_u + g |psi_v|^2 psi_v, H = -A (unchanged),
+g = -kappa / rho_peak(psi0) < 0 (focusing), rho_peak = max|psi0|^2
+(per-initial normalization; kappa the controlled scale, see below).
+Focusing (bright vortex solitons; cf. Malomed-Kevrekidis discrete
+vortices, motivation only) over defocusing (dark vortices need a
+background density our localized psi lacks; queued, own prereg).
+
+H-gate proof (locked; implementation pins each item on synthetics):
+(1) U(1) global-phase covariance: psi -> e^{ialpha} psi maps solutions
+to solutions (|psi|^2 invariant) ==> norm N exact. (2) Time-reversal:
+K-conjugation maps solutions to solutions (g real) ==> no arrow.
+(3) R-covariance: R_* maps G-solutions to RG-solutions (on-site density
+pushes forward; proof mirrors linear pin 15) ==> R U R^-1 = U kept.
+(4) No handedness: law uses only local |psi|^2 + real-symmetric H +
+blind structure ==> any L/R asymmetry spontaneous. (5) g matched
+exactly across mirror/conjugation pairs (|psi| multisets identical).
+
+Invariants (locked): N = SUM|psi|^2 (exact) and DNLS energy E =
+<psi|H|psi> + (g/2) SUM|psi|^4 (exact invariant of the flow). Tracked
+per run (filed); violation ==> bug (pins bound the tolerances first).
+
+### Phase-locking scale (derived, not tuned)
+
+Locking needs nonlinear shift >= dephasing rate: kappa := |g| rho_peak
+>= spread (P3-A measured spread 2.95, E0 ~= 0 mid-band, tau_dephase ~=
+0.34). Anti-continuum (single-site pinning, trivial persistence) needs
+kappa >> J zmax (~46). Window [3, 46] = one order of magnitude.
+LADDER (locked): kappa in {1, 3, 10}: kappa=1 << spread (weakly
+nonlinear; must reproduce P3-A NULL = linear anchor); kappa=3 ~=
+spread (transition, marginal, filed not gated); kappa=10 (locked,
+wavelike, 5x below pinning). PREDICTION (frozen from existing data):
+transition between kappa=1 (NULL) and kappa=10, near kappa ~= 3.
+g = -kappa/rho_peak filed per run (same envelope ==> same rho_peak
+across initials per blob; planted/random/m=0 share g per (blob,kappa)).
+
+### Integrator (locked choice; tolerances pinned at implementation)
+
+Diagonalization-based Strang split-step: eigh(H) once per graph, then
+psi <- L(dt/2) N(dt) L(dt/2) psi with L exact diagonal phases and N
+exact on-site rotations e^{-ig|psi_v|^2 dt} (both substeps unitary ==>
+norm EXACT to 1e-12, pinned; E bounded oscillation, no secular drift,
+pinned slope ~0). dt = 0.02 (filed; fallback dt = 0.01 pre-authorized
+if E pins fail -- implementation detail, not physics). Operator
+e^{-iH dt} is eigensolver-sign-invariant (bitwise; locked argument).
+Cost estimate filed: ~10s eigh per graph + ~30-60s per evolution;
+153 evolutions / 48 workers ~= 10-20 min wall on beast.
+
+### Cells (locked; 153 evolutions + 2 spot-checks)
+
+- D5inf cell (120): SAME 8 frozen blobs, SAME planting (m=-1,0,+1 +
+  2 random, seeds 5100+10b+r), SAME S^T_10 region, kappa x {1,3,10}.
+  T=200, W sampled every dt=2 (101 samples, P3-A-identical sampling).
+- Plain-J2 cell (33): j2_torus_graph(28) UNREWIRED (N=1568, E=6272 =
+  same N/E as blobs by E-conservation -- matched size/budget, no
+  formation structure), centroid FIXED at cell (14,14) (translation
+  invariance ==> choice irrelevant, verified by spot-check),
+  initials {m=-1,+1 (N=2 suffices logically: translated runs are
+  IDENTICAL trajectories, proof locked above), m=0, random x8 draws
+  (seeds 5200+r, statistical leg)} x kappa {1,3,10} = 33.
+  Same sigma=6/R10/sampling. Spot-check (descriptive): m=+1 + r0 at
+  (7,7), kappa=10 (2 runs; traces identical to (14,14) to 1e-9 filed;
+  mismatch ==> apparatus recheck).
+- TRIANGLE-HOLE FIX (reviewer's control as literally stated is vacuous:
+  J2 is BIPARTITE ==> ZERO triangles ==> W^Delta undefined on plain J2,
+  so 'no winding on J2' would be true-by-absence, not physics): PRIMARY
+  readout on BOTH cells = SQUARE-circulation W^Square (4-cycles; J2's
+  natural faces per D15 micro-density; same signed-area orientation +
+  seam/wrap/degenerate machinery generalized to 4-cycles (closure over
+  4 bonds), same coverage normalization, same tau/stability rules).
+  Triangles on D5inf kept as SECONDARY continuity bridge (W^Delta,
+  same rules). AGREEMENT TRIPWIRE (locked): sustained
+  |What^Square - What^Delta| > 0.3 on a passing run ==> readout anomaly,
+  verdict SUSPENDED pending resolution (pre-registered safety).
+
+### PRIMARY bar (P3-D-POSITIVE; ALL gated)
+
+(i) D5inf-kappa10-planted >= 6/16 tau>50 + stable sign (same bar as
+P3-A; 0.5 threshold ~= 3x the 0.15 floor ==> reviewer's floor caution
+IMPLEMENTED: floor fluctuations cannot pass). (ii) Plain-J2-kappa10
+DARK: planted 0/2 AND random <= 2/8 tau>50 (nonlinearity alone does
+not persist). (iii) D5inf-kappa1-planted <= 2/16 (linear anchor: must
+reproduce P3-A NULL; >= 3 ==> SUSPEND + reconcile (continuity pin
+kappa->0 vs linear at implementation) -- contradiction tripwire).
+(iv) D5inf-kappa10-random <= 2/16 (specificity: nonlinearity must not
+freeze noise too). (v) No anti-continuum among counted passes
+(IPR < 0.5 sustained required; IPR -> ~1 = trivial pinning, DISCOUNTED
+by pre-registered exclusion). (vi) Squares/triangles agreement (above).
+Else NULL with filed breakdown: (i) fails = nonlinearity insufficient
+at kappa <= 10; (ii) fires = no formation role (informative kill of
+convergence); (iii) fires = P3-A contradiction/bug; (iv) fires =
+non-specific freezing. Sign symmetry (+/- populations, <W> ~= 0,
+<|W|> > 0) filed (SSB discipline; supporting, not gated). m=0
+excursion filed descriptive. E_blob^Square coverage + N(t)/E(t)/IPR/
+exclusion tracked per run (filed).
+
+### Audit
+
+Deterministic (seeded randoms; eigh-operator exact; same formation
+pickles). Scripts ad-hoc on beast (precedent), traces secured to home
+dir, ledger tables durable. Suite stays green. Zero P3-D campaign
+execution accompanied this design commit (ledger-only change).
