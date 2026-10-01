@@ -3247,3 +3247,61 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+SLIT-PREREG (FROZEN-2026-10-01 (~19:30-UTC (commit-predates-ALL-SLIT-
+campaign-runs!)); two-path-interference-campaign (wave-sector-only
+(P1-derived-apparatus (H(G)=-J·A(G)-hopping-only-LOCKED (same-as-P1!));
+NO-formation-runs + NO-polarity/handedness-readouts (P1/P2/P3/B0-
+untouched (separate-track (non-interfering!))))). QUESTION: does-the-
+scalar-J2-wave-produce-interference-from-alternative-graph-paths + does-
+which-path-information-destroy-it-without-a-collapse-postulate.
+SCOPE: SLIT-0-coherent-calibration + SLIT-1-phase-dependence + SLIT-2-
+path-record/decoherence + SLIT-3-graph-only-corridors; SLIT-4-discrete-
+detection/Born-DEFERRED (no-detector-mechanism-in-model (explicit!)).
+APPARATUS (this-commit (14-pins!)): bond-barriers (node-set-fixed-across-
+A/B/AB (Hilbert-comparable!)); slit-mouth-superpositions-on-ONE-G_AB
+((A+e^{iφ}B)/√2-Loewdin-orthonormalized (linearity-to-Krylov!)); sharp-
+mask-entangler + eraser (unitary-on-system×qubit (demonstrates-WHAT-
+path-recording-WOULD-do (NOT-that-graph-provides-it (open-question!))));
+MZ-theta-corridors (abstract (no-coords!)). DESIGN-BASIS (apparatus-
+validation-NOT-campaign-data (toy/medium/large-grids-at-NON-campaign-
+sizes + MZ-len6-vs-campaign-14 (all-fringes/exactness-confirmed (filed-
+in-commit-message!))): thresholds-set-≥2×-below-toy (fringe-presence-vs-
+Krylov-noise (~1e-12!) (NOT-tuned-to-pass!)); exact-claims-from-symmetry
+(center/odd-state/destructive (mirror-automorphism-pinned!)).
+GEOMETRY (LOCKED): OPEN-GRID-70×61 (xb=30, slits-A=(22,23)-B=(37,38)
+(d=15-about-yc=30 (mirror-exact!)), mouths-(31,22.5)/(31,37.5)-σ=2-k=
+(1.0,0), source-(12,30)-σ=3-k=(1.0,0), detector-xd=54 (D=23), window-W=
+|y-30|≤16 (33pts), sub-window-S=|y-30|≤8, dt=0.1). J2-L28 (xb=12, slits-
+(8,20) (d=12-about-14!), mouths-(13,8)/(13,20)-σ=2-k=(0.3,0)-P1.1b-validated,
+detector-xd=20 (D=7), window-|y-14|≤12, dt=0.1). MZ-len14 (campaign (toy-
+was-6!), T=80-window). CLOCK (operational (pre-committed!)): T* = argmax-
+detector-line-weight-over-[0,60]-open ([0,20]-J2) from-the-AB-run (ONE-
+clock (all-preparations/graphs-read-at-T*!)); t* = argmax-w_D(φ=0)-for-MZ.
+SLIT-0a-MOUTHS (same-G_AB): HEADLINE-V(W)>0.3-AND-nmax(W)≥3-AND-rmsR>0.2-
+AND-L2(AB,incoh)>0.05-AND-linearity-dev<1e-9. VALIDITY: Loewdin-corr<0.05
++ detW(T*)>0.5% + wallW<5% + T*-interior(<58/18) + norm-1e-8.
+SLIT-0b-SOURCE (G_A/G_B/G_AB-one-clock): HEADLINE-Rmax(S)>1.4-AND-Rmin(S)<
+0.6 (R=I_AB/(I_A+I_B)-per-point (constructive≈2/destructive≈0!))-AND-L2>
+0.05. VALIDITY: singles-mirror-L2<0.03 + detW_AB>0.5% + wallW<5% + interior
++ norm. CONTROL: closed-barrier-right-weight<1e-9-at-T* (exact-block!).
+SLIT-1-PHASE (G_AB-T*): φ∈{0,π/2,π,2π}: HEADLINE-center-I(π/2)/I(0)=0.5±0.1-
+AND-I(π)/I(0)<0.05 (odd-state-exact-zero!)-AND-periodicity-|I(2π)-I(0)|/I(0)<
+1e-9-AND-L2(0,π)>0.05 (pattern-shift!). VALIDITY: I(0)-center>0 (non-node-
+denominator (else-void!)) + norm.
+SLIT-2-WHICHPATH (G_AB-T*): γ∈{1,0.75,0.5,0.25,0}: HEADLINE-A(γ)/A(1)=γ±0.03-
+each (A=RMS(I(γ)-E)/RMS(E) (exact-linear!))-AND-A(0)<0.02-AND-R²>0.999.
+ENTANGLER (t=0-half-plane-masks): HEADLINE-crosstalk<1%-AND-L2(traced,E)<
+0.03-AND-amp_kill<0.05-AND-eraser-L2(plus,I_AB/2)<1e-9 (exact-restore!)-
+AND-minus-center-ratio<0.05 (antifringe!). VALIDITY: norm.
+SLIT-3-MZ (len14): HEADLINE-φ-scan-at-t*: w(π/2)/w(0)=0.5±0.03-AND-w(π)/w(0)<
+0.02 (swap-odd-exact-zero!); single-arm-φ-maxdiff<1e-9-full-window (exact!);
+arm-scan-(lenA=14-lenB=14..26-S-injection)-maxw-max/min>3. VALIDITY: w_D(t*)>
+10% + t*-interior(<75) + norm.
+J2-SECONDARY (SLIT-0a-only (no-source-driven-on-J2 (wrap-scope-cut!))):
+HEADLINE-V>0.2-AND-rmsR>0.15-AND-L2>0.05. VALIDITY: purity>0.8-per-packet
++ corr<0.05 + T*<12 (wrap-arrival-17.5-margin!) + detW>0.5% + norm.
+VERDICT-RULE (per-stage): PASS ⟺ ALL-headline-AND-ALL-validity; validity-
+fail ⟹ VOID (file + amend (P1.1b-precedent!) (NOT-fail!)); criterion-fail ⟹
+FAIL (file!). GLOBAL: suite-green (all-pins + full-suite-on-beast). NEXT:
+slit_campaign.py (gated-on-prereg-commit!) + beast-run.
