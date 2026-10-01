@@ -3197,6 +3197,28 @@ TRACK-STANDS (dual-Spearman (shape-filed (clustering-vs-gradient!))).
 VOUT-CLARIFICATION (operationalization (locked-R²-gate!)): S4-files-
 vout-R² + r2>0.9-gated-means (descriptive (no-fire-role!)).
 NEXT: B0a-campaign (gated on amendment-commit!).
+P1-AMENDMENT-7 (sitter-selection-repair (PRE-S4 (S3-frozen-runs-in-
+flight (UNOPENED (no-S4-before-this-commit!)); JUSTIFIED-on-filed-
+numbers + locked-bins (no-wave-data!))): DOUBLE-BUG-owned: (1)-IMPL:
+min-Jaccard-used-as-boolean (0.23-truthy!) ⟹ ≥0.5-threshold-never-
+enforced; (2)-PREREG: Jaccard≥0.5-UNACHIEVABLE (filed-churn-≤0.31
+(100sw-gaps!) ⟹ 300sw-gaps-lower (measured-0.06-0.23!) (threshold-
+set-without-consulting-filed-numbers!)) + CONCEPTUALLY-MISPLACED
+(frozen-scattering-uses-per-save-masks (cross-save-membership-
+NEVER-mattered!)). REPLACED-by: sitter ⟺ α<0.7-AND-core-present-
+all-3-saves (mass>0!) (centroid-confinement = sitter-essence
+(membership-fluidity = known-EXCHANGE-physics!)). METHOD-FIX:
+unwrap-centroid-traces-before-single-origin-α (wrapped-traces-wrap-
+inflate-wanderer-α (torus-saturation-kills-lag-α (measured-≈0-all-
+runs!) (locked-bins-UNCHANGED!))). S1-RECOMPUTE-RULE: fixed-S1-reruns-
+on-same-T-matched-reruns (no-new-formation-runs!); S3-REUSE-RULE:
+frozen-cells-run-under-identical-protocol-REUSABLE-iff-reselected
+(top-up-newly-selected-states-only (same-protocol!)); S4-ONLY-after-
+reselection (verdict-chain-clean (method-locked-here!)). S1-INTERIM-
+filed (superseded-method (for-transparency!)): T-match-6/6-✓;
+wrapped-α: sitters-L28-d1/d3+L42-d0 (3/3-split-replicates-Stage-0-
+count!); jacmin-0.06-0.23 (churn-consistent!); masses-134-246.
+NEXT: S1-fix + S3-topup-if-needed + S4 (gated on amendment-commit!).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

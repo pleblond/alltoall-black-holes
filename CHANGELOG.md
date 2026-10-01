@@ -58,6 +58,13 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   ⟹ Mann-Whitney dominance (formed>D1, one-sided p<0.05); BRIDGE =
   dominance + residence-fire + track; v_out R² operationalization.
 
+- **unreleased (P1 amendment-7)** — D14-P1 sitter-selection repair
+  (pre-S4, S3 unopened): Jaccard≥0.5 dropped (unachievable per filed
+  churn ≤0.31 + conceptually misplaced for per-save frozen targets;
+  impl truthiness bug owned) ⟹ sitter = α<0.7 + core-present-all-saves;
+  unwrap-before-α method fix (torus saturation kills lag-α); S1
+  recompute + S3 reuse/top-up rules locked (same T-matched reruns).
+
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
   wanderers + 1 slither anecdote), 0/6 persistent handedness
