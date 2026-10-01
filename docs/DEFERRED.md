@@ -2859,6 +2859,39 @@ BREAKING-of-statistical-S_N). SYMMETRY-RESTATEMENT
 broken-variable = core/dust-partition. ⟹ D15-REOPENS
 (gate-both-halves-✓ (finite-scale-✓ + SSB-✓!)). NEXT:
 D15-design (gated on go).
+J2-ORIENTATION VERDICT ((c)-ISOTROPIC (32-runs (L28/42
+(J2-torus (N=1568/3528)) ×16-dyn (ONE-soup-each (exact-
+symmetry (imprinting-impossible-by-construction!))); new-
+soup-kind-j2_torus_graph+j2_torus_coords+2-pins (D14-side
+(robustness (soup-justification-filed!))))): cores-FORM
+(kmax-4 (+5-flickers!) + k4-89-280 + T0=0→ER-like-T*
+(triangle-free-bootstrap-✓!)); RADIAL-SSB-PRESERVED
+(loc-J-0.069/0.028≈random!); ORIENTATION-ABSENT: core-
+elongation-0.20-vs-null-0.11 (perm-p≤0.001 (REAL-but-
+WEAK-shape-noise!)) with FULL-CIRCLE-random-axes;
+global-edge-x/y-≤8% (ensemble-1.008/1.014!); quadrant-
+signs-null-consistent (6/32-unanimous-vs-4-expected
+(p≈0.28!)); quadrant-|m|-2-4×-independent-noise (=cor-
+related-clustering-noise (no-coherence!)); SHEET-
+SYMMETRY-PRESERVED (core-b0-0.49-0.50!). AUT(J2)-SURVEY-
+COMPLETE (D5∞!): translations-BROKEN (localization!) +
+orientation-PRESERVED + sheet-PRESERVED ⟹ NO-h1-vs-h2-
+distinction ⟹ compass-consumption-HAS-NO-INPUT; weak-
+formation-consumption-FORBIDDEN (age-rule-is-formation-
+side (principle-bites!)); radial-transfer-INCOHERENT-
+or-FORBIDDEN (rewired-≠J2 (apparatus-inapplicable!) /
+statistical-painting = hand-arranging!). ⟹ STOP-per-
+chain (D5∞-radial = WRONG-KIND (filed-precise (not-
+mushy!))); D15-STAYS-CLOSED (first-SSB-candidate-
+TESTED-and-EXCLUDED (radial-SSB-≠-pin-breaking!);
+admission-criterion-STANDS (provisional-amendment-MOOT
+(no-instability-to-admit!))). LIVE (not-now!): other-
+rules-orientation (D14-side!); D15′-real-space (own-
+prereg!); disordered-compass-theory (off-scorecard-
+endpoint (dissolves-detector (not-fires!))); sub-
+quadrant-texture (pin-irrelevant-per-uniformity-
+premise!). NEXT: review-turn or next-design (gated
+on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

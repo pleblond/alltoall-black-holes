@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (formation J2-orientation)** — D14/D15 orientation fork
+  (32 runs, J2-torus L28/42 ×16 dyn, exact-symmetry soup): verdict
+  (c) ISOTROPIC (cores form, T0=0 bootstraps, radial SSB preserved,
+  but elongation 0.20 random-axis shape noise, quadrant signs
+  null-consistent, sheet 0.49-0.50) ⟹ Aut(J2) survey complete
+  (translations broken only) ⟹ STOP per chain (D5∞-radial is
+  wrong-kind SSB); D15 stays closed (criterion stands, first
+  candidate excluded); j2_torus_graph/coords + 2 pins (574
+  collected).
+
 - **unreleased (formation SSB-1)** — D14/D15 same-soup campaign (60
   runs, 2N×3 soups×10 dyn, identity 6/6): verdict SPONTANEOUS
   (same-soup core-Jaccard 0.076/0.033 ≈ across-soup ≈ random,

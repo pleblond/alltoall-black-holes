@@ -144,6 +144,40 @@ def soup_graph(kind: str, n: int, zbar, seed: int) -> nx.Graph:
     raise ValueError(f"unknown soup kind: {kind}")
 
 
+def j2_torus_graph(L: int) -> nx.Graph:
+    """J2 torus ((Z_L)^2 ⋊ Z2) Cayley graph (vertex-transitive soup).
+
+    Nodes (x, y, b) with x, y in Z_L, b in {0, 1}; int labels
+    id = (x * L + y) * 2 + b (see j2_torus_coords). Edges from the
+    8 inverse-closed generators (spatial (±1,0)/(0,±1), sheet-flip
+    half of them); swap action on the sheet bit. 8-regular,
+    2L^2 nodes, exactly symmetric (no quenched disorder: the
+    orientation-SSB test substrate). Deterministic (no seed).
+    """
+    gens = (
+        (1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0),
+        (1, 0, 1), (-1, 0, 1), (0, 1, 1), (0, -1, 1),
+    )
+    n = 2 * L * L
+    g = nx.Graph()
+    g.add_nodes_from(range(n))
+    for x in range(L):
+        for y in range(L):
+            for b in (0, 1):
+                p = (x * L + y) * 2 + b
+                for u, v, d in gens:
+                    a1, a2 = (u, v) if b == 0 else (v, u)
+                    q = (((x + a1) % L) * L + ((y + a2) % L)) * 2 + ((b + d) % 2)
+                    if q != p:
+                        g.add_edge(p, q)
+    return g
+
+
+def j2_torus_coords(L: int) -> dict:
+    """Inverse labels: id -> (x, y, b) (readout basis for orientation)."""
+    return {(x * L + y) * 2 + b: (x, y, b) for x in range(L) for y in range(L) for b in (0, 1)}
+
+
 def soup_signature(g: nx.Graph, src=0) -> dict:
     """Measured d_* proxies: size/budget/degrees + BFS depth from src."""
     d = dict(nx.single_source_shortest_path_length(g, src))

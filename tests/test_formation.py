@@ -15,6 +15,8 @@ from bh_graph.formation import (
     coord_hist,
     formation_run,
     giant_fraction,
+    j2_torus_coords,
+    j2_torus_graph,
     l1_hist,
     mode_locations,
     propose_relocation,
@@ -168,3 +170,22 @@ def test_same_soup_diff_dyn_diverges():
     r2 = formation_run(st, "d5inf", 4, 4, t_max=30)
     assert r1["t_trace"] != r2["t_trace"]  # proposal sequence differs
     assert r1["e_final"] == r1["e0"] == r2["e_final"]  # both still E-exact
+
+
+def test_j2_torus_structure():
+    g = j2_torus_graph(6)
+    assert g.number_of_nodes() == 72
+    assert {d for _, d in g.degree()} == {8}  # Cayley => regular
+    assert g.number_of_edges() == 72 * 8 // 2
+    assert nx.is_connected(g)
+    assert sum(nx.triangles(g).values()) // 3 == 0  # triangle-free: D5inf must bootstrap
+    c = j2_torus_coords(6)
+    assert len(c) == 72 and c[0] == (0, 0, 0) and c[71] == (5, 5, 1)
+    assert j2_torus_graph(6).edges() == g.edges()  # deterministic
+
+
+def test_d5inf_on_j2_bootstraps():
+    st = state_from_nx(j2_torus_graph(6))
+    r = formation_run(st, "d5inf", 4, 0, t_max=20)
+    assert r["stop"] != "stillborn"  # 2-paths supply gain>=1 from tick 0
+    assert r["executes_total"] > 0 and r["e_final"] == r["e0"]
