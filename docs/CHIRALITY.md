@@ -521,3 +521,72 @@ checks on blobs 0-1 (t=0, ZERO evolution steps run before this verdict):
   amendments pre-evolution-data; blinding held throughout.
 
 P3-A runs authorized (8 blobs x 5 initials, T=200, dt=2, locked bar).
+
+### P3-A verdict: NULL (linear test-wave winding transient; filed 2026-10-01)
+
+40 evolutions (8 frozen blobs x {m=-1,0,+1,r0,r1}, H=-A static, T=200,
+dt=2, 101 samples; all formation inputs valid: stop=cap, sweeps=2000,
+cores nonempty, no replacements). PRIMARY (locked): planted 0/16 with
+tau > 50 + stable sign (need >= 6) AND random 0/16 (need <= 2) ==> NULL.
+Result is UNANIMOUS, not marginal:
+
+- Planted 16/16: tau = 2.0 (FIRST sample; |Ŵ| below 0.5 immediately).
+  max|Ŵ| = 1.000 for all 16 (never exceeds initial; no revivals).
+  Ŵ_end ~ -0.21..+0.23 (noise floor). Coverage E = 52-90 per blob
+  (filed per blob below). maxexcl = 0.000 all runs (no zeros ever form).
+  Edrift ~ 1e-15..1e-13 (unitary, apparatus healthy). IPR 0.0022 ->
+  0.0019-0.0020 (amplitudes stay lump-localized; uniform = 0.00064).
+- v1/v2 analysis agreement (filed correction): v1 used signed W(0)
+  scale per amendment-3 letter, which forces Ŵ(0)=+1 and fails m=-1
+  sign==-1 at t=0 BY CONSTRUCTION (prereg text jointly inconsistent
+  for m=-1; v1: 0/16 NULL). v2 uses |W(0)| scale (sign-preserving;
+  equivalent to signed-scale + test sign==+1): 0/16 NULL. Verdict
+  INVARIANT (tau = 2.0 decides; stability moot). Both versions reported;
+  v2 is the corrected record (m=-1 stable=True 7/8 (vacuous single
+  t=0 sample), blob6 m=-1 stable=False (one wrong-sign >= 0.5 sample,
+  descriptive anomaly, tau fails regardless)).
+- Random 16/16: tau = 0.0 (start below 0.5; Ŵ(0) = -0.16..+0.33) --
+  contrast holds as predicted (amendment-4 note). m=0: max|W| = 9-13
+  raw (frac 0.11-0.24 of planted scale): zero-winding initial GAINS
+  pair-fluctuations while planted LOSES winding -- winding
+  EQUILIBRATES to a common floor ~0.15 from above and below.
+- Robustness W8/W12 (descriptive): tau = 2.0 in 30/32 cells (rest:
+  4/6/8/22, all << 50) -- NULL consistent across regions.
+- Mirror-lite: tau_{+1} = tau_{-1} = 2.0 on ALL 8 blobs (matched
+  trivially; no tau_L != tau_R anomaly -- law-symmetry consistent).
+  E_{+1} = E_{-1} exact (t=0, kept). Per-blob (E+, E-, tau+, tau-):
+  b0 (59,59,2,2); b1 (80,80,2,2); b2 (78,78,2,2); b3 (60,60,2,2);
+  b4 (83,83,2,2); b5 (55,55,2,2); b6 (52,52,2,2); b7 (90,90,2,2).
+- Mechanism (post-verdict resolved probe, blob0 m=+1, dt=0.2,
+  descriptive): Ŵ = +1.00 -> +0.46 (t=0.2) -> -0.05 (t=0.4) -> noise
+  (+-0.25); half-life ~0.2-0.3 ~= 1/spread (spread 2.95, E0=+0.06
+  mid-band) ==> DEPHASING (multimode beating). Amplitudes stay (IPR
+  flat), phases scramble, no zeros (excl 0): charge exits through the
+  region boundary as incoherent phase noise. Linear twists are not
+  topologically trapped -- they radiate/dephase away.
+- S-churn pilot (descriptive, 2 blobs x m=+1, 200 sweeps, dt=1/sweep
+  labeled, seed schedule 9100+k/9300+k filed deviation from 9100/9101
+  (rng has no checkpoint; avoids range overlap)): half-life 1 SWEEP
+  both regions both blobs; traces fluctuate +-0.3 (noise); maxexcl 0;
+  IPR flat; E drifts (time-dependent H, expected); blob0 drifts 4.9
+  (lump stays in r10 ball), blob1 sitter (drift 0.2). Drifting-region
+  W agrees with fixed-region (true unwinding, not drift-out).
+  Full decimated traces: b0 What_fix = +1.00,+0.02,-0.17,-0.03,-0.02,
+  +0.02,-0.08,+0.08,-0.12,-0.02,-0.07,+0.05,+0.08,+0.08,+0.15,+0.08,
+  -0.14,+0.39,+0.05,-0.05,-0.03 (every 10 sw); What_drift similar
+  (+-0.24); b1 similar (+-0.30). Live formation churn destroys winding
+  within ~1 sweep.
+
+Implication (filed): rung-1 LINEAR test-wave chirality EXCLUDED on
+D5inf blobs (frozen AND churned). The coupled K+psi object at one-way
+linear order has NO protected winding sectors; winding equilibrates.
+P3-B/P3-C AS DESIGNED are MOOT (no sectors to populate/persist) --
+REDESIGN around NONLINEAR psi (self-trapping/DNLS vortices, P3-D debt
+now REQUIRED not optional) or gapped/topological H (debts filed openly
+if pursued). P3.3/P3.4/D15-gate: no sectors ==> gate never fires; D15
+stays closed (correct one-way behavior). The apparatus (R, psi, W,
+mirror) stands VALIDATED (P3.0-POSITIVE) for reuse on nonlinear psi.
+Data: /tmp/p3_traces on beast (evol_*.pkl x40, churn2_*.pkl x2,
+formation pickles /tmp/p3_blobs); suite green (beast, parallel xdist).
+NEXT: P3-D prereg (nonlinear psi designs + H-gate proof) or PI redirect
+(gated on go).

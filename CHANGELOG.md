@@ -3,6 +3,15 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (P3 handedness P3-A)** — verdict NULL (40 evolutions,
+  8 frozen D5inf blobs x 5 psi initials): planted winding tau = 2.0
+  (first sample) 0/16, random 0/16; mechanism = dephasing
+  (half-life ~0.25 ~= 1/spread, IPR flat, no zeros); winding
+  equilibrates to ~0.15 floor from above and below; S-churn half-life
+  1 sweep ==> rung-1 linear test-wave chirality EXCLUDED (P3-B/C moot
+  as designed; P3-D nonlinearity required); P3.0 apparatus stands
+  (R/psi/W/mirror validated); D15 stays closed.
+
 - **unreleased (P3 handedness prereg)** — P3.0/P3-A frozen (docs/CHIRALITY.md):
   K+psi winding campaign (H=-A test wave, R_x reflection, Stokes face-sum W,
   amendment-1 orientation correction); apparatus + 16 pins (chirality.py).
