@@ -2451,6 +2451,139 @@ clustering readouts); (vi) K-ESTIMATOR decision
 vs Poisson (no-effect!)) + failure pre-regs
 (clique-condensation + clustered-hub? enumerate!).
 NEXT: docs-only D5 derivation (gated on go).
+D5 DERIVATION (docs-only — 7 locked items, no code):
+RULE (H-gate-clean, LOCKED): D5κ (soft): loser =
+uniform edge + gainer = uniform non-edge (blind-
+propose ✓) + ACCEPT w.p. min(1,exp(κ·Δt_net))
+(Δt_net = Δt_gain−Δt_loss (common-neighbors (±)
+(1-hop-local ✓))); κ=0 ⟹ D1 EXACTLY (null-
+continuous ✓; D1 legs REUSED as κ=0 (no re-run!)).
+D5∞ (hard, D3-MIRROR): accept iff gain-Δt ≥ 1
+(loss-side free (gain-gate-ONLY (mirrors D3's
+loss-gate-only!))). D35 = D3-thr4-loser × κ1-net-
+gainer (one cell). H-AUDIT (filed): reads N(a),
+N(b),N(c),N(d) only (1-hop (vs floppy 0-hop
+(precedent-compatible))); NO labels/dimension/
+z̄-targets/bimodality/global-density/geometry ✓;
+κ = temperature (biases FLUX not STATE (emergent!)).
+κ-BUG CAUGHT (design-before-code vindicated):
+gain-only-Metropolis min(1,e^{κΔt_gain}) with
+Δt_gain ≥ 0 ALWAYS ACCEPTS (= D1! no bias!) —
+MUST be net-Δt (loss-side in accept!) for bias.
+STRAUSS (literature-connected): D5κ-stationary ∝
+exp(κ·T) (T = #triangles) = Strauss-triangle-ERGM
+(canonical (E-fixed!)); reviewer's clique-
+condensation = STRAUSS DEGENERACY (known
+phenomenon (grand-canonical jumps sparse↔complete;
+canonical ⟹ one-clique + remainder (derive below!))).
+PURE (κ=∞) FIXED POINTS (exact): absorbing ⟺ all
+non-edges Δt=0 ⟺ DISJOINT-CLIQUES + TRIANGLE-FREE-
+remainder (cluster-graph + forest (no-op-exclusion
+(filed!) blocks self-heal; intra-full + cross-Δt0
+⟹ nothing executable ✓). REACHABILITY (derived):
+pump-phase (+1 triangle/move (close-wedge (+1) vs
+soup-loss (~0.04)) → ~240k closes (~37 sweeps!))
+then hair-exchange ACTIVE-STEADY (clique-edges ↔
+sticky-hairs (both Δt≥1-executable; hairs re-attach
+(never leave))) ⟹ bare-clique UNREACHABLE; steady
+= clique + STICKY-HAIRS + dust-bulk (K fluctuates!).
+CONDENSATION SCALING (extremal): max-triangles at
+fixed-E = clique K_m (m(m−1)/2 ≤ E) + edge-soak
+remainder ⟹ K ≈ √(2E) = √(z̄N) (113 @1600 (7.1%),
+170 @3600 (4.7%), 226 @6400 (3.5%)) ⟹ α = 1/2
+(MESOSCOPIC (reviewer's middle branch!) — share
+SHRINKS with N (vs O(N) flat (discriminator!))).
+E-STARVATION (mirror-manifest!): K=113 eats 6328/6400
+edges ⟹ bulk ≈ DUST (72 strays, z̄≈0.1) — D5∞ =
+clique + DUST-BULK (~90%!) (INVERTED D3 (dust +
+Poisson-bulk (diffuse-gain keeps-E-in-bulk;
+concentrating-gain HOGS-E-into-clique!))).
+COARSENING (no-coexistence-prediction): one-K_m
+(m³/6 tris) BEATS two-K_{m/√2} (m³/4.24 (same E!))
+(superlinear (K³ vs K²!) ⟹ concentration wins ⟹
+Ostwald-pressure (big eats small (churn-mediated!))
+⟹ steady-coexistence needs ANTI-COARSENING (absent
+in D5!) ⟹ PREDICT condensation-or-Poisson (NOT
+coexistence); transient-many possible (metastable!
+⟹ count(t) readout (Ostwald-check (mandatory!))).
+NUCLEATION BARRIER (bistability): Strauss-first-
+order-ish ⟹ metastable-Poisson (no-nucleation-in-T)
+vs nucleated-clique ⟹ κ_c(T) KINETIC (barrier-
+crossing-in-T (not thermodynamic!)); κ = noise
+(anneal-window: ∞/2 quench (multi-transient (slow-
+coarsen!)) vs 1/0.5 anneal (cleaner-single!) vs
+0.25 hot (washed-out (Poisson+!))); κ_c ↓ in z̄
+(ER-16 seeds 683 tris vs 85 (nucleates easier!)).
+K-ESTIMATOR (LOCKED): LEAD = k-truss (binary-search
+k_max + log-profile + macro-floored (1% (amend-4!)
+) top-truss components); CROSS = Charikar-peeling
+(dense-subgraph (fast!)); EXCLUDED = max-clique
+(NP-hard!). Baselines: ER-soup T ≈ z̄³/6 (85/683),
+RR T ≈ (z̄−1)³/6 (~57); wedges ~51k (z̄=8);
+k_max,init ≈ 3-5 (soup-validity-D5: ≤4 (verify!)).
+DISCRIMINATOR (5 cells, LOCKED): dense objects =
+top-truss components ≥1% (COUNT!) + count(k)
+PROFILE (mid-k hiding!) + K (max size) + sizes +
+K(N) + count(t): CONDENSATION (count=1, meso-K
+(α≈1/2!), T-pumped, departure-LARGE, dust-bulk
+(predicted D5∞ + D5κ-large!)) / COEXISTENCE
+(count≥2 PERSISTENT (discovery! (surprise (no
+anti-coarsening!)))) / POISSON (no macro-truss
+(k_max≈3-4), departure≈noise (small-κ/barrier!)) /
+DEFECT (count=1, O(1)-K) / COARSENING (count(t)↓
+(transient-many (Ostwald (no-steady-coexistence!))).
+PRIMARY VERDICT: extensive-coexistence? (count≥2 +
+persistent (YES/NO)). VALLEY = AUXILIARY-ONLY
+(detector-scope honesty: clique = high-z ISLAND
+(disconnected!) ⟹ gap-aware → 1.0 (under-calls by
+design (bulk-phase detector!)); file mass-bimodal
+(island-listed!) as characterization). NO GIANT-
+GATE (condensation ⟹ small-giant BY CONSTRUCTION
+(~10-15%!); giant = characterization (inverted!)).
+METRIC SUITE (locked): departure-L1 (floor 1/√N
+(calibrated 0.03-0.10!) — PREDICT s-jump at κ_c
+(noise → LARGE (~1+ (90%-dust-bulk vs Pois(8)!))));
+T (= Hamiltonian (trace T(t) (pump!))) + C (global
++ per-node mean) + truss-profile + count/K/sizes +
+K(N) + count(t) + top-z-node-C (hub-vs-clique:
+≈1 (clique!) vs ≪1 (PA-hub!) (reviewer's test!)).
+SCOPE (LOCKED, 72 runs): (A) BEHAVIOR @N=1600:
+{D5κ0.25, D5κ0.5, D5κ1, D5κ2, D5∞, D35} × {ER-8,
+ER-16, RR-8} × seeds012 (54 (κ-grid spans hot→
+cold→quench (soup-scale κ~0.1-1 (Δt~O(1-10)!))));
+(B) LADDER: {D5∞, D5κ1} × ER-8 × seeds012 ×
+{1600,3600,6400} (18 (K(N) α̂ ± (3-pt (rough
+(pilot-scale!))))). T_max 2000 (precedent) + stops:
+D5κ (cap/stationary (soft (never arrest/stillborn!)));
+D5∞ (arrest (absorbing-class!) / cap (exchange-
+active!)); D35 (stillborn? (D3-loser (RR (precedent!)
++ ER-16-lottery!)) / arrest (dust+clique-frozen?!) /
+cap). Stationary-gate = freeze-detector (known-
+limitation (reuse + characterization-reading!)).
+OUTCOME TABLE + FAILURES (locked): cells (5, above)
++ D35-cell (dust+clique (predicted!) vs dust+Poisson
+(gain-ineffective (κ1-too-small?!))); FAILURES:
+clique-condensation (reviewer's ✓ (K-meso + count-1
++ dust-bulk!)); barrier-freeze (Poisson-persistence
+(kinetic! (contingent T×2 rerun (barrier-test!))));
+clustered-hub (top-z-C ≈1 (in-clique (not separate
+(consolidated!)) vs ≪1 (PA-like (anomaly!))).
+PREDICTIONS (falsifiable battery): P1 (D5∞ →
+count-1 meso-clique + sticky-hairs + dust-bulk
+(90%!), ACTIVE (K-fluctuating!)); P2 (D5κ: L1(κ)
+jumps at κ_c(T) (noise → LARGE)); P3 (κ sets RATE
+not SIZE (K ≈ c(κ)√(z̄N) (α=1/2 ∀ nucleating κ;
+c↑κ (tightness!))); P4 (κ_c ↓ in z̄); P5 (no
+steady-coexistence (count≥2 ⟹ count(t)↓)); P6
+(D35 → dust + clique (not dust+Poisson!)); P7
+(valley-aux: gap-aware-1.0 + mass-bimodal); P8
+(bulk-E-starvation (bulk-z̄ ↓ as clique grows));
+P9 (κ-moderate nucleates CLEANEST (anneal-window!)).
+COST (filed): Δt/set-∩ O(z̄) (sweep ~2-4× D1);
+(A) ~20-45min + (B) 6400-cap ~3min/run-worst +
+truss-post ~10s/run ⟹ ~1-2.5h (tmux-backgroundable
+(precedent!)). NEXT: C2-PILOT-2 (code+run, gated
+on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
