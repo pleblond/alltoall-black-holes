@@ -24,6 +24,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   oscillation/profile followups (Dirac-fitting banned); branch
   projectors + R² fit + 4 pins (593 collected).
 
+- **unreleased (P1 amendment-2)** — D14-P1 window corrections (pre-data,
+  arithmetic-from-text): (e) replaced by full-window binned C_v
+  positivity (T=120 ring = 7.7 packet-crossings, not 10);
+  torus-grid T=40→25 (no-wrap guarantee, disp 24<30).
+
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
   wanderers + 1 slither anecdote), 0/6 persistent handedness

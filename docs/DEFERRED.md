@@ -3080,6 +3080,16 @@ criteria!): trapped-weight-branch-oscillation-frequency
 flip-profile (core-vs-bulk!) + flat-band-exchange-weight
 (MEASURE (no-Dirac-fitting (explicit-ban!))). P2/P3-untouched-
 STANDS. NEXT: P1.1a+P1.1b-pilot (gated on amendment-commit!).
+P1-AMENDMENT-2 (window-corrections (PRE-DATA (pure-arithmetic-from-
+committed-text (no-numbers-needed!))): (1)-(e)-SLIP (owned!): T=120-
+ring = 7.7-packet-crossings (σ/v = 15/0.959 = 15.6-units (10-would-
+need-T≥157!)) + torus-T40 = 9.6-crossings (σ/v=4.2!) ⟹ "10-crossing-
+times"-UNCHECKABLE-as-written; REPLACED-by full-window-C_v-positivity
+(ALL-10-lag-bin-means > 0 (ring≈7.7/torus≈9.6-crossings (filed-per-
+substrate!))); bar-unchanged (positivity (not-magnitude!)). (2)-torus-
+T=40→25 (no-wrap-guarantee (disp≈24<L=30 (was-38-wrap!)); α-range-
+thins-to-2× (ring-carries-range-role!)). Everything-else-stands.
+NEXT: P1.1a+P1.1b-pilot (gated on amendment-commit!).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
