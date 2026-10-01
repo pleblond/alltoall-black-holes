@@ -3247,3 +3247,111 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+FEP-0-PREREG (FROZEN-2026-10-01 (~20:00-UTC (commit-predates-
+ALL-FEP-runs!)); finite-excitation-phenomenology-scan (D14-FEP
+on-P1-tail-ac6a140 (branch-cursor/fep-phenomenology-scan-9ae2!))).
+QUESTION (discovery (not-fitting!)): "does-the-frozen-formation
++ wave-dynamics-contain-reproducible-finite-persistent-composite-
+excitations" (electron-comparison-ONLY-after-verdict-freeze
+(firewall-below!)). CONSUMES-READ-ONLY: scalar-J2-wave-apparatus
+(ballistic.py) + continuous-time-H=-A + validated-packet-prep +
+group-velocity-calibration + E-sign-projectors/accounting +
+exact-bare-mixing-null + k→-k-controls (P1.1-verdict!) + frozen-
+D5∞-formation-machine (formation.py (PR#62!)) + Stage-0-sitter-
+bins + P1-A4/A6/A7-operational-rules. D15-READ-ONLY (no-spinorial
+readouts-in-FEP!). P3-D-EXCLUDED (no-nonlinear-DNLS-in-FEP-0
+(FEP-1-later-iff-P3-D-freezes-separately!)). NON-INTERFERENCE
+(locked!): FEP-observes+classifies (MAY-NOT-modify-U-to-improve-
+localization/lifetime/mass/mobility/pairing/chirality/polarity/
+resemblance!); NO-electron-mass/charge/spin/Compton/dispersion/
+constant-enters-dynamics/prep/classifier/criteria (nowhere!); NO-
+core-dependent-trapping-potential (nothing-added!); grid-dims-
+ONLY-P1-characterized (k/branch/width/norm (no-resemblance-dims!)).
+COUPLING-READING (filed!): P1.2-one-way-G→ψ-IS-frozen (FEP-uses-
+it-directly (suffices-for-discovery!)); C0-merge-NOT-required;
+reciprocal-ψ→G-NOT-frozen (B2/B3-gates-stand (invention-BANNED!)).
+P0b-READING (filed!): no-P0b-text-found-in-repo (searched!) ⟹
+sitter-rule = Stage-0-α<0.7-confined + A7-core-presence (only-
+frozen-sitter-rule (amendable-iff-P0b-surfaces-pre-data!)).
+A1-FORMATION-ONLY (BANKED-from-S0/S1 (no-extra-runs!)): mass/
+extent/persistence/COM-drift/lifetime/churn/T-trace/invariants
+(formation-side-of-FEP-trajectories (banked-before-wave-opens!)).
+A2-WAVE-ONLY (BANKED (P1.1-verdict!) + matched-controls-per-cell
+(S2!)): norm/spectral-weights/group-velocity/extent/IPR/
+dispersion. A3-COMBINED = S2-coupled-runs (frozen-one-way (no-
+added-terms!)); ALL-candidate-claims = differences-vs-A1/A2.
+S0-FORMATION (post-prereg!): 6-D5∞-trajectories (L28-d0-d3+L42-
+d0-d1 = formation_run(state_from_nx(j2_torus_graph(L)),"d5inf",
+4,seed=d,t_max=2000,k4_window=(1500,2000),elist_window=(1500,
+2000)) (same-frozen-code+seeds-as-P1 (determinism ⟹ same-
+trajectories (INDEPENDENT-reruns (no-read-of-uncommitted-P1-
+files!)))); D1-controls (FRESH (same-call-"d1" (A4-precedent!))).
+S1-SELECTION+A1-BANK: sitters = α<0.7-AND-core-present-all-3-
+saves({1500,1800,2000},mass>0!) (unwrapped-centroid-1500-2000
+(A7-method!) + locked-bins!); <1-sitter ⟹ STOP+file (A4!); bank-
+A1-then-file-S1 (wave-sealed-until-S1-filed!).
+S2-WAVE-GRID (per-sitter (formula-locked (counts-filed!))):
+launches-s0∈{1500,1650,1800} × horizon-H=150-sweeps (per-sweep-
+frames!); S=10-fiducial (dt=0.1 (T=150-units ≈ 6.5/4.3-crossings
+(L28/L42 (v≈1.2!-P1.1b!) (both->3 ✓))); S-BRACKET-{1,10,100}-on-
+σ4-headline-cells (formed + matched-controls-same-S (A4-T-match
+spirit!)); packets-per-(sitter,launch): σ4: 2-branches × 4-geos
+(x/y × approach/flip (per-branch-operational-approach-sign (10-
+unit-verify-on-ACTUAL-formed-H (neither-approaches ⟹ run-invalid-
+filed!)))) + zero-k (=9!); σ2: 2-branches × x-approach (=2!);
+prep-at-max-torus-distance-node-from-launch-core (B0!); |k|=0.3-
+partner-momenta (P1-A1!); spread-gated (σ<L/6 ✓-both-L!); norm=1-
+ONLY (linear-law-scaling-degeneracy-filed (energy-scanned-via-
+(k,branch)!)); substrates-per-cell: formed-dynamic-K(t) + D1-
+dynamic + bare-J2-static-matched-T (node-matched-masks (A4!)).
+VALIDITY-per-run: prep-purity-≥80% (else-run-invalid-filed
+(P1.1b!)); accounting-≤1e-9-every-frame (else-frame-invalid;
+>1/3 ⟹ apparatus-STOP (A4!)); wrap-note (T≫L (A4!): cumulative-
+observables-wrap-robust-via-matched-T-controls!). OBSERVABLES-
+per-run: w(t) (time-varying-k4-mask!) + r(t)=w/w_deloc(t) +
+R_eff(t) + R_free(t) + IPR(t) + d(t)-ψ-core-distance + COM-
+traces-unwrapped + v-fit + R² + α + C_v + W±/0(t)-bare-basis +
+max-devs + E(t)=<H(G_t)> + late-mean + K-side (mass/α/Jaccard-
+churn/B_chiral/triangle-density) + <Γ>-descriptive. S2-health-
+live (validity/accounting (STOP-allowed!)); GATE-MARGINS-SEALED-
+until-S3 (verdict-script-opens!).
+S3-SIX-GATES (frozen (fep.py!); last-half = last-50%; late =
+last-20% (B1!)): G1-localization ⟺ median(R_eff/R_free)<0.5-
+last-half; G2-association ⟺ median(r)>5-last-half (B1-5×!);
+G3-bounded ⟺ (max-min)/median-R_eff<0.5-last-half; G4-lifetime
+⟺ frac(r>5 ∧ R_eff<R_free)>0.8-full-window AND crossings->3;
+G5-occupation ⟺ late-mean-r>5 AND late-mean(W_+ + W_-)>0.05
+(not-flat (zero-k-5%!); G1∧G2∧G3∧G4∧G6-minus-G5 = FLAT-TRAP-
+run (filed!)); G6-K-survival ⟺ mass>0-all-sweeps AND mass-CV<
+0.5 AND K-α<1.3 (locked-bins!). RUN-FIRES ⟺ G1∧G2∧G3∧G4∧G5∧G6.
+CLASS-(branch,σ)-FIRES ⟺ ≥2-headline-geo-S=10-fires-from-≥2-
+distinct-sitters (launches-any!) AND S-ROBUSTNESS (per-firing-
+(sitter,launch): S∈{1,100}-same-qualitative (mismatch ⟹ VOID-
+filed (fragile (not-shopped!)))); σ2-classes-count-only-with-
+same-branch-σ4-class (robustness-role!); appendix-geo/zero-k/
+S-cells-NEVER-trigger (anatomy/E1/E3/E4-roles!).
+S4-LADDER (locked!): E0 ⟺ ≥1-class (finite-excitation!); E1 ⟺
+±x-pair-sign-test-per-class (10% (P1!); static-both ⟹ E1-NULL-
+filed (sitter-hosts-expect-NULL (wanderer-E1 = followup-NOT-
+FEP-0!))); E2 ⟺ zero-k-class-run-fires AND 10%-excess (late-
+<H(G_t)>-vs-matched-<H_bare>!) AND v<5%-free-v_g (P1.1!); E3 ⟺
+branch-mirror-classes-fire AND |E_+-E_-|/mean<10% AND partner-
+prep-relation (branches-alone-DO-NOT-satisfy!); E4 ⟺ within-
+class-late-W_+-gap-split (max-gap>3×median-gap AND both-sides-
+n≥2+G4-each (descriptive (NEVER-called-spin!))) else-OPEN; E5-
+ARCHITECTURE-NULL (no-signed-invariant-in-frozen-one-way-law
+(norm/energy-unsigned; Γ-NOT-a-symmetry-of-H(G_t) (<Γ>-filed-
+descriptive!))); E6/E8-DEFERRED (spec!); E7 ⟺ IF-E0∧E1∧E2:
+E(p)-from-<H>-vs-v-across-k-preps + post-verdict-overlay-only
+(no-fit (bare-v_g-comparison-scale-only-after!)). HARD-STOPS:
+NULL-0 ⟺ 0-fires-full-grid (no-tuning-rescue!); SCATTERING-ONLY
+⟺ never-G2∧G4-jointly BUT (residence-z>3 (A4!) OR mixing-
+dominance-MWU-p<0.05 (A6!))-on-FEP-cells; FLAT-TRAP ⟺ ≥1-flat-
+trap-run AND 0-candidates; E0+ ⟺ ≥1-class (⟹ ladder (no-U-
+change!)). REPORT-per-class: frequency/lifetime/radius/energy/
+mobility/spectral-distributions + failure-modes; singletons =
+ANECDOTAL (not-species!). ELECTRON-FIREWALL: comparison-table-
+ONLY-after-S4-freeze (MEASURED/NULL/OPEN/ASSUMED-DEBT (no-
+aggregate-score!)); "electron-like"-conditional-only (never-
+identification!). AMENDMENTS-pre-data-only (committed-before-
+use!). NEXT: S0-reruns (gated on prereg-commit!).

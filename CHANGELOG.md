@@ -3,6 +3,21 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (FEP-0 prereg)** — D14-FEP finite-excitation
+  phenomenology scan opened on P1 tail (ac6a140): discovery (not
+  fitting) of persistent composite K+ψ excitations under the frozen
+  one-way P1.2 coupling (C0-merge not required, reciprocal channel
+  banned, P3-D excluded, D15 read-only); A1/A2 banked (Stage-0 +
+  P1.1), A3 = S2 coupled grid (6 D5∞ trajectories, sitter-selected,
+  3 launches × H=150, σ∈{4,2}, partner-momenta branches, 3
+  substrates, S-bracket {1,10,100} on headline cells); six frozen
+  gates (localization/association/bounded/lifetime/occupation/
+  K-survival) + class rule (≥2 fires, ≥2 sitters, S-robustness) +
+  E0–E8 ladder operationalization (E5 architecture-null, E6/E8
+  deferred) + NULL-0/SCATTERING-ONLY/FLAT-TRAP/E0+ hard stops +
+  electron firewall; composite readouts + gates (`fep.py`) + 11
+  pins (pre-data).
+
 - **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked
   (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
