@@ -2714,6 +2714,49 @@ followup!)); (iv) valley-island-scope. FOLLOWUPS
 (filed (not-now!)): κ1.5-ladder; κ3-6400; D3×∞;
 κ-grid×N-grid (κ_c(N)!); kmax-4-theory. NEXT:
 review-turn or next-design (gated on go).
+REVIEW RESPONSE (pilot-2 comments — agreed +
+sharpened, filed): BRACKET-HEADLINE (adopted):
+D3 (depletion (dust/arrest!)) … D5κ≤1 (entropy
+(Poisson+!)) … D5κ2-1600 (concentration (clique!))
+… D5∞ (FRUSTRATED (kmax-4-sponge!)). HARD≠ZERO-T
+(elevated): D5∞ restricts the ACCESSIBLE-TRANSITION-
+GRAPH (not reweights-configurations ⟹ Strauss/
+extremal reasoning INAPPLICABLE (equilibrium-only!)
+— beyond-this-experiment (filed!)). Γ+/Γ−-SKETCH
+(filed-rough (next-unit-derives!)): growth ∝ K²/N²
+(propose-dilution!) vs erosion ∝ (K²/E0)·e^{−κK}
+⟹ K_c ∝ (1/κ)·lnN (3.0→3.7 (WEAK (both-reachable!)))
+⟹ N*-bottleneck = SEED-SURVIVAL (dilution-starves-
+seeds-before-critical (not K_c-reach!)) — TESTABLE
+(K5-birth/death-vs-N (anatomy-reruns!)). SWEEPS-
+DEPRIORITIZED (agreed (reordered!)): κ1.5 (anatomy
+(useful (not-mechanistic!))); κ3-6400 AFTER
+derivation (quantitative-prediction-first (not
+probably-nucleates!)). D15-GATE (agreed (NOT-
+INVOKED!)): closed-until (D5∞-finite-scale +
+SSB-shown (automorphism-break (measure-open
+(orbit-structure? (next-unit-scopes!)))); conver-
+gence-if-any (unforced (neither-track-modified!)).
+INSTANCE (agreed): idle-remote = burning-$ (user-
+stops (no-API-creds-here (ssh-only!))).
+ANATOMY-LOCK (NEXT-UNIT (docs+anatomy (NO-new-
+conditions!)): (A) OFFLINE (saved-states!):
+kmax(t)/k4-count(t)/k4-Jaccard(t)/core-persistence
+(EXCHANGE-vs-STATIC (fixed-K* vs stationary-phase-
+with-churn (ontology-fit!)!) + T-plateau-shape
+(have!) + opportunity-stock (wedges(t)/T(t)!);
+(B) INSTRUMENTED-RERUNS (SAME-trajectories
+(verify-T-match!) + move-columns (t_loss/t_gain/
+accept (supply-demand-at-plateau!) + K5-birth/
+death (seed-rates-vs-N (κ2@1600-vs-3600 (N*-mech!
+)))); (C) DERIVATION (kmax-4-from-mechanics
+(supply-demand-balance!) + Γ+/Γ−-scaling (N* +
+fixed-point-math (stability-sign!)) + plateau-vs-
+transient (kmax(t)-flat (+CONTINGENT-T×2 (trigger:
+offline-flat-confirmed (decide-after-offline!)))
++ finite-time-churn-NULL (explicit!)); (D) D15-
+GATE-STATUS (closed (until-scale+SSB!)). NEXT:
+D5∞-anatomy (gated on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
