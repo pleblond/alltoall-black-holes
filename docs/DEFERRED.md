@@ -3355,3 +3355,20 @@ ONLY-after-S4-freeze (MEASURED/NULL/OPEN/ASSUMED-DEBT (no-
 aggregate-score!)); "electron-like"-conditional-only (never-
 identification!). AMENDMENTS-pre-data-only (committed-before-
 use!). NEXT: S0-reruns (gated on prereg-commit!).
+FEP-AMENDMENT-1 (zero-k-yardstick-repair (PRE-DATA (pure-
+arithmetic-from-committed-text (no-FEP-wave-numbers-exist
+(S2-unlaunched!); S0-formation-reruns-in-flight-unopened
+(selection-unfiled (not-consulted!)); commit-predates-ALL-
+wave-runs!))): BUG-owned: G4-crossings = window×v_free/L
+with v_free = matched-bare-speed ⟹ zero-k (v_free = 0
+(P1.1b-validated-null!)) gives crossings = 0 ⟹ G4-false-
+always ⟹ E2 ("zero-k-class-run-fires")-VACUOUS-as-written.
+REPAIRED-by: zero-k-yardstick-velocity = matched-minus-x-
+approach-bare-speed (same-(sitter,launch,S) (headline-
+packet-of-family (fallback-plus-x-approach (both-invalid
+⟹ zero-k-run-invalid-filed (yardstick-unavailable!)))));
+crossings-otherwise-unchanged; G1/G2/G3/G5/G6-zero-k-
+unchanged (matched-zero-k-bare-controls-stand!). <Γ>-trace-
+added-to-S2-cells (prereg-already-required (script-
+completion-pre-launch!)). Everything-else-stands. NEXT:
+S2-launch (gated on amendment-commit!).

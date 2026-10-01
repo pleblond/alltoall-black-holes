@@ -18,6 +18,13 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   electron firewall; composite readouts + gates (`fep.py`) + 11
   pins (pre-data).
 
+- **unreleased (FEP amendment-1)** — D14-FEP zero-k yardstick repair
+  (pre-data, pure arithmetic): G4 crossings used matched bare speed,
+  which is 0 for validated zero-k nulls, making E2 vacuous as
+  written; repaired with the family yardstick (matched minus-
+  x-approach bare speed, plus fallback, else run-invalid); <Γ>
+  trace added to S2 cells (prereg-required, pre-launch).
+
 - **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked
   (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
