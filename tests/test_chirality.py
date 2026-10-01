@@ -23,14 +23,17 @@ from bh_graph.chirality import (
     is_valid_core,
     is_valid_psi,
     node_index,
+    normalized_winding,
     orient_faces,
     plant_twist,
     psi_ipr,
     random_phase_psi,
     reflect_j2_x,
     region_ball,
+    region_torus_ball,
     sign_stable,
     tau_w,
+    torus_dist_to_point,
     triangle_index,
     winding,
 )
@@ -203,11 +206,11 @@ def test_region_envelope_planting_deterministic():
     p2 = plant_twist(g, core, 1, coords, 6)
     assert p1 is not None and np.array_equal(p1, p2)  # deterministic
     assert abs(np.linalg.norm(p1) - 1) < 1e-12
-    r1 = random_phase_psi(g, core, 5100)
-    r2 = random_phase_psi(g, core, 5100)
-    assert np.array_equal(r1, r2) and not np.array_equal(r1, random_phase_psi(g, core, 5101))
+    r1 = random_phase_psi(g, core, 5100, coords, 6)
+    r2 = random_phase_psi(g, core, 5100, coords, 6)
+    assert np.array_equal(r1, r2) and not np.array_equal(r1, random_phase_psi(g, core, 5101, coords, 6))
     assert plant_twist(g, [], 1, coords, 6) is None
-    assert random_phase_psi(g, [], 0) is None
+    assert random_phase_psi(g, [], 0, coords, 6) is None
     assert floored_k4_core(g)[0] == []  # triangle-free J2: empty core, no crash
 
 
@@ -273,3 +276,57 @@ def test_orient_faces_degenerate_excluded():
     assert ori.shape == (0, 3)
     w, excl, used, total = winding(np.zeros((0, 3), dtype=np.int64), np.ones(4))
     assert (w, excl, used, total) == (0.0, 0.0, 0, 0)
+
+
+def test_torus_distance_and_region():
+    coords = j2_torus_coords(28)
+    nodes = sorted(coords)
+    d = torus_dist_to_point(coords, nodes, 0.0, 0.0, 28)
+    assert d[0] == 0.0 and d[1] == 0.0  # both sheets of cell (0,0)
+    v27 = (27 * 28 + 0) * 2  # cell (27,0): wraps to distance 1
+    assert abs(d[v27] - 1.0) < 1e-12
+    r0 = region_torus_ball(coords, nodes, 0.0, 0.0, 0, 28)
+    assert r0 == [0, 1]  # exactly the centroid cell
+    r1 = region_torus_ball(coords, nodes, 0.0, 0.0, 1, 28)
+    assert r0[0] in r1 and len(r1) == 10  # cell + 4 neighbors x2 sheets
+    assert region_torus_ball(coords, nodes, 0.0, 0.0, 1, 28) == r1
+    assert region_torus_ball(coords, nodes, 0.0, 0.0, -1, 28) == []
+
+
+def test_synthetic_torus_planted_winding():
+    L = 6
+    g = j2_torus_graph(L)
+    coords = j2_torus_coords(L)
+    core = [(x * L + y) * 2 + b for (x, y) in ((2, 2), (2, 3), (3, 2)) for b in (0, 1)]
+    c = (2 * L + 2) * 2  # (2,2,0): triangle hub near centroid
+    cell = {}
+    for u in g.neighbors(c):
+        cell.setdefault(coords[u][:2], []).append(u)
+    cells = sorted(cell)
+    added = 0
+    for i in range(0, len(cells) - 1, 2):  # cross-cell pairs: non-degenerate
+        u, v = cell[cells[i]][0], cell[cells[i + 1]][0]
+        if not g.has_edge(u, v):
+            g.add_edge(u, v)  # closes triangle (c,u,v)
+            added += 1
+    assert added >= 2
+    nodes = sorted(g.nodes())
+    idx = node_index(nodes)
+    x0, y0 = circular_centroid(core, coords, L)
+    s = set(region_torus_ball(coords, nodes, x0, y0, 2, L))
+    tris = enumerate_triangles(g, nodes)
+    kept, ori = orient_faces(tris, coords, L)
+    in_s = np.asarray([a in s and b in s and c in s for a, b, c in ori])
+    assert in_s.sum() >= 2  # added triangles land in-region
+    tidx = triangle_index(ori[in_s].reshape(-1, 3), idx)
+    w1, e1, _, _ = winding(tidx, plant_twist(g, core, 1, coords, L, nodes=nodes))
+    w_1, _, _, _ = winding(tidx, plant_twist(g, core, -1, coords, L, nodes=nodes))
+    w0, _, _, _ = winding(tidx, plant_twist(g, core, 0, coords, L, nodes=nodes))
+    assert e1 == 0.0
+    assert abs(w1 - 2.0) < 1e-9  # coverage E=2 (sheet doubling), exact
+    assert abs(w_1 + 2.0) < 1e-9
+    assert abs(w0) < 1e-9  # uniform phase: exact zero
+    n1 = normalized_winding([w1, 1.0, 0.0], w1)
+    assert n1 is not None and list(n1) == [1.0, 0.5, 0.0]
+    assert normalized_winding([1.0], 0.0) is None  # zero scale: routine None
+    assert normalized_winding([1.0], float("nan")) is None

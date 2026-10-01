@@ -242,6 +242,24 @@ def region_ball(g: nx.Graph, core: list, radius: int) -> list:
     return sorted(v for v, d in dist.items() if d <= radius)
 
 
+def torus_dist_to_point(coords: dict, nodes: list, x0: float, y0: float, L: int) -> dict:
+    """Torus distance of each node to fractional point (x0, y0) (readout basis)."""
+    out = {}
+    for v in nodes:
+        dx = mindisp_1d(x0, coords[v][0], L)
+        dy = mindisp_1d(y0, coords[v][1], L)
+        out[v] = math.hypot(dx, dy)
+    return out
+
+
+def region_torus_ball(coords: dict, nodes: list, x0: float, y0: float, r: float, L: int) -> list:
+    """Sorted nodes within torus distance <= r of (x0, y0) (S^T_r, filed basis)."""
+    if r < 0:
+        return []
+    dist = torus_dist_to_point(coords, nodes, x0, y0, L)
+    return sorted(v for v, d in dist.items() if d <= r)
+
+
 def circular_centroid(core: list, coords: dict, L: int) -> tuple:
     """Circular-mean (x0, y0) of core in J2 readout coords (Stage-0 precedent)."""
     ax = [2 * math.pi * coords[v][0] / L for v in core]
@@ -269,38 +287,53 @@ def plant_twist(
     """Planted twist psi_m = rho exp(i m theta)/norm (None if core empty).
 
     theta(v) = atan2 angle of minimal torus displacement from the core
-    circular-mean centroid (J2 readout basis). Deterministic.
+    circular-mean centroid; rho = Gaussian in TORUS distance to centroid
+    (amendment-2: graph metric abandoned, cut-inconsistent on rewired
+    graphs). Deterministic.
     """
     if not is_valid_core(core):
         return None
     if nodes is None:
         nodes = sorted(g.nodes())
     x0, y0 = circular_centroid(core, coords, L)
-    rho = envelope_rho(g, core, sigma)
+    dist = torus_dist_to_point(coords, nodes, x0, y0, L)
     psi = np.empty(len(nodes), dtype=np.complex128)
     for i, v in enumerate(nodes):
         dx = mindisp_1d(x0, coords[v][0], L)
         dy = mindisp_1d(y0, coords[v][1], L)
-        psi[i] = rho.get(v, 0.0) * complex(math.cos(m * math.atan2(dy, dx)), math.sin(m * math.atan2(dy, dx)))
+        th = m * math.atan2(dy, dx)
+        d = dist[v]
+        psi[i] = math.exp(-d * d / (2 * sigma * sigma)) * complex(math.cos(th), math.sin(th))
     nrm = np.linalg.norm(psi)
     if nrm == 0:
         return None
     return psi / nrm
 
 
-def random_phase_psi(g: nx.Graph, core: list, seed: int, sigma: float = SIGMA_DEFAULT, nodes=None):
+def random_phase_psi(
+    g: nx.Graph,
+    core: list,
+    seed: int,
+    coords: dict,
+    L: int,
+    sigma: float = SIGMA_DEFAULT,
+    nodes=None,
+):
     """Same-envelope random-phase control (iid uniform phases, seeded).
 
-    None if core empty. Deterministic given seed (numpy default_rng).
+    Envelope = torus-Gaussian to core centroid (amendment-2, matches
+    plant_twist). None if core empty. Deterministic given seed.
     """
     if not is_valid_core(core):
         return None
     if nodes is None:
         nodes = sorted(g.nodes())
-    rho = envelope_rho(g, core, sigma)
+    x0, y0 = circular_centroid(core, coords, L)
+    dist = torus_dist_to_point(coords, nodes, x0, y0, L)
     rng = np.random.default_rng(seed)
     phases = rng.uniform(0, 2 * math.pi, len(nodes))
-    psi = np.asarray([rho.get(v, 0.0) for v in nodes]) * np.exp(1j * phases)
+    rho = np.asarray([math.exp(-dist[v] ** 2 / (2 * sigma * sigma)) for v in nodes])
+    psi = rho * np.exp(1j * phases)
     nrm = np.linalg.norm(psi)
     if nrm == 0:
         return None
@@ -334,6 +367,18 @@ def winding(tris_idx: np.ndarray, psi: np.ndarray, eps: float = EPS_FLOOR) -> tu
     )
     w = float(np.sum(ph) / (2 * math.pi))
     return w, 1.0 - n_used / n_total, n_used, n_total
+
+
+def normalized_winding(wtrace, scale) -> np.ndarray | None:
+    """Winding trace rescaled by planted t=0 scale (coverage normalization).
+
+    Raw W(0) = m x coverage (multi-cover triangle overlap, e.g. sheet
+    doubling); dividing by the per-run planted scale tracks FRACTION of
+    initial winding retained. None if scale is 0/non-finite (routine).
+    """
+    if not np.isfinite(scale) or scale == 0:
+        return None
+    return np.asarray(list(wtrace), dtype=float) / scale
 
 
 def tau_w(times, wtrace, thresh: float = 0.5, sustain: int = 5) -> float:
