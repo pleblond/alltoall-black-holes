@@ -202,8 +202,56 @@ no new law (splitter = apparatus per ban (g)); no P3-D / FEP inputs.
 
 ---
 
-## Amendments (pre-data only; numbered; none yet)
+## Amendments (pre-data only; numbered)
+
+SG-AMENDMENT-1 (weak-gradient ladder + gate recalibration; PRE-RERUN:
+pilot-1 opened below, pilot-1 Δy-verdict SUPERSEDED (gate-miss class,
+P1-A3 precedent), rerun cells gated on this amendment commit).
+PILOT-1 DISPOSITION (beast, `sg0_bank.py`, L28/T=10 + TG30/T=25):
+- BANKED: Scal PASS (two-Gaussian depth 0.97 fires; single/flat silent);
+  exact theorems in campaign conditions (Δy(0)=0 to 1e-13 all packets;
+  Δy(−g)=−Δy(+g) to 4 decimals all 6 pairs — S2 6/6 TRUE); P1.1b
+  replication to 4 decimals (v=1.2039/1.2110 symmetric pair, α=2.07/2.09,
+  R²≥0.9997, purity 99.999%, mixing ≤1e-12, zero-k exact null); S4
+  (anti EXACTLY frozen disp=0 at BOTH g=0 and g=+g0 — H_SG·P_anti=0
+  survives sheet-blind modulation, stronger than prereg assumed;
+  sheet0 50/50 at g=0 (disp 2.24), common-mode dy=+6.27 at +g0);
+  NO SPLITTING in all 30+ pilot cells including wrap-void ones
+  (detector robustness: split=False everywhere, 0/30+ firings).
+- SUPERSEDED (gate-miss, owned): (i) seam<1% set blind — free transverse
+  spread (w 4→6.5 over T=10, 11% seam even at g=0 where NO discontinuity
+  exists) voids S0's seam sub-gate while every physics sub-gate passes;
+  (ii) g0 ladder assumed perturbative — response is non-perturbative and
+  non-monotonic in g (dy: +8.46→+10.95→+4.96 over g0/2→g0→2g0;
+  S3 linearity 0/4; several cells wrap-void with disp up to 16.3>14).
+  Character: large-amplitude coherent transverse motion (Bloch-like
+  oscillation phase samples, NOT steady deflection); minus/plus-branch
+  dy IDENTICAL to 4 decimals every cell (filed; possible exact
+  transverse branch-blindness — followup, not pursued here).
+GATE CHANGES (cause shown, conclusions threshold-independent):
+- (A1.1) S0 seam bar → filed-spread (no bar at g=0: uniform H has no
+  seam discontinuity; COM exact by theorem; transverse spread is free
+  dispersion, measured not barred). All other S0 sub-gates stand;
+  S0 re-gated on FILED pilot numbers (no rerun — deterministic).
+- (A1.2) g≠0 seam bar 1%→5% (discontinuity-sampling guard; no-split
+  conclusion holds in every cell incl. 56%-seam ones, so the bar binds
+  only Δy-precision, never Q1). disp<L/2 + wT<L/4 stand.
+RERUN CELLS (script `scripts/sg0b_weak.py`, this commit):
+- (A1.3) S1b/S2b/S3b weak ladder: J2 L28 minus/plus × {±g0/8, ±g0/4}
+  (same prep/readouts/T); S2b reversal (same tolerance); S3b linearity
+  over weak pairs (|Δy(g0/4)−2Δy(g0/8)|<max(0.25|·|,0.1σ0)).
+- (A1.4) S5b: torus-grid-30 × {±g0/4} (same readouts); S5 re-gated per A1.2.
+VERDICT RULE (locked): Q1 (splitting?) over ALL cells ever run (pilot +
+rerun, valid or void — 0 firings required); Q2 (SG0-vs-SG1) over VALID
+weak-ladder cells only, per-regime labels filed separately (weak-gradient
+label is the bare-wave headline; strong-gradient pilot cells filed as
+large common-mode oscillation, SG1-class response, void-for-Δy-precision).
+Both S3b outcomes allowed: linearity-pass → perturbative SG1/SG0 per bar;
+linearity-fail → "no linear regime down to g0/8; oscillatory common-mode"
+(SG1-class by response magnitude). No further cells without Amendment-2.
 
 ## Verdicts (filed post-data; SG-0 bank gated on prereg commit)
 
-SG-0 bank: NOT RUN (awaiting prereg commit + beast staging).
+SG-0 pilot-1: RAN (beast; disposition per Amendment-1 above — Scal/S2/S4/
+no-split banked; Δy-verdict superseded). Rerun (S1b/S2b/S3b/S5b): NOT RUN
+(gated on amendment commit).
