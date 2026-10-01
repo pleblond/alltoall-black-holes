@@ -3,6 +3,13 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (SG prereg)** — Stern–Gerlach phenomenology campaign opened
+  on PR #65 tail: admission gate audited FAILS (P0/P3-A/MALUS-0 NULL,
+  D15 closed, COH/SLIT firewalled, FEP/B0/B1 unfired → no SG-2/3/4);
+  SG-0 null bank preregistered (sector-blind y-bond splitter H_SG,
+  frozen SPLIT detector + SG0–SG4 ladder, exact Δy nulls, S0–S5 stages);
+  apparatus (`stern_gerlach.py`) + bank script + 14 pins (pre-data).
+
 - **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked
   (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
