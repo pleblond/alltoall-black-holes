@@ -3427,3 +3427,41 @@ tunneling/EVANESCENT-TRANSMISSION-ESTABLISHED (uniquely-quantum-claim-
 NOT-made (locked-interpretation!)). NEXT: TUN-4-double-barrier (design-
 amendment (geometry+scan+resonance-predictions-frozen-pre-run!) (gated-
 OPEN (TUN-2+TUN-3-PASS-banked!))).
+
+TUN-AMENDMENT-3 (TUN-4-double-barrier-prereg (FROZEN-PRE-RUN (gated-
+OPEN (TUN-2+TUN-3-PASS-banked!)); design-from-THEORY-only (transfer-
+matrix + box-modes (no-dynamics-input!)))). GEOMETRY-frozen: L160 +
+x0=40 + walls-[64,66)+[70,72)-(LB=2-each (y-bond-removal (same-law!)))
++ well-[66,70)-(LW=4-pristine) + regions-left-x<64/struct-64..72/
+right-x≥72 (T+R+B=1-stands!) + packets-σx=6-σy=8-dt=0.1 (UNCHANGED!).
+LB=2-chosen-over-LB=3 (theory: LB3-second-resonance-width-≪0.002-
+(invisible-after-k-averaging!) vs LB2-TWO-visible (single-mode-TM:
+E_res-{-7.418 (w-0.0097!),-5.826 (w-0.0585!)} (symmetric-heights-~1!))).
+BOX-modes-(LW4-open-segment-ky0): {-7.23607,-5.23607} (descent-addresses
+(TM-shifts-−0.18/−0.59-=-thin-wall-penetration (theory-known (filed!)))).
+SCAN-frozen-25-E0 (no-adaptive-peeking!): 0.2-grid-{-7.4..-4.4}(16) +
+exact-TM-{-7.418,-5.826}(2) + fine-{-7.6,-7.5,-7.3,-6.1,-5.9,-5.7,-5.5}(7).
+BANK: 25-free-runs (x0=40 (same-gates-(a)(b')(c)(d)(e)(f)-as-TUN-0!)) +
+T_sep-=-formula(banked-v (per-E0!))-wall_hi=72 (expected: {-7.6:30.0,
+-7.5:27.0,-7.418:25.5,-7.4:25.0,-7.3:23.5,-7.2:22.0,-7.0:20.0,-6.8:18.5,
+-6.6:17.5,-6.4:16.5,-6.2:16.0,-6.1:15.5,-6.0:15.5,-5.9:15.0,-5.826:15.0,
+-5.8:15.0,-5.7:14.5,-5.6:14.5,-5.5:14.5,-5.4:14.0,-5.2:14.0,-5.0:13.5,
+-4.8:13.5,-4.6:13.5,-4.4:13.5} (banked-rules!)). FROZEN-PREDICTIONS
+(dense-k-averaged-double-TM-n_kx=2001 (stationary-theory-ONLY!)): {-7.6:
+0.0130993,-7.5:0.0223409,-7.418:0.0253478,-7.4:0.0252608,-7.3:0.0208296,
+-7.2:0.0133764,-7.0:0.00331235,-6.8:0.00119403,-6.6:0.00359037,-6.4:
+0.0163786,-6.2:0.0497228,-6.1:0.0722338,-6.0:0.0932298,-5.9:0.107404,
+-5.826:0.111190,-5.8:0.111023,-5.7:0.103563,-5.6:0.0877362,-5.5:0.0680454,
+-5.4:0.0488625,-5.2:0.0217786,-5.0:0.0109276,-4.8:0.0103340,-4.6:0.0187706,
+-4.4:0.0445399} (contrast-pred-93× (min-−6.8!) (background-≫floor-✓)).
+PASS ⟺ ALL: (a)-accounting-1e-9-every-frame-all-25; (b)-T/T_pred∈[1/3,3]-
+all-25 (full-curve-heights+shape!); (c)-max(scan)/min(scan)≥10 (pred-93×!);
+(d)-max-over-U={-6.1..-5.4}(9pts)≥5×T(−6.8) (upper-resonance (pred-93×!));
+(e)-max-over-L={-7.6..-7.2}(6pts)≥5×T(−6.8) (lower-resonance (pred-21×!));
+(f)-argmax(U)-within-±0.15-of-−5.826-AND-argmax(L)-within-±0.15-of-−7.418
+(TM-addresses (robust-to-−7.418/−7.4-near-tie (both-inside-window!)));
+box-modes-filed-as-descent-addresses (±0.7-consistency (weak-by-design
+(disclosed!))). NARROWNESS (locked-interpretation!): measured-widths-≈σ_E-
+(packet-limited (heights-≈(w/σ_E)·1-match-pred ⟹ true-w-≪-σ_E (direct-
+width-resolution-packet-limited (filed!)))). NEXT: TUN-4bank+TUN-4-on-beast
+(gated on amendment-commit + bank-gates!).
