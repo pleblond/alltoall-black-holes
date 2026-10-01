@@ -144,3 +144,27 @@ def test_l1_hist():
     assert l1_hist({0: 50, 1: 50}, {0: 50, 1: 50}, 100) == 0.0
     assert l1_hist({0: 100}, {1: 100}, 100) == 2.0
     assert l1_hist({0: 60, 1: 40}, {0: 50, 2: 50}, 100) == 1.0  # union support
+
+
+def test_run_does_not_mutate_input_state():
+    st = state_from_nx(soup_graph("er", 200, 8, 0))
+    before = (list(st["elist"]), {v: set(s) for v, s in st["nbrs"].items()})
+    formation_run(st, "d5inf", 4, 1, t_max=30)
+    assert st["elist"] == before[0]  # same-soup reuse needs this
+    assert st["nbrs"] == before[1]
+
+
+def test_same_soup_same_dyn_bit_identical():
+    st = state_from_nx(soup_graph("er", 200, 8, 7))
+    r1, f1 = formation_run(st, "d5inf", 4, 3, t_max=30, return_state=True)
+    r2, f2 = formation_run(st, "d5inf", 4, 3, t_max=30, return_state=True)
+    assert r1["t_trace"] == r2["t_trace"]
+    assert f1["elist"] == f2["elist"]
+
+
+def test_same_soup_diff_dyn_diverges():
+    st = state_from_nx(soup_graph("er", 200, 8, 7))
+    r1 = formation_run(st, "d5inf", 4, 3, t_max=30)
+    r2 = formation_run(st, "d5inf", 4, 4, t_max=30)
+    assert r1["t_trace"] != r2["t_trace"]  # proposal sequence differs
+    assert r1["e_final"] == r1["e0"] == r2["e_final"]  # both still E-exact

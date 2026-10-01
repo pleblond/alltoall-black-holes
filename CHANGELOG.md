@@ -3,6 +3,17 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (formation SSB-1)** — D14/D15 same-soup campaign (60
+  runs, 2N×3 soups×10 dyn, identity 6/6): verdict SPONTANEOUS
+  (same-soup core-Jaccard 0.076/0.033 ≈ across-soup ≈ random,
+  vs imprint-threshold 0.8; Gini 0.76-0.79, IPR 4-4.8×
+  delocalized) ⟹ D15 REOPENS (finite-scale ✓ + SSB ✓);
+  symmetry restated as statistical-S_N-of-law (not Aut);
+  aging decisive (late/early slope 0.16-0.63, approach to fixed
+  point); in-situ gates exact (D5∞ step, κ2 Metropolis);
+  κ2@3600 supply-collapse (0/217k gain≥3); K5 D5∞ flicker
+  (death 0.48/sweep) vs κ2-nuc survival; +3 same-soup pins
+  (572 collected).
 - **unreleased (formation anatomy)** — D14 D5∞ frustration anatomy
   (kmax-4 derivation): offline 30-run anatomy (kmax-4 locked all-N,
   EXCHANGE churn jac≤0.31/pers≤0.49 vs κ2@1600 static jac→1.0,

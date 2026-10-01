@@ -2815,6 +2815,50 @@ unit-scopes-measure!))). FOLLOWUPS (filed!): κ1.5-ladder;
 κ3-6400 (NOW-quantitative (N*(κ)-from-birth-suppression!));
 SSB-measure-scoping; D3×∞. NEXT: review-turn or next-design
 (gated on go).
+AGING+RATES (analysis-only followups (Units-1+2 (no-new-runs!))):
+(1) AGING-DECISIVE (case-(a)!): D5∞-late/early-T-slope-ratio
+0.16-0.63-ALL-15-runs (uniform-deceleration ⟹ approach-to-
+fixed-point (NOT-persistent-pumping!) ⟹ "steady"-filing-
+UPGRADED (aging-with-measured-deceleration!)); opportunity-
+halves: 100→1000-×1.2-2.85 vs 1000→2000-×1.03-1.12; late-
+abs-drift-↑N (+9-21/+20-34/+51-66-per-100sw) BUT relative-
+~0.4-0.5%-ALL-N (bigger-N-further-in-absolute (predicted-
+✓!)); κ2@1600-ratio-0.19-0.23-TIGHT (dust-depletion-
+deceleration!); κ2@big-flat-throughout (|slope|≤7 (true-
+flat!)). (2) RATES-MEASURED: D5∞-gate-perfect-step
+(P(acc|0)=0.000/P(acc|≥1)=1.000 (n=95k!)); κ2-in-situ-
+Metropolis-EXACT (P(−1)=0.127-0.133-vs-0.135,
+P(−2)=0.015-0.020-vs-0.018!); κ2@3600-P(gain≥3)=0/217520
+(ABSOLUTE-supply-collapse ⟹ birth-bottleneck-at-SUPPLY
+(conversion-undefined-0/0!)); K5-normalized: D5∞-birth/
+elig=6-7e-4 + death/K5-sweep=0.478 (~2sw-episodes,
+65/65-balanced (flicker-regime (good-stats!))); κ2-nuc-
+1-birth/0-deaths (present-96%-of-window (SURVIVAL-regime
+(birth-stats-too-thin-to-normalize (honest-small-n!))));
+MECHANISTIC-contrast-stands-on-DEATHS (0.48/sweep-vs-0!)
++ presence (10%-vs-96%!). Γ(4)-inequality: turnover-
+DEMONSTRATED (sustained-mass-+-churning-membership ⟹ both-
+directions->0!) with per-opportunity-normalization-DEFERRED
+(needs-k4win-logging (one-line-followup!)).
+SSB-1-VERDICT (same-soup-campaign (60-runs (2N×3-soups×
+10-dyn (d==S-identity-included!)), NO-lib-change (soup/
+dynamics-already-split!) + 3-pins (non-mutation (load-
+bearing!) + same-same-identical + same-diff-diverges)):
+identity-T-match-6/6 (apparatus-✓!); PRIMARY (floored-k4-
+core-Jaccard): same-soup-med-0.076@1600/0.033@3600 vs
+across-soup-0.070/0.032 vs random-0.067/0.032 (within-10%
+(≪-pre-reg-2×-band!) ⟹ INDISTINGUISHABLE-FROM-RANDOM
+(max-same-soup-0.119/0.060 (vs-imprint-threshold-0.8!)));
+SECONDARIES: Gini-0.76/0.79 (|m|-large!) + IPR-4-4.8×-
+delocalized (localized-with-varying-support!)). VERDICT:
+SPONTANEOUS (soup-imprints-NOTHING (dynamics-selects-
+among-~C(N,K)-equivalent-attractors!) ⟹ TEXTBOOK-
+BREAKING-of-statistical-S_N). SYMMETRY-RESTATEMENT
+(filed!): breakable-object = S_N-invariance-of-the-LAW
+(NOT-Aut (ER-draws-trivial-Aut-w.h.p. (classical!)));
+broken-variable = core/dust-partition. ⟹ D15-REOPENS
+(gate-both-halves-✓ (finite-scale-✓ + SSB-✓!)). NEXT:
+D15-design (gated on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
