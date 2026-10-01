@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (formation pilot-2)** — D14 C2-PILOT-2 triangle-closure
+  (D5κ/D5∞/D35; 66 union-runs + 6-repair κ2-ladder; local-remote race,
+  bit-identical 66/66): verdict NO-coexistence (CONDENSATION 9
+  (κ2@1600, K≈90/141, dust-bulk-89%), FRUSTRATED 15 (D5∞ all-N,
+  kmax-4 churn-limit, N-independent K~100-400, hubs), POISSON+ 39
+  (incl. κ2@3600/6400 plateau → thermo-Poisson, N*-bracket
+  (1600,3600]); P1 refuted, P2/P4/P6/P7/P8 confirmed, P3
+  single-point-consistent, P5 supported, P9 refuted; mirror-broken
+  (kinetics); refined bracket (frustration-as-selector lead);
+  12 new tests (567 collected).
 - **unreleased (formation pilot)** — D14 C2-PILOT-1 topological formation
   (E-conserving relocation on ER/RR soup; D1 null + D3 floppy-gated
   kinetics; 54-run grid N=1600/3600): verdict DARK (sweep-proven 0/54

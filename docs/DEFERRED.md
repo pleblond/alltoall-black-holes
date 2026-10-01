@@ -2657,7 +2657,63 @@ concentration) … D5 (unbounded-concentration) ⟹
 NEXT-QUESTION (adopted, gates post-campaign turn):
 what graph-internal mechanism creates a preferred
 finite concentration scale? 72 FROZEN (no changes).
-NEXT: C2-PILOT-2 campaign (gated on go).
+C2-PILOT-2 VERDICT (66 + 6-repair; PRIMARY:
+extensive-coexistence? NO — no count≥2-persistent-
+NUCLEATED (k5-level!) anywhere): CONDENSATION 9
+(D5κ2@1600 (T→184-619k, K=85-91/140-143 (c=0.78/
+0.88 (single-point-extremal-consistent!), count-1,
+dust-bulk-89% (bulk-z=0.29 (starved!)), FROZEN
+(rate-0.4%), C≈0.85-0.93, topz-C≈0.8-0.9 (clique!),
+nuc=20 (ER-16!) vs 210-300 (ER-8!))); FRUSTRATED 15
+(D5∞-ALL-N (kmax=4 (CHURN-LIMIT!), K~100-400 (N-
+INDEPENDENT (α̂≈0!), hubs (topz-C≈0.05 (C≪1!)),
+T-SATURATED (3.5-11k (not pumped!)), giant 0.28-
+0.54, dust-majority-67% + z~21-sponge (saddle-
+connected (6400-gap-aware-bimodal (DUST-BARRED!)),
+ACTIVE-7% (exchange (not frozen!)))); POISSON+ 39
+(κ≤1-all-N (dep≈noise, kmax=3, k5-clean!) + κ2@
+3600/6400-repair (PLATEAU (slope≈0, rate-90%
+(ACTIVE!)) ⟹ thermo-Poisson (κ2<κ_c (likely!)));
+κ1-macro-k3-scraps (7-8 pieces (soup→0 (DEPARTURE!
+(enriched (NOT-nuclei (k_max=soup (no-new-scale!),
+k5-clean (locked-tracker-decides!)))))); D3-LIKE 6
+(D35-ER-8 (arrest-26-28, T+6-8 (scraps ✓ (revised-
+P6-CONFIRMED!)))); STILLBORN 9 (D35-ER-16/RR-8
+(D3-inheritance!)); DEFECT/COARSENING 0; protocols
+UNTRIGGERED (filed!). P1-P9: P1 REFUTED (frustrat-
+ed-instead (activity-subclaim-✓!)); P2 ✓ (L1-jump
+(κ_c∈(1,2)!)); P3 single-point-consistent + N*-
+BRACKET (ladder-straddles (α̂-unfittable!)); P4 ✓-
+rate (10×!); P5 SUPPORTED (κ2-single-from-birth
+(no-multi-transient!)); P6 ✓-revised; P7 ✓ (gap-
+1.0 (2/2!) + floor-nuance); P8 ✓-κ2; P9 REFUTED
+(anneal-window-EMPTY (κ≤1-barren!)). N*-BRACKET
+(NEW!): κ2-nucleates ⟺ N≲N*∈(1600,3600] (T=2000
+(plateau (likely-thermo!))) + growth-erosion-post-
+hoc (DILUTION (uniform-propose (attention∝K²/N²!)
+vs churn-erosion (crossover=N* (labeled!))) +
+κ3-PREDICTION (N*↑κ (followup!)). MIRROR-BROKEN
+(kinetics!): D5∞-hard (non-equilibrium (frustrat-
+ed!)) ≠ κ→∞-limit (extremal (equilibrium-only!)).
+REFINED-BRACKET: D3 (none) … D5∞ (frustrated
+(bounded-kmax-4 (SELF-LIMITING (proto-size-
+selection?! (churn-balance (LEAD (not-claim!))))))
+… D5κ2 (unbounded!) ⟹ next-question ADVANCED
+(frustration-as-selector?). RACE: local-won (head-
+start!) + remote-66/66-minutes-later + BIT-
+IDENTICAL-66/66 (cross-machine-trajectory-
+determinism (hist+T-trace+exec (filed!))); remote
+faster-per-worker (user-vindicated (3×6400 in
+4min!)). ΔT-BUGFIX (pre-campaign (overlap-
+correction (tests-caught (incremental≡exact!)) +
+smoke-void (re-smoked!)). LOCK-GAPS (filed): (i)
+discriminator-at-k_max=soup (resolved-by-k5-
+tracker!); (ii) k5-trace-blind-to-k4 (1-snapshot
+(mild!)); (iii) ladder-κ-gap (repaired! (κ1.5-
+followup!)); (iv) valley-island-scope. FOLLOWUPS
+(filed (not-now!)): κ1.5-ladder; κ3-6400; D3×∞;
+κ-grid×N-grid (κ_c(N)!); kmax-4-theory. NEXT:
+review-turn or next-design (gated on go).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

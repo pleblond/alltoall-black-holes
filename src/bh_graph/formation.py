@@ -11,9 +11,123 @@ given seed (random.Random + sorted construction; see per-function notes).
 
 from __future__ import annotations
 
+import math
 import random
 
 import networkx as nx
+
+POISSON_TAIL = 40  # support cap for Poisson reference distributions
+
+
+def triangles_on_pair(st: dict, a, b) -> int:
+    """Common-neighbor count |N(a) ∩ N(b)| (Δt: triangles an (a,b) edge
+    closes (non-edge) or holds (edge); 1-hop-local, H-gate-clean)."""
+    return len(st["nbrs"][a] & st["nbrs"][b])
+
+
+def triangle_count(st: dict) -> int:
+    """Exact triangle total (Σ over edges of Δt / 3 — each counted 3×)."""
+    return sum(triangles_on_pair(st, a, b) for a, b in st["elist"]) // 3
+
+
+def accept_d5(net: int, kappa: float, rng: random.Random) -> bool:
+    """Net-Δt Metropolis accept (D5κ gain-side; Strauss-canonical).
+
+    Short-circuit (LOCKED rng-parity): draws rng ONLY when net < 0
+    and kappa > 0 — kappa=0 never draws (⟹ κ0 ≡ D1 trajectory).
+    """
+    if kappa == 0 or net >= 0:
+        return True
+    return rng.random() < math.exp(kappa * net)
+
+
+def truss_count_k(g: nx.Graph, k: int, min_frac: float) -> tuple:
+    """Macro-floored component count/size at fixed-k truss (trace readout).
+
+    Returns (count, kmax_size, sizes-desc). k=5 ⟹ K5+-nuclei tracker.
+    """
+    t = nx.k_truss(g, k)
+    if t.number_of_nodes() == 0:
+        return 0, 0, []
+    sizes = sorted((len(c) for c in nx.connected_components(t)), reverse=True)
+    floor = math.ceil(min_frac * g.number_of_nodes())
+    big = [s for s in sizes if s >= floor]
+    return len(big), big[0] if big else 0, sizes
+
+
+def truss_kmax(g: nx.Graph) -> int:
+    """Binary-searched max-k with nonempty k-truss (clique-core scale)."""
+    lo, hi = 2, 3
+    while nx.k_truss(g, hi).number_of_nodes() > 0:
+        lo, hi = hi, 2 * hi - 2
+        if hi > g.number_of_nodes():
+            return g.number_of_nodes()
+    while hi - lo > 1:
+        mid = (lo + hi) // 2
+        if nx.k_truss(g, mid).number_of_nodes() > 0:
+            lo = mid
+        else:
+            hi = mid
+    return lo
+
+
+def truss_profile(g: nx.Graph, min_frac: float) -> dict:
+    """Log-spaced k-truss profile + top-truss macro components (finals/mids)."""
+    kmax = truss_kmax(g)
+    ks = sorted({k for k in [2, 3, 4, 5, 6, 8, 10, 14, 20, 28, 40, 56, 80] if k <= kmax} | {kmax})
+    prof = {}
+    for k in ks:
+        c, m, _ = truss_count_k(g, k, min_frac)
+        prof[k] = {"count": c, "kmax_size": m}
+    t = nx.k_truss(g, kmax)
+    sizes = (
+        sorted((len(c) for c in nx.connected_components(t)), reverse=True)
+        if t.number_of_nodes()
+        else []
+    )
+    floor = math.ceil(min_frac * g.number_of_nodes())
+    return {
+        "kmax": kmax,
+        "by_k": prof,
+        "top_sizes": sizes,
+        "top_macro": [s for s in sizes if s >= floor],
+    }
+
+
+def charikar_core(st: dict) -> set:
+    """Greedy-peeling dense subgraph (Charikar 2-approx; cross-check)."""
+    nbrs = {v: set(s) for v, s in st["nbrs"].items()}
+    alive, best, best_d = set(nbrs), set(nbrs), -1.0
+    import heapq
+
+    heap = [(len(nbrs[v]), v) for v in alive]
+    heapq.heapify(heap)
+    edges = sum(len(s) for s in nbrs.values()) // 2
+    while alive:
+        d = edges / len(alive) if alive else 0
+        if d > best_d:
+            best_d, best = d, set(alive)
+        while heap:
+            _, v = heapq.heappop(heap)
+            if v in alive:
+                break
+        alive.discard(v)
+        for w in nbrs[v]:
+            if w in alive:
+                nbrs[w].discard(v)
+                heapq.heappush(heap, (len(nbrs[w]), w))
+                edges -= 1
+    return best
+
+
+def poisson_l1(hist: dict, lam: float, n: int) -> float:
+    """L1 departure of a histogram from Poisson(lam) (formation metric)."""
+    out, tot = 0.0, 0
+    for z in range(POISSON_TAIL):
+        p = math.exp(-lam) * lam**z / math.factorial(z)
+        out += abs(hist.get(z, 0) / n - p)
+        tot += hist.get(z, 0)
+    return out + max(0, (n - tot)) / n
 
 
 def soup_graph(kind: str, n: int, zbar, seed: int) -> nx.Graph:
@@ -211,16 +325,25 @@ def formation_run(
     stat_window: int = 50,
     stat_tol: float = 0.02,
     t_max: int = 2000,
+    kappa: float = 0.0,
+    return_state: bool = False,
 ) -> dict:
-    """Run D1 (ungated) / D3 (floppy-gated, OR) relocation to a stop rule.
+    """Run D1/D3/D5-family relocation to a stop rule.
 
+    Drivers: d1 (ungated), d3 (floppy-gated loss, OR), d5k (D1-propose
+    + net-Δt Metropolis accept (kappa)), d5inf (D1-propose + close-only
+    gain (Δt_gain ≥ 1)), d35 (D3-loss × κ-gain). kappa=0 ⟹ d5k ≡ d1
+    (short-circuit rng-parity (locked!)).
     Sweep = E0 proposals (attempts incl. blocks/Nones). Stops: stillborn
     (zero executes in first w_arrest sweeps -> INVALID, checked first),
     arrest (trailing w_arrest sweeps zero), stationary (hist L1 <
     stat_tol over stat_window), cap (t_max, UNRESOLVED). Snapshots every
-    10 sweeps. Deterministic given seed. Returns the full filing record.
+    10 sweeps (hist + k5-truss-count); every-100th state saved (mids
+    profiles offline); T (triangles) tracked incrementally every sweep.
+    Deterministic given seed. Returns the full filing record (+ state
+    iff return_state).
     """
-    if driver not in ("d1", "d3"):
+    if driver not in ("d1", "d3", "d5k", "d5inf", "d35"):
         raise ValueError(f"unknown driver: {driver}")
     st = {
         "nodes": list(st0["nodes"]),
@@ -230,9 +353,13 @@ def formation_run(
     }
     e0, n = len(st["elist"]), len(st["nodes"])
     h0 = coord_hist(st)
+    t_now = triangle_count(st)
+    t0 = t_now
+    lam = 2 * e0 / n
     rng = random.Random(seed)
     nbrs = st["nbrs"]
-    per_sweep, snaps, stop, sw = [], {}, None, 0
+    per_sweep, snaps, k5trace, saved, t_trace = [], {}, {}, {}, []
+    stop, sw = None, 0
     while sw < t_max:
         sw += 1
         done = 0
@@ -241,7 +368,24 @@ def formation_run(
             if prop is None:
                 continue
             (a, b), (c, d) = prop
-            if driver == "d3" and not (len(nbrs[a]) < thr or len(nbrs[b]) < thr):
+            if driver in ("d3", "d35") and not (len(nbrs[a]) < thr or len(nbrs[b]) < thr):
+                continue
+            gain = len(nbrs[c] & nbrs[d])
+            loss = len(nbrs[a] & nbrs[b])
+            # Overlap correction (exact ΔT): pre-removal N includes the
+            # removed endpoint — triangles using edge (a,b) are not real.
+            if c == a:
+                gain -= 1 if b in nbrs[d] else 0
+            elif c == b:
+                gain -= 1 if a in nbrs[d] else 0
+            if d == a:
+                gain -= 1 if b in nbrs[c] else 0
+            elif d == b:
+                gain -= 1 if a in nbrs[c] else 0
+            if driver in ("d5k", "d35"):
+                if not accept_d5(gain - loss, kappa, rng):
+                    continue
+            elif driver == "d5inf" and gain < 1:
                 continue
             _remove_edge(st, (a, b))
             _add_edge(st, (c, d))
@@ -249,10 +393,15 @@ def formation_run(
             nbrs[b].remove(a)
             nbrs[c].add(d)
             nbrs[d].add(c)
+            t_now += gain - loss
             done += 1
         per_sweep.append(done)
+        t_trace.append(t_now)
         if sw % 10 == 0:
             snaps[sw] = coord_hist(st)
+            k5trace[sw] = truss_count_k(state_to_nx(st), 5, 0.01)
+        if sw % 100 == 0:
+            saved[sw] = list(st["elist"])
         if sw == w_arrest and sum(per_sweep) == 0:
             stop = "stillborn"
             break
@@ -270,7 +419,7 @@ def formation_run(
     if stop is None:
         stop = "cap"
     hf = coord_hist(st)
-    return {
+    rec = {
         "stop": stop,
         "sweeps": sw,
         "executes_total": sum(per_sweep),
@@ -287,4 +436,14 @@ def formation_run(
         "comp_sizes_final": component_sizes(st),
         "assort_final": assortativity(st),
         "assort_initial": assortativity(st0),
+        "t0": t0,
+        "t_trace": t_trace,
+        "t_final": t_now,
+        "k5_trace": {sw: list(v) for sw, v in k5trace.items()},
+        "saved": {sw: [list(e) for e in el] for sw, el in saved.items()},
+        "dep_initial": poisson_l1(h0, lam, n),
+        "dep_final": poisson_l1(hf, lam, n),
     }
+    if return_state:
+        return rec, st
+    return rec
