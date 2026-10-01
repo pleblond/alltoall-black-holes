@@ -3180,6 +3180,23 @@ P1-AMENDMENT-5 (B0a-packet-momentum (PRE-B0a-DATA (one-line!)):
 branch-validation (never-validated!))); σ=4-STANDS; partner-momenta-
 construction-unchanged (per-branch-operational-approach-sign (A4!))).
 NEXT: B0a-campaign (gated on amendment-commit!).
+P1-AMENDMENT-6 (contrastive-mixing + bridge-conjunction (PRE-B0a-DATA
+(smoke-mechanics-surfaced (T=2-non-plateau (NOT-B0a-data!)); JUSTIFIED-
+on-THEORY + locked-text!)): THEORY: any-[P,H]≠0-graph ⟹ O(1)-mixing-
+in-O(1)-time (energy-spread-~8!) ⟹ absolute->1e-6-FIRES-on-D1-controls-
+identically (D1-non-bipartite-w.h.p. (locked-text!) (mechanics-smoke-
+confirmed-0.78-vs-0.72!)) ⟹ absolute-rule-VACUOUS-for-blob-specificity.
+REPLACED-by mixing-DOMINANCE: Mann-Whitney-U (formed-max-mix > D1-max-
+mix (one-sided (scipy-mannwhitneyu-defaults-LOCKED!))) p<0.05 (bare =
+floor-anchor (~0 (filed!)) (excluded-from-null!)); evaluated-only-if-
+median-formed->1e-6 (else-mixing-absent (filed!)). BRIDGE ⟺ mix-
+dominance-AND-residence-fire-AND-track-fires (PI's-simultaneous (all-
+three!)). B0-FIRE ⟺ residence-fire-OR-mix-dominance. TABLE: fire+bridge
+⟹FIRE+BRIDGE; fire+¬bridge⟹FIRE-bridgeless (shape-filed!); ¬fire⟹NULL.
+TRACK-STANDS (dual-Spearman (shape-filed (clustering-vs-gradient!))).
+VOUT-CLARIFICATION (operationalization (locked-R²-gate!)): S4-files-
+vout-R² + r2>0.9-gated-means (descriptive (no-fire-role!)).
+NEXT: B0a-campaign (gated on amendment-commit!).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

@@ -53,6 +53,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 - **unreleased (P1 amendment-5)** — D14-P1 one-line (pre-data):
   B0a packet |k|=0.5→0.3 (P1.1b-validated packets only).
 
+- **unreleased (P1 amendment-6)** — D14-P1 contrastive mixing (pre-data,
+  theory-justified): absolute >1e-6 vacuous on any non-bipartite graph
+  ⟹ Mann-Whitney dominance (formed>D1, one-sided p<0.05); BRIDGE =
+  dominance + residence-fire + track; v_out R² operationalization.
+
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
   wanderers + 1 slither anecdote), 0/6 persistent handedness
