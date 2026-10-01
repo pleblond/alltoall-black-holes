@@ -254,8 +254,9 @@ linearity-fail → "no linear regime down to g0/8; oscillatory common-mode"
 
 SG-0 pilot-1: RAN (beast; disposition per Amendment-1 above — Scal/S2/S4/
 no-split banked; Δy-verdict superseded). Rerun (S1b/S2b/S3b/S5b): RAN
-(beast; disposition per Amendment-2 below). Sine rerun (S1c/S2c/S3c/S5c):
-NOT RUN (gated on amendment commit).
+(beast; disposition per Amendment-2 above — S2b/S3b pattern + no-split
+banked; Δy-verdict superseded). Sine rerun (S1c/S2c/S3c/S5c): RAN (beast;
+verdict below).
 
 SG-AMENDMENT-2 (seam-free sine apparatus; PRE-RERUN: S1b opened below,
 S1b Δy-verdict SUPERSEDED (same gate-miss class), S1c gated on this
@@ -291,3 +292,70 @@ RERUN CELLS (script `scripts/sg0c_sine.py`, this commit):
   as DIAGNOSTIC-only (no defect exists to sample). Verdict rule stands
   (Q1 all cells ever; Q2 valid sine weak cells; both S3c outcomes
   allowed per A1). No further cells without Amendment-3.
+
+---
+
+## SG-0 VERDICT (banked 2026-10-01; beast; scripts `sg0_bank.py` + `sg0b_weak.py` + `sg0c_sine.py`)
+
+### Q1 (splitting?): NO — 0 firings in 50+ cells across all stages/shapes/gradients
+
+Split=False in every cell ever run: pilot S0/S1/S1r/S2S3/S4/S5 (linear,
+30+ cells incl. wrap-void), S1b/S5b (linear weak, 10 cells), S1c/S5c
+(sine weak, 10 cells). S1c split details are exactly zero
+(depth=sep=minority=0.0 — single transverse maximum, not a near-miss),
+and no cell fired at ANY frame (tail_fires_any=False throughout).
+Detector trust: Scal PASS (synthetic double depth 0.97 fires;
+single/flat/free silent), so the null is detector-competent, not
+detector-blind. The SG2 cell is VOID as gated (admission fails) — and
+the data independently show no splitting to misread.
+
+### Q2 (bare-wave ladder): SG1 — common-mode deflection, linear-response, reversal-exact
+
+S1c (sine, 8/8 valid: disp 12.3–12.9<14, wT 5.6–6.1<7, norm ~1e-13):
+
+| cell | Δy | wT (free 6.48) | split | ladder |
+|---|---|---|---|---|
+| minus/plus ±g0/8 | ±2.2957 | 6.11 | none | SG1 |
+| minus/plus ±g0/4 | ±4.0980 | 5.61 | none | SG1 |
+
+- S2c reversal 4/4 TRUE (Δy(−g)=−Δy(+g) exact to 4 decimals — theorem).
+- S3c linearity 2/2 TRUE (|4.0980−2×2.2957|=0.49<1.15 — weak-g regime).
+- SG1 via the Δy bar (|Δy|=2.30/4.10 ≥ 0.5σ0=2.0). Broadening: none —
+  wT sits BELOW free (6.11/5.61 vs 6.48; gradient slightly focuses).
+  Owned nuance: the bank script's ladder broadening term compares
+  within-run growth (free-dispersion-dominated); the vs-free comparison
+  above is the correct one and strengthens "deflection without
+  broadening". Labels unaffected (Δy bar binds alone).
+- Longitudinal: v=1.22–1.28 vs free 1.20–1.21 (≤6% speedup — filed).
+- Bare-basis mixing O(1e-6) (splitter breaks translation invariance;
+  apparatus characterization, not B0-mixing).
+- Minus/plus-branch Δy IDENTICAL to 4 decimals (4th replication across
+  pilot/S1b/S1c) — probable exact transverse branch-blindness of the
+  sector-blind splitter (followup conjecture, not claimed here).
+
+S5/S5b/S5c secondary (torus-grid-30): reversal TRUE + no-split TRUE at
+every gradient (dy=±5.94 sine ±g0/4, ±9.35 pilot ±g0); valid=False under
+A2.3 only via the disp<L/2=15 bar (disp≈25 — over-strict for T=25;
+P1.1a-consistent no-wrap disp<L=30 holds). Filed as descriptive support
+(SG1-class common-mode, substrate-universal); the bar stands, no
+amendment spent on a secondary flag.
+
+Strong-gradient pilot cells (linear, g0/2–2g0): large-amplitude coherent
+transverse motion, non-monotonic in g (Bloch-like oscillation-phase
+samples, several wrap-void) — SG1-class response, void-for-Δy-precision,
+filed per Amendment-1. Not the headline regime.
+
+### Gate status: STILL FAILS — SG-2/3/4 remain gated (no re-entry)
+
+Nothing in SG-0 discovers a two-state sector (S4: anti frozen at both
+g=0 AND g=+g0 — H_SG·P_anti=0 survives modulation; sheet0 50/50
+common-mode). The bare wave is SG1: a sector-blind gradient deflects it
+as a whole and never splits it — exactly what the design principle
+predicts when no internal sector exists. No outcome here is called spin;
+SG-2 opens only on a future P-track positive per the re-entry rule (§0).
+
+### Non-interference audit: clean
+
+No U/formation/D1 runs; no ψ→G channel; P1/P2/P3/D15 read-only;
+no electron constants; no new law (splitter = apparatus, ban (g)).
+Full suite: <see PR/suite log>.
