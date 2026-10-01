@@ -21,6 +21,8 @@ SG-2 input).
 
 from __future__ import annotations
 
+import math
+
 import numpy as np
 from scipy import sparse
 
@@ -44,14 +46,21 @@ def splitter_hamiltonian(
     grad: float,
     ly: float,
     j0: float = 1.0,
+    shape: str = "linear",
 ):
     """SG splitter H_SG (frozen form): y-bond-only transverse gradient.
 
     g: nx graph; order: Hilbert index map; xy: node -> (x, y) readout
     coords; y0: launch transverse center; grad: g (0 = bare -J*A);
     ly: transverse period; j0: base hopping (P1 units, default 1).
-    Returns real symmetric CSR (Hermitian, hopping-only).
+    shape: "linear" (A0: 1+g*ybar, seam at +-L/2, documented) or "sine"
+    (A2: 1+g*(L/2pi)*sin(2pi*ybar/L) -- uniform-g at the packet,
+    periodic, zero seam; same exact theorems). Returns real symmetric
+    CSR (Hermitian, hopping-only). Default "linear" keeps pilot cells
+    reproducible.
     """
+    if shape not in ("linear", "sine"):
+        raise ValueError(f"unknown splitter shape: {shape}")
     pos = {v: i for i, v in enumerate(order)}
     n = len(order)
     rows, cols, data = [], [], []
@@ -62,6 +71,8 @@ def splitter_hamiltonian(
         if dy != 0.0:
             mid = yu + dy / 2.0
             ybar = min_image_delta(mid, y0, ly)
+            if shape == "sine":
+                ybar = (ly / (2.0 * math.pi)) * math.sin(2.0 * math.pi * ybar / ly)
             w = -float(j0) * (1.0 + float(grad) * ybar)
         else:
             w = -float(j0)

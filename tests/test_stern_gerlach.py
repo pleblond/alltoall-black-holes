@@ -95,13 +95,13 @@ def test_splitter_sheet_blind_commutes_with_swap():
     assert not commutes_ok(s, sparse.diags(np.arange(n, dtype=float)))  # generic D breaks [S,D]
 
 
-def _dy(g, order, xy, c3, L, grad, k=(0.3, 0.0), sigma=3.0, t_end=2.0):
+def _dy(g, order, xy, c3, L, grad, k=(0.3, 0.0), sigma=3.0, t_end=2.0, shape="linear"):
     # Pin regime L=24/sigma=3/T=2 (localized, NOT a campaign cell: the
     # campaign runs L28/T=10 and TG30/T=25). Self-policing width assert
     # keeps COM branch-meaningful (wrap interference voids COM).
     x0, y0 = L / 4.0, L / 2.0
     psi0 = gaussian_packet(xy, order, (x0, y0), k, sigma, periods=(L, L))
-    h = splitter_hamiltonian(g, order, xy, y0, grad, L)
+    h = splitter_hamiltonian(g, order, xy, y0, grad, L, shape=shape)
     rec = evolve_fixed(psi0, h, 0.1, int(t_end / 0.1))
     assert np.all(np.abs(rec["norms"] - 1.0) < 1e-8)
     _, prof = transverse_profile(rec["psi"][-1], order, xy, L)
@@ -202,3 +202,38 @@ def test_splitter_keeps_packet_compact_no_wrap():
 def test_transverse_width_unit():
     p = gaussian_ring_profile(64, [32.0], 4.0)
     assert abs(transverse_width(p, 64) - 4.0) < 0.4  # recovers launch sigma
+
+
+def test_sine_reduces_to_bare_and_hopping_only():
+    g, order, _, xy = _j2_setup()
+    h0 = splitter_hamiltonian(g, order, xy, 3.0, 0.0, 6, shape="sine").toarray()
+    assert np.array_equal(h0, hamiltonian(g, order=order).toarray())  # exact
+    for grad in (G0 / 8, G0 / 4, G0):
+        h = splitter_hamiltonian(g, order, xy, 3.0, grad, 6, shape="sine")
+        assert is_hermitian_ok(h) and is_zero_diagonal_ok(h)
+
+
+def test_sine_sheet_blind_commutes_with_swap():
+    g, order, c3, xy = _j2_setup(L=4)
+    s = sheet_swap_csr(order, c3)
+    assert commutes_ok(splitter_hamiltonian(g, order, xy, 2.0, G0 / 4, 4, shape="sine"), s)
+
+
+def test_sine_bounded_no_seam_jump():
+    g, order, _, xy = _j2_setup(L=8)
+    hs = splitter_hamiltonian(g, order, xy, 4.0, G0, 8, shape="sine").toarray()
+    hl = splitter_hamiltonian(g, order, xy, 4.0, G0, 8, shape="linear").toarray()
+    dev_s = np.abs(hs[np.nonzero(hs)] + 1.0).max()
+    dev_l = np.abs(hl[np.nonzero(hl)] + 1.0).max()
+    assert dev_s <= G0 * 8 / (2.0 * np.pi) * (1 + 1e-9)  # smooth periodic bound
+    assert dev_s < dev_l  # linear seam jump exceeds the sine bound
+    assert dev_l > G0 * 3.0  # linear reaches ~L/2 at the seam
+
+
+def test_sine_reversal_and_zero_exact_nulls():
+    g, order, c3, xy = _j2_setup(L=24)
+    dy0, _ = _dy(g, order, xy, c3, 24, 0.0, shape="sine")
+    assert abs(dy0) < 1e-8  # R-theorem survives (sin is odd)
+    dyp, _ = _dy(g, order, xy, c3, 24, G0 / 4, shape="sine")
+    dym, _ = _dy(g, order, xy, c3, 24, -G0 / 4, shape="sine")
+    assert abs(dyp + dym) < 1e-6

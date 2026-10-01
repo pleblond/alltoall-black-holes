@@ -57,11 +57,11 @@ P11B_V = 1.2110  # banked P1.1b reference speed (|k| = 0.3, J2 L28)
 P11A_V = 0.9668  # banked P1.1a reference speed (|k| = 0.5, torus-grid-30)
 
 
-def run_cell(g, order, xy, x0, y0, k, sigma, grad, ly, t_end, br=None):
+def run_cell(g, order, xy, x0, y0, k, sigma, grad, ly, t_end, br=None, shape="linear"):
     """One SG cell: prep + evolve under H_SG + full readout bundle."""
     periods = (len({v[0] for v in xy.values()}), ly)
     psi0 = gaussian_packet(xy, order, (x0, y0), k, sigma, periods=periods)
-    h = splitter_hamiltonian(g, order, xy, y0, grad, ly)
+    h = splitter_hamiltonian(g, order, xy, y0, grad, ly, shape=shape)
     n_steps = round(t_end / DT)
     rec = evolve_fixed(psi0, h, DT, n_steps)
     ts = np.arange(n_steps + 1) * DT

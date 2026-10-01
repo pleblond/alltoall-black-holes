@@ -253,5 +253,41 @@ linearity-fail → "no linear regime down to g0/8; oscillatory common-mode"
 ## Verdicts (filed post-data; SG-0 bank gated on prereg commit)
 
 SG-0 pilot-1: RAN (beast; disposition per Amendment-1 above — Scal/S2/S4/
-no-split banked; Δy-verdict superseded). Rerun (S1b/S2b/S3b/S5b): NOT RUN
-(gated on amendment commit).
+no-split banked; Δy-verdict superseded). Rerun (S1b/S2b/S3b/S5b): RAN
+(beast; disposition per Amendment-2 below). Sine rerun (S1c/S2c/S3c/S5c):
+NOT RUN (gated on amendment commit).
+
+SG-AMENDMENT-2 (seam-free sine apparatus; PRE-RERUN: S1b opened below,
+S1b Δy-verdict SUPERSEDED (same gate-miss class), S1c gated on this
+amendment commit).
+S1b DISPOSITION (beast, `sg0b_weak.py`, linear gradient):
+- BANKED: S2b reversal 4/4 TRUE (exact to 4 decimals: ±2.5553, ±4.3988);
+  S3b linearity 2/2 TRUE (dy +2.56→+4.40 over g0/8→g0/4;
+  |4.40−2×2.56|=0.71<1.28 — linear-response regime FOUND); no-split in
+  all 10 rerun cells (40+ cells total, 0 firings — robustness extended);
+  minus/plus dy identical to 4 decimals again (third replication).
+- SUPERSEDED: valid=False 10/10 (seam 9–15% vs A1.2 5% bar; disp<14 and
+  wT<L/4 pass — ONLY the seam binds). The seam bar binds Δy-precision
+  legitimately here (defect sampling O(seam·L/2)~1.3 confounds the
+  |Δy|≥2 bar), so the bar must NOT be relaxed again (no shopping).
+OWNED ERROR: a linear λ(ȳ) on a torus FORCES a seam discontinuity, and
+free transverse spread (w→6.5) guarantees the packet samples it. Fix the
+APPARATUS, not the bar (TUN-A2 precedent: geometry change after a
+wrap-contamination void).
+APPARATUS CHANGE (this commit, pinned before any sine run):
+- H_SG2 ("sine"): y-bond weights 1+g·(L/2π)·sin(2πȳ/L) — uniform gradient
+  g at the packet, periodic, ZERO seam (same exact theorems: R·H(g)·R =
+  H(−g) since sin is odd; [H_SG2,S]=0 since weights stay y-only;
+  g=0 → bare exactly; all pinned + sine exact-nulls pinned, 18 pins).
+- Nonlinearity across the packet filed (shape frozen; S3c still tests
+  response-linearity in g, which holds for any fixed shape in weak-g).
+- `splitter_hamiltonian(..., shape="linear"|"sine")` (default "linear":
+  pilot cells reproducible); `run_cell(..., shape=...)` passthrough.
+RERUN CELLS (script `scripts/sg0c_sine.py`, this commit):
+- S1c/S2c/S3c: J2 L28 minus/plus × {±g0/8, ±g0/4} (sine; same prep/T);
+  S2c reversal + S3c linearity (same tolerances); S5c: TG30 × {±g0/4}.
+- S0c: NO rerun (H_sine(0)=H_linear(0)=bare — filed S0 stands as is).
+- Validity (A2.3): disp<L/2 + wT<L/4 + norm/accounting 1e-9; seam filed
+  as DIAGNOSTIC-only (no defect exists to sample). Verdict rule stands
+  (Q1 all cells ever; Q2 valid sine weak cells; both S3c outcomes
+  allowed per A1). No further cells without Amendment-3.
