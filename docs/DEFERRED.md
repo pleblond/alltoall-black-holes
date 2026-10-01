@@ -2139,3 +2139,339 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## D15 — Excitation/matter: emergent internal degrees from J2 scalar dynamics
+
+**Track split (adopted):** the vacuum/geometry track (D14 formation)
+selects the substrate independently; this track asks what scalar
+excitations on J2 do. The two tracks must NOT converge by construction:
+if D14 independently selects a J2-like vacuum AND this track finds
+effective spinorial/chiral modes from scalar microscopic dynamics, the
+convergence is significant precisely because neither was chosen to
+produce the other. Confirmation-bias guard: the D'Ariano-Erba-Perinotti
+result below makes J2 more interesting, never a target substrate.
+
+**Paper precedent (filed, not reproduced):** D'Ariano-Erba-Perinotti,
+Phys Rev A 100, 012105 (2019): a coinless SCALAR QUANTUM walk (complex
+amplitudes, unitary update, s = 1) on the J2 extension coarse-grains to
+a spinorial walk on Z^2, and Weyl/Dirac walks arise this way in d <= 3.
+What the paper establishes: J2 topology has enough hidden cell
+structure for scalar microscopic QUANTUM dynamics to coarse-grain into
+spinorial dynamics. What it does NOT establish: scalar CLASSICAL
+energy dynamics (E_i >= 0, no phase) generating quantum spin. The gap
+is exactly: interference/unitarity are not free. Their no-go (no
+isotropic scalar QW coarse-graining into an arbitrary 2D coin) makes
+the J2 choice less arbitrary -- but the confirmation-bias guard above
+stands regardless.
+
+**Sharp experiment (pre-registered, D15.0):** quotient pi: J2 -> Z^2 is
+exact (J2 probe: quotient shells 4r, strict interior with 4 square
+neighbours + micro-multiplicity 4 per coarse edge). For coarse cell x
+retain the micro-vector Psi_x(t) = (E_{x,0}, E_{x,1}) instead of summing
+it, and ask whether the microscopic scalar update induces an effective
+coarse update Psi_x(t+1) = sum_delta A_delta Psi_{x+delta}(t). Derive
+A_delta from the actual rule (impulse response + least-squares fit over
+trajectories -- two independent derivations of one object), then inspect
+spectrum/symmetries. First question is NOT "can we reproduce spin?" but
+"does our scalar-energy update possess multiple coherent propagation
+sectors associated with the hidden cell structure?" Weyl/Dirac
+comparison only afterward, never by reverse engineering.
+
+**Microscopic rules (pre-registered, both linear/edge-blind/phase-free):**
+D15-RW (primary, energy-faithful): E'_v = mean_{u ~ v} E_u -- conserves
+total on regular graphs, preserves E >= 0. D15-WAVE (signed
+field/displacement, the self-supported-wave candidate): E(t+1) = 2E(t) -
+E(t-1) + c2 (P - I) E(t), c2 = 0.5 -- oscillates, so it needs a signed
+field and is NOT an energy level (honest label).
+
+**D15.0 VERDICT (MEASURED, test_j2excitation.py -- 11 tests, suite 551
+passed + 2 GPU-skipped): single propagating sector, NO chiral sector.**
+Both sheets of a J2 cell share IDENTICAL neighbour sets (4 adjacent
+cells x 2 sheets: K_{2,2} between neighbouring cells, verified
+computationally), so edge-blind updates are sheet-blind by structure.
+All four A_delta equal (1/8)J exactly (impulse response 0.125 entries,
+max deviation 0.0; independent least-squares fit over 4 random
+trajectories x 181 interior cells recovers them to 1e-9, residual
+3.3e-16). Bloch matrix M(k) = F(k)(1/8)J: lam+(k) = (cos kx + cos ky)/2
+(square RW dispersion, pinned at (0,0)->1, (pi,0)->0, (pi,pi)->-1,
+(pi/2,0)->1/2, (0.3,0.7)->0.86008934) and lam-(k) = 0 IDENTICALLY (flat
+dead band). Chirality null: blocks rank 1 (svd 0.25/0), symmetric
+projector commutes with M(k) EXACTLY (0.0) at every probed k --
+eigenvectors k-independent ([1,1]/[1,-1]), no spin-momentum locking,
+no Dirac cone can form. Sector decoupling is exact: RW kills D in ONE
+tick (max|D| < 1e-12 on all interior cells, stays 0) while S/2 tracks
+the square-lattice RW bit-identically for 5 ticks (0.0 deviation);
+WAVE traps D on its launch cell (leak 0.0 for 8 ticks, D_0(t) follows
+the local-oscillator recurrence exactly, flat band Omega =
+arccos(1-c2/2) = 0.7227 at c2 = 0.5, zero group velocity at all k)
+while S/2 tracks the square wave bit-identically for 6 ticks. Packet
+verdict: S spreads (support 1 -> 9 in 2 ticks, peak 2.0 -> 0.5), D is
+extinguished in one tick. Bottom line: IR geometry same (square),
+hidden structure exposes exactly one NON-propagating sector -- UV
+combinatorics (dense C4, degree 8) does not reach the propagation
+spectrum for phase-free edge-blind rules. Topology alone is
+insufficient; phases are load-bearing for chirality. This sharpens --
+not closes -- the gap: the paper's rank-2 chiral blocks vs our rank-1
+sheet-blind blocks is now a measured contrast, not a suspicion.
+
+**D15.1 VERDICT (MEASURED, test_j2qw.py -- 10 tests, suite 561
+passed + 2 GPU-skipped): detector FIRES on the paper's unitary walk.**
+S3 positive control implemented as a derivation chain, nothing
+hand-tuned: isotropic 2D coin walk Eq. A4 at alpha = 1/sqrt(2) (Weyl)
+-> Hadamard basis (paper's claim is up to unitary equivalence; J2
+pattern A_{+y} = sigma_x A_{+x} sigma_x VERIFIED in-module) -> read
+off z_{h1} = z_{h1c} = z_{h2^-1} = 1/2, z_{h2^-1 c} = -1/2, rest 0 ->
+Eq. 9 scalar unitarity on J2 group arithmetic passes both families
+(18 g-values each, worst violation 6.7e-16) -> walk psi'(p) = sum_s
+z_s psi(p.s) on the J2 torus (L=8: 128 nodes, degree 8, norm
+conserved to 0.0 over 3 ticks) -> impulse extraction reproduces the
+H-rotated Weyl matrices to 1e-12 on BOTH torus and R6-ball centre.
+Spectrum: M(k) exactly unitary (both bands |lam| = 1 at every probed
+k), Dirac point at k = 0 (degenerate 1 to 1e-12), cone velocity
+1/sqrt(2) along x (1e-3) and EXACT on the diagonal (1e-9, cos w =
+cos(q/sqrt2)), x/diagonal isotropic to 1e-3. [P_sym, M(k)] = 0.14119
+at (0.5,0.3) and 0.41793 at (0.2,-0.4) (D15.0: exactly 0.0);
+eigenvector overlap 0.67489 < 0.99 (D15.0: 1.0). Same apparatus,
+opposite verdict -- the D15.0 null is a property of diffusive
+updates, not a blind detector. Two subtleties pinned: (i) the Weyl
+z-set is REAL-signed (+-1/2, 0) -- no on-site complex phases needed
+in this basis; complex structure enters via Bloch phases; the live
+axis is UPDATE algebra (unitary vs diffusive) at least as much as
+STATE algebra (C vs R). (ii) Individual coarse blocks are rank 1
+here too (svd 1/sqrt(2)/0, paper Eq. 13) -- "rank-2 blocks" was the
+wrong detector; the live detectors are two unit-modulus BANDS +
+k-dependent eigenvectors. D15.0 language corrected accordingly (its
+pins stand: rank-1 blocks + dead band + 0.0 commutator, now read as
+one live band + one dead band).
+
+**Ladder revision (adopted):** state algebra S0 (E >= 0, null banked)
+/ S1 (signed, null banked via D15-WAVE -- sign alone does not
+activate) / S2 ((q,p) real pair) / S3 (psi in C, control DONE) / S4
+(generic vector, fallback) / S5 (explicit spinor, SKIPPED unless S3
+had failed -- S3 already yields spinorial coarse state, S5 would test
+only "can we put spinors by hand"). S3 prioritized over S4/S5 per the
+paper; S5 skipped. New axis: UPDATE algebra (diffusive/contractive vs
+norm-preserving/unitary) is load-bearing independently of state
+algebra -- D15.0 vs D15.1 differ on BOTH axes (S0/S1+diffusive vs
+S1/S3+unitary); isolating them is D15.2a/b below.
+
+**Queued (reordered):** D15.2 compass ablation (BELOW -- done, the
+reviewer's phase-vs-direction question answered analytically).
+D15.3 S2 -> S3 emergence (the derivation bet: (q,p) real pair under a
+reversible energy-conserving rule chosen for NON-complex reasons --
+does [F, J] = 0 with J the complex structure emerge? apparatus:
+J-commutator diagnostic + norm audit; smuggling guard: writing the
+rule in psi-language first and translating -- forbidden by
+pre-registration; second-order-schema note: q'' = -Kq with K > 0
+symmetric admits psi = K^1/4 q + i K^-1/4 p evolving unitarily under
+sqrt(K) -- the K^1/2 choice is the audit point; NEW CONSTRAINT from
+D15.2: the S2 rule must ALSO effectively break <c> -- a uniform
+generator-blind S2 rule inherits the <c>-pin null, so emergence needs
+symmetry-breaking besides/instead of J). D15.2b labels-without-unitarity
+(FOLDED into D15.2 rung 1/2 -- real weights, no separate experiment
+needed). D15.2c nonlinear updates (still queued). D15.4 S-channel
+continuum (still gated-open for S only).
+
+**D15.2 VERDICT (MEASURED, test_j2compass.py -- 6 tests, suite 567
+passed + 2 GPU-skipped): compass NECESSARY, not sufficient.**
+<c>-PIN THEOREM (analytic, in j2qw.py docstring): <c>-swap-invariant
+weights (z_{h1} = z_{h2}, z_{h1c} = z_{h2c}, z_{h1^-1} = z_{h2^-1},
+z_{h1^-1 c} = z_{h2^-1 c}) give bisymmetric blocks, hence [sigma_x,
+M(k)] = 0 for all k, hence k-independent eigenvectors and [P_sym,
+M(k)] = 0 EXACTLY -- for ANY complex weights, unitary or not; and
+M(pi,0) = M(0,pi) = 0 matrix (forced zeros), so NO <c>-invariant
+scalar rule is unitary. Contrapositives: detector firing AND
+micro-unitarity EACH require breaking h1 <-> h2 = distinguishing x
+from y at micro level. Necessity proven at the weakest level (<c> is
+one inner automorphism; any Aut-invariant "purely structural" rule
+inherits the null). Ablation scorecard (reviewer's hierarchy adopted;
+each rung adds exactly one level, ALL weights real -- complex on-site
+phases never needed): rung 0 = D15.0 edge-blind (constant z, c-inv
+special case, forward map reproduces (1/8)J BIT-identically): no
+second band. Rung 1 = fixed c-invariant (0.3,0.1,0.2,0.4): second
+band + velocity (eigs (0,0) = {2,0}, (0.5,0.3) = {1.8329-0.1550j,
+0.3100j}) but commutator EXACTLY 0.0, overlap 1.0, M(pi,0) = 0
+(deviation from unitary 1.0). Rung 2 = fixed c-BROKEN real
+non-unitary: k-state joins (commutators 0.04919168/0.12354866,
+overlap 0.98049331 < 1) but bands decay (|eigs| = 0.47676/0.67242),
+gap 0.3 at k = 0 (no cone), Eq. 9 violated (0.705). Rung 3 = Weyl
+(reference row, D15.1): cone + v = 1/sqrt(2), no forced zero
+(eigs(pi,0) = {+i,-i}). S1a edge-blind-signed needs NO separate
+experiment (corollary of the pin: edge-blind subset c-invariant);
+S1b labeled-signed is DONE here (rungs 1-2, all real).
+
+**L0 TRILEMMA (filed, forces the S2 design):** a state-machine rule
+treating h1-edges differently from h2-edges NAMES generators, and
+names break Aut-invariance. D15.2 proves Aut/<c>-invariant rules
+cannot reach chirality (or unitarity). So L0 must pick: (a) labeled
+micro-rules (compass in L0 -- pay the H-gate-like price openly), or
+(b) spontaneous symmetry breaking (uniform rule + dynamics picks an
+orientation -- needs a nonlinear SSB mechanism, queued), or (c) no
+chirality. S2 emergence (D15.3) must confront (a)/(b), not just J.
+Reviewer's scorecard-trilemma ADOPTED alongside (phenomenological
+cut, compatible): scalar+symmetric/pinned, scalar+broken-R/mixing
+nonunitary, scalar+broken-C/unitary chiral. Ours is the design
+trilemma (how to get breaking); theirs the outcome trilemma (what
+breaking+algebra gives). Both filed; the wire uses both.
+
+**D15.3a VERDICT (MEMORYLESS NO-GO, proved + pinned,
+test_j2memoryless.py -- 5 tests, suite 572 passed + 2 GPU-skipped):
+the "memoryless two-component" horn is CLOSED by theorem.**
+First-order + TI + generator-blind (uniform weights; sheet-dependence
+allowed) + linear + norm-preserving real update on J2 => ALL
+neighbour couplings EXACTLY 0; survivor is on-site orthogonal. Proof:
+generator-blindness makes all four coarse blocks EQUAL (K_{2,2}), so
+M(k) = E + F(k) A with ONE scalar F(k) = 2(cos kx + cos ky) over
+[-4,4]; unitarity makes (M^dagger M - I)(k) a matrix polynomial in F
+vanishing on an interval => A^dagger A = 0 => A = 0. Holds for any
+component count m (scalar case: solution set exactly {(w_e, w)} =
+{(+-1, 0)}). Pins: scalar grid 5x5 both directions (23 falsified on
+9x9 k-grid, 2 trivial exact 0.0) + flat-band mechanism (lam_- = w_e
+everywhere, lam_+(0,0) = w_e + 8w); matrix affine-coefficient
+identities to 1e-12 + violating-F existence + orthogonal survivor;
+sheet-dependent affine form exact + violating k; labeled escape
+(Weyl ||A_{+x} - A_{+y}||_F = 1.0, midpoint deviation sqrt(2) --
+labels break the affine premise, that is WHY rung 3 escapes).
+Reviewer's sharpened question answered for memoryless: NO -- a
+memoryless uniform real rule cannot produce pin-breaking +
+norm-preserving dynamics (it cannot even transport). At least one
+must give: TIME (memory/second-order + energy norm), SPACE (labels),
+or ALGEBRA (J/complex). bloch_matrix generalized to n x n blocks
+(backward compatible; 2x2 behaviour unchanged).
+
+**D15.3b VERDICT (MEASURED, test_j2memory.py -- 6 tests, suite 578
+passed + 2 GPU-skipped): memory restores conservative waves,
+INSUFFICIENT for chirality -- time horn closed as far as chirality.**
+Isolation held: real states, generator-blind spatial rule, no labels,
+no preinstalled J, no preselected Q; enlarged Y = (X_n, X_{n-1})
+unlabeled (present, past). Derived mixed-potential Q = ||V||^2 +
+c2 X(t)^T K X(t-1) conserved to 1e-14 over 20 ticks on L=6 torus
+(Q > 0); naive Euclidean enlarged norm drifts > 100 on the SAME
+trajectory (Q selected, not generic -- preselecting it would smuggle
+a metric). S-sector (X,V) tracks square enlarged wave bit-identically
+(6 ticks). Bands: 4 total -- S-pair dispersive (omega 0.03534245 at
+q = 0.1 -> 0.07060755 at q = 0.2, 0.20473507 at (0.5,0.3);
+unit-modulus = conservative) + D-pair flat at OMEGA_D = 0.72273425.
+Polarization travel 0.99971973 (MORE rigid than rung 2's 0.98;
+branches conjugate pairs = scalar-wave trivial geometry). NO
+dynamical J: J_0^2 = -I exactly but [J_0, U_S(k)] = 2.769/2.552
+(huge), J_0^T G J_0 != G (dev 1.355); commutator constraints across
+two k's have 1-dim nullspace (sv 3.88/3.88/0.079/0.0) spanned by the
+IDENTITY -- only scalars commute with U(k) for all k. "A J exists on
+R^2" (trivially true) vs "dynamics selects J" (false here).
+Reviewer's predicted distinction CONFIRMED: memory/time sufficient
+for conservative waves, insufficient for chirality. Space/algebra
+horns genuinely load-bearing for chirality. wave_energy added to
+j2excitation.py (docstring proof of the telescoping identity; exact
+on regular graphs).
+
+**D15 METHODOLOGICAL RULE (adopted from review): derive Q, never
+preselect.** State the update independently; derive its invariants;
+discover whether a positive quadratic invariant Q(X) = X^T G X exists
+(unique up to scale = strong); interpret Q physically only then.
+Same for J (J^2 = -I + J^T G J = G + [U, J] = 0 all required before
+"complex structure" language). Violations of this rule are smuggling
+(pre-chosen Q smuggles a metric exactly as pre-chosen (q,p) smuggles
+J). Applied: D15.3b (Q derived, J absent); required of all future
+D15 units.
+
+**Queued (D15.3b done, D15.3c done):** D15.3c SSB-DESIGN (horn (b):
+uniform rule + nonlinearity picks orientation -- needs mechanism +
+order parameter, design-first; last unlabeled horn). D15.2c nonlinear
+updates (folded toward SSB-DESIGN unless a non-SSB nonlinear target
+sharpens). D15.4 S-channel continuum (still gated-open; S verified
+conservative -- dispersion omega(k) = arccos(1 + c2(lam_+(k)-1)/2)
+available).
+
+**Cross-track note (for vacuum/geometry, NOT implemented here):**
+paper's isotropy no-go vs coarse-isotropy coexistence shows
+microscopic scalar isotropy need not imply -- and is independent of --
+coarse spinorial isotropy. Reading for D12/D14: do not require
+micro-isotropy of U; require IR-isotropy after M_O. Filed as a
+constraint on falsifiers, no code.
+
+**Kill relevance:** D15.0 is a null with teeth: any future claim that
+"J2 microstructure yields spinorial propagation from scalar-energy
+dynamics" must exhibit the update rule whose M(k) carries two live
+bands with k-dependent eigenvectors -- edge-blind diffusive rules are
+excluded by measurement. D15.1 sharpens the teeth into a contrast:
+unitary + labels activate the sector (cone pinned). D15.2 turns the
+contrast into a NECESSITY result: <c>-invariant (hence any
+Aut-invariant, "purely structural") rules cannot fire the detector or
+be unitary -- the L0 trilemma (labeled rules / SSB / no chirality)
+is now the wire: any chirality claim must state which horn it takes.
+D15.3a closes the memoryless horn by theorem (uniform first-order
+norm-preserving => on-site only). D15.3b closes the memory horn for
+chirality (conservative waves yes, J no). D15.3c dissolves the fourth
+horn H (below): remaining live horns are labels (compass, priced
+openly) or SSB/nonlinear (mechanism needed) -- else the
+primitives-catalog endpoint.
+
+**D15.3c VERDICT (MEASURED, test_j2stagger.py -- 5 tests, suite 581
+passed + 2 GPU-skipped): the H-horn DISSOLVES into S-or-nothing --
+canonical partitions inherit the pin, escaping partitions are
+labels.** Bipartition q = x + y is proper (all edges bichromatic) and
+CANONICAL (BFS coloring equals q-or-flip: uniqueness pinned
+constructively), c preserves color on 50 sample nodes (exact ints) --
+a color-staggered rule needs NO hand metadata (partition from G
+alone: the reviewer's severe criterion half-met for free). BUT (i)
+memoryless staggered norm preservation forces triviality for BOTH
+partitions (color + sheet): full-step norm over 2 steps preserved
+IFF (a,b) in {(1,0),(-1,0)} (23 grid points falsified per
+partition), trivial points bit-exact U = +-I on every node (sign
+flip, no transport) -- same 2-path off-diagonal mechanism as D15.3a,
+key step pinned as exact ints (max within-set common-neighbor count
+8 color / 4 sheet: a^2 b^2 (off-diag) = 0 forces a = 0 or b = 0, a = 0
+kills the diagonal); (ii) color staggering inherits the pin: all 8
+per-color blocks (black center (0,0), white center (1,0)) bisymmetric
+(dev 0.0), per-color commutators 0.0 at (0.5,0.3) -- the partition is
+free but useless for chirality; (iii) sheet staggering breaks Aut
+(left-c exchanges sheets: c.(0,0,0) = (0,0,1) pinned) = S-debt:
+cell-TI (two-center extraction agrees to 1e-12), bisymmetry broken
+(dev 0.00625), commutator 0.01620087 at (0.5,0.3) (WEAK k-state),
+bands decaying (|eigs| 0.07822471/0.01342124), norm drift 39.2 over
+one step -- rung-2 corner (travel, no conservation) via sheet labels.
+Staggered steppers (j2_color, staggered_half_step, staggered_full_step)
+added to j2excitation.py.
+Two-dimensional scorecard (conservation, travel) now: diffusion
+(x, 1.0000), second-order wave (v, 0.9997), real broken scalar
+(x, 0.98), sheet-stagger (x, weak), Weyl (v, 0.675) -- memory moves
+vertically, labels horizontally, NOTHING unlabeled reaches the Weyl
+corner. Uniform-linear-memoryless-staggered ALL closed; SSB/nonlinear
+is the last unlabeled horn and needs a concrete mechanism (none in
+D15 so far suggests one -- filed honestly, not attempted).
+
+**D15 CLOSED (constraint-mapping program COMPLETE; SSB-DESIGN
+DEFERRED).** D15 answered a better question than it started with --
+not "can J2 give chirality from very little" but "which microscopic
+primitives are sufficient, insufficient, or unavoidable for chiral
+conservative propagation on J2". Core finding is the PLANE (not a
+progression): diffusive scalar (x, 1.000); second-order real wave (v,
+0.9997); broken real scalar (x, 0.98); sheet-staggered real (x,
+weak); complex labeled Weyl (v, 0.675). Time structure buys
+conservative propagation without internal geometry; real spatial
+breaking buys geometry without conservation; canonical staggering
+inherits the pin; escaping staggering is S-debt; Space + Algebra
+jointly occupy the Weyl corner. Conservation and internal-state
+geometry require INDEPENDENT structural ingredients in the tested
+class. CAREFUL endpoint phrasing (adopted): within the tested uniform
+linear, generator-blind, real state-machine classes -- including
+first-order, second-order, and intrinsic staggered variants -- no
+dynamics simultaneously produces conservative transport and
+substantial momentum-dependent internal structure; the demonstrated
+positive construction pays both spatial/generator structure and
+complex/unitary algebra. Necessity is relative to the closed classes,
+not fundamental. SSB admission criterion: SSB-DESIGN enters ONLY when
+an independently motivated U has a homogeneous state analytically
+unstable to an Aut(J2)-breaking mode (homogeneous state -> linear
+stability -> lambda_SSB > 0 -> selected structure -> only then test
+chirality); without such a mechanism SSB is a logical loophole, not a
+model. Broader lesson (shared with vacuum track): latent graph
+structure is not enough -- G supplies possibilities, U selects
+effective physics (D3 dust / D5 clique-condensation / J2 pinned
+sector are the same moral). Preserved: no-gos (D15.2 pin, D15.3a,
+D15.3c triviality), Weyl positive control, scorecard, derive-Q/J law,
+primitive-debt accounting. No further compute on exotic escapes; if an
+SSB mechanism arrives (e.g. from formation dynamics), D15's apparatus
+stands ready to test whether it activates the chiral corner.
+
