@@ -3,6 +3,10 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (P3 handedness prereg)** — P3.0/P3-A frozen (docs/CHIRALITY.md):
+  K+psi winding campaign (H=-A test wave, R_x reflection, Stokes face-sum W,
+  amendment-1 orientation correction); apparatus + 16 pins (chirality.py).
+
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
   wanderers + 1 slither anecdote), 0/6 persistent handedness
