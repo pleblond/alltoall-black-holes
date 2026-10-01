@@ -50,6 +50,9 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   B0-TRACK (dual Spearman ρ>0.5, p<0.05) + decision table;
   5 new apparatus pins (598 collected).
 
+- **unreleased (P1 amendment-5)** — D14-P1 one-line (pre-data):
+  B0a packet |k|=0.5→0.3 (P1.1b-validated packets only).
+
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
   wanderers + 1 slither anecdote), 0/6 persistent handedness

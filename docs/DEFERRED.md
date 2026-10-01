@@ -3175,6 +3175,11 @@ max>1e-6-in-≥2-runs (stands!). B1-STANDS-independent (5× + every-
 control). STRUCTURAL-RESPONSE-SCOPING (honest!): B0a = K-side-
 covariates (frozen-K-cannot-respond!); dynamic-K-response = B0b-
 queued. NEXT: B0a-campaign (gated on amendment-commit!).
+P1-AMENDMENT-5 (B0a-packet-momentum (PRE-B0a-DATA (one-line!)):
+|k|=0.5→0.3 (reason: P1.1b-validated-packets-only (|k|=0.5-predates-
+branch-validation (never-validated!))); σ=4-STANDS; partner-momenta-
+construction-unchanged (per-branch-operational-approach-sign (A4!))).
+NEXT: B0a-campaign (gated on amendment-commit!).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
