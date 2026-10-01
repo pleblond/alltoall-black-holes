@@ -2200,6 +2200,59 @@ replication) — D fenced. APPARATUS (new code): G_*
 constructors + D3 driver + histogram/valley/assortativity
 readouts (all else banked: Φ, discriminator, cuts, d_G).
 NEXT: formation PILOT (code next go — gated on this pre-reg).
+FORMATION DESIGN AMENDMENT (review-forced: connectivity +
+seed/absorbing — preconditions for running; pilot still
+gated): CONNECTIVITY POLICY (reviewer's lean ADOPTED):
+fragmentation ALLOWED (no guard — guard would be evaluative,
+H1-banned; vacuum-connectedness is an L0 outcome fact, not a
+dynamical license (steering-to-answer confusion filed));
+HEALTH READOUTS HARD: giant-component fraction ≥ 0.9 GATES
+WEAK-YES (0.9 labeled conventional); component-size
+distribution FILED full (not gated); STRONG readouts run ON
+GIANT (percolation practice); giant < 0.9 => STRONG UNTESTED
+(validity, not verdict). ABSORBING-STATE CHARACTERIZATION
+(derived at design — reframes D3's hope): D3-OR arrest ⟺
+rigid (z≥4) subgraph + isolated (z=0) dust (proof: z∈{1,2,3}
+nodes always own an executable edge ⇒ absent at arrest) =>
+arrested end-states are WRONG-kind AUTOMATICALLY (reviewer's
+feared artifact = CHARACTERISTIC failure mode, not accident
+— sharp > vague); D3's hope is ACTIVE steady state
+(gainer-rescue sustains floppy bulk), NOT arrest-into-phases.
+STOP-RULE INTERPRETATIONS (locked): arrest => dust-expected
+=> health-gated (PREDICTION: arrested runs score WEAK-NO);
+stationarity => WEAK-candidate; T_max cap => UNRESOLVED
+(transient-too-slow; extension needs amendment). SEED ISSUE
+(KCM sense: initial excitations): RR-8 D3 STILLBORN (theorem:
+all z=8 ⇒ zero executable at tick 0); ER-16 near-certain
+stillborn (~0.15 expected floppy); ER-8 runnable (~4%);
+STILLBORN-RULE: zero executes in first W=20 sweeps ⇒ run
+INVALID (not WEAK-NO); expected-invalids RUN as negative
+controls on validity machinery (informative: KCM
+arrest-needs-seeds); HAND-SEEDING BANNED (planting;
+C2-unplanted violation); D1 never stillborn (ungated
+relocation always executable — one-liner). WEAK-YES AMENDED
+(was: bimodal + modes): bimodal (valley<0.5) AND lower-mode
+≥ 2 (BULK LINE, principled: z<2 ⇒ no cycles through node ⇒
+cannot be mesh bulk — excludes dust/hair without targeting)
+AND giant ≥ 0.9; NO upper-mode target (would be
+target-valued — restraint filed; contrast measured).
+DISAMBIGUATIONS (pre-amble gaps closed): loser-gate = OR
+(either endpoint floppy — most permissive; failure-under-OR
+⇒ failure-under-AND (heuristic, LABELED); AND queued
+contingent); gainer = uniform random non-edge (both
+endpoints blind). NON-INTERFERENCE AUDIT (strong-win
+license): D3 inputs {degrees/counts} ∩ discriminator inputs
+{static betw, mean} = ∅ (formal disjointness; correlation
+caveat filed honestly: both graph quantities, possibly
+value-correlated — unengineered claim rests on
+input-disjointness + pre-registration, labeled). STRONG-WIN
+INTERPRETATION (reviewer's box ADOPTED): observer-blind
+kinetic instability redistributes fixed E into persistent
+phases AND the resulting topology independently makes the
+previously-insufficient gain-free rule sufficient — neither
+stage designed against the other's target (the meeting is
+unengineered).
+NEXT: formation PILOT (code next go — gated on pre-reg + amendment).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
