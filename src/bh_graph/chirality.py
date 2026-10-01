@@ -191,18 +191,22 @@ def orient_faces(tris: np.ndarray, coords: dict, L: int | None = None):
 
     coords: node -> (x, y) or (x, y, b). L: torus period (None = plain
     displacement for synthetic coords). Returns (kept_mask, oriented,
-    seam_mask): kept = non-degenerate AND non-seam-critical; oriented =
-    label triples with positive cyclic order; seam_mask marks
-    seam-critical triangles (any bond with |d| == L/2 exactly, L even:
-    R/wrap non-commutation makes their orientation sign arbitrary --
-    amendment-5). Degenerate (zero-area) triangles are EXCLUDED (filed).
-    L=None has no seam (seam_mask all False).
+    seam_mask, wrap_mask): kept = non-degenerate AND non-seam-critical
+    AND unwrapped; oriented = label triples with positive cyclic order;
+    seam_mask marks seam-critical triangles (any bond with |d| == L/2
+    exactly, L even: R/wrap non-commutation makes their orientation sign
+    arbitrary -- amendment-5); wrap_mask marks wrapped triangles
+    (mindisp closure != 0, i.e. +-L: spanning > L/2 so signed area is
+    start-dependent and R-inconsistent -- amendment-6). Degenerate
+    (zero-area) triangles are EXCLUDED (filed). L=None has no seam and
+    no wrap (both masks all False).
     """
     if len(tris) == 0:
         z = np.zeros(0, dtype=bool)
-        return z, np.zeros((0, 3), dtype=np.int64), z
+        return z, np.zeros((0, 3), dtype=np.int64), z, z
     kept = np.zeros(len(tris), dtype=bool)
     seam = np.zeros(len(tris), dtype=bool)
+    wrap = np.zeros(len(tris), dtype=bool)
     out = np.empty_like(tris)
     for k, (a, b, c) in enumerate(tris):
         xa, ya = coords[int(a)][:2]
@@ -218,12 +222,15 @@ def orient_faces(tris: np.ndarray, coords: dict, L: int | None = None):
             if any(abs(d) == L / 2 for d in e1 + e2 + e3):
                 seam[k] = True  # orientation sign arbitrary: exclude
                 continue
+            if (e1[0] + e3[0] - e2[0], e1[1] + e3[1] - e2[1]) != (0, 0):
+                wrap[k] = True  # closure fails (+-L): start-arbitrary
+                continue
         s = e1[0] * e2[1] - e1[1] * e2[0]
         if s == 0:
             continue
         kept[k] = True
         out[k] = (a, b, c) if s > 0 else (a, c, b)
-    return kept, out[kept].reshape(-1, 3), seam
+    return kept, out[kept].reshape(-1, 3), seam, wrap
 
 
 def core_distances(g: nx.Graph, core: list) -> dict:
