@@ -167,3 +167,89 @@ total. Resume-safe part files (beast-only scripts, grid above reproduces).
 
 Next (gated): P0 verdict here; P1 (pairing/symmetry) prereg only if
 P0-POSITIVE; P0b (new axes) only via review (no silent iteration).
+
+## P0 VERDICT — NULL (D5inf-single-type, 64/64 runs, beast)
+
+64/64 cap-2000 (P0-A L28x32 + P0-B L42x16 + P0-C ER1600-S0x16, D5inf,
+~4min wall/64 workers + post). 0 empty cores (excluded 0/64). E-exact
+64/64 (filed). Masses 109-280 (means 203/211/191), T* 3487-7038
+(means 3570/6892/3564, ER-like for J2 (triangle-free-bootstrap
+replicated!)). Jaccard-1500-2000 0.09-0.23 (EXCHANGE churn replicated!).
+
+PRIMARY (residualized (logmass,T) + standardized, 2-means, 100-perm null):
+
+- P0-A: s_obs 0.252 < max_null 0.405 AND < 0.30 floor (varexp 0.279,
+  n0/n1 13/19, d_mass -0.20, d_T -0.40 (matching worked!),
+  orig-centroids F1 0.1375/0.1350 (diff 0.0025!), F2 0.518/0.495,
+  F3 0.226/0.231) => NULL.
+- P0-B: s_obs 0.304 (> floor) BUT < max_null 0.451 (varexp 0.389,
+  n 7/9, d_mass 0.17, d_T -0.16) => NULL (fails null).
+- P0-C: s_obs 0.350 (> floor) BUT < max_null 0.456 (varexp 0.419,
+  n 6/10, d_mass -0.05, d_T -0.10) => NULL (fails null).
+- Cosines cosAB 0.799 / cosAC 0.623 (moot, no positives to replicate).
+- Persistence P0-A: 11/32 stable (frac 0.344, need >= 0.80)
+  => FLICKER-FAIL (even the null-split flickers; snapshot-clarification
+  filed pre-analysis: FINAL-fit OLS coeffs applied to snapshot's own
+  (logmass_s,T_s), then FINAL mean/sd (feature-blind at amendment time:
+  only mass/T logs opened, F1/F2/F3 unopened)).
+- NCs moot (no positive to reject; singleton gate passed anyway
+  (min-cluster 6/16 = 37%)).
+
+0/3 cells positive (not even HINT: single-cell positives need null-pass,
+none passed). => P0-NULL per decision rule.
+
+SECONDARIES (descriptive, filed full, no verdict weight — all TIGHT,
+single-type-consistent, several replications):
+
+- kmax 4-5 (means 4.06-4.16, mostly 4 (LOCKED replicated!));
+  k3mass 528/1053/535 (sd 4-7, tight!); k4raw 223-339 (sd 17-22);
+  k5present 5/32 + 1/16 + 1/16 (rare flicker (anatomy raw-flicker
+  replicated!)); Gini 0.76/0.79/0.76 (sd 0.002-0.003, TIGHT! (SSB
+  0.76/0.79 replicated!)); IPR 0.0026/0.0014/0.0025 (SSB replicated!);
+  topz-C 0.04-0.06 (hubs (C<<1 replicated!)); core-density
+  0.05-0.07 (sd 0.003-0.006); assort ~0 +/-0.03 (mixed);
+  diam 4 (A/C constant!) / 4-5 (B); meandist 2.34/2.60/2.35
+  (sd 0.03-0.05); bip 0.46/0.51/0.47 (sd 0.02); a2 2.3-3.8;
+  gap 4.5-7.0; sup50-core-frac 0.53-0.75 (widest secondary
+  (sd 0.08-0.14, range 0.24-0.96) but unimodal-range, NOT tested
+  for bimodality (would need new prereg, no shopping here));
+  massCV 0.12/0.26/0.12 (Stage-0 O3 0.13-0.27 REPLICATED!);
+  Tslope-per100 +18/+24/+43 (sub-%-drift (anatomy +0.5%/100sw
+  REPLICATED!) + aging-consistent (positive-but-small (approach
+  disclosed!))).
+
+FILED: "D5inf-single-type in primary space" (no degeneracy in
+(clustering, conductance, hub-dominance) residuals at matched
+size/energy; 19 secondaries tight/unimodal-range; 7 replications
+of formation-branch numbers (bootstrap, churn, kmax-lock, Gini/IPR,
+hub-C, massCV, Tslope)). Location degeneracy (SSB-1) stands;
+TYPE degeneracy ABSENT here. Circulation (Stage-0) + intrinsic
+structure (P0) BOTH null => polarity stays paused for pure-D5inf
+spontaneous single-blob.
+
+NEXT (gated on review, no silent iteration):
+
+- P0b-mobility (STRONGEST hint: Stage-0 sitters (3 confined, alpha~0)
+  vs wanderers (3 diffusive, alpha~0.75-1.05) + 1 slither anecdote
+  (N=6, heterogeneity-mechanism-OPEN!)): confirmatory MSD-alpha
+  bimodality at matched mass/T + persistence + N-replication.
+  Unsigned (alpha is not signed) => paired-states rung ONLY (not
+  polarity yet); needs J2-readout justification (displacements are
+  translation-invariant (survives translation by construction!) but
+  background-dependent (filed gap)).
+- P0b-sheet (J2 sheet-composition bimodality? verdict says 0.49-0.50
+  preserved, no hint filed — LOW priority unless mobility positive).
+- P0b-dynamics (exchange-current invariants beyond circulation?
+  Jaccard tight (no churn-rate types); other currents unmeasured —
+  needs new logging prereg (endpoint-moves available!)).
+- D3xinf-formation (NEW U, D14-side: hard-gain MAY nucleate (25k
+  closes predicted); needs formation campaign FIRST (scale? SSB?),
+  then P-track IF it forms finite-scale localized objects).
+- Two-blob scattering (COUNT-VS-N flagged: prepared initials needed
+  for steps 5-7; states-not-rules review REQUIRED before any
+  two-blob work (non-interference!)).
+
+D15 gate: NOT fired (no J, no C, no P; D15 stays closed (read-only)).
+P-track stands alone as degeneracy-null result (discovery/characterization
+mandate honored: searched, found single-type, filed).
+

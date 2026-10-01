@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (P-track P0)** — Emergent-polarity degeneracy survey NULL
+  (64 D5∞ runs, J2 L28×32 + L42×16 + ER-S0×16, beast ~4min): 0/3 cells
+  positive (s_obs 0.25/0.30/0.35 all < max_null 0.41/0.45/0.46; primary
+  also < 0.30 floor; persistence 11/32 stable) ⟹ D5∞-single-type in
+  (clustering, conductance, hub-dominance) residuals at matched size/energy;
+  19 secondaries tight + 7 formation-number replications (bootstrap, churn,
+  kmax-lock, Gini/IPR, hub-C, massCV, Tslope); polarity stays paused
+  (P0b-mobility gated); D15 stays closed; polarity.py + 18 pins (594
+  collected).
+
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
   wanderers + 1 slither anecdote), 0/6 persistent handedness
