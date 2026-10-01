@@ -2892,6 +2892,41 @@ endpoint (dissolves-detector (not-fires!))); sub-
 quadrant-texture (pin-irrelevant-per-uniformity-
 premise!). NEXT: review-turn or next-design (gated
 on go).
+COUNT-VS-N (analysis-only (existing-anatomy!)): late-
+k4-piece-count saturates ~1-ALL-N (means-1.15/1.28/1.06
+(1500-2000!); ≥2-full-run-freq-0.37/0.33/0.08 (N-↓ (floor-
+artifact-partly (floor-16/36/64!)))) ⟹ spontaneous-multi-
+object-scenes RARE/TRANSIENT (single-sponge-+-dust!) ⟹
+polarity-steps-5-7 (interactions/conversion/annihilation)
+UNTESTABLE-in-spontaneous-formation ⟹ prepared-two-blob-
+initials-NEEDED (flagged-for-non-interference-review
+(states-not-rules (scattering-methodology (proposed!)))).
+STAGE-0-PREREG (FROZEN-2026-10-01 (~17:35-UTC (commit-
+predates-reruns!)); individuals-+-kinematics-+-handed-
+ness (polarity-Step-0!)): INPUTS: J2-torus-L28-D5∞-reruns-
+d0-d3 + L42-d0-d1 (plateau-1500-2000 (SAME-trajectories
+(T-match-6/6-GATED (apparatus-invalid-if-fail!)))); NEW-
+COLUMNS: k4sets (per-sweep-floored-k4-node-sets (frozen-
+definition!)) + endpoint-moves (stride-logged-(sw,a,b,c,
+d,loss,gain,accepted) (observation-only (pins: T-match-
+with/without-logging!))). O1-BLOB-KINEMATICS: core-
+centroid (circular-mean (background-coords!)) MSD(τ)∝τ^α:
+α<0.7-CONFINED / 0.7-1.3-DIFFUSIVE / >1.3-DIRECTED
+(prespecified-bins!). O2-HANDEDNESS-H: per-accepted-move-
+angular-impulse-about-window-centroid-o (L=(r_a-o)×u +
+(r_b-o)×v (u=r_c-r_a, v=r_d-r_b (minimal-torus-disp!)));
+H=ΣL/(n·L²); persistent ⟺ 5/5-100sw-blocks-same-sign
+AND |Σ|>max-|shuffled| (10-order-shuffles (same-o!));
+across-run-signs-vary-expected (exact-symmetry!). O3
+(descriptive!): k4-mass-CV + axis-angle-diffusion (vs-
+ballistic!). DECISION: STAGE-0-POSITIVE ⟺ (O1-DIRECTED-
+or-rotating OR O2-persistent-vs-shuffled) in-≥2-runs;
+else-NULL (file-"D5∞-plateau-achiral" (STOP-debt-free-
+route-for-pure-D5∞ (C0-with-debts-guilt-free!))). NON-
+INTERFERENCE: same-trajectories (T-gated!) + frozen-
+k4 + plateau-window (anatomy-consistent!) + J2-soup
+(filed-justification (readout-basis!)). NEXT: Stage-0-
+reruns (gated on prereg-commit!).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
