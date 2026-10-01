@@ -257,6 +257,10 @@ def test_msd_alpha_static_and_ballistic():
     assert abs(a1 - 2.0) < 0.01  # ballistic
     assert abs(rms1 - 50.0) < 1e-6
     assert msd_alpha([(0.0, 0.0)], 28) == (0.0, 0.0, [])
+    wrap = [(float(t % 28), 0.0) for t in range(200)]  # wraps L28, drifts +1/sw
+    aw, rmsw, _ = msd_alpha(wrap, 28, tau_max=50)
+    assert abs(aw - 2.0) < 0.01  # unwrapped: ballistic despite wraps
+    assert rmsw > 28  # multi-wrap displacement (no cap)
 
 
 def test_quadrupole_and_bins():

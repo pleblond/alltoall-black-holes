@@ -387,4 +387,28 @@ Resume-safe part files (beast-only scripts, grid above reproduces).
 Next (gated): P0b verdict here; temporal-mode characterization prereg ONLY if
 P0b-POSITIVE; else PAUSE (K+psi wait).
 
+## P0b AMENDMENT-1 (analysis-bug fix, PRE-VERDICT, pilot-anchored, not shopping)
+
+BUG: P0b analysis as coded used per-PAIR minimal torus disp for MSD
+(|c_{t+tau}-c_t| folded to [-L/2,L/2] per pair). On wrapping paths
+(centroid circles the torus: x-range 0-28 observed!), folded MSD saturates
+at (L/2)^2 and log-log slope -> 0 ARTIFACTUALLY (all 48 confined 0.03-0.15,
+rms capped <=9.2). The Stage-0 diffusive bin (0.7-1.3, wander torus-scale)
+is UNREACHABLE under per-pair folding (any torus-scale sad path wraps and
+scores ~0). PROOF: identical k4sets (S0 vs P0b L28-d1, 0/501 differ,
+T-match) score diffusive in Stage-0 (0.75-1.05 range) but confined (0.10)
+in our buggy code.
+
+FIX (locked): UNWRAP trajectory (accumulate minimal PER-STEP disp from t0,
+standard for diffusion on periodic domains), then Euclidean MSD on unwrapped
+path (no torus cap). Check on same data: L28-d1 unwrapped alpha 0.86
+(diffusive, Stage-0 range!) rms 13.2 (torus-scale); max-rms run unwrapped
+0.96 / 45.8 (multi-wrap diffusive). Prereg "minimal torus disp" clarified as
+per-STEP minimal + accumulate (unwrapped); per-PAIR folding REJECTED as
+inconsistent with bins (filed reasoning: bins presuppose unwrapping).
+All other gates unchanged (bootstrap, floor, replication, persistence, NCs).
+Pilot replication REQUIRED: fixed code must recover >=1 diffusive among
+Stage-0-overlap 6 (else still buggy). Verdict follows fixed analysis.
+
+
 

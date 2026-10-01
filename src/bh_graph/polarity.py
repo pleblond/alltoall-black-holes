@@ -613,23 +613,36 @@ def centroid_trajectory(k4sets: dict, coords: dict, L: int, sweeps: list) -> tup
 
 
 def msd_alpha(centroids: list, L: int, tau_max: int = 100) -> tuple:
-    """MSD exponent alpha via log-log OLS (tau=1..tau_max, minimal torus disp).
+    """MSD exponent alpha via log-log OLS (UNWRAPPED torus path, P0b-A1 fix).
 
-    Returns (alpha, rms, msd_list). rms = sqrt(MSD(tau_max)) (locked).
-    All-MSD-0 => alpha 0.0 (static). Zeros excluded from log fit (filed).
-    <2 fittable points => alpha 0.0. tau_max capped at n-1.
+    Unwraps first (accumulate minimal per-STEP disp from t0, standard for
+    diffusion on periodic domains), then Euclidean MSD(tau) for tau=1..tau_max
+    on unwrapped path (no cap). Per-PAIR folding REJECTED (saturates wrapping
+    paths to alpha~0 artifactually; diffusive bin unreachable).
+    Returns (alpha, rms, msd_list). rms = sqrt(MSD(tau_max)) (locked, may
+    exceed L/2 for multi-wrap diffusive (correct!)). All-MSD-0 => alpha 0.0
+    (static). Zeros excluded from log fit (filed). <2 fittable => alpha 0.0.
+    tau_max capped at n-1.
     """
     n = len(centroids)
     if n < 3:
         return 0.0, 0.0, []
+    # unwrap: cumulative minimal steps
+    ux = [0.0]
+    uy = [0.0]
+    px, py = centroids[0][0], centroids[0][1]
+    for c in centroids[1:]:
+        ux.append(ux[-1] + torus_min_disp(c[0], px, L))
+        uy.append(uy[-1] + torus_min_disp(c[1], py, L))
+        px, py = c[0], c[1]
     tmax = min(tau_max, n - 1)
     msd = []
     for tau in range(1, tmax + 1):
         acc = 0.0
         cnt = n - tau
         for t in range(cnt):
-            dx = torus_min_disp(centroids[t + tau][0], centroids[t][0], L)
-            dy = torus_min_disp(centroids[t + tau][1], centroids[t][1], L)
+            dx = ux[t + tau] - ux[t]
+            dy = uy[t + tau] - uy[t]
             acc += dx * dx + dy * dy
         msd.append(acc / cnt if cnt else 0.0)
     rms = math.sqrt(msd[-1]) if msd else 0.0
