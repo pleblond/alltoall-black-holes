@@ -2253,6 +2253,31 @@ previously-insufficient gain-free rule sufficient — neither
 stage designed against the other's target (the meeting is
 unengineered).
 NEXT: formation PILOT (code next go — gated on pre-reg + amendment).
+FORMATION DESIGN AMENDMENT-2 (design correction, PRE-DATA —
+strong-clause incoherence caught before any run):
+STRONG-as-filed (Φ-basin on formed state, `banked apparatus')
+is CATEGORY-BROKEN for this pilot: relocation-formation on ER
+soup NEVER produces geometry (no positions/embeddings), and
+Φ/η (spans, rulers, longs) REQUIRE extrinsic geometry
+(self-ruler via phases = circular (target leaks into ruler —
+RULER-TRAP precedent) + new apparatus (violates `zero new
+choices')). CORRECTION: this pilot (C2-PILOT-1, TOPOLOGICAL
+formation) tests WEAK ONLY (spontaneous segregation; ceiling
+= KIND-not-DEGREE partial, pre-registered branch);
+STRONG (discriminator flip) RE-HOMED to C2-PILOT-2
+(GEOMETRIC formation — future design: formation WITH
+positions/embeddings) — re-homed, NOT dropped
+(outcome-table STRONG-YES cell unreachable-here, filed).
+DEEPER LESSON (filed): D14 scale is GEOMETRIC (pricing ~
+spans); topological formation can supply KIND never test
+DEGREE. CHARACTERIZATION (not verdict): on WEAK-YES states
+file J-histogram + max/mean + p90/mean + median/mean, J̄ =
+all-edge mean (no-mask default, labeled), vs indicative
+(6.2,11.0) (threshold-transfer approximate², NO verdict —
+informs geometric design). BLINDNESS (moot-but-filed): no
+pricing/traffic quantities touched pre-amendment (nothing
+run at all — genuinely pre-data).
+NEXT: formation PILOT (code now — gated on pre-reg + amendments).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
