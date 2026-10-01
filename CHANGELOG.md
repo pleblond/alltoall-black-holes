@@ -3,9 +3,10 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
-- **unreleased (model draft renders)** — Foundational-manuscript v0.1
-  page renders archived under `paper/model/draft/` (8 PNGs, 15pp,
-  author-review draft, backup only; `.tex` source to follow).
+- **v5.5** — Foundational-manuscript v0.1 page renders archived under
+  `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
+  `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).
+  576 tests.
 
 - **v5.4** — D14 formation-design campaign + J2 canonical adoption:
   C2-PILOT-1 DARK (54/54, 0/54 WEAK over 20× floor sweep; D1 null holds

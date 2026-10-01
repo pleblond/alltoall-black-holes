@@ -203,16 +203,20 @@ release:
 @software{leblond2026alltoall,
   author  = {Leblond, Philippe},
   title   = {Compact Objects as Almost-Perfect All:All Entanglement Graphs: From fast scrambling and weak-field gravity to a testable gap-kilonova prediction},
-  version = {5.4.0},
+  version = {5.5.0},
   year    = {2026},
   doi     = {10.5281/zenodo.22929076},
   url     = {https://github.com/pleblond/alltoall-black-holes},
-  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.4.0 version DOI mints on Zenodo release}
+  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.5.0 version DOI mints on Zenodo release}
 }
 ```
 
 ## Status
 
+v5.5: foundational-manuscript v0.1 page renders archived under
+[`paper/model/draft/`](paper/model/draft/) (8 PNGs, 15pp author-review draft,
+backup only; `.tex` source to follow); paper v5 unchanged (12pp + 15pp S1–S11
+methods, 49/49 references cited). 576 tests, 83 figure files (Figs 1–75).
 v5.4: D14 formation-design campaign + J2 canonical adoption —
 [`main.pdf`](paper/v5/main.pdf) (12pp) +
 [`supplement.pdf`](paper/v5/supplement.pdf) (15pp S1–S11 methods, 49/49
