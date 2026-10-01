@@ -3357,4 +3357,10 @@ dynamics. MALUS-1/2 MOOT on bare J2 (no analyzer experiments run,
 per gate; a propagating-plus-frozen "polarizer" would be a
 defect study, not Malus). Consistent with -- and strengthening --
 the D15 rank-1 story: dead under diffusion AND under unitary wave
-dynamics, exactly. NEXT: none on this track (null banked).
+dynamics, exactly. REPLICATION (beast EC2, key in shared user store):
+M0-ALG + M0-DYN rerun on beast clone match local digits exactly
+(sym v = 1.2110 / alpha = 2.087 / disp = 12.183; anti disp = 0 /
+overlap = 1; sheet0 50/50; n_zero = 838); malus+ballistic+formation
+subset 51 passed on beast; full suite 606+2 green locally (full
+beast suite deferred: box at load ~500 from concurrent campaigns).
+NEXT: none on this track (null banked).
