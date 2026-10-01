@@ -69,7 +69,7 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 540 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 576 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -94,7 +94,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 540 tests (2 torch/GPU-only skip without torch)
+python -m pytest tests/ -q          # 576 tests (2 torch/GPU-only skip without torch)
 python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
@@ -203,16 +203,25 @@ release:
 @software{leblond2026alltoall,
   author  = {Leblond, Philippe},
   title   = {Compact Objects as Almost-Perfect All:All Entanglement Graphs: From fast scrambling and weak-field gravity to a testable gap-kilonova prediction},
-  version = {5.3.0},
+  version = {5.4.0},
   year    = {2026},
   doi     = {10.5281/zenodo.22929076},
   url     = {https://github.com/pleblond/alltoall-black-holes},
-  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.3.0 version DOI mints on Zenodo release}
+  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.4.0 version DOI mints on Zenodo release}
 }
 ```
 
 ## Status
 
+v5.4: D14 formation-design campaign + J2 canonical adoption —
+[`main.pdf`](paper/v5/main.pdf) (12pp) +
+[`supplement.pdf`](paper/v5/supplement.pdf) (15pp S1–S11 methods, 49/49
+references cited); C2-PILOT-1 DARK + C2-PILOT-2 NO-coexistence
+(frustrated-D5∞ bracket, N*∈(1600,3600]); SSB-1 spontaneous core selection
+(D15 reopens); J2-orientation isotropic; Stage-0 achiral NULL (debt-free
+pure-D5∞ stopped, polarity paused); J2 adopted as canonical working vacuum
+substrate ([`status`](docs/j2-status.md)). 576 tests, 83 figure files
+(Figs 1–75).
 v5.3: D1 update-rule tournament (third pass) + D14 pricing-hierarchy closure
 + J2 micro/macro probe — [`main.pdf`](paper/v5/main.pdf) (12pp) +
 [`supplement.pdf`](paper/v5/supplement.pdf) (15pp S1–S11 methods, 49/49
