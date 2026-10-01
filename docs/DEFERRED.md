@@ -2579,6 +2579,17 @@ steady-coexistence (count≥2 ⟹ count(t)↓)); P6
 (valley-aux: gap-aware-1.0 + mass-bimodal); P8
 (bulk-E-starvation (bulk-z̄ ↓ as clique grows));
 P9 (κ-moderate nucleates CLEANEST (anneal-window!)).
+P6-REVISION (pre-campaign (smoke-mechanics N=400
+(not grid!) + derived timescale-rule (not tuned!)):
+D35 SMOKE ARRESTS at 25sw/58exec (T +12 only) ⟹
+LOSS-FREEZE (25-34sw) ≪ CLOSURE-NUCLEATION (100s-sw)
+⟹ D35-gain-STARVED (κ1) ⟹ REVISED-P6: D35 → dust +
+rigid-bulk (D3-like (T-elevated (+O(10-50) (gain-
+scraps!)))) (NOT dust+clique!). DERIVED: D35-arrest
+⟺ D3-arrest-condition (rigid+dust (gain-soft can't
+arrest (only hard-loss-gate can!))). CONTINGENT
+followup (not this campaign): D3×∞ (hard-gain
+(25sw×E0×16% ≈ 25k closes (MAY nucleate!)).
 COST (filed): Δt/set-∩ O(z̄) (sweep ~2-4× D1);
 (A) ~20-45min + (B) 6400-cap ~3min/run-worst +
 truss-post ~10s/run ⟹ ~1-2.5h (tmux-backgroundable
@@ -2632,7 +2643,16 @@ persistent-in-T): (i) κ-test (lifetime ↓ as κ↓
 (selection?!))); (iii) quench-then-anneal
 (nucleate (∞/2) → anneal (1/0.5) (count↓ (no-
 selection!) vs persist (selection?! (contingent
-(not in 72!)))). BRACKETING (adopted): D3 (no-
+(not in 72!)))). SCOPE-REPAIR (AMENDMENT-5, filed
+PRE-REPAIR-DATA (post-66 (prediction-completing
+(not shopping!))): ladder locked {D5∞,D5κ1} but κ1-
+BARREN (no nucleation (all-N!)) + D5∞-frustrated
+(no clique!) ⟹ P3 (α=1/2 ∀ nucleating κ) UNTEST-
+ABLE (condensed-branch (κ2!) has NO scaling leg)
+⟹ κ2-SUBSTITUTION (6 runs: κ2 × ER-8 × seeds012 ×
+{3600,6400} (same-N/seeds (minimal-repair!)));
+tripwire-within-rule needs κ1.5-ladder (followup
+(not now!)). BRACKETING (adopted): D3 (no-
 concentration) … D5 (unbounded-concentration) ⟹
 NEXT-QUESTION (adopted, gates post-campaign turn):
 what graph-internal mechanism creates a preferred
