@@ -15,15 +15,19 @@ from bh_graph.ballistic import (
     branch_projectors,
     branch_purify,
     branch_weight,
+    branch_weights_all,
+    chiral_breaking_strength,
     chiral_gamma_diag,
     com,
     evolve_fixed,
+    first_crossing_time,
     fit_velocity,
     gaussian_packet,
     graphs_from_saved,
     hamiltonian,
     index_of,
     ipr,
+    is_accounting_ok,
     is_hermitian_ok,
     is_normalized_ok,
     is_projector_ok,
@@ -32,6 +36,8 @@ from bh_graph.ballistic import (
     node_order,
     oneway_run,
     packet_spread_ok,
+    packet_width,
+    post_crossing_fit,
     region_weight,
     residence,
     ring_coords,
@@ -244,3 +250,55 @@ def test_fit_velocity_r2_unit():
     ts = np.arange(0.0, 10.0, 0.5)
     assert fit_velocity(np.array([[0.9 * t] for t in ts]), ts)["r2"] > 0.999  # linear
     assert fit_velocity(np.zeros((len(ts), 1)), ts)["r2"] == 1.0  # stationary
+
+
+def test_branch_accounting_identity():
+    _, order, coords, _, _, br = _j2_branch_setup()
+    psi = gaussian_packet(coords, order, (2.0, 4.0), (0.3, 0.0), 1.2, periods=(8, 8))
+    w = branch_weights_all(psi, br)
+    assert is_accounting_ok(w["w_plus"], w["w_zero"], w["w_minus"])
+    assert abs(w["w_plus"] + w["w_zero"] + w["w_minus"] - 1.0) < 1e-12
+    assert not is_accounting_ok(0.5, 0.5, 0.5)
+    assert w["w_zero"] >= 0.0 and w["w_plus"] >= 0.0 and w["w_minus"] >= 0.0
+
+
+def test_chiral_breaking_zero_vs_triangle():
+    g, order, _, c3, h, _ = _j2_branch_setup(L=4)
+    gam = chiral_gamma_diag(j2_branch_parity(c3), order)
+    assert chiral_breaking_strength(h, gam) == 0.0  # bare J2 bipartite-exact
+    par = j2_branch_parity(c3)
+    a, b = next(
+        (u, v) for u in order for v in order if u < v and par[u] == par[v] and not g.has_edge(u, v)
+    )
+    g2 = g.copy()
+    g2.add_edge(a, b)  # intra-partition edge: odd cycles guaranteed
+    assert chiral_breaking_strength(hamiltonian(g2, order=order), gam) > 0.0
+
+
+def test_first_crossing_time_unit():
+    ts = np.arange(0.0, 10.0, 0.5)
+    rs = np.array([[t, 0.0] for t in ts])  # unit-speed approach along x
+    assert first_crossing_time(rs, ts, (5.0, 0.0), 1.0) == 4.5
+    assert first_crossing_time(rs, ts, (50.0, 0.0), 1.0) is None  # miss, not error
+    assert first_crossing_time(rs, ts, (0.0, 0.0), 1.0) == 0.0  # starts inside
+
+
+def test_post_crossing_fit_unit():
+    ts = np.arange(0.0, 10.0, 0.5)
+    rs = np.array([[2.0 * t, -t] for t in ts])
+    f = post_crossing_fit(rs, ts, 3.0, window=4.0)
+    assert np.allclose(f["v"], [2.0, -1.0]) and f["r2"] > 0.999 and not f["truncated"]
+    f2 = post_crossing_fit(rs, ts, 8.0, window=10.0)
+    assert f2["truncated"] and f2["r2"] > 0.999  # flagged, still exact
+
+
+def test_packet_width_unit():
+    coords = ring_coords(100)
+    order = list(range(100))
+    loc = np.zeros(100, dtype=complex)
+    loc[30] = 1.0
+    assert packet_width(loc, coords, order, periods=(100,)) == 0.0  # single-site
+    uni = np.full(100, 0.1, dtype=complex)
+    assert packet_width(uni, coords, order, periods=(100,)) > 20.0  # delocalized
+    psi = gaussian_packet(coords, order, (50.0,), (0.0,), 5.0, periods=(100,))
+    assert 3.0 < packet_width(psi, coords, order, periods=(100,)) < 7.0  # ~sigma

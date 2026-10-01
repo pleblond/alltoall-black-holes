@@ -338,6 +338,80 @@ def branch_mixing(weights) -> float:
     return float(np.abs(w - w[0]).max())
 
 
+def branch_weights_all(psi: np.ndarray, br: dict) -> dict:
+    """Full branch decomposition (W_+, W_0, W_-) in a projector basis.
+
+    W_0 uses P_0 = I - P_+ - P_- (flat-band / nodal weight, filed not
+    forced). W_+ + W_0 + W_- = 1 exactly (hard accounting identity).
+    """
+    psi = np.asarray(psi, dtype=np.complex128)
+    n = psi.shape[0]
+    p0 = np.eye(n) - np.asarray(br["P_plus"], dtype=float) - np.asarray(br["P_minus"], dtype=float)
+    wp = float(np.vdot(psi, np.asarray(br["P_plus"], dtype=float) @ psi).real)
+    wm = float(np.vdot(psi, np.asarray(br["P_minus"], dtype=float) @ psi).real)
+    w0 = float(np.vdot(psi, p0 @ psi).real)
+    return {"w_plus": wp, "w_zero": w0, "w_minus": wm}
+
+
+def is_accounting_ok(wp: float, w0: float, wm: float, atol: float = 1e-9) -> bool:
+    """Boolean check: W_+ + W_0 + W_- = 1 within atol (hard gate)."""
+    return bool(abs(wp + w0 + wm - 1.0) < atol)
+
+
+def chiral_breaking_strength(h, gamma: np.ndarray) -> float:
+    """Chiral-symmetry breaking: ||{Gamma, H}||_F / ||H||_F.
+
+    Gamma is the background sublattice diagonal (fixed by node labels,
+    shared across formed/control graphs). Exactly 0 on bipartite graphs
+    (bare J2); formation-generated odd cycles make it nonzero. This is
+    the headline K-side covariate B for B0-TRACK (mechanistic bridge).
+    """
+    hd = h.toarray() if hasattr(h, "toarray") else np.asarray(h, dtype=float)
+    g = np.diag(np.asarray(gamma, dtype=float))
+    anti = g @ hd + hd @ g
+    denom = float(np.linalg.norm(hd, "fro"))
+    return float(np.linalg.norm(anti, "fro") / denom) if denom > 0 else 0.0
+
+
+def first_crossing_time(rs: np.ndarray, ts, target, radius: float, periods=None):
+    """First t with minimal-image |R(t) - target| < radius, else None.
+
+    Delay readout (core encounter); None = geometrical miss (filed, not
+    an error -- delay analysis runs on the crossing subset).
+    """
+    rs = np.asarray(rs, dtype=float)
+    ts = np.asarray(ts, dtype=float)
+    tgt = np.asarray(target, dtype=float)
+    for r, t in zip(rs, ts):
+        if float(np.linalg.norm(min_image_disp(r, tgt, periods))) < radius:
+            return float(t)
+    return None
+
+
+def post_crossing_fit(rs: np.ndarray, ts, t_cross: float, window: float = 10.0) -> dict:
+    """COM-velocity fit over [t_cross, t_cross + window] (outgoing readout).
+
+    Truncated at the trace end (flagged, never extrapolated). R^2 gates
+    fit quality (interference-corrupted outgoing fits fail the gate).
+    """
+    rs = np.asarray(rs, dtype=float)
+    ts = np.asarray(ts, dtype=float)
+    m = (ts >= t_cross) & (ts <= t_cross + window)
+    fit = fit_velocity(rs[m], ts[m])
+    fit["truncated"] = bool(ts[m][-1] < t_cross + window)
+    return fit
+
+
+def packet_width(psi: np.ndarray, coords: dict, order: list, periods=None) -> float:
+    """RMS radius of |psi|^2 about its COM (minimal-image dispersion)."""
+    c = com(psi, coords, order, periods=periods)
+    pos = np.array([coords[v] for v in order], dtype=float)
+    w = np.abs(np.asarray(psi, dtype=np.complex128)) ** 2
+    w = w / w.sum()
+    d2 = np.sum(min_image_disp(pos, c, periods) ** 2, axis=1)
+    return float(np.sqrt(w @ d2))
+
+
 def j2_branch_parity(coords3: dict) -> dict:
     """Chiral-sublattice map {node: (x+y) mod 2} from J2 (x, y, b) coords."""
     return {v: (x + y) & 1 for v, (x, y, _) in coords3.items()}

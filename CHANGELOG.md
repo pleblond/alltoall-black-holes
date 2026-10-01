@@ -41,6 +41,15 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   ring/torus replicated identical ⟹ ballistic detector validated,
   B0a frozen-scattering unblocked (input inventory next).
 
+- **unreleased (P1 amendment-4)** — D14-P1 B0a input plan + rules
+  (pre-data): 6 reruns (elist+k4 capture, T-match gated vs j2_parts;
+  s0_parts lack elists, L28-d0 missing); sitter selection via α
+  recompute + frozen-quality; label-matched D1 + bare controls;
+  per-branch approach-sign; full-factorial filed; W±/0 + v_out +
+  dispersion + w̄ + accounting-gate + K covariates (B_chiral);
+  B0-TRACK (dual Spearman ρ>0.5, p<0.05) + decision table;
+  5 new apparatus pins (598 collected).
+
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
   wanderers + 1 slither anecdote), 0/6 persistent handedness

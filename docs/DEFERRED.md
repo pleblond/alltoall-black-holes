@@ -3129,6 +3129,52 @@ exact-zero-mixing-null (all-with-margin!)). ⟹ P1.1-GATE-OPEN
 (formation-coupling-runs-UNBLOCKED (B0a-next!)). NEXT: B0a-frozen-
 scattering (inputs: Stage-0-plateau-saves + node-matched-controls
 (gated on input-inventory!)).
+P1-AMENDMENT-4 (B0a-measurement-expansion + operational-rules +
+decision-table (PRE-B0a-DATA (inventory-only-so-far (no-wave-runs
+on-formed-graphs!)))). INPUTS (inventory-filed: s0_parts = 5/6-
+runs-k4sets+moves (L28-d0-MISSING!) + NO-elists-anywhere (campaign-
+scripts-did-not-persist-saved!) + j2_parts = 6/6-t_traces (T-match-
+refs-✓!)): (0)-RERUNS: 6-trajectories (L28-d0-d3+L42-d0-d1 (D5∞-
+same-seeds!)) + elist_window-1500-2000 (501-frames (B0a-uses-3
+(B0b-option-value-free!))) + k4_window-same; T-match-6/6-vs-j2_
+parts-GATED (apparatus-invalid-STOP-if-fail (Stage-0-precedent!)).
+(1)-SITTER-SELECTION (formation-side (pre-wave (legitimate!))):
+recompute-centroid-MSD-α-per-run (1500-2000 (Stage-0-O1-replication
+(agreement-filed!))); sitters = α<0.7-AND-frozen-quality (core-in-
+all-3-saves + pairwise-Jaccard≥0.5); <1-sitter⟹STOP+file. (2)-FROZEN-
+states: saves-{1500,1800,2000}-per-sitter (3-each). (3)-D1-controls:
+FRESH-D1-runs (same-L/dyn/sweeps (label-matched (honest: trajectories-
+diverge!)) + uniform-capture). (4)-bare-J2-in-script-per-L. MASKS:
+node-identity-matched-from-formed-state (all-controls (labels-shared!)).
+GEOMETRY (per-state): prep-at-max-torus-distance-node-from-core;
+per-branch-operational-approach-sign (10-unit-verify-on-ACTUAL-graph
+(formed-H (not-bare!)); neither-approaches⟹run-invalid-filed);
+headline = +branch-x-directed-approach; FULL-factorial-filed (2-
+branches × 4-geos (x/y × approach/flip)) with headline-cell-only-
+for-fire/track (no-selection!). OBSERVABLES (per-run, T=200-dt=0.1
+(LOCKED)): R-residence + Δt-delay (first-core-crossing (r_core =
+sqrt(|K|) (filed!); NaN-if-miss (delay-on-crossing-subset (≥5-non-
+NaN-else-delay-void-filed!)))) + ΔW±/0 (final-dev + max-dev (bare-
+basis!)) + v_out+R²+trunc-flag (10-unit-post-crossing (pre-return!))
++ dispersion-ratio (width-growth-vs-matched-free) + w̄ + w̄/w_deloc
+(late-20% (B0-descriptive + B1-criterion (roles-split (no-double-
+dip!)))) + incident-half (stands-filed) + accounting-max-dev (HARD-
+gate-1e-9 (W_++W_0+W_-=1-every-frame!); >1/3-invalid⟹apparatus-STOP)
++ K-covariates (core-mass + T_total + B_chiral-headline (||{Γ,H}||_F/
+||H||_F (background-Γ!)) + triangle-density). WRAP-note (T=200 ≫ L):
+residence/mixing-cumulative (wrap-robust-via-matched-T-controls!);
+delay-first-crossing; v_out-pre-return-window. B0-TRACK (mechanistic-
+bridge (CO-PRIMARY!)): Spearman-per-state (n=27-headline-+cells
+(scipy.spearmanr-LOCKED!)): ρ(mix_max,B)>0.5-&-p<0.05-AND-ρ(R,B)>0.5-
+&-p<0.05; per-run-means-filed-descriptive (underpowered (no-p-bar!)).
+DECISION-TABLE (locked (no-wiggle!)): fire+track⟹B0-FIRE+BRIDGE
+(headline-win!); fire+track-null⟹B0-FIRE-bridgeless (response-shape-
+filed!); contrasts-null⟹B0-NULL (track-still-computed+filed!).
+FIRE = residence/delay-median-z_i>3 (z_i-vs-18-controls!) OR mixing-
+max>1e-6-in-≥2-runs (stands!). B1-STANDS-independent (5× + every-
+control). STRUCTURAL-RESPONSE-SCOPING (honest!): B0a = K-side-
+covariates (frozen-K-cannot-respond!); dynamic-K-response = B0b-
+queued. NEXT: B0a-campaign (gated on amendment-commit!).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
