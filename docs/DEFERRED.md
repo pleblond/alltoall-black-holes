@@ -1884,8 +1884,8 @@ reference opaque to agent; independent pointer toward
 statefulness, not evidence.) ROADMAP (narrowed, locked):
 A-static-congestion [done] -> betw-cong feedback [done] ->
 static-chi CLOSED [done] -> stateful-scale derivation [done] ->
-gain-free discriminator [done] -> {formation/dynamic topology}
-[NEXT: design] -> M_O audits. BETW-CONG
+gain-free discriminator [done] -> formation DESIGN [done-pre-reg]
+-> formation PILOT [NEXT] -> M_O audits. BETW-CONG
 DERIVATION (LOCKED closure run — docs-only turn; code next):
 LAW w'=(1-a)w+a(1+b*betw_e(w;n)), betw = exact weighted edge-
 betweenness recomputed every m ticks; a=0.2, n=64 ticks,
@@ -2111,6 +2111,95 @@ unexhibited structural number. Test pins full-state rows +
 medians + dose-response (test_gain_free_discriminator).
 NEXT: formation/dynamic-topology DESIGN unit (docs-only
 pre-registration first — derive-then-code rhythm holds).
+FORMATION DESIGN (C2 pre-registration — docs-only; pilot gated
+on this): INHERITANCE: D14 scale = debt by elimination
+(static/feedback/memory/budget/structural-ratio audited);
+formation asks topology-not-prices (YES-prong currency native:
+counts/cuts/spectra structural); serves the P0' conditional
+(separating U + basin breadth + residue→2). MACHINE (minimal):
+fixed-N, E-conserving EDGE RELOCATION (remove (a,b), add random
+non-edge (c,d) — degrees CHANGE (degree-preserving swaps
+FROZEN-OUT at design: histogram-frozen, bimodalization
+impossible — caught before code); E conserved exactly (budget =
+edge count, working interpretation: entanglement units —
+ADOPTED, flagged revisable); proposals blind-uniform (H-clean).
+G_* ENSEMBLE (sketch: homogeneous dense, d_* measured-never-
+tuned): ER zbar∈{8,16} + random-regular z=8 (3 ensembles) ×
+N∈{1600,3600} × seeds{0,1,2}; d_* MEASURED per G_* (filed);
+SOUP-VALIDITY executable: initial histogram UNIMODAL (else
+invalid run). DRIVERS: D1 NULL (pure random relocation —
+required; prediction: stays unimodal (entropy); violation =
+bug-hunt trigger); D3 FLOPPY-GATED KINETICS (primary: execute
+iff loser-endpoint floppy (local z<4, KCM/Fredrickson-Andersen
+class — threshold MECHANISTIC not objective (filed
+distinction: kinetic-gate vs target-valued acceptance);
+mechanism sketch (HOPE not claim): floppy-losers shed + blind
+gainers => depleted-floppy / dense-rigid segregation;
+PREDICTION: bimodalize, fabric mode≈4 (falsifiable));
+threshold∈{3,4,5} FACTOR (marginality predicts 4 special;
+identical behavior = reinterpret branch); gainer-gated /
+symmetric variants QUEUED contingent (design amendment
+required). D2 tension-energy QUEUED (blocker: linear
+tension-energy flat (no selective pressure); interaction form
+underived; concave-by-choice = inserted-by-construction); D4
+tournament-transfer QUEUED (transfer status; gate-key
+re-derivation needed — healing gates key on known-damage
+counts, formation has no non-inserted badness). H-GATE (bites
+hardest — locked clauses): H1 no target-valued acceptance
+(accept/reject may not reference distance-to-fabric, z=4-as-
+goal, 2D-ness, outcome quantities — forbidden-inputs list,
+TARGET-VARIABLE-EXCLUSION precedent); H2 objectives need
+interpretation-first (uninterpreted = rejected in advance;
+budget-Q rule generalized); H3 blind reads + update-form (D1
+form; census/evaluative gates BANNED for formation (no
+non-inserted badness); MECHANISTIC/kinetic gates only). RUN
+PROTOCOL: stop = arrest (no executes for W=20 sweeps) OR
+stationarity (histogram L1 < 0.02 over 50 sweeps — labeled)
+OR T_max=2000 cap (labeled). GRID: full @N=1600 (3 ens × 3
+seeds × (D1 + D3×{3,4,5}) = 36 runs) + scaling subset @N=3600
+(D1 + D3@4; 18 runs) = 54 runs. READOUTS — PRIMARY
+(algorithm-free): coordination-histogram bimodality via
+valley-depth ratio (two highest local maxima, valley-min /
+lower-peak < 0.5 = bimodal — LABELED; histograms FILED as the
+evidence, statistic is the gate) + mode locations (MEASURED,
+no targets); SECONDARY: degree-assortativity rise (nx,
+segregation signature); knot-ID (TWO detectors, agreement
+required — ID claims only); CONTINGENT: d_G on depleted phase
+(UNGATED characterization — planarization NOT claimed);
+Φ-basin under gain-free pricing on formed state (STRONG
+reading — banked apparatus, zero new choices). WEAK vs STRONG
+(locked split): WEAK = spontaneous bimodalization + mode
+locations (topology result); STRONG = discriminator flips to
+HEALS on formed state (D14 kill-or-confirm). DEPLETION vs
+PLANARIZATION SPLIT (scoping honesty): pilot tests
+DEPLETION/segregation ONLY; 2D-ness of residue queued as
+D14(ii-b) (nothing here selects planarity — filed gap, not
+oversight). DEBT TABLE: N/E (finite-size → scaling subset or
+labeled); G_* density (CHOICE → 3-ensemble robustness or
+initial-condition-labeled); threshold 4 (mechanistic +
+factor-tested); W/T_max/tol (protocol, labeled); valley 0.5
+(labeled conventional); detectors (choice → dual-agreement);
+Φ/discriminator (banked, zero new). OUTCOME TABLE:
+WEAK-YES+STRONG-YES => formation SOLVES D14 scale (promote
+D-track); WEAK-YES+STRONG-NO => KIND-not-DEGREE (partial:
+debt narrows to amplification-on-formed-topology; memory /
+budget revisit ON formed states = contingent branch);
+WEAK-NO => D3 insufficient (no auto-escalate); DARK
+(D1+D3+D2+D4 all WEAK-NO) => formation doubted; YES-prong
+empty-by-exhaustion; D14 scale TERMINALLY unexplained
+(ledger records exhaustion — filed in advance). STOP RULE:
+D3 WEAK-NO => design amendment required before D2/D4 (no
+silent queue-burn). EXECUTABLE CHECKS: E-conserved exactly
+every tick; D1-unimodal (bug-hunt if violated); N-scaling
+persistence (vanishes-with-N => finite-size artifact =>
+WEAK-NO-by-scaling downgrade, pre-registered); soup-validity
+(above). STAGE-GATE: C2 mechanism demo ONLY (no origin
+claims); D-promotion checklist (ensembles + instability +
+no-insertion proof + N-scaling + G_*-robustness + independent
+replication) — D fenced. APPARATUS (new code): G_*
+constructors + D3 driver + histogram/valley/assortativity
+readouts (all else banked: Φ, discriminator, cuts, d_G).
+NEXT: formation PILOT (code next go — gated on this pre-reg).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
