@@ -2214,24 +2214,75 @@ insufficient; phases are load-bearing for chirality. This sharpens --
 not closes -- the gap: the paper's rank-2 chiral blocks vs our rank-1
 sheet-blind blocks is now a measured contrast, not a suspicion.
 
-**Queued (in order, none started):** D15.1 generator-labeled positive
-weights (apparatus: general-weight Bloch matrix + winding diagnostic;
-question: flat-band splitting without unitarity -- expected dispersive
-but non-Hermitian/contractive, winding 0; measurement decides).
-D15.2 nonlinear/saturating updates (coherent structures? solitons? --
-linear A_delta language breaks, needs new order parameters).
-D15.3 paper-QW positive control (implement the unitary scalar QW on J2
-with the paper's z-constraints, verify coarse A_delta match Fig.1
-matrices, compare spectra -- what phases buy, exactly). D15.4
-continuum/long-wavelength limit of the S-channel vs relativistic
-equations (only after sectors established -- gated on D15.0, now open
-for the S-channel alone; no D-channel continuum exists to take).
+**D15.1 VERDICT (MEASURED, test_j2qw.py -- 10 tests, suite 561
+passed + 2 GPU-skipped): detector FIRES on the paper's unitary walk.**
+S3 positive control implemented as a derivation chain, nothing
+hand-tuned: isotropic 2D coin walk Eq. A4 at alpha = 1/sqrt(2) (Weyl)
+-> Hadamard basis (paper's claim is up to unitary equivalence; J2
+pattern A_{+y} = sigma_x A_{+x} sigma_x VERIFIED in-module) -> read
+off z_{h1} = z_{h1c} = z_{h2^-1} = 1/2, z_{h2^-1 c} = -1/2, rest 0 ->
+Eq. 9 scalar unitarity on J2 group arithmetic passes both families
+(18 g-values each, worst violation 6.7e-16) -> walk psi'(p) = sum_s
+z_s psi(p.s) on the J2 torus (L=8: 128 nodes, degree 8, norm
+conserved to 0.0 over 3 ticks) -> impulse extraction reproduces the
+H-rotated Weyl matrices to 1e-12 on BOTH torus and R6-ball centre.
+Spectrum: M(k) exactly unitary (both bands |lam| = 1 at every probed
+k), Dirac point at k = 0 (degenerate 1 to 1e-12), cone velocity
+1/sqrt(2) along x (1e-3) and EXACT on the diagonal (1e-9, cos w =
+cos(q/sqrt2)), x/diagonal isotropic to 1e-3. [P_sym, M(k)] = 0.14119
+at (0.5,0.3) and 0.41793 at (0.2,-0.4) (D15.0: exactly 0.0);
+eigenvector overlap 0.67489 < 0.99 (D15.0: 1.0). Same apparatus,
+opposite verdict -- the D15.0 null is a property of diffusive
+updates, not a blind detector. Two subtleties pinned: (i) the Weyl
+z-set is REAL-signed (+-1/2, 0) -- no on-site complex phases needed
+in this basis; complex structure enters via Bloch phases; the live
+axis is UPDATE algebra (unitary vs diffusive) at least as much as
+STATE algebra (C vs R). (ii) Individual coarse blocks are rank 1
+here too (svd 1/sqrt(2)/0, paper Eq. 13) -- "rank-2 blocks" was the
+wrong detector; the live detectors are two unit-modulus BANDS +
+k-dependent eigenvectors. D15.0 language corrected accordingly (its
+pins stand: rank-1 blocks + dead band + 0.0 commutator, now read as
+one live band + one dead band).
+
+**Ladder revision (adopted):** state algebra S0 (E >= 0, null banked)
+/ S1 (signed, null banked via D15-WAVE -- sign alone does not
+activate) / S2 ((q,p) real pair) / S3 (psi in C, control DONE) / S4
+(generic vector, fallback) / S5 (explicit spinor, SKIPPED unless S3
+had failed -- S3 already yields spinorial coarse state, S5 would test
+only "can we put spinors by hand"). S3 prioritized over S4/S5 per the
+paper; S5 skipped. New axis: UPDATE algebra (diffusive/contractive vs
+norm-preserving/unitary) is load-bearing independently of state
+algebra -- D15.0 vs D15.1 differ on BOTH axes (S0/S1+diffusive vs
+S1/S3+unitary); isolating them is D15.2a/b below.
+
+**Queued (reordered):** D15.2a S2 -> S3 emergence (the derivation bet:
+(q,p) real pair under a reversible energy-conserving rule chosen for
+NON-complex reasons -- does [F, J] = 0 with J the complex structure
+emerge? apparatus: J-commutator diagnostic + norm audit; smuggling
+hazard: writing the rule in psi-language first and translating --
+forbidden by pre-registration; second-order-schema note: q'' = -Kq
+with K > 0 symmetric admits psi = K^1/4 q + i K^-1/4 p evolving
+unitarily under sqrt(K) -- the K^1/2 choice is the audit point).
+D15.2b labels-without-unitarity (positive generator weights,
+non-unitary: flat-band splitting expected but decaying/growing modes,
+winding 0 -- isolates what labels alone buy; queued behind D15.2a).
+D15.2c nonlinear updates (previous D15.2). D15.4 S-channel continuum
+(previous D15.4, still gated-open for S only).
+
+**Cross-track note (for vacuum/geometry, NOT implemented here):**
+paper's isotropy no-go vs coarse-isotropy coexistence shows
+microscopic scalar isotropy need not imply -- and is independent of --
+coarse spinorial isotropy. Reading for D12/D14: do not require
+micro-isotropy of U; require IR-isotropy after M_O. Filed as a
+constraint on falsifiers, no code.
 
 **Kill relevance:** D15.0 is a null with teeth: any future claim that
 "J2 microstructure yields spinorial propagation from scalar-energy
-dynamics" must exhibit the update rule whose A_delta are rank-2 with
-k-dependent eigenvectors -- edge-blind phase-free rules are excluded
-by measurement. D15.1 decides whether generator labels escape the null
-(positive weights only, still no phases); D15.3 decides what the
-minimal phase structure buys.
+dynamics" must exhibit the update rule whose M(k) carries two live
+bands with k-dependent eigenvectors -- edge-blind diffusive rules are
+excluded by measurement. D15.1 sharpens the teeth into a contrast:
+unitary + labels activate the sector (cone pinned), so the remaining
+live question is which MINIMAL ingredient suffices -- D15.2a (real
+reversible pair -> emergent complex structure) and D15.2b (labels
+without unitarity) decide from opposite sides.
 
