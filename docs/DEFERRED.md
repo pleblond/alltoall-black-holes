@@ -2323,6 +2323,32 @@ under EVERY statistic; only divergence = tail islands
 gap-aware (all filed; gap-aware primary). CAVEAT (locked):
 gap-aware may under-call complete separation in future
 drivers — revisit if gapped non-dust support appears.
+FORMATION DESIGN AMENDMENT-4 (detector RESTART — locked
+BEFORE any floor/sweep number is computed): TRIGGER:
+gap-aware INSUFFICIENT (2 null-WEAKs persist:
+singleton-BRIDGED islands (1600-rr8-s0-d1 (18,4),
+3600-er16-s0-d1 (30,4): interior min 1 (not 0!) →
+connected → valley 1/4 = 0.25 trips)). ACKNOWLEDGED:
+patch-chain (letter→mass→gap→floor); STOP patching
+mechanisms. PRINCIPLED RESTART: `phase' = macroscopic
+CONSTITUTIVELY (any operationalization needs a
+macroscopicity scale — the floor is part of the question's
+meaning, not a tuning knob). LOCKED: fractional floor
+(peaks need count ≥ max(2, ⌈frac·N⌉) (scale-free);
+gap-aware stays ON; library UNCHANGED (fractional =
+analysis-level min_mass)); SWEEP frac ∈ {0.1%, 0.25%,
+0.5%, 1%, 2%, 5%, 10%}; PRIMARY 1% (log-central in
+[0.1,10], locked for centrality, not outcomes).
+PREDICTION (filed): WEAK 0/54 over [0.5%,10%] (20× —
+formalization-independence); floors below max-fluctuation
+(~0.33%) admit fluctuations (artifacts EXPECTED there —
+a floor must exceed fluctuation scale to mean macroscopic).
+VERDICT RULE (locked): sweep-unanimous-DARK over [0.5%,10%]
+→ DARK (sweep-proven); else file all + conclude cautiously
+(no shopping). MECHANISM CHECK (locked): islands claimed as
+Poisson-tail sparseness — VERIFY (expected tail counts vs
+observed + bulk var vs Poisson; filed either way; verdict
+robust to mechanism (mass alone decides)).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
