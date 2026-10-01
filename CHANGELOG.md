@@ -3,6 +3,22 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (TUN tunneling campaign)** — Evanescent-transmission/
+  resonant-tunneling campaign on PR #65 tail (P1.1 apparatus fork:
+  H=-A hopping-only, Gaussian k-packets, Krylov-exact-unitary; no
+  formation/DNLS/detector): geometry-only y-bond-removal wall barriers
+  (wall spectrum ⊆ [-4,4] by Gershgorin, E0 grid forbidden, κ predicted).
+  ALL STAGES PASS (beast): TUN-0 calibration (v≤0.35%, α=2.00); TUN-2
+  width law (T/T_pred ≤2.6% over 3 decades, slope 6% of -2κ, interior
+  monotonic + asym 3880); TUN-3 strength law (strict decrease, control
+  0.695 vs 0.710); TUN-4 double-barrier resonances (25-pt pre-registered
+  scan, all T_asymp/T_pred within 7%, contrast 87×, peak addresses exact
+  at transfer-matrix -5.826/-7.418, B trapping 181×/57×). Discipline
+  trail: 4 amendments (purity-gate curvature, G2 wrap repair after void
+  pilot-1, TUN-4 prereg, asymptotic T+B/2 parity observable after
+  premature-T_sep pilot-1); `tunnel.py` + `tun_campaign.py` + 17 pins;
+  suite 612 passed + 2 skipped.
+
 - **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked
   (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
