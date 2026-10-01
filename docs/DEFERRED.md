@@ -2441,3 +2441,37 @@ corner. Uniform-linear-memoryless-staggered ALL closed; SSB/nonlinear
 is the last unlabeled horn and needs a concrete mechanism (none in
 D15 so far suggests one -- filed honestly, not attempted).
 
+**D15 CLOSED (constraint-mapping program COMPLETE; SSB-DESIGN
+DEFERRED).** D15 answered a better question than it started with --
+not "can J2 give chirality from very little" but "which microscopic
+primitives are sufficient, insufficient, or unavoidable for chiral
+conservative propagation on J2". Core finding is the PLANE (not a
+progression): diffusive scalar (x, 1.000); second-order real wave (v,
+0.9997); broken real scalar (x, 0.98); sheet-staggered real (x,
+weak); complex labeled Weyl (v, 0.675). Time structure buys
+conservative propagation without internal geometry; real spatial
+breaking buys geometry without conservation; canonical staggering
+inherits the pin; escaping staggering is S-debt; Space + Algebra
+jointly occupy the Weyl corner. Conservation and internal-state
+geometry require INDEPENDENT structural ingredients in the tested
+class. CAREFUL endpoint phrasing (adopted): within the tested uniform
+linear, generator-blind, real state-machine classes -- including
+first-order, second-order, and intrinsic staggered variants -- no
+dynamics simultaneously produces conservative transport and
+substantial momentum-dependent internal structure; the demonstrated
+positive construction pays both spatial/generator structure and
+complex/unitary algebra. Necessity is relative to the closed classes,
+not fundamental. SSB admission criterion: SSB-DESIGN enters ONLY when
+an independently motivated U has a homogeneous state analytically
+unstable to an Aut(J2)-breaking mode (homogeneous state -> linear
+stability -> lambda_SSB > 0 -> selected structure -> only then test
+chirality); without such a mechanism SSB is a logical loophole, not a
+model. Broader lesson (shared with vacuum track): latent graph
+structure is not enough -- G supplies possibilities, U selects
+effective physics (D3 dust / D5 clique-condensation / J2 pinned
+sector are the same moral). Preserved: no-gos (D15.2 pin, D15.3a,
+D15.3c triviality), Weyl positive control, scorecard, derive-Q/J law,
+primitive-debt accounting. No further compute on exotic escapes; if an
+SSB mechanism arrives (e.g. from formation dynamics), D15's apparatus
+stands ready to test whether it activates the chiral corner.
+
