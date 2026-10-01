@@ -430,3 +430,33 @@ planted-persistence half remains a real discovery bar; traces filed).
   (1 tri!), W(-1)=-1.00, W(0)=0, W(rand)=+1/0; blob1: W(+1)=+2.00 (8
   tris), W(-1)=-2.00, W(0)=0, W(rand)=+3/+1; all quant_resid 0, excl 0;
   (G,RG) diff ~1e-16 both; E(+1)=E(-1) exact both.
+
+## Amendment-5 (seam-critical exclusion, committed PRE-evolution-data)
+
+Seed: P3.0-REREDO t=0 (r10) reads E = 72/99 (healthy!), quantization
+exact, imprint/conjugation/m=0/exclusion all perfect -- BUT (G,RG) mirror
+diff = +4/+12 (was exact at r4). Diagnosis (analytic): signed-area
+orientation via mindisp is R-ODD except at the wrap boundary: for even L,
+wrap(-L/2) = wrap(+L/2) = -L/2 (R and wrap do not commute there), so any
+triangle with a bond of torus-length EXACTLY L/2 (= 14, antipodal,
+possible since node coords are integral) has ARBITRARY orientation sign
+(R-image keeps, not flips, the sign) and pollutes W by arbitrary +-1.
+Spanning-triangle blobs hit these; small regions missed them by luck.
+Fix (locked): SEAM-CRITICAL triangles (any bond with |dx| == L/2 or |dy|
+== L/2 exactly, integer-exact comparison) are EXCLUDED from W alongside
+degenerate ones (orientation-ill-defined by construction, not by luck);
+seam fraction filed per run (expect ~1-2%). R-flip then EXACT by the
+covariance proof (R permutes kept triangles, flipping each orientation).
+L=None synthetics have no seam (plain displacement). Charity check: this
+also REMOVES arbitrary +-1s from W itself (cleaner observable).
+Completeness note: for integral coords + even L this is the ONLY
+R/wrap non-commutation (wrap odd elsewhere) -- pinned + verified.
+- P3.0-REREDO verdict: APPARATUS-CORRECT except MIRROR-INEXACT (+4/+12);
+  gate holds P3-A; blinding preserved (zero evolution steps run).
+  P3.0-REREREDO (seam exclusion, same bar + seam fraction filed + exact
+  (G,RG) required) gates P3-A.
+- Superseded r10 t=0 readouts (filed, no weight): blob0: E=72,
+  W(rand)=+9/+2 (normalized 0.125/0.028, < 0.5 as predicted), quant 0;
+  blob1: E=99, W(rand)=+10/-2 (0.101/0.020), quant ~1e-14; mirror
+  diff +4/+12; E(+1)=E(-1) exact (region-independent values unchanged
+  across redos: +0.0606/-0.0236 -- sanity held).
