@@ -2339,18 +2339,48 @@ must give: TIME (memory/second-order + energy norm), SPACE (labels),
 or ALGEBRA (J/complex). bloch_matrix generalized to n x n blocks
 (backward compatible; 2x2 behaviour unchanged).
 
-**D15.3b QUEUED (second-order S2 emergence, design-first):** the
-surviving S2 horn is memory: X(t+1) = 2X(t) - X(t-1) + (spatial)X
-with energy norm, components UNLABELED X_i = (a_i, b_i) per the
-reviewer's guard (derive preservers of Q first; call them (q,p) ONLY
-if dynamics singles out conjugate structure -- "conjugate pair" must
-not smuggle J). Open - mechanical: sheet sectors still decouple
-k-independently under generator-blind spatial ops (<c>-pin covers
-any temporal order for the SHEET factor); live question is
-(a,b)-polarization within a sector (k-dependent? winding? expected
-trivial Berry for real scalar second-order -- MEASURE). Pre-register
-before code: invariant, stencil, J-commutator + Berry diagnostics,
-trilemma horn (a)/(b) stated upfront.
+**D15.3b VERDICT (MEASURED, test_j2memory.py -- 6 tests, suite 578
+passed + 2 GPU-skipped): memory restores conservative waves,
+INSUFFICIENT for chirality -- time horn closed as far as chirality.**
+Isolation held: real states, generator-blind spatial rule, no labels,
+no preinstalled J, no preselected Q; enlarged Y = (X_n, X_{n-1})
+unlabeled (present, past). Derived mixed-potential Q = ||V||^2 +
+c2 X(t)^T K X(t-1) conserved to 1e-14 over 20 ticks on L=6 torus
+(Q > 0); naive Euclidean enlarged norm drifts > 100 on the SAME
+trajectory (Q selected, not generic -- preselecting it would smuggle
+a metric). S-sector (X,V) tracks square enlarged wave bit-identically
+(6 ticks). Bands: 4 total -- S-pair dispersive (omega 0.03534245 at
+q = 0.1 -> 0.07060755 at q = 0.2, 0.20473507 at (0.5,0.3);
+unit-modulus = conservative) + D-pair flat at OMEGA_D = 0.72273425.
+Polarization travel 0.99971973 (MORE rigid than rung 2's 0.98;
+branches conjugate pairs = scalar-wave trivial geometry). NO
+dynamical J: J_0^2 = -I exactly but [J_0, U_S(k)] = 2.769/2.552
+(huge), J_0^T G J_0 != G (dev 1.355); commutator constraints across
+two k's have 1-dim nullspace (sv 3.88/3.88/0.079/0.0) spanned by the
+IDENTITY -- only scalars commute with U(k) for all k. "A J exists on
+R^2" (trivially true) vs "dynamics selects J" (false here).
+Reviewer's predicted distinction CONFIRMED: memory/time sufficient
+for conservative waves, insufficient for chirality. Space/algebra
+horns genuinely load-bearing for chirality. wave_energy added to
+j2excitation.py (docstring proof of the telescoping identity; exact
+on regular graphs).
+
+**D15 METHODOLOGICAL RULE (adopted from review): derive Q, never
+preselect.** State the update independently; derive its invariants;
+discover whether a positive quadratic invariant Q(X) = X^T G X exists
+(unique up to scale = strong); interpret Q physically only then.
+Same for J (J^2 = -I + J^T G J = G + [U, J] = 0 all required before
+"complex structure" language). Violations of this rule are smuggling
+(pre-chosen Q smuggles a metric exactly as pre-chosen (q,p) smuggles
+J). Applied: D15.3b (Q derived, J absent); required of all future
+D15 units.
+
+**Queued (D15.3b done):** D15.3c SSB sketch (horn (b): uniform rule +
+nonlinearity picks orientation -- needs mechanism + order parameter,
+design-first; last unlabeled horn). D15.2c nonlinear updates (folded
+toward D15.3c unless a non-SSB nonlinear target sharpens). D15.4
+S-channel continuum (still gated-open; S verified conservative --
+dispersion omega(k) = arccos(1 + c2(lam_+(k)-1)/2) available).
 
 **Cross-track note (for vacuum/geometry, NOT implemented here):**
 paper's isotropy no-go vs coarse-isotropy coexistence shows
@@ -2370,6 +2400,8 @@ Aut-invariant, "purely structural") rules cannot fire the detector or
 be unitary -- the L0 trilemma (labeled rules / SSB / no chirality)
 is now the wire: any chirality claim must state which horn it takes.
 D15.3a closes the memoryless horn by theorem (uniform first-order
-norm-preserving => on-site only): remaining live horns are memory
-(D15.3b, pre-register first), labels, or SSB.
+norm-preserving => on-site only). D15.3b closes the memory horn for
+chirality (conservative waves yes, J no): remaining live horns are
+labels (compass, priced openly), SSB (D15.3c sketch queued), or
+staggered/partitioned updates.
 

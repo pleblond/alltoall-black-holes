@@ -174,6 +174,31 @@ def simulate_wave(g: nx.Graph, e0: dict, e_prev0: dict, steps: int, c2: float = 
     return traj
 
 
+def wave_energy(g: nx.Graph, e_cur: dict, e_prev: dict, c2: float = 0.5) -> float:
+    """Derived conserved energy Q = ||V||^2 + c2 X(t)^T K X(t-1), K = I - P.
+
+    DERIVED, not chosen: with V = X(t) - X(t-1) and symmetric K (exact
+    on regular graphs: torus; P symmetric), the leapfrog update
+    X(t+1) - 2X(t) + X(t-1) = -c2 K X(t) gives Q(t+1) - Q(t) = 0 by the
+    telescoping identity (V'+V).(V'-V) = -c2 (V'+V).KX cancelling the
+    mixed-potential difference c2 (X(t+1) - X(t-1)).KX(t). The MIXED
+    potential X(t)^T K X(t-1) is load-bearing: the naive same-time
+    form and the Euclidean enlarged norm both drift (pinned in
+    tests/test_j2memory.py). D15 rule: invariants are derived from the
+    stated update, never preselected (a rule built to preserve a
+    pre-chosen Q smuggles its metric the way pre-chosen (q,p) smuggles J).
+    """
+    nbrs = {v: list(g.neighbors(v)) for v in g.nodes()}
+
+    def _k(x):
+        return {v: x[v] - sum(x[u] for u in nbrs[v]) / len(nbrs[v]) for v in g.nodes()}
+
+    kx_prev = _k(e_prev)
+    vel = sum((e_cur[v] - e_prev[v]) ** 2 for v in g.nodes())
+    pot = sum(e_cur[v] * kx_prev[v] for v in g.nodes())
+    return float(vel + c2 * pot)
+
+
 # ---------------------------------------------------------------------------
 # Effective coarse operator: Psi_x(t+1) = sum_delta A_delta Psi_{x+delta}(t)
 # ---------------------------------------------------------------------------
