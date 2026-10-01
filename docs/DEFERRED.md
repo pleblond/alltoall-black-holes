@@ -3358,3 +3358,38 @@ E_sup_min/max (pinned-support_bounds (11-pins!)); gates-(a)(c)(d)(e)
 (f)-UNCHANGED. NEXT: TUN-0-pilot-2 (fresh-runs (gated on amendment-
 commit!) + T_sep-freeze (banked-v-rules!) + TUN-2/TUN-3 (gated on
 TUN-0-PASS!).
+
+TUN-0-VERDICT (PASS (pilot-2 (G1-geometry (beast)))): 6/6-cells-pass-all-
+gates: (a)-v-within-0.36% (R²=1.000000!); (b')-support-bounds-inside-
+(−8,0)-all (tightest-margin-0.099!); (c)-norm-≤1.4e-13; (d)-α=2.00-all;
+(e)-wrap-≤1.1e-7; (f)-disp-≤46.2<48. ⟹ G1-bank-valid (v_in-banked +
+T_sep-frozen (banked-==-expected (rounding-absorbed-0.36%!))).
+TUN-2/TUN-3-PILOT-1-filed (VOID (wrap-contamination-flaw (no-verdict-
+drawn (numbers-filed (NOT-verdict-data!))))): G1-cells (L96): T-≈0.2-
+0.4-FLAT-across-ALL-evanescent-cells (no-L_B/E0-dependence!) with-
+accounting-exact (≤3e-13!) + control-E0=-3.0-matching-prediction-
+(ratio-1.08-✓ (predictor-healthy!)) + LB0-T=0.9998-✓. DIAGNOSIS-owned:
+reflected-packet-WRAPS-into-T-region (torus-right-region-extends-to-L
+(wrapped-weight-at-high-x-counted-as-transmitted!)); predicted-wrap-
+fractions-{0.13,0.17,0.21,0.26,0.31,0.37,0.50}-for-LB-{1,2,3,4,5,6,8}
+×-R-match-observed-excess-order-+-scaling-✓. ROOT-CAUSE: G1-prereg-
+arithmetic-compared-transmitted-end-vs-reflected-wrap-start (meaningless
+(both-inside-same-T-region!) (owned-error (demonstrable-from-frozen-
+design-alone: reflected-3σ-edge-at-−10<0 (no-data-needed!)))).
+TUN-AMENDMENT-2 (geometry-repair-G2 (PRE-RERUN (pilot-1-void (filed-
+above!)))): L=96→160 + x0=10→8 + wall_lo=28→56 (σx=6-σy=8-KEPT (floor-
+arithmetic-unchanged!) + regions-UNCHANGED (whole-torus-T/R/B (T+R+B=1-
+stands!)) + predictions-UNCHANGED (L-independent (recomputed-identical:
+T_pred-table-stands-bitwise!)) + criteria-UNCHANGED ((a)-(h)/(a)-(e)!)).
+G2-ARITHMETIC (filed (verified-per-cell!)): incident-path-48; T_sep-=
+formula(banked-v) (expected-(analytic-v): TUN-2-{18.5,19.0,19.0,19.5,
+19.5,20.0,20.0,20.5} + TUN-3-{19.0,19.5,21.0,23.5,27.5,19.0}); trans-
+center-≤84-+3σ=102<160-✓ (margin-58 (NO-trans-wrap!)); refl-center-≥28-
+−3σ=9.8>0-✓ (worst-wrap-2e-6-(LB8-only (check-(f)-upper-bound-has-10×-
+margin (contamination-ADDS (conservative-direction!)))); LB≤6-contam-
+≤1e-7-vs-T≥2e-4 (negligible!)); TUN-0-G2-run-lengths-{19.0,20.5,21.0,
+23.5,27.5,19.0}-disp-≤76<80-✓ (gate-(f)-holds (margin-≥4!)); ADDED-filed-
+monitor-wrap_w-(cols-≥L−8-at-T_sep (non-firing!)). G1-bank-SUPERSEDED-by-
+G2-bank (different-L (G1-PASS-stands-as-validity (not-as-bank!))). NEXT:
+TUN-0-pilot-3-(G2-fresh) + TUN-2/TUN-3-pilot-2-(G2-fresh) (gated on
+amendment-commit + TUN-0-G2-PASS (same-gates (a)(b')(c)(d)(e)(f)!)).

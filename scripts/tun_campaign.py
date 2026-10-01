@@ -199,6 +199,7 @@ def barrier_cell(L, e0, lb, v_in, sigmax=SIGMAX_DEFAULT, sigmay=SIGMAY_DEFAULT):
         np.array([com(p, coords, order, periods=(L, L)) for p in rec["psi"]]),
         periods=(L, L),
     )
+    prof_end = column_profile(rec["psi"][-1], L, order)
     out = {
         "E0": e0,
         "LB": lb,
@@ -210,6 +211,7 @@ def barrier_cell(L, e0, lb, v_in, sigmax=SIGMAX_DEFAULT, sigmay=SIGMAY_DEFAULT):
         "acct_ok": bool(all(d < 1e-9 for d in dev)),
         "norm_maxdev": float(np.abs(rec["norms"] - 1.0).max()),
         "com_y_drift": float(rs[-1, 1] - rs[0, 1]),
+        "wrap_w": float(prof_end[L - 8 :].sum()),  # filed monitor (G2: unreachable w/o wrap)
         "cut": ncut,
     }
     if lb >= 4:

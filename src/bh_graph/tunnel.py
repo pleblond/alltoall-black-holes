@@ -28,10 +28,10 @@ import numpy as np
 
 J_DEFAULT = 1.0
 
-# TUN locked geometry (TUN-PREREG): J2 torus, packet start, wall start.
-L_DEFAULT = 96
-X0_DEFAULT = 10
-WALL_LO_DEFAULT = 28
+# TUN locked geometry G2 (TUN-AMENDMENT-2): J2 torus, packet start, wall start.
+L_DEFAULT = 160
+X0_DEFAULT = 8
+WALL_LO_DEFAULT = 56
 SIGMAX_DEFAULT = 6.0
 SIGMAY_DEFAULT = 8.0
 
