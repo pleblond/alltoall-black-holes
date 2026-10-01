@@ -3,6 +3,14 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (MALUS-0 verdict)** — Malus track M0-NULL (local,
+  L28): [H,S]=0, H\*P_anti=0, symmetric=double-square all exact;
+  n_zero = 784+54 = 838 predicted exactly; sym packet ballistic
+  (v=1.2110, α=2.087), anti packet frozen (disp=0, overlap=1),
+  sheet-polarized splits 50/50 conserved ⟹ single propagating
+  sector, no polarization space in present wave dynamics;
+  MALUS-1/2 moot on bare J2 (suite 606 passed + 2 skipped).
+
 - **unreleased (MALUS-0 prereg)** — Malus track opened on PR #65 P1.1
   wave tail: internal-sector experiment preregistered (sheet-swap
   algebra, M0-ALG exact identities + M0-DYN 3-packet protocol on

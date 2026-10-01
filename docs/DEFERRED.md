@@ -3325,3 +3325,36 @@ not Malus -- explicitly out of scope here).
 absent); M0 needs only small linear algebra (dense 1568 eig +
 Krylov runs, seconds-minutes), so M0 runs locally and says so.
 NEXT: M0 campaign (gated on prereg commit).
+
+**MALUS-0 VERDICT (MEASURED locally, L28 torus, N = 1568; suite 606
+passed + 2 skipped): M0-NULL -- single propagating sector, STOP.**
+M0-ALG (exact, all 0.0 to machine precision): [H,S] = 0; H*P_anti =
+0 (full antisymmetric sector in ker H); H*U = U*H_sq (symmetric =
+square lattice at hopping 2J); n_zero = 838 = 784 + 54 = N/2 +
+nodal(28) (predicted decomposition EXACT, zero-parameter
+reproduction of banked P1.1b n_zero). M0-DYN (P1.1b window sigma =
+4, k = (0.3,0), dt = 0.1, T = 10, no-wrap disp < 14 holds): sym
+packet BALLISTIC (v = 1.2110, R^2 = 0.9997, alpha = 2.087, disp =
+12.18, C_v bins >= +0.991, sector mixing 9e-13; v replicates a
+banked P1.1b branch velocity digit-for-digit); anti packet FROZEN
+(v = 0.0000, disp = 0.000, width 5.639 -> 5.639, overlap 1.000000,
+norm dev 2e-16); sheet0 packet SPLITS 50/50 conserved (sector
+mixing 4e-13; total-COM alpha/C_v are two-component-split
+artifacts, filed descriptively -- per-sector readouts pinned:
+chi part stationary, phi part moved). M0-GATE: phi ballistic AND
+chi frozen AND sheet0 50/50 conserved => NULL (no wiggle room:
+chi disp is 0% of phi disp vs the 5% frozen bar). Bottom line: the
+present coinless scalar J2 wave carries ONE propagating internal
+combination (symmetric, scalar square-lattice wave) plus an
+EXACTLY dead antisymmetric sector (E = 0, v_g = 0 identically).
+Complex phases do NOT resurrect the D15.0 dead sector for the
+plain CTQW H = -A (contrast with the DEP spinorial construction,
+which needs its coined/staggered structure -- phases alone are
+not sufficient). The (k, k+Q) branch partners differ in MOMENTUM,
+not internal state; the flat band is stationary, not a second
+polarization. => NO polarization space in the present wave
+dynamics. MALUS-1/2 MOOT on bare J2 (no analyzer experiments run,
+per gate; a propagating-plus-frozen "polarizer" would be a
+defect study, not Malus). Consistent with -- and strengthening --
+the D15 rank-1 story: dead under diffusion AND under unitary wave
+dynamics, exactly. NEXT: none on this track (null banked).
