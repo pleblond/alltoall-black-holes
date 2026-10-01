@@ -3351,3 +3351,28 @@ gate-RETIRE (no-T* (fixed-time)); detW/purity/corr/norm-gates-STAND (detW-void
 ⟹ J2-VOID (timing (not-physics!))). ADD-descriptive (NOT-criteria!): J2-nmax +
 envelope-V(E) (envelope-vs-fringe-diagnosis!). RERUN (gated-on-commit!):
 full-script (replication-check-×3!) + J2-decided-final.
+
+SLIT-VERDICT (PASS-ALL-STAGES (beast-campaign-3 (SCRIPT_EXIT=0 (FAIL=[]-VOID=[]));
+suite-615-passed + 2-skipped (beast -n-64 (full!)); apparatus-14-pins-green):
+SLIT-0a-PASS (T*=12.4: V=0.678/nmax=5(!)/rmsR=0.392/L2=0.075/lin=2e-14 (linearity-
+exact!)); SLIT-0b-PASS (T*=26.1: Rmax=2.00/Rmin=0.016 (center-2×-constructive +
+deep-destructive (Young-pattern!))/L2=0.110/mirror=2e-14); shut-NULL-✓ (3e-10);
+SLIT-1-PASS (half=0.5000/pi=8e-28/periodicity-6e-14/L2-shift=0.151 (coherent-
+superposition (NOT-focusing-artifact!))); SLIT-2-PASS (γ-exact-linear-R²=1.0000/
+kill-exact-0 + entangler (ctalk-2e-4/traced-L2-0.002/kill-0.010 (fringes-gone!)/
+eraser-restore-1e-14-exact/antifringe-center-3e-5!)); SLIT-3-PASS (MZ-φ-half=
+0.5000/π=4e-33/single-arm-exact-independence/arm-scan-ratio-3.66 (graph-path-
+interference-WITHOUT-spatial-picture!)); J2-SECONDARY-PASS (fixed-T=6: V=0.853/
+rmsR=0.589/L2=0.149 (3×-margin!)/purity-100%/nmax(AB)=3-vs-E=4 (genuine-shape-
+change (NOT-envelope!))). INTERPRETATION (filed (NOT-overclaimed!)): scalar-J2-
+wave-DOES-interfere-from-alternative-paths (expected (complex-linear (positive-
+control-passed!))); which-path-coupling-DESTROYS-fringes-continuously-in-|γ|
+WITHOUT-collapse-postulate (dynamical-suppression + eraser-restore (unitary-
+only!)); graph-corridors-interfere-without-geometry (SLIT-3!). OPEN (hard-wall-
+STANDS!): NO-graph-degree-supplies-path-records-yet (entangler-is-external-
+unitary (NOT-derived!)); NO-detection/Born-mechanism (SLIT-4-deferred (single-
+detection-events-unexplained!)); interference-IS-built-into-complex-ψ (classical-
+waves-do-this-too (SLIT-0 ≠ QM-demonstration (framing-kept!))). NEXT: SLIT-
+campaign-CLOSED (all-stages-pass (+2-amendments-filed-pre-rerun (discipline-
+kept!))); followups (NOT-opened-here!): derived-path-record-degree + SLIT-4-
+detector-mechanism (queued-behind-model-content!).
