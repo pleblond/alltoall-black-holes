@@ -3332,3 +3332,29 @@ evanescent-interior + finite-T + predicted-width-dependence (graph-wave-
 tunneling/EVANESCENT-TRANSMISSION (classical-coherent-waves-do-this-too
 (uniquely-quantum-claim-REQUIRES-later-particle/detection-model!)))). NEXT:
 TUN-0-calibration-on-beast (gated on prereg-commit!).
+
+TUN-0-PILOT-1-filed (SUPERSEDED (gate-miss (no-verdict-drawn
+(discipline (P1.1b-precedent!))))): beast-free-runs (L96 (6/6-ran!)):
+v-within-0.36%-all-6 (3.8589/3.6947/3.4517/3.1114/2.6367/3.8589-vs-
+analytic!); R²=1.000000-all; α=2.00-all; C_v-bins-+1.000-all-60;
+norm-≤1.4e-13; disp-{42.4,46.2,43.1,42.0,42.2,42.4}-all-<48-✓; wrap-
+≤1.1e-7-✓; E_in-{−4.9887,−5.4870,−5.9853,−6.4835,−6.9818,−2.9957} ±
+{0.3219,0.3082,0.2881,0.2598,0.2205,0.3219}; E+6σ<0-all-✓ BUT-E−6σ>−8-
+MISS-on-2/6 (−8.043-(−6.5!)-AND-−8.305-(−7.0!) (Gaussian-E±6σ-ignores-
+band-bottom-curvature (E(k)-flattens (linear-extrapolation-overshoots-
+below-−8-where-no-weight-exists!)))). Gate-(b)-as-written-UNACHIEVABLE-
+near-band-bottom (owned-bug (predictable-from-locked-E(k) (correction-
+is-arithmetic (not-tuning!)))).
+TUN-AMENDMENT-1 (purity-gate-repair (PRE-RERUN (pilot-1-opened (all-
+numbers-filed-above!)))): gate-(b)-REPLACED-by-(b')-purity-by-EXACT-
+k-support-bound (locked-formula (packet-definition-ONLY (no-data!))):
+E_min^sup = −4(cos(kx0−6σkx)+1) + E_max^sup = −4(cos(kx0+6σkx)+
+cos(6σky)) (σk=1/2σ-per-axis (±6σ-rectangle (tails-~1e-9-filed!)));
+(b') ⟺ −8<E_min^sup-AND-E_max^sup<0 (pre-computed-theory (all-6-pass:
+E0-{-5.0,-5.5,-6.0,-6.5,-7.0,-3.0}→[E_min,E_max]-{[-6.74,-2.75],
+[-7.09,-3.26],[-7.42,-3.82],[-7.69,-4.43],[-7.90,-5.09],[-4.98,-0.98]}
+(all-inside-(−8,0)-with-margin (tightest-0.099!)))); script-banks-
+E_sup_min/max (pinned-support_bounds (11-pins!)); gates-(a)(c)(d)(e)
+(f)-UNCHANGED. NEXT: TUN-0-pilot-2 (fresh-runs (gated on amendment-
+commit!) + T_sep-freeze (banked-v-rules!) + TUN-2/TUN-3 (gated on
+TUN-0-PASS!).

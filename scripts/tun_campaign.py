@@ -55,6 +55,7 @@ from bh_graph.tunnel import (  # noqa: E402
     packet_T_pred,
     region_masks_j2,
     separation_time,
+    support_bounds,
     trb_weights,
     wall_graph_j2,
     wall_max_degree,
@@ -123,6 +124,7 @@ def stage_tun0(args):
         disp = float(np.linalg.norm(rs[-1] - rs[0]))
         prof_end = column_profile(rec["psi"][-1], L, order)
         wrap_w = float(prof_end[L - 6 :].sum())
+        sup = support_bounds(e0)
         tsep = {hi: separation_time(v, wall_hi=hi) for hi in his}
         bank[str(e0)] = {
             "v_in": v,
@@ -135,6 +137,8 @@ def stage_tun0(args):
             "E_in": ein["E"],
             "E_spread": ein["spread"],
             "E_plus_6sig": ein["E"] + 6 * ein["spread"],
+            "E_sup_min": sup["E_min"],
+            "E_sup_max": sup["E_max"],
             "disp": disp,
             "wrap_w": wrap_w,
             "t_run": t_run,

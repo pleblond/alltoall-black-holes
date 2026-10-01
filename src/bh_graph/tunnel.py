@@ -259,6 +259,23 @@ def energy_readout(psi: np.ndarray, h) -> dict:
     return {"E": e1, "spread": float(math.sqrt(max(e2 - e1 * e1, 0.0)))}
 
 
+def support_bounds(
+    e0: float, sigmax: float = SIGMAX_DEFAULT, sigmay: float = SIGMAY_DEFAULT
+) -> dict:
+    """Exact energy range over the packet's +/-6sigma k-support rectangle.
+
+    E(kx, ky) = -4J(coskx + cosky) is monotone in each |k| over the TUN
+    support (kx0 +/- 6/2sigmax stays in (0, pi)): E_min at (kx0-6skx, 0),
+    E_max at (kx0+6skx, +/-6sky). Weight outside is ~1e-9 (filed tails).
+    Purity gate (TUN-AMENDMENT-1): -8J < E_min and E_max < 0.
+    """
+    kx0 = kx_for_energy(e0)
+    skx, sky = 6.0 / (2.0 * sigmax), 6.0 / (2.0 * sigmay)
+    e_min = -4.0 * (math.cos(kx0 - skx) + 1.0)
+    e_max = -4.0 * (math.cos(kx0 + skx) + math.cos(sky))
+    return {"E_min": float(e_min), "E_max": float(e_max)}
+
+
 def column_profile(psi: np.ndarray, L: int, order: list) -> np.ndarray:
     """|ψ|² summed per x column (interior-decay readout)."""
     from bh_graph.formation import j2_torus_coords

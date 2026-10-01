@@ -37,6 +37,7 @@ from bh_graph.tunnel import (
     packet_T_pred,
     region_masks_j2,
     separation_time,
+    support_bounds,
     tb_barrier_RT,
     trb_weights,
     wall_graph_j2,
@@ -175,3 +176,14 @@ def test_free_run_branch_accounting_gate():
     for row in rec["psi"]:
         w = branch_weights_all(row, br)
         assert is_accounting_ok(w["w_plus"], w["w_zero"], w["w_minus"])
+
+
+def test_support_bounds_unit():
+    sb = support_bounds(-7.0)
+    assert abs(sb["E_min"] - -7.901188432991036) < 1e-9
+    assert abs(sb["E_max"] - -5.086337426000458) < 1e-9
+    sb55 = support_bounds(-5.5)
+    assert sb55["E_min"] < -5.5 < sb55["E_max"]  # E0 inside its support
+    for e0 in (-5.0, -5.5, -6.0, -6.5, -7.0, -3.0):
+        s = support_bounds(e0)
+        assert -8.0 < s["E_min"] < s["E_max"] < 0.0  # gate (b') holds
