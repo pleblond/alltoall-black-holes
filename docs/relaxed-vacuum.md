@@ -493,7 +493,46 @@ and filed as questioned, not evidence: covariance is exactly
 blind to 4-fold (lattice heat is x↔y symmetric), and the angular
 replacement shows fast lattice isotropization against
 fluctuation-level fabric noise with box-boundary imprint — no
-clean IR discriminator at reachable scales.
+clean IR discriminator at reachable scales. Update-rule search
+(D1, first pass, closed): six rules tournamented against shortcut
+damage — null persists, scramble kills (297 longs), greedy-twin
+games `p` (1e-6) while tripling longs (30 → 88), local guillotine
+stalls on provably locked configs (30 → 6), drift leaks (→ 22),
+annealing trades `p` for longs, edge-slide best single-move (→ 5)
+with `p` frozen — so single-move local dynamics cannot restore
+locality, and the falsifier must judge (`p`, longs) jointly.
+Second pass: coordinated double-swap breaks the floor (→ 1,
+pair-locked residual) and the visibility-chained triple endgame
+fully heals (→ 0, two seeds + torus 2/2; residual triple-lock
+localizes to boundaries; census-gated order-4 detour-graft clears
+corners while ungated order-4 scrambles; T-knob order-3 anneal splits
+the gate duality (strict clears dmg4, T0=2 clears seed7; knob
+replicates at order 2, gate-default adoption rejected)) — protection demands coordination order
+3 with detour-aware proposals. Blind-U reframing adopted: U must not
+know `M_O` — locality should characterize stable states of U, not its
+objective (lock hierarchy reinterpreted as artificial-landscape
+evidence; vacuum promoted to stationary ensemble `V = {μ : U_*μ =
+μ}`; N_long demoted to external diagnostic; L0-independence
+discipline filed). First blind entrants: drift's attractor is
+nonlocal (733 longs — blindness alone insufficient); blind square
+hill-climb fixes vacuum yet recovers motifs without healing (blind
+Goodhart); triangle drive exits the square basin. Tail exponent
+(D11, closed): tension-dependent (`χ~1 → 1/r²`, `χ~2 → 1/r`,
+`χ~5` slow crossover, `q` 1.19 → 1.10 to 20Rc). κ-profile (D10b,
+closed): disk plug confirms the interface pattern (mild-disk
+matches mild-square). Observer-indexed `M_O(G,o)`
+filed (vantage-covariance axis); static depth bake-off negative under
+volume and MDS readouts. Holographic+relational reframing adopted (`M_O`
+demoted to readout of a dynamically generated metric); Tier-1 MDS
+calibration pinned with a per-substrate bar (Delaunay radial-tortuosity
+bowl: `v3 ↔ r²` at 0.93, so eigenvector geography joins the test).
+Shell-counting dilemma sketched against the emergence derivation: honest
+per-shell counts never reach `r²` while cumulative `r²` violates
+independence by construction (`d_H=2` XOR independence; pairwise rescue
+refuted, non-geometric or non-shell escapes open). Dilemma binds hop
+shells only — MDS route independent; first dynamical distance (SI
+first-passage) reads 2-dominant, so rank-3 selection stays a nontrivial
+dynamical property to hunt.
 
 **Why this could work (grounding).** Malament's theorem: causal order fixes
 the conformal class (on distinguishing spacetimes); volume — or a time

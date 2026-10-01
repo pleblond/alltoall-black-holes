@@ -1,5 +1,7 @@
 """v0.5: emergent-dimension protocol controls + K_N failure pins."""
 
+from itertools import pairwise
+
 import networkx as nx
 import numpy as np
 
@@ -797,3 +799,169 @@ def test_disk_boundary_cut_dips_at_plug():
     assert 130 < rows[1][0] - rows[1][1] < 140
     assert 70 < rows[2][0] - rows[2][1] < 80
     assert 5.5 < rows[3][0] - rows[3][1] < 6.0
+
+
+def _d11_tail(L, jumps, ks):
+    """E(r), E*r, E*r^2/100 at Rc-relative windows; returns (rc, rows)."""
+    c, h = L // 2, 4
+    g0 = _sorted_grid_2d(L)
+    src = c * L + c
+    r0, v0 = ed.ball_volumes_bfs(g0, src)
+    _, gm, plug = _jump_plug_grid(L, c, h, jumps)
+    w = ed.ceff_cost_fn(gm)
+    dist = nx.single_source_dijkstra_path_length(gm, src, weight=w)
+    rc = max(dist[n] for n in plug)
+    _, vw = ed.ball_volumes_weighted(gm, src, weight=w, radii=r0)
+    rows = []
+    for k in ks:
+        lo = k * rc
+        assert lo + 8 <= L // 2, (L, k, rc)  # unclipped by construction
+        p0, _ = _window_pr(r0, v0, lo, lo + 8)
+        pw, _ = _window_pr(r0, vw, lo, lo + 8)
+        E = pw - p0
+        rows.append((E, E * (lo + 4), E * (lo + 4) ** 2 / 100))
+    return rc, rows
+
+
+def test_d11_chi1_tail_is_inverse_square():
+    # D11 CLOSES for chi~1: E*r^2/100 flat (0.633..0.642, k=3..10 at
+    # L=200, all unclipped to 10Rc) while E*r falls 2.33 -> 0.78 --
+    # fixed-shadow accounting wins, 1/r rejected.
+    rc, rows = _d11_tail(200, _JUMPS_KING, (3, 4, 5, 6, 8, 10))
+    assert 7.5 < rc < 8.0, rc
+    flat = [r[2] for r in rows]
+    assert all(0.60 < x < 0.67 for x in flat), flat
+    lin = [r[1] for r in rows]
+    assert all(b < a for a, b in pairwise(lin)), lin
+
+
+def test_d11_chi2_tail_is_inverse_linear():
+    # D11 CLOSES for chi~2: E*r flat (6.12..6.67, k=2..10 at L=240,
+    # unclipped) while E*r^2 rises 1.6 -> 6.4 -- wedge-shadow wins,
+    # 1/r^2 rejected. Exponent is tension-dependent (cf chi~1).
+    rc, rows = _d11_tail(240, _JUMPS_KING + _JUMPS_AXIAL2, (2, 3, 4, 5, 6, 8, 10))
+    assert 9.9 < rc < 10.1, rc
+    lin = [r[1] for r in rows]
+    assert all(6.0 < x < 6.8 for x in lin), lin
+    sq = [r[2] for r in rows]
+    assert all(b > a for a, b in pairwise(sq)), sq
+
+
+def test_d11_chi5_tail_unsettled_but_bounded():
+    # chi~5 does NOT settle by 10Rc (L=250): E*r still falling
+    # (7.90 -> 7.43 -> 7.15 at k=6,8,10), E*r^2 still rising --
+    # intermediate/bursty strong-tension regime, neither law firm.
+    # Bounded and positive; bigger-L asymptotics stay open.
+    rc, rows = _d11_tail(250, _JUMPS_KING + _JUMPS_AXIAL2 + _JUMPS_DIAG2, (6, 8, 10))
+    assert 11.0 < rc < 11.8, rc
+    lin = [r[1] for r in rows]
+    assert lin[2] < lin[0], lin
+    assert all(6.5 < x < 8.5 for x in lin), lin
+    assert all(r[0] > 0 for r in rows), rows
+
+
+def test_d11_chi5_tail_slow_crossover_to_linear():
+    # chi~5 at L=480 to 20Rc: a SLOW crossover, not a fixed intermediate
+    # law -- fitted q = 1.19 over k=6..14, q = 1.10 over k=14..20; E*r
+    # still monotone-falling (7.90 -> 6.55) with shrinking steps, E*r^2
+    # still rising. 1/r (wedge shadow) supported asymptotically but NOT
+    # yet firm at 20Rc -- the honest pin is the crossover, not the limit.
+    rc, rows = _d11_tail(
+        480, _JUMPS_KING + _JUMPS_AXIAL2 + _JUMPS_DIAG2, (6, 8, 10, 12, 14, 16, 18, 20)
+    )
+    assert 11.0 < rc < 11.8, rc
+    lin = [r[1] for r in rows]
+    assert all(b < a for a, b in pairwise(lin)), lin
+    assert 6.4 < lin[-1] < 6.7, lin
+    sq = [r[2] for r in rows]
+    assert all(b > a for a, b in pairwise(sq)), sq
+    rr = np.array([k * rc + 4 for k in (6, 8, 10, 12, 14, 16, 18, 20)])
+    ee = np.array([r[0] for r in rows])
+    q_all = -np.polyfit(np.log(rr), np.log(ee), 1)[0]
+    q_late = -np.polyfit(np.log(rr[-4:]), np.log(ee[-4:]), 1)[0]
+    assert 1.10 < q_all < 1.25, q_all
+    assert 1.00 < q_late < 1.20, q_late
+    assert q_late < q_all, (q_late, q_all)
+
+
+def test_kappa_interface_confirmed_on_disk_plug():
+    # D10b kappa half, CLOSED: independent corner-free geometry (disk,
+    # R=3, 29 nodes ~ matched area to 5x5) reproduces the interface
+    # pattern quantitatively (internal +0.90, boundary -0.86, fabric
+    # 0.00 vs clique +0.89/-0.93/~0) -- boundary negativity is a genuine
+    # tension-interface effect, not a square-corner artifact.
+    from bh_graph import orici
+
+    L, c, R = 20, 10, 3
+    g0 = _sorted_grid_2d(L)
+    g = g0.copy()
+    disk = {
+        x * L + y
+        for x in range(L) for y in range(L)
+        if (x - c) ** 2 + (y - c) ** 2 <= R * R
+    }
+    assert len(disk) == 29, len(disk)
+    disk = sorted(disk)
+    for i in range(len(disk)):
+        for j in range(i + 1, len(disk)):
+            g.add_edge(disk[i], disk[j])
+    plugset = set(disk)
+    dist = nx.floyd_warshall_numpy(g)
+    idx = {v: i for i, v in enumerate(g.nodes())}
+    classes = {"internal": [], "boundary": [], "fabric": []}
+    for u, v in g.edges():
+        iu, iv = u in plugset, v in plugset
+        cls = "internal" if iu and iv else ("boundary" if iu or iv else "fabric")
+        classes[cls].append((u, v))
+    rng = np.random.default_rng(0)
+    means = {}
+    for cls, edges in classes.items():
+        sel = edges if len(edges) <= 15 else [
+            edges[i] for i in rng.choice(len(edges), 15, replace=False)
+        ]
+        ks = [orici.ollivier_curvature(g, u, v, _dist=dist, _idx=idx) for u, v in sel]
+        means[cls] = float(np.mean(ks))
+    assert abs(means["fabric"]) < 0.05, means
+    assert means["boundary"] < -0.5, means
+    assert means["internal"] > 0.5, means
+
+
+def test_kappa_mild_disk_matches_mild_square():
+    # Tension x shape matrix complete: mild-tension disk (king-move
+    # diagonals inside R=3) gives internal -0.05 (~0), boundary -0.23
+    # (negative, gentler than square -0.31: corner-free is milder),
+    # fabric 0.00 -- same mild pattern as the 9x9 square mild plug.
+    from bh_graph import orici
+
+    L, c, R = 20, 10, 3
+    g0 = _sorted_grid_2d(L)
+    g = g0.copy()
+    disk = {
+        x * L + y
+        for x in range(L) for y in range(L)
+        if (x - c) ** 2 + (y - c) ** 2 <= R * R
+    }
+    for v in disk:
+        x, y = v // L, v % L
+        for dx, dy in ((1, 1), (1, -1), (-1, 1), (-1, -1)):
+            w = (x + dx) * L + (y + dy)
+            if w in disk:
+                g.add_edge(v, w)
+    dist = nx.floyd_warshall_numpy(g)
+    idx = {v: i for i, v in enumerate(g.nodes())}
+    classes = {"internal": [], "boundary": [], "fabric": []}
+    for u, v in g.edges():
+        iu, iv = u in disk, v in disk
+        cls = "internal" if iu and iv else ("boundary" if iu or iv else "fabric")
+        classes[cls].append((u, v))
+    rng = np.random.default_rng(0)
+    means = {}
+    for cls, edges in classes.items():
+        sel = edges if len(edges) <= 15 else [
+            edges[i] for i in rng.choice(len(edges), 15, replace=False)
+        ]
+        ks = [orici.ollivier_curvature(g, u, v, _dist=dist, _idx=idx) for u, v in sel]
+        means[cls] = float(np.mean(ks))
+    assert abs(means["fabric"]) < 0.05, means
+    assert means["boundary"] < -0.1, means
+    assert abs(means["internal"]) < 0.1, means

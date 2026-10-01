@@ -69,8 +69,305 @@ battery: apply the same normalized damage to each candidate
 (shortcut injection, edge deletion, degree defect, bottleneck,
 plug insertion) and measure relaxation τ_heal(G, δG) under U —
 candidates identical in equilibrium may differ sharply in
-locality restoration. Selection rule (conceptual):
-G_vac = argmax stability of the M_O-equivalence class.
+locality restoration. Selection rule (conceptual, SUPERSEDED — see
+BLIND-U REFRAMING below; kept for history):
+G_vac = argmax stability of the M_O-equivalence class. First rules
+(MEASURED, test_update_rule.py, L=20): harness (locality-p, shortcut
+injection, evolve) validated — null persists damage bit-identically,
+scramble kills (2.51 → 1.79 collapse). Twin-targeted greedy heals
+p = 2.36 → p_plain to 1e-6 into a DIFFERENT microstate (699/760
+overlap) — class healing, existence probe only (global target, not a
+local rule); plain is its fixed point. Genuinely-local guillotine
+(radius-3 edge-span evals, no twin): plain-grid span signature is
+exactly 3 on all 760 edges; rule heals longs 30 → 6, p 2.36 → 2.13,
+then STALLS — exhaustive check proves 4 of 6 residual longs admit
+zero both-short single-swap repairs (locked, incl. short-range edges
+whose plaquette detours were destroyed). Mechanism lessons: repair
+needs long×long straddling (re-pairing a long with a local edge
+always leaves one long); total-span descent splits longs instead of
+killing them (count 30 → 39 while p falls — span-sum is a poor
+proxy); no local potential tracks p well (corr ≤ 0.58 — p is
+source-relative/lottery-noisy, span-census is the more honest global
+health stat). Queued escape: neutral moves / annealing on long-count
+(stochastic U is filed-legal) / coordinated multi-swaps. Escape
+results (MEASURED): neutral drift is WORSE than strict (longs 30 →
+22 — local delta doesn't bound global longs, detour rerouting
+leaks); blind-proposal annealing stalls (greedy) or explodes
+(longs → 101 at T0=5 — proposals matter more than acceptance, not
+shipped); census-gated targeted annealing reaches longs 11 (T0=0,
+p 1.97) / longs 9 (T0=2, p 2.26) — temperature trades p for longs;
+strict→anneal chains and drift⇄strict ratchets don't clear the
+locked core. Tournament table from damage (p 2.362, longs 30):
+null (2.362, 30); greedy-twin (1.835, 88 — games p, triples
+longs!); guillotine (2.132, 6); drift (2.129, 22); anneal (1.97,
+11)/(2.26, 9); scramble (1.786, 297). HEADLINE: p-healing ≠
+healing — the D1 falsifier must judge (p, longs) jointly, and no
+single-swap rule clears both. Next: coordinated multi-swap moves
+or new move classes (degree-changing repair? edge-slide?), then
+the cross-candidate tournament this harness was built for. New
+move class (MEASURED): edge-slide reel-in (radius-6 span gradient;
+radius 3 blinds it — 1 accept) reaches longs 5 (best yet) but p
+stuck at 2.32 — 5 levered longs hold the window while greedy's 88
+hide from it: the (p, longs) plane is genuinely 2D. Slide ⇄
+guillotine hybrid FROZEN bit-identically (joint fixed point).
+VERDICT: single-move local dynamics (strict/neutral/annealed
+swaps, slides, hybrids) cannot restore locality from swap damage
+— all stall with residual longs. Locality protection needs
+coordinated moves, global search, or new physics (a publishable
+constraint on U). D1 first-pass CLOSED; tournament harness stands
+ready for future entrants. Second-pass entrant (MEASURED,
+test_update_rule.py): coordinated double-swap (3-edge joint
+re-pairing, all-short + connectivity-guarded accept) breaks the
+single-move floor — pair600 seed 5 reaches longs 1 with p 2.11,
+seed 6 descends 10@600 → 4 with p 2.01@1200 (slow, not stuck),
+seed 7 longs 4 with p 1.98: first rule near-clearing BOTH axes.
+Existence scan behind it: 745/11370 long²×any triples admit an
+all-short re-pairing (long³ alone: 0/20 — straddling needs a
+short partner). Two lessons: (i) the connectivity guard is
+load-bearing — unguarded seed 6 fragments a 4-node island and its
+p 1.93 is partly a disconnection artifact; (ii) the last residual
+is PAIR-LOCKED (0 repairing re-pairings in an exhaustive 287661-
+triple scan, measured-not-shipped, 35 s): the lock hierarchy
+deepens with coordination order (single-swap locks 4, double-swap
+locks 1). Next: triple-swap / 4-edge moves, then the tournament.
+Triple-swap endgame (MEASURED, test_update_rule.py): 4-edge joint
+re-pairing (105 matchings) unlocks the pair-locked residual — blind
+sampling hits ~6e-6 with necessarily far partners (d_res 5-6; radius-3
+ball exhaustive 0/147440), but CHAINED VISIBILITY works: graft each
+residual endpoint onto a span-visible partner edge (BFS-cutoff balls,
+radius-local), chain the 4th edge off the leftovers — hit rate jumps
+140x to ~9e-4 (17/19825; the blind hit's partners split Va/Vb/far
+exactly as the design predicts). rule_triple (long-first targeting —
+random-edge picks starve at 1 long in 760 edges) clears pair-stall to
+longs == 0 on seeds 5 AND 7 (p 2.04/1.95, connected): the FIRST
+COMPLETE locality restoration in the tournament. Caveats: seed 6
+reaches only 2 longs in 30 steps (62 s, filed-not-shipped — slow
+residuals persist); p at zero longs reads 2.04/1.95 vs plain 1.83
+while seed 6 reads near-plain 1.83 WITH 2 longs left — the (p, longs)
+plane stays 2D down to the floor. D1 verdict upgraded: locality CAN
+be restored, at coordination order 3 with detour-aware proposals —
+protection demands coordination, not just locality of moves.
+Triple-lock (MEASURED, test_update_rule.py + filed): the seed-6
+residual is a CORNER pair ((379,399),(398,399) sharing (19,19)) —
+single-swap exhaustive 0 repairs each, chained 100k sample 0 hits,
+rule triple60 adds 0 accepts (stalled, not slow). Boundary-free
+torus control heals 2/2 fast (pair→2/3, triple30→0, p 1.86/2.03):
+triple-lock localizes to boundaries (n=1 lock + n=2 clears —
+hypothesis). Corners have grid-degree 2 with fragile detours; bulk
+healing is unobstructed at order 3. Order-4 corner specialist
+(MEASURED, test_update_rule.py + filed): visibility-chained 5-edge
+re-pairing (945 matchings) hits the corner stall at ~4e-4 — via
+DETOUR GRAFTS that keep the long edge itself while the other four
+re-pairings rebuild its short detour (repair by neighborhood
+restructuring, not dissolution). Strict census gate is LOAD-BEARING:
+ungated order-4 accepts 10/10 while harming (longs 1→5 pinned;
+corner 2→8 with p falling to 1.86, greedy-style window-gaming by a
+local rule); gated quad20 clears the corner 2→0 (p frozen at
+1.8255 throughout — the ultimate decoupling exhibit: full healing
+invisible to the window), filed-not-shipped (30 s). Control-theory
+lesson: coordination order must be paired with global gating, else
+bigger moves do bigger harm. Full chain pair→triple→quad heals
+every tried seed (5, 6, 7 open + torus 2/2). ROBUSTNESS + GATE
+DUALITY (MEASURED, filed-not-shipped): across damage seeds (ns=10,
+L=20), the pair→triple chain fully clears 3/5 (dmg0/2/5 →0 in ~2 s)
+and stalls 2 (dmg1 →1-2 with a BOUNDARY residual (18,2)-(19,2),
+n=2 for boundary-localized locks; dmg4 ungated →1 in 60 s / →3
+with churn: 30 accepts, p rising to 2.22). Order-4 generalizes
+PARTIALLY to edge locks: dmg1 triple-stall (top-edge + bottom-edge
+pair) + gated quad20 →1 (top-edge cleared, bottom-edge (18,2)-(19,2)
+persists, acc=1) — but 372 s for 20 steps (~19 s/exhausted step)
+makes deeper pursuit prohibitive in-suite; filed-not-shipped. Strict-gated triple is
+NOT universally better — it clears dmg4 both streams in 0.5 s
+(100x: churn was pure waste) but STALLS seed7 at 1 where ungated
+reaches 0 (the path needs neutral intermediates; gated burns 118 s
+in the minimum). Neither dominates: the strict gate trades waste
+for local minima. Queued design: census-ANNEALING at order ≥3
+(uphill tolerance), plus a gated-pair audit. LANDED
+(test_update_rule.py): rule_triple_anneal unifies both poles behind
+a temperature knob — T0 = 0 (strict DECREASE; neutral rejected,
+else <=-gate drift-churn: 149 s stall at 1) clears dmg4 both
+streams in 0.5 s; T0 = 2 clears seed7 (strict stalls at 1) with
+T0-robustness (1/2/5 all clear) but stream lottery (tseed 106
+stalls at 1, filed-not-shipped: 200 s). Neither pole dominates
+because stall topology differs (direct descent vs neutral
+intermediates); the knob, not a fixed rule, is the answer.
+Gated-pair audit (MEASURED, test_update_rule.py + filed): ungated pair accepts
+net-harmful moves at 3/50 (all seed6) + 11 neutral across seeds
+5/6/7 — essentially self-gating. CORRECTION to the first filing
+(crude give-up-on-reject wrapper suggested weak dominance 1→0/10→2):
+the principled in-loop gate shows DUALITY at order 2 as well —
+strict gives (4, 2, 4) vs ungated (1, 10, 4): helps s6, HURTS s5
+(neutral intermediates load-bearing there). Adoption REJECTED (a
+worse-on-s5 default is bad science); instead rule_pair_anneal
+replicates the T-knob at order 2 — T0 = 2 reaches (1, 4, 4),
+matching-or-beating the ungated default on every stream. The knob
+(not strict, not ungated) is now the answer at orders 2 AND 3.
+Chain-workhorse upgrade (pair → pair_anneal) queued as mechanical
+follow-up; endpoints heal fully either way. SURVEYED, REJECTED on
+cost-benefit (filed-not-shipped): pair_anneal600 → triple30 reaches
+s5 1→0 (p 2.0412 bit-identical — healed state looks like an
+attractor), s6 4→1 (better than pair-fuel 4→2), s7 4→0, dmg4 4→0,
+torus 2→0/2→0 — endpoints equal-or-better everywhere, but SLOWER
+nearly everywhere (census evals: pair600 1.4 s vs 3-5 s; torus
+chains ~2x). Consistent story kept: pair = fast chain fuel,
+pair_anneal = best standalone order-2; no test churn for equal
+endpoints at higher cost. SIZE ROBUSTNESS (MEASURED,
+test_update_rule.py): L=30 damage (27 longs) → pair_anneal600 → 6 →
+strict order-3 anneal60 → 0, connected (T0 = 2 also clears, acc 23
+vs strict 6 — uphill tolerance only wastes here; ungated triple
+churns: 30 accepts net −5). Healing is not an L=20 artifact.
+CROSS-CANDIDATE BATTERY, first pins (MEASURED,
+test_update_rule.py): triangular lattice generalizes — clean span
+signature (all 1121 edges span exactly 2, 0 longs @smax2), swap
+damage adds 24 longs with p 2.34 (same damage signature as square
+2.362), guillotine30 heals 24 → 13 connected: locality repair is
+not square-grid luck. Hex exposes a harness methods finding:
+RADIUS must be fabric-relative, not just smax — hex plaquettes
+(length 6) are invisible at radius 3 (every plain edge reads
+radius+1, damage reads 0 longs @smax5, blind); at radius 5 the
+signature resolves (plain 568×5 + 2×6 boundary floor) and damage
+reads 54 longs. No hex healing claimed yet (the 2-long plain floor
+breaks the fixed-point premise) — queued behind boundary-aware
+gating; pair/triple on triangular queued next.
+COORDINATION-IS-SUBSTRATE-DEPENDENT (MEASURED,
+test_update_rule.py): on the denser triangular lattice (1121 edges,
+degree ~6) pair600 ALONE clears 24 → 0 (acc 13, p reads plain to
+1e-9 — full (p, longs) healing, no decoupling residual), where
+square needs the triple endgame after pair600 → 1: more straddling
+partners per long edge lower the required coordination order.
+HEX FLOOR RESOLVED (MEASURED, test_update_rule.py): the 2-long
+plain floor is two LEAF-anchored edges (degree-1 endpoints — no
+detour can ever exist at any radius), a permanent census floor,
+not damage; the interior census (leaf-anchored edges excluded —
+graph-internal mask, swap-stable) reads 0 on plain, and the rule
+is unfazed (guillotine10 takes 0 accepts). Healing works:
+guillotine300 takes hex damage 54 → 17 toward the floor —
+single-swap repair now partial everywhere (square 30 → 6, tri
+24 → 13, hex 54 → 17), complete nowhere without coordination.
+DELAUNAY JOINS (MEASURED, test_update_rule.py — Tier-1 reference
+member): Poisson-Delaunay (400 nodes, 1179 edges) shows a clean
+span-2 signature (0 longs, no floor), damage adds 21,
+guillotine150 → 7 while pair600 alone clears to 0: dense
+triangulated substrates (ordered tri + disordered Delaunay) heal
+at order 2 — coordination need tracks density, and disorder is
+no obstacle (triangulation helps: more straddling partners).
+GABRIEL LIMIT (MEASURED, test_update_rule.py — harness operating
+envelope): sparse disordered Gabriel (745 edges) has a broad span
+spectrum (2..7 at radius 6; floor 15 vs dam 28 @smax6 — no gapped
+signature), and guillotine descent overshoots BELOW the natural
+level (plain 15 → 7, dam 28 → 6): the rule rewires away from
+Gabriel-ness rather than healing toward it. Census healing is
+well-posed only on gapped signatures (square/tri/hex/Delaunay);
+the density prediction stands untestable here (blocked by the
+methods limit, not refuted).
+MEDIAL MIXED (MEASURED, test_update_rule.py): medial-quad (1179
+nodes, 2340 edges) shows a clean span-2 signature (every edge in a
+triangle — 0 longs), damage adds 60, pair grinds slowly (60 → 18
+@600 → 6 @1200 — slow, not stuck), but the chained triple endgame
+CHURNS (6 → 29, acc 30/30): all-short-local acceptance without
+global gating does not imply repair on medial. Endgame behavior is
+substrate-dependent (triple heals square, churns medial); gated
+order-3 on medial queued; no full heal claimed there.
+MEDIAL HEALS UNDER GATE (MEASURED, test_update_rule.py): the churn
+was purely the missing gate — strict-gated order-3 (T0=0) clears
+the medial pair1200 stall 6 → 0 in ONE accept (connected). Full
+chain heals medial; gate duality is substrate-universal (square
+dmg4: same strict-clears/ungated-churns split).
+KNN MOSTLY-HEALS (MEASURED, test_update_rule.py): k-NN (1436
+edges) has a near-gapped signature (floor 15 @smax2, ~1%) with
+separable damage (+20 → 35); guillotine heals to the floor (35 →
+16) while pair600 overshoots below it (35 → 9) — second overshoot
+exhibit after Gabriel (milder): below-floor census cannot
+distinguish repair from class drift; exact-floor targeting open.
+LLOYD HEALS VIA CHAIN (MEASURED, test_update_rule.py — last Tier-1
+member): Lloyd-relaxed Delaunay (1190 edges) shows a clean span-2
+signature (0 longs), damage adds 19, pair grinds slowly (19 → 6
+@600 → 1 @1200 — regularization slows order-2 vs Poisson-
+Delaunay's 21 → 0 @600; mechanism open), strict-gated order-3
+clears the last long (1 → 0). Cross-candidate battery now spans
+square/torus/tri/hex/Delaunay/Gabriel-limit/medial/kNN/Lloyd:
+healing is universal on gapped signatures, with order, speed, and
+floor behavior substrate-dependent.
+SELF-CALIBRATING CENSUS (MEASURED, test_update_rule.py — smuggling
+point removed): total_longs_selfcal (span > median, no smax table)
+reproduces the fixed census exactly on gapped signatures (square
+0/30, tri 0/24, hex 2/54 incl. leaf floor, Delaunay 0/21).
+Gabriel stays unseparated (326/349) — the limit restated
+calibration-free: no threshold splits overlapping distributions.
+Radius stays a parameter (hex needs 5); grow-until-median-
+stabilizes queued.
+BLIND-U REFRAMING (ADOPTED on review — U must not know M_O):
+locality should characterize STABLE STATES of U, not appear in U's
+objective function. The D1 verdict sharpens: direct microscopic
+optimization of macroscopic locality requires nonlocal information
+and unbounded coordination order (the 1→2→3→4-move lock hierarchy
+now reads as climbing an artificial landscape, not converging on
+the true U) — evidence that locality is not the microscopic
+objective. Order-5+ search ON HOLD until blind-U results are in;
+the "coordination is just what repair costs" alternative stays
+on record as not-refuted (error correction also needs nonlocal
+syndromes) — the blind tournament is the trial. Vacuum principle
+PROMOTED (supersedes argmax-stability): V = {μ : U_*μ = μ}, the
+stationary ensemble of an observer-blind U; the win condition is
+G ~ μ_vac ⟹ M_O(G) local for generic O. U-admissibility criteria
+(filed, mirror the five M_O criteria): coordinate-free,
+permutation-equivariant, observer-blind (no p, N_long, M_O, or
+reference graph in the rule), graph-local information, stochastic
+if necessary, simplicity pre-registered (short description, few
+parameters, stated before the tournament — a tuned 20-term H is
+smuggling; note the why-this-U burden is acknowledged, not
+dissolved). Observer-blind ≠ objective-free: sums of graph-local
+motif terms (local Hamiltonians) are allowed; reference-embedding
+quantities are not. N_long DEMOTED to external diagnostic
+(implementation already graph-internal given (radius, smax); the
+calibration is the smuggling point — self-calibrating census
+queued). L0-INDEPENDENCE DISCIPLINE (adopted): no L0 proof may
+cite U's objective, M_O's definition, or the selection principle
+— L0 states conditionals, emergence decides which antecedents are
+actual. First tournament results (MEASURED, test_blind_u.py):
+pure drift from vacuum → p 1.26, longs 733/760, squares 361 → 6
+(blindness alone insufficient — negative control); blind square
+hill-climb fixes plain vacuum (0 accepts) yet from damage recovers
+motifs WITHOUT healing (squares 323 → 341, longs 30 → 35, p past
+2.4 — blind Goodhart: greedy ≠ sampling); triangle drive leaves
+the square basin (tri 0 → 115, sq → 162, longs → 162) toward a
+class needing substrate-agnostic measurement; touched-set delta ==
+global motif gradient pinned (correctness of local acceptance).
+METROPOLIS FOLLOW-UP (MEASURED, test_blind_u.py — finite-T does not
+rescue motif optimization): the grid is NOT the square optimum —
+T = 0.25 from plain vacuum reaches 375 > 361 squares (31 longs),
+so square-dense non-grids outrank it and motif maximization cannot
+select the vacuum even in principle; T = 0.25 from damage climbs
+323 → 413 over 1000 steps while longs rise 30 → 140 (the 200-step
+342 was slow climbing past, not a stall near the grid); T = 1.0
+melts toward drift (squares ~140, longs ~345). No healing window:
+motif-count maximization is misdirected, not merely insufficient.
+KAPPA FOLLOW-UP (MEASURED, test_blind_u.py — strong signal, no
+accessible direction): curvature SEES swap damage (exact OR:
+plain mean kappa^2 0.0 flat; damaged ~0.065 with longs at
+mean|k| ~0.93, pinned in tolerant bands) yet strict kappa^2
+descent is FROZEN — 0 accepts on plain (flat fixed point) and 0
+on damage over 5 steps, because improving single swaps run 0/300
+blind and 1/300 even long-anchored (filed spikes). The
+coordination disease strikes a curvature objective too: it is not
+about which macroscopic quantity is optimized. κ-first targeting
+would stay blind but needs ~100s of proposals per accept
+(minutes per accept — infeasible in-suite, not shipped).
+TRIANGLE-LANDING FOLLOW-UP (MEASURED, test_blind_u.py — blind
+triangulation does NOT find the Delaunay class): mid-flow pin at
+1000 steps (not stationary — still accepting at 2000: tri 239 →
+290, acc 205 → 253) reads tri 239, clustering 0.33, squares 152,
+longs 163, p 2.51 → ~2.78 — dense-cluster morphology, non-planar,
+super-2D ball growth. Degree histogram frozen {2:4, 3:72, 4:324}:
+swap dynamics preserves the degree sequence, so no swap-only rule
+from the square grid can ENTER the Delaunay class (degrees ~6,
+planar) — reachability confines the tournament to the
+degree-sequence fiber (slides or the right starting fiber needed).
+Maximizing the Delaunay motif joins motif-count maximization as
+misdirected. Queued: damage-recovery-under-blind-U as the key
+discriminator, non-maximization blind dynamics (curvature-driven
+or degree-isostatic rules whose fixed points might coincide with
+the vacuum rather than outrank it).
 
 **Close criterion (graph instance):** derive (not choose) a scrambling `V_k`
 from the graph Hamiltonian/adjacency; show the reduced radiation spectrum
@@ -359,8 +656,11 @@ the ceff cost bridge (mild-plug shape + amplitude scaling pinned); full close
 needs the bridge derived or replaced by derivation. (b) κ-PROFILE (REFORMULATED
 after monotone-tracking failed): boundary-negative / core-positive pattern
 with stated values, first measurement recorded (clique −0.93/+0.89, mild
-−0.31/~0, fabric 0) — confirmation on independent plug geometries pending
-before (b) closes. Both (a) and (b) must output their
+−0.31/~0, fabric 0) — CLOSED by corner-free disk-plug confirmation
+(R=3, 29 nodes): internal +0.90, boundary −0.86, fabric 0.00, matching
+the clique pattern quantitatively, so boundary negativity is a genuine
+tension-interface effect, not a square-corner artifact. Both (a) and (b)
+must output their
 curves from graph construction + dynamics, not take GR as input.
 
 **Kill relevance:** P0' first quantitative wire. Failure of the (a)
@@ -370,6 +670,65 @@ feeds D3 (κ→c₂ via tension) and D6 (R_s from the tension profile).
 Generalization stated as the tension-imprint conjecture (`model.md` §5):
 fingerprint universality under the fixed ceff rule, with falsifiers and
 P5-promotion criteria; the cost rule stays conjecture-grade until they are met.
+D10a bridge-derivation attempts (MEASURED NEGATIVES, not pinned):
+(i) random-walk first-passage across the plug ladder DECREASES with
+χ (416 → 304 → 263 → 232 steps, plain → mild → x2 → x3; clique 237)
+— tense regions conduct faster, so √χ-as-traversal-delay has no
+walk derivation (anti-tortuosity); (ii) plug residence (center exit
+time) scales as exitT/exitT0 ~ (1+χ)^0.78 with a mild→clique jump
+(10.4 → 12.0 → 14.2 → 14.8 → 32.9) — sublinear but neither √χ nor
+linear, deriving neither candidate's form. Remaining honest paths:
+tighten the BV ln2 bracket to c = 1/2 analytically (pen-and-paper),
+or the congestion route via D1 update-capacity (gated on U). The
+imports stay labeled.
+WEIGHTED-AUDIT ADOPTION (Leblond, pleblond/weighted-graph-paper —
+"Distance, Volume, and Apparent Dimension in Weighted Graphs"):
+the paper's Prop 1 (cost dominance) generalizes our T15 and its
+endpoint witnesses generalize our witness-node corollary — T15 now
+cites Prop 1 as the parent theorem (paper refresh queued); its Prop 2
+(arrival-event sweep) is ADOPTED as our weighted-measurement
+discipline (Sec 7 audit order: specify → census edges → complete
+arrival profiles → fit last), implemented in bh_graph/weighted.py
+(cross-checked against the paper's exact 3-vertex blind spot:
+integer radii agree, excess on [3/2,2), max ratio 3/2; dominance
+restoration removes all inflation — test_weighted.py). Our T15
+fractional blips (9>5 @1.9, 1.077 @13.75, both integer-hidden) are
+instances of the paper's blind-spot phenomenon; ball_volumes_weighted
+(linspace/integer grids) is flagged for event-sweep upgrade wherever
+inequalities are certified. Slope identities (Eq 15/17: p_w − p_0 =
+slope of log R) reframe D11: excess slope is ratio-recovery, not
+inflation — D11-tail re-analysis under this lens QUEUED (check E-tails
+against R_x profiles; Eq 22 deficit-recovery may describe them).
+L0 STATE UPGRADE (ADOPTED direction, machinery queued): G = (V,E,w)
+with w_ij as L0 DOF (coupling strength); unweighted results stand as
+the w∈{0,1} strong-backbone sector. First weighted result (MEASURED,
+test_weighted.py): weight-tolerance recovers geometry — the same 30
+damage longs read binary-collapse at Lw=1 (GoF2 0.385) but
+near-vacuum at Lw=20 (GoF2 0.684, lam2/lam3 5.49 past the 2D bar);
+continuity in weight is the weak knob binary lacks (lam2/lam3 dips
+to 1.36 at Lw=5 mid-transition, filed as-is). Weight-selection
+principle required before further results (graph-internal, blind,
+pre-registered — candidates: interaction counts, U-dynamical
+attractor, w(χ)); model.md L0-box update queued with the paper
+refresh.
+WEIGHT-SELECTION PRE-REGISTRATION (binding on all entrants): a
+weight rule must be (a) graph-internal — function of local graph
+state only (degrees, spans, κ, traffic), no coordinates/reference
+embedding; (b) blind — no M_O, no target dimension, no plain-grid
+comparison inside the rule (plain grid allowed in EXTERNAL scoring
+only); (c) stated whole before the tournament, ≤2 parameters.
+Scoring is the TRIPLE READOUT (pinned protocol): MDS profile
+(geometry) + event-sweep domination (inflation) + underpriced
+census (contraction) — the paper's §2.2 lesson that no one readout
+substitutes for the others. First entrant (MEASURED, testable,
+test_weighted.py): SELF-PRICING w_e = span_e (zero parameters) —
+on 30-long damage MDS stays blurred (GoF2 0.402 vs 0.769 vacuum /
+0.385 binary), sweep shows full domination (maxR 1.0, no positive
+intervals), census lists 16 violations: contraction-without-
+inflation (Counterexample-A regime on damage). Softens, does not
+restore — the baseline every later rule must beat. Queued: w(χ)
+tension rule, traffic-weighted (SI-count) rule, marginal-boundary
+rule (w at domination edge — needs blind d_0 proxy, open problem).
 
 ## D11 — Far-field tail exponent of the tension fingerprint (D10b)
 
@@ -388,7 +747,19 @@ be a transient of the other.
 **Close criterion:** measured `E(r)` tail on `L ≥ 200` with clean
 (`Rc`-relative, unclipped) windows to `10Rc`, deciding `1/r` vs `1/r²` vs
 tension-dependent crossover, with the winning accounting derived from the
-cost rule rather than fitted.
+cost rule rather than fitted. DECIDED (test_emergent_dim.py, L=200/240/250):
+χ~1 → 1/r² (E·r² flat 0.633..0.642, k=3..10 — fixed shadow); χ~2 → 1/r
+(E·r flat 6.12..6.67, k=2..10 — wedge shadow); χ~5 SLOW CROSSOVER
+(L=480 to 20Rc: fitted q = 1.19 over k=6..14 → 1.10 over k=14..20,
+E·r still monotone-falling 7.90 → 6.55 with shrinking steps) —
+1/r supported asymptotically but not firm at 20Rc; L=600 extension
+to 25Rc (filed, not shipped: E·r 6.55 → 6.44 still falling, late
+q ≈ 1.09) confirms the crossover is very slow, not yet the limit;
+the pinned claim
+is the crossover, not the limit. The
+exponent is TENSION-DEPENDENT. Accounting derivation from the cost rule
+remains sketched (delay-region geometry), not derived — D11 closes on
+the measurement.
 
 **Kill relevance:** none directly — a shape detail, not the shape itself.
 Feeds the tension-imprint conjecture amplitude clause (`model.md` §5).
@@ -434,6 +805,163 @@ class `[G]_{U,O}` — microscopic graphs may fluctuate
 indistinguishability is then exactly what emergence predicts, and
 the vacuum measure over graphs (or its dynamical universality
 class) replaces the winning tessellation as the derivation target.
+Observer-indexed extension (user construction, spiked next):
+M_O(G, o) with a 2D sky chart (angle × shell from vantage o) plus
+relational depth D(o, v) (communicability / resistance / diffusion
+time / channels) re-embedding the chart into an apparent 3D view;
+V_O(R) ~ R^3 is the output test per depth candidate (D10 killer
+design). Adds vantage-covariance as a second universality axis:
+views from distinct o must agree up to IR translation; sky-shape
+(concentration vs dilution of solid angle) is a new falsifier.
+Static depth bake-off (MEASURED NEGATIVE, L=40 grid, V_O(R) exponent
+d_obs; tuned-null hop^0.667 gives 2.73 = finite-size R^3): hop 1.82,
+resistance 4.18 (log-growth explodes volume), -log(communicability)
+1.32, (hop^2·res)^{1/3} 2.28 (best, still short), sqrt(hop·(-logC))
+1.54. Within-shell dispersion: -logC spread ~ r^1.15-1.32
+(superlinear!), resistance ~ r^0.2-0.4. NOTHING principled reaches 3:
+observer-3D does not fall out of standard relational distances.
+Surviving static route is multiplicity-weighted counting (the D10
+skeleton, w unprincipled); dynamical depth via U-influence queued
+behind D1. Vantage-covariance queued behind depth discovery.
+Holographic+relational reframing (ADOPTED user construction): the
+sharp formulation is holographic DOFs + pairwise relational distance
+d(i,j) = f(interaction_ij) → emergent localization, with M_O demoted
+from dimension-manufacturer to readout of a dynamically generated
+metric. The test is distance-geometry: cMDS of D² (B = −½JD²J) must
+show N-stable λ1,λ2,λ3 dominance (λ3/λ4 gap persisting as N grows;
+rank growing with N kills it); f must pass all five admissibility
+criteria (no smuggled 3D — that's where the guard now lives). MDS
+readout on statics (MEASURED NEGATIVE, filed-not-shipped spike,
+L=20/30 grids): calibration first — grid-hop control shows λ1,λ2
+dominance (GoF2 ≈ 0.8, λ2/λ3 ≈ 6.8) with decaying tail + negmass
+0.30, so the honest bar is an N-stable λ3/λ4 gap, never exact rank;
+resistance shows no gap anywhere (GoF3 0.32); −logC is 2-dominant
+with its λ3/λ4 gap SHRINKING 2.44 → 1.23 from L=20 → 30 (wrong
+direction). No rank-3 selection under MDS either — second
+independent negative for statics, and the pipeline is validated (it
+does not hallucinate 3D). The missing piece is now crisp: an
+ATTRACTIVE relational dynamics generating d(i,j) (D1's U is repair
+dynamics, not attraction) — design queued; Tier-1 MDS control sweep
+queued behind it. Tier-1 MDS calibration (MEASURED, test_mds.py):
+grid/tri/hex/gabriel/knn hop all show lam1,lam2 dominance (GoF2 >
+0.7, lam2/lam3 > 3, lam3/lam4 < 2.5) — but the DELAUNAY reference
+member shows lam1,2,3 co-dominant (lam3/lam4 ~ 5-6, all 5 seeds;
+lam3/lam1 GROWS 0.53 → 0.79 from N=400 → 1600). Diagnosed, not a
+dimension: v3 correlates 0.93 with centered r² and 0.85 with
+per-node tortuosity — a RADIAL TORTUOSITY BOWL (hop grows
+superlinearly with Euclidean radius in the open disordered box;
+cMDS embeds the warp as a bowl axis). Consequences: (i) the MDS bar
+is per-substrate — del-hop's null INCLUDES lam3, so del-based
+rank-3 claims must clear lam3/lam4 >> 6; (ii) eigenvector geography
+is part of the test — genuine v3 must decorrelate from radial /
+tortuosity fields (new D12 falsifier clause); (iii) radial
+detrending is queued as an open method problem (must use a
+graph-internal radial proxy, never coordinates).
+Observer-relative locality formalism (ADOPTED from review dialogue,
+D12 core): coordinate-free network G = (V,E,I,D), observer-rooted
+A_O with G1 ~_O G2 (already filed) PLUS: (i) operational
+C_O(r) ∝ r² WITHOUT assuming Σ_O(r) = S² (area-scaling as pure
+counting, no smuggled sphere); (ii) generalized emergence formula
+C(r) ∝ r^d_H + independent depth ⟹ V ∝ R^{d_H+1}; (iii) no global
+X — X_O ≠ X_P in general, with relational transition maps T_OP on
+shared domains + cocycle condition (charts→manifold inversion, not
+manifold→charts); (iv) observer-relative locality predicate
+L_O(A,B;ε) = Θ(ε − ρ_O(A,B)) with IR compatibility required only
+macroscopically; (v) two-theorem skeleton (emergence + compatibility)
+with shell-independence dV_O ∝ C_O(r)dr as THE attack point —
+operationalize via shell mutual information / cut-capacity freshness
+(X_r ⊥ X_{r+dr} at coarse scales), queued as codeable. CRITICAL GAP
+FLAGGED (the d_H = 2 input): on 2D fabric, naive shell counting gives
+|shell| ~ r¹ (nodes AND cut capacity both linear) — so C_O ∝ r² does
+NOT follow from 2D shells, and assuming it begs the question (2+1=3
+in a trenchcoat). Candidate rescue: PAIRWISE relational counting
+(~|shell|² ~ r²) as the source of d_H = 2 — i.e., the holographic
+exponent counts relations, not nodes. Queued: derive-or-refute C_O
+scaling from graph structure before any emergence claim.
+Shell-counting DILEMMA (SKETCH, test_mds.py leg pinned — not a theorem):
+on 2D fabric, honest per-shell counts give nodes ~ r¹, cut capacity
+8r+4 (pinned law), shell-MDS rank O(1) (scale-invariant ring profile,
+GoF2 = 0.772 at every radius — pinned), entropy extensive ~ r¹ —
+NOTHING reaches r² per shell; while the only natural r² count
+(cumulative ball volume/entropy) violates shell-independence BY
+CONSTRUCTION (inner shells re-counted at every outer radius). So
+d_H = 2 XOR shell-independence: the emergence derivation cannot have
+both from shell counting. Nonlinear-depth escape closes too: d_obs = 3
+needs dr/dρ ~ ρ²/r ⟺ ρ ~ r^{2/3}, i.e. exactly the tuned-null
+hop^0.667 already filed unprincipled. Escapes left open (honest):
+C_O counting something non-geometric with r² scaling (new physics),
+or non-shell composition of depth × transverse. Pairwise-counting
+rescue REFUTED as stated (~|shell|² counts constrained pairs, true
+DOFs ~ rank ~ O(1)) — pairs overcount by arithmetic, independence
+fails by triangle inequality.
+DILEMMA SCOPE (load-bearing clarification): the dilemma kills the
+SHELL-COUNTING route FOR HOP SHELLS only — the MDS-rank route is
+independent and unaffected (it never counts shells). Under a
+dynamical metric, shells redefine (equidistant sets under ρ) and
+C(r) reopens empirically: IF some dynamics yields MDS-3, its shells
+must show r² transverse counts, resolving the dilemma by measurement
+rather than derivation. So the dilemma concentrates ALL weight on
+dynamics design — no static escape remains. First dynamical distance
+(SHIPPED, scrambling.si_fpt_matrix + test_mds.py): mean SI
+first-passage time (β = 0.5, K = 100, 10×10) reads cleanly
+2-dominant (GoF2 0.89, λ2/λ3 17.5 — MORE Euclidean than hop:
+stochastic averaging smooths lattice anisotropy). Dynamical
+generation alone does not select 3D — rank-3 is a nontrivial
+dynamical property, and biased/attractive variants are the queued
+hunt. Methods note: the FIRST FPT implementation (non-persistent
+frontier) produced capped garbage reading high-rank — caught by the
+volume cross-check (balls all size 1), fixed, corrected numbers
+pinned. Cross-readout validation works.
+FABRIC-HOLD VERDICT (P0' level, filed on review question "should we
+revisit the fabric?"): NO — the 2D fabric premise is the
+best-supported part of the program (d_H + d_s + Tier-1 universality +
+N* protection problem, multi-legged), and the alternatives are (a)
+3D substrate: circular, kills the emergence program's point; (b)
+non-integer fabric: Tier-1 pins 2 robustly, and d_H+1 would give the
+wrong integer anyway; (c) shortcut-mixed fabric: N* work shows that
+is damage, not vacuum — SUPERSEDED IN PART by the weighted upgrade
+(review amendment): "shortcut" splits into strong shortcut (damage,
+binary-sector verdict stands) vs weak global coupling (vacuum-
+compatible per the weight-tolerance result: Lw=20 reads near-
+vacuum). Amended ontology: vacuum = near-2D strong backbone +
+weak global relational wiring; matter = locally concentrated
+strong/high-density connectivity; BH = extreme connectivity/tension
+limit. (d) DYNAMICAL fabric class [G]_{U,O}: the only
+live refinement — already queued, not a retreat. The emergence
+failures to date are failures of specific MECHANISMS (static
+distances, shell counting, unbiased SI), never of the premise — and
+the attractive-dynamics route is untested. Right response to the
+dilemma: stop asking static fabric geometry for 3D (that question is
+closed, multiply negative) and put all weight on the
+dynamical-distance hunt. PRE-REGISTERED TRIAL CONDITION (against
+sunk-cost drift): if a FAIR hunt over attractive/bias dynamics
+classes (state-, tension-, curvature-coupled β + U-influence depths)
+finds no rank-3 selection with N-stable gap and non-radial v3, the
+fabric premise itself goes on trial. Next fabric work is not
+revisiting 2D but upgrading static → dynamical: D1→fabric feedback
+(stability tournament — do the healing Us preserve d_G ≃ 2 on
+vacuum? U(G_vac) ∈ C_vac), now testable since U candidates exist.
+TOLERANCE CURVE, unweighted baseline (MEASURED, test_mds.py —
+forces weights): on square L=20, 2 binary longs collapse MDS
+2-dominance (lam2/lam3 6.82 → 1.93, GoF2 0.769 → 0.632); by 30
+longs GoF2 0.385, participation ratio 3.3 → 10.3, kappa^2 0.0645;
+lam3/lam4 never gaps (~1.1–1.7, pinned < 2.0): weak binary wiring
+blurs 2D, never builds 3D. Binary "weak" links are maximally
+strong — no binary knob is weak. The ε in G_vac = G_near-2D +
+εG_global has no unweighted meaning beyond count-fraction (already
+razor-thin per N*); weak wiring must be WEIGHTED (coupling
+strength), queued as the L0 state upgrade G = (V, E, w).
+(n,k) GROUND FLOOR (from D14 review dialogue — adopted):
+fundamental ontology = universal tick n + state S_n + update U
+(state+time+update, NOT spacetime); space/d_O/curvature emergent
+at M_O. (n,k) separation rigorous: n = U-evolution, k = R-scale;
+[U,R]≈0 (evolution–coarse-graining commutation) is D12's central
+consistency equation for admissible (U,blocking) pairs. DEBT
+LOGGED (not claimed): universal tick = preferred simultaneity,
+so emergent Lorentz (or its precise failure mode) is owed at M_O
+level — tick-vs-M_O-time mapping is D12's ground floor; the
+Lorentz question sits on this ledger. D14's η(n,k) surface is the
+joint object both items read.
 
 **Kill relevance:** none directly — a meta-criterion over D3/D4/D6/D10.
 But a second admissible `M_O` giving robustly non-3D IR on relaxed fabric
@@ -498,6 +1026,89 @@ precursor runnable now: diffusion-anisotropy tensor of `K(t)`
 (D10 spectral leg). Tier-2 static members (Kagome/Dice, Penrose,
 stealthy HU) CANCELLED per direction: Tier-1 already spans
 topology × degree × order, further static d_G adds no axis.
+J2 PROBE PRE-REG (D'Ariano-Erba-Perinotti 2019 coinless-QW
+substrate, proposed as D10 candidate — spec VERIFIED,
+admitted as PROBE not Tier-1-track per standing
+no-new-statics direction): J2 = Z2⋊Z2 (swap action),
+vertices (x,y,b), walk-graph gens {±h1,±h2,±h1c,±h2c}
+(checks: 8 distinct, inverse-closed h1c↔-h2c/h2c↔-h1c =>
+undirected degree EXACTLY 8; neighbor fn matches multiply
+in both sheets; quotient 2-cell→square lattice VERIFIED by
+hand (4 micro-edges per coarse edge); ball-over-periodic
+endorsed). QI THEOREM-DIRECTION: [J2:Z2]=2 => QI to square
+lattice => growth/spectral/ends MUST read d=2 — volume
+battery = NEGATIVE CONTROL on apparatus (failure indicts
+apparatus, never J2); d_eff→2 is calibration,
+oversold-as-discovery guard filed in advance. NEW-AXIS
+CASE (the only license under cancellation direction):
+built-in two-scale structure (micro z=8 non-bipartite
+two-sheeted vs coarse z=4 bipartite single, QI-identical)
+=> J2's job is MICRO/MACRO DISCRIMINATION: do D10
+short-scale readouts track micro or coarse?
+PRE-REGISTERED: (i) long-scale must agree micro-vs-coarse
+(QI control); (ii) NON-BIPARTITE (c-gens preserve x+y+b
+parity => odd cycle exists => walk APERIODIC) =>
+MICRO-PREDICTION: some odd-n return >0 on J2 vs ALL
+odd-n =0 on square (exact-walk apparatus reuses;
+aperiodicity is the claim — fixed small odd n may be 0);
+(iii) 4-cycle census (square-like plaquettes + mixed;
+family already spans short-cycle variety —
+characterization, not discovery); (iv) PERTURBATION
+RESPONSE = sharpest probe (existing battery; match =
+within family response envelope, tolerance = family's own
+spread — no new threshold invented). TIER STATUS:
+explicitly DEFERRED — Tier-1-track needs direction-level
+acceptance of 'built-in coarse-graining' as a new axis
+(user call) OR a perturbation SURPRISE (discovery route);
+default verdict = apparatus knowledge (D10 readout
+scale-sensitivity), not tier placement. ISOTROPY-BANKING:
+J2's Weyl pedigree is DIRECTLY relevant to the QUEUED
+dispersion/isotropy program (selection-for-isotropy
+precedent: minimal scalar micro → isotropic Weyl macro)
+— bank J2 as first substrate for that program when it
+unqueues; until then pedigree = motivation only (quantum
+result, classical tests — nothing transfers;
+pointer-not-evidence). FIREWALLS: D10-side ONLY (no
+pricing/gain/U content — zero D14/D1 relevance beyond
+theme). QUEUE: pilot needs NO new apparatus except
+constructor + quotient check (battery + perturbation +
+walk all exist) — recommend next-go pilot (cheap,
+spec-complete) then formation design; user may reorder
+formation-first (critical-path call).
+J2 PILOT VERDICT (executed, 5 tests — probe verdict STANDS,
+no tier claim): LOGIC ERRATUM (falsified-by-data, mechanism
+understood): the filed NON-BIPARTITE claim was WRONG
+(a p-preserving edge is not an odd cycle — fallacy);
+correct bipartition q=x+y (EVERY micro-move flips it) =>
+J2 IS BIPARTITE => odd returns vanish EXACTLY like square
+(all odd-n =0.0 through 11, theorem all-n). VOLUME (QI
+control PASSES): shells EXACT 8/17/8r (r=1/2/3..22),
+p[8,20]=1.9205 in band, fractional approach 1.8403->
+1.8937->1.9205 (tri/hex pattern), quotient shells EXACT 4r
+(r=1..20), micro-vs-coarse Δp=0.0000 (bound was 0.15).
+QUOTIENT: 1861 cells/3600 edges (R30); EVERY quotient edge
+square-adjacent globally; 1741 strict-interior cells all
+square-4 with micro-mult EXACTLY 4 per coarse edge
+(hand-verification reproduced). CUTS: EXACT 32r+16
+(r=2..22; r=1 is 56) — J2's cut law (prefactor filed,
+non-universal per family rule). WALK REFRAMED: parity
+pattern coarse-matching (both bipartite), even VALUES
+micro-tracking (p2=1/8 vs square 1/4 exactly; p4+ pinned).
+C4 CENSUS (apparatus validated exactly on squares):
+26072 @R18 (N=1370) vs ~1300 square-equivalent — ~20x
+density, sheet-mixing cycles: tracks MICRO. PERTURBATION
+(sharpest probe): swaps ns=20 -> 2.49/2.60/2.16 (2/3 kill
+per majority rule; seed2 = documented lottery miss,
+Delaunay-stream-1 precedent) + q=0.05 -> 1.9205/1.9203
+(deletion-robust) — FAMILY-TYPICAL both legs, NO surprise
+=> no discovery-route tier claim. PROBE CHARACTERIZATION:
+long-scale agrees (QI); short-scale splits (parity coarse,
+degree-values/C4/cut-prefactor micro); perturbation
+family-typical. J2 = banked characterized probe + isotropy
+program first substrate (standing). MDS-tolerance-on-J2
+QUEUED (needs long-edge definition on two-sheeted graphs
+— design question, not rushed). NEXT: formation design
+(critical path resumes).
 
 **Over-arching falsifier (C1–C5, essay §8):** `M_O ∘ U ≃ U_eff ∘ M_O`
 with coherence → locality → autonomy → universality → GR limit, each
@@ -516,3 +1127,1015 @@ the interval from `(≺_U, V_U, τ, M_O)`; C5 demands that interval's
 **Kill relevance:** feeds D1 (dynamics) and D12 (same-`M_O` falsifier: the
 interval map must coincide with the spatial `M_O`). No direct kill wire
 until stage 3+.
+
+## D14 — Cosmogony: phase separation into knots + low-dimensional vacuum (sketch, for later)
+
+**Hypothesis (filed from review dialogue, no code):** the 2D fabric is
+not an eternal starting condition but the RESIDUAL phase of a
+primordial connectivity phase transition: homogeneous high-density
+G_* (dimension d_*, unchosen — to be measured, never tuned) undergoes
+aggregation G_* → G_dense + G_depleted, with dimensional bifurcation
+d_knot > d_* > d_fabric and the residue flowing toward d_I ≃ 2 (then
+M_O → d_obs ≃ 3). Matter = concentrated phase (converges with the
+BH-as-maximal-tension story, extended to ordinary matter as stored
+excess connectivity); vacuum = depleted phase. Big Bang = graph phase
+transition; expansion = conversion into vacuum phase (V_obs grows as
+network enters the spatially-realized phase — space appearing between
+structures, not objects flying through a container); rapid early
+conversion = INFLATION CANDIDATE (not inflation: acceleration,
+homogeneity, graceful exit, and — sharpest — the near-scale-invariant
+perturbation spectrum are all missing rungs). Conservation structure
+kept as design constraint: Q_total = Q_vac + Q_knot = const (any
+aggregation U must state its conserved quantity; our swaps already
+conserve degrees + edge count). Gravity sharpens: the redistribution
+creating a knot necessarily distorts surrounding residue (δG_vac →
+δd_O → curvature) — mass and curvature from one event.
+REFRAME (adopted as the better D1 question): "Why does U
+phase-separate into knots + low-dimensional vacuum?" replaces "How
+does U repair the lattice?" — the N* protection problem dissolves
+(the lattice isn't eternal, it's the residue) and blind-U stays
+consistent (separation is what U does, not what it optimizes).
+Required mechanism, sharply (REVISED per review — the first
+"pump long-range connectivity OUT" formulation was too strong):
+phase separation must concentrate STRONG connectivity into knots
+while leaving a near-2D WEAKLY globally coupled residue —
+G_* → G_dense + (G_near-2D + εG_global); E_global^vac ≠ ∅ is
+permitted provided w_global ≪ w_fabric. The y_λ ≈ 1.5 RG pressure
+cited earlier is binary-sector (maximally-strong links); weighted
+RG flow vs w is OPEN — weak couplings may be irrelevant/marginal
+(RG-natural separation) or relevant (pumping still needed):
+measurement queued, not assumed. WEIGHTED-RG PRE-REGISTRATION
+(review dialogue — highest-information experiment, draft stays
+AGNOSTIC: pumping vs persistence decided by measurement, not
+assumption): binary y_λ ≈ 1.5 covers maximal-strength links only;
+for G_vac = G_fabric + εG_global measure the FLOW on a (density,
+weight) grid, (λ,ε) → (λ',ε') under the SAME 2×2 blocking as the
+binary study (L40→5). Three outcomes, all informative: y_w<0
+(washout → vacuum RG-protected, no pumping needed); y_w=0
+(marginal IR weak sector); y_w>0 (amplification → segregation
+mechanism required). Target output is a FLOW DIAGRAM with possible
+separatrix ε_c(λ) (below → 2D fixed point; above → nonlocal
+phase), not a single exponent. Design pre-registrations: (i)
+excess-length variable e = L−1 (0 = lattice), λ = fraction of
+edges with e>0 — report (λ',e') flow, infer relevance from fixed
+points; (ii) weight-coarsening rule chosen by PILOT then FROZEN:
+candidates min/mean of crossing lengths, decided on controls
+(monotone sane flow) before the campaign; (iii) CONTROLS: λ=0
+stays 2D; maximal-coupling row must REPRODUCE binary y_λ ≈ 1.5
+(reduction check on the apparatus). Phase 2 (queued): knot-
+environment flow y_w^knot-env vs y_w^vac — the attractive split
+(vacuum-irrelevant, knot-relevant) making locality an RG property
+and curvature a defect-induced departure. Priority: coarsening
+pilot is the immediate next spike. COARSENING PILOT (MEASURED,
+test_weighted.py — min-rule FROZEN): uniform controls flow
+identically under min/mean and the Lw=1 row reproduces binary
+λ-flow 0.013→0.310 (reduction check PASSES); λ-flow is topological
+(bit-identical across rules AND Lw); min keeps fabric fidelity
+1.000 at every level while mean smears to 0.900 by level 3
+(transport-faithful wins: parallel paths, best wins). Pilot-scale
+hint (not pinned as physics): long-edge excess frozen (9.00 every
+level @Lw=10) while λ grows — strength looks marginal, count
+relevant (the reviewer's y_w=0 case); the (λ,ε) campaign decides.
+CAMPAIGN (MEASURED, test_weighted.py — washout verdict): (ns,Lw)
+grid under frozen min-rule, levels 0–3, co-blocked plain as
+reference, flow variables (λ,violfrac,marginratio). λ-flow
+topological (bit-identical across Lw, third confirmation:
+0.013→0.310 @ns=20); pricing sector IRRELEVANT above span scale —
+Lw=10 washes out (violfrac 0.012→0.000 by level 3, margin ratio
+0.51→2.86 crossing 1: fixed weights outlive shrinking spans,
+defects become overpriced/geometrically invisible); Lw=1 NEVER
+heals (violfrac==λ every level — analytic: min long-span 2 > 1);
+Lw=3 partial (0.310→0.190, margin 0.86 — separatrix-adjacent, one
+more level would cross). Washout level k*≈log2(span0/Lw); ns=0
+controls stay (0,0) (2D fixed point stable). Reviewer's y_w<0
+case CONFIRMED for correctly-priced weak links: vacuum is
+RG-protected in the pricing direction, NO pumping needed — count
+relevant, pricing irrelevant. Caveats: frozen weights, no U;
+washed-out defects persist as overpriced dead weight (margin
+~2.9) a real U might prune. Phase 2 still queued (knot-env
+split y_w^knot-env vs y_w^vac). Curvature conjecture sharpened
+via Prop 1: dominating weak links (w ≥ d_0) are geometrically
+INVISIBLE, so curvature must live in small underpricing margins
+(δw = d_0 − w > 0 small → δd_O small) — vacuum weak wiring as
+marginally-priced (parallel to marginal rigidity noted, not
+claimed). POST-CAMPAIGN AMENDMENT (review dialogue — topology vs
+geometry split): the campaign measures λ↑ while f_viol→0 along
+the SAME flow (Lw=10: f_viol 0.012→0, margin 0.51→2.86) —
+topological relevance and geometric relevance flow in OPPOSITE
+directions (T15 made pointwise, now with explicit RG
+realization). Vacuum condition upgrades from N_long→0 to
+P_vac(η>1)→0 in IR with shortcut relevance η_ij^(k) =
+d_fabric^(k)/w_ij^(k) ADOPTED as the next-stage order parameter
+(per-edge inverse margin; DISTRIBUTION, not mean — campaign
+level-2 already shows mean-margin 1.82 lying while violfrac sits
+at 0.024; ensemble = longs, fabric η=1 exactly). Slogan adopted:
+"L0 need not become local; locality emerges because nonlocal
+relations become too expensive to define geometry" (G_vac =
+G_near-2D + G_globally-intertwined, constrained by PRICING, not
+topology). Three sharpenings kept prominent: (a) D14 SPLITS —
+(i) fabric formation (cheap local reference: UNSOLVED, still
+owes a U) vs (ii) weak-link washout given fabric (SOLVED frozen;
+span-shrinking presupposes a coarsenable lattice — "differentiate
+the pricing hierarchy" addresses (ii), not (i)); (b) PUMPING
+MOVES, not retires — washout is conditional on primordial Lw≳2,
+so if G_* starts binary-like (all w≈1, never washes out)
+something must RAISE prices: edge-space pumping becomes
+price-space pumping, and w(χ)/traffic is LOAD-BEARING (if w_k
+renormalizes down with span, washout dies); re-pricing U needs
+its own conservation ledger (prices aren't moved stuff — state
+the invariant or argue none exists); (c) KNOT-ENV DESIGN TRAP
+pre-flagged — reference plain near a knot is ambiguous (knot in
+or out of d_fabric?) and the null runs AGAINST the signal (dense
+knot shortens fabric paths → η down → faster washout), so
+pre-register reference + relational radius r_O before measuring
+P(η|r_O,knot); keep y_w^knot vs y_w^vac as the compact claim.
+Cross-check queued (not a result): binary tolerance bound (~2
+operational longs/400 nodes ≈ violfrac 0.003) lands exactly on
+campaign ns=5 level-0 violfrac 0.003 — tolerance may calibrate
+how close to zero P(η>1) must get. POST-CAMPAIGN AMENDMENT #2
+(review dialogue — D14 becomes the origin of the pricing
+hierarchy): campaign result reframed as CONDITIONAL (stability,
+not origin): w_long≳d_span ⟹ RG washout; explains stability of
+an appropriately-priced vacuum, NOT why the inequality holds —
+old D14 ("why does U remove long edges?") REPLACED by "what
+dynamics drives η below unity for vacuum links?" (η=d_fabric/w
+adopted last round). Scale-relative sharpening: washout at
+k*≈log2(span0/Lw) must land FINER than observer readout scale,
+so required-Lw is a function of observation depth (deeper
+readout → higher Lw owed) — hierarchy target is a curve, not a
+number; tolerance end pinned by P(η>1)≲tol (a few operational
+shortcuts survivable, not literal zero). (χ,Q,F) GATE ADOPTED
+(blocking for all w-rule entrants): each states micro variable
+χ, conserved ledger Q, map F with w=F(χ,...) intensive/emergent
+(temperature-like, NOT conserved — no invented Σw=const);
+retroactive bite: self-pricing (w=span) FAILS (span is readout,
+not stuff) → demoted to benchmark; structural-χ rules
+(curvature etc.) disfavored unless Q found → gate pushes toward
+flow/capacity χ. TRAFFIC SIGN ARGUMENT (filed, kills naive
+story): congestion pricing (w↑ with load J) has WRONG sign
+(busy fabric→expensive, idle weak links→cheap — backwards);
+needed sign is HEBBIAN/use-cheapens (busy→cheap fabric+knots,
+idle→expensive vacuum links); differentiation needs
+nonlinearity or conserved per-node budget allocated by use
+(linear w=J/C with demand-following capacity sits ≈const).
+KNOT PHASE-2 PRE-DESIGN (locked): planted-knot pilot FIRST
+(membership exact by construction — per-edge η_K/η_0 needs same
+graph + masked d_0, separate matched-plain run has no node
+correspondence; discovered knots later); DUAL reference (η_0
+masked-background PRIMARY — ruler fixed, clean price-flow
+claim; η_K operational secondary — anatomy; ratio η_K/η_0 =
+d_K/d_0 separates price-flow from path-shortening); r_O binned
+in d_0 NEVER d_K (operational metric compresses bins near
+knot — ruler would infect the coordinate); headline Δy_w =
+y_w^knot−y_w^vac > 0 with ESTIMATOR pre-registered (log-slope
+vs washout-level shift Δk*, zero-handling for successful
+washout — log 0 bites exactly when it works). ORDER: knot pilot
+stays first (cheap, frozen; Δy_w sign constrains what w-dynamics
+must reproduce), gated w-origin second, tolerance cross-check
+riding along. L0-independence intact (origin story lives at
+P0'/D14; L0 theorems still cite no U). The wall is now: WHERE
+DO THE WEIGHTS COME FROM. POST-CAMPAIGN AMENDMENT #3 (review
+dialogue — price-as-state + (n,k) separation): weights
+REFRAMED as L0 state variables in S_n=(G_n,{w^(n)},...),
+S_{n+1}=U(S_n) (CA analogy adopted — state needs specified
+update, not conservation). (χ,Q,F) GATE v2: conservation
+DEMOTED from admission requirement to discoverable property of
+U (bonus, not ticket); gate's anti-magic work restated as (i)
+blindness (F reads L0 state only), (ii) update-form (genuine
+evolution with memory, not assignment), (iii) no inserted
+hierarchy (bifurcation = attractor outcome, measured).
+Self-pricing reassessed: passes (i) (span is L0-computable),
+FAILS (ii)/(iii) (w:=span is hand-written pricing) → benchmark
+status stands, right reason now. (n,k) SEPARATION ADOPTED
+RIGOROUSLY: n = state-machine time (U), k = RG scale (R);
+campaign retrospectively = η(n=fixed,k) with dw/dn=0; program
+object is now the η(n,k) SURFACE (η=d_fabric^(k)(n)/w^(k)(n));
+[U,R]≈0 askable as RG-consistency condition on (U,blocking)
+pairs → LINKED to D12 commutation over-arch (D12's central
+equation; D12 note filed). D14 SHARP FORM: price-space phase
+separation — U from uniform w≡1 spontaneously bifurcates P(w,n)
+into low-price/high-traffic (→knots) vs high-price/weak
+(→vacuum); topology-follows-price REQUIRES H(S_n) reading w
+(stated mechanism, not hope) → ORDER: E-fixed re-pricing U
+FIRST (bifurcation with frozen topology = stronger, no
+topological help), H-dependence stage two; needs bifurcation
+order parameter (bimodality/mode weights) + sector membership
+(planted sectors first — third application of the rule).
+ATTRACTION = decreasing relational price (w_AB(n+1)<w_AB(n) at
+L0, d_O shrinking at observer level — no movement-through-space
+needed); observable = co-movement of inter-knot path-price
+d_w(A,B;n) vs reconstructed d_O(A,B;n) under running U (no
+direct edge needed); sign of dw_AB/dn is MEASURED dynamical
+outcome, never assumed; memory terms (inertia-adjacent)
+admissible via F reading w^(n). FALSIFIER TEETH: uniform w≡1
+init does the work through TRAJECTORY P(w,n) (one-step jump =
+imprinting/inserted; gradual differentiation = generated);
+report (n,k) surface slice (P(η>1) at multiple k); pre-register
+knot persistence criteria (ripening already filed). POST-CAMPAIGN
+AMENDMENT #4 (review dialogue — falsifier-protocol core, D14 as
+dynamical selection): Φ(n,k) ≡ P(η>1) on frozen-then-blocked
+S_n^{(k)} ADOPTED as the program object (surface, not a number);
+∂_nΦ = U-dynamics, ∂_kΦ = RG observation — factorized claims:
+(a) U delivers S_n into washout basin, (b) frozen-R flows to
+Φ≈0 inside it. CAMPAIGN RETRO-FRAME: frozen result = slice
+Φ(n_0,k) = the BASIN MAP (Lw≳2, k*≈log2(span0/Lw)) — half the
+claim already banked, not a pilot; U-run owes only the
+trajectory δ(w−1) → basin. Cost structure: U runs once
+(n-direction, expensive), R post-processes each frozen state
+(k-direction, cheap) — surface costs one trajectory. TARGET
+CONTOUR: pass = trajectory crosses Φ(n,k_obs)≲tol and stays
+(tol≈2 operational longs/400 nodes from binary tolerance;
+0.003≈0.003 cross-check calibrates the contour — re-analysis
+of campaign states in Φ language queued as apparatus validation
+before any U-run). TRAJECTORY-IS-EVIDENCE: endpoint alone
+meaningless (w^(1)=F(desired geometry) = reconstruction
+disguised as dynamics); record full P(w,n): δ(w−1) → broad →
+{P_knot,P_vac}. FIRST-TICK DIAGNOSTIC (severe, with structural
+null): Δw^(0) spread at n=1 always expected (S_0 structure
+varies; neighborhood-reading F reflects it) — suspicion =
+CLASSIFICATION at n=1, quantified as MI curve I(w^(n);
+sector_final): imprinting saturates n≈1, instability grows over
+many ticks behind σ_w∼e^{γn} linear phase; ε-noise test pinned
+to t*(ε)∼(1/γ)ln(A/ε) with γ matching linear-phase fit (two
+independent measures of one number = brutal version).
+INDEPENDENT LABELS, BIDIRECTIONAL: sectors from topology
+WITHOUT w (density/k-core/community on G_n; planted in pilots)
+→ P(w|sector) as outcome, PLUS reverse (w-labels → structural
+correlates); both directions must agree — disagreement means
+price sectors ≠ density sectors (complicates knots=dense=cheap
+interestingly). RIPENING (separate falsifier): observe to
+n≫t_form (10× suggested, pre-registered multiple);
+stationarity P_knot(s,n)→P*_knot(s) via named distribution test
+across late windows (KS or similar); N_knots→0 = clean fail,
+→1 = fail with BH-consolation on separate argument only (one
+knot ≠ matter population); "fraction in knots" restated for
+gate v2 (edge-mass/topological share, or discovered conserved
+Q — no required ledger). ENSEMBLES: 2–3 pre-registered
+NON-GEOMETRIC primordial families (random regular, ER, high-d)
+× seeds — start FAR from the answer (near-lattice S_0 smuggles
+it). LOAD-BEARING CLAIM (adopted verbatim in spirit):
+homogeneous w≡1 + observer-blind U (no target dimension/
+geometry/labels/pricing classes) → spontaneous destabilization
+(γ>0) → persistent knots + Φ→0 vacuum, trajectory + surface +
+persistence + ensembles all pre-registered. NEXT ARTIFACT:
+written D14 falsifier pre-registration (estimators + numbers +
+pass/fail); apparatus first (Φ(n_0,k) re-analysis pinned in
+tests). APPARATUS VALIDATED (test_weighted.py — phi_stats +
+tolerance contour): Φ-slice ns=20/Lw=10 = 0.900→0.657→0.167→0
+(nV 36,23,5,0; 4/40 priced already at k=0); Lw=1 rows Φ≡1
+analytic; Φ·λ=violfrac to 1e-12 everywhere; mean-lies exhibit
+STRONGER than filed (k=1: mean_inv_eta 1.12 "healed" vs Φ=0.657
+— distribution mandatory, mean disqualified as headline);
+washout NON-MONOTONE (ns=5/Lw=10 violfrac 0.0032→0.0065→0:
+concentration before washout; nV monotone ↓); tolerance
+contour TOL=2/760 crossed at k=3 (ns=20/Lw=10), k=2
+(ns=5/Lw=10), never for Lw=1/Lw=3 — measurement chain green
+before any U-run depends on it. KNOT PILOT (MEASURED,
+test_weighted.py — apparatus + null, NOT the Delta-y_w test):
+planted 5x5 clique, ns=20/Lw=10, dual ruler + r_O bins (frozen
+super-node rule, block-imaged mask). Weak Phi_0 global =
+36/40,23/35,5/30,0/18 BIT-IDENTICAL to campaign (reduction
+passes; null as constructed — frozen eta_0 cannot vary
+spatially). Weak Phi_K = 35,20,5,0 (knot heals 1,3,0,0 marginal
+nearby longs via path-shortening — small, localized, right
+sign). METRIC BUBBLE: k=0 interior eta_0 260/260 violated
+(thick vs fabric) vs eta_K 260/0 (clique distance 1 — local vs
+itself). d_K/d_0 ≤1 everywhere; k=0 means near 0.87 vs far 0.96
+(localized dip); k=3 exactly 1.000 — 5x5 knot DISSOLVED to one
+block (knot visibility under R is scale-dependent; deep-k knot
+studies need bigger knots or knot-tracking blocking — method
+note). NO min-rule bundle mixing (zero dragged L at all levels
+— weak prices survive near dense L=1 structure). k=1 near-bin
+fast washout (1/7 vs far 9/9) VERIFIED as span-selection (near
+spans ≤11, far ≥12 — proximity binning selects pair
+separation; zero knot physics on primary). RULER-TRAP RULE
+(caught in spike, filed as design law): weak links in NEITHER
+ruler (first draft put swaps in d_K → trivial total "healing").
+Verdict: apparatus validated, null established — real Delta-y_w
+needs w-dynamics (E-fixed re-pricing U with knot present is the
+next experiment). FROZEN-KNOT STOP (review verdict, adopted):
+static dense knot changes the METRIC (d_K/d_0<1 near, interior
+strongest, gone once blocking unresolves the knot) but NOT the
+weak-link pricing flow (Phi_0 bit-identical) — experimentally
+separated; no further frozen-knot runs (zero Delta-y_w info;
+would only re-map the ruler). C(r,k) = 1-<d_K/d_0> ADOPTED as
+curvature-CANDIDATE diagnostic (naming discipline: candidate
+until dynamics; pilot values k=0 near 0.13/far 0.04, k=3 0 —
+derived from pinned means). RULER COROLLARY: rulers stay
+TOPOLOGICAL-only, never price-weighted (eta=d^w/w is
+self-referential — trap's second form); consequence: experiment
+A factorizes (E frozen -> C static backdrop, w dynamic -> Phi
+dynamic) — A isolates pricing BY CONSTRUCTION; no dynamical-C
+move until E-dynamics (C2/D). Metric bubble stays KINEMATIC
+(two rulers, two descriptions — gravity-talk gated on
+dynamics). CIRCULARITY DETECTORS (named set, checked every
+run): (i) rulers contain neither test population nor prices
+(m_ratio~0.05 episode = standing demo); (ii) labels independent
+of outcome (bidirectional); (iii) init far from answer
+(primordial severity); (iv) trajectory not endpoint (MI
+diagnostics). EXPERIMENT-A PRE-DESIGN (locked): planted knot,
+E FROZEN, w(0)=1, primitive static-chi F (suggested:
+common-neighbor embeddedness, Hebbian sign + uniform drift, <=2
+params, ALL pre-registered); question ONLY Delta-y_w != 0;
+strongest outcome Delta-y_w>0 DESPITE d_K/d_0<1 (price dynamics
+fighting geometric shortening); all signs informative (0 =
+geometry-only knot; <0 = reinforced washout). STAGING: static
+chi admits A (relaxation answers spatial differentiation) but
+CANNOT show bifurcation (w->w*=G(chi), gamma<0 at best; gamma>0
+needs dynamical chi/memory — C2/D territory); A bundles
+analytic-fixed-point convergence (verification, like Lw=1 row)
++ spatial profile P(eta|r) (discovery) in one run. SEQUENCE
+A->B->C->D ADOPTED: B = post-processing of A's trajectory
+(P(eta|r,K,n,k) + C backdrop, cheap); C FORKS (C1 = unplanted
+E-frozen weak-generation, expected informative-negative since
+w*=G(chi) gives chi-level-sets -> motivates C2 = E-dynamics
+H(w) or dynamical-chi U); D = filed falsifier. A ESCAPE
+HATCHES pre-listed (close in pre-registration): F-param budget,
+chi-choice justification, bins frozen (done), init fixed
+(w=1). STAGE-GRADED GATE: A = pre-registered simplicity +
+measured profile (relaxation ok); D = full no-insertion +
+instability + ensembles (origin claims wait for D). A-ARCHITECTURE
+LOCK (review agreement + chi-constraint derivation): A MOTTOS —
+"does structure drive prices toward the washout basin?"
+(relaxation/selection; static chi) vs "does homogeneity
+spontaneously destabilize?" (instability; dynamical chi ONLY —
+gamma/noise/t* diagnostics gated to C2/D; running them on
+relaxation manufactures false verdicts). C-FORK TABLE ADOPTED
+(A planted/E-frozen/static-chi; B anatomy-of-A; C1 unplanted
+E-frozen; C2 dynamical-chi/E-formation; D primordial
+falsifier); C1-negative expected (repricing manufactures no
+matter topology) AND C1-positive kept discovery-capable
+(price-sector WITHOUT topological knot would forbid premature
+price-sector=knot identification). FIXED-POINT-FIRST DISCIPLINE
+(strict): derive w*(chi), stability |dF/dw|<1, move/direction/
+boundedness/timescale/basin-reach/sign-prediction BEFORE any
+A numerics; tooth = TARGET-VARIABLE EXCLUSION (chi may not
+contain d_0/span/any ruler quantity — span-reading F collapses
+to self-pricing; checkable at pre-registration: list inputs,
+ruler among them = reject). Form-1 defense filed: G hand-written
+but blind+simple+preregistered, basin banked INDEPENDENTLY — G
+landing judged, not inserted. LOCAL-STATIC-CHI IMPOSSIBILITY
+(derived pre-code): swap endpoints are locally fabric-identical
+(deg 4, Jaccard ~0 — grid-edge endpoints also share 0 common
+neighbors), so NO graph-local static chi separates weak longs
+from fabric shorts; embeddedness/degree give knot-vs-everything
+(wrong split: fabric priced with weak). CONSEQUENCES: (a)
+NEGATIVE-CONTROL DESIGN — run embeddedness/Jaccard F predicting
+Delta-y_w=0 (near/far weak share chi~0 => identical flow);
+predicted-null-returning-null validates chain, returning
+non-null = apparatus-bug detector; control BEFORE sensitive
+candidate, always. (b) SENSITIVE chi must be GLOBAL
+(betweenness: weak-high/fabric-mid/knot-low hypothesized under
+congestion sign — grid-central fabric may spoil; VERIFY BY
+SPIKE: population distributions on A-state before committing)
+or DYNAMICAL (traffic — C2 territory); if betweenness fails to
+three-way-split, A-static has NO sensitive candidate => early
+result that pricing needs dynamical chi. NEXT: chi-measurement
+spike -> commit F + analytic w*/stability -> lock
+pre-registration -> code A. CHI-SPIKE VERDICT (MEASURED,
+test_weighted.py — A-static fork resolved): full A-state
+(40x40 ns=20 5x5-knot): embeddedness weak=fabric=0 EXACT
+(3040+40 all zero; interior 23) — local-chi impossibility
+CONFIRMED empirically; embeddedness-F predicts Delta-y_w
+EXACTLY 0 (null control LOCKED). degree_sum same shape (med 8
+both; fabric max 30 = knot-touching edges). betweenness
+THREE-WAY TYPICAL: medians weak 0.0286 / fabric 0.0031 /
+interior 0.00005 (q-bands: weak 0.0185-0.0404, fabric
+0.0020-0.0049) with OVERLAPPING tails (fabric max 0.041 >
+weak med; interior max 0.0095 = gateway load) => congestion-F
+side effect: central fabric + gateway shell price high —
+monitor via fabric-price readout (Phi-verdict safe: fabric
+eta<=1 always). Near/far weak betweenness: 0.0227 / 0.0238 /
+0.0293 — NO difference (substitution micro-hint near<far,
+underpowered n=6; A-run settles it DETERMINISTICALLY: chi
+exact given G) => betweenness-F predicts WEAK Delta-y_w>0 via
+SUBSTITUTION (clique steals load from nearby weak -> cheaper
+-> slower washout — hoped sign via real mechanism, likely
+small). Load-halo ABSENT (near fabric med ~= far) => no
+price-halo prediction. GATEWAY ANATOMY predicted (max-fabric
+edge sits near knot 0.041 => congestion prices a SHELL around
+the knot — check P(w|r=0 fabric) in A-run; neutral until
+measured). r_O-as-chi REJECTED (label smuggling — checkable
+form of the no-labels clause: proximity-to-known-knot =
+labels). Density-proximity (dist-to-high-degree) flagged GRAY
+(blind-admissible but label-laundering in function — flagged
+third candidate only, after the two clean ones). VERDICT:
+A-static = exact-null control + weak-positive attempt; likely
+outcome null-or-micro DECIDES the traffic question
+(dynamical-chi C2 as the real mechanism) — program learns
+either way. NEXT: commit Form-1 F x2 candidates + analytic
+w*/stability -> lock pre-registration -> code A. FORM-1
+PRE-DERIVATION LOCK (review agreement + fabric-ratio
+derivation): analytic null is F-AGNOSTIC (any deterministic
+F(w,chi) from uniform init with chi constant => identical
+trajectories) => DETERMINISM REQUIRED for A-candidates
+(stochastic U deferred to C2 with expectation-form
+predictions); nonzero embeddedness Delta-y_w = leak or
+nondeterminism bug, nothing else. FABRIC GUARD (3 checkable
+parts, derived not chosen): (i) absolute med(w_fabric) <~ 3
+(Lw=10-analog: weak-med ~10 => fabric-med ~2); (ii) relative
+med_f < med_w (hierarchy un-inverted at medians); (iii) RATIO
+CHECK (w*_f-1)/(w*_w-1) ~= 0.003124/0.02858 ~= 1/9.15 from
+banked medians — SECOND end-to-end analytic confirmation
+alongside w* convergence (match = Form-1-linear confirmed;
+deviation = leak/bug). MONOTONE-OVERLAP THEOREM (structural):
+fabric-max chi 0.041 > weak-med chi 0.029 => ANY monotone g
+prices some fabric above typical weak (band-pass un-overlap
+unprincipled, excluded); superlinear g separates medians more
+but max-tail stays inverted regardless — overlap ACCEPTED as
+structural for betweenness-chi, monitored via q90, never
+pretended away. G-SELECTION PROTOCOL (temporal order IS the
+anti-circularity): intrinsic story -> g -> w* -> basin overlay,
+reported EVEN ON MISS; re-choice after miss = NEW candidate +
+fresh pre-registration. NORMALIZATION TRAP flagged: no
+normalized b-hat (hidden third param) — raw b, beta absorbs
+scale, report effective sensitivity beta*b_weak-med;
+pre-registration counts constants. SUBSTITUTION SIGN with
+C2-FLIP CAUTION: A claims only topology->redistribution->
+differential pricing (no curvature words); static substitution
+(near-weak cheaper) may REVERSE under traffic feedback
+(cheap->busy->expensive) — C2 sign change reads as feedback
+physics, never contradiction; do not over-extrapolate A's
+sign. GATEWAY-SHELL PREREG: W_fabric(r,n) median + q90,
+r(e)=min-endpoint (consistent with longs); prediction banked:
+NO broad halo + high-price gateway TAIL (shell = tail
+phenomenon: q90-median gap is the detector; halo would move
+the median); trajectory + endpoint. OUTCOME TABLE (sufficiency
+line = banked TOL contour): NULL (Delta~=0) => static-chi
+program OVER, traffic needed for mechanism; MECHANISM-ONLY
+(Delta>0, no cross) => signal weak => C2 as AMPLIFIER
+(feedback boosting substitution); SUFFICIENT (cross) =>
+celebrate skeptically (re-run all 4 detectors). CANDIDATES
+LOCKED at 2 (embeddedness control + betweenness sensitive);
+density-proximity stays flagged/unrun. FORM-1 DERIVATION
+(LOCKED pre-A, 12-step table — docs-only turn; NO A-code shares
+a turn with derivation, firewall hygiene): (1) STORY: toll
+proportional to traffic load, static (loaded links cost more);
+w_base=1 fixed BY CONVENTION (lattice unit = init value;
+degenerate, not a parameter). (2) g(b;beta)=1+beta*b
+(betweenness), g_emb(e)=1+beta*e (control); RAW chi (beta
+absorbs scale; no normalized b-hat — hidden-third-param trap
+refused). (3) F: w'=(1-alpha)w+alpha*(1+beta*chi),
+DETERMINISTIC, alpha=0.2, n=64 ticks. (4) w*(chi)=1+beta*chi
+edgewise. (5) STABILITY |1-alpha|<1 <=> alpha in (0,2);
+alpha=0.2 monotone, inside. (6) TAU=-1/ln(0.8)~4.48 ticks; 64
+ticks ~14tau, residual 0.8^64~6e-7 (converged). (7) BANKED CHI
+IN: medians weak 0.02858 / fabric 0.003124 / interior 5.3e-05;
+near/far weak 0.02267/0.02926. Beta-grid {3.5,35,350,3500} =
+decades around 1/b_weak-med~35 — CHI-SCALE calibration
+(instrument-to-sample), NOT basin contact (basin sealed until
+#10). Control beta_emb=1 ARBITRARY (weak/fabric chi=0 =>
+result beta-independent by analyticity; separate beta per
+candidate — scales differ 1000x, same-beta would be
+numerology). (8) PREDICTED w* medians: beta=3.5:
+weak 1.10 / fab 1.011 / int 1.000; beta=35: 2.00 / 1.11 /
+1.002; beta=350: 11.0 / 2.09 / 1.02; beta=3500: 101 / 11.9 /
+1.19. Near/far weak @350: 8.93/11.24 (excess ratio 0.775,
+beta-independent). (9) GUARDS: ratio (w*_f-1)/(w*_w-1)=1/9.15
+at EVERY beta (beta cancels — sweep-wide identity check);
+absolute med_f<~3 TRIPS at beta>~640 PREDICTED (trip-there =
+linearity confirmed + cost noted; trip-below = anomaly);
+relative med_f<med_w. (10) BASIN OVERLAY (FIRST CONTACT):
+beta=3.5 (~Lw1-analog) => NEVER cross; beta=35 (w*~2.0, gap
+between Lw1/Lw3 rows) => partial fall, NO cross k<=3;
+beta=350 (~Lw10-analog) => CROSS k~2-3 following Lw=10 slice
+shape (shape prediction); beta=3500 (w*~101 > max span 78) =>
+cross k<=1 (near-immediate washout). beta=350<->Lw10 alignment
+DISCOVERED here (grid came from chi-scale), never selected.
+Weak is a DISTRIBUTION (spans vary) — median overlay
+approximate, exact Phi measured. (11) DELTA-y_w:
+embeddedness EXACTLY 0 + ZERO MOTION (w_weak(n)=1 to 1e-9;
+violation = leak/bug, STOP); betweenness Delta>0 via
+SUBSTITUTION (near excess 0.775x far => near cheaper =>
+delayed washout; direction beta-independent); magnitude modest
+=> MECHANISM-ONLY likely at beta<=350. (12) LOCKED
+INTERPRETATION: control pass = frozen-weak + Delta=0;
+sensitive checks per beta = edgewise w* convergence (tol) +
+1/9.15 ratio + shape/cross + sign + gateway W_fabric
+shell-vs-halo + 3-part guard; outcome table
+NULL/MECH-ONLY/SUFFICIENT x TOL contour + filed C2 branches.
+NO re-choice of g/beta past this point (re-choice = NEW
+candidate + fresh pre-registration). NEXT: code experiment A
+(5 relaxation runs: control + 4 beta; trajectories + Phi(n,k)
+surfaces + profiles). EXPERIMENT-A VERDICT (MEASURED,
+test_weighted.py — mechanism demonstrated, Delta-y_w split):
+control BIT-EXACT (weak w(n)==1.0, maxdev 0.0, all rows frozen
+at Lw1 slice, Delta=0 — analytic null holds, NO leak).
+Tick-0 all 5 runs == Lw1 slice (40/40,35/35,30/30,18/18 —
+uniform-init reduction, 5-way identity). w* convergence
+edgewise (maxdev matches excess*0.8^64 theory); R_fw=0.10929
+SWEEP-WIDE all four beta (linearity end-to-end); medians hit
+locked table (beta=350: 11.004/2.093). Per-beta: 3.5 frozen,
+never cross; 35 partial (34/35,29/30,17/18), no cross; 350
+CROSSES k=3 with (36,23,7,0) vs banked Lw10 (36,23,5,0) —
+k=0,1,3 EXACT recovery of hand-planted washout by DYNAMICAL
+pricing, k=2 +2 = HETEROGENEITY COST (w* spread vs uniform Lw;
+direction filed); 3500 crosses k=0 (saturated ceiling, no
+Delta resolution — as filed). Gradualism beta=350 tick8
+strictly between (relaxation, NOT imprinting). DELTA-y_w
+SPLIT (locked sign prediction FALSIFIED at Phi level —
+honest): w*-level substitution CONFIRMED (near/far 8.934/
+11.242, excess ratio 0.7746); Phi-level runs WRONG way (final
+k=1: near 1/7 vs far 9/9 — SELECTION dominates: near spans
+<=11 vs far >=12, DISJOINT support kills span-matching) —
+substitution real at price level, washout-delay NOT detected
+at Phi level. OUTCOME: global basin reach YES at beta>=350
+(Form-1 maps the beta phase diagram; beta-SCALE origin —
+why ~350 — OWED to C2, like T_c: measured boundary, not
+derived constant); knot-differential washout NO (needs
+matched-span apparatus = bigger knot, or dynamical chi where
+feedback may amplify past selection — sign unknown, no
+extrapolation). Gateway shell CONFIRMED (W_fabric medians
+flat ~2.0 = no halo; q90 near 4.79 > far 3.99 despite
+n=113<<2551 = tail shell). Guard: 350 passes (2.09<3); 3500
+trips to 11.9 WITH ratio intact (predicted trip =
+linearity confirmation). B-STATUS: radial anatomy banked
+in-test (near/far rows + W_fabric trajectories' endpoint) —
+B satisfied for the GLOBAL effect via A post-processing (as
+filed); knot-differential anatomy limited by selection
+(same caveat). C2 BRIEF: (i) static congestion suffices for
+VACUUM pricing globally — C2 inherits a working price
+mechanism, owes the beta-scale + formation; (ii) knot effect
+needs dynamical chi (traffic feedback) or bigger apparatus;
+(iii) substitution sign under feedback UNKNOWN (may flip —
+filed caution stands). C2-DESIGN (review roadmap + sign
+analysis — A CLOSED, no more static pricing): C2 question:
+can traffic-price feedback GENERATE pricing scale (order-one
+in => basin out)? Loop chi_n=chi(G,w_n), w_{n+1}=F(w_n,chi_n),
+topology FROZEN (feedback before formation). SIGN ANALYSIS
+(lead result, pre-code): CONGESTION-feedback ATTENUATES
+(negative feedback: expensive sheds load => chi(w*)<chi_0 =>
+w* below static; Wardrop-like homogenization pressure =
+hierarchy unstable; all-or-nothing betweenness =>
+FLAPPING risk: priced-out => chi collapses => fallback =>
+oscillation; (alpha,cadence) = damping) — its role is
+STABILITY/SHAPE, never scale. ATROPHY-feedback (idle =>
+expensive) AMPLIFIES (positive feedback on idle links) but
+needs cap (runaway; cap-scale = beta-scale in disguise — NO
+FREE LUNCH) or budget principle (sum w = B, scale from B —
+CANDIDATE, needs justification, NOT adopted) or saturating
+form w*=1+beta(1-chihat(w*)) (Form-1 + dynamical chi +
+complement: bounded by beta, implicit fixed point). 2x2
+MATRIX: (betw,cong) = A-continuity, expect attenuation/flap
+(RUN); (betw,atr) = EXCLUDED analytically (interior chi
+lowest => priced highest — inverted hierarchy, knots die
+first; exclusion filed, not run); (walk,cong) = knot-hostile
+IF walks trap in cliques (VERIFY walk-traffic pops first —
+assert nothing); (walk,atr) = SCALE candidate IF pops split
+(interior flow-trapped/high, weak low). C2 = TWO feedback
+laws (sign fork IS the experiment), not one. CONTINUITY
+SELECTOR (design criterion): walk-chi continuous in w =>
+fixed-point theory applies (Brouwer + Jacobian); betw-chi
+discontinuous => expect cycles, pre-register cycle analysis
++ time-average <Phi> fallback (flickering locality
+observable if limit cycle). SCALE RECURSION (honest): every
+variant bottoms at a scale (beta/cap/B); C2 owes MECHANISM
+(direction + amplification-vs-attenuation + stability),
+scale origin stays owed (phase diagram, not T_c;
+"order-one" amplification needs derived gain, never bare
+measurement). CHI-UPDATE CADENCE m (every-m-ticks) =
+design parameter (timescale separation + exact-betw cost
+~7s/tick — recomputing every tick infeasible; principled:
+traffic equilibrates slower than prices adjust... or noted
+either way). C2 CONTROLS: embeddedness run as REGRESSION
+control (static chi => must reproduce A-control EXACTLY —
+code-path check). PASS/FAIL (adopted): STRONG (order-one =>
+basin + stable); PARTIAL (amplification insufficient =
+mechanism-only); FAILURE (stuck ~1 / collapse / runaway
+without useful regime). C1-SKIP ENDORSED (analytic reason:
+static-chi Form-1 unplanted relaxes to w*=G(chi) => sectors
+= chi-level-sets BY CONSTRUCTION — cannot surprise;
+skipped as principled, runnable cheap later as complement).
+M_O AUDITS (after viable C2 ONLY — audit what works):
+Laplacian/exit/Kron = three independent R testing
+M_O U ~= U_eff M_O = D12 [U,R]~0 CENTRAL EQUATION (link
+filed — audits ARE D12's experimental program); SEQUENCE:
+Kron first (exact, parameter-free), diffusion/exit after
+(t-scale = shopping hazard — pre-register from spectral gap
+1/lambda_2 or equivalent intrinsic rule); TRAP WARNING:
+w-as-PHYSICS (conductances in Laplacian = diffusion
+process) allowed, w-as-RULER (d^w-based eta) stays FORBIDDEN
+— eta rulers topological always. (Uploaded-conversation
+reference opaque to agent — responding to summary only.)
+ROADMAP LOCKED: A [done] -> C2 feedback [NEXT] -> M_O audits
+-> dynamic topology + knots -> primordial falsifier. NEXT
+UNIT: walk-traffic pops spike (decides matrix) -> DUAL
+derivation (betw-cong + walk-atr fixed points/stability;
+cycle-analysis for discontinuous cell) -> preregister both
++ exclusions -> run same apparatus. WALK-SPIKE SPEC (FROZEN —
+spike decides fork mechanically): walk-chi = FINITE-horizon
+transient traffic (infinite-horizon stationary edge-traversal
+is EXACTLY uniform 1/E — pi_i/d_i=1/2E per direction — so T
+is load-bearing, not a detail): W=50000 walks, horizon T,
+uniform starts/neighbor choice, seeds {0,1}; chi_e =
+traversals/(W*T) (intrinsic fraction, no scale trap).
+ORDERING hypothesis: interior > fabric > weak (trapping >
+wandering > stumbling). T-scan {10,20,40,80}; PASS = strict
+median ordering at >=3 of 4 (robustness); T-FREEZE RULE
+(pre-stated): T=40 (~system radius 78/2, recorded before
+seeing) IF in plateau ELSE plateau midpoint. PRECISION RULE
+(not shopping): orderings agree both seeds else raise W.
+SUSCEPTIBILITY: weighted walks P(i->j) propto 1/w (reduces to
+uniform at w=1 — continuity); PRIMARY uniform-lambda probe on
+all weak links lambda in {1,2,5,10,20} (hand-set measurement,
+Lw-campaign logic); avoidance A(lambda)=chi_weak(l)/chi_weak(1):
+PROCEED if A(10)<0.3, KILL if >0.5, gray judged+reported;
+fabric-retention A_fab(10)>0.7 REQUIRED (differentiation
+sustained). SECONDARY single-edge lambda (3 representative
+weak links) for local gain. DECISION: both legs pass =>
+derive walk-atrophy (saturating, GAIN-FED from banked A(l));
+either kills => kill static walk-atrophy WITH leg+numbers
+(scale then needs budget/other-chi — decided then, not now).
+DATAFLOW FILED: spike -> A(l) gain -> derivation -> lock ->
+code (derivation consumes spike numbers). BETW-CONG
+DERIVATION (parallel, spike-independent): analytic core =
+per-edge OWN-effect <=0 (raising e never adds e to shortest
+paths — own-chi monotone nonincreasing in own-w) + CROSS >=0
+(reroute); predictions: weak w* BELOW static (attenuation
+factor = this run's number), fabric at/above static
+(absorption), basin needs HIGHER beta than static-350
+(measured gap), flapping possible (cycle + <Phi> fallback
+armed, no Jacobian — discontinuous). Runs beta in {35,350}
+only (narrower question). CADENCE HONESTY: shortest-path chi
+has NO intrinsic timescale => m=1 ideal, m=4 cost-compromise
+(7s/eval); pre-registered m=1 VALIDATION run at beta=350
+(must agree qualitatively else cadence artifact). FREEZE LIST
+(before implementation): fixed-point predictions,
+Jacobian-where-continuous / cycles-where-not, Phi(n,k),
+<Phi>, price distributions, embeddedness exact-null
+regression, + banked A(l) curve. WALK-SPIKE AMENDMENTS
+(ADOPTED pre-data — both reviewers converge; analytic
+corrections, spec v1->v2, appended never silent): (a) EXACT
+finite-horizon propagation PRIMARY (deterministic O(TM), no
+seeds/W); Monte Carlo DEMOTED to implementation check (one
+config: ordering agree + fab-med within 10%; W-escalation
+DROPPED — mismatch = bug, stop). (b) PLATEAU -> BROAD WINDOW
+(signal MUST vanish at stationarity (uniform 1/M) —
+near-stationary plateau would count AGAINST; window =
+contiguous strict block spanning >=4x; scan extended
+{1,5,10,20,40,80,160,320} (exact is cheap); T=1 closed-form
+anchor + T=320 flattening expectation (not gated)).
+(c) RADIUS justification STRUCK (diffusive sqrt(T), not T);
+T=40 = protocol value, intrinsic justification OWED (debt:
+T-from-state-machine — relaxation/mixing/intrinsic clock).
+(d) STATIONARY NULL banked alongside A(l) (from conductances;
+difference = structural contribution); pass NARROWED
+(feasibility-under-protocol, never discovered mechanism).
+(e) NORMALIZATION narrowed (sample-only; P(alpha w)=P(w)
+relative-routing; beta/M regime visible — scale stays open).
+(f) CROSS-EFFECTS corrected to SIGN-INDEFINITE (5-node
+counterexample VERIFIED bit-exact + PINNED: at 3->2 while
+sb 3->4, sa 5->2, bt 1->4); own<=0 kept (fixed demand);
+"fabric absorbs"/"higher beta" demoted to HYPOTHESES;
+two-point beta limits (both-fail = failure-at-settings, NO
+boundary location); concave-D [chi(w')-chi(w)]·(w'-w)<=0
+ADOPTED-conditional (saturation/cadence/discrete TBD in
+derivation); flapping = cadence-vs-stepsize distinguished;
+cycle fallback = <Phi(w(t))> + basin-time fraction (never
+Phi(<w>)). (g) GAIN-vs-RESPONSE: single-edge probes HELD OUT
+from gain derivation (validation set; uniform-lambda
+calibrates). (h) INJECTION/LIFETIME = mechanism-part
+(uniform starts + T = source protocol, not neutral
+measurement; alternatives deferred). (i) KILL SCOPE: this
+construction only. WALK-SPIKE VERDICT: leg1 ORDERING KILL
+(0/8 strict horizons; interior monotone 5.0e-05->2.2e-04
+toward uniform, NEVER crossing fabric~0.00031; T=1 anchor
+bit-exact 2.7e-20; analytic sandwich confirmed inverted-
+at-1/equal-at-inf). WORSE THAN MISS: signal INVERTED
+(interior LOWEST everywhere => atrophy would price knots
+HIGHEST — catastrophic inversion, knots die first);
+fab~=weak TIED within 1-4% (order unstable across scales:
+full fab barely above, reduced weak barely above) => NO
+weak/fabric lever either. leg2 PASS-AS-FEASIBILITY (A(10)
+0.1036/1.0135 tracks stationary null 0.1011/1.0108 to ~2%
+at ALL lambda — avoidance = conductance math, structural
+~0; single-edge = uniform (0.102 — avoidance LOCAL
+per-edge, no collective component; held-out banked).
+MC-check passes (ordering agree False=False, fab-ratio
+1.004). T-freeze fallback executed (no window -> T=40 for
+lambda-probe, banked anyway — pre-stated). OVERALL: static
+walk-atrophy KILLED (preregistered gate, decisive 0/8 +
+inverted signal). CONSEQUENCE (labeled by status):
+(walk,cong) effectively dead — NOT gated (measured-
+consequence: tied weak~=fabric => no differentiation
+lever; gated kill applies to atrophy only). Static-chi
+EXHAUSTED for scale ((betw,atr) excluded analytically;
+(walk,.) voided empirically; (betw,cong) = attenuation
+control, never scale) => C2-scale needs GENUINELY-
+DYNAMICAL state variables (stateful traffic? budgets? —
+new design AFTER betw-cong run). ORDER: betw-cong feedback
+run FIRST (close static chapter; fully derived) ->
+dynamical-chi design. (Spike process note: comprehension-
+recompute bug 3040x (spike-only, fixed; deterministic-
+identical results — determinism-check value demonstrated).)
+STATIC-CHI HEADSTONE (review verdict adopted — closure, not
+mere negative): 2x2 collapse = (betw,cong) attenuation-control
+/ (betw,atr) analytic exclusion / (walk,cong) no-lever (tied)
+/ (walk,atr) empirical kill (inverted). Kill sentence: chi_K
+< chi_F ~= chi_W => atrophy gives w_K > w_F ~= w_W — actively
+attacks knot, barely separates weak from fabric.
+MONOTONE-ORDER UNIFICATION (two applications, one root):
+monotone g preserves order structures — (i) overlap theorem
+(cannot un-overlap tails), (ii) kill sentence (cannot invert
+rank); g-shopping provably futile both directions.
+Susceptibility as NEGATIVE CONTROL adopted (0.104 vs 0.101
+null, single-edge 0.102 = uniform 0.104 => avoidance is
+EDGE-LOCAL conductance response, collective rerouting ~0.002
+— "network self-organization amplifies" dead for walks
+specifically). NO-CHI-SHOPPING RULE (enforcement): any future
+static-chi proposal must FIRST state its 2x2 cell + why it
+escapes that cell's verdict. Worked preemptive kill:
+current-flow/random-walk betweenness reduplicates the
+BETWEENNESS COLUMN (s-t absorbing flows use shortcuts like
+shortest paths: weak-high/interior-low predicted same shape;
+atrophy inverted, congestion attenuation-only) — smoother
+(linear-solve continuous => fixed-point theory, no flapping)
+but same verdicts; admissible ONLY as follow-up smoothed
+attenuation experiment if betw-cong flaps uninterpretable,
+never scale candidate without new argument. BETW-CONG AS
+CLOSURE (locked questions): attenuation factor? beta=350
+still in basin? fixed points vs cycles? cadence-sensitive?
+Outcomes all useful (stable-in-basin = vacuum-pricing
+mechanism with unexplained scale; out = open-loop-only;
+cycles = <Phi(w(t))> + basin-fraction verdict). Then
+static-chi CLOSED whatever the answer. ABSTRACTION-LEVEL RULE
+for what follows: no new scalar chi(G,w) — next variables
+must be STATEFUL (q with memory: identical instantaneous
+traffic, different price via history — S_n=(G,w,q,...)) or
+PRINCIPLED-BUDGET (sum Q = const with physical Q
+interpretation BEFORE implementation — uninterpreted Q_total
+= beta-in-costume, rejected in advance). Sign of stateful-F
+NOT chosen yet (derive from machine-supplied
+conserved/current quantities first). H-GATE: gate v2 applies
+to H equally (blind reads, update-form, no inserted targets —
+memory exempts nothing); BOUNDED MEMORY (scalar q_e, fixed dim
+— unbounded histories = infinite state, excluded); MU-DEBT
+(memory timescale mu needs intrinsic source — same ledger as
+T). WALK-CAMPAIGN
+METHODOLOGICAL VERDICT (preserved prominently, never buried):
+smoothness + globality of an observable are NOT enough — it
+must carry structural information beyond its stationary
+transport law (walk-chi's ordering dies at stationarity AND
+its avoidance is pure conductance math). This is the filter
+against unconstrained model-building next stage.
+(Uploaded-conversation boundary-response/memory remark: noted
+convergence (dense interiors may need storage/memory) —
+reference opaque to agent; independent pointer toward
+statefulness, not evidence.) ROADMAP (narrowed, locked):
+A-static-congestion [done] -> betw-cong feedback [done] ->
+static-chi CLOSED [done] -> stateful-scale derivation [done] ->
+gain-free discriminator [done] -> {formation/dynamic topology}
+[NEXT: design] -> M_O audits. BETW-CONG
+DERIVATION (LOCKED closure run — docs-only turn; code next):
+LAW w'=(1-a)w+a(1+b*betw_e(w;n)), betw = exact weighted edge-
+betweenness recomputed every m ticks; a=0.2, n=64 ticks,
+beta in {35,350}, m=4 production + m=1 VALIDATION at 350;
+deterministic. Embeddedness regression control same runner
+(static chi => A-control EXACT — runner-machinery check).
+BOUNDEDNESS (analytic): normalized betw <=1 => w*<=1+beta
+ALWAYS — runaway impossible; branch restated converge /
+cycle / saturate-at-cap (persistent non-convergence ~beta).
+FIXED POINT w*=1+beta*b(w*) implicit, existence NOT
+guaranteed (discontinuous) — converge (residual<tol) vs
+cycle (amplitude/period + <Phi(w(t))> + basin-time fraction,
+never Phi(<w>)). ATTENUATION (status-labeled): weak own
+w*_med < static = THEOREM-direction (own<=0), magnitude =
+run's number; fabric = HYPOTHESIS (sign-indefinite, either
+informative); beta=350 basin = HYPOTHESIS (attenuation may
+exit — THE closure question, never corollary); interior ~1
+(checked, ungated). REROUTING MAP (PRIMARY anatomy, banked
+FOR q-design): R1 per-pop Delta-chi medians (weak<=0
+expected; fab/int measured); R2 r_O-binned fabric Delta-chi
+median+q90 (gateway pile-up? diffuse? corridor? —
+positions not verdicts); R3 top-20 gaining fabric edges
+listed (ungated); R4 chi_med(n) trajectories + late-time
+per-edge variance (flap amplitude); R5 concave-D
+[Delta-chi]*[Delta-w]<=0 to FP tol — EXECUTABLE analytic
+check (violation = bug/tie-subtlety, never physics). Map's
+VARIANCE structure (slow/transient swinging loads) = banked
+q-design input (q remembers slow variables; design AFTER
+closure). FLAPPING PROTOCOL (conditional, pre-registered):
+cycles at (m=4,a=0.2) => run (m=1,a=0.2) then (m=4,a=0.1);
+attribute cadence (m=1 kills) / step-size (a/2 kills) /
+physical (both persist). m=1 bar: SAME branch + SAME basin
+in/out as m=4. OUTCOMES: IN-BASIN-STABLE (vacuum mechanism,
+scale unexplained) / OUT (open-loop-only) / CYCLES (<Phi>
+verdict) — ALL close static-chi. TEST/FILE SPLIT: tests pin
+reduced-state mechanics + qualitative closure (attenuation
+direction, concave-D, determinism, m-shape, fast m=1
+machinery); full-state verdict (factor, basin, cycles, map)
+filed from spike (precedent). NEXT: code closure run.
+BETW-CONG VERDICT (closure run executed 40x40/64 ticks;
+static-chi CLOSED): runner check PASSES (embeddedness control
+bit-exact maxdev 0.0, Lw1 rows frozen). beta=35 m=4:
+weak_med 1.826 (att 0.826), residual 1.05, latevar 0.066,
+rows (40,35,29,18)/None. beta=350 m=4: weak_med 6.913 (att
+0.591), residual 18.7, latevar 8.96, rows (39,26,13,1)/None
+— OUT of basin, basin-frac 0.0, R4 overshoot+ring. beta=350
+m=1 (PHYSICAL branch): weak_med 7.842 (att 0.684), fab_med
+2.5468 (static 2.0933 — UP, rerouted load lands on fabric),
+residual 9.289, endpoint (39,27,13,0) cross=3, basin-frac 1.0
+(7/7 late snaps cross=3); R4 weak chi_med 0.0286->~0.019 by
+t=8 then flat, NO ringing; weak-var med 0.018 vs m=4's 2.638
+(~150x quieter). PROTOCOL VERDICT: m=4 flapping + basin exit
+= CADENCE ARTIFACT (m/tau~1 ringing with stale chi — m=1
+kills flapping AND restores basin; a=0.1 step correctly
+skipped per protocol); both cadences attenuate (same branch
+direction — basin membership was the artifact). REROUTING MAP
+(m=1, banked for q-design): R1 weak -0.00634 (sheds) / fab
+-0.000204 (median flat) / int +2e-06; R2 fab q90 near
+0.00615 / mid 0.00818 / far 0.00622 (tails gain in ALL bins,
+mid highest — NO gateway pile-up); R3 top gainers scattered
+far corridors (r_O mostly 21-27); R4 above; R5 concave-D
+-5.00 <= 0 (m=4: -1.03/-14.09 <= 0 — check held both
+branches, no bug). RESIDUAL HONESTY: endpoint 9.289 max-norm
+= median-converged + edge-level flapping (discontinuous chi,
+expected; boundedness w*<=1+beta holds) — basin verdict via
+basin-fraction + endpoint cross, never residual-gated.
+OUTCOME: IN-BASIN-MEDIAN-STABLE (feedback retains basin with
+attenuated factor; beta=350 scale still inserted =
+unexplained; edge flapping footnoted). STATIC-CHI CLOSED
+(full 2x2 collapse complete — (betw,cong) cell verdict now
+measured: attenuation-only; no scale separation in any
+static chi). GAPS (honest): beta=35 m=1 unattributed
+(unverified, cadence-by-analogy only — out of preregistered
+scope); fixed-point existence still open (median-stable,
+not max-norm). TEST/FILE HONORED: test_betw_cong_closure
+pins reduced-state mechanics + qualitative (determinism,
+control, cadence structure, attenuation direction, R1,
+concave-D, Phi m-agreement); full-state verdict HERE.
+REVIEW-CLOSURE ADOPTED (post-verdict review — agreed +
+filed): SLOGAN: static congestion pricing ->(endogenous
+feedback) attenuated-but-stable vacuum pricing (NOT
+amplification, NOT collapse); scale origin UNRESOLVED,
+scale stability under feedback DEMONSTRATED at tested
+beta=350 ("stable" = median-stable + basin-frac 1.0, edge
+flapping footnoted — qualifier load-bearing). TWO-FLAPPING
+DISTINCTION (locked vocabulary): MACROSCOPIC cadence
+ringing (m=4 overshoot->ring->basin-exit, killed by m=1 =
+discretized feedback-delay artifact) vs MICROSCOPIC
+assignment flapping (endpoint residual 9.29, intrinsic
+shortest-path discontinuity — m=1 does NOT kill it; never
+conflated — the distinction was worth the m=1 run). FORMAL
+2x2 CLOSE (restated, final): (betw,cong) useful open-loop +
+feedback preserves basin at 350 / (betw,atr) excluded by
+ordering / (walk,atr) preregistered empirical kill /
+(walk,cong) no structural lever; no principled g(chi)
+search remains (monotone-order). BETA-35 HONESTY SHARPENING
+(reviewer-caught, fixed): NO basin statement at beta=35/m=1
+whatsoever — neither fails nor passes; beta=35 m=4 numbers
+are cadence-suspect RAW DATA only; "cadence-by-analogy"
+language STRUCK (smuggled a verdict by analogy).
+UTILIZATION-HISTORY PRIOR for q (adopted as PRIOR, not
+theorem): rerouting non-knot-local (no gateway pile-up,
+far-corridor gainers) => memory tracks edge/path
+UTILIZATION history (accumulated/decaying traffic J_e),
+not knot proximity; second leg H-gate sourcing (traffic
+locally observable per edge; knot-proximity has NO machine
+source — knots are observer-identified); prior selects the
+utilization FAMILY, not the member (normalized vs raw J,
+which traffic notion = derivation work). NEXT-UNIT LOCK
+(derivation BEFORE code — no memory implementation until
+derived): SHARPENED QUESTION: can temporal accumulation
+generate the pricing scale static state cannot? CANDIDATE
+FORM q_e(n+1)=(1-mu)q_e(n)+J_e(n), w=F(q) (sign /
+normalization / mu UNCHOSEN — derivation first).
+STEADY-STATE DANGER (mu-debt's first concrete entry):
+steady traffic => q*=J*/mu => 1/mu = beta~350 in disguise
+unless escaped; linear-accumulation steady gain is ALWAYS
+kernel-integral (generalized beyond one form). FORK:
+bounded stateful traffic => does amplification emerge from
+feedback structure? YES (gain set by graph / implicit
+fixed-point structure) -> candidate mechanism / ONLY-AS-1/mu
+-> timescale debt = scale debt, renamed not solved / NO ->
+memory doesn't solve D14 scale (formation/topology branch
+inherits per roadmap). ACCEPTANCE CRITERION for YES: gain
+formula contains NO mu (mu only in rates/timescales).
+DERIVATION MUST ADDRESS: (i) normalized-J / budget routes
+to mu-free RELATIVE prices (w~q/Sigq => steady relative ~
+J*/SigJ* — absolute gain then lives in F = beta-in-costume
+unless derived); (ii) nonlinear-H escapes and their
+smuggled scales (thresholds ARE scales); (iii) what counts
+as feedback-structure amplification (implicit q->w->routing
+->J->q fixed point, criticality, conserved redistribution).
+DEBT-IDENTIFICATION RULE: any gain reducing to a free
+parameter (mu, threshold, uninterpreted Q_total, F-gain) is
+NAMED as that debt, never as emergence.
+NEXT: stateful-scale derivation unit (docs-only,
+pre-registered above — answers NOT derived this turn).
+STATEFUL-SCALE DERIVATION (executed docs-only — answers
+derived this turn): LINEAR KILL (theorem-direction, no run
+needed): LTI memory q=K*J + affine w=1+gq => steady
+w*=1+(g*SigK)J* — IDENTICAL to static congestion with
+beta=g*SigK (first-order: q*=J*/mu as flagged); memory
+contributes TRANSIENTS ONLY (timescale 1/mu; higher-order
+kernels ring — temporal structure, not scale). Memory axis:
+mu=1 IS static (one-tick lag, same steady); mu->0 windup
+(no steady state, excluded by bounded-memory); interior =
+static-with-transients. Linear memory KILLED as scale
+mechanism. STRUCTURAL-NUMBER CRITERION (YES-prong
+admission): dimensionless machine => every number is
+STRUCTURAL (counts, spectral values, lattice unit, path
+masses) or DEBT (modeler-chosen) — gain ~350 must be
+structural; YES prong currently UNOCCUPIED (no candidate
+exhibited). CHARACTERISTIC-SCALE LEMMA: smooth
+nonlinearity f carries free scale |f'/f''|
+(operating-point/crossover — free unless derived);
+scale-free power laws carry free (prefactor, exponent);
+thresholds/saturations carry free scales in J/q units;
+criticality fixes SHAPES (exponents), never AMPLITUDES.
+Nonlinearity buys shape freedom; magnitude stays debt.
+FEEDBACK AUDIT: closed-loop cartoon g/(1-loop) — loop->1
+amplifies but distance-to-critical is TUNING (debt); SOC
+removes tuning but magnitudes are cutoff-set (structural
+ONLY if cutoff is machine-structural — unoccupied);
+positive feedback => saturation-set switches (saturation =
+scale; unsaturated => unbounded, excluded); our m=4
+ringing exhibits the general fact (feedback structure
+mints TIMESCALES/oscillations, not scale); implicit
+q->w->routing->J->q fixed point REDISTRIBUTES given gain
+(measured: attenuation 0.684) — modulation, never minting.
+BUDGET ROUTE: Sigq=Q or normalized J => steady RELATIVE
+prices mu-free (w~q/Sigq => relative ~ J*/SigJ* exactly)
+— but absolute gain lives in F (debt) UNLESS gain-free
+ratio pricing. TRAFFIC-RATIO SCALE (filed numbers only,
+no code): normalized betw => Sig chi = Lbar; mean chi =
+Lbar/E ~ 26.7/3380 ~ 0.0079; weak chi_med 0.0286 =>
+ratio ~3.5 — structural hierarchy is O(few);
+basin-entry weak_med in indicative interval (2.00,11.00)
+(beta=35/350 static brackets; shape-transfer approximate)
+=> gain-free candidacy MARGINAL, undecidable by
+derivation. ERRATUM (post-measurement): Lbar 26.7 was
+pure-grid; swapped+clique Lbar ~14.3 (measured 14.26;
+small-world shortening; Sig chi = 14.268 confirms the
+identity) => corrected sketch ratio ~6.2 = measured 6.216;
+O(few) claim stands, estimate superseded. POSED DISCRIMINATOR (designed NOT run —
+zero-free-parameter pricing w_e=max(1,J_e/Jbar),
+J=static betw, Jbar over non-interior edges per
+mask-exclusion precedent, fabric-safe by lattice-unit
+clip — 1 is ontological, not free): HEALS => D14 scale
+dissolves into traffic structure (YES prong occupied, no
+memory needed) / FAILS => debt confirmed
+(nonlinearity/gain required => named debt;
+formation/topology inherits). NO directional prediction
+(marginal 3.5 in (2,11) — interpretation pre-registered,
+outcome open). FORK VERDICT: linear NO (proven);
+nonlinear/feedback ONLY-AS-debt (lemma + audit);
+structural YES unoccupied pending discriminator.
+Memory's scale candidacy SUSPENDED (not killed —
+discriminator + YES-criterion are the live paths).
+NEXT: gain-free discriminator run (cheap static run —
+code next turn).
+DISCRIMINATOR VERDICT (executed full-state, ~7s): FAILS —
+rows (39,30,20,4)/None, no TOL crossing => debt CONFIRMED
+per pre-registered interpretation (basin reach needs
+nonlinearity/gain = NAMED debt; YES prong logically open
+but its natural structural candidate fails;
+formation/topology inherits). Numbers: Jbar(nonint)
+0.004598, weak_med 6.216 (pure traffic ratio), fab_med
+EXACTLY 1.0 (median fabric clipped to ontological floor),
+max_w 11.707 — hierarchy PEAK reaches static-beta=350
+median scale (~11) but MEDIAN (6.2) sits in the dead
+interval: right order at top, insufficient mass at median
+(shape AND magnitude defeat it). DOSE-RESPONSE (secondary):
+rows strictly between locked static brackets at every k
+(beta=35 (40,34,29,17)/None, beta=350 (36,23,7,0)/cross=3)
+— Phi monotone in weak_med over three points (2.0/6.2/11.0),
+indicative basin-entry threshold NARROWED to (6.2,11.0)
+(shape-transfer approximate). D14 STATUS: static pricing
+can reach the basin (A) and survive feedback (closure) but
+its GAIN is debt by elimination (linear/memory/budget
+audited, structural candidate failed) — magnitude origin
+now belongs to formation/dynamic topology or an
+unexhibited structural number. Test pins full-state rows +
+medians + dose-response (test_gain_free_discriminator).
+NEXT: formation/dynamic-topology DESIGN unit (docs-only
+pre-registration first — derive-then-code rhythm holds).
+P0' RESTATEMENT (conditional — model.md NOT rewritten:
+D14 has no U): IF a separating U is exhibited + basin breadth
+passes + residue → 2 with weak-global residue characterized, THEN
+P0' restates from "vacuum is 2D fabric (<z>=4)" to "vacuum is the
+depleted stationary phase of U" with d_I^vac ≃ 2 as PREDICTION
+(Maxwell survives as basin characterization, not origin; "why 2"
+moves from postulate to dynamics-output — the U must still
+actually output 2).
+FALSIFIER (pre-registered campaign, queued behind exhibiting ONE
+separating U — existence before universality): homogeneous graphs at
+broad d_* (3.7/5/8…), simple conserved blind aggregation U, no
+dimensional targets; measure per-phase d(t) (spectral/information).
+Pass = knots stabilize + residue → ≃2 robustly across initial
+ensembles; fail = U must be told "make residue 2D" (learned nothing).
+Methods problems (open, not blockers): per-phase dimension needs
+pre-registered knot membership (threshold/scale choice is the tuning
+hazard); arrest vs completion (partial separation is FINE — we
+observe both phases); ripening (small knots evaporating into one
+giant knot = bad, unless BH-like = good — must be shown, not hoped).
+Resonance noted: the triangle-rule dense clusters (clustering 0.40,
+p → 2.8) are baby knots — aggregation-like flow already seen, just
+never separation. Level placement: P0'-level origin story (downstream
+of exhibiting U); L0 conditionals untouched per the independence
+discipline; no U, no theorems — sketch only.
+
+**Kill relevance:** none until a separating U is exhibited; then the
+basin-breadth test above is the wire (single-ensemble separation =
+curiosity, broad-basin = genuine attractor).

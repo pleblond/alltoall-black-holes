@@ -3,6 +3,33 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v5.3** — D1 update-rule tournament (third pass) + D14 pricing-hierarchy
+  closure + J2 micro/macro probe: tournament harness + 11 rules
+  (single-move insufficiency, (`p`, longs) joint falsifier; coordinated
+  double-swap 30 → 1, visibility-chained triple fully heals, census-gated
+  order-4 clears corners, ungated ablation pinned as scrambler; T-knob
+  anneal unifies gate duality at orders 2+3); blind-`U` reframing adopted
+  (stationary-ensemble vacuum, `U`-admissibility, drift/square/triangle
+  entrants, Metropolis/kappa negatives, triangle-landing misdirection +
+  degree-fiber reachability); coordination-need substrate-dependent
+  (triangular pair heals 24→0, hex guillotine 54→17, Delaunay pair600
+  21→0, Gabriel census limit, medial/k-NN/Lloyd verdicts);
+  self-calibrating census (median-relative); cross-candidate battery;
+  D10a derivation negatives; D11 tail + D10b κ-profile closed; `M_O`
+  filed + static depth bake-off negative; Tier-1 MDS calibration
+  (Delaunay bowl) + shell-counting dilemma + SI first-passage +
+  tolerance curve (binary longs collapse 2-dominance at 2); D10
+  weighted-audit adoption (T15 cites Prop 1); D14 cosmogony sketch +
+  weight-selection pre-reg + self-pricing entrant; weighted-RG washout
+  (`Lw`=10 → 0 by level 3, no pumping); Φ-apparatus + knot pilot +
+  χ-spike verdict; experiment A (β=350 recovers banked slice, Δy_w
+  split); walk-atrophy killed; betw-cong closure (att 0.684, m=1
+  in-basin, cadence artifact, static-χ CLOSED); stateful-scale
+  derivation (linear-memory kill, YES-prong criterion); gain-free
+  discriminator fails (6.2 in dead band) → gain is debt, formation
+  inherits; J2 probe (exact quotient + shell/cut laws, bipartite
+  correction, perturbation family-typical, tier deferred); paper v5
+  S11 + ledger (49 refs). 540 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form

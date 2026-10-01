@@ -372,5 +372,51 @@ def build_medial_quad(n_points: int = 1600, box: float = 40.0, seed: int = 0) ->
     return g
 
 
+def _j2_mul(p, s):
+    """J2 = Z^2 ⋊ Z2 (swap action): (x,y,b)·(u,v,d) with x/y swapped iff b=1."""
+    (x, y, b), (u, v, d) = p, s
+    a1, a2 = (u, v) if b == 0 else (v, u)
+    return (x + a1, y + a2, (b + d) % 2)
+
+
+_J2_GENS = (
+    (1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0),
+    (1, 0, 1), (-1, 0, 1), (0, 1, 1), (0, -1, 1),
+)
+
+
+def build_j2_ball(radius: int) -> nx.Graph:
+    """D'Ariano-Erba-Perinotti J2 micro/macro probe: radius-`radius` Cayley ball.
+
+    Vertices (x,y,b) tuples (b = sheet); 8 walk-graph generators
+    {±h1,±h2,±h1c,±h2c} (degree exactly 8, inverse-closed). Balls are
+    BFS-exact: shells/vols/cuts from (0,0,0) match the infinite graph
+    for r <= radius (cuts: r < radius). Deterministic (no seed).
+    Two-cell quotient {(x,y,0),(x,y,1)}→(x,y) is the square lattice.
+    """
+    if radius < 0:
+        raise ValueError("radius must be >= 0")
+    g = nx.Graph()
+    root = (0, 0, 0)
+    g.add_node(root)
+    frontier = [root]
+    for _ in range(radius):
+        nxt = []
+        for p in frontier:
+            for s in _J2_GENS:
+                q = _j2_mul(p, s)
+                if q not in g:
+                    g.add_node(q)
+                    nxt.append(q)
+                g.add_edge(p, q)
+        frontier = nxt
+    for p in list(g.nodes()):
+        for s in _J2_GENS:  # induce: outer-layer mutual edges
+            q = _j2_mul(p, s)
+            if q in g:
+                g.add_edge(p, q)
+    return g
+
+
 def num_edges_complete(n: int) -> int:
     return n * (n - 1) // 2

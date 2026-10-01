@@ -123,3 +123,55 @@ def hop_arrival_times(g: nx.Graph, seed: int = 0) -> dict[int, int]:
     if len(g) == 0 or seed not in g:
         return {}
     return dict(nx.single_source_shortest_path_length(g, seed))
+
+
+def si_first_passage_row(g: nx.Graph, source, beta: float, rng, cap: int = 100000) -> np.ndarray:
+    """One stochastic-SI run from `source`: arrival step per node.
+
+    Chain-binomial SI: every infected node attempts each susceptible
+    neighbor independently with probability `beta` per step; infected
+    stay infectious (persistent attempts -- dropping failed transmitters
+    empties the frontier and strands the sim, a caught-and-fixed bug).
+    Nodes never reached by `cap` steps get `cap`. Seeded via `rng`.
+    """
+    infected = {source}
+    arr = {source: 0}
+    nbrs = {v: list(g[v]) for v in g.nodes()}
+    n = len(g)
+    t = 0
+    while len(infected) < n:
+        t += 1
+        nxt = set()
+        for v in infected:
+            for w in nbrs[v]:
+                if w not in infected and rng.random() < beta:
+                    nxt.add(w)
+        for w in nxt:
+            infected.add(w)
+            arr[w] = t
+        if t > cap:
+            break
+    order = list(g.nodes())
+    return np.array([arr.get(v, cap) for v in order], dtype=float)
+
+
+def si_fpt_matrix(g: nx.Graph, beta: float, K: int, seed: int = 0) -> np.ndarray:
+    """Mean SI first-passage distance matrix (symmetrized, seeded).
+
+    d(i,j) = E[T_{i->j}] over K stochastic-SI runs per source: the
+    first DYNAMICAL relational distance in-repo (response time as the
+    interaction quantity chi). Graph-internal, operational, frozen
+    rule (fixed beta); symmetrized since raw FPT is asymmetric.
+    cMDS null on 10x10 grid (beta=0.5, K=100): GoF2 ~ 0.89,
+    lam2/lam3 ~ 17.5 -- cleanly 2-dominant (test_mds.py).
+    """
+    rng = np.random.default_rng(seed)
+    n = len(g)
+    order = list(g.nodes())
+    M = np.zeros((n, n))
+    for i, s in enumerate(order):
+        acc = np.zeros(n)
+        for _ in range(K):
+            acc += si_first_passage_row(g, s, beta, rng)
+        M[i] = acc / K
+    return (M + M.T) / 2
