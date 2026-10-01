@@ -3372,3 +3372,48 @@ unchanged (matched-zero-k-bare-controls-stand!). <Γ>-trace-
 added-to-S2-cells (prereg-already-required (script-
 completion-pre-launch!)). Everything-else-stands. NEXT:
 S2-launch (gated on amendment-commit!).
+FEP-S1-FILED (S0/S1-complete (beast!)): 6/6-cap/2000 (L28-
+132-294s + L42-567-683s (contended!)); sitters-L28-d1/d2/d3
+(α≈0/-0.06/0.04 + cores-all-saves (masses-134-246!)); wanderers-
+L28-d0(α=1.49!) + L42-d0(α=7.05-teleport-artifact (slither-
+anecdote!)) + L42-d1(α=1.21); mass-CV-0.13-0.27 (Stage-0-✓!);
+determinism-cross-check-EXACT (masses/alphas-identical-to-P1-
+S1-interim (independent-reruns (zero-shared-files!))). A1-BANKED
+(formation-side!): sitter-CV≈0.13 + rms-2.6-26.1 (d1-jump-then-
+sit!) + jacc-mean≈0.6 (EXCHANGE-churn-✓!) + T-217→3483-3578
+(16×-growth!) + launch-covariates (B_chiral≈1.40-1.43 + tri-
+density≈2.2/node + masses-175-235 (triangle-rich-chirally-
+broken-hosts!)).
+FEP-S2-FILED (405/405-sealed (beast (24-workers!))): grid =
+3-sitters × 3-launches × 11-packets × 3-substrates (S-bracket-
+on-headline (54-S=100-heavies!)); pre-launch-script-fixes (0-
+sealed-before (pre-data!)): S=1-single-step-Krylov-path (oneway-
+latent-num=1-edge (ballistic.py-UNTOUCHED (equiv-2.2e-16!))) +
+frame-to-sweep-index-fix (boundary-misattribution!) + resume-by-
+key; suite-GREEN-607+2-skipped (PYTHONPATH-vs-editable-install-
+lesson-filed!); cells-sealed-until-S3 (margins-unopened!).
+FEP-0-VERDICT (NULL-0 (S3-opened (frozen-verdict-script
+(synthetic-smoke-verified!)))): preamble-invalid-78/405 (all-
+neither-approaches (prep-rule-cost-19% (dynamic-core-geometry!)));
+headline-formed-valid-30/36 (all-sitters-covered (7-8/9-per-class
+(adequate!))); acct-bad-0 (healthy!); zero-k-9/9-valid-speeds-0.0
+(nulls-✓!). GATES (109-scored-formed + 0-unscorable): g1-0/g2-0/
+g4-0/g5-0/g3-109/g6-51 (G6-mixed (window-churn (K-side-filed!)));
+persist-≡0 (r>5-NEVER (excess-0.46-1.08-vs-5 (uniform-ish!)));
+ratio-0.57-1.05-vs-<0.5 (torus-saturated (G3-all-pass-disclosed-
+vacuous-ish (flat-saturated!) (null-carried-by-G1/G2/G4/G5!)));
+wpm-late-0.70-0.84 (dispersive (flat-traps-0!)). CLASSES-0/4
+(fires-0 (margins-nowhere-near (no-near-miss!))). SCATTERING:
+residence-0 + mixing-dominance-0 (B0-readouts-quiet-on-dynamic-
+windows!). LADDER: E0-NULL ⟹ E1/E2/E3-NULL (no-candidates!);
+E4-OPEN (nothing-to-split!); E5-ARCHITECTURE-NULL (stands!);
+E6/E8-DEFERRED (spec!); E7-OPEN (gated!). ELECTRON-TABLE (post-
+freeze!): localization-NULL/rest-energy-NULL/mobility-NULL/
+conjugate-NULL/two-state-OPEN/charge-NULL(E5-architecture!)/
+statistics-OPEN/dispersion-OPEN/interaction-OPEN (no-aggregate
+(none-earned!)). ⟹ NO-finite-persistent-K+ψ-composite-under-
+frozen-one-way-coupling (formation + linear-wave-architecture-
+produces-no-particle-like-excitations (one-way-scope (reciprocal-
+B2/B3-untested-gated!))); NO-tuning-rescue (per-prereg!). NEXT:
+FEP-1-iff-P3-D-freezes (separate-amendment!); wanderer-E1-
+followup-NOT-FEP-0 (stands!).

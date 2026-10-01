@@ -25,6 +25,17 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   x-approach bare speed, plus fallback, else run-invalid); <Γ>
   trace added to S2 cells (prereg-required, pre-launch).
 
+- **unreleased (FEP-0 verdict NULL-0)** — D14-FEP S0–S4 complete
+  (beast): 6/6 formation reruns cap/2000, sitters L28-d1/d2/d3
+  (A1 banked, determinism cross-check exact vs P1); 405/405 wave
+  cells sealed (suite green 607 + 2 skipped); S3 verdict NULL-0
+  (109 scored formed, 0 fires, persist identically 0, excess ≤1.08
+  vs 5× bar, no residence/mixing fires, 0 flat-traps); E0–E3 NULL,
+  E4/E7 OPEN, E5 architecture-null, E6/E8 deferred; electron
+  comparison table filed post-freeze (no aggregate). No finite
+  persistent K+ψ composite exists under the frozen one-way
+  coupling; no tuning rescue per prereg.
+
 - **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked
   (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
