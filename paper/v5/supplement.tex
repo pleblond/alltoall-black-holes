@@ -16,8 +16,8 @@
 \section{Parameter audit and honesty ledger}
 \label{sec:audit}
 
-\begin{table}[ht]\centering\scriptsize\renewcommand{\arraystretch}{0.94}
-\caption{Every number with a status. ``Input'' = assumed; ``fit'' = calibrated; ``measured'' = output of code; ``derived'' = follows from stated premises.}
+\begin{table}[ht]\centering\scriptsize\renewcommand{\arraystretch}{0.84}
+\caption{Every number with a status: input = assumed, fit = calibrated, measured = code output, derived = follows from premises.}
 \begin{tabular}{@{}p{3.4cm} p{3.4cm} p{2.6cm} p{4.4cm}@{}}\toprule
 param & value & status & notes \\\midrule
 $k(M)$ map $\propto M^2$ & GR-consistency & input (circle admitted) & BM shrinks to $R_s = 2M$; not derived \\
@@ -38,8 +38,8 @@ D10 tension map & GR dip/overshoot/$\to3^+$ & GR computed; graph open & bare sho
 D12 reconstruction & $\forall M_O \in \mathcal{A}_{\mathrm{macro}}$ same IR & open program & P4 audit 1,2,3,5 pass, 4 partial; vantage axis filed; static depth neg.\ (vol+MDS); MDS bar per-substrate (del bowl) \\
 D13 causal order & D13.0 control measured; stages 1--4 open & static control measured (S11) & $V_G$, $8r{+}4$ law; family (tri/hex/Del/Lloyd/Gab/kNN/medial +, gated-wall/rewired $-$); sweep: N* O(1) range, f*→0 hypoth.; spectral $d_s$ band; twins C3 \\
 $U$-rule search & locality protection by $U$ & third pass: blind-$U$ + substrate census & blind-$U$ + admissibility; 7-substrate coord.\ verdicts; self-cal.\ census \\
-D14 pricing origin & hierarchy gain $\sim$350 & debt by elimination (measured) & basin + feedback OK (0.68); linear mem = static; ratio fails; formation inherits \\
-J2 micro/macro probe & quotient = square lattice & measured (probe, tier deferred) & shells $8r$/cuts $32r{+}16$/quotient $4r$ exact; bipartite; perturb.\ family-typical \\
+D14 pricing origin & hierarchy gain $\sim$350 & debt by elimination (measured) & basin + feedback OK; formation: DARK, NO-coex ($N^*$), SSB-1, St-0 NULL \\
+J2 micro/macro probe & quotient = square lattice & measured; working vacuum (v5.4) & quotient $4r$ exact; bipartite; perturb.\ family-typical; orient.\ absent (32 runs) \\
 $\kappa \to c_2$ map & $c_2 = p(2p-1)$ & ansatz (open derivation) & power-law vs $1/r^2$ disagree cross-applied \\
 evap.\ isometry $V_k$ & qubit $V_t$ done (D2) & graph $V_k$ open (S3) & $V_t^\dagger V_t{=}I$ tested; graph derivation queued (D1) \\
 Kerr $M_2$, $g_{t\phi}$, ISCO, QNM & area only & not derived (S3) & $A(M,a)$ assumed; quadrupole/QNM open; GW250114 QNM + GW241011 $\delta_Q$ future wires \\
@@ -63,7 +63,8 @@ Ruled out on the record: broad Planck-remnant dark matter (survives only in a
 $\sim 0.4$-dex EMD window at $\sim 4\times 10^5$\,g); isotropic $b_{\mathrm{crit}} = 8M$;
 naive $\gamma = 2$ strain; linear LIV; flat $p = 0.49$ ($-10\sigma$); bare
 shortest-path $d(i,j)$ for tense regions (inverted vs GR);
-resistance/communicability distances (S11).
+resistance/communicability distances (S11); directed/handed motion of
+pure-D5$\infty$ plateau blobs (Stage-0 NULL, S11).
 
 \section{Gravity methods (AS, AT, AU, BB, BH, BI, BJ, BV)}
 
@@ -499,7 +500,7 @@ Modules follow the appendix letters of the v4.1 extended record:
 \path{massgaps} (mass-gap null + GW190814 epoch audit).
 Update-rule and dimension programs: \path{update_rule} (D1 tournament),
 \path{blind_u} (D1 blind-$U$), \path{weighted} (D10/D14 pricing),
-\path{spectral} (D10 second leg).
+\path{spectral} (D10 second leg), \path{formation} (D14 C2/SSB-1/Stage-0).
 \par}
 
 Reproduce:
@@ -717,6 +718,23 @@ narrowed to $(6.2,11.0)$): the gain is debt by elimination, and
 magnitude origin passes to formation/dynamic topology.
 Reproduce: \path{pytest tests/test_weighted.py -q}.
 
+\textbf{D14 formation design (C2 machine).} E-conserving relocation on ER/RR
+soup: C2-PILOT-1 topological verdict DARK (54/54, 0/54 WEAK over a $20\times$
+floor sweep; D1 null holds as Poisson equilibrium; D3 hope dead --- 13
+dust-shedding arrests + 23 stillborns, zero active; no concentration pathway,
+so the D5 triangle-closure lead). C2-PILOT-2 geometric verdict NO-coexistence
+(66 + 6-repair runs, bit-identical cross-machine): CONDENSATION 9
+(D5$\kappa_2$@1600 single-clique) vs FRUSTRATED 15 (D5$\infty$ all-$N$,
+kmax-4 churn limit, $N$-independent, active-7\% EXCHANGE) vs POISSON+ 39;
+$\kappa_c \in (1,2)$, nucleation window $N^* \in (1600,3600]$, kinetics
+mirror-broken, refined D3 \dots\ D5$\infty$ \dots\ D5$\kappa_2$ bracket
+(frustration-as-selector lead). SSB-1: core selection SPONTANEOUS (same-soup
+Jaccard $\approx$ random), so D15 reopens with symmetry restated as
+statistical-$S_N$-of-law. Stage-0: blob kinematics NULL (0/6 directed, 0/6
+persistent-handed, achiral plateau) --- the debt-free pure-D5$\infty$ route
+stops and polarity pauses (individuals yes, circulation-sign no).
+Reproduce: \path{pytest tests/test_formation.py tests/test_closure.py -q}.
+
 \textbf{J2 micro/macro probe (D10).} $J_2 = \mathbb{Z}^2 \rtimes
 \mathbb{Z}_2$ walk graph (degree 8; substrate of
 D'Ariano--Erba--Perinotti, Phys.\ Rev.\ A 100, 012106 (2019)),
@@ -730,8 +748,14 @@ bipartite correction filed ($q{=}x{+}y$ bipartition, odd returns vanish
 exactly --- a pre-registered aperiodic prediction falsified with
 mechanism); 4-cycle census $26072$ at $R{=}18$ ($\sim$20$\times$
 square-equivalent); perturbation family-typical (swaps $2/3$ kill,
-$q$-deletion robust) --- no tier claim; banked for the queued
-isotropy program.
+$q$-deletion robust) --- no tier claim. Orientation program (D14/D15,
+32 runs on the J2 torus): cores form despite the pristine triangle-free
+substrate (kmax-4, triangle-free bootstrap), radial SSB preserved, but
+orientation absent (random-axis elongation, edge $x/y \le 8\%$, quadrant
+signs null-consistent, sheet $0.49$--$0.50$) --- verdict (c)-ISOTROPIC,
+so D5$\infty$-radial is the wrong kind for compass consumption (D15 stays
+closed on this candidate). J2 is adopted as the canonical working vacuum
+substrate (\path{docs/j2-status.md}; evidence-based, non-uniqueness explicit).
 Reproduce: \path{pytest tests/test_j2.py -q}.
 
 \end{document}
