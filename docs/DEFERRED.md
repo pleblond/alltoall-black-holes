@@ -3305,3 +3305,30 @@ VERDICT-RULE (per-stage): PASS ⟺ ALL-headline-AND-ALL-validity; validity-
 fail ⟹ VOID (file + amend (P1.1b-precedent!) (NOT-fail!)); criterion-fail ⟹
 FAIL (file!). GLOBAL: suite-green (all-pins + full-suite-on-beast). NEXT:
 slit_campaign.py (gated-on-prereg-commit!) + beast-run.
+
+SLIT-CAMPAIGN-1-filed (SUPERSEDED-partial (mechanics-bug + two-operational-
+timing-voids (below!)); beast-15s; NO-verdict-drawn-on-affected-stages
+(discipline!)): PASS-STAND (valid-gates (deterministic (rerun-replicates!))):
+0a (T*=12.4: V=0.678/nmax=5/rmsR=0.392/L2=0.075/lin=2e-14 (all-with-margin!);
+detW=8.2%/wall=0.9%/corr=4e-4); 0b (T*=26.1: Rmax=2.00/Rmin=0.016/L2=0.110
+(center-constructive-2×-exact-theory!); mirror=2e-14/detW=0.6%/wall=1.1%);
+shut (rightW=3e-10 (exact-block!)); SLIT-1 (half=0.5000/pi=8e-28/per=6e-14/
+L2(0,π)=0.151 (symmetry-exact!)). AFFECTED (no-verdict!): 2g-numbers (passed-
+but-WRONG-states (script-shadow-bug (below!))); 2e-FAIL×2 (amp_kill=27.7/
+eraser=0.082 (meaningless-quantities (cross-experiment-comparison (bug!))));
+J2-L2=0.035-vs-0.05 (near-miss-ON-PRE-ARRIVAL-pattern (T*=2.4-vs-arrival-5.7
+(argmax-on-flat-tail-curve (operational-misfire!)); V=0.84-anyway!)); MZ-φ-
+VOID (t*=77.2-at-window-edge-80 (peak-not-captured (window-too-short!));
+ratios-exact-anyway (0.5000/4e-33 (t*-independent-algebra!))); MZ-arm-ratio=
+4.31 (passed-but-window-suspect-for-long-arms (rerun-under-amended-window!)).
+SLIT-AMENDMENT-1 (PRE-RERUN (affected-stages-only (passed-stages-STAND!))):
+(1)-IMPL-BUG-owned: 0b-section-reassigned-eA/eB/Iab (SLIT-2-compared-0a-
+entangler-against-0b-patterns (cross-time/cross-graph-garbage!)) ⟹ script-
+renamed-to-prereg-spec (mechanics (protocol-unchanged!)). (2)-J2-T*-rule:
+argmax-window-[0,20]→[5,20] (lower-bound-5 = P1.1b-arrival-5.7(D=7/v=1.235-
+filed!)−0.7 (captures-peak + excludes-pre-arrival-tail-argmax (operational-
+timing (NOT-goalpost!))); T*<12-gate + all-thresholds-STAND). (3)-MZ-window:
+T=80→160 + interior-gate-t*<75→t*<150 (2×-measured-edge-peak-77.2 (P1.1b-
+arithmetic-precedent!); all-thresholds-STAND). RERUN (gated-on-amendment-
+commit!): full-script (passed-stages-must-REPLICATE-identically (bonus-
+determinism-check!) + affected-stages-decided).
