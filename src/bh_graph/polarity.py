@@ -517,3 +517,189 @@ def cohen_d(a: list, b: list) -> float:
 def primary_features_matrix(rows: list) -> np.ndarray:
     """Stack [F1, F2, F3] rows (None -> nan, caller must filter; no imputation)."""
     return np.array(rows, dtype=float)
+
+
+def residualize_general(x: np.ndarray, controls: np.ndarray) -> np.ndarray:
+    """OLS residuals of each column of X vs controls design (with intercept).
+
+    controls shape (n, k) must INCLUDE intercept column (caller builds
+    [1, ...]). Deterministic numpy lstsq. Returns (n, d) residuals.
+    """
+    xa = np.asarray(x, dtype=float)
+    ca = np.asarray(controls, dtype=float)
+    out = np.zeros_like(xa, dtype=float)
+    for j in range(xa.shape[1]):
+        sol, _, _, _ = np.linalg.lstsq(ca, xa[:, j], rcond=None)
+        out[:, j] = xa[:, j] - ca @ sol
+    return out
+
+
+def gaussian_bootstrap_max_silhouette(
+    x, n_perm: int = 100, base_seed: int = 2000
+) -> tuple:
+    """1D null: Gaussian parametric bootstrap (P0b; permutation vacuous in 1D).
+
+    x shape (n,) or (n, 1). Sims from N(mean, sd_ddof1), same 2-means.
+    sd 0 => (0.0, [0.0]*n_perm) (locked, no variance to bootstrap).
+    Returns (max_null, null_list). Deterministic (random.Random).
+    """
+    xa = np.asarray(x, dtype=float).reshape(-1)
+    n = len(xa)
+    if n < 2:
+        return 0.0, [0.0] * n_perm
+    mean = float(xa.mean())
+    sd = float(xa.std(ddof=1)) if n > 1 else 0.0
+    if sd == 0:
+        return 0.0, [0.0] * n_perm
+    nulls = []
+    for p in range(n_perm):
+        rng = random.Random(base_seed + p)
+        sim = np.array([rng.gauss(mean, sd) for _ in range(n)]).reshape(-1, 1)
+        labs, _, _, _ = kmeans2(sim, seed=0)
+        nulls.append(mean_silhouette(sim, labs))
+    return (max(nulls) if nulls else 0.0), nulls
+
+
+def torus_min_disp(a: float, b: float, L: int) -> float:
+    """Minimal signed displacement a-b on ring Z_L (in (-L/2, L/2])."""
+    d = (a - b) % L
+    return d if d <= L / 2 else d - L
+
+
+def circular_centroid(nodes: list, coords: dict, L: int):
+    """Circular-mean (cx, cy) on torus. None if nodes empty (caller carries)."""
+    if not is_valid_core(nodes):
+        return None
+    xs = [coords[v][0] for v in nodes]
+    ys = [coords[v][1] for v in nodes]
+    cx = (
+        math.atan2(
+            sum(math.sin(2 * math.pi * x / L) for x in xs) / len(xs),
+            sum(math.cos(2 * math.pi * x / L) for x in xs) / len(xs),
+        )
+        * L
+        / (2 * math.pi)
+    ) % L
+    cy = (
+        math.atan2(
+            sum(math.sin(2 * math.pi * y / L) for y in ys) / len(ys),
+            sum(math.cos(2 * math.pi * y / L) for y in ys) / len(ys),
+        )
+        * L
+        / (2 * math.pi)
+    ) % L
+    return (float(cx), float(cy))
+
+
+def centroid_trajectory(k4sets: dict, coords: dict, L: int, sweeps: list) -> tuple:
+    """Per-sweep centroids in sweep order, carry-forward on empties.
+
+    k4sets keys int or str (JSON). Returns (centroids_list, empty_frac).
+    First-sweep-empty fallback (0.0, 0.0) (locked, not expected).
+    """
+    cents = []
+    nempty = 0
+    prev = None
+    for sw in sweeps:
+        nodes = k4sets.get(sw, k4sets.get(str(sw), []))
+        c = circular_centroid(nodes, coords, L)
+        if c is None:
+            nempty += 1
+            c = prev if prev is not None else (0.0, 0.0)
+        cents.append(c)
+        prev = c
+    frac = nempty / len(sweeps) if sweeps else 0.0
+    return cents, frac
+
+
+def msd_alpha(centroids: list, L: int, tau_max: int = 100) -> tuple:
+    """MSD exponent alpha via log-log OLS (tau=1..tau_max, minimal torus disp).
+
+    Returns (alpha, rms, msd_list). rms = sqrt(MSD(tau_max)) (locked).
+    All-MSD-0 => alpha 0.0 (static). Zeros excluded from log fit (filed).
+    <2 fittable points => alpha 0.0. tau_max capped at n-1.
+    """
+    n = len(centroids)
+    if n < 3:
+        return 0.0, 0.0, []
+    tmax = min(tau_max, n - 1)
+    msd = []
+    for tau in range(1, tmax + 1):
+        acc = 0.0
+        cnt = n - tau
+        for t in range(cnt):
+            dx = torus_min_disp(centroids[t + tau][0], centroids[t][0], L)
+            dy = torus_min_disp(centroids[t + tau][1], centroids[t][1], L)
+            acc += dx * dx + dy * dy
+        msd.append(acc / cnt if cnt else 0.0)
+    rms = math.sqrt(msd[-1]) if msd else 0.0
+    pairs = [(math.log(t), math.log(m)) for t, m in enumerate(msd, start=1) if m > 0]
+    if len(pairs) < 2:
+        return 0.0, rms, msd
+    lt = np.array([p[0] for p in pairs])
+    lm = np.array([p[1] for p in pairs])
+    a_mat = np.column_stack([lt, np.ones_like(lt)])
+    sol, _, _, _ = np.linalg.lstsq(a_mat, lm, rcond=None)
+    return float(sol[0]), rms, msd
+
+
+def quadrupole_aniso(nodes: list, coords: dict, L: int) -> tuple:
+    """Quadrupole (ani, ang) (J2 def: 0=x, pi/2=y, mod pi).
+
+    (0.0, 0.0) if nodes empty or l1 0 (locked fallback).
+    """
+    if not is_valid_core(nodes):
+        return (0.0, 0.0)
+    c = circular_centroid(nodes, coords, L)
+    cx, cy = c[0], c[1]
+    dx = np.array([torus_min_disp(coords[v][0], cx, L) for v in nodes])
+    dy = np.array([torus_min_disp(coords[v][1], cy, L) for v in nodes])
+    cxx, cyy, cxy = float((dx * dx).mean()), float((dy * dy).mean()), float((dx * dy).mean())
+    tr, det = cxx + cyy, cxx * cyy - cxy * cxy
+    disc = max(0.0, tr * tr / 4 - det)
+    l1 = tr / 2 + math.sqrt(disc)
+    l2 = tr / 2 - math.sqrt(disc)
+    if l1 <= 0:
+        return (0.0, 0.0)
+    ani = (l1 - l2) / l1
+    ang = 0.5 * math.atan2(2 * cxy, cxx - cyy) % math.pi
+    return (float(ani), float(ang))
+
+
+def mobility_bin(alpha: float) -> str:
+    """Stage-0 bins (prespecified): confined/diffusive/directed."""
+    if alpha < 0.7:
+        return "confined"
+    if alpha <= 1.3:
+        return "diffusive"
+    return "directed"
+
+
+def step_stats(centroids: list, L: int, jump_thresh: float = 10.0) -> tuple:
+    """(jump_frac, autocorr): unphysical-jump fraction + lag-1 step autocorr.
+
+    Steps via minimal torus disp (500 for full window). jump = torus-step
+    > thresh (locked 10.0). autocorr = mean of Pearson r_x, r_y (lag-1);
+    0 per axis if sd 0 or <3 steps (filed). Diffusion ~0, flicker <<0.
+    """
+    n = len(centroids)
+    if n < 2:
+        return 0.0, 0.0
+    dxs = [torus_min_disp(centroids[t + 1][0], centroids[t][0], L) for t in range(n - 1)]
+    dys = [torus_min_disp(centroids[t + 1][1], centroids[t][1], L) for t in range(n - 1)]
+    jumps = sum(1 for x, y in zip(dxs, dys) if math.hypot(x, y) > jump_thresh)
+    jump_frac = jumps / len(dxs) if dxs else 0.0
+    if len(dxs) < 3:
+        return jump_frac, 0.0
+    rs = []
+    for s in (dxs, dys):
+        a = np.asarray(s[:-1], dtype=float)
+        b = np.asarray(s[1:], dtype=float)
+        sa, sb = a.std(ddof=1), b.std(ddof=1)
+        if sa == 0 or sb == 0:
+            rs.append(0.0)
+        else:
+            cov = float(((a - a.mean()) * (b - b.mean())).sum() / (len(a) - 1))
+            rs.append(cov / (sa * sb))
+    return jump_frac, float(sum(rs) / 2)
+

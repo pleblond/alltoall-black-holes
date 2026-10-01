@@ -222,3 +222,85 @@ def test_observation_pure():
     top_ipr_support(g, top=3, iters=10)
     truss_masses(g)
     assert sorted(tuple(sorted(e)) for e in g.edges()) == before
+
+
+def test_torus_and_centroid():
+    from bh_graph.polarity import (
+        centroid_trajectory,
+        circular_centroid,
+        torus_min_disp,
+    )
+
+    assert torus_min_disp(0, 27, 28) == 1
+    assert torus_min_disp(27, 0, 28) == -1
+    assert torus_min_disp(5, 5, 28) == 0
+    coords = {0: (0, 0, 0), 1: (0, 0, 0)}
+    assert circular_centroid([0, 1], coords, 28) == (0.0, 0.0)
+    assert circular_centroid([], coords, 28) is None
+    coords2 = {0: (0, 5, 0), 1: (27, 5, 0)}  # wrap pair: mean x 27.5
+    cx, cy = circular_centroid([0, 1], coords2, 28)
+    assert abs(cx - 27.5) < 1e-9 and abs(cy - 5.0) < 1e-9
+    k4 = {1500: [0], 1501: [], 1502: [1]}
+    cents, frac = centroid_trajectory(k4, coords2, 28, [1500, 1501, 1502])
+    assert cents[1] == cents[0]  # carry-forward
+    assert abs(frac - 1 / 3) < 1e-9
+
+
+def test_msd_alpha_static_and_ballistic():
+    from bh_graph.polarity import msd_alpha
+
+    static = [(3.0, 4.0)] * 200
+    a0, rms0, m0 = msd_alpha(static, 28, tau_max=50)
+    assert a0 == 0.0 and rms0 == 0.0 and all(m == 0.0 for m in m0)
+    ball = [(float(t), 0.0) for t in range(200)]  # MSD(tau)=tau^2
+    a1, rms1, m1 = msd_alpha(ball, 1000, tau_max=50)
+    assert abs(a1 - 2.0) < 0.01  # ballistic
+    assert abs(rms1 - 50.0) < 1e-6
+    assert msd_alpha([(0.0, 0.0)], 28) == (0.0, 0.0, [])
+
+
+def test_quadrupole_and_bins():
+    from bh_graph.polarity import mobility_bin, quadrupole_aniso
+
+    assert mobility_bin(0.0) == "confined"
+    assert mobility_bin(0.7) == "diffusive"
+    assert mobility_bin(1.3) == "diffusive"
+    assert mobility_bin(1.31) == "directed"
+    coords = {0: (0, 0, 0), 1: (2, 0, 0)}
+    ani, ang = quadrupole_aniso([0, 1], coords, 100)
+    assert abs(ani - 1.0) < 1e-9 and abs(ang - 0.0) < 1e-9
+    assert quadrupole_aniso([], coords, 100) == (0.0, 0.0)
+    assert quadrupole_aniso([0], coords, 100) == (0.0, 0.0)
+
+
+def test_step_stats():
+    from bh_graph.polarity import step_stats
+
+    static = [(0.0, 0.0)] * 10
+    assert step_stats(static, 28) == (0.0, 0.0)
+    alt = [(0.0, 0.0), (1.0, 0.0)] * 10  # back-and-forth: r=-1
+    jf, ac = step_stats(alt, 28)
+    assert jf == 0.0
+    assert abs(ac - -1.0) < 1e-9
+    jumpy = [(0.0, 0.0), (0.0, 0.0), (20.0, 0.0), (20.0, 0.0)]
+    jf2, _ = step_stats(jumpy, 100)
+    assert abs(jf2 - 1 / 3) < 1e-9
+
+
+def test_bootstrap_and_general_residual():
+    from bh_graph.polarity import (
+        gaussian_bootstrap_max_silhouette,
+        residualize_general,
+    )
+
+    blobs = np.array([0.0] * 6 + [10.0] * 6).reshape(-1, 1)
+    labs, _, _, _ = kmeans2(blobs, seed=0)
+    assert mean_silhouette(blobs, labs) > 0.9
+    mx, nulls = gaussian_bootstrap_max_silhouette(blobs, n_perm=20, base_seed=2000)
+    assert mx < mean_silhouette(blobs, labs)
+    assert len(nulls) == 20
+    assert gaussian_bootstrap_max_silhouette(np.ones(6), n_perm=5) == (0.0, [0.0] * 5)
+    C = np.column_stack([np.ones(4), np.array([0.0, 1.0, 2.0, 3.0])])
+    X = np.column_stack([3 * C[:, 1] + 2.0])
+    assert np.allclose(residualize_general(X, C), 0.0, atol=1e-9)
+

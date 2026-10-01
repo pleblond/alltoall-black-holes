@@ -253,3 +253,138 @@ D15 gate: NOT fired (no J, no C, no P; D15 stays closed (read-only)).
 P-track stands alone as degeneracy-null result (discovery/characterization
 mandate honored: searched, found single-type, filed).
 
+## P0b-mobility — Dynamical-degeneracy confirmatory (prereg, FROZEN-2026-10-01)
+
+Question: do D5inf plateau cores split into multiple LONG-LIVED mobility
+classes at matched mass/T/shape/age/churn (same U, same N, same plateau)?
+Pilot hint (Stage-0 N=6, preregged bins, opened): 3 confined (alpha~0,
+rms 2-4, sit+jiggle) + 3 diffusive (alpha~0.75-1.05, wander torus-scale,
+uncorrelated-steps (NOT flicker!)) + 1 slither anecdote (L42-d0 x-rod
+sliding, N=1). P0b is confirmatory (N=48, 42 blind + 6 pilot-overlap filed
+below), NOT exploratory. Unsigned (alpha) => paired dynamical states rung
+ONLY (not polarity); polarity transformation/conservation gated on a
+preregisterable signed split (not here).
+
+U (locked): D5inf ONLY (same as P0, no changes).
+
+Cells (locked, 48 runs, plateau 1500-2000, k4_window logging):
+
+- P0b-A (PRIMARY): J2 L28 (N=1568) x dyn d0-31 (32 runs, SAME soup+dyn as
+  P0-A (trajectories bit-identical by determinism; T-match 32/32 vs P0-A
+  REQUIRED (apparatus-validity gate, Stage-0 6/6 precedent))).
+- P0b-B (N-check): J2 L42 (N=3528) x dyn d0-15 (16 runs, SAME as P0-B,
+  T-match 16/16 vs P0-B REQUIRED).
+- NO ER cell (mobility needs J2 readout basis; ER has no coords;
+  filed limitation (background-dependent readout, displacements
+  translation-invariant by construction (survives translation!))).
+- Pilot overlap (filed, NOT hidden): L28 d0-3 + L42 d0-1 (6/48) alpha
+  OPENED in Stage-0 (bins pre-specified there, reused here); 42/48 blind
+  to alpha. P0b gates (bootstrap null, persistence 80%, bin-alignment,
+  NCs) are NEW (unopened, P0-precedent). Mass/T/structure for all 48
+  opened in P0 (controls may be known; degeneracy axis (alpha) blind
+  except pilot 6).
+
+Logging (locked, pinned apparatus): k4_window=(1500,2000) per-sweep floored
+k4 node sets (frozen SSB/J2/Stage-0 definition: union, floor max(2,N//100)),
+NO endpoint moves (mobility only, minimal logging). Observation-pure
+(pinned: T-match with/without logging). Empty sweeps: carry-forward centroid
+(if first sweep empty (not expected), use (0,0); file empty fraction;
+Stage-0 empties <=0.4% precedent).
+
+Observables (locked, J2-readout justification filed: circular-mean centroid
++ minimal-torus displacements, translation-invariant (survive translation!)
+but background-dependent (limitation, not intrinsic)):
+
+- PRIMARY: MSD exponent alpha over 1500-2000 (501 per-sweep union-centroids,
+  circular mean (background coords), MSD(tau) for tau=1..100 via minimal
+  torus disp, log-log OLS (log MSD vs log tau); if all MSD=0, alpha=0
+  (static, locked); zeros excluded from log fit (filed)). Bins (Stage-0
+  reuse, prespecified): alpha<0.7 CONFINED / 0.7-1.3 DIFFUSIVE / >1.3
+  DIRECTED. rms = sqrt(MSD(100)) (displacement scale at max lag, filed).
+- CONTROLS (matching, NOT axes): log(mass_final), T_final (P0 values reused,
+  T-matched), anisotropy_final (quadrupole ani, J2 def, 0..1), Tslope-late
+  (per-100sw, P0 def), Jaccard-1500-2000 (P0 def, from k4sets endpoints),
+  massCV-per-sweep (501-point CV, new precision (P0 6-point CV replicated
+  as check!)).
+- FLICKER (artifact controls): jump_frac (fraction of 500 steps with
+  torus-step >10 (unphysical for diffusion (filed threshold, ~2x sitter-rms
+  + core-spread))); step_autocorr (lag-1 Pearson mean of x/y step series;
+  0 if sd 0 (filed); true diffusion ~0, back-and-forth flicker <<0);
+  ncomp_6pt (P0 6-point ncomp reused (same trajectories!); multi-piece proxy).
+- SECONDARIES (descriptive): per-half alphas (1500-1750, 1750-2000, same fit),
+  axis-angle-final (quadrupole ang, for slither check (axis-aligned mobility?
+  N=1 anecdote replication? filed, not gated)), empty_frac.
+
+Matching (locked): OLS residualize alpha vs [1, logmass, T, aniso, Tslope,
+Jaccard] per cell (6-coeff, numpy lstsq, deterministic). Cluster/test on
+residuals (NOT raw alpha) to guarantee classes are NOT mass/shape/age/churn.
+Report Cohen's d for all 5 controls between clusters (expect |d|<0.8; filed).
+
+Bimodality (locked, 1D): deterministic 2-means (polarity.py kmeans2, seed 0,
+100 iters) on residualized alpha (standardized? NO — 1D residuals already
+comparable; use RAW residuals (filed, no z-scoring in 1D (scale = alpha units,
+interpretable!))). Metrics: s_obs (mean silhouette, Euclidean 1D; singleton
+=> 0), varexp. Null: Gaussian parametric bootstrap (100 sims, N(mean_resid,
+sd_resid) with same n, seed 2000+i, same 2-means, record s_null; POSITIVE
+needs s_obs > max(s_null) (100/100, p<0.01) AND s_obs > 0.30 (P0 floor reuse,
+not tuned)). Singleton gate: min-cluster >=10% else no positive. NOTE: P0
+permutation null is VACUOUS in 1D (filed!); bootstrap replaces it (1D-only
+deviation, pre-registered here).
+
+Replication (locked): P0b-A positive alone REQUIRED. Then P0b-B independently
+positive (same pipeline) AND bin-alignment: low-cluster mean RAW alpha <0.7
+AND high-cluster mean RAW alpha in 0.7-1.3 (label-invariant) in BOTH cells
+(split aligns with Stage-0 confined/diffusive bins, not arbitrary cut).
+Else REPLICA-FAIL (single-cell = HINT, filed not discovery).
+
+Persistence (locked, long-lived): per-half alphas (1500-1750 vs 1750-2000,
+same fit, residualized with FINAL-fit coeffs? NO — halves use own mass/T?
+Halves have own (mass_mid? T_mid?) — SIMPLER: persistence on RAW alpha bins
+(not residuals): run STABLE if both halves same Stage-0 bin (confined/
+diffusive/directed). Need >=80% stable in P0b-A (P0 threshold reuse).
+Else FLICKER-FAIL. (Raw-bin stability tests whether mobility type persists,
+independent of matching; residualization is for discovery, bins for
+persistence (filed split).)
+
+NCs (locked, REJECT positive if any fires):
+
+- NC-control: |Cohen's d| >1.5 for ANY of 5 controls => size/shape/age/churn
+  split (matching failed).
+- NC-shape-coupled: |d_aniso| >1.5 SPECIFICALLY (even if others pass) =>
+  shape-coupled mobility (elongated rods vs round blobs (slither-generalized?),
+  not pure mobility type; needs review, no positive).
+- NC-flicker: wanderer-cluster jump_frac mean >0.05 (>5% unphysical jumps)
+  OR step_autocorr mean <-0.3 (back-and-forth) OR ncomp_6pt multi-fraction
+  Cohen's d >1.0 (wanderers = multi-piece flicker) => FLICKER artifact.
+- NC-singleton: min-cluster <10% => outlier, not type.
+- NC-location: N/A for mobility (displacements translation-invariant by
+  construction; filed, not tested).
+
+Decision (locked):
+
+- P0b-POSITIVE ⟺ P0b-A positive (silhouette + bootstrap + floor + singleton)
+  AND P0b-B positive + bin-alignment (both cells) AND persistence >=80%
+  AND no NC fires. Then file cluster profiles (raw alpha means, rms,
+  controls by cluster, per-half stability) + proceed to temporal-mode
+  characterization prereg (gated: what distinguishes the classes beyond
+  alpha? churn? shape dynamics? currents?).
+- Else P0b-NULL: file "mobility-continuum" (no dynamical degeneracy at
+  matched controls; sitter/wanderer = continuum sampling (N=6 small-n) or
+  control-correlated (age/shape/churn), NOT types) => PAUSE pure-D5inf
+  polarity entirely, wait for coupled K+psi system (per review).
+
+Non-interference (locked): same trajectories as P0-A/B (T-matched 48/48,
+k4 logging observation-pure, pinned); frozen core + frozen bins (Stage-0
+reuse); plateau window anatomy-consistent; J2 readout justification filed
+(displacements survive translation; background-dependence disclosed); no D15
+imports. Analysis deterministic (seeded), pinned (polarity.py extensions +
+  tests), observation-pure.
+
+Cost (filed): 48 runs x (70-250s with k4 logging) / 64 workers ~= 3-5min wall
++ post (~5s/run MSD + spectral already in P0 (reused!)) ~= 8min total.
+Resume-safe part files (beast-only scripts, grid above reproduces).
+
+Next (gated): P0b verdict here; temporal-mode characterization prereg ONLY if
+P0b-POSITIVE; else PAUSE (K+psi wait).
+
+
