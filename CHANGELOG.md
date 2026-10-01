@@ -9,7 +9,18 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   COH-3 spectral-spread tau ~ 1/dE; superposition prep + recombination by
   addition, 8-phase V fits, normalized C = V/|S| headline, later
   formed/nonlinear/path-record controls queued); `coherence.py` apparatus
-  (J2 reflections, pair algebra, phi/fringe fits, spectral spread) + 12 pins.
+  (J2 reflections, pair algebra, phi/fringe fits, spectral spread) + 11 pins.
+
+- **unreleased (COH verdict PASS)** — Bare-J2 coherence banked (beast):
+  COH-0 13/13 (linearity, I_int identity, R-swap, bitwise determinism);
+  COH-1 12/12 restated (fringe V = 1.0000, k exact, slope -1.0000,
+  breathing V/delta exact, trans-R-conjugation 7e-18; Amendment-2 fixed
+  blanket-R bars with analytic cause: antipodal fixed line + k-flip);
+  COH-2 (C = 1 to 5e-13 all cells, l = 7.49 R2 = 0.998, Dt-consistency);
+  COH-3 (tau*dE = 1.14/1.10/1.12 constant to 4% across frozen bandwidths;
+  P3-A anchor same order, descriptive). Establishes coherent phase
+  transport + operational (l, tau) + mechanistic dE law; firewall: no
+  Born/collapse/photon claims. COH-F/N/path-record queued.
 
 - **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked

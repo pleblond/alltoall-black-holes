@@ -196,12 +196,106 @@ independently measured spectral spread and loss of relative-phase
 predictability.
 
 ## Verdicts (append below; nothing above changes post-freeze except via
-numbered pre-data amendments)
+numbered amendments: pre-data preferred; post-data only with filed analytic
+cause, symmetry/apparatus bars only, physics bars never retouched)
 
 ## Amendment-1 (slope-magnitude convention, committed PRE-data, pre-run)
 
-Seed: writing the COH-1 analysis I found the fringe-phase slope sign is a
-fit-convention artifact (model V cos(2kx+theta) vs physics cos(2kx-phi)):
-the apparatus reports theta(phi) = -phi + const, i.e. slope -1 for perfect
-unit-shift response. Fix (locked): the COH-1 slope bar is |slope| in
-[0.95, 1.05] (magnitude; sign filed). All other bars stand.
+Seed: writing the COH-1 analysis the fringe-phase slope sign was found to
+be a fit-convention artifact (model V cos(2kx+theta) vs physics
+cos(2kx-phi)): the apparatus reports theta(phi) = -phi + const, i.e. slope
+-1 for perfect unit-shift response. Fix (locked): the COH-1 slope bar is
+|slope| in [0.95, 1.05] (magnitude; sign filed). All other bars stand.
+
+## Amendment-2 (symmetry/conjugation restatement, post-COH-1-physics-data,
+pre-verdict, symmetry bars only)
+
+Seed: COH-1 physics all-passed with margin (fringe V = 1.0000, k exact,
+R2 = 1, slope -1.0000, breathing V/delta exact, linearity spots pass) but
+the two blanket R-symmetry checks failed (counter-R-swap 2.58e-02,
+conjugation max 1.64e-02). Diagnosis is ANALYTIC (not fitted):
+
+- R_x about x0 has a second fixed line at the antipode x0+L/2, where it
+  preserves local momentum and cannot swap counter-propagating arms
+  (measured artifact ~1e-02 ~= antipodal amplitude, filed bound).
+- R_x / 180-degree rotation flip longitudinal momentum, so NO spatial
+  isometry swaps same-k longitudinal arms (translation moves both arms
+  rigidly). G-long arms are label-exchangeable only.
+- G-trans is the exact reflection geometry (R_y transverse to k preserves
+  k; cross term real everywhere, fixed lines included).
+
+Fix (locked; physics bars untouched): COH-1 item 3 is RESTATED as
+(a) G-trans R_y-conjugation: R-mapped I(-phi) = I(+phi) < 1e-9 (4-subset,
+exact); (b) G-long label-exchange invariance (V, |S| < 1e-12, bookkeeping;
+no spatial conjugation exists -- reason filed above; phi -> -phi response
+is the fitted sinusoid itself, covered by the R2 + delta bars);
+(c) G-counter conjugation-swap: B = conj(A) < 1e-12 (exact, real
+envelope). G-long/G-counter R-conjugation DROPPED (structurally
+inapplicable / antipode-limited; superseded values filed in the verdict).
+No new pin needed (the existing transverse-conjugation pin covers (a) on
+small J2). COH-0/2/3 unaffected
+(COH-0 banks G-trans R-swap already; COH-2/3 use no R/conjugation).
+
+### COH-0 verdict: PASS (apparatus valid; filed 2026-10-01, beast)
+
+13/13 checks, G-trans d = 4, T = 0 and T = 5: R_x/R_y in Aut(J2-L28)
+(edge-set exact) + involutions exact; prep symmetry ||R_*A - B|| =
+2.03e-16; single-path bitwise; determinism bitwise; norm-drift pass both
+arms (T = 5); linearity joint == sum-of-arms < 1e-8 all 8 phi;
+I_int identity max 6.07e-18 (T = 0 and T = 5, all phi); swap V
+0.884666 vs 0.884666, |S| exact. COH-1/2/3 gate OPENS.
+
+### COH-1 verdict: PASS (readout measures relative phase; filed 2026-10-01)
+
+12/12 restated checks: counter-conj-swap 0.00e+00 (exact); fringe V_sp =
+1.0000 all 8 phi (bar > 0.9); k_fit = 0.3000 all phi (bar 10%);
+fringe R2 = 1.0 all phi (bar > 0.999); slope -1.0000, |slope| = 1.0000
+(bar [0.95, 1.05], sign filed per Amendment-1); long sinusoid R2 = 1.0,
+V = 0.878238 vs |S|_pred 0.878238 (bar 5%), delta error 0.0000 rad (bar
+0.1); G-trans R-conjugation max 6.94e-18 (bar 1e-9); long label-swap
+exact; linearity spots pass both geometries (8 phi, 1e-8).
+Superseded blanket-R values (Amendment-2 cause, filed): counter-R-swap
+2.58e-02, R-conjugation max 1.64e-02 (antipodal-fixed-line artifact).
+
+### COH-2 verdict: PASS (phase predictability preserved; filed 2026-10-01)
+
+Arm calibration: v = 1.305764/1.197432/1.211019 (sigma 2/3/4;
+sigma = 4 cross-checks banked P1.1b 1.2110187 to < 1e-6); dE =
+0.371836/0.222192/0.180517; w(T10) = 10.920/9.413/8.661.
+V(Dl) sigma = 4 T = 5: 1.0000/0.9680/0.8782/0.7441/0.5841/0.4175/0.2682
+(Dl 0..12); C = 1.0000 all 7 cells (worst |C-1| = 4.28e-13, bar 0.05);
+sinusoid R2 = 1.0 all cells; drift/wrap/mix gates pass (disp 5.91,
+mix ~4e-13); Gaussian fit l = 7.494, R2 = 0.9980 (bar 0.95).
+C(T) = 1.0000 all 6 T cells (worst 6.46e-13). Dt-consistency: V(0/2/4) =
+1.0000/0.9474/0.8073 vs Gaussian-interp 1.0000/0.9491/0.8114 (all within
+10%; Dl_eff = v*Dt). No anomalous dephasing on bare J2.
+Note (filed): V(Dl) is T-independent (T = 0 vs T = 5 identical to 12
+digits) by unitarity of the shared H -- the T-sweep thereby confirms both
+arms saw identical H (no arm-dependent phases).
+
+### COH-3 verdict: PASS (scale set by spectral spread; filed 2026-10-01)
+
+l(T5) = 3.996/5.900/7.494 (sigma 2/3/4; Gaussian R2 = 1.0000/0.9996/
+0.9980, all kept); l(T0) identical to 12 digits (unitarity, see COH-2).
+T = 0 anchor ratios 1.019/0.980 (bar [0.8, 1.25], validity holds);
+T = 5 headline ratios 1.019/0.980 (bar [0.67, 1.5]). tau*dE =
+1.138/1.095/1.117 (sigma 2/3/4): constant to 4% across the frozen x2
+bandwidth range while l and dE individually deviate from continuum
+(l/2sigma = 0.999/0.983/0.937; dE 19-24% above v_g/2sigma) -- the
+product is robust where the factors are not. That is the mechanistic
+result. P3-A anchor (descriptive): COH tau*dE ~= 1.1 vs P3-A ~0.6-0.9
+(different tau definition and preparation class; same order across x8
+bandwidth range -- corroboration, no verdict weight per prereg).
+
+### COH verdict: PASS (initial; filed 2026-10-01)
+
+COH-0 AND COH-1 AND COH-2 AND COH-3 all PASS. Establishes: coherent phase
+transport on bare J2 (C = 1 to 1e-12 across separations and times);
+operational scales l = 7.49 (sigma 4, T = 5), tau = l/v = 6.19; and the
+mechanistic law tau_coh ~ 1/dE across frozen bandwidths (tau*dE constant
+to 4%). Does NOT establish: photons; discrete detection; the Born rule;
+wave-function collapse; entanglement; uniquely quantum interference.
+Data: coh01_results.json + coh23_results.json on beast (~/coh-be8d,
+untracked per P1 precedent); full numeric tables above. Suite green
+(beast, xdist). NEXT: queued COH-F/COH-N/path-record (gated, own preregs)
+or PI redirect.
