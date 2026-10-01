@@ -43,6 +43,7 @@ from bh_graph.tunnel import (  # noqa: E402
     SIGMAY_DEFAULT,
     WALL_LO_DEFAULT,
     X0_DEFAULT,
+    asymptotic_T,
     column_profile,
     energy_readout,
     evanescent_kappa,
@@ -349,12 +350,14 @@ def tun4_cell(L, e0, v_in):
         periods=(L, L),
     )
     pred = packet_T_pred_2wall(e0, LB_TUN4, LW_TUN4, L=L, n_kx=2001)
+    t_asymp = asymptotic_T(final["T"], final["B"])
     return {
         "E0": e0,
         "T_sep": tsep,
         "T": final["T"],
         "R": final["R"],
         "B": final["B"],
+        "T_asymp": t_asymp,
         "acct_maxdev": float(max(dev)),
         "acct_ok": bool(all(d < 1e-9 for d in dev)),
         "norm_maxdev": float(np.abs(rec["norms"] - 1.0).max()),
@@ -364,6 +367,7 @@ def tun4_cell(L, e0, v_in):
         "T_pred": pred["T_pred"],
         "T_single": pred["T_single"],
         "T_ratio": float(final["T"] / pred["T_pred"]),
+        "T_ratio_asymp": float(t_asymp / pred["T_pred"]),
     }
 
 
@@ -375,11 +379,12 @@ def stage_tun4(args):
         c = tun4_cell(L, e0, bank[str(e0)]["v_in"])
         recs.append(c)
         print(
-            f"TUN-4 E0={e0}: T={c['T']:.6e} pred={c['T_pred']:.6e} ratio={c['T_ratio']:.3f} "
+            f"TUN-4 E0={e0}: T={c['T']:.6e} Tas={c['T_asymp']:.6e} pred={c['T_pred']:.6e} "
+            f"ratio={c['T_ratio_asymp']:.3f} "
             f"R={c['R']:.6f} B={c['B']:.3e} acct={c['acct_maxdev']:.1e} Tsep={c['T_sep']}",
             flush=True,
         )
-    ts = [c["T"] for c in recs]
+    ts = [c["T_asymp"] for c in recs]
     print(f"TUN-4 contrast max/min = {max(ts) / min(ts):.1f}")
     json.dump(recs, open(args.out, "w"), indent=1)
     print(f"records -> {args.out}")

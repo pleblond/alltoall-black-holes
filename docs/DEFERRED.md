@@ -3465,3 +3465,23 @@ box-modes-filed-as-descent-addresses (±0.7-consistency (weak-by-design
 (packet-limited (heights-≈(w/σ_E)·1-match-pred ⟹ true-w-≪-σ_E (direct-
 width-resolution-packet-limited (filed!)))). NEXT: TUN-4bank+TUN-4-on-beast
 (gated on amendment-commit + bank-gates!).
+
+TUN-4-PILOT-1-filed (SUPERSEDED-as-read (premature-T_sep-flaw (numbers-
+filed (NOT-verdict-data!))))): beast-25-pt-scan: raw-T-ratios-0.08-0.93-
+vs-pred (systematically-LOW!) with-B-≤0.15 (vs-single-wall-~1e-4!) +
+accounting-exact + bank-gates-25/25-PASS. DIAGNOSIS-owned: RESONANT-DWELL
+(peak-lifetimes-~-1/Γ-≈-17-100-units (T_sep-13-30-cuts-before-trapped-
+weight-leaks!)); extended-T_sep-IMPOSSIBLE (σ(t≈150)≈43-on-L160 (wrap-
+soup (arithmetic-filed!))). CATEGORY-ERROR-owned: T(T_sep)-compared-
+against-ASYMPTOTIC-stationary-theory (single-barrier-B~1e-4-hid-this!).
+TUN-AMENDMENT-4 (asymptotic-observable (PRE-REEVALUATION (pilot-1-opened
+(B-profile-filed-above!)))): observable-CORRECTED-to-T_asymp-=-T+B/2
+(PARITY-THEOREM: frozen-symmetric-geometry-(walls-[64,66)+[70,72)-
+mirror-about-68 (well-centered!))-⟹-trapped-mode-decays-50/50-EXACT
+(no-free-parameter (uniform-rule-all-25 (no-per-cell-freedom!)))); T_pred-
+UNCHANGED (asymptotic-theory (correct-comparator!)); criteria-(b)-(f)-
+re-expressed-in-T_asymp (SAME-bands/thresholds!); B-profile-filed-as-
+trapping-evidence (resonant-buildup-150×-bg (result-in-itself!)); bank-
+STANDS; records-REGENERATED (deterministic-re-run (T/B-bitwise-identical-
+verified + T_asymp-field (S3-reuse-precedent (protocol-identical!)))). NEXT:
+TUN-4-re-records-on-beast + verdict (gated on amendment-commit!).

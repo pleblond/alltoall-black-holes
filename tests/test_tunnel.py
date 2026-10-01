@@ -22,6 +22,7 @@ from bh_graph.ballistic import (
 )
 from bh_graph.formation import j2_torus_coords, j2_torus_graph
 from bh_graph.tunnel import (
+    asymptotic_T,
     column_profile,
     energy_readout,
     evanescent_kappa,
@@ -235,3 +236,9 @@ def test_struct_masks_partition():
     masks = struct_masks_j2(L, order, 6, 14)
     assert is_partition_ok(masks, len(order))
     assert len(masks["wall"]) == 8 * L * 2
+
+
+def test_asymptotic_T_unit():
+    assert asymptotic_T(0.03, 0.15) == 0.03 + 0.075
+    assert asymptotic_T(1.0, 0.0) == 1.0
+    assert asymptotic_T(0.0, 0.5) == 0.25

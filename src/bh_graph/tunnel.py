@@ -407,3 +407,14 @@ def interior_asym(res: np.ndarray, wall_lo: int, lb: int) -> dict:
     asym = float(w[0] / w[-1]) if w[-1] > 0 else float("inf")
     mono = bool(np.all(np.diff(w) < 0.0))
     return {"asym": asym, "monotonic": mono}
+
+
+def asymptotic_T(t: float, b: float) -> float:
+    """Asymptotic transmission T + B/2 for a mirror-symmetric structure.
+
+    Parity theorem (TUN-AMENDMENT-4): trapped weight in an x-mirror-
+    symmetric double barrier decays equally to both leads, so the
+    t -> infinity transmission is T(T_sep) + B(T_sep)/2 exactly (no
+    free parameter). Compares against asymptotic stationary theory.
+    """
+    return float(t) + float(b) / 2.0
