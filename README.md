@@ -22,7 +22,7 @@
 > plus an upper-gap null and a GW190814 audit (tension, not exclusion).
 
 > **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 12pp) ·
-> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 13pp, S1–S11) ·
+> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 15pp, S1–S11) ·
 > build [`notes`](paper/v5/README.md)
 
 ## Abstract
@@ -65,11 +65,11 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 
 | Path | Description | License |
 |---|---|---|
-| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 12pp main text + 13pp S1–S11 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
+| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 12pp main text + 15pp S1–S11 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 457 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 540 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -94,7 +94,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 457 tests (2 torch/GPU-only skip without torch)
+python -m pytest tests/ -q          # 540 tests (2 torch/GPU-only skip without torch)
 python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
@@ -203,16 +203,25 @@ release:
 @software{leblond2026alltoall,
   author  = {Leblond, Philippe},
   title   = {Compact Objects as Almost-Perfect All:All Entanglement Graphs: From fast scrambling and weak-field gravity to a testable gap-kilonova prediction},
-  version = {5.2.0},
+  version = {5.3.0},
   year    = {2026},
   doi     = {10.5281/zenodo.22929076},
   url     = {https://github.com/pleblond/alltoall-black-holes},
-  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.2.0 version DOI mints on Zenodo release}
+  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.3.0 version DOI mints on Zenodo release}
 }
 ```
 
 ## Status
 
+v5.3: D1 update-rule tournament (third pass) + D14 pricing-hierarchy closure
++ J2 micro/macro probe — [`main.pdf`](paper/v5/main.pdf) (12pp) +
+[`supplement.pdf`](paper/v5/supplement.pdf) (15pp S1–S11 methods, 49/49
+references cited); blind-`U` reframing (stationary-ensemble vacuum,
+admissibility) with substrate-dependent coordination verdicts +
+self-calibrating census; static congestion pricing reaches the basin and
+survives feedback but its gain is debt by elimination (formation inherits);
+J2 probe (exact quotient + laws, perturbation family-typical). 540 tests,
+83 figure files (Figs 1–75).
 v5.2: D12/D13 causal-order roadmap + Tier-1 substrate family + spectral leg —
 [`main.pdf`](paper/v5/main.pdf) (12pp) + [`supplement.pdf`](paper/v5/supplement.pdf)
 (13pp S1–S11 methods, 48/48 references cited); C1–C5 coherence ladder

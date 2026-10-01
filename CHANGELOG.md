@@ -3,86 +3,33 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
-- **unreleased** — D1 update-rule tournament (harness + 11 rules; single-move
-  insufficiency verdict; (`p`, longs) joint falsifier; coordinated
-  double-swap breaks the single-move floor, longs 30 → 1, pair-locked
-  residual; visibility-chained triple endgame fully heals, longs → 0
-  on two seeds, triple-lock localizes to boundaries (torus 2/2);
-  census-gated order-4 detour-graft clears corners, ungated ablation
-  pinned as scrambler; T-knob anneal at orders 2+3 unifies gate
-  duality (pair_anneal matches-or-beats pair every stream), L=30
-  chain heals, cross-candidate battery opens (triangular healing
-  generalizes 24→13, hex needs fabric-relative radius), blind-U
-  reframing adopted (stationary-ensemble vacuum, U-admissibility,
-  drift/square/triangle first entrants, Metropolis no-window +
-  grid-not-optimum negative, kappa frozen-descent negative,
-  triangle-landing misdirection + degree-fiber reachability),
-  coordination-need substrate-dependent (pair alone fully heals
-  triangular 24→0 with p bit-plain), hex floor resolved (leaf
-  edges, interior census 0, guillotine heals 54→17), Delaunay
-  reference heals at order 2 (pair600 clears 21→0), Gabriel
-  broad-spectrum census limit (descent overshoots below plain),
-  medial mixed (pair grinds 60→6, ungated triple churns 6→29,
-  strict gate clears 6→0 in one accept), k-NN mostly-heals
-  (guillotine to floor 16, pair overshoots to 9), Lloyd heals
-  via chain (pair grinds to 1, strict clears), self-calibrating
-  census (median-relative, exact on gapped, Gabriel unseparated));
-  D10a derivation
-  negatives (walk anti-tortuosity, residence α≈0.78); D11 tail closed
-  (tension-dependent exponent, χ~5 slow crossover to 20Rc); D10b κ-profile closed (disk confirmation);
-  observer-indexed `M_O` filed + static depth bake-off negative
-  (volume + MDS readouts); Tier-1 MDS calibration pinned (Delaunay
-  radial-tortuosity bowl diagnosed, per-substrate bar + v3-geography
-  falsifier clause); shell-counting dilemma sketched (d_H=2 XOR
-  independence on 2D fabric, pairwise rescue refuted, escapes open)
-  with MDS-route independence clarified; first dynamical distance
-  shipped (SI first-passage, MDS null 2-dominant); tolerance curve
-  (binary longs collapse MDS 2-dominance at 2 longs — forces
-  weighted L0 state).
-  D10 weighted-audit adoption (event-sweep + edge census from
-  weighted-graph-paper, 3-vertex cross-checks, weight-tolerance
-  recovery Lw=20 near-vacuum; T15 cites Prop 1, D11 re-analysis
-  queued).
-  D14 cosmogony sketch filed (phase-separation origin, knots +
-  residue, pre-registered falsifier — no code; revised per review:
-  concentrate-strong/leave-weak target, weighted ontology, P0'
-  restatement criteria, marginal-pricing conjecture).
-  Weight-selection pre-registration filed (binding criteria +
-  triple-readout protocol); self-pricing first entrant (MDS
-  blurred, sweep dominated, 16 census violations).
-  Weighted-RG pre-registered (flow diagram, separatrix hunt,
-  coarsening pilot next; draft agnostic).
-  Coarsening pilot done (min-rule frozen, reduction passes;
-  excess-frozen hint; campaign next).
-  Weighted-RG campaign done (violation washout: Lw=10 → 0 by
-  level 3, Lw=1 analytic never-heals, Lw=3 separatrix-adjacent;
-  pricing irrelevant above span scale, count relevant — vacuum
-  RG-protected, no pumping needed; knot-env phase 2 queued).
-  Phi-apparatus validated (Phi-slice + tolerance contour pinned,
-  distribution-over-mean exhibit, non-monotone washout).
-  Knot pilot done (dual ruler + r_O bins; campaign reproduced
-  bit-identically, metric bubble, no bundle mixing, ruler-trap
-  rule; Delta-y_w needs w-dynamics).
-  Chi-spike verdict (local-chi impossibility confirmed, null
-  control locked, betweenness three-way-typical with overlaps,
-  substitution micro-prediction, gateway anatomy, r_O rejected).
-  Experiment A done (Form-1 relaxation x5: control bit-exact,
-  Lw10-slice recovered dynamically at beta=350, gradualism,
-  Delta-y_w split — substitution at price level, selection
-  dominates Phi level; gateway shell confirmed; C2 briefed).
-  Walk spike: spec amended pre-data (exact primary, window
-  rule, stationary null, cross-sign corrected) then KILLED
-  static walk-atrophy (ordering 0/8 + inverted signal;
-  susceptibility = conductance math; static-chi exhausted).
-  Betw-cong closure done (feedback attenuates both cadences,
-  m=1 in-basin cross=3 att 0.684, m=4 basin exit = cadence
-  artifact, rerouting map banked, concave-D holds; static-chi
-  CLOSED).
-  Gain-free discriminator run (zero-parameter pricing fails,
-  debt confirmed, threshold narrowed to (6.2,11.0)).
-  J2 micro/macro probe (quotient verified, exact shell/cut laws,
-  bipartite correction, perturbation family-typical).
-  540 tests.
+- **v5.3** — D1 update-rule tournament (third pass) + D14 pricing-hierarchy
+  closure + J2 micro/macro probe: tournament harness + 11 rules
+  (single-move insufficiency, (`p`, longs) joint falsifier; coordinated
+  double-swap 30 → 1, visibility-chained triple fully heals, census-gated
+  order-4 clears corners, ungated ablation pinned as scrambler; T-knob
+  anneal unifies gate duality at orders 2+3); blind-`U` reframing adopted
+  (stationary-ensemble vacuum, `U`-admissibility, drift/square/triangle
+  entrants, Metropolis/kappa negatives, triangle-landing misdirection +
+  degree-fiber reachability); coordination-need substrate-dependent
+  (triangular pair heals 24→0, hex guillotine 54→17, Delaunay pair600
+  21→0, Gabriel census limit, medial/k-NN/Lloyd verdicts);
+  self-calibrating census (median-relative); cross-candidate battery;
+  D10a derivation negatives; D11 tail + D10b κ-profile closed; `M_O`
+  filed + static depth bake-off negative; Tier-1 MDS calibration
+  (Delaunay bowl) + shell-counting dilemma + SI first-passage +
+  tolerance curve (binary longs collapse 2-dominance at 2); D10
+  weighted-audit adoption (T15 cites Prop 1); D14 cosmogony sketch +
+  weight-selection pre-reg + self-pricing entrant; weighted-RG washout
+  (`Lw`=10 → 0 by level 3, no pumping); Φ-apparatus + knot pilot +
+  χ-spike verdict; experiment A (β=350 recovers banked slice, Δy_w
+  split); walk-atrophy killed; betw-cong closure (att 0.684, m=1
+  in-basin, cadence artifact, static-χ CLOSED); stateful-scale
+  derivation (linear-memory kill, YES-prong criterion); gain-free
+  discriminator fails (6.2 in dead band) → gain is debt, formation
+  inherits; J2 probe (exact quotient + shell/cut laws, bipartite
+  correction, perturbation family-typical, tier deferred); paper v5
+  S11 + ledger (49 refs). 540 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form
