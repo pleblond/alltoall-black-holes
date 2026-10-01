@@ -586,7 +586,8 @@ now REQUIRED not optional) or gapped/topological H (debts filed openly
 if pursued). P3.3/P3.4/D15-gate: no sectors ==> gate never fires; D15
 stays closed (correct one-way behavior). The apparatus (R, psi, W,
 mirror) stands VALIDATED (P3.0-POSITIVE) for reuse on nonlinear psi.
-Data: /tmp/p3_traces on beast (evol_*.pkl x40, churn2_*.pkl x2,
-formation pickles /tmp/p3_blobs); suite green (beast, parallel xdist).
+Data: ~/p3_traces_keep + ~/p3_blobs_keep on beast (evol_*.pkl x40,
+churn2_*.pkl x2, formation pickles, logs; 6.8M total; also under /tmp);
+suite green (beast, parallel xdist).
 NEXT: P3-D prereg (nonlinear psi designs + H-gate proof) or PI redirect
 (gated on go).
