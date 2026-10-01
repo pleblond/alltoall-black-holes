@@ -278,10 +278,10 @@ def test_step_stats():
 
     static = [(0.0, 0.0)] * 10
     assert step_stats(static, 28) == (0.0, 0.0)
-    alt = [(0.0, 0.0), (1.0, 0.0)] * 10  # back-and-forth: r=-1
+    alt = [(0.0, 0.0), (1.0, 0.0)] * 10  # back-and-forth: r_x=-1, r_y=0
     jf, ac = step_stats(alt, 28)
     assert jf == 0.0
-    assert abs(ac - -1.0) < 1e-9
+    assert abs(ac - -0.5) < 1e-9  # mean(-1, 0)
     jumpy = [(0.0, 0.0), (0.0, 0.0), (20.0, 0.0), (20.0, 0.0)]
     jf2, _ = step_stats(jumpy, 100)
     assert abs(jf2 - 1 / 3) < 1e-9
