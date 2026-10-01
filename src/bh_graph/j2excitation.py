@@ -199,6 +199,36 @@ def wave_energy(g: nx.Graph, e_cur: dict, e_prev: dict, c2: float = 0.5) -> floa
     return float(vel + c2 * pot)
 
 
+def j2_color(node) -> int:
+    """Canonical bipartition color (x + y) mod 2 for J2 nodes.
+
+    Intrinsic: every micro-hop flips x + y, so this is a proper
+    2-coloring, and for a connected bipartite graph the 2-coloring is
+    unique up to swap (pinned in tests/test_j2stagger.py) -- a
+    staggered rule on this partition needs NO hand-supplied metadata.
+    c-conjugation preserves color (D15.3c pin).
+    """
+    return (node[0] + node[1]) % 2
+
+
+def staggered_half_step(g: nx.Graph, x_field: dict, pred, a: float, b: float) -> dict:
+    """One staggered half-step: pred-nodes update (aX + b neighbor-avg), rest frozen."""
+    out = {}
+    for v in g.nodes():
+        if pred(v):
+            nbrs = list(g.neighbors(v))
+            out[v] = float(a * x_field[v] + b * sum(x_field[u] for u in nbrs) / len(nbrs))
+        else:
+            out[v] = float(x_field[v])
+    return out
+
+
+def staggered_full_step(g: nx.Graph, x_field: dict, pred, a: float, b: float) -> dict:
+    """Full staggered step U = U_complement U_pred (pred-half, then rest-half)."""
+    mid = staggered_half_step(g, x_field, pred, a, b)
+    return staggered_half_step(g, mid, lambda v: not pred(v), a, b)
+
+
 # ---------------------------------------------------------------------------
 # Effective coarse operator: Psi_x(t+1) = sum_delta A_delta Psi_{x+delta}(t)
 # ---------------------------------------------------------------------------

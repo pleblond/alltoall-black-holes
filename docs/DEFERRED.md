@@ -2375,12 +2375,13 @@ Same for J (J^2 = -I + J^T G J = G + [U, J] = 0 all required before
 J). Applied: D15.3b (Q derived, J absent); required of all future
 D15 units.
 
-**Queued (D15.3b done):** D15.3c SSB sketch (horn (b): uniform rule +
-nonlinearity picks orientation -- needs mechanism + order parameter,
-design-first; last unlabeled horn). D15.2c nonlinear updates (folded
-toward D15.3c unless a non-SSB nonlinear target sharpens). D15.4
-S-channel continuum (still gated-open; S verified conservative --
-dispersion omega(k) = arccos(1 + c2(lam_+(k)-1)/2) available).
+**Queued (D15.3b done, D15.3c done):** D15.3c SSB-DESIGN (horn (b):
+uniform rule + nonlinearity picks orientation -- needs mechanism +
+order parameter, design-first; last unlabeled horn). D15.2c nonlinear
+updates (folded toward SSB-DESIGN unless a non-SSB nonlinear target
+sharpens). D15.4 S-channel continuum (still gated-open; S verified
+conservative -- dispersion omega(k) = arccos(1 + c2(lam_+(k)-1)/2)
+available).
 
 **Cross-track note (for vacuum/geometry, NOT implemented here):**
 paper's isotropy no-go vs coarse-isotropy coexistence shows
@@ -2401,7 +2402,42 @@ be unitary -- the L0 trilemma (labeled rules / SSB / no chirality)
 is now the wire: any chirality claim must state which horn it takes.
 D15.3a closes the memoryless horn by theorem (uniform first-order
 norm-preserving => on-site only). D15.3b closes the memory horn for
-chirality (conservative waves yes, J no): remaining live horns are
-labels (compass, priced openly), SSB (D15.3c sketch queued), or
-staggered/partitioned updates.
+chirality (conservative waves yes, J no). D15.3c dissolves the fourth
+horn H (below): remaining live horns are labels (compass, priced
+openly) or SSB/nonlinear (mechanism needed) -- else the
+primitives-catalog endpoint.
+
+**D15.3c VERDICT (MEASURED, test_j2stagger.py -- 5 tests, suite 581
+passed + 2 GPU-skipped): the H-horn DISSOLVES into S-or-nothing --
+canonical partitions inherit the pin, escaping partitions are
+labels.** Bipartition q = x + y is proper (all edges bichromatic) and
+CANONICAL (BFS coloring equals q-or-flip: uniqueness pinned
+constructively), c preserves color on 50 sample nodes (exact ints) --
+a color-staggered rule needs NO hand metadata (partition from G
+alone: the reviewer's severe criterion half-met for free). BUT (i)
+memoryless staggered norm preservation forces triviality for BOTH
+partitions (color + sheet): full-step norm over 2 steps preserved
+IFF (a,b) in {(1,0),(-1,0)} (23 grid points falsified per
+partition), trivial points bit-exact U = +-I on every node (sign
+flip, no transport) -- same 2-path off-diagonal mechanism as D15.3a,
+key step pinned as exact ints (max within-set common-neighbor count
+8 color / 4 sheet: a^2 b^2 (off-diag) = 0 forces a = 0 or b = 0, a = 0
+kills the diagonal); (ii) color staggering inherits the pin: all 8
+per-color blocks (black center (0,0), white center (1,0)) bisymmetric
+(dev 0.0), per-color commutators 0.0 at (0.5,0.3) -- the partition is
+free but useless for chirality; (iii) sheet staggering breaks Aut
+(left-c exchanges sheets: c.(0,0,0) = (0,0,1) pinned) = S-debt:
+cell-TI (two-center extraction agrees to 1e-12), bisymmetry broken
+(dev 0.00625), commutator 0.01620087 at (0.5,0.3) (WEAK k-state),
+bands decaying (|eigs| 0.07822471/0.01342124), norm drift 39.2 over
+one step -- rung-2 corner (travel, no conservation) via sheet labels.
+Staggered steppers (j2_color, staggered_half_step, staggered_full_step)
+added to j2excitation.py.
+Two-dimensional scorecard (conservation, travel) now: diffusion
+(x, 1.0000), second-order wave (v, 0.9997), real broken scalar
+(x, 0.98), sheet-stagger (x, weak), Weyl (v, 0.675) -- memory moves
+vertically, labels horizontally, NOTHING unlabeled reaches the Weyl
+corner. Uniform-linear-memoryless-staggered ALL closed; SSB/nonlinear
+is the last unlabeled horn and needs a concrete mechanism (none in
+D15 so far suggests one -- filed honestly, not attempted).
 
