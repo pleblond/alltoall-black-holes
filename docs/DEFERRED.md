@@ -2927,6 +2927,16 @@ INTERFERENCE: same-trajectories (T-gated!) + frozen-
 k4 + plateau-window (anatomy-consistent!) + J2-soup
 (filed-justification (readout-basis!)). NEXT: Stage-0-
 reruns (gated on prereg-commit!).
+STAGE-0-AMENDMENT-1 (NULL-CORRECTION (committed-PRE-
+analysis (reruns-done/unopened (order-preserved!)))):
+O2-"order-shuffle"-null is VACUOUS (H-a-sum (order-
+invariant!) ⟹ shuffle-cannot-move-it (prereg-bug
+(owned!))); REPLACED-by per-move-SIGN-randomization
+(10-draws (each-move-L-sign-flipped-p=0.5 (tests-
+coherent-handedness-across-moves (the-actual-claim!))));
+bar-unchanged (|H_obs|>max-|H_signrand|); block-sign-
+stability (5/5) + everything-else-stands. Original-
+text-preserved-in-git-history (7761f49).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
