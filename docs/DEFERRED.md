@@ -1075,6 +1075,40 @@ constructor + quotient check (battery + perturbation +
 walk all exist) — recommend next-go pilot (cheap,
 spec-complete) then formation design; user may reorder
 formation-first (critical-path call).
+J2 PILOT VERDICT (executed, 5 tests — probe verdict STANDS,
+no tier claim): LOGIC ERRATUM (falsified-by-data, mechanism
+understood): the filed NON-BIPARTITE claim was WRONG
+(a p-preserving edge is not an odd cycle — fallacy);
+correct bipartition q=x+y (EVERY micro-move flips it) =>
+J2 IS BIPARTITE => odd returns vanish EXACTLY like square
+(all odd-n =0.0 through 11, theorem all-n). VOLUME (QI
+control PASSES): shells EXACT 8/17/8r (r=1/2/3..22),
+p[8,20]=1.9205 in band, fractional approach 1.8403->
+1.8937->1.9205 (tri/hex pattern), quotient shells EXACT 4r
+(r=1..20), micro-vs-coarse Δp=0.0000 (bound was 0.15).
+QUOTIENT: 1861 cells/3600 edges (R30); EVERY quotient edge
+square-adjacent globally; 1741 strict-interior cells all
+square-4 with micro-mult EXACTLY 4 per coarse edge
+(hand-verification reproduced). CUTS: EXACT 32r+16
+(r=2..22; r=1 is 56) — J2's cut law (prefactor filed,
+non-universal per family rule). WALK REFRAMED: parity
+pattern coarse-matching (both bipartite), even VALUES
+micro-tracking (p2=1/8 vs square 1/4 exactly; p4+ pinned).
+C4 CENSUS (apparatus validated exactly on squares):
+26072 @R18 (N=1370) vs ~1300 square-equivalent — ~20x
+density, sheet-mixing cycles: tracks MICRO. PERTURBATION
+(sharpest probe): swaps ns=20 -> 2.49/2.60/2.16 (2/3 kill
+per majority rule; seed2 = documented lottery miss,
+Delaunay-stream-1 precedent) + q=0.05 -> 1.9205/1.9203
+(deletion-robust) — FAMILY-TYPICAL both legs, NO surprise
+=> no discovery-route tier claim. PROBE CHARACTERIZATION:
+long-scale agrees (QI); short-scale splits (parity coarse,
+degree-values/C4/cut-prefactor micro); perturbation
+family-typical. J2 = banked characterized probe + isotropy
+program first substrate (standing). MDS-tolerance-on-J2
+QUEUED (needs long-edge definition on two-sheeted graphs
+— design question, not rushed). NEXT: formation design
+(critical path resumes).
 
 **Over-arching falsifier (C1–C5, essay §8):** `M_O ∘ U ≃ U_eff ∘ M_O`
 with coherence → locality → autonomy → universality → GR limit, each

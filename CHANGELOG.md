@@ -80,7 +80,9 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   CLOSED).
   Gain-free discriminator run (zero-parameter pricing fails,
   debt confirmed, threshold narrowed to (6.2,11.0)).
-  535 tests.
+  J2 micro/macro probe (quotient verified, exact shell/cut laws,
+  bipartite correction, perturbation family-typical).
+  540 tests.
 - **v5.2** — Causal-order roadmap + substrate family + spectral leg:
   D12/D13 filed (reconstruction universality, staged emergent time, essay
   §8); C1–C5 coherence ladder with twin-histories autonomy (quotient form
