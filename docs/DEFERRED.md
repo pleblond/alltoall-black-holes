@@ -1026,6 +1026,55 @@ precursor runnable now: diffusion-anisotropy tensor of `K(t)`
 (D10 spectral leg). Tier-2 static members (Kagome/Dice, Penrose,
 stealthy HU) CANCELLED per direction: Tier-1 already spans
 topology × degree × order, further static d_G adds no axis.
+J2 PROBE PRE-REG (D'Ariano-Erba-Perinotti 2019 coinless-QW
+substrate, proposed as D10 candidate — spec VERIFIED,
+admitted as PROBE not Tier-1-track per standing
+no-new-statics direction): J2 = Z2⋊Z2 (swap action),
+vertices (x,y,b), walk-graph gens {±h1,±h2,±h1c,±h2c}
+(checks: 8 distinct, inverse-closed h1c↔-h2c/h2c↔-h1c =>
+undirected degree EXACTLY 8; neighbor fn matches multiply
+in both sheets; quotient 2-cell→square lattice VERIFIED by
+hand (4 micro-edges per coarse edge); ball-over-periodic
+endorsed). QI THEOREM-DIRECTION: [J2:Z2]=2 => QI to square
+lattice => growth/spectral/ends MUST read d=2 — volume
+battery = NEGATIVE CONTROL on apparatus (failure indicts
+apparatus, never J2); d_eff→2 is calibration,
+oversold-as-discovery guard filed in advance. NEW-AXIS
+CASE (the only license under cancellation direction):
+built-in two-scale structure (micro z=8 non-bipartite
+two-sheeted vs coarse z=4 bipartite single, QI-identical)
+=> J2's job is MICRO/MACRO DISCRIMINATION: do D10
+short-scale readouts track micro or coarse?
+PRE-REGISTERED: (i) long-scale must agree micro-vs-coarse
+(QI control); (ii) NON-BIPARTITE (c-gens preserve x+y+b
+parity => odd cycle exists => walk APERIODIC) =>
+MICRO-PREDICTION: some odd-n return >0 on J2 vs ALL
+odd-n =0 on square (exact-walk apparatus reuses;
+aperiodicity is the claim — fixed small odd n may be 0);
+(iii) 4-cycle census (square-like plaquettes + mixed;
+family already spans short-cycle variety —
+characterization, not discovery); (iv) PERTURBATION
+RESPONSE = sharpest probe (existing battery; match =
+within family response envelope, tolerance = family's own
+spread — no new threshold invented). TIER STATUS:
+explicitly DEFERRED — Tier-1-track needs direction-level
+acceptance of 'built-in coarse-graining' as a new axis
+(user call) OR a perturbation SURPRISE (discovery route);
+default verdict = apparatus knowledge (D10 readout
+scale-sensitivity), not tier placement. ISOTROPY-BANKING:
+J2's Weyl pedigree is DIRECTLY relevant to the QUEUED
+dispersion/isotropy program (selection-for-isotropy
+precedent: minimal scalar micro → isotropic Weyl macro)
+— bank J2 as first substrate for that program when it
+unqueues; until then pedigree = motivation only (quantum
+result, classical tests — nothing transfers;
+pointer-not-evidence). FIREWALLS: D10-side ONLY (no
+pricing/gain/U content — zero D14/D1 relevance beyond
+theme). QUEUE: pilot needs NO new apparatus except
+constructor + quotient check (battery + perturbation +
+walk all exist) — recommend next-go pilot (cheap,
+spec-complete) then formation design; user may reorder
+formation-first (critical-path call).
 
 **Over-arching falsifier (C1–C5, essay §8):** `M_O ∘ U ≃ U_eff ∘ M_O`
 with coherence → locality → autonomy → universality → GR limit, each
