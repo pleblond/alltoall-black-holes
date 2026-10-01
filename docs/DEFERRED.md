@@ -2278,6 +2278,28 @@ informs geometric design). BLINDNESS (moot-but-filed): no
 pricing/traffic quantities touched pre-amendment (nothing
 run at all — genuinely pre-data).
 NEXT: formation PILOT (code now — gated on pre-reg + amendments).
+FORMATION DESIGN AMENDMENT-3 (detector calibration, POST-ER-data
+(24 runs) but PRE-VERDICT — guarded-valley analysis locked
+BEFORE any guarded number is computed): TRIGGER: null
+false-positive — D1-s1-ER-8-1600 letter-valley 0.000 via an
+ISOLATED TAIL SINGLETON (mode (18,1) beyond a gap; valley=0
+over [7,18] → ratio 0/1 = 0 → WEAK-YES-by-letter ON THE NULL
+(lower-mode 7 ≥ 2 ✓, giant 1.0 ✓)). DIAGNOSIS: letter valley
+(top-two local maxima, raw counts) admits measure-zero peaks
+(singletons beyond gaps trip via valley=0). FIX (locked):
+mass-guarded valley — maxima need count ≥ 2 (minimal
+non-singleton: a phase ≠ one node — definitional, pre-reg
+intent `dense knots + depleted fabric' (both macroscopic));
+library default min_mass=2, letter = min_mass=1. ROBUSTNESS
+(locked): guarded verdicts must be INVARIANT over guard ∈
+[2,65] (any value identical → value untuned, only existence
+matters); if variant → file variant + escalate (no silent
+tuning). DUAL REPORT (locked): letter-verdicts filed (D1-s1
+YES-by-letter = documented false positive) + guarded
+verdicts (primary post-calibration). CALIBRATION STATUS:
+detector fixed on NULL behavior (not on D3 outcomes — all 54
+guarded verdicts computed AFTER this lock, uniformly from
+raw filed hists, no re-runs needed).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
