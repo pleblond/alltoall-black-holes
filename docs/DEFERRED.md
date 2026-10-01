@@ -3114,6 +3114,21 @@ MISS (disp=14.8-15.0-vs-14 (7%-over (T=12-round-number-too-long!)));
 R²=0.9993-0.9995 (COM-clean (no-interference-signature (gate-was-
 conservative (center-based!)))). NEXT: pilot-2-T10 (gated on
 amendment-commit!).
+P1.1b-VERDICT (PASS (pilot-2-T10 (beast); ring/torus-replicated-
+identical!)): disp=12.1-12.2<14-✓; purity-100.00%-all-5 (w0=0.0000
+(branch-momentum-locking-EXACT (tails-below-1e-4!))); α=2.07-2.09-
+all-4 (directed!); R²=0.9997-0.9998; reversal-exact-per-branch
+(1.2039/1.2110-symmetric-pairs!); conjugation-exact-both-pairs
+(v_+(k+Q)=-v_-(k)!); zero-k-exact-null (disp=0.0!); mixing-≤1e-12-
+all-5 (free-null-confirmed (construction-zero (not-luck!)));
+n_zero=838-replicated. ALL-12-J2-checks-PASS.
+P1.1-VERDICT (PASS (all-substrates (ring+torus-grid+bare-J2))):
+ψ-only→ballistic-but-nonlocalized (control-row-✓); detector-
+validated (v_g-match/sign-test/zero-k-null/MSD-bins/C_v/R²-gates/
+exact-zero-mixing-null (all-with-margin!)). ⟹ P1.1-GATE-OPEN
+(formation-coupling-runs-UNBLOCKED (B0a-next!)). NEXT: B0a-frozen-
+scattering (inputs: Stage-0-plateau-saves + node-matched-controls
+(gated on input-inventory!)).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

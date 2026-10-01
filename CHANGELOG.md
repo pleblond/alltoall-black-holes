@@ -32,8 +32,14 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 - **unreleased (P1 pilot-1)** — D14-P1 wave-only results (beast):
   P1.1a PASS (ring v=0.9583 vs 0.9589, α=2.00, C_v=+1.000;
   torus v=0.967/0.965, α=2.05/2.04, C_v=+0.996; 22/22 checks);
-  P1.1b pilot-1 superseded (physics all-pass, nowrap gate missed
+  P1.1b   pilot-1 superseded (physics all-pass, nowrap gate missed
   7% at T=12) → amendment-3 (T=10, same gates/criteria).
+
+- **unreleased (P1 pilot-2)** — D14-P1 P1.1 VERDICT: PASS (beast):
+  P1.1b T=10 all 12 J2 checks pass (purity 100%, α=2.07-2.09,
+  reversal/conjugation exact, mixing ≤1e-12, zero-k null);
+  ring/torus replicated identical ⟹ ballistic detector validated,
+  B0a frozen-scattering unblocked (input inventory next).
 
 - **unreleased (formation Stage-0)** — D14 blob-individuals verdict NULL
   (6 J2 reruns, T-match 6/6): 0/6 directed (3 confined + 3 diffusive
