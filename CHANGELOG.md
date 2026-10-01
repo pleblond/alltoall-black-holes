@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (P-track P0b)** — Mobility-degeneracy confirmatory NULL
+  (48 T-matched J2 runs, L28×32 + L42×16, k4sets 501/501, unwrap-MSD fix
+  (amendment-1, pilot-anchored)): s_obs 0.65/0.65 both < bootstrap max_null
+  0.76/0.77; persistence 25/32 + 10/16 (< 80%, clean intermittent flips);
+  residuals continuum (raw gaps 0.41/0.64 filled by controls) ⟹
+  mobility-continuum after controls + bursty (not long-lived types);
+  pilot 3C+3D replicated; B-flicker flagged (d12/d15 jumps) ⟹ PAUSE
+  pure-D5∞ polarity entirely (K+ψ wait); D15 closed; +5 mobility pins
+  (599 collected).
+
 - **unreleased (P-track P0)** — Emergent-polarity degeneracy survey NULL
   (64 D5∞ runs, J2 L28×32 + L42×16 + ER-S0×16, beast ~4min): 0/3 cells
   positive (s_obs 0.25/0.30/0.35 all < max_null 0.41/0.45/0.46; primary

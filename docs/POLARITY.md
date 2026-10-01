@@ -387,6 +387,64 @@ Resume-safe part files (beast-only scripts, grid above reproduces).
 Next (gated): P0b verdict here; temporal-mode characterization prereg ONLY if
 P0b-POSITIVE; else PAUSE (K+psi wait).
 
+## P0b VERDICT — NULL (mobility-continuum after controls + intermittent, PAUSE)
+
+48/48 cap-2000 (L28x32 + L42x16, k4sets 501/501, T-match 48/48 vs P0-A/B
+(observation-pure PINNED!)). Amendment-1 unwrap fix applied (per-pair folding
+REJECTED, pilot-anchored: S0-vs-P0b k4sets 0/501 differ (L28-d1), unwrapped
+recovers Stage-0 diffusive range).
+
+FIXED alpha (unwrapped, tau 1..100): A mean 0.568 sd 0.422 range 0.057-1.156
+(16 confined + 16 diffusive); B mean 0.657 sd 0.420 range 0.068-1.144
+(5 confined + 11 diffusive). Pilot 6/6 REPLICATED (counts 3C+3D EXACT +
+ranges: diffusive 0.86-1.02 (Stage-0 0.75-1.05) + confined 0.06-0.08 (~0)).
+
+GATED TESTS (residualized vs 5 controls, 1D 2-means, Gaussian bootstrap):
+
+- P0b-A: s_obs 0.650 (> 0.30 floor) BUT < max_null 0.755 (null mean 0.583;
+  gated-null (singleton-excluded) max 0.719, STILL fail) => NULL.
+- P0b-B: s_obs 0.653 < max_null 0.771 (gated same) => NULL.
+- Persistence (raw-bin halves): A 25/32 (0.781, miss by 1), B 10/16 (0.625,
+  miss by 3) => FLICKER-FAIL (both <0.80; flips DRASTIC (1.03->0.07,
+  0.15->0.93, across gap, NOT threshold jitter)).
+- Bin-alignment TRUE both (lo 0.25/0.40 confined, hi 0.93/0.91 diffusive)
+  but MOOT (no positive). NC-controls pass (all |d|<0.85); B-flicker FLAG
+  (diffusive-cluster jump 0.113 (d12 0.33 + d15 0.15, multi-piece), A clean
+  (0.012/0.032)); NC-shape-coupled pass (aniso d 0.20/0.16 residual-clusters).
+
+0/2 positive => P0b-NULL per decision rule.
+
+POST-HOC (filed, NOT discovery, needs new prereg to adjudicate):
+
+- RAW gaps STRIKING (A 0.41 (0.15->0.57, 4x next), B 0.635 (0.09->0.72, 6x
+  next); 13/19 + 5/11 splits; rms 3-4 (low) vs 21-48 (high), d -2.5/-1.8).
+  BUT residuals FILL gaps (A max-gap 0.116, B 0.145, no dominant; continuum;
+  silhouette Gaussian-consistent) => "collapses to continuum after controls"
+  (mentor pause-condition MET (multivariate; univariate aniso d~0.95 BUT
+  SIGN-FLIPS N (A +0.98 sitters-elongated vs B -0.95 sitters-round) => no
+  robust single driver; joint-controls fill (R^2 0.20/0.46, adj 0.05/0.19;
+  B 6-params-on-16 OVERFIT-flagged (filed methods concern, not verdict))).
+- INTERMITTENCY (NEW phenomenology): A flips 7/7 CLEAN (efrac 0, mf 0 (6/7),
+  jf<0.05, mcv stable; REAL start/stop (sit-then-wander (d9) + wander-then-sit
+  (d1/d6/d20))); mobility is BURSTY, not steady-state. Full-window alpha =
+  burst duty-cycle proxy? Non-bursters (<=0.15) vs bursters (>=0.57)? Trait
+  (ever-burst) vs waiting-time CONTINUUM needs LONGER horizon (T×2? new
+  prereg, NOT here). Halves (251pt) too short for bursty persistence (filed).
+- B CONTAMINATION flag (d12: jf 0.33, mf 0.50, rms 87; d15: jf 0.15, rms 70;
+  jumps+multi inflate B-diffusive (A clean, B mixed; N-replication WEAKENED)).
+
+FILED: "mobility-continuum after controls + intermittent (not long-lived
+types)". Sitter/wanderer (Stage-0 N=6) = BURST-SAMPLING + control-correlated
+gap (NOT stable types at matched controls; halves flip cleanly). P0 (static)
++ P0b (mobility) BOTH null => PAUSE pure-D5inf polarity ENTIRELY, wait for
+coupled K+psi system (per review). No P0b-dynamics (exchange currents) w/o
+preregisterable split (none found); no two-blob polarity (no K± to collide).
+
+D15 gate: NOT fired (no J/C/P; stays closed). P-track closes pure-D5inf leg
+as double-null (static single-type + mobility continuum/intermittent);
+ledger stands for K+psi re-entry.
+
+
 ## P0b AMENDMENT-1 (analysis-bug fix, PRE-VERDICT, pilot-anchored, not shopping)
 
 BUG: P0b analysis as coded used per-PAIR minimal torus disp for MSD
