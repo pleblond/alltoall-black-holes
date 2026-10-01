@@ -315,3 +315,56 @@ faces. Fix (locked):
   all other triangles read ~0. W(S) = net vortex charge in S.
 
 Original text preserved in git history (dcab8b2).
+
+## Amendment-2 (torus-ball region + envelope, committed PRE-evolution-data)
+
+Seed: P3.0-original t=0 readouts (filed below, NO verdict weight) showed
+planted m=+-1 reading W2 = +56/-56 (blob 0), +18/-18 (blob 1) and random
+controls reading +13/-67/+18/-3 -- all large integers, not +-1/0.
+Diagnosis (structural, no evolution data seen): (1) graph-ball S2 (530
+nodes, nearly ALL 3500 triangles) is torus-scattered by rewired long
+edges, so the antipodal cut of the torus-angle field passes THROUGH S2;
+cut-straddling triangles each contribute +-1 and dominate W (the true
+core-vortex +-1 is buried). The graph-distance envelope (sigma=6) cannot
+suppress the cut because graph-near != torus-near on rewired graphs.
+(2) The k4 core itself SPANS the torus (median dist-to-centroid ~10 of
+max 19.8; torus-ball r=3 around core set = 1554/1568 nodes): the blob is
+a graph-localized SPONGE, not a torus lump. BUT a broad triangle lump
+exists: 20-30% of triangles within torus r4 of the core-centroid (3-4x
+uniform 6.4%), 44-56% within r6 (vs 14.4%), all 8 blobs; top-degree hubs
+scattered (x-range 23-27); k5 ~= 0. The centroid tracks the lump
+(Stage-0 continuity preserved). Fix (locked):
+
+- Region: S^T_r = {v : d_T(v, centroid) <= r} (torus-ball around the CORE
+  circular-mean centroid, Stage-0 definition UNCHANGED). Primary r=4
+  (W^T_4), robustness r in {3, 6} (filed). Replaces graph-ball S_r.
+  Cut (dist ~14) never enters the region.
+- Envelope: rho(v) = exp(-d_T(v,centroid)^2/2sigma^2), sigma=6 TORUS units
+  (same number, torus metric). Replaces graph-distance envelope.
+  Controls (m=0, random-phase) share it (control logic unchanged).
+- theta(v): UNCHANGED (torus angle about centroid). Orientation:
+  UNCHANGED (amendment-1). Health gate / tau rule / bar / cells /
+  blinding: UNCHANGED. Region floor (new insurance): S^T_4 must contain
+  >= 100 kept triangles (far below observed ~700-1000; violation ==>
+  exclude+replace like unhealthy).
+- Charter: observable = loop-free Stokes face-sum with orientation AND
+  region from the J2 readout basis (filed justification); ER-intrinsic
+  queued. Framing: "phase-winding persistence around the triangle lump
+  (the D5inf blob's torus manifestation)".
+- Mirror P3.0 check CLARIFIED (prereg text was ambiguous, script wrong):
+  the exact t=0 check is the (G,RG) comparison W^{RG}_{R(S)}(R_*psi) =
+  -W^G_S(psi) (reflected GRAPH's triangles, not G's triangles in R(S);
+  R is not in Aut(G) for rewired G). Script bug owned; prereg law-symmetry
+  claim (pin 15) stands.
+- Superseded graph-region t=0 readouts (blobs 0-1, filed, no weight):
+  W2(m=+1) = +56/+18; W2(m=-1) = -56/-18; W2(m=0) = 0/0;
+  W2(rand) = +13/-67 (blob0), +18/-3 (blob1); exclusion 0 everywhere
+  (envelope failed open); E(+1)=E(-1) exact both blobs (kept result:
+  conjugation-E equality is region-independent).
+- P3.0-ORIGINAL verdict: APPARATUS-FAILED (2/2 blobs unhealthy under the
+  graph-region observable; P3.0 gate correctly stopped P3-A evolutions;
+  blinding preserved -- zero psi-evolution steps run). P3.0-REDO (new
+  region/envelope, same bar: 2/2 healthy + flips + m=0 + random filed)
+  gates P3-A. New pins: torus distance/region + synthetic torus-planted
+  winding (sign/magnitude with empirical margin; exact quantization stays
+  pinned on the wheel).
