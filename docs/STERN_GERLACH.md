@@ -358,4 +358,8 @@ SG-2 opens only on a future P-track positive per the re-entry rule (§0).
 
 No U/formation/D1 runs; no ψ→G channel; P1/P2/P3/D15 read-only;
 no electron constants; no new law (splitter = apparatus, ban (g)).
-Full suite: <see PR/suite log>.
+Full suite: 614 passed + 2 skipped (beast; 616 collected; run chunked
+A/B/C under -n 4/8 after two xdist-controller kills by a self-matching
+local pkill pattern (owned infra error, no code impact); the single
+chunk-B failure was test_posteriors missing h5py in the minimal beast
+venv — 4/4 pass after install).
