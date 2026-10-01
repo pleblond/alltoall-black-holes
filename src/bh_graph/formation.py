@@ -364,6 +364,8 @@ def formation_run(
     log_stride: int = 0,
     log_window: tuple | None = None,
     k5_window: tuple | None = None,
+    k4_window: tuple | None = None,
+    log_endpoints: bool = False,
 ) -> dict:
     """Run D1/D3/D5-family relocation to a stop rule.
 
@@ -379,9 +381,12 @@ def formation_run(
     profiles offline); T (triangles) tracked incrementally every sweep.
     Anatomy (pure observation, never perturbs dynamics): log_stride>0
     logs every log_stride-th proposal as (sweep, t_loss, t_gain,
-    accepted) within log_window (sweep range or None); k5_window logs
-    per-sweep k5-count in range. Deterministic given seed. Returns the
-    full filing record (+ state iff return_state).
+    accepted) within log_window (sweep range or None); log_endpoints
+    widens rows to (sweep, a, b, c, d, t_loss, t_gain, accepted);
+    k5_window logs per-sweep k5-count in range; k4_window logs
+    per-sweep floored-k4-core node sets (blob tracking). Deterministic
+    given seed. Returns the full filing record (+ state iff
+    return_state).
     """
     if driver not in ("d1", "d3", "d5k", "d5inf", "d35"):
         raise ValueError(f"unknown driver: {driver}")
@@ -399,8 +404,14 @@ def formation_run(
     rng = random.Random(seed)
     nbrs = st["nbrs"]
     per_sweep, snaps, k5trace, saved, t_trace = [], {}, {}, {}, []
-    moves, k5win = [], {}
+    moves, k5win, k4sets = [], {}, {}
     prop_n = 0
+
+    def log_move(sw_, a_, b_, c_, d_, loss_, gain_, acc_):
+        if log_endpoints:
+            moves.append((sw_, a_, b_, c_, d_, loss_, gain_, acc_))
+        else:
+            moves.append((sw_, loss_, gain_, acc_))
     stop, sw = None, 0
     while sw < t_max:
         sw += 1
@@ -418,7 +429,7 @@ def formation_run(
             )
             if driver in ("d3", "d35") and not (len(nbrs[a]) < thr or len(nbrs[b]) < thr):
                 if logging:
-                    moves.append((sw, None, None, False))
+                    log_move(sw, a, b, c, d, None, None, False)
                 continue
             gain = len(nbrs[c] & nbrs[d])
             loss = len(nbrs[a] & nbrs[b])
@@ -435,14 +446,14 @@ def formation_run(
             if driver in ("d5k", "d35"):
                 if not accept_d5(gain - loss, kappa, rng):
                     if logging:
-                        moves.append((sw, loss, gain, False))
+                        log_move(sw, a, b, c, d, loss, gain, False)
                     continue
             elif driver == "d5inf" and gain < 1:
                 if logging:
-                    moves.append((sw, loss, gain, False))
+                    log_move(sw, a, b, c, d, loss, gain, False)
                 continue
             if logging:
-                moves.append((sw, loss, gain, True))
+                log_move(sw, a, b, c, d, loss, gain, True)
             _remove_edge(st, (a, b))
             _add_edge(st, (c, d))
             nbrs[a].remove(b)
@@ -458,6 +469,15 @@ def formation_run(
             k5trace[sw] = truss_count_k(state_to_nx(st), 5, 0.01)
         if k5_window is not None and k5_window[0] <= sw <= k5_window[1] and sw % 10 != 0:
             k5win[sw] = truss_count_k(state_to_nx(st), 5, 0.01)
+        if k4_window is not None and k4_window[0] <= sw <= k4_window[1]:
+            t4 = nx.k_truss(state_to_nx(st), 4)
+            fl = max(2, -(-n // 100))
+            big = (
+                [c for c in nx.connected_components(t4) if len(c) >= fl]
+                if t4.number_of_nodes()
+                else []
+            )
+            k4sets[sw] = sorted(set().union(*big)) if big else []
         if sw % 100 == 0:
             saved[sw] = list(st["elist"])
         if sw == w_arrest and sum(per_sweep) == 0:
@@ -503,6 +523,7 @@ def formation_run(
         "dep_final": poisson_l1(hf, lam, n),
         "moves": moves,
         "k5win": {sw: list(v) for sw, v in k5win.items()},
+        "k4sets": {sw: list(v) for sw, v in k4sets.items()},
     }
     if return_state:
         return rec, st

@@ -158,3 +158,25 @@ def test_k5_window():
     r = formation_run(st, "d5k", 4, 0, t_max=30, kappa=1.0, k5_window=(11, 29))
     assert sorted(r["k5win"]) == [x for x in range(11, 30) if x % 10 != 0]
     assert all(v[0] >= 0 for v in r["k5win"].values())
+
+
+def test_k4_window_sets():
+    st = state_from_nx(soup_graph("er", 100, 8, 0))
+    r = formation_run(st, "d5inf", 4, 0, t_max=20, k4_window=(5, 15))
+    assert sorted(r["k4sets"]) == list(range(5, 16))  # every sweep, incl %10
+    assert all(all(0 <= v < 100 for v in s) for s in r["k4sets"].values())
+    r2 = formation_run(st, "d5inf", 4, 0, t_max=20, k4_window=(5, 15))
+    assert r["k4sets"] == r2["k4sets"]
+
+
+def test_endpoint_moves_and_full_purity():
+    st = state_from_nx(soup_graph("er", 100, 8, 0))
+    kw = {"log_stride": 10, "log_window": (1, 15), "log_endpoints": True, "k4_window": (1, 15)}
+    r = formation_run(st, "d5inf", 4, 0, t_max=15, **kw)
+    assert len(r["moves"]) > 50
+    assert all(len(m) == 8 for m in r["moves"])
+    assert all(0 <= m[1] < 100 and 0 <= m[4] < 100 for m in r["moves"])
+    r0 = formation_run(st, "d5inf", 4, 0, t_max=15)
+    assert r["t_trace"] == r0["t_trace"]  # all logging observation-pure
+    assert r["executes_trace"] == r0["executes_trace"]
+    assert r["hist_final"] == r0["hist_final"]
