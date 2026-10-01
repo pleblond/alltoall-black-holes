@@ -35,13 +35,17 @@ from bh_graph.tunnel import (
     j2_group_velocity,
     kx_for_energy,
     packet_T_pred,
+    packet_T_pred_2wall,
     region_masks_j2,
     separation_time,
+    struct_masks_j2,
     support_bounds,
     tb_barrier_RT,
+    tb_profile_RT,
     trb_weights,
     wall_graph_j2,
     wall_max_degree,
+    well_box_modes,
 )
 
 
@@ -187,3 +191,47 @@ def test_support_bounds_unit():
     for e0 in (-5.0, -5.5, -6.0, -6.5, -7.0, -3.0):
         s = support_bounds(e0)
         assert -8.0 < s["E_min"] < s["E_max"] < 0.0  # gate (b') holds
+
+
+def test_profile_reduces_to_barrier():
+    for lb in (0, 1, 4):
+        a = tb_barrier_RT(-5.5, -4.0, lb)
+        b = tb_profile_RT(-5.5, -4.0, [0.0] * lb)
+        assert abs(a["T"] - b["T"]) < 1e-15 and abs(a["R"] - b["R"]) < 1e-15
+    rt = tb_profile_RT(-5.826, -4.0, [0.0] * 2 + [-4.0] * 4 + [0.0] * 2)
+    assert abs(rt["T"] + rt["R"] - 1.0) < 1e-12
+    assert tb_profile_RT(-20.0, -4.0, [0.0, 0.0])["T"] == 0.0
+
+
+def test_well_box_modes():
+    modes = well_box_modes(4)
+    assert len(modes) == 2
+    assert abs(modes[0] - -7.23606797749979) < 1e-9
+    assert abs(modes[1] - -5.23606797749979) < 1e-9
+    assert well_box_modes(1) == []  # single-site well has no sub-band mode
+
+
+def test_double_wall_resonance_exists():
+    import numpy as np
+
+    prof = [0.0] * 2 + [-4.0] * 4 + [0.0] * 2
+    es = np.linspace(-6.4, -5.4, 501)
+    ts = [tb_profile_RT(e, -4.0, prof)["T"] for e in es]
+    assert max(ts) > 0.9 and min(ts) < 0.01  # sharp resonance in theory
+
+
+def test_double_predictor_converged_peak():
+    hi = packet_T_pred_2wall(-5.826, 2, 4, n_kx=501)["T_pred"]
+    hi2 = packet_T_pred_2wall(-5.826, 2, 4, n_kx=2001)["T_pred"]
+    assert abs(hi - hi2) / hi2 < 0.05  # quadrature converged
+    bg = packet_T_pred_2wall(-6.8, 2, 4, n_kx=501)["T_pred"]
+    assert hi2 > 5.0 * bg  # k-averaged contrast survives
+
+
+def test_struct_masks_partition():
+    L = 16
+    g, _ = wall_graph_j2(L, list(range(6, 8)) + list(range(12, 14)))
+    order = node_order(g)
+    masks = struct_masks_j2(L, order, 6, 14)
+    assert is_partition_ok(masks, len(order))
+    assert len(masks["wall"]) == 8 * L * 2

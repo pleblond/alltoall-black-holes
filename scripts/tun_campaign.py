@@ -53,8 +53,10 @@ from bh_graph.tunnel import (  # noqa: E402
     j2_group_velocity,
     kx_for_energy,
     packet_T_pred,
+    packet_T_pred_2wall,
     region_masks_j2,
     separation_time,
+    struct_masks_j2,
     support_bounds,
     trb_weights,
     wall_graph_j2,
@@ -66,6 +68,19 @@ E0_CONTROL = -3.0
 LB_TUN2 = (0, 1, 2, 3, 4, 5, 6, 8)
 LB_TUN3 = 4
 DT = 0.1
+# TUN-4 frozen scan (coarse 0.2-grid + exact TM resonance addresses + fine fills)
+SCAN4 = (
+    -7.6, -7.5, -7.418, -7.4, -7.3, -7.2, -7.0, -6.8, -6.6, -6.4, -6.2, -6.1,
+    -6.0, -5.9, -5.826, -5.8, -5.7, -5.6, -5.5, -5.4, -5.2, -5.0, -4.8, -4.6, -4.4,
+)
+X0_TUN4 = 40
+WALL1_TUN4 = (64, 66)
+WELL_TUN4 = (66, 70)
+WALL2_TUN4 = (70, 72)
+LO_TUN4 = 64
+HI_TUN4 = 72
+LB_TUN4 = 2
+LW_TUN4 = 4
 
 
 def coords_xy(L):
@@ -87,9 +102,9 @@ def prep_packet(L, e0, sigmax=SIGMAX_DEFAULT, sigmay=SIGMAY_DEFAULT, x0=X0_DEFAU
     return psi / np.linalg.norm(psi), order, kx0
 
 
-def free_run(L, e0, t_end, sigmax=SIGMAX_DEFAULT, sigmay=SIGMAY_DEFAULT):
+def free_run(L, e0, t_end, sigmax=SIGMAX_DEFAULT, sigmay=SIGMAY_DEFAULT, x0=X0_DEFAULT):
     g = j2_torus_graph(L)
-    psi0, order, kx0 = prep_packet(L, e0, sigmax, sigmay)
+    psi0, order, kx0 = prep_packet(L, e0, sigmax, sigmay, x0=x0)
     h = hamiltonian(g, order=order)
     rec = evolve_fixed(psi0, h, DT, int(round(t_end / DT)))
     ts = np.arange(rec["psi"].shape[0]) * DT
@@ -267,15 +282,125 @@ def stage_tun3(args):
     print(f"records -> {args.out}")
 
 
+def stage_tun4bank(args):
+    L = args.L
+    bank = {}
+    for e0 in SCAN4:
+        v_analytic = j2_group_velocity(kx_for_energy(e0))
+        t_run = separation_time(v_analytic, x0=X0_TUN4, wall_hi=HI_TUN4)
+        g, order, rec, ts, rs, kx0, h, psi0 = free_run(L, e0, t_run, x0=X0_TUN4)
+        fit = fit_velocity(rs, ts)
+        v = float(np.linalg.norm(fit["v"]))
+        cv = velocity_autocorr(rs, ts)
+        nb = 10
+        bins = [float(np.mean(s)) for s in np.array_split(cv, nb)]
+        ein = energy_readout(psi0, h)
+        disp = float(np.linalg.norm(rs[-1] - rs[0]))
+        prof_end = column_profile(rec["psi"][-1], L, order)
+        wrap_w = float(prof_end[L - 6 :].sum())
+        sup = support_bounds(e0)
+        bank[str(e0)] = {
+            "v_in": v,
+            "v_analytic": v_analytic,
+            "r2": fit["r2"],
+            "alpha": msd_exponent_rs(rs, ts),
+            "cv_bins": bins,
+            "norm_maxdev": float(np.abs(rec["norms"] - 1.0).max()),
+            "E_in": ein["E"],
+            "E_spread": ein["spread"],
+            "E_plus_6sig": ein["E"] + 6 * ein["spread"],
+            "E_sup_min": sup["E_min"],
+            "E_sup_max": sup["E_max"],
+            "disp": disp,
+            "wrap_w": wrap_w,
+            "t_run": t_run,
+            "tsep": separation_time(v, x0=X0_TUN4, wall_hi=HI_TUN4),
+        }
+        print(
+            f"TUN-4bank E0={e0}: v={v:.6f} (an {v_analytic:.6f}) r2={fit['r2']:.6f} "
+            f"E={ein['E']:.4f}+-{ein['spread']:.4f} disp={disp:.1f} wrap={wrap_w:.2e}",
+            flush=True,
+        )
+    with open(args.bank_out, "w") as f:
+        json.dump(bank, f, indent=1)
+    print(f"bank -> {args.bank_out}")
+
+
+def tun4_cell(L, e0, v_in):
+    cols = (
+        list(range(*WALL1_TUN4))
+        + list(range(*WALL2_TUN4))
+    )
+    g, ncut = wall_graph_j2(L, cols)
+    order = node_order(g)
+    psi0, _, _ = prep_packet(L, e0, x0=X0_TUN4)
+    h = hamiltonian(g, order=order)
+    tsep = separation_time(v_in, x0=X0_TUN4, wall_hi=HI_TUN4)
+    rec = evolve_fixed(psi0, h, DT, int(round(tsep / DT)))
+    masks = struct_masks_j2(L, order, LO_TUN4, HI_TUN4)
+    trb_t = [trb_weights(p, masks) for p in rec["psi"]]
+    dev = [abs(w["T"] + w["R"] + w["B"] - 1.0) for w in trb_t]
+    final = trb_t[-1]
+    prof_end = column_profile(rec["psi"][-1], L, order)
+    coords = coords_xy(L)
+    ts = np.arange(rec["psi"].shape[0]) * DT
+    rs = unwrap_trace(
+        np.array([com(p, coords, order, periods=(L, L)) for p in rec["psi"]]),
+        periods=(L, L),
+    )
+    pred = packet_T_pred_2wall(e0, LB_TUN4, LW_TUN4, L=L, n_kx=2001)
+    return {
+        "E0": e0,
+        "T_sep": tsep,
+        "T": final["T"],
+        "R": final["R"],
+        "B": final["B"],
+        "acct_maxdev": float(max(dev)),
+        "acct_ok": bool(all(d < 1e-9 for d in dev)),
+        "norm_maxdev": float(np.abs(rec["norms"] - 1.0).max()),
+        "com_y_drift": float(rs[-1, 1] - rs[0, 1]),
+        "wrap_w": float(prof_end[L - 8 :].sum()),
+        "cut": ncut,
+        "T_pred": pred["T_pred"],
+        "T_single": pred["T_single"],
+        "T_ratio": float(final["T"] / pred["T_pred"]),
+    }
+
+
+def stage_tun4(args):
+    bank = json.load(open(args.bank))
+    L = args.L
+    recs = []
+    for e0 in SCAN4:
+        c = tun4_cell(L, e0, bank[str(e0)]["v_in"])
+        recs.append(c)
+        print(
+            f"TUN-4 E0={e0}: T={c['T']:.6e} pred={c['T_pred']:.6e} ratio={c['T_ratio']:.3f} "
+            f"R={c['R']:.6f} B={c['B']:.3e} acct={c['acct_maxdev']:.1e} Tsep={c['T_sep']}",
+            flush=True,
+        )
+    ts = [c["T"] for c in recs]
+    print(f"TUN-4 contrast max/min = {max(ts) / min(ts):.1f}")
+    json.dump(recs, open(args.out, "w"), indent=1)
+    print(f"records -> {args.out}")
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--stage", required=True, choices=["tun0", "tun1", "tun2", "tun3"])
+    ap.add_argument("--stage", required=True, choices=["tun0", "tun1", "tun2", "tun3", "tun4bank", "tun4"])
     ap.add_argument("--L", type=int, default=L_DEFAULT)
     ap.add_argument("--bank", default="tun_bank.json")
     ap.add_argument("--bank-out", default="tun_bank.json")
     ap.add_argument("--out", default="tun_records.json")
     args = ap.parse_args()
-    {"tun0": stage_tun0, "tun1": stage_tun1, "tun2": stage_tun2, "tun3": stage_tun3}[args.stage](args)
+    {
+        "tun0": stage_tun0,
+        "tun1": stage_tun1,
+        "tun2": stage_tun2,
+        "tun3": stage_tun3,
+        "tun4bank": stage_tun4bank,
+        "tun4": stage_tun4,
+    }[args.stage](args)
 
 
 if __name__ == "__main__":

@@ -109,6 +109,31 @@ def is_partition_ok(masks: dict, n: int) -> bool:
         return False
 
 
+def struct_masks_j2(L: int, order: list, lo: int, hi: int) -> dict:
+    """Hilbert-index masks {left, wall, right} for a structure band [lo, hi).
+
+    Generalizes region_masks_j2 (keys kept: wall = whole structure band,
+    e.g. double wall + well; T + R + B = 1 accounting unchanged).
+    """
+    from bh_graph.formation import j2_torus_coords
+
+    c3 = j2_torus_coords(L)
+    pos = {v: i for i, v in enumerate(order)}
+    left, wall, right = [], [], []
+    for v, (x, _, _) in c3.items():
+        if x < lo:
+            left.append(pos[v])
+        elif x < hi:
+            wall.append(pos[v])
+        else:
+            right.append(pos[v])
+    return {
+        "left": np.asarray(left, dtype=int),
+        "wall": np.asarray(wall, dtype=int),
+        "right": np.asarray(right, dtype=int),
+    }
+
+
 def trb_weights(psi: np.ndarray, masks: dict) -> dict:
     """Transmitted/reflected/barrier weights (T + R + B = 1 exactly)."""
     p = np.abs(np.asarray(psi, dtype=np.complex128)) ** 2
@@ -184,20 +209,32 @@ def tb_barrier_RT(
     T + R = 1 exactly (unitarity); T = 0 if E is outside the lead band.
     Stationary theory -- independent of any dynamics run.
     """
+    return tb_profile_RT(e, eps_lead, [eps_wall] * int(lb), t=t)
+
+
+def tb_profile_RT(e: float, eps_lead: float, eps_list, t: float = 2.0) -> dict:
+    """Exact 1D transmission for an arbitrary onsite profile (transfer matrix).
+
+    Infinite lead (onsite eps_lead, hopping t) with consecutive profile
+    sites of onsite eps_list[j] (same hopping). {T, R}, T + R = 1 exactly;
+    T = 0 outside the lead band. Generalizes tb_barrier_RT (uniform
+    profile reduces exactly). Stationary theory -- no dynamics input.
+    """
     disc = (e - eps_lead) / (-2.0 * t)
     if abs(disc) > 1.0:
         return {"T": 0.0, "R": 1.0}
     k = float(np.arccos(np.clip(disc, -1.0, 1.0)))
+    n = len(list(eps_list))
     m = np.eye(2, dtype=complex)
-    for _ in range(int(lb)):
-        mj = np.array([[(eps_wall - e) / t, -1.0], [1.0, 0.0]], dtype=complex)
+    for ej in eps_list:
+        mj = np.array([[(ej - e) / t, -1.0], [1.0, 0.0]], dtype=complex)
         m = mj @ m
     eik = np.exp(1.0j * k)
     emik = np.exp(-1.0j * k)
     a = np.array(
         [
-            [m[0, 0] + m[0, 1] * eik, -(eik ** (int(lb) + 1))],
-            [m[1, 0] + m[1, 1] * eik, -(eik ** int(lb))],
+            [m[0, 0] + m[0, 1] * eik, -(eik ** (n + 1))],
+            [m[1, 0] + m[1, 1] * eik, -(eik**n)],
         ],
         dtype=complex,
     )
@@ -207,6 +244,20 @@ def tb_barrier_RT(
     )
     r, tr = np.linalg.solve(a, c)
     return {"T": float(abs(tr) ** 2), "R": float(abs(r) ** 2)}
+
+
+def well_box_modes(lw: int, j: float = J_DEFAULT) -> list:
+    """Isolated-well quasi-bound predictions: open-segment modes below -4J.
+
+    E_m = -4J cos(pi m / (lw+1)) - 4J (ky = 0 cut), m = 1..lw, kept iff
+    E_m < -4J (bound w.r.t. the wall band). TUN-4 resonance addresses.
+    """
+    out = []
+    for mm in range(1, int(lw) + 1):
+        e = -4.0 * j * math.cos(math.pi * mm / (int(lw) + 1)) - 4.0 * j
+        if e < -4.0 * j:
+            out.append(float(e))
+    return out
 
 
 def packet_T_pred(
@@ -247,6 +298,48 @@ def packet_T_pred(
             num += w * tb_barrier_RT(e, eps_lead, lb, t=2.0 * j)["T"]
             den += w
     single = tb_barrier_RT(e0, -4.0 * j, lb, t=2.0 * j)["T"]
+    return {"T_pred": float(num / den), "T_single": float(single)}
+
+
+def packet_T_pred_2wall(
+    e0: float,
+    lb: int,
+    lw: int,
+    sigmax: float = SIGMAX_DEFAULT,
+    sigmay: float = SIGMAY_DEFAULT,
+    L: int = L_DEFAULT,
+    j: float = J_DEFAULT,
+    n_kx: int = 121,
+    n_ky_halfwidth: int = 6,
+) -> dict:
+    """k-averaged transfer-matrix transmission for the TUN-4 double wall.
+
+    Profile per ky: lb wall sites (onsite 0) + lw well sites (onsite
+    -4Jcosky, pristine) + lb wall sites. Returns {T_pred, T_single}
+    (central-mode value). Stationary theory -- the TUN-4 comparator.
+    """
+    kx0 = kx_for_energy(e0, j=j)
+    skx = 1.0 / (2.0 * sigmax)
+    sky = 1.0 / (2.0 * sigmay)
+    kx_grid = kx0 + np.linspace(-6.0 * skx, 6.0 * skx, int(n_kx))
+    wx = np.exp(-2.0 * (sigmax**2) * (kx_grid - kx0) ** 2)
+    ms = np.arange(
+        -int(math.ceil(n_ky_halfwidth * sky * L / (2.0 * math.pi))),
+        int(math.ceil(n_ky_halfwidth * sky * L / (2.0 * math.pi))) + 1,
+    )
+    ky_grid = 2.0 * math.pi * ms / L
+    wy = np.exp(-2.0 * (sigmay**2) * ky_grid**2)
+    num, den = 0.0, 0.0
+    for ky, qy in zip(ky_grid, wy):
+        eps_lead = -4.0 * j * math.cos(ky)
+        prof = [0.0] * int(lb) + [eps_lead] * int(lw) + [0.0] * int(lb)
+        for kx, qx in zip(kx_grid, wx):
+            e = -4.0 * j * (math.cos(kx) + math.cos(ky))
+            w = qx * qy
+            num += w * tb_profile_RT(e, eps_lead, prof, t=2.0 * j)["T"]
+            den += w
+    prof0 = [0.0] * int(lb) + [-4.0 * j] * int(lw) + [0.0] * int(lb)
+    single = tb_profile_RT(e0, -4.0 * j, prof0, t=2.0 * j)["T"]
     return {"T_pred": float(num / den), "T_single": float(single)}
 
 
