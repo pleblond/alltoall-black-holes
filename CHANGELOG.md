@@ -3,6 +3,22 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (P1 B0a verdict)** — B0a frozen-scattering verdict B0-NULL
+  + B1-NULL (S3 432/432 cells persisted on beast; S4 headline sitters
+  L28-d1/d2/d3 + all6 sensitivity; A6 decision table applied): apparatus
+  gates pass (branch accounting max-dev 1.8e-11, 0/432 invalid; 5
+  approach_ok fails excluded+filed; appendix 349/378); residence
+  sign-reversed (controls 26.02±2.00, formed z median -4.37 — formed
+  traps LESS); delay void (formed n=0); mixing formed max 0.29-0.43 <
+  D1 0.79-0.81 (MWU one-sided p=1.0, bare floor 1e-11); TRACK half-fires
+  (ρ_mix=+0.574 p=0.003 vs ρ_res=-0.550 ⟹ no-bridge); B1 0/6 (0.6-0.9x,
+  need 5x + every-control); all6 confirms (B0-NULL, B1 0/13, TRACK
+  ρ_mix=+0.677 p=9e-08 vs ρ_res=-0.06). ⟹ frozen D5∞ objects do not
+  trap/bind/mix CTQW beyond label-matched controls (chirality breaking
+  comes from rewiring, not blob); B2/B3 stay gated. Records: `data/b0a/`
+  (432 cells + headline/all6 results + selection) + `scripts/b0a_campaign.py`
+  + `scripts/b0a_analyze.py`.
+
 - **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked
   (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control

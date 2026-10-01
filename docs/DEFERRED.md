@@ -3219,6 +3219,38 @@ filed (superseded-method (for-transparency!)): T-match-6/6-✓;
 wrapped-α: sitters-L28-d1/d3+L42-d0 (3/3-split-replicates-Stage-0-
 count!); jacmin-0.06-0.23 (churn-consistent!); masses-134-246.
 NEXT: S1-fix + S3-topup-if-needed + S4 (gated on amendment-commit!).
+P1-B0a-VERDICT (B0-NULL + B1-NULL (S3-432/432-cells-persisted +
+S4-headline-AND-all6 (A6-decision-table-APPLIED (no-wiggle!)))).
+APPARATUS-GATES: accounting-max-dev-1.8e-11-invalid-0/432 (hard-gate-
+1e-9-PASS!); headline-cells-54; approach_ok-headline-5-fails-excluded
++filed (appendix-378-cells-minus/x-flip/y-approach_ok-349/378!);
+S1-fixed-sitters-L28-d1/d2/d3 (single-α-(-0.08/-0.06/+0.04)-all-<0.7
+(A7-rule!) + masses->0-all-saves; L28-d0-diffusive-1.49-excluded;
+L42s-single->1.2-excluded (d0-slither-suspect-skipped-2!)); valid-
+formed-6-controls-18. HEADLINE-FIRE-TESTS: residence-controls-26.02±
+2.00-vs-formed-z-(-5.60/-5.27/-5.81/-3.46/-2.11/-2.55)-median-(-4.37)
+(SIGN-REVERSED (formed-traps-LESS!) ⟹ res=False); delay-formed-n=0-
+VOID (D1-null-dts-all-negative-(-4.8..-14.7)!); mixing-formed-max-
+0.29-0.43-vs-D1-0.79-0.81-vs-bare-1e-11 (median-formed->1e-6-
+evaluated!; MWU-one-sided-p=1.0 ⟹ dominance-ABSENT (D1-rewiring-
+breaks-chirality-HARDER!)); FIRE=res-OR-mix=FALSE. TRACK: rho_m=
++0.574-p=0.0033-vs-rho_r=-0.550-p=0.0053-n=24 (residence-leg-
+NEGATIVE ⟹ no-bridge (mixing-half-fires-alone!)). BRIDGE-moot
+(needs-fire!). B1: formed-ratios-0.6-0.9x-vs-controls-max-wbar-
+0.1465 (0/6-need-5x+every-control ⟹ NULL). DESCRIPTIVE-filed:
+formed-vout/width-cells-n=0-empty (post-crossing-criterion-yielded-
+none!) vs controls-vout-2.47 (R²-gated-1.96); dW-patterns-filed
+(no-fire-role!). 2x2: mix-False-res-False ⟹ B0-NULL. ALL6-
+SENSITIVITY: B0-NULL (MWU-p=1; res-False-delay-void; TRACK-rho_m=
++0.677-p=9e-08-vs-rho_r=-0.056-p=0.70-no-bridge-n=49) + B1-0/13-
+NULL (ratios-0.3-0.9x). ⟹ FROZEN-D5∞-OBJECTS-DO-NOT-TRAP/BIND/MIX-
+CTQW-BEYOND-LABEL-MATCHED-CONTROLS (wave-passes-through (residence-
+SHORTENED!); chirality-breaking-comes-from-rewiring-not-blob!).
+B2/B3-STAY-GATED (no-one-way-anomaly + feedback-still-underived
+(ban-list-stands!)). RECORDS: data/b0a/ (432-cells + headline/all6-
+results + selection!) + scripts/b0a_campaign.py + scripts/b0a_
+analyze.py. NEXT: B0b-dynamic-K-vs-close-P1-null (user-call (gated-
+on-go!)).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
