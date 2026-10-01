@@ -488,3 +488,36 @@ Regression pin: forensics BAD #1 coords pinned wrapped+excluded.
   24 seam in region), W(rand)=+3/+2; blob1: E=87 (479 kept, 46 seam),
   W(rand)=+11/+1; mirror diff +2/+4; all else (quant/imprint/conj/m=0/
   E-match) exact as before.
+
+## Verdicts
+
+### P3.0-POSITIVE (apparatus valid; P3-A gate OPENS; filed 2026-10-01)
+
+20 pins pass (suite green on beast, parallel xdist) + campaign-graph
+checks on blobs 0-1 (t=0, ZERO evolution steps run before this verdict):
+
+- blob 0 (k4mass 140, centroid (3.96,15.78)): S^T_10 = 624 nodes,
+  207 kept tris (>= 100 floor PASS), seam 24 + wrap 28 in region
+  (~22% geometric exclusion, psi-independent, filed); E = W(+1)(0) =
+  +59.00 (imprint PASS); W(-1)(0) = -59.00 (mirror-imprint sum 0.00
+  PASS); W(conj) = -59.00 (PASS); W(m=0) = 0.00 (PASS); quant_resid 0
+  (PASS); excl 0 (PASS); (G,RG) mirror diff +0.00e+00 EXACT (PASS);
+  E(+1) = E(-1) = +0.060551 exact, E^RG = E^G (PASS).
+- blob 1 (k4mass 199, centroid (27.02,20.21)): S^T_10 = 622 nodes,
+  428 kept (>= 100 PASS), seam 46 + wrap 51; E = +80.00; W(-1) =
+  -80.00 (sum 0.00); conj -80.00; m=0 0.00; quant ~0; excl 0; mirror
+  diff +0.00e+00 EXACT; E(+1) = E(-1) = -0.023606 exact, E^RG = E^G.
+- Random-phase t=0 (filed baseline): blob0 W = +2/-2 (normalized
+  0.034/0.028); blob1 W = +8/-2 (0.100/0.025); all < 0.5 as predicted
+  (amendment-4 note holds); quant exact; excl 0.
+- Law symmetry R U R^-1 = U verified: pin 15 ([evol,R_*] = 0 to
+  1e-12) + campaign (G,RG) exactness + E^RG = E^G. H-gate holds: H
+  real-symmetric (K-symmetric), blind proposals, R-covariant law; any
+  L/R asymmetry in P3-A is spontaneous by construction.
+- Path to green (filed): P3.0-original (graph region, cut-dominated)
+  -> amendment-2 (torus region) -> amendment-3 (coverage norm) ->
+  amendment-4 (r10; region-starved at r4) -> amendment-5 (seam) ->
+  amendment-6 (wrapped; forensics complete theory) -> POSITIVE. All
+  amendments pre-evolution-data; blinding held throughout.
+
+P3-A runs authorized (8 blobs x 5 initials, T=200, dt=2, locked bar).
