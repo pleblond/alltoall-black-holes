@@ -3,6 +3,13 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (SPEC prereg)** — Bound-state spectroscopy campaign opened
+  on PR-#65 tail (P1 amendment-7): SPEC-0 frozen spectral anatomy preregistered
+  (H_K=-A_K, 18 formed + 38 controls, L1-L4 fire incl. MW dominance + size
+  robustness), SPEC-1 scattering-resonance + SPEC-2 driven-transition procedures
+  frozen (prediction-before-scan discipline); `spectroscopy.py` apparatus
+  (dense spectra, near-K/sheet/dormant, R/T partition, J-drive runner) + 11 pins.
+
 - **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked
   (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
