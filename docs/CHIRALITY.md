@@ -460,3 +460,31 @@ R/wrap non-commutation (wrap odd elsewhere) -- pinned + verified.
   blob1: E=99, W(rand)=+10/-2 (0.101/0.020), quant ~1e-14; mirror
   diff +4/+12; E(+1)=E(-1) exact (region-independent values unchanged
   across redos: +0.0606/-0.0236 -- sanity held).
+
+## Amendment-6 (wrapped-triangle exclusion, committed PRE-evolution-data)
+
+Seed: P3.0-REREREDO t=0: seam exclusion helped (+4/+12 -> +2/+4) but
+mirror still inexact. Per-triangle forensics (blob 0, t=0, filed
+method): set correspondence R(T^G)==T^RG EXACT (235/235), regions match
+(symdiff 0), but 5/235 triangles read SAME sign both sides (net
+2x(+1-1+1-1+1)=+2 = the diff exactly). Diagnosis (analytic, verified on
+the 5): WRAP-FOLDED triangles -- spanning > L/2 so mindisp folds them
+(e.g. y-bonds +17 read as -11); signed area becomes START-DEPENDENT
+(+53 from vertex a, -91 from vertex b for BAD #1) and R-inconsistent.
+Complete theory (locked): orientation is R-odd EXACTLY for triangles
+that are (i) UNWRAPPED (mindisp closure e_ab+e_bc-e_ac == 0 exactly;
+wrapped == +-L) and (ii) NON-SEAM (no bond |d| == L/2, amendment-5);
+start-independence <==> closure; R-image negates unwrapped vectors
+bitwise ==> s' = -s bitwise ==> flip exact. Wrapped triangles (closure
++-L) are EXCLUDED (orientation start-arbitrary); seam kept (R/wrap
+non-commute even when closed); degenerate kept (s == 0). orient_faces
+returns (kept, oriented, seam_mask, wrap_mask); all fractions filed.
+Regression pin: forensics BAD #1 coords pinned wrapped+excluded.
+- P3.0-REREREDO verdict: MIRROR-STILL-INEXACT (+2/+4, wrapped triangles);
+  gate holds P3-A; blinding preserved (zero evolution steps run).
+  P3.0-REREREREDO (wrapped exclusion, same bar + wrap fraction filed +
+  exact (G,RG) required) gates P3-A.
+- Superseded rererredo t=0 (filed, no weight): blob0: E=66 (235 kept,
+  24 seam in region), W(rand)=+3/+2; blob1: E=87 (479 kept, 46 seam),
+  W(rand)=+11/+1; mirror diff +2/+4; all else (quant/imprint/conj/m=0/
+  E-match) exact as before.
