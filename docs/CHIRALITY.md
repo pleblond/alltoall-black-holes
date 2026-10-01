@@ -368,3 +368,33 @@ scattered (x-range 23-27); k5 ~= 0. The centroid tracks the lump
   gates P3-A. New pins: torus distance/region + synthetic torus-planted
   winding (sign/magnitude with empirical margin; exact quantization stays
   pinned on the wheel).
+
+## Amendment-3 (coverage normalization, committed PRE-evolution-data)
+
+Seed: the synthetic torus-planted pin reads W = +2.0 EXACTLY for m=+1
+(not +1): two sheet-doubled triangles enclosing the centroid each
+contribute +1 (per-triangle telescoping is exact; the sum multi-covers).
+General law: W(0) = m x E, E = coverage number (count of
+centroid-enclosing triangles, a graph-geometric per-blob constant).
+Stokes-equals-boundary (= m) holds only for single-cover disks; the blob
+lump multi-covers. Fix (locked): all verdict quantities use NORMALIZED
+winding Ŵ(t) = W(t)/W_planted(0) (fraction of initial winding retained):
+
+- Planted m=+-1 runs divide by their OWN W(0) (Ŵ(0) = 1 by construction).
+- Random-phase controls divide by the SAME-BLOB |W^{+1}(0)| (planted
+  scale; filed per blob). m=0 stays RAW (W(0) = 0 exactly); its max|W|
+  excursion is reported vs the planted scale (filed, descriptive).
+- tau rule / sign-stability / PRIMARY bar (>= 6/16 planted tau > 50 +
+  stable sign AND <= 2/16 random tau > 50): UNCHANGED, operating on Ŵ
+  (same numbers 0.5/5/50, rescaled meaning: half the initial winding
+  lost). Sign-stability for planted: sign(Ŵ) = m while |Ŵ| >= 0.5.
+- Health RESTATED (vacuous |W-m|<0.25 replaced): exclusion < 5% AND
+  |W(0)| >= 1 (imprint present) AND |W-round(W)| < 0.1 at t=0
+  (quantization = leakage check; exact absent exclusions) AND region
+  floor >= 100 kept triangles (amendment-2, stands).
+- Mirror-imprint: |W^{+1}(0) + W^{-1}(0)| < 0.1 (was 0.05; uniform tol).
+- E_blob = W^{+1}(0) filed per blob (coverage; lump triangle-density
+  readout). Synthetic pin documents E=2 (sheet doubling) exactly.
+- P3.0-REDO bar (same gate, restated quantities): 2/2 blobs healthy +
+  flips exact + m=0 ~0 + random t=0 filed + E_blob filed. P3-A gated on
+  P3.0-REDO-positive. Zero evolution steps run to date (blinding holds).
