@@ -444,6 +444,46 @@ D15 gate: NOT fired (no J/C/P; stays closed). P-track closes pure-D5inf leg
 as double-null (static single-type + mobility continuum/intermittent);
 ledger stands for K+psi re-entry.
 
+## Coupled K⊗ψ re-entry — APPROVED gated sequence (FROZEN-2026-10-01, review)
+
+P0 stands (no static shopping). J2 spectral branches (±ω, independently
+derived wave spectrum) are the admitted paired-state candidate (spectral
+conjugate branches — NOT polarity/charge/matter yet). Ladder: ±ω → spectral
+pair → K⊗ψ± composites? → persistent sectors? → signed invariant? →
+interaction/conjugation phenomenology. Stage-0 handedness NULL fenced
+(handedness failed; polarity open ONLY in coupled system).
+
+Gates (one-way, P-track consumes C0/J2-wave read-only; P-track NEVER designs
+U_Kψ (else positives uninterpretable)):
+
+1. Freeze P0/P0b double-null (DONE, PR #64, pending review).
+2. Read-only J2 wave derivation (locate docs/code; verify ±ω, packet def,
+   norm/energy; P-track imports, never modifies).
+3. C0 (EXTERNAL, other track): derive/freeze U_Kψ + derive invariants/energy
+   (E definition for composites LOCKED (E+=E- testable)) + classify T,C?,CT?
+   (real ψ: ±ω may be T-related (time-reversal), NOT C; complex ψ: C or CT?
+   P-track needs the candidate symmetry NAMED before testing (matched inputs
+   differ: time-reversed vs conjugated packets)).
+4. Freeze J2-coordinate packet preparation/projection (ψ± sampling onto node
+   labels (J2 coords on formed-graph nodes) + k-space discretization + phase
+   convention + boundaries; FROZEN pre-data (projection chirality is the #1
+   fake-asymmetry confound (filed!))).
+5. Plain-J2 apparatus CONTROL (matched ψ± on UNFORMED J2; must reproduce
+   KNOWN conjugate relation (analytic dynamics) end-to-end; FAIL => apparatus
+   invalid (preparation creates asymmetry), STOP before formed K).
+6. Sitter-selected matched K⊗ψ± (P0b methods dividend: non-bursters (α≤0.15,
+   13+5 runs) as K hosts (stationary, minimal drift confound); matched
+   |ω|,|k|,norm/energy,geometry; null = branch blindness).
+7. P-track branch-blindness VERDICT (sector discovery FIRST (not Q-first);
+   E±, persistence, C-search; Z2 C²=I ≠ D15 J (J²=-I + metric + [U,J]=0
+   required for complex-structure claim)).
+8. Interpret paired composites ONLY then (Q±, ++/--/+-, annihilation/pair
+   creation as LATER signatures, not initial criteria).
+
+P-track idle until (2)+(3) land (external deps). No new pure-graph runs
+(pause honored).
+
+
 
 ## P0b AMENDMENT-1 (analysis-bug fix, PRE-VERDICT, pilot-anchored, not shopping)
 
