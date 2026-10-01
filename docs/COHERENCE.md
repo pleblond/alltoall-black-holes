@@ -197,3 +197,11 @@ predictability.
 
 ## Verdicts (append below; nothing above changes post-freeze except via
 numbered pre-data amendments)
+
+## Amendment-1 (slope-magnitude convention, committed PRE-data, pre-run)
+
+Seed: writing the COH-1 analysis I found the fringe-phase slope sign is a
+fit-convention artifact (model V cos(2kx+theta) vs physics cos(2kx-phi)):
+the apparatus reports theta(phi) = -phi + const, i.e. slope -1 for perfect
+unit-shift response. Fix (locked): the COH-1 slope bar is |slope| in
+[0.95, 1.05] (magnitude; sign filed). All other bars stand.
