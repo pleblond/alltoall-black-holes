@@ -2300,6 +2300,29 @@ verdicts (primary post-calibration). CALIBRATION STATUS:
 detector fixed on NULL behavior (not on D3 outcomes — all 54
 guarded verdicts computed AFTER this lock, uniformly from
 raw filed hists, no re-runs needed).
+AMENDMENT-3 ESCALATION (locked procedure FIRED — rule below
+locked BEFORE any gap-aware number is computed): guard-
+robustness FAILED with 10 VARIANTS: D1 tail islands (mass
+2-6 beyond gaps: 1600-rr8-s0/s2-d1, 3600-er16-s0-d1,
+3600-rr8-s2-d1 (+3 mode-only)) flip WEAK under mass-2
+(4/54 WEAK-guarded, ALL on the NULL); D3@3 dust (16-20)
+flips the bimodal flag (WEAK stays NO via lower-mode).
+Pattern: the discriminator is the GAP, not the mass
+(connected-tail peaks (mass 6, 12) give shallow valleys
+(0.833, unimodal ✓); only beyond-gap islands trip
+(valley=0)). ADOPTED (locked): connected-support
+(gap-aware) valley — intervals with interior empty bins =
+disconnected islands, not saddles → 1.0. NOT TUNING: binary
+topological property (NO tunable value — nothing to tune);
+textbook bimodality (saddle, not gap); agrees with
+mass-guard on all non-artifact cases HERE (provable:
+D3-arrest support = {0}∪[thr,∞) (theorem) → any D3 gap
+touches z=1 (excluded by lower-mode≥2 anyway) → D3 WEAK-NO
+under EVERY statistic; only divergence = tail islands
+(artifact)). TRIPLE REPORT (locked): letter + mass-2 +
+gap-aware (all filed; gap-aware primary). CAVEAT (locked):
+gap-aware may under-call complete separation in future
+drivers — revisit if gapped non-dust support appears.
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

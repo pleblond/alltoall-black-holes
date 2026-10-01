@@ -117,18 +117,25 @@ def _local_maxima(h: dict, min_mass: int = 2) -> list:
     return out
 
 
-def valley_ratio(h: dict, min_mass: int = 2) -> float:
+def valley_ratio(h: dict, min_mass: int = 2, connected: bool = True) -> float:
     """Bimodality gate: valley-min / lower-peak over the two highest maxima.
 
     Maxima ranked by (-height, z); valley = min over the closed interval.
     Fewer than two maxima -> 1.0 (unimodal). Bimodal iff ratio < 0.5
     (labeled threshold). min_mass=2 default (guarded); 1 = letter.
-    Deterministic.
+    connected=True (default): intervals with interior empty bins are
+    disconnected islands (not saddles) -> 1.0 (textbook bimodality needs
+    a saddle, not a gap; D3-dust gaps reclassify as dusty-unimodal and
+    still fail WEAK via lower-mode; caveat: may under-call complete
+    separation in future drivers — revisit if gapped non-dust support
+    ever appears). Deterministic.
     """
     ms = sorted(_local_maxima(h, min_mass), key=lambda z: (-h[z], z))[:2]
     if len(ms) < 2:
         return 1.0
     lo, hi = min(ms), max(ms)
+    if connected and any(h.get(z, 0) == 0 for z in range(lo + 1, hi)):
+        return 1.0
     return min(h.get(z, 0) for z in range(lo, hi + 1)) / min(h[lo], h[hi])
 
 
