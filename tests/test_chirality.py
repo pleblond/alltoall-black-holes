@@ -61,7 +61,7 @@ def _wheel_planted(n, m):
 def _wheel_oriented(n=12):
     g, coords = _wheel(n)
     tris = enumerate_triangles(g)
-    kept, ori = orient_faces(tris, coords, L=None)
+    kept, ori, seam = orient_faces(tris, coords, L=None)
     assert bool(np.all(kept))  # wheel triangles are non-degenerate
     idx = node_index(sorted(g.nodes()))
     return g, triangle_index(ori, idx)
@@ -269,10 +269,10 @@ def test_law_symmetry_commutes_with_r():
 def test_orient_faces_degenerate_excluded():
     tris = np.asarray([[0, 1, 2], [0, 1, 3]])
     coords = {0: (0.0, 0.0), 1: (1.0, 0.0), 2: (2.0, 0.0), 3: (0.0, 1.0)}
-    kept, ori = orient_faces(tris, coords, L=None)
+    kept, ori, seam = orient_faces(tris, coords, L=None)
     assert list(kept) == [False, True]  # collinear excluded
     assert ori.shape == (1, 3)
-    kept, ori = orient_faces(np.zeros((0, 3), dtype=np.int64), coords, L=None)
+    kept, ori, seam = orient_faces(np.zeros((0, 3), dtype=np.int64), coords, L=None)
     assert ori.shape == (0, 3)
     w, excl, used, total = winding(np.zeros((0, 3), dtype=np.int64), np.ones(4))
     assert (w, excl, used, total) == (0.0, 0.0, 0, 0)
@@ -315,7 +315,7 @@ def test_synthetic_torus_planted_winding():
     x0, y0 = circular_centroid(core, coords, L)
     s = set(region_torus_ball(coords, nodes, x0, y0, 2, L))
     tris = enumerate_triangles(g, nodes)
-    kept, ori = orient_faces(tris, coords, L)
+    kept, ori, seam = orient_faces(tris, coords, L)
     in_s = np.asarray([a in s and b in s and c in s for a, b, c in ori])
     assert in_s.sum() >= 2  # added triangles land in-region
     tidx = triangle_index(ori[in_s].reshape(-1, 3), idx)
@@ -330,3 +330,19 @@ def test_synthetic_torus_planted_winding():
     assert n1 is not None and list(n1) == [1.0, 0.5, 0.0]
     assert normalized_winding([1.0], 0.0) is None  # zero scale: routine None
     assert normalized_winding([1.0], float("nan")) is None
+
+
+def test_seam_critical_excluded():
+    L = 4
+    coords = j2_torus_coords(L)
+    a = (0 * L + 0) * 2  # (0,0,0)
+    b = (2 * L + 0) * 2  # (2,0,0): dx = 2 = L/2 antipodal bond
+    c = (0 * L + 1) * 2  # (0,1,0)
+    tris = np.asarray([[a, c, b]])  # canonical order
+    kept, ori, seam = orient_faces(tris, coords, L)
+    assert list(seam) == [True] and list(kept) == [False]
+    d = (1 * L + 0) * 2  # (1,0,0): short bonds, no seam
+    tris2 = np.asarray([[a, c, d]])
+    kept2, ori2, seam2 = orient_faces(tris2, coords, L)
+    assert list(seam2) == [False] and list(kept2) == [True]
+    assert ori2.shape == (1, 3)

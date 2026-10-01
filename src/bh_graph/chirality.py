@@ -190,13 +190,19 @@ def orient_faces(tris: np.ndarray, coords: dict, L: int | None = None):
     """Orient triangles by signed (x,y) area (amendment-1).
 
     coords: node -> (x, y) or (x, y, b). L: torus period (None = plain
-    displacement for synthetic coords). Returns (kept_mask, oriented):
-    kept = non-degenerate (nonzero area); oriented = label triples with
-    positive cyclic order. Degenerate triangles are EXCLUDED (filed).
+    displacement for synthetic coords). Returns (kept_mask, oriented,
+    seam_mask): kept = non-degenerate AND non-seam-critical; oriented =
+    label triples with positive cyclic order; seam_mask marks
+    seam-critical triangles (any bond with |d| == L/2 exactly, L even:
+    R/wrap non-commutation makes their orientation sign arbitrary --
+    amendment-5). Degenerate (zero-area) triangles are EXCLUDED (filed).
+    L=None has no seam (seam_mask all False).
     """
     if len(tris) == 0:
-        return np.zeros(0, dtype=bool), np.zeros((0, 3), dtype=np.int64)
+        z = np.zeros(0, dtype=bool)
+        return z, np.zeros((0, 3), dtype=np.int64), z
     kept = np.zeros(len(tris), dtype=bool)
+    seam = np.zeros(len(tris), dtype=bool)
     out = np.empty_like(tris)
     for k, (a, b, c) in enumerate(tris):
         xa, ya = coords[int(a)][:2]
@@ -208,12 +214,16 @@ def orient_faces(tris: np.ndarray, coords: dict, L: int | None = None):
         else:
             e1 = (mindisp_1d(xa, xb, L), mindisp_1d(ya, yb, L))
             e2 = (mindisp_1d(xa, xc, L), mindisp_1d(ya, yc, L))
+            e3 = (mindisp_1d(xb, xc, L), mindisp_1d(yb, yc, L))
+            if any(abs(d) == L / 2 for d in e1 + e2 + e3):
+                seam[k] = True  # orientation sign arbitrary: exclude
+                continue
         s = e1[0] * e2[1] - e1[1] * e2[0]
         if s == 0:
             continue
         kept[k] = True
         out[k] = (a, b, c) if s > 0 else (a, c, b)
-    return kept, out[kept].reshape(-1, 3)
+    return kept, out[kept].reshape(-1, 3), seam
 
 
 def core_distances(g: nx.Graph, core: list) -> dict:
