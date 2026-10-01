@@ -3393,3 +3393,37 @@ monitor-wrap_w-(cols-≥L−8-at-T_sep (non-firing!)). G1-bank-SUPERSEDED-by-
 G2-bank (different-L (G1-PASS-stands-as-validity (not-as-bank!))). NEXT:
 TUN-0-pilot-3-(G2-fresh) + TUN-2/TUN-3-pilot-2-(G2-fresh) (gated on
 amendment-commit + TUN-0-G2-PASS (same-gates (a)(b')(c)(d)(e)(f)!)).
+
+TUN-0-VERDICT-G2 (PASS (pilot-3 (L160 (beast)))): 6/6-cells-pass-all-
+gates: (a)-v-within-0.35% (R²=1.000000!); (b')-support-bounds-inside-
+(−8,0)-all; (c)-norm-≤6.1e-14; (d)-α=2.00-all; (e)-wrap-≤4e-16;
+(f)-disp-≤75.8<80. ⟹ G2-bank-valid (T_sep-frozen (banked-rules
+(LB6-rounded-20.0→20.5-ONLY-change (formula-locked (filed!))))).
+TUN-1-G2-filed (L160-N51200): wall_deg_max-4-ALL-LB (Gershgorin-
+[−4,4]-stands!) + bipartite-✓ + connected-✓ + κ-table-stands.
+TUN-2-VERDICT (PASS (G2 (beast))): 8/8: (a)-accounting-≤1.5e-13-every-
+frame-every-cell-✓; (b)-T/T_pred-{1.000,1.000,1.000,1.000,1.001,1.026}-
+for-LB-{1..6}-✓ (≤2.6%-over-3-DECADES (T-0.46→2.0e-4!) (absolute-
+prediction-NO-FIT!)); (c)-slope-−1.581-vs-−2κ=−1.682 (6.0%-✓ (30%-
+band!)); (d)-T>1e-10-✓ (min-2.0e-4!); (e)-T(0)=0.99950-✓; (f)-T(8)=
+2.89e-5<1e-4-✓; (g)-LB6-residence-strictly-decreasing-✓; (h)-LB6-asym-
+3880>10-✓ (single-mode-~4400!). FILED: T-strictly-decreasing-in-LB-✓;
+interior-slopes-{-1.647,-1.633,-1.615,-1.595}-(LB4568 (within-5%-of-
+−2κ (descriptive!))); asym-{177,846,3880,69660}-(e^{2κ}-growth-✓);
+com_y-drift-≤7e-14 (ky-conservation-✓); wrap-monitors-close-the-
+contamination-account (T_meas=T_pred+wrap_w-in-EVERY-cell (LB8: 1.12e-5
++1.77e-5=2.89e-5-EXACT (ratio-2.58-fully-explained (check-(f)-stands!))).
+TUN-3-VERDICT (PASS (G2 (beast))): 5/5: (a)-accounting-≤1.2e-13-✓; (b)-T-
+{0.010119,0.0042756,0.0019242,0.0008849,0.0004713}-STRICTLY-decreasing-
+over-E0-grid-✓ (κ↑⟹T↓!); (c)-ratios-{1.000,1.000,1.001,1.014,1.264}-✓
+(E0=−7-excess-=-wrap-monitor-9.8e-5-EXACT (long-run-spread (filed!)));
+(d)-control-T=0.6952-vs-pred-0.7099 (ratio-0.979-✓ + >0.3-✓); (e)-LB0-
+cited-✓. FILED: control-interior-asym-1.96 + NON-monotonic (propagating-
+contrast-vs-3880/monotonic (STARK!)); com_y-≤7e-13.
+TUN-VERDICT-SINGLE-BARRIER (PASS): box-CLOSED (spectrally-forbidden-
+(TUN-1) + evanescent-interior (mono+asym-3880) + finite-T (all-cells) +
+predicted-width-dependence (ratios-≤2.6% + slope-6%)). ⟹ graph-wave-
+tunneling/EVANESCENT-TRANSMISSION-ESTABLISHED (uniquely-quantum-claim-
+NOT-made (locked-interpretation!)). NEXT: TUN-4-double-barrier (design-
+amendment (geometry+scan+resonance-predictions-frozen-pre-run!) (gated-
+OPEN (TUN-2+TUN-3-PASS-banked!))).
