@@ -3,6 +3,20 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (POT-0 coherence-direction)** — Omnidirectional-potential
+  → coherent-directed-wave campaign on bare J2 (frozen ontology: same
+  two-real-scalar field + H=-A bulk law, no new variable): flux readout
+  D=|J_net|/S + spectral-C (Fourier peak fraction) + gradient/dephasing
+  families + scrambling/aperture interventions (`potential.py`, 17 pins);
+  P1 wave sector imported (`ballistic.py` + 21 pins, formation
+  elist_window); verdict POT0-COLLECTIVE (strongest rung): source
+  <D>=8e-14 vs packet <D>=0.86 (α≈2.09, Cv≈0.99, k→-k exact reversal,
+  P1.1b v≈1.21 replicated), D(c)/C(c) strictly monotone both families,
+  scrambling destroys (D 0.86→0.013) + restore recovers, pooled
+  Spearman(C,D)=1.0, support scaling D(R) monotone (collective scale
+  ~envelope), all symmetry controls (S1–S5) + L42 appendix green;
+  614 collected (612 passed, 2 torch/GPU skips). POT-1 gate opens.
+
 - **unreleased (BR-0 bond-energy landscape)** — D14-BR0 offline campaign:
   P1-frozen wave sector vendored verbatim (P1 tip ac6a1409); new
   `backreaction.py` (E_psi, local dE=-2J(B_add-B_rem), M1 sampler,

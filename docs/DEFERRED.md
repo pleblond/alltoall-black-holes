@@ -4351,3 +4351,173 @@ medians differ at ~1e-15 relative; C0 torus cell 7.14e-16 vs 7.52e-16
 (both ~1e3x below bar). Every bar evaluates identically on both
 machines. Deterministic-protocol replication CONFIRMED (zero
 verdict impact).
+
+POT0-PREREG (FROZEN-2026-10-02 (~02:00-UTC (commit-predates-
+ALL-POT0-campaign-runs!)); omnidirectional-potential-to-coherent-
+directed-wave (POT-0-of-POT-0/POT-1 (POT-1-gated-behind-POT-0!))).
+QUESTION (load-bearing!): can-the-SAME-two-real-scalar-field-on-J2
+support-BOTH-an-omnidirectional-source-relative-potential-like-
+response-AND-a-directed-ballistic-wave-with-direction-from-collective-
+phase-coherence/interference-only (no-directional-variable/memory/
+coin/compass-at-any-node)? FROZEN-ONTOLOGY: G=bare-J2-torus +
+psi_x=r_x+i*i_x + H(G)=-J*A(G)-UNCHANGED (bulk-law-NEVER-touched
+(potential.py-contains-NO-evolution-law (evolution-ONLY-via-
+ballistic.evolve_fixed!))); direction-is-a-property-of-a-many-node-
+configuration-only (vector-embedding-readout-only!).
+APPARATUS (this-commit (17-pins!)): bond-current-J_{u->v}=2J*Im[conj
+(psi_u)*psi_v] (H-continuity!); quotient-(x,y)-displacement-per-edge
+(all-axis-steps-pinned!); J_net=sum-J_e*d_e (orientation-invariant!) +
+S=sum-|J_e| + D=|J_net|/S (S=0->D=0!); per-class-fluxes-(positive/
+negative-part-sums (algebra-pinned: diffs=Q + sum=S!)); spectral-C =
+sheet-summed-quotient-FFT-peak-fraction (+M_eff-participation!) =
+FOURIER-space (independent-of-real-space-flux-D!); gradient-family
+(k_eff=c*k (envelope-exact; c=0-uniform-source + c=1-validated-
+packet-bit-exact-pinned!)); dephasing-family (|packet|*exp(i*(phi+
+(1-c)*eps))-seeded (amplitude/norm-exact!)); scrambling (|psi|*exp
+(i*theta)-seeded (POT-0D-intervention!)); aperture (quotient-disk-R +
+renorm (gradient-kept-pinned!)); J2-autos-rot90/reflectx/translate
+(auto-pinned + covariance-pinned!); plane-wave-D=1 + standing/real-
+D=0-pinned; global-phase-invariance-pinned; spearman-own-impl-pinned.
+HEADLINE-GEOMETRY (P1.1b-validated-window!): L=28-bare-J2-torus +
+sigma=4 + r0=(7,14) (site-centered (exact-symmetries!)) + k=(+-0.3,0)
++ zero-k + T=10-dt=0.1-J=1 (101-rows; <D>=time-mean-over-all-rows!;
+C-measured-at-PREP(t=0) (coherence-is-a-preparation-property!));
+packets-RAW (no-branch-purification (P1.1b-showed-100%-raw-purity!);
+flux-readout-is-branch-blind-BY-DESIGN!); null-ensemble-N=20-seeds-
+0..19-same-envelope (D_null-calibration!).
+POT-0A-SOURCE (unbiased-source-calibration!): prep = sigma=4-k=0-
+uniform-phase-Gaussian (same-envelope-as-packet (ONLY-phase-differs!)
++ full-J2-symmetry-respecting (D4+sheet-exact!)). PASS ⟺ <D>_source
+< 0.05 AND <D>_source <= null_mean+3*null_std (one-sided (source-
+MAY-be-more-symmetric-than-random (D~1e-15-expected (exact-
+cancellation!) vs null~1/sqrt(E)!))). ANY-persistent-direction-
+under-symmetry-neutral-source = apparatus/asymmetry-FAIL-BLOCKS-
+campaign!.
+POT-0B-PACKET (P1.1b-positive-control (NOT-discovery!)): prep =
+sigma=4-k=(0.3,0)-packet. PASS ⟺ ALL: (a)-<D>_packet > 0.5;
+(b)-(<D>_packet-<D>_source) > 0.4 AND ratio-(floor-1e-9) > 10;
+(c)-alpha > 1.3 (P1-MSD-bins!); (d)-mean-C_v-first-50-lags > 0.5;
+(e)-k->-k: cos(mean-J_net(+k),mean-J_net(-k)) < -0.95 AND |<D>|
+matched-10%; (f)-v-fit-r2 > 0.99 (+-k-runs (interference-gate!)).
+POT-0C-INTERPOLATION (LOAD-BEARING!): gradient-c-grid-{0,0.1,...,1}:
+PASS ⟺ D(1)/D(0) > 10 (floor-1e-9!) AND Spearman(v(c),c) > 0.7 AND
+v(0) < 5%-v(1) (lawful-without-analytic-form (NO-J2-v_g-law-pinned
+(no-sin-law-claim!))); dephasing-family-(seed-0)-same-grid: PASS ⟺
+Spearman(D(c),c) > 0.5 AND D(1)/D(0) > 5. BOTH-must-hold (gradient =
+selection-by-gradient; dephasing = selection-by-coherence!). C-
+constancy-check (validation-not-criterion!): gradient-C(c)-flat-
+within-5% (C-measures-concentration-not-gradient (envelope-fixed!)).
+POT-0D-MECHANISM (causal-test!): scramble (seed-0) the-k=0.3-packet
+(envelope/norm-exact!) + evolve-identical + restore (re-prep-clean).
+PASS ⟺ ALL: D_scr < 0.15*D_clean; C_scr < 0.5*C_clean (independent-
+Fourier-measure!); D_rest-within-15%-D_clean; C_rest-within-15%-
+C_clean; pooled-Spearman(C,D) > 0.5 over {noise-11 + clean/scr/
+rest} (gradient-grid-EXCLUDED-from-pool (C-degenerate-there-BY-
+DESIGN (filed-above!))). Post-hoc-ADD (allowed): aperture-R-grid
+into-pool (confinement-varies-both (strengthens-link-test!)).
+POT-0E-COLLECTIVE: R-grid-{2,3,4,6,8,12,full(full-coded-20!)}-same-
+k/center/renorm. PASS ⟺ Spearman(D(R),R) > 0.5 AND D(R=2) < 0.5*
+D(full) AND Spearman(M_eff(R),R) < -0.5 (confinement-broadening!).
+S1-AUTO: rot90: ang_diff(angle_rot,angle+pi/2) < 5deg AND |D|-5%;
+reflectx: ang_diff(angle_ref,pi-angle) < 5deg AND |D|-5%; translate
+(3,5): J_net-identical-1e-9 + D-identical-1e-9; EACH-at-prep-AND-
+evolved-<D> (both-must-pass!). S2-REVERSAL: same-as-B(e) (cos<-0.95
++ |D|-10% (time-mean-J_net-vectors!)). S3-GLOBAL-PHASE: phi-in-
+{0.7,2.1,4.0}: prep-D-identical-1e-12 + prep-C-identical-1e-12 +
+evolved-<D>-identical-1e-9. S4-ZERO-K: <D> < 0.05 AND speed < 5%-
+|v(0.3)| (same-run-as-0A (control-framing!)). S5-DETERMINISM: rerun-
+source+packet: psi-rows-bit-identical + D-traces-bit-identical.
+L42-ROBUSTNESS (appendix-with-teeth!): repeat-A+B-on-L42 (r0=(10,21)
+(scaled-quarter/half!) + same-sigma/k/T). MUST-also-pass-A+B-
+thresholds-else-verdict-CAPPED-at-POT0-SPREAD + filed-size-effect!.
+VERDICTS: POT0-NULL (no-unbiased/coherent-distinction-or-readout-
+fails-controls!); POT0-SPREAD (two-behaviors-but-coherence-not-
+shown-to-generate-direction (C-link-or-interpolation-fails!)!;
+POT0-COHERENCE-DIRECTION (A+B+C+D+S1-S5-ALL-pass (PRIMARY-SUCCESS:
+direction-is-emergent-collective-phase-coherence-on-J2!));
+POT0-COLLECTIVE (+E-passes (STRONGEST: direction-encoded-nonlocally!)).
+FORBIDDEN (POT-0-does-NOT-establish!): electromagnetism/photons-SM/
+Maxwell/charge/B-field/Born-rule/polarization/spin/static-force-law/
+backreaction ("photon-like"-phenomenological-shorthand-only!). POT-1-
+GATE (only-after-COHERENCE-DIRECTION!): fixed-source/sink-conditions
+-> stationary-profile? + source-changes-launch-modes? = static-vs-
+wave-two-regimes-of-same-field? NEXT: freeze-commit-then-beast-
+campaign (scripts/pot0_campaign.py (gated-on-prereg-commit!)).
+
+POT0-VERDICTS (beast-96 (jobs-90); L28-headline + L42-appendix; T=10-
+dt=0.1 (101-rows); suite-612-passed-2-skipped-(torch/GPU-precedent!)
+on-branch): LADDER = POT0-COLLECTIVE (STRONGEST-RUNG (all-stages +
+all-controls-green-first-run!)).
+POT-0A-PASS (source-<D>=8.1e-14 (trace-max-2.6e-13 (fp-exact-D4+sheet-
+cancellation-preserved-by-unitary-evolution!) vs null-0.0267+-0.0151
+(N=20-seeds-0..19!)): <0.05-AND-<=null+3sd (12-ORDERS-margin!); source-
+S=0.395 (SPREADING-nonzero-flux!)-with-D=8e-14 (no-direction!) = the-
+headline-contrast (omnidirectional-flux-without-net-direction!)).
+POT-0B-PASS (packet-<D>=0.8551 (prep-0.9978->min-0.772 (gentle-
+dispersion-decay (PERSISTENT-never-collapses!)) std-0.066); sep-0.855-
+vs-8e-14 (ratio-8.6e8-w/-floor!); alpha=2.087; Cv=0.994; reversal-cos=
+-1.0-EXACT (conjugate-symmetry!) + |D|-0.85506/0.85530 (0.03%!); r2=
+0.9997/0.9998; v=+1.211/-1.204 (P1.1b-REPLICATION (1.2039/1.2110-✓!));
+disp=12.18<14 (no-wrap-✓!); packet-S=1.38-J_net=1.17-aligned + Jy=
+-1.9e-14 (exact-y-symmetry!)).
+POT-0C-PASS (gradient-D(c)=0/.348/.526/.646/.721/.762/.792/.815/.831/
+.843/.855 (STRICTLY-monotone (evolved-time-mean (NOT-prep-step:
+dispersion-vs-translation-competition-makes-it-gradual (better-than-
+prereg-note!))); prep-D-jumps-0->0.98 (normalized-prep-flux (filed!));
+ratio-huge; v(c)=0/.149/.279/.385/.477/.572/.683/.816/.961/1.097/1.211
+(mono-Spearman-1.0; v(0)=0 (linear-ish-small-k + band-curvature-high-k
+(lawful!))); noise-D(c)=0.0135/.0162/.0302/.0551/.0917/.143/.214/.313/
+.455/.656/.855 (STRICTLY-mono-Spearman-1.0-ratio-63!); noise-C=
+0.0073->0.4116-mono + M_eff-381->3.9 (flat->sharp!); alpha/cv/v-
+transition-resolved (diffusive->ballistic-with-c (c>=0.6-alpha~2!))).
+C-CONSTANCY-CHECK: FAIL (27%-spread (0.486->0.353-min-at-c=0.4->0.483-
+at-c=0.7->0.412)) = FINITE-TORUS-seam/picket-fence-ARTIFACT (VALIDATION-
+only (not-criterion!); mechanism-QUANTITATIVE: winding-kL/2pi=c*1.337
+-> period-0.748c + min-at-half-integer-0.374~-observed-0.4-✓ + recovery-
+at-integer-0.748~-observed-0.7-✓ (envelope-fixed-C-central-value-stable-
+M_eff-3.5-4.0!)); gradient-grid-excluded-from-C-D-pool-BY-DESIGN
+(unaffected!)).
+POT-0D-PASS (scr-D=0.0131 (<0.15*0.855=0.128 (10x-margin!)); scr-C=0.0070
+(<0.5*0.412=0.206 (30x-margin!)); scr-M_eff=382 (spectrum-flattened!);
+rest-D/C-EXACT-match (re-prep-clean); pooled-Spearman(C,D)=1.0 (14-pts
+(noise-11+clean/scr/rest (ties-at-top-handled (average-ranks!)))):
+destroy-coherence->destroy-direction + restore->restore (CAUSAL-✓!)).
+POT-0E-PASS (D(R)=0.223/0.337/0.408/0.550/0.671/0.833/0.855 (STRICTLY-
+mono-Spearman-1.0!); D(2)=0.223<0.5*0.855=0.428-✓; M_eff=131/58/34/14/
+8.4/4.6/3.9 (mono-decreasing (confinement-broadening-✓!)); transition-
+R~4-6-≈-sigma (aperture-narrower-than-packet-destroys-it (minimum-
+collective-scale-~envelope!)); R<=4-wrap-physics-filed (disp-38/27/24
++ multi-velocity (v=3.77-fast-band-components!) + alpha-4.1/r2-0.93-
+wrap-artifacts (UNGATED-readouts (D/M_eff-wrap-safe (criteria-clean!));
+small-support-LOSES-single-velocity-character (corroborates-collective-
+claim!)); R>=6-clean (v≈1.19-1.21-r2>0.998-disp≈12-alpha≈2.0!)).
+S1-PASS (rot90: prep-angle-0->1.5708-EXACT + meanJ-(1.171,0)->(0,1.171)-
+|J|-bit-matched-1e-13 (prep+evo!); refx: ->pi-EXACT + J=(-1.171,0);
+trans-(3,5): J-identical-6e-14 + D-identical (Krylov/fp-only!)).
+S2-PASS (cos=-1.0-EXACT + |D|-0.03% (time-mean-J_net!)). S3-PASS
+(prep-D-BIT-identical-(0.0e+00!) + prep-C-to-6e-17 + evolved-<D>-to-
+3e-14 (global-phase-path-fp-only!)). S4-PASS (k=0-<D>=8e-14 + speed-0
+(same-run-as-0A!)). S5-PASS (psi-rows-BIT-identical + D-traces-BIT-
+identical (reruns!)). Norm-dev-ALL-cases-<=6.1e-13 (unitary-✓!).
+L42-APPENDIX-PASS (source-<D>=0.0 + packet-<D>=0.8647 + null-0.025+-
+0.014 (A+B-thresholds-met (no-cap!)); v=1.176-vs-L28-1.211 (3%-
+finite-size (L42-seam-negligible-exp(-6.9) (L42-is-cleaner-value
+(filed!))); M_eff-8.7-vs-3.9 = area-ratio-2.25-EXACT ((42/28)^2 (M_eff-
+measures-spectral-width-✓!)); prepC-0.228-vs-0.412 (1/N_modes-scaling
+(direction-right!))).
+SEED-ROBUSTNESS (post-hoc-appendix (prereg-froze-seed-0!)): seeds-1+7-
+noise-family: thresholds-PASS (Spearman(D,c)=0.936/1.0 + D1/D0=30/186
++ Spearman(C,D)=0.936/1.0); seed-1-low-c-jitter (c<=0.3-D~0.005-0.03-
+within-null-floor-0.027+-0.015 (EXPECTED-finite-size-random-floor
+(emergence-above-floor-c>=0.4-seed-stable!))).
+INTERPRETATION (disciplined!): SAME-(r,i)-field + SAME-bulk-law + SAME-
+J2 -> omnidirectional-spreading-source (S>0-D≈0) AND ballistic-directed-
+wave (alpha≈2-Cv≈1) with direction-selected-by-extended-phase-coherence
+(D(c)-mono + scrambling-destroys + restore-recovers + C-D-Spearman-1.0
++ support-scaling (collective!)); NO-node-knows-direction (no-vector/
+memory/coin/compass-anywhere (readout-embedding-only!)). FORBIDDEN-
+claims-RESPECTED (no-EM/Maxwell/charge/Born/spin/static-force-law
+(source-SPREADS (S=0.395) (static-potential-NOT-shown (POT-1-question!)))).
+POT-1-GATE: OPEN (COHERENCE-DIRECTION-passed (COLLECTIVE-strongest!)):
+fixed-source/sink-conditions -> stationary-profile? + perturbations-
+launch-modes? NEXT: POT-1-prereg (gated-on-this-verdict-commit!).
