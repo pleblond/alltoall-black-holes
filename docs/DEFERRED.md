@@ -2988,3 +2988,143 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+BR0-PREREG (FROZEN-2026-10-02 (commit-predates-ALL-BR0-campaign-data!);
+bond-energy-landscape (BR-0-of-BR0/BR-1/BR-2 (BR-1/BR-2-UNOPENED (no-
+rewiring-rule/no-dynamics-in-any-BR0-run!)))). QUESTION: does the
+EXISTING psi field (P1-frozen H(G)=-J*A(G), J=1, no-new-law) make
+graph moves energetically distinguishable, i.e. is P_vac(dE<0) <<<
+P_exc(dE<0)? OFFLINE measurement/derivation campaign: NO graph
+evolution, NO edge weights, NO Im-readers/drivers (BR-0 uses Re
+ONLY; backreaction.py contains no Im helper by construction),
+NO current/recoil law, NO J2-optimization, NO D5inf labels in
+the energy, NO structural E_G, NO temperature/Metropolis, NO
+fitted thresholds, NO gravity/mass/backreaction claims from
+BR-0 alone. Apparatus: src/bh_graph/backreaction.py + pins in
+tests/test_backreaction.py (17 tests) + wave sector vendored
+VERBATIM from P1 tip ac6a1409 (ballistic.py + test_ballistic.py
++ formation.py elist_window + 1 closure pin; byte-identical,
+verified by diff). Campaign runner scripts/run_br0_campaign.py
+(frozen protocol, deterministic seeds) -> data/br0_landscape.json.
+
+FROZEN ONTOLOGY: A_ij in {0,1}; H(G)=-J*A(G) (J=1, P1-LOCKED);
+psi=(a,b) normalized (<psi|psi>=1) except V0 (psi=0, exact
+control); B_ij=Re(psi*_i psi_j) symmetric, ONLY derived
+relational quantity. ENERGY: E_psi=<psi|H|psi>=-2J*sum_E B_ij
+(two implemented forms cross-pinned <1e-9); LOCAL REDUCTION
+for (a,b)->(c,d), psi fixed: dE=-2J*(B_cd-B_ab) (C0-gated
+below before any campaign use). AMPLITUDE: dE(lam*psi)=
+lam^2*dE(psi) pinned -> NO amplitude scan (linear scaling
+redundant, per spec).
+
+V1-STATUS: NONE (searched main + P1 + D15 tracks 2026-10-02:
+relaxed-vacuum "ground state" = GRAPH fabric (degree-4), not
+a wave state; P1 `uni` = IPR unit-test vector, not a vacuum
+claim; no nonzero psi_vac justified ANYWHERE in the wave
+program). CONSEQUENCE (pre-committed): the vacuum half of
+BR-0 files BR0-E (wave potential alone has no demonstrated
+mechanism for vacuum rigidity at the current ontology) NO
+MATTER WHAT the excitation half shows. Do-not-repair rule
+stands. Uniform psi appears ONLY as V1U SECONDARY-exploratory
+(explicitly-not-vacuum): on z-regular graphs it is the H
+ground state (pinned) with EXACTLY flat landscape (B=1/N
+const -> dE==0.0 bitwise, pinned) -- mechanism information
+for BR-1, never a rigidity claim.
+
+STATE TABLE (prep = P1 gaussian_packet, P1.1-validated ONLY):
+V0 = zero_psi on J2-L28 (primary vacuum, exact control);
+V1U = uniform_psi on J2-L28 (SECONDARY exploratory, see
+above); E1 = J2-L28 r0=(7,14) s=4 k=(0.3,0) (P1.1b packet,
+PRIMARY excitation); E2 = same k=(-0.3,0) (literal -k
+partner, P1.1b-validated); E3b = same k=(0,0) (localized
+no-momentum); E3p = same k=(0.3+pi,pi) (branch partner);
+E3r = ring-400 r0=(100,) s=15 k=(0.5,) (P1.1a); E3t =
+torus-30 r0=(7,15) s=4 k=(0.5,0) (P1.1a). r0 choices are
+non-choices by vertex-transitivity of bare substrates
+(filed). V0/V1U near/far use the same-substrate E1
+geometry as a NEUTRAL reference (homogeneity null:
+expect near==far exactly; primary is global). X-states
+(EXHAUSTIVE, characterization: spread-gate-valid but
+non-P1.1-validated prep): X-J2-{V0,U,P} on J2-L8
+r0=(2,4) s=1.0 k=(0.3,0) (3.9M moves); X-R-{V0,P} on
+ring-60 r0=(15,) s=6 k=(0.5,) (102k moves); S-J2-P /
+S-R-P = sampled twins for C5b. D5inf read-only formed
+state: DEFERRED (no committed frozen K+psi artifact
+consumable without new formation runs; verdict MUST
+NOT depend on D5inf, per spec).
+
+MOVE CLASS M1 (PRIMARY, frozen): remove one uniform-
+random edge + add one uniform-random non-edge (bitwise
+= formation.propose_relocation stream, pinned). N/E/
+simplicity PRESERVED (pinned per-move); degree sequence
+NOT preserved; connectivity NOT required (covariate:
+bridge precompute + rare-path BFS; bare substrates
+pinned bridgeless -> relocation cannot disconnect).
+No secondary move class (single-class discipline).
+
+SAMPLING (frozen): n=200_000 moves x seeds {0,1,2} per
+sampled state (formation-mirror distribution); X-states
+exhaustive. EPSILON: 1e-10 absolute (J=1 units), fixed
+pre-data: ~1e3x above fp64 summation noise on E~O(1-10)
+(C0 residuals), ~1e7x below peak-bond scale ~1e-3;
+separates NUMERICAL noise from every physical tail
+(tails are real signal when above eps, however small).
+NEAR/FAR (frozen packet geometry, never where favorable
+moves appear): R_near=2*sigma about r0, minimal-image;
+PRIMARY = removed-edge midpoint; added-edge midpoint
+gives the secondary 2x2 (nn/nf/fn/ff). MEASUREMENTS per
+(state,seed): f-/f0/f+ (eps-gated), median, q01/05/25/
+75/95/99, mean, min/max, neg-tail (count/mean/min),
+E_psi baseline, frac_rem/add_near, frac_connected,
+n_bridges, radial histograms (rem/add all+neg, 30 bins),
+|psi|^2, B-edge field (sorted elist).
+
+DISCRIMINATOR (robustness bars, pre-data, no-fit):
+SELECTIVE (BR0-D) <=> (i) f-_V0==0 EXACTLY (theorem;
+every one of 600k V0 moves reads 0.0 -- hard gate, any
+nonzero = apparatus STOP); (ii) f-_E1,near > 0.01 (two
+orders above the 5e-6 sampling floor); (iii) f-_E1,near
+/ max(f-_E1,far, 1e-4) > 5 (localization; floor = 20
+counts); (iv) max-min of f-_E1,near across seeds < 20%
+relative (C5 campaign bar). Magnitudes filed
+descriptively (neg-tail near-vs-far). DECISION TREE:
+C0/C1 fail -> apparatus STOP (no verdict); ELIF (ii)+
+(iii)+(iv) -> BR0-D SELECTIVE (vacuum half: V0-flat +
+BR0-E debt, ALWAYS attached); ELIF every E-state global
+f0 > 0.99 -> BR0-A FLAT; ELSE -> BR0-C EXCITATION-BLIND
+(nonzero landscape without favorable-channel opening).
+BR0-B UNREACHABLE (filed): V0-exact + uniform-flat
+theorem leave no vacuum candidate with f_->0; B would
+need a nonzero vacuum that does not exist (V1-NONE).
+FLAT-vs-RIGID (pre-data interpretive lock): V0-flat
+(f0=1, all moves FREE) is NOT rigidity (f+=1, all moves
+COSTLY); a BR0-D verdict with flat vacuum PROCEEDS to
+BR-1/BR-2 but BR-1 inherits the rigidity debt (needs
+E_G or psi_vac -- BR-0 shows SELECTIVITY only).
+
+CONTROLS (campaign scale): C0: max|loc-full| < 1e-9 over
+2000 moves x 5 (substrate,state) cells (J2-L28 x E1/
+uniform/zero + ring-400/E3r + torus-30/E3t) -- HARD GATE.
+C1: all 600k V0 moves == 0.0 bitwise -- HARD GATE. C2/C3:
+pins only (state-independent theorems, covered in
+tests). C4: campaign max|dE_E1 - dE_E2| < 1e-12 on
+identical 50k J2-L28 moves (preregistered expectation:
+EXACT invariance -- conjugation preserves B; any
+violation = apparatus finding/STOP, NEVER recoil
+evidence). C5: (a) seed stability per (iv); (b)
+|f-_sample - f-_exact| < 3x binomial-SE + 5e-4 on S/X
+twins (J2-L8 + ring-60, seed-0 sample vs exhaustive).
+
+ANATOMY (descriptive, no-causality): 2x2 cells, rem/add
+radial profiles (all vs favorable), |psi|^2, B-field;
+pre-data EXPECTATIONS (non-binding, guide reading only):
+V0/V1U exact-flat (theorems); E-far tail-suppressed
+(small-but-real f-, above eps); E-near active via
+add-under-packet moves (expect fn cell = remove-far/
+add-near to dominate favorables). COMPUTE: local CPU
+(beast 16.54.88.181 key absent from this VM -- probed,
+permission-denied; campaign is formation-free, ~minutes
+on laptop CPU, deterministic seeds -- same result).
+NEXT: run campaign (gated on this prereg commit) -> file
+BR0-VERDICT (A/B/C/D + E-attachment + anatomy + BR-1/BR-2
+admission) in this file.
