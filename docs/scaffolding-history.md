@@ -1,463 +1,718 @@
-# Scaffolding history
+# Model scaffolding history
 
-How the model in `docs/model.md` was locked, written as the decision tree.
-A node is a choice that is now part of the scaffold. The children are the
-independent aspects that had to agree before that choice was locked. One
-aspect is a lead. The lock is the merge.
+How the current model was constrained. A choice appears when the independent
+results that support it are named. Dropped routes are omitted unless a
+present debt is otherwise unreadable.
 
-This note keeps the confirming merges. Routes that were tried and dropped
-are not listed. Definitions, numbers, and close criteria stay in
-`docs/model.md`, `docs/relaxed-vacuum.md`, `docs/j2-status.md`, and
-`docs/DEFERRED.md`. The changelog is the version clock; pull requests are
-the lock points.
+The kinematic model in `docs/model.md` (all:all interiors, leg area, conditional
+weak-field gravity) stays the merged L0/L1 record. This note is the scaffold
+of the relational field program built on top of that graph: two real scalars,
+`H = -A`, a working fabric, and the question of how geometry is allowed to
+change. A later null does not erase an earlier lock.
+
+**Names.** P0–P2 below are the field-program postulates. They are not
+`docs/model.md`'s P0′–P4.
 
 **Marks**
 
 | Mark | Meaning |
 |---|---|
-| lock | on `main`; the choice is in the model |
-| **forced / debt** | adopted so later work has a concrete object; the derivation that would select it is still missing |
-| **†** | stated in an open pull request, not on `main` |
+| ✓ | established on `main` |
+| ◇ | established in an open or stacked pull request |
+| ⚠ | adopted, not uniquely derived; ontology debt |
+| → | dependency |
+| + | independent results combined |
+
+**Status words:** POSTULATE, DERIVED, EMPIRICALLY ESTABLISHED, WORKING CHOICE, OPEN / DEBT.
+
+A campaign that has a pull request but no verdict yet is marked open, not ◇.
+◇ means the result is already in that pull request.
 
 ---
 
-## How to read a merge
+# 1. Primitive postulates
+
+## P0 — Relational ontology
 
 ```text
-choice
-├── aspect A     (independent evidence or principle)
-├── aspect B
-└── aspect C
-    └── lock     only when A, B, and C agree
+G = (V, E)
 ```
 
-If a required aspect is still open, the node stays a conjecture, a
-calibration, or a debt. It does not get promoted by rewording.
+Nodes do not begin with positions in an ambient space. An edge is a relation.
+Distance, area, and metric are later reconstructions.
 
-The three layers of `docs/model.md` are the trunk. L0 is graph kinematics.
-L1 is the spacetime interface, conditional on named imports. L2 is
-compact-object calibration and does not feed back into L0 or L1.
+Status: **POSTULATE** ✓ (`docs/model.md` primitives; no coordinates at L0).
+
+```text
+relational fabric
+    → geometry has to be earned from graph structure and observables
+```
+
+## P1 — Two real scalars per node
+
+Each node carries `(r_u, s_u)`, written `ψ_u = r_u + i s_u`. No vector, momentum
+register, or coordinate is stored at the node.
+
+Status: **POSTULATE** of the field program ◇. It is the frozen node field of
+every later campaign (P1 ballistic #65, EM-0 #81, VAC-0A #93). It is not on
+`main`.
+
+## P2 — Field evolution on a fixed graph
+
+```text
+i ∂_t ψ = H ψ,    H = -A
+```
+
+with `A` the adjacency (`J = 1` in the frozen convention; P1.2 writes the same
+law as `H = -J A`, hopping only).
+
+Status: **POSTULATE / WORKING LAW** ◇. P1.2 (#65) locks this as the one-way
+map from a fixed graph to `ψ`. It is not derived from a deeper dynamical
+principle. Once it is granted, the consequences in §4–§5 follow, and VAC-0A
+shows they hold on every simple graph.
+
+```text
+H = -A
+  ├── norm conservation          DERIVED ◇
+  ├── exact continuity current   DERIVED ◇
+  ├── interference               EMPIRICALLY ESTABLISHED ◇
+  ├── coherent propagation       EMPIRICALLY ESTABLISHED ◇
+  └── static driven response     EMPIRICALLY ESTABLISHED ◇
+```
 
 ---
 
-## 1. Postulates
+# 2. Selecting the fabric
 
-Primitives come first and stay undefined: a node, an edge, the information
-graph `G`, and the exterior leg count `k`. Mass, radius, temperature,
-metric, area, and coordinates enter later, each as a labeled interface map.
+## 2.1 What the substrate had to be
 
-### P1 — black-hole interiors are almost-perfect all:all graphs
+These constraints accumulated. They select a class, then a working member.
+Rejected graphs are not listed.
 
-```text
-P1  K_N interior, k ≪ N²
-├── T1   diameter exactly 1 at every N
-│        (chain ~ N/2, grid ~ 2√N, expander ~ log N)
-└── T2   finite-speed circuits scramble in t* ~ log N
-         └── lock    P1 is the wiring form of "fastest scrambler"
-```
-
-Formalized with the rest of L0 in model-docs v0.1 (PR #30). "Almost" is
-the observable content: area, temperature, and radiation live in the
-failure to be perfect.
-
-### P2 — an edge is a unit of entanglement
-
-Cut size bounds entropy across the cut. No specific quantum state is
-postulated. Particular states appear only as witnesses.
-
-### P3 — monogamy
-
-```text
-P3
-├── linear toy          e_int + e_ext ≤ 1     (bookkeeping)
-└── CKW frontier        verified on a 25-point grid
-                        (exact frontier strictly below the linear bound;
-                         exterior one-tangle peaks at 1/2)
-    └── lock            black holes sit at e_int ≲ 1 with small k
-                        e_int → 1 is the baby-universe limit (T3)
-```
-
-### P4 — neighborhood measure is uniform, idleness zero
-
-```text
-P4   m_x uniform on neighbors, self-mass 0
-├── continuum    Ollivier curvature recovers Ricci for this measure
-└── L2 fit       an e_int-weighted alternative lowers p
-                 0.94 → 0.84 at e_int = 0.9, and to 0.78 at 0.99
-    └── lock     the choice is postulated (v0.3, PR #36);
-                 the curvature numbers are measured
-```
-
-P4 is one instance of the observer map `M_O` (below). Promoting it to a
-derivation means exhibiting the map that gives `d_eff → 3` and negative
-radial curvature without tuning.
-
-### The leg–area matching (I1)
-
-```text
-patch A = 4 ln2 · k · l_p²
-├── I1a   a saturated exterior leg carries η_vN = ln2 nats
-│         (definition of saturation; BN toy: S/k constant to < 0.8%,
-│          mean ln2)
-└── I1b   S = A/4 imported
-    └── lock    4 ln2 is arithmetic (v0.4, PR #40)
-```
-
-The locked leg is a saturated `ln2` bit. The factor `1/4` is the area
-coefficient that comes out of I1b. The s-leg falsifier tests I1a directly.
-
-### Vacuum — P0′
-
-The vacuum postulate is the merge that turns the wiring postulates into
-a fabric. It landed as model-docs v0.6 (PR #53, released in #54), with
-the full argument in `docs/relaxed-vacuum.md`.
-
-```text
-P0′   vacuum = relaxed isostatic 2D fabric, <z> = 4
-├── A  relaxation sits on G
-│      spacetime is the reconstruction M_O(G), never G itself
-│      (Jacobson entanglement equilibrium is the precedent)
-├── B  the black-hole reading
-│      K_N (degree N−1) is the maximum-tension end of one spectrum
-│      stars and planets sit between vacuum and that end
-│      T1–T3 stay, as statements about the tense extreme
-│      homogeneity stays; the wiring density of the homogeneous state
-│      is the sparse rigid point
-├── C  why 2D — the area factor
-│      volume factorizes as radial × area
-│      leg screens already supply the radial piece
-│      radial-only shells do not bracket 3
-│      (shortest-path p ~ 1.4, diffusion p ~ 0.6)
-│      so the missing factor is an r² of 2D information geometry
-├── D  why 4 — Maxwell, given 2D
-│      N nodes in d dimensions, M = N d constraints
-│      <z> = 2M/N = 2d
-│      in 2D the unique rigid, zero-self-stress point is <z> = 4
-│      floppy below, stressed above
-└── E  coordination and dimension come apart
-       degree-3 honeycomb, degree-4 square, and degree-6 triangular
-       lattices all scale as 2D (p ≈ 1.6–1.9, every r² > 0.997)
-       └── lock    2D is the area factor; 4 is marginal rigidity
-```
-
-Curvature, in this language, is self-stress: over-coordination `z − 4`
-read through `M_O`. The quantitative map is open (D10).
-
-**† PR #58** (docs v0.6.1, open) writes the same lock in sharper words:
-2D is the choice, 4 is what Maxwell then forces; the bulk count is the
-free-body form `M = 2N − 3` with `<z> → 4`; the vacuum is generic
-isostatic and the square grid is the shear control; combinatorial tension
-`(z − 4)` and metric tension `w < d_0` are two ledgers; `<z> = 4` is
-unrelated to `S = A/4`, to `4 ln2`, and to spacetime being 3+1. No new
-postulate. Not merged.
-
-**† PR #47** (open) proposes a further L0 postulate, P5, that the ambient
-graph is connected, bridgeless, and large-world, plus graph theorems
-A1–A5. That postulate is not in `docs/model.md`. It is not part of the
-lock above.
-
----
-
-## 2. The fabric is a class
-
-P0′ names a connectivity class. The next lock is what object that class
-is. Static geometry was allowed to vote; it voted for a class.
-
-```text
-vacuum object = [G]_{∼_O}     (an equivalence class, possibly an ensemble)
-├── A  one frozen measurement, many constructions, one reading
-│      triangular, hexagonal, square, noisy grid,
-│      Poisson–Delaunay, Lloyd-relaxed Delaunay, Gabriel, k-NN,
-│      and the 4-regular Delaunay medial quadrangulation
-│      all give d_G → 2
-│      the medial quad shows that 4-regular vs triangular does not
-│      select the dimension
-├── B  a second leg, spectral dimension
-│      heat-trace d_s on the 60×60 torus holds (1.95, 2.05)
-│      over a full decade
-│      Weyl fits put every Tier-1 member in (1.90, 2.15)
-├── C  the boundary of the class, measured with the same rule
-│      gated walls keep ~r² balls and collapse the cuts,
-│      so the vacuum also requires the channel scaling
-│      long-span rewires take the graph out of d_G → 2
-│      span-limited rewires (≤ 2 grid steps) keep it
-│      a few O(1) shortcuts are enough (N*_med = 20, 10, 10
-│      on L = 40, 60, 80)
-│      2×2 blocking drives rewired long-edge density 0.013 → 0.31
-└── D  what may be put into the vacuum
-       observation does not ask for crystalline long-range order
-       Poisson–Delaunay is frozen as a reference member,
-       the way a gauge is frozen, for reproducibility
-       └── lock    v5.2, PR #59 and PR #60
-                   Tier-2 extra tessellations add no axis
-```
-
-Substrate ball growth confirms the same 2D count from the other side.
-Unclipped Manhattan balls are exactly `V(r) = 1 + 2r(r+1)`, and the
-disk-boundary cut is exactly `8r + 4`. That is the substrate prediction
-of P0′. The 3D reading is reserved for after `M_O`.
-
-**† PR #52** (open) runs the same volume-growth ruler on three Cayley
-graphs. Klein, `Z^3`, and the Heisenberg group read 2, 3, and 4, all
-three inside the pre-registered tolerance. The ruler can tell those
-dimensions apart. The Heisenberg group, Hirsch length 3 and metrically
-4-dimensional, is outside a 3D homogeneous vacuum. The probe does not
-select a substrate. D10 stays open.
-
----
-
-## 3. Distance and the observer
-
-Physical distance is information-access through `M_O`. On the tense
-extreme, T1 says every pair is one hop, which is why the distance has to
-be reconstructed rather than read off adjacency.
-
-```text
-M_O(G) = [G]_{∼_O}
-├── graph-internal, permutation-covariant, coarse-graining stable,
-│   operational, and a frozen rule
-│   (P4 passes (1)(2)(3)(5); (4) is partial — D12)
-├── V_O ~ R³ is the output test, never an input
-└── three dimensions stay distinct
-    d_G microscopic, d_I information, d_obs observed
-    d_obs → 3 is the infrared conjecture, not an input
-```
-
-Tension needs a cost, not a hop count. The merge that fixed the ruler:
-
-```text
-tense-region distance
-├── T15   a shortcut priced at or above its hop-saving
-│         cannot inflate balls (L0 theorem, v5.1, PR #56)
-│         a volume blip locates an underpriced shortcut
-├── shape the zero-fit c_eff rule on a 9×9 mild plug
-│         reproduces the GR fingerprint
-│         dip −0.18 → overshoot +0.79 → asymptote +0.09
-├── window the flip sits in z_vac ~ [2, 5],
-│         which contains the P0′ value 4
-└── κ     boundary-negative, core-positive
-          confirmed on a corner-free disk
-          (internal +0.90, boundary −0.86, fabric 0)
-    └── conditional lock
-            the shape is a graph result
-            the two bridges (χ-analogy, x-map) are still assumed
-            so this is the tension-imprint conjecture, not a postulate
-            promotion to a P5 cost rule needs a second geometry
-            and one bridge derived or removed
-```
-
-The far-field tail (`1/r` versus `1/r²`) is a separate open item (D11).
-It is not required for the shape lock above.
-
-**† PR #85 and #90** (open, stacked) carry the observer one step further
-on the working sheet. At linear size 128 the operational rulers of J₂ and
-the square-torus control agree (verdict OBS0R-METRIC; the earlier wave
-gap closes as a finite-size effect). A blind observer, given operational
-measurements and no graph, coordinates, or dimension target, reconstructs
-a stable 2D metric that matches the coarse J₂ quotient (`d_O = 2.02`
-unprompted). That confirms the quotient form of `M_O` on this sheet. It
-does not derive which sheet the vacuum is.
-
----
-
-## 4. Interface locks that sit on the trunk
-
-Each of these is "given L0 plus the named imports." None of them redefines
-the fabric.
-
-```text
-Newton (T8)
-├── I4a   equipartition on the leg screen, T(r) = M₁ / 2π r²
-└── I4b   Bekenstein displacement, dS = 2π M₂ dr
-    └── lock    F = M₁ M₂ / r² by exact multiplication
-                log-log slope to 1e−9; orbits close; T² ∝ r³
-```
-
-```text
-sign of attraction (T8)
-├── I6b   Ollivier–Ricci → Ricci, continuum limit
-└── P4    the uniform measure
-    └── lock    radial κ negative in every tested configuration,
-                attachment, and seed
-```
-
-The heat-kernel bridge (I6a) is cited and carries no load. The
-Raychaudhuri step (I6c) is the open bridge D9. Einstein's equations are
-conditional on it; T8–T11 do not use it.
-
-```text
-mass map (I3)
-├── I1 matching
-└── sphere geometry A = 4π R²
-    └── shrink    k(M) ⟺ R_s(M)          (BM reduction, v3.5)
-                  the remaining statement is R_s = 2M
-                  that derivation is open (D6)
-```
-
-```text
-spatial sector, γ = 1 (T11)
-├── the coefficient 1/2, fitted to enforce γ = 1
-│   (unique coefficient; the fit is kept in the history)
-└── BV   c ≈ 0.44–0.60 from ln2 line-defect scattering,
-         zero extra tuning (PR #4; target 0.456)
-    └── lock    the micro-derivation is adopted
-                p = 2c and γ = 2c are the comparison targets
-```
-
-```text
-2PN cancellation (L2, not promoted)
-├── measured radial exponent
-│   p = 0.913 ± 0.049 at N = 1020 (80 graphs)
-│   and 0.91–0.94 through N = 16 000
-│   the cancellation point is p = 0.92
-└── κ → c₂ map
-    c₂(p) = p(2p−1) is an ansatz (F4)
-    a power-law reading and a 1/r² reading disagree when crossed
-    └── incomplete    the exponent meets the target
-                      the map is not derived (D3)
-                      F4 stays a calibration
-```
-
-Light to first order (full `4M/b`, Shapiro, achromatic lensing) and the
-quadratic-only ultraviolet dispersion sit on the same interface. They
-confirm the congestion and lattice-symmetry consequences. They do not
-add a postulate.
-
----
-
-## 5. J₂ — forced working substrate (debt)
-
-The class lock in §2 withholds a unique graph on purpose. Formation,
-waves, and the isotropy program still need one concrete member to build
-on. J₂ is that member. The claim is a working member, and the derivation
-that would select it stays debt.
-
-J₂ is the degree-8 walk graph `Z² ⋊ Z₂` of D'Ariano–Erba–Perinotti
-(2019): two sheets over the square lattice, quotient a 4-regular square
-grid. It was admitted as a probe because that built-in coarse-graining
-is a new axis, then kept because the probes that were required of a
-working member came back inside the family.
-
-```text
-canonical working vacuum substrate          v5.4, PR #62
-├── A  the class does not name a graph
-│      §2 degeneracy is the result, not a missing discriminator
-├── B  a concrete sheet is required
-│      formation and wave campaigns build on one substrate
-└── C  J₂ survived the probes that were asked of it
-       ├── exact square quotient
-       │   1861 cells, 1741 strict-interior cells of square degree 4,
-       │   micro-multiplicity 4, quotient shells exactly 4r
-       ├── long scale agrees with the quotient
-       │   Δp = 0 (bound was 0.15); both are bipartite
-       ├── ultraviolet structure is real and extra
-       │   micro shells 8r, cuts 32r+16,
-       │   C₄ census ~20× the square equivalent
-       ├── perturbations are family-typical
-       │   deletion leaves the long-scale exponent;
-       │   swaps track the family, no protected tier
-       ├── D5∞ formation transfers
-       │   cores form on the triangle-free J₂ torus
-       └── orientation is absent
-           32 runs, (c)-ISOTROPIC:
-           radial selection preserved, no persistent h₁/h₂ axis,
-           sheet symmetry preserved
-    └── missing child
-            a dynamics that outputs J₂ from an arbitrary primordial graph
-            └── FORCED
-                evidence-based working choice
-                uniqueness not claimed
-                DEBT: non-derivation
-                (docs/j2-status.md)
-```
-
-The debt is narrow and explicit. J₂ may be replaced by a later substrate
-that out-survives it. Phenomenology already banked on it is what the
-replacement has to keep. Until that happens, formation and wave work
-use J₂.
-
-The achiral Stage-0 result on this sheet (0/6 directed, 0/6 persistently
-handed) closed the debt-free pure-D5∞ polarity route. Individuals on the
-sheet are trackable. That dynamics does not hand the vacuum a direction.
-The program therefore continues on the forced sheet, with the derivation
-still owed. Record: PR #62, `docs/j2-status.md`.
-
-### † Confirmations on the forced sheet
-
-These are open pull requests. Each one agrees with keeping J₂ as the
-working member. None of them supplies the missing derivation, so none of
-them discharges the debt.
-
-| † | PR | What agreed |
+| Constraint | Status | Where it was locked |
 |---|---|---|
-| phase coherence | #70 | bare J₂ carries coherent two-path phase, `C = 1`, with `τ` scaling as `1/ΔE`. Establishes coherent transport on the sheet. |
-| interference | #69 | two-path calibration, phase, which-path, and graph corridors pass, including a J₂ secondary. Born-rule detection is deferred. |
-| one field, two jobs | #76, #78 | the same `H = −A` field on J₂ supports an undirected potential-like response and a coherent directed wave (POT0-COLLECTIVE), then a static/dynamic unification (POT1-FIELD). |
-| excitation ledger | #63 | the J₂ excitation constraint map is closed (null, Weyl control, compass, the no-go steps, and the time horn). SSB design stays deferred. |
-| law versus sheet | #93 | partial, campaign still running. Identities A1–A6 of `H = −A` hold on hostile graphs, so those identities are law. Interference passes on J₂, the open square, and the square quotient, and fails on the triangular and hexagonal lattices. That is a square-class split, not a proof that the sheet must be J₂. |
+| Locality: the vacuum is a protected low-dimensional connectivity class, not a complete graph | ✓ | P0′ and the substrate family (`docs/model.md`, `docs/relaxed-vacuum.md`; v5.2, PR #59–#60) |
+| Connectedness with channel access: ball growth `~ r²` is not enough; cuts have to scale too | ✓ | gated-wall control, same family |
+| Effective dimension 2 at substrate level; 3 is an observer reading, not an input | ✓ | P0′, `d_G / d_I / d_obs` |
+| Marginal rigidity `<z> = 4` once the fabric is 2D | ✓ | Maxwell count inside P0′ |
+| The object is a class `[G]`, not one crystal | ✓ | Tier-1 degeneracy; Delaunay is a reference gauge |
+| Formation can nucleate on the member, without selecting a compass | ✓ ⚠ | D5∞ on the J₂ torus, orientation absent (PR #62) |
+| Coherent `H = -A` transport | ◇ | P1.1 ballistic pass (#65); bare-J₂ coherence `C = 1` (#70); two-path interference (#69) |
+| Observer-accessible geometry | ◇ | §3 |
 
----
+## 2.2 J₂ as the working fabric ⚠
 
-## 6. The trunk in one picture
+Status: **WORKING CHOICE**, forced. ✓ on `main` as the canonical working
+vacuum substrate (v5.4, PR #62, `docs/j2-status.md`). ⚠ because it was not
+uniquely derived.
 
 ```text
-primitives (node, edge, G, k)
-└── L0 postulates
-    ├── P1  all:all interior ──────── T1 ∧ T2
-    ├── P2  cut bound
-    ├── P3  monogamy ──────────────── linear toy ∧ CKW frontier
-    ├── P4  uniform measure ───────── continuum ∧ fit
-    └── P0′ vacuum fabric
-        ├── relaxation on G
-        ├── K_N = maximum tension
-        ├── 2D = area factor ──────── shells miss r²
-        ├── <z> = 4 ───────────────── Maxwell, given 2D
-        └── 4 ≠ dimension ─────────── z = 3, 4, 6 all read 2D
-            └── vacuum = class [G]_{∼_O}
-                ├── family d_G → 2
-                ├── spectral band
-                └── span bounds the class
-                    └── J₂ working member
-                        ├── quotient, Δp = 0, UV extra
-                        ├── perturbation family-typical
-                        ├── formation transfers, no orientation
-                        └── FORCED — derivation is debt
-                            └── † coherence, interference, field,
-                                excitation ledger, VAC-0 (partial)
-
-L1, conditional on imports
-├── I1a ∧ I1b ──────────── patch 4 ln2
-├── I4a ∧ I4b ──────────── Newton
-├── I6b ∧ P4 ───────────── attraction sign
-├── fit 1/2 ∧ BV bracket ─ γ = 1
-└── I1 ∧ sphere ────────── k ⟺ R_s ; R_s = 2M still open
-
-still open on the trunk
-├── cost bridges ───────── shape confirmed, not yet a postulate
-├── 2D + scale → 3D ────── D3, D4, D6, D10
-├── update rule U ──────── D1
-├── same M_O for space and time, universally ── D12, D13
-└── a dynamics that selects the substrate ── the J₂ debt
+class [G] does not name one graph
+    +
+later work needs one concrete sheet
+    +
+J₂ survives the probes that were required
+        ├── exact square quotient, quotient shells 4r, micro/coarse Δp = 0
+        ├── ultraviolet structure kept (shells 8r, cuts 32r+16, ~20× C₄)
+        ├── perturbations family-typical
+        ├── formation transfers onto the triangle-free torus
+        └── no persistent h₁/h₂ orientation (32 runs, isotropic)
+    → J₂ = current substrate
 ```
 
-L2 (one `k ∝ M²` family, the measured exponent `p`, leg-shedding) sits
-beside this trunk. It is the most testable layer and the least derived.
-Killing it leaves L0 and L1 in place.
+```text
+J₂ = current substrate
+```
+
+is not a proof that J₂ is the only substrate. The missing derivation is the
+debt: **substrate uniqueness**.
+
+Confirmations that the forced sheet can carry the field program, all ◇, none
+of which pay the debt: coherence #70, interference #69, POT-0/POT-1 #76/#78,
+OBS-1 #90.
+
+Follow-up, open: **VAC-0** (#93). Completed pieces already split the physics:
+
+```text
+VAC-0A  A1–A6 identities hold on hostile graphs     → LAW        ◇
+VAC-0F  interference passes on J₂, open square,
+        and the square quotient; fails on tri/hex   → square CLASS,
+                                                      not yet J₂-only  ◇
+rest    substrate battery still running             → OPEN
+```
+
+The finished question is which banked phenomena are LAW, which need a class,
+which need J₂, and which are accidental. Until that closes, uniqueness stays debt.
 
 ---
 
-## 7. Where the scaffold stops
+# 3. Geometry from the fabric
 
-The forward pipeline, copied from the top of `docs/DEFERRED.md`, is the
-same tree read onward:
+Independent rulers on J₂, compared with a square-torus control. All of this
+is ◇.
 
-vacuum class → admissible `M_O` → 2D plus scale reconstructs as 3 →
-an explicit update rule `U` → influence and causal order → the same
-frozen `M_O` reads the causal geometry → `M_O` and `U` commute into an
-autonomous macroscopic dynamics.
+```text
+J₂ microscopic structure
+    ├── graph balls / Hausdorff     dH matches the square control
+    │                               (exact at the scales tested; gap 0 at L = 128)
+    ├── diffusion / spectral        ds agrees to 4 decimals;
+    │                               gap 0.0005 at L = 128
+    ├── coherent-wave ruler         disagrees at L ≤ 42 (OBS-0 #82);
+    │                               the gap is a finite-size residue
+    │                               (OBS-0R #85: gap 0.134 at L = 128)
+    └── static-field ruler          all-path POT ruler joins the same geometry
+            +
+            → OBS0R-METRIC ◇
+              six pairwise ruler gaps pass against the square control
+```
 
-P0′ has identified the connectivity class. D10 asks why observers
-reconstruct 3D from it. D1 asks what dynamics preserves the class. D13
-asks whether that dynamics is time. D12 asks whether every admissible
-observer agrees. The J₂ debt asks which member of the class the dynamics
-actually selects. Each of those closes only by its own criterion.
+The wave disagreement at small L is kept only because the later agreement is
+otherwise easy to over-read. What remains at L = 128 is a substrate systematic
+(purification removes much more of J₂ than of the square), and the campaign
+itself records that the match is not a far-infrared universal reconvergence.
+
+```text
+operational metric (OBS0R-METRIC)
+    +
+blind observer (no graph, coordinates, or dimension target)
+    → OBS1-QUOTIENT ◇   (#90)
+```
+
+Measured: `d_O = 2.02` unprompted, `d* = 2` on train and test, distance match
+8% against the quotient (twice as close as the microscopic graph), local charts
+6%, locality above 95%, sheet contrast below 0.03. Expanders come out
+non-2-dimensional (`d* = 3`).
+
+```text
+M_O(J₂) ≈ J₂ / sheet
+```
+
+The microscopic graph and the reconstructed geometry are different objects.
+The quotient is an operational 2D metric ◇. Calling that metric spacetime is
+not established. A static-channel floor still blocks a full three-way
+cross-probe at L = 128; that limit stays on the record.
+
+---
+
+# 4. Field anatomy
+
+Granted only `ψ = r + i s` and `H = -A`. The identities are **DERIVED** for
+every simple undirected graph (VAC-0A ◇, #93; first pinned on the J₂ stack
+inside EM-0 #81). Nothing about J₂ enters A1–A5.
+
+## 4.1 Conserved density
+
+```text
+ρ_u = |ψ_u|²
+Q_ψ = Σ_u |ψ_u|²
+dQ_ψ / dt = 0
+```
+
+`H = -A` is real symmetric, so the evolution is unitary. Status: **DERIVED** ◇.
+
+## 4.2 Bond quantity B and current J
+
+The bond correlator `ψ*_u ψ_v` splits into a symmetric part and an
+antisymmetric part:
+
+```text
+B_uv     = Re(ψ*_u ψ_v)
+J_{u→v}  = 2 Im(ψ*_u ψ_v)
+```
+
+`J` is the continuity current:
+
+```text
+dρ_u / dt + Σ_v A_uv J_{u→v} = 0
+```
+
+`B` is the bond energy. With `E_ψ = ⟨ψ|H|ψ⟩`,
+
+```text
+E_ψ = -2 Σ_{(uv) ∈ E} B_uv
+∂E_ψ / ∂A_uv = -2 B_uv
+```
+
+Status: **DERIVED** ◇. This conjugacy is the central scaffolding identity
+between the field and the edges.
+
+Quadrature, algebraic: `B ~ cos Δθ` and `J/2 ~ sin Δθ`. Some backreaction
+readouts store the bare imaginary part, exactly half of this continuity
+current. The factor is a convention, not a second current.
+
+---
+
+# 5. Propagation, and a response that looks like a potential
+
+## 5.1 Direction is collective phase
+
+```text
+coherent extended ψ
+    → interference
+    → directed propagation
+```
+
+P1.1 (#65) validates the ballistic detector: packets on a ring and on bare J₂
+propagate, reverse under `k → -k`, and keep their norm. POT-0 (#76) then
+separates direction from any node-level arrow. Verdict **POT0-COLLECTIVE** ◇:
+
+```text
+symmetric source     → spreads, no direction
+coherent packet      → ballistic direction
+phase scrambling     → direction disappears
+coherence restored   → direction returns
+```
+
+Direction is collective phase information. It is not a primitive variable on
+the node. Status: **EMPIRICALLY ESTABLISHED** ◇.
+
+## 5.2 One field has a static regime and a propagating regime
+
+```text
+POT-1  (#78)  POT1-FIELD ◇
+    +
+EM-0   (#81)  EM0-BACKREACTIVE ◇
+    → the same ψ
+         ├── stationary source-relative response
+         └── a front when the source changes
+```
+
+No second field is required for those two regimes. EM-0 adds the continuum
+reading that later interpretation tests use: J₂ Bloch bands, a long-wave
+Schrödinger sector, continuity to numerical zero, and the same `B`/`J`
+quadrature. It does not claim Maxwell, charge, or photons.
+
+EM-1 (§6) rejects the electromagnetic reading. The field results above stay.
+
+---
+
+# 6. Electromagnetic identification rejected
+
+```text
+POT-0 + POT-1 + EM-0
+    → one complex scalar with static and propagating regimes
+    → EM-1 (#87)
+    → EM1-FALSIFIED ◇
+```
+
+Structural failures, from the frozen tests:
+
+| Test | Result |
+|---|---|
+| Long-range gapless static sector | fail; the static range saturates (`ξ ≈ 0.53`, range 3) |
+| Polarization | fail; one propagating scalar mode, the same sector MALUS already isolated |
+| Local gauge redundancy | fail; a local phase moves `B`, `J`, and `E` by order one |
+| Propagation / cone | fail; nodal drift tracks `v · q`, not `v |q|` |
+| Signed source | unresolved; a conserved signed charge exists, but it is tied to the sheet automorphism and the conjugate is frozen |
+
+```text
+ψ field                         survives   ◇
+"ψ is ordinary electromagnetism"  rejected   ◇
+```
+
+The electromagnetic program is closed unless the ontology changes (new degrees
+of freedom, or a different substrate). That closure does not touch §4 or §5.
+
+---
+
+# 7. How the field couples to geometry
+
+Three independent uses of `B` meet.
+
+```text
+∂E_ψ / ∂A = -2B                         DERIVED ◇          §4
+    +
+BR-0 (#75)  BR0-D-SELECTIVE* ◇
+    vacuum (ψ = 0) is exactly flat under the sampled moves
+    an excitation opens energetically favorable channels
+    +
+BR-2 (#77)  BR2-QUADRATURE ◇
+    structural response tracks cos Δθ through B
+    staggered flux tracks sin Δθ through J
+    +
+BR-2.5 (#83)  sum map
+    ψ_[uv] = ψ_u + ψ_v
+    Δ‖ψ‖² = +2 B_uv
+    →
+              B
+     ┌────────┼─────────┐
+     ↓        ↓         ↓
+  energy    phase     contraction
+  conjugate response  norm change
+```
+
+Status: **DERIVED** for the conjugacy; **EMPIRICALLY ESTABLISHED** ◇ for the
+phase response and the energetic selectivity. Conclusion that belongs in the
+scaffold: `B` is the field quantity coupled directly to connectivity.
+
+`B` causes gravity is not established. GRAV-0 (§19) is why that sentence stays
+out.
+
+---
+
+# 8. What a geometry change is allowed to be
+
+## 8.1 Remote relocation is not the fundamental move
+
+Surviving conclusion, from the contraction campaign rather than from a tour
+of rewiring rules:
+
+```text
+arbitrary remote edge relocation
+    → unsuitable as the fundamental geometry update
+```
+
+BR-2.5 demotes the relocation move M1 to a formation and diagnostic tool.
+BR-1 (#79, **BR1-FLAT** ◇) is the related debt, stated once: on pristine J₂
+the neutral drift that the legal moves allow destroys the vacuum class in a
+handful of moves, at every size tested. Quiescence is not explained by the
+move set. That is the neutral-move debt later campaigns inherit.
+
+## 8.2 Local contraction and splitting are admitted
+
+BR-2.5 verdict **BR25-ONTOLOGY** ◇. The primitive is the local exchange
+`u—v ↔ [uv]`.
+
+- The move is local.
+- The result stays a simple graph.
+- Repeated contraction can collapse a region, and mergers use the same primitive.
+- Field maps and their ledgers are quantified. The sum map ties the norm change to `B` (§7).
+
+Contraction is many-to-one. A record-free split therefore has many preimages.
+CONS-0 counts them: the split multiplicities are powers of two (and a further
+degeneracy when amplitudes match). The information lost on the sum map is
+exact, `|a − b|² / 2`.
+
+Debt: **split selection**. Which preimage, or which record, comes back is not
+determined by the instantaneous ontology.
+
+---
+
+# 9. Accounting is not a firing law
+
+```text
+CONS-0 (#88)  CONS0-PARTIAL ◇
+    +
+BR-2.6 (#84)  BR26-ACCOUNTED ◇
+    → event accounting, conditional and exact where it closes
+```
+
+What is exact:
+
+- Cycle rank on triangle-free domains changes by the local contraction count.
+- A conditional ledger closes end to end when the bond quantity sits on the
+  admissibility surface `B = B_*(c)` (six constructed families, residuals at
+  `1e−13`).
+- The energy change of a contraction has an exact formula, and `B` alone does
+  not balance it.
+
+What is proved absent:
+
+- No linear combination of node count, graph energy, `Q_ψ`, and `E_ψ` is
+  conserved for arbitrary states.
+- There is no graph reservoir that closes the books.
+- Split conservation constrains the candidates and never selects one.
+
+```text
+conservation
+    → admissibility and equalities
+    ✗ a law that says when the graph fires
+```
+
+Status: accounting **EMPIRICALLY ESTABLISHED** where the condition holds ◇;
+the event rate is **OPEN / DEBT**. Zero-field contraction remains allowed, so
+conservation also does not explain why an empty field would sit still.
+
+---
+
+# 10. No structural kinetics from the present ontology
+
+BR-2.7 (#86), verdict **BR27-NO-MODE** ◇. Each expected trigger is absent
+for a structural reason:
+
+```text
+energy ordering of contractions     ✗ an instability that fires
+    (every uniform scan is downhill; discrete maxima do not fire)
+unitary evolution of ψ             ✗ a growing structural mode
+    (spectral radius exactly 1; H does not see ψ)
+binary graph                       ✗ a continuous deformation coordinate
+    (a weighted path leaves the frozen kind of H)
+    → BR27-NO-MODE
+```
+
+Energetics and kinetics are different questions. No firing mechanism is
+derived from the instantaneous ontology. The campaign's own statement stands:
+one further primitive dynamical postulate is required before geometry changes.
+The strong stop holds: no rate shopping on top of this null.
+
+---
+
+# 11. Completing the dynamics
+
+## 11.1 Forward deterministic laws
+
+U0 (#91) asks for a map `(G_t, ψ_t) → (G_{t+1}, ψ_{t+1})` using only the
+admitted local moves.
+
+Three contraction-only laws (bond sign, ledger sign, energy selection) pass
+the structural gates: deterministic, decision-local, automorphism-covariant,
+zero parameters, quotient-synchronous, accounted.
+
+Verdict **U0-INCOMPLETE** ◇. Splits are unrealized. Energy minimization ties
+on every tested bond-sign case and on 11 of 27 ledger-sign cases; at zero
+field the tie is a theorem. Simultaneous local decisions also have effects
+that are not bounded by the decision radius (quantified again in RAND-0).
+
+Primary obstruction: split selection, plus one-tick effects that a purely
+local rule does not contain.
+
+## 11.2 Two boundaries do not pick one history
+
+TIME-0 (#92) asks whether `(X_initial, X_final)` selects a unique history
+under the current local constraints.
+
+Exact census: 143 canonical graph classes, `N = 1…6`, durations `T = 2…6`,
+102245 boundary pairs. Verdict **TIME0-NULL** ◇.
+
+- Unique-history fraction `0.051` on 74977 compatible pairs, below the
+  pre-registered bar `0.2`.
+- A truncation-free follow-up drops the apparent `T = 2` uniqueness from
+  `0.554` to `0.073`. The headline scarcity of histories was a boundary artifact.
+- From the initial state alone, the median number of histories runs from 74
+  to about `8×10⁵`.
+- Single-step tails resolve; pooled split resolution stays below its bar.
+- The symmetry control is exact (`K`-symmetry on the tested pairs; spatial
+  and temporal reversal pins hold).
+
+```text
+TIME0-NULL  =  endpoints plus these local constraints do not select one history
+```
+
+That null leaves microscopic reversibility in place. The symmetry control
+passed. What fails is uniqueness.
+
+## 11.3 A stochastic completion has no derived measure
+
+RAND-0 (#94), independent of TIME-0. Verdict **RAND0-MEASURE-DEBT** ◇.
+
+What is in place:
+
+- The admissible set is constructed exactly (contract or not; no scheduler and no veto smuggled in).
+- Symmetry orbits, normalization, relabeling, global-phase and conjugation covariance.
+- Decision locality and bitwise factorization on disjoint regions.
+- Three independent generators agree.
+
+What is not determined: probabilities on inequivalent orbits. A uniform draw
+over micro-moves and a uniform draw over orbits disagree wherever a nontrivial
+stabilizer exists. Directed and undirected coarse-grainings disagree on every
+tested state. At one-half per edge the vacuum is not quiescent, and the effect
+of one synchronous tick is not bounded by the decision.
+
+Stochasticity is coherent. The measure is not derived.
+
+---
+
+# 12. Histories, without a weight
+
+Synthesis of §9–§11, not a new result.
+
+```text
+admissible states
+    +
+admissible local transitions
+    → admissible histories
+```
+
+The weight `μ(Γ)` on those histories is missing. That is the
+**history-measure debt**.
+
+TIME-0 and RAND-0 can become two readings of one object if a reversible
+measure is ever earned:
+
+```text
+              μ(Γ)
+             /    \
+whole history      conditional local draw
+```
+
+Until then they are two precise ways of saying the weight is absent.
+
+---
+
+# 13. The vacuum field is not yet a result
+
+`ψ = 0` on the working graph has been the convenient background. BR-0 finds
+that this background is exactly flat under the moves it samples. Flatness of
+a chosen state is not a derivation that the physical vacuum is the zero field.
+
+A joint vacuum would be a pair `(G_vac, ψ_vac)`. A nonzero `ψ_vac` whose
+relational observables are stationary is allowed by the postulates and is
+not established.
+
+| Campaign | State |
+|---|---|
+| VAC-0 (#93) | ◇ for the LAW identities and the interference class split; the full substrate census is still running |
+| VAC-FIELD-0 | named, and explicitly empty when FIELD-0 froze its inputs; no verdict |
+| ZERO-0 (#98) | apparatus and preregistration are in the pull request; the census is running; no ontological claim is allowed until a verdict |
+
+Do not read a nonzero vacuum, or a special status for `ψ = 0`, out of this section.
+
+---
+
+# 14. Quotient mechanism
+
+```text
+MALUS-0 (#67)  M0-NULL ◇
+    one propagating combination: the symmetric sheet sector
+    the antisymmetric sector is exactly dead under H = -A
+    +
+OBS1-QUOTIENT ◇
+    → QUOT-0 (#95)   OPEN, no verdict
+```
+
+QUOT-0 asks whether the observer quotient is a consequence of that sector
+split (`[H, S] = 0`, and `H` annihilates the antisymmetric projector). The
+hypothesis, not a result:
+
+```text
+symmetric sector       carries the quotient
+antisymmetric sector   microscopic, transport-dead
+```
+
+If the verdict is positive, experienced geometry would be the part selected
+by the information-carrying sector. Until the campaign returns, the quotient
+is an empirical reconstruction (§3), not a mechanism.
+
+---
+
+# 15. Interference is not interaction
+
+FIELD-0 (#96), verdict **FIELD0-LINEAR** and **FIELD0-APPARENT** ◇. Fifty-seven
+collision cells, frozen `H = -A`.
+
+```text
+ψ₁ + ψ₂  evolves exactly as the linear theory   (interaction witness I = 0)
+ρ, B, J  still show cross terms
+```
+
+False accelerations in the atlas are large (order 50–80 in the overlap and
+head-on cells) while `I` stays at numerical zero, including a static
+arrangement that looks forceful and is not. Apparent drama is not a dynamical
+interaction.
+
+Any later force or matter coupling has to beat this null: `I > 0`, not a
+picture of fringes.
+
+---
+
+# 16. Response carrier
+
+The carrier half of a future long-range effect is the map
+
+```text
+local δψ → remote δψ → δρ, δB, δJ
+```
+
+with no force claimed. Under the frozen law the field disturbance itself is
+exact, `δψ(t) = U(t) δψ(0)`. RESPONSE-0 (#99) is the campaign that measures
+how `ρ`, `B`, and `J` answer. The pull request currently holds the
+preregistration and the apparatus. The battery has not returned a verdict, so
+the kernel is not yet a scaffolding result.
+
+Two algebraic pins are already in that apparatus, ahead of the battery:
+on a bipartite graph, chiral-real data makes `B` identically zero, and a
+sheet dipole keeps `B` localized. They constrain the carrier. They do not
+measure it.
+
+GRAV-0 (§19) remains the separate statement that a graph-only local update
+does not carry a far disturbance. The field kernel is a different question,
+and it is open.
+
+---
+
+# 17. What counts as one microstate
+
+RAND-0 already shows that a uniform measure on representations and a uniform
+measure on orbits are different measures. That is why a later counting
+principle matters:
+
+- node labels
+- global phase
+- physical symmetry
+- time reversal
+- observer equivalence (`M_O`)
+- states that are genuinely distinct
+
+No SYM-0 pull request has settled the list. The history-measure debt cannot
+be closed by declaring a uniform distribution until this list exists.
+
+---
+
+# 18. The scaffold as it stands
+
+```text
+POSTULATES
+├── relational graph G                         ✓
+├── two real scalars (r, s) → ψ                ◇  POSTULATE
+└── H = -A                                     ◇  WORKING LAW
+     │
+     ├── FIELD
+     │     |ψ|² → conserved density            ◇  DERIVED
+     │     J = 2 Im(ψ*_u ψ_v) → continuity     ◇  DERIVED
+     │     B = Re(ψ*_u ψ_v)                    ◇  DERIVED
+     │     ∂E/∂A = -2B                         ◇  DERIVED
+     │     coherence → directed waves          ◇  EMPIRICAL
+     │     sources → static response           ◇  EMPIRICAL
+     │     source changes → propagating response ◇ EMPIRICAL
+     │     "this is electromagnetism"          rejected ◇
+     │
+     └── B couples to connectivity
+           → local contraction / split         ◇  ontology
+           → conditional accounting            ◇
+           → firing law absent                 ◇  BR27-NO-MODE
+           → history weight μ(Γ) absent        ⚠  DEBT
+
+FABRIC
+└── J₂  ⚠ forced working choice                ✓ adopted, not derived
+      ├── transport and spectral tests         ✓ quotient; ◇ waves
+      ├── operational rulers                   ◇ OBS0R-METRIC
+      └── blind reconstruction                 ◇ OBS1-QUOTIENT
+            → 2D quotient geometry
+            → QUOT-0 mechanism                 OPEN
+
+OPEN FOUNDATIONS
+├── VAC-0            substrate class            partial ◇, census open
+├── VAC-FIELD-0      vacuum ψ background        no verdict
+├── QUOT-0           quotient mechanism         running
+├── ZERO-0           anatomy of ψ = 0           running
+├── FIELD-0          interaction null           ◇ established
+├── RESPONSE-0       disturbance kernel         #99 open, pre-verdict
+└── SYM-0            physical-state equivalence no pull request
+
+BLOCKED UNTIL THE DEBTS MOVE
+├── a complete graph dynamics
+├── formation under that dynamics
+├── matter
+├── a gravitational carrier from the coupled system
+├── decay
+└── force phenomenology beyond the FIELD-0 null
+```
+
+---
+
+# 19. Debt register
+
+| Debt | Origin | Meaning | What can close it |
+|---|---|---|---|
+| Substrate uniqueness | J₂ adoption, PR #62 | Working fabric, not a derived unique substrate | VAC-0, when the LAW / CLASS / J₂ split is finished |
+| Vacuum field | BR-0 flatness at `ψ = 0` | Zero field is a convenient background, not a derived vacuum | VAC-FIELD-0, with ZERO-0 as the anatomy of the zero |
+| History measure | U0, TIME-0, RAND-0 | Admissible histories are known more sharply than their weights | A measure principle that is reversible and matches both readings |
+| Physical-state counting | RAND-0 orbit mismatch | The measure depends on what is one state | SYM-0, or an equivalent counting postulate |
+| Structural kinetics | BR-2.7 | Ordering and unitarity do not fire an event | The same completion, as a new primitive if that is what it is |
+| Split information | BR-2.5, CONS-0 | Contraction is many-to-one | A history or stochastic treatment that carries the lost record, or a new ontology |
+| Neutral quiescence | BR-1 | Legal neutral moves destroy the vacuum class | Whatever dynamics makes the vacuum an attractor |
+| Matter | formation track, FIELD-0 | No dynamically stable matter, and linear overlap is not a force | Formation after a real dynamics, beating the interaction null |
+| Gravity | GRAV-0 (#80) ◇ | No tested strictly local graph update both preserves J₂ and carries a disturbance past the near field | A carrier inside the coupled `(G, ψ)` dynamics, not a retry of graph-only relocation |
+| Electromagnetism | EM-1 ◇ | The present `ψ` is a complex relational scalar, not ordinary electromagnetism | Closed unless the ontology changes |
+
+The merged weak-field interface in `docs/model.md` (Newton through Mercury, conditional on its imports) is a separate lock. GRAV-0 does not retract it. GRAV-0 says that interface has not been re-derived as a far signal of local fabric updates.
