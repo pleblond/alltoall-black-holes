@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (VAC-EXC-0 prereg)** — Excitations-around-joint-vacuum
+  campaign opened on main tail: 8-kind dpsi battery (point/phase/patch/
+  packet/standing/source/sym/hidden) around VACFIELD0-JOINT (VPLUS/VPI/
+  VMINUS, ZERO control); 0A evolution theorem + 0B bitwise cross-bg
+  regression + 0C abs/frac collapse + 0D–0G protection/cancellation +
+  0I–0L packet/phase/amplitude + 0M energy anatomy + 0N/0O dB atlas +
+  0P–0R sector taxonomy + 0S/T null/atlas + 0U/V linearity/susceptibility
+  + 0W long-time + 0X visibility + 0Y virtual ledger + 0Z matrix;
+  apparatus (`vacexc.py`) + 241 beast tasks + analyzer + 32 pins (pre-data).
+
 - **unreleased (SG verdict)** — SG-0 VERDICT banked (beast): Q1 no
   splitting (0 firings / 50+ cells, all stages/shapes/gradients);
   Q2 bare wave SG1 (sine weak ladder 8/8 valid: Δy=±2.30/±4.10,
