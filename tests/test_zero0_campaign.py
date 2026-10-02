@@ -10,6 +10,7 @@ import pytest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 import zero0_campaign as zc
 import zero0_tasks as zt
+from zero0_finish import missing_lines
 
 
 def _args(**kw):
@@ -97,6 +98,16 @@ def test_f4_exclusion_filed():
     row = zc.kind_generic(_args(task="generic", substrate="rewire",
                                 size=28, family="F4", seed=3))
     assert row.get("filed") == "initial-exclusion"
+
+
+def test_missing_lines(tmp_path):
+    a = tmp_path / "a.json"
+    a.write_text("{}")
+    tf = tmp_path / "tasks.txt"
+    tf.write_text(f"PY run --task=generic --out={a}\n"
+                  f"PY run --task=generic --out={tmp_path}/b.json\n")
+    miss = missing_lines(str(tf))
+    assert len(miss) == 1 and "b.json" in miss[0]
 
 
 def test_j2_cycles_verify():
