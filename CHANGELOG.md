@@ -3,6 +3,14 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (BR-2.7 stability / firing)** — D14-BR2.7 campaign: new
+  `stability.py` (A3 kind/sector audit, unitary no-growth, H-blindness
+  proofs, ordering scans, reversal identity, N-rows; no coordinate,
+  threshold, rate, or potential); 19 pins incl. A3 trio + C7 tripwire,
+  label-invariance C6, all-downhill exhibit; verdict BR27-NO-MODE (7/7):
+  no deformation mode, no instability, ordering without kinetics.
+  EVENT-LAW PRIMITIVE DEBT filed; strong stop honored; BR-3C blocked.
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).

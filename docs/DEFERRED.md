@@ -3060,3 +3060,39 @@ criterion, hence no threshold).
 **Predicted handoff:** EVENT-LAW PRIMITIVE DEBT filed; BR-3C stays
 BLOCKED; the program states explicitly: one additional primitive
 dynamical postulate is required to make geometry change.
+
+## BR27-VERDICT — BR27-NO-MODE (7/7 gates, derivation-forced)
+
+**Campaign:** data/br27_stability.json (beast run, 1.2 s, frozen runner;
+14 N-rows — the prereg prose "15" is a counting typo, the frozen grid
+lists exactly the 14 rows run). **Ladder:** A3-pins + C-no-growth
+(3e-16) + E-blindness all hold -> NO-MODE inputs true; dual minima
+refuted by all-downhill data (not even barrier structure); no criterion
+derived (nothing to derive it from) -> INSTABILITY rungs unreachable.
+**= BR27-NO-MODE:** the current ontology contains no mechanism that
+causes structural events.
+
+**Why each route closed (evidence, not assertion):** A3: graph jumps
+are dN = -/+1 discrete; weighted interpolation exits the frozen binary
+H kind mid-path (considered, rejected as invented); field paths keep
+(N, E). C: unitary perturbation growth 3e-16, spectral radius exactly
+1 (no Re > 0 possible). E: H takes no psi (signature proof); edge
+block frozen +-1; opnorm 1; same-G/same-H across field rows tabulated
+(J2-L12 rho = 8.0, gap 0.536 — identical for zero/bonding/current).
+D: ordering complete and IRRELEVANT — hand-predictions exact
+(bonding -26 rho^2 = -0.09028, antibonding -30 rho^2 = -0.10417,
+current -28 rho^2 = -0.09722, all lower; zero degenerate), uniform
+scans all-downhill on J2/square/ring/ER (frac_down == 1.0 everywhere:
+discrete maxima that never fire), mixed rows (tri-uniform HIGHER
++1/3 via c = 1 neutrality, unequal/er higher) equally static.
+F/G/H/I/J/K/L stand down as frozen (no object / preserved-in-null /
+vacuous / dead-at-ordering / vacuous / A3-inherited / pathless).
+
+**Debts:** EVENT-LAW PRIMITIVE DEBT filed (this campaign's bottom
+line); SPLIT-SELECTION debt inherited, moot without firing. **Strong
+stop HONORED:** no BR-2.8, no rate shopping, no thresholds, no thermal /
+noise / Metropolis additions. **BR-3C stays BLOCKED** (needs at least
+ADMISSIBLE-INSTABILITY, unreachable from here).
+
+**Mandated statement:** one additional primitive dynamical postulate
+is required to make geometry change.
