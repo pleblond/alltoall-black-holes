@@ -20,7 +20,7 @@ def _args(**kw):
          "geom": "headon", "dphi": math.pi, "amp": "match",
          "bg": "Z+", "a": 1.0, "protocol": "absolute",
          "eta_scale": 1.0, "prep": "mixed", "anatomy": False,
-         "out": "/tmp/zero0-smoke.json"}
+         "wprep": "family", "out": "/tmp/zero0-smoke.json"}
     d.update(kw)
     return Namespace(**d)
 
@@ -61,6 +61,11 @@ def test_kind_winding_smoke():
     row = zc.kind_winding(_args(task="winding", family="F2"))
     assert row["norm_ok"] is True
     assert len(row["cycles"]) >= 1
+    row = zc.kind_winding(_args(task="winding", substrate="ring", size=32,
+                                wprep="packet", k="0.5", r0="8.0",
+                                sigma=3.0, horizon=4.0))
+    assert row["norm_ok"] is True
+    assert row["wprep"] == "packet"
 
 
 def test_kind_sector_smoke():

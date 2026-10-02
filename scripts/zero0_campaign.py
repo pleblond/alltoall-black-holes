@@ -318,15 +318,27 @@ def kind_winding(a) -> dict:
     mo = modal_for(h, sub["N"])
     hd = mo["dense"] if mo else (dense_for(h, sub["N"]) if a.family in
                                  ("F4", "F5") else None)
-    prep = build_family_state(a.family, sub, a.seed, h_dense=hd,
-                              n_modes=a.n_modes)
-    if not prep["exclusion_ok"]:
-        return {"task": "winding", "substrate": sub["tag"],
-                "size": sub["size"], "N": sub["N"], "family": a.family,
-                "seed": a.seed, "filed": "initial-exclusion",
-                "attempts": prep["attempts"]}
-    tr = run_trace(prep["psi"], h, a.dt, a.horizon)
-    scan = zero.trace_zero_scan(prep["psi"], h, tr["ts"], tr["psi"],
+    if a.wprep == "packet":
+        if sub["coords"] is None:
+            raise ValueError("packet winding needs coordinates")
+        k = tuple(float(x) for x in a.k.split(","))
+        r0 = tuple(float(x) for x in a.r0.split(",")) if a.r0 else None
+        if r0 is None:
+            r0 = (sub["size"] / 4,) * len(k)
+        psi0 = gaussian_packet(sub["coords"], sub["order"], r0, k,
+                               a.sigma, periods=sub["periods"])
+        seed_used = -1
+    else:
+        prep = build_family_state(a.family, sub, a.seed, h_dense=hd,
+                                  n_modes=a.n_modes)
+        if not prep["exclusion_ok"]:
+            return {"task": "winding", "substrate": sub["tag"],
+                    "size": sub["size"], "N": sub["N"], "family": a.family,
+                    "seed": a.seed, "filed": "initial-exclusion",
+                    "attempts": prep["attempts"]}
+        psi0, seed_used = prep["psi"], prep["seed_used"]
+    tr = run_trace(psi0, h, a.dt, a.horizon)
+    scan = zero.trace_zero_scan(psi0, h, tr["ts"], tr["psi"],
                                 modal=mo["sys"] if mo else None)
     idx = {v: i for i, v in enumerate(sub["order"])}
     cycs = test_cycles(sub)
@@ -346,8 +358,8 @@ def kind_winding(a) -> dict:
             "n_changes": len(ch),
             "assoc": zero.associate_changes(ch, tr["ts"], on_support),
             "n_support_events": len(on_support)})
-    return _finish(a, sub, prep["psi"], h, tr, scan, {
-        "family": a.family, "seed_used": prep["seed_used"],
+    return _finish(a, sub, psi0, h, tr, scan, {
+        "family": a.family, "wprep": a.wprep, "seed_used": seed_used,
         "cycles": wind, "modal": mo is not None})
 
 
@@ -482,6 +494,8 @@ def parse(argv=None):
     p.add_argument("--eta-scale", type=float, default=1.0)
     p.add_argument("--prep", default="mixed",
                    choices=["plus", "minus", "mixed"])
+    p.add_argument("--wprep", default="family",
+                   choices=["family", "packet"])
     p.add_argument("--anatomy", action="store_true")
     p.add_argument("--out", required=True)
     return p.parse_args(argv)

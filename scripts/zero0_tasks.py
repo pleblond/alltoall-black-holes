@@ -180,16 +180,44 @@ def gen_supp(py: str, d: str) -> list:
     return L
 
 
+def gen_supp2(py: str, d: str) -> list:
+    """Smooth-state winding supplement (ZERO-0P/Q meaningful regime).
+
+    The full bank's F1/F2/F5 winding cells diffuse trivially (large
+    random-walk windings); P/Q needs smooth, stable-winding states:
+    F3 Fourier-phase states and traveling packets.
+    """
+    L, i = [], [0]
+
+    def emit(**kw):
+        i[0] += 1
+        L.append(_line(py, f"{d}/supp2-{i[0]:05d}.json", **kw))
+
+    for (sub, size) in [("ring", 64), ("ring", 256), ("storus", 8),
+                        ("storus", 16), ("j2quot", 8), ("j2", 6)]:
+        for seed in range(10):
+            emit(task="winding", substrate=sub, size=size, family="F3",
+                 seed=seed)
+    for (sub, size) in [("ring", 64), ("ring", 256), ("storus", 16),
+                        ("j2", 10)]:
+        for kk, sig in (("0.5", 4.0), ("1.0", 4.0), ("0.5", 8.0)):
+            if sub != "ring":
+                kk = kk + ",0.0"
+            emit(task="winding", substrate=sub, size=size, wprep="packet",
+                 k=kk, sigma=sig)
+    return L
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description="ZERO-0 task generator")
-    p.add_argument("--bank", choices=["pilot", "full", "supp"],
+    p.add_argument("--bank", choices=["pilot", "full", "supp", "supp2"],
                    default="pilot")
     p.add_argument("--py", default="~/zero0-venv/bin/python")
     p.add_argument("--dir", default="~/zero0-data/rows-pilot")
     p.add_argument("--out", required=True)
     a = p.parse_args(argv)
     gen = {"pilot": gen_pilot, "full": gen_full,
-           "supp": gen_supp}[a.bank]
+           "supp": gen_supp, "supp2": gen_supp2}[a.bank]
     lines = gen(a.py, a.dir)
     with open(a.out, "w") as f:
         f.write("\n".join(lines) + "\n")

@@ -76,7 +76,7 @@ def summarize_background(rows: list) -> dict:
     cells = defaultdict(list)
     for r in rows:
         cells[(r["substrate"], r["size"], r["bg"], r["a"],
-               r["protocol"])].append(r)
+               r["protocol"], r.get("eta_scale"))].append(r)
     out = {}
     for k, rs in sorted(cells.items()):
         prot = [r for r in rs if (r.get("bound") or {}).get("spectral") is True]
@@ -96,7 +96,8 @@ def summarize_winding(rows: list) -> dict:
     rows, _ = _split_filed(rows)
     cells = defaultdict(list)
     for r in rows:
-        cells[(r["substrate"], r["size"], r["family"])].append(r)
+        cells[(r["substrate"], r["size"], r.get("wprep", "family"),
+               r["family"])].append(r)
     out = {}
     for k, rs in sorted(cells.items()):
         ch = un = na = sup = 0
