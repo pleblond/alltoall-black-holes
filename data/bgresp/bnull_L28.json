@@ -1,0 +1,1 @@
+{"task": "bnull_L28", "params": {"task": "bnull", "L": "28"}, "payload": {"B_max": 0.0, "J_max": 2.678531468438087e-05, "bipartite_ok": true, "chiral_max_dev": 6.485911975199522e-19, "ok": true, "t_end": 16.0}, "provenance": {"git_rev": "aa879ca4d25ca44810762f3b475a6fc563cfa91b", "utc": "2026-10-02T21:04:26Z", "host": "ip-172-31-39-189"}}

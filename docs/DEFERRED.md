@@ -7332,3 +7332,70 @@ gated re-runs; none pre-data.
 Full suite on beast (pytest -n 90 --ignore=tests/test_weighted.py). Analyzer
 scripts/bgresp_analyze.py writes data/bgresp/verdict.json. Verdict filed here
 post-data.
+
+### BGRESP0-VERDICT (BGRESP0-COMPLETE, 10/10)
+
+Branch cursor/bg-resp-0-0aa2 (base main tail 7153f65). 77/77 tasks
+CAMPAIGN-DONE on beast (16.54.88.181, xargs -P 90, OMP threads 1, nice);
+records data/bgresp/*.json + verdict.json banked; .npy sidecars on beast
+(gitignored, shas in JSON). Analyzer scripts/bgresp_analyze.py per PREREG
+(no amendments; one apparatus crash fix for 6 ungenerated L28 sparse-sector
+records, no banked data affected, committed as 14a8ba2). Full suite on beast
+(venv, -n 90, --ignore=tests/test_weighted.py): 1605 passed, 2 skipped,
+0 failed.
+
+Headline: chi_+ != chi_pi != chi_- as OPERATORS (pairwise Frobenius
+distance sqrt(88) at every L; operator 8*sqrt(2/N); sector-resolved and
+sign structure differ per pair), each rank 2N-1 with the sole null direction
+exactly global phase (overlap 1.0), while chi_ZERO = 0. Same carrier +
+different vacuum -> provably different relational response, pinned exactly:
+dO_a(t) - dO_b(t) = (chi_a(t) - chi_b(t)) d(t) to fp precision at t =
+0/4/8/16 (dd cancels: background-independent).
+
+Spectra (0D, L4/L6/L8 dense SVD; L12/L28 sparse): ||chi||_fro = sqrt(44)
+exactly for all nonzero vacua at all L (uniform |vac| analytic); op norm
+8/sqrt(N) (1.4142/0.9428/0.7071/0.2020); rank 2N-1, nullity 1, null =
+global phase. Sector-resolved op norms split VMINUS from the symmetric
+pair: VPLUS/VPI (op, op/sqrt(2)) on (P_+, P_-) vs VMINUS swapped
+(op/sqrt(2), op) at every L. Pairwise sector-restricted diff norms: VPLUS-
+VPI preserves full op under either projector; VMINUS-involving diffs drop
+to sqrt(3)/2 x full (difference straddles sectors). Per-class (SX/SY/F1/F2)
+uniformity exact (std 0.0); translation covariance dev ~1e-17 (all vacua).
+
+Sign census (0V, frozen battery): point_real static: VPLUS-VPI 8/8 opposite
+(all incident edges flip), VMINUS pairs 4/8; timed (t = 4/8, L28): VPLUS-VPI
+6272/6272 = EVERY edge opposite, VMINUS pairs exactly half (3136/6272).
+point_imag complementary: VPLUS-VPI 0/6272 (same sign everywhere), VMINUS
+pairs ~half. sym_sector matches point_real rigidity; hidden_sector local
+(16/16, 8/16, frozen support); packet generic ~50%. Static point_imag dB1 =
+0 exactly (vacuous, filed: real backgrounds + imag point). The same carrier
+disturbance presents opposite geometry-conjugate signals on different vacua;
+no geometry is inferred.
+
+Fingerprint (0AC/0AD): 7-component F separates all pairs at all L
+(min-dist 2.83/1.89/1.41/L12/L28 0.404 ~ 16/sqrt(N)); minimal size 1 with
+THREE winners at every L: F5 energy cross (2.83), F6 signed amp-dB sum
+(+/-/0 pattern: VPLUS +8e/N, VPI -8e/N, VMINUS 0), F7 signed sym-dB sum.
+Norms alone (F1-F4) are vacua-blind (identical magnitudes); SIGNS + ENERGY
+carry the distinction. Local and size-independent in normalized form.
+
+Controls: bipartite B-null exact (B_max = 0.0, chiral dev ~1e-18, L4+L28);
+hidden-energy null exact (dE = 0.0, dB_max > 0, L4+L28); FIELD-0 witness I
+= 9.7e-16 (fp zero) IDENTICAL on all 4 backgrounds while dB_max/dJ_max
+differ per vacuum (VPLUS 3.7e-5/1.5e-5, VPI 6e-6/6.8e-5, VMINUS
+3.3e-5/5.9e-5, ZERO 1e-6/0.0): different responses are not forces. Kernel
+K(t) = chi_{vac(t)} U(t) = chi_0 e^{iEt} U(t) pinned equal (dev 0.0) +
+dense-vs-Krylov < 1e-8. Lin slopes: nonzero 1.0, ZERO 2.0 (deep-linear
+two-point; t = 0 real-prep J legs + ZERO B leg vacuous-pass per filed
+exact-zero rules). Virtual ledger: packet excitations strongly restructure
+(VPLUS flat f0 = 1 -> fneg/fpos ~0.50/0.50); point/hidden weak; VPI/VPMINUS
+departures filed per kind.
+
+Interpretation (boxed): susceptibility is earned, vacuum-dependent, and
+exactly characterizable: the three JOINT vacua are pairwise distinguished
+by their chi operators (sign/sector/energy anatomy), operationally
+identifiable by a single signed-B or energy readout, and invisible only
+along global phase. ZERO is the no-linear-susceptibility limit. Nothing
+here selects a vacuum or moves geometry; the response differences are
+mathematical facts about established relational observables, filed as input
+to future geometry coupling.

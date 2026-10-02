@@ -3,6 +3,19 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **Unreleased (BG-RESP-0)** — Vacuum-dependent relational susceptibility:
+  `src/bh_graph/bgresp.py` (analytic chi operator, dense + sparse, spectra,
+  sector resolution, time-domain kernel, sign census, fingerprint),
+  `tests/test_bgresp.py` (34 pins), `scripts/bgresp_campaign.py` (77 tasks)
+  + `scripts/bgresp_analyze.py`, BGRESP0-PREREG in `docs/DEFERRED.md`.
+  Read-only consumption of VAC-FIELD-0/VAC-EXC-0/RESPONSE/HIDDEN/HIDDEN-BR/
+  FIELD-0/ZERO/QUOT/SYM-0 apparatus (byte-identical). VERDICT
+  BGRESP0-COMPLETE (10/10): pairwise chi distances sqrt(88), rank 2N-1
+  with sole null = global phase, chi_ZERO = 0, same-carrier theorem exact,
+  sign census (VPLUS-VPI all-edge negation for real prep), size-1
+  fingerprint (energy/signed-B), witness I = 0 identical on all vacua.
+  Full suite 1605 passed / 2 skipped. Records under `data/bgresp/`.
+
 - **Unreleased (TIME-0)** — Two-boundary history selection prereg +
   apparatus (pre-data): `src/bh_graph/time0.py` (canonical N<=6 universe,
   pairwise compatibility, exact DP counters, Theta, affine field
