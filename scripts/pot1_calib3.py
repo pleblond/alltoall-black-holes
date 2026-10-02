@@ -140,6 +140,13 @@ def _solve_case(spec):
             "contain_r3": float(np.vdot(pred[dvec <= 3], pred[dvec <= 3]).real / n2)}
 
 
+def _run_case(spec):
+    fn = {"j2": _j2_case, "path": _path_case, "solve": _solve_case}[spec["fn"]]
+    r = fn(spec)
+    print(json.dumps(r), flush=True)
+    return r
+
+
 def main() -> int:
     cases = []
     for tau in (4.0, 8.0, 12.0):
@@ -152,14 +159,8 @@ def main() -> int:
         cases.append({"fn": "solve", "tag": f"contain_L{L}", "L": L})
     cases.append({"fn": "solve", "tag": "AP_delta"})
 
-    def run(spec):
-        fn = {"j2": _j2_case, "path": _path_case, "solve": _solve_case}[spec["fn"]]
-        r = fn(spec)
-        print(json.dumps(r), flush=True)
-        return r
-
     with mp.get_context("fork").Pool(10) as pool:
-        res = pool.map(run, cases)
+        res = pool.map(_run_case, cases)
     json.dump({r["tag"]: r for r in res}, open("/tmp/pot1_calib3.json", "w"), indent=1)
     print("wrote /tmp/pot1_calib3.json")
     return 0
