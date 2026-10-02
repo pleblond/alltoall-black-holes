@@ -2988,3 +2988,117 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## MEASURE0-PREREG — Physical transition measure (FROZEN PRE-DATA)
+
+**Status:** apparatus + semantics + candidates + battery + gates + ladder
+frozen; campaign NOT YET RUN. MEASURE-0 accepts SYM0-CLOSED (X_phys =
+X/(R x U1), Theta identity, d_FS projective geometry, debt-survival
+boolean), RAND0-MEASURE-DEBT (exact admissible sets, stabilizer/orbit
+apparatus, MICRO/ORBIT-UNIFORM, multiplicity dependence), BR-2.5
+contraction/splitting ontology u-v <-> [uv], BR-2.6/CONS0-PARTIAL event
+accounting (dQ = 2B, dE = P1+P2, dxi = -c; splits DEGENERATE; no closing
+field account), BR27-NO-MODE (no firing mechanism from energetics),
+U0-INCOMPLETE (no complete deterministic U_G; H4 ties generic),
+TIME0-NULL (boundaries do not select histories; exact history space
+banked), HIDDEN0-SEPARATED (P_- locally physical, transport-hidden;
+E_- = 0 energetically invisible), VACFIELD0-JOINT (VPLUS/VPI/VMINUS
+family + ZERO background; no single vacuum selected). MEASURE-0 asks
+whether the frozen theory determines a unique W([X],[Y]) >= 0 on
+elementary physical transitions, local, representation-independent and
+time-reversal-compatible (W(X,Y) = W(Theta Y, Theta X)). P(Y|X) is
+normalization of W, never the starting point.
+
+**Frozen inputs (read-only, sha256-verified byte-identical across sibling
+tips):** sym0-e27a apparatus (accounting/backreaction/ballistic/coherence/
+conservation/continuum/contraction/driven/formation+delta/malus/obs0/obs0r/
+obs1/obs1_reveal/phase/potential/quot/rand0/slit/stability/sym0/tunnel/u0/
+ug/ug_sync/vac0 + tests + xdist config + run_obs0/run_obs1/analyze_blind),
+time0-d6cc (time0 + test), hidden0-3478 (hidden/field0 + tests),
+vacfield-8ec1 (vacfield + test). No law change on consumption. Frozen
+conventions: X = (G, psi), simple graphs, H = -A, J = 1, hbar = 1,
+dt = 0.1, sum map, B/J quadrature, E = -2 sum B, dE_contract =
+2B - 2 sum_cross (BR-2.6 MINUS). Banked theorems consumed, never
+re-derived: [H,S] = 0, H P_- = 0, Theta U(t) Theta^-1 = U(-t) (method
+re-applied on the MEASURE grid, identity not re-postulated), U0-H1
+endpoint gauge, CONS-0K split formulas, info-loss books.
+
+**Epistemic firewall (frozen):** no temperature, Boltzmann factors, Born
+rule, action, entropy maximization, Metropolis, event rates, fitted
+exponents, tunable couplings, external noise, hidden random fields,
+preferred graph or matter configuration. W ~ e^{-beta dE}, |psi|^2, |B|,
+e^{iS} appear ONLY as explicit negative controls (M-FW) with their
+parameter/derivation debt filed. No gate may be passed by a control.
+
+**Candidates (frozen, zero fitted params):** const (W = 1 on every
+distinct physical elementary transition); orbit (RAND orbit-uniform
+reconstructed on the physical quotient, control-rival). No other
+candidate may be introduced post-data; Q/R/S/T/U searches may only file
+negative/positive findings against the frozen battery, never fit.
+
+**State battery (frozen, deterministic):** tiny {k2, triangle, square,
+star4, path4} x {zero, bonding, current, antibonding} (20 states; exact
+Aut + exact-iso scope); J2-L4 (N = 32, sheet/symmetry/background scope);
+background battery {ZERO, VPLUS, VPI, VMINUS} on J2-L4 via
+vacfield.candidate_shape (VACFIELD0-JOINT is a family: headline runs ALL
+four, never selects); TIME-0 labeled N<=4 universe (44 states, history
+scope). No big-graph OBS recomputation (SYM-0 O5 cap inherited); exact
+isomorphism capped at N<=12 (RAND Amendment-1 inherited).
+
+**Stages (frozen):** A physical admissible sets A_phys (quotiented;
+representation-independence hard gate); B tiny exact transition graph
+(degrees, stabilizers, types, supports, accounting; no weights); C
+reverse-edge completeness (reversible vs graph-only vs one-way per
+contraction; halves-condition filed); D Theta map (dense-exact dynamics
+check + W reversibility per patch); E invariant inventory (B, J, rho,
+dQ, dE_psi, dE_G, dxi, cross, cycle-rank, degrees, sector, stab/orbit;
+classification table frozen in module); F minimality (param counts;
+const/orbit = 0); G const weight + P = 1/|A_phys|; H reverse consistency
+of const + stationary pi ~ d (descriptive); I orbit-uniform control +
+disagreement battery; J refinement (directed vs undirected vs iso;
+gauge-quotient stability gated, iso grain filed); K composition
+(disjoint factorization gated; shared-node exclusion filed); L locality
+(RAND U0-F support radius; both candidates); M Aut covariance (frozen
+tiny perms); N sheet covariance (J2); O global-phase redundancy (hard
+gate, U1 grid); P TR-even audit (B/rho/Q/E even; J odd filed); Q
+conservation-surface (level degeneracy census; selects = False expected);
+R projective field geometry (daughters discrete; N differs across split
+=> no common-space FS volume; negative expected); S graph combinatorial
+(1 vs |Aut|^-1 vs |orbit|; underdetermined expected); T product measure
+(not forced: B/J couple); U contraction Jacobian (discrete graph + C^2->C
+fiber; no finite invariant preimage measure); V info-loss (graph_bits =
+log2 covers identity; filed, not a derivation); W hidden sector (VMINUS
+retained; E-blindness filed); X background dependence (4/4 run; W
+battery-blindness filed); Y vacuum quiescence as prediction (P_stay =
+1/2 per edge; active, no exception); Z tiny exact transition matrices +
+stochasticity + classes; AA detailed balance (result, not repair); AB
+probability currents (audit); AC TIME-0 history comparison (W = 1 =>
+uniform over histories; NULL-survival expected); AD uniqueness audit
+(analyzer debt-reasons); AE minimality audit (param table); AF verdict.
+
+**Stage gates (frozen):** HARD (any red => MEASURE0-INCOHERENT, stop):
+H-INST-no-crash, H-A-rep-edge, H-A-rep-node, H-A-sig, H-O-phase,
+H-Z-matrix. MEASURED (filed, never gated): M-B/C/D/E/F/G/H/I/J/K/L/M/N/
+P/Q/R/S/T/U/V/W/X/Y/AA/AB/AC/FW (see analyzer for the exact list).
+No gate is tuned after opening data; amendments require a dated
+MEASURE0-AMENDMENT note pre-rerun.
+
+**Verdict ladder (frozen):** MEASURE0-CLOSED = all HARD green + zero
+debt-reasons (unique W forced: no disagreement, fully reversible
+support, an earned selector among Q/R/S/T/U, balance holds).
+MEASURE0-DEBT = all HARD green + >= 1 debt-reason (apparatus coherent,
+no unique W). MEASURE0-INCOHERENT = any HARD red. Debt-reasons
+(frozen analyzer rules): orbit-rival differs; support not fully
+reversible; no conservation selector; graph grain underdetermined.
+PREDICTION (pre-data, theorem-backed): MEASURE0-DEBT via (a) orbit
+rival differs on node patches (RAND-0C both satisfy, no earned
+preference), (b) reverse support graph-only/one-way on generic fields
+(sum-map information loss), (c) no earned selector (CONS-0 DEGENERATE,
+discrete daughters, coupled sectors, infinite fiber), (d) vacuum active
+(RAND-0H), (e) TIME0-NULL survives uniform history weighting. CLOSED
+stays data-reachable; INCOHERENT stays reachable via any HARD red.
+
+**Campaign:** scripts/measure0_campaign.py on beast (96-CPU, mp pool);
+scripts/measure0_analyze.py applies the frozen gates; full suite on
+beast in parallel (test_weighted.py skipped per standing instruction).
+Nothing local except unit pins.

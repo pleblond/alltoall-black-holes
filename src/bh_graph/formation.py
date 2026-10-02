@@ -365,6 +365,7 @@ def formation_run(
     log_window: tuple | None = None,
     k5_window: tuple | None = None,
     k4_window: tuple | None = None,
+    elist_window: tuple | None = None,
     log_endpoints: bool = False,
 ) -> dict:
     """Run D1/D3/D5-family relocation to a stop rule.
@@ -384,7 +385,9 @@ def formation_run(
     accepted) within log_window (sweep range or None); log_endpoints
     widens rows to (sweep, a, b, c, d, t_loss, t_gain, accepted);
     k5_window logs per-sweep k5-count in range; k4_window logs
-    per-sweep floored-k4-core node sets (blob tracking). Deterministic
+    per-sweep floored-k4-core node sets (blob tracking); elist_window
+    logs per-sweep full edge lists (one-way G->psi capture for P1;
+    observation-only like all logging). Deterministic
     given seed. Returns the full filing record (+ state iff
     return_state).
     """
@@ -404,7 +407,7 @@ def formation_run(
     rng = random.Random(seed)
     nbrs = st["nbrs"]
     per_sweep, snaps, k5trace, saved, t_trace = [], {}, {}, {}, []
-    moves, k5win, k4sets = [], {}, {}
+    moves, k5win, k4sets, elists = [], {}, {}, {}
     prop_n = 0
 
     def log_move(sw_, a_, b_, c_, d_, loss_, gain_, acc_):
@@ -478,6 +481,8 @@ def formation_run(
                 else []
             )
             k4sets[sw] = sorted(set().union(*big)) if big else []
+        if elist_window is not None and elist_window[0] <= sw <= elist_window[1]:
+            elists[sw] = list(st["elist"])
         if sw % 100 == 0:
             saved[sw] = list(st["elist"])
         if sw == w_arrest and sum(per_sweep) == 0:
@@ -524,6 +529,7 @@ def formation_run(
         "moves": moves,
         "k5win": {sw: list(v) for sw, v in k5win.items()},
         "k4sets": {sw: list(v) for sw, v in k4sets.items()},
+        "elists": {sw: [list(e) for e in el] for sw, el in elists.items()},
     }
     if return_state:
         return rec, st
