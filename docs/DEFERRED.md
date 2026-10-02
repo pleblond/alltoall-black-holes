@@ -3601,3 +3601,35 @@ eigen banked, dirs read-only); stations unit 27 procs (9 cells x 3 sets);
 blind analyzer on meas files only; COMMIT+push blind artifacts; reveal
 analyzer (hash-locked) -> data/obs1_verdict.json. Follow-up gate per spec
 (OBS-2 needs OBS-1 positive + frozen coupled U_G) UNCHANGED.
+
+## OBS1-AMENDMENT-1 (composite mix-before-impute; FROZEN pre-reveal
+2026-10-02 (~14:30-UTC; first blind hash 1f22537d SUPERSEDED before any
+reveal ran or any hidden geometry was joined; OBS0-amendment precedent)
+
+CAUSE (blind-internal instrument fact, L128 cells): the static channel has
+finite SOLVER-FLOOR range. Far-field phi (~1e-20 at R~90) sits below the
+~1e-10 absolute floor of any double-precision sparse solve (M-matrix theory
+says phi>0 everywhere; the SIGN is numerical noise out there), so 38% (J2-
+L128) to 67% (sq-L128) of P pairs are non-positive -> unmeasured (runner
+P-completeness was 1.0 because it counts finite; blind requires p>0). W and
+D remain 100% measured with clean geometry (d 1.7-2.0, d* 2R). The pilot
+(L42, P 100%) could not catch this: it is a range effect.
+
+DEFECT (pipeline order): the prereg froze composite-from-COMPLETED-channels
+(impute each channel at 1.5x max, THEN mix). With P 33-67% imputed, the
+imputation poisoned the P median and every mixed pair (composite tri 0.20,
+d 1.0 at J2-L128 -- an artifact, not observer physics).
+
+FIX (no bar/gate/ladder/estimator touched): composite mixes UN-imputed
+symmetrized channels (median over measured only, nanmean over available
+channels per pair: far pairs use W+D, near/mid use W+D+P), and the MIX is
+completed after. Identical results when all channels are complete (all
+L42/L64/expander cells). Per-channel paths unchanged: P-only L128
+reconstruction is EMBED-flagged descriptive (measured_frac 0.33-0.62 <
+0.95), honestly recording the static observer's finite range (~O(10 xi)).
+Cross-probe (per-channel completed matrices) UNCHANGED by this amendment;
+P-including pairs at L128 will carry imputation -- recorded as frozen
+(no second amendment: if 3-way CROSS fails on P-range while WD passes,
+that is the honest finite-range outcome, capping gracefully at QUOTIENT).
+P-range-vs-L recorded descriptively in the verdict (static-observer range
+finding). Regression-pinned by test_composite_mixes_measured_only.

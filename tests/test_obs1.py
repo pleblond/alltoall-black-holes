@@ -295,6 +295,27 @@ def test_composite_and_cross_probe():
     assert not bad["pass"]
 
 
+def test_composite_mixes_measured_only():
+    # OBS1-AMENDMENT-1: a range-limited channel (half missing) must not
+    # poison the composite: median over measured only, pairs use available
+    # channels, output un-imputed (nan only where nothing measured).
+    D, _ = grid_patch()
+    P = D * 0.5 + 0.1
+    P[:32, :] = np.nan
+    P[:, :32] = np.nan
+    np.fill_diagonal(P, 0.0)
+    C = obs1.composite_matrix({"W": D, "D": D * 2.0, "P": P})
+    assert np.all(np.isfinite(C))  # W+D cover everything
+    # Where P is missing, composite == mean of W,D normalized only.
+    ref = obs1.composite_matrix({"W": D, "D": D * 2.0})
+    assert np.allclose(C[:32, :32], ref[:32, :32], equal_nan=True)
+    # Median ignored the missing half (not pulled by imputation).
+    off = P[~np.eye(64, dtype=bool)]
+    med = float(np.median(off[np.isfinite(off)]))
+    assert obs1.median_normalize(P)[40, 41] == pytest.approx(
+        P[40, 41] / med)
+
+
 # ---------------------------------------------------------------------------
 # C2: scrambled-label invariance (exact up to relabeling).
 # ---------------------------------------------------------------------------

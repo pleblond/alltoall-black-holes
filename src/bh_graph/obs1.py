@@ -194,13 +194,29 @@ def median_normalize(D: np.ndarray) -> np.ndarray:
 
 
 def composite_matrix(channels: dict) -> np.ndarray:
-    """Equal-weight mean of median-normalized channels over available data."""
+    """Equal-weight mean of median-normalized channels over MEASURED data.
+
+    OBS1-AMENDMENT-1 (pre-reveal): inputs are UN-imputed symmetrized
+    channels (nan = unmeasured). Median over measured entries only, then
+    nanmean across channels per pair (pairs use 1-3 channels as
+    available). Returns UN-imputed composite (nan where NO channel
+    measured); the blind stage completes it AFTER mixing. Rationale: the
+    static channel has finite solver-floor range (far-field phi below
+    ~1e-10 absolute floor -> non-positive -> unmeasured; 38-67% missing
+    at L128), and imputing BEFORE mixing lets one range-limited channel
+    poison the composite median and every mixed pair. Mixing measured
+    evidence first is the correct order (identical results when all
+    channels are complete).
+    """
     mats = [median_normalize(np.asarray(M, dtype=float))
             for M in channels.values()]
     stack = np.stack(mats, axis=0)
     with np.errstate(invalid="ignore"):
         out = np.nanmean(stack, axis=0)
-    np.fill_diagonal(out, 0.0)
+    out = np.asarray(out, dtype=float)
+    n = out.shape[0]
+    for i in range(n):
+        out[i, i] = 0.0
     return out
 
 

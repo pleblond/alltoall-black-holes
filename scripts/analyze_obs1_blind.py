@@ -96,20 +96,20 @@ def analyze_cell_set(meas):
     for ch in obs1.PROBES:
         raw = nat[ch]
         done = obs1.complete_matrix(raw)
-        comp[ch] = done["D"]
+        comp[ch] = obs1.symmetrize(raw)  # UN-imputed (Amendment-1)
         geo = _probe_geometry(done["D"])
         geo["sym"] = obs1.symmetry_report(raw)
         geo["measured_frac"] = done["measured_frac"]
         geo["n_imputed"] = done["n_imputed"]
         geo["D"] = done["D"]
         per_probe[ch] = geo
-    C = obs1.composite_matrix(comp)
-    c_done_frac = obs1.completeness(
-        np.where(np.isfinite(C), C, np.nan))
-    geo = _probe_geometry(np.where(np.isfinite(C), C, np.nan))
+    C_raw = obs1.composite_matrix(comp)
+    C_done = obs1.complete_matrix(C_raw)  # complete AFTER mixing
+    C = C_done["D"]
+    geo = _probe_geometry(C)
     geo["sym"] = None
-    geo["measured_frac"] = c_done_frac
-    geo["n_imputed"] = None
+    geo["measured_frac"] = C_done["measured_frac"]
+    geo["n_imputed"] = C_done["n_imputed"]
     geo["D"] = C
     per_probe["C"] = geo
     cross = {}
