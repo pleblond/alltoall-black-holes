@@ -3457,3 +3457,147 @@ probe (which had every right to disagree -- POT-1 proved its route-
 sensitivity) converged onto the same operational geometry. The surviving
 non-convergence (absolute floors, far-IR wrap rise) constrains OBS-1's
 reconstruction target: calibration-relative geometry with floors.
+
+## OBS1-PREREG (Blind Observer Reconstruction; FROZEN-2026-10-02 (~13:00-UTC,
+commit-predates-ALL-OBS1-campaign-data); branch cursor/obs1-reconstruction-69cc
+off obs0r-tip-cac9c18; beast-dirs ~/obs1-69cc (code) + ~/obs1-data (write),
+banked ~/obs0-data + ~/obs0r-data READ-ONLY; workers<=16 for station procs;
+NO-local-campaign-data (sq-L42 pilot set + unit tests/synthetics only, listed
+below))
+
+QUESTION (exactly one): what spatial geometry does an embedded observer
+reconstruct from operational measurements alone, with zero access to the
+substrate graph? OBS-0R (OBS0R-METRIC) showed G/D/W/P rulers share a metric
+up to fixed global calibration; OBS-1 removes the scaffolding (no R_G-fitted
+maps anywhere: the composite uses median-normalization only, and NO channel
+weight is tuned against hidden geometry at any stage).
+
+FIREWALL: obs1.py + scripts/analyze_obs1_blind.py consume ONLY opaque
+measurement records (cell/set/S-ids + values). C3-pinned by
+tests/test_obs1.py (AST import scan + token scan of both blind sources +
+meas-schema audit in the runner). Hidden joins exist ONLY in obs1_reveal.py,
+imported ONLY by analyze_obs1_reveal.py, which REFUSES to run unless the
+blind artifact hash matches the committed frozen value. Two-stage discipline:
+blind artifacts committed (+ pushed) BEFORE the reveal stage runs.
+
+CELLS (frozen order; blind sees ONLY the integer id): 0 j2-L42, 1 j2-L64,
+2 j2-L128 (headlines), 3 sq-L42, 4 sq-L64, 5 sq-L128 (C0 known-2D), 6
+exp-N3528-s0, 7 exp-N8192-s0, 8 exp-N32768-s0 (C1 size-matched non-2D, seed
+s0 frozen). Expander N matches J2 2L^2 exactly (3528/8192/32768).
+
+STATIONS: 64 per (cell, set), 3 sets per cell. Sampling frozen:
+rng(9100+100*cell+set).choice(N,64,replace=False), S-ids in rng-permuted
+order. Train S0-31 / test S32-63 (frozen indices = random held-out split).
+Meas file: directed pairs Sa|Sb with {W,D,P,Dcfd}; seal file: tag + S-id->
+node map (reveal only). Runner asserts meas schema (audit_meas_schema).
+
+INSTRUMENTS (frozen): tau_W = first threshold-crossing at THETA_WAVE=1e-6
+(OBS-0 Amendment-2, unchanged). tau_D = first threshold-crossing at the
+SAME floor 1e-6 (one instrument noise floor, "when did you first notice";
+pilot-justified below -- NOT the OBS-0 CFD peak). Dcfd = OBS-0 CFD peak
+time recorded as bridge column ONLY (never consumed by blind estimators).
+P: static field phi from one sparse solve per station source (POT-1
+read-only route, gap-matched omega, H prebuilt once per set); phi<=0 or
+non-finite -> None. INSTRUMENT-GATE: if any channel completeness < 0.90
+on the first L128 set, the campaign PAUSES for instrument review
+(pre-reveal, geometry-blind). Banked pilot completeness: W/D/P = 1.0.
+
+NATIVE TRANSFORMS (locked): W = tau_W; D = sqrt(tau_D); P = -ln(clip(phi,
+1e-300, 1.0)) (clip fraction recorded; pilot 0.0). Symmetrize AFTER testing:
+raw directed M feeds the symmetry gate; D_ab = (M_ab+M_ba)/2 (diag 0) then
+frozen imputation missing -> 1.5x channel max (fraction recorded; pilot
+~0). ALL blind estimators run on completed matrices. COMPOSITE (locked):
+median-normalize each completed channel (off-diag median, blind-safe),
+equal-weight nanmean over available channels (never tuned). Composite
+completeness bar 0.98; embed-complete bar 0.95 (else d*/embedding
+descriptive-only for that set).
+
+BLIND ESTIMATORS + BARS (all in obs1.py, all pinned by tests/test_obs1.py):
+SYM: rel-asymmetry med<0.05 + p90<0.25 (pilot: exactly 0 by reciprocity).
+TRI (two-tier, filed): tol 5%; STRICT frac<0.05 (single channels); LOOSE
+frac<0.15 (composite near-metric bar; pilot physics: arrival channels carry
+O(1) dispersion/interference non-metricity -- W 24%/D 12% frac, p99 0.30/
+0.15 -- while static P is exactly metric (0.0%), composite 7.6% with p99
+0.11 and frac>10% only 1.7%; the loose bar passes P-like and pilot-
+composite-like mixing while still failing W-like 24%).
+VOL-DIM: per-origin log-log OLS over pooled-quantile window [q25,q65]
+(blind-safe, data-adaptive), median over origins; r2>=0.85 required;
+DIM_STABLE iff >=2/3 sets ok and max-min d <= 0.5.
+MDS: deterministic classical (Torgerson) in-house; d* by MAJORITY-DISTORTION
+rule (d*=1 iff stress_1<=0.01 else smallest d with stress_d<=0.5*stress_1,
+else argmin+pass=False). NO absolute global stress bar (synthetic
+calibration: ideal periodic 2D data sits at raw stress ~0.10 from wrap
+distortion -- any conventional cutoff mis-selects d*=3). REPLICATED iff the
+same rule on the held-out test submatrix selects the same d* with pass.
+ADJACENCY: bottom-decile of D^(O) (frozen). ANGLES (OBS-1F): per station,
+pairs among 8 nearest: |cosine-rule angle - own-2D-ball-MDS angle| at the
+apex; med<0.20 rad (local balls are cut-free; global-embedding comparison
+is cut-distorted -- synthetic calibration). EUCLID-WINDOW: 2D-MDS stress of
+D-balls over quantile radii {0.10,0.20,0.30,0.40}; WINDOW iff >=2 consecutive
+<0.10 (absolute bar valid LOCALLY: pilot torus 0.005-0.011, star 0.76).
+WRAP-FLAGS: D-near (bottom-10%) but embedding-far (top-25%): descriptive +
+precision-gated (may resolve as "topology unresolved at tested size" --
+listed OBS-1H outcome, NOT a failure of the campaign).
+
+SYNTHETIC-CALIBRATION LOG (pure-numpy fixtures, no substrate, pre-data):
+periodic-2D -> d=1.96/r2=0.98, d*=2 replicated, local charts/dist recover;
+line -> d*=1; star -> vol r2-fail, no d* pass, no euclid window; R16/noise
+-> d*=3/4 or none (never 2-with-pass); lifted-global-Procrustes FAILS
+(eps 0.62-0.94: cut+bend+spectral curvature) -> chart/dist gates adopted;
+angle-sum-to-pi VACUOUS (any valid triangle sums to pi) -> local-ball
+angles adopted; torus strict-Procrustes ~0.9 recorded as topology signature.
+
+PILOT DISCLOSURE (sq-L42 cell 3 set 0, control cell, pre-prereg smoke;
+geometry-blind instrument facts + ONE hidden-geometry look documented):
+completeness drove the CFD->threshold diffusion fix (CFD 52% missing far-
+field by monotonic-rise physics; threshold complete 1.0, corr(sqrt(t),R)=
+0.98, corr-vs-CFD 0.96 common pairs); triangle pilot (above) drove the
+two-tier bar; UNTOUCHED after pilot: dim bar 0.5 (pilot C 1.65 passes),
+angle bar 0.20 (pilot C 0.207 fails marginally -- left strict: caps only
+the top rung, graceful), d-diff 0.5, all reveal bars, C1 rule. Hidden-look
+(sq-L42 only, structural bug-hunt, no bar role): dist-quot 4%, charts W/D/P
+0.18/0.05/0.02, locality 1.0, d*=2 replicated all probes -- plumbing
+confirmed, zero bars moved. L42-vs-L128 differences (wrap/window/dim-bias
+mechanisms) are DIAGNOSED BY the frozen L-scaling clause, not pre-judged.
+
+REVEAL (frozen): hidden metric = minimal-image Euclidean on (x,y) quotient
+coords (J2: j2_torus_coords; sq: id=x*L+y), periods (L,L); expanders: graph
+(BFS) distance only. DIST_OK: scale-aligned RMS(D^(O),H_quot)<=0.30 (single
+global scalar -- the primary geometric gate). LOCAL_OK: median per-ball
+fresh-2D-chart Procrustes eps<=0.30 (chart = observer's own MDS of the ball;
+hidden lifted rel. ball center, discrete copies, no warp). LOC_OK: >=70% of
+observer edges hidden-near (symmetric frozen rule: hidden bottom-decile).
+SHEET_OK (J2): same-vs-cross median contrast <0.05. TOPO_OK: >=3 blind wrap
+flags with precision>=0.5 (TRUE = hidden-near + raw gap>L/2 in some axis).
+OBS-1M: closer-to-quotient-vs-microscopic via scale-RMS (descriptive).
+Per-probe dist/chart recorded DESCRIPTIVE ONLY (no per-probe rungs).
+OBS-1L NOTE (filed deviation): global rigid coord alignment is topologically
+obstructed on periodic targets (cut+bend), so OBS-1L is scored at the metric
+level (DIST, global scale only) + chart level (LOCAL); strict global
+Procrustes eps is recorded descriptively as a toroidal-topology signature.
+
+LADDER (composite observer; cell flags = >=2/3 of 3 sets; J=J2-L128):
+METRIC = METRIC_OK & DIM_STABLE & EMB_OK (metric_ok = sym-all-probes &
+tri-loose & complete>=0.98; emb = d*pass & replicated & meas>=0.95).
+QUOTIENT = METRIC & |d-2|<=0.5 & DIST_OK & LOCAL_OK & LOC_OK & SHEET_OK.
+CROSS-PROBE = QUOTIENT & CROSS_OK (all 3 pairs scale-RMS<0.30 & |dd|<=0.5).
+RECONSTRUCTED = CROSS & ANGLE_OK & WINDOW_OK & TOPO_OK & C0 & C1 & SCALING.
+C0 (sq-L128): DIM_STABLE & |d-2|<=0.5 & DIST_OK & LOCAL_OK & LOC_OK; rungs
+above METRIC REQUIRE C0 (else capped + PIPELINE-FAIL). C1 (each exp cell):
+zero sets with (dim_ok & |d-2|<=0.5 & d*==2 & d*pass & replicated) AND >=2
+sets composite-meas>=0.5 (data-existed guard). SCALING (J2 L42/64/128):
+|d-2|<=0.5 all sizes & DIST_OK(L64+L128) & d-spread<=0.5. Headline =
+highest cumulative rung else OBS1-NO-GEOMETRY; partial runs =
+OBS1-INCOMPLETE. OBS-1K composite-vs-single recorded descriptively.
+
+CONTROLS: C0 square (above). C1 expander (above). C2 permutation invariance
+(unit test, exact). C3 no-coordinate audit (AST import scan + token scan +
+meas-schema audit; hard gate). C4 probe independence (channel-isolated
+builders, unit test). C5 held-out stations (train/test d* replication in
+EMB). C6 size control (L42/64/128 scaling clause).
+
+CAMPAIGN (beast): eigen unit ONLY for NEW exp-N32768-s{0,1,2} (all other
+eigen banked, dirs read-only); stations unit 27 procs (9 cells x 3 sets);
+blind analyzer on meas files only; COMMIT+push blind artifacts; reveal
+analyzer (hash-locked) -> data/obs1_verdict.json. Follow-up gate per spec
+(OBS-2 needs OBS-1 positive + frozen coupled U_G) UNCHANGED.
