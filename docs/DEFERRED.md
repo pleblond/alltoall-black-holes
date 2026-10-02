@@ -6201,3 +6201,274 @@ failure (C0/C1/C5 all pass with margin; J2 pairwise matches-or-beats C0).
 The dW-only finite-size failure + inverted UV/IR pattern constrain (not kill)
 the J2-vacuum program: any OBS-1 reconstruction must handle slow-mode residue
 and non-collapsing ruler floors.
+
+## OBS0R-PREREG (IR Concordance Resolution; FROZEN-2026-10-02 (~04:30-UTC,
+commit-predates-ALL-OBS0R-campaign-data); branch cursor/obs0r-resolution-69cc
+off obs0-tip-1563b55; beast-dirs ~/obs0r-69cc (code) + ~/obs0r-data (write),
+banked ~/obs0-data READ-ONLY; workers<=90 (<=8 for L128-origin procs);
+NO-local-campaign-data (toy pilots L<=16 + unit tests only, listed below))
+
+QUESTION (exactly two): (1) does the preregistered dW gap continue to close
+at L128 per the filed finite-size model? (2) does the POT-1 static ruler
+(POT1-FIELD, banked 5272a4f) agree with G/D/W in its available range? No
+other OBS-0 criterion is reopened. HISTORICAL FIREWALL: OBS0-DISCORDANT at
+L<=42 STANDS regardless of outcome (C6: verdict JSON retains it literally);
+obs0.py is BYTE-IDENTICAL to the OBS-0 verdict commit (sha256 683f7620a0aa
+00dff886c0e2a5022539bb5cefd6490ce0daa692539c1a55abde, hash-pinned in
+tests/test_obs0r.py); no OBS-0 threshold/window/ruler/metric redefined; L64
+stays a filed diagnostic (prediction INPUT, not verdict member); square
+control retained; J2 coords stay validation-only (C2).
+
+OBS0R-A (frozen dW(128) prediction, filed data ONLY): gaps |dW(J2)-dW(C0)|
+1.860951568678995/1.3508304115377763/0.5706857074961125/0.1697 at
+L=20/28/42/64 (verdict JSON + L64 diagnostic). Filed mechanism: slow-mode-
+beating residue floor thinning ~1/N. Model (zero-intercept OLS on all 4):
+gap(L) = 1632.4553/N_L. POINT: gap(128) = 0.0498. INTERVAL: [0, 0.3595]
+(point + max|resid| 0.3097, floored at 0 since gaps are nonneg by def).
+Filed-data mechanism checks (descriptive, pre-data): power-law gap~L^-p
+gives p = 2.086 (~2 = volume scaling recovered); local decay exponents
+accelerate 0.952 -> 2.125 -> 2.879 (L20->28->42->64). Expected J2 dW(128)
+~= C0-reading minus ~0.05 (descriptive; PRIMARY = gap interval). CRITERIA
+(exhaustive partition): W-FINITE-SIZE-CONFIRMED iff gap128 <= 0.15 (the
+ORIGINAL OBS-0 DIM bar, in-interval) ; W-AMBIGUOUS iff 0.15 < gap128 <
+0.1697 (decreases, misses bar); W-REFUTED iff gap128 >= 0.1697 (banked L64
+gap; stops/reverses). No other reading of the wave result is admitted.
+
+OBS0R-B (L128 wave adjudication): EXACT OBS-0 apparatus (same H=-A law,
+delta prep, wave_return_dw over DW_TS [1.5,4.0] tol 1e-9, first-crossing
+tau_W theta 1e-6 dt 0.05 Tmax=D, CFD tau_D dt 0.25 Tmax=3(D/2)^2 down to
+DS_TS {12,14,16,20,24}, same origins rng(6900+100si+L), same 75 targets
+rng(8100+oi), same V_BANKED, same calibration families, same train/test
+origins 0-7/8-15, same wrap-safe R<D/2). Sole computational deviation
+(preregistered with validation): taus computed ONLY for the union of the
+75 frozen targets + POT targets + J2 sheet-matched extras (~500 nodes, not
+all-safe ~16k: D^6 scaling makes all-safe infeasible at L128, ~5e16
+flops/origin). Values on overlap are bitwise-identical (same matmuls).
+VALIDATION (pre-J2-L128, banked data): `validate` recomputes L64 taus+dims
+targets-only and diffs vs banked; PASS iff maxdiff < 1e-9 AND None-patterns
+identical, both L64 tags. FAIL => STOP: fall back to all-safe (preregistered
+fallback; campaign pauses for amendment, J2-L128 stays unopened). Sheet
+extras (J2 only): sorted-first 10 same + 10 cross per R in
+{1,2,3,8,9,10,11,12} (validation-only coords; deterministic test-set
+construction). STAGING: eigen128 -> validate -> C4 -> sq-L128-origins ->
+POT-sq/C3/C1 -> c0-stage-ANALYSIS (must pass: J2_open) -> j2-L128-origins
+-> POT-j2 -> full-analysis. J2-L128 dW is unobservable before J2_open.
+
+OBS0R-C (three-regime): epsilon_ab(r) = test-set median delta in width-4
+R_G bins [1,4),[4,8),... over [1,D/2) (G/D/W pairs; frozen delta forms) and
+P-bins [1,4),[4,7),[7,10] (P pairs). Shape rule (no thresholds):
+interior_maximum = strict interior max (first<max-interior AND
+last<max-interior; non-finite/short => False). UNIVERSAL-(i'): >=4/6 pairs
+interior-max at L128-J2. C0 shape filed descriptively (no gate).
+
+OBS0R-D (POT ruler R_P): read-only consumption of driven.steady_predict
+(vendored verbatim from 5272a4f + ballistic.py for its imports; POT-1
+ontology unchanged: H=-A, single-node s=1.0). omega = -(z+0.5), z = max
+degree (gap 0.5 below band edge: J2/exp -8.5 = POT-1 OMEGA_J2, sq -4.5).
+Raw observable phi_x uses (graph, node-ids) ONLY (C2: no R_G input at
+measurement; R_G enters calibration exactly as OBS-0 (G,D) precedent).
+Radial law F(r) = A r^-alpha e^-r/xi, log-linear OLS (Yukawa family, fixed
+by lattice-Green theory, NOT fitted-form shopping). (G,P) map: F fit on
+pooled TRAIN pairs; R_P = F^-1(phi_x) via brentq on [1,10]; validity =
+F ok AND strictly decreasing on [1,10] (200-pt grid). Missing (out-of-
+range/None) joins the OBS-0 missing rule (<10% FLAG, >25% STOP per
+(substrate,L)). RANGE (honest limit): POT targets = 25/shell over shells
+1..10 (rng(8200+oi), NEW frozen seed base for the NEW ruler); P pairs span
+the MESOSCOPIC range only (static-field physics; omega retuning to widen
+range = POT-1 redesign, FORBIDDEN). P-pair "IR" = bin 2 [7,10] (far end of
+P's available range; verdict text states this caveat). L20 EXCLUDED for POT
+(shell 10 not wrap-safe at D=20). NO d_P (honest branch, pilot-grounded):
+L16 pilots show joint (alpha,xi) fits are pre-asymptotic/curvature-
+dominated over every frozen shell range (alpha = -0.07 J2 / -1.28 sq over
+shells 2..5 => C0 itself non-2D), and map-alpha is range-dependent
+(0.39 over [1,10] vs shell-fit values) => estimator-dependent, not a
+dimension. Map-alpha is FILED per cell as a field-geometry observable,
+never as d_P (absence pinned by unit test). POT-1 kappa/xi NAMING FIX
+(pilot-derived, mechanical): POT-1's filed "xi" 0.5272 is the decay RATE
+(-d lnphi/dr, their code takes -slope and calls it xi); true xi = 1/0.5272
+= 1.8968 (L28). Verified: static solve at L16 gives rate 0.5222 (true xi
+1.915, +1% across sizes) and jump-evolved amplitude matches static to 0.3%.
+C3 gates TRUE-xi (see Controls). If J2 (G,P) is monotone-invalid at L128
+alone: that size's P pairs FAIL (no-fit). If invalid at BOTH 64+128 with
+C3+C0 valid: P-INCOMPATIBLE (physics) => OBS0R-DISCORDANT.
+
+OBS0R-E/F (four-ruler battery + held-out): pairs (G,D),(G,W),(D,W) EXACT
+OBS-0 procedure (affine GW, powerlaw GD/WD, WD in R_W units). New pairs,
+train origins 0-7 / test 8-15 (SAME frozen origins for all rulers), one
+global map each, no pair/region-specific anything: (G,P): F above, delta
+in R_G units (Rhat_P vs R_G, frozen delta_stat); (D,P): -lnphi = a sqrt(tD)
++ b (affine OLS; diffusive+Yukawa theory form), delta in sqrt(tD) units
+(rhat=sqrt(tD), r_true=(-lnphi-b)/a, WD-precedent orientation); (W,P):
+-lnphi = a R_W + b, delta in R_W units. Inverts are None-safe (a<=0 or out-
+of-range => None => missing). Comparison bins: terciles (G/D/W, frozen)
+vs P-bins (P pairs). METRIC pair rule (OBS-0 form): J2 <= C0+0.05 AND J2 <=
+0.40, evaluated T3 (G/D/W) / bin-2 (P) at L128; sanity <= 0.45 at L64 (G/D/W
+banked: 0.147/0.160/0.154 PASS already; P new).
+
+OBS0R-G (dimensions): d_H, d_s, d_W via frozen estimators, origin means.
+DIM128-PASS: max|d(J2)-d(C0)| <= 0.15 over {H,s,W} at L128 (0.15 = original
+bar). d_P: none well-defined (see D). dW-part of DIM128 == W-CONFIRM bar.
+
+OBS0R-H (origins): POT uses the SAME 16 frozen origins per (substrate,L)
+(single-node source at origin). Filed per origin: (A,alpha,xi) map params
+(J2/sq, all POT sizes), per-origin test medians. UNIVERSAL-(ii'): test-
+delta IQR over origins <= 0.10 for ALL 6 pairs at L128 (T3/bin-2 medians;
+OBS-0 form). Compared vs banked OBS-0 origin spread in verdict text.
+
+OBS0R-I (sheets): G/D/W at L128-J2 from matched extras (same frozen
+contrast stat): UNIVERSAL-(iii') = tD-UV-sensitive (>=1 R in {1,2,3} with
+contrast > 0.10, banked tD pattern) AND tD/tW-IR-blind (pooled [8,12] <
+0.05, banked pattern); tW-UV filed descriptive (banked physics: blind).
+POT sheet: contrasts on phi at UV {1,2,3} + meso {8,9,10} pooled, J2 all
+POT sizes, FULLY descriptive (P range does not reach IR; no gate).
+
+OBS0R-J (sizes): headline L64+L128; banked L<=42 G/D/W reused untouched
+(eigen npz + per-origin JSONs, read-only); POT battery NEW at L in
+{28,42,64,128} x {J2,sq} (16 origins each) + C1 (below). NO reruns of
+frozen-comparable expensive cells. NO perturbation substrate (banked pert-
+FAIL was estimator-side by construction (frozen 1e-9 tol vs flat-band
+splitting); rerunning cannot pass; resources to L128/POT instead; filed
+limitation stands). Scaling UNIVERSAL-(v'): G-pair floors stable +-0.05
+L64->L128 (banked->new) + W-D-T3 non-increasing L64->L128 (banked 0.1543)
++ P-pair bin-2 stable +-0.05 L64->L128 (both new).
+
+CONTROLS: C0-L128-PASS (dims bands [1.70,2.05]+r2>0.99 / [1.85,2.20] /
+[1.70,2.45] + all-6-pair floors <= 0.45 + dH(L128) > dH(L64-banked,
+computed from banked files, no magic)); C0-POT-valid = sq (G,P) mono-valid
++ bin-2 defined at ALL POT sizes. C1 (banked G/D/W rejection STANDS,
+frozen apparatus): C1-POT = expander d=8 N in {800,1568,3528,8192} seeds
+{0,1,2} (POT solves only, GP-map analysis, no taus by design): cell
+rejects iff mono-invalid OR bin-2 undefined; PASS iff >=7/12 reject (9/12
+structural via D<=6 bin-2 emptiness regardless). C1-EXT: N=8192 eigen+dims
+(dH clause >=2/3 seeds + ds drift over 4 N-values > 0.5, Amendment-1 form).
+N=32768 C1-eigen SKIPPED (cost unjustified for frozen apparatus; filed).
+C3-POT-regression (J2-L28 source node 0 = (0,0,0), recomputed static solve):
+reality(max_imag<1e-9) + strict positivity + TRUE-xi shells-{2,3,4,5}-
+mean pure-exp within +-10% of 1.8968 + range(max{r:shellmean>0.05}==3+-1)
++ residual<1e-9 + gap_ok; ALL <=> C3-PASS else P-branch VOID (ladder capped:
+METRIC/UNIVERSAL unreachable; DIMENSION iff DIM128-G/D/W passes; wave
+verdicts unaffected). C4-wave-regression (L128 cached eigen): J2 branch-
+pair (C5-exact 4 specs, sigma 4.0, T=10) within 10% of (1.2039,1.2110) +
+sq packet within 5% of 0.9658; projectors from CACHED eigen (same linear
+maps, unit-pinned vs dense path; validates the cached artifact itself).
+C5-wrap: frozen pre-wrap windows (G/D/W) + POT r<=10 << D/2 (wrap negligible
+by banked 1J, filed). C2-audit: permutation-invariance tests for new code;
+coords only in sheet grouping + C4 prep/readout. C6: verdict retains
+"OBS0-DISCORDANT at L<=42" literally (analyzer writes it unconditionally).
+
+LADDER (frozen mapping): !J2_open => OBS0R-BLOCKED. P-INCOMPATIBLE (D) =>
+OBS0R-DISCORDANT. W-AMBIGUOUS/W-REFUTED => OBS0R-DISCORDANT (prediction
+missed; "no DIM/METRIC upgrade"). Else (W-CONFIRMED): UNIVERSAL iff METRIC
++ (i')+(ii')+(iii')+(v') + C0-L128 + C1-POT + C1-EXT; METRIC iff DIM128 +
+all-6-pairs@128 + sanity@64 + !P_void; DIMENSION iff DIM128 but !METRIC
+(incl. P_void cap; P delta-misses with valid ruler land here, NOT
+DISCORDANT); else DISCORDANT. METRIC/UNIVERSAL open OBS-1; DIMENSION does
+not unless separately amended. Positive OBS-0R claims ONLY operational
+probe agreement (spec interpretation discipline verbatim).
+
+ANALYSIS: scripts/run_obs0r.py (units eigen|origin128|validate|pot|c3|c4|
+dims) + scripts/analyze_obs0r.py (--stage c0|full; reuses analyze_obs0 for
+G/D/W logic). Record: data/obs0r_verdict.json (+ verdict_c0.json staged).
+Paper figures ONLY if >= METRIC.
+
+PRE-PREREG PILOTS (design only, L<=16 / N<=512, never campaign sizes):
+J2-L16/sq-L16 full mini-battery (maps r2 0.87-0.92, mono valid J2+sq,
+inversion 100%, med-delta ~0.07; exp-N200 (G,P) invalid/coverage-0 as C1-
+designed); static-vs-jump-evolved xi at L16 (0.5222 vs 0.5237 rates,
+explained the kappa naming fix); L8/L12 wiring smokes + C3-convention pin
+(L16 true-xi within 10% of 1.8968, in unit tests). eigh benchmark (beast):
+N=8192 21s / N=16384 161s => N=32768 ~21min/decomp (operational, ungated).
+NEXT: prereg-commit, push, beast setup (fresh clone ~/obs0r-69cc), Phase 1
+(eigen128 j2+sq parallel, exp-N8192 eigen, validate on banked L64).
+
+## OBS0R-VERDICT (OBS0R-METRIC (wave-confirmed + six-pair IR battery);
+campaign-closed 2026-10-02; record data/obs0r_verdict.json; staged
+verdict_c0.json on beast; code a924efa (1 pre-data tooling bugfix post-
+prereg: missing-STOP ladder gate + epsilon softening, no threshold touch))
+
+GATES: validate-PASS both L64 tags (worst=0.000e+00 BITWISE: targets-only
+== all-safe exactly); C4-PASS (J2-branch 2.6/3.1% (bar 10%), sq 1.95%
+(bar 5%) -- L128 eigen == banked P1/POT waves); C3-PASS (static TRUE-xi
+1.8994 vs 1.8968 (+0.14%), range 3, residual 1e-16, positive+real+gap);
+C0-L128-PASS (dH 1.9385 (rise from banked 1.9098), ds 2.0692, dW 2.0942,
+all-6 floors <= 0.17); C0-POT-valid (sq mono all sizes); C1-POT-PASS 12/12
+reject (unanimous: mono-invalid/bin-2-undefined); C1-EXT-PASS (dH clause +
+ds drift 1.21->5.52 = 4.30 over 4 N (bar 0.5)); missing-FLAG 0.1116 (WP-map
+UV-range edge, see below; STOP-clear at 0.25). J2_opened ONLY after c0-stage
+pass (discipline kept; J2-L128 eigen/origins ran post-gate).
+
+WAVE (primary): gap128 = |2.2285-2.0942| = 0.1343 <= 0.15 (ORIGINAL DIM bar,
+in filed interval [0,0.3595], < banked gap64 0.1697) => W-FINITE-SIZE-
+CONFIRMED. Filed point was 0.050; observed 0.134 lands inside the max-resid
+band. Trajectories CROSSED: J2 dW rose 0.32->0.93->1.66->2.00->2.23 (residue
+thinning as diagnosed) while C0 drifted 2.28->2.23->2.17->2.09 (estimator
+systematics as window/resolution shift); J2 now sits ABOVE C0. Remaining gap
+is consistent with substrate-dependent systematics (purification removes
+~50% J2 vs ~3% sq) now that the beating floor is subdominant. The OBS-0 wave
+discrepancy was dominated by finite-size beating, as filed.
+
+DIM128-PASS: dH gap 0.0000 EXACT (7th year of J2-balls==2x-square: now at
+L128), ds gap 0.0005 (2.0697/2.0692, EXACT-stable across L20->128 both
+sides), dW gap 0.134. No d_P exists (prereg honest branch kept).
+
+P-BRANCH: mono-valid J2+sq at ALL sizes (28/42/64/128); void=False,
+incompatible=False. The all-path static field inverts cleanly into a scalar
+ruler on both substrates and refuses to on the expander.
+
+PAIRS@128 (non-inferiority + 0.40 cap): ALL 6 PASS with margin. J2 vs C0:
+GW 0.146/0.145, GD 0.179/0.170, WD 0.118/0.128 (J2 tighter), GP 0.083/0.081,
+DP 0.0089/0.0087, WP 0.035/0.038 (J2 tighter). Sanity@64 PASS (G/D/W banked
+0.147/0.160/0.154; P new 0.083/0.009/0.034). L scaling of P floors: FLAT
+(GP ~0.081-0.084 ALL sizes both substrates). METRIC=True: topology,
+diffusion, coherent waves and the static all-path field infer the same
+effective geometry up to fixed global calibration.
+
+UNIVERSAL-clauses (ladder already METRIC): (i') three-regime: FAIL (1/6:
+DP only). GW falls 1.83->0.12 then flat (UV-transient->floor, no interior
+max); GD U-ish but far-bin max (diffusion wrap-shift grows to the wrap
+boundary); WD dips mid-far then SPIKES 0.33 at [61,64) (wrap-edge);
+GP rises 0.072->0.083 monotone; WP valley-then-rise. NO re-convergence
+toward the far IR at L128: floors persist (GW) or rise (GD/WD) approaching
+R->D/2. The "IR concordance" is C0-relative non-inferiority (J2 reproduces
+the known-2D floor structure, often tighter), NOT absolute collapse --
+OBS-0's "SHARED not EMERGENT" verdict extends to waves+POT. (ii') IQR:
+PASS spectacularly (0.001-0.033 all 6 pairs -- no privileged origin).
+(iii') sheet: PASS (EXACT banked-pattern reproduction at L128: tD R=2
+contrast 0.1667 (banked 0.167), IR-blind both rulers, tW blind everywhere).
+POT sheet (descriptive): the tD PATTERN EXACTLY -- UV R=2 contrast 0.1407
+(L-independent to 5 decimals all 4 sizes), R=1/3 + meso 0.0000: the all-path
+field forgets sheets at the same scale as diffusion. (iv') pert: DROPPED
+per prereg (banked estimator-side fail stands). (v') scaling: PASS (G floors
+stable 0.001/0.009, P bin-2 stable ~0.001, WD-T3 DOWN L64->128: the L20->42
+rise REVERSED -- concordant regime expands with L). C0/C1 behave (above).
+UNIVERSAL=False on (i') alone.
+
+MISSING-FLAG 0.1116 (filed, mechanism understood, C0-matched): WP-map
+~11% test-missing, SIZE-INDEPENDENT constants (J2 0.1116 / sq 0.1087 all 4
+sizes): innermost-shell phi sits above the fitted -lnphi affine range (UV
+curvature from the Yukawa prefactor bends the line the global fit must
+split). Deterministic frozen-rule exclusion, same both substrates (delta
+0.003). GP-missing 0.06-0.10 (tail range), DP 0.000, GDW ~0.000.
+
+LADDER: OBS0R-METRIC (W-CONFIRMED + DIM128 + 6-pair battery + sanity; not
+UNIVERSAL via three-regime). OPENS OBS-1 (observer reconstruction) per
+prereg: an embedded observer with only operational ruler data can now be
+asked what geometry it infers. Historical OBS0-DISCORDANT at L<=42 PRESERVED
+(verdict JSON carries it; obs0.py untouched).
+
+INTERPRETATION (filed, modest): five filed gaps (1.86->0.13) closed per the
+finite-size model; four independent physical processes (shortest paths,
+diffusion, coherent propagation, static all-path response) now mutually
+predict pairwise distances up to FIXED global maps, benchmarked against a
+known-2D control they match-or-beat -- while absolute ruler floors do NOT
+collapse toward the IR (distinct asymptotic norms + wrap physics persist).
+Geometry on J2 is operationally SHARED (lattice-like, probe-independent up
+to calibration), not EMERGENT (IR-collapsing). OBS-1 must reconstruct from
+ruler relations + floors, not from convergence.
+
+**Kill relevance:** OBS0R-METRIC upgrades (not closes) the program: the
+single OBS-0 failure resolved out-of-sample as diagnosed, and a new all-path
+probe (which had every right to disagree -- POT-1 proved its route-
+sensitivity) converged onto the same operational geometry. The surviving
+non-convergence (absolute floors, far-IR wrap rise) constrains OBS-1's
+reconstruction target: calibration-relative geometry with floors.
