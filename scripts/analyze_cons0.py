@@ -94,7 +94,7 @@ def g_e1(d):
     for e in d["events"]:
         if not e["field"].startswith("stagger-"):
             continue
-        phi = float(e["field"].split("-")[1])
+        phi = float(e["phi"])  # exact phi (names carry 4-decimal truncation)
         r2 = 1.0 / n[e["substrate"]]
         if abs(e["B"] - r2 * math.cos(phi)) > 1e-12:
             return False
@@ -174,9 +174,9 @@ def g_k1(d):
         if not (r["dN"] == 1 and r["dE"] == r["dE_formula"]
                 and r["dE"] == 1 + r["cprime"]):
             return False
-        if abs(r["dnorm_direct"] - r["dnorm_formula"]) > 1e-9:
+        if abs(r["dQ"] - r["dQ_formula"]) > 1e-9:
             return False
-        if abs(r["dEpsi_direct"] - r["dEpsi_formula"]) > 1e-9:
+        if abs(r["dEpsi"] - r["dEpsi_formula"]) > 1e-9:
             return False
     return True
 
@@ -205,7 +205,7 @@ def g_l2(d):
         deg = max(len(set(r["A"]) | set(r["B"])) for r in rows)
         # k == 0 iff equal-policy dQ vanishes (dnorm == -|k|^2/2)
         eq0 = [r for r in rows if r["policy"] == "equal"]
-        k_zero = all(abs(r["dnorm_direct"]) < 1e-12 for r in eq0)
+        k_zero = all(abs(r["dQ"]) < 1e-12 for r in eq0)
         expect = (2 ** deg) * (2 if k_zero else 1)
         q2 = sum(1 for r in rows if r["dxi"] == 0 and abs(r["dQ"]) < 1e-12)
         if q2 != expect:
@@ -217,7 +217,7 @@ def g_l2(d):
 def g_l3(d):
     for key, rows in _split_groups(d).items():
         eq0 = [r for r in rows if r["policy"] == "equal"]
-        k_zero = all(abs(r["dnorm_direct"]) < 1e-12 for r in eq0)
+        k_zero = all(abs(r["dQ"]) < 1e-12 for r in eq0)
         # a == b  <=> equal-policy restores field on the record cover
         rec_eq = [r for r in eq0 if r["restores_graph"]]
         if len(rec_eq) != 1:

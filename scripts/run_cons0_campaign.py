@@ -78,13 +78,14 @@ STAGGER_PHIS = [0.0, math.pi / 2, math.pi, 3 * math.pi / 2]
 
 def _fields_for(aux):
     n = len(aux["order"])
-    out = [("zero", field_zero(n)), ("uniform", field_uniform(n))]
+    out = [(("zero", None), field_zero(n)),
+           (("uniform", None), field_uniform(n))]
     if aux["bipart"] is not None:
         q = np.array([aux["bipart"][v] for v in aux["order"]])
         for phi in STAGGER_PHIS:
-            out.append((f"stagger-{phi:.4f}",
+            out.append(((f"stagger-{phi:.4f}", phi),
                         field_stagger(np.full(n, 1.0 / math.sqrt(n)), q, phi)))
-    out.append(("random", field_random(n, SEED_RANDOM)))
+    out.append((("random", None), field_random(n, SEED_RANDOM)))
     return out
 
 
@@ -102,12 +103,13 @@ def run_event_task(task):
     aux = BUILDERS[name]()
     g, order = aux["g"], aux["order"]
     idx = index_of(order)
-    fields = dict(_fields_for(aux))
+    by_name = {k[0]: (k[1], v) for k, v in _fields_for(aux)}
     if field == "spike":
         e0 = _edges_for(name, aux)[0]
         psi = field_spike(len(order), idx[e0[0]])
+        phi = None
     else:
-        psi = fields[field]
+        phi, psi = by_name[field]
     jm = None
     if name == "j2-L6":
         jm = j2_sheet_involution(6)
@@ -115,7 +117,7 @@ def run_event_task(task):
     for ei, (i, j) in enumerate(_edges_for(name, aux)):
         leg = contraction_ledger(g, psi, order, i, j)
         rec = {
-            "substrate": name, "field": field, "edge": [i, j],
+            "substrate": name, "field": field, "phi": phi, "edge": [i, j],
             "dN": leg["dN"], "dE": leg["dE"], "dE_formula": leg["dE_formula"],
             "c": leg["c"], "dnorm_direct": leg["dnorm_direct"],
             "dnorm_formula": leg["dnorm_formula"],
@@ -265,7 +267,7 @@ def main():
     tasks = []
     for name, build in BUILDERS.items():
         aux = build()
-        fields = [f for f, _ in _fields_for(aux)] + ["spike"]
+        fields = [k[0] for k, _ in _fields_for(aux)] + ["spike"]
         for f in fields:
             tasks.append((name, f))
     procs = min(48, os.cpu_count() or 8)
