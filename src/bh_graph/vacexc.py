@@ -522,15 +522,16 @@ def cancellation_demo(vac: np.ndarray, sub: dict) -> dict:
 def packet_metrics(drows: np.ndarray, ts: np.ndarray, sub: dict) -> dict:
     """P1 detectors + directional order + coherence + spectral (0I)."""
     from bh_graph import vacfield as vf
-    from bh_graph.potential import directional_order, edge_table
+    from bh_graph.potential import directional_order
     from bh_graph.coherence import overlap
 
     prop = vf.propagation_observables(np.asarray(drows, dtype=np.complex128),
                                       np.asarray(ts, dtype=float), sub)
     drows = np.asarray(drows, dtype=np.complex128)
-    edges = edge_table(sub["graph"], sub["order"], sub["coarse"], sub["L"])
-    d0 = directional_order(drows[0], edges)
-    dmid = directional_order(drows[len(drows) // 2], edges)
+    d0 = directional_order(drows[0], sub["graph"], sub["order"], sub["coarse"],
+                           sub["L"])["D"]
+    dmid = directional_order(drows[len(drows) // 2], sub["graph"], sub["order"],
+                             sub["coarse"], sub["L"])["D"]
     coh = float(abs(complex(overlap(drows[0], drows[-1]))))
     spec = spectral_content(drows[0], sub)
     prop["directional_order"] = {"t0": float(d0), "tmid": float(dmid)}
