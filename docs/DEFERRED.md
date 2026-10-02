@@ -4385,3 +4385,78 @@ scripts/vacfield_campaign.py + scripts/vacfield_analyze.py.
 Amendments: 1 (VPI one-sided, pre-data), 2 (gate robustness,
 pre-data), 3 (78 typo), 4 + addendum (decomp follow-up +
 E-vacuous + dd-zero-slice rules, post-data/pre-verdict, disclosed).
+
+## HIDDEN-BR-PREREG (FROZEN pre-data; this commit predates ALL beast HIDDEN-BR runs)
+
+Mission: determine whether transport-hidden (P_-) field information produces
+a locally distinct geometric backreaction tendency through the banked
+geometry-conjugate B_uv = Re(psi_u* psi_v), while matched states remain
+identical in transported information, propagating sector, total field
+energy, and remote operational observables. Virtual structural ledger
+only: NO graph mutation, NO contraction/split execution, NO event
+scheduler, NO U_G, NO history measure (HISTORY-MEASURE DEBT still blocks
+actual geometry dynamics). HBR-0S omitted (RESPONSE-0 has no verdict).
+
+Frozen inputs (read-only, byte-identical vendor, commit 8a38be8):
+  HIDDEN-0 HIDDEN0-SEPARATED 279/279 .... cursor/hidden0-local-dof-3478 @90aaa53
+  BR-2.6 BR26-ACCOUNTED 10/10 ............ cursor/backreaction-br26-bb0f @dd956e0
+  CONS-0 PARTIAL 22/22 ................... cursor/cons0-invariant-census-4129 @c551cb5
+  SYM-0 SYM0-CLOSED 8/8 .................. cursor/sym0-state-census-e27a @43ac69a
+  ZERO-0 Z1-Z3 earned, Z4 filed .......... cursor/zero-crossing-census-ee5c @c4c2fb6
+  FIELD-0 LINEAR+APPARENT ................ cursor/field0-null-960b @b9dea0c
+  VAC-FIELD-0 JOINT ...................... cursor/vac-field-nonzero-joint-8ec1 @3dbfe34
+  base origin/main @a0c248c. No formula modified (spec firewall).
+
+Frozen law/constants: i dpsi/dt = -A psi, J=1, J2 L28 headline (L6 exact
+pins), T=20/dt=0.1, packet r0=(7,14) k=(0.3,0) sig=4 (HIDDEN-0 values).
+
+Stages -> cells (35 cells, J2 L28 unless noted; no fitting/selection):
+  pair-ledger x10 (HBR-0A/B/C/D/F/G/H/I; C0/C1/C2): B:sign x
+    {packet,uniform,twocell} (3), B:phase:packet x {pi/2,pi} (2),
+    B:shape:packet x {dipole,disk} (2), B:amp:packet {05raw,20raw} (2),
+    B:amp:packet:05q (1, NON-QUALIFYING control, see P1). Each: P_+
+    match, E_A=E_B + E_-=E_x=0, D_local>0 + D_remote~0 (wave+diff
+    shells 2/4/6 + POT), dB census (n/max/mean/support/signs),
+    perturbation census (sign+mag differ rates), full BR-2.6 ledger
+    census (frac nonzero, sign flips + edges, magnitudes).
+  conjugate x2 L6+L28 (HBR-0E; C3): centered-FD dE/dA_uv vs -2B_uv.
+  equalledger x2 (HBR-0J): conjugation pairs (real bg + complex
+    hidden): expect dB=0, ledger=0, d_J>0.
+  purehidden x4 (HBR-0K): {delta,disk,checker,complex}: E=0 + B/ledger.
+  vminus x1 (HBR-0L): VMINUS B/J/ledger + translation covariance + balance.
+  phasesweep x2 (HBR-0M): packet:delta, uniform:disk: B(phi)+ledger(phi)
+    trig fits + E const over frozen 8-phase grid.
+  ampsweep x2 (HBR-0N): packet:delta, uniform:disk: a in {0,.25,.5,1,2,4},
+    [1,a,a^2] fits + linear/quadratic split.
+  shape x1 (HBR-0O): dipole/disk/checker fixed-norm ledger distances.
+  locality x3 (HBR-0P/Q; C5): graded-radius boundary, far control, support.
+  passwave x2 (HBR-0R): delta/disk bg: ledger(t) overlap + post-exit + I.
+  zero x1 (HBR-0T): min|psi| on nonzero-ledger supports; need-zero frac.
+  sym x1 (HBR-0U; C6/C7): U1 x4 alphas, shuffle relabel, S covariance.
+  vac x1 (HBR-0V): VPLUS/VPI/VMINUS sector split + B/ledger contributions.
+  firewall x1 (HBR-0W; C8): head-on two-packet witness I=0 replay.
+  ledgercheck x1 (C4): event_ledger formula vs contraction_census direct.
+  infomap x1 (HBR-0X): R2 mixed census (168) R_G min-separation.
+
+Bars (frozen): PMATCH 1e-12 (C1); E-match |E_A-E_B|<=1e-9 + |E_-|,|E_x|
+<=1e-12 (C2); D_LOCAL 1e-6 / D_REMOTE 1e-9 (C0); ledger-nonzero 1e-9
+(max|dB|>1e-6 headline); sign-flip needs both |vals|>1e-9 strict-opposite;
+trig/[1,a,a^2] fit res <1e-9; FD-conjugacy <1e-9 (E linear in A_uv, exact);
+C4 direct-vs-formula <1e-9; U1/locality <1e-12; witness 1e-6 (FIELD-0).
+
+Pre-data predictions: P1 E=E_+ replay all pairs; HAMP-Q EXPECTED to fail
+C2 with E_B'/E_A=c^2 exactly (rescale control, excluded from verdict with
+cause). P2 B/ledger in span{1,cos,sin}. P3 B/ledger in span{1,a,a^2}.
+P4 conjugation control exact-null ledger, d_J>0. P5 pure-hidden E=0,
+nontrivial B. P6 VMINUS pure P_-, per-edge-class uniform ledger. P7 sharp
+locality boundary at 1-hop ledger support. P8 C0 regression. P9 NO
+prediction on sign-flip existence (genuine measurement, HBR-0I).
+
+VERDICT LADDER (frozen): HBR0-NULL if every qualifying pair has max|dB|
+<1e-9 AND every ledger d_hidden=0 (hidden geometrically inert; requires
+HIDDEN-0 dB non-reproduction). HBR0-GRADIENT (primary positive) if >=1
+qualifying equal-E pair has max|dB|>1e-6 (hence dE/dA differs) with C0-C8
+green. HBR0-SIGNREV (distinguished refinement): GRADIENT + >=1 strict
+opposite-sign ledger edge. HBR0-PARTIAL otherwise (incl. dB!=0 but all
+ledgers cancel, or control failures). Pairs failing C1/C2 are excluded
+with filed cause, never counted.
