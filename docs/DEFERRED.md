@@ -8084,3 +8084,273 @@ signed-==-abs-integrals-for-max-abs-shell-traces (signed-meaningful-only-per-
 receiver!).
 
 SUITE-FINAL: 691-passed-2-skipped-2m06s-beast (-n-32-OMP=1-BLAS-caps (test_weighted-skipped-per-standing-instruction!); first-run-690/693-killed-by-sibling-pkill (no-failures!) + relaunched-clean-green!)
+
+## SYM0-PREREG — Physical state space and equivalence census (FROZEN PRE-DATA)
+
+**Status:** apparatus + semantics + state battery + observable families +
+gates + verdict ladder frozen; campaign NOT YET RUN. SYM-0 accepts
+RAND0-MEASURE-DEBT (uniform counting is meaningless until "possibility"
+is physically defined) and the frozen fixed-geometry ontology X = (G, psi)
+with i dpsi/dt = -A(G) psi (H = -A, J = 1, hbar = 1, P1/EM-0 locked).
+It classifies candidate transformations into representation redundancy
+(X equiv_phys Y: no observable distinguishes), physical symmetry
+(Y = gX: distinct states, corresponding observables), time reversal
+(Theta: relates histories, not a redundancy), operational equivalence
+(X ~_O Y under a specified observer/channel family), and accidental
+degeneracy (shared readouts that do not survive the full census).
+SYM-0 introduces NO probability measure, NO gauge structure, NO new
+dynamics, NO hidden state, NO coordinate physics, and tunes NO
+equivalence class to simplify RAND.
+
+**Frozen inputs (read-only, sha256-verified byte-identical across beast
+sibling tips):** zero0-ee5c apparatus (ballistic/backreaction/
+conservation/continuum/contraction/driven/formation+delta/malus/obs0/
+obs0r/obs1/obs1_reveal/phase/potential/quot/slit/tunnel/vac0 + tests +
+xdist config), u0-7069 (accounting/stability/u0/ug/ug_sync + tests),
+rand0-1621 (rand0 + test), field0-960b/coh-be8d (coherence + test).
+Banked theorems consumed, never re-derived: [H,S] = 0, H P_- = 0,
+symmetric sector = square walk at 2J (MALUS-0); sector-mechanism
+capacities + POT far-field (QUOT-0, read-only replay of
+~/quot-ea4c-data + ~/quot-bank/obs1_blind.json where cited);
+admissible sets + stabilizer/orbit/measure apparatus (U0/RAND-0);
+Theta = reverse-slice + conjugate convention (TIME-0, state-level
+identity re-derived here from real-symmetric H); local gauge
+falsified (EM-1: global-phase redundancy implies NO local gauge).
+
+**SYM-0A transformation inventory (frozen, all psi-maps explicit):**
+R node relabeling (frozen perms: reversal + seeded shuffle seed=11,
+acts on (G,psi) together, order rebuilt sorted); Aut graph
+automorphisms acting as psi pushforward on FIXED labeled G (J2:
+translate_perm(6,1,0), translate_perm(6,0,1), rot90_perm(6) from
+potential.py, each verified by is_auto_ok; ring-12: rotation by 1;
+tiny graphs: GraphMatcher-enumerated Aut, first 3 non-identity in
+sorted order); T quotient translation (J2 cell +(1,0) sheet-preserving
++ relational two-packet landmark protocol, see G); S sheet exchange
+(malus sheet_swap_matrix pushforward); U1(alpha) global phase on grid
+alpha in {pi/4, pi/2, pi, 3pi/2}; C conjugation; Theta state part =
+conjugation + history check Theta U(t) Theta^-1 = U(-t) on frozen
+(t, state) grid; Sign = U1(pi) (NOT independent); Scale a in {0.5,
+2.0}; Shift c in {0.1, 0.1j} uniform; SheetPhase beta in {pi/2, pi}
+on sheet 0 only; SectorSign P_+ psi - P_- psi (conjectured = S,
+pinned as theorem-or-surprise). A transform is well-defined iff its
+is_*_ok precondition passes (Aut verified, J2-only maps gated on
+substrate); ill-defined applications are recorded, never coerced.
+
+**State battery (frozen, deterministic):** substrates J2-L6 (N=72,
+headline), J2-L4 (N=32, cross-check), ring-12, path-12 (open-boundary
+control), square-torus-4 (N=16), tiny {k2, triangle, square, star4,
+path4} (exact-Aut + exact-iso scope). Fields: zero, uniform,
+antibonding (bipartite stagger), current (i-stagger, exact B = 0),
+sheet-anti (J2 sign flip on b=1), packet (gaussian k != 0: J2-L6
+coarse coords r0=(1,1) k=(0.8,0.0) sigma=1.0 periods=(6,6); ring-12
+r0=(3.0,) k=(1.2,) sigma=1.5 periods=(12,)), standing (packet(k) +
+packet(-k) normalized), generic (field_random seeds 0, 1 normalized).
+U0 S1..S8 / RAND-0 T1..T8+U1..U8 consumed read-only by reference for
+stages U/V (no copies diverged).
+
+**Observable families (frozen):** O1 local scalar {rho vector, ipr};
+O2 local relational {B edges, J edges, E_psi, energy_density, sheet
+weights (J2), uniform-mode power, spectral branch weights}; O3 dynamic
+local {one-step response ||psi(dt)-psi0|| dt=0.1, bond-rate-matrix norm
+(CONS-0B), directional_order at t in {0, 0.5}, d_trace summary over
+T=2.0/dt=0.1 window}; O4 long-range transport {POT static response via
+driven.steady_predict with frozen source node order[0] s=1.0 and
+omega = emin - 1.0 per substrate (emin = min H eigenvalue, recorded):
+profile + (J2) pot_sheet_asymmetry; wave channel: TV D_B on frozen
+receiver shell + spectral arrival proxy on J2-L6; diffusion sector
+norms (quot.diffusion_sector_norms)}; O5 OBS observer {banked replay
+only: QUOT-0 capacity verdicts + OBS1-QUOTIENT verdict strings cited
+read-only by file+hash, plus small-scale arrival_times_wave pairs on
+J2-L6 (N=72 dense exact)}. O5 scope cap filed: no big-graph OBS
+recomputation (2.3G-22G banks are replayed, not rebuilt).
+
+**Witness (frozen, SYM-0S):** per-observable distances with frozen
+normalization (vector: max-abs; scalar: abs; edge-dict: max-abs over
+sorted edges; profile: max-abs relative to max bulk |phi|);
+D(X,Y) = max over the preregistered family. Bars: FP_ZERO = 1e-9
+(exact-algebra claims), KRYLOV = 1e-9 (evolution identities),
+ARRIVAL = wave-grid step (arrival comparisons). D = 0 reported only
+as "indistinguishable under tested observables".
+
+**Stage gates (frozen):** HARD (campaign stops red): E-relabel
+D(O1..O4) = 0 all battery cells (implementation-leakage gate);
+D-phase D(O1..O4) = 0 all alpha x battery; T-red-preservation
+U(t)X equiv_red U(t)Y to KRYLOV over horizon T=2.0/dt=0.1 for all
+redundant pairs; Theta-identity ||Theta U(t) Theta^-1 - U(-t)|| = 0
+to KRYLOV on frozen grid; SectorSign=S identity to FP_ZERO (J2
+battery); N/O integer identity |O| = |G|/|Stab| exact; U-covariance
+(R/Aut/U1 exact marks covariance, UB/UL/UEc). MEASURED (filed, not
+gated): C-visibility conditional on Im content (J != 0 states must
+show D > 0 via J; real states filed C-invisible-under-O1..O4); F/G
+shape-invariant + location-moved (COM shift = translation vector to
+FP grid bar) + relational landmark protocol outcome; H coarse-rho
+identical + sheet-resolved rho moved + banked remote-blindness replay;
+K exact a^2 laws + normalized-shape identity (NOT redundant: absolute
+readouts move; norm-sector verdict pending VAC-FIELD, filed OPEN);
+L uniform-mode energy E_0 = -z measured + shift non-stationarity
+(U(t)c != c) + energy non-invariance; M SheetPhase(pi/2) locally
+visible (D > 0) + sector weights move; Q/R class-count hierarchy
+monotone non-decreasing O1 -> O5 on the frozen probe-pair battery;
+V recount table (directed vs undirected vs iso-class vs orbit vs
+red-quotient) + debt-survival boolean; W X1-vs-X2 uniform-measure
+difference boolean; X phase-quotient metric d_FS (redundant pairs 0
+to FP_ZERO, dynamics-preserving to KRYLOV, triangle inequality on
+frozen triplets). No gate is tuned after opening data; amendments
+require a dated SYM0-AMENDMENT note pre-rerun.
+
+**Verdict ladder (frozen):** SYM0-CLOSED = all HARD gates green +
+every MEASURED cell filed with a classification (redundancy /
+symmetry / time-reversal / operational / accidental-or-OPEN);
+SYM0-PARTIAL = HARD green but >= 1 MEASURED cell inconclusive
+(filed with the blocking reason); SYM0-OPEN = any HARD gate red
+(stop, file leakage-or-law-surprise, no verdict). Redundancy
+admission rule: generators {R, U1} admitted ONLY if their D + T
+gates pass; {T, Aut, S, C} are NOT admitted unless proven
+representational (default: physical/operational). Scale/Shift are
+never redundancy candidates (absolute readouts move by
+construction). Quantum-mechanical interpretation of the
+projective quotient is FORBIDDEN (no Born rule import; d_FS is
+classical state-space geometry).
+
+## SYM0-AMENDMENT-1 — Instrument corrections (2026-10-02, PRE-RERUN)
+
+First-look outcome (beast, 1973 cells, ledger archived beast-side as
+data/sym0_ledger_look1.json, superseded): SYM0-OPEN with H-D-phase
+(19 U1 cells, O3-only offenders: com/width/dtrace_angle) and
+M-X-fs-zero (1.49e-8) red. All other gates green, including the exact
+physics underneath both failures (edge B/J/E U1-invariant to fp,
+M-B-cov-U1 4.7e-16, H-T-red-U1 1.1e-14/8.9e-13). Both failures are
+representation/fp-scale instrument defects, corrected here WITHOUT
+changing any physics gate threshold except the derived arccos floor:
+
+(a) S1-valued O3 readouts: dir_angle, dtrace_angle, com on periodic
+axes, and width about com are ill-defined at symmetric points (zero
+flux: nm = ||J_net|| ~ 1e-17 fp residue -> atan2 arbitrary up to 2pi;
+uniform rho: circular resultant |z| ~ 0 -> circular-mean angle
+arbitrary, com jumps O(L)). Correction, applied UNIFORMLY to all
+pair/dyn/hierarchy comparisons: circular metrics (banked
+potential.ang_diff for angles; per-axis min(|d|, L-|d|) for com) +
+definedness conditioning (angle iff max(nm_x, nm_y) >= COND_FLOOR;
+com axis iff max(R_x, R_y) >= COND_FLOOR; width iff com fully
+defined; undefined-on-both contributes 0 and is filed). COND_FLOOR =
+1e-12 (~100x above the single-state fp-noise scale N*eps ~ 2e-14,
+1e6 below O(1) signals). Tuning-hazard control (frozen): the
+ambiguity band [1e-12, 1e-6] must contain ZERO conditioning values
+across all pair+dyn cells (new gate M-INST-band, HARD-adjacent: red
+-> SYM0-PARTIAL with the tuning hazard realized, never silently
+passed). Straddle cases (defined vs undefined across a pair) are
+excluded from distance and RECORDED (n_straddle, filed).
+
+SYM0-AMENDMENT-1c (2026-10-02, PRE-RERUN-2): A1-rerun look found 2
+residual NaN distances (zero vs shifted width on path-12): the max-rule
+(max(cond) >= floor -> compare) compares a defined value against an
+UNDEFINED one on straddles. Correction: comparison requires BOTH
+defined (min-rule); straddles contribute 0 and are recorded in
+n_straddle. U1/R pairs are unaffected (conditioning fp-identical on
+both sides); other pairs can only lose spurious splits. NaN is now
+impossible by construction (zero-field com/width always excluded);
+M-INST-no-nan proves it.
+
+## SYM0-VERDICT — Physical state space and equivalence census (POST-DATA)
+
+**Verdict: SYM0-CLOSED** (beast, 1973 cells, 96 workers, wall 8.1s;
+ledger data/sym0_ledger.json 1.0MB + data/sym0_verdict.json committed;
+look1/look2 ledgers superseded, archived beast-side). Hard gates 8/8
+green, all MEASURED cells filed, both instrument gates green
+(M-INST-band 0 ambiguity hits with 48 filed straddles; M-INST-no-nan
+0 tokens). No probability measure introduced; no dynamics modified.
+
+**The physical state space (earned):** the representation-redundant
+descriptions of X = (G, psi) are EXACTLY node relabelings (R: H-E
+120 cells at 0.0, negative control without coords transport fails at
+D = 26.76, proving the gate bites) and global phase (U1: H-D 300
+cells max 7.9e-13; Sign is the U1(pi) alias by construction). Both
+are dynamics-preserving (H-T: R traj 0.0, U1 traj 1.1e-14). The
+representation-independent microscopic state space is therefore
+X_red = X / (relabeling x U(1)); at fixed nonzero norm the field
+sector is the projective quotient with metric d_FS (M-X: redundant
+pairs 0 to 1.5e-08 under the 1e-7 arccos floor, dynamics-preserving
+to 2.2e-15, triangle verified). No Born rule is attached (firewall
+kept). Everything else tested is NOT redundancy:
+
+**Symmetry (distinct states, corresponding observables):** graph
+automorphisms (Aut: 11/11 packet cells move COM, shape/energy
+invariant), quotient translations (T: landmark protocol rel_AO =
+(3,3) vs rel_BO = rel_TAO = (4,3), TA = B to 0.0: translated-both is
+relationally identical, translated-system is distinguished),
+sheet exchange (S: intertwines dynamics to 0.0; coarse rho identical,
+sheet-resolved rho moved, maxD 0.50). SectorSign is PROVEN equal to S
+(18 cells, 3.9e-17), not an independent transformation.
+
+**Time reversal:** Theta U(t) Theta^-1 = U(-t) to 1.7e-14 (87 cells);
+J-odd, rho/B-even. Relates histories; not a redundancy.
+
+**Conditional distinguishability:** conjugation is visible iff J != 0
+(29/29 J-carrying pairs D > 0 via J; 31/31 J-absent pairs D = 0,
+including real standing/uniform fields). Never quotient psi ~ psi*.
+
+**Physical, not redundant:** amplitude scaling (exact a^2 laws, defect
+0.0; normalized shape identical but absolute readouts move; norm
+sector stays OPEN pending VAC-FIELD), additive shift (non-covariance
+defect >= 0.049; uniform mode is an eigenmode with E_0 = -z, hence
+non-stationary, pinning the no-zero-mode result), sheet-relative
+phase (32/36 visible; 4 invisible are the zero-field cells, exact).
+
+**Operational hierarchy (distinction lattice, not a chain):** probe
+battery classes O1/O2/O3 = 6/11/10 (current vs current-C split at O2
+via J and remerge at O3 where flux angle is undefined: families are
+NOT nested, so counts need not be monotone — the prereg monotonicity
+expectation is corrected); O4/O5 = 1 class (G-channels, psi-blind by
+banked construction: POT/wave/arrival/diffusion are properties of
+(G, source), constant on fixed G). Packet-C is IDENTICAL to packet-k
+(banked prep pin), correctly merged at every family.
+
+**Transition covariance (SYM-0U):** A(gX) = gA(X) exact for R/Aut/U1
+across UB/UL/UEc (348 cells); S-covariant (24/24); conjugation leaves
+all U0 marks invariant (B/L are conjugation-even, 87/87); scale
+preserves all marks (87/87: signs survive a^2 rescaling even though
+absolute readouts move — filed nuance); shift preserves 55/87.
+
+**RAND handoff (SYM-0V/W, read-only):** recount over T1..T8+U1..U8
+reproduces the multiplicity dependence under every defensible grain
+(e.g. T8 d=2: directed 10 vs undirected 6 vs iso 6 vs orbits 5 vs red
+6; U2/U4 d=8: 6562 vs 3282 with iso/stab capped as preregistered):
+24 differing grains across 16 states -> debt_survives = True. The
+RAND0-MEASURE-DEBT (replayed verdict, sha256 6b2991cd...) is therefore
+NOT an artifact of counting redundant descriptions: it survives the
+quotient to actual physical states. No uniform measure is endorsed.
+
+**Banked replay (read-only, hashes in ledger):** QUOT sector algebra
+exact at L=28 (comm/anti/intertwining 0.0), U0-INCOMPLETE, RAND0-
+MEASURE-DEBT, CONS-0 ledger all replayed by hash. ZERO-0 apparatus
+unavailable (mid-flight, filed); RESPONSE-0 apparatus exists but is
+pre-data unvalidated (resp0-eef4) and was NOT consumed; O3/O4
+dynamics + POT + driven pinning cover response readouts instead.
+
+**Debts filed (not closed):** norm-sector ontology (VAC-FIELD);
+O5 big-graph OBS recomputation (scope cap kept); operational sheet
+blindness at scale (banked QUOT-0, replayed not rebuilt).
+
+(b) M-X-fs-zero bar 1e-9 -> 1e-7: arccos evaluation floor at unity
+(arccos(1-eps) ~= sqrt(2eps); eps ~ 2e-16 -> ~2e-8 observed
+1.49e-8). Bar 1e-7 gives 5x headroom and stays 1e7 below O(1)
+signals. Derived from IEEE arithmetic, not fitted to data. The
+frozen d_FS formula itself is UNCHANGED, as are all other bars.
+
+(c) First look also exposed 243 masked NaN distances (com/width on
+symmetric fields: max() silently ignores NaN, so gates passed
+vacuously on those readouts). The conditioning in (a) removes all
+undefined comparisons by construction; new gate M-INST-no-nan
+(HARD-adjacent like M-INST-band: red -> SYM0-PARTIAL) requires zero
+NaN tokens across pair+dyn witness/per-readout records (legitimate
+arrival-None inf distances remain allowed).
+
+Also filed from first look (interpretation, no gate change): H-E /
+H-T-red-R pass at EXACTLY 0.0 by construction (consistent
+relabeling (G, order) leaves all order-indexed arrays bit-identical;
+only label-keyed records move and transport exactly) — legitimacy
+proven by negative control (untransported coords -> D = 26.76 across
+O2/O3/O4); M-QR O4/O5 show 1 class because they are G-channels
+(psi-blind by banked construction), so the psi-hierarchy is O1..O3
+and the O1->O5 monotonicity expectation is corrected to O1..O3
+monotone + O4/O5 constant-on-fixed-G.
