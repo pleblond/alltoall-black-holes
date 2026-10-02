@@ -2988,3 +2988,75 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## BR27-PREREG — Local stability / firing criterion (FROZEN PRE-DATA)
+
+**Status:** derivations + apparatus + ladder frozen; validation NOT YET
+RUN. Final derive-first attempt: the campaign must either exhibit a
+derived instability or file EVENT-LAW PRIMITIVE DEBT and STOP (strong
+stop honored: no BR-2.8, no rate shopping, no thresholds, no thermal /
+noise / Metropolis additions in any guise).
+
+**A-verdict (derived pre-data): A3.** No ontology-internal deformation
+coordinate exists: (i) graph space is discrete (dN = -/+1 exactly, no
+intermediate); (ii) weighted edge interpolation exits the P1-frozen
+binary Hamiltonian kind mid-path (H entries fractional) — considered
+and REJECTED as invented (firewall: interpolation solely for a Hessian;
+weighted.py is a static-observable import, not a dynamical derivation);
+(iii) field paths at fixed G keep (N, E) (sector split). All three
+pinned. Consequence: B/C-linearized-graph-stability VACUOUS as graph
+dynamics; C answered for the field (below).
+
+**C-result (derived):** the only linearizable dynamics in the ontology
+is unitary field evolution: perturbation norm conserved exactly
+(linearity, no fixed point needed), propagator spectral radius exactly
+1, opnorm exactly 1. NO growth possible: no field instability can
+trigger anything (pinned).
+
+**E-result (derived):** H = -A is psi-blind BY CONSTRUCTION (constructor
+signature takes no field state — structural proof); the 2x2 edge block
+is frozen [[0,-1],[-1,0]] (eigenvalues +-1, no state data); unitary
+response bounded (no divergent signature). No H-spectral trigger can
+carry BR-2 field-state dependence (bonding/antibonding share H
+identically). E returns NEGATIVE (pinned + tabulated).
+
+**D-predictions:** ordering WITHOUT kinetics. J2-L12 hand-derived rows:
+bonding dE = -26 rho^2 (lower), antibonding dE = -30 rho^2 (lower),
+current dE = -28 rho^2 (lower), zero dE = 0 (degenerate). The
+I-hypothesis (bonding/antibonding on opposite stability sides) is
+already dead at ORDERING level (both lower). Uniform all-downhill
+scans predicted frac_down == 1.0 on J2-L12/square-6/ring-10 (the
+ordering != firing exhibit: discrete maxima that never fire).
+
+**F/G/H/I/J/K/L-statuses (frozen):** F stands down (no eigenvalue to
+control; L-table = rescaled dE, no claim); G preserved-in-null (no
+J-trigger introduced; current ordering measured, mechanism absent);
+H vacuous + null-quiescent (no mechanism -> no events anywhere, vacuum
+included, vacuity caveated); I dead at ordering (above); J vacuous (no
+boundary to compare with B_*); K inherits A3 at the contracted end
+(split dN = +1 discrete; SPLIT-SELECTION debt filed, moot); L outcome
+"preference without mechanism" via all-downhill (stronger than
+barrier: not even dual minima, yet static).
+
+**N-grid (frozen, 15 rows, NO evolution):** j2-{zero,bonding,current,
+antibonding,unequal(seed 31,set+renormalize),random(seed 32)} @
+elist[10]; tri-{uniform,random(seed 33)} @ (0,1) [c = 1];
+sq-{uniform,bonding} @ ((2,2),(2,3)); ring-{bonding,current} @ (4,5);
+er-random (ER72 seed-search 40..60, field seed 34) @ elist[7];
+collapsed-around-k (J2-L6 contract elist[3], uniform threaded, edge
+(k, first-nbr)). Each row: B/c/dE/ordering + R0/R1/R2 conservation
+reference (labeled) + stability NONE + direction NONE.
+
+**M-grid (frozen):** per-substrate binary-kind H + uniform ordering
+scan (J2-L12/square-6/ring-10/ER72) + global H-blindness flag.
+
+**Verdict ladder (frozen):** NO-MODE iff A3-pins + C-no-growth +
+E-blindness hold (all derivation-forced); STABLE-BARRIER iff dual
+minima exhibited (predicted false: all-downhill refutes); INSTABILITY+
+iff a criterion is derived (structurally false: A/E/C negative).
+PREDICTION: BR27-NO-MODE. O passes structurally (null proposes no
+criterion, hence no threshold).
+
+**Predicted handoff:** EVENT-LAW PRIMITIVE DEBT filed; BR-3C stays
+BLOCKED; the program states explicitly: one additional primitive
+dynamical postulate is required to make geometry change.
