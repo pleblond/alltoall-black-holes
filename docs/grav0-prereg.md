@@ -47,6 +47,31 @@ not relabeling. Changes (dynamics/perts/θ/observables untouched):
   (amplitude/peak/half-mass): spreading+bump-decay ⇒
   DIFFUSIVE-transient; in-place fade ⇒ DEAD.
 
+## Amendment A2 (2026-10-02, post-hoc estimator hardening)
+
+Main-grid inspection revealed the max-r gated front has
+multiple-comparisons bias (~3000 (t,r) cells; 3σ-per-cell lets
+isolated far shells qualify): far "reach" shows inverse
+dose-response (P1 out-reaches P2) plus spatially incoherent
+single-shell crossings and a non-replicating ring-like alignment.
+A2 hardens WITHOUT touching dynamics/perts/θ/observables, applied
+uniformly; prereg max-r results stay reported alongside:
+
+- **A2.1 split-half replication**: halves H1 (seeds 0–7), H2 (8–15);
+  gated fronts per half (θ, 3σ within-half). Cell EXPANDS iff ∃t
+  with BOTH halves' gated front(t) > foot+2 at the SAME t.
+  Non-replicating expansion ⇒ WEAK (unconfirmed).
+- **A2.2 coherence (descriptive)**: longest consecutive-shell run
+  above θ per t (real fronts are runs; flukes isolated). Reported,
+  not verdict-driving.
+- **A2.3 disconnect exclusion**: runs with connected=False EXCLUDED
+  from fronts/fits (prereg rule, now implemented); cell with zero
+  valid runs ⇒ FRAGMENTS (no front verdict; early ΔD descriptive).
+- **A2.4 viability axis** (separate from propagation class):
+  VIABLE (longs_final < 10% of E, connected) vs MELTS vs
+  FRAGMENTS. A carrying-but-melting law answers the mechanism
+  question only transiently (no vacuum left).
+
 ## 0. Question
 
 Can information about a local structural disturbance propagate

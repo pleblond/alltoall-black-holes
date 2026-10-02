@@ -35,6 +35,7 @@ def load_cell(outdir, L, pert, dyn):
     fns = sorted(glob.glob(os.path.join(
         outdir, f"grav0_L{L}_{pert}_{dyn}_s*.json")))
     deltas, acc_p, acc_c, conn, longs = [], [], [], [], []
+    seeds = []
     for fn in fns:
         with open(fn) as f:
             d = json.load(f)["legs"]
@@ -47,47 +48,105 @@ def load_cell(outdir, L, pert, dyn):
         acc_c.append(sum(d["ctrl"]["accepts"]))
         conn.append((d["pert"]["connected"], d["ctrl"]["connected"]))
         longs.append(d["pert"]["longs_final"])
-    return {"fns": fns, "deltas": deltas, "acc_p": acc_p, "acc_c": acc_c,
-            "conn": conn, "longs": longs}
+        seeds.append(int(fn.split("_s")[1].split(".")[0]))
+    return {"fns": fns, "seeds": seeds, "deltas": deltas, "acc_p": acc_p,
+            "acc_c": acc_c, "conn": conn, "longs": longs}
+
+
+def longest_run_above(prof, theta):
+    """Longest consecutive-shell run with value > theta (A2.2)."""
+    best, cur = 0, 0
+    for r in sorted(prof):
+        cur = cur + 1 if prof[r] > theta else 0
+        best = max(best, cur)
+    return best
 
 
 def analyze_cell(outdir, L, pert, dyn):
     cell = load_cell(outdir, L, pert, dyn)
     n = len(cell["fns"])
     assert n > 0, (L, pert, dyn)
-    mean, sem = mean_delta(cell["deltas"])
+    # A2.3: exclude disconnected runs from fronts/fits.
+    valid = [i for i, c in enumerate(cell["conn"]) if all(c)]
+    disc = n - len(valid)
+    use = [cell["deltas"][i] for i in valid]
+    mean, sem = mean_delta(use) if use else ({}, {})
     n_r = shell_sizes(L)
     rmax = L // 2
-    amp = amplitude_series(mean)
-    peak = peak_radii(mean)
-    mass = mass_series(mean, n_r)
-    hm = half_mass_radii(mean, n_r)
+    amp = amplitude_series(mean) if use else {}
+    peak = peak_radii(mean) if use else {}
+    mass = mass_series(mean, n_r) if use else {}
+    hm = half_mass_radii(mean, n_r) if use else {}
     fronts = {}
+    runs = {}
     for th in THETAS:
-        fronts[th] = {"raw": front_radii(mean, th, rmax),
-                      "gated": front_radii_gated(mean, sem, th, 3.0, rmax)}
+        fronts[th] = {"raw": front_radii(mean, th, rmax) if use else {},
+                      "gated": front_radii_gated(mean, sem, th, 3.0, rmax)
+                      if use else {}}
+        runs[th] = {t: longest_run_above(mean[t], th) for t in mean} \
+            if use else {}
+    # A2.1 split-half replication (by seed value).
+    halves = {}
+    for tag, lo, hi in (("H1", 0, 7), ("H2", 8, 15)):
+        idx = [i for i in valid if lo <= cell["seeds"][i] <= hi]
+        if len(idx) >= 4:
+            mh, sh = mean_delta([cell["deltas"][i] for i in idx])
+            halves[tag] = {th: front_radii_gated(mh, sh, th, 3.0, rmax)
+                           for th in THETAS}
+        else:
+            halves[tag] = {}
     g = fronts[0.001]["gated"]
-    foot = g[0.0]
-    beyond = [t for t in sorted(g) if g[t] > foot + FOOT_PAD]
-    rmax_reached = max(g.values())
-    # Rising-window fits (first expansion -> first rmax), gated front.
+    foot = g[0.0] if use else -1
+    beyond = [t for t in sorted(g) if g[t] > foot + FOOT_PAD] if use else []
+    rmax_reached = max(g.values()) if use else -1
+    # Replicated expansion: same-t both-halves breach (A2.1).
+    repl = []
+    repl_r = {}
+    if halves.get("H1") and halves.get("H2"):
+        for t in sorted(g):
+            r1 = halves["H1"][0.001].get(t, -1)
+            r2 = halves["H2"][0.001].get(t, -1)
+            if r1 > foot + FOOT_PAD and r2 > foot + FOOT_PAD:
+                repl.append(t)
+                repl_r[t] = (r1, r2)
+    # Same-(t,r) replication (within 2 shells): sustained-far check.
+    repl_tr = [t for t in repl if abs(repl_r[t][0] - repl_r[t][1]) <= 2]
     rising = []
     if beyond:
         t0, t1 = beyond[0], max(t for t in beyond if g[t] == rmax_reached)
         rising = [(t, g[t]) for t in sorted(g) if t0 <= t <= t1]
     fits = fit_front([t for t, _ in rising], [r for _, r in rising])
-    acc_mean = sum(cell["acc_p"]) / n
-    disc = sum(1 for c in cell["conn"] if not all(c))
-    return {"n": n, "mean": mean, "sem": sem, "amp": amp, "peak": peak,
-            "mass": mass, "half": hm, "fronts": fronts, "foot": foot,
-            "beyond": beyond, "rmax_reached": rmax_reached,
-            "rising": rising, "fits": fits, "acc_mean": acc_mean,
-            "acc_p": cell["acc_p"], "disconnected": disc,
-            "longs": cell["longs"]}
+    acc_mean = (sum(cell["acc_p"][i] for i in valid) / len(valid)
+                if valid else 0.0)
+    e_total = 8 * L * L  # J2 torus edges = 8N/2, N = 2L^2
+    longs_frac = (sum(cell["longs"][i] for i in valid) / len(valid)
+                  / e_total) if valid else 0.0
+    return {"n": n, "n_valid": len(valid), "mean": mean, "sem": sem,
+            "amp": amp, "peak": peak, "mass": mass, "half": hm,
+            "fronts": fronts, "runs": runs, "halves": halves,
+            "foot": foot, "beyond": beyond, "repl": repl,
+            "repl_r": repl_r, "repl_tr": repl_tr,
+            "rmax_reached": rmax_reached, "rising": rising, "fits": fits,
+            "acc_mean": acc_mean, "acc_p": cell["acc_p"],
+            "disconnected": disc, "longs": cell["longs"],
+            "longs_frac": longs_frac}
+
+
+def viability(a):
+    """A2.4 viability axis: VIABLE / MELTS / FRAGMENTS."""
+    if a["n_valid"] == 0:
+        return "FRAGMENTS"
+    if a["longs_frac"] > 0.10:
+        return "MELTS"
+    if a["disconnected"] > 0:
+        return f"VIABLE?({a['disconnected']}disc)"
+    return "VIABLE"
 
 
 def verdict(a, theta=0.001):
-    """Prereg §7 + A1.4/A1.5 verdict from analyzed cell."""
+    """Prereg §7 + A1.4/A1.5 verdict from analyzed cell (max-r based)."""
+    if a["n_valid"] == 0:
+        return "FRAGMENTS"
     g = a["fronts"][theta]["gated"]
     foot = a["foot"]
     rmax_reached = max(v for t, v in g.items())
@@ -113,6 +172,34 @@ def verdict(a, theta=0.001):
     return "MIXED-expanding"
 
 
+def verdict_rep(a, theta=0.001):
+    """A2.1 replicated verdict: expansion must replicate across halves."""
+    if a["n_valid"] == 0:
+        return "FRAGMENTS"
+    expands = len(a["repl"]) > 0
+    if a["acc_mean"] < 20 and not expands:
+        return "FROZEN"
+    if not expands:
+        # Distinguish unreplicated-max-r claims (WEAK) from pinned (DEAD).
+        g = a["fronts"][theta]["gated"]
+        if max(g.values()) > a["foot"] + FOOT_PAD:
+            return "WEAK-unreplicated"
+        return "DEAD"
+    f = a["fits"]
+    rb2 = f["ballistic"]["r2"]
+    rd2 = f["diffusive"]["r2"]
+    v = f["ballistic"]["v"]
+    amp = a["amp"]
+    fades = all(vv < theta for t, vv in amp.items() if t > 30)
+    if rd2 > 0.9 and rd2 >= rb2:
+        return "DIFFUSIVE" + ("-transient" if fades else "")
+    if rb2 > 0.9 and v < 10.0:
+        return "BALLISTIC" + ("-transient" if fades else "")
+    if fades:
+        return "TRANSIENT-DISSIPATIVE"
+    return "MIXED-replicated"
+
+
 def main():
     import argparse
 
@@ -135,14 +222,20 @@ def main():
             continue
         cells[key] = analyze_cell(a.datadir, L, pert, dyn)
         v = {th: verdict(cells[key], th) for th in THETAS}
+        vr = {th: verdict_rep(cells[key], th) for th in THETAS}
         c = cells[key]
-        rows.append((L, pert, dyn, c["n"], c["foot"], c["rmax_reached"],
-                     round(c["acc_mean"], 1), v[0.0005], v[0.001], v[0.002],
-                     c["disconnected"]))
-        print(f"L={L} {pert}x{dyn} n={c['n']} foot={c['foot']} "
+        rows.append((L, pert, dyn, c["n"], c["n_valid"], c["foot"],
+                     c["rmax_reached"], round(c["acc_mean"], 1),
+                     v[0.001], vr[0.001], viability(c),
+                     len(c["repl"]), c["disconnected"],
+                     round(c["longs_frac"], 3)))
+        rmax_tr = max((max(c["repl_r"][t]) for t in c["repl_tr"]),
+                      default=-1)
+        print(f"L={L} {pert}x{dyn} n={c['n']}/{c['n_valid']} foot={c['foot']} "
               f"rmax={c['rmax_reached']} acc~{c['acc_mean']:.0f} "
-              f"verdicts={v[0.0005]}/{v[0.001]}/{v[0.002]} "
-              f"disc={c['disconnected']}")
+              f"maxr={v[0.001]} repl={vr[0.001]} via={viability(c)} "
+              f"nrepl={len(c['repl'])}/tr={len(c['repl_tr'])}@{rmax_tr} "
+              f"disc={c['disconnected']} longs={c['longs_frac']:.2f}")
     # L-scaling per (P,U): rmax Reached vs L.
     scal = collections.defaultdict(list)
     for (L, pert, dyn), c in sorted(cells.items()):
