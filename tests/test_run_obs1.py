@@ -68,3 +68,26 @@ def test_audit_meas_schema():
         run_obs1.audit_meas_schema(
             {"cell": 0, "set": 0, "n": 64,
              "pairs": {"S0|S1": {"W": 1.0, "RG": 3.0}}})
+
+
+def test_static_phi_cg_matches_spsolve():
+    # Same equation as driven.steady_predict (pinned source + bulk solve);
+    # CG must match SuperLU to 1e-8 on a lattice AND an expander (the
+    # solver swap is performance-only: no fill-in on large treewidth).
+    import time
+    from scipy import sparse
+    from bh_graph.ballistic import hamiltonian
+    from bh_graph.driven import steady_predict
+    from bh_graph.graphs import build_random_regular, build_torus_grid
+    for g in (build_torus_grid(6), build_random_regular(200, 8, seed=1)):
+        order = sorted(g.nodes())
+        h = sparse.csc_matrix(hamiltonian(g, order=order))
+        z = max(dict(g.degree()).values())
+        omega = -(z + 0.5)
+        t0 = time.time()
+        for src in (0, len(order) // 3):
+            ref = np.asarray(steady_predict(h, [src], [1.0], omega)).real
+            got = run_obs1.static_phi_cg(h, src, omega)
+            assert np.max(np.abs(got - ref)) < 1e-8
+            assert bool((got > 0).all())
+        assert time.time() - t0 < 60

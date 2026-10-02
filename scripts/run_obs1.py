@@ -34,8 +34,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 sys.path.insert(0, os.path.dirname(__file__))
 from bh_graph import obs0, obs0r  # noqa: E402
 from bh_graph.ballistic import hamiltonian  # noqa: E402
-from bh_graph.driven import is_gap_ok, steady_predict  # noqa: E402
+from bh_graph.driven import is_gap_ok  # noqa: E402
 from scipy import sparse  # noqa: E402
+from scipy.sparse.linalg import cg as _sp_cg  # noqa: E402
 import run_obs0  # noqa: E402
 
 CELLS = ("j2-L42", "j2-L64", "j2-L128",
@@ -43,6 +44,36 @@ CELLS = ("j2-L42", "j2-L64", "j2-L128",
          "exp-N3528-s0", "exp-N8192-s0", "exp-N32768-s0")
 N_STATIONS = 64
 STATION_SEED_BASE = 9100
+CG_RTOL = 1e-11  # solver tolerance (pinned vs spsolve by unit test)
+
+
+def static_phi_cg(h_csc, src_idx: int, omega: float,
+                  rtol: float = CG_RTOL) -> np.ndarray:
+    """POT-1 static field via CG (same equation as driven.steady_predict).
+
+    Solves (H_BB-w)*phi_B = -H_BS*s, phi_S = s = 1.0 with spsolve replaced
+    by conjugate gradients: H-wI is SPD (spectrum in [0.5, z+0.5]), so CG
+    converges in O(sqrt(kappa)) iterations with ZERO fill-in. Direct
+    SuperLU is infeasible here (expander treewidth -> dense fill: 64
+    factorizations/set would take weeks at N32768; identical equation,
+    verified bit-compatible to 1e-8 by tests/test_run_obs1.py). Raises on
+    non-convergence (loud, never silent).
+    """
+    n = h_csc.shape[0]
+    o = int(src_idx)
+    bulk = np.ones(n, dtype=bool)
+    bulk[o] = False
+    a = (h_csc - float(omega) * sparse.eye(n)).tocsc()
+    abb = a[bulk, :][:, bulk]
+    rhs = -a[bulk, :][:, [o]].toarray().ravel()
+    phi_b, info = _sp_cg(abb, rhs, rtol=float(rtol), atol=0.0,
+                         maxiter=10 * n)
+    if int(info) != 0:
+        raise RuntimeError(f"CG failed to converge (info={info})")
+    phi = np.zeros(n)
+    phi[bulk] = phi_b
+    phi[o] = 1.0
+    return phi
 
 
 def diff_readouts(wl, Vl, o_idx, tj, D):
@@ -138,18 +169,17 @@ def cmd_stations(args):
                 "W": tW[sidx[b]], "D": tD[sidx[b]], "P": None,
                 "Dcfd": tCFD[sidx[b]]}
 
-    # Static channel: one sparse prebuilt H, one solve per station source.
-    h = sparse.csr_matrix(hamiltonian(g, order=order))
+    # Static channel: one sparse prebuilt H, one CG solve per station source.
+    h = sparse.csc_matrix(hamiltonian(g, order=order))
     z = max(dict(g.degree()).values())
     omega = obs0r.omega_below_edge(z)
     assert is_gap_ok(h, omega), f"gap fail {tag} omega={omega}"
     n = h.shape[0]
-    worst_res, worst_im = 0.0, 0.0
+    a_full = (h - omega * sparse.eye(n)).tocsc()
+    worst_res = 0.0
     for a in range(N_STATIONS):
-        phi = np.asarray(steady_predict(h, [sidx[a]], [1.0], omega),
-                         dtype=np.complex128)
-        worst_im = max(worst_im, float(np.abs(phi.imag).max()))
-        res = (h - omega * sparse.eye(n)) @ phi
+        phi = static_phi_cg(h, sidx[a], omega)
+        res = a_full @ phi
         bulk = np.ones(n, dtype=bool)
         bulk[sidx[a]] = False
         den = float(np.linalg.norm((h[bulk, :][:, [sidx[a]]]).toarray()))
@@ -158,7 +188,7 @@ def cmd_stations(args):
         for b in range(N_STATIONS):
             if b == a:
                 continue
-            v = float(phi[sidx[b]].real)
+            v = float(phi[sidx[b]])
             pairs[f"S{a}|S{b}"]["P"] = v if np.isfinite(v) else None
 
     meas = {"cell": cell, "set": aset, "n": N_STATIONS, "pairs": pairs}
@@ -178,7 +208,7 @@ def cmd_stations(args):
     cc = sum(1 for r in pairs.values() if r["Dcfd"] is not None) / len(pairs)
     print(f"stations cell={cell} ({tag}) set={aset}: "
           f"W={cw:.4f} D={cd:.4f} P={cp:.4f} Dcfd={cc:.4f} "
-          f"resid={worst_res:.1e} maximag={worst_im:.1e}", flush=True)
+          f"resid={worst_res:.1e}", flush=True)
 
 
 def main():
