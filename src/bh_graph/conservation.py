@@ -76,9 +76,10 @@ def quad_rate_findiff(psi: np.ndarray, h, m, dt: float = 1e-5) -> float:
 
     psi = np.asarray(psi, dtype=np.complex128)
     md = _dense(m)
-    # n_steps=2, row[1]: evolve_fixed needs >=2 time points (frozen API).
+    # n_steps=2, row[1]: evolve_fixed needs >=2 time points (frozen API);
+    # backward leg via -h (negative-dt rows are unreliable upstream).
     fwd = evolve_fixed(psi, h, dt, 2)["psi"][1]
-    bwd = evolve_fixed(psi, h, -dt, 2)["psi"][1]
+    bwd = evolve_fixed(psi, -h, dt, 2)["psi"][1]
     qf = float(np.real(np.vdot(fwd, md @ fwd)))
     qb = float(np.real(np.vdot(bwd, md @ bwd)))
     return float((qf - qb) / (2.0 * dt))

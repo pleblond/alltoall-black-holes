@@ -318,7 +318,7 @@ def test_energy_rate_matches_findiff():
     psi = _rand_psi(8, 20)
     dt = 1e-4
     fwd = evolve_fixed(psi, h, dt, 2)["psi"][1]
-    bwd = evolve_fixed(psi, h, -dt, 2)["psi"][1]
+    bwd = evolve_fixed(psi, -h, dt, 2)["psi"][1]
     ef = energy_density(fwd, g, order)
     eb = energy_density(bwd, g, order)
     fd = (ef - eb) / (2.0 * dt)
