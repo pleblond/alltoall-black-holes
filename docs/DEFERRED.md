@@ -3142,3 +3142,104 @@ pert) uses spsolve uniformly (driven.steady_predict, same equation,
 exact reference). Affected stations files (21/24; mixed cell-6 kept,
 bit-identical) are discarded and regenerated; mixed blind re-runs; the
 gate re-fires before any P+/P- blind. No thresholds move.
+
+## QUOT-0-VERDICT (filed 2026-10-02): QUOT0-OPERATIONAL (primary positive)
+
+HEADLINE (frozen merger, `scripts/analyze_quot.py`, untouched since
+prereg): stage 50/62 checks pass; rungs SECTOR True, OPERATIONAL True,
+DERIVED False, ACCIDENTAL False. Machine records:
+`data/quot_verdict.json` + `data/quot_stage.json` + `data/quot_replay.json`.
+Blinds/meas live on beast (`~/quot-ea4c-data`, official) with local
+duplicates (`/tmp/quot-local-out`) per the saturation fallback below.
+NO post-data bar/ladder/estimator change was made: every FAIL below is
+filed as filed (design-error autopsies) or genuine (Q-Q).
+
+Q-ALG (all pass): comm_fro = 0.0, anti_dead = 0.0, intertwining = 0.0,
+U_inter_max = 1.7e-14, frozen_max = 0.0, decomp = 9.8e-16, n_zero = 838
+= 784 + 54 (identical coarse-neighbor sets). Exact sector decomposition
++ quotient intertwining re-derived. SECTOR rung secured (C0 green).
+
+Q-COMM (all pass, wave + diffusion): sym arrives (C+ > 0.001 at r =
+2,4,6); anti remote C- < 1e-9 at r >= 2 with C-/C+ < 1e-6; sheet-bit
+S(0,t=0) = 1.0 exact, S(r) < 1e-9 at r >= 1 (local-real/remote-blind).
+ACCIDENTAL triggers dead: remote maxima wave-anti 4.4e-29, wave-sheet
+1.4e-15, diff-anti 3.6e-15, diff-sheet 4.8e-15 (rung 1e-6).
+
+Q-SECTOR wave exactness: mixed-vs-projected remote_max = 3.0e-16 (PASS);
+ratio P+/mixed maxdev = 2.0e-9 vs 1e-9 bar (FAIL, design error: median
+is exactly 2.0; single-pair fp-division artifact, no physics).
+
+Q-SECTOR diffusion: operator pins exact (Lrw P- = P- to 1e-12, sym =
+square-Lrw to 1e-12); pattern R = {1: 0, 2: 0.1667 EXACT, 3: 0}
+reproduced to all digits on all 4 origins (banked 0.1667 within 30%
+descriptive: exact); sym-ablation -> 0.0 (PASS). diff ratio2 FAIL is a
+design error: prereg predicted 2.0 where the correct derivation gives
+exactly 1.0 (same-vector identity; measured 1.0 to all digits).
+
+Q-SECTOR POT: pattern R2 = 0.1407 EXACT = banked (all 4 origins);
+anti-drive support exactly 1-hop with anti_pure = 0.0 (fp-exact);
+mixed anti part exactly 0 at coarse r >= 1 (STRONGER than predicted:
+the POT sheet-forgetting is exact, not asymptotic). Two sub-bars FAIL
+on prereg-design errors, physics confirmed: pot_abl (sym-drive keeps
+R2 = 0.1407 to 1.3e-13 -- the contrast is pure coarse-locality: the
+sheet partner sits at coarse 0 but graph-R 2; medians robust to the
+single anti outlier, so ablation-by-median cannot remove it) and
+pot_far (naive sqrt2 far-field scaling ignores the defect-induced
+monopole shift; measured 0.38). Mechanism confirmed in stronger form;
+bars were wrong, not the physics.
+
+Q-N/Q-O (as operationalized in the frozen merger): wave_proj_exact +
+diff_proj_exact (3e-16/1e-16) PASS -- remote observables factor through
+P+; (x,0) ~_O (x,1) with non-collapse via Q-COMM sym arrival.
+
+Q-P replay (station-matched, vendored pipeline, L42): Mixed gate
+max|dD| = 4.44e-16 (bar 1e-6) + J2 QUOTIENT-clauses pass (C1); P+
+QUOTIENT-clauses pass, d = 1.673 vs mixed 1.695 (drift 0.022, bar 0.5);
+P- meas = 0.0, METRIC False (no-geometry); sq C0 + exp C1 reproduce
+banked. Observer geometry depends on transported P+ info, not hidden
+P- content. Verdict: mechanism confirmed.
+
+Q-Q perturbation (eps = 0.1 staggered, ONE preregistered value):
+pert_flip FAIL -- genuine result, not apparatus fault. pert sheet =
+0.0091 vs frozen 0.0089 (bar: >= 0.05 and >3x). Forensics: eigen IS
+perturbed (838-fold zero eigenspace lifted, max|dE| = 0.05); direct
+wave traces differ ~7% relative, but threshold-crossing arrival readout
+sits on the steep leading edge -> W bit-identical; D identical by filed
+pre-data design (unperturbed lsym reuse); only POT resolves eps (1.8e-3).
+Pins confirm [H,S] != 0 (eps*sqrt(N) exact) and anti non-stationarity.
+Autopsy/theory refinement: onsite staggering couples +-sectors LOCALLY
+but gives H_- NO kinetic term (P_- V P_- = 0; V is S-odd) -- the induced
+remote sheet signal is O(eps^2), below observer resolution. Breaking the
+dead sector requires S-odd KINETIC terms (sheet-dependent hopping), not
+onsite staggering. DERIVED blocked; filed as a mechanism refinement.
+
+Q-R bilayer control: METRIC False, meas = 0.494 (two worlds: same-layer
+arrive W/D ~ 0.49, cross-layer missing), QUOTIENT-clauses False,
+layer contrast 0.61 (stays distinguishable). C7 pinned green
+(bilayer sheet-bit remote C(2) > theta). The observer does NOT merge
+layers when both sectors propagate -- the J2 quotient follows dynamics,
+not graph presentation. ACCIDENTAL avoided on all four triggers.
+
+C0-C7: C0 MALUS regression green (comm/dead/frozen + 838); C1 Mixed
+reproduction 4.44e-16; C2 intertwining analytic + numeric (0.0/1.7e-14);
+C3/C4/C5 invariance pins green; C6 vendored blind/reveal untouched
+(sha-verified both platforms); C7 bilayer distinguishable (pin + replay).
+
+DERIVED blocked (honest cap): the four design-error sub-bars
+(wave_ratio2, diff_ratio2, pot_abl, pot_far) + Q-Q flip. No re-tuning:
+the ladder stands as filed.
+
+PROVENANCE (beast saturation fallback, documented): beast load
+2000-4700 (neighbor vac0_de campaign) starved the regen (~6% CPU/proc);
+12 L42 sets ran locally (/tmp/quot-local-out, identical code + banked
+eigen, ~4 min) as schedule driver; beast duplicates completed later as
+the official record. Cross-validation: seals bit-identical; meas W/D/P
+fp-identical (<=9e-13, J2/sq) or bit-identical (expander); P- Dcfd
+differs (threshold-crossing on pure ~1e-16 noise is BLAS-chaotic) with
+ZERO bar impact (blind meas = 0.0, identical dstar pattern both
+platforms). Froze28/pert28/ctrl28 stations + all eigen are beast-native.
+
+KILL RELEVANCE: QUOT0-OPERATIONAL promotes OBS1-QUOTIENT from empirical
+coarse-graining to dynamical consequence -- the observer inhabits the
+quotient because only quotient-compatible modes transport information.
+MALUS-0 dead sector + OBS-1 sheet blindness are one mechanism.

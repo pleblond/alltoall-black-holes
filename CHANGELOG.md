@@ -3,6 +3,19 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (QUOT-0 verdict: QUOT0-OPERATIONAL)** — Observer-quotient
+  mechanism campaign complete (primary positive result): exact sector
+  decomposition re-derived (comm/dead/intertwining 0.0, U-inter 1.7e-14,
+  838 = 784 + 54); sym arrives / anti exactly 0 remotely / sheet-bit
+  local-1.0-remote-0 (wave + diffusion); diffusion pattern R2 = 0.1667
+  exact + POT R2 = 0.1407 exact with fp-exact anti support; replay
+  (vendored pipeline): Mixed gate 4.44e-16, P+ QUOTIENT (drift 0.022),
+  P- no-geometry, bilayer two-worlds (meas 0.494, no quotient);
+  eps = 0.1 staggered fails to restore sheet visibility (0.0091 vs
+  0.0089 — onsite staggering gives H_- no kinetic term; DERIVED
+  honestly blocked with 4 design-error sub-bars, no post-data changes).
+  Records: `data/quot_verdict.json` + `quot_stage.json` + `quot_replay.json`.
+
 - **unreleased (QUOT-0 prereg)** — Quot track opened on main tail (v5.5.0):
   dynamical-origin-of-observer-quotient campaign preregistered (Q-ALG
   exact sector algebra + Q-COMM sym/anti/sheet channels + Q-SECTOR
