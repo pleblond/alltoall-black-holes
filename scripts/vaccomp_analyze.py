@@ -184,11 +184,13 @@ def main() -> int:
 
     # ---- 0V: observer equivalence ----
     dist = s("coarse_L4")["dist"]
+
+    def _dd(a, b):
+        return dist.get(f"{a}|{b}", dist.get(f"{b}|{a}"))
+
     ti = ["VPI", "VPLUS", "VMINUS", "VSTAG"]
-    V["0V_blind"] = bool(
-        all(dist[f"{a}|{b}"] < 1e-12 for i, a in enumerate(ti) for b in ti[i + 1 :])
-    )
-    V["0V_visible"] = bool(dist["CIRCLE@pi/8|VMINUS"] > 1e-4)
+    V["0V_blind"] = bool(all(_dd(a, b) < 1e-12 for i, a in enumerate(ti) for b in ti[i + 1 :]))
+    V["0V_visible"] = bool(_dd("CIRCLE@pi/8", "VMINUS") > 1e-4)
     V["0V"] = bool(V["0V_blind"] and V["0V_visible"])
     out["coarse"] = dist
 
