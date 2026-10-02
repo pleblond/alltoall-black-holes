@@ -3363,3 +3363,30 @@ drift-<=0.38%-(13x-margin!))); (iii)-ALL-else-IDENTICAL-to-v3 (gates/
 thresholds/vehicles/windows (NO-other-changes!)). RERUN-(v4)-verdicts-
 are-the-record. NEXT: implement-v4-+-smoke-+-amendment-commit-then-
 beast-rerun (gated!).
+
+POT1-VERDICTS (beast-run-6829cb2-protocol-v4 (Amendment-3-frozen-pre-data!);
+suite-626-passed-2-skipped-green): LADDER-POT1-FIELD (STRONGEST-RUNG
+(ALL-gates-green-first-run (NO-post-hoc-tuning!))). STATIC-SECTOR:
+1A-path-calibration-✓ (solve==analytic-1e-9 + jump-0.05/0.15 + turn-on-
+inner-0.005/0.002-(20x!) + kappa-jump-0.7%/2.2% + linearity-1e-9/0.05);
+1B-single-✓ (jump + inner-0.015-0.064 + J/B<0.05 + D≈0 + range-3=3-all-L);
+1C-pair-✓ (jump + inner + nodal-112/112-all-L (dipole-EXACT!) + D≈0);
+ALL-PATH-✓ (cut-jump-0.05 + cut-inner-0.016 + delta-0.2295-vs-0.2304-
+(0.4%!) + 1D-reject-278x-(0.69-vs-0.0025!)); 1D-exchange-✓ (mirror-0.05-
++ B-0.05); 1E-phase-✓ (B,J-identical-1e-9 (phase-NOT-observable-zero!));
+1I-ladder-✓ (linear-0.05 + quadratic-0.05); 1J-sizes-✓ (xi-pairwise-
+0.4%-(0.5288/0.5272/0.5265!) + wrap-drift-<=0.4% + front-consistency-2%);
+TAU-adiabatic-✓ (lingerers-0.0197>0.0088>0.0053-strict (tuning-free!)).
+DYNAMIC-SECTOR: 1F-change-✓ (instant-exact-0 + front-v=7.79-R2=0.9995-
+in-(0.5,12)-Bloch-8-✓ + C4-cone-12-3e-9!); 1G-sector-✓ (S-front-v=7.88-
+R2=0.9997 + w_minus-0.95-(band-edge-radiation!) + accounting-1 + C5-
+ring-✓). UNIFICATION: 1H-return-✓ (inner-r<=3-0.10 + far-norm-0.984-
+vs-1.0!); RB-✓ (norm-range-0.26%/0.21%-(4x!) + nets-sign-flip-slosh-✓);
+C0/C1/C5/C6-✓ (POT-0-packet-reproduced-v=1.211-D=0.855!). INTERP:
+TWO-real-scalars/node-+-binary-J2-fabric-→-static-potential-like-field
+(-connectivity-determined + all-path + source-relative + phase-
+invariant-) ←-same-(r,i)-field-H=-A-→-coherent-directional-radiation
+(same-modes-as-P1/POT-0-banked-waves!). FORBIDDEN-CLAIMS-RESPECTED
+(even-FIELD-NOT-charge/Coulomb/Maxwell/photons/gauge/Lorentz/EM!).
+NEXT-OPEN: EM-0-continuum-field-characterization (radial-law? effective-
+equations? B/J-roles? BR-2-quadrature-match?).
