@@ -178,6 +178,9 @@ def gen_supp(py: str, d: str) -> list:
                          bg="Z-", a=a, protocol="absolute",
                          eta_scale=esc, seed=seed)
     return L
+
+
+def main(argv=None):
     p = argparse.ArgumentParser(description="ZERO-0 task generator")
     p.add_argument("--bank", choices=["pilot", "full", "supp"],
                    default="pilot")
