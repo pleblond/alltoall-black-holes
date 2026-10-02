@@ -3,6 +3,24 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **Unreleased (VAC-SELECT-0)** — Dynamical vacuum-selection campaign
+  (branch): `src/bh_graph/vacselect.py` (VACSEL-0A/0B/0C regressions +
+  MEASURE-gate firewall + C0..C8 controls + verdict ladder),
+  `scripts/vacselect_campaign.py` (10-task beast battery) +
+  `scripts/vacselect_analyze.py` (frozen HARD gates), 20 pins in
+  `tests/test_vacselect.py` (L4/tiny), VACSEL0-PREREG in
+  `docs/DEFERRED.md`. Read-only consumption of MEASURE-0 / VAC-FIELD-0 /
+  HIDDEN-0 / HIDDEN-BR / SYM-0 / ZERO-0 / FIELD-0 / RAND-0 / QUOT / VAC-0
+  apparatus (byte-identical, sha-pinned). Headline VACSEL-0D..0Z gated
+  on an earned unique W; predicted VACSEL0-NOMEASURE via the four
+  MEASURE debt-reasons.
+  VERDICT VACSEL0-NOMEASURE (filed 2026-10-02, data): beast battery
+  10/10 HARD green (regressions incl. bitwise cross-bg propagation on
+  L4+L28, VPLUS flat / VPI one-sided / VMINUS structured ledgers);
+  MEASURE gate re-evaluated from code holds 4/4 debt-reasons, headline
+  0/23 ran (all refusals). Family preserved; selection undefined
+  because geometry dynamics is incomplete.
+
 - **Unreleased (VAC-COMP-0)** — Complete joint-vacuum manifold census
   (branch): VAC-FIELD-0 `vacfield.py` + tests vendored byte-identical;
   new `src/bh_graph/vaccomp.py` (stages 0A-0AC + 0R/0S inventory),
