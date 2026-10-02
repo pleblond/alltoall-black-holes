@@ -485,14 +485,24 @@ def cmd_stations(args):
             quot.perturbed_hamiltonian(g, order, c3, eps=quot.EPS_PERT))
     z = max(dict(g.degree()).values())
     omega = obs0r.omega_below_edge(z)
-    from bh_graph.driven import is_gap_ok
+    from bh_graph.driven import is_gap_ok, steady_predict
     assert is_gap_ok(h, omega), f"gap fail {tag} omega={omega}"
+    # POT solver (QUOT-0 Amendment-1, pre-reveal): banked OBS-1 POT is
+    # solver-heterogeneous (filed mixed-solver note): L42-J2/sq used
+    # spsolve, expander used CG (forensics: W/D bit-identical everywhere,
+    # cell-6 P bit-identical under CG, cells 0/3 P differ under CG).
+    # Mixed matches banked per-cell; ALL quot-native POT (P+/P-/L28/ctrl/
+    # pert) uses spsolve uniformly (exact reference, same equation).
+    use_banked_cg = (dataset == "mixed" and tag == "exp-N3528-s0")
     for a in range(run_obs1.N_STATIONS):
         _, _, _, pins, svec = source_vecs(a)
-        if len(pins) == 1:
+        if use_banked_cg:
             phi = run_obs1.static_phi_cg(h, pins[0], omega)
+        elif len(pins) == 1 and dataset not in ("p_plus", "p_minus"):
+            phi = obs0r.static_field_phi(g, order, snodes[a], omega)["phi"]
         else:
-            phi = quot.static_phi_multi(h, pins, svec, omega)
+            phi = np.asarray(steady_predict(h, pins, svec, omega).real,
+                             dtype=float)
         for b in range(run_obs1.N_STATIONS):
             if b == a:
                 continue

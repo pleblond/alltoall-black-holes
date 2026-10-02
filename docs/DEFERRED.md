@@ -3120,3 +3120,25 @@ empirical coarse-graining to dynamical consequence (only quotient modes
 transport); QUOT0-ACCIDENTAL keeps it empirical and kills the
 sector-selection explanation (the observer result stands, the mechanism
 dies). Either way OBS-1/MALUS-0 banked results are untouched.
+
+## QUOT-0-AMENDMENT-1 (POT solver matching; FROZEN pre-reveal 2026-10-02:
+mixed blind ran (geometry-free, gate-held), NO P+/P-/other blind and NO
+reveal has run; OBS-1 Amendment-1 precedent)
+
+CAUSE (blind-internal instrument forensic): the Mixed-reproduction gate
+fired (composite max|dD| = 2.25e-5, bar 1e-6). Per-channel forensics:
+W/D BIT-IDENTICAL (0.0) in all 9 mixed sets; cell-6 (expander) P also
+bit-identical under CG; cells 0/3 (L42 J2/sq) P differ (3.3e-6/8.9e-4).
+This is the banked OBS-1 solver heterogeneity (filed mixed-solver note:
+12 light sets banked with spsolve-P pre-CG-fix): banked L42-J2/sq POT
+used spsolve, banked expander POT used CG. The discriminator is
+fp-exactness (0.0 vs >=3e-6) with zero wiggle room -- not a tuning
+surface.
+
+FIX (no bar/ladder/estimator touched): mixed POT matches banked per-cell
+(cells 0/3 via verbatim obs0r.static_field_phi = spsolve; cell 6 via
+verbatim run_obs1.static_phi_cg); ALL quot-native POT (P+/P-/L28/ctrl/
+pert) uses spsolve uniformly (driven.steady_predict, same equation,
+exact reference). Affected stations files (21/24; mixed cell-6 kept,
+bit-identical) are discarded and regenerated; mixed blind re-runs; the
+gate re-fires before any P+/P- blind. No thresholds move.
