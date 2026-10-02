@@ -530,11 +530,30 @@ def mean_delta(deltas: list[dict]) -> tuple[dict, dict]:
     return mean, sem
 
 
-def front_radii(mean_delta_: dict, theta: float) -> dict:
-    """r_front(t) = max r with ΔD̄(r,t) > θ (−1 if none)."""
+def front_radii(mean_delta_: dict, theta: float,
+                rmax: int | None = None) -> dict:
+    """r_front(t) = max r with ΔD̄(r,t) > θ (−1 if none).
+
+    Raw (prereg-original) estimator; rmax restricts the range.
+    """
     out = {}
     for t in sorted(mean_delta_):
-        rs = [r for r, v in mean_delta_[t].items() if v > theta]
+        rs = [r for r, v in mean_delta_[t].items()
+              if v > theta and (rmax is None or r <= rmax)]
+        out[t] = max(rs) if rs else -1
+    return out
+
+
+def front_radii_gated(mean_delta_: dict, sem_delta: dict, theta: float,
+                      nsigma: float = 3.0,
+                      rmax: int | None = None) -> dict:
+    """3σ-gated front (A1.5 verdict estimator): shell r qualifies iff
+    ΔD̄(r,t) > θ AND ΔD̄(r,t) > nsigma·SEM(r,t)."""
+    out = {}
+    for t in sorted(mean_delta_):
+        rs = [r for r, v in mean_delta_[t].items()
+              if v > theta and v > nsigma * sem_delta[t][r]
+              and (rmax is None or r <= rmax)]
         out[t] = max(rs) if rs else -1
     return out
 

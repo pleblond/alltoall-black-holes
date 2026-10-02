@@ -37,6 +37,15 @@ not relabeling. Changes (dynamics/perts/θ/observables untouched):
   bounded vs unbounded). FROZEN restated: total accepts < 20 over
   200 ticks AND r_front pinned (a handful of local repairs ≠
   carrier; U1×P2 cal showed 1 accept/50 ticks, support still r≤4).
+- **A1.5 gated front** (2-seed dense pilot: raw max-r front flickers
+  on tail noise and tiny wrap shells): verdicts use the 3σ-GATED
+  front — shell r qualifies iff ΔD̄(r,t) > θ AND ΔD̄(r,t) >
+  3·SEM(r,t) (SEM over 16 seeds). Raw front still reported for the
+  record. Analysis range r ≤ L/2 STRICTLY enforced (wrap-side
+  shells excluded from fronts/fits). When the gated front is pinned
+  but the bump decays, the verdict rests on bump shape
+  (amplitude/peak/half-mass): spreading+bump-decay ⇒
+  DIFFUSIVE-transient; in-place fade ⇒ DEAD.
 
 ## 0. Question
 

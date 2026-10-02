@@ -20,6 +20,7 @@ from bh_graph.grav0 import (
     edge_span,
     fit_front,
     front_radii,
+    front_radii_gated,
     half_mass_radii,
     map_swap,
     mass_series,
@@ -229,6 +230,11 @@ def test_front_utils():
             1: {0: 0.08, 1: 0.06, 2: 0.002, 3: 0.0001}}
     assert front_radii(mean, 0.001) == {0: 1, 1: 2}
     assert front_radii(mean, 0.5) == {0: -1, 1: -1}
+    assert front_radii(mean, 0.001, rmax=1) == {0: 1, 1: 1}
+    sem = {0: {0: 0.01, 1: 0.05, 2: 0.001},
+           1: {0: 0.01, 1: 0.01, 2: 0.01, 3: 0.001}}
+    assert front_radii_gated(mean, sem, 0.001) == {0: 0, 1: 1}
+    assert front_radii_gated(mean, sem, 0.001, rmax=0) == {0: 0, 1: 0}
     f = fit_front([0, 1, 2, 3], [4.0, 6.0, 8.0, 10.0])
     assert abs(f["ballistic"]["v"] - 2.0) < 1e-9
     assert f["ballistic"]["r2"] > 0.999
