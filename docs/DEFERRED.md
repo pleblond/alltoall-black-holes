@@ -3633,3 +3633,59 @@ P-including pairs at L128 will carry imputation -- recorded as frozen
 that is the honest finite-range outcome, capping gracefully at QUOTIENT).
 P-range-vs-L recorded descriptively in the verdict (static-observer range
 finding). Regression-pinned by test_composite_mixes_measured_only.
+
+## OBS1-VERDICT (OBS1-QUOTIENT (blind 2D-quotient reconstruction); campaign
+2026-10-02 (~12:30-15:00-UTC); branch cursor/obs1-reconstruction-69cc; blind
+hash a18c76b2 (Amendment-1 re-freeze; first hash 1f22537d superseded
+pre-reveal); 27/27 station sets, W/D/P-runner-complete 1.0 everywhere)
+
+HEADLINE: OBS1-QUOTIENT. A blind observer with only operational measurements
+(arrival times, diffusion response, static field -- no graph, no coords, no
+dimension input) reconstructs a stable 2D metric space that agrees, after
+global alignment only, with the coarse J2 quotient rather than microscopic
+sheet structure. Rungs: METRIC True, QUOTIENT True, CROSS False, RECON False.
+
+J2-L128 (headline, 3/3 sets): d_O = 2.02 (stable, r2 pass), d* = 2
+replicated train/test all sets, sym exact (reciprocity), tri-loose 0.019-
+0.020, DIST rms 0.079-0.084 vs quotient (vs 0.16 microscopic: closer =
+quotient all sets), local charts 0.055-0.063, locality 0.95-0.97,
+sheet contrast 0.0001-0.025 (sheets forgotten -- quotient, not micro),
+angles pass, euclid window pass. Strict global eps 0.80 (toroidal cut
+signature, filed descriptive).
+J2-L42/L64: same pattern tighter (DIST 0.038-0.039, locality 0.98-1.0,
+charts 0.06, d 1.69/1.78 -- small-size dim suppression, within bar).
+SCALING True (d 1.69/1.78/2.02 spread 0.33; DIST L64+L128).
+C0 (sq-L128): PASS (d 2.20, DIST/LOCAL/LOC, pipeline validated).
+C1 (all 3 expanders): PASS (twod_sets 0/3 with data 3/3; d* = 3 replicated,
+d = 3-10; pipeline does not hallucinate 2D).
+CROSS-PROBE False (honest finite-range failure): WD pair passes all sets
+(rms 0.13, |dd| <= 0.29 -- wave and diffusion observers inhabit the same
+world); P-including pairs fail (WP rms 0.35, P-dim unmeasurable) because the
+static channel has finite SOLVER-FLOOR range (P measured_frac 1.0/1.0/0.62
+J2 and 1.0/1.0/0.32 sq across L42/64/128: far-field phi below ~1e-10
+absolute double-precision floor -> non-positive -> unmeasured). The static
+observer sees only to ~O(10 xi); within range it is the CLEANEST channel
+(L42/64: tri 0.000, d 2.11, charts 0.02). No second amendment was filed:
+3-way CROSS correctly fails while WD passes (graceful cap at QUOTIENT).
+TOPOLOGY unresolved (0 blind wrap flags at 64 sparse stations -- listed
+OBS-1H outcome, not a campaign failure); strict-eps ~0.8 signatures
+periodicity without resolving it. RECONSTRUCTED correctly out of reach
+(needs CROSS + TOPO).
+
+INTERPRETATION (filed, modest): space is operationally reconstructible --
+distance, dimensionality (2.02, unprompted), neighborhoods (95%+),
+local angles/charts (6%), and the quotient (not microscopic) geometry all
+emerge from signals alone, replicate across sets/sizes, and refuse to
+appear for expanders. Dimension is the fragile observable (arrival-dim
+bias at small L, P-dim unmeasurable beyond range); the metric itself is
+robust (WD rms 0.13, composite-quotient 4-8%). The observer naturally
+inhabits the QUOTIENT geometry: sheets quotient away (contrast < 0.03).
+
+**Kill relevance:** OBS-1 upgrades the program from shared rulers (OBS-0R)
+to reconstructed space: an embedded observer recovers 2D quotient geometry
+without being given any geometry. OBS1-RECONSTRUCTED remains open (needs
+topology resolution: denser stations or loop-based flags). Follow-up gate:
+OBS-2 needs OBS-1-positive (SATISFIED) + frozen coupled U_G (STILL OPEN) --
+no deformation campaign until U_G exists. Mixed-solver note: 12 light sets
+banked with spsolve-P pre-CG-fix, numerically identical (<1e-8, residuals
+1e-15 vs 4e-12); exp-N32768-s1/s2 eigen skipped (cell 8 uses s0 only).
