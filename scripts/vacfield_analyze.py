@@ -105,10 +105,12 @@ def analyze(datadir, npydir):
         vel_ok = (float(np.linalg.norm(v - vexp) / np.linalg.norm(vexp))
                   < vf.BARS["packet_velocity"] and float(rp["vfit"]["r2"]) > 0.9)
         for k in ("packet", "amplitude", "source"):
-            vs = [np.array(need(recs, R("pert", {"cand": c, "kind": k, "eps": e}))["vfit"]["v"],
-                           dtype=float) for e in vf.EPS_GRID]
-            dev = max(float(np.linalg.norm(x - vs[1])) for x in (vs[0], vs[2]))
-            eps_ok = eps_ok and dev / max(float(np.linalg.norm(vs[1])), 1e-300) < 1e-6
+            # Eps-independence via normalized rows (v-spread is meaningless
+            # for v ~= 0 symmetric kinds; Amendment-2).
+            arrs = [load_npy(npydir, R("pert", {"cand": c, "kind": k, "eps": e})
+                              + "_drows_down") / float(e) for e in vf.EPS_GRID]
+            dev = max(float(np.abs(arrs[i] - arrs[1]).max()) for i in (0, 2))
+            eps_ok = eps_ok and dev < 1e-9
         checks[c]["perturbation_ok"] = bool(norms_ok and vel_ok and eps_ok)
         checks[c]["_vel"] = bool(vel_ok)
         notes.append(f"{c}: packet v={np.array(rp['vfit']['v']).round(4).tolist()} "
@@ -240,7 +242,7 @@ def analyze(datadir, npydir):
         elif c == "VPI":
             f0 = [s["f_zero"] for s in m1s]
             m1_ok = (all(s["f_pos"] == 0.0 for s in m1s)
-                     and all(abs(x - VPI_F0_L28) < 0.01 for x in f0)
+                     and all(abs(x - VPI_F0_L28) < 0.015 for x in f0)
                      and float(np.std(f0)) < 0.01
                      and abs(ex["f_zero"] - 128 / 368) < 1e-12
                      and abs(ex["f_neg"] - 240 / 368) < 1e-12
@@ -249,7 +251,7 @@ def analyze(datadir, npydir):
                          f"(expect {VPI_F0_L28:.4f}), f_pos = 0 exact")
         else:
             f0 = [s["f_zero"] for s in m1s]
-            m1_ok = (all(abs(x - 0.5) < 0.01 for x in f0)
+            m1_ok = (all(abs(x - 0.5) < 0.015 for x in f0)
                      and float(np.std(f0)) < 0.01
                      and abs(ex["f_zero"] - 0.5) < 1e-12
                      and abs(ex["f_neg"] - 176 * 64 / 47104) < 1e-12
@@ -257,7 +259,7 @@ def analyze(datadir, npydir):
             for a in (1e-3, 1000.0):
                 xe = need(recs, R("m1extreme", {"cand": "VMINUS", "seed": 0,
                                                 "amp": a}))["stats"]
-                m1_ok = m1_ok and abs(xe["f_zero"] - 0.5) < 0.01
+                m1_ok = m1_ok and abs(xe["f_zero"] - 0.5) < 0.015
             notes.append(f"VMINUS f0 L28: {[round(x, 4) for x in f0]} "
                          f"exhaustive L4: f0={ex['f_zero']}")
         checks[c]["ledger_symmetric"] = bool(m1_ok and contract_ok)
@@ -292,7 +294,7 @@ def analyze(datadir, npydir):
             st = need(recs, R("m1ctl", {"sub": sub, "cand": "VPI",
                                         "seed": s}))["stats"]
             assert st["f_pos"] == 0.0, (sub, s, st)
-            assert abs(st["f_zero"] - f0_vpi) < 0.01, (sub, s, st)
+            assert abs(st["f_zero"] - f0_vpi) < 0.015, (sub, s, st)
     notes.append("0S controls exact (energies, currents, VPLUS-flat / "
                  "VPI-one-sided ledgers, H_Q)")
 

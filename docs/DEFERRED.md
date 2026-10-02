@@ -3188,3 +3188,15 @@ where the mission's JOINT language ("symmetry-balanced background
 rather than an arbitrary uniform collapse bias") is addressed per
 candidate. VPLUS (flat) and VMINUS (symmetric f_0 = 1/2)
 predictions stand as preregistered (pins green).
+
+### VACFIELD0-AMENDMENT-2 (pre-data gate-robustness fixes; no campaign data opened)
+
+(a) 0K eps-independence gate redefined: normalized dpsi-row max-dev
+< 1e-9 across eps (exact: d0 direction is eps-independent for
+packet/amplitude/source) INSTEAD of relative v-spread, which is
+meaningless for the symmetric kinds (v ~= 0). Packet-v gate
+unchanged. (b) Sampled-ledger per-seed f_0 tolerance 0.01 -> 0.015
+(flake-robustness: MC sigma = 0.0035 at n = 20000; predictions
+exact, seed-std < 0.01 and exhaustive fractions unchanged).
+Applies to VPI/VMINUS L28 + extremes + m1ctl. Ladder structure
+unchanged.
