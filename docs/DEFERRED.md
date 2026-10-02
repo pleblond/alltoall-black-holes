@@ -3052,3 +3052,14 @@ I=max(eps,dP1,dP2,clin,dE) (snew-filed-only (NOT-gated!)); is_witness_ok-gates-
 clin<1e-6 (snew-bar-removed!); field0.py-ADDS-fft_coeffs/fft_linearity_dev
 (pinned (4-substrates-exact!)); campaign-files-w_clin; test_field0-pins-clin.
 RERUN (same-57-cells (fresh-checkpoint (no-reuse!))); verdicts-gated-on-rerun.
+
+FIELD0-AMENDMENT-2 (max-overlap-sample-by-spatial-COM (POST-rerun-audit (S-
+constancy-exact!)); rerun-57-cells-5s (I-max-9.6e-12 (LINEAR-HOLDS!) BUT
+Spre=Smax=Spost-to-5-decimals-all-cells (|S|-unitary-preserved (constancy-
+dev-filed!)) ⟹ max-|S|-sample-always-idx0 (t=0-PRE (NOT-collision!)) ⟹
+rhox/Bx/Jx/Ex-at-initial (conservative-lower-bounds (true-peaks-larger!)))).
+FIX: k_max-by-min-COM-distance (spatial-collision (minimal-image!)) + file-
+S_const_dev (=max-min-|S| (null-leg (<1e-9-pinned!))) + d_com_min + k_max;
+decomps-still-exact-at-all-t (algebra (t=0-check-valid!)); atlas-fa/res/beat-
+from-full-traces (unaffected (already-peak!)). RERUN (same-57-cells (fresh-
+checkpoint!)); verdicts-gated-on-rerun-2.

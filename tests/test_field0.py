@@ -338,6 +338,16 @@ def test_witness_zero_for_linear():
     assert w["I"] < 1e-6
 
 
+def test_overlap_constancy_under_common_unitary():
+    sub = _small_ring()
+    p1 = field0.make_packet(sub, (8.0,), (0.5,), 3.0)
+    p2 = field0.make_packet(sub, (16.0,), (-0.5,), 3.0)
+    rec = field0.evolve_triplet(p1, p2, sub["h"], 0.1, 10)
+    S = [abs(complex(field0.overlap_S(a, b)))
+         for a, b in zip(rec["psi1"], rec["psi2"])]
+    assert max(S) - min(S) < 1e-9
+
+
 def test_fft_linearity_exact():
     for sub in (_small_j2(), _small_ring(), _small_square(), _small_quotient()):
         L = sub["L"]

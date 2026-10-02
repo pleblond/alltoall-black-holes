@@ -210,10 +210,19 @@ def run_cell(cell):
     samp = sorted(set(list(range(0, N_STEPS + 1, 5)) + [N_STEPS]))
     eu, ev = edge_arrays(sub["g"], sub["order"])
     eps_max = float(rec["eps"].max())
-    # decomps at max-overlap sample (max |S|) + endpoints
+    # Hilbert overlap S(t) (unitary preserves |S| exactly: constancy is a null
+    # leg, Amendment-2) + spatial overlap via COM distance (min = collision).
+    from bh_graph.ballistic import com as _com
     S = np.array([abs(complex(field0.overlap_S(a, b)))
                   for a, b in zip(rec["psi1"][samp], rec["psi2"][samp])])
-    k_max = samp[int(np.argmax(S))] if len(S) else N_STEPS // 2
+    S_const_dev = float(S.max() - S.min()) if len(S) else 0.0
+    com1 = np.array([_com(p, sub["coords"], sub["order"], periods=sub["periods"])
+                     for p in rec["psi1"][samp]])
+    com2 = np.array([_com(p, sub["coords"], sub["order"], periods=sub["periods"])
+                     for p in rec["psi2"][samp]])
+    d_com = np.array([float(np.linalg.norm(min_image_disp(a, b, sub["periods"])))
+                      for a, b in zip(com1, com2)])
+    k_max = samp[int(np.argmin(d_com))] if len(d_com) else N_STEPS // 2
     a1m, a2m = rec["psi1"][k_max], rec["psi2"][k_max]
     rho_ok = bool(field0.is_rho_decomp_ok(a1m, a2m))
     bj_ok = bool(field0.is_BJ_decomp_ok(a1m, a2m, eu, ev, sub["j"]))
@@ -262,7 +271,9 @@ def run_cell(cell):
            "rhox_max": float(np.abs(rx).max()), "rhox_sum": float(np.abs(rx).sum()),
            "Bx_max": float(np.abs(cx["B"]).max()), "Jx_max": float(np.abs(cx["J"]).max()),
            "Ex": ex, "S_max": float(S.max()), "S_pre": float(S[0]),
-           "S_post": float(S[-1]),
+           "S_post": float(S[-1]), "S_const_dev": S_const_dev,
+           "d_com_min": float(d_com.min()) if len(d_com) else 0.0,
+           "k_max": int(k_max),
            "m1pre_k": list(m1pre["k"]), "m1post_k": list(m1post["k"]),
            "m2pre_k": list(m2pre["k"]), "m2post_k": list(m2post["k"]),
            "m1pre_C": float(m1pre["C"]), "m1post_C": float(m1post["C"]),
