@@ -281,13 +281,18 @@ def apply_quadrature(kcal: np.ndarray, dr0: float, ds0: float) -> np.ndarray:
 # one global phase -- STAYS chiral-real for all t (da/dt = iMb real,
 # db/dt = iM^Ta imaginary). Every bond joins opposite sublattices, hence
 # B_e = Re[conj(psi_a) psi_b] == 0 EXACTLY while J carries the response.
-# This covers real impulses, single-phase impulses, real region sources,
-# AND adjacent-node 0/pi/2 dipoles. Zero-background B response requires
-# breaking chiral-reality: relative phases WITHIN a sublattice (e.g. a
-# sheet dipole |u> + i|sib(u)>) or a nonzero background. Campaign
-# consequence: headline real-impulse cells predict ABSENT delta-B threshold
+# This covers single-node impulses (any phase), single-SUBLATTICE real data
+# (cell/sym/anti/sheet preparations), AND adjacent-node 0/pi/2 dipoles.
+# It does NOT cover real multi-node data spanning BOTH sublattices (edge /
+# ball / patch regions): no global phase makes those chiral-real, so their
+# B response is generically nonzero (campaign confirms the sharp split).
+# Zero-background remote-B requires breaking chiral-reality: support on both
+# sublattices with non-chiral phases, or within-sublattice relative phases
+# plus a propagating symmetric part, or a nonzero background. Campaign
+# consequence: headline single-node cells predict ABSENT delta-B threshold
 # crossings (filed as B-blindness, not missing data); B fronts are measured
-# on the sheet dipole, complex two-source cells, and nonzero backgrounds.
+# on two-sublattice regions, the sheet dipole (shell-0 only: single-phase
+# symmetric part is chiral-blind), complex two-source cells, and batteries.
 # ---------------------------------------------------------------------------
 
 def edge_index_arrays(g: nx.Graph, order: list) -> tuple:

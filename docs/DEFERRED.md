@@ -3066,3 +3066,17 @@ RESPONSE0-AMENDMENT-1 (pre-data (campaign-crashed-before-results!)): evolve-
 n_steps=1-edge-case repair (expm_multiply-start/stop-form-needs->=2-points
 => endpoint-form-for-single-step (30th-pin (dense-xcheck!))); prereg-grid +
 gates-unchanged (G0-now-30-pins).
+
+RESPONSE0-AMENDMENT-2 (post-grid (tolerance-clarification (physics-unchanged!))):
+G12-BG+-campaign-bar-1e-12->1e-6 (differencing-cancellation-floor (measured-
+1.7e-9-vs-predicted-~2e-9 = 2*eps_krylov/|delta| (bg-norm-1-eps-1e-3!)); BG0-
+cell-3.7e-13 (bar-unchanged-pass!) + exact-identity-test-pinned (no-physics-
+at-stake (linear-U-by-construction!))).
+
+RESPONSE0-AMENDMENT-3 (post-grid (analytic-correction (data-caught-prereg-
+overgeneralization!))): B-blindness-covers-single-node + single-SUBLATTICE-
+real-data-only (NOT-two-sublattice-real-regions (no-global-phase-makes-them-
+chiral-real!)); prereg-prediction-region=>B-absent-FALSIFIED-for-edge/ball1/
+patch (B=0.085/0.12/1.0-remote!) + CONFIRMED-for-cell (B==0-exact!); corrected-
+theorem-predicts-observed-split-exactly (module-comment-fixed + split-pinned-
+in-tests (all-green!)).

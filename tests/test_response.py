@@ -231,6 +231,20 @@ def test_0g_bipartite_B_blindness_point_impulse():
     near = [e for e in range(len(eu)) if e not in far]
     assert max(float(np.abs(R.bond_B(row, eu, ev)[far]).max()) for row in rec) < 1e-12
     assert max(float(np.abs(R.bond_B(row, eu, ev)[near]).max()) for row in rec) > 1e-6
+    # Sharp split (Amendment-3): single-sublattice real regions are blind,
+    # two-sublattice real regions are not. Cell {(0,0,0),(0,0,1)} is one
+    # sublattice; edge {0, 8} spans both.
+    g4, order4, c34 = _j2(4)
+    h4 = R.hamiltonian(g4, order4)
+    eu4, ev4 = R.edge_index_arrays(g4, order4)
+    m_cell = R.region_mask("cell", g4, order4, 0, c34, 4)
+    rec_cell = R.evolve(R.region_source(m_cell, 1.0), h4, 0.05, 60)["psi"]
+    assert max(float(np.abs(R.bond_B(row, eu4, ev4)).max()) for row in rec_cell) < 1e-12
+    e_edge = (0, 8)
+    assert g4.has_edge(*e_edge)
+    m_edge = R.region_mask("edge", g4, order4, e_edge, c34, 4)
+    rec_edge = R.evolve(R.region_source(m_edge, 1.0), h4, 0.05, 60)["psi"]
+    assert max(float(np.abs(R.bond_B(row, eu4, ev4)).max()) for row in rec_edge) > 1e-6
 
 
 # 0I ----------------------------------------------------------------------
