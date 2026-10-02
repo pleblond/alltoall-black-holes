@@ -2988,3 +2988,95 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## TIME0-PREREG — Two-boundary history selection (FROZEN PRE-DATA)
+
+**Status:** apparatus + semantics + grid + gates + ladder frozen;
+campaign NOT YET RUN. TIME-0 accepts U0-INCOMPLETE (forward-state
+underdetermination: splits unrealized by every tested minimal law),
+CONS0-PARTIAL (no conservation-derived contraction law), and
+BR27-NO-MODE (no instability/firing mechanism). It tests whether the
+graph-field model is better described by GLOBALLY CONSTRAINED
+HISTORIES Gamma = (X_0, ..., X_T) with X_0 = X_-, X_T = X_+ than by
+a forward Markov law X_{t+1} = U(X_t). The question is combinatorial:
+N_hist(X_-, X_+) = ? No retrocausality, signalling, cosmology, or
+interpretation is claimed (TIME-0L firewall: solved from outside).
+
+**Frozen inputs (read-only, byte-identical to source tips):** BR-2.5
+tip 3ea8cf1 (contraction/backreaction/ballistic/phase + formation
+delta); BR-2.6 tip dd956e0 (accounting); BR-2.7 tip f82566d
+(stability); CONS-0 tip c551cb5 (conservation); EM-0 tip 3128ff9
+(continuum/driven); U0 tip f714762 (u0/ug/ug_sync + xdist config).
+No law change on consumption. Frozen conventions: H(G) = -A(G),
+J = 1, hbar = 1; sum map psi_k = psi_i + psi_j; simple graphs;
+B/J quadrature; E_psi = -2 sum_E B; dE_contract = 2B - 2 sum_cross
+(MINUS convention); dQ = +2B_ij; dxi = -c; dt = 0.1 (P1-frozen).
+
+**TIME-0A/D compatibility (frozen pairwise relation, R_time = 1):**
+a step is exactly one of IDENTITY (same canonical class; psi' =
+U(G) psi), CONTRACTION (one-edge BR-2.5 quotient; psi'_k = psi_i +
+psi_j), SPLIT (one-node record-free cover, children adjacent;
+psi'_i + psi'_j = psi_k -- the exact reverse of the sum map, the
+unique relation making contraction steps reversible as relations;
+equal/norm policies satisfy it as special cases but are NOT
+imposed, U0-H: no selection). Evolution rides identity steps only.
+Hard = structural adjacency + these field relations. Ledger (dN,
+dE_G, dQ, dE_psi, dxi, triangles, B/L) is DESCRIPTIVE, never
+gating (CONS-0 no-go respected; no promotion).
+
+**Headline domain (frozen):** graph sector (V0 psi = 0 exactly):
+field compatibility closes trivially, so canonical-class
+enumeration is finite and EXACT (DP over walks, bigints, never
+sampled; explicit materialization only for capped audits).
+Canonical universe = connected non-isomorphic simple graphs N in
+1..6 from nx.graph_atlas_g (deterministic; 143 classes
+1/1/2/6/21/112); cid = (N, k). N = 7 splits dropped + counted
+(bounded-universe boundary, filed); robustness: N <= 5 rerun +
+N <= 7 spot (N_- <= 4, T <= 3). Labeled mode (N <= 4, 44 states,
+descriptive/cross-check) uses the TIME-0 downshift rule
+(contraction keeps i, drops j, shifts > j; split w -> (w, N_new)),
+bridged to BR-2.5 ops by iso + field-multiset pins per
+transition. Field sectors enter ONLY via labeled spot cases
+(R-control, constructed I/J cases) with exact affine-membership
+propagation (split fractions form an affine reachable set;
+membership decided by lstsq, no sampling of the continuum).
+
+**TIME-0B/K reversal (frozen):** Theta = reverse slice order +
+conjugate fields. V0-exact; 1e-9 field tolerance (Krylov grade).
+K-gate: N_hist(a,b;T) == N_hist(b,a;T) all pairs T in 1..3 +
+transition mirror (C<->S) over every interior transition. If an
+interior mirror is missing it is REPORTED, not repaired.
+
+**TIME-0C propagator (frozen):** U(G) = banked Krylov evolve_fixed
+one step dt = 0.1; reverse = -dt. C0: roundtrip <= 1e-12 (V0
+bitwise zero, pinned).
+
+**Grid (frozen):** headline N_- in 1..6 x T in 2..6, all (c_-, c_+)
+pairs (143^2 per T); anchored I/J at (T1,T2) in {1,2}^2;
+R-control on {edge2, path3, tri3} x T=2 + edge2 x T=3 (seeded,
+complete-flagged); labeled census T in {2,3}.
+
+**Controls (frozen C0-C7):** C0 reversibility; C1 hand counts
+(universe sizes, edge-graph T=1 successors {C,I,S,S} with P3/K3
+outcomes, toy chain = 1, toy diamond = 2, explicit-vs-DP);
+C2 reversal symmetry; C3 canonical-id permutation invariance +
+labeled-projection equality; C4 every contraction edge R = 1 via
+influence_check + R_time pairwise decomposition; C5 banned-token
+scan (record/nbrs_i/nbrs_j/preimage) over all event stores;
+C6 DP-vs-explicit + participation sums + labeled-lift existence;
+C7 verdict consumes aggregates only (determinism + rung-table
+pins). R-gates: R1 identity walk present + matching, R2
+on-trajectory >= 1 walk; R3 off-trajectory count RECORDED (not
+gated: excursion DOFs may cover generic finals). TIME-0R/S/T
+controls pinned pre-data. TIME-0Q DEFERRED (no banked M_O;
+constructing one = new ontology).
+
+**Ladder (frozen thresholds):** headline requires C0-C6 green
+else TIME0-INCONCLUSIVE. Pooled f_unique < 0.2 -> TIME0-NULL.
+>= 0.8 with worst-T >= 0.6, pooled f_compatible >= 0.1, and
+split-resolution >= 0.8 -> TIME0-UNIQUE (+ R_space = 1 and
+no-objective audit -> TIME0-LOCAL). Else TIME0-CONSTRAINED.
+Skeleton (identity-compressed) f_unique reported as exact
+descriptive co-headline (timed = sum_L C(T,L) S_L, pinned).
+Scaling trend (TIME-0O) and N-only coarse-graining (TIME-0P)
+descriptive. No extrapolation beyond N <= 6 without combinatorics.

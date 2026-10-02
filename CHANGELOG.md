@@ -3,6 +3,14 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **Unreleased (TIME-0)** — Two-boundary history selection prereg +
+  apparatus (pre-data): `src/bh_graph/time0.py` (canonical N<=6 universe,
+  pairwise compatibility, exact DP counters, Theta, affine field
+  propagation, frozen ladder), `tests/test_time0.py` (C0-C7 + R/S/T
+  controls), `scripts/run_time0_campaign.py` + `scripts/analyze_time0.py`,
+  TIME0-PREREG in `docs/DEFERRED.md`. Read-only consumption of
+  BR-2.5/2.6/2.7 + CONS-0 + EM-0 + U0 apparatus (byte-identical).
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).
