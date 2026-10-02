@@ -524,10 +524,15 @@ def split_isomorphism_classes(g: nx.Graph, psi: np.ndarray, order: list,
     Two SPLIT outcomes share a class iff their post-split graphs are
     isomorphic AND their |psi| multisets match to 1e-6 (U0 tick-relabeling
     convention). NONE is always its own class. Deterministic order.
-    Performance: candidates are pre-grouped by the sound signature
-    invariant (degree sequence, |psi| multiset, N, E); the exact pairwise
-    test runs only within same-signature groups (different signature =>
-    definitely non-isomorphic, skipped without changing the result).
+    Performance: candidates are pre-grouped by sound necessary
+    invariants (degree sequence, |psi| multiset, N, E, and the
+    Weisfeiler-Lehman graph hash); the exact pairwise test runs only
+    within same-key groups. Every key is a graph-isomorphism invariant,
+    so different keys => definitely different classes (WL collisions
+    only coarsen groups, never merge classes: the exact test still
+    decides within a group). No node-colored hashing is used: the class
+    definition requires graph iso + magnitude-MULTISET match (weaker
+    than colored iso), so colored keys would be unsound.
     """
     psi = np.asarray(psi, dtype=np.complex128)
     order = list(order)
@@ -544,7 +549,8 @@ def split_isomorphism_classes(g: nx.Graph, psi: np.ndarray, order: list,
     groups: dict = {}
     for ko in [outcome_key(o) for o in admissible]:
         s = sigs[ko]
-        skey = (s["kind"], tuple(s["deg"]), tuple(s["mag"]), s["E"], s["N"])
+        wl = nx.weisfeiler_lehman_graph_hash(states[ko][0])
+        skey = (s["kind"], tuple(s["deg"]), tuple(s["mag"]), s["E"], s["N"], wl)
         groups.setdefault(skey, []).append(ko)
     classes = []
     for _skey, members in sorted(groups.items(), key=lambda kv: kv[1]):
