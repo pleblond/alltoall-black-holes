@@ -3207,3 +3207,33 @@ L_DIAG = 8 census gate corrected 80 -> 78 (64 flat + nodal(8) = 64 +
 14 = 78; the prereg "80" was an arithmetic typo). Both legs agree:
 exact-diag n_zero = 78, Bloch n_zero = 78, candidate residuals 0.0.
 No gate logic changed; the asserted number now matches the derivation.
+
+### VACFIELD0-AMENDMENT-4 (post-data gate corrections + frozen follow-up; verdict not yet filed)
+
+Two preregistered gates were algebraically naive (discovered on
+campaign data; original numbers filed, not hidden):
+
+(a) VPLUS abs peak-slope (-1.1426 measured vs -1 +/- 0.05 gated).
+The 0J identity gives dB = cross + dd EXACTLY with cross linear in
+a and dd a-independent (abs mode): the peak ratio mixes the 1/a
+(large-a) and 1/a^2 (small-a) regimes, so a single 7-decade slope
+cannot be -1. The gate is REPLACED by frozen follow-up tasks
+"ampdecomp" (VPLUS x packet/amplitude x 7 amps, abs mode; 14 tasks,
+predictions frozen HERE before running): complex-2 norms of the
+cross and dd parts at t in {0, 8, 30} with cross log-log slope +1
++/- 0.05 and dd slope 0 +/- 0.05 (both exact by bilinearity; positivity
+asserted loud). VPLUS normalized_robust = frac-collapse + abs-raw
++ v-spread (all already green) + decomp (new). The full-range
+-1.1426 and the large-a-subset slope are FILED as notes, not gated.
+
+(b) VMINUS Eabs vacuous leg. E(a) = -0.0 EXACTLY at all amplitudes
+(exact-zero eigenstate), so the slope leg is vacuous, not failed.
+Rule: a trivial-exact-zero Eabs leg passes iff the candidate's
+Rayleigh energy is exactly 0 (census: 0.0, residual 0.0) and E(a)
+== 0 at every amplitude (analyzer-verified via energy_of; no
+campaign code touched). Q/Bmax slopes + normalized collapse gate
+as before. Rationale filed: E = 0 is VMINUS's distinguishing
+feature, not a scaling defect.
+
+Task count 190 -> 204 (14 follow-ups). Ladder structure unchanged.
+Cosmetic: analyzer note "22/80" -> "22/78".

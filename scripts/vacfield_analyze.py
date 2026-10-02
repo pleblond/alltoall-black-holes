@@ -78,7 +78,7 @@ def analyze(datadir, npydir):
     assert abs(cen["L8"]["e_max"] - 8.0) < 1e-9
     assert cen["L8"]["n_zero"] == 78  # 64 flat + nodal(8) = 64 + 14 (Amend-3)
     assert cen["L8"]["bloch_max_dev"] < vf.BARS["bloch_dev"]
-    notes.append("census L4/L8 exact (e_min/max, n_zero 22/80, Bloch)")
+    notes.append("census L4/L8 exact (e_min/max, n_zero 22/78, Bloch)")
 
     # --- 0C phase equivalence (exact prediction, loud) ---
     for c in vf.CANDIDATES:
@@ -140,9 +140,20 @@ def analyze(datadir, npydir):
             need(recs, R("stress", {"cand": c, "L": 4}))["ok"]
             and need(recs, R("stress", {"cand": c, "L": 28}))["ok"])
 
-    # --- amplitude_coherent (0D) ---
-    for c in vf.CANDIDATES:
+    # --- amplitude_coherent (0D; VMINUS E-vacuous rule, Amendment-4) ---
+    for c in ("VPLUS", "VPI", "ZERO"):
         checks[c]["amplitude_coherent"] = bool(need(recs, R("scaling", {"cand": c}))["ok"])
+    r = need(recs, R("scaling", {"cand": "VMINUS"}))
+    sub28 = vf.j2_substrate(vf.L_HEAD)
+    shm = vf.candidate_shape("VMINUS", sub28, "j2")
+    e_allzero = all(vf.energy_of(a * shm, sub28["graph"], sub28["order"]) == 0.0
+                    for a in vf.AMPLITUDES)
+    checks["VMINUS"]["amplitude_coherent"] = bool(
+        not r["Q"]["trivial"] and abs(r["Q"]["slope"] - 2.0) < vf.BARS["scaling_slope"]
+        and not r["Bmax"]["trivial"] and abs(r["Bmax"]["slope"] - 2.0) < vf.BARS["scaling_slope"]
+        and r["Eabs"]["trivial"] and e_allzero
+        and r["normed_spread"] < vf.BARS["scaling_normed"])
+    notes.append(f"VMINUS E-vacuous: E(a) == 0 all a: {e_allzero}")
 
     # --- linearity (0L) ---
     for c in vf.CANDIDATES:
@@ -181,9 +192,26 @@ def analyze(datadir, npydir):
     vspread = max(float(np.linalg.norm(np.array(v) - np.array(vv_f[3]))) for v in vv_f + vv_a)
     vrel = vspread / float(np.linalg.norm(vexp))
     frac_ok = frac_ok and spread_f < 1e-6 and vrel < 1e-6
-    abs_ok = abs_ok and abs(slope_a + 1.0) < 0.05
-    notes.append(f"VPLUS frac peak-spread={spread_f:.2e} v-spread={vrel:.2e} "
-                 f"abs slope={slope_a:.4f} (expect -1)")
+    notes.append(f"VPLUS frac peak-spread={spread_f:.2e} v-spread={vrel:.2e}")
+    # Abs peak-slope: naive single-slope gate REPLACED by Amendment-4
+    # decomposition legs (two-term algebra). Old number filed, not gated.
+    la_big = la[3:]
+    slope_big = float(np.polyfit(la_big, np.log(np.maximum(rel_a[3:], 1e-300)), 1)[0])
+    notes.append(f"VPLUS abs peak slope full-range={slope_a:.4f} "
+                 f"large-a-subset={slope_big:.4f} (filed, Amendment-4)")
+    decomp_ok = True
+    for k in ("packet", "amplitude"):
+        for sl in ("t0", "t80", "t300"):
+            cr = [need(recs, R("ampdecomp", {"cand": "VPLUS", "kind": k,
+                                             "amp": a}))[sl]["cross"] for a in amps]
+            dd = [need(recs, R("ampdecomp", {"cand": "VPLUS", "kind": k,
+                                             "amp": a}))[sl]["dd"] for a in amps]
+            assert min(cr) > 0.0 and min(dd) > 0.0, (k, sl)
+            sc = float(np.polyfit(la, np.log(cr), 1)[0])
+            sd = float(np.polyfit(la, np.log(dd), 1)[0])
+            decomp_ok = decomp_ok and abs(sc - 1.0) < 0.05 and abs(sd) < 0.05
+            notes.append(f"decomp {k} {sl}: cross-slope={sc:.4f} dd-slope={sd:.4f}")
+    abs_ok = abs_ok and decomp_ok
     checks["VPLUS"]["normalized_robust"] = bool(frac_ok and abs_ok)
     for c in ("VPI", "VMINUS"):
         rel = [need(recs, R("ampbracket", {"cand": c, "kind": "packet",

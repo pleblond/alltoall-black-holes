@@ -364,6 +364,38 @@ def t_amp(p, outdir, npydir, record):
             "vfit": prop["vfit"], "msd_alpha": prop["msd_alpha"]}
 
 
+def t_ampdecomp(p, outdir, npydir, record):
+    """Amendment-4 follow-up: cross/dd decomposition scaling (abs mode).
+
+    Fixed-absolute perturbations (||dpsi|| = eps0) over the amplitude
+    series; per-edge 0J decomposition cross = vac* d + d* vac (linear
+    in a, EXACT) and dd = d* d (a-independent, EXACT) with complex-2
+    norms at steps {0, 80, 300} (t = 0, 8, 30). Predictions frozen in
+    Amendment-4 before these tasks run: cross slope +1, dd slope 0.
+    """
+    from bh_graph.ballistic import evolve_fixed
+
+    sub = vf.j2_substrate(vf.L_HEAD)
+    eu, ev = vf.edge_arrays_of(sub)
+    eu = np.asarray(eu, dtype=int)
+    ev = np.asarray(ev, dtype=int)
+    h = vf.hamiltonian_of(sub)
+    a = float(p["amp"])
+    vac = a * vf.candidate_shape("VPLUS", sub, "j2")
+    d0 = vf.perturbation(p["kind"], vac, sub, eps=vf.EPS_HEADLINE / a, a=a)
+    n_steps = int(round(vf.T_K / vf.DT_K))
+    drows = evolve_fixed(d0, h, vf.DT_K, n_steps)["psi"]
+    vrows = evolve_fixed(vac, h, vf.DT_K, n_steps)["psi"]
+    out = {"d0_norm": float(np.linalg.norm(d0))}
+    for step in (0, 80, 300):
+        v, d = vrows[step], drows[step]
+        cross = np.conj(v[eu]) * d[ev] + np.conj(d[eu]) * v[ev]
+        dd = np.conj(d[eu]) * d[ev]
+        out[f"t{step}"] = {"cross": float(np.linalg.norm(cross)),
+                            "dd": float(np.linalg.norm(dd))}
+    return out
+
+
 def t_zero(p, outdir, npydir, record):
     # 0N/0O controlled leg: exact single-node zero evolved T = 6.
     from bh_graph.ballistic import evolve_fixed
@@ -502,6 +534,8 @@ TASKS = {
                     "amp": [1e-3, 1e-2, 1e-1, 1.0, 10.0, 100.0, 1000.0]}),
     "ampbracket": (t_amp, {"cand": ["VPI", "VMINUS"], "kind": ["packet"],
                            "mode": ["frac"], "amp": [0.1, 1.0, 10.0]}),
+    "ampdecomp": (t_ampdecomp, {"cand": ["VPLUS"], "kind": ["packet", "amplitude"],
+                                "amp": [1e-3, 1e-2, 1e-1, 1.0, 10.0, 100.0, 1000.0]}),
     "zero": (t_zero, {"cand": ["VPLUS", "VPI", "VMINUS"]}),
     "sectors": (t_sectors, {"L": [4, 8, 28]}),
     "subctl": (t_subctl, {"sub": ["sq-28", "ring-256", "quot-28"]}),
