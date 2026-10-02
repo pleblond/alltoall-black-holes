@@ -3,6 +3,20 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (SG verdict)** — SG-0 VERDICT banked (beast): Q1 no
+  splitting (0 firings / 50+ cells, all stages/shapes/gradients);
+  Q2 bare wave SG1 (sine weak ladder 8/8 valid: Δy=±2.30/±4.10,
+  reversal exact, S3c linear, no broadening); anti frozen under
+  splitter (S4); gate still FAILS → SG-2/3/4 stay gated; two
+  owned amendments (pilot gate-miss → weak ladder → sine apparatus).
+
+- **unreleased (SG prereg)** — Stern–Gerlach phenomenology campaign opened
+  on PR #65 tail: admission gate audited FAILS (P0/P3-A/MALUS-0 NULL,
+  D15 closed, COH/SLIT firewalled, FEP/B0/B1 unfired → no SG-2/3/4);
+  SG-0 null bank preregistered (sector-blind y-bond splitter H_SG,
+  frozen SPLIT detector + SG0–SG4 ladder, exact Δy nulls, S0–S5 stages);
+  apparatus (`stern_gerlach.py`) + bank script + 14 pins (pre-data).
+
 - **unreleased (FEP-0 prereg)** — D14-FEP finite-excitation
   phenomenology scan opened on P1 tail (ac6a140): discovery (not
   fitting) of persistent composite K+ψ excitations under the frozen
