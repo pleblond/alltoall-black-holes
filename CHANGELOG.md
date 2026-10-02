@@ -3,6 +3,19 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (EM-1 falsification)** — Electromagnetic-falsification
+  campaign on frozen J2 wave (read-only EM-0/MALUS-0/OBS-0/SPEC-0/P1
+  apparatus, no new DOF, gap-tuning firewalled): new `falsification.py`
+  (spectral inventory + gapless classes/chiral-mirror/anticonfinement +
+  commutant census + mode count + local-phase/T1T2T3/winding + cone
+  search + circulation, 18 pins) + `em1_campaign.py` runner (17 tasks);
+  verdict EM1-FALSIFIED (prereg pattern exact, all green first run on
+  beast): F1-FAIL (no admissible gapless static sector, xi saturates)
+  + F2-UNRESOLVED (S-charge unsuitable, matter immature) + F3-FAIL
+  (single scalar mode) + F4-FAIL (no local redundancy, complex scalar)
+  + F5-FAIL (no linear-isotropic sector); 711 collected (709 passed,
+  2 torch/GPU skips). EM program at branch point (filed, not decided).
+
 - **unreleased (EM-0 continuum-field)** — Continuum-field-identification
   campaign on bare J2 (frozen H=-A, read-only POT0/POT1/BR2/P1 apparatus):
   new `continuum.py` (exact real eqs + continuity + J2 Bloch

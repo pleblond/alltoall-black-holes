@@ -5222,3 +5222,137 @@ envelope-m*=1/4-Manhattan-front-8) + conserved-current (J-transports-norm)
 (exact-Bloch + IR-shared-Minv + gap-analytic!)). FORBIDDEN-RESPECTED
 (no-EM-claims!). EM-1-GATE: OPEN (falsification-next (radial-vs-required/
 signed-matter/polarization/gauge/Lorentz!)).
+EM1-PREREG (FROZEN-2026-10-02 (~04:30-UTC (commit-predates-
+ALL-EM1-campaign-runs!)); electromagnetic-falsification
+(EM-1-gated-OPEN-by-EM0-BACKREACTIVE!)).
+QUESTION (5-falsifiers (ALL-required (one-or-two-green-NOT-pass!))):
+(F1)-does-frozen-theory-contain-source-accessible-gapless-static-sector?;
+(F2)-does-signed-conserved-additive-localizable-matter-quantity-exist?;
+(F3)-do-two-physical-propagating-polarization-modes-exist?;
+(F4)-does-local-redundancy-emerge-from-(G,psi)-ontology?;
+(F5)-does-source-accessible-linear-isotropic-IR-sector-exist?
+FROZEN-ONTOLOGY: EM0-frozen (G=bare-J2-torus + psi=r+i*s + H=-J*A
+(J=1-headline!)); NO-new-DOF (no-charge/no-A_mu/no-E/B/no-photon-vars/
+no-coin/no-edge-phases/no-node-components/no-gauge-links/no-onsite/
+no-couplings/no-detuning/no-new-H!). FIREWALL: POT-1/EM-0-gap-NOT-tunable-
+to-zero (w->-8-edge-access = edge-tuned-EXCLUDED (never-discovery!));
+gaplessness-must-follow-from-symmetry/spectral-zero/conservation-law.
+BANKED-INPUTS (read-only): EM0-BACKREACTIVE (one-field-static-massive-
+Helmholtz-gap-0.5-Yukawa-xi=0.5265 + radiative-Schrodinger-m*=1/4-front-8
++ conserved-J + backreactive-B (exact-Bloch + IR-shared-Minv-4I!));
+MALUS-0-NULL (7e26d06 (malus-law-m0 (single-propagating-sector ([H,S]=0/
+H*P_anti=0-exact/sym=square@2J/n_zero=838=784+54/sym-v=1.2110-anti-frozen/
+sheet0-50/50!)))); OBS-0-DISCORDANT (1563b55 (no-earned-common-metric =>
+1D-operational-leg-MOOT (intrinsic-distance-only!))); SPEC-0 (3f9292d
+(near-miss + rewired-match => SPEC-1/2-MOOT (no-bound-states!)));
+P1-B0a/B1-NULL (af2dfe9 (no-sitters/anomalies (no-matter-candidates!))).
+APPARATUS (new-module-falsification.py (ADDS-only (banked-untouched!))):
+critical_table/nodal_sample/branch_mult/inventory (1A) + gap_class/chiral/
+mirror/antisym-pins/secular-slope/solve_norm (1B) + commutant_table/range/
+flat_proj/sheet_imbalance (1E) + PR/peak (1F) + sheetpin_mirror_dev (1G) +
+mode_count/scan (1H) + local_phase/bond_law (1J) + compensation_T1T2T3/
+cycle_winding (1K) + ray_fit/critical_class/bloch_eigvecs/overlap (1L) +
+touching_rose (1M) + vortex_imprint/plaquette_circ/twist (1O).
+TESTS (tests/test_falsification.py (18-pins (NO-campaign-data!))):
+inventory-critical/nodal/L28-838 + gap-classes-frozen + chiral-algebra/
+mirror-identity/norm-equal + anticonfined-bulk-0 (+sym-contrast!) +
+slope-helper + commutant-L4 (commute-I/S/Tx/Ty/H/Pflat + Gamma-anticommute
++ ranges-0/1/1/2/global + filed-signed/conj!) + translation-unitarity +
+flat-projector-trace-22 + sheet-signed-(+1/-1/0)-conserved + PR/peak-spots
++ sheetpin-mirror-exact-negation->0.5 + mode-single-everywhere + local-
+visible-O(1)-global-0 + T1T2T3-residuals-O(1) + winding-integer-invariant
++ rays-(Gamma-quadratic/nodal-drift)-nowinding + rose-anisotropic +
+vortex-circulation-twist-law.
+RUNNER (scripts/em1_campaign.py (17-tasks-parallel!)): static/mirror/
+anticonf/xi_L20/L28/L42/L64/radial/commutant/scons/poltrans/disperse/
+sheetpin/localphase/t1t2t3/winding/vortex (+analytic-inline-1A/1H/1L/1M/1N
++ C6-det + bank-controls!).
+GATES (frozen!): A-inventory-exact + kinds; B-class-frozen + static
+(norms-finite-offband-resid-1e-6 + edge-div->3x + w0-singular!) + xiw
+(xi-monotone-4pt-to-edge + ratio-<0.35!) + mirror-
+exact + xi-mirror-1e-9 + anticonfined-bulk-1e-9 (+sym-contrast-1e-3!);
+C-xi-ratio-<1.2 + range-<=4; D-exp-beats-power-2x; E-comm-filed + ranges +
+chiral-L6 + Q_S-(+1/-1/0)-1e-9 + conserved; F-PR-ratio->50 + peak-decay->10x
++ dynasym-anti-disp-<5%-sym; G-mirror-1e-9 + negation->0.5 (FAILS!) +
+Bsorted/E-1e-9; H-maxcount-1 + n_two-0; I-sym-v-5%-R2>0.9 + anti-frozen-5%
++ sheet0-Q0-conserved; J-local->0.05-all + global-1e-9-all; K-T1T2T3->0.05-
+all + winding-integer + small-phase-invariant-1e-9 (+large-rewrap-filed
+(discrete-only!)); L-nocone + rays + overlap-1-1e-12;
+M-rose-spread->1.0; N-gap-0.5-refile (ONLY-unified-sector-massive!);
+O-PR-ratio->2 + gam-ratio-<0.6 + twist-mono-from-0 (SECONDARY!);
+C6-bit-identical + bank-xi-5% + bank-em0-5% + bank-v-2%.
+FALSIFIERS: F1-PASS-iff-(admissible-gapless-AND-xi-grows-2x)
+(EXPECTED-FAIL (only-edge-tuned-zeroes-gap (excluded!) + resonance-
+has-no-static-response + mirror-same-range + anti-confined + xi-
+saturates!)); F2-PASS-iff-bare-suitable (UNRESOLVED-iff-bare-unsuitable-
+AND-matter-immature (EXPECTED-UNRESOLVED (S-conserved-signed-but-sheet-
+automorphism-coupled (negation-fails!) + S-conjugation-propagating<->frozen
++ TxTy-momentum + H-energy + Gamma-not-conserved + Pflat-unsigned-arbitrary
++ single-site-disperses + SPEC/P1-no-matter!))); F3-PASS-iff-modecount>=2
+(EXPECTED-FAIL (count<=1-everywhere-incl-touching (flat-frozen!) +
+MALUS-replication!)); F4-PASS-iff-any-compensation-works (EXPECTED-FAIL
+(local-phases-shift-BJE-O(1) + T1T2T3-all-O(1) + only-discrete-winding
+(non-redundancy!) => complex-scalar-not-gauge-field!)); F5-PASS-iff-cone-
+exists (EXPECTED-FAIL (Gamma/M-definite + X-indefinite + nodal-drift-
+(v.q-NOT-v|q|) + eigvec-k-independent-winding-0 + rose-leading-anisotropic
++ only-unified-sector-massive!)). 1O-FILED (vortex-disperses + twist-
+continuous (momentum-not-flux!) (cannot-rescue-F1-F5!)).
+LADDER: !hard(A&B&C&D&E&F&G&H&I&J&K&L&M&N&C6&Cbank)->EM1-INVALID
+(apparatus-broken-rerun!); all-PASS->EM1-SURVIVES; any-FAIL->EM1-FALSIFIED
+(EXPECTED (F1/F3/F4/F5-FAIL + F2-UNRESOLVED!)); else->EM1-UNRESOLVED.
+EXECUTION: beast-96 (jobs<=17 (Pool!)); seeds-frozen (0/1/2/rng-pinned!);
+determinism-C6-gated; suite-parallel (pytest-xdist!); no-local-experiments
+(beast-only!). NEXT: freeze-commit-then-beast-campaign (gated!).
+EM1-VERDICTS (beast-run-8b0d95f (prereg-frozen-pre-data!); 17-tasks-33s +
+suite-709-passed-2-skipped-74s-(-n-24-thread-capped (first--n-80-try-thrashed-
+on-ARPACK-oversubscription@load-420 (killed-clean-reran-constrained (filed!))!))):
+LADDER-EM1-FALSIFIED (F1-FAIL + F2-UNRESOLVED + F3-FAIL + F4-FAIL + F5-FAIL
+(prereg-pattern-EXACT (all-15-stages + all-controls-green-first-run!))).
+1A-v (Gamma-min--8/M-max-+8/X-saddles-0-flat_gap-0 + nodal-E0-drift +
+L28-838-inventory-exact!); 1B-v (classes-frozen + norms-1.46/1.91/3.37/5.93
+(edge-div-4.06x!) + w0-singular-NaN-resid + xiw-0.526/0.378/0.234/0.160
+(monotone-ratio-0.30!) + mirror-exact-xi-bit-identical + anticonfined-bulk-
+0.0-EXACT (sym-0.399-contrast!) (range-ONLY-via-tuning (pre-data-smoke-also-
+killed-time-domain-secular-design (pinned-DC-not-growing (redesigned-to-
+solve-level (prereg-updated-pre-commit!)))!)); 1C-v (xi-0.5260/0.5265/0.5265/
+0.5265 (L64-=-L42-to-9-decimals-CONVERGED!) + range-3-all-L (SATURATES!));
+1D-v (exp-beats-power-2.6x (Yukawa-not-power!)); F1-FAIL (no-admissible-
+gapless-class (edge-excluded + resonant-singular + mirror-same-range + anti-
+confined) + xi-saturates => NO-long-range-static-field (present-field-
+cannot-reproduce-ordinary-long-range-EM!)); 1E-v (commute-I/S/Tx/Ty/H/Pflat-
+exact + Gamma-anticommutes + ranges-0/1/1/2/4 + Q_S-+1/-1/0 + conserved-
+3.6e-13!); 1F-v (symcell-PR-2->560-280x + peak-114x-decay (no-stable-object!)
++ site-PR-sat-7.86-frozen-fraction-filed (pre-data-smoke-caught-single-site-
+design-error (redesigned-to-symcell (prereg-note-pre-commit!))) + dynasym-
+anti-disp-0.0-exact (S-conj-maps-propagating<->frozen!)); 1G-v (mirror-0.0-
+exact + negation-1.86-FAILS + Bsorted-0.0 + E-equal-16-digits (sheet-
+automorphism-NOT-negation!)); F2-UNRESOLVED (S-signed-conserved-but-
+unsuitable (no-negation-coupling + frozen-conjugate!) + matter-immature
+(SPEC-0/P1-null-banked + dispersal-measured!) (NOT-PASS (constrains-future-
+QK (must-pass-1G-where-S-failed!))); 1H-v (maxcount-1 + n_two-0 (48x48-grid-
+incl-touching!)); 1I-v (sym-v=1.21102-R2=0.99974-alpha=2.087 (MALUS-digit-
+for-digit!) + anti-disp-0.0-exact + sheet0-Q0-conserved!); F3-FAIL (single-
+active-propagating-scalar-mode (MAJOR-falsifier!)); 1J-v (local-dB-0.207/
+dJ-0.243/dE-5.28-O(1!) + global-1e-14/1e-17 (contrast-exact!)); 1K-v (T1-
+0.255/T2-0.276/T3-0.265-all-O(1) (NO-redundancy!) + winding-1-exact +
+small-phase-invariant-1e-9 + large-rewrap-0-filed (pre-data-smoke-caught-
+wrapping-subtlety (telescoping-only-below-branch-cut (redesigned (prereg-
+updated-pre-commit!))) (discrete-only!)); F4-FAIL (complex-scalar-field-
+NOT-gauge-field (only-global-U(1)!)); 1L-v (nocone + Gamma-quadratic-(joint-
+a1-0.005-quartic-contam/a2-1.97) + nodal-drift-(a1-5.69) + eigvec-overlap-1-
+exact (winding-0!)); 1M-v (rose-0.49/5.64-spread-1.43 (LEADING-anisotropy!));
+1N-v (gap-0.5-spread-0.0-refile (ONLY-unified-sector-massive!)); F5-FAIL
+(no-linear-isotropic-source-accessible-sector!); 1O-filed (vortex-PR-201->
+1141-5.7x + gam-0.0063->0.0002-ratio-0.024 (DISPERSES!) + twist-0.0->0.00056-
+monotone (continuous-NO-quantum!) (momentum-not-flux (SECONDARY (rescues-
+nothing!)))). CONTROLS: C6-v(bit-identical)/Cbank-xi-5%-(EM0-digits-to-4th-
+decimal!)/Cbank-v-2%-(1.21102!)/Cbank-em0-5%.
+INTERP (disciplined!): frozen-J2-wave-is-ONE-massive-complex-scalar-field
+(Yukawa-xi=0.527 + Schrodinger-m*=1/4 + norm-current + B-conjugate) with
+NO-electromagnetic-sector (statically-gapped + unsigned-coupled + single-
+mode + ungauged + nonlinear-IR (five-independent-falsifiers (four-FAIL +
+one-UNRESOLVED-pending-matter-that-does-not-yet-exist!))). FORBIDDEN-
+RESPECTED (no-EM-claims (falsification-complete!)). EM-PROGRAM-BRANCH-POINT
+(filed-not-decided!): (i)-new-microscopic-DOF (coin/edge-phases/vector);
+(ii)-new-substrate (beyond-bare-J2); (iii)-drop-EM-target (scalar-program-
+continues (backreaction/cosmology/gravity-tracks-unaffected!)).
