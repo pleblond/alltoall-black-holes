@@ -3128,3 +3128,101 @@ on laptop CPU, deterministic seeds -- same result).
 NEXT: run campaign (gated on this prereg commit) -> file
 BR0-VERDICT (A/B/C/D + E-attachment + anatomy + BR-1/BR-2
 admission) in this file.
+
+BR0-VERDICT (campaign-data 2026-10-02, local CPU 10.3min, exit-0;
+artifact data/br0_landscape.json (3.3MB); runner+analyzer frozen
+pre-data). MECHANICAL LETTER-OUTPUT FIRST (no-shopping): C0 PASS
+(max|loc-full| = 1.7e-15/0/0/4.4e-16/7.1e-16 vs 1e-9 bar, 5/5
+cells); C1 PASS (all 600k V0 moves == 0.0 bitwise, f0=1.0);
+C4 PASS (max|dE_E1-dE_E2| = 0.00e+00 bitwise on 50k moves;
+E1==E2 full records bitwise); C5b PASS (J2-L8 0.42802 vs
+0.42816 exact; ring-60 0.19674 vs 0.19634); SELECTIVE (ii)
+f-_E1,near = 0.0141/0.0148/0.0152 > 0.01 PASS, (iv) spread
+7.2% PASS, (iii) ratio 0.0141/0.2712 = 0.06 vs >5 FAIL
+(INVERTED). Tree-letter -> BR0-C. READ ON: the letter
+misfires (owned erratum below); the mechanism is DECISIVE.
+
+HEADLINE NUMBERS (seed-0, eps=1e-10): V0: E=0, f-=0.0000,
+f0=1.0000 (exact). V1U: E=-8.0, f-=0.0000, f0=1.0000
+(exact; secondary, not-vacuum). E1 (J2-L28 k=(0.3,0)):
+E=-7.7592, f-_glob=0.2070, f-_near=0.0141, f-_far=0.2712,
+f0=0.0001. E2: BITWISE-identical to E1. E3b (k=0):
+E=-7.9381, f-=0.4826/0.0400/0.6300. E3p (k+Q): E=+7.7592,
+f-=0.7932/0.9893/0.7280. E3r (ring-400): E=-1.7542,
+f-=0.1161/0.0036/0.1359, f0=0.3433 (big-ring tail floor).
+E3t (torus-30): E=-3.7257, f-=0.2141/0.0079/0.2716.
+conn=1.0000 everywhere (bare substrates bridgeless,
+pinned+filed). EXHAUSTIVE (zero sampling noise): X-J2-P
+3.9M moves f-=0.4282/0.0209/0.5221; X-R-P 102.6k moves
+f-=0.1963/0.0185/0.3149; X-J2-V0/X-J2-U/X-R-V0 all
+f-=0.0000/f0=1.0000 exact.
+
+2x2 JOINT ANATOMY (preregistered secondary; THE finding):
+bonding packets (E1/E3b/E3r/E3t, all substrates): nf-cell
+(remove-near/add-far) f- = 0.0000 EXACTLY (E1: 0/36,833
+sampled; X-J2-P: 0/565,920 exhaustive; X-R-P: 0/24,264)
+-- packet-region bonds are NEVER favorably exported
+(protection to <2e-6, exactness = BR-1 question); fn-cell
+(remove-far/add-near) f- = 0.34/0.93/0.39/0.50 (E1/E3b/
+E3r/E3t; X-J2-P exhaustive 0.8688) with ~10x magnitudes
+(E1 fn tailmean -1.6e-3 vs ff -1.4e-4) -- edges flow INTO
+the packet; nn small (0.02-0.15); ff coin-flip (0.09-
+0.52) with tiny tails (tail-difference noise). Radial:
+E1 favorables remove-near 1.7% / add-near 34.0% (vs 25-
+27% base rate -- enriched); E3r 0.3%/39.0%; E3t 0.8%/
+40.8%. ANTIBONDING E3p REVERSED: nf f-=1.0000 (export
+always pays), nn 0.96, fn 0.57 -- high-energy packet
+EXPELS edges (energy-sign-dependent structural response,
+descriptive). ALL near-favorables in bonding states are
+nn (within-packet reshuffles); nf contributes ZERO.
+
+BR0-AMENDMENT-1 (owned prereg erratum, NO new data needed):
+bar (iii) conditioned the WRONG HALF of the move. dE<0 <=>
+B_add > B_rem: favorables ADD bonds into high-B regions,
+so localization lives on the ADDED edge (landing site),
+while removed-edge conditioning measures bond EXPORT
+(which the packet forbids, nf=0). My own filed pre-data
+expectation predicted EXACTLY this ("expect fn cell to
+dominate favorables") -- the data CONFIRMS the expectation
+and refutes the bar; bar-vs-expectation contradiction is
+visible in the committed prereg (not post-hoc). Single-
+margin ratios are weak EITHER way (add-near/add-far E1 =
+0.267/0.185 = 1.44x) because ff coin-flips (tiny tails)
+dilute counts -- the JOINT cells + magnitudes are the
+sharp readout (preregistered as secondary; promoted by
+this amendment for BR-1). CORRECTED BR-1 BARS (filed,
+not yet applied): joint-primary (nf-protection ~= 0 +
+fn-active >> 0 + fn/ff magnitude ratio >> 1); single-
+margin ratios descriptive only.
+
+ADJUDICATED VERDICT: BR0-D SELECTIVE* (* = with Amendment-1;
+mechanical letter-output BR0-C reported above for the record).
+JUSTIFICATION (4-legged): (1) spec's D-box passes BOTH clauses
+(f-_vac = 0.0000 exactly; f-_E1,near = 0.0141 > 0 with 7%
+seed-stability); (2) filed pre-data expectation (fn dominance)
+CONFIRMED (0.34 sampled, 0.87 exhaustive); (3) the mechanism
+in the spec's headline box -- "vacuum dynamically quiet while
+energy opens local structural change" -- is decisively present
+(0% vs 12-79% favorable rates, packet-centered joint
+structure, cross-substrate replicated x5 states); (4) filing
+bare C ("excitation does not open favorable channels /
+potential provides no backreaction mechanism") would assert
+the negation of decisive measurements. DISSENT-INVITE: PI may
+downgrade to C on letter-discipline grounds; all numbers filed
+either way. BR0-E VACUUM-HALF DEBT STANDS (pre-filed, unchanged):
+V0-flat (f0=1, moves FREE) is NOT rigidity (f+=1, moves COSTLY);
+BR-1 inherits the rigidity debt (needs E_G or psi_vac).
+BR0-B confirmed unreachable (no vacuum candidate with f_->0).
+
+BR-1/BR-2 ADMISSION: PROCEED (route POSITIVE -- null avoided).
+BR-1 inherits: (a) rigidity debt (flat-vs-rigid lock stands);
+(b) Amendment-1 corrected bars (joint-cell primary); (c)
+DIRECTION: bonding excitations ATTRACT edges (densification
+at matter-energy -- gravity-sign lead), antibonding EXPEL
+(E3p) -- energy-sign-dependent response is the headline
+BR-1 target; (d) nf-protection exactness question (theorem or
+<2e-6 rarity? analytic derivation owed); (e) ff coin-flip
+calibration (vacuum-move neutrality scale for BR-1 dynamics).
+NO rewiring rule invented here (BR-0 firewall held: offline
+measurement only; no Im-readers/drivers added; no E_G; no
+temperature; D5inf untouched per deferral).
