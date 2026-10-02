@@ -3073,3 +3073,21 @@ insufficient where WL is incomplete. Larger states record iso-capped
 (directed-vs-undirected coarse comparison still measured on ALL states;
 class-coarsening measured exactly on tiny states). Apparatus class
 definition unchanged; campaign scope only.
+
+**RAND0-AMENDMENT-2 (POST-DATA gate repair, ledger frozen, mapping only):**
+the frozen R-census rule (every outcome inside its Wilson-99 interval AND
+chi2 p > 1e-3) is statistically incoherent for large |A|: family-wise
+error 1 - 0.99^|A| is ~100% at |A| = 3282 (U1-U4/U8 centers, degree 8)
+and ~100% at |A| = 1095 (U7), so the rule CANNOT pass with a perfect
+sampler there (expected count/outcome ~18-55; sampler = numpy choice,
+validated on all small-|A| patches and all edge patches). U5-node
+(42 outcomes) 1/3-kind failure matches the 34% multiple-comparisons
+flake rate. Repair (analyzer only, NO new data, ledger byte-frozen):
+Bonferroni-corrected Wilson (99% OVERALL across |A| outcomes, the frozen
+intent) + unchanged chi2 p > 1e-3 (valid everywhere: min expected >= 18).
+The repair can only flip fail -> pass where the original rule was
+over-strict (wider intervals, same chi2), never pass -> fail. Both the
+original-gate verdict and the repaired-gate verdict are reported; the
+physics measurements (admissible/symmetry/joint/effect) are untouched.
+Original verdict preserved on record: RAND0-INCOHERENT under the buggy
+rule (apparatus coherent; gate wrong).

@@ -78,17 +78,59 @@ def main():
                and s["edge_local"] and s["node_local"])
         coh &= gate(f"C-coherent[{k}]", row)
     for (k, p), c in sorted(cen.items()):
-        ok = all(v["consistent"] for v in c["kinds"].values())
-        coh &= gate(f"R-census[{k},{p}]", ok,
-                    ";".join(f"{kk}={vv['consistent']}" for kk, vv in c["kinds"].items()))
+        ok_orig = all(v["consistent"] for v in c["kinds"].values())
+        gate(f"R-census[{k},{p}]", ok_orig,
+             ";".join(f"{kk}={vv['consistent']}" for kk, vv in c["kinds"].items()))
+    # ---- R-census REPAIRED rule (Amendment-2, analyzer-only recomputation
+    # from frozen ledger freqs; original booleans above preserved) ----
+    from scipy.stats import chisquare, norm
+
+    def repaired_consistent(freqs: dict, n: int) -> tuple:
+        nout = len(freqs)
+        p_analytic = 1.0 / nout
+        counts = {kk: int(round(vv * n)) for kk, vv in freqs.items()}
+        if sum(counts.values()) != n:
+            return False, "count-recovery"
+        z = float(norm.ppf(1.0 - 0.01 / (2 * nout)))
+        denom = 1.0 + z * z / n
+        for kk, ct in counts.items():
+            phat = ct / n
+            import math as _m
+            center = (phat + z * z / (2 * n)) / denom
+            half = z * _m.sqrt(phat * (1 - phat) / n + z * z / (4 * n * n)) / denom
+            if not (max(0.0, center - half) <= p_analytic <= min(1.0, center + half)):
+                return False, "wilson"
+        keys = sorted(freqs.keys())
+        _stat, pval = chisquare([counts[kk] for kk in keys],
+                                [p_analytic * n for kk in keys])
+        if not (pval > 1e-3):
+            return False, f"chi2-p={pval:.2e}"
+        return True, f"z={z:.3f} chi2-p={pval:.3f}"
+
+    coh = bool(coh)  # C-coherence accumulated above; R-gates recomputed below
+    coh_repaired = coh
+    coh_original = coh
+    for (k, p), c in sorted(cen.items()):
+        det = []
+        ok_all = True
+        for kk in sorted(c["kinds"].keys()):
+            ok_r, why = repaired_consistent(c["kinds"][kk]["freqs"], c["n"])
+            det.append(f"{kk}={ok_r}({why})")
+            ok_all = ok_all and ok_r
+        coh_repaired &= gate(f"R-census-repaired[{k},{p}]", ok_all, ";".join(det))
+    for (k, p), c in sorted(cen.items()):
+        ok_orig = all(v["consistent"] for v in c["kinds"].values())
+        coh_original = coh_original and ok_orig
     for k in KEYS:
         for tag in ("disjoint", "overlapping"):
             rec = jnt[k][tag]
             if rec is None:
                 gate(f"N-{tag}[{k}]", True, "absent")
                 continue
-            coh &= gate(f"N-{tag}[{k}]", rec["normalized"] and rec["factorization"],
-                        f"n={rec['n']}")
+            ok_n = bool(rec["normalized"] and rec["factorization"])
+            gate(f"N-{tag}[{k}]", ok_n, f"n={rec['n']}")
+            coh_repaired = coh_repaired and ok_n
+            coh_original = coh_original and ok_n
     gate("C7-no-tuning", True, "pinned in tests/test_rand0.py::test_no_hidden_tuning")
 
     # ---- multiplicity exhibits (E/F/G, measured not gated-to-pass) ----
@@ -128,25 +170,33 @@ def main():
     rival_differs = any(v is False for v in sep.values())
     edge_vacuous = True  # pinned analytically: 2-singleton edge orbits (tests)
 
-    # ---- verdict ladder (frozen mapping) ----
-    if not integ:
-        verdict, interpretation = "INVALID", "campaign integrity failure"
-    elif not coh:
-        verdict, interpretation = ("RAND0-INCOHERENT",
-                                   "stochastic apparatus fails coherence gates")
-    elif (not multiplicity_found) and (not rival_differs):
-        verdict, interpretation = ("RAND0-UNIFORM-CLOSED",
-                                   "micro-uniform passes every gate uniquely")
-    else:
-        verdict, interpretation = ("RAND0-MEASURE-DEBT",
-                                   "apparatus coherent; no unique inter-orbit "
-                                   "weighting (PROBABILITY-MEASURE DEBT)")
+    # ---- verdict ladder (frozen mapping; Amendment-2: repaired coherence
+    # decides, original-gate verdict preserved alongside for transparency) ----
+    def ladder(coherence):
+        if not integ:
+            return "INVALID", "campaign integrity failure"
+        if not coherence:
+            return ("RAND0-INCOHERENT",
+                    "stochastic apparatus fails coherence gates")
+        if (not multiplicity_found) and (not rival_differs):
+            return ("RAND0-UNIFORM-CLOSED",
+                    "micro-uniform passes every gate uniquely")
+        return ("RAND0-MEASURE-DEBT",
+                "apparatus coherent; no unique inter-orbit "
+                "weighting (PROBABILITY-MEASURE DEBT)")
+
+    verdict, interpretation = ladder(coh_repaired)
+    verdict_orig, _ = ladder(coh_original)
     gate("VERDICT", True, verdict)
+    gate("VERDICT-original-gates", True, verdict_orig)
     out = {"gates": GATES, "multiplicity": mult, "separation": sep,
            "edge_orbits_vacuous": edge_vacuous,
            "rival_differs": bool(rival_differs),
            "multiplicity_found": bool(multiplicity_found),
-           "verdict": verdict, "interpretation": interpretation}
+           "coherence_repaired": bool(coh_repaired),
+           "coherence_original_gates": bool(coh_original),
+           "verdict": verdict, "interpretation": interpretation,
+           "verdict_original_gates": verdict_orig}
     with open(args.out, "w") as f:
         json.dump(out, f, indent=1)
     n_ok = sum(1 for g in GATES if g["ok"])
@@ -156,7 +206,9 @@ def main():
             print("  FAIL", g["gate"], g["detail"])
     print(json.dumps({"rival_differs": out["rival_differs"],
                       "multiplicity_found": out["multiplicity_found"],
-                      "verdict": verdict}, indent=1))
+                      "coherence_repaired": out["coherence_repaired"],
+                      "verdict": verdict,
+                      "verdict_original_gates": verdict_orig}, indent=1))
     if verdict == "INVALID":
         sys.exit(1)
     if verdict == "RAND0-INCOHERENT":
