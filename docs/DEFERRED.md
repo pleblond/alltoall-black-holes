@@ -2988,3 +2988,76 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+RESPONSE0-PREREG (FROZEN-2026-10-02 (commit-predates-beast-runs!)): exact
+disturbance/response kernel under frozen H=-A (J=1-headline (U(t)=exp(+iAt))).
+FROZEN-INPUTS (read-only (banked-tips-byte-identical!)): P1-ballistic (P1-tip
+af2dfe9 (H=-A + evolve_fixed-xcheck!)); POT-0-potential (POT0-tip ee58bbc
+(flux-J + auto-perms + pushforward-xcheck!)); EM-0-continuum+backreaction+
+driven (EM0-tip 3128ff9 (Bloch-vmax8 + bond-B + steady_predict-Green-target!));
+MALUS (MALUS-tip 11d800c (sheet-projectors + H_Q-xcheck!)); QUOT (QUOT-tip
+f00adf1 (coarse_shells + sector-anatomy-xcheck!)). NO-OBS-STACK (FIELD-0-
+precedent (quotient-distance-via-quot + native-min-image!)); NO-VAC-FIELD
+(spec-says-don't-wait (battery-is-preregistered-not-vacuum!)). HEADLINE-
+INDEPENDENCE: response.py-imports-NOTHING-from-bh_graph (pinned-by-scan
+(Krylov + kernel + observables + susceptibilities + backgrounds + sectors +
+quotient-lift + Green + switch + ledger-all-native!)); consumed-modules-only-
+in-tests/runner-xchecks. FIREWALL: field-disturbance->field/relational-
+response-ONLY (no-gravity/potential/force/acceleration/curvature/metric/EM-
+claim/particle-interaction (any-later-interpretation-consumes-read-only!)).
+OBSERVABLES: rho=|psi|^2 + B=Re(psi*psi) + J=2Im(psi*psi) (continuity-factor-2
+(POT-bilinears-rescaled-xplicitly-in-0X/Y!)); backgrounds-evolved-to-equal-
+time (psi0(t)+dpsi(t)-pairing!). APPARATUS (response.py (29-pins!)): 0A-kernel
+(dense-expm + Krylov-column + K(0)=I + semigroup + unitarity!); 0B-spectral
+(sums + anatomy (J2-L4-lo-8/hi+8/nflat-22-pinned!)); 0C-covariance (dense +
+trace (translate/rot90/reflectx/sheet-swap!)); 0D-quadrature (complex->2x2!);
+0E-0H-delta_observables (exact + (1)/(2)-split (identity-1e-12!)); 0I-chi
+(chi_rho + chi_bond (conj(d0)-leg-separated (REAL-BUG-CAUGHT-BY-PIN!)));
+0J-BG0-chi=0 + quadratic-lead; 0K-battery (BG0/BG+(E-8)/BGpi(E+8)/BG-(E0)/
+BGM(touching-k-sheet-0-plane-wave (E0 + W+-1/2 (L%4==0!)))); 0L-scaled-bg
+(chi~a!); 0M-0P-point/phase/amplitude/region(node/edge/cell/ball1/patch (1/2/
+2/9/18-pinned!)); 0Q-arrival + front-fit + (0.5,12)-Bloch-8-gate; 0R-windows
+(t_front=r/8 + t_wrap=(L-r)/8 + arrival-window-or-None!); 0S-Rmax + 0T-signed/
+abs-integrals (NO-LAW-IMPOSED!); 0U-rays (axial/diagonal); 0V-sectors (native
+P+- (MALUS-xchecked!)); 0W-lift + H_Q=-2A_sq (intertwining + micro=B^Q/2!);
+0X-retarded-Green (phi_B=i-int-e^((iw-eta)t)-U_BB-psi_d (eta0.02/T300-path +
+eta0.03/T200-J2L8 (regulator-dominated-bar-0.1!))); 0Y-switch (free-after-
+removal + extrapolated-drive-deviation + 8-column-superposition!); 0Z-linearity
++ cross-terms (identity-1e-12!); 0AA-ledger_event (support/kind/bg/eps/obs/
+receiver/arrival/peak/integrated/threshold/window/wrap/seed!). THEOREM-PINNED-
+PRE-DATA (analytic + apparatus-smoke (no-campaign-data!)): BIPARTITE-B-
+BLINDNESS (chiral-real-data (sub0-real/sub1-imag-up-to-global-phase)-invariant
+=> B==0-exactly-all-bonds-all-t (covers-real/single-phase-impulses + real-
+regions + adjacent-0/pi/2-dipoles!)); SHEET-DIPOLE-B-LOCALIZATION (remote-B==
+0 (single-phase-symmetric-part-chiral-blind) + shell-0-B!=0 (frozen-anti-
+cross-terms!)); ANTI-SECTOR-DARK (symmetric-real-preps-remote-B-blind +
+anti-frozen-with-B==0-everywhere (no-populated-bond!)). PREDICTIONS: H-R/H-I +
+region + sector-cells => delta-B-arrivals-ABSENT (None-not-missing!); remote-B-
+carriers = battery-nonzero-bg + kicks + linear-complex-eta2 + ladder-frac
+ONLY; dipole => shell-0-B-only. GRID (scripts/response0_campaign.py (45-cells
+(beast-RESPONSE0_WORKERS!))): spec-L8 (G1); ballistic-xcheck-L6 (G2); H-R/H-I
+(unit-impulse + rows-sidecars!); battery-8 (BG+xR/I-eps1e-3!); ladder-eps-5
+(BG0 (slopes-psi1/rho2/B2/J2!)); ladder-amp-5 (BG+ (dpsi-const + rho/B/J~a-on-
+a>=1 (low-a-crossover-filed!))); ladder-frac-3; kick-2 (BG+-phase/ampl-eps1e-2!);
+region-5 (BG0x4 + BG+-cell!); sector-4; dipole-1 (shell-0-B!); quot-1 (G9);
+green-2 (path61 + J2L8 (G10!)); switch-2 (path61 + J2L28 (G11!)); linear-2
+(BG0/BG+ (G12!)); cov-1 (4-perms (G6!)). THRESHOLDS: relative-1e-3-x-remote-
+peak-per-(task,obs) + floors (psi-1e-12/rho-bond-1e-14) (+ headline-absolute-
+reported). FITS: quotient-shells-2..10 (r2>0.9-gate). GATES (all-must-pass-
+for-RESPONSE0-KERNEL): G0-pins-29-green; G1-Krylov-vs-spectral-L8-<1e-8; G2-
+ballistic-<1e-9; G3-decomp-<1e-12-everywhere; G4-chi-spot-<1e-9-all-battery;
+G5-slopes (eps-ladder-1/2/2/2-+-0.05/0.01 + amp-ladder-0/1/1/1-on-a>=1-+-0.05!);
+G6-cov-4-perms-<1e-9; G7-headline-|dpsi|+dJ-fits-v-in-(0.5,12)-r2>0.9 + v/8-
+reported + B-absence-as-predicted; G8-anti-frozen-<1e-9 + W-conserved; G9-
+intertwining-<1e-8 + bond-lift-1e-12; G10-Green-dev-<0.1-both; G11-switch-
+fronts-in-(0.5,12) + superposition-<1e-9; G12-linearity-<1e-12 + cross-<1e-12;
+G13-bg-stationary-<1e-9 + eigenvalues-exact; G14-BGM-mixed-stationary.
+ANATOMY (RESPONSE0-ANATOMY (measured-not-gated!)): distance-law-Rmax(r) +
+integrated + anisotropy (axial-vs-diagonal (EM-0-quartic-compared-filed!)) +
+near/front/wake/wrap-split (wrap-flagged!). VERDICTS: RESPONSE0-KERNEL (G0-
+G14-green => exact-kernel-banked (carrier-spec-complete!)); RESPONSE0-ANATOMY
+(laws-filed-as-measured (no-fit-claims!)); RESPONSE0-RESIDUAL (reproducible-
+gate-miss (audit-first (never-force!))). FORBIDDEN: force/gravity/curvature/
+metric-dynamics-claims; vacuum-declarations-from-battery; law-imposition-on-
+Rmax(r); wrap-as-long-range-return. NEXT: freeze-commit-then-beast (suite-
+parallel + campaign (gated-on-prereg-commit!)).
