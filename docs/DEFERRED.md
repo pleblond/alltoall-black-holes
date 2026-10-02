@@ -9945,3 +9945,278 @@ would have executed.
 VACFIELD0-JOINT family. No vacuum sector is preferred, mixed, or
 destabilized by any dynamics earned to date. The degeneracy question
 reopens if and only if a future MEASURE campaign earns a unique W.
+
+## BGRESP0-PREREG (FROZEN pre-data; commit predates ALL BG-RESP-0 runs)
+
+Vacuum-dependent relational susceptibility campaign (BG-RESP-0). Mission:
+determine exactly how the three earned nonzero JOINT vacua convert an
+identical field excitation dpsi into different local and remote relational
+responses (drho, dB, dJ). VAC-FIELD-0 and VAC-EXC-0 established that the
+carrier dpsi(t) = U(t) dpsi(0) is background-independent (bitwise cross-bg
+identity) under the frozen field law, while the physical relational response
+depends on the background through exact cross terms. Same carrier +
+different vacuum -> different relational response. BG-RESP-0 measures and
+derives that difference as the susceptibility operator chi_alpha.
+
+Central question: for identical dpsi(0) with psi = psi_vac + dpsi, is
+chi_+ = chi_pi = chi_- (as operators)? ZERO is the no-background control
+only (chi_ZERO = 0 at first order for quadratic observables).
+
+### Firewall (campaign level)
+
+BG-RESP-0 may not claim: force, gravity, mass, charge, dielectric medium,
+electromagnetic susceptibility, curvature, actual geometry change, or vacuum
+selection. "Susceptibility" means ONLY the mathematical response of
+established relational observables to dpsi. No continuum-medium constitutive
+equations are imported. No geometry evolution, no nonlinear field term, no
+source feedback, no stochastic dynamics, no structural event. Delta variables
+are readout-only: dO = O[vac + d] - O[vac] at EQUAL time (co-evolving vacuum
+frame). Virtual ledgers (0W) are readout-only: no event is ever executed.
+Different dB responses are not forces (0AB gates FIELD-0 witness I = 0).
+
+### Frozen ontology + consumed apparatus (byte-identical, read-only)
+
+H(G) = -A(G), J = 1, hbar = 1 (P1-locked). psi_u = r_u + i s_u per node;
+rho = |psi|^2; B_uv = Re(psi*_u psi_v); J_{u->v} = 2 Im(psi*_u psi_v)
+(EM-0B sign); E_psi = -2 sum_edges B (BR-0). Exact decomposition (pinned):
+drho = 2Re(vac* d) + |d|^2; dB = B_cross + B_dd; dJ = J_cross + J_dd.
+Susceptibility chi is the real (M x 2N) matrix with M = N + 2E rows
+[rho; B; J] and 2N columns [dr; ds], every entry an explicit analytic
+function of the background (no fitting). Consumed (md5-12): vacfield
+a9fe0f5fa241 (VACFIELD0-JOINT), vacexc 841897f6ce7e (VACEXC0-COMPLETE),
+response 63cebb004341, hidden 85a055e7dd40, hiddenbr 6df6ce530d83,
+field0 79de081f65d9, zero 5185bba6d6ed, quot d250eeca640c, sym0
+1efe9ac53c37, rand0 9627bf471e41, vac0 9b1c6c50e108 + their test files
+(all green, unmodified). Ballistic/malus/formation/coherence/continuum/
+backreaction/driven/contraction/phase/potential/conservation are main-tail
+tips, byte-identical to sibling consumption (no vendoring needed).
+Banked theorems consumed: U(t)(vac + d) = U(t)vac + U(t)d + co-rotating
+law (VACFIELD0-0L); cross-bg bitwise dpsi identity + exact B-null theorem
+for single-node real prep on bipartite J2 (VACEXC0-0B/Amendment-1b);
+K(0) = I + chi_rho/chi_bond static rows (RESPONSE-0); H P_- = 0 +
+local read + remote blindness (HIDDEN-0); dE/dA = -2B + ledger linearity
+(HIDDEN-BR); superposition + witness I (FIELD-0); U(1) redundancy vs
+physical scale (SYM-0); incident null at exact zeros (ZERO-0).
+
+### Vacua + amplitudes (earned, not selected)
+
+VPLUS: uniform 1/sqrt(N), E = -8, P_+. VPI: (-1)^q/sqrt(N), E = +8, P_+.
+VMINUS: (-1)^b/sqrt(N), E = 0, P_-, frozen. ZERO: psi = 0 control.
+Shapes psi_vac^(a) = a * hat with a in AMPLITUDES =
+{1e-3, 1e-2, 1e-1, 1, 10, 100, 1000} (VACFIELD0 set); headline a = 1.
+
+### Frozen constants (all runs)
+
+J2 L_HEAD = 28 (N = 1568, sparse chi + Krylov headline), L_MID = 8
+(N = 128, dense chi + full SVD), L_EXACT = 4 (N = 32, dense + exact),
+L_SCALING = {4, 6, 8, 12, 28} (even only; VPI needs bipartite). T_K = 30,
+DT_K = 0.1 (300 rows); T_FIT = 8 (no-wrap window). EPS_GRID =
+{0.003, 0.01, 0.03}, headline 0.01; EPS_LIN = {0.001, ..., 0.1} (slopes;
+deep-linear two-point (0.001, 0.003) per VACEXC Amendment-1 precedent).
+CENSUS_KINDS (0V battery, frozen): point_real, point_imag, packet (B0
+settings), sym_sector, hidden_sector (all vac-independent norm-1
+directions x eps). Zero threshold tau = max(1e-300, 1e-9 x run-max|psi|).
+Bars: bgresp.BARS (frozen; decomp 1e-12, zero_chi 1e-12, phase_null 1e-9
+hard gate, scaling 1e-9, same_carrier 1e-9, kernel 1e-8, bipartite_b 1e-12,
+energy 1e-9, witness 1e-6 FIELD-0 bar, fingerprint 1e-9, covariance 1e-9,
+linearity_slope 0.05). SVD null threshold: max(dim x eps_machine, 1e-9) x
+s_max (relative, preregistered). L28 operator norms via svds(k=1) with a
+deterministic power-iteration fallback; full SVD only on L <= 8.
+
+### Stage protocols + predictions (P) / gates (G)
+
+0A exact decomposition: P: drho/dB/dJ = cross + dd exactly (pinned
+identity, cross-checked against vacexc algebra). G: decomp check (L4 all
+vacua x battery + random; max-resid < 1e-12).
+
+0B ZERO theorem: P: chi_ZERO = 0 exactly (all entries), so dO_ZERO is
+purely quadratic; reproduces VAC-EXC c1 ~= 0. G: zero_theorem check
+(chi_ZERO max-abs < 1e-12; lin slopes: ZERO = 2, nonzero = 1 +/- 0.05).
+
+0C/0D chi-matrix: P: chi_alpha derived analytically (no fitting); rank,
+nullity, singular values, support (nnz = N + 4E for real vacua), Frobenius
+norm sqrt(44) for all nonzero vacua (analytic: uniform |vac|). G: none
+beyond pins (filed spectra; L4/L8 full SVD banked, L28 sparse norms).
+
+0E vacuum comparison: P: pairwise ||chi_a - chi_b|| in Frobenius +
+operator + symmetry-resolved (chi P_+/-) norms (all three preregistered;
+no post-hoc norm selection). Filed (no gate: the OPERATOR difference is
+the deliverable, including any null result on global norms).
+
+0F null spaces: P: null directions classified (global phase vs symmetry vs
+sector vs bipartite selection). Filed + pinned overlap on L4.
+
+0G global-phase null: P: i psi_vac in ker chi (all relational observables
+unchanged under infinitesimal global phase). G: HARD GATE phase_null
+(||chi @ v_phase|| < 1e-9, all nonzero vacua x L4/L8/L28). Links to SYM-0.
+
+0H amplitude direction: P: eps psi_vac visible (drho != 0, dB != 0;
+dJ = 0 for real backgrounds, filed); contrasts physical scale vs
+redundant phase. G: amplitude check (norms above bar, all L).
+
+0I/0J bases: P: primitive (real/imag point) columns span arbitrary
+infinitesimal disturbances; local amp/phase kicks separate at t = 0 on
+real backgrounds (amp -> rho/B only, phase -> J only) while peak-norm
+B/J responses mix at later times through the full operator + carrier
+spread (explains VAC-EXC non-separation). Filed + pinned.
+
+0K bipartite B-null: P: reproduce VACEXC Amendment-1b theorem (single-node
+real prep on bipartite J2: B(t) = 0 identically, chiral-reality preserved)
+from the susceptibility/operator structure (ZERO dd-view + selection rule).
+G: bipartite_bnull check (B_max < 1e-12, L4 + L28).
+
+0L amplitude scaling: P: chi_{a psihat} = a chi_{psihat} exactly (fixed
+absolute d). G: scaling check (relative dev < 1e-9 over AMPLITUDES).
+
+0M fractional scaling: P: d = a eps eta gives cross ~ a^2 eps, dd ~ a^2
+eps^2; normalized (divide by Q = a^2) collapse across a. G: frac leg of
+scaling check (max-dev < 1e-9).
+
+0N sector-resolved: P: chi P_+ / chi P_- norms filed per vacuum; VMINUS
+(P_-) vs VPLUS/VPI (P_+) distinguished by symmetry-resolved operator norm.
+Filed (no gate).
+
+0O/0P/0Q anatomy: P: per-class (SX/SY/F1/F2) uniformity + translation
+covariance (dev < 1e-9, filed per vacuum); VPI checkerboard sign structure;
+VMINUS P_+ disturbance reads through cross terms (HIDDEN-0 local read as
+susceptibility). Filed + covariance filed (descriptive, not ladder).
+
+0R same-carrier theorem: P: dO_a(t) - dO_b(t) = (chi_a(t) - chi_b(t)) d(t)
+EXACTLY (dd cancels: background-independent). G: same_carrier check
+(max-resid < 1e-9 at t = 0/4/8/16 on L28 + L4 static battery).
+
+0S time-domain: P: K(t) = chi_{vac(t)} U(t) = chi_0 e^{iEt} U(t) (both forms
+pinned equal; VMINUS reduces to chi U); RESPONSE-0 cross-check of static
+rows + kernel structure where apparatus overlaps. G: kernel legs of
+same_carrier (crosscheck + dense-vs-Krylov < 1e-8 on L4).
+
+0T/0U point/remote maps: P: per-kind shared carrier + per-vacuum response
+traces + shell means at t = 0/4/8/16; carrier arrival vacuum-independent,
+response sign/magnitude not. Filed (no gate).
+
+0V sign census: P: frozen battery x all edges; counts of strict opposite-sign
+cross_B pairs (both above visibility bar). A positive count means the same
+carrier presents opposite geometry-conjugate signals on different vacua
+(no geometry inferred). Filed (no gate; battery frozen pre-data).
+
+0W ledger: P: Delta_exc R_G = R_G[vac + d] - R_G[vac] (M1 stats diff,
+readout-only, HIDDEN-BR-compatible) per (vacuum, kind in {point_real,
+packet, hidden_sector}). Filed (no gate).
+
+0X energy: P: dE = 2Re<vac|H|d> + E[d] exactly (+ eigenstate simplification);
+dE differs across vacua by E_vac term (VMINUS cross = 0). G: energy check
+(anatomy resid < 1e-9, all vacua x kinds).
+
+0Y hidden-energy null: P: P_- perturbations around VMINUS have dE = 0
+exactly (H P_- = 0 + E_vac = 0) but dB != 0 (linear-response HIDDEN-BR).
+G: hiddennull legs of energy (dE == 0 + dB_max > 0, L4 + L28).
+
+0Z ZERO comparison: P: chi_ZERO = 0 while all nonzero chi != 0 (formalizes
+ZERO as no-linear-susceptibility limit). G: folded into zero_theorem.
+
+0AA visibility: P: per-response visibility labels via the frozen
+vacexc/HIDDEN rule (hidden > observer_geometric > transport_visible >
+locally_visible > undetected). Filed (descriptive; large local chi need
+not imply remote signal).
+
+0AB no-force: P: FIELD-0 witness I = 0 on matched head-on packet collisions
+for all vacua (different dB responses, same null witness). G: witness
+check (I gated, all 4 backgrounds).
+
+0AC discrimination: P: preregistered 7-component fingerprint F_alpha
+(norms + signed sums + energy cross; fixed battery) separates all three
+vacua (pairwise dist > 1e-9). G: fingerprint check (all L).
+
+0AD minimal: P: smallest separating subset by frozen size-first
+lexicographic search (+ all minimal-size winners filed). Filed size +
+subset (no adaptive construction).
+
+0AE size scaling: P: chi norms/spectra + fingerprint + census over
+L in {4, 6, 8, 12, 28}; classify distinctions as local/size-independent
+vs finite-size vs IR. Filed (no gate).
+
+### Verdict ladder (analyzer-gated)
+
+Checks (10, all boolean): decomp (0A), zero_theorem (0B/0Z + lin),
+phase_null (0G hard gate), amplitude (0H), scaling (0L/0M),
+same_carrier (0R/0S), bipartite_bnull (0K), energy (0X/0Y), witness
+(0AB), fingerprint (0AC). Headline: BGRESP0-COMPLETE if all 10 green;
+else BGRESP0-PARTIAL with per-check table. Per-vacuum distinctions filed
+as family (no ranking). Amendments, if any, as BGRESP0-AMENDMENT-n with
+gated re-runs; none pre-data.
+
+### Execution
+
+77 tasks (scripts/bgresp_campaign.py --print-all), beast EC2
+(16.54.88.181, xargs -P 90, OMP threads 1), JSON records data/bgresp/*.json
+(committed) + .npy sidecars data/bgresp/npy/ (gitignored, checksums in JSON).
+Full suite on beast (pytest -n 90 --ignore=tests/test_weighted.py). Analyzer
+scripts/bgresp_analyze.py writes data/bgresp/verdict.json. Verdict filed here
+post-data.
+
+### BGRESP0-VERDICT (BGRESP0-COMPLETE, 10/10)
+
+Branch cursor/bg-resp-0-0aa2 (base main tail 7153f65). 77/77 tasks
+CAMPAIGN-DONE on beast (16.54.88.181, xargs -P 90, OMP threads 1, nice);
+records data/bgresp/*.json + verdict.json banked; .npy sidecars on beast
+(gitignored, shas in JSON). Analyzer scripts/bgresp_analyze.py per PREREG
+(no amendments; one apparatus crash fix for 6 ungenerated L28 sparse-sector
+records, no banked data affected, committed as 14a8ba2). Full suite on beast
+(venv, -n 90, --ignore=tests/test_weighted.py): 1605 passed, 2 skipped,
+0 failed.
+
+Headline: chi_+ != chi_pi != chi_- as OPERATORS (pairwise Frobenius
+distance sqrt(88) at every L; operator 8*sqrt(2/N); sector-resolved and
+sign structure differ per pair), each rank 2N-1 with the sole null direction
+exactly global phase (overlap 1.0), while chi_ZERO = 0. Same carrier +
+different vacuum -> provably different relational response, pinned exactly:
+dO_a(t) - dO_b(t) = (chi_a(t) - chi_b(t)) d(t) to fp precision at t =
+0/4/8/16 (dd cancels: background-independent).
+
+Spectra (0D, L4/L6/L8 dense SVD; L12/L28 sparse): ||chi||_fro = sqrt(44)
+exactly for all nonzero vacua at all L (uniform |vac| analytic); op norm
+8/sqrt(N) (1.4142/0.9428/0.7071/0.2020); rank 2N-1, nullity 1, null =
+global phase. Sector-resolved op norms split VMINUS from the symmetric
+pair: VPLUS/VPI (op, op/sqrt(2)) on (P_+, P_-) vs VMINUS swapped
+(op/sqrt(2), op) at every L. Pairwise sector-restricted diff norms: VPLUS-
+VPI preserves full op under either projector; VMINUS-involving diffs drop
+to sqrt(3)/2 x full (difference straddles sectors). Per-class (SX/SY/F1/F2)
+uniformity exact (std 0.0); translation covariance dev ~1e-17 (all vacua).
+
+Sign census (0V, frozen battery): point_real static: VPLUS-VPI 8/8 opposite
+(all incident edges flip), VMINUS pairs 4/8; timed (t = 4/8, L28): VPLUS-VPI
+6272/6272 = EVERY edge opposite, VMINUS pairs exactly half (3136/6272).
+point_imag complementary: VPLUS-VPI 0/6272 (same sign everywhere), VMINUS
+pairs ~half. sym_sector matches point_real rigidity; hidden_sector local
+(16/16, 8/16, frozen support); packet generic ~50%. Static point_imag dB1 =
+0 exactly (vacuous, filed: real backgrounds + imag point). The same carrier
+disturbance presents opposite geometry-conjugate signals on different vacua;
+no geometry is inferred.
+
+Fingerprint (0AC/0AD): 7-component F separates all pairs at all L
+(min-dist 2.83/1.89/1.41/L12/L28 0.404 ~ 16/sqrt(N)); minimal size 1 with
+THREE winners at every L: F5 energy cross (2.83), F6 signed amp-dB sum
+(+/-/0 pattern: VPLUS +8e/N, VPI -8e/N, VMINUS 0), F7 signed sym-dB sum.
+Norms alone (F1-F4) are vacua-blind (identical magnitudes); SIGNS + ENERGY
+carry the distinction. Local and size-independent in normalized form.
+
+Controls: bipartite B-null exact (B_max = 0.0, chiral dev ~1e-18, L4+L28);
+hidden-energy null exact (dE = 0.0, dB_max > 0, L4+L28); FIELD-0 witness I
+= 9.7e-16 (fp zero) IDENTICAL on all 4 backgrounds while dB_max/dJ_max
+differ per vacuum (VPLUS 3.7e-5/1.5e-5, VPI 6e-6/6.8e-5, VMINUS
+3.3e-5/5.9e-5, ZERO 1e-6/0.0): different responses are not forces. Kernel
+K(t) = chi_{vac(t)} U(t) = chi_0 e^{iEt} U(t) pinned equal (dev 0.0) +
+dense-vs-Krylov < 1e-8. Lin slopes: nonzero 1.0, ZERO 2.0 (deep-linear
+two-point; t = 0 real-prep J legs + ZERO B leg vacuous-pass per filed
+exact-zero rules). Virtual ledger: packet excitations strongly restructure
+(VPLUS flat f0 = 1 -> fneg/fpos ~0.50/0.50); point/hidden weak; VPI/VPMINUS
+departures filed per kind.
+
+Interpretation (boxed): susceptibility is earned, vacuum-dependent, and
+exactly characterizable: the three JOINT vacua are pairwise distinguished
+by their chi operators (sign/sector/energy anatomy), operationally
+identifiable by a single signed-B or energy readout, and invisible only
+along global phase. ZERO is the no-linear-susceptibility limit. Nothing
+here selects a vacuum or moves geometry; the response differences are
+mathematical facts about established relational observables, filed as input
+to future geometry coupling.

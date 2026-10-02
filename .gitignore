@@ -10,3 +10,4 @@ __pycache__/
 *.toc
 data/vacfield/npy/
 data/vacexc/npy/
+data/bgresp/npy/
