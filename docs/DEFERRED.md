@@ -3148,3 +3148,96 @@ FIX: OR logic. No data touched.
 
 RERUN SCOPE (gated on this amendment commit): 3 L:mixed cells only
 (new code); all other records stand. Verdict gates on the re-analysis.
+
+## HIDDEN-0-VERDICT (filed 2026-10-02): HIDDEN0-SEPARATED (primary positive)
+
+HEADLINE (frozen merger, scripts/analyze_hidden0.py, Amendment-1 applied):
+279/279 checks pass over 43 beast cells (J2 L28, T = 20/dt = 0.1, 32
+workers, ~15 s + 3-cell amended rerun). Machine records:
+data/hidden0_cells.json + data/hidden0_verdict.json + data/hidden0_stage.json.
+First run 267/289 PARTIAL; all 22 failures autopsied as design/analyzer
+issues (Amendment-1, no physics bar moved): amp-raw dQ values, HAMP-Q
+collinearity, sodd scope, E:delta structural B, G geometry filing, census
+dedup + chunking bugfix, U De Morgan fix. Full suite on beast green
+(750 passed, 2 torch/GPU-skips, test_weighted skipped per standing
+instruction; obs0r/run_obs0/run_obs1 vendored as consumption addendum
+after a first-suite ModuleNotFoundError).
+
+SEPARATION (the mission): D_local in [0.07, 1.60] across all 10 matched
+pairs (5-6 orders above the 1e-6 bar; every hidden transformation --
+sign, phase pi/2 and pi, dipole/disk shape, amplitude 0.5/2.0 RAW and
+Q-matched -- locally distinguishes on at least one of rho/B/J) while
+D_remote <= 5.2e-15 on every remote shell r = 2..10, wave + diffusion,
+all 4 sign-pair constructions (3-6 orders below the 1e-9 bar), POT
+remote EXACTLY 0.0 with 1-hop anti support, sym arrival + ratios green
+at (2,4,6). Transport-visible vs locally-physical-but-transport-hidden
+information are genuinely distinct in the frozen theory.
+
+A (anatomy): comm/dead/inter/frozen all 0.0 (L6 + L28), decomp 2.5e-15,
+n_zero 46 = 36+nodal(6) / 838 = 784+54. Foundational regression green.
+B (pairs): pmatch exact all 10; dQ exact (0.0 / 0.75 / 3.0 / Q-matched
+4.4e-16 with scale sqrt(1.75) + collinearity); E = E_+ exactly
+(E_- = Ex = 0.0); sodd green on sign/phase scope.
+D (cross terms): rho/B/J/E sector decompositions exact; the hidden
+sector is ENERGETICALLY INVISIBLE even locally (E_- = Ex = 0) while
+visible in rho/B/J -- the campaign's sharpest internal separation.
+E (hidden-only): frozen 0.0 all 4; rho/B nonzero (delta rho 0.5, disk/
+checker B 0.056); complex pattern carries persistent J = 0.111 with
+E = 0 exactly -- stationary is not physically absent.
+F (remote): reproduced QUOT-style + extended to packet/uniform/disk
+backgrounds; maxima wave 5.2e-15 / diff 3.5e-15 (rung 1e-9).
+G (persistence): sign/phase differences are pure cross terms at all t
+(8.7e-14/5.6e-14); D(t) tracks packet exit (Dmax 0.20/0.14); shape/amp
+leave persistent residuals (0.275/0.394, > 1e-6). Decay-ratio + settling
+filed descriptive (L28 T = 20 packet wraps; geometry, not physics).
+H/I (passing wave + no-memory): witness I ~ 1.2e-12 both states, both
+hidden shapes (bar 1e-6); packet sector preserved to 9e-14; momentum
+stable. The hidden sector alters total local observables during overlap
+and imprints NOTHING afterward -- hard null held, no audit needed.
+J (read/write): read D = 0.159/0.105 during overlap (both shapes);
+write 6e-15 (P_- psi + w_anti constant). Locally readable through
+interference, not dynamically writable -- as frozen theory predicts.
+K (extraction): local detector classifies correctly, gaps 0.60-0.62;
+remote detector gap ~1e-13 (chance). I_local > 0, I_remote = 0.
+L/M (census): mixed N_hidden = 72/168/296 for |R| = 9/21/37 (positions
+x 8 distinct phases, minD = 0.025, linear in |R|, state-counting only);
+pure N = 9/21/37 positions (minD = 0.5) with sign/phase quotient pairs
+EXACTLY 0.0 in all observables (raw + quotiented reported; SYM-0
+interpretation pending).
+N (exchange): S maps mixed sign-pair members into each other (0.0);
+pure sign D = 0.0 exact, mixed D = 0.071.
+O (relative phase): [1,cos,sin] fits to ~1e-16 all nodes/edges;
+modulations rho 0.20/B 0.098/J 0.20 (packet) -- relative sector phase
+is physically meaningful, exactly as derived from cross terms.
+P (zeros): NO exact-zero candidates at 1e-12 in either sweep (minima
+1.5e-4/0.025 filed); hidden phase controls near-zero depth without
+certified singularities (ZERO-0 pending, conservative labeling kept).
+Q (bond-conjugate): full-edge max|dB| = 0.036 on 16 edges -- transport-
+hidden information alters the local geometry-conjugate quantity.
+Frozen geometry: no backreaction gate opened, future work only.
+R (ledger): de = 0.0 EXACT (E = E_+); bond field differs (0.098);
+near-cell f_neg/f_pos differ in the 3rd decimal (filed, no event-rate
+interpretation). Remotely indistinguishable states have different local
+structural energetics -- significant, virtual-only.
+S (vacuum coordination): reconstructed VPLUS/VPI/VMINUS verify banked
+sectors + energies (P_+/P_+/P_-; -8/+8/0 to 1e-9). VMINUS (pure hidden,
+E = 0, stationary, B_max = 6.4e-4 uniform) sits inside the HIDDEN-0
+census as the translation-invariant hidden member. VACFIELD0-JOINT
+family untouched; no headline-bar impact.
+T (observer replay, input-level): remote station signals A-vs-B:
+W ~4e-16, D ~7e-17, P = 0.0 exact at (2,4,6) while D_local = 0.20 --
+any deterministic observer fed banked channels outputs M_O(A) = M_O(B).
+Response-function evidence: QUOT-0 Q-P (P- meas = 0.0, METRIC False).
+U (staggered control): pvp = 0.0 exact (no H_- kinetic term), comm =
+eps*sqrt(N) to 3e-16, all 838 zeros lifted (n0 = 0), yet remote sheet
+capacity 3-7e-3 -- below the 0.05 QUOT-0Q flip bar (non-flip on all of
+2/4/6). QUOT-0 lesson consumed: lifting eigenvalues without S-odd
+KINETIC terms opens no useful hidden-transport channel.
+
+KILL RELEVANCE: HIDDEN0-SEPARATED establishes the transport-visible vs
+transport-hidden distinction as dynamical fact under frozen H = -A --
+the observer inhabits the quotient (QUOT0-OPERATIONAL) while local
+physics sees more (rho/B/J, bond-conjugate, virtual ledger). LEAK and
+INTERACT rungs dead: nothing propagates, nothing scatters. Firewall
+kept: no hidden-variables/foundations claims, no memory-capacity
+language, no geometry-change inference, no blind-pipeline replay claim.

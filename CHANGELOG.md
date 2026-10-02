@@ -3,6 +3,20 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **HIDDEN-0** (unreleased) — Operationally hidden local degrees of freedom:
+  HIDDEN0-SEPARATED (279/279 checks, 43 beast cells, J2 L28). Matched
+  hidden-state pairs (sign/phase/shape/amplitude, exact P_+ match) show
+  D_local in [0.07, 1.60] while D_remote <= 5.2e-15 on all remote shells
+  (wave + diffusion; POT exactly 0.0). Passing-wave witness I ~ 1e-12
+  (no memory), no-write 6e-15, local extraction gaps 0.6 vs remote ~1e-13.
+  Census N_hidden = 72/168/296 (mixed) + 9/21/37 (pure, quotient exact 0.0).
+  Hidden sector energetically invisible (E = E_+) but visible in rho/B/J,
+  bond-conjugate (dB 0.036), and virtual ledger (de = 0.0 exact, filed
+  contrasts). VMINUS classified as the translation-invariant hidden member.
+  Staggered eps = 0.1 lifts all zeros yet opens no channel (non-flip).
+  Suite 750 passed + 2 skipped on beast (-n 8); test_weighted.py now
+  skipped by default (slow; pyproject addopts).
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).
