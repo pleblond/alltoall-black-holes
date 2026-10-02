@@ -132,7 +132,9 @@ def main():
     hist = by_kind(ledger, "history")
     if hist and hist[0].get("ok_run"):
         h = hist[0]["result"]
-        ns = {k: (v.get("null_survives"), v.get("n_multi"), v.get("n_pairs"))
+        ns = {k: (v.get("null_survives"), v.get("f_unique"),
+                  v.get("median_nhist"), v.get("max_nhist"),
+                  v.get("n_pairs"))
               for k, v in h.items()}
         gate("M-AC-history", True, f"{ns}")
     fw = by_kind(ledger, "firewall")

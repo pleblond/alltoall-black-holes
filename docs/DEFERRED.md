@@ -3102,3 +3102,35 @@ stays data-reachable; INCOHERENT stays reachable via any HARD red.
 scripts/measure0_analyze.py applies the frozen gates; full suite on
 beast in parallel (test_weighted.py skipped per standing instruction).
 Nothing local except unit pins.
+
+## MEASURE0-AMENDMENT-1 — Apparatus design-error fixes (post-first-look audit)
+
+First-look outcome (beast, 544 cells, ledger archived beast-side as
+data/measure0_ledger_look1.json, superseded): MEASURE0-DEBT with all
+HARD green, but two MEASURED cells mis-measured by apparatus bugs
+(not physics): M-J-refinement reported capped = 72/72 (iso grain
+never computed) and M-AC-history reported n_pairs = 4 (census
+misparsed). Autopsy:
+
+(a) refinement_status called split_isomorphism_classes(g, psi, order,
+k) with a missing `admissible` argument and parsed the return as a
+dict with a "classes" key; the frozen RAND API is
+split_isomorphism_classes(g, psi, order, k, admissible) -> list of
+outcome-key lists. Every call raised TypeError into the except branch
+(n_classes = -1, nonuniform = None). Fix: pass `adm`, parse the list.
+Verified locally: square d=2 -> 6 undirected / 10 directed / 5 iso
+classes, nonuniform True; star4 center d=4 -> 42/82/10, nonuniform
+True. Multiplicity dependence now measured at the iso grain too.
+
+(b) history_weight_status parsed boundary_census (which returns
+aggregates: n_pairs, n_compatible, f_unique, median/max N_hist,
+histogram) as a per-pair dict, yielding n_pairs = 4 (dict-key count
+artifact). Fix: consume the frozen aggregates directly; null_survives
+= (max N_hist > 1). Verified locally: T=2 N<=4 -> 1936 pairs, 1099
+compatible, f_unique = 0.699 (matches banked TIME-0 labeled N<=4
+T=2 value 0.70), max 18, null survives.
+
+Scope: M-J and M-AC are MEASURED (filed, not gated); no HARD gate, bar,
+threshold, battery, candidate, or verdict-ladder rule is changed. No
+physics content moves. Rerun is analyzer/apparatus-only repair with the
+frozen intent restored (RAND Amendment-2 / HIDDEN Amendment-1 precedent).

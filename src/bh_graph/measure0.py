@@ -723,11 +723,11 @@ def refinement_status(g: nx.Graph, psi: np.ndarray, order: list, k) -> dict:
     directed_differs = any(abs(coarse_mu.get(q, 0.0) - coarse_d.get(q, 0.0)) > 1e-12
                            for q in set(coarse_mu) | set(coarse_d))
     try:
-        cls = split_isomorphism_classes(g, psi, order, k)
-        n_classes = len(cls.get("classes", []))
+        classes = split_isomorphism_classes(g, psi, order, k, adm)
+        n_classes = len(classes)
         # Micro-uniform over covers induces a distribution over classes.
         cmap = {}
-        for idx_c, members in enumerate(cls.get("classes", [])):
+        for idx_c, members in enumerate(classes):
             for m in members:
                 cmap[m] = f"class{idx_c}"
         induced = coarse_probability(mu, {outcome_key(o): cmap.get(outcome_key(o),
@@ -1228,7 +1228,7 @@ def history_weight_status(T: int = 2, n_max: int = 4,
     Reports whether boundaries become selective under W (they must not
     under W=1: TIME0-NULL survives as uniform multiplicity).
     """
-    from bh_graph.time0 import (boundary_census, count_walks_from,
+    from bh_graph.time0 import (boundary_census,
                                 labeled_transitions, labeled_universe)
     states = labeled_universe(1, int(n_max))
     topo = labeled_transitions(states)
@@ -1236,22 +1236,16 @@ def history_weight_status(T: int = 2, n_max: int = 4,
     starts = topo["keys"]
     census = boundary_census(adj, starts, int(T))
     # Under W=1 every admissible history has weight 1; the history measure
-    # is uniform over histories, so N_hist>1 pairs stay non-selective.
-    pairs = census.get("pairs", census)
-    if isinstance(pairs, dict):
-        n_hist_vals = []
-        for v in pairs.values():
-            if isinstance(v, dict) and "n_hist" in v:
-                n_hist_vals.append(int(v["n_hist"]))
-            elif isinstance(v, (int, np.integer)):
-                n_hist_vals.append(int(v))
-    else:
-        n_hist_vals = []
-    multi = sum(1 for v in n_hist_vals if v > 1)
+    # is uniform over histories, so any pair with N_hist>1 stays
+    # non-selective (TIME0-NULL survives as uniform multiplicity).
+    max_nh = int(census.get("max_nhist", 0))
     return {"T": int(T), "n_max": int(n_max), "candidate": candidate,
-            "n_pairs": len(n_hist_vals),
-            "n_multi": int(multi),
-            "null_survives": bool(multi > 0),
+            "n_pairs": int(census.get("n_pairs", 0)),
+            "n_compatible": int(census.get("n_compatible", 0)),
+            "f_unique": float(census.get("f_unique", 0.0)),
+            "median_nhist": float(census.get("median_nhist", 0.0)),
+            "max_nhist": max_nh,
+            "null_survives": bool(max_nh > 1),
             "note": "W=1 weights histories uniformly; multiplicity survives"}
 
 
