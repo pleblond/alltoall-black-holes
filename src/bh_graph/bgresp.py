@@ -432,7 +432,7 @@ def chi_difference_norms(chi_a, chi_b, sector=None) -> dict:
         d = (a - b).tocsr()
         if sector is not None:
             p = np.asarray(sector, dtype=float)
-            d = (d @ p).tocsr() if not issparse(p) else (d @ p).tocsr()
+            d = csr_matrix(d @ p)
         return chi_norms(d)
     else:
         a = np.asarray(chi_a, dtype=float)
@@ -751,10 +751,10 @@ def sector_restricted_norms(chi, projectors: dict) -> dict:
     out = {}
     for key in ("P_plus", "P_minus"):
         p = np.asarray(projectors[key], dtype=float)
-        from scipy.sparse import issparse
+        from scipy.sparse import csr_matrix, issparse
 
         if issparse(chi):
-            out[key] = chi_norms((chi @ p).tocsr())
+            out[key] = chi_norms(csr_matrix(chi @ p))
         else:
             out[key] = chi_norms(np.asarray(chi, dtype=float) @ p)
     return out
