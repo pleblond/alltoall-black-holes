@@ -182,9 +182,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--outdir", required=True)
     ap.add_argument("--commit", required=True)
+    ap.add_argument("--stage", choices=["c0", "full"], default="full")
     args = ap.parse_args()
     outdir = args.outdir
-    verdict = {"prereg_commit": args.commit, "gates": {}, "tags": {}}
+    verdict = {"prereg_commit": args.commit, "gates": {}, "tags": {},
+               "stage": args.stage}
 
     # C5.
     c5 = load(outdir, "c5.json")
@@ -193,8 +195,9 @@ def main():
 
     # Main tags.
     main = {}
-    for tag, fam in [("j2-L20", "j2"), ("j2-L28", "j2"), ("j2-L42", "j2"),
-                     ("sq-L20", "sq"), ("sq-L28", "sq"), ("sq-L42", "sq")]:
+    c0tags = [("sq-L20", "sq"), ("sq-L28", "sq"), ("sq-L42", "sq")]
+    j2tags = [("j2-L20", "j2"), ("j2-L28", "j2"), ("j2-L42", "j2")]
+    for tag, fam in c0tags + (j2tags if args.stage == "full" else []):
         main[tag] = analyze_tag(outdir, tag, obs0.V_BANKED[fam])
         verdict["tags"][tag] = {
             "D": main[tag]["D"],
@@ -229,6 +232,18 @@ def main():
     j2_open = bool(c0pass and verdict["gates"]["C5"]
                    and not verdict["gates"]["missing_stop"])
     verdict["gates"]["J2_open"] = j2_open
+    if args.stage == "c0":
+        verdict["ladder"] = "OBS0-STAGED-C0"
+        with open(os.path.join(outdir, "verdict_c0.json"), "w") as f:
+            json.dump(verdict, f, indent=1)
+        print("=== OBS-0 C0 STAGE ===")
+        print(f"C5={c5['pass']} C0={c0pass} C1={c1pass} J2_open={j2_open}")
+        for tag in ("sq-L20", "sq-L28", "sq-L42"):
+            m = verdict["tags"][tag]
+            print(f"{tag}: dH={m['dims_mean']['dH']:.4f} ds={m['dims_mean']['ds']:.4f} "
+                  f"dW={m['dims_mean']['dW']:.4f} "
+                  f"dT3={ {p: round(m['medians'][p]['2'], 4) for p in ('GW', 'GD', 'WD')}}")
+        return
 
     # DIM-PASS per L (C0-relative).
     dim = {}
