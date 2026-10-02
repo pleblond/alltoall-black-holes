@@ -4470,3 +4470,188 @@ all byte-identical to the sibling addenda (HIDDEN-0 3a30275 / SYM-0
 282507f / ZERO-0 2df866c, hashes unanimous). Same status: test-only
 dependency, no campaign import, no science impact.
 
+### VACEXC0-VERDICT (VACEXC0-COMPLETE, 10/10)
+
+Branch cursor/vac-exc-zero-4201 (base main tail 9dc6ea2). 241/241 tasks
+CAMPAIGN-DONE exit=0 on beast (16.54.88.181, xargs -P 32, OMP threads 1,
+nice); records data/vacexc/*.json + verdict.json banked; .npy sidecars on
+beast (gitignored, shas in JSON). Analyzer scripts/vacexc_analyze.py per
+PREREG + AMENDMENT-1. Full suite on beast (venv, -n 32,
+--ignore=tests/test_weighted.py): 1007 passed, 2 skipped, 0 failed.
+
+Checks: evolution T, cross_bg T, decomp T, protection T, energy T,
+packet T, sector T, null T, linearity T, ledger_stability T.
+
+0A evolution theorem: 31/31 (4 vacua x 8 kinds minus ZERO/point_phase)
+split_err <= 1.2e-13, corotating_err <= 9.4e-16; norm accounting green.
+dpsi(t) = U(t)d0 in the co-evolving vacuum frame, exact.
+
+0B cross-vacuum identity: 7/7 vac-independent kinds bitwise identical
+across VPLUS/VPI/VMINUS/ZERO (max-dev 0.00e+00, sha equal). point_phase
+filed separately (vac-dependent seed by construction). Hard regression
+holds: same excitation trajectory on every vacuum.
+
+0C absolute vs fractional: frac normalized rows collapse across
+a = 1e-3..1e3 (packet 8.9e-14, point_amp 3.1e-14); abs raw rows identical
+(0.00); cross slope +1.0000 / dd slope -0.0000 at t0/t80/t300 (dd == 0
+exact at t0 for point_amp: single node, no internal edge); VPI/VMINUS
+bracket peak-spread 9.9e-12/1.2e-14. eps ~ |d|/|vac| is confirmed as the
+natural dimensionless excitation strength.
+
+0D/0E/0F protection: certificate (m_min > 0 => zero-count 0) holds on all
+36 margin rows. m_min at eps = 0.01: packet 2.46e-2, point_amp 1.53e-2,
+hidden 1.82e-2, standing 2.43e-2 -- identical across all three vacua
+(uniform floor |vac| = 1/sqrt(1568) = 2.52e-2; protection is vacuum-blind
+at fixed a). Threshold sweep: eps_guarantee = 1.0 (packet), 0.03
+(point_amp), 0.1 (hidden), 0.3 (standing), identical across vacua;
+eps_actual = None everywhere -- no actual zero up to eps = 1.0 (100x the
+headline). Guarantee-lost << actual-zero gap confirmed strongly.
+
+0G cancellation: analytic single-node eps* (a = 1): point_amp 0.0253,
+patch 0.129, packet 0.770, standing 0.581 (same all vacua: uniform floor,
+vac-independent seeds). Constructed exact nulls: |psi[u0]| = 0, incident
+B/J = 0 (< 1e-9) on all 12 demo rows (ZERO-0 Z3 reproduced on vacuum).
+Single-node phase-only cancellation is impossible (pinned note: needs
+exp(i eps) = 0); point_phase eps* = pi over-cancels by 2x.
+
+0H battery: all 8 kinds green (norms abs/frac, sym/anti purity, decomp
+identity on 9 subcheck rows).
+
+0I packet propagation: v = (1.9204, 0) on all 4 backgrounds (identical to
+all printed digits; Bloch (1.9177, 0), dev 0.14%), r2 = 1.0000,
+alpha = 2.026, D: 0.9989 -> 0.8518, endpoint coherence 0.0000 (traveled +
+dispersed), spectral peak (2, 0) support 784/784, width growth 0.516 --
+every metric bg-independent. No apparatus audit triggered.
+
+0J relational signature (same trajectory != same response), peak
+|drho|/|dB|/|dJ| at eps = 0.01: packet dB_max VPLUS 3.59e-5, VPI 9.14e-6
+(staggered cancellation), VMINUS 3.59e-5, ZERO 4.90e-7; packet dJ_max
+VPLUS 1.80e-5, VPI 7.06e-5, VMINUS 7.03e-5. Note VPLUS = VMINUS exactly
+in packet dB_max (3.58514308e-05) while dJ differs 3.9x -- vacua are
+operationally distinguishable through local measurements. point_amp
+relational peaks identical on VPLUS/VPI for drho/dB (6.05e-4/2.53e-4;
+single-node cross set by |vac[u0]|) with dJ vacuum-dependent.
+
+0K/0L kicks: phase + amplitude slopes 1.000 +/- 0.004 on all 3 vacua x
+both kickers (12/12). J/B peak-norm ratio at eps = 0.01: phase 2.2x,
+amplitude 1.8x (VPLUS/VPI; VMINUS amplitude 1.0x) -- both kicks J-led in
+this readout, so the (dr, ds) -> (dB, dJ) mapping is NOT cleanly
+separated in peak norms (filed honestly against the prereg hope; phase
+leans further J as predicted, weakly).
+
+0M energy: anatomy resid <= 3.6e-14, eigenstate cross exact. dE differs
+by vacuum as predicted: VPLUS/point_amp -4.04e-3 (cross, dd = 0: single
+node has no E[d]); VPI/point_amp +4.04e-3 (sign flips with E_vac);
+VMINUS cross = 0 exactly (E = 0) with dE = E[d] only; VPI/packet cross =
+-9.1e-8 ~ 0 (staggered vac orthogonal to smooth packet); hidden dE = 0
+exactly everywhere (P_- flat band: H d = 0 kills both terms).
+
+0N dB atlas: amplitude/vacuum-dependence filed via 0J tables + per-record
+traces; sign follows vac phase structure (VPI staggered suppresses packet
+dB 3.9x vs VPLUS/VMINUS). Primary future backreaction readout: vacuum-
+dependent susceptibility with identical carrier (see 0V).
+
+0O dB propagation: for truly u0-localized point_amp, dB front v = 5.6-5.7
+(r2 0.92-0.94) tracks dpsi front v = 6.13 (r2 0.98) within ~7% on all 3
+vacua -- same carrier. Packet shell-from-u0 readout is geometry-dominated
+(packet starts far from u0; r2 0.05-0.86, one negative-v fit) and is filed
+as a readout limitation, not a front measurement.
+
+0P hidden vacuum + P_+ packet: purity 1.000000000000000 (P_+), weights
+conserved, cross terms nonzero (local readout of the hidden vacuum),
+witness I = 0 -- propagating excitation reads VMINUS locally with no
+scattering memory. FIELD-0 witness stays zero.
+
+0Q symmetric vacua + P_- bump: purity 1.000000000000000 (P_-),
+frozen_err = 0.0 exact, weights conserved, local drho/dB/dJ nonzero
+(dB 1.79e-4, dJ 3.57e-4 on VPLUS/VPI) -- stationary-hidden excitations
+persist without transport but alter local observables. Bonus: hidden on
+ZERO gives B = J = 0 exactly (frozen, no internal edge; only drho
+5.0e-5) -- vacua make the hidden sector locally visible through cross
+terms. On VMINUS, hidden dJ = 0 exactly (frozen real field => J = 0).
+
+0R taxonomy (verdict-level derivation from banked evidence, rules per
+prereg): packet propagating (P_+ pure, v gated, wraps 9); point_amp /
+source propagating (P-mixed single-sheet, front v 6.13 r2 0.98);
+patch propagating (P_+ symmetric, spreads); sym_sector propagating-
+capable (P_+ pure, localized); standing P_+ pure with zero net velocity
+(counter-propagating pair; rule edge case filed explicitly -- components
+carry remote information, net v ~ 0); hidden_sector stationary-hidden
+(P_- pure, frozen 0.0); point_phase mixed (single-sheet = sym + anti).
+Nodal column not probed (no L4 dense task executed; packet spectral
+support full 784/784). Cancellation-capable: all except point_phase
+(phase-only single-node impossible, 0G).
+
+0S interference null: I = eps_max = 6.2e-16 (headon) / 7.8e-16 (overlap),
+identical across all 4 backgrounds -- nonzero vacuum introduces no
+wave-wave interaction at the dpsi level.
+
+0T apparent atlas: 18 cells (3 vacua x 3 geos x 2 phases), eps_max <=
+1.0e-15 throughout; overlap energy conserved (Ex(t0) = Ex(tT) =
+-4.58e-6, no exchange); relational peaks filed per cell -- the proper
+null for future matter interactions around physical vacuum.
+
+0U linearity: deep-linear two-point slopes (AMENDMENT-1b) 35/35 pass
+(worst point_amp rho 1.0347, inside bar); ZERO legs exactly 2.0000;
+ZERO/point_amp/B vacuous (peaks exactly 0; B-null theorem). Full-window
+slopes filed as mixtures (point_amp rho 1.2225 etc.) with quadratic fits
+peaks = c1 eps + c2 eps^2 (VPLUS/point_amp/rho c1 = 5.05e-2, c2 = 1.0000,
+rel-err 2e-16; ZERO c1 ~ 9e-18 ~ 0). O(eps)-on-vacuum vs O(eps^2)-on-ZERO
+confirmed as the major qualitative distinction.
+
+0V susceptibility (finite-diff chi at eps -> 0, local readout): nonzero
+vacua chi ~ 1e-2 - 2e-1 (e.g. packet chi_B: VPLUS 7.0e-2, VPI 1.3e-2,
+VMINUS 5.1e-2; point_amp chi_J: VPLUS/VPI 1.31e-1, VMINUS 7.3e-2) --
+identical dpsi kernel, different observable susceptibilities per vacuum.
+ZERO chi ~ 1e-4 - 4e-3 = O(eps) finite-diff residue of pure quadratics
+(consistent with chi_ZERO = 0 in the limit). Same carrier + different
+background response, formalized.
+
+0W long-time (T = 120): ||d|| conserved (12/12), dB_max <= 2.5e-4,
+dJ_max <= 4.6e-4 (bar 1e-2, factor-20 margin), B ratios 1.0-1.1. Wraps:
+packet 9, standing 2, point_amp/hidden 0. No secular growth; input for
+VAC-STAB-0.
+
+0X visibility (heuristic rules applied to banked evidence, local readout
+in QUOT/HIDDEN/SYM terms): hidden_sector hidden (P_- pure) on all vacua
+-- with the 0Q nuance that vacua make it locally visible via cross terms;
+packet/patch/standing observer_geometric (P_+ pure + remote arrival;
+standing with the 0R net-velocity caveat); point_amp/source/point_phase
+transport_visible (mixed sectors + remote arrival via the P_+ component).
+No excitation class is undetected at eps = 0.01.
+
+0Y virtual ledger Delta_exc (M1 20000 x seed 0, readout-only): VPLUS flat
+(0/1/0) + packet -> df_zero = -1.00 splitting +-0.50 (fully structured
+departure); localized preps perturb ~1e-3. VPI one-sided (0.5/0.5/0) +
+packet -> +0.25 f_pos (opens the forbidden side). VMINUS symmetric
+(0.25/0.5/0.25) + packet -> symmetric +-0.25. Median/mean shifts <= 1e-4.
+This Delta_exc R_G table is the filed future backreaction input.
+
+0Z comparison matrix (filed in verdict.json; headline): dpsi propagation
+identical (bitwise); zero-free protection identical (vacuum-blind uniform
+floor); relational response, energy anatomy, susceptibility, and ledger
+departure vacuum-dependent; interference null universal; linearity
+universal (slope 1 vs ZERO slope 2).
+
+Mission answers: (1) delta psi around an earned joint vacuum obeys the
+same carrier U(t) on every vacuum (bitwise) -- the vacuum is a
+relational/geometric background, never a propagation medium. (2) The
+observables to define relative to the vacuum are drho/dB/dJ (with dpsi
+fundamental); their cross terms carry the vacuum dependence and differ
+operationally across VPLUS/VPI/VMINUS. (3) Fractional eps = |d|/|vac| is
+the natural dimensionless strength (collapse 1e-13..1e-14 over 6 decades
+of a). (4) dB is characterized as the primary future backreaction
+readout (amplitude/vacuum-dependence/propagation filed; no dynamics
+insertion per firewall). (5) No particle names were needed: the
+propagating/stationary-hidden/mixed/cancellation-capable taxonomy follows
+from the frozen sector structure.
+
+Firewall compliance: no H modification, no geometry-update rule, no
+(B - B_vac) in any dynamics (readout-only throughout), no amplitude
+tuning, no structural events (0Y ledgers read-only), no matter
+redefinition, no gravity claims. HIDDEN-0/RESPONSE-0/SYM-0 remained
+coordination-only (local minimal readouts: MALUS sector weights,
+finite-diff chi, heuristic visibility); QUOT-0/FIELD-0/ZERO-0/BR/CONS
+consumed read-only and byte-identical (obs0/obs0r/run_obs0/run_obs1 repair
+is test-only). ZERO stayed a capped control throughout.
+

@@ -3,6 +3,19 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (VAC-EXC-0 verdict)** — VACEXC0-COMPLETE banked (beast,
+  241/241 records): bitwise cross-vacuum dpsi identity 7/7 + packet v
+  identical on all 4 backgrounds + interference null I ~ 6e-16 on all
+  vacua + decomp cross +1/dd 0 + frac collapse 1e-13 over 6 decades of
+  a + protection certificates (thresholds vacuum-blind, no actual zero
+  to eps = 1.0) + energy anatomy resid 1e-14 + sector purity 1.0 +
+  deep-linear slopes 35/35 (O(eps) vs ZERO O(eps^2)) + longtime bounded
+  (dJ <= 4.6e-4); same-carrier/different-response formalized via chi
+  matrix + Delta_exc R_G ledger table; one owned amendment (analyzer-
+  only: sector purity, deep-linear window + ZERO B-vacuous exact-null
+  theorem, absolute J bar); suite 1007 passed / 2 skipped (weighted
+  skipped per campaign note).
+
 - **unreleased (VAC-EXC-0 prereg)** — Excitations-around-joint-vacuum
   campaign opened on main tail: 8-kind dpsi battery (point/phase/patch/
   packet/standing/source/sym/hidden) around VACFIELD0-JOINT (VPLUS/VPI/
