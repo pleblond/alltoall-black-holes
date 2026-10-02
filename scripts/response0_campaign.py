@@ -613,6 +613,10 @@ def main():
             m = ys > 0
             if kind == "ladder-amp" and obs != "dpsi":
                 m = m & (xs >= 1.0)  # linear-dominated subset; low-a crossover filed
+            if m.sum() < 2:
+                print(f"G5 {kind}/{obs}: no-fit (peaks={ys.tolist()} "
+                      f"(B-blindness-predicted-absent!))")
+                continue
             slope, _ = np.polyfit(np.log(xs[m]), np.log(ys[m]), 1)
             print(f"G5 {kind}/{obs}: slope={slope:.3f} (expect {expect[obs]})")
     for r in by_kind.get("ladder-frac", []):
