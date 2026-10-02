@@ -32,15 +32,20 @@ from bh_graph.ds import ds_legs, stellar_bh_total_legs
 from bh_graph.cosmic import ds_scrambling_gyr
 from bh_graph.remnant import required_beta_for_dm
 from bh_graph import uvscatter as _uv
+from bh_graph.collapse import leg_shedding_ejecta, peak_apparent_mags
+from bh_graph.massgaps import gw190814_combined_pdetect, shedding_prediction
+from bh_graph.evaporation_unitary import evaporate_unitary
+from bh_graph.graphvk import evaporate_graph, page_deviation
+from bh_graph.mergershed import ejecta_derived, shed_fraction_q
 
-st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–BS, BV", layout="wide")
+st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–BV + BU–D8", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
 st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–BS, BV in src/bh_graph/ (paper/main.pdf)")
 
-tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tabBV, tab4 = st.tabs([
+tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tabBV, tabNew, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
     "A: Circuits", "B: k(N)", "C: QES", "D: Page", "F/G: QEC+robust", "H–L", "Q/R: Data",
-    "BV: UV scattering", "Paper",
+    "BV: UV scattering", "BU–D8: Derivations", "Paper",
 ])
 
 with tab1:
@@ -332,6 +337,82 @@ with tabBV:
         st.image("figures/fig70_uv_c.png", caption="fig70: dilute c, no tuning")
         st.image("figures/fig71_uv_pop.png", caption="fig71: pop + UV running")
         st.image("figures/fig72_uv_ladder.png", caption="fig72: ladder + no-r check")
+
+with tabNew:
+    st.header("BU–D8 — Post-BV derivations (interactive)")
+    st.caption("Modules merged to main. Open PRs (Michell, 2PN bridge, tidal, large-N Vk, frame-drag, shutoff, flux) get sections after merge.")
+    st.subheader("BU — Leg-shedding kilonovae (no neutrons)")
+    k1, k2, k3 = st.columns(3)
+    with k1:
+        m1 = st.slider("m1 (Msun)", 1.0, 30.0, 1.4, step=0.1)
+    with k2:
+        m2 = st.slider("m2 (Msun)", 1.0, 30.0, 1.4, step=0.1)
+    with k3:
+        dist = st.slider("distance (Mpc)", 40.0, 300.0, 100.0, step=10.0)
+    ej = leg_shedding_ejecta(float(m1), float(m2))
+    mags = peak_apparent_mags(float(m1) + float(m2), float(dist))
+    st.metric("M_ej (Msun)", f"{ej['M_ej']:.3f}")
+    st.metric("peak g / i", f"{mags['m_g']:.1f} / {mags['m_i']:.1f}")
+    st.image("figures/fig68_kilonova_gap.png", caption="fig68")
+    st.subheader("Mass gaps — universal shedding + GW190814 audit")
+    g1, g2 = st.columns(2)
+    with g1:
+        gm1 = st.slider("BBH m1 (Msun)", 2.0, 60.0, 23.2, step=0.1)
+    with g2:
+        gm2 = st.slider("BBH m2 (Msun)", 1.0, 10.0, 2.6, step=0.1)
+    pred = shedding_prediction(float(gm1), float(gm2), 241.0)
+    st.metric("predicted M_ej (Msun)", f"{pred['M_ej']:.3f}")
+    st.metric("predicted m_g at 241 Mpc", f"{pred['m_g']:.1f}")
+    st.metric("GW190814 P(detect) g-only / g+i",
+              f"{gw190814_combined_pdetect(include_i=False):.2f} / {gw190814_combined_pdetect():.2f}")
+    st.subheader("D2 — Unitary Page (qubit toy)")
+    u1, u2, u3 = st.columns(3)
+    with u1:
+        nU = st.slider("N qubits", 4, 8, 6, step=2)
+    with u2:
+        modeU = st.selectbox("scrambling", ["haar", "circuit"])
+    with u3:
+        depthU = st.slider("depth/step (circuit)", 0, 40, 10, step=5)
+    if st.button("Run unitary evaporation"):
+        with st.spinner("evolving..."):
+            run = evaporate_unitary(int(nU), depth_per_step=int(depthU), seed=0, mode=modeU)
+        _, s_exact = page_curve_exact_bits(int(nU))
+        figU, axU = plt.subplots(figsize=(6, 3))
+        axU.plot(run["t"], run["S_rad"], "o-", color="#0f766e", label="from rho_rad")
+        axU.plot(run["t"], s_exact, "--", color="gray", label="Page exact")
+        axU.set_xlabel("t"); axU.set_ylabel("S_rad"); axU.legend(); axU.grid(True, alpha=0.3)
+        st.pyplot(figU)
+        st.metric("isometries ok", str(all(run["isometries_ok"])))
+    st.image("figures/fig74_unitary_page.png", caption="fig74")
+    st.subheader("D1 — Graph-derived Vk (adjacency decides Page)")
+    v1, v2 = st.columns(2)
+    with v1:
+        kindV = st.selectbox("hole graph", ["complete", "chain"])
+    with v2:
+        nV = st.slider("N qubits (graph Vk)", 4, 8, 6, step=2)
+    if st.button("Run graph evaporation"):
+        with st.spinner("evolving..."):
+            grun = evaporate_graph(int(nV), kind=kindV, dt=1.0, seed=0)
+        _, s_ex = page_curve_exact_bits(int(nV))
+        figV, axV = plt.subplots(figsize=(6, 3))
+        axV.plot(grun["t"], grun["S_rad"], "o-", color="#0f766e", label=f"{kindV} V_k")
+        axV.plot(grun["t"], s_ex, "--", color="gray", label="Page exact")
+        axV.set_xlabel("t"); axV.set_ylabel("S_rad"); axV.legend(); axV.grid(True, alpha=0.3)
+        st.pyplot(figV)
+        st.metric("deviation from Page (bits)", f"{page_deviation(grun['S_rad'], s_ex):.3f}")
+    st.image("figures/fig74b_graphvk_page.png", caption="fig74b")
+    st.subheader("BU2 — Derived shed shape frac(q)")
+    q = st.slider("mass ratio q", 0.05, 1.0, 0.5, step=0.05)
+    st.metric("shed fraction", f"{shed_fraction_q(float(q)):.4f}")
+    ejd = ejecta_derived(14.0, 14.0 * float(q))
+    st.metric("M_ej at 14+14q Msun", f"{ejd['M_ej']:.4f} Msun")
+    qq = np.linspace(0.05, 1.0, 100)
+    figS, axS = plt.subplots(figsize=(6, 3))
+    axS.plot(qq, [shed_fraction_q(v) for v in qq], color="#0f766e", label="derived shape")
+    axS.axhline(0.168, ls="--", color="gray", label="flat prescription")
+    axS.set_xlabel("q"); axS.set_ylabel("frac"); axS.legend(); axS.grid(True, alpha=0.3)
+    st.pyplot(figS)
+    st.image("figures/fig68b_mergershed_shape.png", caption="fig68b")
 
 with tab4:
     st.header("Paper draft")
