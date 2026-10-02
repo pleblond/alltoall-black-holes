@@ -1,15 +1,9 @@
-"""POT-1 campaign runner v3 (POT1-AMENDMENT-2 frozen protocol).
+"""POT-1 campaign runner v4 (POT1-AMENDMENT-3 frozen protocol).
 
-Changes vs v2 (filed in POT1-AMENDMENT-2): turn-on = cosine tau=8,
-T=16 uniform all J2 (no-T-dependence proven); turn-on shape tests use
-INNER profile (r<=4, 96.8% norm); kappa/xi/eps gate on JUMP vehicle
-(turn-on versions filed); adiabatic lingerer trend gated (tuning-free);
-velocity window (0.5,12) from Bloch bound 8 + precursor margin; AP wall
-x=1->2 gap row 1 with filed delta=0.2304; H = inner return + far-norm
-accounting; RB = norm-range on T=40 jump. All inherited thresholds
-IDENTICAL (no shopping).
+Changes vs v3 (filed in POT1-AMENDMENT-3): path turn-on tau=16/T=24
+(1D S/B parity, calib5-verified 57x); J_wrap on jump vehicle (L28 pred
+T=8 vs 2T=16, calib4-verified 13x). ALL else IDENTICAL to v3.
 """
-
 from __future__ import annotations
 
 import argparse
@@ -254,7 +248,8 @@ def main() -> int:
                     pin_nodes=pins, s_vals=[1.0, -1.0])
         cases.append(dict(base, tag=f"path_{nm}_jump", init="pred"))
         cases.append(dict(base, tag=f"path_{nm}_ramp", init="zero",
-                          ramp=RAMP_TAU if not smoke else 0.5))
+                          T=3.0 if smoke else 24.0,
+                          ramp=16.0 if not smoke else 0.5))
     cases.append(dict(substrate="path", n=npath, omega=OM_PA,
                       T=3.0 if smoke else 12.0, r_set=4 if smoke else 10,
                       pin_nodes=[0, npath - 1], s_vals=[0.5, -0.5],
@@ -275,8 +270,8 @@ def main() -> int:
                           ramp=RAMP_TAU if not smoke else 0.3))
     if not smoke:
         cases.append(dict(substrate="j2", L=28, pin_nodes=_j2_src_nodes(28),
-                          s_vals=[1.0], tag="j2_28_ramp_2T", init="zero",
-                          ramp=RAMP_TAU, t_mult=2))
+                          s_vals=[1.0], tag="j2_28_pred_2T", init="pred",
+                          t_mult=2))
         for tau, nm in ((4.0, "04"), (12.0, "12")):
             cases.append(dict(substrate="j2", L=20, pin_nodes=_j2_src_nodes(20),
                               s_vals=[1.0], tag=f"j2_20_tau{nm}", init="zero",
@@ -346,7 +341,7 @@ def main() -> int:
 
     out = {"params": {"DT": DT, "OM_J2": OM_J2, "RAMP_TAU": RAMP_TAU,
                       "T_TURNON": T_TURNON, "AP_DELTA": AP_DELTA,
-                      "amendment": 2}}
+                      "amendment": 3}}
     V = {}
 
     if smoke:
@@ -453,12 +448,12 @@ def main() -> int:
     V["J_xi"] = bool(max(xi.values()) / min(xi.values()) < 1.2)
     g, order, c3, h, eu, ev = _j2_setup(28)
     dist = dist_from_set(g, _j2_src_nodes(28))
-    # Wrap control: SAME-protocol ramp T vs 2T, settled inner shells.
-    a16 = Avec("j2_28_ramp")
-    a32 = Avec("j2_28_ramp_2T")
-    m16 = shell_means_node(np.abs(a16), order, dist, 4)
-    m32 = shell_means_node(np.abs(a32), order, dist, 4)
-    V["J_wrap"] = bool(is_shell_match_ok(m32, m16, range(0, 5), 0.05, floor=0.01))
+    # Wrap control: JUMP vehicle (Amendment-3) T=8 vs 2T=16 inner drift.
+    j8 = Jvec("j2_28_pred", OM_J2)
+    j16 = Jvec("j2_28_pred_2T", OM_J2)
+    m8 = shell_means_node(np.abs(j8), order, dist, 4)
+    m16 = shell_means_node(np.abs(j16), order, dist, 4)
+    V["J_wrap"] = bool(is_shell_match_ok(m16, m8, range(0, 5), 0.05, floor=0.01))
     V["B"] = bool(all(V[k] for k in V if k.startswith("B")))
     V["J"] = bool(V["J_xi"] and V["J_wrap"])
 

@@ -3337,3 +3337,29 @@ IDENTICAL (NO-shopping!) + new-gates-from-predictions (delta/vmax/
 containment)-or-tuning-free (monotonicity)-or-round-accounting (1%/
 10%/35%). RERUN-(v3)-verdicts-are-the-record. NEXT: implement-v3-+-
 smoke-+-amendment-commit-then-beast-rerun (gated!).
+
+POT1-V3-DISPOSITION (SUPERSEDED (gate-miss-owned (Amendment-3-precedent!));
+beast-run-5e75b80 (tau=8/T=16-inner-profile + jump-kappa/xi/eps +
+trend-gate + v-(0.5,12) + AP-wall-(delta-0.2304) + H-accounting + RB-
+norm-range): LADDER-POT1-NULL-on-TWO-gates-only (ALL-other-gates-GREEN
+(many-big-margins!) NOT-physics-refutation!)). GREEN-BANKED (v3-filed-
+observations): AP-delta-0.2295-vs-0.2304-(0.4%!); TAU-trend-0.0197->
+0.0088->0.0053-strict-✓; RB-0.0026/0.0021-(4x!); H-acct-0.984-vs-1.0;
+ranges-3=3-all-L; jump-kappa-0.7%/2.2%; jump-xi-pairwise-0.4%;
+fronts-7.8-7.9-R2>0.999; RB-nets-sign-flip-(+,-,+)-slosh-✓; nodal/
+exchange/phase/linearity/C1/C5/C6-green. MISS-1-A_a_ramp_shell (path-
+gap-(a)-ONLY-r=4-shell-rel-0.48-(rest-<=0.10!): 1D-standing-lingerers-
+per-node-3x-worse-than-J2 (0.030-vs-0.009-measured (no-transverse-
+dilution!)) + S/B-marginal-at-r=4-(signal-0.0625)!). MISS-2-J_wrap
+(ramp-T-vs-2T-inner-drift->5%: lingerer-BEAT-(12.6)-confounds-wrap-
+comparison (two-times-never-agree-to-5%!) NOT-wrap-contamination!).
+POT1-AMENDMENT-3 (PRE-RERUN (v3-opened (above!)); protocol-v4-frozen-
+here): (i)-path-turn-on-=-tau=16/T=24-both-gaps-uniform (1D-S/B-parity-
+rationale (above!) + VERIFIED-pre-freeze-calib5-per-shell-rel-<=0.0044-
+(57x-margin!)-inner-global-0.005/0.002!); (ii)-J_wrap-→-JUMP-vehicle
+(L28-pred-T=8-vs-pred-2T=16-inner-shell-drift-<5% (steady-stability-→-
+steady-vehicle (Amendment-2-principle!) + VERIFIED-pre-freeze-calib4-
+drift-<=0.38%-(13x-margin!))); (iii)-ALL-else-IDENTICAL-to-v3 (gates/
+thresholds/vehicles/windows (NO-other-changes!)). RERUN-(v4)-verdicts-
+are-the-record. NEXT: implement-v4-+-smoke-+-amendment-commit-then-
+beast-rerun (gated!).
