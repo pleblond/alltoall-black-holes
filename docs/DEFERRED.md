@@ -3036,3 +3036,19 @@ decomp (mandatory-future-calibration!)))); FIELD0-RESIDUAL (reproducible-I>0
 binding-claims-from-rho/B/J-drama-alone (I=0-required!); vacuum-selection-
 inside-FIELD-0; graph-evolution; matter-labels. NEXT: freeze-commit-then-
 beast-campaign (FIELD0_WORKERS=32 (gated-on-prereg-commit!)).
+
+FIELD0-AMENDMENT-1 (snew-threshold-artifact (POST-first-run-audit (FFT-linearity-
+exact!)); first-run-57-cells-4s-beast (eps-max-9.6e-12-median-1.7e-12 (C0-PASS!) +
+rho/bj/e-57/57 (C1-C4-PASS!) + dP1=dP2=0-exact-all-cells + dE-max-4.5e-16 BUT
+snew-in-{0,2,3,4,6,10}-median-2 (I-median-2.0 (FALSE-RESIDUAL!)))): AUDIT:
+spectral_support-uses-per-state-relative-thresh (P/Pmax>1e-6); joint-Pmax-24.99
+vs-iso-25.40 (1.6%-diff (destructive-at-peak!)) puts-4-modes-in-(24.99e-6,
+25.40e-6)-band (counted-joint-not-iso (threshold-artifact-NOT-physics!)); FFT-
+linearity-max|c12-c1-c2|/scale=4e-16-to-7e-15-all-checks (EXACT (FFT-is-linear!));
+isolated-power-stationary + dP=0-exact + dE-fp-exact (all-other-witness-legs-
+green!). FIX (code-bugfix (prereg-intent-unchanged (no-new-components!))):
+witness_components-ADDS-clin (FFT-coeff-linearity (exact-scattering-null!)) +
+I=max(eps,dP1,dP2,clin,dE) (snew-filed-only (NOT-gated!)); is_witness_ok-gates-
+clin<1e-6 (snew-bar-removed!); field0.py-ADDS-fft_coeffs/fft_linearity_dev
+(pinned (4-substrates-exact!)); campaign-files-w_clin; test_field0-pins-clin.
+RERUN (same-57-cells (fresh-checkpoint (no-reuse!))); verdicts-gated-on-rerun.

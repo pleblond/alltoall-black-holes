@@ -709,16 +709,59 @@ def static_field_j2(L: int = L_HEADLINE, pin_cell=(14, 14), sheet: int = 0,
 # Interaction witness (FIELD-0U) + isolation/substrate gates (C7/C8)
 # ---------------------------------------------------------------------------
 
+def fft_coeffs(psi: np.ndarray, sub) -> np.ndarray:
+    """Full FFT coefficient array (quotient/Bloch basis, FIELD-0T exact leg).
+
+    J2: 2D FFT of sheet-summed Phi; square/quotient: 2D FFT on cells; ring:
+    1D FFT. Linear in psi (pinned): coeffs(a+b)==coeffs(a)+coeffs(b) to fp.
+    """
+    p = np.asarray(psi, dtype=np.complex128)
+    L = int(sub["L"])
+    kind = sub["kind"]
+    if kind == "j2":
+        idx = {v: i for i, v in enumerate(sub["order"])}
+        phi = np.zeros((L, L), dtype=np.complex128)
+        for v, (x, y, _) in sub["c3"].items():
+            phi[x, y] += p[idx[v]]
+        return np.fft.fft2(phi)
+    if kind in ("square", "quotient"):
+        idx = {v: i for i, v in enumerate(sub["order"])}
+        phi = np.zeros((L, L), dtype=np.complex128)
+        for v in sub["order"]:
+            x, y = sub["coords"][v]
+            phi[int(x), int(y)] = p[idx[v]]
+        return np.fft.fft2(phi)
+    if kind == "ring":
+        return np.fft.fft(p)
+    raise ValueError(f"unknown substrate kind: {kind}")
+
+
+def fft_linearity_dev(psi1: np.ndarray, psi2: np.ndarray, sub) -> float:
+    """Max |c12-c1-c2|/scale (exact scattering null, FIELD-0T/U).
+
+    FFT is linear, so this is fp-exact zero under the linear null. Replaces
+    the relative-threshold support count (Amendment-1: support with per-state
+    relative thresholds fires on 1-2% Pmax differences, e.g. joint 24.99 vs
+    iso 25.40 gives snew=4 with clin=7e-15).
+    """
+    c1 = fft_coeffs(np.asarray(psi1, dtype=np.complex128), sub)
+    c2 = fft_coeffs(np.asarray(psi2, dtype=np.complex128), sub)
+    c12 = fft_coeffs(np.asarray(psi1, dtype=np.complex128)
+                     + np.asarray(psi2, dtype=np.complex128), sub)
+    scale = max(float(np.abs(c12).max()), 1.0)
+    return float(np.abs(c12 - c1 - c2).max() / scale)
+
+
 def witness_components(eps_max: float, psi1_pre, psi1_post, psi2_pre, psi2_post,
                        h, sub, thresh: float = 1e-6) -> dict:
     """Strict future-facing witness components (all zero under linear null).
 
     eps: max superposition residual (absolute). dP: outgoing momentum-peak
-    shift vs isolated (lattice k units). dR: post-overlap COM shift of each
-    component vs its isolated counterfactual (isolated==joint by linearity,
-    so any nonzero is accounting failure). Snew: new spectral modes in joint
-    POST beyond union of isolated supports. dE: non-factorizable energy
-    |E12-E1-E2-Ex|/|E12|. I = max of normalized components (frozen I=0).
+    shift vs isolated (lattice k units). clin: FFT-coefficient linearity
+    max|c12-c1-c2|/scale at POST (exact scattering null, Amendment-1).
+    snew: relative-threshold support count (filed only, threshold artifact
+    owned in Amendment-1, NOT gated). dE: non-factorizable energy
+    |E12-E1-E2-Ex|/|E12|. I = max(eps,dP1,dP2,clin,dE) (frozen I=0).
     """
     e = float(eps_max)
     m1p = momentum_peak(np.asarray(psi1_post, dtype=np.complex128), sub)
@@ -732,20 +775,25 @@ def witness_components(eps_max: float, psi1_pre, psi1_post, psi2_pre, psi2_post,
     s12 = spectral_support(np.asarray(psi1_post, dtype=np.complex128)
                            + np.asarray(psi2_post, dtype=np.complex128), sub, thresh)
     snew = len(s12 - (s1 | s2))
+    clin = fft_linearity_dev(np.asarray(psi1_post), np.asarray(psi2_post), sub)
     e12 = energy_of(np.asarray(psi1_post) + np.asarray(psi2_post), h)
     e1 = energy_of(np.asarray(psi1_post), h)
     e2 = energy_of(np.asarray(psi2_post), h)
     ex = energy_cross(np.asarray(psi1_post), np.asarray(psi2_post), h)
     dE = abs(e12 - e1 - e2 - ex) / max(abs(e12), 1.0)
-    comps = {"eps": e, "dP1": dP1, "dP2": dP2, "snew": int(snew), "dE": float(dE)}
-    comps["I"] = float(max(e, dP1, dP2, float(snew), float(dE)))
+    comps = {"eps": e, "dP1": dP1, "dP2": dP2, "snew": int(snew),
+             "clin": float(clin), "dE": float(dE)}
+    comps["I"] = float(max(e, dP1, dP2, float(clin), float(dE)))
     return comps
 
 
-def is_witness_ok(w: dict, atol: float = 1e-6, snew_bar: int = 0) -> bool:
-    """Boolean check: I=0 within atol and no new modes (FIELD-0U gate)."""
+def is_witness_ok(w: dict, atol: float = 1e-6) -> bool:
+    """Boolean check: I=0 within atol (FIELD-0U gate, Amendment-1).
+
+    Gates eps/dP1/dP2/clin/dE; snew is filed-only (threshold artifact).
+    """
     return bool(float(w["eps"]) < atol and float(w["dP1"]) < atol
-                and float(w["dP2"]) < atol and int(w["snew"]) <= int(snew_bar)
+                and float(w["dP2"]) < atol and float(w["clin"]) < atol
                 and float(w["dE"]) < atol)
 
 

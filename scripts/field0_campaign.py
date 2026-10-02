@@ -272,7 +272,7 @@ def run_cell(cell):
            "fa_amax": fa["amax"], "fa_amean": fa["amean"], "fa_vmax": fa["vmax"],
            "res_max": float(res.max()), "beat": beat,
            "w_eps": w["eps"], "w_dP1": w["dP1"], "w_dP2": w["dP2"],
-           "w_snew": w["snew"], "w_dE": w["dE"], "w_I": w["I"],
+           "w_snew": w["snew"], "w_clin": w["clin"], "w_dE": w["dE"], "w_I": w["I"],
            "norm1_dev": float(np.abs(rec["norms1"] - rec["norms1"][0]).max()),
            "norm12_dev": float(np.abs(rec["norms12"] - rec["norms12"][0]).max()),
            "wall_s": float(time.time() - t0)}

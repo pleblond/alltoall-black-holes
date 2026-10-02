@@ -332,6 +332,25 @@ def test_witness_zero_for_linear():
     w = field0.witness_components(float(rec["eps"].max()), rec["psi1"][0],
                                   rec["psi1"][-1], rec["psi2"][0],
                                   rec["psi2"][-1], sub["h"], sub)
-    assert w["snew"] == 0
+    assert w["clin"] < 1e-12
     assert w["dE"] < 1e-9
     assert w["eps"] < 1e-8
+    assert w["I"] < 1e-6
+
+
+def test_fft_linearity_exact():
+    for sub in (_small_j2(), _small_ring(), _small_square(), _small_quotient()):
+        L = sub["L"]
+        d = len(sub["periods"])
+        r1 = (L / 4.0,) * d if d == 1 else (L / 4.0, L / 2.0)
+        r2 = (3.0 * L / 4.0,) * d if d == 1 else (3.0 * L / 4.0, L / 2.0)
+        k1 = (0.5,) * d if d == 1 else (0.5, 0.0)
+        k2 = (-0.5,) * d if d == 1 else (-0.5, 0.0)
+        sig = 1.2 if d == 2 else 2.0
+        p1 = field0.make_packet(sub, r1, k1, sig)
+        p2 = field0.make_packet(sub, r2, k2, sig)
+        assert field0.fft_linearity_dev(p1, p2, sub) < 1e-12
+        c1 = field0.fft_coeffs(p1, sub)
+        c2 = field0.fft_coeffs(p2, sub)
+        c12 = field0.fft_coeffs(p1 + p2, sub)
+        assert c1.shape == c2.shape == c12.shape
