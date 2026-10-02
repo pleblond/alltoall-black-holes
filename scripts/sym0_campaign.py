@@ -582,8 +582,11 @@ def build_cells():
                         u_cells.append((law, sub_name, field, tid))
                     if sub["kind"] == "j2":
                         u_cells.append((law, sub_name, field, "S"))
-    for sub_name in ("square-torus-4", "j2-L4"):
-        for field in ("uniform", "packet", "generic-s0", "current"):
+    for sub_name, fset in (("square-torus-4",
+                             ("uniform", "current", "generic-s0", "generic-s1")),
+                            ("j2-L4",
+                             ("uniform", "packet", "generic-s0", "current"))):
+        for field in fset:
             for a in (0.7, 2.1):
                 fs_cells.append(("zero", sub_name, field, a))
     for sub_name, fa, fb in (("square-torus-4", "uniform", "generic-s0"),
