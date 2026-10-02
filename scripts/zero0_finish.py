@@ -13,7 +13,7 @@ import os
 import re
 import sys
 
-OUT_RE = re.compile(r"--out=(\S+)")
+OUT_RE = re.compile(r"--out[= ](\S+)")
 
 
 def _out_ok(path: str, validate: bool) -> bool:

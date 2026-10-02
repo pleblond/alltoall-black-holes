@@ -104,7 +104,7 @@ def test_missing_lines(tmp_path):
     a = tmp_path / "a.json"
     a.write_text("{}")
     tf = tmp_path / "tasks.txt"
-    tf.write_text(f"PY run --task=generic --out={a}\n"
+    tf.write_text(f"PY run --task=generic --out {a}\n"
                   f"PY run --task=generic --out={tmp_path}/b.json\n")
     miss = missing_lines(str(tf))
     assert len(miss) == 1 and "b.json" in miss[0]
