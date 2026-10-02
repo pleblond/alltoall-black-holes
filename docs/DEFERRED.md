@@ -3396,3 +3396,132 @@ overlap = 1; sheet0 50/50; n_zero = 838); malus+ballistic+formation
 subset 51 passed on beast; full suite 606+2 green locally (full
 beast suite deferred: box at load ~500 from concurrent campaigns).
 NEXT: none on this track (null banked).
+
+SLIT-PREREG (FROZEN-2026-10-01 (~19:30-UTC (commit-predates-ALL-SLIT-
+campaign-runs!)); two-path-interference-campaign (wave-sector-only
+(P1-derived-apparatus (H(G)=-J·A(G)-hopping-only-LOCKED (same-as-P1!));
+NO-formation-runs + NO-polarity/handedness-readouts (P1/P2/P3/B0-
+untouched (separate-track (non-interfering!))))). QUESTION: does-the-
+scalar-J2-wave-produce-interference-from-alternative-graph-paths + does-
+which-path-information-destroy-it-without-a-collapse-postulate.
+SCOPE: SLIT-0-coherent-calibration + SLIT-1-phase-dependence + SLIT-2-
+path-record/decoherence + SLIT-3-graph-only-corridors; SLIT-4-discrete-
+detection/Born-DEFERRED (no-detector-mechanism-in-model (explicit!)).
+APPARATUS (this-commit (14-pins!)): bond-barriers (node-set-fixed-across-
+A/B/AB (Hilbert-comparable!)); slit-mouth-superpositions-on-ONE-G_AB
+((A+e^{iφ}B)/√2-Loewdin-orthonormalized (linearity-to-Krylov!)); sharp-
+mask-entangler + eraser (unitary-on-system×qubit (demonstrates-WHAT-
+path-recording-WOULD-do (NOT-that-graph-provides-it (open-question!))));
+MZ-theta-corridors (abstract (no-coords!)). DESIGN-BASIS (apparatus-
+validation-NOT-campaign-data (toy/medium/large-grids-at-NON-campaign-
+sizes + MZ-len6-vs-campaign-14 (all-fringes/exactness-confirmed (filed-
+in-commit-message!))): thresholds-set-≥2×-below-toy (fringe-presence-vs-
+Krylov-noise (~1e-12!) (NOT-tuned-to-pass!)); exact-claims-from-symmetry
+(center/odd-state/destructive (mirror-automorphism-pinned!)).
+GEOMETRY (LOCKED): OPEN-GRID-70×61 (xb=30, slits-A=(22,23)-B=(37,38)
+(d=15-about-yc=30 (mirror-exact!)), mouths-(31,22.5)/(31,37.5)-σ=2-k=
+(1.0,0), source-(12,30)-σ=3-k=(1.0,0), detector-xd=54 (D=23), window-W=
+|y-30|≤16 (33pts), sub-window-S=|y-30|≤8, dt=0.1). J2-L28 (xb=12, slits-
+(8,20) (d=12-about-14!), mouths-(13,8)/(13,20)-σ=2-k=(0.3,0)-P1.1b-validated,
+detector-xd=20 (D=7), window-|y-14|≤12, dt=0.1). MZ-len14 (campaign (toy-
+was-6!), T=80-window). CLOCK (operational (pre-committed!)): T* = argmax-
+detector-line-weight-over-[0,60]-open ([0,20]-J2) from-the-AB-run (ONE-
+clock (all-preparations/graphs-read-at-T*!)); t* = argmax-w_D(φ=0)-for-MZ.
+SLIT-0a-MOUTHS (same-G_AB): HEADLINE-V(W)>0.3-AND-nmax(W)≥3-AND-rmsR>0.2-
+AND-L2(AB,incoh)>0.05-AND-linearity-dev<1e-9. VALIDITY: Loewdin-corr<0.05
++ detW(T*)>0.5% + wallW<5% + T*-interior(<58/18) + norm-1e-8.
+SLIT-0b-SOURCE (G_A/G_B/G_AB-one-clock): HEADLINE-Rmax(S)>1.4-AND-Rmin(S)<
+0.6 (R=I_AB/(I_A+I_B)-per-point (constructive≈2/destructive≈0!))-AND-L2>
+0.05. VALIDITY: singles-mirror-L2<0.03 + detW_AB>0.5% + wallW<5% + interior
++ norm. CONTROL: closed-barrier-right-weight<1e-9-at-T* (exact-block!).
+SLIT-1-PHASE (G_AB-T*): φ∈{0,π/2,π,2π}: HEADLINE-center-I(π/2)/I(0)=0.5±0.1-
+AND-I(π)/I(0)<0.05 (odd-state-exact-zero!)-AND-periodicity-|I(2π)-I(0)|/I(0)<
+1e-9-AND-L2(0,π)>0.05 (pattern-shift!). VALIDITY: I(0)-center>0 (non-node-
+denominator (else-void!)) + norm.
+SLIT-2-WHICHPATH (G_AB-T*): γ∈{1,0.75,0.5,0.25,0}: HEADLINE-A(γ)/A(1)=γ±0.03-
+each (A=RMS(I(γ)-E)/RMS(E) (exact-linear!))-AND-A(0)<0.02-AND-R²>0.999.
+ENTANGLER (t=0-half-plane-masks): HEADLINE-crosstalk<1%-AND-L2(traced,E)<
+0.03-AND-amp_kill<0.05-AND-eraser-L2(plus,I_AB/2)<1e-9 (exact-restore!)-
+AND-minus-center-ratio<0.05 (antifringe!). VALIDITY: norm.
+SLIT-3-MZ (len14): HEADLINE-φ-scan-at-t*: w(π/2)/w(0)=0.5±0.03-AND-w(π)/w(0)<
+0.02 (swap-odd-exact-zero!); single-arm-φ-maxdiff<1e-9-full-window (exact!);
+arm-scan-(lenA=14-lenB=14..26-S-injection)-maxw-max/min>3. VALIDITY: w_D(t*)>
+10% + t*-interior(<75) + norm.
+J2-SECONDARY (SLIT-0a-only (no-source-driven-on-J2 (wrap-scope-cut!))):
+HEADLINE-V>0.2-AND-rmsR>0.15-AND-L2>0.05. VALIDITY: purity>0.8-per-packet
++ corr<0.05 + T*<12 (wrap-arrival-17.5-margin!) + detW>0.5% + norm.
+VERDICT-RULE (per-stage): PASS ⟺ ALL-headline-AND-ALL-validity; validity-
+fail ⟹ VOID (file + amend (P1.1b-precedent!) (NOT-fail!)); criterion-fail ⟹
+FAIL (file!). GLOBAL: suite-green (all-pins + full-suite-on-beast). NEXT:
+slit_campaign.py (gated-on-prereg-commit!) + beast-run.
+
+SLIT-CAMPAIGN-1-filed (SUPERSEDED-partial (mechanics-bug + two-operational-
+timing-voids (below!)); beast-15s; NO-verdict-drawn-on-affected-stages
+(discipline!)): PASS-STAND (valid-gates (deterministic (rerun-replicates!))):
+0a (T*=12.4: V=0.678/nmax=5/rmsR=0.392/L2=0.075/lin=2e-14 (all-with-margin!);
+detW=8.2%/wall=0.9%/corr=4e-4); 0b (T*=26.1: Rmax=2.00/Rmin=0.016/L2=0.110
+(center-constructive-2×-exact-theory!); mirror=2e-14/detW=0.6%/wall=1.1%);
+shut (rightW=3e-10 (exact-block!)); SLIT-1 (half=0.5000/pi=8e-28/per=6e-14/
+L2(0,π)=0.151 (symmetry-exact!)). AFFECTED (no-verdict!): 2g-numbers (passed-
+but-WRONG-states (script-shadow-bug (below!))); 2e-FAIL×2 (amp_kill=27.7/
+eraser=0.082 (meaningless-quantities (cross-experiment-comparison (bug!))));
+J2-L2=0.035-vs-0.05 (near-miss-ON-PRE-ARRIVAL-pattern (T*=2.4-vs-arrival-5.7
+(argmax-on-flat-tail-curve (operational-misfire!)); V=0.84-anyway!)); MZ-φ-
+VOID (t*=77.2-at-window-edge-80 (peak-not-captured (window-too-short!));
+ratios-exact-anyway (0.5000/4e-33 (t*-independent-algebra!))); MZ-arm-ratio=
+4.31 (passed-but-window-suspect-for-long-arms (rerun-under-amended-window!)).
+SLIT-AMENDMENT-1 (PRE-RERUN (affected-stages-only (passed-stages-STAND!))):
+(1)-IMPL-BUG-owned: 0b-section-reassigned-eA/eB/Iab (SLIT-2-compared-0a-
+entangler-against-0b-patterns (cross-time/cross-graph-garbage!)) ⟹ script-
+renamed-to-prereg-spec (mechanics (protocol-unchanged!)). (2)-J2-T*-rule:
+argmax-window-[0,20]→[5,20] (lower-bound-5 = P1.1b-arrival-5.7(D=7/v=1.235-
+filed!)−0.7 (captures-peak + excludes-pre-arrival-tail-argmax (operational-
+timing (NOT-goalpost!))); T*<12-gate + all-thresholds-STAND). (3)-MZ-window:
+T=80→160 + interior-gate-t*<75→t*<150 (2×-measured-edge-peak-77.2 (P1.1b-
+arithmetic-precedent!); all-thresholds-STAND). RERUN (gated-on-amendment-
+commit!): full-script (passed-stages-must-REPLICATE-identically (bonus-
+determinism-check!) + affected-stages-decided).
+
+SLIT-CAMPAIGN-2-filed (beast; post-Amendment-1): REPLICATED (0a/0b/shut/1-
+identical-to-run-1 (determinism-✓!)); SLIT-2-PASS (2g-exact-linear (R²=1.0!) +
+2e (ctalk=2e-4/L2=0.002/amp_kill=0.010/eraser=1e-14/minus=3e-5 (script-fix-
+confirmed!))); SLIT-3-PASS (φ-half=0.5000/π=4e-33/t*=77.2-interior-160/
+single-arm-exact/arm-ratio=3.66!). J2 (amended-window-[5,20]): T*=13.8 (SECOND-
+misfire (run-1: 2.4-pre-arrival; run-2: 13.8-wrap-zone-VOID (T*<12!)); line-
+weight-NON-UNIMODAL-on-ring (comparable-peaks-2.4/13.8 (0.0953-both!) +
+arrival-5.7-in-valley!) ⟹ argmax-rule-IS-WRONG-FUNCTIONAL-for-rings (method-
+finding!)); pattern-at-13.8: V=0.706/rmsR=0.210-✓-but-L2=0.046-vs-0.05 (near-
+miss (envelope-dip-contamination-suspected (2-lobe-E-has-V-too!))).
+SLIT-AMENDMENT-2 (J2-clock-FINAL (pre-committed (no-further-J2-timing (outcome-
+filed-as-is!)); thresholds-UNCHANGED)): REPLACE-argmax-with-FIXED-T_J=6.0
+(= arrival-5.67 (D=7/v=1.235-P1.1b-filed!) rounded-up (+0.3-fringe-margin);
+P1.1b-fixed-T-from-prior-v-precedent!; wrap-17.5-far (arithmetic!)); T*<12-
+gate-RETIRE (no-T* (fixed-time)); detW/purity/corr/norm-gates-STAND (detW-void
+⟹ J2-VOID (timing (not-physics!))). ADD-descriptive (NOT-criteria!): J2-nmax +
+envelope-V(E) (envelope-vs-fringe-diagnosis!). RERUN (gated-on-commit!):
+full-script (replication-check-×3!) + J2-decided-final.
+
+SLIT-VERDICT (PASS-ALL-STAGES (beast-campaign-3 (SCRIPT_EXIT=0 (FAIL=[]-VOID=[]));
+suite-615-passed + 2-skipped (beast -n-64 (full!)); apparatus-14-pins-green):
+SLIT-0a-PASS (T*=12.4: V=0.678/nmax=5(!)/rmsR=0.392/L2=0.075/lin=2e-14 (linearity-
+exact!)); SLIT-0b-PASS (T*=26.1: Rmax=2.00/Rmin=0.016 (center-2×-constructive +
+deep-destructive (Young-pattern!))/L2=0.110/mirror=2e-14); shut-NULL-✓ (3e-10);
+SLIT-1-PASS (half=0.5000/pi=8e-28/periodicity-6e-14/L2-shift=0.151 (coherent-
+superposition (NOT-focusing-artifact!))); SLIT-2-PASS (γ-exact-linear-R²=1.0000/
+kill-exact-0 + entangler (ctalk-2e-4/traced-L2-0.002/kill-0.010 (fringes-gone!)/
+eraser-restore-1e-14-exact/antifringe-center-3e-5!)); SLIT-3-PASS (MZ-φ-half=
+0.5000/π=4e-33/single-arm-exact-independence/arm-scan-ratio-3.66 (graph-path-
+interference-WITHOUT-spatial-picture!)); J2-SECONDARY-PASS (fixed-T=6: V=0.853/
+rmsR=0.589/L2=0.149 (3×-margin!)/purity-100%/nmax(AB)=3-vs-E=4 (genuine-shape-
+change (NOT-envelope!))). INTERPRETATION (filed (NOT-overclaimed!)): scalar-J2-
+wave-DOES-interfere-from-alternative-paths (expected (complex-linear (positive-
+control-passed!))); which-path-coupling-DESTROYS-fringes-continuously-in-|γ|
+WITHOUT-collapse-postulate (dynamical-suppression + eraser-restore (unitary-
+only!)); graph-corridors-interfere-without-geometry (SLIT-3!). OPEN (hard-wall-
+STANDS!): NO-graph-degree-supplies-path-records-yet (entangler-is-external-
+unitary (NOT-derived!)); NO-detection/Born-mechanism (SLIT-4-deferred (single-
+detection-events-unexplained!)); interference-IS-built-into-complex-ψ (classical-
+waves-do-this-too (SLIT-0 ≠ QM-demonstration (framing-kept!))). NEXT: SLIT-
+campaign-CLOSED (all-stages-pass (+2-amendments-filed-pre-rerun (discipline-
+kept!))); followups (NOT-opened-here!): derived-path-record-degree + SLIT-4-
+detector-mechanism (queued-behind-model-content!).
