@@ -2988,3 +2988,135 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## QUOT — dynamical origin of the observer quotient (Quot track)
+
+**Fork (adopted):** from main tail (a0c248c, v5.5.0, 576 tests) + read-only
+vendored apparatus (byte-identical sha): ballistic.py (7578176c, P1 wave),
+malus.py (MALUS-0 sheet sector), driven.py (e3f1ff98, POT-1), obs0.py +
+obs0r.py (OBS-0/R rulers), obs1.py + obs1_reveal.py + run/analyze scripts
+(OBS-1 blind observer), formation.py elist_window (additive, keeps vendored
+ballistic pins green). Nothing vendored is modified (C6 firewall).
+
+OBS-1 banked OBS1-QUOTIENT (blind d_O = 2.02, DIST 0.08 vs quotient,
+locality 0.95+, sheet contrast < 0.03: the observer inhabits J2/sheet).
+MALUS-0 banked [H,S] = 0, H*P_anti = 0, symmetric sector = square walk at
+2J (M0-NULL: one propagating sector + one dead). QUOT-0 tests whether the
+observer quotient FOLLOWS from the dynamical sector structure (quotient
+selected by information transport) or is an accidental coarse-graining.
+
+**QUOT-0 PREREG (FROZEN pre-data; this commit predates ALL Quot runs):
+mechanism, not discovery.** Headline substrate: J2 torus L = 28 (N = 1568,
+MALUS/POT headline scale); frozen law H = -A, J = 1 everywhere headline
+(no coin, no onsite, no weights). Pins at L in {4, 6, 8} (fast, local-OK);
+campaign numerics on beast (16.54.88.181, 96 workers, dir ~/quot-ea4c +
+~/quot-ea4c-data write, ~/obs0-data + ~/obs0r-data + ~/obs1-data READ-ONLY:
+banked eigen/info consumed, never rebuilt, sha logged). Apparatus:
+src/bh_graph/quot.py + tests/test_quot.py (pins in this commit) +
+scripts/quot_campaign.py (units below) + scripts/analyze_quot.py
+(verdict) + scripts/analyze_quot_replay.py (replay reveal; calls vendored
+analyze_obs1_{blind,reveal} functions, zero observer-code changes).
+
+**Derived inputs (pen-and-paper, pre-data predictions, NOT fits):**
+identical coarse-neighbor sets of the two sheets (MALUS-0 banked) give
+[H,S] = 0, H*P_- = 0, H_+ L = L H_Q (H_Q = -2J A_sq). Corollaries derived
+here pre-data: (i) U(t)L = L U_Q(t) exactly, U(t)psi_- = psi_- exactly,
+U(t)psi = U_+(t)psi_+ + psi_- exactly; (ii) wave sheet-bit remote
+probabilities IDENTICAL (fp): mixed (|x,0> vs |x,1>) differ only by frozen
+anti sign with source-cell support, so every remote target sees the same
+|.|^2 (exact, not approximate); (iii) diffusion: J2 is 8-regular so
+Lrw = I - A/8, hence Lrw P_- = P_- exactly (eigenvalue 1, mult N/2:
+anti modes decay e^{-t} in place, never spread) while Lrw,+ = square Lrw
+exactly (A_+ intertwines as 2 A_sq, /8 = /4 square: symmetric diffusion
+IS square diffusion); arrival-contrast pattern {R=1: 0, R=2: >0, R>=3: 0}
+follows (R=2 is the only shell containing same-cell cross-sheet pairs,
+where the local anti term e^{-t} lives) -- predicts the banked OBS-0R
+pattern (0.0000 / 0.1667 / 0.0000) with zero parameters; (iv) POT:
+two-pin same-cell removal preserves S (bulk stays sector-diagonal), so
+anti-drive response has support within 1 hop of source EXACTLY
+(H_-,BB = 0, phi_- = H_BS s_-/omega on neighbors only) while sym-drive
+propagates (Yukawa); mixed far-field = sym far-field, near-field contrast
+from the trapped anti term -- predicts the banked POT pattern
+(R=2 0.1407, else 0) mechanistically.
+
+**Q protocol (LOCKED).** Q-ALG (exact algebra, L28 filed + L<=8 pinned):
+||[H,S]|| = 0, ||H P_-|| = 0, ||H U - U H_sq|| = 0 (fp <1e-9),
+||U(t)L phi - L U_Q(t)phi|| <1e-9 (5 random phi x 4 t, Krylov both
+sides), ||U(t)psi_- - psi_-|| <1e-9, decomposition identity <1e-9,
+L28 flat-band n_zero = 784 + 54 = 838 (MALUS regression, C0).
+Q-COMM (L28, banked eigen, general-initial-state traces): preparations
+(all norm-1, single-cell support): SYM position-bit (|x0,+> vs |x1,+>,
+x1 = x0+(1,0)), ANTI position-bit (|x0,-> vs |x1,->), SHEET-bit
+(|x0,0> vs |x0,1>), x0 = (7,14); receiver coarse shells r = 0..14
+(rounded min-image Euclidean, both sheets); D_B(t) = TV (preregistered
+1/2 L1, sheet-resolved primary); C(r) = max_t D(r,t); arrival threshold
+theta_arr = 0.001. Wave grid dt = 0.05 T = 16; diffusion grid =
+obs0.diffusion_grid(D) (dt = 0.25). Bars: SYM arrival exists + C_+ >
+0.001 at r in {2,4,6} wave+diffusion (positive control); ANTI C_- <1e-9
+at r >= 2 wave+diffusion (fp-exact zero) + ratio C_-/C_+ <1e-6 at
+{2,4,6}; SHEET S(0,t=0) = 1.0 exact, S(r) <1e-9 at r >= 1 wave+diffusion
+(local-real/remote-blind); else stage INVALID (apparatus fault, fix +
+re-prereg, no shopping). Global-phase (C3), sheet-exchange (C4),
+label-permutation (C5) invariance pinned.
+Q-SECTOR: wave exactness (mixed-vs-projected remote traces <1e-9,
+probabilities ratio P+/mixed = 2 exactly remote <1e-9); diffusion
+operator (||Lrw P_- - P_-|| <1e-12, sym=square intertwining <1e-12) +
+pattern {R1 <0.01, R2 >0.05, R3+ <0.01} on frozen arrival_times_diff +
+obs0.sheet_contrast (4 frozen origins, all must agree) + ablation
+(sym-only kernels -> R2 <0.01; banked 0.1667 within 30% descriptive
+DERIVED-support); POT exact anti-support (1-hop, fp) + mixed-vs-sym
+far-field (r>=4) relative <5% + pattern {R1 <0.01, R2 >0.05, R3 <0.01,
+meso <0.01} via frozen obs0r.static_field_phi + sheet_contrast (4
+origins) + ablation (sym-drive -> contrast <0.01 everywhere; banked
+0.1407 within 30% descriptive).
+Q-N projection (observable form): per-channel remote equality mixed vs
+unweighted-projected (wave+diff exact fp on taus; POT far-field <5%
+shared bar); Q-O equivalence: (x,0) ~_O (x,1) all cells (max remote D
+<1e-9 wave/diff) + non-collapse (4 translation-inequivalent cell pairs
+all C_+ >theta).
+Q-P replay (station-matched, frozen pipeline): datasets P+ (symmetric
+sources), P- (antisymmetric sources/difference signals), Mixed
+(single-sheet = standard OBS-1) on OBS-1 cell ids {0: j2-L42, 3: sq-L42,
+6: exp-N3528-s0} (same stations as banked via same seeds, separate
+outdirs; sq/exp run Mixed only -- no sheets); meas files pass vendored
+audit_meas_schema; blind stage runs VENDORED analyze_obs1_blind.main
+unchanged; reveal via analyze_quot_replay (calls vendored reveal_set +
+blind_set_flags only). Bars: Mixed reproduces banked (composite D match
+<1e-6 + cell QUOTIENT-clauses METRIC/DIST/LOCAL/LOC/SHEET all pass;
+GATE: P+/P- blind gated on Mixed reproduction, else PAUSE);
+J2-P+ QUOTIENT-clauses pass + |d_+ - d_mixed| <= 0.5 (geometry from
+transported P+ info); J2-P- METRIC False via completeness <0.5 (frozen
+sector carries no geometry); sq/exp-Mixed reproduce banked C0/C1.
+Q-Q perturbation (NON-FROZEN control, eps = 0.1 ONE value, V =
+eps*(b-1/2) onsite, J2-L28, same omega = -8.5 + gap re-verified):
+||[H,S]||_F = eps*sqrt(N) (pin), anti packet mobile (disp >5% of sym,
+mixing >0.01), remote sheet S(r=4) >0.01 (visible), replay cell 19
+frozen-vs-pert station-matched: SHEET contrast >= 0.05 + >3x frozen
+(causal flip; METRIC recorded, geometry expected intact).
+Q-R control (bilayer square L=28, N=1568, intra-sheet edges only,
+(x,y,b) labels): H_- = -A_sq != 0 (band check), anti packet ballistic
+(alpha >1.3 same bar), sheet-bit remote C(r=4) >0.01 (C7: layers stay
+distinguishable), replay cell 21 (fresh eigen, omega = -4.5 + gap):
+METRIC False via completeness <0.98 (two worlds, not one) +
+cross-layer missing >0.4 (instrument fact).
+Q-S capacity: filed C_+/C_-/S tables vs r (wave+diffusion+POT analog);
+no separate bars (bars live in Q-COMM).
+
+**Verdict ladder (frozen, no wiggle):** QUOT0-ACCIDENTAL if ANY of:
+frozen-H remote anti/sheet capacity >1e-6 at r>=2 (wave/diff); Mixed
+replay fails QUOTIENT-clauses; control bilayer reaches QUOTIENT-clauses;
+P- replay reaches METRIC. QUOT0-SECTOR: Q-ALG all pass + test_malus green
+(C0) + L28 838. QUOT0-OPERATIONAL (primary positive): SECTOR + Q-COMM all
++ Q-N + Q-O + Mixed/P+/P- replay bars. QUOT0-DERIVED (strongest):
+OPERATIONAL + wave exactness + diffusion pattern+ablation + POT
+exact-support+pattern+ablation + Q-Q flip + Q-R distinguishable (C7 +
+METRIC-false). Else QUOT0-PARTIAL (per-stage filing, honest).
+C1 OBS regression = Mixed reproduction (above). C2 = intertwining
+analytic (quot.py proof comments) + numeric. C6 = vendored blind code
+untouched (sha check in campaign log) + meas audit.
+
+**Kill relevance:** QUOT0-OPERATIONAL/DERIVED promotes OBS1-QUOTIENT from
+empirical coarse-graining to dynamical consequence (only quotient modes
+transport); QUOT0-ACCIDENTAL keeps it empirical and kills the
+sector-selection explanation (the observer result stands, the mechanism
+dies). Either way OBS-1/MALUS-0 banked results are untouched.

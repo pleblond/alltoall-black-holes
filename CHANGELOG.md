@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (QUOT-0 prereg)** — Quot track opened on main tail (v5.5.0):
+  dynamical-origin-of-observer-quotient campaign preregistered (Q-ALG
+  exact sector algebra + Q-COMM sym/anti/sheet channels + Q-SECTOR
+  wave/diffusion/POT anatomy + Q-N projection + Q-O equivalence + Q-P
+  sector-controlled observer replay + Q-Q perturbed + Q-R bilayer
+  controls; verdict ladder QUOT0-ACCIDENTAL/SECTOR/OPERATIONAL/DERIVED);
+  frozen apparatus vendored read-only (ballistic/malus/driven/obs0/obs0r/
+  obs1/obs1_reveal + runners/analyzers, sha-pinned); sector apparatus
+  (`quot.py`) + 19 pins + campaign/analysis scripts.
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).
