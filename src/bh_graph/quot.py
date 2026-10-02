@@ -450,7 +450,11 @@ def perturbed_hamiltonian(g: nx.Graph, order: list, c3: dict,
 # ---------------------------------------------------------------------------
 
 def bilayer_square_graph(L: int) -> nx.Graph:
-    """Two decoupled LxL square tori (layers b = 0,1), (x,y,b) labels.
+    """Two decoupled LxL square tori (layers b = 0,1), J2-style int labels.
+
+    Node id = (x * L + y) * 2 + b (SAME labels as formation.j2_torus_graph,
+    so stations/coords/reveal machinery aligns exactly; only the EDGE SET
+    differs: intra-sheet square moves, no cross-sheet edges).
 
     Sheet swap S is a symmetry ([H,S] = 0) AND both sectors propagate
     (H_- = -A_sq != 0): the observer must NOT quotient the layers. If it
@@ -460,22 +464,23 @@ def bilayer_square_graph(L: int) -> nx.Graph:
     if L < 3:
         raise ValueError("L must be >= 3")
     g = nx.Graph()
+    n = 2 * L * L
+    g.add_nodes_from(range(n))
     for x in range(L):
         for y in range(L):
             for b in (0, 1):
-                g.add_node((x, y, b))
-    for x in range(L):
-        for y in range(L):
-            for b in (0, 1):
-                g.add_edge((x, y, b), ((x + 1) % L, y, b))
-                g.add_edge((x, y, b), (x, (y + 1) % L, b))
+                p = (x * L + y) * 2 + b
+                q = (((x + 1) % L) * L + y) * 2 + b
+                g.add_edge(p, q)
+                q = (x * L + ((y + 1) % L)) * 2 + b
+                g.add_edge(p, q)
     return g
 
 
 def bilayer_square_coords(L: int) -> dict:
-    """Node -> (x, y, b) map for bilayer_square_graph (J2-style labels)."""
-    return {(x, y, b): (x, y, b) for x in range(L) for y in range(L)
-            for b in (0, 1)}
+    """Node -> (x, y, b) map for bilayer_square_graph (J2-style int labels)."""
+    return {(x * L + y) * 2 + b: (x, y, b) for x in range(L)
+            for y in range(L) for b in (0, 1)}
 
 
 def is_decoupled_ok(g: nx.Graph, c3: dict) -> bool:
