@@ -192,7 +192,10 @@ def w_hidden_complex(spec):
 
 def w_circle(spec):
     L = int(spec["L"])
-    rep = vc.circle_probe(L, ledger_moves=2000)
+    # Sampled-M1 graphs (N > 64) need the headline move budget for a
+    # resolved seed-stability estimate (2000 moves is noise-dominated).
+    mv = 2000 if 2 * L * L <= 64 else 20000
+    rep = vc.circle_probe(L, ledger_moves=mv)
     rows = []
     for r in rep["rows"]:
         rows.append(

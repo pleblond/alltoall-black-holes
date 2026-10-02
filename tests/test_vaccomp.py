@@ -236,6 +236,24 @@ def test_amplitude_family_all_joint(sub4, h4, ee4):
     assert rep["all_joint"]
 
 
+def test_amplitude_family_nonzero_energy_all_joint(sub4, h4, ee4):
+    # Scale-covariant stationarity: drifts are 2-homogeneous, so the
+    # absolute bar is read at unit norm (a=1000 fp noise would trip it).
+    eu, ev = ee4
+    psi = vf.candidate_shape("VPLUS", sub4, "j2")
+    rep = vc.amplitude_family_ladder(psi, sub4, h4, eu, ev, -8.0, ledger_moves=500)
+    assert rep["all_joint"]
+
+
+def test_sampled_ledger_resolved_at_headline_moves():
+    # N > 64 sampled M1 needs the headline move budget (stable f-stats).
+    sub = vf.j2_substrate(6)
+    eu, ev = vf.edge_arrays_of(sub)
+    fam = vc.two_value_family(sub, (0.1309,))
+    r = vc.ledger_symmetric_row(fam[0.1309], sub, eu, ev, 20000)
+    assert r["ok"] and r["seed_stable"] and r["contract_uniform"]
+
+
 # --- 0L: same-eigenvalue sweep (circle stationary everywhere) ---
 
 

@@ -7208,3 +7208,34 @@ VACCOMP0-PARTIAL iff non-apparatus gates fail; VACCOMP0-NULL iff
 C0 or C2 fail. Records: data/vaccomp/results.json (41 tasks) +
 data/vaccomp/verdict.json.
 
+## VACCOMP0-AMENDMENT-1 (measurement resolution; FROZEN pre-rerun)
+
+Two pre-rerun clarifications after the first campaign pass returned
+VACCOMP0-PARTIAL (fails 0H-circle_L6, 0K-VPLUS/VPI). Both are
+measurement-resolution issues, not physics and not gate changes:
+
+**A1 scale-covariant stationarity.** At a=1000 the VPLUS/VPI rungs
+read ZERO with rho/B drift 7.9e-08 vs the absolute 1e-08 bar --
+exactly 100x the a=100 drift (8.0e-10), i.e. pure evolve_fixed fp
+noise on 2-homogeneous bilinears (relative 2.6e-12 on observables
+of magnitude ~3e4; E=0 states read drift exactly 0.0 since
+e^{-i0t}=1 accumulates no phase error). The vf absolute bars are
+calibrated at unit norm (VAC-FIELD candidates are normalized), so
+the stationarity leg is evaluated on the normalized shape. In
+exact arithmetic shape-passes iff a-shape-passes at every a > 0;
+this preserves the bar's meaning (fp-noise floor), it does not
+weaken the gate. All other legs already pass at a=1000 unmodified
+(current/stress exactly 0.0, amplitude/ledger/scale-invariant).
+
+**A2 headline move budget for sampled ledgers.** circle_L6 alphas
+0.13..0.65 read BALANCED via ledger_symmetric with moves=2000:
+contraction exactly uniform (per-class std 0.0) but M1
+seed-stability noise-dominated at 2000 moves. At the headline
+20000-move budget (VAC-FIELD precedent) the same states pass with
+identical f-stats (0.222/0.385/0.393); the 2000-move failure is
+under-resolved sampling, not structure. N > 64 (sampled-M1)
+campaign tasks use ledger_moves=20000; N <= 64 keeps exhaustive
+M1. Pinned: test_sampled_ledger_resolved_at_headline_moves,
+test_amplitude_family_nonzero_energy_all_joint (40 pins green).
+
+

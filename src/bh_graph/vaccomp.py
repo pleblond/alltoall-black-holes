@@ -653,16 +653,24 @@ def joint_ladder(
     representatives in the campaign (not assumed here: this classifier
     evaluates the binding gates + filing legs and marks universal legs
     True-by-theorem with the verification pointer).
+
+    Scale covariance (frozen): stationarity drifts are exactly
+    2-homogeneous in psi (bilinears scale as a^2 under linear
+    evolution), while the vf absolute bars are calibrated at unit
+    norm. The stationarity leg is therefore evaluated on the
+    normalized shape; in exact arithmetic shape-passes iff
+    a-shape-passes at every a > 0, so this preserves the bar's
+    meaning (fp-noise floor) rather than weakening the gate.
     """
     from bh_graph import vacfield as vf
 
     psi = np.asarray(psi, dtype=np.complex128)
-    stat = vf.stationarity_run(psi, h, np.asarray(eu), np.asarray(ev))
+    nrm = float(np.linalg.norm(psi))
+    shape = psi / nrm if nrm > 0.0 else psi
+    stat = vf.stationarity_run(shape, h, np.asarray(eu), np.asarray(ev))
     stationary = bool(vf.is_stationary_ok(stat, energy))
     cur = current_free_row(psi, sub, eu, ev, plaquettes)
     st = stress_row(psi, sub, eu, ev)
-    nrm = float(np.linalg.norm(psi))
-    shape = psi / nrm if nrm > 0.0 else psi
     amp = amplitude_coherent_row(shape, sub, eu, ev, energy)
     w = sheet_weights_of(shape, sub["order"], sub["c3"])
     sector = is_sector_pure_ok(w)
