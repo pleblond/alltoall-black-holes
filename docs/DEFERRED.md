@@ -4968,3 +4968,148 @@ invariant-) ←-same-(r,i)-field-H=-A-→-coherent-directional-radiation
 (even-FIELD-NOT-charge/Coulomb/Maxwell/photons/gauge/Lorentz/EM!).
 NEXT-OPEN: EM-0-continuum-field-characterization (radial-law? effective-
 equations? B/J-roles? BR-2-quadrature-match?).
+
+## BR1-PREREG — Vacuum neutrality + rigidity (D14-BR1, FROZEN PRE-DATA)
+
+**Status:** apparatus + ladder frozen; campaign NOT YET RUN. Audit and
+falsification campaign: discovers rigidity already present in existing
+dynamics, creates none. No new E_G, potential, temperature, Metropolis
+factor, rigidity parameter, motif penalty, or healing target anywhere.
+
+**Frozen ontology:** G, psi = (r, i), U (existing rules only). Primary
+vacuum: G = J2, psi = 0. Primary move class M1 (BR-0-frozen): remove one
+uniform edge + add one uniform non-edge (N, E, simplicity preserved;
+degree sequence NOT; connectivity NOT required).
+
+**Frozen vacuum fingerprint (banked observables ONLY):**
+- UV/micro: degree histogram, micro shells (8/17/8r), cuts (56/32r+16),
+  C4 census (blind_u.nsquares; banked 26072 at R18), return probs
+  (characterization, campaign tracks p2 only via bip_viol proxy — NO,
+  frozen correction: returns NOT re-measured; bipartition violations
+  (banked 0) serve as the odd-cycle witness), quotient cell census.
+- IR/class: connectivity, long-scale exponent p (banked band (1.90,1.94)
+  on R24 window [8,20]), quotient square-adjacency fraction (banked 1.0;
+  min-image readout on tori, P1 convention).
+- Wave (C6, characterization only, no verdict weight): E1 packet
+  (k=(0.3,0), sigma=4, r0=(7,15)) oneway_run 60x0.1 on pristine vs
+  N1-killed L28; readouts disp + participation ratio.
+
+**CLASS-ALIVE(t) (survival criterion):** connected AND |p(t)-p(0)| <= 0.15
+(banked micro-vs-quotient tolerance) AND qfrac >= 0.99. UV drift alone
+(C4/degrees/bip_viol) is anatomy, never death. tau_micro: first t with
+G_t != J2 (predicted == 1 move under N1, pinned by construction).
+
+**Campaign grid (frozen):** census torus L in {4,6} exhaustive + {4,6,8,12,28}
+closed-form, anatomy n=2000 (seeds 100/101) on L {8,12,28}; drift J2 balls
+R {12,18,24} x seeds {0,1,2}, T=3000, snapshot 25 (heavy every 4th);
+p-windows R12 [4,9], R18 [6,14], R24 [8,20] (banked); square-torus-L28 N1
+control x2 seeds + J2-torus-L28 x1 seed (window [5,11], final graph kept);
+U-audit pristine L12 {null, scramble, guillotine, anneal, slide, square,
+triangle, metropolis x2 (T 0.25/1.0), kappa(5 steps)} + pristine L28
+{null, scramble, guillotine, square} + C2 damaged-L12 (20 swaps)
+{guillotine, anneal, slide}; defects L12 x3 seeds x {guillotine, anneal,
+slide, square}; small-field L8 eps {1,1e-1,1e-2,1e-4,1e-8} psi_hat seed
+1001, 500 moves; C0 exhaustive ring-8 + sampled L12 n=2000.
+smax_J2 = max edge-span on pristine J2 (radius 3), measured t=0 baseline
+(fabric-relative calibration, banked methodology). pair/triple/quad
+EXCLUDED from audit/defects (order-2+ coordination cost unjustified for
+single-defect probes; exclusion pre-data, not from results).
+
+**U_G inventory + domain pre-judgment (behavior still measured):**
+- null/scramble: harness controls, not physics (null ~ N0 behaviorally).
+- greedy_heal: global target, inadmissible form — EXCLUDED (not run).
+- guillotine/anneal/slide/drift(chain): repair-domain rules (D1 battery).
+  NOT vacuum kinetics by justification; run on pristine (expect inert, 0
+  accepts) + damaged (expect active, C2) + defects (counterfactual).
+- square/triangle/metropolis/kappa: blind-admissible FORM; square-grid
+  record Goodhart/leaving/negative/frozen. Run on J2 as blind-form audit.
+- formation.py (D5inf etc.): formation-domain (soup->core), NOT vacuum
+  kinetics — EXCLUDED by domain (category error to apply to pristine J2).
+- healing.py: GW ringdown sector, not graph dynamics — EXCLUDED by domain.
+- NX policy: VACUOUS unless a rule meets the DYNAMIC bar below (no
+  independently-justified vacuum-domain U_G inventoried pre-data).
+
+**Verdict ladder (frozen bars, evaluated by scripts/analyze_br1.py):**
+- BR1-KINEMATIC-RIGID iff N_legal(L28) == 0. (Predict: falsified.)
+- BR1-DYNAMIC-RIGID iff some inventoried rule is inert-fixed on pristine
+  L12 (0 accepts AND fp_after CLASS-ALIVE) AND class-restores >=2/3
+  G-defects (longs_after == 0 AND fp_after CLASS-ALIVE). Bit-restore
+  predicted IMPOSSIBLE for swap-class rules (degree-fiber pin,
+  test_rigidity.py) — bar is class-restore. (Predict: not met.)
+- BR1-CLASS-RIGID iff all 9 J2 drift runs alive at T=3000. (Predict: no;
+  banked swap-fragility suggests fast death.)
+- BR1-METASTABLE iff deaths observed AND (median tau_class > 200 at some
+  R OR monotone-increasing medians R12<R18<R24). Scaling reported, no
+  forced fit.
+- BR1-FLAT iff none of the above (drift kills class fast with no
+  protective U). (Predict: FLAT, tau_class ~ O(10).)
+- N0/N1/NX debt table: N0 frozen-analytic (G == J2, survival 1.0);
+  N1 measured; NX vacuous (see above). No policy selected (Firewall).
+
+**Controls:** C0 bitwise zero-field null (exhaustive + sampled, both
+paths); C1 determinism (unit pins + analyzer re-run); C2 matched
+substrates (damaged-J2 activity controls + square-torus drift control);
+C3 E conservation every trajectory; C4 no coordinate use by dynamics
+(labels read-only for quotient/bipartition readout); C5 multisize
+(R 12/18/24 + L12/L28 audit); C6 banked wave law unchanged (E1 settings).
+
+**GRAV-0 handoff:** defect anatomy (longs created, restore/overlap,
+spread) recorded without propagation interpretation.
+
+## BR1-VERDICT — BR1-FLAT (rigidity debt confirmed, 14/14 gates)
+
+**Campaign:** data/br1_vacuum.json (beast run, 246 s, frozen runner).
+**Ladder:** KINEMATIC falsified (N_legal(L28) = 7,665,989,632, exact
+closed form, L4/L6 exhaustive match 47104/653184); DYNAMIC not met by any
+inventoried rule; CLASS-RIGID falsified (9/9 J2 drift runs dead by t=25);
+METASTABLE falsified (median tau_class = 25/25/25 at R12/18/24 — first
+snapshot at every size, no trend, far below the 200 bar). **= BR1-FLAT:**
+the current ontology does not explain vacuum rigidity.
+
+**Neutral drift (N1, BR-1D/F):** tau_micro = 1 move (every relocation
+changes the edge set; 3000/3000 applied, E conserved every trajectory).
+Post-verdict characterization (NOT ladder input, snapshot-every-1 rerun):
+exact tau_class = 3/9/6 moves at R12/18/24, first killer = p-drift
+(|dp| = 0.16–0.21), qfrac still >= 0.993 at death. Square-torus control
+under identical N1 also dead at t=25 both seeds: neutral drift is
+generically destructive, J2 not special. M1 anatomy (L28): disconnect
+fraction 0.0/2000, 97% of additions nonlocal (graph distance >= 4).
+
+**Existing-U audit (BR-1C):** repair rules (guillotine/anneal/slide) are
+INERT-FIXED on pristine J2 (0 accepts, L12 50 steps + L28 30 steps) and
+ACTIVE on damaged J2 (C2: 20-swap damage, longs 27 -> 5/13/14 with
+17/29/9 accepts) — genuine fixed-point behavior, not brokenness.
+Blind-form rules on J2: square/metropolis(T0.25,T1.0)/kappa FROZEN
+(0 accepts; verified: all 1891 sampled swaps carry touched-C4 delta in
+[-42,-22], mean -40.9, so metropolis acceptance ~ exp(-22) ≈ 3e-10 is
+unreachable — J2 is a deep local C4-optimum under single swaps);
+triangle DESTRUCTIVE (188 accepts, longs 0 -> 32, p 1.08 -> 0.01, leaves
+the class). scramble kills as designed (negative control).
+Caveat filed: the L12-torus p-window [5,11] is wrap-adjacent; audit
+CLASS-ALIVE calls there inherit extra sensitivity. No DYNAMIC candidate
+came close (best class-restore 1/3), so the caveat is verdict-remote.
+
+**Single defects (BR-1G, GRAV-0 anatomy, no interpretation):** one M1
+defect = exactly 1 long, bip_viol 0–1, qfrac 0.9965 (all 3 seeds); class
+impact is lottery — 1/3 kills immediately (p 1.08 -> 0.64), 2/3 absorbed.
+No bit-restores (degree-fiber pin holds exactly); class-restores
+guillotine/anneal/slide/square = 1/3, 1/3, 0/3, 0/3 (< 2/3 bar).
+Repair rules churn <= 4 edges (overlap 1148–1151/1152): they cannot reach
+across the M1 degree-fiber step.
+
+**Small-field (BR-1I):** max|dE| scales as eps^2 bit-cleanly
+(0.077 -> 7.7e-18, ratios exactly 100 to 1e-15): the landscape vanishes
+continuously, no threshold. No physical threshold inferred.
+
+**Wave (C6, characterization only):** E1 packet, pristine disp 7.11
+(PR 401 -> 608) vs N1-killed endpoint disp 16.13 (PR 401 -> 616):
+killing the class does NOT localize the packet. Filed as a curiosity
+for the wave/vacuum-track owners; BR-1 draws no conclusion from it.
+
+**BR-3 handoff (mandatory):** downhill (dE < 0) and uphill (dE > 0) per
+BR-2; neutral (dE = 0) carries **NEUTRAL-MOVE DEBT** — N0 reject =
+frozen-analytic (G == J2, survival 1.0, micro-frozen); N1 allow =
+measured-lethal (tau_class ~ 5 moves); NX existing-kinetics = VACUOUS
+(no independently-justified vacuum-domain U_G inventoried; repair-rule
+counterfactuals reported above, none selected). BR-3 must carry the
+debt, not silently adopt dE <= 0 or dE < 0.

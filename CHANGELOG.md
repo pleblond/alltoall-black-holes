@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (BR-1 vacuum rigidity audit)** — D14-BR1 campaign: new
+  `rigidity.py` (frozen J2 fingerprint, N1 neutral drift, M1 census
+  anatomy, survival predicate, defect injection, small-field scaling);
+  15 pins incl. BR-1A neutral-manifold theorem (both paths) and the
+  swap-fiber obstruction pin; verdict BR1-FLAT (14/14 gates): N1 drift
+  kills the vacuum class in tau_class ~ 3-9 moves at every size, no
+  inventoried U_G preserves-and-heals (repair rules inert-fixed on
+  pristine + active on damage; blind rules frozen-or-leaving on J2),
+  eps^2 continuity bit-clean. BR-3 inherits NEUTRAL-MOVE DEBT.
+
 - **unreleased (BR-2 phase-controlled backreaction)** — D14-BR2 campaign:
   new `phase.py` (sublattice-stagger family, observation-only J readers,
   directional + staggered currents, R_B/R_mag, strict census + premise);
