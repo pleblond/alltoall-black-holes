@@ -4496,3 +4496,49 @@ since cross-cell census pairs are diffusion-visible per A1a.
 A1c (P1 formalized): 05q fails C1 by |c-1|*max|P_+| exactly (pinned in
 tests/test_hiddenbr.py), alongside the preregistered E_B/E_A = c^2 law.
 Cause filed, pair excluded. No gate change.
+
+## HIDDEN-BR-VERDICT (filed 2026-10-02): HBR0-SIGNREV (primary positive + sign reversal)
+
+Beast confirmation run (35 cells, 32 workers, wall 23s; records
+data/hiddenbr_{cells,verdict,stage}.json committed): 214/214 frozen checks
+green (Amendment-1 applied), 9/9 qualifying pairs valid (C1+C2), C0-C8 all
+green, 1346 strict sign-flip edges. Suite 1296 passed + 2 skipped on beast
+(-n 8; test_weighted.py skipped per standing instruction).
+
+Headline: matched states with P_+ equal, E_A = E_B to fp (dE <= 1.8e-15),
+and wave+POT remote blindness (<= 2.5e-15 / 2.1e-17) nevertheless have
+different B landscapes (max|dB| 0.025-0.71 over 4-96 edges) and therefore
+different dE/dA = -2B (conjugacy pinned < 1e-9 on L6+L28): EQUAL FIELD
+ENERGY DOES NOT IMPLY EQUAL GEOMETRIC RESPONSE LANDSCAPE. Stronger: 1346
+edges across the battery carry STRICT opposite-sign virtual contraction
+ledgers (70 on local pairs + 1276 on the VMINUS sign pair): changing only
+transport-hidden information REVERSES the energetic ordering of structural
+alternatives. All virtual (no graph op executed anywhere).
+
+Stage highlights: HBR-0J conjugation control exact (dB = dL = 0, d_J > 0:
+ledger-blind but J-visible). HBR-0K: zero-energy pure-hidden states carry
+nontrivial ledgers (disk/checker/complex B_max 0.04-0.06, 96 ledger edges;
+delta has B = 0 ON EVERY EDGE yet 16 nonzero ledger edges via non-edge
+cross bonds: a vanishing bond field with a non-vanishing gradient
+landscape). HBR-0M/N: B/ledger in span{1,cos,sin} / span{1,a,a^2} to fp
+(res ~1e-16), E constant over both sweeps (range 0.0). HBR-0O: shape matters
+at fixed norm (pairwise db 0.14-0.38, 50-60 flips each). HBR-0P/Q: sharp
+locality (test-edge dh exactly 0.0 at support distance >= 2 through
+antipodal; far control bitwise 0.0). HBR-0R: overlap ledger modulation
+0.50/0.27 with bitwise-zero far field and witness I ~ 1e-12 (no memory).
+HBR-0T: nonzero-ledger supports need no zero (filed frac). HBR-0U: U1 /
+relabel / sheet covariance < 1e-12 (redundancies quotient cleanly).
+HBR-0V: VPLUS/VPI pure P_+ (E -8/+8), VMINUS pure P_- (E = 0, 12
+offset classes, spread 0.0). HBR-0W/C8: head-on witness I = 0 (no force).
+C4: BR-2.6 formula vs direct contraction < 1e-9. HBR-0X: R_G separates the
+R2 census (min_D 0.052 over 14028-63 pairs) UP TO CONJUGATION (63/63
+conjugate pairs fp-identical at 2.2e-16: the geometric response is blind
+to hidden conjugation, which lives in J alone).
+
+Refinement of HIDDEN-0 (Amendment-1, mechanism-derived): diffusion-blindness
+holds iff Dp(0) is S-odd (sign/phase: diff <= 6.1e-16; shape/amp-raw: diff
+0.005-0.43, S-even |psi_-|^2 difference diffuses); wave+POT blind for ALL
+matched pairs. HAMP-Q control exact (E_B/E_A = c^2 = 1.75 to 1e-12, C1 fail
+at predicted |c-1|max|P_+|). HBR-0S omitted (no RESPONSE-0 verdict).
+HISTORY-MEASURE DEBT still blocks actual geometry dynamics: no tendency,
+rate, or event claim is made.
