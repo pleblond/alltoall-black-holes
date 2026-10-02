@@ -54,6 +54,23 @@ def tag_L(tag: str) -> int:  # noqa: N802
     return int(parts[1][1:])
 
 
+def jsonable(o):
+    """Recursively convert numpy scalars/arrays to JSON-native types."""
+    if isinstance(o, dict):
+        return {str(k): jsonable(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)):
+        return [jsonable(v) for v in o]
+    if isinstance(o, np.ndarray):
+        return [jsonable(v) for v in o.tolist()]
+    if isinstance(o, (np.integer,)):
+        return int(o)
+    if isinstance(o, (np.floating,)):
+        return float(o)
+    if isinstance(o, (np.bool_,)):
+        return bool(o)
+    return o
+
+
 def cmd_eigen(args):
     g, meta = tag_graph(args.tag)
     L = tag_L(args.tag)
@@ -75,7 +92,7 @@ def cmd_eigen(args):
             "heat_ds": obs0.heat_trace_ds(wl),
             "weyl": obs0.weyl_ds(np.sort(wl)[:min(obs0.WEYL_K, N - 1)])}
     with open(os.path.join(args.outdir, f"info_{args.tag}.json"), "w") as f:
-        json.dump(info, f)
+        json.dump(jsonable(info), f)
     # degrees needed for exact Lrw on non-regular graphs
     np.save(os.path.join(args.outdir, f"deg_{args.tag}.npy"), np.array(degs))
     print(f"eigen {args.tag}: N={N} D={D} heat_ds={info['heat_ds']['d']:.4f} "
@@ -120,7 +137,7 @@ def cmd_origin(args):
            "taus": taus}
     fn = os.path.join(args.outdir, f"origin_{args.tag}_o{o_pos}.json")
     with open(fn, "w") as f:
-        json.dump(rec, f)
+        json.dump(jsonable(rec), f)
     missD = sum(1 for v in safe if tD[idx[v]] is None)
     missW = sum(1 for v in safe if tW[idx[v]] is None)
     print(f"origin {args.tag} o{o_pos}: safe={len(safe)} "
@@ -147,7 +164,7 @@ def cmd_dims(args):
     rec = {"tag": args.tag, "D": D, "heat_ds": obs0.heat_trace_ds(wl),
            "weyl": info["weyl"], "origins": out}
     with open(os.path.join(args.outdir, f"dims_{args.tag}.json"), "w") as f:
-        json.dump(rec, f)
+        json.dump(jsonable(rec), f)
     print(f"dims {args.tag}: D={D} heat_ds={rec['heat_ds']['d']:.4f}", flush=True)
 
 
@@ -226,7 +243,7 @@ def cmd_c5(args):
     rec["pass"] = bool(rec["ring"]["pass"] and rec["torus"]["pass"]
                        and rec["j2"]["pass"])
     with open(os.path.join(args.outdir, "c5.json"), "w") as f:
-        json.dump(rec, f)
+        json.dump(jsonable(rec), f)
     print(f"c5: ring relerr={rec['ring']['relerr']:.4f} "
           f"torus relerr={rec['torus']['relerr']:.4f} "
           f"j2 relerr={[round(r, 4) for r in rec['j2']['relerr']]} "
