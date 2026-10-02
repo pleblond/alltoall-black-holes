@@ -524,11 +524,15 @@ def split_isomorphism_classes(g: nx.Graph, psi: np.ndarray, order: list,
     Two SPLIT outcomes share a class iff their post-split graphs are
     isomorphic AND their |psi| multisets match to 1e-6 (U0 tick-relabeling
     convention). NONE is always its own class. Deterministic order.
+    Performance: candidates are pre-grouped by the sound signature
+    invariant (degree sequence, |psi| multiset, N, E); the exact pairwise
+    test runs only within same-signature groups (different signature =>
+    definitely non-isomorphic, skipped without changing the result).
     """
     psi = np.asarray(psi, dtype=np.complex128)
     order = list(order)
-    idx = {v: t for t, v in enumerate(order)}
     states = {}
+    sigs = {}
     for o in admissible:
         ko = outcome_key(o)
         if o.get("kind") == "NONE":
@@ -536,18 +540,28 @@ def split_isomorphism_classes(g: nx.Graph, psi: np.ndarray, order: list,
         else:
             h, psi_h, _oh = apply_node_outcome(g, psi, order, k, o)
             states[ko] = (h, psi_h)
+        sigs[ko] = split_outcome_signature(g, psi, order, k, o)
+    groups: dict = {}
+    for ko in [outcome_key(o) for o in admissible]:
+        s = sigs[ko]
+        skey = (s["kind"], tuple(s["deg"]), tuple(s["mag"]), s["E"], s["N"])
+        groups.setdefault(skey, []).append(ko)
     classes = []
-    unseen = [outcome_key(o) for o in admissible]
-    for ko in unseen:
-        placed = False
-        for cls in classes:
-            rep = cls[0]
-            if _isomorphic_states(states[ko], states[rep]):
-                cls.append(ko)
-                placed = True
-                break
-        if not placed:
-            classes.append([ko])
+    for _skey, members in sorted(groups.items(), key=lambda kv: kv[1]):
+        if len(members) == 1:
+            classes.append([members[0]])
+            continue
+        for ko in members:
+            placed = False
+            for cls in classes:
+                if cls[0] not in members:
+                    continue
+                if _isomorphic_states(states[ko], states[cls[0]]):
+                    cls.append(ko)
+                    placed = True
+                    break
+            if not placed:
+                classes.append([ko])
     for cls in classes:
         cls.sort()
     classes.sort(key=lambda c: (0 if c == ["NONE"] else 1, c))
