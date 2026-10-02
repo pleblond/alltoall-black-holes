@@ -53,8 +53,11 @@ def main():
                       r["node_directed_n"] == 1 + 3 ** r["degree"])
         integ &= gate(f"I-coarsesum[{k}]",
                       abs(sum(r["coarse_mu"].values()) - 1.0) < 1e-12)
-        integ &= gate(f"I-inducedsum[{k}]",
-                      abs(sum(r["induced_over_classes"].values()) - 1.0) < 1e-12)
+        if r["iso"]["capped"]:
+            integ &= gate(f"I-isocap[{k}]", r["iso"]["n_classes"] is None, "capped")
+        else:
+            integ &= gate(f"I-inducedsum[{k}]",
+                          abs(sum(r["iso"]["induced_over_classes"].values()) - 1.0) < 1e-12)
         if r["n_orbits"] is not None:
             integ &= gate(f"I-orbitsum[{k}]",
                           sum(r["orbit_sizes"]) == r["node_n"])
@@ -93,16 +96,24 @@ def main():
     for k in KEYS:
         r = adm[k]
         directed_differs = abs(r["coarse_directed"]["SPLIT"] - r["coarse_mu"]["SPLIT"]) > 1e-15
-        probs = sorted(r["induced_over_classes"].values())
-        nonuniform_classes = (max(probs) - min(probs)) > 1e-15 if probs else False
+        if r["iso"]["capped"]:
+            classes_coarser = None
+            nonuniform_classes = None
+        else:
+            probs = sorted(r["iso"]["induced_over_classes"].values())
+            classes_coarser = bool(r["iso"]["n_classes"] < r["node_n"])
+            nonuniform_classes = (max(probs) - min(probs)) > 1e-15 if probs else False
         mult[k] = {"directed_differs": bool(directed_differs),
-                   "classes_coarser": bool(r["n_classes"] < r["node_n"]),
-                   "nonuniform_over_classes": bool(nonuniform_classes),
+                   "iso_capped": bool(r["iso"]["capped"]),
+                   "classes_coarser": classes_coarser,
+                   "nonuniform_over_classes": nonuniform_classes,
                    "coarse_mu_split": r["coarse_mu"]["SPLIT"],
                    "coarse_directed_split": r["coarse_directed"]["SPLIT"]}
         gate(f"E-measured[{k}]", True,
-             f"dir={directed_differs} cls={r['n_classes']}/{r['node_n']} "
-             f"nonunif={nonuniform_classes}")
+             f"dir={directed_differs} " +
+             ("iso-capped" if r["iso"]["capped"]
+              else f"cls={r['iso']['n_classes']}/{r['node_n']} "
+                   f"nonunif={nonuniform_classes}"))
     multiplicity_found = any(v["directed_differs"] or v["nonuniform_over_classes"]
                              for v in mult.values())
 

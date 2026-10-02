@@ -3063,3 +3063,13 @@ inter-orbit weighting). PREDICTION (pre-data): RAND0-MEASURE-DEBT via
 preference), (c) multiplicity dependence (directed != undirected coarse;
 covers finer than isomorphism classes). Long dynamics (RAND-0S/T/U) gated
 on a surviving complete measure; NOT run in this campaign.
+
+**RAND0-AMENDMENT-1 (pre-data scope cap, no ledger opened):** unlabeled
+isomorphism-class measurement capped at N <= 12 (exact VF2; U0-H4
+degree-cap precedent). Rationale: pairwise exact isomorphism on 72-node
+symmetric U-states is computationally pathological (two killed runs, no
+data opened); WL-hash + signature pre-grouping (sound, result-preserving)
+insufficient where WL is incomplete. Larger states record iso-capped
+(directed-vs-undirected coarse comparison still measured on ALL states;
+class-coarsening measured exactly on tiny states). Apparatus class
+definition unchanged; campaign scope only.

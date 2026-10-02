@@ -45,6 +45,9 @@ CENSUS_N_EDGE = 50000
 CENSUS_N_NODE = 60000
 EFFECT_REPS_TINY = 20000
 EFFECT_REPS_U = 2000
+ISO_CLASS_MAX_NODES = 12  # exact-VF2 cap (U0-H4 degree-cap precedent):
+# unlabeled isomorphism classes are measured exactly on tiny states only;
+# larger states record {"capped": True} (pre-data scope cap, filed).
 
 
 def _middle_edge(g):
@@ -87,9 +90,17 @@ def run_admissible_task(key):
     coarse_mo = coarse_probability(mo, cmap) if mo is not None else None
     coarse_directed = coarse_probability(uniform_measure(directed),
                                          split_coarse_map(directed))
-    classes = split_isomorphism_classes(g, psi, order, k, node_adm)
-    induced = coarse_probability(mu, {o: f"class-{c}" for c, cls in enumerate(classes)
-                                      for o in cls})
+    if g.number_of_nodes() <= ISO_CLASS_MAX_NODES:
+        classes = split_isomorphism_classes(g, psi, order, k, node_adm)
+        induced = coarse_probability(mu, {o: f"class-{c}" for c, cls in enumerate(classes)
+                                          for o in cls})
+        iso_rec = {"capped": False, "n_classes": len(classes),
+                   "class_sizes": sorted(len(c) for c in classes),
+                   "induced_over_classes": induced}
+    else:
+        iso_rec = {"capped": True, "reason": f"N>{ISO_CLASS_MAX_NODES} exact-VF2 cap",
+                   "n_classes": None, "class_sizes": None,
+                   "induced_over_classes": None}
     return {"key": key, "edge": [ei, ej], "node": k,
             "edge_n": len(edge_adm), "edge_mu": mu_edge,
             "node_n": len(node_adm), "node_directed_n": len(directed),
@@ -100,9 +111,7 @@ def run_admissible_task(key):
             "micro_eq_orbit": None if mo is None else bool(mu == mo),
             "coarse_mu": coarse_mu, "coarse_mo": coarse_mo,
             "coarse_directed": coarse_directed,
-            "n_classes": len(classes),
-            "class_sizes": sorted(len(c) for c in classes),
-            "induced_over_classes": induced}
+            "iso": iso_rec}
 
 
 def run_symmetry_task(key):
