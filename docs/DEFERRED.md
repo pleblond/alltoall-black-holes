@@ -4521,3 +4521,218 @@ claims-RESPECTED (no-EM/Maxwell/charge/Born/spin/static-force-law
 POT-1-GATE: OPEN (COHERENCE-DIRECTION-passed (COLLECTIVE-strongest!)):
 fixed-source/sink-conditions -> stationary-profile? + perturbations-
 launch-modes? NEXT: POT-1-prereg (gated-on-this-verdict-commit!).
+
+BR2-PREREG (FROZEN-2026-10-02 (commit-predates-ALL-BR2-campaign-data!);
+phase-controlled-structural-backreaction (BR-2-of-BR0/BR-1/BR-2 (BR-1-
+vacuum-rigidity-UNOPENED (parallel-track!); BR-3-evolution-UNOPENED
+(no-graph-updates-in-any-BR2-run!)))). QUESTION: is the BR-0
+structural asymmetry (bonding influx fn>>nf / antibonding efflux)
+controlled by the RELATIVE PHASE of the existing (r,s) field, with
+B_ij = Re(psi*_i psi_j) = rho rho cos(Delta theta) as the
+potential-like quadrature and J_ij = Im(psi*_i psi_j) = rho rho
+sin(Delta theta) as the current-like quadrature? OFFLINE campaign
+(no G evolution, no move acceptance, no Metropolis/temperature, no
+E_G, no vacuum potential, no charge labels, no EM-naming (B is NOT
+called electric potential, J is NOT called electric current), no
+current-scored relocations (J readers are OBSERVATION ONLY), no
+post-data phase points, no g(B,J) search). Apparatus: new
+src/bh_graph/phase.py + 15 theorem pins (tests/test_phase.py) +
+BR-0 apparatus vendored BYTE-IDENTICAL from BR-0 tip 516b363
+(ballistic/backreaction/formation/tests/scripts/data, verified
+by cmp; backreaction.py UNTOUCHED by BR-2). Runners frozen
+pre-data: scripts/run_br2_campaign.py -> data/br2_phase.json
++ scripts/analyze_br2.py (mechanical ladder).
+
+LOAD-BEARING FAMILY (frozen construction): sublattice stagger
+psi_i(phi) = rho_i e^{i phi q_i} with rho = |psi_E1| (BR-0 E1
+packet envelope, banked, k-independent norm), q_i in {0,1}
+the CANONICAL bipartition (J2: (x+y)&1 per P1 j2_branch_parity
++ D15 canonicity pins; ring: v&1). EVERY edge spans q=0->1
+(bipartiteness asserted), so EVERY bond has |Delta theta| =
+phi EXACTLY: B_e = rho rho cos phi, J_e = +-rho rho sin phi
+(sign by q-order; pinned as theorems in tests). Envelope/
+support/norm/center/width/graph/census IDENTICAL across phi
+(only phi varies). PHI GRID (frozen full cycle): {k pi/4 :
+k = 0..7}. NOTE: phi=0 state == E3b psi to ~1e-16 (same
+envelope, real-positive; approximate-continuity, NOT bitwise);
+phi=pi ~= E3p minus the 0.3 twist (cousins, filed).
+
+SETUPS (frozen): J2-L28 r0=(7,14) s=4 rho=|E1 k=(0.3,0)|
+(SAMPLED primary: 200k x seeds {0,1,2}, PAIRED move lists
+across phi (same seeds -> identical moves -> pure-psi
+comparisons)); J2-L8 r0=(2,4) s=1.0 rho=|k=(0.3,0)| +
+ring-60 r0=(15,) s=6 rho=|k=0.5| (EXHAUSTIVE confirmatory,
+full 8-grid). eps=1e-10, J=1 (BR-0 frozen). Near/far =
+BR-0 R=2sigma midpoint rule (unchanged; Amendment-1 joint
+cells primary). ESTIMATORS (preregistered formulas):
+R_B = f_-^{fn} - f_-^{nf} (>0 influx); R_mag = mass_nf -
+mass_fn, mass = f*neg_tail_mean (secondary, no bars).
+CURRENT READOUT DISCLOSURE: no validated probability-
+current readout exists on main/P1/D15 (searched 2026-10-02;
+D15 is walk-rule/compass, not Schrodinger-sector flux), so
+BR-2 defines from tight-binding continuity (d|psi|^2/dt =
+-SUM 2J J_ij, derived in prereg): J_axis = SUM over edges
+with min-image Delta_axis>0 of 2J J_{i->j} displacement-
+ordered (frozen orientation rule; zero-displacement edges
+contribute 0 to that axis); J_stag = SUM 2J J_{0->1} over
+q-ordered edges (proper-bipartition asserted; staggered
+flux, NOT net transport). Grounded vs P1-validated v_g
+(sign + oddness, EO3) -- derived, not assumed.
+
+BR-2A REPLICATION (bitwise, same code+seeds+machine+numpy):
+(A1) E1-rep == BR-0 E1 full records; (A2) E3p-rep == BR-0
+E3p; E2-rep seed-0 == BR-0 E2 (C4 recheck input); (A3)
+bonding R>0.2; (A4) antibonding R<-0.1 (replication bars
+from BR-0 scales, legitimately). SWEEP BARS (J2-L28, must
+hold on ALL 3 seeds): (P1) R(0)>0 AND R(pi)<0 [LOAD-BEARING
+sign flip]; (P2) |R(pi/2)|,|R(3pi/2)| < 0.25 max(|R0|,|Rpi|)
+(self-normalized crossovers); (P3) monotone halves +
+closure (ordinal cosine shape); (P4) mirror pairs within
+1e-4 (exact-evenness in exact arithmetic; libm-tolerant);
+(P5) Pearson(R,cos phi) > 0.9 [LOAD-BEARING association,
+allows amplitude/offset distortion]; (P6) nf-liftoff:
+f_nf(0)==0 exhaustive / <5e-4 sampled AND f_nf(pi/2)>0.2.
+BOND <=> (P1)AND(P5) on J2-L28; J2-L8/ring-60 exhaustive
+must satisfy (P1)AND(P5) as confirmatory (any fail = filed
+substrate-caveat, PI-adjudicated); (P2)(P3)(P4)(P6) =
+diagnostics (failures = filed caveats, no auto-downgrade).
+QUADRATURE: BOND + (Q1) Pearson(J_stag,sin)>0.99 (theorem-
+confirmation) + (Q2) stagger net-null: |J_net(phi)| < 10%
+|J_net(E1)| all phi/axes (standing-pattern null; 10% from
+alternating-residual estimate filed in-track). EVEN/ODD
+(+EO, INDEPENDENT qualifier): (EO1) max|B_E1-B_E2|<1e-12;
+(EO2) J_net(E2)+J_net(E1) <1e-12 (both axes); (EO3)
+sign(J(E1))==sign(P1 v_g) (+x, transverse <5%) and E2
+mirrored; (EO4) J_stag odd <1e-12. (Exact bitwise versions
+pinned in tests via np.conj; campaign uses libm-safe
+tolerances for independently-constructed packets.)
+
+BR-2G THEOREM (endpoint-strict + buffer; proof sketched
+pre-data): near-strict edge = BOTH endpoints within R_in;
+far-strict non-edge = BOTH beyond R_out (R_in=7, R_out=8
+frozen, J2-L28/s=4). IF min B over near-strict edges >
+max B over far-strict non-edges (premise, checked
+EXHAUSTIVELY: 6272 edges + ~1.2M non-edges vectorized),
+THEN every strict-nf move has dE = -2J(B_add-B_rem) > 0
+STRICTLY (margin >> eps, no fp risk) => P(favorable
+strict export) = 0 EXACTLY. Predicted margin ~1.53x
+(envelope ratio x edge-cos_min 0.955; verified exactly in
+campaign). Midpoint rule (BR-0) ~= strict up to a fringe
+band (endpoints can straddle R); fringe violations
+possible-in-principle => NO exact theorem claimed under
+midpoint classification (honest scope); bound + reclass
+filed. (G1) premise holds (margin filed); (G2) strict-nf
+n_neg==0 on 3x200k (theorem-check); (G3) E1-rep midpoint-
+nf == 0 (re-cite). Stagger corollary (filed prediction):
+strict protection needs cos phi > ~0.625 (far same-
+sublattice non-edges have B=rho rho x1) => nf-liftoff for
+phi >= ~pi/4 (this IS (P6) mechanistically). CONTROLS:
+C0 local==full-H <1e-9 (stagger phi in {0,pi/2,pi} x
+2000 moves, HARD GATE); C1-spot: global-phase-rotated
+phi=pi/4 f-fields within 1e-5 (HARD GATE); C4: rescale
+x2 (phi=0, seed 0): R f-fields EXACT-equal (signs bitwise
+under x4) + tails x4 (rel 1e-12) (HARD GATE); C2/C3/C5
+theorems in tests (endpoint sym, zero null, conjugation).
+
+LADDER: ~BOND => BR2-NULL (route stops; +EO still reported
+if passed standalone); BOND => BR2-BOND (admits BR-3);
++Q1Q2 => BR2-QUADRATURE; +EO1-4 => +EO qualifier. EXPECTED
+(non-binding, guide reading): R(0)~+0.93 (E3b-like),
+R(pi)~-1 (uniform-antibonding efflux), R_B(phi) full
++0.93->-1 swing; J_stag exact sine (theorem); E3p R<0
+re-cited. COMPUTE: local primary + beast replication from
+start (same frozen protocol; BR-0 precedent: bitwise on
+verdict fields). NEXT: run (gated on this prereg commit)
+-> file BR2-VERDICT (ladder + G-status + BR-3 admission).
+
+BR2-VERDICT (campaign-data 2026-10-02, local 22min exit-0; artifact
+data/br2_phase.json; mechanical analyzer scripts/analyze_br2.py).
+LADDER OUTPUT: BR2-QUADRATURE (+EO) -- the strongest BR-2 result.
+EVERY load-bearing bar passes on ALL 3 seeds + BOTH exhaustive
+substrates; two diagnostic/caveat flags below (both understood
+mechanistically, neither touches the ladder).
+
+BR-2A REPLICATION: E1-rep/E3p-rep/E2-rep BITWISE-IDENTICAL to BR-0
+(same code+seeds+machine+numpy; full-record dict equality); (A3)
+bonding R=+0.337>0.2 PASS; (A4) antibonding R=-0.430<-0.1 PASS.
+BR-0 anatomy reproduced exactly.
+
+SWEEP (J2-L28 R_B(phi), seed-0; seeds 1-2 replicate to ~0.005):
+[+0.927, +0.941, +0.004, -0.457, -0.457, -0.457, +0.004, +0.941]
+(P1) sign flip +0.927 -> -0.457 PASS x3 seeds; (P5) Pearson(R,cos)
+= 0.9710/0.9716/0.9718 PASS; (P2) crossovers 0.004-0.010 vs 0.25x
+bar PASS; (P4) mirror pairs BITWISE-equal (|dR| = 0.00e+00, better
+than 1e-4 bar) PASS; (P6) nf-liftoff: f_nf(0) = 0.0001/0.0000/0.0001
+(<5e-4) -> f_nf(pi/2) = 0.51 (>0.2) PASS. EXHAUSTIVE confirmatory:
+SWX-J8 R = [0.891,0.912,0.007,-0.431 x3,0.007,0.912], r=0.9701,
+nf(0) = EXACTLY 0 counts, nf(pi/2) = 0.528; SWX-R60 R =
+[0.945,0.955,0.018,-0.456 x3,0.018,0.955], r=0.9721, nf(0) = 0,
+nf(pi/2) = 0.502. (P1)AND(P5) on all 3 substrates => BR2-BOND.
+E_psi(phi) = -7.9381 cos phi EXACTLY (all 8 points; energy follows
+the bond quadrature). R_mag (secondary, filed): [+1.60,+1.40,+0.83,
+-2.09,-3.30,-2.09,+0.83,+1.40]e-3 -- magnitude swing matches sign
+swing (crossover slightly positive at pi/2: counts balance while
+fn tails run heavier -- descriptive).
+
+QUADRATURE: (Q1) J_stag = 7.938 sin phi, r = 1.00000 PASS
+(theorem-confirmed); (Q2) stagger net-current NULL at 6.6e-18
+(ratio 5.6e-18 vs E1 -- machine-precision null, far below the
+10% bar). MECHANISM (filed): reflection-paired cancellation
+(envelope mirror pairs carry bitwise-identical rho-rho with
+opposite q => exact-negation J terms + fp scatter); honest
+caveat: asymmetric envelopes would residual at TV-scale (~few %,
+BR-3 note). BOND+Q1Q2 => BR2-QUADRATURE: potential-like
+structural response (B/cos) and current-like quadrature (J/sin)
+are two aspects of the same (r,s) relational field.
+
+EVEN/ODD (+EO, all four): (EO1) max|B_E1-B_E2| < 1e-12 PASS;
+(EO2) J_net(E2)+J_net(E1) = 0.00e+00 bitwise PASS; (EO3)
+J_x(E1) = +1.1713 > 0, J_y == 0.00e+00 bitwise (transverse
+exact-null as derived), E2 mirrored PASS -- BONUS (unbarred):
+|J_x| = 1.1713 matches P1-validated v_g ~1.21 to 3% (current
+magnitude grounded in validated transport); (EO4) stag-odd
+bitwise PASS (both ~1e-17 dust). Direction-even potential
+response vs direction-odd flow SEPARATED (BR-5 foundation).
+
+G-THEOREM: PROVEN under endpoint-strict classification.
+(G1) premise holds EXHAUSTIVELY: E1 min-near-B = 1.26e-3 >
+max-far-B = 6.74e-4 (margin 1.87x, better than predicted
+1.53x); phi0 margin 1.96x. (G2) strict-nf favorables == 0
+on 3x200k (n_strict ~109k each; R_strict ~+0.69) PASS --
+theorem-check green. (G3) midpoint-nf == 0: FAILS by 2
+counts (seed-2: 2/36726, rate 5.4e-5; seeds 0-1 exact 0;
+IDENTICAL in BR-0 -- bitwise rep confirms this was always
+the value, printed 0.0000). RESOLUTION (strengthens G):
+midpoint-nf = 0 is APPROXIMATE (fringe-rare: 2 fringe
+violations in 600k, exactly the possible-in-principle class
+flagged pre-data); strict-nf = 0 is EXACT (theorem + G2).
+The BR-0 nf=0 census result is thereby EXPLAINED (midpoint
+~= strict + O(1) fringe counts) and PROMOTED (strict exact).
+
+CAVEAT-2 (P3 diagnostic FAILS, preregistered non-gating):
+R(pi/4) = 0.941 > R(0) = 0.927 (all seeds + both exhaustive:
+real shape, ~11 sigma pooled). MECHANISM (filed): cos phi<1
+shrinks ALL B_rem, boosting fn favorables (+590 counts,
+far-edge B_rem easier to beat) faster than nf fringe gains
+(+20) => net R bump +0.014. Cosine-monotonicity is broken
+at O(1%) by this fringe-asymmetric gain; (P5) association
+unaffected (r=0.97). EFFLUX-HALF SATURATION (filed finding):
+fn/nf COUNTS bitwise-identical across 3pi/4, pi, 5pi/4 per
+seed (e.g. 21616/36830 x3) -- move signs FREEZE once cos phi
+<= -0.707 (plateau R=-0.457, not -1: fn locks at the
+|far|>|near| subset ~0.54). CONTROLS: C0 max 1.8e-15 PASS
+(HARD); C1-spot R-identical PASS (HARD); C4 rescale R-exact
++ tails x4 PASS (HARD).
+
+INTERPRETATION: Re(psi*_i psi_j) is a genuine potential-like
+structural backreaction variable (BR2-BOND); B~cos/J~sin
+quadratures confirmed with structural response on B and
+transport null/oddness on J (BR2-QUADRATURE); direction-even
+vs direction-odd separated (BR2-EVEN/ODD). This is a major
+EM-hypothesis input but NOT electromagnetism (no charge/
+fields claimed; firewall held: J never scored a move).
+BR-3 ADMITTED (evolution gate): use ONLY dE = -2J(B_add-B_rem)
+ordering (no target geometry/force direction); ask influx/
+efflux realization + reciprocal loop G'->H->psi'. BR-3 owes:
+asymmetric-envelope Q2 residual scale; plateau-0.54 subset
+characterization; pi/4-bump rôle under iteration.

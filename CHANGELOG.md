@@ -3,6 +3,14 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (BR-2 phase-controlled backreaction)** — D14-BR2 campaign:
+  new `phase.py` (sublattice-stagger family, observation-only J readers,
+  directional + staggered currents, R_B/R_mag, strict census + premise);
+  15 theorem pins; verdict BR2-QUADRATURE (+EO) (R_B(phi) +0.93->-0.46
+  swing, r=0.97; J_stag exact sine; stagger net-null 6.6e-18; EO bitwise;
+  G-theorem proven strict+buffer at 1.87x margin; P3/G3 caveats filed);
+  BR-3 admitted.
+
 - **unreleased (POT-0 coherence-direction)** — Omnidirectional-potential
   → coherent-directed-wave campaign on bare J2 (frozen ontology: same
   two-real-scalar field + H=-A bulk law, no new variable): flux readout
