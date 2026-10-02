@@ -418,10 +418,19 @@ per N) and 2PN weight `w = 1.953` (solved from cancellation) derived from
 graph Laplacian / Damour-Schafer from wiring.
 **v0.5 route:** `β(N)` from `N(r)` implied by `V(r)` scaling (`emergent_dim`).
 
-## D5 — NICER M-R-Λ + tidal deformability — P1
+## D5 — NICER M-R-Λ + tidal deformability — P1, Λ-half done
 
 **Missing:** `R_1.4`, `M-R`, tidal `Λ` from routing stiffness.
 Sharpest near-term test after kilonova rate (2-3 yr timeline).
+Update (this branch): Λ-half closed given `R(M)` — `tidal` derives
+`Λ = R²/2kσM³` (delocalized-phase leg tension, p = 2 elastic), pins
+`σ ≈ 1.7e-117` once on GW170817 (`Λ_1.4 = 300`), predicts `Λ ~ M^-5`
+shape (gap 3.6 → `Λ ≈ 2.7`, BBH BH-like) and NS-like `k2 ≈ 0.05` vs
+horizon-phase `1e-77` (phase-dependent tides, 75 orders apart, Fig 76).
+Tidal σ clears the AX fission floor ~26x at fiducial `d*`; compatibility
+iff `d* ≳ 32 km` — `d*` now the key unknown. Still open: the R-half —
+no universal-χ surface exists (linear `R(M)` fails NICER `R_2.1` at
+5.5σ); footprint radius needs surface/thermal physics outside the graph.
 
 ## D6 — Mass-radius from wiring — long-term
 
