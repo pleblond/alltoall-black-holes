@@ -76,8 +76,9 @@ def quad_rate_findiff(psi: np.ndarray, h, m, dt: float = 1e-5) -> float:
 
     psi = np.asarray(psi, dtype=np.complex128)
     md = _dense(m)
-    fwd = evolve_fixed(psi, h, dt, 1)["psi"][-1]
-    bwd = evolve_fixed(psi, h, -dt, 1)["psi"][-1]
+    # n_steps=2, row[1]: evolve_fixed needs >=2 time points (frozen API).
+    fwd = evolve_fixed(psi, h, dt, 2)["psi"][1]
+    bwd = evolve_fixed(psi, h, -dt, 2)["psi"][1]
     qf = float(np.real(np.vdot(fwd, md @ fwd)))
     qb = float(np.real(np.vdot(bwd, md @ bwd)))
     return float((qf - qb) / (2.0 * dt))
@@ -212,8 +213,8 @@ def j2_sector_weights_fast(psi: np.ndarray, L: int) -> np.ndarray:
 def j2_sheet_involution(L: int) -> np.ndarray:
     """Sheet involution J: (x,y,b) -> (y,x,1-b) (J2-specific symmetry).
 
-    The transpose is load-bearing: pure sheet-swap is NOT an
-    automorphism (pinned by j2_sheet_swap_naive).
+    J and the pure sheet-swap S (j2_sheet_swap) are independent J2
+    involution symmetries (AMENDMENT-1: both commute exactly).
     """
     from bh_graph.ballistic import node_order
     from bh_graph.formation import j2_torus_coords, j2_torus_graph
@@ -232,8 +233,13 @@ def j2_sheet_involution(L: int) -> np.ndarray:
     return jm
 
 
-def j2_sheet_swap_naive(L: int) -> np.ndarray:
-    """Pure sheet-swap S: (x,y,b) -> (x,y,1-b) (negative control)."""
+def j2_sheet_swap(L: int) -> np.ndarray:
+    """Pure sheet-swap S: (x,y,b) -> (x,y,1-b) (second sheet symmetry).
+
+    AMENDED (CONS0-AMENDMENT-1): S commutes exactly. The b=1 generator
+    swap (u,v)->(v,u) permutes the generator SET {(+-1,0),(0,+-1)},
+    so every edge maps to an edge. Both S and J are J2 symmetries.
+    """
     from bh_graph.ballistic import node_order
     from bh_graph.formation import j2_torus_coords, j2_torus_graph
 
@@ -254,6 +260,15 @@ def j2_sheet_swap_naive(L: int) -> np.ndarray:
 def chiral_gamma_diag(order: list, bipart: dict) -> np.ndarray:
     """Chiral diagonal Gamma = (-1)^q (negative control: anticommutes)."""
     return np.array([1.0 if bipart[v] == 0 else -1.0 for v in order])
+
+
+def random_permutation_matrix(n: int, seed: int) -> np.ndarray:
+    """Seeded random permutation matrix (symmetry negative control)."""
+    rng = np.random.default_rng(int(seed))
+    p = rng.permutation(int(n))
+    m = np.zeros((int(n), int(n)))
+    m[p, np.arange(int(n))] = 1.0
+    return m
 
 
 def invariant_census(g: nx.Graph, order: list, bipart=None, j2_L=None):
@@ -304,6 +319,10 @@ def invariant_census(g: nx.Graph, order: list, bipart=None, j2_L=None):
         rows.append({"name": "sheet_J", "class": "j2-symmetry",
                      "commutes": is_commuting_ok(h, jm),
                      "note": "Q_J = <psi|J|psi>"})
+        sm = j2_sheet_swap(L)
+        rows.append({"name": "sheet_S", "class": "j2-symmetry",
+                     "commutes": is_commuting_ok(h, sm),
+                     "note": "Q_S = <psi|S|psi> (AMENDMENT-1: commutes)"})
     return rows
 
 

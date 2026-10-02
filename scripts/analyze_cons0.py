@@ -246,7 +246,7 @@ def g_0a(d):
         return False
     c = p["j2_census"]
     for k in ("norm", "energy", "h2", "spec+", "spec-", "spec0",
-              "uniform_S", "bloch_sectors", "sheet_J"):
+              "uniform_S", "bloch_sectors", "sheet_J", "sheet_S"):
         if not c[k]:
             return False
     if c["chiral_gamma"]:

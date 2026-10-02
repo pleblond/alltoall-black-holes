@@ -50,7 +50,7 @@ from bh_graph.conservation import (
     j2_bloch_projector,
     j2_sector_weights_fast,
     j2_sheet_involution,
-    j2_sheet_swap_naive,
+    j2_sheet_swap,
     j2_translations,
     linear_residual,
     mat_hpower,
@@ -58,6 +58,7 @@ from bh_graph.conservation import (
     quad_rate_commutator,
     quad_rate_findiff,
     quad_value,
+    random_permutation_matrix,
     spectral_weights,
     split_census,
     split_ledger,
@@ -230,13 +231,27 @@ def test_j2_sheet_involution_commutes():
     assert max(vals) - min(vals) < 1e-9
 
 
-def test_j2_naive_sheet_swap_fails():
+def test_j2_sheet_swap_commutes():
     L = 4
     g = j2_torus_graph(L)
     order = node_order(g)
     a = adjacency_csr(g, order).toarray()
-    sm = j2_sheet_swap_naive(L)
-    assert np.abs(a @ sm - sm @ a).max() > 0.5
+    h = hamiltonian(g, order=order)
+    sm = j2_sheet_swap(L)
+    assert np.abs(sm @ sm - np.eye(2 * L * L)).max() == 0.0
+    assert np.abs(a @ sm - sm @ a).max() < 1e-12
+    psi = _rand_psi(2 * L * L, 45)
+    rows = evolve_fixed(psi, h, 0.1, 3)["psi"]
+    vals = [quad_value(r, sm) for r in rows]
+    assert max(vals) - min(vals) < 1e-9
+
+
+def test_random_permutation_not_symmetry():
+    g = j2_torus_graph(4)
+    order = node_order(g)
+    a = adjacency_csr(g, order).toarray()
+    p = random_permutation_matrix(len(order), 46)
+    assert np.abs(a @ p - p @ a).max() > 0.5
 
 
 def test_invariant_census_table():
@@ -252,6 +267,7 @@ def test_invariant_census_table():
     assert rows["bloch_sectors"]["commutes"]
     assert rows["bloch_sectors"]["class"] == "j2-symmetry"
     assert rows["sheet_J"]["commutes"]
+    assert rows["sheet_S"]["commutes"]
     assert not rows["chiral_gamma"]["commutes"]
 
 
@@ -301,8 +317,8 @@ def test_energy_rate_matches_findiff():
     a = adjacency_csr(g, order)
     psi = _rand_psi(8, 20)
     dt = 1e-4
-    fwd = evolve_fixed(psi, h, dt, 1)["psi"][-1]
-    bwd = evolve_fixed(psi, h, -dt, 1)["psi"][-1]
+    fwd = evolve_fixed(psi, h, dt, 2)["psi"][1]
+    bwd = evolve_fixed(psi, h, -dt, 2)["psi"][1]
     ef = energy_density(fwd, g, order)
     eb = energy_density(bwd, g, order)
     fd = (ef - eb) / (2.0 * dt)
@@ -719,10 +735,10 @@ def test_uniform_functional_unique():
     w = np.arange(8, dtype=float)  # non-uniform weights
     _, psi2, order2, _, _ = contracted_state(g, psi, order, 1, 2, "sum")
     # natural extension w_k = w_i breaks the j-leg for generic fields
-    l0 = float(np.sum(w * psi))
+    l0 = complex(np.sum(w * psi))
     wk = np.array([w[order.index(v)] if v != order2[-1] else w[1]
                    for v in order2])
-    l1 = float(np.sum(wk * psi2))
+    l1 = complex(np.sum(wk * psi2))
     assert abs(l1 - l0) > 1e-9  # non-uniform functional not preserved
 
 

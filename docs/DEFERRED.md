@@ -3164,3 +3164,18 @@ else 0)): norm policy always qualifies; equal qualifies iff k==0
 (zero field, phi=pi stagger). Analyzer implements these exact
 expectations per event; the prereg's "==1 for a=b / ==2^d" shorthands
 are the nonzero-uniform / k!=0 cases.
+
+## CONS0-AMENDMENT-1 — sheet-swap symmetry erratum (pre-campaign-data)
+
+The prereg claimed pure sheet-swap S:(x,y,b)->(x,y,1-b) is NOT a J2
+symmetry. The apparatus refuted this before any campaign data: [A,S]
+= 0 exactly (bitwise). Root cause: the b=1 generator swap (u,v)->
+(v,u) permutes the generator SET {(+-1,0),(0,+-1)}, so every edge
+maps to an edge. Correction (strictly stronger census): BOTH S and
+J are J2 involution symmetries (Q_S, Q_J conserved, pinned); the
+symmetry negative control is a seeded random permutation ([A,P]!=0
+pinned). Census table gains the sheet_S row (j2-symmetry class).
+Verdict mapping unaffected (both remain J2-specific, ineligible for
+fundamental accounting). Companion fixes (same commit, apparatus
+stage): quad_rate_findiff uses evolve_fixed n_steps=2 (the frozen
+API needs >=2 time points); energy-rate test ditto.
