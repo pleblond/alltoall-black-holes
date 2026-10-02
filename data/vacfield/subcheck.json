@@ -1,0 +1,1 @@
+{"task": "subcheck", "params": {"task": "subcheck"}, "payload": {"VPLUS": true, "VPI": true, "VMINUS": true}, "provenance": {"git_rev": "b18d0c784bcfb5a350af05673a174c1a261a8eaf", "utc": "2026-10-02T19:00:43Z", "host": "ip-172-31-39-189"}}

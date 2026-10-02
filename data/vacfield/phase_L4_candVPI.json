@@ -1,0 +1,1 @@
+{"task": "phase_L4_candVPI", "params": {"task": "phase", "L": 4, "cand": "VPI"}, "payload": {"dev": {"rho": 6.938893903907228e-18, "B": 3.469446951953614e-18, "J": 1.3729335144402919e-18, "E": 1.7763568394002505e-15}, "ok": true}, "provenance": {"git_rev": "b18d0c784bcfb5a350af05673a174c1a261a8eaf", "utc": "2026-10-02T19:00:37Z", "host": "ip-172-31-39-189"}}

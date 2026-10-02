@@ -1,0 +1,1 @@
+{"task": "current_L4_candVMINUS", "params": {"task": "current", "L": 4, "cand": "VMINUS"}, "payload": {"edge_max": 0.0, "div_max": 0.0, "circ_max": 0.0, "flux": {"Fx": 0.0, "Fy": 0.0, "maxabs": 0.0}, "circ_q": [0.0, 0.0, 0.0, 0.0], "ok": true}, "provenance": {"git_rev": "b18d0c784bcfb5a350af05673a174c1a261a8eaf", "utc": "2026-10-02T19:00:19Z", "host": "ip-172-31-39-189"}}

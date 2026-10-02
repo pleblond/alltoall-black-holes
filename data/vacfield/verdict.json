@@ -1,0 +1,148 @@
+{
+ "checks": {
+  "VPLUS": {
+   "stationary": true,
+   "perturbation_ok": true,
+   "current_free": true,
+   "stress": true,
+   "amplitude_coherent": true,
+   "linearity": true,
+   "normalized_robust": true,
+   "zero_anatomy": true,
+   "sector_filed": true,
+   "ledger_symmetric": true
+  },
+  "VPI": {
+   "stationary": true,
+   "perturbation_ok": true,
+   "current_free": true,
+   "stress": true,
+   "amplitude_coherent": true,
+   "linearity": true,
+   "normalized_robust": true,
+   "zero_anatomy": true,
+   "sector_filed": true,
+   "ledger_symmetric": true
+  },
+  "VMINUS": {
+   "stationary": true,
+   "perturbation_ok": true,
+   "current_free": true,
+   "stress": true,
+   "amplitude_coherent": true,
+   "linearity": true,
+   "normalized_robust": true,
+   "zero_anatomy": true,
+   "sector_filed": true,
+   "ledger_symmetric": true
+  },
+  "ZERO": {
+   "stationary": true,
+   "perturbation_ok": true,
+   "current_free": true,
+   "stress": true,
+   "amplitude_coherent": false,
+   "linearity": true,
+   "normalized_robust": false,
+   "zero_anatomy": true,
+   "sector_filed": true,
+   "ledger_symmetric": true
+  }
+ },
+ "evals": {
+  "VPLUS": {
+   "rung": "JOINT"
+  },
+  "VPI": {
+   "rung": "JOINT"
+  },
+  "VMINUS": {
+   "rung": "JOINT"
+  },
+  "ZERO": {
+   "rung": "BACKGROUND"
+  }
+ },
+ "headline": "VACFIELD0-JOINT",
+ "q_table": {
+  "VPLUS": {
+   "stationary": true,
+   "relational_Bmax": 0.0006377551020408163,
+   "current_free": true,
+   "stress": true,
+   "ledger": "flat",
+   "perturbation_ok": true,
+   "sector": "P+",
+   "phase_defined_everywhere": true,
+   "rung": "JOINT"
+  },
+  "VPI": {
+   "stationary": true,
+   "relational_Bmax": 0.0006377551020408163,
+   "current_free": true,
+   "stress": true,
+   "ledger": "one-sided",
+   "perturbation_ok": true,
+   "sector": "P+",
+   "phase_defined_everywhere": true,
+   "rung": "JOINT"
+  },
+  "VMINUS": {
+   "stationary": true,
+   "relational_Bmax": 0.0006377551020408163,
+   "current_free": true,
+   "stress": true,
+   "ledger": "structured",
+   "perturbation_ok": true,
+   "sector": "P-",
+   "phase_defined_everywhere": true,
+   "rung": "JOINT"
+  },
+  "ZERO": {
+   "stationary": true,
+   "relational_Bmax": 0.0,
+   "current_free": true,
+   "stress": true,
+   "ledger": "trivial",
+   "perturbation_ok": true,
+   "sector": "trivial",
+   "phase_defined_everywhere": false,
+   "rung": "BACKGROUND (control)"
+  }
+ },
+ "notes": [
+  "census L4/L8 exact (e_min/max, n_zero 22/78, Bloch)",
+  "phase equivalence holds all candidates L4/L28",
+  "VPLUS: packet v=[1.9204, 0.0] r2=1.0000 alpha=2.026",
+  "VPI: packet v=[1.9204, 0.0] r2=1.0000 alpha=2.026",
+  "VMINUS: packet v=[1.9204, 0.0] r2=1.0000 alpha=2.026",
+  "ZERO: packet v=[1.9204, 0.0] r2=1.0000 alpha=2.026",
+  "cross-bg packet: max-dev=0.00e+00 bitwise=True",
+  "cross-bg amplitude: max-dev=0.00e+00 bitwise=True",
+  "cross-bg source: max-dev=0.00e+00 bitwise=True",
+  "cross-bg bitwise-all: True (filed, gated via max-dev)",
+  "VMINUS E-vacuous: E(a) == 0 all a: True",
+  "VPLUS packet: frac-collapse=8.61e-14 abs-raw=0.00e+00",
+  "VPLUS amplitude: frac-collapse=3.11e-14 abs-raw=0.00e+00",
+  "VPLUS frac peak-spread=3.42e-12 v-spread=5.32e-14",
+  "VPLUS abs peak slope full-range=-1.1426 large-a-subset=-1.0005 (filed, Amendment-4)",
+  "decomp packet t0: cross-slope=1.0000 dd-slope=-0.0000",
+  "decomp packet t80: cross-slope=1.0000 dd-slope=-0.0000",
+  "decomp packet t300: cross-slope=1.0000 dd-slope=-0.0000",
+  "decomp amplitude t0: cross-slope=1.0000 dd==0 exact",
+  "decomp amplitude t80: cross-slope=1.0000 dd-slope=-0.0000",
+  "decomp amplitude t300: cross-slope=1.0000 dd-slope=-0.0000",
+  "VPI bracket peak-spread=1.15e-11",
+  "VMINUS bracket peak-spread=1.97e-14",
+  "VPLUS zero-demo: n=1 drift=3.53e-17",
+  "VPI zero-demo: n=1 drift=1.63e-15",
+  "VMINUS zero-demo: n=1 drift=8.83e-18",
+  "L4: frozen=0.00e+00 split=9.24e-14 intertw=0.00e+00",
+  "L8: frozen=0.00e+00 split=4.03e-14 intertw=0.00e+00",
+  "L28: frozen=0.00e+00 split=9.22e-15 intertw=0.00e+00",
+  "VPI f0 L28: [0.4991, 0.496, 0.4992, 0.4966, 0.5007] (expect 0.4978), f_pos = 0 exact",
+  "VMINUS f0 L28: [0.4997, 0.4958, 0.5022, 0.5003, 0.5075] exhaustive L4: f0=0.5",
+  "0J subtraction identity holds all nonzero shapes",
+  "0S controls exact (energies, currents, VPLUS-flat / VPI-one-sided ledgers, H_Q)"
+ ]
+}

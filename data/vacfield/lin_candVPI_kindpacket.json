@@ -1,0 +1,1 @@
+{"task": "lin_candVPI_kindpacket", "params": {"task": "lin", "cand": "VPI", "kind": "packet"}, "payload": {"split_err": 1.13420298705021e-13, "corotating_err": 9.347074608772808e-16, "ok": true}, "provenance": {"git_rev": "b18d0c784bcfb5a350af05673a174c1a261a8eaf", "utc": "2026-10-02T19:00:28Z", "host": "ip-172-31-39-189"}}
