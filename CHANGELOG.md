@@ -3,6 +3,15 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **Unreleased (RAND-0)** — Local-stochastic-completion preregistration:
+  frozen admissible sets (edge-2, node 1+(3^d+1)/2 undirected + equal
+  field), stabilizer/orbit apparatus, MICRO-UNIFORM vs ORBIT-UNIFORM
+  candidates, multiplicity audit (directed vs undirected, isomorphism
+  classes), covariance/locality/factorization/census/effect-radius gates
+  (`src/bh_graph/rand0.py`, `tests/test_rand0.py`,
+  `scripts/run_rand0_campaign.py`, `scripts/analyze_rand0.py`); campaign
+  not yet run; prediction RAND0-MEASURE-DEBT (pre-data).
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).

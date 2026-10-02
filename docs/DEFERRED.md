@@ -2988,3 +2988,78 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## RAND0-PREREG — Local stochastic completion (FROZEN PRE-DATA)
+
+**Status:** apparatus + semantics + measures + states + gates + ladder
+frozen; campaign NOT YET RUN. RAND-0 accepts U0-INCOMPLETE (no complete
+deterministic U_G: contraction locally definable, splits multiply
+admissible, H4 ties generic, no local/covariant tie-break, no firing
+mechanism, conservation constrains but does not select). It tests the
+alternative that the multiplicity of admissible futures is PHYSICAL, with
+fundamental object P(X_{t+1} | X_t), run INDEPENDENTLY of TIME-0 (no
+result-sharing redesign either way).
+
+**Frozen inputs (read-only, md5-verified byte-identical):** U0 tip
+appratus (ballistic/backreaction/phase/contraction/accounting/stability/
+conservation/continuum/driven/ug/ug_sync/u0 + formation delta + 12 test
+files + xdist config + U0 scripts). No law change on consumption.
+Frozen conventions: X = (G, psi) only (no hidden RNG state, age, clock,
+temperature, weights, bath, ordering, target); simple graphs; H = -A,
+J = 1; sum map; B/J quadrature with banked roles; E = -2 sum B;
+dE_contract = 2B - 2 sum_cross (BR-2.6 MINUS); dt = 0.1 (P1-frozen).
+Firewalls: physics defines A(X), stochasticity selects within A(X); no
+random M1 rewiring; no vacuum exception; matter/decay firewalls.
+
+**RAND-0A admissible sets (frozen, structural, no veto):** edge patch
+(u,v): {NONE, CONTRACT}, always (|A| = 2). Node patch k (degree d):
+{NONE} + undirected split covers x frozen equal-halves field map
+(|A| = 1 + (3^d+1)/2; undirected = earned U0-H1 gauge; equal-halves =
+unique symmetric linear inverse of sum; norm policy kept ONLY as the
+RAND-0G refinement alternative). Joint (e1,e2): disjoint -> product-4;
+shared node -> {NONE, CONTRACT e1, CONTRACT e2} (conflict excluded by
+enumeration, not scheduler). No random sequential update order.
+
+**RAND-0B stabilizer (frozen):** patch (R = 1 ball) permutations
+preserving induced adjacency AND psi EXACTLY, center setwise fixed;
+brute force, cap 8 nodes (pinned). Orbits by BFS closure.
+
+**RAND-0C/D measures (frozen, zero parameters):** MICRO-UNIFORM P = 1/|A|
+over physical micro-outcomes; ORBIT-UNIFORM rival P(O) = 1/n_orbits split
+evenly within orbits. Both satisfy orbit-uniformity/normalization/
+covariance/locality. Forbidden: exp(-beta E), fitted exponents,
+temperatures, hand preferences, tuned weights (C7 signature pin).
+
+**RAND-0E/F/G enumeration (frozen):** uniformity over PHYSICAL outcomes
+(undirected). Directed (3^d) counting is WRONG (gauge double count), not
+rival; the sharp test is covers vs post-split unlabeled isomorphism
+classes (graph iso + |psi| multiset 1e-6): micro-uniform over covers
+induces a coarse distribution over classes (measured); if non-uniform,
+the quotient ontology (earned elsewhere, not re-derived) must decide the
+physical grain or multiplicity-dependence debt is filed.
+
+**RAND-0H/I/J sectors:** T1..T4 (K2 x zero/bonding/current/antibonding)
++ T5..T8 (triangle/square/star4-bonding/path4-current) + U1..U8 (U0 S1..S8
+read-only). Same A, same psi-blind uniform measure everywhere: vacuum
+NOT quiescent by fiat (P(contract) = 1/2 per edge); any vacuum
+destruction is reported, no exception.
+
+**RAND-0K/L/M/N/O/P/Q/R apparatus (frozen):** normalization (1e-12);
+covariance (relabel keys, phase, conjugation); locality (U0-F remote
+convention: field at dist >= 3, edge toggle outside closed neighborhood);
+joint normalization + disjoint factorization (bitwise identity); sampler
+with RNG separation (pcg64/philox/sfc64) + Wilson-99 + chi2 p > 1e-3
+consistency; stochastic synchronous tick (independent uniform edge draws
++ U0 quotient + evolve + sum-thread, dQ books 1e-9) + P(R_effect)
+(max-class) distributions. Seeds frozen (20261002); census n = 50k/60k;
+effect reps 20k tiny / 2k U-states.
+
+**Verdict ladder (frozen):** INVALID (integrity fail) > RAND0-INCOHERENT
+(coherence fail) > RAND0-UNIFORM-CLOSED (micro-uniform passes everything
+uniquely) else RAND0-MEASURE-DEBT (apparatus coherent, no unique
+inter-orbit weighting). PREDICTION (pre-data): RAND0-MEASURE-DEBT via
+(a) edge symmetry vacuous (2-singleton orbits, pinned analytically),
+(b) orbit-rival differs on node patches (both satisfy RAND-0C, no earned
+preference), (c) multiplicity dependence (directed != undirected coarse;
+covers finer than isomorphism classes). Long dynamics (RAND-0S/T/U) gated
+on a surviving complete measure; NOT run in this campaign.
