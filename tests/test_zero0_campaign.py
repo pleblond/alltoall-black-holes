@@ -108,6 +108,12 @@ def test_missing_lines(tmp_path):
                   f"PY run --task=generic --out={tmp_path}/b.json\n")
     miss = missing_lines(str(tf))
     assert len(miss) == 1 and "b.json" in miss[0]
+    bad = tmp_path / "bad.json"
+    bad.write_text("{broken")
+    tf2 = tmp_path / "t2.txt"
+    tf2.write_text(f"PY run --task=generic --out={bad}\n")
+    assert missing_lines(str(tf2)) == []
+    assert len(missing_lines(str(tf2), validate=True)) == 1
 
 
 def test_j2_cycles_verify():
