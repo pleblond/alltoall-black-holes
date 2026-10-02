@@ -1,0 +1,180 @@
+{
+ "gates": [
+  {
+   "gate": "H-E-relabel",
+   "ok": true,
+   "detail": "n=120 max=0.000e+00"
+  },
+  {
+   "gate": "M-E-O5-filed",
+   "ok": true,
+   "detail": "O5 max=0.000e+00 (filed, not hard)"
+  },
+  {
+   "gate": "H-D-phase",
+   "ok": true,
+   "detail": "n=300 max=7.940e-13"
+  },
+  {
+   "gate": "M-B-cov-U1",
+   "ok": true,
+   "detail": "n=20 max=4.743e-16"
+  },
+  {
+   "gate": "M-B-cov-Scale",
+   "ok": true,
+   "detail": "n=20 max=0.000e+00"
+  },
+  {
+   "gate": "M-L-shift-noncovariance",
+   "ok": true,
+   "detail": "n=20 min-defect=4.948e-02 (filed: not a symmetry)"
+  },
+  {
+   "gate": "H-T-red-R",
+   "ok": true,
+   "detail": "n=14 traj=0.000e+00 end=0.000e+00"
+  },
+  {
+   "gate": "H-T-red-U1",
+   "ok": true,
+   "detail": "n=14 traj=1.147e-14 end=8.882e-13"
+  },
+  {
+   "gate": "M-T-S-intertwine",
+   "ok": true,
+   "detail": "n=4 S-dyn-intertwine=0.000e+00 (filed)"
+  },
+  {
+   "gate": "H-Theta-identity",
+   "ok": true,
+   "detail": "n=87 max=1.725e-14"
+  },
+  {
+   "gate": "H-SectorSign-eq-S",
+   "ok": true,
+   "detail": "n=18 max=3.925e-17"
+  },
+  {
+   "gate": "H-Orbit-identity",
+   "ok": true,
+   "detail": "n=72 bad=0"
+  },
+  {
+   "gate": "H-U-marks-covariance",
+   "ok": true,
+   "detail": "n=348 bad=0"
+  },
+  {
+   "gate": "M-U-S-covariance",
+   "ok": true,
+   "detail": "n=24 bad=0 (filed)"
+  },
+  {
+   "gate": "M-U-C-invariance",
+   "ok": true,
+   "detail": "UB/UL/UEc conjugation-invariant=True n=87 (filed)"
+  },
+  {
+   "gate": "M-U-Scale-marks",
+   "ok": true,
+   "detail": "invariant 87/87 (filed, not gated)"
+  },
+  {
+   "gate": "M-U-Shift-marks",
+   "ok": true,
+   "detail": "invariant 55/87 (filed, not gated)"
+  },
+  {
+   "gate": "M-C-conditional",
+   "ok": true,
+   "detail": "J-visible 29 all-D>0=True; J-absent 31 all-D==0=True (filed)"
+  },
+  {
+   "gate": "M-G-landmark",
+   "ok": true,
+   "detail": "rel_AO=[3.0, 3.0] rel_BO=[4.0, 3.0] rel_TAO=[4.0, 3.0] TA_eq_B=0.000e+00 (filed)"
+  },
+  {
+   "gate": "M-FG-aut-moves-packets",
+   "ok": true,
+   "detail": "11/11 packet cells COM-moved (filed)"
+  },
+  {
+   "gate": "M-H-sheet",
+   "ok": true,
+   "detail": "n=18 maxD=5.046e-01 (filed: coarse-same/sheet-moved in ledger)"
+  },
+  {
+   "gate": "M-K-scale-laws",
+   "ok": true,
+   "detail": "n=120 rho-ratio-defect=0.000e+00 (filed: physical)"
+  },
+  {
+   "gate": "M-M-sheetphase",
+   "ok": true,
+   "detail": "visible 32/36 (filed)"
+  },
+  {
+   "gate": "M-QR-hierarchy",
+   "ok": true,
+   "detail": "counts=[6, 11, 10, 1, 1] monotone=False (filed)"
+  },
+  {
+   "gate": "M-V-recount",
+   "ok": true,
+   "detail": "states=16 differing-grains=24 (filed)"
+  },
+  {
+   "gate": "M-W-indifference",
+   "ok": true,
+   "detail": "debt_survives=True (filed, no probabilities)"
+  },
+  {
+   "gate": "M-X-fs-zero",
+   "ok": true,
+   "detail": "n=16 max=1.490e-08 bar=1e-07 (A1b)"
+  },
+  {
+   "gate": "M-INST-band",
+   "ok": true,
+   "detail": "ambiguity-band hits=0 (filed straddles=48)"
+  },
+  {
+   "gate": "M-INST-no-nan",
+   "ok": true,
+   "detail": "nan tokens=0"
+  },
+  {
+   "gate": "M-X-fs-dyn",
+   "ok": true,
+   "detail": "n=4 max-drift=2.220e-15"
+  },
+  {
+   "gate": "M-X-fs-triangle",
+   "ok": true,
+   "detail": "n=5"
+  },
+  {
+   "gate": "M-O5-replay",
+   "ok": true,
+   "detail": "banked-files-hit=7 zero0={'available': False} (filed)"
+  }
+ ],
+ "classifications": {
+  "R": "redundancy",
+  "U1": "redundancy",
+  "Sign": "U1(pi)-alias",
+  "Aut": "symmetry(filed M-FG)",
+  "T": "symmetry(filed M-G)",
+  "S": "symmetry+operational(filed M-H/M-O5)",
+  "C": "distinguishable-conditional(filed M-C)",
+  "Theta": "time-reversal",
+  "Scale": "physical-not-redundant(filed M-K)",
+  "Shift": "not-symmetry(filed M-L)",
+  "SheetPhase": "physical(filed M-M)",
+  "SectorSign": "=S"
+ },
+ "verdict": "SYM0-CLOSED",
+ "interpretation": "See docs/DEFERRED.md SYM0-VERDICT (post-data)."
+}

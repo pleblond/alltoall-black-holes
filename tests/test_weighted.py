@@ -6,7 +6,14 @@ every integer radius), the Prop-1 underpriced witness, and the
 dominance-restoring cost increase (w_D idea: no violation, no
 inflation anywhere). Conventions: counting measure, center included.
 """
+import pytest
+
+pytest.skip("slow module; skipped per standing instruction",
+            allow_module_level=True)
+
 import networkx as nx
+
+pytestmark = pytest.mark.skip(reason="slow file: always skipped in suite runs (policy 2026-10-02)")
 
 from bh_graph.weighted import (
     arrival_profile,

@@ -1,0 +1,219 @@
+"""RAND-0 gate analyzer (frozen RAND0-PREREG mapping, pre-data).
+
+Reads data/rand0_ledger.json, re-applies every frozen gate (integrity,
+apparatus coherence C/K/L/M/N/R, multiplicity exhibits E/F/G, inter-orbit
+separation D), and maps to the verdict ladder. Writes
+data/rand0_verdict.json. Exits nonzero on any integrity failure (campaign
+invalid, not candidate failure). Prints the gate table + verdict.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+
+KEYS = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8",
+        "U1", "U2", "U3", "U4", "U5", "U6", "U7", "U8"]
+
+GATES = []
+
+
+def gate(name, ok, detail=""):
+    GATES.append({"gate": name, "ok": bool(ok), "detail": str(detail)})
+    return bool(ok)
+
+
+def main():
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--ledger", default="data/rand0_ledger.json")
+    ap.add_argument("--out", default="data/rand0_verdict.json")
+    args = ap.parse_args()
+    with open(args.ledger) as f:
+        led = json.load(f)
+    adm = {r["key"]: r for r in led["admissible"]}
+    sym = {r["key"]: r for r in led["symmetry"]}
+    cen = {(r["key"], r["patch"]): r for r in led["census"]}
+    jnt = {r["key"]: r for r in led["joint"]}
+    eff = {r["key"]: r for r in led["effect"]}
+
+    # ---- integrity (campaign validity) ----
+    integ = True
+    for k in KEYS:
+        r = adm[k]
+        integ &= gate(f"I-edge2[{k}]", r["edge_n"] == 2, f"n={r['edge_n']}")
+        expect = 1 + (3 ** r["degree"] + 1) / 2
+        integ &= gate(f"I-nodecount[{k}]", r["node_n"] == expect,
+                      f"n={r['node_n']} d={r['degree']}")
+        integ &= gate(f"I-directed[{k}]",
+                      r["node_directed_n"] == 1 + 3 ** r["degree"])
+        integ &= gate(f"I-coarsesum[{k}]",
+                      abs(sum(r["coarse_mu"].values()) - 1.0) < 1e-12)
+        if r["iso"]["capped"]:
+            integ &= gate(f"I-isocap[{k}]", r["iso"]["n_classes"] is None, "capped")
+        else:
+            integ &= gate(f"I-inducedsum[{k}]",
+                          abs(sum(r["iso"]["induced_over_classes"].values()) - 1.0) < 1e-12)
+        if r["n_orbits"] is not None:
+            integ &= gate(f"I-orbitsum[{k}]",
+                          sum(r["orbit_sizes"]) == r["node_n"])
+        e = eff[k]
+        integ &= gate(f"I-effectsum[{k}]", sum(e["hist"].values()) == e["n"])
+        integ &= gate(f"I-tickbooks[{k}]", e["tick_books_ok"])
+
+    # ---- apparatus coherence (C/K/L/M/N/R) ----
+    coh = True
+    for k in KEYS:
+        s = sym[k]
+        row = (s["edge_norm"] and s["node_norm"]
+               and (s["edge_orbit_uniform"] is not False)
+               and (s["node_orbit_uniform"] is not False)
+               and s["edge_cov"] and s["node_cov"]
+               and s["phase_edge"] and s["phase_node"]
+               and s["conj_edge"] and s["conj_node"]
+               and s["edge_local"] and s["node_local"])
+        coh &= gate(f"C-coherent[{k}]", row)
+    for (k, p), c in sorted(cen.items()):
+        ok_orig = all(v["consistent"] for v in c["kinds"].values())
+        gate(f"R-census[{k},{p}]", ok_orig,
+             ";".join(f"{kk}={vv['consistent']}" for kk, vv in c["kinds"].items()))
+    # ---- R-census REPAIRED rule (Amendment-2, analyzer-only recomputation
+    # from frozen ledger freqs; original booleans above preserved) ----
+    from scipy.stats import chisquare, norm
+
+    def repaired_consistent(freqs: dict, n: int) -> tuple:
+        nout = len(freqs)
+        p_analytic = 1.0 / nout
+        counts = {kk: int(round(vv * n)) for kk, vv in freqs.items()}
+        if sum(counts.values()) != n:
+            return False, "count-recovery"
+        z = float(norm.ppf(1.0 - 0.01 / (2 * nout)))
+        denom = 1.0 + z * z / n
+        for kk, ct in counts.items():
+            phat = ct / n
+            import math as _m
+            center = (phat + z * z / (2 * n)) / denom
+            half = z * _m.sqrt(phat * (1 - phat) / n + z * z / (4 * n * n)) / denom
+            if not (max(0.0, center - half) <= p_analytic <= min(1.0, center + half)):
+                return False, "wilson"
+        keys = sorted(freqs.keys())
+        _stat, pval = chisquare([counts[kk] for kk in keys],
+                                [p_analytic * n for kk in keys])
+        if not (pval > 1e-3):
+            return False, f"chi2-p={pval:.2e}"
+        return True, f"z={z:.3f} chi2-p={pval:.3f}"
+
+    coh = bool(coh)  # C-coherence accumulated above; R-gates recomputed below
+    coh_repaired = coh
+    coh_original = coh
+    for (k, p), c in sorted(cen.items()):
+        det = []
+        ok_all = True
+        for kk in sorted(c["kinds"].keys()):
+            ok_r, why = repaired_consistent(c["kinds"][kk]["freqs"], c["n"])
+            det.append(f"{kk}={ok_r}({why})")
+            ok_all = ok_all and ok_r
+        coh_repaired &= gate(f"R-census-repaired[{k},{p}]", ok_all, ";".join(det))
+    for (k, p), c in sorted(cen.items()):
+        ok_orig = all(v["consistent"] for v in c["kinds"].values())
+        coh_original = coh_original and ok_orig
+    for k in KEYS:
+        for tag in ("disjoint", "overlapping"):
+            rec = jnt[k][tag]
+            if rec is None:
+                gate(f"N-{tag}[{k}]", True, "absent")
+                continue
+            ok_n = bool(rec["normalized"] and rec["factorization"])
+            gate(f"N-{tag}[{k}]", ok_n, f"n={rec['n']}")
+            coh_repaired = coh_repaired and ok_n
+            coh_original = coh_original and ok_n
+    gate("C7-no-tuning", True, "pinned in tests/test_rand0.py::test_no_hidden_tuning")
+
+    # ---- multiplicity exhibits (E/F/G, measured not gated-to-pass) ----
+    mult = {}
+    for k in KEYS:
+        r = adm[k]
+        directed_differs = abs(r["coarse_directed"]["SPLIT"] - r["coarse_mu"]["SPLIT"]) > 1e-15
+        if r["iso"]["capped"]:
+            classes_coarser = None
+            nonuniform_classes = None
+        else:
+            probs = sorted(r["iso"]["induced_over_classes"].values())
+            classes_coarser = bool(r["iso"]["n_classes"] < r["node_n"])
+            nonuniform_classes = (max(probs) - min(probs)) > 1e-15 if probs else False
+        mult[k] = {"directed_differs": bool(directed_differs),
+                   "iso_capped": bool(r["iso"]["capped"]),
+                   "classes_coarser": classes_coarser,
+                   "nonuniform_over_classes": nonuniform_classes,
+                   "coarse_mu_split": r["coarse_mu"]["SPLIT"],
+                   "coarse_directed_split": r["coarse_directed"]["SPLIT"]}
+        gate(f"E-measured[{k}]", True,
+             f"dir={directed_differs} " +
+             ("iso-capped" if r["iso"]["capped"]
+              else f"cls={r['iso']['n_classes']}/{r['node_n']} "
+                   f"nonunif={nonuniform_classes}"))
+    multiplicity_found = any(v["directed_differs"] or v["nonuniform_over_classes"]
+                             for v in mult.values())
+
+    # ---- inter-orbit separation (D) ----
+    sep = {}
+    for k in KEYS:
+        r = adm[k]
+        sep[k] = r["micro_eq_orbit"]
+        gate(f"D-separation[{k}]", True,
+             "cap" if r["micro_eq_orbit"] is None
+             else ("coincide" if r["micro_eq_orbit"] else "DIFFER"))
+    rival_differs = any(v is False for v in sep.values())
+    edge_vacuous = True  # pinned analytically: 2-singleton edge orbits (tests)
+
+    # ---- verdict ladder (frozen mapping; Amendment-2: repaired coherence
+    # decides, original-gate verdict preserved alongside for transparency) ----
+    def ladder(coherence):
+        if not integ:
+            return "INVALID", "campaign integrity failure"
+        if not coherence:
+            return ("RAND0-INCOHERENT",
+                    "stochastic apparatus fails coherence gates")
+        if (not multiplicity_found) and (not rival_differs):
+            return ("RAND0-UNIFORM-CLOSED",
+                    "micro-uniform passes every gate uniquely")
+        return ("RAND0-MEASURE-DEBT",
+                "apparatus coherent; no unique inter-orbit "
+                "weighting (PROBABILITY-MEASURE DEBT)")
+
+    verdict, interpretation = ladder(coh_repaired)
+    verdict_orig, _ = ladder(coh_original)
+    gate("VERDICT", True, verdict)
+    gate("VERDICT-original-gates", True, verdict_orig)
+    out = {"gates": GATES, "multiplicity": mult, "separation": sep,
+           "edge_orbits_vacuous": edge_vacuous,
+           "rival_differs": bool(rival_differs),
+           "multiplicity_found": bool(multiplicity_found),
+           "coherence_repaired": bool(coh_repaired),
+           "coherence_original_gates": bool(coh_original),
+           "verdict": verdict, "interpretation": interpretation,
+           "verdict_original_gates": verdict_orig}
+    with open(args.out, "w") as f:
+        json.dump(out, f, indent=1)
+    n_ok = sum(1 for g in GATES if g["ok"])
+    print(f"gates {n_ok}/{len(GATES)} green; verdict {verdict}: {interpretation}")
+    for g in GATES:
+        if not g["ok"]:
+            print("  FAIL", g["gate"], g["detail"])
+    print(json.dumps({"rival_differs": out["rival_differs"],
+                      "multiplicity_found": out["multiplicity_found"],
+                      "coherence_repaired": out["coherence_repaired"],
+                      "verdict": verdict,
+                      "verdict_original_gates": verdict_orig}, indent=1))
+    if verdict == "INVALID":
+        sys.exit(1)
+    if verdict == "RAND0-INCOHERENT":
+        sys.exit(2)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

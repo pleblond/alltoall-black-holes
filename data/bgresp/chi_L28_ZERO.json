@@ -1,0 +1,1 @@
+{"task": "chi_L28_ZERO", "params": {"task": "chi", "vac": "ZERO", "L": "28"}, "payload": {"fro": 0.0, "op": 0.0, "chi_zero_ok": true, "chi_nonzero_ok": null}, "provenance": {"git_rev": "aa879ca4d25ca44810762f3b475a6fc563cfa91b", "utc": "2026-10-02T21:04:28Z", "host": "ip-172-31-39-189"}}

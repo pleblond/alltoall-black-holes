@@ -1,0 +1,1 @@
+{"task": "kernel_VMINUS", "params": {"task": "kernel", "vac": "VMINUS"}, "payload": {"crosscheck_dev": 0.0, "crosscheck_ok": true, "krylov_dev": 2.45029690981724e-17, "krylov_ok": true}, "provenance": {"git_rev": "aa879ca4d25ca44810762f3b475a6fc563cfa91b", "utc": "2026-10-02T21:04:27Z", "host": "ip-172-31-39-189"}}

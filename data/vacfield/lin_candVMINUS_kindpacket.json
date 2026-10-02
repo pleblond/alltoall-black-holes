@@ -1,0 +1,1 @@
+{"task": "lin_candVMINUS_kindpacket", "params": {"task": "lin", "cand": "VMINUS", "kind": "packet"}, "payload": {"split_err": 8.505376476520326e-16, "corotating_err": 0.0, "ok": true}, "provenance": {"git_rev": "b18d0c784bcfb5a350af05673a174c1a261a8eaf", "utc": "2026-10-02T19:00:26Z", "host": "ip-172-31-39-189"}}

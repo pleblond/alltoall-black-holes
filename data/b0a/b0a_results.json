@@ -1,0 +1,47 @@
+{
+ "pool": "headline",
+ "verdict": "B0-NULL",
+ "b1": false,
+ "fire": false,
+ "track": false,
+ "mix_fire": false,
+ "res_fire": false,
+ "rho_m": 0.5743132073629994,
+ "p_m": 0.0033359421248199375,
+ "rho_r": -0.550197411719452,
+ "p_r": 0.005342705730590687,
+ "zR": [
+  -5.599444589712363,
+  -5.274652735506357,
+  -5.810980007085865,
+  -3.4570857600386207,
+  -2.1070652766687927,
+  -2.54582252387139
+ ],
+ "dts": [],
+ "outcomes": [
+  {
+   "name": "B0-mixing-dominance (MWU p<0.05)",
+   "fired": false,
+   "detail": "p=1 absent=False"
+  },
+  {
+   "name": "B0-residence/delay (med-z>3)",
+   "fired": false,
+   "detail": "res=False delay=False void=True"
+  },
+  {
+   "name": "B0-TRACK (dual rho>0.5 p<0.05)",
+   "fired": false,
+   "detail": "no-bridge"
+  },
+  {
+   "name": "B1 (5x AND >every-control in >=2)",
+   "fired": false,
+   "detail": "0/6"
+  }
+ ],
+ "n_headline": 24,
+ "n_formed": 6,
+ "n_controls": 18
+}

@@ -8,3 +8,6 @@ __pycache__/
 *.log
 *.out
 *.toc
+data/vacfield/npy/
+data/vacexc/npy/
+data/bgresp/npy/

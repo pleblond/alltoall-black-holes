@@ -1,0 +1,98 @@
+{
+ "checks": {
+  "evolution": true,
+  "cross_bg": true,
+  "decomp": true,
+  "protection": true,
+  "energy": true,
+  "packet": true,
+  "sector": true,
+  "null": true,
+  "linearity": true,
+  "ledger_stability": true
+ },
+ "headline": "VACEXC0-COMPLETE",
+ "matrix": {
+  "VPLUS": {
+   "dpsi_propagation": "background-independent (bitwise 0B)",
+   "packet_v": [
+    1.9204280337856674,
+    1.595637193483923e-14
+   ],
+   "relational_dB_max": 3.585143084335843e-05,
+   "linearity_slope_B": 1.0098902940210703,
+   "protection_filed": true,
+   "null": true
+  },
+  "VPI": {
+   "dpsi_propagation": "background-independent (bitwise 0B)",
+   "packet_v": [
+    1.9204280337856674,
+    1.595637193483923e-14
+   ],
+   "relational_dB_max": 9.142453297787938e-06,
+   "linearity_slope_B": 1.0364714759534897,
+   "protection_filed": true,
+   "null": true
+  },
+  "VMINUS": {
+   "dpsi_propagation": "background-independent (bitwise 0B)",
+   "packet_v": [
+    1.9204280337856674,
+    1.595637193483923e-14
+   ],
+   "relational_dB_max": 3.585143084335843e-05,
+   "linearity_slope_B": 1.002812263702783,
+   "protection_filed": true,
+   "null": true
+  }
+ },
+ "notes": [
+  "battery + subcheck green (norms, weights, decomp identity)",
+  "evolution: all split+corotating green: True",
+  "cross-bg point_amp: max-dev=0.00e+00 bitwise=True",
+  "cross-bg patch: max-dev=0.00e+00 bitwise=True",
+  "cross-bg packet: max-dev=0.00e+00 bitwise=True",
+  "cross-bg standing: max-dev=0.00e+00 bitwise=True",
+  "cross-bg source: max-dev=0.00e+00 bitwise=True",
+  "cross-bg sym_sector: max-dev=0.00e+00 bitwise=True",
+  "cross-bg hidden_sector: max-dev=0.00e+00 bitwise=True",
+  "VPLUS packet: frac-collapse=8.87e-14 abs-raw=0.00e+00",
+  "VPLUS point_amp: frac-collapse=3.11e-14 abs-raw=0.00e+00",
+  "decomp packet t0: cross-slope=1.0000 dd-slope=-0.0000",
+  "decomp packet t80: cross-slope=1.0000 dd-slope=-0.0000",
+  "decomp packet t300: cross-slope=1.0000 dd-slope=-0.0000",
+  "decomp point_amp t0: cross-slope=1.0000 dd==0 exact",
+  "decomp point_amp t80: cross-slope=1.0000 dd-slope=-0.0000",
+  "decomp point_amp t300: cross-slope=1.0000 dd-slope=-0.0000",
+  "VPI bracket peak-spread=9.88e-12",
+  "VMINUS bracket peak-spread=1.16e-14",
+  "VPLUS/packet: eps_guarantee=1.0 eps_actual=None",
+  "VPLUS/point_amp: eps_guarantee=0.03 eps_actual=None",
+  "VPI/packet: eps_guarantee=1.0 eps_actual=None",
+  "VPI/point_amp: eps_guarantee=0.03 eps_actual=None",
+  "VMINUS/packet: eps_guarantee=1.0 eps_actual=None",
+  "VMINUS/point_amp: eps_guarantee=0.03 eps_actual=None",
+  "protection certificates + cancellation pins green: True",
+  "VPLUS: packet v=[1.9204, 0.0] r2=1.0000 alpha=2.026 dB_max=3.585e-05",
+  "VPI: packet v=[1.9204, 0.0] r2=1.0000 alpha=2.026 dB_max=9.142e-06",
+  "VMINUS: packet v=[1.9204, 0.0] r2=1.0000 alpha=2.026 dB_max=3.585e-05",
+  "ZERO: packet v=[1.9204, 0.0] r2=1.0000 alpha=2.026 dB_max=4.901e-07",
+  "sector_VMINUS_packet: normalized purity=1.000000000000000 frozen_err=1.40e-03",
+  "sector_VPLUS_hidden: normalized purity=1.000000000000000 frozen_err=0.00e+00",
+  "sector_VPI_hidden: normalized purity=1.000000000000000 frozen_err=0.00e+00",
+  "interference null I=0 all vacua x geos: True",
+  "VPLUS/packet: two-point slopes rho=1.0006 B=1.0006 J=1.0000",
+  "VPLUS/point_amp: full-window slopes (filed mixture) rho=1.2225 B=1.0000 J=1.0942",
+  "VPLUS/patch: full-window slopes (filed mixture) rho=1.0652 B=1.0529 J=1.0599",
+  "VPI/packet: two-point slopes rho=1.0000 B=1.0002 J=1.0000",
+  "VPI/point_amp: full-window slopes (filed mixture) rho=1.2225 B=1.0000 J=1.0942",
+  "VPI/patch: full-window slopes (filed mixture) rho=1.0360 B=1.0363 J=1.0220",
+  "VMINUS/packet: two-point slopes rho=1.0000 B=1.0000 J=1.0000",
+  "VMINUS/point_amp: full-window slopes (filed mixture) rho=1.2225 B=1.0000 J=1.1096",
+  "VMINUS/patch: full-window slopes (filed mixture) rho=1.0129 B=1.0156 J=1.0038",
+  "ZERO/packet: two-point slopes rho=2.0000 B=2.0000 J=2.0000",
+  "ZERO/point_amp/B: VACUOUS (peaks exactly 0; B-null theorem)",
+  "long-time norms + B-ratio + abs-J green: True (max dJ_max=4.577e-04 vs bar 1e-2)"
+ ]
+}

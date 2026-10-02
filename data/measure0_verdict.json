@@ -1,0 +1,188 @@
+{
+ "gates": [
+  {
+   "gate": "H-INST-no-crash",
+   "ok": true,
+   "detail": "run-failures=0/544"
+  },
+  {
+   "gate": "H-A-rep_edge",
+   "ok": true,
+   "detail": "n=60 bad=0"
+  },
+  {
+   "gate": "H-A-rep_node",
+   "ok": true,
+   "detail": "n=72 bad=0"
+  },
+  {
+   "gate": "H-A-sig",
+   "ok": true,
+   "detail": "n=20 bad=0"
+  },
+  {
+   "gate": "H-O-phase",
+   "ok": true,
+   "detail": "n=40 bad=0"
+  },
+  {
+   "gate": "H-Z-matrix",
+   "ok": true,
+   "detail": "candidates=('const', 'orbit')"
+  },
+  {
+   "gate": "M-B-graph",
+   "ok": true,
+   "detail": "nodes=205 edges=600 C=60 S=408"
+  },
+  {
+   "gate": "M-C-reverse",
+   "ok": true,
+   "detail": "reversible=33 graph-only=27 one-way=0 n=60"
+  },
+  {
+   "gate": "M-D-theta",
+   "ok": true,
+   "detail": "dynamics=20/20 w_rev=20/20"
+  },
+  {
+   "gate": "M-E-inventory",
+   "ok": true,
+   "detail": "cells=60 even_ok=60"
+  },
+  {
+   "gate": "M-F-minimality",
+   "ok": true,
+   "detail": "const=0 orbit=0 (zero fitted params)"
+  },
+  {
+   "gate": "M-G-const",
+   "ok": true,
+   "detail": "W=1 well-defined; P=1/|A_phys|"
+  },
+  {
+   "gate": "M-H-stationary",
+   "ok": true,
+   "detail": "pi~d pinned in unit tests (descriptive)"
+  },
+  {
+   "gate": "M-I-disagree",
+   "ok": true,
+   "detail": "disagree=36/72"
+  },
+  {
+   "gate": "M-J-refinement",
+   "ok": true,
+   "detail": "directed_differs=72/72 nonuniform=32 capped=0"
+  },
+  {
+   "gate": "M-K-factor",
+   "ok": true,
+   "detail": "disjoint_pass=12/12"
+  },
+  {
+   "gate": "M-L-local",
+   "ok": true,
+   "detail": "pass=120/120"
+  },
+  {
+   "gate": "M-M-aut",
+   "ok": true,
+   "detail": "pass=40/40"
+  },
+  {
+   "gate": "M-N-sheet",
+   "ok": true,
+   "detail": "J2 sheet covariance"
+  },
+  {
+   "gate": "M-P-tr",
+   "ok": true,
+   "detail": "even_ok=60/60 (J odd filed)"
+  },
+  {
+   "gate": "M-Q-conservation",
+   "ok": true,
+   "detail": "selects=0/72 (expect 0)"
+  },
+  {
+   "gate": "M-R-fs",
+   "ok": true,
+   "detail": "selects=0/72 (expect 0)"
+  },
+  {
+   "gate": "M-S-graph",
+   "ok": true,
+   "detail": "verdict=underdetermined"
+  },
+  {
+   "gate": "M-T-product",
+   "ok": true,
+   "detail": "forced=False"
+  },
+  {
+   "gate": "M-U-jacobian",
+   "ok": true,
+   "detail": "finite=0/4 (expect 0)"
+  },
+  {
+   "gate": "M-V-infoloss",
+   "ok": true,
+   "detail": "match=4/4 (identity, not derivation)"
+  },
+  {
+   "gate": "M-W-hidden",
+   "ok": true,
+   "detail": "P_- retained"
+  },
+  {
+   "gate": "M-X-background",
+   "ok": true,
+   "detail": "battery=['VMINUS', 'VPI', 'VPLUS', 'ZERO'] n_phys=VMINUS=2,VPI=2,VPLUS=2,ZERO=2"
+  },
+  {
+   "gate": "M-Y-vacuum",
+   "ok": true,
+   "detail": "verdict=vacuum active (no exception) P_stay_edge=0.5"
+  },
+  {
+   "gate": "M-AA-balance-const",
+   "ok": true,
+   "detail": "holds=True dev=0.0"
+  },
+  {
+   "gate": "M-AB-currents-const",
+   "ok": true,
+   "detail": "max|K|=0.0 zero=True"
+  },
+  {
+   "gate": "M-AA-balance-orbit",
+   "ok": true,
+   "detail": "holds=True dev=0.0"
+  },
+  {
+   "gate": "M-AB-currents-orbit",
+   "ok": true,
+   "detail": "max|K|=0.0 zero=True"
+  },
+  {
+   "gate": "M-AC-history",
+   "ok": true,
+   "detail": "{'T2': (True, 0.6988171064604186, 1.0, 18, 1936), 'T3': (True, 0.028867505551443375, 3.0, 52, 1936)}"
+  },
+  {
+   "gate": "M-FW-firewall",
+   "ok": true,
+   "detail": "params={'const': 0, 'orbit': 0, 'boltzmann': 1, 'born': 0, 'absB': 1}"
+  }
+ ],
+ "hard_ok": true,
+ "debt_reasons": [
+  "orbit-rival differs (36/72)",
+  "support not fully reversible (33/60 reversible)",
+  "no conservation selector",
+  "graph grain underdetermined"
+ ],
+ "verdict": "MEASURE0-DEBT",
+ "interpretation": "see docs/DEFERRED.md MEASURE0-VERDICT"
+}
