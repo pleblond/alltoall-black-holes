@@ -84,11 +84,19 @@ def test_task_lines_use_dashes():
     lines = zt.gen_pilot("PY", "D")
     assert len(lines) == 16
     assert all("--eta_scale" not in ln for ln in lines)
-    assert any("--eta-scale 1.0" in ln for ln in lines)
+    assert any("--eta-scale=1.0" in ln for ln in lines)
+    assert any("--k=-" in ln for ln in zt.gen_full("PY", "D"))
     full = zt.gen_full("PY", "D")
     assert len(full) == 4119
+    assert len(zt.gen_supp("PY", "D")) == 240
     assert all("_" not in tok or tok.startswith("D/") or tok == "PY"
                for ln in full for tok in ln.split() if tok.startswith("--"))
+
+
+def test_f4_exclusion_filed():
+    row = zc.kind_generic(_args(task="generic", substrate="rewire",
+                                size=28, family="F4", seed=3))
+    assert row.get("filed") == "initial-exclusion"
 
 
 def test_j2_cycles_verify():

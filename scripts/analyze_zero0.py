@@ -33,11 +33,21 @@ def _mean(xs):
     return sum(xs) / len(xs) if xs else None
 
 
+def _split_filed(rows: list):
+    run = [r for r in rows if "filed" not in r]
+    fld = [r for r in rows if "filed" in r]
+    return run, fld
+
+
 def cell_key_generic(r: dict):
     return (r["substrate"], r["size"], r["family"])
 
 
 def summarize_generic(rows: list) -> dict:
+    rows, fld = _split_filed(rows)
+    n_filed = defaultdict(int)
+    for r in fld:
+        n_filed[cell_key_generic(r)] += 1
     cells = defaultdict(list)
     for r in rows:
         cells[cell_key_generic(r)].append(r)
@@ -49,7 +59,7 @@ def summarize_generic(rows: list) -> dict:
                 labs[lab] += n
         n_ev = [r.get("n_events", 0) for r in rs]
         out["|".join(str(x) for x in k)] = {
-            "n_rows": len(rs),
+            "n_rows": len(rs), "n_filed": n_filed.get(k, 0),
             "norm_ok_frac": _mean([1.0 if r.get("norm_ok") else 0.0 for r in rs]),
             "mean_m_min": _mean([r["m_stats"]["m_min"] for r in rs
                                  if "m_stats" in r]),
@@ -82,6 +92,7 @@ def summarize_background(rows: list) -> dict:
 
 
 def summarize_winding(rows: list) -> dict:
+    rows, _ = _split_filed(rows)
     cells = defaultdict(list)
     for r in rows:
         cells[(r["substrate"], r["size"], r["family"])].append(r)

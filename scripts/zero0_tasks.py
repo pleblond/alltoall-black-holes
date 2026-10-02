@@ -47,7 +47,7 @@ def _line(py: str, out: str, **kw) -> str:
         elif v is False or v is None:
             continue
         else:
-            parts.append(f"{flag} {v}")
+            parts.append(f"{flag}={v}")
     parts.append(f"--out {out}")
     return " ".join(parts)
 
@@ -147,14 +147,46 @@ def gen_full(py: str, d: str) -> list:
     return L
 
 
-def main(argv=None):
+def gen_supp(py: str, d: str) -> list:
+    """Protected-regime supplement: small absolute eta (ZERO-0M/C4).
+
+    The full bank's absolute protocol (||eta|| = 1) never satisfies
+    ||eta|| < a/sqrt(N) at full sizes; these cells probe the
+    spectrally-protected regime the prereg requires for C4.
+    """
+    L, i = [], [0]
+
+    def emit(**kw):
+        i[0] += 1
+        L.append(_line(py, f"{d}/supp-{i[0]:05d}.json", **kw))
+
+    subs = [("j2", 10), ("j2", 20), ("storus", 16), ("storus", 28),
+            ("ring", 256)]
+    for (sub, size) in subs:
+        for bg in ("Z+", "ZPI"):
+            for a in (1.0, 10.0):
+                for esc in (0.01, 0.001):
+                    for seed in range(5):
+                        emit(task="background", substrate=sub, size=size,
+                             bg=bg, a=a, protocol="absolute",
+                             eta_scale=esc, seed=seed)
+    for size in (10, 20):
+        for a in (1.0, 10.0):
+            for esc in (0.01, 0.001):
+                for seed in range(5):
+                    emit(task="background", substrate="j2", size=size,
+                         bg="Z-", a=a, protocol="absolute",
+                         eta_scale=esc, seed=seed)
+    return L
     p = argparse.ArgumentParser(description="ZERO-0 task generator")
-    p.add_argument("--bank", choices=["pilot", "full"], default="pilot")
+    p.add_argument("--bank", choices=["pilot", "full", "supp"],
+                   default="pilot")
     p.add_argument("--py", default="~/zero0-venv/bin/python")
     p.add_argument("--dir", default="~/zero0-data/rows-pilot")
     p.add_argument("--out", required=True)
     a = p.parse_args(argv)
-    gen = gen_pilot if a.bank == "pilot" else gen_full
+    gen = {"pilot": gen_pilot, "full": gen_full,
+           "supp": gen_supp}[a.bank]
     lines = gen(a.py, a.dir)
     with open(a.out, "w") as f:
         f.write("\n".join(lines) + "\n")

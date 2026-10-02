@@ -100,8 +100,6 @@ def build_family_state(family: str, sub: dict, seed: int, h_dense=None,
     prep = zero.prepare_family(family, sub["N"], seed, h=h_dense,
                                coords=sub["coords"], order=sub["order"],
                                n_modes=n_modes)
-    if not prep["exclusion_ok"]:
-        raise RuntimeError(f"exclusion failed: {family} seed {seed}")
     return prep
 
 
@@ -174,6 +172,11 @@ def kind_generic(a) -> dict:
                                  ("F4", "F5") else None)
     prep = build_family_state(a.family, sub, a.seed, h_dense=hd,
                               n_modes=a.n_modes)
+    if not prep["exclusion_ok"]:
+        return {"task": "generic", "substrate": sub["tag"],
+                "size": sub["size"], "N": sub["N"], "family": a.family,
+                "seed": a.seed, "filed": "initial-exclusion",
+                "attempts": prep["attempts"]}
     tr = run_trace(prep["psi"], h, a.dt, a.horizon)
     scan = zero.trace_zero_scan(prep["psi"], h, tr["ts"], tr["psi"],
                                 modal=mo["sys"] if mo else None)
@@ -317,6 +320,11 @@ def kind_winding(a) -> dict:
                                  ("F4", "F5") else None)
     prep = build_family_state(a.family, sub, a.seed, h_dense=hd,
                               n_modes=a.n_modes)
+    if not prep["exclusion_ok"]:
+        return {"task": "winding", "substrate": sub["tag"],
+                "size": sub["size"], "N": sub["N"], "family": a.family,
+                "seed": a.seed, "filed": "initial-exclusion",
+                "attempts": prep["attempts"]}
     tr = run_trace(prep["psi"], h, a.dt, a.horizon)
     scan = zero.trace_zero_scan(prep["psi"], h, tr["ts"], tr["psi"],
                                 modal=mo["sys"] if mo else None)
