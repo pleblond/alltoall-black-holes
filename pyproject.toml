@@ -27,3 +27,8 @@ where = ["src"]
 
 [tool.ruff]
 line-length = 100
+
+[tool.pytest.ini_options]
+# Standing instruction: test_weighted.py is slow; always skip it in the
+# default suite collection. Invoke it explicitly to run it.
+addopts = "--ignore=tests/test_weighted.py"

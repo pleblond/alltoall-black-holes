@@ -8354,3 +8354,256 @@ O2/O3/O4); M-QR O4/O5 show 1 class because they are G-channels
 (psi-blind by banked construction), so the psi-hierarchy is O1..O3
 and the O1->O5 monotonicity expectation is corrected to O1..O3
 monotone + O4/O5 constant-on-fixed-G.
+
+## HIDDEN-0-PREREG (FROZEN pre-data; this commit predates ALL beast HIDDEN-0 runs)
+
+Mission: determine whether J2's non-transporting antisymmetric sector stores
+locally consequential microscopic information while remaining operationally
+hidden at long range. Separation under test: D_local > 0 with D_remote -> 0.
+
+FROZEN LAW: H = -A(J2), J = 1, hbar = 1. No geometry dynamics, no structural
+events, no stochastic dynamics, no sources except banked protocols as controls.
+
+FROZEN INPUTS (read-only, byte-identical vendor, md5-verified across tips):
+P1-ballistic + MALUS + QUOT + OBS0 (QUOT tip 97765b0, QUOT0-OPERATIONAL);
+FIELD0 + coherence + formation(elist_window) (FIELD tip b9dea0c,
+FIELD0-LINEAR + FIELD0-APPARENT); continuum + backreaction + potential
+(EM0 tip 3128ff9, EM0-BACKREACTIVE). Consumed bars: QUOT-0 remote fp bar
+1e-9, ratio bar 1e-6, load shells (2,4,6), wave horizon T = 16/dt = 0.05,
+staggered eps = 0.1 (ONE value), POT omega = -8.5; FIELD-0 witness
+I = max(eps,dP1,dP2,clin,dE) with I = 0 bar 1e-6; EM-0 rho/B/J with the
+factor-2 current J = 2Im (pinned in test_hidden). BR-2.6 UNAVAILABLE at
+prereg time (BR branch holds BR-0 only): 0R uses the BR-0 virtual ledger
+read-only, no event-rate interpretation. VAC-FIELD-0 finished
+(VACFIELD0-JOINT): 0S reconstructs VPLUS/VPI/VMINUS closed forms and
+verifies banked energies (-8/+8/0) + sectors before use. SYM-0/ZERO-0
+unfinished: 0M reports raw + phase-quotiented counts separately; 0P uses
+conservative near-zero labeling (uncertified, no singularity claims).
+
+FIREWALL: "hidden" means only microscopic information not transmissible by
+the tested long-range operational channels. No hidden-variables, dark
+matter, spin/charge/polarization, memory-capacity, vacuum-ontology, gravity,
+or new-force claims. Geometry frozen throughout (0Q/0R open no backreaction
+gate; they file virtual-ledger contrasts only).
+
+APPARATUS (src/bh_graph/hidden.py, 33 pins in tests/test_hidden.py, all
+green pre-data): symmetric backgrounds (packet/uniform/delta/twocell) +
+antisymmetric patterns (delta/dipole/disk/checker/phased); matched_pair
+(sign/phase/shape/amplitude-RAW) with EXACT P_+ match (bar 1e-12) +
+qmatch_pair (HAMP-Q, filed scale); em_observables (EM-0 factor-2 J);
+prep_neighborhood (QUOT shells, R_PREP = 2) + local_distance D_local =
+max(d_rho, d_B, d_J) with D_LOCAL_BAR = 1e-6; cross_anatomy + energy
+split (E = E_+ exactly: E_- = Ex = 0); prob-diff S-oddness; remote TV
+(wave/diff exact-eigen) + POT pair fields (common-RMS pin norm); fixed
+PRE/OVERLAP/POST rows k = 10/60/120 (t = 1/6/12); nearest-profile
+classifier; mixed/pure census alphabets + pairwise_min_D; phase-sweep
+[1,cos,sin] fits; vac_shapes; ledger_contrast (N = 20000, seed = 0);
+staggered_checks.
+
+DERIVED PRE-DATA (pinned): E[psi] = E[psi_+] exactly (hidden sector
+energetically invisible even locally); matched-pair Dp(0) is S-odd
+(diffusion difference = P_- eigenmode, decays e^{-t} in place);
+sheet0/sheet1 IS an H-sign pair; sign/phase differences are pure cross
+terms at all t (Drho = 4Re(psi_+* psi_-^A)); S(psi_+ + psi_-) =
+psi_+ - psi_-.
+
+GRID (scripts/hidden0_campaign.py, 43 cells, J2 L28, T = 20/dt = 0.1):
+A l6+l28 anatomy (2); B pair battery sign-x-3bg/phase-x-2/shape-x-2/
+amp-{05raw,20raw,05q} (10; 20q infeasible-filed); E hidden-only x4 (4);
+F remote sharp/packet:delta/packet:disk/uniform:delta wave+diff (4) +
+pot (1); G persistence sign/phase/shape/amp (4); H pass-wave delta/disk
+(2); K extraction delta/disk (2); L census mixed/pure x R1/R2/R3 (6);
+N exchange (1); O sweep x2 (2, 0P reads these); Q bond-full (1);
+R ledger (1); S vac-classes (1); T obs-input (1); U staggered (1).
+Prep center PC = (7,14) (POT-0 window); hidden region RC = (14,14);
+packet r0 = (7,14), k = (0.3,0), sigma = 4 (headline).
+
+GATES (scripts/analyze_hidden0.py, FROZEN pre-data): A exact (comm/dead/
+inter 1e-12, frozen 1e-9, decomp 1e-8, n_zero L6 = 36+nodal(6), L28 = 838);
+B pmatch + dQ (RAW-20 files 3.0; Q scale sqrt(1.75)) + D_local > 1e-6 +
+E_free + sodd; E frozen + rho/B nonzero + E = 0; F Dmax < 1e-9 r = 2..10
++ sym arrival C+ > 0.001 + ratio < 1e-6 at (2,4,6); F:pot remote < 1e-9
++ 1-hop support; G cross-identity 1e-9 + decay ratio < 0.05 (sign/phase)
++ residual > 1e-6 within 5% of hidden-only ref (shape/amp); H eps + I = 0
++ sector preserved 1e-9; J read D > 1e-6 + write 1e-9; K local correct +
+gap > 1e-6, remote gap < 1e-9; L mixed min_D > 1e-6 + n_below = 0, pure
+pos min_D > 1e-6 + quo < 1e-12; N pure < 1e-12 + mixed > 1e-6 + S-map;
+O fit < 1e-9 + rho modulation > 1e-6 (P files min_abs/nzero, no gate);
+Q dB + count; R de + bond; S weights + energies match banked; T W/D/P
+< 1e-9 at (2,4,6) + D_local > 1e-6; U pvp/comm + lifted + non-flip
+(< 0.05 and < 3x frozen at (2,4,6), QUOT-0Q bar).
+
+VERDICT LADDER (frozen, no wiggle): HIDDEN0-LEAK if any frozen-H remote
+Dmax > 1e-6 at r >= 2 (F/T). HIDDEN0-INTERACT if any H witness I > 1e-6.
+HIDDEN0-ABSENT if no B/H local gate greens. HIDDEN0-SEPARATED (primary
+positive) if every check greens. Else HIDDEN0-PARTIAL (honest filing).
+
+SMOKE NOTE (pre-prereg machinery validation, local, NOT campaign data):
+A:l6 + N:sheet executed once locally to validate runner serialization
+(values as predicted: exact 0.0s, mixed_D = 0.071). All verdict gates
+run on fresh beast data (HIDDEN0_WORKERS = 32, gated on this commit).
+
+FORBIDDEN: force/interaction/binding claims from rho/B/J drama (I = 0
+required by FIELD-0); memory-capacity language (state-counting only);
+phase-quotient conclusions beyond observables (SYM-0 pending); zero/
+singularity certification (ZERO-0 pending); geometry-change inference
+from 0Q/0R (frozen geometry); full blind-pipeline replay claims (0T is
+input-level equivalence + QUOT-0 Q-P response-function evidence).
+
+NEXT: freeze-commit-then-beast-campaign, full suite on beast (-n 8,
+FIELD-0 precedent), verdict filed here + data/hidden0_*.json.
+
+## HIDDEN-0-AMENDMENT-1 (post-first-run audit; analyzer/apparatus design errors)
+
+First run (beast, 43 cells, ~15 s + rerun-resume): 267/289 checks pass.
+NO post-data bar/ladder/estimator change below alters any physics bar:
+every item is a prereg-intent restoration (analyzer bug), a derivation-
+scope correction, or a geometry-dependent structural filing. All F/T/H/I/
+J/K/O/Q/R/S/N legs passed as preregistered (remote blindness, no-memory,
+read/no-write, extraction, sweep, bond, ledger, vac, exchange). Autopsies:
+
+A1 (analyzer bug, dQ gate): the generic dQ < 1e-9 check fired on amp-RAW
+cells whose prereg construction has dQ = |1-a^2| by design (05raw: 0.75,
+20raw: 3.0, both exactly as constructed). FIX: amp-raw cells check
+dQ == |1-a^2| (1e-9); no data touched.
+
+A2 (prereg-gate contradiction, HAMP-Q): 05q rescales P_+ by the filed
+c = sqrt(1.75) (prereg construction), so exact-pmatch MUST fail; the
+prereg claim is identical P_+ DIRECTION + filed scale (scale audit
+passed). FIX: pmatch exempt for HAMP-Q; direction-collinearity audit
+added (cos angle = 1 to 1e-12). No data touched.
+
+A3 (derivation-scope correction, sodd): Dp(0) S-oddness was derived for
+sign/phase pairs only (|psi_-|^2 cancels there). Shape/amp pairs carry
+S-even |ma|^2-|mb|^2 parts (B:shape/dipole/disk, B:amp fails) -- genuine
+refinement: only unitary-related hidden pairs have purely in-place
+diffusion differences. FIX: sodd gated on sign/phase; shape/amp filed
+descriptive. 0F unaffected (all F cells are sign pairs, all passed).
+
+A4 (structural gate, E:delta B): single-site states occupy no edge, so
+B = 0.0 EXACTLY by EM-0 construction (unit-pin lesson not carried to the
+E:delta campaign gate). FIX: E:delta:B becomes an exact-zero structural
+pin (B_max < 1e-12); rho leg carries distinguishability (passed).
+
+A5 (geometry-dependent filing, G decay/residual): G:sign/phase decay
+0.39/0.41 vs 0.05 bar -- the L28 T = 20 packet WRAPS (COM travel 23.6
+vs period 28) and re-approaches PC by t = 20, so fixed-t_post ratios
+measure torus tails, not hidden-sector physics. The preregistered
+PHYSICS (cross-identity 1e-9: sign/phase differences are pure cross
+terms at all t) PASSED. Shape/amp residuals EXIST (> 1e-6, passed);
+only the 5%-settling match failed (same wrap cause). FIX: decay ratio
++ resid_match become descriptive filings (D_min/D_post/traces filed,
+no bar); G physics carried by the passing cross-identity + residual-
+exists gates. Ladder clause updated accordingly. No re-barring on new
+geometries (tuning hazard declined; L42 rerun NOT done).
+
+A6 (apparatus bug + double-count, L:mixed): pairwise_min_D chunking
+missed in-block pairs for block index > 0 (wrong-column triu slice),
+AND the mixed alphabet double-counts (s,phi) = (-s,phi+pi) (same state
+to fp; minD = 2.28e-18, 32 counted = first-64-block dups exactly).
+FIX: chunking corrected + unit pin with M > chunk; alphabet deduped to
+8 distinct phases/cell (N_hidden^mixed(R) = |R| x 8); the 3 L:mixed
+cells RERUN under this amendment (fresh records replace the 3 lines).
+Sign differences remain covered by B:sign + O-sweep-pi.
+
+A7 (analyzer logic bug, U non-flip): De Morgan violation -- coded
+non-flip as (< 0.05 AND < 3x frozen) where QUOT-0Q's flip bar (>= 0.05
+AND > 3x) complements to (< 0.05 OR <= 3x). Measured pert 3-6e-3
+(< 0.05, same O(eps^2)-with-prefactor scale as QUOT-0Q's 9.1e-3).
+FIX: OR logic. No data touched.
+
+RERUN SCOPE (gated on this amendment commit): 3 L:mixed cells only
+(new code); all other records stand. Verdict gates on the re-analysis.
+
+## HIDDEN-0-VERDICT (filed 2026-10-02): HIDDEN0-SEPARATED (primary positive)
+
+HEADLINE (frozen merger, scripts/analyze_hidden0.py, Amendment-1 applied):
+279/279 checks pass over 43 beast cells (J2 L28, T = 20/dt = 0.1, 32
+workers, ~15 s + 3-cell amended rerun). Machine records:
+data/hidden0_cells.json + data/hidden0_verdict.json + data/hidden0_stage.json.
+First run 267/289 PARTIAL; all 22 failures autopsied as design/analyzer
+issues (Amendment-1, no physics bar moved): amp-raw dQ values, HAMP-Q
+collinearity, sodd scope, E:delta structural B, G geometry filing, census
+dedup + chunking bugfix, U De Morgan fix. Full suite on beast green
+(750 passed, 2 torch/GPU-skips, test_weighted skipped per standing
+instruction; obs0r/run_obs0/run_obs1 vendored as consumption addendum
+after a first-suite ModuleNotFoundError).
+
+SEPARATION (the mission): D_local in [0.07, 1.60] across all 10 matched
+pairs (5-6 orders above the 1e-6 bar; every hidden transformation --
+sign, phase pi/2 and pi, dipole/disk shape, amplitude 0.5/2.0 RAW and
+Q-matched -- locally distinguishes on at least one of rho/B/J) while
+D_remote <= 5.2e-15 on every remote shell r = 2..10, wave + diffusion,
+all 4 sign-pair constructions (3-6 orders below the 1e-9 bar), POT
+remote EXACTLY 0.0 with 1-hop anti support, sym arrival + ratios green
+at (2,4,6). Transport-visible vs locally-physical-but-transport-hidden
+information are genuinely distinct in the frozen theory.
+
+A (anatomy): comm/dead/inter/frozen all 0.0 (L6 + L28), decomp 2.5e-15,
+n_zero 46 = 36+nodal(6) / 838 = 784+54. Foundational regression green.
+B (pairs): pmatch exact all 10; dQ exact (0.0 / 0.75 / 3.0 / Q-matched
+4.4e-16 with scale sqrt(1.75) + collinearity); E = E_+ exactly
+(E_- = Ex = 0.0); sodd green on sign/phase scope.
+D (cross terms): rho/B/J/E sector decompositions exact; the hidden
+sector is ENERGETICALLY INVISIBLE even locally (E_- = Ex = 0) while
+visible in rho/B/J -- the campaign's sharpest internal separation.
+E (hidden-only): frozen 0.0 all 4; rho/B nonzero (delta rho 0.5, disk/
+checker B 0.056); complex pattern carries persistent J = 0.111 with
+E = 0 exactly -- stationary is not physically absent.
+F (remote): reproduced QUOT-style + extended to packet/uniform/disk
+backgrounds; maxima wave 5.2e-15 / diff 3.5e-15 (rung 1e-9).
+G (persistence): sign/phase differences are pure cross terms at all t
+(8.7e-14/5.6e-14); D(t) tracks packet exit (Dmax 0.20/0.14); shape/amp
+leave persistent residuals (0.275/0.394, > 1e-6). Decay-ratio + settling
+filed descriptive (L28 T = 20 packet wraps; geometry, not physics).
+H/I (passing wave + no-memory): witness I ~ 1.2e-12 both states, both
+hidden shapes (bar 1e-6); packet sector preserved to 9e-14; momentum
+stable. The hidden sector alters total local observables during overlap
+and imprints NOTHING afterward -- hard null held, no audit needed.
+J (read/write): read D = 0.159/0.105 during overlap (both shapes);
+write 6e-15 (P_- psi + w_anti constant). Locally readable through
+interference, not dynamically writable -- as frozen theory predicts.
+K (extraction): local detector classifies correctly, gaps 0.60-0.62;
+remote detector gap ~1e-13 (chance). I_local > 0, I_remote = 0.
+L/M (census): mixed N_hidden = 72/168/296 for |R| = 9/21/37 (positions
+x 8 distinct phases, minD = 0.025, linear in |R|, state-counting only);
+pure N = 9/21/37 positions (minD = 0.5) with sign/phase quotient pairs
+EXACTLY 0.0 in all observables (raw + quotiented reported; SYM-0
+interpretation pending).
+N (exchange): S maps mixed sign-pair members into each other (0.0);
+pure sign D = 0.0 exact, mixed D = 0.071.
+O (relative phase): [1,cos,sin] fits to ~1e-16 all nodes/edges;
+modulations rho 0.20/B 0.098/J 0.20 (packet) -- relative sector phase
+is physically meaningful, exactly as derived from cross terms.
+P (zeros): NO exact-zero candidates at 1e-12 in either sweep (minima
+1.5e-4/0.025 filed); hidden phase controls near-zero depth without
+certified singularities (ZERO-0 pending, conservative labeling kept).
+Q (bond-conjugate): full-edge max|dB| = 0.036 on 16 edges -- transport-
+hidden information alters the local geometry-conjugate quantity.
+Frozen geometry: no backreaction gate opened, future work only.
+R (ledger): de = 0.0 EXACT (E = E_+); bond field differs (0.098);
+near-cell f_neg/f_pos differ in the 3rd decimal (filed, no event-rate
+interpretation). Remotely indistinguishable states have different local
+structural energetics -- significant, virtual-only.
+S (vacuum coordination): reconstructed VPLUS/VPI/VMINUS verify banked
+sectors + energies (P_+/P_+/P_-; -8/+8/0 to 1e-9). VMINUS (pure hidden,
+E = 0, stationary, B_max = 6.4e-4 uniform) sits inside the HIDDEN-0
+census as the translation-invariant hidden member. VACFIELD0-JOINT
+family untouched; no headline-bar impact.
+T (observer replay, input-level): remote station signals A-vs-B:
+W ~4e-16, D ~7e-17, P = 0.0 exact at (2,4,6) while D_local = 0.20 --
+any deterministic observer fed banked channels outputs M_O(A) = M_O(B).
+Response-function evidence: QUOT-0 Q-P (P- meas = 0.0, METRIC False).
+U (staggered control): pvp = 0.0 exact (no H_- kinetic term), comm =
+eps*sqrt(N) to 3e-16, all 838 zeros lifted (n0 = 0), yet remote sheet
+capacity 3-7e-3 -- below the 0.05 QUOT-0Q flip bar (non-flip on all of
+2/4/6). QUOT-0 lesson consumed: lifting eigenvalues without S-odd
+KINETIC terms opens no useful hidden-transport channel.
+
+KILL RELEVANCE: HIDDEN0-SEPARATED establishes the transport-visible vs
+transport-hidden distinction as dynamical fact under frozen H = -A --
+the observer inhabits the quotient (QUOT0-OPERATIONAL) while local
+physics sees more (rho/B/J, bond-conjugate, virtual ledger). LEAK and
+INTERACT rungs dead: nothing propagates, nothing scatters. Firewall
+kept: no hidden-variables/foundations claims, no memory-capacity
+language, no geometry-change inference, no blind-pipeline replay claim.

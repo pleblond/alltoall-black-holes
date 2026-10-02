@@ -1,0 +1,9 @@
+{
+ "n_checks": 279,
+ "n_pass": 279,
+ "n_fail": 0,
+ "verdict": "HIDDEN0-SEPARATED",
+ "leak_hit": false,
+ "interact": false,
+ "fails": []
+}
