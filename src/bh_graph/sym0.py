@@ -659,9 +659,9 @@ def _nm_of_jnet(jn) -> float:
 
 
 def _angle_dist(da: dict, db: dict) -> float:
-    """Circular angle distance, conditioned on defined flux (never NaN)."""
+    """Circular angle distance, both-defined only (never NaN; A1c)."""
     from bh_graph.potential import ang_diff
-    if max(_nm_of_jnet(da["J_net"]), _nm_of_jnet(db["J_net"])) < COND_FLOOR:
+    if min(_nm_of_jnet(da["J_net"]), _nm_of_jnet(db["J_net"])) < COND_FLOOR:
         return 0.0
     return float(ang_diff(float(da["angle"]), float(db["angle"])))
 
@@ -677,7 +677,7 @@ def _trace_angle_dist(ta: dict, tb: dict) -> float:
     for i in range(len(aa)):
         na = float(np.linalg.norm(ja[i]))
         nb = float(np.linalg.norm(jb[i]))
-        if max(na, nb) >= COND_FLOOR:
+        if min(na, nb) >= COND_FLOOR:
             out = max(out, float(ang_diff(float(aa[i]), float(ab[i]))))
     return out
 
@@ -690,7 +690,7 @@ def _com_dist(ca, cb, ra, rb, mod) -> float:
     rb = np.asarray(rb, dtype=float)
     out = 0.0
     for i in range(len(ca)):
-        if max(float(ra[i]), float(rb[i])) < COND_FLOOR:
+        if min(float(ra[i]), float(rb[i])) < COND_FLOOR:
             continue
         dd = abs(float(ca[i]) - float(cb[i]))
         L = (mod or [None] * len(ca))[i]
@@ -701,10 +701,10 @@ def _com_dist(ca, cb, ra, rb, mod) -> float:
 
 
 def _com_defined_ok(ra, rb) -> bool:
-    """Boolean check: com fully defined on every axis (both records)."""
+    """Boolean check: com fully defined on every axis (both records; A1c)."""
     ra = np.asarray(ra, dtype=float)
     rb = np.asarray(rb, dtype=float)
-    return bool(all(max(float(ra[i]), float(rb[i])) >= COND_FLOOR
+    return bool(all(min(float(ra[i]), float(rb[i])) >= COND_FLOOR
                     for i in range(len(ra))))
 
 

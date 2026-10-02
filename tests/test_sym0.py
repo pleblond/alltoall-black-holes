@@ -337,3 +337,19 @@ def test_no_nan_zero_field_witness():
 def test_fs_bar_scale_tiny():
     psi = tiny_field(4, "bonding")
     assert sym0.fs_distance(psi, sym0.apply_u1(psi, 2.0)) < sym0.FS_ZERO_BAR
+
+
+def test_straddle_excluded_both_defined_rule():
+    import math
+    subs = sym0.sym0_substrates()
+    sub = subs["path-12"]
+    F = sym0.sym0_fields(sub)
+    oz = sym0.observe_o3(F["zero"], sub["g"], sub["order"], sub)
+    os = sym0.observe_o3(sym0.apply_shift(F["zero"], 0.1), sub["g"],
+                         sub["order"], sub)
+    d = sym0.obs_distance(oz, os, "O3")
+    for v in d.values():
+        assert not (isinstance(v, float) and math.isnan(v))
+    assert d["width_t0"] == 0.0 and d["com_t0"] == 0.0
+    c = sym0.o3_conditioning(oz, os)
+    assert c["n_straddle"] >= 1 and c["n_ambiguous"] == 0

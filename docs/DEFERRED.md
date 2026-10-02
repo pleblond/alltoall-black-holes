@@ -3145,6 +3145,16 @@ across all pair+dyn cells (new gate M-INST-band, HARD-adjacent: red
 passed). Straddle cases (defined vs undefined across a pair) are
 excluded from distance and RECORDED (n_straddle, filed).
 
+SYM0-AMENDMENT-1c (2026-10-02, PRE-RERUN-2): A1-rerun look found 2
+residual NaN distances (zero vs shifted width on path-12): the max-rule
+(max(cond) >= floor -> compare) compares a defined value against an
+UNDEFINED one on straddles. Correction: comparison requires BOTH
+defined (min-rule); straddles contribute 0 and are recorded in
+n_straddle. U1/R pairs are unaffected (conditioning fp-identical on
+both sides); other pairs can only lose spurious splits. NaN is now
+impossible by construction (zero-field com/width always excluded);
+M-INST-no-nan proves it.
+
 (b) M-X-fs-zero bar 1e-9 -> 1e-7: arccos evaluation floor at unity
 (arccos(1-eps) ~= sqrt(2eps); eps ~ 2e-16 -> ~2e-8 observed
 1.49e-8). Bar 1e-7 gives 5x headroom and stays 1e7 below O(1)
