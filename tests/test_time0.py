@@ -284,7 +284,10 @@ def _admissible_up_to_final_relab(hist):
     for perm in itertools.permutations(nodes):
         mapping = dict(zip(nodes, perm))
         h, psi2, order2 = ug.permute_state(B["g"], B["psi"], B["order"], mapping)
-        Bp = time0.make_state(h, psi2, order2)
+        idx2 = {v: k for k, v in enumerate(order2)}
+        psi_s = np.array([psi2[idx2[v]] for v in sorted(h.nodes())],
+                         dtype=np.complex128)
+        Bp = time0.make_state(h, psi_s)
         if time0.step_kinds(A, Bp):
             return True
     return False
