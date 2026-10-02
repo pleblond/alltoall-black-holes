@@ -9,6 +9,7 @@ import pytest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 import zero0_campaign as zc
+import zero0_tasks as zt
 
 
 def _args(**kw):
@@ -77,6 +78,17 @@ def test_kind_persistent_twomode_smoke():
 def test_anatomy_smoke():
     row = zc.kind_generic(_args(anatomy=True))
     assert isinstance(row["anatomy"], list)
+
+
+def test_task_lines_use_dashes():
+    lines = zt.gen_pilot("PY", "D")
+    assert len(lines) == 16
+    assert all("--eta_scale" not in ln for ln in lines)
+    assert any("--eta-scale 1.0" in ln for ln in lines)
+    full = zt.gen_full("PY", "D")
+    assert len(full) == 4119
+    assert all("_" not in tok or tok.startswith("D/") or tok == "PY"
+               for ln in full for tok in ln.split() if tok.startswith("--"))
 
 
 def test_j2_cycles_verify():

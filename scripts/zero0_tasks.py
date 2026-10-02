@@ -41,12 +41,13 @@ SECTOR_SIZES = [6, 10, 20]
 def _line(py: str, out: str, **kw) -> str:
     parts = [py, "scripts/zero0_campaign.py"]
     for k, v in kw.items():
+        flag = "--" + k.replace("_", "-")
         if v is True:
-            parts.append(f"--{k}")
+            parts.append(flag)
         elif v is False or v is None:
             continue
         else:
-            parts.append(f"--{k} {v}")
+            parts.append(f"{flag} {v}")
     parts.append(f"--out {out}")
     return " ".join(parts)
 
