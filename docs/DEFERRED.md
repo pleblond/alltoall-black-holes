@@ -4462,5 +4462,11 @@ vendoring src/bh_graph/obs0.py (md5-12 6b86d1caeb06) + tests/test_obs0.py
 (md5-12 912e68d1fdc0) byte-identical from the matching QUOT tip
 (c8ad7a5; quot.py md5 identical to the consumed d250eeca640c). obs0 is
 self-contained (math/networkx/numpy only); no cascade. No campaign code
-imports obs0; no record, gate, or verdict input is affected.
+imports obs0; no record, gate, or verdict input is affected. Follow-up:
+test_quot.py also imports the scripts/run_obs1.py helper (single-pin CG
+reference); vendored scripts/run_obs1.py (md5-12 7a06e09493ca) +
+scripts/run_obs0.py (b86af74cb22d) + src/bh_graph/obs0r.py (f49a08fc3db9),
+all byte-identical to the sibling addenda (HIDDEN-0 3a30275 / SYM-0
+282507f / ZERO-0 2df866c, hashes unanimous). Same status: test-only
+dependency, no campaign import, no science impact.
 
