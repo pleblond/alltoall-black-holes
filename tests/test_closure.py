@@ -169,6 +169,18 @@ def test_k4_window_sets():
     assert r["k4sets"] == r2["k4sets"]
 
 
+def test_elist_window_capture_and_purity():
+    st = state_from_nx(soup_graph("er", 100, 8, 0))
+    r = formation_run(st, "d5inf", 4, 0, t_max=20, elist_window=(5, 15))
+    assert sorted(r["elists"]) == list(range(5, 16))  # every sweep in window
+    assert all(len(el) == r["e0"] for el in r["elists"].values())  # E-exact frames
+    assert all(len({tuple(sorted(e)) for e in el}) == r["e0"] for el in r["elists"].values())
+    r0 = formation_run(st, "d5inf", 4, 0, t_max=20)
+    assert r["t_trace"] == r0["t_trace"]  # observation-pure (one-way capture)
+    assert r["executes_trace"] == r0["executes_trace"]
+    assert r["hist_final"] == r0["hist_final"]
+
+
 def test_endpoint_moves_and_full_purity():
     st = state_from_nx(soup_graph("er", 100, 8, 0))
     kw = {"log_stride": 10, "log_window": (1, 15), "log_endpoints": True, "k4_window": (1, 15)}
