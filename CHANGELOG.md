@@ -3,6 +3,18 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **Unreleased (RAND-0)** — Local-stochastic-completion preregistration:
+  frozen admissible sets (edge-2, node 1+(3^d+1)/2 undirected + equal
+  field), stabilizer/orbit apparatus, MICRO-UNIFORM vs ORBIT-UNIFORM
+  candidates, multiplicity audit (directed vs undirected, isomorphism
+  classes), covariance/locality/factorization/census/effect-radius gates
+  (`src/bh_graph/rand0.py`, `tests/test_rand0.py`,
+  `scripts/run_rand0_campaign.py`, `scripts/analyze_rand0.py`); campaign
+  complete on beast (64 jobs): RAND0-MEASURE-DEBT (263/270 gates green;
+  apparatus coherent; MICRO- vs ORBIT-UNIFORM differ; directed !=
+  undirected coarse on all states; iso-classes coarser + non-uniform;
+  P(R_effect) concentrates near N; vacuum not quiescent, no exception).
+
 - **unreleased (QUOT-0 verdict: QUOT0-OPERATIONAL)** — Observer-quotient
   mechanism campaign complete (primary positive result): exact sector
   decomposition re-derived (comm/dead/intertwining 0.0, U-inter 1.7e-14,
