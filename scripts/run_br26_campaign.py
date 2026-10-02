@@ -40,8 +40,8 @@ def run_V():
         order = node_order(g)
         idx = index_of(order)
         elist = sorted(tuple(sorted(e)) for e in g.edges())
-        for (a, b), ratios in ((elist[3], V_RATIOS[0]), (elist[5], V_RATIOS[1]),
-                               (elist[7], V_RATIOS[2])):
+        for (a, b), ratios in ((elist[2], V_RATIOS[0]), (elist[4], V_RATIOS[1]),
+                               (elist[6], V_RATIOS[2])):
             alpha, beta, gamma = ratios
             c = len(set(g.neighbors(a)) & set(g.neighbors(b)) - {a, b})
             kind, target = b_star(c, alpha, beta, gamma)
