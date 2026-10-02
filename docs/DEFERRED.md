@@ -2988,3 +2988,76 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## BR25-PREREG — Contraction/splitting ontology (D14-BR2.5, FROZEN PRE-DATA)
+
+**Status:** apparatus + ladder frozen; campaign NOT YET RUN. Derivation +
+consistency campaign: tests whether local contraction/splitting can carry
+the BR-2 quadrature without violating banked invariants. Introduces NO
+event-rate law, NO new dynamics, privileges NO field map pre-data.
+
+**BR-2.5A conventions (derived from simple-graph ontology, not tuned):**
+V' = V - {i,j} + {k} (k fresh, history-free); N(k) = (N(i) u N(j)) \ {i,j};
+common neighbors collapse to ONE edge (multiplicity recorded in the
+contraction record, not kept: A_ij in {0,1} is frozen); the consumed edge
+becomes a self-loop on k and is DISCARDED (mutual relation of two now
+indistinguishable locations is vacuous). Consequences pinned pre-data:
+dN = -1, dE = -(1+c), simplicity preserved, R_U = 1 (neighborhoods at
+distance >= 2 bit-identical; t ticks <= t hops).
+
+**BR-2.5B candidate maps (all implemented, none privileged):** S sum
+(a+b; Dn = +2B_ij), A average ((a+b)/2), N norm-preserving
+(sum-direction x local norm; SINGULAR at a+b == 0 -> defined 0, filed).
+No map selected cosmetically; the census decides.
+
+**BR-2.5C census claims:** exact formulas dN/dE/dnorm per map (pinned in
+units + campaign gates); dEpsi direct (no closed local form claimed).
+Norm across contraction is EXPLICITLY ACCOUNTED, not forced conserved.
+
+**BR-2.5D operationalization:** D1-with-record = exact graph inverse with
+nonlocal memory (proves nothing local). Record-free split = cover
+policies (A,B), A u B = N(k): 3^d degenerate policies (D2, finite).
+Field: sum-equal roundtrip error = |a-b|^2/2 exactly (relative-mode
+power = the obstruction; uniform fields roundtrip exactly). JUDGMENT
+(frozen): the continuous field-mode loss is filed as INFO-ACCOUNT DEBT,
+not the IRREVERSIBLE rung, because degenerate splitting IS derivable
+from surviving local state; IRREVERSIBLE triggers only if no split
+policy is restorative even with oracle choice or the wave law breaks.
+Reversibility of graph dynamics was never banked; unitarity between
+graph events was (gated).
+
+**Campaign grid (frozen):** F: L12-torus edge (elist[10] avoiding node 0)
+x 3 maps + R18-ball edge (elist[100] avoiding src) + L8 spectrum +
+M1 contrast (seed 777), uniform field; G: record/oracle/field roundtrips
+on the F edge (+ staggered phi=pi/2 field case); H: stagger tables
+phi in {0, pi, pi/2, -pi/2} on J2-L12 uniform envelope + E zero-field;
+J: ring-60 evolve10/contract(45,46)/evolve10 + J2-L28 E1 packet + contract
+elist[10]; L: collapse ball r<=6 around node 0 on J2-L28 (seed 0) +
+pristine/collapsed wave + spectra; M: collapse r<=4 balls at distance 9
+(seeds 1/2) + bridge contraction with the SAME primitive; I: L28 cone +
+3-tick chain; K: 3^d census only, DESIGN-OPEN (no event-rate law earned,
+no pseudo-formation demo — explicit non-goal).
+
+**Verdict ladder (frozen bars, scripts/analyze_br25.py):**
+- INCONSISTENT iff census/cone/between-events gates fail.
+- IRREVERSIBLE iff consistent but no restorative split policy (even
+  oracle) or across-event evolution non-deterministic.
+- LOCAL iff consistent + reversible-attempt viable + multitick cone +
+  M1-contrast (R_U=1 vs remote reach).
+- QUADRATURE iff LOCAL + H separation (all +1 @0, all -1 @pi, all 0 with
+  max|J|>0.1 @pi/2) + J-orthogonality bitwise + E bitwise null +
+  sum-map Dn == 2B on the campaign edge.
+- ONTOLOGY iff QUADRATURE + J deterministic + L collapsed-state
+  well-defined (ext == boundary, steps == size-1) + M composes
+  (same primitive, census exact, ext == union boundary).
+
+**Predictions (filed, not gates):** LOCAL + QUADRATURE reachable;
+ONTOLOGY iff L/M/J clean; D3 field-mode loss WILL be found (dimension
+counting) and filed; NORM-ACCOUNT DEBT (2B created/destroyed per event
+without a reservoir) WILL be filed; event-rate law stays unearned
+(BR-3C debt); K stays DESIGN-OPEN.
+
+**Debts pre-filed:** NORM-ACCOUNT (contraction changes ||psi||^2 by 2B
+unless exchanged/stored somewhere); INFO-ACCOUNT (relative mode +
+partition forgotten per event; record size quantified in L); RATE-LAW
+(no tendency->probability map derived or assumed).
