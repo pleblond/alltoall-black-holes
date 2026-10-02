@@ -2988,3 +2988,101 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## HIDDEN-0-PREREG (FROZEN pre-data; this commit predates ALL beast HIDDEN-0 runs)
+
+Mission: determine whether J2's non-transporting antisymmetric sector stores
+locally consequential microscopic information while remaining operationally
+hidden at long range. Separation under test: D_local > 0 with D_remote -> 0.
+
+FROZEN LAW: H = -A(J2), J = 1, hbar = 1. No geometry dynamics, no structural
+events, no stochastic dynamics, no sources except banked protocols as controls.
+
+FROZEN INPUTS (read-only, byte-identical vendor, md5-verified across tips):
+P1-ballistic + MALUS + QUOT + OBS0 (QUOT tip 97765b0, QUOT0-OPERATIONAL);
+FIELD0 + coherence + formation(elist_window) (FIELD tip b9dea0c,
+FIELD0-LINEAR + FIELD0-APPARENT); continuum + backreaction + potential
+(EM0 tip 3128ff9, EM0-BACKREACTIVE). Consumed bars: QUOT-0 remote fp bar
+1e-9, ratio bar 1e-6, load shells (2,4,6), wave horizon T = 16/dt = 0.05,
+staggered eps = 0.1 (ONE value), POT omega = -8.5; FIELD-0 witness
+I = max(eps,dP1,dP2,clin,dE) with I = 0 bar 1e-6; EM-0 rho/B/J with the
+factor-2 current J = 2Im (pinned in test_hidden). BR-2.6 UNAVAILABLE at
+prereg time (BR branch holds BR-0 only): 0R uses the BR-0 virtual ledger
+read-only, no event-rate interpretation. VAC-FIELD-0 finished
+(VACFIELD0-JOINT): 0S reconstructs VPLUS/VPI/VMINUS closed forms and
+verifies banked energies (-8/+8/0) + sectors before use. SYM-0/ZERO-0
+unfinished: 0M reports raw + phase-quotiented counts separately; 0P uses
+conservative near-zero labeling (uncertified, no singularity claims).
+
+FIREWALL: "hidden" means only microscopic information not transmissible by
+the tested long-range operational channels. No hidden-variables, dark
+matter, spin/charge/polarization, memory-capacity, vacuum-ontology, gravity,
+or new-force claims. Geometry frozen throughout (0Q/0R open no backreaction
+gate; they file virtual-ledger contrasts only).
+
+APPARATUS (src/bh_graph/hidden.py, 33 pins in tests/test_hidden.py, all
+green pre-data): symmetric backgrounds (packet/uniform/delta/twocell) +
+antisymmetric patterns (delta/dipole/disk/checker/phased); matched_pair
+(sign/phase/shape/amplitude-RAW) with EXACT P_+ match (bar 1e-12) +
+qmatch_pair (HAMP-Q, filed scale); em_observables (EM-0 factor-2 J);
+prep_neighborhood (QUOT shells, R_PREP = 2) + local_distance D_local =
+max(d_rho, d_B, d_J) with D_LOCAL_BAR = 1e-6; cross_anatomy + energy
+split (E = E_+ exactly: E_- = Ex = 0); prob-diff S-oddness; remote TV
+(wave/diff exact-eigen) + POT pair fields (common-RMS pin norm); fixed
+PRE/OVERLAP/POST rows k = 10/60/120 (t = 1/6/12); nearest-profile
+classifier; mixed/pure census alphabets + pairwise_min_D; phase-sweep
+[1,cos,sin] fits; vac_shapes; ledger_contrast (N = 20000, seed = 0);
+staggered_checks.
+
+DERIVED PRE-DATA (pinned): E[psi] = E[psi_+] exactly (hidden sector
+energetically invisible even locally); matched-pair Dp(0) is S-odd
+(diffusion difference = P_- eigenmode, decays e^{-t} in place);
+sheet0/sheet1 IS an H-sign pair; sign/phase differences are pure cross
+terms at all t (Drho = 4Re(psi_+* psi_-^A)); S(psi_+ + psi_-) =
+psi_+ - psi_-.
+
+GRID (scripts/hidden0_campaign.py, 43 cells, J2 L28, T = 20/dt = 0.1):
+A l6+l28 anatomy (2); B pair battery sign-x-3bg/phase-x-2/shape-x-2/
+amp-{05raw,20raw,05q} (10; 20q infeasible-filed); E hidden-only x4 (4);
+F remote sharp/packet:delta/packet:disk/uniform:delta wave+diff (4) +
+pot (1); G persistence sign/phase/shape/amp (4); H pass-wave delta/disk
+(2); K extraction delta/disk (2); L census mixed/pure x R1/R2/R3 (6);
+N exchange (1); O sweep x2 (2, 0P reads these); Q bond-full (1);
+R ledger (1); S vac-classes (1); T obs-input (1); U staggered (1).
+Prep center PC = (7,14) (POT-0 window); hidden region RC = (14,14);
+packet r0 = (7,14), k = (0.3,0), sigma = 4 (headline).
+
+GATES (scripts/analyze_hidden0.py, FROZEN pre-data): A exact (comm/dead/
+inter 1e-12, frozen 1e-9, decomp 1e-8, n_zero L6 = 36+nodal(6), L28 = 838);
+B pmatch + dQ (RAW-20 files 3.0; Q scale sqrt(1.75)) + D_local > 1e-6 +
+E_free + sodd; E frozen + rho/B nonzero + E = 0; F Dmax < 1e-9 r = 2..10
++ sym arrival C+ > 0.001 + ratio < 1e-6 at (2,4,6); F:pot remote < 1e-9
++ 1-hop support; G cross-identity 1e-9 + decay ratio < 0.05 (sign/phase)
++ residual > 1e-6 within 5% of hidden-only ref (shape/amp); H eps + I = 0
++ sector preserved 1e-9; J read D > 1e-6 + write 1e-9; K local correct +
+gap > 1e-6, remote gap < 1e-9; L mixed min_D > 1e-6 + n_below = 0, pure
+pos min_D > 1e-6 + quo < 1e-12; N pure < 1e-12 + mixed > 1e-6 + S-map;
+O fit < 1e-9 + rho modulation > 1e-6 (P files min_abs/nzero, no gate);
+Q dB + count; R de + bond; S weights + energies match banked; T W/D/P
+< 1e-9 at (2,4,6) + D_local > 1e-6; U pvp/comm + lifted + non-flip
+(< 0.05 and < 3x frozen at (2,4,6), QUOT-0Q bar).
+
+VERDICT LADDER (frozen, no wiggle): HIDDEN0-LEAK if any frozen-H remote
+Dmax > 1e-6 at r >= 2 (F/T). HIDDEN0-INTERACT if any H witness I > 1e-6.
+HIDDEN0-ABSENT if no B/H local gate greens. HIDDEN0-SEPARATED (primary
+positive) if every check greens. Else HIDDEN0-PARTIAL (honest filing).
+
+SMOKE NOTE (pre-prereg machinery validation, local, NOT campaign data):
+A:l6 + N:sheet executed once locally to validate runner serialization
+(values as predicted: exact 0.0s, mixed_D = 0.071). All verdict gates
+run on fresh beast data (HIDDEN0_WORKERS = 32, gated on this commit).
+
+FORBIDDEN: force/interaction/binding claims from rho/B/J drama (I = 0
+required by FIELD-0); memory-capacity language (state-counting only);
+phase-quotient conclusions beyond observables (SYM-0 pending); zero/
+singularity certification (ZERO-0 pending); geometry-change inference
+from 0Q/0R (frozen geometry); full blind-pipeline replay claims (0T is
+input-level equivalence + QUOT-0 Q-P response-function evidence).
+
+NEXT: freeze-commit-then-beast-campaign, full suite on beast (-n 8,
+FIELD-0 precedent), verdict filed here + data/hidden0_*.json.
