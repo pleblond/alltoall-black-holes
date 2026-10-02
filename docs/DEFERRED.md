@@ -3178,3 +3178,56 @@ LADDER: !hard(A&B&C&D&E&F&G&H&I&J&K&L&M&N&C6&Cbank)->EM1-INVALID
 EXECUTION: beast-96 (jobs<=17 (Pool!)); seeds-frozen (0/1/2/rng-pinned!);
 determinism-C6-gated; suite-parallel (pytest-xdist!); no-local-experiments
 (beast-only!). NEXT: freeze-commit-then-beast-campaign (gated!).
+EM1-VERDICTS (beast-run-8b0d95f (prereg-frozen-pre-data!); 17-tasks-33s +
+suite-709-passed-2-skipped-74s-(-n-24-thread-capped (first--n-80-try-thrashed-
+on-ARPACK-oversubscription@load-420 (killed-clean-reran-constrained (filed!))!))):
+LADDER-EM1-FALSIFIED (F1-FAIL + F2-UNRESOLVED + F3-FAIL + F4-FAIL + F5-FAIL
+(prereg-pattern-EXACT (all-15-stages + all-controls-green-first-run!))).
+1A-v (Gamma-min--8/M-max-+8/X-saddles-0-flat_gap-0 + nodal-E0-drift +
+L28-838-inventory-exact!); 1B-v (classes-frozen + norms-1.46/1.91/3.37/5.93
+(edge-div-4.06x!) + w0-singular-NaN-resid + xiw-0.526/0.378/0.234/0.160
+(monotone-ratio-0.30!) + mirror-exact-xi-bit-identical + anticonfined-bulk-
+0.0-EXACT (sym-0.399-contrast!) (range-ONLY-via-tuning (pre-data-smoke-also-
+killed-time-domain-secular-design (pinned-DC-not-growing (redesigned-to-
+solve-level (prereg-updated-pre-commit!)))!)); 1C-v (xi-0.5260/0.5265/0.5265/
+0.5265 (L64-=-L42-to-9-decimals-CONVERGED!) + range-3-all-L (SATURATES!));
+1D-v (exp-beats-power-2.6x (Yukawa-not-power!)); F1-FAIL (no-admissible-
+gapless-class (edge-excluded + resonant-singular + mirror-same-range + anti-
+confined) + xi-saturates => NO-long-range-static-field (present-field-
+cannot-reproduce-ordinary-long-range-EM!)); 1E-v (commute-I/S/Tx/Ty/H/Pflat-
+exact + Gamma-anticommutes + ranges-0/1/1/2/4 + Q_S-+1/-1/0 + conserved-
+3.6e-13!); 1F-v (symcell-PR-2->560-280x + peak-114x-decay (no-stable-object!)
++ site-PR-sat-7.86-frozen-fraction-filed (pre-data-smoke-caught-single-site-
+design-error (redesigned-to-symcell (prereg-note-pre-commit!))) + dynasym-
+anti-disp-0.0-exact (S-conj-maps-propagating<->frozen!)); 1G-v (mirror-0.0-
+exact + negation-1.86-FAILS + Bsorted-0.0 + E-equal-16-digits (sheet-
+automorphism-NOT-negation!)); F2-UNRESOLVED (S-signed-conserved-but-
+unsuitable (no-negation-coupling + frozen-conjugate!) + matter-immature
+(SPEC-0/P1-null-banked + dispersal-measured!) (NOT-PASS (constrains-future-
+QK (must-pass-1G-where-S-failed!))); 1H-v (maxcount-1 + n_two-0 (48x48-grid-
+incl-touching!)); 1I-v (sym-v=1.21102-R2=0.99974-alpha=2.087 (MALUS-digit-
+for-digit!) + anti-disp-0.0-exact + sheet0-Q0-conserved!); F3-FAIL (single-
+active-propagating-scalar-mode (MAJOR-falsifier!)); 1J-v (local-dB-0.207/
+dJ-0.243/dE-5.28-O(1!) + global-1e-14/1e-17 (contrast-exact!)); 1K-v (T1-
+0.255/T2-0.276/T3-0.265-all-O(1) (NO-redundancy!) + winding-1-exact +
+small-phase-invariant-1e-9 + large-rewrap-0-filed (pre-data-smoke-caught-
+wrapping-subtlety (telescoping-only-below-branch-cut (redesigned (prereg-
+updated-pre-commit!))) (discrete-only!)); F4-FAIL (complex-scalar-field-
+NOT-gauge-field (only-global-U(1)!)); 1L-v (nocone + Gamma-quadratic-(joint-
+a1-0.005-quartic-contam/a2-1.97) + nodal-drift-(a1-5.69) + eigvec-overlap-1-
+exact (winding-0!)); 1M-v (rose-0.49/5.64-spread-1.43 (LEADING-anisotropy!));
+1N-v (gap-0.5-spread-0.0-refile (ONLY-unified-sector-massive!)); F5-FAIL
+(no-linear-isotropic-source-accessible-sector!); 1O-filed (vortex-PR-201->
+1141-5.7x + gam-0.0063->0.0002-ratio-0.024 (DISPERSES!) + twist-0.0->0.00056-
+monotone (continuous-NO-quantum!) (momentum-not-flux (SECONDARY (rescues-
+nothing!)))). CONTROLS: C6-v(bit-identical)/Cbank-xi-5%-(EM0-digits-to-4th-
+decimal!)/Cbank-v-2%-(1.21102!)/Cbank-em0-5%.
+INTERP (disciplined!): frozen-J2-wave-is-ONE-massive-complex-scalar-field
+(Yukawa-xi=0.527 + Schrodinger-m*=1/4 + norm-current + B-conjugate) with
+NO-electromagnetic-sector (statically-gapped + unsigned-coupled + single-
+mode + ungauged + nonlinear-IR (five-independent-falsifiers (four-FAIL +
+one-UNRESOLVED-pending-matter-that-does-not-yet-exist!))). FORBIDDEN-
+RESPECTED (no-EM-claims (falsification-complete!)). EM-PROGRAM-BRANCH-POINT
+(filed-not-decided!): (i)-new-microscopic-DOF (coin/edge-phases/vector);
+(ii)-new-substrate (beyond-bare-J2); (iii)-drop-EM-target (scalar-program-
+continues (backreaction/cosmology/gravity-tracks-unaffected!)).
