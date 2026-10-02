@@ -4460,3 +4460,39 @@ green. HBR0-SIGNREV (distinguished refinement): GRADIENT + >=1 strict
 opposite-sign ledger edge. HBR0-PARTIAL otherwise (incl. dB!=0 but all
 ledgers cancel, or control failures). Pairs failing C1/C2 are excluded
 with filed cause, never counted.
+
+## HIDDEN-BR-AMENDMENT-1 (pre-beast-data; post-local-validation audit)
+
+Status: NO beast HIDDEN-BR data taken yet (beast checkout untouched). A full
+local instrument-validation run (same code, 35 cells, 201/215 green) exposed
+two scope errors in the preregistered C0/X gates. Both are fixed here with
+derived mechanisms (not tuned bars); the verdict ladder, headline bars, and
+all other stages are unchanged. The beast run below is therefore a
+CONFIRMATION run for A1's predictions (independent execution, frozen record).
+
+A1a (HBR-0C scope): diffusion-blindness holds iff Dp(0) is S-odd. Sign/phase
+pairs have pure cross-term Dp (S-odd exactly: P_- eigenmode of Lrw, decays
+in place) and stay diff-blind; shape/amplitude-raw pairs carry an S-even
+|psi_-|^2 difference (|ma|^2-|mb|^2 != 0) that DIFFUSES remotely (measured
+locally: 0.005-0.43 on shells 2/6, monotone in hidden amplitude). HIDDEN-0's
+0F remote battery tested sign pairs only, so this REFINES (not refutes)
+HIDDEN0-SEPARATED: wave+POT stay blind UNIVERSALLY for all matched pairs
+(the A-B difference never leaves the hidden support under U(t); POT drive
+differences are pure-anti), diffusion only for S-odd-Dp pairs. Analyzer
+change: C0_diff gated only when the pair record has sodd=true; sodd pattern
+itself gated (sign/phase True, shape/amp-raw False, both analytic); 05q
+sodd filed. C0-green redefined accordingly. No bar moved.
+
+A1b (HBR-0X refinement): R_G = (B, ledger) separates the R2 mixed census UP
+TO CONJUGATION. B and L are conjugation-even, so conjugate census states
+(same cell, phases +-phi, real background) agree to fp (measured: 63/63
+pairs, max D 5.2e-18 scale) while differing in J (the HBR-0J mechanism).
+3 conjugate pairs/cell x 21 cells = 63 exactly. X cell now records conj-aware
+fields (min over non-conjugate pairs + conjugate max-D); analyzer gates
+non-conjugate separation (min_D > 1e-6, n_below = 0) plus n_conj = 63 and
+conj_max_D < 1e-12. The "M_O equal" premise is scoped to wave+POT (universal)
+since cross-cell census pairs are diffusion-visible per A1a.
+
+A1c (P1 formalized): 05q fails C1 by |c-1|*max|P_+| exactly (pinned in
+tests/test_hiddenbr.py), alongside the preregistered E_B/E_A = c^2 law.
+Cause filed, pair excluded. No gate change.
