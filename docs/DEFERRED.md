@@ -7124,3 +7124,87 @@ short horizons (single-step anchored resolution 1.0, R-control
 uniqueness) -- compatible with CONSTRAINED locally -- but
 generic compatible pairs at T>=3 retain N_hist >> 1, so the
 frozen ladder (generic uniqueness) returns NULL.
+
+## VACCOMP0-PREREG — Complete joint-vacuum manifold (FROZEN PRE-DATA)
+
+**Status:** apparatus + grids + gates + ladder frozen; campaign NOT
+YET RUN. VAC-COMP-0 classifies the complete set and topology of
+nonzero stationary joint-field vacua on frozen (G,H) = (J2 torus,
+-A) BEFORE any geometry-transition measure. VAC-FIELD-0 banked
+three JOINT representatives (VPLUS/VPI/VMINUS); this campaign asks
+whether they are isolated classes, members of degenerate
+components, points on a connected manifold, or samples of a large
+hidden manifold. Classification only (0AD firewall: no selection,
+no MEASURE-0, no structural events, no energy/hidden/ground-state
+privilege, no SSB, no "phases" language, no tuned combinations).
+
+**Frozen inputs (read-only):** VAC-FIELD-0 vacfield.py (vendored
+byte-identical from cursor/vac-field-nonzero-joint-8ec1 tip;
+10-check JOINT ladder, BARS, candidate shapes); SYM-0
+(X_phys = X/(R x U(1))); MALUS/QUOT ([H,S]=0, H P_-=0, square-walk
+symmetric sector, nodal counts); HIDDEN-0 (E=E_+ law, cross-term
+anatomy); ZERO-0 (codim-2, incident null, protection form); EM-0
+(continuum Bloch apparatus); HIDDEN-BR R_G ledger (descriptive).
+
+**JOINT generalization (frozen once, applied uniformly to arbitrary
+states; neither weakening nor strengthening):** stationary /
+current_free / stress / linearity = exact vf gates unchanged;
+amplitude_coherent = vf scaling gates + E-vacuous rule for E==0
+(VACFIELD Amendment-4) with STRICT Bmax gate (B==0 states cap at
+BACKGROUND; no theorem backs a B-vacuous rule); triviality read
+fp-aware (|.| < 1e-12 on the normalized shape); sector_filed =
+purity in either sector (mixed caps at BALANCED); ledger_symmetric
+= contraction per-class uniform + M1 seed-stable (std < 0.01)
+WITHOUT prescribing (f0,fneg,fpos) values; small graphs (N<=64)
+use exhaustive M1 (VAC-FIELD m1exact precedent). Universal legs
+(perturbation_ok, linearity, normalized_robust, zero_anatomy) are
+True-by-theorem for eigenstates (0L linearity theorem + ZERO-0B
+incident theorem) and VERIFIED for component representatives.
+
+**Frozen grids:** ALPHA 13 points 0..pi/2; PHI 8 points 0..2pi;
+AMPS = 1e-3..1e3 (7); RNG_SEEDS = 0..4; EIG_TOL = 1e-9. Dense
+exact scope L<=8; L=4 census headline (N=32); L=28 ladder headline
+(N=1568, full ledger_moves=20000).
+
+**Preregistered analytic predictions (also pinned in
+tests/test_vaccomp.py, 37 pins, pre-data):** E_-8/E_+8 unique at
+even L (Perron-Frobenius + bipartite symmetry); E_0 = N/2 hidden
++ nodal(L) symmetric (L4: 22=16+6; L28: 838=784+54); 4th TI JOINT
+ray VSTAG = (-1)^b(-1)^{x+y}/sqrt(N) (even L only); real RP^1
+JOINT circle VMINUS-VSTAG span with B==0 BACKGROUND points at
+alpha=pi/4(,3pi/4); generic complex eigenstates fail current_free;
+generic real non-TI states fail stress; different-eigenvalue
+mixtures beat at dE (16/8/8) with no interior JOINT and no
+cross-term cancellation among full-support vacua; all four TI
+vacua share coarse rho (observer blindness) while circle-interior
+patterns are coarse-visible; pi_0(JOINT) = 3 even L (VPLUS, VPI,
+CIRCLE-as-one), 2 odd L (VPLUS, VMINUS); B==0 independent-set
+states cap at BACKGROUND.
+
+**Gates (applied by scripts/vaccomp_analyze.py):** C0 headline
+L=28 JOINT ladders (VPLUS/VPI/VMINUS/VSTAG/CIRCLE@pi/6) + circle
+endpoints; C1 SYM quotient structural; C2 spectral exactness at
+L=4/6/8 (extrema +-8, Bloch dev, nondegeneracy, zero-split
+decomposition, candidate residuals/subspace weights); C3/0B
+stationarity theorem on an arbitrary degenerate superposition;
+0E generic exclusion (no JOINT; current binds complex, stress
+binds real); 0H circle census at L=4/6 (exactly 1 BACKGROUND grid
+point, rest JOINT); 0I complex-hidden exclusion frac > 0.9; 0J
+real-hidden J==0 everywhere but no JOINT, proj dim 15; BZERO cap;
+0K amplitude families all JOINT (4 rays + circle point); 0L
+same-eigenvalue sweep stationary everywhere, cut interior JOINT
+count == 10; 0M beats |corr| > 0.99 at dE 16/8/8, no interior
+JOINT in the three mixed sweeps; 0Q no cancellation; 0TU all four
+ray-TI singletons; 0V TI coarse-blind + circle-interior visible;
+0W ballistic fingerprint; 0X ledger classes distinct (VPLUS|VPI,
+VMINUS|VSTAG); 0Y a^2 zero-limit scaling; 0Z r_prot = a/sqrt(N);
+0AA scaling rows L=4..28 (formula + TI inventory + shape dim);
+0AB quotient (VPLUS/VPI survive, VMINUS absent); 0AC square
+control (uniform/staggered current-free + stress-balanced,
+extrema +-4); ODD L=5 (VMINUS JOINT, VSTAG raises, +8 frustrated).
+
+**Ladder:** VACCOMP0-COMPLETE iff every gate green;
+VACCOMP0-PARTIAL iff non-apparatus gates fail; VACCOMP0-NULL iff
+C0 or C2 fail. Records: data/vaccomp/results.json (41 tasks) +
+data/vaccomp/verdict.json.
+
