@@ -1,0 +1,65 @@
+{
+ "gates": [
+  {
+   "gate": "H-A-family-L4",
+   "ok": true,
+   "detail": "VACSEL-0A L4 norms/E/sectors"
+  },
+  {
+   "gate": "H-A-family-L28",
+   "ok": true,
+   "detail": "VACSEL-0A L28 headline"
+  },
+  {
+   "gate": "H-A-amps",
+   "ok": true,
+   "detail": "slopes={'VPLUS': 2.0, 'VPI': 2.0} vminus_max=0.0"
+  },
+  {
+   "gate": "H-B-field-L4",
+   "ok": true,
+   "detail": "cross={'VPLUS-VPI': 0.0, 'VPLUS-VMINUS': 0.0, 'VPI-VMINUS': 0.0}"
+  },
+  {
+   "gate": "H-B-field-L28",
+   "ok": true,
+   "detail": "cross={'VPLUS-VPI': 0.0, 'VPLUS-VMINUS': 0.0, 'VPI-VMINUS': 0.0}"
+  },
+  {
+   "gate": "H-C-struct-L4",
+   "ok": true,
+   "detail": "flat/one-sided/structured"
+  },
+  {
+   "gate": "H-C-struct-L28",
+   "ok": true,
+   "detail": "sampled ledgers L28"
+  },
+  {
+   "gate": "H-C-controls",
+   "ok": true,
+   "detail": "C0..C8 W-free subset"
+  },
+  {
+   "gate": "H-G-gatefiled",
+   "ok": true,
+   "detail": "ready=False debt=['orbit-rival differs', 'support not fully reversible', 'no conservation selector', 'graph grain underdetermined']"
+  },
+  {
+   "gate": "H-H-norun",
+   "ok": true,
+   "detail": "headline_ran=0"
+  }
+ ],
+ "hard_ok": true,
+ "verdict": "VACSEL0-NOMEASURE",
+ "interpretation": "vacuum selection remains undefined because the geometry dynamics is incomplete",
+ "regressions_ok": true,
+ "gate_ready": false,
+ "debt_reasons": [
+  "orbit-rival differs",
+  "support not fully reversible",
+  "no conservation selector",
+  "graph grain underdetermined"
+ ]
+}

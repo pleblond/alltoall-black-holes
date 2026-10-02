@@ -7217,3 +7217,56 @@ VACSEL0-NOMEASURE via the four MEASURE debt-reasons (orbit-rival
 differs on node patches, reverse support graph-only, no earned
 selector, grain underdetermined), reproduced from code in the gate.
 
+## VACSEL0-VERDICT (filed 2026-10-02): VACSEL0-NOMEASURE
+
+**Headline:** vacuum selection remains undefined because the geometry
+dynamics is incomplete. The MEASURE gate re-evaluated from code is not
+ready (4/4 frozen debt-reasons hold); headline stages VACSEL-0D..0Z
+were not run (0/23 ran, all refusal records). No transition weight was
+chosen, no vacuum was ranked. This is the preregistered predicted
+outcome, not a failure.
+
+**Battery (beast ~/vacselect-750f, 10 records, exit 0):**
+data/vacselect/{A-L4,A-L28,A-amps,B-L4,B-L28,C-L4,C-L28,G-gate,
+C-controls,H-refusal}.json + data/vacselect_verdict.json. Local
+analyzer re-run reproduces the beast verdict bitwise.
+
+**Gates (10/10 HARD green):** H-A-family-L4/L28 (norms/E/residuals/
+sectors match VACFIELD0: E = -8/+8/0 exact on L28, residuals 0.0,
+J_max = 0.0, w shares exact); H-A-amps (E ~ a^2 slopes 2.0000/2.0000,
+VMINUS E = 0.0 all 7 amplitudes); H-B-field-L4/L28 (all vacua
+stationary, current-free edge/div/circ = 0.0, norm accounting ok,
+cross-background packet dpsi bitwise 0.00e+00 on L4 AND L28);
+H-C-struct-L4 (VPLUS f0 = 1 flat / VPI f_pos = 0 one-sided /
+VMINUS f0 = 1/2 structured, exhaustive n = 47104); H-C-struct-L28
+(sampled 5 seeds x 20000 moves: VPLUS f0 = 1, VPI f_pos = 0,
+VMINUS f0 = 0.50 +/- 0.01; VMINUS ledger structured over 12 offset
+classes, within-class spread 0.00e+00); H-C-controls (C0 all JOINT,
+C1/C2/C3/C5/C8 pass, C4 sha-pinned, C6 dynamics leg True with W leg
+inapplicable, C7 inapplicable); H-G-gatefiled (inventory exactly
+("const","orbit"), 0 fitted params each, no earned-W symbol, 4
+debt-reasons: orbit-rival differs 36/72-class battery positive,
+reverse support 33/60-class incomplete, conservation selects 0,
+grain underdetermined); H-H-norun (headline ran 0).
+
+**Controls C0..C8:** C0 VAC-FIELD regression JOINT x3; C1 SYM quotient
+R x U(1) intact; C2 hidden P_- retained (VMINUS w_anti = 1);
+C3 HBR structured-ledger anatomy reproduced; C4 MEASURE freeze pinned
+(measure0.py sha16 45f6fefce06c9da4, tip 633b431); C5 identical
+grids/bars across vacua by construction; C6 Theta dynamics holds on
+all vacua (W-reversibility inapplicable without W); C7 inapplicable
+without W (no remote-geometry claim made); C8 FIELD null holds
+(finite field energies, no psi-psi force invoked).
+
+**Independence note:** the gate consumes MEASURE-0 code + prereg
+semantics only. The observed MEASURE-0 beast verdict (MEASURE0-DEBT,
+hard_ok, 544 cells) is consistent corroboration, not a gate input;
+had MEASURE-0 filed CLOSED with an earned-W symbol and zero
+debt-reasons, the gate would have opened and the headline battery
+would have executed.
+
+**Downstream consequence:** VAC-SELECT-0 preserves the full
+VACFIELD0-JOINT family. No vacuum sector is preferred, mixed, or
+destabilized by any dynamics earned to date. The degeneracy question
+reopens if and only if a future MEASURE campaign earns a unique W.
+
