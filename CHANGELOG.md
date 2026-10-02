@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (U0)** — Minimal-geometry-dynamics campaign (branch):
+  read-only consumption of BR-2.7/CONS-0/UG-0 apparatus (byte-identical);
+  U0-PREREG frozen (UB/UL/UEc semantics, full-sync quotient tick, S1..S8
+  battery, gates, verdict mapping, INCOMPLETE predicted); u0.py apparatus
+  + 165 pins + beast campaign runner/analyzer (pre-data). Campaign run
+  on beast (--jobs 90): ledger + 158/158 analyzer gates green; full
+  suite 982 passed / 2 skipped (torch importorskip, pre-existing);
+  VERDICT U0-INCOMPLETE (contraction-only tendencies viable, splits
+  unrealized for all; BR-3C stays BLOCKED).
+
 - **unreleased (BR-2.7 stability / firing)** — D14-BR2.7 campaign: new
   `stability.py` (A3 kind/sector audit, unitary no-growth, H-blindness
   proofs, ordering scans, reversal identity, N-rows; no coordinate,
