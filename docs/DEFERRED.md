@@ -3226,3 +3226,13 @@ calibration (vacuum-move neutrality scale for BR-1 dynamics).
 NO rewiring rule invented here (BR-0 firewall held: offline
 measurement only; no Im-readers/drivers added; no E_G; no
 temperature; D5inf untouched per deferral).
+
+BR0-REPLICATION (2026-10-02): beast (16.54.88.181, 96-core) ran the
+frozen protocol independently (clone of this branch at d60b4a6, fresh
+venv) in parallel with local. Cross-machine JSON comparison (meta
+excluded): all f-/f0/f+/n_neg/frac_* fields BITWISE-identical; only
+6479/3.3M floats differ, all last-ulp (packet-norm BLAS noise); 4
+medians differ at ~1e-15 relative; C0 torus cell 7.14e-16 vs 7.52e-16
+(both ~1e3x below bar). Every bar evaluates identically on both
+machines. Deterministic-protocol replication CONFIRMED (zero
+verdict impact).
