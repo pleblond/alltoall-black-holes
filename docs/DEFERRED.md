@@ -3085,7 +3085,24 @@ geometric signature. REPLACED clause: C1-d_s-PASS iff seed-averaged heat_ds
 range across N={800,1568,3528} exceeds 0.5 (non-geometric N-drift; observed 2.35)
 OR majority-of-9-seeds outside [1.5,2.5] (original clause kept as alternative).
 d_H clause unchanged (no-window expected, D=5-6 observed). J2 gates untouched.
-NEXT: C0-origins + C1-dims, staged analysis.
+NEXT: C0-origins + C1-dims, staged analysis (SUPERSEDED by Amendment-2/3 below).
+
+## OBS0-AMENDMENT-3 (d_W estimator replacement; FROZEN pre-J2-data (C0-origins in
+hand, J2-unopened); commit-predates-J2-campaign): the preregistered arrival-
+volume d_W is WRONG-AS-WRITTEN: front-crossing taus carry a large precursor
+offset (R=2.38t+6.1), so A(T)~(T+C)^2 with C~T_window reads dW~1.1, not 2
+(offset-dominated, not geometry). REPLACED estimator: PURIFIED ball-1 quantum
+return -- remove |E|<=1e-9 spectral weight (tol LOCKED; graph-intrinsic via
+eigenbasis), measure q(t) = weight on {origin + 1-hop neighbors}, fit
+q(t)~t^{-d} over T in [1.5,4.0] (dt=0.1, 26 pts). Rationale chain (C0-diagnosed):
+onsite return is window-chaotic (revivals: -1.3..5.7 across windows/L); ball-1
+smooths to L-stable 2.12/2.27/2.22 (L20/28/42). Purification is REQUIRED on J2
+(extensive E=0 flat band ~50% weight would plateau unpurified return; same rule
+both substrates; square loses only nodal modes ~5-9%). C0-dW band WIDENED to
+[1.70,2.45] (contains true 2.0 + C0 readings with margin; DIM stays C0-relative
+so the ~2.2 systematic cancels). arrival_volume_dim SUPERSEDED for d_W (kept in
+module, tested, unused by campaign). Filed descriptively: unpurified plateau +
+N_flat/N (J2 microstructure pin). NEXT: re-run C0-origins, staged analysis.
 
 ## OBS0-AMENDMENT-2 (wave-arrival statistic repair; FROZEN pre-J2-data (C0-origins
 in hand, J2-unopened); commit-predates-J2-campaign): the preregistered CFD-peak

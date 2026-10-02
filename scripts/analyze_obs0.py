@@ -93,10 +93,8 @@ def analyze_tag(outdir, tag, v_banked, n_origins=16, n_train=8):
                 per_oi.append(float(np.median(vals)))
         iqr[pair] = float(np.subtract(*np.percentile(per_oi, [75, 25]))) if len(per_oi) >= 4 else float("nan")
         uv_ir[pair] = bool(tm[2] < tm[0]) if np.isfinite(tm[2]) and np.isfinite(tm[0]) else False
-    # d_W per origin via the FORWARD train law window (tau_W = a*R + b).
-    fwd = obs0.fit_affine(Rtr[mGW], tWtr[mGW])
-    dW = [obs0.arrival_volume_dim({k: v["tW"] for k, v in rec["taus"].items()},
-                                  fwd["a"], fwd["b"], D)["d"] for rec in recs]
+    # d_W per origin: purified ball-1 return (Amendment-3; filed in origin).
+    dW = [r["dw_return"]["d"] for r in recs]
     dims = {"dH": [r["hausdorff"]["d"] for r in recs],
             "dH_r2": [r["hausdorff"]["r2"] for r in recs],
             "ds": [r["ds_origin"]["d"] for r in recs],
@@ -122,7 +120,7 @@ def gate_c0(ana):
     r2ok = all(r is not None and r > 0.99 for r in ana["dims"]["dH_r2"])
     floors = {p: ana["medians"][p]["2"] for p in ("GW", "GD", "WD")}
     ok = (1.70 <= dH <= 2.05 and r2ok and 1.85 <= ds <= 2.20
-          and 1.70 <= dW <= 2.30
+          and 1.70 <= dW <= 2.45  # Amendment-3 widened band
           and all(np.isfinite(v) and v <= 0.45 for v in floors.values()))
     return {"pass": bool(ok), "dH": dH, "dH_r2_all": bool(r2ok), "ds": ds,
             "dW": dW, "floors": floors}

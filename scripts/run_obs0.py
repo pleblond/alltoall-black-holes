@@ -127,10 +127,12 @@ def cmd_origin(args):
     taus = {str(v): {"R": dist[v],
                      "tD": tD[idx[v]],
                      "tW": tW[idx[v]]} for v in safe}
+    ball1 = [o_idx] + [idx[w] for w in g.neighbors(origin)]
     rec = {"tag": args.tag, "oi": o_pos, "origin": origin, "D": D,
            "n_safe": len(safe),
            "hausdorff": obs0.hausdorff_dim(g, origin),
            "ds_origin": obs0.origin_return_ds(wl, Vl, o_idx),
+           "dw_return": obs0.wave_return_dw(Ew, Vw, o_idx, ball1),
            "targets": {str(k): v for k, v in
                        obs0.sample_targets(dist, D,
                                            seed=obs0.TARGET_SEED_BASE + o_pos).items()},

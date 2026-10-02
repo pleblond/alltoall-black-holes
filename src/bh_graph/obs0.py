@@ -20,7 +20,9 @@ Conventions (LOCKED in prereg):
              unusable on torus (refocusing exceeds direct); front-edge
              feature); R_W = V_BANKED[sub]*tau_W.
   CFD      = first local maximum with height >= 1/2 trace global max.
-  d_W      = arrival-volume fit A(T) ~ T^d over the train-law T-window.
+  d_W      = PURIFIED ball-1 quantum return fit q(t) ~ t^{-d} over
+             DW_TS (Amendment-3: arrival-volume offset-dominated; onsite
+             revival-chaotic; ball-1 L-stable).
   delta    = |Rhat - R_G| / max(R_G, 4) with globally-fitted calibration.
 """
 
@@ -42,6 +44,8 @@ THETA_WAVE = 1e-6  # Amendment-2: frozen front-crossing threshold
 DT_WAVE = 0.05
 DT_DIFF = 0.25
 R_FLOOR = 4.0
+DW_TOL = 1e-9  # Amendment-3: frozen flat-band purification tolerance
+DW_TS = np.arange(1.5, 4.01, 0.1)  # Amendment-3: frozen return window
 V_BANKED = {"j2": 1.2075, "sq": 0.9658}  # P1.1b / P1.1a means
 ORIGIN_SEED_BASE = 6900
 TARGET_SEED_BASE = 8100
@@ -411,14 +415,46 @@ def tercile_medians(deltas: list, terciles: list) -> dict:
     return out
 
 
+def wave_return_dw(evals, evecs, origin_idx, ball_idx, ts=DW_TS,
+                     tol=DW_TOL) -> dict:
+    """Wave dimension from PURIFIED ball-1 quantum return q(t) ~ t^{-d}.
+
+    Removes |E| <= tol spectral weight (flat-band purification,
+    graph-intrinsic); q(t) = purified weight on ball_idx (origin +
+    1-hop neighbors). Returns {d, r2, n, w0, ok} with w0 = removed weight.
+    """
+    bad = {"d": float("nan"), "r2": float("nan"), "n": 0, "w0": float("nan"),
+           "ok": False}
+    E = np.asarray(evals, dtype=float)
+    Phi = np.asarray(evecs, dtype=float)
+    o = int(origin_idx)
+    ts = np.asarray(list(ts), dtype=float)
+    ball = np.asarray(list(ball_idx), dtype=int)
+    if len(ts) < 3 or len(ball) == 0:
+        return bad
+    m = np.abs(E) > tol
+    w0 = float(np.sum(Phi[o, ~m] ** 2))
+    if int(m.sum()) == 0:
+        return bad
+    c = Phi[o, m]
+    # Purified amplitude rows for ball sites: Psi = Phi[ball, m] @ diag-ish.
+    Phib = Phi[np.ix_(ball, np.flatnonzero(m))]
+    Amp = Phib @ (c[:, None] * np.exp(-1j * E[m][:, None] * ts[None, :]))
+    q = np.sum(np.abs(Amp) ** 2, axis=0)
+    fit = fit_loglog(ts, q)
+    if fit["n"] < 3:
+        return bad
+    return {"d": -float(fit["p"]), "r2": fit["r2"], "n": fit["n"],
+            "w0": w0, "ok": True}
+
+
 def arrival_volume_dim(taus: dict, a: float, b: float, D: int,
                        lo_R: int = D_H_LO, dt_floor: float = DT_WAVE) -> dict:
-    """Wave dimension from arrival-volume A(T) over the train-law window.
+    """SUPERSEDED for d_W by wave_return_dw (Amendment-3); kept + tested.
 
     taus maps node -> tau_W (None allowed); window T in [a*lo_R+b,
-    a*(D/2-1)+b] with T_lo clamped to >= dt_floor (Amendment-2: affine
-    UV-curvature can extrapolate b < 0; the window must lie in the
-    measurement domain). Returns {d, r2, n, window, ok}.
+    a*(D/2-1)+b] with T_lo clamped to >= dt_floor. Returns {d, r2, n,
+    window, ok}.
     """
     bad = {"d": float("nan"), "r2": float("nan"), "n": 0, "window": None,
            "ok": False}

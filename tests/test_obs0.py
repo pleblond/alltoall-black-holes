@@ -96,6 +96,22 @@ def test_threshold_crossing_units():
     assert obs0.THETA_WAVE == 1e-6  # Amendment-2 frozen value
 
 
+def test_wave_return_dw_units():
+    # Synthetic: single dispersive mode -> constant q -> d=0, w0 pinned.
+    E = np.array([0.0, 1.0, 2.0])
+    V = np.eye(3)
+    ts = np.array([1.5, 2.0, 3.0, 4.0])
+    rec = obs0.wave_return_dw(E, V, 1, [1], ts, tol=1e-9)
+    assert rec["ok"] and abs(rec["d"]) < 1e-9 and rec["w0"] == 0.0
+    rec0 = obs0.wave_return_dw(E, V, 0, [0], ts, tol=1e-9)
+    assert rec0["ok"] is False  # origin fully in flat band: nothing left
+    assert rec0["w0"] == 1.0
+    # t^-2 decay shape is read as d=2 through fit_loglog path (sanity).
+    assert abs(-obs0.fit_loglog(ts, ts**-2)["p"] - 2.0) < 1e-12
+    assert list(obs0.DW_TS[:2]) == [1.5, 1.6] and obs0.DW_TS[-1] == 4.0
+    assert obs0.DW_TOL == 1e-9
+
+
 def test_calibration_math_exact():
     x = np.array([1.0, 2.0, 3.0, 4.0])
     fa = obs0.fit_affine(x, 2 * x + 1)
