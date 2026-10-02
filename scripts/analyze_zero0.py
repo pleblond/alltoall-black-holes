@@ -130,7 +130,7 @@ def summarize_collide(rows: list) -> dict:
 def summarize_simple(rows: list, keys: list) -> dict:
     cells = defaultdict(list)
     for r in rows:
-        cells[tuple(r.get(k) for k in keys)].append(r)
+        cells[tuple(json.dumps(r.get(k), sort_keys=True) for k in keys)].append(r)
     out = {}
     for k, rs in sorted(cells.items(), key=str):
         out["|".join(str(x) for x in k)] = {
