@@ -3,6 +3,29 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (VAC-EXC-0 verdict)** — VACEXC0-COMPLETE banked (beast,
+  241/241 records): bitwise cross-vacuum dpsi identity 7/7 + packet v
+  identical on all 4 backgrounds + interference null I ~ 6e-16 on all
+  vacua + decomp cross +1/dd 0 + frac collapse 1e-13 over 6 decades of
+  a + protection certificates (thresholds vacuum-blind, no actual zero
+  to eps = 1.0) + energy anatomy resid 1e-14 + sector purity 1.0 +
+  deep-linear slopes 35/35 (O(eps) vs ZERO O(eps^2)) + longtime bounded
+  (dJ <= 4.6e-4); same-carrier/different-response formalized via chi
+  matrix + Delta_exc R_G ledger table; one owned amendment (analyzer-
+  only: sector purity, deep-linear window + ZERO B-vacuous exact-null
+  theorem, absolute J bar); suite 1007 passed / 2 skipped (weighted
+  skipped per campaign note).
+
+- **unreleased (VAC-EXC-0 prereg)** — Excitations-around-joint-vacuum
+  campaign opened on main tail: 8-kind dpsi battery (point/phase/patch/
+  packet/standing/source/sym/hidden) around VACFIELD0-JOINT (VPLUS/VPI/
+  VMINUS, ZERO control); 0A evolution theorem + 0B bitwise cross-bg
+  regression + 0C abs/frac collapse + 0D–0G protection/cancellation +
+  0I–0L packet/phase/amplitude + 0M energy anatomy + 0N/0O dB atlas +
+  0P–0R sector taxonomy + 0S/T null/atlas + 0U/V linearity/susceptibility
+  + 0W long-time + 0X visibility + 0Y virtual ledger + 0Z matrix;
+  apparatus (`vacexc.py`) + 241 beast tasks + analyzer + 32 pins (pre-data).
+
 - **HIDDEN-0** (unreleased) — Operationally hidden local degrees of freedom:
   HIDDEN0-SEPARATED (279/279 checks, 43 beast cells, J2 L28). Matched
   hidden-state pairs (sign/phase/shape/amplitude, exact P_+ match) show

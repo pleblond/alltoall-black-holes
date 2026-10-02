@@ -9,3 +9,4 @@ __pycache__/
 *.out
 *.toc
 data/vacfield/npy/
+data/vacexc/npy/
