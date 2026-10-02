@@ -3,6 +3,19 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (FIELD-0 two-excitation null)** — Linear-superposition null
+  campaign under frozen H=-A (read-only P1/POT0/EM0/MALUS/QUOT/COH apparatus):
+  new `field0.py` (substrates + packets + collision grid + windows + triplet
+  evolution + rho/B/J/E cross anatomy + momentum/coherence + naive-peak/false-
+  accel + residence/beat + sector/static + FFT-linearity witness, 25 pins) +
+  `field0_campaign.py` runner (57 cells); verdicts FIELD0-LINEAR + FIELD0-
+  APPARENT (both rungs, beast rerun-2): eps 9.6e-12 + I 9.6e-12 (57/57) +
+  rho/B/J/E 57/57 + dP=0 + clin 3e-16 + S-const 5e-13 + tcoll/dmin/b-validated
+  + amp-doubling-exact + impact-monotone + sector/static/sector-coherence atlas
+  (fa-79 + res-49 + Ex-11 + standing + pseudo-binding while I=0); static exerts
+  NO force (interference-only); 714 collected (712 passed, 2 torch/GPU skips).
+  Witness I frozen for future matter/force claims.
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).

@@ -3063,3 +3063,66 @@ S_const_dev (=max-min-|S| (null-leg (<1e-9-pinned!))) + d_com_min + k_max;
 decomps-still-exact-at-all-t (algebra (t=0-check-valid!)); atlas-fa/res/beat-
 from-full-traces (unaffected (already-peak!)). RERUN (same-57-cells (fresh-
 checkpoint!)); verdicts-gated-on-rerun-2.
+
+FIELD0-VERDICTS (beast-rerun-2-57-cells-5s (Amendment-2 (spatial-COM-max +
+S-constancy!)); T=20-dt=0.1 (201-rows); suite-712-passed-2-skipped-(torch/GPU-
+precedent!)-n8-96s-clean (n32-32-worker-crashes-infrastructure (overload!)-
+rerun-n8-green!); data/field0/cells.json): LADDER = FIELD0-LINEAR +
+FIELD0-APPARENT (both-rungs (null-holds + mimicry-strong!)).
+C0-PASS (eps-max-9.56e-12-median-1.66e-12-57/57<1e-8 (Krylov-fp!)): U(t)(p1+
+p2)=U(t)p1+U(t)p2-exact-all-geometries/sweeps/substrates/sectors/static/
+scrambled (FIELD-0A-theorem-pinned + banked!). C1-PASS (rho-57/57-exact-1e-12
+(collision-sample!)): |p1+p2|^2=|p1|^2+|p2|^2+2Re (I_rho-filed!). C2/C3-PASS
+(B/J-57/57-1e-12 (driven-bilinears + BJ_cross-exact!)). C4-PASS (E-57/57-1e-9
+(E12=E1+E2+Ex (Ex-2Re<p1|H|p2>-filed!))). C5-PASS (global-phase-pinned-1e-12
+(unit-tests!)). C6-PASS (relative-phase-trig-pinned + E-sweep-rhox-0.00561..
+0.00657 (17%-modulation!) + S-const-0.0176 (phase-invariant-|S|!)). C7-PASS
+(isolation-pinned (far-overlap<1e-6!) + witness-I=0-all-cells (separated-or-
+overlapping!)). C8-PASS (substrate-regression-pinned (ring-v-15%-2sin!) + J2-
+headline-banked-window (POT-HEADLINE-L28-sig4-k0.3!)). U-PASS (I-max-9.56e-12-
+median-1.66e-12-57/57<1e-6 (I=eps (dP=0-exact-all-cells + clin-max-3.08e-16 +
+dE-max-4.52e-16!)); snew-filed-only (relative-thresh-artifact-owned-A1!)).
+A-PASS (superposition-exact!). B-PASS (cross-anatomy-exact!). C-PASS (Ex-
+exact (range--11.55..+3.26 (apparent-exchange-accounted!))). D-PASS (7-
+geometries (tcoll-pred-5.92-vs-meas-6.0-headon + dmin-4.01-vs-b=4-nearmiss +
+overlap-dmin-0.0 (addresses-validated!))). E-PASS (8-phases (trig + S-const!)).
+F-PASS (7-ratios (rhox-0.00082..0.05261-exact-doubling + Ex-doubling (bilinear-
+scaling-pinned!))). G-PASS (5-widths (beat-6.0..12.5 + Smax-width-controlled
+(overlap-not-long-range!))). H-PASS (6-b (rhox-0.00658..0.00294-monotone-down +
+dmin=b-exact + fa-56-all (no-deflection (I=0!)))). I-PASS (PRE/OVERLAP/POST-
+partition (Delta-2sig/vrel+2!) + S-const-5.39e-13 (unitary-preserves-overlap!) +
+spatial-dmin-tracks-tcoll!). J-PASS (outgoing=isolated (dP=0 + C-stable-0.4116 +
+I=0 (no-deflection/capture/shift!))). K-PASS (momentum-stable (dP=0!) + FFT-
+linearity-3e-16 (c12=c1+c2-exact (no-transfer!))). L-PASS (false-accel-ATLAS:
+overlap/standing-79.2-vmax-19.8 + headon/phase/amp-56.0 + controls-0.0 (ring-
+overlap/square-headon/anti:anti (substrate/sector-dependent-mimicry!)) while-
+I=0 (anti-false-positive-calibration!)). M-PASS (pseudo-binding-ATLAS: res-48.9-
+(F:a8-unnorm!) / 3.1-beat-11.0-(overlap-slow!) / 2.0-beat-16.0-(ring-overlap!) +
+decomp-exact (long-lived-density-!=-bound-state!)). N-PASS (standing-ATLAS:
+overlap-phi0/pi (S-0.0565 + fa-79.2/77.4 + rhox-0.00996 (stationary-pattern-
+while-psi-superposition (object-null-model!)))). O-PASS (coherence-ATLAS: C-
+0.4116->0.009 (44x-collapse!) + D-0.764->0.019 (40x!) + fa-56.0->30->13 (tracks-
+coherence (state-dependent-not-force!))). P-PASS (sector-ATLAS: sym:sym-S-0.0176-
+fa-56.0 + sym:anti-S-0.0-exact (orthogonal!) BUT-rhox-0.00215-local (frozen-
+modifies-local!) + fa-10.49 + anti:anti-fa-0.0 (both-frozen-stationary!)).
+Q-PASS (static-ATLAS (CRITICAL!): pass-S-0.2131-fa-56.0 + far-S-0.0354-fa-13.3 +
+rhox-0.00745/0.01595 + I=0 (static-exerts-NO-force (interference-only!) (current-
+static-psi-field-does-NOT-accelerate/refract/delay/deflect-packet!))). R-
+PENDING (VAC-FIELD-branch-empty (no-appendix (prereg-allowed!))). S-PASS (4-
+substrates-12-cells (J2/square/ring/quotient (eps/I-exact-all (algebraic-null-
+universal!) + visual-diverse (fa-79.2-J2/quot-overlap vs 0.0-ring-overlap/square-
+headon (phenomenology-substrate-dependent!)))); VAC-0-contrast-pending (VAC-0-
+running (prereg-allowed-skip!))). T-PASS (scattering-null (clin-3e-16 + dP=0 +
+power-stationary (S12-subset-artifact-owned (FFT-linearity-exact!)) (S12=S1xS2-
+mode-analogue!))). U-PASS (witness-I=max(eps,dP,clin,dE)-frozen-0 (57/57<1e-6
+(max-9.6e-12!) (future-claims-must-show-I>0!))). V-ATLAS (catalog-while-I=0:
+attraction/repulsion/bouncing (fa-79.2/56.0!); trapping (res-48.9/3.1-beat-16.0!);
+standing-objects (overlap-phi0/pi!); delayed-peaks (tcoll-validated!); energy-
+exchange (Ex--11.5..+3.3!); current-reversal (Jx-0.013-ring!); each-with-exact-
+decomp (rhox/Bx/Jx/Ex-filed-per-cell!)). VERDICTS: FIELD0-LINEAR-HOLDS (psi-
+field-self-noninteracting (frozen-geometry!)); FIELD0-APPARENT-HOLDS
+(interference-convincingly-mimics-interaction (atlas-mandatory-future!));
+FIELD0-RESIDUAL-ABSENT (no-I>0 (A1/A2-accounting-bugs-owned-fixed-rerun (never-
+force!))). INTERPRETATION: HOW-MUCH-APPARENT = dramatic (fa-79 + res-49 + Ex-
+11 + standing + pseudo-binding) while-I=0 (quadratic-readouts-alone!). FUTURE-
+STANDARD: density/current-drama-≠-interaction (I>0-required (witness-reusable!)).
