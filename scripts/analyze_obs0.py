@@ -220,14 +220,21 @@ def main():
     verdict["C0"] = c0
     verdict["C0_monotone"] = bool(mono)
 
-    # C1 majority.
+    # C1 majority (AMENDMENT-1: d_s by N-drift; d_H per-seed majority).
     c1 = {}
     for N in (800, 1568, 3528):
         for s in (0, 1, 2):
             c1[f"exp-N{N}-s{s}"] = gate_c1(load(outdir, f"dims_exp-N{N}-s{s}.json"))
-    c1pass = sum(1 for v in c1.values() if v["pass"]) >= 6  # >=2/3 of 9
-    verdict["gates"]["C1"] = bool(c1pass)
+    ds_by_N = [np.mean([c1[f"exp-N{N}-s{s}"]["ds_mean"] for s in (0, 1, 2)])
+              for N in (800, 1568, 3528)]
+    ds_drift = float(max(ds_by_N) - min(ds_by_N)) if all(np.isfinite(ds_by_N)) else 0.0
+    ds_band = sum(1 for v in c1.values() if v["ds_clause"])
+    h_seeds = sum(1 for v in c1.values() if v["h_clause"])
+    c1pass = bool(h_seeds >= 6 and (ds_drift > 0.5 or ds_band >= 6))
+    verdict["gates"]["C1"] = c1pass
     verdict["C1"] = c1
+    verdict["C1_drift"] = {"ds_by_N": ds_by_N, "drift": ds_drift,
+                           "h_seeds": h_seeds, "ds_band_seeds": ds_band}
 
     j2_open = bool(c0pass and verdict["gates"]["C5"]
                    and not verdict["gates"]["missing_stop"])

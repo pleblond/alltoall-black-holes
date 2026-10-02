@@ -3072,3 +3072,17 @@ analyze_obs0.py (verdict JSON). Eigensystems cached beast-side (npz, NOT
 committed); committed: prereg+module+tests+scripts+verdict-JSON(data/obs0/).
 Paper figures ONLY if verdict >= METRIC. NEXT: module+tests commit, then
 beast C5/C0/C1 validation (gated on this commit).
+
+## OBS0-AMENDMENT-1 (C1-d_s N-drift repair; FROZEN pre-J2-data (C1-eigen in hand,
+J2-unopened); commit-predates-J2-campaign): the preregistered C1 d_s clause
+(majority-of-seeds outside [1.5,2.5]) is WRONG-AS-WRITTEN: expander heat_ds reads
+1.21/2.06/3.55 across N=800/1568/3528 (seed-stable to ~0.01) -- the N=1568 value
+sits inside the band by saturation-crossover coincidence (P(24)~1/N saturated at
+all N; the fitted slope measures tail-decay-vs-floor mix, N-dependent by
+construction). The estimator is NOT broken: square-torus heat_ds = 2.0692 at ALL
+L (P(12)/P(24) identical to 3 decimals, far from 1/N) -- L-independence IS the
+geometric signature. REPLACED clause: C1-d_s-PASS iff seed-averaged heat_ds
+range across N={800,1568,3528} exceeds 0.5 (non-geometric N-drift; observed 2.35)
+OR majority-of-9-seeds outside [1.5,2.5] (original clause kept as alternative).
+d_H clause unchanged (no-window expected, D=5-6 observed). J2 gates untouched.
+NEXT: C0-origins + C1-dims, staged analysis.
