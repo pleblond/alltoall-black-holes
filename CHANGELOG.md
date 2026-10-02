@@ -3,6 +3,17 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v5.5+ZERO-0 (unreleased)** — ZERO-0 zero-crossing census
+apparatus + campaign (frozen `H = -A` field law): `zero.py`
+(codimension-2/persistent/two-mode/phasor theorems, F1–F5
+families, L1–L3 certification, Z0/Z+/Zπ/Z− backgrounds,
+protection bound, cycle winding, B/J + density anatomy,
+sheet-sector projectors), prereg + verdict docs, 4,432-row beast
+ledger (`data/zero0/verdict.json`). Headline: exact zeros are
+interference-enforced (1,588 certified two-packet π-nulls) or
+nodal, never generic; discrete winding changes via bond
+phase-slip without zeros (Z4 not earned).
+
 - **unreleased (FIELD-0 two-excitation null)** — Linear-superposition null
   campaign under frozen H=-A (read-only P1/POT0/EM0/MALUS/QUOT/COH apparatus):
   new `field0.py` (substrates + packets + collision grid + windows + triplet
