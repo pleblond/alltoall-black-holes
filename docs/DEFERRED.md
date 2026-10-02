@@ -3179,3 +3179,83 @@ Verdict mapping unaffected (both remain J2-specific, ineligible for
 fundamental accounting). Companion fixes (same commit, apparatus
 stage): quad_rate_findiff uses evolve_fixed n_steps=2 (the frozen
 API needs >=2 time points); energy-rate test ditto.
+
+## CONS0-VERDICT — PARTIAL (22/22 gates green, executed on beast)
+
+**Campaign:** scripts/run_cons0_campaign.py on beast (96-CPU, mp pool);
+data/cons0_ledger.json: 88 contraction events (7 substrates x fields x
+2 frozen edges; c in {0 x72, 1 x12, 2 x4}) + 576 split rows (24 groups
+x 3^d covers x {equal,norm}, d<=4) + S1/S2 separation + 0A/0B pins +
+C2-C5 controls. scripts/analyze_cons0.py: 22/22 gates green. Matches
+the frozen prereg expectation exactly; no post-data fitting (pre-data
+tooling repairs only: exact phi record, split formula serialization,
+pins-task arithmetic, backward findiff leg).
+
+**Ledger (every analytic delta gated vs direct before/after):**
+N: fixed-G n/a (graph); d=-1; split +1. E_G: n/a; d=-(1+c);
+split +(1+c'). Q_psi: yes (generic, LOCAL); d=+2B_ij; split
+-|k|^2/2 (equal) / 0 (norm). E_psi: yes (generic, GLOBAL-ONLY);
+d=P1+P2 verified; split formula verified. H^2 moment, spectral
+W: yes (generic); deltas direct-filed. |S|^2: regular-only;
+d=0 exact (event-closed, GLOBAL). Bloch W_k, sheet Q_J/Q_S:
+J2-sector; sectors destroyed by event (filed). xi=E-N+ncomp:
+n/a; d=-c; split +c'. T: n/a; d=-c-r+q; split direct-filed.
+D2: n/a; exact formula; split direct-filed.
+
+**0A census pinned (ring-8/J2-L4):** generic norm/energy/H2/
+spec+-/0 all commute (Krylov 1e-9); regular-conditional |S|^2
+both directions; Gamma negative ([A,Gamma]!=0, non-conserved);
+J2 Bloch + sheet J + sheet S (AMENDMENT-1) sector symmetries.
+**0B:** norm LOCAL (continuity 1.1e-16); energy GLOBAL-ONLY
+(symmetric-part obstruction 0.318 > 1e-6; total dE/dt=0 at
+8.3e-17); H^2/|S|^2 GLOBAL-ONLY; Bloch/J/S SECTOR; Gamma
+NOT-CONSERVED. **0C:** dN/dE bitwise; dQ=2B; dE=P1+P2 with
+P3=P4=0 (max 2.8e-17 / 0); parts==direct 2.2e-15; components
+preserved. **0D/E:** 2B wall 1e-12; phase table exact per edge
+1e-12. **0F/G no-go proven+pinned:** S1 traces 2rho^2 cos
+(1e-12); S2 varies dE at fixed dQ (range 0.5); field probes
+fail (max|lin_0010|=0.286, max|lin_0001|=0.667); gamma=delta=0
+forced; fixed-c domains admit only decoupled E_G-(1+c)N (c=0:
+cycle rank); lin_m110==-c bitwise. **0H:** dxi=-c bitwise
+(LOCAL via C5); dT=-c-r+q bitwise (K4 (2,1,0)->-3; C4
+(0,0,1)->+1); dD2 exact; joint closure fails per candidate
+(zero/uniform pair varies dQ at fixed graph, all substrates).
+Triangle census: J2-L6 contractions create q=21 each (c=0);
+collapsed-mini q in {16,21}; er-24 q in {5,6}. **0I:**
+ENERGY-ACCOUNT DEBT (E_G/xi/T/D2 all fail, residual range>0).
+**0J:** xi-closure LOCAL (C5 2.8e-17); |S|^2 GLOBAL (S moves
+remotely) + evolution-fragile (regular-only). **0K:** split
+formulas gated 1e-9; record inverse restores graph bitwise,
+field iff a=b; components preserved. **0L:** Q1=2^d, Q2=2^d
+(x2 if k==0: zero + phi=pi stagger), Q3=(a==b)+(a==b==0) --
+all 24 groups exact => DEGENERATE (constrains, never uniquely
+selects; Q3=0 for a!=b). **0M:** conservation debt max|dQ|=
+0.286, max|dE|=0.667; info debt: >1 admissible (dxi,dQ)=(0,0)
+cover in every group (e.g. log2(4)=2 bits at d=2) + |a-b|^2/2
+mode erasure. **0N:** zero-field contraction ALLOWED (field
+deltas bitwise 0; xi-ledger consistent on c=0) => conservation
+does not explain vacuum quiescence. **0O:** norm BLIND (dQ=0
+both sectors); energy DISTINGUISHES (dE=0 at psi=0 vs
+dE=-2 sum_X B^nonedge !=0 at phi=pi/2, pinned to formula).
+**0P:** all 7 substrates complete, same code path (C6);
+xi-law holds <=> c=0 per substrate (dxi+c==0 bitwise); no
+closing account uses J2 coordinates => universal statements
+stand, J2 rows filed J2-specific. **Controls:** C0/C1 vendored
+suites green (beast full suite; count in CHANGELOG); C2
+2.2e-16, C3 0, C4 (B same / J flip), C5 2.8e-17.
+
+**Verdict: CONS0-PARTIAL.** Closing accounts: cycle rank xi on
+triangle-free domains (LOCAL, exact) + uniform mode |S|^2
+event-leg (exact, GLOBAL + evolution-fragile). No
+field-involving linear invariant closes (no-go proven); energy
+account open. No contraction event forbidden by conservation
+(0N allows; splits DEGENERATE) => not SELECTIVE.
+
+**Debts filed:** NORM-ACCOUNT (max|dQ|=0.286), ENERGY-ACCOUNT
+(max|dE|=0.667), EVENT-RATE, SPLIT-DEGENERACY (Q3<=2, 0 for
+a!=b), INFORMATION-LOSS (>=2 covers + mode erasure).
+
+**Handoff:** BR-2.6 blocked from claiming a conservation-derived
+contraction law; may consume the xi domain constraint + split
+counts but must carry all five debts. The model owes a
+reservoir/principle for norm/energy event accounting.
