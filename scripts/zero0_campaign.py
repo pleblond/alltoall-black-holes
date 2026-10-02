@@ -112,6 +112,11 @@ def modal_for(h, n: int):
     return {"dense": hd, "sys": zero.modal_system(hd)}
 
 
+def dense_for(h, n: int):
+    """Dense H for F4/F5 state prep (allowed beyond the modal cap)."""
+    return np.asarray(h.toarray() if hasattr(h, "toarray") else h, dtype=float)
+
+
 # -------------------------------------------------------------------- trace
 
 def run_trace(psi0: np.ndarray, h, dt: float, horizon: float) -> dict:
@@ -165,8 +170,9 @@ def kind_generic(a) -> dict:
     sub = build_substrate(a.substrate, a.size)
     h = substrate_h(sub)
     mo = modal_for(h, sub["N"])
-    prep = build_family_state(a.family, sub, a.seed,
-                              h_dense=mo["dense"] if mo else None,
+    hd = mo["dense"] if mo else (dense_for(h, sub["N"]) if a.family in
+                                 ("F4", "F5") else None)
+    prep = build_family_state(a.family, sub, a.seed, h_dense=hd,
                               n_modes=a.n_modes)
     tr = run_trace(prep["psi"], h, a.dt, a.horizon)
     scan = zero.trace_zero_scan(prep["psi"], h, tr["ts"], tr["psi"],
@@ -307,8 +313,9 @@ def kind_winding(a) -> dict:
     sub = build_substrate(a.substrate, a.size)
     h = substrate_h(sub)
     mo = modal_for(h, sub["N"])
-    prep = build_family_state(a.family, sub, a.seed,
-                              h_dense=mo["dense"] if mo else None,
+    hd = mo["dense"] if mo else (dense_for(h, sub["N"]) if a.family in
+                                 ("F4", "F5") else None)
+    prep = build_family_state(a.family, sub, a.seed, h_dense=hd,
                               n_modes=a.n_modes)
     tr = run_trace(prep["psi"], h, a.dt, a.horizon)
     scan = zero.trace_zero_scan(prep["psi"], h, tr["ts"], tr["psi"],
