@@ -3,6 +3,26 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (CONS-0 invariant census)** — D14-CONS0 campaign verdict
+  CONS0-PARTIAL (22/22 gates green, beast): new `conservation.py`
+  (fixed-graph invariant census with commutator theorem, continuity
+  classification, exact contraction ledger with verified P1+P2+P3+P4
+  energy decomposition, linear/no-go separation apparatus,
+  graph-candidate formulas d xi/dT/dD2, split ledgers + cover census,
+  substrate/field builders); 65 tests incl. 2B wall, phase table,
+  cycle-rank domain law, uniform-mode event closure, K4/C4 triangle
+  obstacle, Q1/Q2/Q3 selection counts; frozen CONS0-PREREG +
+  AMENDMENT-1 + pre-data Q2/Q3 clarification; campaign runner + gate
+  analyzer; record data/cons0_ledger.json (88 events x 7 substrates,
+  576 split rows); verdict + ledger table in docs/DEFERRED.md
+  (CONS0-VERDICT): cycle rank closes on triangle-free domains (LOCAL)
+  + uniform-mode event-leg (GLOBAL); no field-involving linear
+  invariant closes (no-go proven); splits DEGENERATE; debts
+  NORM-ACCOUNT + ENERGY-ACCOUNT + EVENT-RATE + SPLIT-DEGENERACY +
+  INFORMATION-LOSS; handoff: BR-2.6 blocked from a
+  conservation-derived contraction law. Full suite: 749 passed,
+  2 skipped, 0 failed (beast, -n 60, 83s).
+
 - **unreleased (BR-2.5 contraction ontology)** — D14-BR2.5 campaign: new
   `contraction.py` (exact edge contraction, 3 candidate field maps with
   exact census, record/oracle/cover splits, tendency readouts, cone

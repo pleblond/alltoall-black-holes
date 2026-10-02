@@ -5495,3 +5495,274 @@ K DESIGN-OPEN (no formation demo attempted, per prereg).
 the ONTOLOGY clause); the BR-3 loop is REPLACED by BR-3C (coupled
 contraction dynamics: psi -> B -> G' -> H(G') -> psi') once the rate law
 is earned. GRAV-0 input: exact structural light cone R_U = 1/tick.
+
+## CONS0-PREREG — Joint graph-field invariant census (D14-CONS0, FROZEN PRE-DATA)
+
+**Status:** apparatus + ladder frozen; campaign NOT YET RUN. Accounting
+foundation for BR-2.6: census all exact conserved quantities of the
+frozen graph-field system and test whether local contraction/splitting
+admits closed joint accounting. Derives NO event rate, decides NO
+event occurrence, runs NO coupled dynamics.
+
+**Frozen inputs (read-only, byte-identical):** BR-2.5 tip 3ea8cf1
+(contraction.py + ballistic.py + backreaction.py + phase.py +
+formation.py elist_window + all four test files: the contraction
+primitive, dN=-1, dE=-(1+c), sum/avg/norm maps, 2B wiring,
+3^d covers, R_U=1); EM-0 tip 3128ff9 (continuum.py + driven.py +
+pyproject xdist + closure pin + both test files: continuity,
+dE/dA=-2JB, Bloch, quadrature). Banked verdicts consumed:
+BR25-ONTOLOGY (15/15), EM0-BACKREACTIVE (14/14+8/8),
+BR2-QUADRATURE, BR1-FLAT.
+
+**Frozen conventions:** H(G)=-A(G), J=1, hbar=1 (P1/EM-0 locked);
+simple connected graphs; primary field map sum (avg/norm controls
+only); tolerances: integers bitwise, small-system algebraic
+identities 1e-12, energy/norm legs 1e-9, Krylov conservation 1e-9.
+No new reservoir/weights/constants/thresholds (CONS-0 firewall).
+
+**CONS-0A census (frozen claim):** dQ_M/dt=i<psi|[H,M]|psi> (pin
+formula vs finite-diff 1e-6); conserved <=> [H,M]=0. Generic:
+norm (I), energy (H), H^2 moment, spectral P_+/P_-/P_0 (all
+commute; pinned under evolve_fixed 1e-9). Regular-conditional:
+uniform-mode power |S|^2, S=sum psi ([H,uu']=0 <=> regular;
+pinned both directions). NEGATIVE control: sublattice imbalance
+Gamma does NOT commute ({A,Gamma}=0 pairs spectrum instead);
+pinned non-conserved. J2-specific: Bloch sector weights W_k
+(P_k via translation character sum; [H,P_k]=0 verified
+computationally) and sheet-involution charge Q_J, J:(x,y,b)->
+(y,x,1-b) ([A,J]=0 verified computationally; pure sheet-swap is
+NOT a symmetry, pinned). Only generic/local candidates are
+eligible for fundamental accounting.
+
+**CONS-0B classification (frozen claim):** norm LOCALLY conserved
+(EM-0 continuity re-pinned 1e-9). Energy with node density
+e_i=-sum_{j~i} B_ij and canonical edge-local current (antisym
+part of dB_ij/dt, dB_ij/dt=Im((Apsi)*_i psi_j-psi*_i(Apsi)_j)):
+symmetric-part obstruction pinned nonzero (>1e-6) on a frozen
+counterexample => GLOBAL-ONLY (total dE/dt=0 pinned; no
+alternative local current proposed -- firewall). H^2 moment and
+|S|^2 GLOBAL-ONLY by construction (no edge-local ansatz / no
+node density; totals pinned). Bloch/J SECTOR (no local density
+claimed). Gamma NOT-CONSERVED.
+
+**CONS-0C ledger (frozen formulas):** dN=-1, dE=-(1+c),
+dQ_psi=2B_ij (sum map), dE_psi=P1+P2+P3+P4 with P1=+2B_ij
+(consumed relation), P2=-2(sum_{X_j}B_im+sum_{X_i}B_jm)
+(merged-amplitude cross bonds, X exclusive neighborhoods),
+P3=0 (common-neighbor collapse energy-neutral, verified not
+assumed), P4=0 (external edges untouched, verified). HARD GATE:
+parts sum == direct before/after dE_psi (1e-9) on every
+campaign event. Components preserved (pinned). Every 0A
+invariant rowed before/after/delta; d|S|^2=0 pinned 1e-12
+(uniform mode is event-closed for ALL states -- load-bearing).
+
+**CONS-0D/E (frozen pins):** 2B identity on random / bonding /
+pure-current / antibonding / zero-spike fields x wall of
+substrates (1e-12); phase table (0:+,-; pi/2:0,sat; pi:-;
+3pi/2:0,-sat) exact per edge (1e-12).
+
+**CONS-0F/G no-go (frozen theorem):** for fixed graph event,
+dQ_tot=-a-b(1+c)+2gB+d*dE_psi. Lemma S1 (phase sweep at zero
+elsewhere): dQ,dE trace 2rho^2 cos (pinned 1e-12). Lemma S2
+(vary neighbor field at fixed edge state): dE varies at fixed
+dQ (range>0 pinned). THEOREM: dQ_tot==0 for all states =>
+g=d=0, then -a-b(1+c)==0 for all c in domain => trivial if
+>=2 c-values; on fixed-c domains the 1-dim decoupled family
+E_G-(1+c)N (c=0: cycle rank). COROLLARY: no field-involving
+linear invariant closes; E-N closes bitwise on c=0, misses
+by exactly -c elsewhere. Coefficients solved algebraically,
+never fitted.
+
+**CONS-0H (frozen formulas):** cycle rank xi=E-N+ncomp,
+dxi=-c (bitwise); triangle count T, dT=-c-r+q with
+r=#{double-preimage mergers}, q=#{created} (both defined by
+unordered-pair census on N(k); bitwise); degree-square sum
+D2, dD2=(di+dj-2-c)^2-di^2-dj^2+sum_C(1-2dm) (exact).
+Closure test per candidate: field pair, same graph event,
+dQ_psi differs while dQ_G identical (bitwise) => NO joint
+closure (pinned per candidate). M=E+3T corollary filed.
+
+**CONS-0I prediction:** ENERGY-ACCOUNT DEBT. Same separation
+argument for dE_psi: pinned field pair varies dE at fixed
+graph; candidates E_G, xi, T, D2 all fail (residual range>0
+pinned each).
+
+**CONS-0J criterion (frozen):** LOCAL <=> delta computable
+from N[{i,j}] data alone, pinned by remote-mutation
+invariance of ALL deltas. xi-closure on c=0: LOCAL. |S|^2:
+event-closed but GLOBAL (S moves under remote mutation,
+pinned).
+
+**CONS-0K formulas (frozen):** split cover (A,B), c'=|A cap B|:
+dN=+1, dE=+(1+c') (bitwise); equal policy: dQ=-|k|^2/2,
+dE=-|k|^2/2-sum_{A cap B}B_km+sum_{A cup B}B_km;
+norm policy: dQ=0, dE/(-2)=|k|^2/2+(sum_A+sum_B)B_km/sqrt2-
+sum_{A cup B}B_km. All gated vs direct (1e-9). Record
+inverse restores graph bitwise (banked); field iff a=b.
+
+**CONS-0L counts (frozen):** enumerate 3^d covers x
+{equal,norm} on frozen small-d events. Q1: #{d xi=0}==2^d
+(triangle-free G'); Q2: #{(d xi,dQ)=(0,0)}==2^d (k!=0,
+norm policy); Q3: #{exact full restoration}==0 for a!=b,
+==1 for a=b. Expectation: constrains, never unique =>
+DEGENERATE (filed, not SELECTIVE).
+
+**CONS-0M debts:** conservation debt = max|dQ|,max|dE|
+residuals over campaign (numbers filed); information debt =
+log2(#admissible covers)+|a-b|^2/2 on pinned examples
+(numbers filed); gate: info-debt>0 where accounts close
+(scalar conservation != reversibility).
+
+**CONS-0N prediction:** zero field ALLOWED (all field
+deltas bitwise 0; ledger consistent on c=0) => conservation
+does not explain vacuum quiescence; event law still owed.
+
+**CONS-0O prediction:** norm account BLIND (dQ=0 both
+sectors, pinned); energy account DISTINGUISHES (dE=0 at
+psi=0 vs dE=-2 sum_X B^nonedge !=0 at phi=pi/2, pinned
+to formula).
+
+**CONS-0P substrates (frozen):** j2-L6, square-torus-6,
+ring-24, path-12, er-24-seed7-p0.25, handbuilt-diamond
+(c=1 AND c=2 edges guaranteed), collapsed-mini (J2-L8
+r<=2 ball via frozen contract_edge, lowest-elist order).
+Same code path everywhere (C6); xi-closure holds <=> c=0
+(gated per substrate: d xi+c==0 bitwise).
+
+**CONS-0Q grid (frozen):** substrates x fields {zero,
+uniform, stagger phi in {0,pi/2,pi,3pi/2} (bipartite only),
+random-seed12345, spike-on-i} x 2 frozen edges each
+(elist[len//3], elist[2*len//3]; handbuilt: the c=1, c=2
+edges) = ~84 contraction events; every event compares
+ALL analytic deltas vs direct; split census on ring-24 +
+handbuilt events (d(k)<=4); 0A/0B pins on ring-8/J2-L4/
+path-8/er-12-seed3. data/cons0_ledger.json via
+scripts/run_cons0_campaign.py (mp pool); gates applied by
+scripts/analyze_cons0.py. NO fitting after opening data.
+
+**Controls (frozen bars):** C0 vendored contraction tests
+pass + dN/dE/2B re-pinned; C1 vendored continuum tests
+pass + continuity re-pinned; C2 global-phase ledger
+invariance 1e-12; C3 endpoint-exchange identical deltas +
+edge-sets; C4 conjugation identical deltas, B->B/J->-J;
+C5 remote-mutation invariance (0J); C6 same-tolerance
+completion on all substrates.
+
+**Verdict mapping (frozen):** CLOSED requires a
+field-involving non-decoupled invariant closing exactly +
+locally for arbitrary states (expect NO). PARTIAL =
+>=1 independently-defined account closes (xi on
+triangle-free; |S|^2 event-leg) AND norm/energy joint
+no-go proven+pinned (expect YES). NO-CLOSURE = nothing
+closes. SELECTIVE additionally requires conservation to
+forbid some contraction events (expect NO: 0N allows
+zero-field; splits DEGENERATE). Expected: CONS0-PARTIAL.
+Handoff: BR-2.6 blocked from a conservation-derived
+contraction law; NORM-ACCOUNT + ENERGY-ACCOUNT + EVENT-RATE
++ SPLIT-DEGENERACY + INFORMATION-LOSS debts filed.
+
+**CONS0-PREREG clarification (pre-data, no campaign run yet):** Q3
+counts (cover,policy) pairs with exact full restoration: the record
+cover is unique per policy, so Q3 = #{policies restoring the field}
+= (1 if a==b else 0) + (1 if a==b==0 else 0): nonzero uniform -> 1,
+zero field -> 2 (both policies fix (0,0)), a!=b -> 0. Likewise Q2 =
+#{disjoint covers} x #{policies with dQ==0} = 2^d x (1 + (1 if k==0
+else 0)): norm policy always qualifies; equal qualifies iff k==0
+(zero field, phi=pi stagger). Analyzer implements these exact
+expectations per event; the prereg's "==1 for a=b / ==2^d" shorthands
+are the nonzero-uniform / k!=0 cases.
+
+## CONS0-AMENDMENT-1 — sheet-swap symmetry erratum (pre-campaign-data)
+
+The prereg claimed pure sheet-swap S:(x,y,b)->(x,y,1-b) is NOT a J2
+symmetry. The apparatus refuted this before any campaign data: [A,S]
+= 0 exactly (bitwise). Root cause: the b=1 generator swap (u,v)->
+(v,u) permutes the generator SET {(+-1,0),(0,+-1)}, so every edge
+maps to an edge. Correction (strictly stronger census): BOTH S and
+J are J2 involution symmetries (Q_S, Q_J conserved, pinned); the
+symmetry negative control is a seeded random permutation ([A,P]!=0
+pinned). Census table gains the sheet_S row (j2-symmetry class).
+Verdict mapping unaffected (both remain J2-specific, ineligible for
+fundamental accounting). Companion fixes (same commit, apparatus
+stage): quad_rate_findiff uses evolve_fixed n_steps=2 (the frozen
+API needs >=2 time points); energy-rate test ditto.
+
+## CONS0-VERDICT — PARTIAL (22/22 gates green, executed on beast)
+
+**Campaign:** scripts/run_cons0_campaign.py on beast (96-CPU, mp pool);
+data/cons0_ledger.json: 88 contraction events (7 substrates x fields x
+2 frozen edges; c in {0 x72, 1 x12, 2 x4}) + 576 split rows (24 groups
+x 3^d covers x {equal,norm}, d<=4) + S1/S2 separation + 0A/0B pins +
+C2-C5 controls. scripts/analyze_cons0.py: 22/22 gates green. Matches
+the frozen prereg expectation exactly; no post-data fitting (pre-data
+tooling repairs only: exact phi record, split formula serialization,
+pins-task arithmetic, backward findiff leg).
+
+**Ledger (every analytic delta gated vs direct before/after):**
+N: fixed-G n/a (graph); d=-1; split +1. E_G: n/a; d=-(1+c);
+split +(1+c'). Q_psi: yes (generic, LOCAL); d=+2B_ij; split
+-|k|^2/2 (equal) / 0 (norm). E_psi: yes (generic, GLOBAL-ONLY);
+d=P1+P2 verified; split formula verified. H^2 moment, spectral
+W: yes (generic); deltas direct-filed. |S|^2: regular-only;
+d=0 exact (event-closed, GLOBAL). Bloch W_k, sheet Q_J/Q_S:
+J2-sector; sectors destroyed by event (filed). xi=E-N+ncomp:
+n/a; d=-c; split +c'. T: n/a; d=-c-r+q; split direct-filed.
+D2: n/a; exact formula; split direct-filed.
+
+**0A census pinned (ring-8/J2-L4):** generic norm/energy/H2/
+spec+-/0 all commute (Krylov 1e-9); regular-conditional |S|^2
+both directions; Gamma negative ([A,Gamma]!=0, non-conserved);
+J2 Bloch + sheet J + sheet S (AMENDMENT-1) sector symmetries.
+**0B:** norm LOCAL (continuity 1.1e-16); energy GLOBAL-ONLY
+(symmetric-part obstruction 0.318 > 1e-6; total dE/dt=0 at
+8.3e-17); H^2/|S|^2 GLOBAL-ONLY; Bloch/J/S SECTOR; Gamma
+NOT-CONSERVED. **0C:** dN/dE bitwise; dQ=2B; dE=P1+P2 with
+P3=P4=0 (max 2.8e-17 / 0); parts==direct 2.2e-15; components
+preserved. **0D/E:** 2B wall 1e-12; phase table exact per edge
+1e-12. **0F/G no-go proven+pinned:** S1 traces 2rho^2 cos
+(1e-12); S2 varies dE at fixed dQ (range 0.5); field probes
+fail (max|lin_0010|=0.286, max|lin_0001|=0.667); gamma=delta=0
+forced; fixed-c domains admit only decoupled E_G-(1+c)N (c=0:
+cycle rank); lin_m110==-c bitwise. **0H:** dxi=-c bitwise
+(LOCAL via C5); dT=-c-r+q bitwise (K4 (2,1,0)->-3; C4
+(0,0,1)->+1); dD2 exact; joint closure fails per candidate
+(zero/uniform pair varies dQ at fixed graph, all substrates).
+Triangle census: J2-L6 contractions create q=21 each (c=0);
+collapsed-mini q in {16,21}; er-24 q in {5,6}. **0I:**
+ENERGY-ACCOUNT DEBT (E_G/xi/T/D2 all fail, residual range>0).
+**0J:** xi-closure LOCAL (C5 2.8e-17); |S|^2 GLOBAL (S moves
+remotely) + evolution-fragile (regular-only). **0K:** split
+formulas gated 1e-9; record inverse restores graph bitwise,
+field iff a=b; components preserved. **0L:** Q1=2^d, Q2=2^d
+(x2 if k==0: zero + phi=pi stagger), Q3=(a==b)+(a==b==0) --
+all 24 groups exact => DEGENERATE (constrains, never uniquely
+selects; Q3=0 for a!=b). **0M:** conservation debt max|dQ|=
+0.286, max|dE|=0.667; info debt: >1 admissible (dxi,dQ)=(0,0)
+cover in every group (e.g. log2(4)=2 bits at d=2) + |a-b|^2/2
+mode erasure. **0N:** zero-field contraction ALLOWED (field
+deltas bitwise 0; xi-ledger consistent on c=0) => conservation
+does not explain vacuum quiescence. **0O:** norm BLIND (dQ=0
+both sectors); energy DISTINGUISHES (dE=0 at psi=0 vs
+dE=-2 sum_X B^nonedge !=0 at phi=pi/2, pinned to formula).
+**0P:** all 7 substrates complete, same code path (C6);
+xi-law holds <=> c=0 per substrate (dxi+c==0 bitwise); no
+closing account uses J2 coordinates => universal statements
+stand, J2 rows filed J2-specific. **Controls:** C0/C1 vendored
+suites green (beast full suite; count in CHANGELOG); C2
+2.2e-16, C3 0, C4 (B same / J flip), C5 2.8e-17.
+
+**Verdict: CONS0-PARTIAL.** Closing accounts: cycle rank xi on
+triangle-free domains (LOCAL, exact) + uniform mode |S|^2
+event-leg (exact, GLOBAL + evolution-fragile). No
+field-involving linear invariant closes (no-go proven); energy
+account open. No contraction event forbidden by conservation
+(0N allows; splits DEGENERATE) => not SELECTIVE.
+
+**Debts filed:** NORM-ACCOUNT (max|dQ|=0.286), ENERGY-ACCOUNT
+(max|dE|=0.667), EVENT-RATE, SPLIT-DEGENERACY (Q3<=2, 0 for
+a!=b), INFORMATION-LOSS (>=2 covers + mode erasure).
+
+**Handoff:** BR-2.6 blocked from claiming a conservation-derived
+contraction law; may consume the xi domain constraint + split
+counts but must carry all five debts. The model owes a
+reservoir/principle for norm/energy event accounting.
