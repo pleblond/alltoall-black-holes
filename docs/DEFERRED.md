@@ -2988,3 +2988,1400 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+FIELD0-PREREG (FROZEN-2026-10-02 (commit-predates-beast-runs!)): two-excitation
+interaction null under frozen H=-A (J=1-headline (quotient-J_eff=2 (H_Q=-2A!))).
+FROZEN-INPUTS (read-only (banked-tips-byte-identical!)): P1-ballistic (P1-tip
+af2dfe9 (H=-A + evolve_fixed + gaussian_packet + COM/velocity/width!)); POT-0
+potential (POT0-tip ee58bbc (flux-D + spectral-C + scramble!)); EM-0 continuum
++ backreaction + driven (EM0-tip 3128ff9 (rho/B/J/E + continuity + Bloch +
+steady_predict + bilinears!)); MALUS (MALUS-tip 11d800c (sheet-projectors!));
+QUOT (QUOT-tip f00adf1 (sector-anatomy!)); COH (COH-tip 521530f (overlap +
+pair + visibility!)). NO-VAC-FIELD-INPUT (VAC-FIELD-branch-empty (R-appendix-
+pending (no-redesign!))). FIREWALL: geometry-frozen + H=-A-only (no-evolution/
+contraction/nonlinear/onsite/packet-H/potentials/labels/forces/particles/
+stochastic/feedback/steering!). APPARATUS (field0.py (24-pins!)): substrates
+j2/square/ring/quotient + group_speed (J2-4sin/square-2sin/ring-2sin/quot-4sin
+(pinned-vs-Bloch/chain!)); make_packet (normalized-x-amp-x-exp(i*phi)!);
+collision_geometry (7-names (headon/coprop/orthogonal/oblique/overtaking/
+nearmiss(b)/overlap (L28-r0/k0.3/sig4-derived!))); predict_tcoll (ballistic-
+closest-approach (coprop-inf/overlap-0-pinned!)); define_windows (Delta=
+2*sig/vrel+2 (PRE/OVERLAP/POST-partition-pinned!)); evolve_triplet (psi1+psi2+
+psi12 (eps=||psi12-psi1-psi2||!)); rho/B/J/E + cross (I_rho=2Re + Bx/Jx/Ex
+(exact-bilinear-pinned!)); momentum_peak (J2-sheet-summed/square/ring-FFT
+(k+C+Meff!)); spectral_support (P/Pmax>1e-6 (S12-subset-union-pinned!));
+coherence_of (C+D (POT-banked!)); naive_peak + false_acceleration (argmax +
+total-COM (apparent-force-proxy!)); overlap_S + residence_on_disk + beat_
+lifetime; sector_packets/weights (MALUS!); static_field_j2 (driven-steady
+(omega=-8.5 (residual-pinned!))); witness_components (eps/dP1/dP2/snew/dE +
+I=max (I=0-null!)). GRID (56-cells (scripts/field0_campaign.py!)): D-geometry-
+7 (J2-headline (nearmiss-b=4!)); E-phase-8 (headon (phi2=j*pi/4!)); F-amp-7
+(headon (a1=1/a2=1/8..8!)); G-width-5 (headon (sig-2..6!)); H-impact-6
+(nearmiss (b-0..12!)); S-substrate-12 (headon/coprop/overlap-x-4-substrates
+(J2-L28/square-28/ring-64/quot-28!)); P-sector-3 (+/+/+/-/-/- (J2-headon!));
+Q-static-2 (pass+far (phi_norm+packet!)); N-standing-2 (overlap-phi0/pi!);
+O-coherence-3 (scr1/scr2/scrB (seeds-1000/2000+cid!)); M-binding-2 (overlap/
+headon-slow-k=0.1!). T=20-dt=0.1 (201-rows (sampled-every-5+endpoints!)).
+GATES (C0-C8 (all-must-pass-for-LINEAR!)): C0-eps_max<1e-8-all-cells;
+C1-rho-decomp-exact-1e-12 (max-overlap-sample!); C2/C3-B/J-decomp-1e-12;
+C4-E-decomp-1e-9; C5-global-phase-1e-12; C6-relative-phase-trig-exact
+(pinned!); C7-isolation-overlap<1e-6 (far-separated!); C8-substrate-regression
+(single-packet-ring-v-within-15%-2sin + J2-banked-window!). WITNESS (U):
+I=max(eps,dP1,dP2,snew,dE) (snew=0-required + dP/dE<1e-6 (POST-vs-PRE-
+isolated!)). VERDICTS: FIELD0-LINEAR (C0-C8 + I=0-all-cells (psi-field-self-
+noninteracting!)); FIELD0-APPARENT (+strong-naive-effects (false-accel/
+pseudo-binding/standing/delayed-peaks/current-reversal (atlas-with-exact-
+decomp (mandatory-future-calibration!)))); FIELD0-RESIDUAL (reproducible-I>0
+(implementation-audit-first (never-force!))). FORBIDDEN: force/interaction/
+binding-claims-from-rho/B/J-drama-alone (I=0-required!); vacuum-selection-
+inside-FIELD-0; graph-evolution; matter-labels. NEXT: freeze-commit-then-
+beast-campaign (FIELD0_WORKERS=32 (gated-on-prereg-commit!)).
+
+FIELD0-AMENDMENT-1 (snew-threshold-artifact (POST-first-run-audit (FFT-linearity-
+exact!)); first-run-57-cells-4s-beast (eps-max-9.6e-12-median-1.7e-12 (C0-PASS!) +
+rho/bj/e-57/57 (C1-C4-PASS!) + dP1=dP2=0-exact-all-cells + dE-max-4.5e-16 BUT
+snew-in-{0,2,3,4,6,10}-median-2 (I-median-2.0 (FALSE-RESIDUAL!)))): AUDIT:
+spectral_support-uses-per-state-relative-thresh (P/Pmax>1e-6); joint-Pmax-24.99
+vs-iso-25.40 (1.6%-diff (destructive-at-peak!)) puts-4-modes-in-(24.99e-6,
+25.40e-6)-band (counted-joint-not-iso (threshold-artifact-NOT-physics!)); FFT-
+linearity-max|c12-c1-c2|/scale=4e-16-to-7e-15-all-checks (EXACT (FFT-is-linear!));
+isolated-power-stationary + dP=0-exact + dE-fp-exact (all-other-witness-legs-
+green!). FIX (code-bugfix (prereg-intent-unchanged (no-new-components!))):
+witness_components-ADDS-clin (FFT-coeff-linearity (exact-scattering-null!)) +
+I=max(eps,dP1,dP2,clin,dE) (snew-filed-only (NOT-gated!)); is_witness_ok-gates-
+clin<1e-6 (snew-bar-removed!); field0.py-ADDS-fft_coeffs/fft_linearity_dev
+(pinned (4-substrates-exact!)); campaign-files-w_clin; test_field0-pins-clin.
+RERUN (same-57-cells (fresh-checkpoint (no-reuse!))); verdicts-gated-on-rerun.
+
+FIELD0-AMENDMENT-2 (max-overlap-sample-by-spatial-COM (POST-rerun-audit (S-
+constancy-exact!)); rerun-57-cells-5s (I-max-9.6e-12 (LINEAR-HOLDS!) BUT
+Spre=Smax=Spost-to-5-decimals-all-cells (|S|-unitary-preserved (constancy-
+dev-filed!)) ⟹ max-|S|-sample-always-idx0 (t=0-PRE (NOT-collision!)) ⟹
+rhox/Bx/Jx/Ex-at-initial (conservative-lower-bounds (true-peaks-larger!)))).
+FIX: k_max-by-min-COM-distance (spatial-collision (minimal-image!)) + file-
+S_const_dev (=max-min-|S| (null-leg (<1e-9-pinned!))) + d_com_min + k_max;
+decomps-still-exact-at-all-t (algebra (t=0-check-valid!)); atlas-fa/res/beat-
+from-full-traces (unaffected (already-peak!)). RERUN (same-57-cells (fresh-
+checkpoint!)); verdicts-gated-on-rerun-2.
+
+FIELD0-VERDICTS (beast-rerun-2-57-cells-5s (Amendment-2 (spatial-COM-max +
+S-constancy!)); T=20-dt=0.1 (201-rows); suite-712-passed-2-skipped-(torch/GPU-
+precedent!)-n8-96s-clean (n32-32-worker-crashes-infrastructure (overload!)-
+rerun-n8-green!); data/field0/cells.json): LADDER = FIELD0-LINEAR +
+FIELD0-APPARENT (both-rungs (null-holds + mimicry-strong!)).
+C0-PASS (eps-max-9.56e-12-median-1.66e-12-57/57<1e-8 (Krylov-fp!)): U(t)(p1+
+p2)=U(t)p1+U(t)p2-exact-all-geometries/sweeps/substrates/sectors/static/
+scrambled (FIELD-0A-theorem-pinned + banked!). C1-PASS (rho-57/57-exact-1e-12
+(collision-sample!)): |p1+p2|^2=|p1|^2+|p2|^2+2Re (I_rho-filed!). C2/C3-PASS
+(B/J-57/57-1e-12 (driven-bilinears + BJ_cross-exact!)). C4-PASS (E-57/57-1e-9
+(E12=E1+E2+Ex (Ex-2Re<p1|H|p2>-filed!))). C5-PASS (global-phase-pinned-1e-12
+(unit-tests!)). C6-PASS (relative-phase-trig-pinned + E-sweep-rhox-0.00561..
+0.00657 (17%-modulation!) + S-const-0.0176 (phase-invariant-|S|!)). C7-PASS
+(isolation-pinned (far-overlap<1e-6!) + witness-I=0-all-cells (separated-or-
+overlapping!)). C8-PASS (substrate-regression-pinned (ring-v-15%-2sin!) + J2-
+headline-banked-window (POT-HEADLINE-L28-sig4-k0.3!)). U-PASS (I-max-9.56e-12-
+median-1.66e-12-57/57<1e-6 (I=eps (dP=0-exact-all-cells + clin-max-3.08e-16 +
+dE-max-4.52e-16!)); snew-filed-only (relative-thresh-artifact-owned-A1!)).
+A-PASS (superposition-exact!). B-PASS (cross-anatomy-exact!). C-PASS (Ex-
+exact (range--11.55..+3.26 (apparent-exchange-accounted!))). D-PASS (7-
+geometries (tcoll-pred-5.92-vs-meas-6.0-headon + dmin-4.01-vs-b=4-nearmiss +
+overlap-dmin-0.0 (addresses-validated!))). E-PASS (8-phases (trig + S-const!)).
+F-PASS (7-ratios (rhox-0.00082..0.05261-exact-doubling + Ex-doubling (bilinear-
+scaling-pinned!))). G-PASS (5-widths (beat-6.0..12.5 + Smax-width-controlled
+(overlap-not-long-range!))). H-PASS (6-b (rhox-0.00658..0.00294-monotone-down +
+dmin=b-exact + fa-56-all (no-deflection (I=0!)))). I-PASS (PRE/OVERLAP/POST-
+partition (Delta-2sig/vrel+2!) + S-const-5.39e-13 (unitary-preserves-overlap!) +
+spatial-dmin-tracks-tcoll!). J-PASS (outgoing=isolated (dP=0 + C-stable-0.4116 +
+I=0 (no-deflection/capture/shift!))). K-PASS (momentum-stable (dP=0!) + FFT-
+linearity-3e-16 (c12=c1+c2-exact (no-transfer!))). L-PASS (false-accel-ATLAS:
+overlap/standing-79.2-vmax-19.8 + headon/phase/amp-56.0 + controls-0.0 (ring-
+overlap/square-headon/anti:anti (substrate/sector-dependent-mimicry!)) while-
+I=0 (anti-false-positive-calibration!)). M-PASS (pseudo-binding-ATLAS: res-48.9-
+(F:a8-unnorm!) / 3.1-beat-11.0-(overlap-slow!) / 2.0-beat-16.0-(ring-overlap!) +
+decomp-exact (long-lived-density-!=-bound-state!)). N-PASS (standing-ATLAS:
+overlap-phi0/pi (S-0.0565 + fa-79.2/77.4 + rhox-0.00996 (stationary-pattern-
+while-psi-superposition (object-null-model!)))). O-PASS (coherence-ATLAS: C-
+0.4116->0.009 (44x-collapse!) + D-0.764->0.019 (40x!) + fa-56.0->30->13 (tracks-
+coherence (state-dependent-not-force!))). P-PASS (sector-ATLAS: sym:sym-S-0.0176-
+fa-56.0 + sym:anti-S-0.0-exact (orthogonal!) BUT-rhox-0.00215-local (frozen-
+modifies-local!) + fa-10.49 + anti:anti-fa-0.0 (both-frozen-stationary!)).
+Q-PASS (static-ATLAS (CRITICAL!): pass-S-0.2131-fa-56.0 + far-S-0.0354-fa-13.3 +
+rhox-0.00745/0.01595 + I=0 (static-exerts-NO-force (interference-only!) (current-
+static-psi-field-does-NOT-accelerate/refract/delay/deflect-packet!))). R-
+PENDING (VAC-FIELD-branch-empty (no-appendix (prereg-allowed!))). S-PASS (4-
+substrates-12-cells (J2/square/ring/quotient (eps/I-exact-all (algebraic-null-
+universal!) + visual-diverse (fa-79.2-J2/quot-overlap vs 0.0-ring-overlap/square-
+headon (phenomenology-substrate-dependent!)))); VAC-0-contrast-pending (VAC-0-
+running (prereg-allowed-skip!))). T-PASS (scattering-null (clin-3e-16 + dP=0 +
+power-stationary (S12-subset-artifact-owned (FFT-linearity-exact!)) (S12=S1xS2-
+mode-analogue!))). U-PASS (witness-I=max(eps,dP,clin,dE)-frozen-0 (57/57<1e-6
+(max-9.6e-12!) (future-claims-must-show-I>0!))). V-ATLAS (catalog-while-I=0:
+attraction/repulsion/bouncing (fa-79.2/56.0!); trapping (res-48.9/3.1-beat-16.0!);
+standing-objects (overlap-phi0/pi!); delayed-peaks (tcoll-validated!); energy-
+exchange (Ex--11.5..+3.3!); current-reversal (Jx-0.013-ring!); each-with-exact-
+decomp (rhox/Bx/Jx/Ex-filed-per-cell!)). VERDICTS: FIELD0-LINEAR-HOLDS (psi-
+field-self-noninteracting (frozen-geometry!)); FIELD0-APPARENT-HOLDS
+(interference-convincingly-mimics-interaction (atlas-mandatory-future!));
+FIELD0-RESIDUAL-ABSENT (no-I>0 (A1/A2-accounting-bugs-owned-fixed-rerun (never-
+force!))). INTERPRETATION: HOW-MUCH-APPARENT = dramatic (fa-79 + res-49 + Ex-
+11 + standing + pseudo-binding) while-I=0 (quadratic-readouts-alone!). FUTURE-
+STANDARD: density/current-drama-≠-interaction (I>0-required (witness-reusable!)).
+
+## BR26-PREREG — Joint accounting + event-law derivation (FROZEN PRE-DATA)
+
+**Status:** derivations + apparatus + ladder frozen; census NOT YET RUN.
+Derivation campaign: conservation decides, nothing is chosen. No
+temperature, Metropolis, threshold, rate, coupling, reservoir, ranking,
+or vacuum-restoration term is introduced (firewall).
+
+**D-no-go (proven pre-data, pinned constructively):** for Q_tot =
+aN + bE + gQ with FIXED coefficients, universal per-event conservation
+(-a - b(1+c) + 2gB = 0 for ALL events) forces a = b = g = 0. Proof: fix
+(G,i,j), vary psi (B ranges over R) -> g = 0; vary c over edges -> b =
+0; remainder -a = 0. Admitting dE_psi does not help: varying one cross
+neighbor field moves only the d-term -> d = 0, reducing to the linear
+case. Corollary (F): NO graph-defined reservoir can satisfy DQ_G = -2B
+(graph side fixed while B varies). Pinned via find_*_violation exhibits.
+
+**Sum-identity (banked, zero selection power):** sum-map contraction
+preserves Sigma psi exactly, hence |Sigma psi|^2; holds for EVERY event
+identically, so it constrains nothing (filed, not a closure).
+
+**H-form (derived, ratios free):** conditional conservation DQ_tot = 0
+holds IFF B_ij = B_*(c) = (a + b(1+c))/2g (affine in c). The FORM is
+derived; the TWO RATIOS (a/g, b/g) are free: nothing in the ontology
+fixes them, and vacuum-tuning them (e.g. to quiesce J2) is firewall
+forbidden. g = 0 special cases: graph-only c_* = -a/b - 1 (an infinite
+discrete family over k >= 0; selecting k = 0 "because J2" is forbidden);
+a-only -> never; all-zero -> trivial. Remark (pinned, not a law):
+Delta(E - N) = -c, i.e. E - N is conserved iff c = 0.
+
+**I-prediction (NEGATIVE):** conservation yields EQUALITY-selection
+(B = B_*, codimension-1, non-firing); the step to a firing
+inequality/direction needs new physics. No deterministic zero-parameter
+(C,N,S) partition follows. If the algebra holds, I returns NEGATIVE and
+the firing/direction problem becomes EVENT-RATE debt (this is a result,
+not a failure).
+
+**G-formula (derived):** Delta E_psi^contract = 2B_ij - 2 Sigma_cross
+(common collapse energy-neutral; pinned vs direct). Sign needs the
+1-neighborhood: B alone is insufficient (B-insufficiency pinned by
+same-B/different-cross exhibit).
+
+**K-prediction:** conservation selects the B_*-level-set among degenerate
+splits (solvable iff B_*(o) <= |s|^2/4); a continuous 1-real-dim family
+remains -> SPLIT-DEGENERACY debt REDUCED, stands.
+
+**L-result:** per-event loss = log2((3^d+1)/2) graph bits + 2 real field
+dims (relative mode); exact reversibility incompatible with (G,psi)-only
+state (many-to-one theorem). INFORMATION-LOSS debt stands.
+
+**J-result (conditional):** seeded-random maximal matching is the unique
+score-free, label-fair (in distribution) conflict resolution (validity /
+maximality / seed-determinism pinned); with non-firing admissibility it
+is VACUOUS. TICK-SCHEDULER debt stands.
+
+**M/N-predictions:** psi = 0 -> B = J = Q = 0 bitwise; pure current ->
+B = 0, |J| = rho^2, no event at generic ratios (separation holds, with
+the filed vacuity caveat: measure-zero firing is quiescent everywhere).
+
+**P-grid (frozen):** J2-L12 families {zero, bonding, current,
+antibonding, random(seed 777)} + ER72-random control (seed 778):
+per-edge (B, J, c) census; reference overlays R0 = (0,0,1) [B_* = 0],
+R1 = (1,0,2) [B_* = 1/4], R2 = (0,1,1) [B_* = (1+c)/2] with eps-grid
+{1e-3, 1e-2, 0.1} sensitivity (LABELED, BR-1H style; nothing selected).
+Predictions: zero all B == 0; bonding all B > 0; current all B = 0 with
+|J| = rho^2; antibonding all B < 0; random/irregular mixed-sign;
+J2 all c = 0.
+
+**V-tripwire (ACCOUNTED bar):** 6 constructed B_* states (3 ratio points
+x {J2-L6, path-8}) must balance |DQ| < 1e-9 through the FULL apparatus
+(contraction_census, not the algebra shortcut).
+
+**Verdict ladder (frozen):** NO-CLOSURE iff V fails (algebra breaks);
+ACCOUNTED iff V + P + no-go re-verification pass (conditional closure
+verified); ADMISSIBILITY iff + ratio-fixing principle found (none on
+the table -> structurally false, documented); EVENT-LAW iff + derived
+partition (I-negative -> false). PREDICTION: ACCOUNTED.
+
+**Six debts (pre-filed with predicted statuses):** NORM-ACCOUNT reduced
+(conditional family, ratios free); ENERGY-ACCOUNT ledgered non-conserving
+(B insufficient); EVENT-RATE stands (non-firing equality; firing needs
+new physics); SPLIT-DEGENERACY reduced stands; INFORMATION-LOSS stands
+(theorem); TICK-SCHEDULER stands (conditional). PREDICTION: BR-3C stays
+BLOCKED on EVENT-RATE (+ ratios); P is the admissible constrained probe.
+
+## BR26-VERDICT — BR26-ACCOUNTED (10/10 gates, predicted by the algebra)
+
+**Campaign:** data/br26_accounting.json (beast run, sub-second census +
+V-tripwire, frozen runner). **Ladder:** V-tripwire holds (6/6
+constructed B_* states balance to <= 6e-14 through the full apparatus)
+-> conditional closure VERIFIED; no-go exhibits re-verified; P families
+match every prediction -> NOT no-closure. No ratio-fixing principle
+exists (vacuum-tuning forbidden) -> NOT admissibility. I returns
+NEGATIVE (equality non-firing, inequality unjustified) -> NOT event-law.
+**= BR26-ACCOUNTED:** accounting is closed; event-rate law remains debt.
+
+**What conservation derives (earned):** the conditional invariant family
+DQ_tot = 0 IFF B_ij = B_*(c) = (a + b(1+c))/2g (form derived, verified
+end-to-end); universal closure PROVEN impossible (linear + E-extended,
+constructive exhibits); graph reservoir PROVEN nonexistent
+(independence); energy ledger EXACT (dE = 2B - 2S_cross, common-collapse
+neutrality, B-insufficiency pinned); sum-identity banked (zero selection
+power, filed honestly); split degeneracy REDUCED to the B_*-level-set
+(solvable iff B_*(o) <= |s|^2/4, continuous family remains).
+Delta(E - N) = -c remark pinned (graph-only c = 0 rule exists for the
+(-1,1,0) ratios — NOT selected: ratios unjustified either way).
+
+**What conservation does not derive (debts):** firing (equality is
+codimension-1, non-firing); direction (contract/split inequality needs
+new physics); the two coefficient ratios (free continuous family);
+reversibility (many-to-one proven: log2((3^d+1)/2) bits + 2 real dims
+per event); scheduling (seeded-random matching derived conditionally,
+vacuous without firing). The overlay sensitivity table demonstrates the
+underdetermination directly: firing fraction swings 0 -> 1 across
+stated (ratio, eps) reference choices — which is why none is selected.
+
+**P-census (algebra validation):** zero all B == 0; bonding all B > 0
+(+1.00); current all B = 0 with |J| = rho^2 saturated; antibonding all
+B < 0 (-1.00); random +0.49/-0.51 mixed; irregular mixed with c in
+{0..4} (107/115/49/13/3); J2 all c = 0 (triangle-free, data).
+
+**Six debts (final statuses):** NORM-ACCOUNT reduced (conditional
+family, ratios free); ENERGY-ACCOUNT ledgered non-conserving;
+EVENT-RATE stands; SPLIT-DEGENERACY reduced stands; INFORMATION-LOSS
+stands (theorem); TICK-SCHEDULER stands (conditional). **BR-3C stays
+BLOCKED on EVENT-RATE (+ ratios).** The constrained P-census above is
+the admissible probe until firing physics is earned. M/N hold with the
+filed vacuity caveat (measure-zero firing is quiescent everywhere;
+zero-field and pure-current quiescence verified in the letter).
+
+## CONS0-PREREG — Joint graph-field invariant census (D14-CONS0, FROZEN PRE-DATA)
+
+**Status:** apparatus + ladder frozen; campaign NOT YET RUN. Accounting
+foundation for BR-2.6: census all exact conserved quantities of the
+frozen graph-field system and test whether local contraction/splitting
+admits closed joint accounting. Derives NO event rate, decides NO
+event occurrence, runs NO coupled dynamics.
+
+**Frozen inputs (read-only, byte-identical):** BR-2.5 tip 3ea8cf1
+(contraction.py + ballistic.py + backreaction.py + phase.py +
+formation.py elist_window + all four test files: the contraction
+primitive, dN=-1, dE=-(1+c), sum/avg/norm maps, 2B wiring,
+3^d covers, R_U=1); EM-0 tip 3128ff9 (continuum.py + driven.py +
+pyproject xdist + closure pin + both test files: continuity,
+dE/dA=-2JB, Bloch, quadrature). Banked verdicts consumed:
+BR25-ONTOLOGY (15/15), EM0-BACKREACTIVE (14/14+8/8),
+BR2-QUADRATURE, BR1-FLAT.
+
+**Frozen conventions:** H(G)=-A(G), J=1, hbar=1 (P1/EM-0 locked);
+simple connected graphs; primary field map sum (avg/norm controls
+only); tolerances: integers bitwise, small-system algebraic
+identities 1e-12, energy/norm legs 1e-9, Krylov conservation 1e-9.
+No new reservoir/weights/constants/thresholds (CONS-0 firewall).
+
+**CONS-0A census (frozen claim):** dQ_M/dt=i<psi|[H,M]|psi> (pin
+formula vs finite-diff 1e-6); conserved <=> [H,M]=0. Generic:
+norm (I), energy (H), H^2 moment, spectral P_+/P_-/P_0 (all
+commute; pinned under evolve_fixed 1e-9). Regular-conditional:
+uniform-mode power |S|^2, S=sum psi ([H,uu']=0 <=> regular;
+pinned both directions). NEGATIVE control: sublattice imbalance
+Gamma does NOT commute ({A,Gamma}=0 pairs spectrum instead);
+pinned non-conserved. J2-specific: Bloch sector weights W_k
+(P_k via translation character sum; [H,P_k]=0 verified
+computationally) and sheet-involution charge Q_J, J:(x,y,b)->
+(y,x,1-b) ([A,J]=0 verified computationally; pure sheet-swap is
+NOT a symmetry, pinned). Only generic/local candidates are
+eligible for fundamental accounting.
+
+**CONS-0B classification (frozen claim):** norm LOCALLY conserved
+(EM-0 continuity re-pinned 1e-9). Energy with node density
+e_i=-sum_{j~i} B_ij and canonical edge-local current (antisym
+part of dB_ij/dt, dB_ij/dt=Im((Apsi)*_i psi_j-psi*_i(Apsi)_j)):
+symmetric-part obstruction pinned nonzero (>1e-6) on a frozen
+counterexample => GLOBAL-ONLY (total dE/dt=0 pinned; no
+alternative local current proposed -- firewall). H^2 moment and
+|S|^2 GLOBAL-ONLY by construction (no edge-local ansatz / no
+node density; totals pinned). Bloch/J SECTOR (no local density
+claimed). Gamma NOT-CONSERVED.
+
+**CONS-0C ledger (frozen formulas):** dN=-1, dE=-(1+c),
+dQ_psi=2B_ij (sum map), dE_psi=P1+P2+P3+P4 with P1=+2B_ij
+(consumed relation), P2=-2(sum_{X_j}B_im+sum_{X_i}B_jm)
+(merged-amplitude cross bonds, X exclusive neighborhoods),
+P3=0 (common-neighbor collapse energy-neutral, verified not
+assumed), P4=0 (external edges untouched, verified). HARD GATE:
+parts sum == direct before/after dE_psi (1e-9) on every
+campaign event. Components preserved (pinned). Every 0A
+invariant rowed before/after/delta; d|S|^2=0 pinned 1e-12
+(uniform mode is event-closed for ALL states -- load-bearing).
+
+**CONS-0D/E (frozen pins):** 2B identity on random / bonding /
+pure-current / antibonding / zero-spike fields x wall of
+substrates (1e-12); phase table (0:+,-; pi/2:0,sat; pi:-;
+3pi/2:0,-sat) exact per edge (1e-12).
+
+**CONS-0F/G no-go (frozen theorem):** for fixed graph event,
+dQ_tot=-a-b(1+c)+2gB+d*dE_psi. Lemma S1 (phase sweep at zero
+elsewhere): dQ,dE trace 2rho^2 cos (pinned 1e-12). Lemma S2
+(vary neighbor field at fixed edge state): dE varies at fixed
+dQ (range>0 pinned). THEOREM: dQ_tot==0 for all states =>
+g=d=0, then -a-b(1+c)==0 for all c in domain => trivial if
+>=2 c-values; on fixed-c domains the 1-dim decoupled family
+E_G-(1+c)N (c=0: cycle rank). COROLLARY: no field-involving
+linear invariant closes; E-N closes bitwise on c=0, misses
+by exactly -c elsewhere. Coefficients solved algebraically,
+never fitted.
+
+**CONS-0H (frozen formulas):** cycle rank xi=E-N+ncomp,
+dxi=-c (bitwise); triangle count T, dT=-c-r+q with
+r=#{double-preimage mergers}, q=#{created} (both defined by
+unordered-pair census on N(k); bitwise); degree-square sum
+D2, dD2=(di+dj-2-c)^2-di^2-dj^2+sum_C(1-2dm) (exact).
+Closure test per candidate: field pair, same graph event,
+dQ_psi differs while dQ_G identical (bitwise) => NO joint
+closure (pinned per candidate). M=E+3T corollary filed.
+
+**CONS-0I prediction:** ENERGY-ACCOUNT DEBT. Same separation
+argument for dE_psi: pinned field pair varies dE at fixed
+graph; candidates E_G, xi, T, D2 all fail (residual range>0
+pinned each).
+
+**CONS-0J criterion (frozen):** LOCAL <=> delta computable
+from N[{i,j}] data alone, pinned by remote-mutation
+invariance of ALL deltas. xi-closure on c=0: LOCAL. |S|^2:
+event-closed but GLOBAL (S moves under remote mutation,
+pinned).
+
+**CONS-0K formulas (frozen):** split cover (A,B), c'=|A cap B|:
+dN=+1, dE=+(1+c') (bitwise); equal policy: dQ=-|k|^2/2,
+dE=-|k|^2/2-sum_{A cap B}B_km+sum_{A cup B}B_km;
+norm policy: dQ=0, dE/(-2)=|k|^2/2+(sum_A+sum_B)B_km/sqrt2-
+sum_{A cup B}B_km. All gated vs direct (1e-9). Record
+inverse restores graph bitwise (banked); field iff a=b.
+
+**CONS-0L counts (frozen):** enumerate 3^d covers x
+{equal,norm} on frozen small-d events. Q1: #{d xi=0}==2^d
+(triangle-free G'); Q2: #{(d xi,dQ)=(0,0)}==2^d (k!=0,
+norm policy); Q3: #{exact full restoration}==0 for a!=b,
+==1 for a=b. Expectation: constrains, never unique =>
+DEGENERATE (filed, not SELECTIVE).
+
+**CONS-0M debts:** conservation debt = max|dQ|,max|dE|
+residuals over campaign (numbers filed); information debt =
+log2(#admissible covers)+|a-b|^2/2 on pinned examples
+(numbers filed); gate: info-debt>0 where accounts close
+(scalar conservation != reversibility).
+
+**CONS-0N prediction:** zero field ALLOWED (all field
+deltas bitwise 0; ledger consistent on c=0) => conservation
+does not explain vacuum quiescence; event law still owed.
+
+**CONS-0O prediction:** norm account BLIND (dQ=0 both
+sectors, pinned); energy account DISTINGUISHES (dE=0 at
+psi=0 vs dE=-2 sum_X B^nonedge !=0 at phi=pi/2, pinned
+to formula).
+
+**CONS-0P substrates (frozen):** j2-L6, square-torus-6,
+ring-24, path-12, er-24-seed7-p0.25, handbuilt-diamond
+(c=1 AND c=2 edges guaranteed), collapsed-mini (J2-L8
+r<=2 ball via frozen contract_edge, lowest-elist order).
+Same code path everywhere (C6); xi-closure holds <=> c=0
+(gated per substrate: d xi+c==0 bitwise).
+
+**CONS-0Q grid (frozen):** substrates x fields {zero,
+uniform, stagger phi in {0,pi/2,pi,3pi/2} (bipartite only),
+random-seed12345, spike-on-i} x 2 frozen edges each
+(elist[len//3], elist[2*len//3]; handbuilt: the c=1, c=2
+edges) = ~84 contraction events; every event compares
+ALL analytic deltas vs direct; split census on ring-24 +
+handbuilt events (d(k)<=4); 0A/0B pins on ring-8/J2-L4/
+path-8/er-12-seed3. data/cons0_ledger.json via
+scripts/run_cons0_campaign.py (mp pool); gates applied by
+scripts/analyze_cons0.py. NO fitting after opening data.
+
+**Controls (frozen bars):** C0 vendored contraction tests
+pass + dN/dE/2B re-pinned; C1 vendored continuum tests
+pass + continuity re-pinned; C2 global-phase ledger
+invariance 1e-12; C3 endpoint-exchange identical deltas +
+edge-sets; C4 conjugation identical deltas, B->B/J->-J;
+C5 remote-mutation invariance (0J); C6 same-tolerance
+completion on all substrates.
+
+**Verdict mapping (frozen):** CLOSED requires a
+field-involving non-decoupled invariant closing exactly +
+locally for arbitrary states (expect NO). PARTIAL =
+>=1 independently-defined account closes (xi on
+triangle-free; |S|^2 event-leg) AND norm/energy joint
+no-go proven+pinned (expect YES). NO-CLOSURE = nothing
+closes. SELECTIVE additionally requires conservation to
+forbid some contraction events (expect NO: 0N allows
+zero-field; splits DEGENERATE). Expected: CONS0-PARTIAL.
+Handoff: BR-2.6 blocked from a conservation-derived
+contraction law; NORM-ACCOUNT + ENERGY-ACCOUNT + EVENT-RATE
++ SPLIT-DEGENERACY + INFORMATION-LOSS debts filed.
+
+**CONS0-PREREG clarification (pre-data, no campaign run yet):** Q3
+counts (cover,policy) pairs with exact full restoration: the record
+cover is unique per policy, so Q3 = #{policies restoring the field}
+= (1 if a==b else 0) + (1 if a==b==0 else 0): nonzero uniform -> 1,
+zero field -> 2 (both policies fix (0,0)), a!=b -> 0. Likewise Q2 =
+#{disjoint covers} x #{policies with dQ==0} = 2^d x (1 + (1 if k==0
+else 0)): norm policy always qualifies; equal qualifies iff k==0
+(zero field, phi=pi stagger). Analyzer implements these exact
+expectations per event; the prereg's "==1 for a=b / ==2^d" shorthands
+are the nonzero-uniform / k!=0 cases.
+
+## CONS0-AMENDMENT-1 — sheet-swap symmetry erratum (pre-campaign-data)
+
+The prereg claimed pure sheet-swap S:(x,y,b)->(x,y,1-b) is NOT a J2
+symmetry. The apparatus refuted this before any campaign data: [A,S]
+= 0 exactly (bitwise). Root cause: the b=1 generator swap (u,v)->
+(v,u) permutes the generator SET {(+-1,0),(0,+-1)}, so every edge
+maps to an edge. Correction (strictly stronger census): BOTH S and
+J are J2 involution symmetries (Q_S, Q_J conserved, pinned); the
+symmetry negative control is a seeded random permutation ([A,P]!=0
+pinned). Census table gains the sheet_S row (j2-symmetry class).
+Verdict mapping unaffected (both remain J2-specific, ineligible for
+fundamental accounting). Companion fixes (same commit, apparatus
+stage): quad_rate_findiff uses evolve_fixed n_steps=2 (the frozen
+API needs >=2 time points); energy-rate test ditto.
+
+## CONS0-VERDICT — PARTIAL (22/22 gates green, executed on beast)
+
+**Campaign:** scripts/run_cons0_campaign.py on beast (96-CPU, mp pool);
+data/cons0_ledger.json: 88 contraction events (7 substrates x fields x
+2 frozen edges; c in {0 x72, 1 x12, 2 x4}) + 576 split rows (24 groups
+x 3^d covers x {equal,norm}, d<=4) + S1/S2 separation + 0A/0B pins +
+C2-C5 controls. scripts/analyze_cons0.py: 22/22 gates green. Matches
+the frozen prereg expectation exactly; no post-data fitting (pre-data
+tooling repairs only: exact phi record, split formula serialization,
+pins-task arithmetic, backward findiff leg).
+
+**Ledger (every analytic delta gated vs direct before/after):**
+N: fixed-G n/a (graph); d=-1; split +1. E_G: n/a; d=-(1+c);
+split +(1+c'). Q_psi: yes (generic, LOCAL); d=+2B_ij; split
+-|k|^2/2 (equal) / 0 (norm). E_psi: yes (generic, GLOBAL-ONLY);
+d=P1+P2 verified; split formula verified. H^2 moment, spectral
+W: yes (generic); deltas direct-filed. |S|^2: regular-only;
+d=0 exact (event-closed, GLOBAL). Bloch W_k, sheet Q_J/Q_S:
+J2-sector; sectors destroyed by event (filed). xi=E-N+ncomp:
+n/a; d=-c; split +c'. T: n/a; d=-c-r+q; split direct-filed.
+D2: n/a; exact formula; split direct-filed.
+
+**0A census pinned (ring-8/J2-L4):** generic norm/energy/H2/
+spec+-/0 all commute (Krylov 1e-9); regular-conditional |S|^2
+both directions; Gamma negative ([A,Gamma]!=0, non-conserved);
+J2 Bloch + sheet J + sheet S (AMENDMENT-1) sector symmetries.
+**0B:** norm LOCAL (continuity 1.1e-16); energy GLOBAL-ONLY
+(symmetric-part obstruction 0.318 > 1e-6; total dE/dt=0 at
+8.3e-17); H^2/|S|^2 GLOBAL-ONLY; Bloch/J/S SECTOR; Gamma
+NOT-CONSERVED. **0C:** dN/dE bitwise; dQ=2B; dE=P1+P2 with
+P3=P4=0 (max 2.8e-17 / 0); parts==direct 2.2e-15; components
+preserved. **0D/E:** 2B wall 1e-12; phase table exact per edge
+1e-12. **0F/G no-go proven+pinned:** S1 traces 2rho^2 cos
+(1e-12); S2 varies dE at fixed dQ (range 0.5); field probes
+fail (max|lin_0010|=0.286, max|lin_0001|=0.667); gamma=delta=0
+forced; fixed-c domains admit only decoupled E_G-(1+c)N (c=0:
+cycle rank); lin_m110==-c bitwise. **0H:** dxi=-c bitwise
+(LOCAL via C5); dT=-c-r+q bitwise (K4 (2,1,0)->-3; C4
+(0,0,1)->+1); dD2 exact; joint closure fails per candidate
+(zero/uniform pair varies dQ at fixed graph, all substrates).
+Triangle census: J2-L6 contractions create q=21 each (c=0);
+collapsed-mini q in {16,21}; er-24 q in {5,6}. **0I:**
+ENERGY-ACCOUNT DEBT (E_G/xi/T/D2 all fail, residual range>0).
+**0J:** xi-closure LOCAL (C5 2.8e-17); |S|^2 GLOBAL (S moves
+remotely) + evolution-fragile (regular-only). **0K:** split
+formulas gated 1e-9; record inverse restores graph bitwise,
+field iff a=b; components preserved. **0L:** Q1=2^d, Q2=2^d
+(x2 if k==0: zero + phi=pi stagger), Q3=(a==b)+(a==b==0) --
+all 24 groups exact => DEGENERATE (constrains, never uniquely
+selects; Q3=0 for a!=b). **0M:** conservation debt max|dQ|=
+0.286, max|dE|=0.667; info debt: >1 admissible (dxi,dQ)=(0,0)
+cover in every group (e.g. log2(4)=2 bits at d=2) + |a-b|^2/2
+mode erasure. **0N:** zero-field contraction ALLOWED (field
+deltas bitwise 0; xi-ledger consistent on c=0) => conservation
+does not explain vacuum quiescence. **0O:** norm BLIND (dQ=0
+both sectors); energy DISTINGUISHES (dE=0 at psi=0 vs
+dE=-2 sum_X B^nonedge !=0 at phi=pi/2, pinned to formula).
+**0P:** all 7 substrates complete, same code path (C6);
+xi-law holds <=> c=0 per substrate (dxi+c==0 bitwise); no
+closing account uses J2 coordinates => universal statements
+stand, J2 rows filed J2-specific. **Controls:** C0/C1 vendored
+suites green (beast full suite; count in CHANGELOG); C2
+2.2e-16, C3 0, C4 (B same / J flip), C5 2.8e-17.
+
+**Verdict: CONS0-PARTIAL.** Closing accounts: cycle rank xi on
+triangle-free domains (LOCAL, exact) + uniform mode |S|^2
+event-leg (exact, GLOBAL + evolution-fragile). No
+field-involving linear invariant closes (no-go proven); energy
+account open. No contraction event forbidden by conservation
+(0N allows; splits DEGENERATE) => not SELECTIVE.
+
+**Debts filed:** NORM-ACCOUNT (max|dQ|=0.286), ENERGY-ACCOUNT
+(max|dE|=0.667), EVENT-RATE, SPLIT-DEGENERACY (Q3<=2, 0 for
+a!=b), INFORMATION-LOSS (>=2 covers + mode erasure).
+
+**Handoff:** BR-2.6 blocked from claiming a conservation-derived
+contraction law; may consume the xi domain constraint + split
+counts but must carry all five debts. The model owes a
+reservoir/principle for norm/energy event accounting.
+
+## SYM0-PREREG — Physical state space and equivalence census (FROZEN PRE-DATA)
+
+**Status:** apparatus + semantics + state battery + observable families +
+gates + verdict ladder frozen; campaign NOT YET RUN. SYM-0 accepts
+RAND0-MEASURE-DEBT (uniform counting is meaningless until "possibility"
+is physically defined) and the frozen fixed-geometry ontology X = (G, psi)
+with i dpsi/dt = -A(G) psi (H = -A, J = 1, hbar = 1, P1/EM-0 locked).
+It classifies candidate transformations into representation redundancy
+(X equiv_phys Y: no observable distinguishes), physical symmetry
+(Y = gX: distinct states, corresponding observables), time reversal
+(Theta: relates histories, not a redundancy), operational equivalence
+(X ~_O Y under a specified observer/channel family), and accidental
+degeneracy (shared readouts that do not survive the full census).
+SYM-0 introduces NO probability measure, NO gauge structure, NO new
+dynamics, NO hidden state, NO coordinate physics, and tunes NO
+equivalence class to simplify RAND.
+
+**Frozen inputs (read-only, sha256-verified byte-identical across beast
+sibling tips):** zero0-ee5c apparatus (ballistic/backreaction/
+conservation/continuum/contraction/driven/formation+delta/malus/obs0/
+obs0r/obs1/obs1_reveal/phase/potential/quot/slit/tunnel/vac0 + tests +
+xdist config), u0-7069 (accounting/stability/u0/ug/ug_sync + tests),
+rand0-1621 (rand0 + test), field0-960b/coh-be8d (coherence + test).
+Banked theorems consumed, never re-derived: [H,S] = 0, H P_- = 0,
+symmetric sector = square walk at 2J (MALUS-0); sector-mechanism
+capacities + POT far-field (QUOT-0, read-only replay of
+~/quot-ea4c-data + ~/quot-bank/obs1_blind.json where cited);
+admissible sets + stabilizer/orbit/measure apparatus (U0/RAND-0);
+Theta = reverse-slice + conjugate convention (TIME-0, state-level
+identity re-derived here from real-symmetric H); local gauge
+falsified (EM-1: global-phase redundancy implies NO local gauge).
+
+**SYM-0A transformation inventory (frozen, all psi-maps explicit):**
+R node relabeling (frozen perms: reversal + seeded shuffle seed=11,
+acts on (G,psi) together, order rebuilt sorted); Aut graph
+automorphisms acting as psi pushforward on FIXED labeled G (J2:
+translate_perm(6,1,0), translate_perm(6,0,1), rot90_perm(6) from
+potential.py, each verified by is_auto_ok; ring-12: rotation by 1;
+tiny graphs: GraphMatcher-enumerated Aut, first 3 non-identity in
+sorted order); T quotient translation (J2 cell +(1,0) sheet-preserving
++ relational two-packet landmark protocol, see G); S sheet exchange
+(malus sheet_swap_matrix pushforward); U1(alpha) global phase on grid
+alpha in {pi/4, pi/2, pi, 3pi/2}; C conjugation; Theta state part =
+conjugation + history check Theta U(t) Theta^-1 = U(-t) on frozen
+(t, state) grid; Sign = U1(pi) (NOT independent); Scale a in {0.5,
+2.0}; Shift c in {0.1, 0.1j} uniform; SheetPhase beta in {pi/2, pi}
+on sheet 0 only; SectorSign P_+ psi - P_- psi (conjectured = S,
+pinned as theorem-or-surprise). A transform is well-defined iff its
+is_*_ok precondition passes (Aut verified, J2-only maps gated on
+substrate); ill-defined applications are recorded, never coerced.
+
+**State battery (frozen, deterministic):** substrates J2-L6 (N=72,
+headline), J2-L4 (N=32, cross-check), ring-12, path-12 (open-boundary
+control), square-torus-4 (N=16), tiny {k2, triangle, square, star4,
+path4} (exact-Aut + exact-iso scope). Fields: zero, uniform,
+antibonding (bipartite stagger), current (i-stagger, exact B = 0),
+sheet-anti (J2 sign flip on b=1), packet (gaussian k != 0: J2-L6
+coarse coords r0=(1,1) k=(0.8,0.0) sigma=1.0 periods=(6,6); ring-12
+r0=(3.0,) k=(1.2,) sigma=1.5 periods=(12,)), standing (packet(k) +
+packet(-k) normalized), generic (field_random seeds 0, 1 normalized).
+U0 S1..S8 / RAND-0 T1..T8+U1..U8 consumed read-only by reference for
+stages U/V (no copies diverged).
+
+**Observable families (frozen):** O1 local scalar {rho vector, ipr};
+O2 local relational {B edges, J edges, E_psi, energy_density, sheet
+weights (J2), uniform-mode power, spectral branch weights}; O3 dynamic
+local {one-step response ||psi(dt)-psi0|| dt=0.1, bond-rate-matrix norm
+(CONS-0B), directional_order at t in {0, 0.5}, d_trace summary over
+T=2.0/dt=0.1 window}; O4 long-range transport {POT static response via
+driven.steady_predict with frozen source node order[0] s=1.0 and
+omega = emin - 1.0 per substrate (emin = min H eigenvalue, recorded):
+profile + (J2) pot_sheet_asymmetry; wave channel: TV D_B on frozen
+receiver shell + spectral arrival proxy on J2-L6; diffusion sector
+norms (quot.diffusion_sector_norms)}; O5 OBS observer {banked replay
+only: QUOT-0 capacity verdicts + OBS1-QUOTIENT verdict strings cited
+read-only by file+hash, plus small-scale arrival_times_wave pairs on
+J2-L6 (N=72 dense exact)}. O5 scope cap filed: no big-graph OBS
+recomputation (2.3G-22G banks are replayed, not rebuilt).
+
+**Witness (frozen, SYM-0S):** per-observable distances with frozen
+normalization (vector: max-abs; scalar: abs; edge-dict: max-abs over
+sorted edges; profile: max-abs relative to max bulk |phi|);
+D(X,Y) = max over the preregistered family. Bars: FP_ZERO = 1e-9
+(exact-algebra claims), KRYLOV = 1e-9 (evolution identities),
+ARRIVAL = wave-grid step (arrival comparisons). D = 0 reported only
+as "indistinguishable under tested observables".
+
+**Stage gates (frozen):** HARD (campaign stops red): E-relabel
+D(O1..O4) = 0 all battery cells (implementation-leakage gate);
+D-phase D(O1..O4) = 0 all alpha x battery; T-red-preservation
+U(t)X equiv_red U(t)Y to KRYLOV over horizon T=2.0/dt=0.1 for all
+redundant pairs; Theta-identity ||Theta U(t) Theta^-1 - U(-t)|| = 0
+to KRYLOV on frozen grid; SectorSign=S identity to FP_ZERO (J2
+battery); N/O integer identity |O| = |G|/|Stab| exact; U-covariance
+(R/Aut/U1 exact marks covariance, UB/UL/UEc). MEASURED (filed, not
+gated): C-visibility conditional on Im content (J != 0 states must
+show D > 0 via J; real states filed C-invisible-under-O1..O4); F/G
+shape-invariant + location-moved (COM shift = translation vector to
+FP grid bar) + relational landmark protocol outcome; H coarse-rho
+identical + sheet-resolved rho moved + banked remote-blindness replay;
+K exact a^2 laws + normalized-shape identity (NOT redundant: absolute
+readouts move; norm-sector verdict pending VAC-FIELD, filed OPEN);
+L uniform-mode energy E_0 = -z measured + shift non-stationarity
+(U(t)c != c) + energy non-invariance; M SheetPhase(pi/2) locally
+visible (D > 0) + sector weights move; Q/R class-count hierarchy
+monotone non-decreasing O1 -> O5 on the frozen probe-pair battery;
+V recount table (directed vs undirected vs iso-class vs orbit vs
+red-quotient) + debt-survival boolean; W X1-vs-X2 uniform-measure
+difference boolean; X phase-quotient metric d_FS (redundant pairs 0
+to FP_ZERO, dynamics-preserving to KRYLOV, triangle inequality on
+frozen triplets). No gate is tuned after opening data; amendments
+require a dated SYM0-AMENDMENT note pre-rerun.
+
+**Verdict ladder (frozen):** SYM0-CLOSED = all HARD gates green +
+every MEASURED cell filed with a classification (redundancy /
+symmetry / time-reversal / operational / accidental-or-OPEN);
+SYM0-PARTIAL = HARD green but >= 1 MEASURED cell inconclusive
+(filed with the blocking reason); SYM0-OPEN = any HARD gate red
+(stop, file leakage-or-law-surprise, no verdict). Redundancy
+admission rule: generators {R, U1} admitted ONLY if their D + T
+gates pass; {T, Aut, S, C} are NOT admitted unless proven
+representational (default: physical/operational). Scale/Shift are
+never redundancy candidates (absolute readouts move by
+construction). Quantum-mechanical interpretation of the
+projective quotient is FORBIDDEN (no Born rule import; d_FS is
+classical state-space geometry).
+
+## SYM0-AMENDMENT-1 — Instrument corrections (2026-10-02, PRE-RERUN)
+
+First-look outcome (beast, 1973 cells, ledger archived beast-side as
+data/sym0_ledger_look1.json, superseded): SYM0-OPEN with H-D-phase
+(19 U1 cells, O3-only offenders: com/width/dtrace_angle) and
+M-X-fs-zero (1.49e-8) red. All other gates green, including the exact
+physics underneath both failures (edge B/J/E U1-invariant to fp,
+M-B-cov-U1 4.7e-16, H-T-red-U1 1.1e-14/8.9e-13). Both failures are
+representation/fp-scale instrument defects, corrected here WITHOUT
+changing any physics gate threshold except the derived arccos floor:
+
+(a) S1-valued O3 readouts: dir_angle, dtrace_angle, com on periodic
+axes, and width about com are ill-defined at symmetric points (zero
+flux: nm = ||J_net|| ~ 1e-17 fp residue -> atan2 arbitrary up to 2pi;
+uniform rho: circular resultant |z| ~ 0 -> circular-mean angle
+arbitrary, com jumps O(L)). Correction, applied UNIFORMLY to all
+pair/dyn/hierarchy comparisons: circular metrics (banked
+potential.ang_diff for angles; per-axis min(|d|, L-|d|) for com) +
+definedness conditioning (angle iff max(nm_x, nm_y) >= COND_FLOOR;
+com axis iff max(R_x, R_y) >= COND_FLOOR; width iff com fully
+defined; undefined-on-both contributes 0 and is filed). COND_FLOOR =
+1e-12 (~100x above the single-state fp-noise scale N*eps ~ 2e-14,
+1e6 below O(1) signals). Tuning-hazard control (frozen): the
+ambiguity band [1e-12, 1e-6] must contain ZERO conditioning values
+across all pair+dyn cells (new gate M-INST-band, HARD-adjacent: red
+-> SYM0-PARTIAL with the tuning hazard realized, never silently
+passed). Straddle cases (defined vs undefined across a pair) are
+excluded from distance and RECORDED (n_straddle, filed).
+
+SYM0-AMENDMENT-1c (2026-10-02, PRE-RERUN-2): A1-rerun look found 2
+residual NaN distances (zero vs shifted width on path-12): the max-rule
+(max(cond) >= floor -> compare) compares a defined value against an
+UNDEFINED one on straddles. Correction: comparison requires BOTH
+defined (min-rule); straddles contribute 0 and are recorded in
+n_straddle. U1/R pairs are unaffected (conditioning fp-identical on
+both sides); other pairs can only lose spurious splits. NaN is now
+impossible by construction (zero-field com/width always excluded);
+M-INST-no-nan proves it.
+
+## SYM0-VERDICT — Physical state space and equivalence census (POST-DATA)
+
+**Verdict: SYM0-CLOSED** (beast, 1973 cells, 96 workers, wall 8.1s;
+ledger data/sym0_ledger.json 1.0MB + data/sym0_verdict.json committed;
+look1/look2 ledgers superseded, archived beast-side). Hard gates 8/8
+green, all MEASURED cells filed, both instrument gates green
+(M-INST-band 0 ambiguity hits with 48 filed straddles; M-INST-no-nan
+0 tokens). No probability measure introduced; no dynamics modified.
+
+**The physical state space (earned):** the representation-redundant
+descriptions of X = (G, psi) are EXACTLY node relabelings (R: H-E
+120 cells at 0.0, negative control without coords transport fails at
+D = 26.76, proving the gate bites) and global phase (U1: H-D 300
+cells max 7.9e-13; Sign is the U1(pi) alias by construction). Both
+are dynamics-preserving (H-T: R traj 0.0, U1 traj 1.1e-14). The
+representation-independent microscopic state space is therefore
+X_red = X / (relabeling x U(1)); at fixed nonzero norm the field
+sector is the projective quotient with metric d_FS (M-X: redundant
+pairs 0 to 1.5e-08 under the 1e-7 arccos floor, dynamics-preserving
+to 2.2e-15, triangle verified). No Born rule is attached (firewall
+kept). Everything else tested is NOT redundancy:
+
+**Symmetry (distinct states, corresponding observables):** graph
+automorphisms (Aut: 11/11 packet cells move COM, shape/energy
+invariant), quotient translations (T: landmark protocol rel_AO =
+(3,3) vs rel_BO = rel_TAO = (4,3), TA = B to 0.0: translated-both is
+relationally identical, translated-system is distinguished),
+sheet exchange (S: intertwines dynamics to 0.0; coarse rho identical,
+sheet-resolved rho moved, maxD 0.50). SectorSign is PROVEN equal to S
+(18 cells, 3.9e-17), not an independent transformation.
+
+**Time reversal:** Theta U(t) Theta^-1 = U(-t) to 1.7e-14 (87 cells);
+J-odd, rho/B-even. Relates histories; not a redundancy.
+
+**Conditional distinguishability:** conjugation is visible iff J != 0
+(29/29 J-carrying pairs D > 0 via J; 31/31 J-absent pairs D = 0,
+including real standing/uniform fields). Never quotient psi ~ psi*.
+
+**Physical, not redundant:** amplitude scaling (exact a^2 laws, defect
+0.0; normalized shape identical but absolute readouts move; norm
+sector stays OPEN pending VAC-FIELD), additive shift (non-covariance
+defect >= 0.049; uniform mode is an eigenmode with E_0 = -z, hence
+non-stationary, pinning the no-zero-mode result), sheet-relative
+phase (32/36 visible; 4 invisible are the zero-field cells, exact).
+
+**Operational hierarchy (distinction lattice, not a chain):** probe
+battery classes O1/O2/O3 = 6/11/10 (current vs current-C split at O2
+via J and remerge at O3 where flux angle is undefined: families are
+NOT nested, so counts need not be monotone — the prereg monotonicity
+expectation is corrected); O4/O5 = 1 class (G-channels, psi-blind by
+banked construction: POT/wave/arrival/diffusion are properties of
+(G, source), constant on fixed G). Packet-C is IDENTICAL to packet-k
+(banked prep pin), correctly merged at every family.
+
+**Transition covariance (SYM-0U):** A(gX) = gA(X) exact for R/Aut/U1
+across UB/UL/UEc (348 cells); S-covariant (24/24); conjugation leaves
+all U0 marks invariant (B/L are conjugation-even, 87/87); scale
+preserves all marks (87/87: signs survive a^2 rescaling even though
+absolute readouts move — filed nuance); shift preserves 55/87.
+
+**RAND handoff (SYM-0V/W, read-only):** recount over T1..T8+U1..U8
+reproduces the multiplicity dependence under every defensible grain
+(e.g. T8 d=2: directed 10 vs undirected 6 vs iso 6 vs orbits 5 vs red
+6; U2/U4 d=8: 6562 vs 3282 with iso/stab capped as preregistered):
+24 differing grains across 16 states -> debt_survives = True. The
+RAND0-MEASURE-DEBT (replayed verdict, sha256 6b2991cd...) is therefore
+NOT an artifact of counting redundant descriptions: it survives the
+quotient to actual physical states. No uniform measure is endorsed.
+
+**Banked replay (read-only, hashes in ledger):** QUOT sector algebra
+exact at L=28 (comm/anti/intertwining 0.0), U0-INCOMPLETE, RAND0-
+MEASURE-DEBT, CONS-0 ledger all replayed by hash. ZERO-0 apparatus
+unavailable (mid-flight, filed); RESPONSE-0 apparatus exists but is
+pre-data unvalidated (resp0-eef4) and was NOT consumed; O3/O4
+dynamics + POT + driven pinning cover response readouts instead.
+
+**Debts filed (not closed):** norm-sector ontology (VAC-FIELD);
+O5 big-graph OBS recomputation (scope cap kept); operational sheet
+blindness at scale (banked QUOT-0, replayed not rebuilt).
+
+(b) M-X-fs-zero bar 1e-9 -> 1e-7: arccos evaluation floor at unity
+(arccos(1-eps) ~= sqrt(2eps); eps ~ 2e-16 -> ~2e-8 observed
+1.49e-8). Bar 1e-7 gives 5x headroom and stays 1e7 below O(1)
+signals. Derived from IEEE arithmetic, not fitted to data. The
+frozen d_FS formula itself is UNCHANGED, as are all other bars.
+
+(c) First look also exposed 243 masked NaN distances (com/width on
+symmetric fields: max() silently ignores NaN, so gates passed
+vacuously on those readouts). The conditioning in (a) removes all
+undefined comparisons by construction; new gate M-INST-no-nan
+(HARD-adjacent like M-INST-band: red -> SYM0-PARTIAL) requires zero
+NaN tokens across pair+dyn witness/per-readout records (legitimate
+arrival-None inf distances remain allowed).
+
+Also filed from first look (interpretation, no gate change): H-E /
+H-T-red-R pass at EXACTLY 0.0 by construction (consistent
+relabeling (G, order) leaves all order-indexed arrays bit-identical;
+only label-keyed records move and transport exactly) — legitimacy
+proven by negative control (untransported coords -> D = 26.76 across
+O2/O3/O4); M-QR O4/O5 show 1 class because they are G-channels
+(psi-blind by banked construction), so the psi-hierarchy is O1..O3
+and the O1->O5 monotonicity expectation is corrected to O1..O3
+monotone + O4/O5 constant-on-fixed-G.
+
+## HIDDEN-0-PREREG (FROZEN pre-data; this commit predates ALL beast HIDDEN-0 runs)
+
+Mission: determine whether J2's non-transporting antisymmetric sector stores
+locally consequential microscopic information while remaining operationally
+hidden at long range. Separation under test: D_local > 0 with D_remote -> 0.
+
+FROZEN LAW: H = -A(J2), J = 1, hbar = 1. No geometry dynamics, no structural
+events, no stochastic dynamics, no sources except banked protocols as controls.
+
+FROZEN INPUTS (read-only, byte-identical vendor, md5-verified across tips):
+P1-ballistic + MALUS + QUOT + OBS0 (QUOT tip 97765b0, QUOT0-OPERATIONAL);
+FIELD0 + coherence + formation(elist_window) (FIELD tip b9dea0c,
+FIELD0-LINEAR + FIELD0-APPARENT); continuum + backreaction + potential
+(EM0 tip 3128ff9, EM0-BACKREACTIVE). Consumed bars: QUOT-0 remote fp bar
+1e-9, ratio bar 1e-6, load shells (2,4,6), wave horizon T = 16/dt = 0.05,
+staggered eps = 0.1 (ONE value), POT omega = -8.5; FIELD-0 witness
+I = max(eps,dP1,dP2,clin,dE) with I = 0 bar 1e-6; EM-0 rho/B/J with the
+factor-2 current J = 2Im (pinned in test_hidden). BR-2.6 UNAVAILABLE at
+prereg time (BR branch holds BR-0 only): 0R uses the BR-0 virtual ledger
+read-only, no event-rate interpretation. VAC-FIELD-0 finished
+(VACFIELD0-JOINT): 0S reconstructs VPLUS/VPI/VMINUS closed forms and
+verifies banked energies (-8/+8/0) + sectors before use. SYM-0/ZERO-0
+unfinished: 0M reports raw + phase-quotiented counts separately; 0P uses
+conservative near-zero labeling (uncertified, no singularity claims).
+
+FIREWALL: "hidden" means only microscopic information not transmissible by
+the tested long-range operational channels. No hidden-variables, dark
+matter, spin/charge/polarization, memory-capacity, vacuum-ontology, gravity,
+or new-force claims. Geometry frozen throughout (0Q/0R open no backreaction
+gate; they file virtual-ledger contrasts only).
+
+APPARATUS (src/bh_graph/hidden.py, 33 pins in tests/test_hidden.py, all
+green pre-data): symmetric backgrounds (packet/uniform/delta/twocell) +
+antisymmetric patterns (delta/dipole/disk/checker/phased); matched_pair
+(sign/phase/shape/amplitude-RAW) with EXACT P_+ match (bar 1e-12) +
+qmatch_pair (HAMP-Q, filed scale); em_observables (EM-0 factor-2 J);
+prep_neighborhood (QUOT shells, R_PREP = 2) + local_distance D_local =
+max(d_rho, d_B, d_J) with D_LOCAL_BAR = 1e-6; cross_anatomy + energy
+split (E = E_+ exactly: E_- = Ex = 0); prob-diff S-oddness; remote TV
+(wave/diff exact-eigen) + POT pair fields (common-RMS pin norm); fixed
+PRE/OVERLAP/POST rows k = 10/60/120 (t = 1/6/12); nearest-profile
+classifier; mixed/pure census alphabets + pairwise_min_D; phase-sweep
+[1,cos,sin] fits; vac_shapes; ledger_contrast (N = 20000, seed = 0);
+staggered_checks.
+
+DERIVED PRE-DATA (pinned): E[psi] = E[psi_+] exactly (hidden sector
+energetically invisible even locally); matched-pair Dp(0) is S-odd
+(diffusion difference = P_- eigenmode, decays e^{-t} in place);
+sheet0/sheet1 IS an H-sign pair; sign/phase differences are pure cross
+terms at all t (Drho = 4Re(psi_+* psi_-^A)); S(psi_+ + psi_-) =
+psi_+ - psi_-.
+
+GRID (scripts/hidden0_campaign.py, 43 cells, J2 L28, T = 20/dt = 0.1):
+A l6+l28 anatomy (2); B pair battery sign-x-3bg/phase-x-2/shape-x-2/
+amp-{05raw,20raw,05q} (10; 20q infeasible-filed); E hidden-only x4 (4);
+F remote sharp/packet:delta/packet:disk/uniform:delta wave+diff (4) +
+pot (1); G persistence sign/phase/shape/amp (4); H pass-wave delta/disk
+(2); K extraction delta/disk (2); L census mixed/pure x R1/R2/R3 (6);
+N exchange (1); O sweep x2 (2, 0P reads these); Q bond-full (1);
+R ledger (1); S vac-classes (1); T obs-input (1); U staggered (1).
+Prep center PC = (7,14) (POT-0 window); hidden region RC = (14,14);
+packet r0 = (7,14), k = (0.3,0), sigma = 4 (headline).
+
+GATES (scripts/analyze_hidden0.py, FROZEN pre-data): A exact (comm/dead/
+inter 1e-12, frozen 1e-9, decomp 1e-8, n_zero L6 = 36+nodal(6), L28 = 838);
+B pmatch + dQ (RAW-20 files 3.0; Q scale sqrt(1.75)) + D_local > 1e-6 +
+E_free + sodd; E frozen + rho/B nonzero + E = 0; F Dmax < 1e-9 r = 2..10
++ sym arrival C+ > 0.001 + ratio < 1e-6 at (2,4,6); F:pot remote < 1e-9
++ 1-hop support; G cross-identity 1e-9 + decay ratio < 0.05 (sign/phase)
++ residual > 1e-6 within 5% of hidden-only ref (shape/amp); H eps + I = 0
++ sector preserved 1e-9; J read D > 1e-6 + write 1e-9; K local correct +
+gap > 1e-6, remote gap < 1e-9; L mixed min_D > 1e-6 + n_below = 0, pure
+pos min_D > 1e-6 + quo < 1e-12; N pure < 1e-12 + mixed > 1e-6 + S-map;
+O fit < 1e-9 + rho modulation > 1e-6 (P files min_abs/nzero, no gate);
+Q dB + count; R de + bond; S weights + energies match banked; T W/D/P
+< 1e-9 at (2,4,6) + D_local > 1e-6; U pvp/comm + lifted + non-flip
+(< 0.05 and < 3x frozen at (2,4,6), QUOT-0Q bar).
+
+VERDICT LADDER (frozen, no wiggle): HIDDEN0-LEAK if any frozen-H remote
+Dmax > 1e-6 at r >= 2 (F/T). HIDDEN0-INTERACT if any H witness I > 1e-6.
+HIDDEN0-ABSENT if no B/H local gate greens. HIDDEN0-SEPARATED (primary
+positive) if every check greens. Else HIDDEN0-PARTIAL (honest filing).
+
+SMOKE NOTE (pre-prereg machinery validation, local, NOT campaign data):
+A:l6 + N:sheet executed once locally to validate runner serialization
+(values as predicted: exact 0.0s, mixed_D = 0.071). All verdict gates
+run on fresh beast data (HIDDEN0_WORKERS = 32, gated on this commit).
+
+FORBIDDEN: force/interaction/binding claims from rho/B/J drama (I = 0
+required by FIELD-0); memory-capacity language (state-counting only);
+phase-quotient conclusions beyond observables (SYM-0 pending); zero/
+singularity certification (ZERO-0 pending); geometry-change inference
+from 0Q/0R (frozen geometry); full blind-pipeline replay claims (0T is
+input-level equivalence + QUOT-0 Q-P response-function evidence).
+
+NEXT: freeze-commit-then-beast-campaign, full suite on beast (-n 8,
+FIELD-0 precedent), verdict filed here + data/hidden0_*.json.
+
+## HIDDEN-0-AMENDMENT-1 (post-first-run audit; analyzer/apparatus design errors)
+
+First run (beast, 43 cells, ~15 s + rerun-resume): 267/289 checks pass.
+NO post-data bar/ladder/estimator change below alters any physics bar:
+every item is a prereg-intent restoration (analyzer bug), a derivation-
+scope correction, or a geometry-dependent structural filing. All F/T/H/I/
+J/K/O/Q/R/S/N legs passed as preregistered (remote blindness, no-memory,
+read/no-write, extraction, sweep, bond, ledger, vac, exchange). Autopsies:
+
+A1 (analyzer bug, dQ gate): the generic dQ < 1e-9 check fired on amp-RAW
+cells whose prereg construction has dQ = |1-a^2| by design (05raw: 0.75,
+20raw: 3.0, both exactly as constructed). FIX: amp-raw cells check
+dQ == |1-a^2| (1e-9); no data touched.
+
+A2 (prereg-gate contradiction, HAMP-Q): 05q rescales P_+ by the filed
+c = sqrt(1.75) (prereg construction), so exact-pmatch MUST fail; the
+prereg claim is identical P_+ DIRECTION + filed scale (scale audit
+passed). FIX: pmatch exempt for HAMP-Q; direction-collinearity audit
+added (cos angle = 1 to 1e-12). No data touched.
+
+A3 (derivation-scope correction, sodd): Dp(0) S-oddness was derived for
+sign/phase pairs only (|psi_-|^2 cancels there). Shape/amp pairs carry
+S-even |ma|^2-|mb|^2 parts (B:shape/dipole/disk, B:amp fails) -- genuine
+refinement: only unitary-related hidden pairs have purely in-place
+diffusion differences. FIX: sodd gated on sign/phase; shape/amp filed
+descriptive. 0F unaffected (all F cells are sign pairs, all passed).
+
+A4 (structural gate, E:delta B): single-site states occupy no edge, so
+B = 0.0 EXACTLY by EM-0 construction (unit-pin lesson not carried to the
+E:delta campaign gate). FIX: E:delta:B becomes an exact-zero structural
+pin (B_max < 1e-12); rho leg carries distinguishability (passed).
+
+A5 (geometry-dependent filing, G decay/residual): G:sign/phase decay
+0.39/0.41 vs 0.05 bar -- the L28 T = 20 packet WRAPS (COM travel 23.6
+vs period 28) and re-approaches PC by t = 20, so fixed-t_post ratios
+measure torus tails, not hidden-sector physics. The preregistered
+PHYSICS (cross-identity 1e-9: sign/phase differences are pure cross
+terms at all t) PASSED. Shape/amp residuals EXIST (> 1e-6, passed);
+only the 5%-settling match failed (same wrap cause). FIX: decay ratio
++ resid_match become descriptive filings (D_min/D_post/traces filed,
+no bar); G physics carried by the passing cross-identity + residual-
+exists gates. Ladder clause updated accordingly. No re-barring on new
+geometries (tuning hazard declined; L42 rerun NOT done).
+
+A6 (apparatus bug + double-count, L:mixed): pairwise_min_D chunking
+missed in-block pairs for block index > 0 (wrong-column triu slice),
+AND the mixed alphabet double-counts (s,phi) = (-s,phi+pi) (same state
+to fp; minD = 2.28e-18, 32 counted = first-64-block dups exactly).
+FIX: chunking corrected + unit pin with M > chunk; alphabet deduped to
+8 distinct phases/cell (N_hidden^mixed(R) = |R| x 8); the 3 L:mixed
+cells RERUN under this amendment (fresh records replace the 3 lines).
+Sign differences remain covered by B:sign + O-sweep-pi.
+
+A7 (analyzer logic bug, U non-flip): De Morgan violation -- coded
+non-flip as (< 0.05 AND < 3x frozen) where QUOT-0Q's flip bar (>= 0.05
+AND > 3x) complements to (< 0.05 OR <= 3x). Measured pert 3-6e-3
+(< 0.05, same O(eps^2)-with-prefactor scale as QUOT-0Q's 9.1e-3).
+FIX: OR logic. No data touched.
+
+RERUN SCOPE (gated on this amendment commit): 3 L:mixed cells only
+(new code); all other records stand. Verdict gates on the re-analysis.
+
+## HIDDEN-0-VERDICT (filed 2026-10-02): HIDDEN0-SEPARATED (primary positive)
+
+HEADLINE (frozen merger, scripts/analyze_hidden0.py, Amendment-1 applied):
+279/279 checks pass over 43 beast cells (J2 L28, T = 20/dt = 0.1, 32
+workers, ~15 s + 3-cell amended rerun). Machine records:
+data/hidden0_cells.json + data/hidden0_verdict.json + data/hidden0_stage.json.
+First run 267/289 PARTIAL; all 22 failures autopsied as design/analyzer
+issues (Amendment-1, no physics bar moved): amp-raw dQ values, HAMP-Q
+collinearity, sodd scope, E:delta structural B, G geometry filing, census
+dedup + chunking bugfix, U De Morgan fix. Full suite on beast green
+(750 passed, 2 torch/GPU-skips, test_weighted skipped per standing
+instruction; obs0r/run_obs0/run_obs1 vendored as consumption addendum
+after a first-suite ModuleNotFoundError).
+
+SEPARATION (the mission): D_local in [0.07, 1.60] across all 10 matched
+pairs (5-6 orders above the 1e-6 bar; every hidden transformation --
+sign, phase pi/2 and pi, dipole/disk shape, amplitude 0.5/2.0 RAW and
+Q-matched -- locally distinguishes on at least one of rho/B/J) while
+D_remote <= 5.2e-15 on every remote shell r = 2..10, wave + diffusion,
+all 4 sign-pair constructions (3-6 orders below the 1e-9 bar), POT
+remote EXACTLY 0.0 with 1-hop anti support, sym arrival + ratios green
+at (2,4,6). Transport-visible vs locally-physical-but-transport-hidden
+information are genuinely distinct in the frozen theory.
+
+A (anatomy): comm/dead/inter/frozen all 0.0 (L6 + L28), decomp 2.5e-15,
+n_zero 46 = 36+nodal(6) / 838 = 784+54. Foundational regression green.
+B (pairs): pmatch exact all 10; dQ exact (0.0 / 0.75 / 3.0 / Q-matched
+4.4e-16 with scale sqrt(1.75) + collinearity); E = E_+ exactly
+(E_- = Ex = 0.0); sodd green on sign/phase scope.
+D (cross terms): rho/B/J/E sector decompositions exact; the hidden
+sector is ENERGETICALLY INVISIBLE even locally (E_- = Ex = 0) while
+visible in rho/B/J -- the campaign's sharpest internal separation.
+E (hidden-only): frozen 0.0 all 4; rho/B nonzero (delta rho 0.5, disk/
+checker B 0.056); complex pattern carries persistent J = 0.111 with
+E = 0 exactly -- stationary is not physically absent.
+F (remote): reproduced QUOT-style + extended to packet/uniform/disk
+backgrounds; maxima wave 5.2e-15 / diff 3.5e-15 (rung 1e-9).
+G (persistence): sign/phase differences are pure cross terms at all t
+(8.7e-14/5.6e-14); D(t) tracks packet exit (Dmax 0.20/0.14); shape/amp
+leave persistent residuals (0.275/0.394, > 1e-6). Decay-ratio + settling
+filed descriptive (L28 T = 20 packet wraps; geometry, not physics).
+H/I (passing wave + no-memory): witness I ~ 1.2e-12 both states, both
+hidden shapes (bar 1e-6); packet sector preserved to 9e-14; momentum
+stable. The hidden sector alters total local observables during overlap
+and imprints NOTHING afterward -- hard null held, no audit needed.
+J (read/write): read D = 0.159/0.105 during overlap (both shapes);
+write 6e-15 (P_- psi + w_anti constant). Locally readable through
+interference, not dynamically writable -- as frozen theory predicts.
+K (extraction): local detector classifies correctly, gaps 0.60-0.62;
+remote detector gap ~1e-13 (chance). I_local > 0, I_remote = 0.
+L/M (census): mixed N_hidden = 72/168/296 for |R| = 9/21/37 (positions
+x 8 distinct phases, minD = 0.025, linear in |R|, state-counting only);
+pure N = 9/21/37 positions (minD = 0.5) with sign/phase quotient pairs
+EXACTLY 0.0 in all observables (raw + quotiented reported; SYM-0
+interpretation pending).
+N (exchange): S maps mixed sign-pair members into each other (0.0);
+pure sign D = 0.0 exact, mixed D = 0.071.
+O (relative phase): [1,cos,sin] fits to ~1e-16 all nodes/edges;
+modulations rho 0.20/B 0.098/J 0.20 (packet) -- relative sector phase
+is physically meaningful, exactly as derived from cross terms.
+P (zeros): NO exact-zero candidates at 1e-12 in either sweep (minima
+1.5e-4/0.025 filed); hidden phase controls near-zero depth without
+certified singularities (ZERO-0 pending, conservative labeling kept).
+Q (bond-conjugate): full-edge max|dB| = 0.036 on 16 edges -- transport-
+hidden information alters the local geometry-conjugate quantity.
+Frozen geometry: no backreaction gate opened, future work only.
+R (ledger): de = 0.0 EXACT (E = E_+); bond field differs (0.098);
+near-cell f_neg/f_pos differ in the 3rd decimal (filed, no event-rate
+interpretation). Remotely indistinguishable states have different local
+structural energetics -- significant, virtual-only.
+S (vacuum coordination): reconstructed VPLUS/VPI/VMINUS verify banked
+sectors + energies (P_+/P_+/P_-; -8/+8/0 to 1e-9). VMINUS (pure hidden,
+E = 0, stationary, B_max = 6.4e-4 uniform) sits inside the HIDDEN-0
+census as the translation-invariant hidden member. VACFIELD0-JOINT
+family untouched; no headline-bar impact.
+T (observer replay, input-level): remote station signals A-vs-B:
+W ~4e-16, D ~7e-17, P = 0.0 exact at (2,4,6) while D_local = 0.20 --
+any deterministic observer fed banked channels outputs M_O(A) = M_O(B).
+Response-function evidence: QUOT-0 Q-P (P- meas = 0.0, METRIC False).
+U (staggered control): pvp = 0.0 exact (no H_- kinetic term), comm =
+eps*sqrt(N) to 3e-16, all 838 zeros lifted (n0 = 0), yet remote sheet
+capacity 3-7e-3 -- below the 0.05 QUOT-0Q flip bar (non-flip on all of
+2/4/6). QUOT-0 lesson consumed: lifting eigenvalues without S-odd
+KINETIC terms opens no useful hidden-transport channel.
+
+KILL RELEVANCE: HIDDEN0-SEPARATED establishes the transport-visible vs
+transport-hidden distinction as dynamical fact under frozen H = -A --
+the observer inhabits the quotient (QUOT0-OPERATIONAL) while local
+physics sees more (rho/B/J, bond-conjugate, virtual ledger). LEAK and
+INTERACT rungs dead: nothing propagates, nothing scatters. Firewall
+kept: no hidden-variables/foundations claims, no memory-capacity
+language, no geometry-change inference, no blind-pipeline replay claim.
+
+## VACFIELD0-PREREG (FROZEN pre-data; commit predates ALL VAC-FIELD-0 runs)
+
+Nonzero-joint-vacuum-field campaign (VAC-FIELD-0). Question: is the
+physical vacuum of the frozen theory a nonzero stationary field state
+X_vac = (G_vac, psi_vac) with G_vac = J2, rather than psi = 0?
+Headline substrate: J2 torus (formation.j2_torus_graph, int labels).
+No geometry-update law is introduced at any stage.
+
+### Firewall (campaign level)
+
+VAC-FIELD-0 may not: modify H; add onsite terms/edge weights/vacuum
+potential; introduce a geometry-update rule; choose a field to prevent
+U0 collapse; choose an amplitude for nicer matter behavior; introduce
+a pressure constant; insert (B - B_vac) into any dynamics (0J defines
+subtracted variables readout-only); redefine matter; rerun formation;
+claim gravity; tune against RAND-0. Candidates are selected from the
+frozen field theory (spectrum + symmetry, 0A/0B) BEFORE any stability,
+ledger, or structural-consequence inspection. Tie-breaking by
+structural consequences is forbidden; joint winners are filed as a
+family. 0I ledgers are readout-only: no event is ever executed.
+
+### Frozen ontology + consumed apparatus (byte-identical, read-only)
+
+H(G) = -A(G), J = 1, hbar = 1 (P1-locked). psi = r + i s per node;
+rho = |psi|^2; B_uv = Re(psi*_u psi_v);
+J_{u->v} = 2 Im(psi*_u psi_v) (EM-0B sign); E_psi = -2 sum_edges B
+(BR-0). Consumed: ballistic.py (P1 7578176c4805), malus.py (MALUS
+0241e12445), continuum.py (EM-0 48b60373aed6), backreaction.py (BR
+1eba0ce6), driven.py (POT e3f1ff98a5a8), contraction.py (BR 7c31a3387c0b),
+phase.py (BR 4e0cac0e3980) + their test files (all green, unmodified).
+Banked theorems consumed read-only: norm conservation + continuity
+(EM-0B); [H,S] = 0, H P_- = 0, symmetric sector = square walk at 2J
+(MALUS-0); U(t)L = L U_Q(t), U(t)psi_- = psi_- (QUOT-0 apparatus);
+Bloch bands eps_disp = -4(cos kx + cos ky), eps_flat = 0 (EM-0C);
+M1 relocation dE = -2(B_add - B_rem), contraction/split ontology
+(BR-0/BR-2.5); P1 detectors (COM/v/MSD/C_v) + B0 packet settings
+(sigma = 4, |k| = 0.5). QUOT-0 re-verified locally (0R); the campaign
+does not wait for QUOT-0 to finish.
+
+### Candidates (0A/0B; symmetry-distinguished pre-data)
+
+VPLUS: uniform 1/sqrt(N), E = -8 (ground, simple; automorphism +
+translation invariant; sheet-even; min energy at fixed norm).
+VPI: (-1)^q/sqrt(N), q = (x+y)&1 bipartition, E = +8 (top, simple on
+bipartite connected G; ray-translation-invariant; sheet-even; max
+energy). VMINUS: (-1)^b/sqrt(N) (TI member of P_-), E = 0 exactly
+(H P_- = 0; sheet-odd; translation-invariant; frozen dynamics).
+ZERO: psi = 0 control (never the default vacuum; capped, never ranked).
+Nodal dispersive zeros (J2 L28: 54; ring N256: k = 64, 192; square
+torus: cos kx + cos ky = 0 set) are classified but EXCLUDED from
+candidacy: no single symmetry-distinguished member (filed reason).
+VMINUS candidacy = TI member + sector-stationarity theorem (all of
+P_- frozen). Selection table: vacfield.selection_table().
+
+### Frozen constants (all runs)
+
+J2 L_EXACT = 4 (N = 32, E = 128; dense diag + exhaustive M1: 47104
+moves) / L_DIAG = 8 (N = 128; dense diag; census gate n_zero = 80 =
+64 flat + nodal(8) = 64 + 14) / L_HEAD = 28 (N = 1568; Krylov
+headline). Controls: square torus 28 (N = 784), ring 256, quotient
+28x28 (H_Q = -2 A_sq). Dense diag gated to L <= 8 (N > 600 refused).
+Amplitudes a in {1e-3..1e3} (7, log-spaced); headline a = 1. Eps grid
+{0.003, 0.01, 0.03}, headline 0.01. T_K = 30, DT_K = 0.1 (300 rows),
+T_FIT = 8 (no-wrap v/MSD window). M1: 20000 moves x seeds {0..4},
+eps = 1e-10 (BR-0). Contraction: headline map avg, bracket
+{sum, avg, norm}; L4 all 128 edges; L28 stratified 64 (16 per
+translation edge-orbit SX/SY/F1/F2); splits = exact inverse +
+first 8 deterministic covers (3^d total filed). Zero threshold tau =
+max(1e-300, 1e-9 x run-max|psi|). Packet: r0 = (L/4, L/2), k = (0.5,
+0), sigma = 4 (B0 settings; spread gate sigma << L/6 on L28). Local
+node u0 = coarse (L//2, L//2) sheet 0. Bars: vacfield.BARS (frozen;
+eigen 1e-9, Bloch 1e-9, phase 1e-9, slope 0.01, normed 1e-9,
+current edge/div/circ/flux 1e-12, stationarity 1e-8, rate 1e-6 rel,
+stress 1e-9, sector 1e-12, accounting 1e-9, linearity 1e-10,
+corotating 1e-8, packet-v 10% + r2 > 0.9, contract 1e-9, incident
+1e-9, winding 1e-9).
+
+### Stage protocols + predictions (P) / gates (G)
+
+0C phase: thetas {0, 0.7, 2.1, 4.4}; P: rho/B/J/E invariant; G: loud
+exact (pins + campaign L4/L28).
+0D amplitude: P: rho/B/J/E slopes 2, normalized spread ~fp; G:
+is_scaling_ok (ZERO trivially False -> control cap).
+0E current: edgewise J, div_J, plaquette circulation (J2: 2xL^2
+4-cycles CCW; square: L^2; ring: 1 ring cycle; quotient via square
+graph), directional flux Fx/Fy; P: all ~0 (real states); G:
+is_current_free_ok. Plaquettes replace cycle_basis (small-cycle
+basis, preregistered choice).
+0F stationarity: evolve T = 30; P: drifts ~fp, phase rates +8/-8/0
+(d/dt arg = -E), VMINUS frozen_err ~fp; G: is_stationary_ok.
+0G/0H stress (definitions frozen here, before labels opened):
+S_u = sum B, V_u = var B incident; uniformity across translation
+orbits (nodes: vertex-transitive; J2 edges: 4 generator classes);
+P: VPLUS S = 8/N, VPI S = -8/N, VMINUS S = 0 exactly, all
+orbit-uniform; G: is_stress_balanced_ok (std bars). Interpretation
+(which pattern = balanced) is the 0H result, not a gate input.
+0I virtual: M1 sampled (L28, 5 seeds) + exhaustive (L4) + VMINUS
+extremes {1e-3, 1e3}; contraction scan; split roundtrips. P: VPLUS/
+VPI f_0 = 1 exactly (uniform B); VMINUS f_0 = 1/2 exactly (L4:
+f_neg = 176x64/47104, f_pos = 192x64/47104, derived in test), L28
+f_0 = 1/2 within MC; ZERO trivially flat (no information, the
+RAND-0 point); contraction per-class uniform. G: f_0 exactness /
+0.5 +/- 0.01 + seed-std < 0.01 + contract uniformity. "Contract/
+split" = BR-2.5 ontology (contract_edge/split_with_record/covers).
+0J subtraction: definitions + exact bilinear identity; G: identity
+test (pins + subcheck). No dynamics insertion.
+0K perturbations: kinds amplitude/phase/packet/source, matched
+||dpsi|| = eps x a (ZERO: eps x 1; phase SKIPPED on ZERO: no
+carrier). P: P1 detectors on dpsi; packet v = (4 sin0.5, 0) within
+10%, r2 > 0.9 (all backgrounds: dpsi evolution is bg-independent);
+norm accounting exact. G: perturbation_ok = norms-ok (all) AND
+packet-v-ok (eps = 0.01) AND eps-independence (packet/amplitude/
+source v rel-spread < 1e-6; phase excluded: O(eps) direction
+correction, filed) AND cross-bg dpsi max-dev < 1e-9 (packet/
+amplitude/source, all 4 backgrounds incl ZERO; bitwise checksums
+filed). Comparison with banked P1 = Bloch-analytic + dpsi-alone
+leg (B0a formed-graph data NOT a clean comparator: skipped, filed).
+0L linearity: P: split + co-rotating (H - E) errs ~fp; G:
+is_linearity_ok (packet/amplitude x all candidates). Load-bearing.
+0M/0P amplitude-vs-excitations (VPLUS packet/amplitude full series
+x {abs, frac} + VPI/VMINUS packet frac bracket {0.1, 1, 10}): abs
+leg = eps_param 0.01/a (norm 0.01); frac leg = eps 0.01 (norm
+0.01a). P: frac normalized rows collapse (max-dev < 1e-9), frac
+peak_dB_rel const (spread < 1e-6), abs peak_dB_rel slope -1 +/-
+0.05, packet v a-independent (< 1e-6); abs raw rows identical (<
+1e-9). G: normalized_robust (VPLUS full; VPI/VMINUS bracket
+collapse; ZERO False). Answers: only departures-relative-to-bg
+matter (prediction).
+0N zeros: census on all 0K runs (count FILED, anatomy GATED) +
+exact-zero demo (constructed single-node null, T = 6, all nonzero).
+P: no accidental zeros at eps <= 0.03 (filed, NOT gated);
+constructed event found (n >= 1) with incident B/J < bar. G:
+every event (all runs) incident B/J < bar.
+0O winding: plaquette W with per-bond temporal unwrapping; P:
+drift ~0 where min|psi| > tau; G: winding drift < bar on clean
+plaquettes (zero-demo leg). Question filed: is psi = 0 the
+phase-undefined boundary (yes by construction; anatomy measured).
+0Q ZERO control: full comparison table (stationarity, relational
+info Bmax, current, stress, ledger, perturbation, sector,
+phase-defined-everywhere). Note: ZERO passes dynamics checks
+trivially (expected rung BACKGROUND as control) but carries no
+relational information, undefined phase everywhere, trivial
+ledger. The verdict ladder ranks NONZERO candidates only.
+0R sectors: weights L4/L8/L28 + frozen/split/intertwining
+re-verification; P: VPLUS/VPI sym-pure, VMINUS anti-pure, errs
+~fp; G: sector_filed. P_- operational invisibility: analysis
+filed, never selected on.
+0S substrates: square/ring energies (VPLUS -4/-2, VPI +4/+2),
+residuals, currents, stress-lite, M1 flat (f_0 = 1, 5 seeds);
+quotient H_Q energies -8/+8 + stationarity + intertwining.
+VMINUS J2-specific (no sheet structure elsewhere; constructor
+raises). Ring/square nodal zeros: nonextensive, excluded like J2
+nodal set. Quotient M1 = square-graph M1 (dedup, filed). All exact
+predictions loud (asserted in analyzer).
+0T ladder (per nonzero candidate): BACKGROUND = stationary AND
+perturbation_ok (distinguished-by-construction 0B). BALANCED =
+BACKGROUND + current_free + stress + amplitude_coherent. JOINT =
+BALANCED + linearity + normalized_robust + zero_anatomy +
+sector_filed + ledger_symmetric. Campaign headline = max rung
+over {VPLUS, VPI, VMINUS} (VACFIELD0-ZERO/BACKGROUND/BALANCED/
+JOINT). Joint winners filed as family (extremal uniform-B pair
+if VPLUS+VPI). No tie-breaking by structural consequences.
+
+### Execution
+
+190 tasks (scripts/vacfield_campaign.py --print-all), beast EC2
+(16.54.88.181, xargs -P 90), JSON records data/vacfield/*.json
+(committed) + .npy sidecars data/vacfield/npy/ (gitignored,
+checksums committed in JSON). Full suite on beast (pytest -n 90).
+Analyzer scripts/vacfield_analyze.py writes data/vacfield/
+verdict.json. Verdict filed here post-data (amendments, if any, as
+VACFIELD0-AMENDMENT-n entries with gated re-runs; none pre-data).
+
+### VACFIELD0-AMENDMENT-1 (pre-data analytic correction; no campaign data opened)
+
+Pin validation on L = 4 (tests, not campaign runs) refuted the
+preregistered prediction "VPLUS/VPI f_0 = 1 exactly". VPI's M1 ledger
+is ONE-SIDED, not flat: B_rem = -1/N on every edge (all span the
+bipartition) while B_add = +1/N on same-q non-edges, so
+dE = -2(B_add - B_rem) <= 0 always (f_pos = 0 exactly; every
+favorable move adds a bipartition-frustrating edge). Exact
+predictions: J2 L4 f_0 = 128/368, f_neg = 240/368, f_pos = 0; J2
+L28 f_0 = 776/1559, f_neg = 783/1559, f_pos = 0; square-28 f_0 =
+388/779; ring-256 f_0 = 126/253 (same-q-pair fractions; f_pos = 0
+on every bipartite substrate). The one-sidedness is
+symmetry-dictated (uniform magnitude + bipartite phase), not
+arbitrary. Gate changes (analyzer + pins): VPI ledger check =
+matches-exact-prediction (f_pos = 0 exact, f_0 fraction +/- 0.01,
+seed-std < 0.01); m1ctl VPI likewise; 0Q ledger label "one-sided".
+Ladder structure UNCHANGED (ledger_symmetric = matches prediction
+for all candidates). Firewall-symmetric reasoning (filed): the
+ladder neither promotes a field for a flat ledger nor demotes one
+for a one-sided ledger (both would be consequence-based
+selection); flat vs one-sided vs symmetric ledgers are
+distinguishing MEASUREMENTS carried into the post-data verdict,
+where the mission's JOINT language ("symmetry-balanced background
+rather than an arbitrary uniform collapse bias") is addressed per
+candidate. VPLUS (flat) and VMINUS (symmetric f_0 = 1/2)
+predictions stand as preregistered (pins green).
+
+### VACFIELD0-AMENDMENT-2 (pre-data gate-robustness fixes; no campaign data opened)
+
+(a) 0K eps-independence gate redefined: normalized dpsi-row max-dev
+< 1e-9 across eps (exact: d0 direction is eps-independent for
+packet/amplitude/source) INSTEAD of relative v-spread, which is
+meaningless for the symmetric kinds (v ~= 0). Packet-v gate
+unchanged. (b) Sampled-ledger per-seed f_0 tolerance 0.01 -> 0.015
+(flake-robustness: MC sigma = 0.0035 at n = 20000; predictions
+exact, seed-std < 0.01 and exhaustive fractions unchanged).
+Applies to VPI/VMINUS L28 + extremes + m1ctl. Ladder structure
+unchanged.
+
+### VACFIELD0-AMENDMENT-3 (arithmetic-typo correction; campaign records opened)
+
+L_DIAG = 8 census gate corrected 80 -> 78 (64 flat + nodal(8) = 64 +
+14 = 78; the prereg "80" was an arithmetic typo). Both legs agree:
+exact-diag n_zero = 78, Bloch n_zero = 78, candidate residuals 0.0.
+No gate logic changed; the asserted number now matches the derivation.
+
+### VACFIELD0-AMENDMENT-4 (post-data gate corrections + frozen follow-up; verdict not yet filed)
+
+Two preregistered gates were algebraically naive (discovered on
+campaign data; original numbers filed, not hidden):
+
+(a) VPLUS abs peak-slope (-1.1426 measured vs -1 +/- 0.05 gated).
+The 0J identity gives dB = cross + dd EXACTLY with cross linear in
+a and dd a-independent (abs mode): the peak ratio mixes the 1/a
+(large-a) and 1/a^2 (small-a) regimes, so a single 7-decade slope
+cannot be -1. The gate is REPLACED by frozen follow-up tasks
+"ampdecomp" (VPLUS x packet/amplitude x 7 amps, abs mode; 14 tasks,
+predictions frozen HERE before running): complex-2 norms of the
+cross and dd parts at t in {0, 8, 30} with cross log-log slope +1
++/- 0.05 and dd slope 0 +/- 0.05 (both exact by bilinearity; positivity
+asserted loud). VPLUS normalized_robust = frac-collapse + abs-raw
++ v-spread (all already green) + decomp (new). The full-range
+-1.1426 and the large-a-subset slope are FILED as notes, not gated.
+
+(b) VMINUS Eabs vacuous leg. E(a) = -0.0 EXACTLY at all amplitudes
+(exact-zero eigenstate), so the slope leg is vacuous, not failed.
+Rule: a trivial-exact-zero Eabs leg passes iff the candidate's
+Rayleigh energy is exactly 0 (census: 0.0, residual 0.0) and E(a)
+== 0 at every amplitude (analyzer-verified via energy_of; no
+campaign code touched). Q/Bmax slopes + normalized collapse gate
+as before. Rationale filed: E = 0 is VMINUS's distinguishing
+feature, not a scaling defect.
+
+Task count 190 -> 204 (14 follow-ups). Ladder structure unchanged.
+Cosmetic: analyzer note "22/80" -> "22/78".
+
+### VACFIELD0-AMENDMENT-4 ADDENDUM (analytic edge case; verdict not yet filed)
+
+Single-node perturbations (amplitude kind) have dd = 0 EXACTLY at
+t = 0 (no bond has both ends excited: support argument, not a fit).
+The dd-slope gate is therefore scoped to slices with dd != 0;
+exact-zero slices are verified == 0.0 at every amplitude (vacuous
+pass, same class as the VMINUS E-vacuous rule). Cross gate
+unchanged (all slices > 0). No predictions altered.
+
+### VACFIELD0-VERDICT (filed post-data; 204 records + analyzer on beast)
+
+Headline: VACFIELD0-JOINT. Per-candidate rungs: VPLUS JOINT, VPI
+JOINT, VMINUS JOINT (family, filed with distinctions below); ZERO
+BACKGROUND as control (capped by design: amplitude_coherent +
+normalized_robust False). All 10 ladder checks green for all three
+nonzero candidates; every quantitative gate passed at fp-exact
+levels (deviations 0 to 1e-11, bars 1e-12 to 0.05 per leg).
+
+Stage highlights (J2 L28 headline unless noted): 0A census exact
+(e_min/max -8/+8, n_zero 22/78, Bloch dev 1e-14/1e-15,
+residuals 0.0). 0C phase invariance all candidates. 0D slopes 2.0
+(VMINUS E(a) = -0.0 exactly, Amendment-4 rule). 0E current-free
+all (edge/div/circ/flux < 1e-12... all 0.0). 0F drifts ~fp, rates
++8/-8/0, VMINUS frozen_err 0.0. 0G/0H stress-uniform (VPLUS S =
+8/N, VPI S = -8/N, VMINUS S = 0 exactly). 0I ledgers match exact
+predictions: VPLUS f_0 = 1 (flat); VPI one-sided f_0 = 776/1559,
+f_pos = 0 exactly (Amendment-1); VMINUS f_0 = 1/2 symmetric;
+contraction per-class uniform; splits filed. 0J identity holds.
+0K packet v = 1.9204 = Bloch 4 sin0.5 to 0.14%, r2 > 0.9999,
+alpha ~ 2.03, on ALL backgrounds incl ZERO. 0L split/corot errs
+~fp. Cross-background dpsi BITWISE identical (all three
+bg-independent kinds). 0M/0P frac collapse 1e-14..1e-11,
+abs-raw identical 0.00e+00, decomp cross +1.0000/dd -0.0000 at
+t = 0/8/30 (large-a peak slope -1.0005 confirms two-term
+algebra). 0N zero-demo n = 1 found, incident B/J = 0; no
+accidental zeros in 0K runs (filed). 0O winding drift 1e-18..1e-15
+on clean plaquettes. 0R sectors pure, frozen/split/intertwining
+errs 0.00e+00. 0S controls exact (square/ring energies,
+VPLUS-flat/VPI-one-sided ledgers, H_Q -8/+8 + stationarity).
+
+0Q answer (what makes psi = 0 worse/better): ZERO is trivially
+stationary, current-free, and stress-uniform, and hosts identical
+perturbation propagation (dpsi-alone leg) -- but carries ZERO
+relational information (Bmax = 0), has undefined phase at EVERY
+node, a trivially flat ledger with no distinguishing power (the
+RAND-0 point), and no amplitude family. Each nonzero candidate
+adds a uniform, phase-defined, stationary relational background
+with a predictive exact ledger. psi = 0 is the no-information
+limit, not the vacuum.
+
+Character distinctions (why a family, not a point): VPLUS is the
+unique ground state with a perfectly flat virtual ledger (no bias
+whatsoever) -- the flattest joint-vacuum background. VPI is the
+variational maximum with a symmetry-dictated one-sided ledger
+(f_pos = 0 exactly: every favorable M1 move adds a
+bipartition-frustrating edge; uniform across positions, exact, not
+arbitrary). VMINUS is the frozen P_- TI member (E = 0, U(t)psi =
+psi with no phase motion at all) with a symmetric two-sided
+ledger and class-structured bonds (S = 0 by 4/N - 4/N
+cancellation). Sectors: VPLUS/VPI in P_+ (propagating,
+quotient-visible); VMINUS in P_- (dead, operationally decoupled
+per banked QUOT/MALUS -- filed, never selected on). The mission's
+JOINT language ("symmetry-balanced background rather than an
+arbitrary uniform collapse bias") holds for all three: VPLUS by
+flatness, VPI and VMINUS by exact symmetry-dictated ledgers;
+position-dependent bias appears nowhere.
+
+Firewall compliance: H untouched (all runs H = -A, J = 1); no
+onsite/weights/potential; no geometry-update rule (0I
+readout-only, nothing executed); no U0-collapse tuning; no
+amplitude selected (full 1e-3..1e3 family measured, scale-only
+result); no (B - B_vac) in dynamics (0J definitions only); no
+matter redefinition; no formation runs; no gravity claims; no
+RAND-0 tuning (RAND-0 cited only for the psi = 0 no-information
+point, which this campaign independently re-derives). Candidates
+selected by spectrum+symmetry (0A/0B) before any consequence was
+inspected; VPI's one-sided ledger was a pre-data analytic
+correction (Amendment-1), not a post-hoc accommodation.
+
+Records: data/vacfield/ (204 task JSONs + verdict.json; .npy
+sidecars on beast, checksums in JSON). Apparatus:
+src/bh_graph/vacfield.py + tests/test_vacfield.py (24 pins) +
+scripts/vacfield_campaign.py + scripts/vacfield_analyze.py.
+Amendments: 1 (VPI one-sided, pre-data), 2 (gate robustness,
+pre-data), 3 (78 typo), 4 + addendum (decomp follow-up +
+E-vacuous + dd-zero-slice rules, post-data/pre-verdict, disclosed).
