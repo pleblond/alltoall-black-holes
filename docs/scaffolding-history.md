@@ -190,7 +190,8 @@ M_O(J₂) ≈ J₂ / sheet
 The microscopic graph and the reconstructed geometry are different objects.
 The quotient is an operational 2D metric ◇. Calling that metric spacetime is
 not established. A static-channel floor still blocks a full three-way
-cross-probe at L = 128; that limit stays on the record.
+cross-probe at L = 128; that limit stays on the record. Why the observer
+inhabits that quotient is §14.
 
 ---
 
@@ -323,7 +324,8 @@ Three independent uses of `B` meet.
 ∂E_ψ / ∂A = -2B                         DERIVED ◇          §4
     +
 BR-0 (#75)  BR0-D-SELECTIVE* ◇
-    vacuum (ψ = 0) is exactly flat under the sampled moves
+    the zero field is exactly flat under the sampled moves
+    (§13: that state is the no-information limit, not the vacuum)
     an excitation opens energetically favorable channels
     +
 BR-2 (#77)  BR2-QUADRATURE ◇
@@ -539,23 +541,52 @@ Until then they are two precise ways of saying the weight is absent.
 
 ---
 
-# 13. The vacuum field is not yet a result
+# 13. The vacuum field is a family
 
-`ψ = 0` on the working graph has been the convenient background. BR-0 finds
-that this background is exactly flat under the moves it samples. Flatness of
-a chosen state is not a derivation that the physical vacuum is the zero field.
+`ψ = 0` was the convenient background. BR-0 finds that background exactly
+flat under the moves it samples. VAC-FIELD-0 (#100) now says what that
+flatness is. Verdict **VACFIELD0-JOINT** ◇, on frozen `(J₂, H = -A)`, with
+no geometry-update rule and with the candidates fixed by spectrum and
+symmetry before their consequences were read.
 
-A joint vacuum would be a pair `(G_vac, ψ_vac)`. A nonzero `ψ_vac` whose
-relational observables are stationary is allowed by the postulates and is
-not established.
+JOINT means the full ladder: stationary, stable under perturbation,
+current-free, uniform stress, coherent across amplitudes, linear,
+normalized-robust, zeros in the right place, sector recorded, and a ledger
+that matches an exact symmetry prediction. Three nonzero states reach it.
+`ψ = 0` stops at BACKGROUND.
+
+```text
+VPLUS    ground state, E = -8, perfectly flat ledger, sector P+
+         propagating and quotient-visible
+VPI      variational maximum, one-sided ledger
+         (every favorable relocation adds a bipartition-frustrating edge),
+         sector P+
+VMINUS   frozen dead-sector state, E = 0, no phase motion,
+         symmetric ledger, sector P-
+         joint as a state, operationally decoupled (§14)
+ψ = 0    no relational information (Bmax = 0), phase undefined
+         at every node, ledger with no distinguishing power
+         → the no-information limit, not the vacuum
+```
+
+Perturbations propagate identically on all four backgrounds, including zero
+(packet speed `1.9204`, bitwise-identical `δψ`). What the nonzero states add
+is a uniform, phase-defined, stationary relational background with a
+predictive ledger.
+
+The campaign does not choose among the three. Tie-breaking by later
+structural consequences is refused. Joint vacuum is a characterized family.
+The propagating, quotient-visible members are VPLUS and VPI. VMINUS stays
+on the record as a joint state in the transport-dead sector.
 
 | Campaign | State |
 |---|---|
-| VAC-0 (#93) | ◇ for the LAW identities and the interference class split; the full substrate census is still running |
-| VAC-FIELD-0 | named, and explicitly empty when FIELD-0 froze its inputs; no verdict |
-| ZERO-0 (#98) | apparatus and preregistration are in the pull request; the census is running; no ontological claim is allowed until a verdict |
+| VAC-FIELD-0 (#100) | ◇ VACFIELD0-JOINT: three-member family; `ψ = 0` is the no-information limit |
+| VAC-0 (#93) | ◇ for the LAW identities and the interference class split; the substrate census is still running |
+| ZERO-0 (#98) | apparatus is in the pull request; the nodal-zero census is running; that anatomy is not yet a verdict |
 
-Do not read a nonzero vacuum, or a special status for `ψ = 0`, out of this section.
+Which member of the family is the physical background remains open. That is
+a narrower debt than "the vacuum field might be zero."
 
 ---
 
@@ -567,21 +598,37 @@ MALUS-0 (#67)  M0-NULL ◇
     the antisymmetric sector is exactly dead under H = -A
     +
 OBS1-QUOTIENT ◇
-    → QUOT-0 (#95)   OPEN, no verdict
+    → QUOT-0 (#95)
+    → QUOT0-OPERATIONAL ◇
 ```
 
-QUOT-0 asks whether the observer quotient is a consequence of that sector
-split (`[H, S] = 0`, and `H` annihilates the antisymmetric projector). The
-hypothesis, not a result:
+The blind-observer quotient follows from the sheet-sector split at the
+operational rung. Only quotient-compatible modes transport information, and
+that is the geometry the observer reconstructs. The merger is
+SECTOR pass, OPERATIONAL pass, DERIVED fail. The derived rung is blocked by
+four pre-registered sub-bars that were design errors in the ratio tests,
+filed with autopsies, not retuned into a pass.
 
-```text
-symmetric sector       carries the quotient
-antisymmetric sector   microscopic, transport-dead
-```
+What the stages show:
 
-If the verdict is positive, experienced geometry would be the part selected
-by the information-carrying sector. Until the campaign returns, the quotient
-is an empirical reconstruction (§3), not a mechanism.
+- The symmetric sector arrives at a distance. The antisymmetric remote
+  correlator stays below `1e−9`. A sheet bit is local and does not travel.
+- Diffusion and the static potential reproduce the banked square patterns
+  (`R² = 0.1667` and `0.1407`) from the symmetric sector alone. The
+  antisymmetric support of the potential is exactly one hop.
+- A station-matched replay of the blind observer: the symmetric projector
+  returns the quotient (`d` drift `0.022`); the antisymmetric projector
+  measures no geometry.
+- A bilayer control stays two worlds (layer contrast `0.61`). The observer
+  does not merge two propagating layers. The quotient follows the dynamics.
+- A staggered onsite perturbation couples the sectors locally and still
+  gives the antisymmetric block no kinetic term. The induced remote sheet
+  signal is order `ε²`, below the observer's resolution.
+
+Status: **EMPIRICALLY ESTABLISHED** ◇ as an operational mechanism.
+**DERIVED** is still open. Experienced geometry is the part carried by the
+transporting sector. That sentence is the operational result, not yet a
+derivation from the algebra alone.
 
 ---
 
@@ -678,13 +725,16 @@ FABRIC
       ├── operational rulers                   ◇ OBS0R-METRIC
       └── blind reconstruction                 ◇ OBS1-QUOTIENT
             → 2D quotient geometry
-            → QUOT-0 mechanism                 OPEN
+            → QUOT0-OPERATIONAL ◇
+              transporting sector only
+              DERIVED rung still open
 
 OPEN FOUNDATIONS
 ├── VAC-0            substrate class            partial ◇, census open
-├── VAC-FIELD-0      vacuum ψ background        no verdict
-├── QUOT-0           quotient mechanism         running
-├── ZERO-0           anatomy of ψ = 0           running
+├── VAC-FIELD-0      joint vacuum family        ◇ VACFIELD0-JOINT
+│                    which member               still open
+├── QUOT-0           quotient mechanism         ◇ operational, not derived
+├── ZERO-0           anatomy of nodal zeros     running
 ├── FIELD-0          interaction null           ◇ established
 ├── RESPONSE-0       disturbance kernel         #99 open, pre-verdict
 └── SYM-0            physical-state equivalence no pull request
@@ -705,7 +755,7 @@ BLOCKED UNTIL THE DEBTS MOVE
 | Debt | Origin | Meaning | What can close it |
 |---|---|---|---|
 | Substrate uniqueness | J₂ adoption, PR #62 | Working fabric, not a derived unique substrate | VAC-0, when the LAW / CLASS / J₂ split is finished |
-| Vacuum field | BR-0 flatness at `ψ = 0` | Zero field is a convenient background, not a derived vacuum | VAC-FIELD-0, with ZERO-0 as the anatomy of the zero |
+| Vacuum-field member | VAC-FIELD-0 (#100) ◇ | Three nonzero states are joint vacua; `ψ = 0` is the no-information limit; the campaign does not pick one member | A principle that selects inside `{VPLUS, VPI}` without using later consequences; VMINUS is joint but transport-dead |
 | History measure | U0, TIME-0, RAND-0 | Admissible histories are known more sharply than their weights | A measure principle that is reversible and matches both readings |
 | Physical-state counting | RAND-0 orbit mismatch | The measure depends on what is one state | SYM-0, or an equivalent counting postulate |
 | Structural kinetics | BR-2.7 | Ordering and unitarity do not fire an event | The same completion, as a new primitive if that is what it is |
