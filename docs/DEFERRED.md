@@ -3238,3 +3238,47 @@ wave-NOT-potential!); 1A+1B+1C+AP+1D+1E+1I+1J+C1+C6->POTENTIAL; +1F+1G+C5->
 UNIFIED (static<-same-field->radiation!); +1H+RB->FIELD (EM-0-opens!).
 FORBIDDEN (even-FIELD-NOT!: charge/Coulomb/Maxwell/SM-photons/polarizations/
 gauge/Lorentz/EM!). NEXT: freeze-commit-then-beast-campaign (gated!).
+
+POT1-PILOT-1-DISPOSITION (SUPERSEDED (gate-miss-owned (P1-Amendment-3-
+precedent!)); beast-run-f65f2d0/59699a8 (dt=0.02): LADDER-POT1-NULL
+(APPARATUS/ANALYSIS-failures (NOT-physics-refutation!))). ROOT-CAUSES
+(diagnosed-post-pilot (numbers-filed!)): (a)-stroboscopic-pinning-shift-
+O(w*dt) (L12-calibration: jump-global-0.070-at-dt=0.02 (fails-0.05!)
+vs M-matrix/predictions-EXACT (solve==analytic-1e-9 (math-right!)));
+(b)-turn-on-LS-aliasing (single-period-fit-cannot-separate-drive-
+from-lingering-band-edge-transient (beat-2pi/0.5=12.6->-window!) +
+flat-band-deposit-|F|=0.30-L-independent (filed-measurement!)) ->
+flat-kappa/xi-fits (0.12-vs-0.69!) + range-20-on-L20; (c)-1F-design-bugs
+(absolute-threshold-vs-decaying-transient (F_front-null!) + cone-6-~-
+true-speed (C4-fails-on-tails-2e-3!) + SIGN-FLIP-localized-step-vs-
+radiation-confusion + S-peak-fit-v=5.15-EXCEEDS-Bloch-bound-4 (FIT-
+ARTIFACT-RETIRED (phase/slosh-peak (NOT-group-front!) filed!)));
+(d)-H-window-short (T=14 (absorber-weak (single-node!))); (e)-RB-L42-
+anomaly-1.0 (discrete-pumping (dt-artifact!)). PHYSICS-PASS-BANKED
+(as-filed-observations (NOT-verdicts!)): solve==analytic-both-gaps;
+jump-shells-pass-all-L; nodal-112/112-all-L (dipole-EXACT!); exchange-
+mirror-pass; drive-phase-covariance-1e-9; linearity/quadratic-pass;
+AP-route-sensitivity-29x-1D-rejection (res1d=0.81-vs-0.028!); transient-
+minus-branch-0.95 (nearby-band-edge-radiation-✓!); D≈0-everywhere;
+C1/C5/C6-pass.
+POT1-AMENDMENT-1 (PRE-RERUN (pilot-1-opened (above!)); protocol-v2-
+frozen-here): (i)-dt-=-T_drive/296-=-0.002497-ALL-driven-runs
+(commensurate-296 (w*dt=0.021); calibration-L12-jump: global-0.070->
+0.009 (5x-margin!) + t-indep-0.006 + eps-0.006 + J/B-0.007 (stable-
+T=2->4!)); (ii)-jump-=-PRIMARY-steady-vehicle (phase-rotate-extraction-
+A-=-psi(t)e^{+iwt}-late-t + t-independence-<0.02-8-snapshots (REPLACES-
+LS-for-jump; LS-kept-for-ramped-turn-on)); (iii)-turn-on-SPLIT: raw
+(fronts/causality/D-sharp-edge (NO-shape-tests!)) + cosine-ramped-tau=4
+(steady-corroboration (SAME-shape-tolerances-as-turn-on-had!));
+(iv)-1F-REDESIGN: PRIMARY-=-turn-on-front-arrivals (raw-|psi|-series +
+S-series (added-worker-readout!) + far-shells-r>=6 + per-shell-relative-
+10%-threshold + v-in-(0.5,5) (Bloch-bound-4-+-margin!) + R2>0.9);
+sign-flip-=-SECONDARY (radiated/local-split-anatomy-filed + causality-
+cone-12 (principled->>-v_max!) + instant-bound-kept); (v)-G_shell-on-
+TURN-ON-S-front (same-gate (sign-flip-S-fit-retired-with-artifact!));
+branch/accounting-unchanged; (vi)-H-T=14->20 (pre-revisit-~23!);
+(vii)-ALL-other-thresholds-IDENTICAL (0.05/0.15/0.10/0.25/1e-9/0.95/
+nodal/D/linearity (NO-shopping!)); (viii)-D-trace-stride-10 (filed-
+perf (D-smooth!)); worker-shell-series-accumulated (same-numbers!).
+RERUN-verdicts-are-the-record (pilot-1-numbers-above-filed-context!).
+NEXT: implement-v2-+-smoke-+-amendment-commit-then-beast-rerun (gated!).

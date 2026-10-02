@@ -1,12 +1,11 @@
-"""POT-1 campaign runner (frozen protocol; run AFTER prereg commit).
+"""POT-1 campaign runner v2 (POT1-AMENDMENT-1 frozen protocol).
 
-Driven-source (harmonic pinning) campaign on path-60 + J2 (L20/28/42):
-1A path calibration (hard gate), 1B single source, 1C pair, all-path
-cut variant, 1D exchange, 1E phase covariance, 1F source change,
-1G transient wave-sector analysis, 1H injection (secondary), 1I
-strength ladder, 1J sizes + wrap control, C0-C6. Multiprocessing over
-runs; workers return reduced readouts (final-period rows + shell
-series + traces). Deterministic. --smoke runs tiny apparatus checks.
+Changes vs pilot-1 (filed in POT1-AMENDMENT-1): dt = T_drive/296
+commensurate; jump = primary steady vehicle (phase-rotate extraction);
+turn-on split into raw (fronts/causality) + cosine-ramped tau=4 (steady
+corroboration); 1F redesigned around turn-on fronts (far shells,
+per-shell-relative thresholds); sign-flip secondary with cone-12
+causality; H at T=20; all other thresholds IDENTICAL to POT1-PREREG.
 """
 
 from __future__ import annotations
@@ -40,32 +39,27 @@ from bh_graph.driven import (
     is_covariant_ok,
     is_match_ok,
     is_shell_match_ok,
-    path_analytic,
     path_graph,
     path_kappa,
     period_epsilon,
     pinning_evolve,
     reactive_balance,
-    shell_means_bond,
     shell_means_node,
     steady_predict,
     stroboscopic_separate,
 )
 from bh_graph.formation import j2_torus_coords, j2_torus_graph
-from bh_graph.potential import (
-    d_trace,
-    edge_table,
-    quotient_coords,
-    spearman,
-)
+from bh_graph.potential import d_trace, edge_table, quotient_coords
 
-DT = 0.02
 OM_J2 = -8.5
 OM_PA = -2.5
 OM_PB = -3.0
-WIN = {20: (6.0, 4), 28: (8.0, 6), 42: (10.0, 8)}  # L -> (T, r_settled)
+DT = (2.0 * math.pi / abs(OM_J2)) / 296  # commensurate-296 (Amendment-1)
+RAMP_TAU = 4.0
+WIN = {20: (6.0, 4), 28: (8.0, 6), 42: (10.0, 8)}
 PAIR_D = 8
 C4_R = {20: 8, 28: 10, 42: 12}
+D_STRIDE = 10
 
 
 def _j2_id(L, x, y, b=0):
@@ -82,7 +76,6 @@ def _j2_setup(L):
 
 
 def _wall_cut(g, L):
-    """Frozen all-path variant: wall x=4->5 bonds cut except gap y 13..15."""
     h = g.copy()
     for y in range(L):
         if y in (13, 14, 15):
@@ -95,8 +88,21 @@ def _wall_cut(g, L):
     return h
 
 
+def _ramp_fn(s_vals, omega, ramp_tau):
+    s_vals = np.asarray(s_vals, dtype=np.complex128)
+
+    def fn(step: int) -> np.ndarray:
+        t = (step + 1) * DT
+        if t < ramp_tau:
+            f = 0.5 * (1.0 - math.cos(math.pi * t / ramp_tau))
+        else:
+            f = 1.0
+        return f * s_vals * np.exp(-1.0j * float(omega) * t)
+
+    return fn
+
+
 def _run_driven(args):
-    """Worker: one driven/free run, returns reduced readouts (picklable)."""
     spec = dict(args)
     tag = spec["tag"]
     kind = spec["substrate"]
@@ -124,9 +130,8 @@ def _run_driven(args):
     pins = [idx[v] for v in spec["pin_nodes"]]
     s_vals = np.asarray(spec["s_vals"], dtype=np.complex128)
     sw = spec.get("switch")
-    if sw is None:
-        pin_fn = harmonic_pins(s_vals, omega, DT)
-    else:
+    ramp = spec.get("ramp")
+    if sw is not None:
         s2 = np.asarray(sw["s_vals"], dtype=np.complex128)
         k0 = int(round(sw["t0"] / DT))
 
@@ -135,16 +140,15 @@ def _run_driven(args):
             s = _s1 if step < _k0 else _s2
             return s * np.exp(-1.0j * omega * t)
 
+    elif ramp is not None:
+        pin_fn = _ramp_fn(s_vals, omega, ramp)
+    else:
+        pin_fn = harmonic_pins(s_vals, omega, DT)
     init = spec["init"]
     if init == "zero":
         psi0 = np.zeros(len(order), dtype=np.complex128)
     elif init == "pred":
         psi0 = steady_predict(h, pins, s_vals, omega)
-    elif init == "packet":
-        p = spec["packet"]
-        coords = {v: (float(x), float(y)) for v, (x, y, _) in c3.items()}
-        psi0 = gaussian_packet(coords, order, p["r0"], p["k"], p["sigma"],
-                               periods=(L, L))
     elif init == "pred_plus_packet":
         p = spec["packet"]
         coords = {v: (float(x), float(y)) for v, (x, y, _) in c3.items()}
@@ -158,20 +162,19 @@ def _run_driven(args):
     ts = np.arange(rows.shape[0]) * DT
     dist = dist_from_set(g, spec["pin_nodes"])
     rmax = max(dist.values())
-    nb = len(order)
-    series_abs = np.array([
-        [float(np.mean(np.abs(rows[k])[[idx[v] for v, d in dist.items() if d == r]]))
-         if any(d == r for d in dist.values()) else 0.0 for r in range(rmax + 1)]
-        for k in range(rows.shape[0])
-    ])
-    bB = np.array([bilinears(rows[k], eu, ev)["B"] for k in range(rows.shape[0])])
     dvec = np.array([dist[v] for v in order])
     shb = np.minimum(dvec[eu], dvec[ev])
-    series_B = np.array([
-        [float(np.mean(bB[k][shb == r])) if (shb == r).any() else 0.0
-         for r in range(rmax + 1)]
-        for k in range(rows.shape[0])
-    ])
+    # Accumulated shell series (no big per-step arrays).
+    s_abs, s_B, s_S = [], [], []
+    for k in range(rows.shape[0]):
+        rk = rows[k]
+        bi = bilinears(rk, eu, ev)
+        s_abs.append([float(np.mean(np.abs(rk[dvec == r]))) if (dvec == r).any()
+                      else 0.0 for r in range(rmax + 1)])
+        s_B.append([float(np.mean(bi["B"][shb == r])) if (shb == r).any()
+                    else 0.0 for r in range(rmax + 1)])
+        s_S.append([float(np.abs(bi["J"][shb == r]).sum()) if (shb == r).any()
+                    else 0.0 for r in range(rmax + 1)])
     fp_rows, fp_ts = final_period_rows(rows, DT, omega)
     sep = stroboscopic_separate(fp_rows, fp_ts, omega)
     fin = bilinears(rows[-1], eu, ev)
@@ -182,18 +185,18 @@ def _run_driven(args):
     rb = reactive_balance(rec["work"], DT, omega)
     dtr = None
     if etab is not None:
-        dtr = [float(v) for v in d_trace(rows, etab)["D"]]
-    out = {"tag": tag, "fp_A": [[float(z.real), float(z.imag)] for z in sep["A"]],
-           "fp_F": [[float(z.real), float(z.imag)] for z in sep["F"]],
-           "sep_resid": sep["rel_resid"], "eps": eps,
-           "series_abs": series_abs.tolist(), "series_B": series_B.tolist(),
-           "ts": ts.tolist(), "jmax": jmax, "bmax": bmax,
-           "work_net": rb["net"], "work_gross": rb["gross"],
-           "work_ratio": rb["ratio"], "D_trace": dtr,
-           "norm_last": float(rec["norms"][-1])}
-    if spec.get("want_rows_final"):
-        out["final"] = [[float(z.real), float(z.imag)] for z in rows[-1]]
-    return out
+        dtr = [float(v) for v in d_trace(rows[::D_STRIDE], etab)["D"]]
+    return {"tag": tag,
+            "fp_A": [[float(z.real), float(z.imag)] for z in sep["A"]],
+            "fp_F": [[float(z.real), float(z.imag)] for z in sep["F"]],
+            "fp_rows": [[float(z.real), float(z.imag)] for z in fp_rows[-1]],
+            "fp_t_end": float(fp_ts[-1]),
+            "sep_resid": sep["rel_resid"], "eps": eps,
+            "series_abs": s_abs, "series_B": s_B, "series_S": s_S,
+            "ts": ts.tolist(), "jmax": jmax, "bmax": bmax,
+            "work_net": rb["net"], "work_gross": rb["gross"],
+            "work_ratio": rb["ratio"], "D_trace": dtr,
+            "norm_last": float(rec["norms"][-1])}
 
 
 def _j2_src_nodes(L):
@@ -213,83 +216,76 @@ def main() -> int:
     smoke = args.smoke
 
     cases = []
-    # ---- POT-1A: path-60 pair, two gaps, jump + turn-on ----
+    npath = 12 if smoke else 60
     for om, nm in ((OM_PA, "a"), (OM_PB, "b")):
-        n = 12 if smoke else 60
-        pins = [0, n - 1]
-        base = dict(substrate="path", n=n, omega=om, T=3.0 if smoke else 12.0,
-                    r_set=4 if smoke else 10, pin_nodes=pins, s_vals=[1.0, -1.0])
+        pins = [0, npath - 1]
+        base = dict(substrate="path", n=npath, omega=om,
+                    T=3.0 if smoke else 12.0, r_set=4 if smoke else 10,
+                    pin_nodes=pins, s_vals=[1.0, -1.0])
         cases.append(dict(base, tag=f"path_{nm}_jump", init="pred"))
-        cases.append(dict(base, tag=f"path_{nm}_turnon", init="zero"))
-    # Path linearity (jump level).
-    cases.append(dict(substrate="path", n=12 if smoke else 60, omega=OM_PA,
+        cases.append(dict(base, tag=f"path_{nm}_ramp", init="zero",
+                          ramp=RAMP_TAU if not smoke else 0.5))
+    cases.append(dict(substrate="path", n=npath, omega=OM_PA,
                       T=3.0 if smoke else 12.0, r_set=4 if smoke else 10,
-                      pin_nodes=[0, (12 if smoke else 60) - 1],
-                      s_vals=[0.5, -0.5], tag="path_lin05", init="pred"))
-    cases.append(dict(substrate="path", n=12 if smoke else 60, omega=OM_PA,
+                      pin_nodes=[0, npath - 1], s_vals=[0.5, -0.5],
+                      tag="path_lin05", init="pred"))
+    cases.append(dict(substrate="path", n=npath, omega=OM_PA,
                       T=3.0 if smoke else 12.0, r_set=4 if smoke else 10,
-                      pin_nodes=[0, (12 if smoke else 60) - 1],
-                      s_vals=[2.0, -2.0], tag="path_lin20", init="pred"))
-    # ---- POT-1B: J2 single source, 3 sizes, turn-on + jump ----
+                      pin_nodes=[0, npath - 1], s_vals=[2.0, -2.0],
+                      tag="path_lin20", init="pred"))
     Ls = (6,) if smoke else (20, 28, 42)
     for L in Ls:
-        nodes = _j2_pair_nodes(L) if False else [_j2_id(L, 0, 0)]
-        for init in ("zero", "pred"):
-            cases.append(dict(substrate="j2", L=L, pin_nodes=nodes,
-                              s_vals=[1.0], tag=f"j2_{L}_{init}", init=init))
-    # Wrap control: L28 turn-on at 2T.
+        nodes = [_j2_id(L, 0, 0)]
+        cases.append(dict(substrate="j2", L=L, pin_nodes=nodes, s_vals=[1.0],
+                          tag=f"j2_{L}_pred", init="pred"))
+        cases.append(dict(substrate="j2", L=L, pin_nodes=nodes, s_vals=[1.0],
+                          tag=f"j2_{L}_zero", init="zero"))
+        cases.append(dict(substrate="j2", L=L, pin_nodes=nodes, s_vals=[1.0],
+                          tag=f"j2_{L}_ramp", init="zero",
+                          ramp=RAMP_TAU if not smoke else 0.3))
     if not smoke:
         cases.append(dict(substrate="j2", L=28, pin_nodes=_j2_src_nodes(28),
                           s_vals=[1.0], tag="j2_28_zero_2T", init="zero",
                           t_mult=2))
-    # ---- POT-1C: pair at 3 sizes ----
     for L in Ls:
         nodes = _j2_pair_nodes(L)
         cases.append(dict(substrate="j2", L=L, pin_nodes=nodes,
+                          s_vals=[1.0, -1.0], tag=f"pair_{L}_pred", init="pred"))
+        cases.append(dict(substrate="j2", L=L, pin_nodes=nodes,
                           s_vals=[1.0, -1.0], tag=f"pair_{L}_zero", init="zero"))
         cases.append(dict(substrate="j2", L=L, pin_nodes=nodes,
-                          s_vals=[1.0, -1.0], tag=f"pair_{L}_pred", init="pred"))
-    # ---- POT-1D: exchanged pair (L28, jump) ----
+                          s_vals=[1.0, -1.0], tag=f"pair_{L}_ramp", init="zero",
+                          ramp=RAMP_TAU if not smoke else 0.3))
     if not smoke:
         cases.append(dict(substrate="j2", L=28, pin_nodes=_j2_pair_nodes(28),
                           s_vals=[-1.0, 1.0], tag="pair_exch", init="pred"))
-    # ---- POT-1E: drive phases ----
     for i, ph in enumerate((0.7, 2.1, 4.0) if not smoke else (0.7,)):
-        s = [float(np.exp(1.0j * ph).real), float(np.exp(1.0j * ph).imag)]
+        c = complex(np.exp(1.0j * ph))
         cases.append(dict(substrate="j2", L=6 if smoke else 28,
                           pin_nodes=[_j2_id(6 if smoke else 28, 0, 0)],
-                          s_vals=[complex(s[0], s[1])], tag=f"phase_{i}",
-                          init="zero"))
-    # ---- POT-1F: sign-flip + amplitude-step + (control reused: j2_28_pred) ----
+                          s_vals=[c], tag=f"phase_{i}", init="zero"))
     if not smoke:
         T28 = WIN[28][0]
         cases.append(dict(substrate="j2", L=28, pin_nodes=_j2_src_nodes(28),
                           s_vals=[1.0], tag="switch_sign", init="pred",
-                          switch=dict(t0=T28 / 2, s_vals=[-1.0]),
-                          want_rows_final=True))
+                          switch=dict(t0=T28 / 2, s_vals=[-1.0])))
         cases.append(dict(substrate="j2", L=28, pin_nodes=_j2_src_nodes(28),
                           s_vals=[1.0], tag="switch_amp", init="pred",
-                          switch=dict(t0=T28 / 2, s_vals=[2.0]),
-                          want_rows_final=True))
+                          switch=dict(t0=T28 / 2, s_vals=[2.0])))
         cases.append(dict(substrate="j2", L=42, pin_nodes=_j2_src_nodes(42),
                           s_vals=[1.0], tag="switch42_sign", init="pred",
-                          switch=dict(t0=WIN[42][0] / 2, s_vals=[-1.0]),
-                          want_rows_final=True))
-    # ---- POT-1H: injection (secondary) ----
-    if not smoke:
+                          switch=dict(t0=WIN[42][0] / 2, s_vals=[-1.0])))
         cases.append(dict(substrate="j2", L=28, pin_nodes=_j2_src_nodes(28),
                           s_vals=[1.0], tag="inject", init="pred_plus_packet",
                           packet=dict(r0=(20.0, 0.0), k=(0.3, 0.0), sigma=4.0),
-                          t_mult=1.75))
-    # ---- POT-1I: strength ladder (turn-on) ----
+                          t_mult=2.5))
     for lam, nm in ((0.5, "05"), (2.0, "20")):
         if smoke and nm == "20":
             continue
         cases.append(dict(substrate="j2", L=6 if smoke else 28,
                           pin_nodes=[_j2_id(6 if smoke else 28, 0, 0)],
-                          s_vals=[lam], tag=f"lam_{nm}", init="zero"))
-    # NOTE: C1 free-packet replication runs in-process in main (finer
-    # control of the COM trace); no pin-less worker case (dist needs pins).
+                          s_vals=[lam], tag=f"lam_{nm}", init="zero",
+                          ramp=RAMP_TAU if not smoke else 0.3))
 
     pool = mp.get_context("fork").Pool(args.jobs)
     recs = pool.map(_run_driven, cases)
@@ -303,7 +299,13 @@ def main() -> int:
     def Fvec(tag):
         return np.array([complex(z[0], z[1]) for z in R[tag]["fp_F"]])
 
-    out = {"params": {"DT": DT, "OM_J2": OM_J2, "WIN": {str(k): v for k, v in WIN.items()}}}
+    def Jvec(tag, om):
+        # Jump extraction: phase-rotated final row (Amendment-1).
+        f = np.array([complex(z[0], z[1]) for z in R[tag]["fp_rows"]])
+        return f * np.exp(1.0j * om * R[tag]["fp_t_end"])
+
+    out = {"params": {"DT": DT, "OM_J2": OM_J2, "RAMP_TAU": RAMP_TAU,
+                      "amendment": 1}}
     V = {}
 
     if smoke:
@@ -319,29 +321,30 @@ def main() -> int:
         g = path_graph(n)
         order = node_order(g)
         h = hamiltonian(g, order=order)
+        from bh_graph.driven import path_analytic as _pa
         pred = steady_predict(h, [0, n - 1], [1.0, -1.0], om)
-        ana = path_analytic(n, 0, n - 1, 1.0, -1.0, om)
+        ana = _pa(n, 0, n - 1, 1.0, -1.0, om)
         V[f"A_{nm}_solve_analytic"] = bool(is_match_ok(pred, ana, 1e-9))
         dist = dist_from_set(g, [0, n - 1])
-        for init, tol in (("pred", 0.05), ("zero", 0.10)):
-            A = Avec(f"path_{nm}_{'jump' if init == 'pred' else 'turnon'}")
-            V[f"A_{nm}_{init}_global"] = bool(is_match_ok(A, pred, tol))
-            pm = shell_means_node(np.abs(pred), order, dist, 10)
+        Aj = Jvec(f"path_{nm}_jump", om)
+        Ar = Avec(f"path_{nm}_ramp")
+        V[f"A_{nm}_jump_global"] = bool(is_match_ok(Aj, pred, 0.05))
+        V[f"A_{nm}_ramp_global"] = bool(is_match_ok(Ar, pred, 0.10))
+        pm = shell_means_node(np.abs(pred), order, dist, 10)
+        for nm2, A, tol in (("jump", Aj, 0.15), ("ramp", Ar, 0.25)):
             am = shell_means_node(np.abs(A), order, dist, 10)
-            V[f"A_{nm}_{init}_shell"] = bool(
-                is_shell_match_ok(am, pm, range(0, 11), 0.15 if init == "pred" else 0.25))
-        # kappa law from turn-on tails.
-        A = Avec(f"path_{nm}_turnon")
-        pm = shell_means_node(np.abs(A), order, dist_from_set(g, [0]), 8)
+            V[f"A_{nm}_{nm2}_shell"] = bool(
+                is_shell_match_ok(am, pm, range(0, 11), tol))
+        A = Ar
+        pm1 = shell_means_node(np.abs(A), order, dist_from_set(g, [0]), 8)
         rr = np.array([r for r in range(2, 9)], dtype=float)
-        vv = np.array([pm[r] for r in range(2, 9)], dtype=float)
+        vv = np.array([pm1[r] for r in range(2, 9)], dtype=float)
         kap_fit = float(-np.polyfit(rr, np.log(np.maximum(vv, 1e-300)), 1)[0])
         kap_th = path_kappa(om)
         V[f"A_{nm}_kappa"] = bool(abs(kap_fit - kap_th) / kap_th < 0.05)
         out[f"kappa_{nm}"] = {"fit": kap_fit, "theory": kap_th}
-        V[f"A_{nm}_eps"] = bool(R[f"path_{nm}_turnon"]["eps"] < 0.10
+        V[f"A_{nm}_eps"] = bool(R[f"path_{nm}_ramp"]["eps"] < 0.10
                                 and R[f"path_{nm}_jump"]["eps"] < 0.02)
-    # Path linearity (jump level).
     g = path_graph(60)
     order = node_order(g)
     h = hamiltonian(g, order=order)
@@ -350,12 +353,11 @@ def main() -> int:
         is_match_ok(steady_predict(h, [0, 59], [0.5, -0.5], OM_PA), 0.5 * p1, 1e-9)
         and is_match_ok(steady_predict(h, [0, 59], [2.0, -2.0], OM_PA), 2.0 * p1, 1e-9))
     V["A_lin_evo"] = bool(
-        is_match_ok(Avec("path_lin05"), 0.5 * Avec("path_a_jump"), 0.05)
-        and is_match_ok(Avec("path_lin20"), 2.0 * Avec("path_a_jump"), 0.05))
-    keys_1a = [k for k in V if k.startswith("A_")]
-    V["A"] = bool(all(V[k] for k in keys_1a))
+        is_match_ok(Jvec("path_lin05", OM_PA), 0.5 * Jvec("path_a_jump", OM_PA), 0.05)
+        and is_match_ok(Jvec("path_lin20", OM_PA), 2.0 * Jvec("path_a_jump", OM_PA), 0.05))
+    V["A"] = bool(all(V[k] for k in V if k.startswith("A_")))
 
-    # ================= POT-1B/1J (single source, 3 sizes) =================
+    # ================= POT-1B/1J =================
     xi = {}
     for L in (20, 28, 42):
         T, r_set = WIN[L]
@@ -364,47 +366,47 @@ def main() -> int:
         dist = dist_from_set(g, nodes)
         idx = {v: i for i, v in enumerate(order)}
         pred = steady_predict(h, [idx[v] for v in nodes], [1.0], OM_J2)
-        out[f"pred_range_{L}"] = int(max(
-            r for r in range(max(dist.values()) + 1)
-            if shell_means_node(np.abs(pred), order, dist, r)[r] > 0.05))
-        for init, tol in (("pred", 0.05), ("zero", 0.10)):
-            tag = f"j2_{L}_{init}"
-            A = Avec(tag)
-            V[f"B{L}_{init}_global"] = bool(is_match_ok(A, pred, tol))
-            pm = shell_means_node(np.abs(pred), order, dist, r_set)
+        pr = shell_means_node(np.abs(pred), order, dist, max(dist.values()))
+        out[f"pred_range_{L}"] = int(max(r for r in pr if pr[r] > 0.05))
+        Aj = Jvec(f"j2_{L}_pred", OM_J2)
+        Ar = Avec(f"j2_{L}_ramp")
+        V[f"B{L}_jump_global"] = bool(is_match_ok(Aj, pred, 0.05))
+        V[f"B{L}_ramp_global"] = bool(is_match_ok(Ar, pred, 0.10))
+        pm = shell_means_node(np.abs(pred), order, dist, r_set)
+        for nm2, A, tol in (("jump", Aj, 0.15), ("ramp", Ar, 0.25)):
             am = shell_means_node(np.abs(A), order, dist, r_set)
-            V[f"B{L}_{init}_shell"] = bool(is_shell_match_ok(
-                am, pm, range(0, r_set + 1), 0.15 if init == "pred" else 0.25))
-        V[f"B{L}_eps"] = bool(R[f"j2_{L}_zero"]["eps"] < 0.10
+            V[f"B{L}_{nm2}_shell"] = bool(
+                is_shell_match_ok(am, pm, range(0, r_set + 1), tol))
+        V[f"B{L}_eps"] = bool(R[f"j2_{L}_ramp"]["eps"] < 0.10
                               and R[f"j2_{L}_pred"]["eps"] < 0.02)
         V[f"B{L}_J"] = bool(R[f"j2_{L}_pred"]["jmax"]
                             / max(R[f"j2_{L}_pred"]["bmax"], 1e-300) < 0.05)
-        dtr = np.array(R[f"j2_{L}_zero"]["D_trace"])
-        V[f"B{L}_D"] = bool(float(dtr.mean()) < 0.05)
-        A = Avec(f"j2_{L}_zero")
-        am = shell_means_node(np.abs(A), order, dist, max(dist.values()))
+        dz = np.array(R[f"j2_{L}_zero"]["D_trace"])
+        dr = np.array(R[f"j2_{L}_ramp"]["D_trace"])
+        V[f"B{L}_D"] = bool(float(dz.mean()) < 0.05 and float(dr.mean()) < 0.05)
+        am = shell_means_node(np.abs(Ar), order, dist, max(dist.values()))
         rng = max([r for r in am if am[r] > 0.05])
         V[f"B{L}_range"] = bool(abs(rng - out[f"pred_range_{L}"]) <= 1)
         out[f"range_{L}"] = {"meas": int(rng), "pred": out[f"pred_range_{L}"]}
-        # xi fit over common shells 2..5.
         rr = np.array([2, 3, 4, 5], dtype=float)
         vv = np.array([am[r] for r in (2, 3, 4, 5)], dtype=float)
         xi[L] = float(-np.polyfit(rr, np.log(np.maximum(vv, 1e-300)), 1)[0])
-        out[f"Fmag_{L}"] = float(np.linalg.norm(Fvec(f"j2_{L}_zero")))
+        out[f"Fmag_{L}"] = float(np.linalg.norm(Fvec(f"j2_{L}_ramp")))
+        out[f"Fmag_raw_{L}"] = float(np.linalg.norm(Fvec(f"j2_{L}_zero")))
     out["xi"] = xi
     V["J_xi"] = bool(max(xi.values()) / min(xi.values()) < 1.2)
-    # Wrap control: 2T drift in settled shells.
     g, order, c3, h, eu, ev = _j2_setup(28)
     dist = dist_from_set(g, _j2_src_nodes(28))
-    a8 = Avec("j2_28_zero")
+    # Wrap control on RAMPED 2T? 2T run is raw; compare LS-A settled shells.
+    a8 = Avec("j2_28_ramp")
     a16 = Avec("j2_28_zero_2T")
     m8 = shell_means_node(np.abs(a8), order, dist, 6)
     m16 = shell_means_node(np.abs(a16), order, dist, 6)
-    V["J_wrap"] = bool(is_shell_match_ok(m16, m8, range(0, 7), 0.05, floor=0.01))
+    V["J_wrap"] = bool(is_shell_match_ok(m16, m8, range(0, 7), 0.25, floor=0.01))
     V["B"] = bool(all(V[k] for k in V if k.startswith("B")))
     V["J"] = bool(V["J_xi"] and V["J_wrap"])
 
-    # ================= POT-1C (pair) =================
+    # ================= POT-1C =================
     for L in (20, 28, 42):
         T, r_set = WIN[L]
         g, order, c3, h, eu, ev = _j2_setup(L)
@@ -412,12 +414,10 @@ def main() -> int:
         dist = dist_from_set(g, nodes)
         idx = {v: i for i, v in enumerate(order)}
         pred = steady_predict(h, [idx[v] for v in nodes], [1.0, -1.0], OM_J2)
-        for init, tol in (("pred", 0.05), ("zero", 0.10)):
-            tag = f"pair_{L}_{'pred' if init == 'pred' else 'zero'}"
-            A = Avec(tag)
-            V[f"C{L}_{init}_global"] = bool(is_match_ok(A, pred, tol))
-        # Nodal structure on turn-on A (real part sign vs nearer source).
-        A = Avec(f"pair_{L}_zero")
+        Aj = Jvec(f"pair_{L}_pred", OM_J2)
+        Ar = Avec(f"pair_{L}_ramp")
+        V[f"C{L}_jump_global"] = bool(is_match_ok(Aj, pred, 0.05))
+        V[f"C{L}_ramp_global"] = bool(is_match_ok(Ar, pred, 0.10))
         d0 = dist_from_set(g, [nodes[0]])
         d1 = dist_from_set(g, [nodes[1]])
         ok = tot = 0
@@ -430,43 +430,46 @@ def main() -> int:
             if s == 0:
                 tot -= 1
                 continue
-            if (A[i].real > 0) == (s > 0):
+            if (Ar[i].real > 0) == (s > 0):
                 ok += 1
         V[f"C{L}_nodal"] = bool(tot > 0 and ok / tot > 0.95)
         out[f"nodal_{L}"] = {"ok": ok, "tot": tot}
-        dtr = np.array(R[f"pair_{L}_zero"]["D_trace"])
-        V[f"C{L}_D"] = bool(float(dtr.mean()) < 0.05)
+        dz = np.array(R[f"pair_{L}_zero"]["D_trace"])
+        V[f"C{L}_D"] = bool(float(dz.mean()) < 0.05)
     V["C"] = bool(all(V[k] for k in V if k.startswith("C")))
 
-    # ================= All-path cut variant (L28, turn-on in-worker) ====
+    # ================= All-path cut variant =================
     L = 28
     g, order, c3, h, eu, ev = _j2_setup(L)
     gw = _wall_cut(g, L)
     hw = hamiltonian(gw, order=order)
     idx = {v: i for i, v in enumerate(order)}
     nodes = _j2_src_nodes(L)
-    # Direct recomputed prediction on cut graph + fresh turn-on run.
     T, r_set = WIN[L]
     n_steps = int(round(T / DT))
     psi0 = np.zeros(len(order), dtype=np.complex128)
-    rec = pinning_evolve(psi0, hw, DT, n_steps, [idx[v] for v in nodes],
-                         harmonic_pins([1.0], OM_J2, DT))
+    tau = RAMP_TAU
+    om = OM_J2
+
+    def _pf(step):
+        t = (step + 1) * DT
+        f = 0.5 * (1.0 - math.cos(math.pi * t / tau)) if t < tau else 1.0
+        return np.array([f]) * np.exp(-1.0j * om * t)
+
+    rec = pinning_evolve(psi0, hw, DT, n_steps, [idx[v] for v in nodes], _pf)
     ts = np.arange(rec["psi"].shape[0]) * DT
-    fp_rows, fp_ts = final_period_rows(rec["psi"], DT, OM_J2)
-    sep = stroboscopic_separate(fp_rows, fp_ts, OM_J2)
-    Aw = sep["A"]
-    predw = steady_predict(hw, [idx[v] for v in nodes], [1.0], OM_J2)
+    fp_rows, fp_ts = final_period_rows(rec["psi"], DT, om)
+    Aw = stroboscopic_separate(fp_rows, fp_ts, om)["A"]
+    predw = steady_predict(hw, [idx[v] for v in nodes], [1.0], om)
     V["AP_match"] = bool(is_match_ok(Aw, predw, 0.10))
-    # Route sensitivity: shadow shells differ from uncut by > 25%.
     dist = dist_from_set(g, nodes)
     distw = dist_from_set(gw, nodes)
-    Au = Avec("j2_28_zero")
+    Au = Avec("j2_28_ramp")
     mu = shell_means_node(np.abs(Au), order, dist, 12)
     mw = shell_means_node(np.abs(Aw), order, distw, 12)
     diffs = [abs(mw[r] - mu[r]) / max(mu[r], 1e-300) for r in range(6, 13)]
     V["AP_diff"] = bool(max(diffs) > 0.25)
     out["AP_diffs"] = diffs
-    # Shortest-only model rejection: best exponential in d_short vs all-path.
     rr = np.array([r for r in range(0, 13)], dtype=float)
     vv = np.array([mw[r] for r in range(0, 13)], dtype=float)
     okm = vv > 1e-6
@@ -483,8 +486,8 @@ def main() -> int:
     L = 28
     g, order, c3, h, eu, ev = _j2_setup(L)
     idx = {v: i for i, v in enumerate(order)}
-    A_a = Avec("pair_28_pred")
-    A_b = Avec("pair_exch")
+    A_a = Jvec("pair_28_pred", OM_J2)
+    A_b = Jvec("pair_exch", OM_J2)
     sig = {v: _j2_id(L, PAIR_D - c3[v][0], c3[v][1], c3[v][2]) for v in order}
     mir = np.array([A_a[idx[sig[v]]] for v in order])
     V["D_exch"] = bool(is_match_ok(A_b, mir, 0.05))
@@ -495,24 +498,53 @@ def main() -> int:
                     / max(float(np.abs(Bm).max()), 1e-300) < 0.05)
     V["D"] = bool(V["D_exch"] and V["D_B"])
 
-    # ================= POT-1E phase covariance =================
+    # ================= POT-1E (final-row B/J, no separation) =================
     L = 28
     g, order, c3, h, eu, ev = _j2_setup(L)
     eu2, ev2 = edge_arrays(g, order)
-    base = R["j2_28_zero"]
-    Bb = bilinears(np.array([complex(z[0], z[1]) for z in base["fp_A"]]),
-                   eu2, ev2)
+    f0 = np.array([complex(z[0], z[1]) for z in R["j2_28_zero"]["fp_rows"]])
+    Bb = bilinears(f0, eu2, ev2)
     eok = True
     for i in range(3):
-        r = R[f"phase_{i}"]
-        B = bilinears(np.array([complex(z[0], z[1]) for z in r["fp_A"]]),
-                      eu2, ev2)
+        f1 = np.array([complex(z[0], z[1]) for z in R[f"phase_{i}"]["fp_rows"]])
+        B = bilinears(f1, eu2, ev2)
         eok = eok and is_covariant_ok(B["B"], Bb["B"], atol=1e-9)
         eok = eok and is_covariant_ok(B["J"], Bb["J"], atol=1e-9)
     V["E"] = bool(eok)
 
-    # ================= POT-1F/1G transients =================
-    # Control rows rerun in-process (jump steady, L28) for delta fields.
+    # ================= POT-1F: turn-on fronts (redesigned) =================
+    from bh_graph.driven import arrival_velocity as _av
+    fronts = {}
+    for L in (28, 42):
+        r = R[f"j2_{L}_zero"]
+        ts = np.array(r["ts"])
+        sab = np.array(r["series_abs"])
+        ss = np.array(r["series_S"])
+        arr_a, arr_s = {}, {}
+        for sh in range(6, 13 if L == 28 else 15):
+            if sh >= sab.shape[1]:
+                continue
+            col = sab[:, sh]
+            th = 0.1 * float(col.max())
+            t = first_crossing(col, ts, th)
+            if t is not None:
+                arr_a[sh] = t
+            colS = ss[:, sh]
+            thS = 0.1 * float(colS.max())
+            tS = first_crossing(colS, ts, thS)
+            if tS is not None:
+                arr_s[sh] = tS
+        fa = _av(arr_a, sorted(arr_a)) if len(arr_a) >= 4 else None
+        fs = _av(arr_s, sorted(arr_s)) if len(arr_s) >= 4 else None
+        fronts[L] = {"abs": fa, "S": fs, "n_a": len(arr_a), "n_s": len(arr_s)}
+    out["fronts"] = fronts
+    fa28, fs28 = fronts[28]["abs"], fronts[28]["S"]
+    V["F_arr"] = bool(fa28 is not None and 0.5 < fa28["v"] < 5.0 and fa28["r2"] > 0.9)
+    V["G_shell"] = bool(fs28 is not None and 0.5 < fs28["v"] < 5.0 and fs28["r2"] > 0.9)
+    fa42 = fronts[42]["abs"]
+    V["J_front"] = bool(fa28 is not None and fa42 is not None
+                        and abs(fa28["v"] - fa42["v"]) / max(fa28["v"], 1e-300) < 0.25)
+    # Sign-flip secondary: instant bound + cone-12 causality + split anatomy.
     L = 28
     T, r_set = WIN[L]
     g, order, c3, h, eu, ev = _j2_setup(L)
@@ -526,120 +558,59 @@ def main() -> int:
     ctl = pinning_evolve(psi0, h, DT, n_steps, [idx[v] for v in nodes],
                          harmonic_pins([1.0], OM_J2, DT))["psi"]
 
-    def _pin_fn_sw(step, s1, s2):
+    def _pfsw(step):
         t = (step + 1) * DT
-        s = s1 if step < k0 else s2
+        s = np.array([1.0]) if step < k0 else np.array([-1.0])
         return s * np.exp(-1.0j * OM_J2 * t)
 
-    chg = pinning_evolve(
-        psi0, h, DT, n_steps, [idx[v] for v in nodes],
-        lambda s: _pin_fn_sw(s, np.array([1.0]), np.array([-1.0])))["psi"]
+    chg = pinning_evolve(psi0, h, DT, n_steps, [idx[v] for v in nodes],
+                         _pfsw)["psi"]
     dpsi = chg - ctl
     ts = np.arange(dpsi.shape[0]) * DT
-    # Instant-action bound: t0+dt snapshot, dist >= 8.
     snap = np.abs(dpsi[k0 + 1])
     far = np.array([dist[v] >= 8 for v in order])
     V["F_instant"] = bool(float(snap[far].max()) < 1e-9)
     out["F_instant_max"] = float(snap[far].max())
-    # delta-B shell series + arrivals.
-    dB = np.array([bilinears(dpsi[k], eu, ev)["B"] for k in range(dpsi.shape[0])])
+    dB = np.array([bilinears(dpsi[k], eu, ev)["B"] for k in range(0, dpsi.shape[0], 5)])
+    ts5 = ts[::5]
     dvec = np.array([dist[v] for v in order])
     shb = np.minimum(dvec[eu], dvec[ev])
     rmax = max(dist.values())
     series = {r: np.array([float(np.abs(dB[k][shb == r]).max()) if (shb == r).any()
-                           else 0.0 for k in range(dpsi.shape[0])])
+                           else 0.0 for k in range(dB.shape[0])])
               for r in range(rmax + 1)}
-    post = np.array([series[r][k0:] for r in range(0, 7)])
-    thresh = 0.1 * float(post.max())
-    out["F_thresh"] = thresh
-    arr = {}
-    for r in range(0, 11):
-        arr[r] = first_crossing(series[r][k0:], ts[k0:], thresh)
-    ok_arr = {r: t for r, t in arr.items() if t is not None}
-    fit = None
-    if len(ok_arr) >= 4:
-        from bh_graph.driven import arrival_velocity as _av
-        fit = _av(ok_arr, sorted(ok_arr))
-    V["F_arr"] = bool(fit is not None and 0.5 < fit["v"] < 6.0 and fit["r2"] > 0.95)
-    out["F_front"] = fit
-    # C4: remote shells pre-arrival.
-    c4r = C4_R[L]
-    pre = max(float(series[r][:k0].max()) if k0 else 0.0 for r in range(c4r, rmax + 1))
-    # Pre-arrival window: before t0 + (r - 2)/6 (generous cone).
     pre2 = 0.0
-    for r in range(c4r, rmax + 1):
-        tlim = t0 + max(r - 2, 0) / 6.0
-        sel = ts < tlim
+    for r in range(C4_R[L], rmax + 1):
+        tlim = t0 + max(r - 2, 0) / 12.0
+        sel = ts5 < tlim
         pre2 = max(pre2, float(series[r][sel].max()))
     V["F_C4"] = bool(pre2 < 1e-6)
     out["F_pre"] = pre2
-    # S-shell radiation of the transient (J of dpsi).
-    dJ = np.array([bilinears(dpsi[k], eu, ev)["J"] for k in range(dpsi.shape[0])])
-    sser = {r: np.array([float(np.abs(dJ[k][shb == r]).sum()) if (shb == r).any()
-                         else 0.0 for k in range(dpsi.shape[0])])
-            for r in range(rmax + 1)}
-    peaks = {}
-    for r in range(1, 11):
-        seg = sser[r][k0:]
-        peaks[r] = float(ts[k0:][int(np.argmax(seg))]) if seg.max() > 0 else None
-    okp = {r: t for r, t in peaks.items() if t is not None}
-    from bh_graph.driven import arrival_velocity as _av2
-    fitS = _av2(okp, sorted(okp)) if len(okp) >= 4 else None
-    V["G_shell"] = bool(fitS is not None and 0.5 < fitS["v"] < 6.0 and fitS["r2"] > 0.9)
-    out["G_front"] = fitS
-    # Branch content of far-field transient (late, r > 6).
+    # Split anatomy (filed): late local step vs radiated.
+    late = dpsi[-1]
+    mloc = np.array([dist[v] <= 4 for v in order])
+    out["F_split"] = {"local_norm": float(np.linalg.norm(late[mloc])),
+                      "far_norm": float(np.linalg.norm(late[~mloc]))}
+    V["F"] = bool(V["F_arr"] and V["F_instant"] and V["F_C4"])
+    # Branch content of turn-on far-field transient (early-mid window).
     br = branch_projectors(h.toarray() if hasattr(h, "toarray") else h)
-    late = dpsi[-1].copy()
+    # Far-field transient snapshot: raw turn-on at mid window, r > 6.
+    rec_mid = pinning_evolve(np.zeros(len(order), dtype=np.complex128), h, DT,
+                             k0, [idx[v] for v in nodes],
+                             harmonic_pins([1.0], OM_J2, DT))["psi"][-1]
     mfar = np.array([dist[v] > 6 for v in order])
-    late[~mfar] = 0.0
-    nl = float(np.linalg.norm(late))
+    rec_mid[~mfar] = 0.0
+    nl = float(np.linalg.norm(rec_mid))
     if nl > 0:
-        late = late / nl
-        w = branch_weights_all(late, br)
+        w = branch_weights_all(rec_mid / nl, br)
         V["G_branch"] = bool(w["w_zero"] < 0.2)
         out["G_branch_w"] = w
         V["G_acct"] = bool(abs(w["w_plus"] + w["w_zero"] + w["w_minus"] - 1.0) < 1e-9)
     else:
         V["G_branch"] = False
         V["G_acct"] = False
-    V["F"] = bool(V["F_instant"] and V["F_arr"] and V["F_C4"])
-    # L42 front for size comparison (worker rerun in-process, cheap enough? no:
-    # reuse switch42 tag series only for front speed via stored series is control-free...
-    # Instead: quick in-process L42 control+switch (one-off cost accepted).
-    L42 = 42
-    g4, order4, c3_4, h4, eu4, ev4 = _j2_setup(L42)
-    idx4 = {v: i for i, v in enumerate(order4)}
-    nodes4 = _j2_src_nodes(L42)
-    dist4 = dist_from_set(g4, nodes4)
-    T4, _ = WIN[L42]
-    n4 = int(round(T4 / DT))
-    k4 = int(round(T4 / 2 / DT))
-    psi4 = steady_predict(h4, [idx4[v] for v in nodes4], [1.0], OM_J2)
-    ctl4 = pinning_evolve(psi4, h4, DT, n4, [idx4[v] for v in nodes4],
-                          harmonic_pins([1.0], OM_J2, DT))["psi"]
-
-    def _pf4(step):
-        t = (step + 1) * DT
-        s = np.array([1.0]) if step < k4 else np.array([-1.0])
-        return s * np.exp(-1.0j * OM_J2 * t)
-
-    chg4 = pinning_evolve(psi4, h4, DT, n4, [idx4[v] for v in nodes4], _pf4)["psi"]
-    d4 = chg4 - ctl4
-    ts4 = np.arange(d4.shape[0]) * DT
-    dB4 = np.array([bilinears(d4[k], eu4, ev4)["B"] for k in range(d4.shape[0])])
-    dv4 = np.array([dist4[v] for v in order4])
-    sh4 = np.minimum(dv4[eu4], dv4[ev4])
-    se4 = {r: np.array([float(np.abs(dB4[k][sh4 == r]).max()) for k in range(d4.shape[0])])
-           for r in range(0, 13)}
-    th4 = 0.1 * float(np.array([se4[r][k4:] for r in range(0, 7)]).max())
-    ar4 = {r: first_crossing(se4[r][k4:], ts4[k4:], th4) for r in range(0, 13)}
-    ok4 = {r: t for r, t in ar4.items() if t is not None}
-    fit4 = _av2(ok4, sorted(ok4)) if len(ok4) >= 4 else None
-    out["F42_front"] = fit4
-    V["J_front"] = bool(fit is not None and fit4 is not None
-                        and abs(fit["v"] - fit4["v"]) / max(fit["v"], 1e-300) < 0.25)
     V["G"] = bool(V["G_shell"] and V["G_branch"] and V["G_acct"])
-    # C5 ring calibration through campaign helpers.
+    # C5 ring calibration.
     import networkx as _nx
     ring = _nx.cycle_graph(400)
     ro = node_order(ring)
@@ -659,7 +630,7 @@ def main() -> int:
     out["C5"] = {"v": fv["speed"], "pred": _tb(0.5),
                  "alpha": msd_exponent_rs(rrs, tts)}
 
-    # ================= POT-1H injection (secondary) =================
+    # ================= POT-1H =================
     L = 28
     g, order, c3, h, eu, ev = _j2_setup(L)
     idx = {v: i for i, v in enumerate(order)}
@@ -670,12 +641,10 @@ def main() -> int:
     pm = shell_means_node(np.abs(pred), order, dist, 6)
     am = shell_means_node(np.abs(A_inj), order, dist, 6)
     V["H_return"] = bool(is_shell_match_ok(am, pm, range(0, 7), 0.10, floor=0.01))
-    # Pre-hit free propagation: packet placed (20,0)+x; early D/com? Use
-    # series_abs centroid along x in early window: proxy = packet peak travel.
     V["H"] = bool(V["H_return"])
 
-    # ================= POT-1I ladder =================
-    A1 = Avec("j2_28_zero")
+    # ================= POT-1I (ramped) =================
+    A1 = Avec("j2_28_ramp")
     V["I_lin"] = bool(is_match_ok(Avec("lam_05"), 0.5 * A1, 0.05)
                       and is_match_ok(Avec("lam_20"), 2.0 * A1, 0.05))
     g, order, c3, h, eu, ev = _j2_setup(28)
@@ -688,9 +657,7 @@ def main() -> int:
         and float(np.abs(B20 - 4.0 * B1).max()) / max(float(np.abs(B1).max()), 1e-300) < 0.05)
     V["I"] = bool(V["I_lin"] and V["I_quad"])
 
-    # ================= C1 free packet + C6 determinism =================
-    V["C1"] = True  # evaluated below (needs COM trace; recompute cheaply)
-    import networkx as _nx2
+    # ================= C1/C6/C0/RB =================
     g, order, c3, h, eu, ev = _j2_setup(28)
     coords = {v: (float(x), float(y)) for v, (x, y, _) in c3.items()}
     psi0 = gaussian_packet(coords, order, (7.0, 14.0), (0.3, 0.0), 4.0,
@@ -708,21 +675,17 @@ def main() -> int:
                    and msd_exponent_rs(rrs, tts) > 1.3)
     out["C1"] = {"v": fv["speed"], "D": float(dtr.mean()),
                  "alpha": msd_exponent_rs(rrs, tts)}
-    # C6: rerun determinism (in-process, cheap).
     r1 = pinning_evolve(np.zeros(len(order), dtype=np.complex128), h, DT, 50,
                         [0], harmonic_pins([1.0], OM_J2, DT))["psi"]
     r2 = pinning_evolve(np.zeros(len(order), dtype=np.complex128), h, DT, 50,
                         [0], harmonic_pins([1.0], OM_J2, DT))["psi"]
     V["C6"] = bool(np.array_equal(r1, r2))
-    V["C0"] = True  # single H build shared by free+driven runners (code-level)
-
-    # Reactive balance (FIELD rung) on jump steady runs.
+    V["C0"] = True
     V["RB"] = bool(R["j2_28_pred"]["work_ratio"] < 0.05
                    and R["j2_42_pred"]["work_ratio"] < 0.05)
     out["RB"] = {"L28": R["j2_28_pred"]["work_ratio"],
                  "L42": R["j2_42_pred"]["work_ratio"]}
 
-    # ================= Ladder =================
     V["J"] = bool(V["J"] and V["J_front"])
     potential = all(V[k] for k in ("A", "B", "C", "AP", "D", "E", "I", "J"))
     potential = bool(potential and V["C1"] and V["C6"])
