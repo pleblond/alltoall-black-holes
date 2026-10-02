@@ -3080,3 +3080,81 @@ GATE (only-after-COHERENCE-DIRECTION!): fixed-source/sink-conditions
 -> stationary-profile? + source-changes-launch-modes? = static-vs-
 wave-two-regimes-of-same-field? NEXT: freeze-commit-then-beast-
 campaign (scripts/pot0_campaign.py (gated-on-prereg-commit!)).
+
+POT0-VERDICTS (beast-96 (jobs-90); L28-headline + L42-appendix; T=10-
+dt=0.1 (101-rows); suite-612-passed-2-skipped-(torch/GPU-precedent!)
+on-branch): LADDER = POT0-COLLECTIVE (STRONGEST-RUNG (all-stages +
+all-controls-green-first-run!)).
+POT-0A-PASS (source-<D>=8.1e-14 (trace-max-2.6e-13 (fp-exact-D4+sheet-
+cancellation-preserved-by-unitary-evolution!) vs null-0.0267+-0.0151
+(N=20-seeds-0..19!)): <0.05-AND-<=null+3sd (12-ORDERS-margin!); source-
+S=0.395 (SPREADING-nonzero-flux!)-with-D=8e-14 (no-direction!) = the-
+headline-contrast (omnidirectional-flux-without-net-direction!)).
+POT-0B-PASS (packet-<D>=0.8551 (prep-0.9978->min-0.772 (gentle-
+dispersion-decay (PERSISTENT-never-collapses!)) std-0.066); sep-0.855-
+vs-8e-14 (ratio-8.6e8-w/-floor!); alpha=2.087; Cv=0.994; reversal-cos=
+-1.0-EXACT (conjugate-symmetry!) + |D|-0.85506/0.85530 (0.03%!); r2=
+0.9997/0.9998; v=+1.211/-1.204 (P1.1b-REPLICATION (1.2039/1.2110-✓!));
+disp=12.18<14 (no-wrap-✓!); packet-S=1.38-J_net=1.17-aligned + Jy=
+-1.9e-14 (exact-y-symmetry!)).
+POT-0C-PASS (gradient-D(c)=0/.348/.526/.646/.721/.762/.792/.815/.831/
+.843/.855 (STRICTLY-monotone (evolved-time-mean (NOT-prep-step:
+dispersion-vs-translation-competition-makes-it-gradual (better-than-
+prereg-note!))); prep-D-jumps-0->0.98 (normalized-prep-flux (filed!));
+ratio-huge; v(c)=0/.149/.279/.385/.477/.572/.683/.816/.961/1.097/1.211
+(mono-Spearman-1.0; v(0)=0 (linear-ish-small-k + band-curvature-high-k
+(lawful!))); noise-D(c)=0.0135/.0162/.0302/.0551/.0917/.143/.214/.313/
+.455/.656/.855 (STRICTLY-mono-Spearman-1.0-ratio-63!); noise-C=
+0.0073->0.4116-mono + M_eff-381->3.9 (flat->sharp!); alpha/cv/v-
+transition-resolved (diffusive->ballistic-with-c (c>=0.6-alpha~2!))).
+C-CONSTANCY-CHECK: FAIL (27%-spread (0.486->0.353-min-at-c=0.4->0.483-
+at-c=0.7->0.412)) = FINITE-TORUS-seam/picket-fence-ARTIFACT (VALIDATION-
+only (not-criterion!); mechanism-QUANTITATIVE: winding-kL/2pi=c*1.337
+-> period-0.748c + min-at-half-integer-0.374~-observed-0.4-✓ + recovery-
+at-integer-0.748~-observed-0.7-✓ (envelope-fixed-C-central-value-stable-
+M_eff-3.5-4.0!)); gradient-grid-excluded-from-C-D-pool-BY-DESIGN
+(unaffected!)).
+POT-0D-PASS (scr-D=0.0131 (<0.15*0.855=0.128 (10x-margin!)); scr-C=0.0070
+(<0.5*0.412=0.206 (30x-margin!)); scr-M_eff=382 (spectrum-flattened!);
+rest-D/C-EXACT-match (re-prep-clean); pooled-Spearman(C,D)=1.0 (14-pts
+(noise-11+clean/scr/rest (ties-at-top-handled (average-ranks!)))):
+destroy-coherence->destroy-direction + restore->restore (CAUSAL-✓!)).
+POT-0E-PASS (D(R)=0.223/0.337/0.408/0.550/0.671/0.833/0.855 (STRICTLY-
+mono-Spearman-1.0!); D(2)=0.223<0.5*0.855=0.428-✓; M_eff=131/58/34/14/
+8.4/4.6/3.9 (mono-decreasing (confinement-broadening-✓!)); transition-
+R~4-6-≈-sigma (aperture-narrower-than-packet-destroys-it (minimum-
+collective-scale-~envelope!)); R<=4-wrap-physics-filed (disp-38/27/24
++ multi-velocity (v=3.77-fast-band-components!) + alpha-4.1/r2-0.93-
+wrap-artifacts (UNGATED-readouts (D/M_eff-wrap-safe (criteria-clean!));
+small-support-LOSES-single-velocity-character (corroborates-collective-
+claim!)); R>=6-clean (v≈1.19-1.21-r2>0.998-disp≈12-alpha≈2.0!)).
+S1-PASS (rot90: prep-angle-0->1.5708-EXACT + meanJ-(1.171,0)->(0,1.171)-
+|J|-bit-matched-1e-13 (prep+evo!); refx: ->pi-EXACT + J=(-1.171,0);
+trans-(3,5): J-identical-6e-14 + D-identical (Krylov/fp-only!)).
+S2-PASS (cos=-1.0-EXACT + |D|-0.03% (time-mean-J_net!)). S3-PASS
+(prep-D-BIT-identical-(0.0e+00!) + prep-C-to-6e-17 + evolved-<D>-to-
+3e-14 (global-phase-path-fp-only!)). S4-PASS (k=0-<D>=8e-14 + speed-0
+(same-run-as-0A!)). S5-PASS (psi-rows-BIT-identical + D-traces-BIT-
+identical (reruns!)). Norm-dev-ALL-cases-<=6.1e-13 (unitary-✓!).
+L42-APPENDIX-PASS (source-<D>=0.0 + packet-<D>=0.8647 + null-0.025+-
+0.014 (A+B-thresholds-met (no-cap!)); v=1.176-vs-L28-1.211 (3%-
+finite-size (L42-seam-negligible-exp(-6.9) (L42-is-cleaner-value
+(filed!))); M_eff-8.7-vs-3.9 = area-ratio-2.25-EXACT ((42/28)^2 (M_eff-
+measures-spectral-width-✓!)); prepC-0.228-vs-0.412 (1/N_modes-scaling
+(direction-right!))).
+SEED-ROBUSTNESS (post-hoc-appendix (prereg-froze-seed-0!)): seeds-1+7-
+noise-family: thresholds-PASS (Spearman(D,c)=0.936/1.0 + D1/D0=30/186
++ Spearman(C,D)=0.936/1.0); seed-1-low-c-jitter (c<=0.3-D~0.005-0.03-
+within-null-floor-0.027+-0.015 (EXPECTED-finite-size-random-floor
+(emergence-above-floor-c>=0.4-seed-stable!))).
+INTERPRETATION (disciplined!): SAME-(r,i)-field + SAME-bulk-law + SAME-
+J2 -> omnidirectional-spreading-source (S>0-D≈0) AND ballistic-directed-
+wave (alpha≈2-Cv≈1) with direction-selected-by-extended-phase-coherence
+(D(c)-mono + scrambling-destroys + restore-recovers + C-D-Spearman-1.0
++ support-scaling (collective!)); NO-node-knows-direction (no-vector/
+memory/coin/compass-anywhere (readout-embedding-only!)). FORBIDDEN-
+claims-RESPECTED (no-EM/Maxwell/charge/Born/spin/static-force-law
+(source-SPREADS (S=0.395) (static-potential-NOT-shown (POT-1-question!)))).
+POT-1-GATE: OPEN (COHERENCE-DIRECTION-passed (COLLECTIVE-strongest!)):
+fixed-source/sink-conditions -> stationary-profile? + perturbations-
+launch-modes? NEXT: POT-1-prereg (gated-on-this-verdict-commit!).
