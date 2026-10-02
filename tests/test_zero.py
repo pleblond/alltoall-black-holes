@@ -211,8 +211,22 @@ def test_screen_collapses_groups():
     assert len(cd) == 1 and cd[0]["node"] == 1 and cd[0]["k"] == 7
 
 
-def test_segment_screening_catches_offgrid_crossing():
-    # Linear crossing between grid points: amplitude screening misses,
+def test_refine_cap_files_overflow():
+    g = nx.cycle_graph(70)
+    order = node_order(g)
+    h = hamiltonian(g, 1.0, order)
+    psi0 = np.full(70, 1.0 / math.sqrt(70), dtype=np.complex128)
+    ts = np.arange(140) * 0.05
+    rows = np.ones((140, 70), dtype=np.complex128) / math.sqrt(70)
+    for u in range(70):
+        rows[2 * u, u] = 0.0j
+    rep = zero.trace_zero_scan(psi0, h, ts, psi_rows=rows, modal=None)
+    assert len(rep["candidates"]) == 70
+    assert len(rep["events"]) == zero.REFINE_CAP
+    assert rep["refine_overflow"] == 70 - zero.REFINE_CAP
+
+
+def test_segment_screening_catches_offgrid_crossing():    # Linear crossing between grid points: amplitude screening misses,
     # segment screening brackets.
     rows = np.ones((6, 2), dtype=np.complex128)
     rows[:, 0] = [0.5, 0.3, 0.1, -0.1, -0.3, -0.5]

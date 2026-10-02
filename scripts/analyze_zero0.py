@@ -65,6 +65,7 @@ def summarize_generic(rows: list) -> dict:
                                  if "m_stats" in r]),
             "mean_events": _mean(n_ev),
             "frac_rows_with_events": _mean([1.0 if n > 0 else 0.0 for n in n_ev]),
+            "mean_overflow": _mean([r.get("refine_overflow", 0) for r in rs]),
             "label_totals": dict(labs),
             "mean_cpu_s": _mean([r.get("cpu_s") for r in rs]),
         }

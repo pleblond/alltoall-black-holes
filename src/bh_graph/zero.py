@@ -36,6 +36,7 @@ T_HEAD = 40.0
 DT_FINE = 0.002
 NORM_TOL = 1e-9
 J_ZERO = 1.0
+REFINE_CAP = 60
 
 # Event labels (ZERO-0H hierarchy).
 LABEL_EXACT = "exact"
@@ -615,7 +616,12 @@ def trace_zero_scan(psi0: np.ndarray, h, ts: np.ndarray,
     """Full L1+L2(+L3) scan of one trace (ZERO-0H pipeline).
 
     modal = modal_system(h) enables Level-3 certification (small graphs).
-    Returns {m_stats, candidates, events}.
+    Level-1 screening is exhaustive; Level-2 refinement is capped at
+    REFINE_CAP candidates per trace (deterministic node/time order),
+    with the remainder filed as refine_overflow (prereg amendment:
+    uncapped refinement is infeasible on large-graph cells with dense
+    near-zero brackets; m_stats and candidate counts stay complete).
+    Returns {m_stats, candidates, events, refine_overflow}.
     """
     from bh_graph.ballistic import evolve_fixed
 
@@ -631,7 +637,7 @@ def trace_zero_scan(psi0: np.ndarray, h, ts: np.ndarray,
     c = modal_coefficients(psi0, v) if modal else None
     e = modal["energies"] if modal else None
     events = []
-    for cd in cands:
+    for cd in cands[:REFINE_CAP]:
         lv2 = refine_candidate(psi0, h, cd["node"], cd["t"])
         if modal is not None:
             ev = classify_event(lv2, (c, v[cd["node"], :], e))
@@ -639,7 +645,7 @@ def trace_zero_scan(psi0: np.ndarray, h, ts: np.ndarray,
             ev = classify_event(lv2)
         events.append(ev)
     return {"m_stats": trace_min_stats(m, ts), "candidates": cands,
-            "events": events}
+            "events": events, "refine_overflow": len(cands) - len(events)}
 
 
 # ---------------------------------------------------------------------------

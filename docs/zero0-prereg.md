@@ -70,6 +70,13 @@ All thresholds live as module constants in `zero.py` and are pinned by tests.
   grid-scale floor: a true zero and a sub-1e-3 ordinary minimum are
   indistinguishable without a Level-3 leg — this is WHY Level 3
   exists), else `ordinary`.
+  Amendment (before verdict, after pilot): Level-2 refinement is
+  capped at `REFINE_CAP = 60` candidates per trace in deterministic
+  (node, t) order; the remainder is filed as `refine_overflow`.
+  Level-1 screening stays exhaustive, so candidate counts and `m(t)`
+  statistics are unaffected; only per-event L2/L3 labels are capped.
+  (Uncapped refinement proved infeasible on large-graph cells with
+  dense near-zero brackets: >80 CPU-min single tasks.)
 - Level 3 (certified): small graphs only (N ≤ 200), dense modal
   reconstruction `ψ_u(t) = Σ_n z_n e^{-iE_n t}` with a simultaneous
   `(r_u, s_u)` root solve; certified iff residual `< EPS_CERT`.

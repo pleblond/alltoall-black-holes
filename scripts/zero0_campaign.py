@@ -440,6 +440,7 @@ def _finish(a, sub, psi0, h, tr, scan, extra: dict) -> dict:
            "N": sub["N"], "dt": a.dt, "horizon": a.horizon,
            "norm_ok": bool(tr["norm_ok"]), "m_stats": scan["m_stats"],
            "n_candidates": len(scan["candidates"]),
+           "refine_overflow": scan.get("refine_overflow", 0),
            "n_events": len(scan["events"]), "labels": labels,
            "events": scan["events"][:STORE_EVENT_CAP],
            "events_stored": min(len(scan["events"]), STORE_EVENT_CAP),
