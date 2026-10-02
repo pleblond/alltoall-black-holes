@@ -6959,3 +6959,168 @@ at zero field by theorem), so it cannot be that rule without
 new postulates. Downstream firewall holds: no tuning of
 UB/UL/UEc is permitted; any future split postulate is
 new-primitive content, not a derivation.
+
+## TIME0-PREREG — Two-boundary history selection (FROZEN PRE-DATA)
+
+**Status:** apparatus + semantics + grid + gates + ladder frozen;
+campaign NOT YET RUN. TIME-0 accepts U0-INCOMPLETE (forward-state
+underdetermination: splits unrealized by every tested minimal law),
+CONS0-PARTIAL (no conservation-derived contraction law), and
+BR27-NO-MODE (no instability/firing mechanism). It tests whether the
+graph-field model is better described by GLOBALLY CONSTRAINED
+HISTORIES Gamma = (X_0, ..., X_T) with X_0 = X_-, X_T = X_+ than by
+a forward Markov law X_{t+1} = U(X_t). The question is combinatorial:
+N_hist(X_-, X_+) = ? No retrocausality, signalling, cosmology, or
+interpretation is claimed (TIME-0L firewall: solved from outside).
+
+**Frozen inputs (read-only, byte-identical to source tips):** BR-2.5
+tip 3ea8cf1 (contraction/backreaction/ballistic/phase + formation
+delta); BR-2.6 tip dd956e0 (accounting); BR-2.7 tip f82566d
+(stability); CONS-0 tip c551cb5 (conservation); EM-0 tip 3128ff9
+(continuum/driven); U0 tip f714762 (u0/ug/ug_sync + xdist config).
+No law change on consumption. Frozen conventions: H(G) = -A(G),
+J = 1, hbar = 1; sum map psi_k = psi_i + psi_j; simple graphs;
+B/J quadrature; E_psi = -2 sum_E B; dE_contract = 2B - 2 sum_cross
+(MINUS convention); dQ = +2B_ij; dxi = -c; dt = 0.1 (P1-frozen).
+
+**TIME-0A/D compatibility (frozen pairwise relation, R_time = 1):**
+a step is exactly one of IDENTITY (same canonical class; psi' =
+U(G) psi), CONTRACTION (one-edge BR-2.5 quotient; psi'_k = psi_i +
+psi_j), SPLIT (one-node record-free cover, children adjacent;
+psi'_i + psi'_j = psi_k -- the exact reverse of the sum map, the
+unique relation making contraction steps reversible as relations;
+equal/norm policies satisfy it as special cases but are NOT
+imposed, U0-H: no selection). Evolution rides identity steps only.
+Hard = structural adjacency + these field relations. Ledger (dN,
+dE_G, dQ, dE_psi, dxi, triangles, B/L) is DESCRIPTIVE, never
+gating (CONS-0 no-go respected; no promotion).
+
+**Headline domain (frozen):** graph sector (V0 psi = 0 exactly):
+field compatibility closes trivially, so canonical-class
+enumeration is finite and EXACT (DP over walks, bigints, never
+sampled; explicit materialization only for capped audits).
+Canonical universe = connected non-isomorphic simple graphs N in
+1..6 from nx.graph_atlas_g (deterministic; 143 classes
+1/1/2/6/21/112); cid = (N, k). N = 7 splits dropped + counted
+(bounded-universe boundary, filed); robustness: N <= 5 rerun +
+N <= 7 spot (N_- <= 4, T <= 3). Labeled mode (N <= 4, 44 states,
+descriptive/cross-check) uses the TIME-0 downshift rule
+(contraction keeps i, drops j, shifts > j; split w -> (w, N_new)),
+bridged to BR-2.5 ops by iso + field-multiset pins per
+transition. Field sectors enter ONLY via labeled spot cases
+(R-control, constructed I/J cases) with exact affine-membership
+propagation (split fractions form an affine reachable set;
+membership decided by lstsq, no sampling of the continuum).
+
+**TIME-0B/K reversal (frozen):** Theta = reverse slice order +
+conjugate fields. V0-exact; 1e-9 field tolerance (Krylov grade).
+K-gate: N_hist(a,b;T) == N_hist(b,a;T) all pairs T in 1..3 +
+transition mirror (C<->S) over every interior transition. If an
+interior mirror is missing it is REPORTED, not repaired.
+
+**TIME-0C propagator (frozen):** U(G) = banked Krylov evolve_fixed
+one step dt = 0.1; reverse = conjugation identity U^-1 phi =
+conj(U conj(phi)) (H real symmetric; banked forward propagator
+only, no new numerics). C0: roundtrip <= 1e-12 (V0
+bitwise zero, pinned).
+
+**Grid (frozen):** headline N_- in 1..6 x T in 2..6, all (c_-, c_+)
+pairs (143^2 per T); anchored I/J at (T1,T2) in {1,2}^2;
+R-control on {edge2, path3, tri3} x T=2 + edge2 x T=3 (seeded,
+complete-flagged); labeled census T in {2,3}.
+
+**Controls (frozen C0-C7):** C0 reversibility; C1 hand counts
+(universe sizes, edge-graph T=1 successors {C,I,S,S} with P3/K3
+outcomes, toy chain = 1, toy diamond = 2, explicit-vs-DP);
+C2 reversal symmetry; C3 canonical-id permutation invariance +
+labeled-projection equality; C4 every contraction edge R = 1 via
+influence_check + R_time pairwise decomposition; C5 banned-token
+scan (record/nbrs_i/nbrs_j/preimage) over all event stores;
+C6 DP-vs-explicit + participation sums + labeled-lift existence;
+C7 verdict consumes aggregates only (determinism + rung-table
+pins). R-gates: R1 identity walk present + matching, R2
+on-trajectory >= 1 walk; R3 off-trajectory count RECORDED (not
+gated: excursion DOFs may cover generic finals). TIME-0R/S/T
+controls pinned pre-data. TIME-0Q DEFERRED (no banked M_O;
+constructing one = new ontology).
+
+**Ladder (frozen thresholds):** headline requires C0-C6 green
+else TIME0-INCONCLUSIVE. Pooled f_unique < 0.2 -> TIME0-NULL.
+>= 0.8 with worst-T >= 0.6, pooled f_compatible >= 0.1, and
+split-resolution >= 0.8 -> TIME0-UNIQUE (+ R_space = 1 and
+no-objective audit -> TIME0-LOCAL). Else TIME0-CONSTRAINED.
+Skeleton (identity-compressed) f_unique reported as exact
+descriptive co-headline (timed = sum_L C(T,L) S_L, pinned).
+Scaling trend (TIME-0O) and N-only coarse-graining (TIME-0P)
+descriptive. No extrapolation beyond N <= 6 without combinatorics.
+
+## TIME0-VERDICT — Two-boundary history selection: TIME0-NULL (DATA)
+
+**Campaign:** beast EC2 16.54.88.181, --jobs 90, 185.8 s, ledger
+`data/time0_ledger.json` (schema v1, 8.8 MB) + `data/time0_verdict.json`
++ supplementary `data/time0_n7_followup.json`. All C0-C6 gates green;
+analyzer integrity recompute green (all matrices/histograms/rates
+reproduced from raw triples); 53/53 `test_time0.py` pins green.
+
+**Headline (frozen ladder):** pooled f_unique = 0.051 < 0.2 over
+102245 pairs (74977 compatible) => **TIME0-NULL**. Per-T:
+T=2: unique 0.554 compat 0.331 med 1 max 34;
+T=3: 0.005 / 0.510 / 6 / 118;
+T=4: 0.001 / 0.884 / 43 / 2192;
+T=5: 0.0004 / 0.944 / 285 / 12283;
+T=6: 0.000 / 0.997 / 4415 / 196598.
+Degeneracy PROLIFERATES with T (median 1 -> 4415); compatible
+pairs are the majority by T=4 (0.88) and nearly all pairs by T=6
+(0.997), multiply realized throughout.
+
+**Boundary-artifact correction (supplementary N<=7 followup,
+post-data, non-ladder):** headline N<=6 drops all N=6->7 splits,
+inflating T=2 uniqueness for N=6 starts (0.644 vs 0.028 at N=5).
+Subset-matched rerun inside the N<=7 universe (996 classes, N=6
+splits restored): T=2 f_unique 0.554 -> 0.073; T=3/4 unchanged
+(0.005/0.001). The T<=3 subset numbers are EXACT unbounded-universe
+counts (no walk between N<=6 endpoints in <=3 steps can visit
+N>=8 and return: needs >=4 steps). Full-996 census shows the same
+pattern (T=2: 0.63 with the artifact moved to N=7 starts; T=3:
+0.004). NULL is robust and stronger than headline numbers suggest.
+
+**TIME-0F:** initial-boundary underdetermination confirmed
+independently of U0: median N_hist(X_-) = 74 (T=2) -> 514 -> 7649
+-> 64167 -> 844068 (T=6). Always >> 1.
+
+**Waiting vs structural (exact skeleton census, descriptive):**
+f_unique^skel = 0.671/0.365/0.004/0.002/0.0004 (T=2..6). Waiting
+placements explain much of the T=3 timed collapse (0.37 skel vs
+0.005 timed) but STRUCTURAL degeneracy itself proliferates at
+T>=4 (74 unique skeletons of 18075 compatible pairs at T=4).
+
+**TIME-0I/J (anchored):** single-step tails always resolve
+(S-1-1, S-2-1, C-1-1, C-1-2: rate 1.0; 19k/39k/8k/17k rows) but
+resolution decays with horizon (S-1-2: 0.61, S-2-2: 0.55 over
+177k rows, C-2-1: 0.56, C-2-2: 0.45); pooled split_res = 0.654
+< 0.8. Two-boundary constraints select the split/predecessor at
+short range and lose selection as alternative routings open.
+
+**Controls:** TIME-0R perfect on all 5 cells (on-trajectory: 1
+walk incl. identity; off-trajectory: exactly 0; field-only
+any-graph identical) -- the apparatus CAN and DOES report
+N_hist = 1/0 exactly when the physics has it, so NULL is not a
+counting artifact. Toy S = 2 / toy T = 1 exact. TIME-0K:
+N_hist(a,b) == N_hist(b,a) on all 20449 pairs x T=1..3 +
+C<->S mirror on every interior transition (exact). TIME-0M:
+R_space = 1 (all contraction transitions), R_time = 1
+(pairwise decomposition pinned). TIME-0P: N-only boundary
+degeneracy medians 2/6/40 (T=2/3/4). TIME-0E: ledger quantities
+kept descriptive throughout (no promotion). TIME-0Q DEFERRED
+(no banked M_O). Labeled N<=4 census (0.70 -> 0.03) and N<=5
+rerun (0.47 -> 0.02 -> 0.009) reproduce the pattern: not a
+labeling or boundary artifact.
+
+**Interpretation (boxed):** the final boundary does not solve
+the missing structural dynamics. Return to the ontology problem;
+do not invoke two-boundary determinism downstream. Positive
+fragments filed: two-boundary constraints ARE informative at
+short horizons (single-step anchored resolution 1.0, R-control
+uniqueness) -- compatible with CONSTRAINED locally -- but
+generic compatible pairs at T>=3 retain N_hist >> 1, so the
+frozen ladder (generic uniqueness) returns NULL.

@@ -3,6 +3,19 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **Unreleased (TIME-0)** — Two-boundary history selection prereg +
+  apparatus (pre-data): `src/bh_graph/time0.py` (canonical N<=6 universe,
+  pairwise compatibility, exact DP counters, Theta, affine field
+  propagation, frozen ladder), `tests/test_time0.py` (C0-C7 + R/S/T
+  controls), `scripts/run_time0_campaign.py` + `scripts/analyze_time0.py`,
+  TIME0-PREREG in `docs/DEFERRED.md`. Read-only consumption of
+  BR-2.5/2.6/2.7 + CONS-0 + EM-0 + U0 apparatus (byte-identical).
+  VERDICT TIME0-NULL (data): pooled f_unique = 0.051 over 102k pairs;
+  degeneracy proliferates with T (median 1 -> 4415); N<=7 followup
+  corrects T=2 uniqueness 0.554 -> 0.073 (exact); R-control perfect
+  (on=1/off=0); single-step anchored resolution 1.0, pooled split
+  resolution 0.65. Ledger + verdict + followup JSONs under `data/`.
+
 - **unreleased (U0)** — Minimal-geometry-dynamics campaign (branch):
   read-only consumption of BR-2.7/CONS-0/UG-0 apparatus (byte-identical);
   U0-PREREG frozen (UB/UL/UEc semantics, full-sync quotient tick, S1..S8
