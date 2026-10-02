@@ -9599,3 +9599,204 @@ matched pairs. HAMP-Q control exact (E_B/E_A = c^2 = 1.75 to 1e-12, C1 fail
 at predicted |c-1|max|P_+|). HBR-0S omitted (no RESPONSE-0 verdict).
 HISTORY-MEASURE DEBT still blocks actual geometry dynamics: no tendency,
 rate, or event claim is made.
+
+## VACCOMP0-PREREG — Complete joint-vacuum manifold (FROZEN PRE-DATA)
+
+**Status:** apparatus + grids + gates + ladder frozen; campaign NOT
+YET RUN. VAC-COMP-0 classifies the complete set and topology of
+nonzero stationary joint-field vacua on frozen (G,H) = (J2 torus,
+-A) BEFORE any geometry-transition measure. VAC-FIELD-0 banked
+three JOINT representatives (VPLUS/VPI/VMINUS); this campaign asks
+whether they are isolated classes, members of degenerate
+components, points on a connected manifold, or samples of a large
+hidden manifold. Classification only (0AD firewall: no selection,
+no MEASURE-0, no structural events, no energy/hidden/ground-state
+privilege, no SSB, no "phases" language, no tuned combinations).
+
+**Frozen inputs (read-only):** VAC-FIELD-0 vacfield.py (vendored
+byte-identical from cursor/vac-field-nonzero-joint-8ec1 tip;
+10-check JOINT ladder, BARS, candidate shapes); SYM-0
+(X_phys = X/(R x U(1))); MALUS/QUOT ([H,S]=0, H P_-=0, square-walk
+symmetric sector, nodal counts); HIDDEN-0 (E=E_+ law, cross-term
+anatomy); ZERO-0 (codim-2, incident null, protection form); EM-0
+(continuum Bloch apparatus); HIDDEN-BR R_G ledger (descriptive).
+
+**JOINT generalization (frozen once, applied uniformly to arbitrary
+states; neither weakening nor strengthening):** stationary /
+current_free / stress / linearity = exact vf gates unchanged;
+amplitude_coherent = vf scaling gates + E-vacuous rule for E==0
+(VACFIELD Amendment-4) with STRICT Bmax gate (B==0 states cap at
+BACKGROUND; no theorem backs a B-vacuous rule); triviality read
+fp-aware (|.| < 1e-12 on the normalized shape); sector_filed =
+purity in either sector (mixed caps at BALANCED); ledger_symmetric
+= contraction per-class uniform + M1 seed-stable (std < 0.01)
+WITHOUT prescribing (f0,fneg,fpos) values; small graphs (N<=64)
+use exhaustive M1 (VAC-FIELD m1exact precedent). Universal legs
+(perturbation_ok, linearity, normalized_robust, zero_anatomy) are
+True-by-theorem for eigenstates (0L linearity theorem + ZERO-0B
+incident theorem) and VERIFIED for component representatives.
+
+**Frozen grids:** ALPHA 13 points 0..pi/2; PHI 8 points 0..2pi;
+AMPS = 1e-3..1e3 (7); RNG_SEEDS = 0..4; EIG_TOL = 1e-9. Dense
+exact scope L<=8; L=4 census headline (N=32); L=28 ladder headline
+(N=1568, full ledger_moves=20000).
+
+**Preregistered analytic predictions (also pinned in
+tests/test_vaccomp.py, 37 pins, pre-data):** E_-8/E_+8 unique at
+even L (Perron-Frobenius + bipartite symmetry); E_0 = N/2 hidden
++ nodal(L) symmetric (L4: 22=16+6; L28: 838=784+54); 4th TI JOINT
+ray VSTAG = (-1)^b(-1)^{x+y}/sqrt(N) (even L only); real RP^1
+JOINT circle VMINUS-VSTAG span with B==0 BACKGROUND points at
+alpha=pi/4(,3pi/4); generic complex eigenstates fail current_free;
+generic real non-TI states fail stress; different-eigenvalue
+mixtures beat at dE (16/8/8) with no interior JOINT and no
+cross-term cancellation among full-support vacua; all four TI
+vacua share coarse rho (observer blindness) while circle-interior
+patterns are coarse-visible; pi_0(JOINT) = 3 even L (VPLUS, VPI,
+CIRCLE-as-one), 2 odd L (VPLUS, VMINUS); B==0 independent-set
+states cap at BACKGROUND.
+
+**Gates (applied by scripts/vaccomp_analyze.py):** C0 headline
+L=28 JOINT ladders (VPLUS/VPI/VMINUS/VSTAG/CIRCLE@pi/6) + circle
+endpoints; C1 SYM quotient structural; C2 spectral exactness at
+L=4/6/8 (extrema +-8, Bloch dev, nondegeneracy, zero-split
+decomposition, candidate residuals/subspace weights); C3/0B
+stationarity theorem on an arbitrary degenerate superposition;
+0E generic exclusion (no JOINT; current binds complex, stress
+binds real); 0H circle census at L=4/6 (exactly 1 BACKGROUND grid
+point, rest JOINT); 0I complex-hidden exclusion frac > 0.9; 0J
+real-hidden J==0 everywhere but no JOINT, proj dim 15; BZERO cap;
+0K amplitude families all JOINT (4 rays + circle point); 0L
+same-eigenvalue sweep stationary everywhere, cut interior JOINT
+count == 10; 0M beats |corr| > 0.99 at dE 16/8/8, no interior
+JOINT in the three mixed sweeps; 0Q no cancellation; 0TU all four
+ray-TI singletons; 0V TI coarse-blind + circle-interior visible;
+0W ballistic fingerprint; 0X ledger classes distinct (VPLUS|VPI,
+VMINUS|VSTAG); 0Y a^2 zero-limit scaling; 0Z r_prot = a/sqrt(N);
+0AA scaling rows L=4..28 (formula + TI inventory + shape dim);
+0AB quotient (VPLUS/VPI survive, VMINUS absent); 0AC square
+control (uniform/staggered current-free + stress-balanced,
+extrema +-4); ODD L=5 (VMINUS JOINT, VSTAG raises, +8 frustrated).
+
+**Ladder:** VACCOMP0-COMPLETE iff every gate green;
+VACCOMP0-PARTIAL iff non-apparatus gates fail; VACCOMP0-NULL iff
+C0 or C2 fail. Records: data/vaccomp/results.json (41 tasks) +
+data/vaccomp/verdict.json.
+
+## VACCOMP0-AMENDMENT-1 (measurement resolution; FROZEN pre-rerun)
+
+Two pre-rerun clarifications after the first campaign pass returned
+VACCOMP0-PARTIAL (fails 0H-circle_L6, 0K-VPLUS/VPI). Both are
+measurement-resolution issues, not physics and not gate changes:
+
+**A1 scale-covariant stationarity.** At a=1000 the VPLUS/VPI rungs
+read ZERO with rho/B drift 7.9e-08 vs the absolute 1e-08 bar --
+exactly 100x the a=100 drift (8.0e-10), i.e. pure evolve_fixed fp
+noise on 2-homogeneous bilinears (relative 2.6e-12 on observables
+of magnitude ~3e4; E=0 states read drift exactly 0.0 since
+e^{-i0t}=1 accumulates no phase error). The vf absolute bars are
+calibrated at unit norm (VAC-FIELD candidates are normalized), so
+the stationarity leg is evaluated on the normalized shape. In
+exact arithmetic shape-passes iff a-shape-passes at every a > 0;
+this preserves the bar's meaning (fp-noise floor), it does not
+weaken the gate. All other legs already pass at a=1000 unmodified
+(current/stress exactly 0.0, amplitude/ledger/scale-invariant).
+
+**A2 headline move budget for sampled ledgers.** circle_L6 alphas
+0.13..0.65 read BALANCED via ledger_symmetric with moves=2000:
+contraction exactly uniform (per-class std 0.0) but M1
+seed-stability noise-dominated at 2000 moves. At the headline
+20000-move budget (VAC-FIELD precedent) the same states pass with
+identical f-stats (0.222/0.385/0.393); the 2000-move failure is
+under-resolved sampling, not structure. N > 64 (sampled-M1)
+campaign tasks use ledger_moves=20000; N <= 64 keeps exhaustive
+M1. Pinned: test_sampled_ledger_resolved_at_headline_moves,
+test_amplitude_family_nonzero_energy_all_joint (40 pins green).
+
+## VACCOMP0-VERDICT — VACCOMP0-COMPLETE (DATA)
+
+Beast campaign 2026-10-02 (--jobs 41, 41 tasks) + frozen analyzer:
+every gate green, fails []. Records data/vaccomp/results.json +
+data/vaccomp/verdict.json.
+
+**Central census (boxed):** the complete nonzero JOINT vacuum
+manifold on frozen (J2 torus, -A), modulo R x U(1), is -- even L:
+two isolated extremal rays (VPLUS E=-8, VPI E=+8, both
+nondegenerate by Perron-Frobenius + bipartite symmetry) plus one
+hidden real RP^1 JOINT circle (the VMINUS-VSTAG span in P_- E_0,
+JOINT except B==0 BACKGROUND points), each x a full amplitude ray
+(all a in 1e-3..1e3 JOINT), pi_0(JOINT) = 3; odd L: VPLUS ray +
+VMINUS ray only (VPI frustrated, e_max = 6.47 at L=5; VSTAG
+raises), pi_0 = 2. VMINUS is one translation-invariant point of a
+continuous hidden-vacuum circle, not an isolated class (outcome:
+degenerate components, connected within the hidden sector,
+disconnected across eigenvalues).
+
+**Spectral (C2/0A/0F/0G):** extrema +-8 exact at L=4/6/8, Bloch
+dev < 1e-6, extremal states nondegenerate, candidate residuals <
+1e-9 with subspace weight 1. Zero split exact: L4 22=16+6, L6
+46=36+10, L8 78=64+14, L28 838=784+54; odd L5 25=25+0 (no
+symmetric zeros). Stationarity theorem verified on an arbitrary
+degenerate superposition (drifts 0.0, phase rate 0.0).
+
+**Exclusion (0E/0I/0J):** generic eigenstates are NOT vacua --
+complex E_0: 16/16 BACKGROUND, current_free binds 16/16; real
+E_0: 8/8 BACKGROUND, stress binds 8/8 (J==0 always, edge_max <
+1e-12); mid-eigenvalue complex: 8/8 BACKGROUND. Complex hidden
+16/16 current-carrying (frac_excluded 1.0). Real P_- projective
+space is 15-dim; JOINT carves exactly the 1-dim TI circle from it.
+
+**Circle (0H):** L4/L6 grids: 12/12 non-BZERO points JOINT, B==0
+point (alpha=pi/4, Bmax 6.9e-18) BACKGROUND-capped by the strict
+Bmax gate. B==0 independent-set states: stationary + current-free
++ stress-balanced but BACKGROUND (B is the primary relational
+observable; no B-vacuous theorem).
+
+**Amplitude (0K):** all five families (4 TI rays + CIRCLE@pi/6)
+all-JOINT over 1e-3..1e3. Shape degeneracy (circle S^1) is
+distinct from amplitude degeneracy (R_+); both physical under
+SYM-0 (no-selection firewall kept: no family preferred).
+
+**Beats/disconnectivity (0L/0M/0Q):** same-eigenvalue sweep
+stationary everywhere (drifts < 1e-8), phi=0 cut interior JOINT
+count exactly 10 (real circle minus B==0 point). Mixed pairs beat
+at dE = 16/8/8 with |corr| = 1.0, rho_beat_amp > 0, zero interior
+JOINT in all three cuts, no cross-term cancellation (rho_x/B_x/J_x
+all nonzero) -- VPLUS/VPI/CIRCLE are mutually disconnected under
+continuous JOINT-preserving paths.
+
+**Orbits/symmetry (0T/0U):** all four TI vacua are ray-TI
+singletons (stabilizer = full group, orbit size 1, sheet-ray
+invariant). Patterned (non-TI) JOINT vacua: the circle interior
+(alpha not multiple of pi/2) -- stationary, balanced, spatially
+structured; filed without matter language.
+
+**Observer/excitation/ledger (0V/0W/0X):** the four TI vacua are
+physically distinct but coarse-identical (pairwise d_coarse_rho =
+0.0 exactly); circle-interior states are coarse-visible
+(d = 0.044). Excitation fingerprint ballistic and
+background-independent (speed 2.54, r2 0.992, alpha 1.89) --
+carrier dynamics universal across the manifold by the 0L
+linearity theorem. Ledger classes distinct: VPLUS (1/0/0), VPI
+(.5/.5/0), VMINUS/VSTAG (.5/.25/.25), circle-interior
+(.25/.37/.38); ledger distances VPLUS|VPI dmax 0.125,
+VMINUS|VSTAG dB 0.0625.
+
+**Zero (0Y/0Z):** Q/Bmax/E scale as a^2 exactly (slope 2 to
+1e-9); a -> 0+ approaches ZERO continuously in every relational
+observable; r_prot = a/sqrt(N) for uniform vacua (zero-free);
+independent-set states r_prot = 0. ZERO stays non-JOINT (boundary
+point with singular phase coordinates).
+
+**Scaling/controls (0AA/0AB/0AC/ODD):** zero formula + TI
+inventory + shape dim verified L=4..28 (degeneracy extensive in
+N via the flat band, JOINT shape manifold 1-dim even / 0-dim
+odd). Quotient: VPLUS/VPI descend (residuals < 1e-9), VMINUS
+absent (hidden structure operationally invisible). Square torus:
+uniform/staggered current-free + stress-balanced, extrema +-4, no
+flat band -- the hidden JOINT circle is J2-special, not generic.
+Odd L=5: VMINUS JOINT, VSTAG raises, +8 frustrated.
+
+**Downstream:** VAC-SELECT receives the filed state space (even:
+{VPLUS-ray, VPI-ray, CIRCLE x R_+} + BACKGROUND B==0 sector;
+odd: {VPLUS-ray, VMINUS-ray}); no preference attached (0AD kept).
