@@ -1,0 +1,872 @@
+{
+ "gates": [
+  {
+   "gate": "I-monotone[S1,UB]",
+   "ok": true,
+   "detail": "N0=72 Nf=72"
+  },
+  {
+   "gate": "I-connected[S1,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S1,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S1,UEc]",
+   "ok": true,
+   "detail": "N0=72 Nf=72"
+  },
+  {
+   "gate": "I-connected[S1,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S1,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S1,UL]",
+   "ok": true,
+   "detail": "N0=72 Nf=72"
+  },
+  {
+   "gate": "I-connected[S1,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S1,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S2,UB]",
+   "ok": true,
+   "detail": "N0=72 Nf=1"
+  },
+  {
+   "gate": "I-connected[S2,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S2,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S2,UEc]",
+   "ok": true,
+   "detail": "N0=72 Nf=1"
+  },
+  {
+   "gate": "I-connected[S2,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S2,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S2,UL]",
+   "ok": true,
+   "detail": "N0=72 Nf=72"
+  },
+  {
+   "gate": "I-connected[S2,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S2,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S3,UB]",
+   "ok": true,
+   "detail": "N0=72 Nf=72"
+  },
+  {
+   "gate": "I-connected[S3,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S3,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S3,UEc]",
+   "ok": true,
+   "detail": "N0=72 Nf=1"
+  },
+  {
+   "gate": "I-connected[S3,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S3,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S3,UL]",
+   "ok": true,
+   "detail": "N0=72 Nf=72"
+  },
+  {
+   "gate": "I-connected[S3,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S3,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S4,UB]",
+   "ok": true,
+   "detail": "N0=72 Nf=72"
+  },
+  {
+   "gate": "I-connected[S4,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S4,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S4,UEc]",
+   "ok": true,
+   "detail": "N0=72 Nf=1"
+  },
+  {
+   "gate": "I-connected[S4,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S4,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S4,UL]",
+   "ok": true,
+   "detail": "N0=72 Nf=72"
+  },
+  {
+   "gate": "I-connected[S4,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S4,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S5,UB]",
+   "ok": true,
+   "detail": "N0=36 Nf=1"
+  },
+  {
+   "gate": "I-connected[S5,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S5,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S5,UEc]",
+   "ok": true,
+   "detail": "N0=36 Nf=1"
+  },
+  {
+   "gate": "I-connected[S5,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S5,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S5,UL]",
+   "ok": true,
+   "detail": "N0=36 Nf=36"
+  },
+  {
+   "gate": "I-connected[S5,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S5,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S6,UB]",
+   "ok": true,
+   "detail": "N0=24 Nf=1"
+  },
+  {
+   "gate": "I-connected[S6,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S6,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S6,UEc]",
+   "ok": true,
+   "detail": "N0=24 Nf=1"
+  },
+  {
+   "gate": "I-connected[S6,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S6,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S6,UL]",
+   "ok": true,
+   "detail": "N0=24 Nf=24"
+  },
+  {
+   "gate": "I-connected[S6,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S6,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S7,UB]",
+   "ok": true,
+   "detail": "N0=24 Nf=2"
+  },
+  {
+   "gate": "I-connected[S7,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S7,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S7,UEc]",
+   "ok": true,
+   "detail": "N0=24 Nf=1"
+  },
+  {
+   "gate": "I-connected[S7,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S7,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S7,UL]",
+   "ok": true,
+   "detail": "N0=24 Nf=10"
+  },
+  {
+   "gate": "I-connected[S7,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S7,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S8,UB]",
+   "ok": true,
+   "detail": "N0=103 Nf=1"
+  },
+  {
+   "gate": "I-connected[S8,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S8,UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S8,UEc]",
+   "ok": true,
+   "detail": "N0=103 Nf=1"
+  },
+  {
+   "gate": "I-connected[S8,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S8,UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-monotone[S8,UL]",
+   "ok": true,
+   "detail": "N0=103 Nf=103"
+  },
+  {
+   "gate": "I-connected[S8,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-dQ[S8,UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge[S2]",
+   "ok": true,
+   "detail": "dE=-0.361111"
+  },
+  {
+   "gate": "I-edge[S3]",
+   "ok": true,
+   "detail": "dE=-0.388889"
+  },
+  {
+   "gate": "I-edge[S4]",
+   "ok": true,
+   "detail": "dE=-0.416667"
+  },
+  {
+   "gate": "I-edge[S6]",
+   "ok": true,
+   "detail": "dE=-0.083333"
+  },
+  {
+   "gate": "I-edge[S7]",
+   "ok": true,
+   "detail": "dE=-0.333333"
+  },
+  {
+   "gate": "I-edge[S8]",
+   "ok": true,
+   "detail": "dE=-0.194175"
+  },
+  {
+   "gate": "I-h4[S2,UL,k=0]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S2,UL,k=1]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S2,UL,k=2]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S2,UL,k=3]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S3,UL,k=0]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S3,UL,k=1]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S3,UL,k=2]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S3,UL,k=3]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S4,UB,k=0]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S4,UB,k=1]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S4,UB,k=2]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S4,UB,k=3]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S4,UL,k=0]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S4,UL,k=1]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S4,UL,k=2]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S4,UL,k=3]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S5,UL,k=0]",
+   "ok": true,
+   "detail": "opts=82"
+  },
+  {
+   "gate": "I-h4[S5,UL,k=1]",
+   "ok": true,
+   "detail": "opts=82"
+  },
+  {
+   "gate": "I-h4[S5,UL,k=2]",
+   "ok": true,
+   "detail": "opts=82"
+  },
+  {
+   "gate": "I-h4[S5,UL,k=3]",
+   "ok": true,
+   "detail": "opts=82"
+  },
+  {
+   "gate": "I-h4[S6,UL,k=0]",
+   "ok": true,
+   "detail": "opts=10"
+  },
+  {
+   "gate": "I-h4[S6,UL,k=1]",
+   "ok": true,
+   "detail": "opts=10"
+  },
+  {
+   "gate": "I-h4[S6,UL,k=2]",
+   "ok": true,
+   "detail": "opts=10"
+  },
+  {
+   "gate": "I-h4[S6,UL,k=3]",
+   "ok": true,
+   "detail": "opts=10"
+  },
+  {
+   "gate": "I-h4[S7,UL,k=1]",
+   "ok": true,
+   "detail": "opts=2188"
+  },
+  {
+   "gate": "I-h4[S7,UL,k=2]",
+   "ok": true,
+   "detail": "opts=82"
+  },
+  {
+   "gate": "I-h4[S7,UL,k=3]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S8,UL,k=6]",
+   "ok": true,
+   "detail": "opts=2188"
+  },
+  {
+   "gate": "I-h4[S8,UL,k=7]",
+   "ok": true,
+   "detail": "opts=2188"
+  },
+  {
+   "gate": "I-h4[S8,UL,k=8]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-h4[S8,UL,k=9]",
+   "ok": true,
+   "detail": "opts=6562"
+  },
+  {
+   "gate": "I-jrep[S2,UB]",
+   "ok": true,
+   "detail": "dd=0.00e+00"
+  },
+  {
+   "gate": "I-jrep[S7,UL]",
+   "ok": true,
+   "detail": "dd=0.00e+00"
+  },
+  {
+   "gate": "I-jrel[S5,UEc]",
+   "ok": true,
+   "detail": "dd=0.00e+00"
+  },
+  {
+   "gate": "E-sym[UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "F-declocal[UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "G-commute[UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "A-theorems[UB]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "E-sym[UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "F-declocal[UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "G-commute[UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "A-theorems[UL]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "E-sym[UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "F-declocal[UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "G-commute[UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "A-theorems[UEc]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "H4-ties-measured[UB]",
+   "ok": true,
+   "detail": "4/4 tied"
+  },
+  {
+   "gate": "H4-ties-measured[UL]",
+   "ok": true,
+   "detail": "11/27 tied"
+  },
+  {
+   "gate": "H4-uec-no-marks",
+   "ok": true,
+   "detail": "proposing=0"
+  },
+  {
+   "gate": "M-recompute[S1,UB]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-recompute[S1,UEc]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-recompute[S1,UL]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-recompute[S2,UB]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S2,UEc]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S2,UL]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-recompute[S3,UB]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-recompute[S3,UEc]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S3,UL]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-recompute[S4,UB]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-recompute[S4,UEc]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S4,UL]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-recompute[S5,UB]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S5,UEc]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S5,UL]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-recompute[S6,UB]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S6,UEc]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S6,UL]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-recompute[S7,UB]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S7,UEc]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S7,UL]",
+   "ok": true,
+   "detail": "other:reactivated"
+  },
+  {
+   "gate": "M-recompute[S8,UB]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S8,UEc]",
+   "ok": true,
+   "detail": "collapse"
+  },
+  {
+   "gate": "M-recompute[S8,UL]",
+   "ok": true,
+   "detail": "quiescent"
+  },
+  {
+   "gate": "M-classes[UB]",
+   "ok": true,
+   "detail": "quiescent;collapse;quiescent;quiescent;collapse;collapse;collapse;collapse"
+  },
+  {
+   "gate": "M-classes[UL]",
+   "ok": true,
+   "detail": "quiescent;quiescent;quiescent;quiescent;quiescent;quiescent;other:reactivated;quiescent"
+  },
+  {
+   "gate": "M-classes[UEc]",
+   "ok": true,
+   "detail": "quiescent;collapse;collapse;collapse;collapse;collapse;collapse;collapse"
+  },
+  {
+   "gate": "P-row[UB]",
+   "ok": true,
+   "detail": "found=True reach=103"
+  },
+  {
+   "gate": "P-row[UL]",
+   "ok": true,
+   "detail": "found=True reach=2"
+  },
+  {
+   "gate": "P-row[UEc]",
+   "ok": true,
+   "detail": "found=True reach=103"
+  },
+  {
+   "gate": "VERDICT",
+   "ok": true,
+   "detail": "U0-INCOMPLETE"
+  }
+ ],
+ "table": {
+  "UB": {
+   "complete": false,
+   "deterministic": true,
+   "decision_local_R1": true,
+   "effect_reach_max_class": 103,
+   "automorphism_covariant": true,
+   "zero_free_parameters": true,
+   "split_resolved": false,
+   "scheduler_resolved": "quotient-sync (no within-tick order)",
+   "accounting_explicit": true,
+   "foundational_pass": true
+  },
+  "UL": {
+   "complete": false,
+   "deterministic": true,
+   "decision_local_R1": true,
+   "effect_reach_max_class": 2,
+   "automorphism_covariant": true,
+   "zero_free_parameters": true,
+   "split_resolved": false,
+   "scheduler_resolved": "quotient-sync (no within-tick order)",
+   "accounting_explicit": true,
+   "foundational_pass": true
+  },
+  "UEc": {
+   "complete": false,
+   "deterministic": true,
+   "decision_local_R1": true,
+   "effect_reach_max_class": 103,
+   "automorphism_covariant": true,
+   "zero_free_parameters": true,
+   "split_resolved": false,
+   "scheduler_resolved": "quotient-sync (no within-tick order)",
+   "accounting_explicit": true,
+   "foundational_pass": true
+  }
+ },
+ "classes": {
+  "S1/UB": "quiescent",
+  "S1/UEc": "quiescent",
+  "S1/UL": "quiescent",
+  "S2/UB": "collapse",
+  "S2/UEc": "collapse",
+  "S2/UL": "quiescent",
+  "S3/UB": "quiescent",
+  "S3/UEc": "collapse",
+  "S3/UL": "quiescent",
+  "S4/UB": "quiescent",
+  "S4/UEc": "collapse",
+  "S4/UL": "quiescent",
+  "S5/UB": "collapse",
+  "S5/UEc": "collapse",
+  "S5/UL": "quiescent",
+  "S6/UB": "collapse",
+  "S6/UEc": "collapse",
+  "S6/UL": "quiescent",
+  "S7/UB": "collapse",
+  "S7/UEc": "collapse",
+  "S7/UL": "other:reactivated",
+  "S8/UB": "collapse",
+  "S8/UEc": "collapse",
+  "S8/UL": "quiescent"
+ },
+ "tie_report": {
+  "UB": {
+   "tied": 4,
+   "total": 4,
+   "rate": 1.0
+  },
+  "UL": {
+   "tied": 11,
+   "total": 27,
+   "rate": 0.4074074074074074
+  }
+ },
+ "verdict": "U0-INCOMPLETE",
+ "interpretation": "tendencies exist, no complete U_G (splits unrealized for all)"
+}

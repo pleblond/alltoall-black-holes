@@ -3145,3 +3145,101 @@ ncomp == 1 every row; dQ pair-formula 1e-9 every tick; single-edge
 books 1e-9/1e-12; H4 formula residuals 1e-9; J-battery pass.
 Campaign + full suite run on beast (96 CPU, mp pools); nothing
 local except unit pins.
+
+## U0-VERDICT — U0-INCOMPLETE (tendencies exist, no complete U_G)
+
+**Campaign:** beast 16.54.88.181 (96 CPU, --jobs 90); ledger
+data/u0_ledger.json (24 trajectories T = 20, 6 edge books,
+31 H4 nodes, 3 J checks, 24 tick0 configs); analyzer 158/158
+gates green; verdict data/u0_verdict.json. Full suite on beast:
+982 passed, 2 skipped (torch importorskip, pre-existing
+environmental) in 175 s. Local analyzer re-run on the beast
+ledger reproduces data/u0_verdict.json exactly (cross-machine
+analysis determinism). No fitting after opening data.
+
+**Integrity (all green):** N-monotone + ncomp == 1 on all 480
+rows; dQ pair-formula vs direct every tick; 6/6 edge books;
+31/31 H4 formula residuals; J-battery (2 repeats bitwise-G +
+0.0 psi diff; 1 relabel isomorphic + 0.0 field diff).
+
+**U0-B zero field (S1):** all laws zero events, N 72 -> 72,
+quiescent -- the derived consequence holds; no exception added.
+
+**U0-C pure current (S3):** UB quiescent (B = 0 -> neutral,
+derived); UL quiescent (all-SPLIT marks, unrealized); UEc
+collapse 72 -> 1 in one merger. Discriminator confirmed as
+characterization: B-coupled UB is current-blind while UEc
+contracts (S3 edge book: B = 0, dQ = 0 exactly, dE = -0.389
+via cross anatomy).
+
+**U0-D bonding/antibonding (S2/S4):** UB collapse/quiescent
+(opposite tendencies: all-CONTRACT vs all-SPLIT marks); UL
+quiescent/quiescent; UEc collapse/collapse (energy descent
+sees no quadrature distinction). Characterization only.
+
+**U0-E/F/G:** E-sym, F-declocal (decision radius 1, all laws),
+G-commute, A-theorems all green, all laws. Effect reach
+(filed): UB 103, UL 2, UEc 103 -- uniform-state collapses are
+single-tick whole-component mergers (mergers_total = 1,
+Nf = 1): decision-local, effect-extensive, exactly the filed
+quotient-tick cost.
+
+**U0-H splits:** H4 census -- UB 4/4 tied (S4); UL 11/27 tied
+(S3 4/4, S4 4/4, S7 3/3 tied; S2/S5/S6/S8 0/4: argmin unique
+on uniform-bonding states, tied on staggered/current states);
+UEc 0 proposing (theorem: never SPLITs). No forced unique
+selection across the battery, and argmin-selection would
+itself be new-primitive content (energy-descent postulate);
+H3 stands (no realization in apparatus). Split unresolved
+for all three laws.
+
+**U0-J determinism:** green (see integrity).
+
+**U0-K one-event books:** 6/6 -- dN = -1; dQ formula == direct
+(incl. exact 0 on S3); dEpsi formula == direct == CONS-0
+parts-sum (1e-12); all six frozen edges downhill (dE in
+[-0.417, -0.083]); dxi = 0 except S7 (dxi = -1); dtri filed
+(21/21/21/0/5/16). Accounting explicit; no new conservation
+claimed.
+
+**U0-L/M classes (T = 20, analyzer-recomputed):** UB quiescent
+S1/S3/S4, collapse S2/S5/S6/S8 (-> 1, one merger) and S7
+(-> 2, 4 mergers); UL quiescent x7, other:reactivated S7
+(24 -> 10, 9 bursts, 11 mergers); UEc quiescent S1, collapse
+all other seven (-> 1, one merger). No oscillation/explosion/
+fragmentation (structurally excluded, filed pre-data).
+
+**U0-N J2 fate:** S1 zero-field J2 preserved by all (72 -> 72).
+Bonding J2 destroyed by UB/UEc (-> 1 in one tick), preserved
+by UL; current/antibonding J2 destroyed by UEc, preserved by
+UB/UL. Per firewall: J2 is not a vacuum of the UB/UEc-completed
+machine. No law modified.
+
+**U0-O:** collapses filed as unclassified structural collapse
+(N -> 1); S7/UL reactivation filed without interpretation. No
+matter labels anywhere.
+
+**U0-P comparison (foundational only):** complete? no/no/no;
+deterministic? yes x3; decision-local R1? yes x3 (effect reach
+103/2/103); automorphism-covariant? yes x3; zero free
+parameters? yes x3; split resolved? no x3; scheduler resolved?
+quotient-sync x3 (no within-tick order); accounting explicit?
+yes x3. The contraction-only restrictions are fully specified
+dynamics but ladder-ineligible by the frozen rule (the frozen
+structural primitive is bidirectional).
+
+**Verdict: U0-INCOMPLETE.** At least one contraction-only law
+passes all foundational gates; no full law is complete (splits
+unrealized for all). Matches the theorem-backed prediction;
+NONE was data-reachable (any foundational red) and did not
+occur. PRIMITIVE/DEGENERATE rungs defined but empty.
+
+**Handoff:** BR-3C stays BLOCKED. The primitive-law design
+problem stays open, now sharpened: the missing piece is a
+forced split-selection rule (unique, deterministic, local,
+covariant, zero-parameter). H4 shows energy-argmin ties on
+exactly the staggered/current censused states (plus all-tie
+at zero field by theorem), so it cannot be that rule without
+new postulates. Downstream firewall holds: no tuning of
+UB/UL/UEc is permitted; any future split postulate is
+new-primitive content, not a derivation.

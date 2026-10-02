@@ -7,7 +7,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   read-only consumption of BR-2.7/CONS-0/UG-0 apparatus (byte-identical);
   U0-PREREG frozen (UB/UL/UEc semantics, full-sync quotient tick, S1..S8
   battery, gates, verdict mapping, INCOMPLETE predicted); u0.py apparatus
-  + 165 pins + beast campaign runner/analyzer (pre-data).
+  + 165 pins + beast campaign runner/analyzer (pre-data). Campaign run
+  on beast (--jobs 90): ledger + 158/158 analyzer gates green; full
+  suite 982 passed / 2 skipped (torch importorskip, pre-existing);
+  VERDICT U0-INCOMPLETE (contraction-only tendencies viable, splits
+  unrealized for all; BR-3C stays BLOCKED).
 
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
