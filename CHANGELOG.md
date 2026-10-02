@@ -3,6 +3,23 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (VAC-FIELD-0 verdict)** — Nonzero-joint-vacuum-field
+  campaign: VACFIELD0-JOINT (VPLUS/VPI/VMINUS all JOINT as a
+  characterized family; ZERO control BACKGROUND-capped). Frozen
+  (J2, H=-A) theory contains three symmetry-distinguished
+  stationary relational backgrounds: uniform ground state (flat
+  virtual ledger), staggered top state (symmetry-dictated
+  one-sided ledger, f_pos = 0 exact), frozen sheet-antisymmetric
+  TI state (symmetric ledger); excitation propagation is
+  background-independent (bitwise cross-bg dpsi identity) with
+  amplitude setting scale only (decomp cross +1/dd 0 exact).
+  psi = 0 re-derived as the no-information limit (no relational
+  content, phase undefined everywhere, trivial ledger). Apparatus
+  `vacfield.py` + 24 pins + 204 beast records
+  (`data/vacfield/` + `scripts/vacfield_campaign.py` +
+  `scripts/vacfield_analyze.py`); prereg + 4 amendments + verdict
+  in `docs/DEFERRED.md`.
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).

@@ -1,0 +1,1 @@
+{"task": "phase_L28_candVPLUS", "params": {"task": "phase", "L": 28, "cand": "VPLUS"}, "payload": {"dev": {"rho": 2.168404344971009e-19, "B": 2.168404344971009e-19, "J": 2.528520997230115e-20, "E": 4.085620730620576e-14}, "ok": true}, "provenance": {"git_rev": "b18d0c784bcfb5a350af05673a174c1a261a8eaf", "utc": "2026-10-02T19:00:39Z", "host": "ip-172-31-39-189"}}

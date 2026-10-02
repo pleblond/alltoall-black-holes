@@ -3246,3 +3246,81 @@ The dd-slope gate is therefore scoped to slices with dd != 0;
 exact-zero slices are verified == 0.0 at every amplitude (vacuous
 pass, same class as the VMINUS E-vacuous rule). Cross gate
 unchanged (all slices > 0). No predictions altered.
+
+### VACFIELD0-VERDICT (filed post-data; 204 records + analyzer on beast)
+
+Headline: VACFIELD0-JOINT. Per-candidate rungs: VPLUS JOINT, VPI
+JOINT, VMINUS JOINT (family, filed with distinctions below); ZERO
+BACKGROUND as control (capped by design: amplitude_coherent +
+normalized_robust False). All 10 ladder checks green for all three
+nonzero candidates; every quantitative gate passed at fp-exact
+levels (deviations 0 to 1e-11, bars 1e-12 to 0.05 per leg).
+
+Stage highlights (J2 L28 headline unless noted): 0A census exact
+(e_min/max -8/+8, n_zero 22/78, Bloch dev 1e-14/1e-15,
+residuals 0.0). 0C phase invariance all candidates. 0D slopes 2.0
+(VMINUS E(a) = -0.0 exactly, Amendment-4 rule). 0E current-free
+all (edge/div/circ/flux < 1e-12... all 0.0). 0F drifts ~fp, rates
++8/-8/0, VMINUS frozen_err 0.0. 0G/0H stress-uniform (VPLUS S =
+8/N, VPI S = -8/N, VMINUS S = 0 exactly). 0I ledgers match exact
+predictions: VPLUS f_0 = 1 (flat); VPI one-sided f_0 = 776/1559,
+f_pos = 0 exactly (Amendment-1); VMINUS f_0 = 1/2 symmetric;
+contraction per-class uniform; splits filed. 0J identity holds.
+0K packet v = 1.9204 = Bloch 4 sin0.5 to 0.14%, r2 > 0.9999,
+alpha ~ 2.03, on ALL backgrounds incl ZERO. 0L split/corot errs
+~fp. Cross-background dpsi BITWISE identical (all three
+bg-independent kinds). 0M/0P frac collapse 1e-14..1e-11,
+abs-raw identical 0.00e+00, decomp cross +1.0000/dd -0.0000 at
+t = 0/8/30 (large-a peak slope -1.0005 confirms two-term
+algebra). 0N zero-demo n = 1 found, incident B/J = 0; no
+accidental zeros in 0K runs (filed). 0O winding drift 1e-18..1e-15
+on clean plaquettes. 0R sectors pure, frozen/split/intertwining
+errs 0.00e+00. 0S controls exact (square/ring energies,
+VPLUS-flat/VPI-one-sided ledgers, H_Q -8/+8 + stationarity).
+
+0Q answer (what makes psi = 0 worse/better): ZERO is trivially
+stationary, current-free, and stress-uniform, and hosts identical
+perturbation propagation (dpsi-alone leg) -- but carries ZERO
+relational information (Bmax = 0), has undefined phase at EVERY
+node, a trivially flat ledger with no distinguishing power (the
+RAND-0 point), and no amplitude family. Each nonzero candidate
+adds a uniform, phase-defined, stationary relational background
+with a predictive exact ledger. psi = 0 is the no-information
+limit, not the vacuum.
+
+Character distinctions (why a family, not a point): VPLUS is the
+unique ground state with a perfectly flat virtual ledger (no bias
+whatsoever) -- the flattest joint-vacuum background. VPI is the
+variational maximum with a symmetry-dictated one-sided ledger
+(f_pos = 0 exactly: every favorable M1 move adds a
+bipartition-frustrating edge; uniform across positions, exact, not
+arbitrary). VMINUS is the frozen P_- TI member (E = 0, U(t)psi =
+psi with no phase motion at all) with a symmetric two-sided
+ledger and class-structured bonds (S = 0 by 4/N - 4/N
+cancellation). Sectors: VPLUS/VPI in P_+ (propagating,
+quotient-visible); VMINUS in P_- (dead, operationally decoupled
+per banked QUOT/MALUS -- filed, never selected on). The mission's
+JOINT language ("symmetry-balanced background rather than an
+arbitrary uniform collapse bias") holds for all three: VPLUS by
+flatness, VPI and VMINUS by exact symmetry-dictated ledgers;
+position-dependent bias appears nowhere.
+
+Firewall compliance: H untouched (all runs H = -A, J = 1); no
+onsite/weights/potential; no geometry-update rule (0I
+readout-only, nothing executed); no U0-collapse tuning; no
+amplitude selected (full 1e-3..1e3 family measured, scale-only
+result); no (B - B_vac) in dynamics (0J definitions only); no
+matter redefinition; no formation runs; no gravity claims; no
+RAND-0 tuning (RAND-0 cited only for the psi = 0 no-information
+point, which this campaign independently re-derives). Candidates
+selected by spectrum+symmetry (0A/0B) before any consequence was
+inspected; VPI's one-sided ledger was a pre-data analytic
+correction (Amendment-1), not a post-hoc accommodation.
+
+Records: data/vacfield/ (204 task JSONs + verdict.json; .npy
+sidecars on beast, checksums in JSON). Apparatus:
+src/bh_graph/vacfield.py + tests/test_vacfield.py (24 pins) +
+scripts/vacfield_campaign.py + scripts/vacfield_analyze.py.
+Amendments: 1 (VPI one-sided, pre-data), 2 (gate robustness,
+pre-data), 3 (78 typo), 4 + addendum (decomp follow-up +
+E-vacuous + dd-zero-slice rules, post-data/pre-verdict, disclosed).
