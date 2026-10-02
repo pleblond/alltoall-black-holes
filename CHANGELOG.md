@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (BR-0 bond-energy landscape)** — D14-BR0 offline campaign:
+  P1-frozen wave sector vendored verbatim (P1 tip ac6a1409); new
+  `backreaction.py` (E_psi, local dE=-2J(B_add-B_rem), M1 sampler,
+  near/far + 2x2 + radial anatomy); 17 pins (C0-C5 roots); verdict
+  BR0-D SELECTIVE* (V0/V1U exact-flat; E-states f-_glob 0.12-0.79;
+  nf=0.0000-exact protection, fn=0.34-0.93 attraction, E3p expulsion)
+  with owned Amendment-1 ((iii)-bar conditioning-half erratum) and
+  pre-filed BR0-E vacuum-half debt; BR-1/BR-2 admitted; cross-machine
+  replication confirmed (local + beast bitwise on verdict fields).
+
 - **unreleased (SG verdict)** — SG-0 VERDICT banked (beast): Q1 no
   splitting (0 firings / 50+ cells, all stages/shapes/gradients);
   Q2 bare wave SG1 (sine weak ladder 8/8 valid: Δy=±2.30/±4.10,
