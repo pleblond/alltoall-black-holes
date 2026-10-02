@@ -437,7 +437,7 @@ def cmd_stations(args):
 
     def source_vecs(a):
         """Per-station (wave psi0, diff p0, diff_signed, pins, s) by dataset."""
-        if dataset == "mixed" or c3 is None:
+        if dataset not in ("p_plus", "p_minus") or c3 is None:
             d = np.zeros(len(order))
             d[sidx[a]] = 1.0
             return d.astype(complex), d, False, [sidx[a]], [1.0]
@@ -466,7 +466,7 @@ def cmd_stations(args):
     for a in range(run_obs1.N_STATIONS):
         tj = [sidx[b] for b in range(run_obs1.N_STATIONS) if b != a]
         w0, p0, signed, pins, svec = source_vecs(a)
-        if dataset == "mixed":
+        if dataset not in ("p_plus", "p_minus"):
             tD, tCFD = run_obs1.diff_readouts(wl, Vl, sidx[a], tj, D)
             tW = obs0.arrival_times_wave(Ew, Vw, sidx[a], tj, D)
         else:
