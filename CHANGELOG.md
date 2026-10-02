@@ -3,6 +3,24 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **Unreleased (VAC-COMP-0)** — Complete joint-vacuum manifold census
+  (branch): VAC-FIELD-0 `vacfield.py` + tests vendored byte-identical;
+  new `src/bh_graph/vaccomp.py` (stages 0A-0AC + 0R/0S inventory),
+  `tests/test_vaccomp.py` (40 preregistered pins, green),
+  `scripts/vaccomp_campaign.py` (41 tasks) + `scripts/vaccomp_analyze.py`
+  (frozen gates), VACCOMP0-PREREG + AMENDMENT-1 in `docs/DEFERRED.md`.
+  Beast campaign (--jobs 41): all gates green, VERDICT
+  VACCOMP0-COMPLETE -- even L: VPLUS/VPI isolated rays + hidden RP^1
+  JOINT circle (VMINUS-VSTAG span, 1 B==0 BACKGROUND grid point) x
+  amplitude, pi_0 = 3; odd L: VPLUS + VMINUS only, pi_0 = 2;
+  generic eigenstates excluded (current binds complex 16/16, stress
+  binds real 8/8); mixed-eigenvalue beats at dE = 16/8/8 (|corr| =
+  1.0), no interior JOINT, no cross-term cancellation; TI vacua
+  coarse-identical (d = 0.0), circle-interior coarse-visible (0.044);
+  distinct ledger classes (VPLUS 1/0/0, VPI .5/.5/0, hidden
+  .5/.25/.25, circle-interior .25/.37/.38). Records under
+  `data/vaccomp/` (results + verdict JSON).
+
 - **Unreleased (TIME-0)** — Two-boundary history selection prereg +
   apparatus (pre-data): `src/bh_graph/time0.py` (canonical N<=6 universe,
   pairwise compatibility, exact DP counters, Theta, affine field

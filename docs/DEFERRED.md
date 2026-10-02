@@ -7238,4 +7238,93 @@ campaign tasks use ledger_moves=20000; N <= 64 keeps exhaustive
 M1. Pinned: test_sampled_ledger_resolved_at_headline_moves,
 test_amplitude_family_nonzero_energy_all_joint (40 pins green).
 
+## VACCOMP0-VERDICT — VACCOMP0-COMPLETE (DATA)
+
+Beast campaign 2026-10-02 (--jobs 41, 41 tasks) + frozen analyzer:
+every gate green, fails []. Records data/vaccomp/results.json +
+data/vaccomp/verdict.json.
+
+**Central census (boxed):** the complete nonzero JOINT vacuum
+manifold on frozen (J2 torus, -A), modulo R x U(1), is -- even L:
+two isolated extremal rays (VPLUS E=-8, VPI E=+8, both
+nondegenerate by Perron-Frobenius + bipartite symmetry) plus one
+hidden real RP^1 JOINT circle (the VMINUS-VSTAG span in P_- E_0,
+JOINT except B==0 BACKGROUND points), each x a full amplitude ray
+(all a in 1e-3..1e3 JOINT), pi_0(JOINT) = 3; odd L: VPLUS ray +
+VMINUS ray only (VPI frustrated, e_max = 6.47 at L=5; VSTAG
+raises), pi_0 = 2. VMINUS is one translation-invariant point of a
+continuous hidden-vacuum circle, not an isolated class (outcome:
+degenerate components, connected within the hidden sector,
+disconnected across eigenvalues).
+
+**Spectral (C2/0A/0F/0G):** extrema +-8 exact at L=4/6/8, Bloch
+dev < 1e-6, extremal states nondegenerate, candidate residuals <
+1e-9 with subspace weight 1. Zero split exact: L4 22=16+6, L6
+46=36+10, L8 78=64+14, L28 838=784+54; odd L5 25=25+0 (no
+symmetric zeros). Stationarity theorem verified on an arbitrary
+degenerate superposition (drifts 0.0, phase rate 0.0).
+
+**Exclusion (0E/0I/0J):** generic eigenstates are NOT vacua --
+complex E_0: 16/16 BACKGROUND, current_free binds 16/16; real
+E_0: 8/8 BACKGROUND, stress binds 8/8 (J==0 always, edge_max <
+1e-12); mid-eigenvalue complex: 8/8 BACKGROUND. Complex hidden
+16/16 current-carrying (frac_excluded 1.0). Real P_- projective
+space is 15-dim; JOINT carves exactly the 1-dim TI circle from it.
+
+**Circle (0H):** L4/L6 grids: 12/12 non-BZERO points JOINT, B==0
+point (alpha=pi/4, Bmax 6.9e-18) BACKGROUND-capped by the strict
+Bmax gate. B==0 independent-set states: stationary + current-free
++ stress-balanced but BACKGROUND (B is the primary relational
+observable; no B-vacuous theorem).
+
+**Amplitude (0K):** all five families (4 TI rays + CIRCLE@pi/6)
+all-JOINT over 1e-3..1e3. Shape degeneracy (circle S^1) is
+distinct from amplitude degeneracy (R_+); both physical under
+SYM-0 (no-selection firewall kept: no family preferred).
+
+**Beats/disconnectivity (0L/0M/0Q):** same-eigenvalue sweep
+stationary everywhere (drifts < 1e-8), phi=0 cut interior JOINT
+count exactly 10 (real circle minus B==0 point). Mixed pairs beat
+at dE = 16/8/8 with |corr| = 1.0, rho_beat_amp > 0, zero interior
+JOINT in all three cuts, no cross-term cancellation (rho_x/B_x/J_x
+all nonzero) -- VPLUS/VPI/CIRCLE are mutually disconnected under
+continuous JOINT-preserving paths.
+
+**Orbits/symmetry (0T/0U):** all four TI vacua are ray-TI
+singletons (stabilizer = full group, orbit size 1, sheet-ray
+invariant). Patterned (non-TI) JOINT vacua: the circle interior
+(alpha not multiple of pi/2) -- stationary, balanced, spatially
+structured; filed without matter language.
+
+**Observer/excitation/ledger (0V/0W/0X):** the four TI vacua are
+physically distinct but coarse-identical (pairwise d_coarse_rho =
+0.0 exactly); circle-interior states are coarse-visible
+(d = 0.044). Excitation fingerprint ballistic and
+background-independent (speed 2.54, r2 0.992, alpha 1.89) --
+carrier dynamics universal across the manifold by the 0L
+linearity theorem. Ledger classes distinct: VPLUS (1/0/0), VPI
+(.5/.5/0), VMINUS/VSTAG (.5/.25/.25), circle-interior
+(.25/.37/.38); ledger distances VPLUS|VPI dmax 0.125,
+VMINUS|VSTAG dB 0.0625.
+
+**Zero (0Y/0Z):** Q/Bmax/E scale as a^2 exactly (slope 2 to
+1e-9); a -> 0+ approaches ZERO continuously in every relational
+observable; r_prot = a/sqrt(N) for uniform vacua (zero-free);
+independent-set states r_prot = 0. ZERO stays non-JOINT (boundary
+point with singular phase coordinates).
+
+**Scaling/controls (0AA/0AB/0AC/ODD):** zero formula + TI
+inventory + shape dim verified L=4..28 (degeneracy extensive in
+N via the flat band, JOINT shape manifold 1-dim even / 0-dim
+odd). Quotient: VPLUS/VPI descend (residuals < 1e-9), VMINUS
+absent (hidden structure operationally invisible). Square torus:
+uniform/staggered current-free + stress-balanced, extrema +-4, no
+flat band -- the hidden JOINT circle is J2-special, not generic.
+Odd L=5: VMINUS JOINT, VSTAG raises, +8 frustrated.
+
+**Downstream:** VAC-SELECT receives the filed state space (even:
+{VPLUS-ray, VPI-ray, CIRCLE x R_+} + BACKGROUND B==0 sector;
+odd: {VPLUS-ray, VMINUS-ray}); no preference attached (0AD kept).
+
+
 

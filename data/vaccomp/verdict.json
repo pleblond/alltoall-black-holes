@@ -1,0 +1,323 @@
+{
+ "n_zero": {
+  "4": 22,
+  "5": 25,
+  "6": 46,
+  "8": 78
+ },
+ "headline_rungs": {
+  "lad_VPLUS_28": "JOINT",
+  "lad_VPI_28": "JOINT",
+  "lad_VMINUS_28": "JOINT",
+  "lad_VSTAG_28": "JOINT",
+  "lad_CIRCLE_28": "JOINT"
+ },
+ "stattheorem": {
+  "tag": "stattheorem_L4",
+  "L": 4,
+  "degenerate": {
+   "rho_drift": 2.220446049250313e-16,
+   "B_drift": 1.249000902703301e-16,
+   "J_drift": 1.942890293094024e-16,
+   "phase_rate": 5.525472982177209e-16,
+   "frozen_err": 2.3714374201337736e-16,
+   "ok": true
+  },
+  "vminus": {
+   "rho_drift": 0.0,
+   "B_drift": 0.0,
+   "J_drift": 0.0,
+   "phase_rate": 0.0,
+   "frozen_err": 0.0,
+   "ok": true
+  }
+ },
+ "generic": {
+  "gen_zero_complex": {
+   "BACKGROUND": 16
+  },
+  "gen_zero_real": {
+   "BACKGROUND": 8
+  },
+  "gen_mid_complex": {
+   "BACKGROUND": 8
+  }
+ },
+ "hidden": {
+  "complex_excluded": 16,
+  "real_rungs": {
+   "BACKGROUND": 8
+  }
+ },
+ "beats": {
+  "beat_PPI": {
+   "dE": 16.0,
+   "corr": -0.9999999999999997,
+   "amp": 0.06249990383723019
+  },
+  "beat_PM": {
+   "dE": 8.0,
+   "corr": -0.9999999999999997,
+   "amp": 0.06249637959368671
+  },
+  "beat_PIM": {
+   "dE": 8.0,
+   "corr": -0.9999999999999997,
+   "amp": 0.06249637959368671
+  }
+ },
+ "cross": {
+  "beat_PPI": {
+   "rho_x": 0.031249999999999993,
+   "B_x": 0.0,
+   "J_x": 0.0
+  },
+  "beat_PM": {
+   "rho_x": 0.031249999999999993,
+   "B_x": 0.031249999999999993,
+   "J_x": 0.0
+  },
+  "beat_PIM": {
+   "rho_x": 0.031249999999999993,
+   "B_x": 0.031249999999999993,
+   "J_x": 0.0
+  }
+ },
+ "orbits": {
+  "VPLUS": {
+   "stabilizer_size": 16,
+   "orbit_size": 1,
+   "ray_TI": true,
+   "sheet_ray_invariant": true,
+   "max_orbit_fs": 0.0
+  },
+  "VPI": {
+   "stabilizer_size": 16,
+   "orbit_size": 1,
+   "ray_TI": true,
+   "sheet_ray_invariant": true,
+   "max_orbit_fs": 0.0
+  },
+  "VMINUS": {
+   "stabilizer_size": 16,
+   "orbit_size": 1,
+   "ray_TI": true,
+   "sheet_ray_invariant": true,
+   "max_orbit_fs": 0.0
+  },
+  "VSTAG": {
+   "stabilizer_size": 16,
+   "orbit_size": 1,
+   "ray_TI": true,
+   "sheet_ray_invariant": true,
+   "max_orbit_fs": 0.0
+  }
+ },
+ "coarse": {
+  "CIRCLE@pi/8|VMINUS": 0.04419417382415926,
+  "CIRCLE@pi/8|VPI": 0.04419417382415926,
+  "CIRCLE@pi/8|VPLUS": 0.04419417382415926,
+  "CIRCLE@pi/8|VSTAG": 0.04419417382415926,
+  "VMINUS|VPI": 0.0,
+  "VMINUS|VPLUS": 0.0,
+  "VMINUS|VSTAG": 0.0,
+  "VPI|VPLUS": 0.0,
+  "VPI|VSTAG": 0.0,
+  "VPLUS|VSTAG": 0.0
+ },
+ "excitation": {
+  "v": [
+   2.5438763124651578,
+   0.021228545618789254
+  ],
+  "speed": 2.543964886603276,
+  "r2": 0.9924400607837436,
+  "msd_alpha": 1.8900396625517337,
+  "width_growth": -0.1752204211145738,
+  "d0_norm": 0.01
+ },
+ "ledger": {
+  "dist": {
+   "VPLUS|VPI": {
+    "dB": 0.062499999999999986,
+    "dL": 0.125,
+    "dmax": 0.125
+   },
+   "VPLUS|VMINUS": {
+    "dB": 0.062499999999999986,
+    "dL": 0.9999999999999998,
+    "dmax": 0.9999999999999998
+   },
+   "VPLUS|VSTAG": {
+    "dB": 0.062499999999999986,
+    "dL": 0.9999999999999998,
+    "dmax": 0.9999999999999998
+   },
+   "VPI|VMINUS": {
+    "dB": 0.062499999999999986,
+    "dL": 1.1249999999999998,
+    "dmax": 1.1249999999999998
+   },
+   "VPI|VSTAG": {
+    "dB": 0.062499999999999986,
+    "dL": 1.1249999999999998,
+    "dmax": 1.1249999999999998
+   },
+   "VMINUS|VSTAG": {
+    "dB": 0.062499999999999986,
+    "dL": 0.12499999999999996,
+    "dmax": 0.12499999999999996
+   }
+  },
+  "stats": {
+   "VPLUS": {
+    "B_mean": 0.031249999999999997,
+    "B_std": 3.469446951953614e-18,
+    "L_mean": -0.8124999999999999,
+    "L_std": 1.1102230246251565e-16
+   },
+   "VPI": {
+    "B_mean": -0.031249999999999997,
+    "B_std": 3.469446951953614e-18,
+    "L_mean": -0.9374999999999999,
+    "L_std": 1.1102230246251565e-16
+   },
+   "VMINUS": {
+    "B_mean": 0.0,
+    "B_std": 0.031249999999999997,
+    "L_mean": 0.12499999999999997,
+    "L_std": 0.062499999999999986
+   },
+   "VSTAG": {
+    "B_mean": 0.0,
+    "B_std": 0.031249999999999997,
+    "L_mean": 0.12499999999999997,
+    "L_std": 0.062499999999999986
+   }
+  }
+ },
+ "scaling": {
+  "4": {
+   "n_zero": 22,
+   "even": 1,
+   "n_ti": 4,
+   "hdim": 1
+  },
+  "5": {
+   "n_zero": 25,
+   "even": 0,
+   "n_ti": 2,
+   "hdim": 0
+  },
+  "6": {
+   "n_zero": 46,
+   "even": 1,
+   "n_ti": 4,
+   "hdim": 1
+  },
+  "8": {
+   "n_zero": 78,
+   "even": 1,
+   "n_ti": 4,
+   "hdim": 1
+  },
+  "12": {
+   "n_zero": 166,
+   "even": 1,
+   "n_ti": 4,
+   "hdim": 1
+  },
+  "16": {
+   "n_zero": 286,
+   "even": 1,
+   "n_ti": 4,
+   "hdim": 1
+  },
+  "20": {
+   "n_zero": 438,
+   "even": 1,
+   "n_ti": 4,
+   "hdim": 1
+  },
+  "28": {
+   "n_zero": 838,
+   "even": 1,
+   "n_ti": 4,
+   "hdim": 1
+  }
+ },
+ "odd": {
+  "n_zero": 25,
+  "e_max": 6.472135954999581,
+  "vminus_rung": "JOINT",
+  "vstag": "raises (even-L only)",
+  "vpi_rayleigh": null
+ },
+ "verdicts": {
+  "C2_L4": true,
+  "C2_L6": true,
+  "C2_L8": true,
+  "C2": true,
+  "C0_lad_VPLUS_28": true,
+  "C0_lad_VPI_28": true,
+  "C0_lad_VMINUS_28": true,
+  "C0_lad_VSTAG_28": true,
+  "C0_lad_CIRCLE_28": true,
+  "C0": true,
+  "C1": true,
+  "C3": true,
+  "E_gen_zero_complex": true,
+  "E_gen_zero_real": true,
+  "E_gen_mid_complex": true,
+  "E_current_binds": true,
+  "E_stress_binds": true,
+  "0E": true,
+  "H_circle_L4": true,
+  "H_circle_L6": true,
+  "0H": true,
+  "0I": true,
+  "0J": true,
+  "BZERO": true,
+  "K_amp_VPLUS_L4": true,
+  "K_amp_VPI_L4": true,
+  "K_amp_VMINUS_L4": true,
+  "K_amp_VSTAG_L4": true,
+  "K_amp_CIRCLE_L4": true,
+  "0K": true,
+  "0L": true,
+  "M_beat_PPI": true,
+  "M_beat_PM": true,
+  "M_beat_PIM": true,
+  "M_interp_PPI": true,
+  "M_interp_PM": true,
+  "M_interp_PIM": true,
+  "0M": true,
+  "0Q": true,
+  "0TU": true,
+  "0V_blind": true,
+  "0V_visible": true,
+  "0V": true,
+  "0W": true,
+  "0X": true,
+  "Y_VPLUS": true,
+  "Z_VPLUS": true,
+  "Y_VPI": true,
+  "Z_VPI": true,
+  "Y_VMINUS": true,
+  "Z_VMINUS": true,
+  "Y_VSTAG": true,
+  "Z_VSTAG": true,
+  "0Y": true,
+  "0Z": true,
+  "0AA": true,
+  "AB_quotient_L4": true,
+  "AB_quotient_L6": true,
+  "0AB": true,
+  "AC_square_L4": true,
+  "AC_square_L6": true,
+  "0AC": true,
+  "ODD": true,
+  "ladder": "VACCOMP0-COMPLETE",
+  "fails": []
+ }
+}
