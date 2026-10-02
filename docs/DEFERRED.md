@@ -2960,6 +2960,297 @@ skipped!)). C0-INPUT: mobile-trackable-blobs (diffusive-
 wanderers + sitters (heterogeneity-mechanism-OPEN!));
 formation-provides-localization+mobility (ψ-must-provide-
 rest!). NEXT: C0-merge+prereg (gated on go).
+P1-PREREG (FROZEN-2026-10-01 (~19:00-UTC (commit-predates-
+ALL-P1-runs!)); directed/ballistic-motion-campaign (P1-of-
+P1/P2/P3 (P2-polarity + P3-handedness-UNTOUCHED (no-polar/
+handed-readouts-in-any-P1-run!)))). QUESTION (load-bearing-
+framing!): NOT "can-D5∞-blobs-move-ballistically" (pure-D5∞-
+cannot-sustain-direction (no-phase/momentum-state!)) BUT
+"can-a-localized-D5∞-object-acquire-persistent-directed-
+motion-when-coupled-to-a-direction-carrying-excitation".
+CONTROLS: K-only→confined/diffusive (P1.0-banked!) +
+ψ-only→directed-no-object (P1.1!) vs K+ψ→?-finite-directed-
+composite (B2/B3-gated!).
+P1.0-BANKED (no-new-runs!): Stage-0-verdict = formation-null
+(0/6-directed (3-confined-α≈0-rms-2-4 (sit+jiggle!) + 3-
+diffusive-α≈0.75-1.05-torus-scale-wander (uncorrelated-steps
+(NOT-piece-flicker!))) + 1-slither-anecdote (N=1!)); mass-CV-
+0.13-0.27 (stable!); axes-static/diffusive/jitter (L28-d0-
+super-diffusive-RESOLVED-as-jitter+drift (NOT-spinning!));
+empties-≤0.4%; <ΔR>/t→0 (no-persistent-velocity!)). REUSED-
+AS: K-only-row (MSD-bins + zero-mean-velocity); C_v-formation-
+baseline-NOT-banked (Stage-0-did-not-measure-C_v (honest-gap:
+B0-controls-measure-it-fresh!)).
+P1.1-WAVE-ONLY-POSITIVE-CONTROL (validates-ballistic-detector
+(NO-formation-involved!)): APPARATUS (this-commit (12-pins +
+1-elist-pin!)): H(G)=-J·A(G) (hopping-ONLY (no-onsite/degree/
+core-detector/distance/potential/force-law (LOCKED!)); z-
+regular⟹Laplacian-walk-up-to-global-phase (pinned!)); Krylov-
+exact-unitary (norm-1e-8-pinned!); Gaussian-k-packets (σ<<L/6-
+gated; -k = conj(+k)-pinned!); COM-circular-mean + unwrap +
+MSD-bins (Stage-0-bins!) + C_v + v-fit. ANALYTIC: chain-
+v_g = 2J·sin(ka) (derived-from-H (NOT-dispersion.py-convention
+(ω=2J|sin(ka/2)|) (separate-pin!))). PILOT (next-commit (post-
+prereg!)): ring-400 (σ=15, k∈{+0.5,-0.5,0}, dt=0.1, T=120
+(Δx≈115<N/2 (no-wrap!))) + torus-grid-30 (σ=4, k=(±0.5,0)/(0,
+0), dt=0.1, T=40). PASS ⟺ ALL: (a)-|v_fit-2J·sin(ka)|/|·|<10%;
+(b)-v(+k)·v(-k)<0-AND-|v(+k)+v(-k)|/|v|<10% (sign-test!); (c)-
+zero-k-speed<5%-of-|v(0.5)| (null!); (d)-MSD-α>1.3-for-±k
+(directed-bin!); (e)-C_v(τ)>0-to-10-crossing-times (σ/v!);
+(f)-norm-to-1e-8. ANY-fail⟹detector-INVALID-STOP (fix-apparatus
++ re-prereg (NO-formation-runs-until-P1.1-PASS!)).
+P1.2-ONE-WAY-DERIVATION (G→ψ (ψ-can-scatter-NOT-propel (formation-
+never-reads-ψ (ballistic-composite-IMPOSSIBLE-by-construction
+(this-stage!)))): ψ-propagates-on-instantaneous-G_t (H(G_t) =
+-J·A(G_t), piecewise-constant-per-sweep, S-substeps-of-dt-per-
+sweep (fiducial-S=10-dt=0.1; verdict-BRACKET-S∈{1,10,100}-
+LOCKED (timescale-robustness (not-tuning!)))); capture =
+elist_window-per-sweep-frames (observation-pure (T/exec/hist-
+identical-pinned!) + T-match-gated-reruns (Stage-0-precedent!));
+PURITY-ARGUMENT: formation-trajectory-generated-independently
+(ψ-consumes-frozen-frames (oneway-mutates-nothing-pinned!)).
+NO-ψ→G-DIRECTION-EXISTS (ban-list-vacuous-here (core-detector/
+distance-to-core/binding-potential/force-law/radiation-pressure-
+NOWHERE (nothing-to-ban-in!))).
+B0-SCATTERING-PREREG (frozen-G-first (B0a (live-B0b-queued-behind-
+B0a+elist-capture!))): INPUTS: formed-D5∞-J2-states (Stage-0-rerun-
+plateau-saves (L28-d0-d3+L42-d0-d1 (same-trajectories (T-gated!)))
++ node-identity-matched-controls (SAME-labels-different-edges!):
+(i)-bare-J2-torus (free!); (ii)-D1-run-J2-same-sweep (structureless-
+relocation!); background-J2-coords-readout (Stage-0-precedent!) +
+frozen-floored-k4-masks (same-definition!). PROTOCOL (per-state):
+packet-(σ=4, |k|=0.5)-at-max-torus-distance-node-from-core +
+k-sign-aimed-at-core (operational-rule: sign-whose-first-10-time-
+units-move-COM-toward-core (filed-rule (not-tuning!))); T=200-
+frozen. OBSERVABLES: core-weight-w(t) + residence-R=∫w·dt + delay-
+Δt = t_past - t_past^free (core-longitude-crossing!) + incident-
+half-weight-at-T. B0-FIRES ⟺ (R_formed-mean(R_controls))/std(R_
+controls)>3 (excess-residence!) OR |Δt|>3σ_controls (delay!).
+B0-NULL⟹file-"wave-passes-through"⟹B1/B2/B3-MOOT⟹STOP-P1-null
+(convergence-break-LOCATED (still-publishes!)).
+B1-BINDING-PREREG (same-frozen-setup (T=1000-long!)): late-core-
+weight-w̄ (last-20%-of-window) vs delocalized-baseline-w_deloc =
+|core|/N. B1-FIRES ⟺ w̄/w_deloc>5-in-≥2-runs AND w̄-exceeds-every-
+control-w̄ (node-matched-masks!). B1-NULL⟹STOP (scattering-without-
+binding (reciprocal-coupling-UNEARNED!)).
+B2/B3-GATES (NOT-designed-here!): reciprocal-ψ→G-channel-admission-
+REQUIRES-B1-FIRE + DERIVED-feedback (ban-list-stands: no-core-
+detector/no-distance-to-core/no-binding-potential/no-force-law/no-
+radiation-pressure-rule (invention-FORBIDDEN (derivation-owed!)));
+B3-killer = k→-k⟹v→-v-on-persistent-composite (+linear-COM +
+C_v>0 + zero-k-null + mass-bounds + not-elongation-axis!). NEXT:
+P1.1-pilot (gated on prereg-commit!).
+P1-AMENDMENT-1 (paper-derived-branch-input (PRE-DATA (zero-P1-runs-
+executed (pins-only-so-far!) (commit-predates-ALL-P1-runs!)))):
+BRANCH-STRUCTURE-FINDING (apparatus-validation (not-campaign-data!)):
+scalar-(coinless-CTQW)-J2-walk = ONE-dispersive-band (E∈[-8,+8])
++ EXTENSIVE-flat-zero-band (N/2 + nodal-extras (L28: 838/1568!));
+same-k-±ω-doublets-DO-NOT-EXIST (need-a-coin (discrete-time!)).
+⟹ branches := E-sign-halves-via-exact-chiral-projectors (P±-of-H_
+bare ([P,H]=0 (bipartite-q=x+y (filed-S11!)))); matched-±-packets
+:= partner-momenta-(k, k+Q) (Q=(π,π) (branch-momentum-LOCKING
+(raw-Gaussian-≥99.9%-pure (tails-only-impurity!)))); mixing :=
+deviation-from-INITIAL-branch-weight (NOT-impurity (initial-out-
+of-branch = prep-geometry (filed-separately!))); free-null-EXACT-
+zero (construction (not-statistics!)). COINED-WALK-considered-+
+DEFERRED (reason: coin-undefined-on-irregular-formed-graphs
+(degree-varying-hubs/pendants (coin-update-across-rewiring-IS-
+new-law (breaks-minimal-G_t-coupling!)))). GUARDRAIL (quoted):
+branch-sign = spectral-fact (NOT-matter/antimatter-or-charge!).
+P1.1b-BARE-J2 (ADDED (P1.1a-ring/torus-STANDS (single-band-v_g-
+detector-validation!))): L28-bare (σ=4, k=(±0.3,0)-×-partners +
+zero-k (5-packets!), T=12-dt=0.1 (no-wrap-round-number (disp<L/2-
+gated-post-hoc!))); VALIDITY-gates: raw-purity-≥80%-per-packet
++ R²>0.99-displacement-fit (±k-only (interference-gate!)) + norm-
+1e-8; PASS ⟺ ALL: (a)-α>1.3-both-branches; (b)-k→-k-reversal-
+10%-per-branch; (c)-conjugation-v_+(k+Q)+v_-(k)≈0-15% (looser
+(different-packets/curvature!)); (d)-zero-k-speed<5%; (e)-free-
+mixing-<1e-6 (sanity (construction-zero!)). ANY-fail⟹P1.1b-
+INVALID-STOP (same-rule-as-P1.1a!). B0-ADD-observable: M(t) =
+branch-flip-deviation (bare-basis (in/out-states!)); B0-mixing-
+FIRES ⟺ max-M>1e-6-in-≥2-runs (10⁶×-above-Krylov-noise (~1e-12!)
+(free-null-exact-zero!)); MECHANISM-filed: triangles-break-
+bipartiteness-break-chiral-symmetry-couple-branches (odd-cycle-
+content-IS-the-mixer (measurable-not-fitted!)). B0-headline-
+geometry-LOCKED: x-directed + approach-sign-rule (y-directed +
+flipped = robustness-appendix (headline-null-stands-even-if-
+appendix-fires (no-shopping!))). B1-FOLLOWUP-descriptive (NOT-
+criteria!): trapped-weight-branch-oscillation-frequency
+(Zitter-like (operational-mass-scale-candidate!)) + spatial-
+flip-profile (core-vs-bulk!) + flat-band-exchange-weight
+(MEASURE (no-Dirac-fitting (explicit-ban!))). P2/P3-untouched-
+STANDS. NEXT: P1.1a+P1.1b-pilot (gated on amendment-commit!).
+P1-AMENDMENT-2 (window-corrections (PRE-DATA (pure-arithmetic-from-
+committed-text (no-numbers-needed!))): (1)-(e)-SLIP (owned!): T=120-
+ring = 7.7-packet-crossings (σ/v = 15/0.959 = 15.6-units (10-would-
+need-T≥157!)) + torus-T40 = 9.6-crossings (σ/v=4.2!) ⟹ "10-crossing-
+times"-UNCHECKABLE-as-written; REPLACED-by full-window-C_v-positivity
+(ALL-10-lag-bin-means > 0 (ring≈7.7/torus≈9.6-crossings (filed-per-
+substrate!))); bar-unchanged (positivity (not-magnitude!)). (2)-torus-
+T=40→25 (no-wrap-guarantee (disp≈24<L=30 (was-38-wrap!)); α-range-
+thins-to-2× (ring-carries-range-role!)). Everything-else-stands.
+NEXT: P1.1a+P1.1b-pilot (gated on amendment-commit!).
+P1.1a-VERDICT (PASS (beast (12s!)); ring-400 + torus-grid-30 (T=120/
+25 (amended!))): ring: v=±0.9583-vs-2sin(0.5)=0.9589 (0.006%!);
+reversal-exact (±0.9583!); zero-k-0.0000; α=2.00/2.00; C_v-bins-
++1.000-all-10 (perfect-persistence!); norm-7e-13; disp=115<200-✓.
+torus: v=+0.9668/-0.9647-vs-0.9589 (0.8%!); transverse-0.0000;
+α=2.05/2.04; C_v-+0.996; norm-2e-14; disp=24.2<30-✓. ALL-22-
+substrate-checks-PASS (11+11!) ⟹ ballistic-detector-VALIDATED
+(ψ-only→directed-no-object (control-row-✓!)). NOTE-filed: zero-k-α
+= fit-noise-on-stationary-COM (ring-0.00/torus-2.72/J2-3.21 (disp=
+0.0-all!)) ⟹ α-meaningless-when-stationary (criteria-correctly-
+use-speed-for-zero-k (no-impact!)).
+P1-AMENDMENT-3 (J2-window-shortening (PRE-RERUN (pilot-1-opened:
+physics-PASS + gate-MISS (both-filed (below-vs-above!)))): T=12→10
+(measured-v=1.235 ⟹ disp≈12.3<L/2=14 (arithmetic (not-tuning!)));
+same-5-packets/same-gates/same-criteria; ring/torus-STAND (passed
+(rerun-replicates!))). P1.1b-PILOT-1-filed (SUPERSEDED (gate-miss
+(no-verdict-drawn (discipline!))): ALL-physics-PASS-with-margin
+(α=2.12-2.15 (vs-1.3!); reversal-exact (1.2246/1.2353!); conjugation-
+exact; purity-100.00%-all-5 (w0=0.0000!); mixing-2e-13 (vs-1e-6!);
+zero-k-exact-null (disp=0.0!); n_zero=838-filed!) BUT nowrap-gate-
+MISS (disp=14.8-15.0-vs-14 (7%-over (T=12-round-number-too-long!)));
+R²=0.9993-0.9995 (COM-clean (no-interference-signature (gate-was-
+conservative (center-based!)))). NEXT: pilot-2-T10 (gated on
+amendment-commit!).
+P1.1b-VERDICT (PASS (pilot-2-T10 (beast); ring/torus-replicated-
+identical!)): disp=12.1-12.2<14-✓; purity-100.00%-all-5 (w0=0.0000
+(branch-momentum-locking-EXACT (tails-below-1e-4!))); α=2.07-2.09-
+all-4 (directed!); R²=0.9997-0.9998; reversal-exact-per-branch
+(1.2039/1.2110-symmetric-pairs!); conjugation-exact-both-pairs
+(v_+(k+Q)=-v_-(k)!); zero-k-exact-null (disp=0.0!); mixing-≤1e-12-
+all-5 (free-null-confirmed (construction-zero (not-luck!)));
+n_zero=838-replicated. ALL-12-J2-checks-PASS.
+P1.1-VERDICT (PASS (all-substrates (ring+torus-grid+bare-J2))):
+ψ-only→ballistic-but-nonlocalized (control-row-✓); detector-
+validated (v_g-match/sign-test/zero-k-null/MSD-bins/C_v/R²-gates/
+exact-zero-mixing-null (all-with-margin!)). ⟹ P1.1-GATE-OPEN
+(formation-coupling-runs-UNBLOCKED (B0a-next!)). NEXT: B0a-frozen-
+scattering (inputs: Stage-0-plateau-saves + node-matched-controls
+(gated on input-inventory!)).
+P1-AMENDMENT-4 (B0a-measurement-expansion + operational-rules +
+decision-table (PRE-B0a-DATA (inventory-only-so-far (no-wave-runs
+on-formed-graphs!)))). INPUTS (inventory-filed: s0_parts = 5/6-
+runs-k4sets+moves (L28-d0-MISSING!) + NO-elists-anywhere (campaign-
+scripts-did-not-persist-saved!) + j2_parts = 6/6-t_traces (T-match-
+refs-✓!)): (0)-RERUNS: 6-trajectories (L28-d0-d3+L42-d0-d1 (D5∞-
+same-seeds!)) + elist_window-1500-2000 (501-frames (B0a-uses-3
+(B0b-option-value-free!))) + k4_window-same; T-match-6/6-vs-j2_
+parts-GATED (apparatus-invalid-STOP-if-fail (Stage-0-precedent!)).
+(1)-SITTER-SELECTION (formation-side (pre-wave (legitimate!))):
+recompute-centroid-MSD-α-per-run (1500-2000 (Stage-0-O1-replication
+(agreement-filed!))); sitters = α<0.7-AND-frozen-quality (core-in-
+all-3-saves + pairwise-Jaccard≥0.5); <1-sitter⟹STOP+file. (2)-FROZEN-
+states: saves-{1500,1800,2000}-per-sitter (3-each). (3)-D1-controls:
+FRESH-D1-runs (same-L/dyn/sweeps (label-matched (honest: trajectories-
+diverge!)) + uniform-capture). (4)-bare-J2-in-script-per-L. MASKS:
+node-identity-matched-from-formed-state (all-controls (labels-shared!)).
+GEOMETRY (per-state): prep-at-max-torus-distance-node-from-core;
+per-branch-operational-approach-sign (10-unit-verify-on-ACTUAL-graph
+(formed-H (not-bare!)); neither-approaches⟹run-invalid-filed);
+headline = +branch-x-directed-approach; FULL-factorial-filed (2-
+branches × 4-geos (x/y × approach/flip)) with headline-cell-only-
+for-fire/track (no-selection!). OBSERVABLES (per-run, T=200-dt=0.1
+(LOCKED)): R-residence + Δt-delay (first-core-crossing (r_core =
+sqrt(|K|) (filed!); NaN-if-miss (delay-on-crossing-subset (≥5-non-
+NaN-else-delay-void-filed!)))) + ΔW±/0 (final-dev + max-dev (bare-
+basis!)) + v_out+R²+trunc-flag (10-unit-post-crossing (pre-return!))
++ dispersion-ratio (width-growth-vs-matched-free) + w̄ + w̄/w_deloc
+(late-20% (B0-descriptive + B1-criterion (roles-split (no-double-
+dip!)))) + incident-half (stands-filed) + accounting-max-dev (HARD-
+gate-1e-9 (W_++W_0+W_-=1-every-frame!); >1/3-invalid⟹apparatus-STOP)
++ K-covariates (core-mass + T_total + B_chiral-headline (||{Γ,H}||_F/
+||H||_F (background-Γ!)) + triangle-density). WRAP-note (T=200 ≫ L):
+residence/mixing-cumulative (wrap-robust-via-matched-T-controls!);
+delay-first-crossing; v_out-pre-return-window. B0-TRACK (mechanistic-
+bridge (CO-PRIMARY!)): Spearman-per-state (n=27-headline-+cells
+(scipy.spearmanr-LOCKED!)): ρ(mix_max,B)>0.5-&-p<0.05-AND-ρ(R,B)>0.5-
+&-p<0.05; per-run-means-filed-descriptive (underpowered (no-p-bar!)).
+DECISION-TABLE (locked (no-wiggle!)): fire+track⟹B0-FIRE+BRIDGE
+(headline-win!); fire+track-null⟹B0-FIRE-bridgeless (response-shape-
+filed!); contrasts-null⟹B0-NULL (track-still-computed+filed!).
+FIRE = residence/delay-median-z_i>3 (z_i-vs-18-controls!) OR mixing-
+max>1e-6-in-≥2-runs (stands!). B1-STANDS-independent (5× + every-
+control). STRUCTURAL-RESPONSE-SCOPING (honest!): B0a = K-side-
+covariates (frozen-K-cannot-respond!); dynamic-K-response = B0b-
+queued. NEXT: B0a-campaign (gated on amendment-commit!).
+P1-AMENDMENT-5 (B0a-packet-momentum (PRE-B0a-DATA (one-line!)):
+|k|=0.5→0.3 (reason: P1.1b-validated-packets-only (|k|=0.5-predates-
+branch-validation (never-validated!))); σ=4-STANDS; partner-momenta-
+construction-unchanged (per-branch-operational-approach-sign (A4!))).
+NEXT: B0a-campaign (gated on amendment-commit!).
+P1-AMENDMENT-6 (contrastive-mixing + bridge-conjunction (PRE-B0a-DATA
+(smoke-mechanics-surfaced (T=2-non-plateau (NOT-B0a-data!)); JUSTIFIED-
+on-THEORY + locked-text!)): THEORY: any-[P,H]≠0-graph ⟹ O(1)-mixing-
+in-O(1)-time (energy-spread-~8!) ⟹ absolute->1e-6-FIRES-on-D1-controls-
+identically (D1-non-bipartite-w.h.p. (locked-text!) (mechanics-smoke-
+confirmed-0.78-vs-0.72!)) ⟹ absolute-rule-VACUOUS-for-blob-specificity.
+REPLACED-by mixing-DOMINANCE: Mann-Whitney-U (formed-max-mix > D1-max-
+mix (one-sided (scipy-mannwhitneyu-defaults-LOCKED!))) p<0.05 (bare =
+floor-anchor (~0 (filed!)) (excluded-from-null!)); evaluated-only-if-
+median-formed->1e-6 (else-mixing-absent (filed!)). BRIDGE ⟺ mix-
+dominance-AND-residence-fire-AND-track-fires (PI's-simultaneous (all-
+three!)). B0-FIRE ⟺ residence-fire-OR-mix-dominance. TABLE: fire+bridge
+⟹FIRE+BRIDGE; fire+¬bridge⟹FIRE-bridgeless (shape-filed!); ¬fire⟹NULL.
+TRACK-STANDS (dual-Spearman (shape-filed (clustering-vs-gradient!))).
+VOUT-CLARIFICATION (operationalization (locked-R²-gate!)): S4-files-
+vout-R² + r2>0.9-gated-means (descriptive (no-fire-role!)).
+NEXT: B0a-campaign (gated on amendment-commit!).
+P1-AMENDMENT-7 (sitter-selection-repair (PRE-S4 (S3-frozen-runs-in-
+flight (UNOPENED (no-S4-before-this-commit!)); JUSTIFIED-on-filed-
+numbers + locked-bins (no-wave-data!))): DOUBLE-BUG-owned: (1)-IMPL:
+min-Jaccard-used-as-boolean (0.23-truthy!) ⟹ ≥0.5-threshold-never-
+enforced; (2)-PREREG: Jaccard≥0.5-UNACHIEVABLE (filed-churn-≤0.31
+(100sw-gaps!) ⟹ 300sw-gaps-lower (measured-0.06-0.23!) (threshold-
+set-without-consulting-filed-numbers!)) + CONCEPTUALLY-MISPLACED
+(frozen-scattering-uses-per-save-masks (cross-save-membership-
+NEVER-mattered!)). REPLACED-by: sitter ⟺ α<0.7-AND-core-present-
+all-3-saves (mass>0!) (centroid-confinement = sitter-essence
+(membership-fluidity = known-EXCHANGE-physics!)). METHOD-FIX:
+unwrap-centroid-traces-before-single-origin-α (wrapped-traces-wrap-
+inflate-wanderer-α (torus-saturation-kills-lag-α (measured-≈0-all-
+runs!) (locked-bins-UNCHANGED!))). S1-RECOMPUTE-RULE: fixed-S1-reruns-
+on-same-T-matched-reruns (no-new-formation-runs!); S3-REUSE-RULE:
+frozen-cells-run-under-identical-protocol-REUSABLE-iff-reselected
+(top-up-newly-selected-states-only (same-protocol!)); S4-ONLY-after-
+reselection (verdict-chain-clean (method-locked-here!)). S1-INTERIM-
+filed (superseded-method (for-transparency!)): T-match-6/6-✓;
+wrapped-α: sitters-L28-d1/d3+L42-d0 (3/3-split-replicates-Stage-0-
+count!); jacmin-0.06-0.23 (churn-consistent!); masses-134-246.
+NEXT: S1-fix + S3-topup-if-needed + S4 (gated on amendment-commit!).
+P1-B0a-VERDICT (B0-NULL + B1-NULL (S3-432/432-cells-persisted +
+S4-headline-AND-all6 (A6-decision-table-APPLIED (no-wiggle!)))).
+APPARATUS-GATES: accounting-max-dev-1.8e-11-invalid-0/432 (hard-gate-
+1e-9-PASS!); headline-cells-54; approach_ok-headline-5-fails-excluded
++filed (appendix-378-cells-minus/x-flip/y-approach_ok-349/378!);
+S1-fixed-sitters-L28-d1/d2/d3 (single-α-(-0.08/-0.06/+0.04)-all-<0.7
+(A7-rule!) + masses->0-all-saves; L28-d0-diffusive-1.49-excluded;
+L42s-single->1.2-excluded (d0-slither-suspect-skipped-2!)); valid-
+formed-6-controls-18. HEADLINE-FIRE-TESTS: residence-controls-26.02±
+2.00-vs-formed-z-(-5.60/-5.27/-5.81/-3.46/-2.11/-2.55)-median-(-4.37)
+(SIGN-REVERSED (formed-traps-LESS!) ⟹ res=False); delay-formed-n=0-
+VOID (D1-null-dts-all-negative-(-4.8..-14.7)!); mixing-formed-max-
+0.29-0.43-vs-D1-0.79-0.81-vs-bare-1e-11 (median-formed->1e-6-
+evaluated!; MWU-one-sided-p=1.0 ⟹ dominance-ABSENT (D1-rewiring-
+breaks-chirality-HARDER!)); FIRE=res-OR-mix=FALSE. TRACK: rho_m=
++0.574-p=0.0033-vs-rho_r=-0.550-p=0.0053-n=24 (residence-leg-
+NEGATIVE ⟹ no-bridge (mixing-half-fires-alone!)). BRIDGE-moot
+(needs-fire!). B1: formed-ratios-0.6-0.9x-vs-controls-max-wbar-
+0.1465 (0/6-need-5x+every-control ⟹ NULL). DESCRIPTIVE-filed:
+formed-vout/width-cells-n=0-empty (post-crossing-criterion-yielded-
+none!) vs controls-vout-2.47 (R²-gated-1.96); dW-patterns-filed
+(no-fire-role!). 2x2: mix-False-res-False ⟹ B0-NULL. ALL6-
+SENSITIVITY: B0-NULL (MWU-p=1; res-False-delay-void; TRACK-rho_m=
++0.677-p=9e-08-vs-rho_r=-0.056-p=0.70-no-bridge-n=49) + B1-0/13-
+NULL (ratios-0.3-0.9x). ⟹ FROZEN-D5∞-OBJECTS-DO-NOT-TRAP/BIND/MIX-
+CTQW-BEYOND-LABEL-MATCHED-CONTROLS (wave-passes-through (residence-
+SHORTENED!); chirality-breaking-comes-from-rewiring-not-blob!).
+B2/B3-STAY-GATED (no-one-way-anomaly + feedback-still-underived
+(ban-list-stands!)). RECORDS: data/b0a/ (432-cells + headline/all6-
+results + selection!) + scripts/b0a_campaign.py + scripts/b0a_
+analyze.py. NEXT: B0b-dynamic-K-vs-close-P1-null (user-call (gated-
+on-go!)).
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN

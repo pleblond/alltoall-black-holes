@@ -3,6 +3,84 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (P1 B0a verdict)** — B0a frozen-scattering verdict B0-NULL
+  + B1-NULL (S3 432/432 cells persisted on beast; S4 headline sitters
+  L28-d1/d2/d3 + all6 sensitivity; A6 decision table applied): apparatus
+  gates pass (branch accounting max-dev 1.8e-11, 0/432 invalid; 5
+  approach_ok fails excluded+filed; appendix 349/378); residence
+  sign-reversed (controls 26.02±2.00, formed z median -4.37 — formed
+  traps LESS); delay void (formed n=0); mixing formed max 0.29-0.43 <
+  D1 0.79-0.81 (MWU one-sided p=1.0, bare floor 1e-11); TRACK half-fires
+  (ρ_mix=+0.574 p=0.003 vs ρ_res=-0.550 ⟹ no-bridge); B1 0/6 (0.6-0.9x,
+  need 5x + every-control); all6 confirms (B0-NULL, B1 0/13, TRACK
+  ρ_mix=+0.677 p=9e-08 vs ρ_res=-0.06). ⟹ frozen D5∞ objects do not
+  trap/bind/mix CTQW beyond label-matched controls (chirality breaking
+  comes from rewiring, not blob); B2/B3 stay gated. Records: `data/b0a/`
+  (432 cells + headline/all6 results + selection) + `scripts/b0a_campaign.py`
+  + `scripts/b0a_analyze.py`.
+
+- **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
+  opened on formation-design-2031 head: P1.0 formation null banked
+  (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
+  preregistered (ring-400 + torus-grid-30, 6-criterion pass gate),
+  P1.2 one-way G→ψ derivation locked (H=-J·A hopping-only, S-bracket
+  {1,10,100}), B0/B1 frozen-scattering preregistered (z>3 residence/
+  delay, 5× delocalized binding), B2/B3 gated on derived feedback
+  (invention ban-list); wave sector + detectors + one-way runner
+  (`ballistic.py`) + elist_window capture + 13 pins (589 collected).
+
+- **unreleased (P1 amendment-1)** — D14-P1 branch structure (pre-data):
+  scalar J2 walk = dispersive band + extensive flat zero band
+  (same-k doublets need a coin: deferred, coin undefined on
+  irregular graphs); branches as exact chiral E-sign halves,
+  matched pairs via partner momenta (k, k+Q), mixing as
+  deviation-from-initial (exact-zero free null); P1.1b bare-J2
+  control added (5 packets, R²/purity/no-wrap gates); B0 gains
+  mixing fire rule (>1e-6, ≥2 runs); B1 gains descriptive
+  oscillation/profile followups (Dirac-fitting banned); branch
+  projectors + R² fit + 4 pins (593 collected).
+
+- **unreleased (P1 amendment-2)** — D14-P1 window corrections (pre-data,
+  arithmetic-from-text): (e) replaced by full-window binned C_v
+  positivity (T=120 ring = 7.7 packet-crossings, not 10);
+  torus-grid T=40→25 (no-wrap guarantee, disp 24<30).
+
+- **unreleased (P1 pilot-1)** — D14-P1 wave-only results (beast):
+  P1.1a PASS (ring v=0.9583 vs 0.9589, α=2.00, C_v=+1.000;
+  torus v=0.967/0.965, α=2.05/2.04, C_v=+0.996; 22/22 checks);
+  P1.1b   pilot-1 superseded (physics all-pass, nowrap gate missed
+  7% at T=12) → amendment-3 (T=10, same gates/criteria).
+
+- **unreleased (P1 pilot-2)** — D14-P1 P1.1 VERDICT: PASS (beast):
+  P1.1b T=10 all 12 J2 checks pass (purity 100%, α=2.07-2.09,
+  reversal/conjugation exact, mixing ≤1e-12, zero-k null);
+  ring/torus replicated identical ⟹ ballistic detector validated,
+  B0a frozen-scattering unblocked (input inventory next).
+
+- **unreleased (P1 amendment-4)** — D14-P1 B0a input plan + rules
+  (pre-data): 6 reruns (elist+k4 capture, T-match gated vs j2_parts;
+  s0_parts lack elists, L28-d0 missing); sitter selection via α
+  recompute + frozen-quality; label-matched D1 + bare controls;
+  per-branch approach-sign; full-factorial filed; W±/0 + v_out +
+  dispersion + w̄ + accounting-gate + K covariates (B_chiral);
+  B0-TRACK (dual Spearman ρ>0.5, p<0.05) + decision table;
+  5 new apparatus pins (598 collected).
+
+- **unreleased (P1 amendment-5)** — D14-P1 one-line (pre-data):
+  B0a packet |k|=0.5→0.3 (P1.1b-validated packets only).
+
+- **unreleased (P1 amendment-6)** — D14-P1 contrastive mixing (pre-data,
+  theory-justified): absolute >1e-6 vacuous on any non-bipartite graph
+  ⟹ Mann-Whitney dominance (formed>D1, one-sided p<0.05); BRIDGE =
+  dominance + residence-fire + track; v_out R² operationalization.
+
+- **unreleased (P1 amendment-7)** — D14-P1 sitter-selection repair
+  (pre-S4, S3 unopened): Jaccard≥0.5 dropped (unachievable per filed
+  churn ≤0.31 + conceptually misplaced for per-save frozen targets;
+  impl truthiness bug owned) ⟹ sitter = α<0.7 + core-present-all-saves;
+  unwrap-before-α method fix (torus saturation kills lag-α); S1
+  recompute + S3 reuse/top-up rules locked (same T-matched reruns).
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).
