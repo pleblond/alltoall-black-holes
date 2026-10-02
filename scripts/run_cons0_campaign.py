@@ -195,7 +195,7 @@ def run_pins_task(_):
     psi = v / np.linalg.norm(v)
     rows = evolve_fixed(psi, h, 0.1, 4)["psi"]
     out["ring8_norm_const"] = float(
-        np.abs([np.sum(np.abs(r) ** 2) for r in rows] - 1.0).max())
+        np.abs(np.asarray([np.sum(np.abs(r) ** 2) for r in rows]) - 1.0).max())
     gj = j2_torus_graph(4)
     oj = node_order(gj)
     c3 = j2_torus_coords(4)
