@@ -3158,3 +3158,83 @@ claims-RESPECTED (no-EM/Maxwell/charge/Born/spin/static-force-law
 POT-1-GATE: OPEN (COHERENCE-DIRECTION-passed (COLLECTIVE-strongest!)):
 fixed-source/sink-conditions -> stationary-profile? + perturbations-
 launch-modes? NEXT: POT-1-prereg (gated-on-this-verdict-commit!).
+
+POT1-PREREG (FROZEN-2026-10-02 (~02:30-UTC (commit-predates-
+ALL-POT1-campaign-runs!)); static/dynamic-potential-unification
+(POT-1-gated-OPEN-by-POT0-COLLECTIVE!)). QUESTION: can-the-SAME-
+(r,i)-field-on-J2-under-UNCHANGED-H=-A-support-a-stationary-source-
+relative-potential-like-configuration-AND-are-source-change-transients-
+carried-by-the-banked-P1/POT-0-wave-sector? FROZEN-ONTOLOGY: G=J2 +
+psi=r+i*s + H=-A (no-third-scalar/no-V-field/no-onsite/no-weights/
+no-rewiring-dynamics/no-backreaction/no-D5inf (field-only!)).
+SOURCE-APPARATUS (frozen-design!): harmonic-pinning (each-step-overwrite
+of-predefined-single-node-source-regions-with-s*exp(-iwt) (acts-ONLY-on-
+S (no-bulk-inspection-whatsoever!)); s=1.0-headline; w=-8.5-J2 (half-
+unit-below-band-edge-(-8) (gap-theorem-pinned!)) + w-in-{-2.5,-3.0}-
+path (gaps-0.5/1.0-below-(-2)); dt=0.02 (w*dt=0.17!); single-node-S_+
+at-(0,0,0) + pair-S_+-at-(0,0,0)/S_--at-(8,0,0)-axial-d=8 (mirror-x->8-x-
+auto-for-exchange!); windows-L20/T=6/r<=4 + L28/T=8/r<=6 + L42/T=10/
+r<=8 (pre-wrap-by-vmax=6-bound!); path-60-open-pins-at-ends-T=12).
+DERIVED-PREDICTIONS (pre-data-math (pinned-in-tests-NOT-assumed!)):
+(i)-steady-state-exists-unique (gap-to-H_BB (interlacing!)); (ii)-phi-
+REAL; (iii)-single-source-phi-STRICTLY-positive-everywhere (M-matrix-
+inverse-positivity (nodeless-Yukawa-like!)); (iv)-linearity/superposition-
+EXACT; (v)-exchange-=-mirror-image (automorphism (no-negation (pinned!)));
+(vi)-J_ij-=-0-static (reality (potential-regime-carries-NO-current!));
+(vii)-resolvent-=-all-path-sum (NOT-shortest-path!). OBSERVABLES (phase-
+invariant-bilinears-ONLY (frozen!)): PRIMARY-B_ij-= Re(conj(psi_i)psi_j)
+(static-pattern (monopole-+-pair-dipole-nodal!)); STATIC-CHECK-J_ij-=
+Im(...) (≈0!); SECONDARY-density; complex-phi-ONLY-for-prediction-match-
++ exchange-at-frozen-drive-phase (state-level-never-called-potential!).
+SEPARATION (frozen!): least-squares-psi(t)-=-A*exp(-iwt)-+-F-over-final-
+drive-period (A-vs-prediction + F-=-flat-band/static-residue-filed!).
+STATIONARITY (spec-literal!): min_phi-||psi(t+T)-e^{iphi}psi(t)||/||psi||
+(T-=-drive-period-snapped (phase-fit-absorbs-snap (exact-steady-=-0!))).
+POT-1A-PATH-CALIBRATION (HARD-GATE (fail-STOPS-J2-interpretation!)): pair-
+pins-+-1/-1-ends-60 + jump-(stationarity)-+-turn-on-from-zero-(shape) +
+kappa-law-fit. PASS ⟺ ALL: solve-vs-closed-form-1e-9; jump-global-0.05/
+shell-0.15 + turn-on-global-0.10/shell-0.25 (r<=10-floor-0.01); kappa-fit-
+within-5%-of-arcosh(|w|/2)-both-gaps; eps-jump<0.02-turn-on<0.10;
+linearity-solve-1e-9-evo-0.05. (Linear-descent-NOT-predicted (below-band-
+implies-EXPONENTIAL (linear-=-zero-gap-limit (singular-settling (noted-
+follow-up!)))). POT-1B-J2-SINGLE (L20/28/42-turn-on-+-jump): PASS ⟺ jump-
+0.05/0.15 + turn-on-0.10/0.25 (r<=r_set); eps-same-as-1A; J/B<0.05;
+POT-0-D-<0.05-mean (potential-regime-has-NO-direction (predicted!));
+range-(|A|>0.05)-matches-prediction-+-1-shell. POT-1C-PAIR (d=8-all-L):
+PASS ⟺ globals-same-as-1B + nodal-sign->0.95 (|A_pred|>0.05 (dipole-
+structure!)) + D<0.05. ALL-PATH (L28-wall-x=4->5-cut-except-gap-y=13/14/
+15 (SLIT-precedent-bond-apparatus (frozen-graph (NOT-dynamical-rewiring!))
++ recomputed-parameter-free-prediction): PASS ⟺ cut-prediction-match-0.10
++ shadow-(r=6..12)-differs-from-uncut->25% (route-sensitivity!) + best-fit-
+single-exponential-in-d_short-max-residual->3x-prediction-residual
+(beyond-shortest-distance!). POT-1D-EXCHANGE (jump-pair-swapped-drives):
+PASS ⟺ stroboscopic-mirror-match-0.05 + B-mirror-0.05. POT-1E-PHASE
+(turn-on-from-zero-drive-phases-{0.7,2.1,4.0}): PASS ⟺ B,J-identical-1e-9
+(theorem-exact (absolute-phase-NOT-observable-zero!)). POT-1F-CHANGE
+(jump-steady-sign-flip-at-t0=T/2 (+-amplitude-step-secondary) + unswitched-
+control): PASS ⟺ t0+dt-snapshot-dist>=8-max|dpsi|<1e-9 (no-instant-action
+((Hdt)^d/d!-tails-respected!)) + delta-B-shell-arrival-front-v-in-(0.5,6)-
+R2>0.95 (ballistic-causal!) + remote-(r>=C4_R)-pre-arrival-|dB|<1e-6 (C4!).
+POT-1G-TRANSIENT-SECTOR (dpsi-analysis): PASS ⟺ S-shell-(|J|-of-dpsi)-peak-
+front-v-in-(0.5,6)-R2>0.9 (radiation-ballistic!) + far-field-(r>6)-late-
+flat-weight-<0.2-+-accounting-1 (propagating-=-dispersive-band!) + C5-ring-
+packet-through-campaign-fitters-v-10%-+-alpha>1.3 (analysis-validated!).
+NOTE-filed: symmetric-change-transient-predicted-D≈0 (spherical-radiation
+(NOT-packet-directionality (no-D>0-required-here!))). POT-1H-INJECTION
+(SECONDARY (packet-(20,0)-k=+0.3-toward-maintained-source-T=14)): PASS ⟺
+final-B-returns-to-steady-0.10 (equilibrium-restored!). POT-1I-LADDER
+(lam-in-{0.5,1,2}-turn-on): PASS ⟺ A(lam)/lam-vs-A(1)-0.05 (linear!) +
+B(lam)/lam^2-vs-B(1)-0.05 (DERIVED-quadratic (bilinear!)). POT-1J-SIZES:
+PASS ⟺ xi-fit-(shells-2..5-common)-pairwise-20% (intrinsic-range (NOT-
+torus-artifact!)) + wrap-control-(2T-settled-drift-<5% (VALIDITY-gate
+(fail-caps-at-DRIVEN!))) + L28/L42-front-speeds-25%. CONTROLS: C0-same-H-
+object (code-level!); C1-pinning-disabled-packet-reproduces-POT-0 (v-2%-
+D-5%-alpha>1.3!); C2-source-symmetry (via-1D-mirror!); C3-=-1E; C4-=-1F-
+pre-arrival; C5-=-1G-ring-cal; C6-reruns-bit-identical. FIELD-ACCOUNTING:
+reactive-balance-|W_net|/W_gross-<0.05-final-period-jump-L28+L42 (AC-
+steady-reactive (no-net-injection!) + 1H). LADDER: !1A->POT1-NULL
+(apparatus-invalid!); !(1B&1C)->NULL; relational-fail->DRIVEN (standing-
+wave-NOT-potential!); 1A+1B+1C+AP+1D+1E+1I+1J+C1+C6->POTENTIAL; +1F+1G+C5->
+UNIFIED (static<-same-field->radiation!); +1H+RB->FIELD (EM-0-opens!).
+FORBIDDEN (even-FIELD-NOT!: charge/Coulomb/Maxwell/SM-photons/polarizations/
+gauge/Lorentz/EM!). NEXT: freeze-commit-then-beast-campaign (gated!).
