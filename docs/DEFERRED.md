@@ -3082,3 +3082,74 @@ Skeleton (identity-compressed) f_unique reported as exact
 descriptive co-headline (timed = sum_L C(T,L) S_L, pinned).
 Scaling trend (TIME-0O) and N-only coarse-graining (TIME-0P)
 descriptive. No extrapolation beyond N <= 6 without combinatorics.
+
+## TIME0-VERDICT — Two-boundary history selection: TIME0-NULL (DATA)
+
+**Campaign:** beast EC2 16.54.88.181, --jobs 90, 185.8 s, ledger
+`data/time0_ledger.json` (schema v1, 8.8 MB) + `data/time0_verdict.json`
++ supplementary `data/time0_n7_followup.json`. All C0-C6 gates green;
+analyzer integrity recompute green (all matrices/histograms/rates
+reproduced from raw triples); 53/53 `test_time0.py` pins green.
+
+**Headline (frozen ladder):** pooled f_unique = 0.051 < 0.2 over
+102245 pairs (74977 compatible) => **TIME0-NULL**. Per-T:
+T=2: unique 0.554 compat 0.331 med 1 max 34;
+T=3: 0.005 / 0.510 / 6 / 118;
+T=4: 0.001 / 0.884 / 43 / 2192;
+T=5: 0.0004 / 0.944 / 285 / 12283;
+T=6: 0.000 / 0.997 / 4415 / 196598.
+Degeneracy PROLIFERATES with T (median 1 -> 4415); compatible
+pairs are the majority by T=4 (0.88) and nearly all pairs by T=6
+(0.997), multiply realized throughout.
+
+**Boundary-artifact correction (supplementary N<=7 followup,
+post-data, non-ladder):** headline N<=6 drops all N=6->7 splits,
+inflating T=2 uniqueness for N=6 starts (0.644 vs 0.028 at N=5).
+Subset-matched rerun inside the N<=7 universe (996 classes, N=6
+splits restored): T=2 f_unique 0.554 -> 0.073; T=3/4 unchanged
+(0.005/0.001). The T<=3 subset numbers are EXACT unbounded-universe
+counts (no walk between N<=6 endpoints in <=3 steps can visit
+N>=8 and return: needs >=4 steps). Full-996 census shows the same
+pattern (T=2: 0.63 with the artifact moved to N=7 starts; T=3:
+0.004). NULL is robust and stronger than headline numbers suggest.
+
+**TIME-0F:** initial-boundary underdetermination confirmed
+independently of U0: median N_hist(X_-) = 74 (T=2) -> 514 -> 7649
+-> 64167 -> 844068 (T=6). Always >> 1.
+
+**Waiting vs structural (exact skeleton census, descriptive):**
+f_unique^skel = 0.671/0.365/0.004/0.002/0.0004 (T=2..6). Waiting
+placements explain much of the T=3 timed collapse (0.37 skel vs
+0.005 timed) but STRUCTURAL degeneracy itself proliferates at
+T>=4 (74 unique skeletons of 18075 compatible pairs at T=4).
+
+**TIME-0I/J (anchored):** single-step tails always resolve
+(S-1-1, S-2-1, C-1-1, C-1-2: rate 1.0; 19k/39k/8k/17k rows) but
+resolution decays with horizon (S-1-2: 0.61, S-2-2: 0.55 over
+177k rows, C-2-1: 0.56, C-2-2: 0.45); pooled split_res = 0.654
+< 0.8. Two-boundary constraints select the split/predecessor at
+short range and lose selection as alternative routings open.
+
+**Controls:** TIME-0R perfect on all 5 cells (on-trajectory: 1
+walk incl. identity; off-trajectory: exactly 0; field-only
+any-graph identical) -- the apparatus CAN and DOES report
+N_hist = 1/0 exactly when the physics has it, so NULL is not a
+counting artifact. Toy S = 2 / toy T = 1 exact. TIME-0K:
+N_hist(a,b) == N_hist(b,a) on all 20449 pairs x T=1..3 +
+C<->S mirror on every interior transition (exact). TIME-0M:
+R_space = 1 (all contraction transitions), R_time = 1
+(pairwise decomposition pinned). TIME-0P: N-only boundary
+degeneracy medians 2/6/40 (T=2/3/4). TIME-0E: ledger quantities
+kept descriptive throughout (no promotion). TIME-0Q DEFERRED
+(no banked M_O). Labeled N<=4 census (0.70 -> 0.03) and N<=5
+rerun (0.47 -> 0.02 -> 0.009) reproduce the pattern: not a
+labeling or boundary artifact.
+
+**Interpretation (boxed):** the final boundary does not solve
+the missing structural dynamics. Return to the ontology problem;
+do not invoke two-boundary determinism downstream. Positive
+fragments filed: two-boundary constraints ARE informative at
+short horizons (single-step anchored resolution 1.0, R-control
+uniqueness) -- compatible with CONSTRAINED locally -- but
+generic compatible pairs at T>=3 retain N_hist >> 1, so the
+frozen ladder (generic uniqueness) returns NULL.

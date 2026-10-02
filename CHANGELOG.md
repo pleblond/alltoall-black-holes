@@ -10,6 +10,11 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   controls), `scripts/run_time0_campaign.py` + `scripts/analyze_time0.py`,
   TIME0-PREREG in `docs/DEFERRED.md`. Read-only consumption of
   BR-2.5/2.6/2.7 + CONS-0 + EM-0 + U0 apparatus (byte-identical).
+  VERDICT TIME0-NULL (data): pooled f_unique = 0.051 over 102k pairs;
+  degeneracy proliferates with T (median 1 -> 4415); N<=7 followup
+  corrects T=2 uniqueness 0.554 -> 0.073 (exact); R-control perfect
+  (on=1/off=0); single-step anchored resolution 1.0, pooled split
+  resolution 0.65. Ledger + verdict + followup JSONs under `data/`.
 
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
