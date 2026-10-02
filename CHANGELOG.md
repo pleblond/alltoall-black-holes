@@ -3,6 +3,12 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (scaffolding history)** — Field-program scaffolding history
+  as a dependency tree (`docs/scaffolding-history.md` + rough-draft
+  archive): postulates → fabric selection → field anatomy → backreaction →
+  observer quotient → vacuum family → hidden sector → measure debts,
+  covering P1 through VAC-COMP verdicts with a debt register.
+
 - **Unreleased (BG-RESP-0)** — Vacuum-dependent relational susceptibility:
   `src/bh_graph/bgresp.py` (analytic chi operator, dense + sparse, spectra,
   sector resolution, time-domain kernel, sign census, fingerprint),

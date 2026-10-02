@@ -60,9 +60,10 @@ figures, and measurements are cited as *evidence about* the model, never as its
 definition.
 
 **What this document is not:** a tutorial (see `docs/model-explained.md`), an
-observation plan (see `docs/observation-protocol.md`), or the paper (see
-`paper/v5/`). It does not re-derive anything; it states what is assumed, what
-follows, and what is still missing.
+observation plan (see `docs/observation-protocol.md`), the paper (see
+`paper/v5/`), or the history of how the choices were locked (see
+`docs/scaffolding-history.md`). It does not re-derive anything; it states what
+is assumed, what follows, and what is still missing.
 
 **How to read it:** three layers, in hardening order.
 
