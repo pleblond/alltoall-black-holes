@@ -3,6 +3,25 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (COH prereg)** — COH phase-coherence campaign opened on
+  P1-ballistic tail (PR #65): bare-J2 two-path interferometry preregistered
+  (COH-0 calibration, COH-1 controlled phase, COH-2 V(Dl)/V(T)/V(Dt),
+  COH-3 spectral-spread tau ~ 1/dE; superposition prep + recombination by
+  addition, 8-phase V fits, normalized C = V/|S| headline, later
+  formed/nonlinear/path-record controls queued); `coherence.py` apparatus
+  (J2 reflections, pair algebra, phi/fringe fits, spectral spread) + 11 pins.
+
+- **unreleased (COH verdict PASS)** — Bare-J2 coherence banked (beast):
+  COH-0 13/13 (linearity, I_int identity, R-swap, bitwise determinism);
+  COH-1 12/12 restated (fringe V = 1.0000, k exact, slope -1.0000,
+  breathing V/delta exact, trans-R-conjugation 7e-18; Amendment-2 fixed
+  blanket-R bars with analytic cause: antipodal fixed line + k-flip);
+  COH-2 (C = 1 to 5e-13 all cells, l = 7.49 R2 = 0.998, Dt-consistency);
+  COH-3 (tau*dE = 1.14/1.10/1.12 constant to 4% across frozen bandwidths;
+  P3-A anchor same order, descriptive). Establishes coherent phase
+  transport + operational (l, tau) + mechanistic dE law; firewall: no
+  Born/collapse/photon claims. COH-F/N/path-record queued.
+
 - **unreleased (MALUS-0 verdict)** — Malus track M0-NULL (local,
   L28): [H,S]=0, H\*P_anti=0, symmetric=double-square all exact;
   n_zero = 784+54 = 838 predicted exactly; sym packet ballistic
