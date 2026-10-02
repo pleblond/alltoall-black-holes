@@ -2039,6 +2039,39 @@ def fig75b_gw190814_systematics():
     plt.close(fig)
 
 
+def fig78_shutoff():
+    from bh_graph.shutoff import escape_fraction, kn_efficiency, vesc_of_alpha
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    # escape velocity falls with shedding radius (mass-free curve)
+    a = np.logspace(np.log10(2.0), np.log10(1000.0), 200)
+    axes[0].loglog(a, [vesc_of_alpha(v) for v in a], color="#0f766e")
+    axes[0].axhline(0.3, ls="--", color="#2563eb", label="blue 0.3c")
+    axes[0].axhline(0.1, ls="--", color="#dc2626", label="red 0.1c")
+    axes[0].set_xlabel("shedding radius alpha (Rs)"); axes[0].set_ylabel("v_esc / c")
+    axes[0].set_title("v_esc: no mass enters")
+    axes[0].legend(fontsize=7)
+    # escape fraction vs alpha: blue frees early, red needs ~100 Rs
+    axes[1].semilogx(a, [escape_fraction(v) for v in a], color="#0f766e",
+                     label="two-component esc")
+    axes[1].axvline(10.7, ls=":", color="#2563eb", label="blue req. 10.7")
+    axes[1].axvline(96.0, ls=":", color="#dc2626", label="red req. 96")
+    axes[1].axhline(0.95, ls="--", color="gray", label="consistency 0.95")
+    axes[1].set_xlabel("shedding radius alpha (Rs)"); axes[1].set_ylabel("esc")
+    axes[1].set_title("Slow ejecta must come from far out")
+    axes[1].legend(fontsize=7)
+    # M_ej/M_tot flat across 0.7-150 Msun: no mass shutoff
+    m = np.logspace(np.log10(0.7), np.log10(150.0), 200)
+    frac = np.array([kn_efficiency(v, 400.0)["M_ej"] / v for v in m])
+    axes[2].loglog(m, frac, color="#0f766e", label="M_ej/M_tot (q=1)")
+    axes[2].set_xlabel("M_tot (Msun)"); axes[2].set_ylabel("M_ej / M_tot")
+    axes[2].set_title("Flat: self-similarity forbids shutoff")
+    axes[2].legend(fontsize=7)
+    fig.suptitle("Fig 78 — D8: fallback constrains alpha, not eps(M) (shutoff)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig78_shutoff.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -2118,6 +2151,7 @@ def main():
     fig74b_graphvk()
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
+    fig78_shutoff()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)

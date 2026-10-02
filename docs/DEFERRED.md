@@ -466,6 +466,15 @@ replaces `e_final` (anchor `frac(1) = 0.168`); `η < 1` predicted and held;
 prescription but stays kilonova-bright (`M_ej ≈ 0.157 M☉`); the flat
 `collapse` law is kept as the O5 falsifier and the sample adjudicates
 flat-vs-shaped (Fig 68b). Still open: `ε(M,a)` shutoff derivation.
+Update (shutoff branch): fallback channel investigated — at self-similar
+`R_shed = α·Rs`, `v_esc/c = √((1-f)/α)` is exactly mass-free, so fallback
+CANNOT modulate `ε(M)`: no mass shutoff without a non-self-similar input
+(new mass scale, refused). Universality stands; O5 BBH ToO unavoidable.
+What the toy outputs instead: required shedding radii (blue `α >~ 11`,
+red `α >~ 96` sharp, `~140-380` at 95% with widths; `α ≳ 400` keeps the
+AT2017gfo calibration itself unsuppressed) + an insertion detector pricing
+any hypothetical shutoff's fixed radius (Fig 78). Still open: `α` from
+merger dynamics, velocity widths from hadronization, spin dependence.
 
 **Related (not deferred — answered):** no graph feature at the
 pair-instability edge. `k(M)` zero curvature, smooth spin/Love running,
