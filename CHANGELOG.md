@@ -3,6 +3,18 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (EM-0 continuum-field)** — Continuum-field-identification
+  campaign on bare J2 (frozen H=-A, read-only POT0/POT1/BR2/P1 apparatus):
+  new `continuum.py` (exact real eqs + continuity + J2 Bloch
+  eps=-4(cos+cos)/flat-0 + Taylor/IR + static-Helmholtz + K0-Green +
+  unification + transient + B/J energetics/quadrature, 22 pins) +
+  `em0_campaign.py` runner (24 tasks); verdict EM0-BACKREACTIVE
+  (strongest rung, all green first run on beast): static Yukawa
+  xi≈0.527 (L64-converged) + Schrodinger envelope m*=1/4 +
+  Manhattan front 7.99 vs 8 (0.1%) + J-transports-norm (1e-14) +
+  B-conjugate (same E); 683 collected (681 passed, 2 torch/GPU skips).
+  EM-1 gate opens.
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).

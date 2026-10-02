@@ -3058,3 +3058,42 @@ Lorentz/polarization!). EXECUTION: beast-96 (jobs<=90 (Pool!)); seeds-frozen
 (0/11/rng-pinned!); determinism-C6-gated; suite-parallel (pytest-xdist!);
 no-local-experiments (beast-only!). NEXT: freeze-commit-then-beast-campaign
 (gated!).
+EM0-VERDICTS (beast-run-9174b7c (prereg-frozen-pre-data!); 24-tasks-32s +
+suite-681-passed-2-skipped-182s-(-n-80!)): LADDER-EM0-BACKREACTIVE
+(STRONGEST-RUNG (ALL-14-stages + ALL-8-controls-green-first-run!)).
+0A-✓ (real-vs-Krylov-1e-3 + rho-legs-1e-9 (exact-two-scalar!)); 0B-✓
+(resid-1.4e-14 + global-1e-9 (J-transports-|psi|2-norm (NOT-charge!)));
+0C-✓ (Bloch-vs-exact-1e-15 (L4/L6/L8!) + zero-46/838 + vmax-8/4√2/4-exact +
+packet-1.211-vs-bank-5% (analytic-4sin0.3=1.18208-vs-measured-1.21102-2.45%-
+high (finite-sigma-4-+-COM-readout (filed-not-Bloch-error!)))); 0D-✓
+(Gamma-E0=-8/Minv=4I/m*=1/4-Schrodinger-like + resid-O(q4)/O(q6)!);
+0E-✓ (Hessian-ratio-1.0-exact + vspread-8e-4-at-0.1 + quartic-0.5-diagonal
+(anisotropy-at-4th-order-only!)); 0F-✓ (gap-0.5 + IR-0.5+2q2-5e-6
+(massive-Helmholtz!)); 0G-✓ (xi-0.5260/0.5265/0.5265/0.5265 (L20/28/42/64-
+pairwise-0.1% (L64-=-L42-to-9-decimals-CONVERGED!) vs-bank-0.5% (solve-vs-
+jump-vehicle!) + axial-K0-0.4890-vs-0.4949-1.2% + IR-0.5-1% + exp-beats-
+power-2.6x (Yukawa-not-power!)); range-3-all-L-intrinsic!); 0H-✓ (exact-
+grid-1e-9 + IR-Minv-shared-4I + offset-0.5-spread-0.0-exact (drive-detuning-
+analytic-k-independent (FIELD-not-DISJOINT!))); 0I-✓ (front-L28-7.9916-
+R2=0.99989/S-7.9014/L20-7.9927 (vs-predicted-8-0.1%! (vs-POT1-banked-7.79-
+2.6%-high (threshold-T-coupling-filed: T=4-transient-max-vs-T=16-steady-max
+(both-in-gate (ours-closer-to-bound!)))) + instant-exact-0 + cone12-3e-9 +
+branch-w-=0.9408/w0=0.0036 (band-edge-radiation-✓ (POT1-0.95!))); 0J-✓
+(energy-legs-1e-9-single/pair/packet + conjugate-exact (B-=-dE/dA/2J!);
+POT1-steady-E-single=-11.6/pair=-21.9 (unnormalized-pinned-filed!)); 0K-✓
+(BJ-1e-12 + phase-1e-9 (J-is-continuity-flux + B-is-energy-density +
+dB/dθ=-J-canonical!)); 0L-✓ (superposition-1e-9-L20+L28!); 0M-✓ (sign-phi-
+negates-1e-9 + BJE-invariant-exact-0.0 (symmetry-anatomy-not-charge!));
+0N-✓ (=G_stab + range-3 (true-IR-not-torus!)). CONTROLS: C0-✓/C1-✓
+(v=1.21102/D=0.85506/alpha=2.087 (bank-to-4-decimals!))/C2-✓ (src-D=8.07e-14
+(bank-8.1e-14!))/C3-✓ (AP-solve-0.23037-vs-0.2304-0.01% (prediction-confirmed;
+evolved-0.2295-0.4%-is-pinning-shift!) + exchange-0.05 + xi-bank)/C4-✓
+(stagger-dev-3.5e-15!)/C5-✓/C6-✓(bit-identical)/C7-✓(v42=1.176-vs-v28=1.211-
+3% (POT0-appendix-filed!))/C5ring-✓(0.9583-vs-0.95885-0.06%!).
+INTERP (disciplined!): ONE-two-real-component-field-H=-A-has-static
+(massive-Helmholtz-gap-0.5-Yukawa-K0-xi≈0.527) + radiative (Schrodinger-
+envelope-m*=1/4-Manhattan-front-8) + conserved-current (J-transports-norm)
++ backreactive-energy (B-conjugate-same-E) sectors (mathematically-linked
+(exact-Bloch + IR-shared-Minv + gap-analytic!)). FORBIDDEN-RESPECTED
+(no-EM-claims!). EM-1-GATE: OPEN (falsification-next (radial-vs-required/
+signed-matter/polarization/gauge/Lorentz!)).
