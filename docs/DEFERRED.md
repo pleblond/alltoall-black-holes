@@ -3080,3 +3080,39 @@ chiral-real!)); prereg-prediction-region=>B-absent-FALSIFIED-for-edge/ball1/
 patch (B=0.085/0.12/1.0-remote!) + CONFIRMED-for-cell (B==0-exact!); corrected-
 theorem-predicts-observed-split-exactly (module-comment-fixed + split-pinned-
 in-tests (all-green!)).
+RESPONSE0-VERDICT-KERNEL (G0-G14-ALL-GREEN (45-cells-27s-beast-24-workers!)):
+G0-30-pins-green; G1-spec-1.08e-14 (bar-1e-8 (Bloch-lo/hi-+/-8-exact!));
+G2-ballistic-0.0 (bar-1e-9); G3-decomp-~0 (exact+1st+2nd-split-closes!);
+G4-chi-~1e-22 (susceptibility-exact!); G5-ladder-slopes-1.000/2.000/B-absent/
+2.000 + amp--0.000/0.999/1.000/0.999 (B-absence-= Amendment-3-blindness!);
+G6-cov-~1e-14 (translate/rot90/reflectx/sheet (bar-1e-9!)); G7-HEADLINE-front-
+v=7.947-r2=0.984 (v/8=0.993 (Bloch-max (EM-0-regression-gate-(0.5,12)-pass!)));
+G8-anti-frozen (v=None-drift-0.0!); G9-inter-7.27e-14-bondlift-0.0; G10-green-
+dev-0.012/0.036 (bar-0.1 (static-approx-holds!)); G11-switch-v=3.13-path/
+7.23-J2 (sup-~1e-14!); G12-BG0-3.7e-13-BG+-1.7e-9 (Amendment-2-bar-1e-6-pass
+(cancellation-floor-2*eps_krylov/|delta|!)); G13/G14-eigenvalues-exact +
+BGM-W+-=1/2-stationary (supplementary-L=28!). VERDICT: RESPONSE0-KERNEL-BANKED
+(exact-disturbance-kernel-complete (carrier-spec-done!)).
+
+BIPARTITE-B-BLINDNESS-THEOREM (pinned): chiral-real-data (sub0-real/sub1-imag-
+up-to-global-phase) => B==0-exact; Amendment-3-sharpening: single-node/single-
+SUBLATTICE-real-blind (cell-B==0!) BUT-two-sublattice-real-regions-NOT-blind
+(edge/ball1/patch-B=0.085/0.12/1.0-remote (prereg-overgeneralization-falsified-
+and-corrected!)); sheet-dipole-B-localized-shell-0 (0.168 (remote-~1e-16!)).
+
+RESPONSE0-VERDICT-ANATOMY (measured-not-gated!): distance-law-H-R-r=2-10:
+|dpsi|~r^-0.50-dr~r^-1.00-dJ~r^-0.95 (power-fits-filed-as-measured!);
+quadratic-fronts-v~=5.94 (rho/J-on-BG0 (r2>0.99!)) vs-field-front-7.95;
+first-order-B/J-fronts-on-nonzero-bg-ride-at-field-speed (7.45-7.95);
+anisotropy-axial-7.02-(x==y)-diagonal-7.80-shell-max-7.95; kicks-phase-vs-
+amplitude-same-order (~20%-diff (local-orthogonality-doesnt-survive-
+propagation!)); patch/ball1-apparent-fronts-8.63/8.11 = extended-source-
+artifact (r2-lower!); switch/path-v=3.13 > chain-max-2 = threshold/precursor-
+effect (in-gate!); near/front/wake/wrap-split-filed.
+
+IMPLEMENTATION-ERRATA: wrap_flag-vacuous-by-construction (window-hi-==-t_wrap
+=> use-t*-interior-check (Rmax-pre-wrap-r<=11 (r=12-edge-truncated!)));
+signed-==-abs-integrals-for-max-abs-shell-traces (signed-meaningful-only-per-
+receiver!).
+
+SUITE-FINAL: 691-passed-2-skipped-2m06s-beast (-n-32-OMP=1-BLAS-caps (test_weighted-skipped-per-standing-instruction!); first-run-690/693-killed-by-sibling-pkill (no-failures!) + relaunched-clean-green!)
