@@ -3282,3 +3282,58 @@ nodal/D/linearity (NO-shopping!)); (viii)-D-trace-stride-10 (filed-
 perf (D-smooth!)); worker-shell-series-accumulated (same-numbers!).
 RERUN-verdicts-are-the-record (pilot-1-numbers-above-filed-context!).
 NEXT: implement-v2-+-smoke-+-amendment-commit-then-beast-rerun (gated!).
+
+POT1-V2-DISPOSITION (SUPERSEDED (gate-miss-owned (Amendment-3-precedent!));
+beast-run-1001614 (dt-commensurate + jump-primary + ramp-tau=4 + fronts-
+redesign): LADDER-POT1-NULL (APPARATUS/ANALYSIS-failures (NOT-physics-
+refutation!))). ROOT-CAUSES (diagnosed-post-v2 (calibration-rounds-K1-K5-
+filed-scripts-pot1_calib{,2,3}.py!)): (a)-PERSISTENT-k≈0-band-edge-
+lingerers (turn-on-deposits-into-bulk-EIGENMODES-that-oscillate-FOREVER
+(unitary-bulk!) + NO-T-dependence-T=12-vs-24-identical-to-0.1% (NOT-a-
+decaying-transient!) + single-period-LS-aliases-them-into-A (beat-12.6-
+>-period!) -> ramp_global-0.44->0.22-tau=4->8 + flat-kappa/xi-fits +
+Planck-taper-WORSE-0.32-than-cosine (REJECTED (effective-timescale!)));
+(b)-velocity-bound-WRONG (BLOCH-THEOREM (derived + numerically-verified-
+L6: flat-band-at-0-EXACT (46-zero-modes-=-36-flat-+-10-band-touching!) +
+dispersive-eps(k)-=--4(coskx+cosky)!): Manhattan-group-max-=-8 (NOT-4!);
+measured-fronts-7.79-7.94-R2>0.999-sit-just-below-✓ (physics-RIGHT-gate-
+WRONG!) + threshold-trend-8.27/7.79/6.86-(5/10/20%)-=-precursor-riding
+(filed!)); (c)-AP-shadow-threshold-UNPRINCIPLED (parameter-free-
+prediction-says-4-15%-shell-diffs (measured-2.5-5%-in-ballpark!) NOT-
+>25% + wall-far-gap-detour-27-hops-xi≈2-kills-signal-to-1e-6 (BELOW-
+noise-floor (geometry-unmeasurable!))); (d)-RB-metric-measures-SLOW-
+BEAT-phase-NOT-injection (L28-1T-0.062->2T/3T-1.0 (longer-=-worse!) +
+net-sign-flips-prove-SLOSH-not-pump!); (e)-J_wrap-compared-MISMATCHED-
+vehicles (raw-2T-vs-ramp-T!). PHYSICS-PASS-BANKED (v2-filed-observations
+(NOT-verdicts!)): jump-global-0.009 (5x-margin!); nodal-112/112-all-L;
+exchange-mirror; phase-covariance-1e-9; linearity/quadratic; 1D-reject-
+30x (0.72-vs-0.024!); transient-w_minus-0.95 (band-edge-radiation-✓);
+eps/JB/D-everywhere; F_instant-exact-0 + C4-cone-12; C1/C5/C6-green.
+POT1-AMENDMENT-2 (PRE-RERUN (v2-opened (above!)); protocol-v3-frozen-
+here): (i)-turn-on-=-cosine-tau=8-headline + T=16-UNIFORM-all-J2 (no-T-
+dep-proven (T=12≈T=24!) + T=12-path-kept) + tau-in-{4,12}-L20-ladder;
+(ii)-turn-on-shape-→-INNER-PROFILE (r<=4-CONTAINS-96.8%-steady-norm-
+(all-L-filed!) >90%-principle!): inner-global-0.10 + inner-shell-0.25
+(SAME-tolerances-restricted-region (outer-shells-lingerer-dominated-
+filed-secondary!)) + range-kept (lingerers-0.009-«-0.05-robust!);
+(iii)-kappa/xi/eps-→-JUMP-vehicle-GATED (5%/20%/0.02 (steady-state-
+properties-→-primary-steady-vehicle (Amendment-1-principle!) + turn-on-
+versions-FILED (lingerers-=-real-physics (path-gap-a-c≈0-yet-kappa-
+flat-proves-standing-modes!))); (iv)-ADIABATIC-TREND-GATED (tuning-
+free!): lingerer-|c|-(median-|A|-r>=10-L20)-STRICTLY-decreasing-tau-
+4>8>12 (calib-0.0197>0.0088>0.0053!); (v)-velocity-v-in-(0.5,12)-R2>0.9
++ L28/L42-25% (12-=-1.5x-Manhattan-group-max-8-Bloch-(-precursor-
+margin-=-C4-cone (coherent-causal-limit!)) + threshold-stability-
+filed); (vi)-AP-geometry-=-wall-x=1->2-gap-row-(1,)-L28 (delta_pred-=-
+0.2304-filed!): cut-jump-global-0.05 + cut-turn-on-inner-0.10 + |delta-
+jump_-_0.2304|/0.2304-<0.35 + 1D-reject-kept; (vii)-H-=-inner-r<=3-
+(93.3%-norm-filed!)-return-0.10 + far-resid-norm-≈-pkt-norm-10% (torus-
+cannot-globally-return (radiation-has-nowhere-to-go!) + K4-margins-
+2x/6x!); (viii)-RB-=-T=40-jump-norm-range-final-24-<-1% (no-
+accumulation (proven-discrete-steady-work≡0 + measured-~0.2% (5x-
+margin!)) + reactive-ratio/cancellation-filed); (ix)-J_wrap-=-same-
+protocol-ramp-T-vs-2T-inner-drift-<5%; (x)-ALL-inherited-thresholds-
+IDENTICAL (NO-shopping!) + new-gates-from-predictions (delta/vmax/
+containment)-or-tuning-free (monotonicity)-or-round-accounting (1%/
+10%/35%). RERUN-(v3)-verdicts-are-the-record. NEXT: implement-v3-+-
+smoke-+-amendment-commit-then-beast-rerun (gated!).

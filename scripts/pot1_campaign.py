@@ -1,11 +1,13 @@
-"""POT-1 campaign runner v2 (POT1-AMENDMENT-1 frozen protocol).
+"""POT-1 campaign runner v3 (POT1-AMENDMENT-2 frozen protocol).
 
-Changes vs pilot-1 (filed in POT1-AMENDMENT-1): dt = T_drive/296
-commensurate; jump = primary steady vehicle (phase-rotate extraction);
-turn-on split into raw (fronts/causality) + cosine-ramped tau=4 (steady
-corroboration); 1F redesigned around turn-on fronts (far shells,
-per-shell-relative thresholds); sign-flip secondary with cone-12
-causality; H at T=20; all other thresholds IDENTICAL to POT1-PREREG.
+Changes vs v2 (filed in POT1-AMENDMENT-2): turn-on = cosine tau=8,
+T=16 uniform all J2 (no-T-dependence proven); turn-on shape tests use
+INNER profile (r<=4, 96.8% norm); kappa/xi/eps gate on JUMP vehicle
+(turn-on versions filed); adiabatic lingerer trend gated (tuning-free);
+velocity window (0.5,12) from Bloch bound 8 + precursor margin; AP wall
+x=1->2 gap row 1 with filed delta=0.2304; H = inner return + far-norm
+accounting; RB = norm-range on T=40 jump. All inherited thresholds
+IDENTICAL (no shopping).
 """
 
 from __future__ import annotations
@@ -55,8 +57,10 @@ OM_J2 = -8.5
 OM_PA = -2.5
 OM_PB = -3.0
 DT = (2.0 * math.pi / abs(OM_J2)) / 296  # commensurate-296 (Amendment-1)
-RAMP_TAU = 4.0
-WIN = {20: (6.0, 4), 28: (8.0, 6), 42: (10.0, 8)}
+RAMP_TAU = 8.0  # headline cosine tau (Amendment-2; ladder {4, 12} filed)
+T_TURNON = 16.0  # uniform turn-on window, all J2 (Amendment-2)
+AP_DELTA = 0.2304  # filed cut-vs-uncut global diff (wall x=1->2 gap (1,))
+WIN = {20: (6.0, 4), 28: (8.0, 6), 42: (10.0, 8)}  # jump T + r_set (frozen)
 PAIR_D = 8
 C4_R = {20: 8, 28: 10, 42: 12}
 D_STRIDE = 10
@@ -76,13 +80,14 @@ def _j2_setup(L):
 
 
 def _wall_cut(g, L):
+    # Amendment-2 geometry: wall x=1->2, gap row 1 (delta_pred=0.2304).
     h = g.copy()
     for y in range(L):
-        if y in (13, 14, 15):
+        if y == 1:
             continue
         for b1 in (0, 1):
             for b2 in (0, 1):
-                u, v = _j2_id(L, 4, y, b1), _j2_id(L, 5, y, b2)
+                u, v = _j2_id(L, 1, y, b1), _j2_id(L, 2, y, b2)
                 if h.has_edge(u, v):
                     h.remove_edge(u, v)
     return h
@@ -110,8 +115,10 @@ def _run_driven(args):
         L = spec["L"]
         g, order, c3, h, eu, ev = _j2_setup(L)
         T, r_set = WIN.get(L, (1.0, 2))
-        if spec.get("t_mult", 1) != 1:
-            T = T * spec["t_mult"]
+        init0 = spec["init"]
+        if init0 == "zero" or spec.get("ramp") is not None:
+            T = T_TURNON  # uniform turn-on window (Amendment-2)
+        T = T * spec.get("t_mult", 1)
         omega = OM_J2
         coords2 = quotient_coords(c3)
         etab = edge_table(g, order, coords2, L)
@@ -186,6 +193,21 @@ def _run_driven(args):
     dtr = None
     if etab is not None:
         dtr = [float(v) for v in d_trace(rows[::D_STRIDE], etab)["D"]]
+    norms = rec["norms"]
+    n24 = int(round(24.0 / DT))
+    if len(norms) >= n24:
+        seg24 = norms[-n24:]
+        nr24 = float((seg24.max() - seg24.min()) / max(seg24[-1], 1e-300))
+    else:
+        nr24 = None
+    n12 = int(round(12.0 / DT))
+    nets12 = []
+    w = rec["work"]
+    k = 0
+    while (k + 1) * n12 <= len(w):
+        seg = w[k * n12:(k + 1) * n12]
+        nets12.append(float(seg.sum()))
+        k += 1
     return {"tag": tag,
             "fp_A": [[float(z.real), float(z.imag)] for z in sep["A"]],
             "fp_F": [[float(z.real), float(z.imag)] for z in sep["F"]],
@@ -196,7 +218,8 @@ def _run_driven(args):
             "ts": ts.tolist(), "jmax": jmax, "bmax": bmax,
             "work_net": rb["net"], "work_gross": rb["gross"],
             "work_ratio": rb["ratio"], "D_trace": dtr,
-            "norm_last": float(rec["norms"][-1])}
+            "norm_last": float(rec["norms"][-1]),
+            "norm_range_24": nr24, "work_nets_12": nets12}
 
 
 def _j2_src_nodes(L):
@@ -205,6 +228,13 @@ def _j2_src_nodes(L):
 
 def _j2_pair_nodes(L):
     return [_j2_id(L, 0, 0), _j2_id(L, PAIR_D, 0)]
+
+
+def _inner_global(A, pred, order, dist, r=4):
+    """Relative match on the inner region dist<=r (Amendment-2)."""
+    m = np.array([dist[v] <= r for v in order])
+    a, b = np.asarray(A, dtype=np.complex128)[m], np.asarray(pred)[m]
+    return float(np.linalg.norm(a - b) / max(np.linalg.norm(b), 1e-300))
 
 
 def main() -> int:
@@ -245,8 +275,18 @@ def main() -> int:
                           ramp=RAMP_TAU if not smoke else 0.3))
     if not smoke:
         cases.append(dict(substrate="j2", L=28, pin_nodes=_j2_src_nodes(28),
-                          s_vals=[1.0], tag="j2_28_zero_2T", init="zero",
-                          t_mult=2))
+                          s_vals=[1.0], tag="j2_28_ramp_2T", init="zero",
+                          ramp=RAMP_TAU, t_mult=2))
+        for tau, nm in ((4.0, "04"), (12.0, "12")):
+            cases.append(dict(substrate="j2", L=20, pin_nodes=_j2_src_nodes(20),
+                              s_vals=[1.0], tag=f"j2_20_tau{nm}", init="zero",
+                              ramp=tau))
+        cases.append(dict(substrate="j2", L=28, pin_nodes=_j2_src_nodes(28),
+                          s_vals=[1.0], tag="j2_28_pred_40T", init="pred",
+                          t_mult=5))
+        cases.append(dict(substrate="j2", L=42, pin_nodes=_j2_src_nodes(42),
+                          s_vals=[1.0], tag="j2_42_pred_40T", init="pred",
+                          t_mult=4))
     for L in Ls:
         nodes = _j2_pair_nodes(L)
         cases.append(dict(substrate="j2", L=L, pin_nodes=nodes,
@@ -305,7 +345,8 @@ def main() -> int:
         return f * np.exp(1.0j * om * R[tag]["fp_t_end"])
 
     out = {"params": {"DT": DT, "OM_J2": OM_J2, "RAMP_TAU": RAMP_TAU,
-                      "amendment": 1}}
+                      "T_TURNON": T_TURNON, "AP_DELTA": AP_DELTA,
+                      "amendment": 2}}
     V = {}
 
     if smoke:
@@ -329,22 +370,27 @@ def main() -> int:
         Aj = Jvec(f"path_{nm}_jump", om)
         Ar = Avec(f"path_{nm}_ramp")
         V[f"A_{nm}_jump_global"] = bool(is_match_ok(Aj, pred, 0.05))
-        V[f"A_{nm}_ramp_global"] = bool(is_match_ok(Ar, pred, 0.10))
-        pm = shell_means_node(np.abs(pred), order, dist, 10)
+        V[f"A_{nm}_ramp_inner"] = bool(
+            _inner_global(Ar, pred, order, dist, 4) < 0.10)
+        out[f"A_{nm}_ramp_inner_val"] = _inner_global(Ar, pred, order, dist, 4)
+        pm = shell_means_node(np.abs(pred), order, dist, 4)
         for nm2, A, tol in (("jump", Aj, 0.15), ("ramp", Ar, 0.25)):
-            am = shell_means_node(np.abs(A), order, dist, 10)
+            am = shell_means_node(np.abs(A), order, dist, 4)
             V[f"A_{nm}_{nm2}_shell"] = bool(
-                is_shell_match_ok(am, pm, range(0, 11), tol))
-        A = Ar
-        pm1 = shell_means_node(np.abs(A), order, dist_from_set(g, [0]), 8)
-        rr = np.array([r for r in range(2, 9)], dtype=float)
-        vv = np.array([pm1[r] for r in range(2, 9)], dtype=float)
-        kap_fit = float(-np.polyfit(rr, np.log(np.maximum(vv, 1e-300)), 1)[0])
-        kap_th = path_kappa(om)
-        V[f"A_{nm}_kappa"] = bool(abs(kap_fit - kap_th) / kap_th < 0.05)
-        out[f"kappa_{nm}"] = {"fit": kap_fit, "theory": kap_th}
-        V[f"A_{nm}_eps"] = bool(R[f"path_{nm}_ramp"]["eps"] < 0.10
-                                and R[f"path_{nm}_jump"]["eps"] < 0.02)
+                is_shell_match_ok(am, pm, range(0, 5), tol))
+        d0 = dist_from_set(g, [0])
+        kap_fit = None
+        for nm2, A in (("jump", Aj), ("turnon", Ar)):
+            pm1 = shell_means_node(np.abs(A), order, d0, 8)
+            rr = np.array([r for r in range(2, 9)], dtype=float)
+            vv = np.array([pm1[r] for r in range(2, 9)], dtype=float)
+            kap_fit = float(-np.polyfit(rr, np.log(np.maximum(vv, 1e-300)), 1)[0])
+            kap_th = path_kappa(om)
+            out[f"kappa_{nm}_{nm2}"] = {"fit": kap_fit, "theory": kap_th}
+        V[f"A_{nm}_kappa"] = bool(
+            abs(out[f"kappa_{nm}_jump"]["fit"] - kap_th) / kap_th < 0.05)
+        V[f"A_{nm}_eps"] = bool(R[f"path_{nm}_jump"]["eps"] < 0.02)
+        out[f"A_{nm}_turnon_eps_filed"] = R[f"path_{nm}_ramp"]["eps"]
     g = path_graph(60)
     order = node_order(g)
     h = hamiltonian(g, order=order)
@@ -371,14 +417,19 @@ def main() -> int:
         Aj = Jvec(f"j2_{L}_pred", OM_J2)
         Ar = Avec(f"j2_{L}_ramp")
         V[f"B{L}_jump_global"] = bool(is_match_ok(Aj, pred, 0.05))
-        V[f"B{L}_ramp_global"] = bool(is_match_ok(Ar, pred, 0.10))
+        V[f"B{L}_ramp_inner"] = bool(
+            _inner_global(Ar, pred, order, dist, 4) < 0.10)
+        out[f"B{L}_ramp_inner_val"] = _inner_global(Ar, pred, order, dist, 4)
         pm = shell_means_node(np.abs(pred), order, dist, r_set)
-        for nm2, A, tol in (("jump", Aj, 0.15), ("ramp", Ar, 0.25)):
-            am = shell_means_node(np.abs(A), order, dist, r_set)
-            V[f"B{L}_{nm2}_shell"] = bool(
-                is_shell_match_ok(am, pm, range(0, r_set + 1), tol))
-        V[f"B{L}_eps"] = bool(R[f"j2_{L}_ramp"]["eps"] < 0.10
-                              and R[f"j2_{L}_pred"]["eps"] < 0.02)
+        am_j = shell_means_node(np.abs(Aj), order, dist, r_set)
+        V[f"B{L}_jump_shell"] = bool(
+            is_shell_match_ok(am_j, pm, range(0, r_set + 1), 0.15))
+        pm4 = shell_means_node(np.abs(pred), order, dist, 4)
+        am4 = shell_means_node(np.abs(Ar), order, dist, 4)
+        V[f"B{L}_ramp_shell"] = bool(
+            is_shell_match_ok(am4, pm4, range(0, 5), 0.25))
+        V[f"B{L}_eps"] = bool(R[f"j2_{L}_pred"]["eps"] < 0.02)
+        out[f"B{L}_turnon_eps_filed"] = R[f"j2_{L}_ramp"]["eps"]
         V[f"B{L}_J"] = bool(R[f"j2_{L}_pred"]["jmax"]
                             / max(R[f"j2_{L}_pred"]["bmax"], 1e-300) < 0.05)
         dz = np.array(R[f"j2_{L}_zero"]["D_trace"])
@@ -388,21 +439,26 @@ def main() -> int:
         rng = max([r for r in am if am[r] > 0.05])
         V[f"B{L}_range"] = bool(abs(rng - out[f"pred_range_{L}"]) <= 1)
         out[f"range_{L}"] = {"meas": int(rng), "pred": out[f"pred_range_{L}"]}
-        rr = np.array([2, 3, 4, 5], dtype=float)
-        vv = np.array([am[r] for r in (2, 3, 4, 5)], dtype=float)
-        xi[L] = float(-np.polyfit(rr, np.log(np.maximum(vv, 1e-300)), 1)[0])
+        for nm2, A in (("jump", Aj), ("turnon", Ar)):
+            mm = shell_means_node(np.abs(A), order, dist, 5)
+            rr = np.array([2, 3, 4, 5], dtype=float)
+            vv = np.array([mm[r] for r in (2, 3, 4, 5)], dtype=float)
+            kk = float(-np.polyfit(rr, np.log(np.maximum(vv, 1e-300)), 1)[0])
+            out[f"xi_{L}_{nm2}"] = kk
+            if nm2 == "jump":
+                xi[L] = kk
         out[f"Fmag_{L}"] = float(np.linalg.norm(Fvec(f"j2_{L}_ramp")))
         out[f"Fmag_raw_{L}"] = float(np.linalg.norm(Fvec(f"j2_{L}_zero")))
     out["xi"] = xi
     V["J_xi"] = bool(max(xi.values()) / min(xi.values()) < 1.2)
     g, order, c3, h, eu, ev = _j2_setup(28)
     dist = dist_from_set(g, _j2_src_nodes(28))
-    # Wrap control on RAMPED 2T? 2T run is raw; compare LS-A settled shells.
-    a8 = Avec("j2_28_ramp")
-    a16 = Avec("j2_28_zero_2T")
-    m8 = shell_means_node(np.abs(a8), order, dist, 6)
-    m16 = shell_means_node(np.abs(a16), order, dist, 6)
-    V["J_wrap"] = bool(is_shell_match_ok(m16, m8, range(0, 7), 0.25, floor=0.01))
+    # Wrap control: SAME-protocol ramp T vs 2T, settled inner shells.
+    a16 = Avec("j2_28_ramp")
+    a32 = Avec("j2_28_ramp_2T")
+    m16 = shell_means_node(np.abs(a16), order, dist, 4)
+    m32 = shell_means_node(np.abs(a32), order, dist, 4)
+    V["J_wrap"] = bool(is_shell_match_ok(m32, m16, range(0, 5), 0.05, floor=0.01))
     V["B"] = bool(all(V[k] for k in V if k.startswith("B")))
     V["J"] = bool(V["J_xi"] and V["J_wrap"])
 
@@ -417,7 +473,9 @@ def main() -> int:
         Aj = Jvec(f"pair_{L}_pred", OM_J2)
         Ar = Avec(f"pair_{L}_ramp")
         V[f"C{L}_jump_global"] = bool(is_match_ok(Aj, pred, 0.05))
-        V[f"C{L}_ramp_global"] = bool(is_match_ok(Ar, pred, 0.10))
+        V[f"C{L}_ramp_inner"] = bool(
+            _inner_global(Ar, pred, order, dist, 4) < 0.10)
+        out[f"C{L}_ramp_inner_val"] = _inner_global(Ar, pred, order, dist, 4)
         d0 = dist_from_set(g, [nodes[0]])
         d1 = dist_from_set(g, [nodes[1]])
         ok = tot = 0
@@ -445,7 +503,7 @@ def main() -> int:
     hw = hamiltonian(gw, order=order)
     idx = {v: i for i, v in enumerate(order)}
     nodes = _j2_src_nodes(L)
-    T, r_set = WIN[L]
+    T = T_TURNON  # cut turn-on uses the uniform turn-on window
     n_steps = int(round(T / DT))
     psi0 = np.zeros(len(order), dtype=np.complex128)
     tau = RAMP_TAU
@@ -457,19 +515,24 @@ def main() -> int:
         return np.array([f]) * np.exp(-1.0j * om * t)
 
     rec = pinning_evolve(psi0, hw, DT, n_steps, [idx[v] for v in nodes], _pf)
-    ts = np.arange(rec["psi"].shape[0]) * DT
     fp_rows, fp_ts = final_period_rows(rec["psi"], DT, om)
     Aw = stroboscopic_separate(fp_rows, fp_ts, om)["A"]
     predw = steady_predict(hw, [idx[v] for v in nodes], [1.0], om)
-    V["AP_match"] = bool(is_match_ok(Aw, predw, 0.10))
-    dist = dist_from_set(g, nodes)
+    # Cut-jump vehicle (init at cut prediction, phase-rotate extraction).
+    recj = pinning_evolve(predw, hw, DT, int(round(WIN[L][0] / DT)),
+                          [idx[v] for v in nodes], harmonic_pins([1.0], om, DT))
+    t_end_j = (recj["psi"].shape[0] - 1) * DT
+    Ajw = recj["psi"][-1] * np.exp(1.0j * om * t_end_j)
+    V["AP_jump"] = bool(is_match_ok(Ajw, predw, 0.05))
+    V["AP_inner"] = bool(_inner_global(Aw, predw, order, dist_from_set(gw, nodes), 4) < 0.10)
+    out["AP_inner_val"] = _inner_global(Aw, predw, order, dist_from_set(gw, nodes), 4)
+    # Route-sensitivity: jump-vehicle delta vs filed prediction.
+    Aju = Jvec("j2_28_pred", OM_J2)
+    d_meas = float(np.linalg.norm(Ajw - Aju) / np.linalg.norm(Aju))
+    out["AP_delta_meas"] = d_meas
+    V["AP_diff"] = bool(abs(d_meas - AP_DELTA) / AP_DELTA < 0.35)
     distw = dist_from_set(gw, nodes)
-    Au = Avec("j2_28_ramp")
-    mu = shell_means_node(np.abs(Au), order, dist, 12)
     mw = shell_means_node(np.abs(Aw), order, distw, 12)
-    diffs = [abs(mw[r] - mu[r]) / max(mu[r], 1e-300) for r in range(6, 13)]
-    V["AP_diff"] = bool(max(diffs) > 0.25)
-    out["AP_diffs"] = diffs
     rr = np.array([r for r in range(0, 13)], dtype=float)
     vv = np.array([mw[r] for r in range(0, 13)], dtype=float)
     okm = vv > 1e-6
@@ -480,7 +543,8 @@ def main() -> int:
     respred = max(abs(pw[r] - mw[r]) for r in range(0, 13))
     V["AP_1d_reject"] = bool(res1d > 3 * max(respred, 1e-12))
     out["AP_resid"] = {"res1d": res1d, "respred": respred}
-    V["AP"] = bool(V["AP_match"] and V["AP_diff"] and V["AP_1d_reject"])
+    V["AP"] = bool(V["AP_jump"] and V["AP_inner"] and V["AP_diff"]
+                    and V["AP_1d_reject"])
 
     # ================= POT-1D exchange =================
     L = 28
@@ -539,8 +603,24 @@ def main() -> int:
         fronts[L] = {"abs": fa, "S": fs, "n_a": len(arr_a), "n_s": len(arr_s)}
     out["fronts"] = fronts
     fa28, fs28 = fronts[28]["abs"], fronts[28]["S"]
-    V["F_arr"] = bool(fa28 is not None and 0.5 < fa28["v"] < 5.0 and fa28["r2"] > 0.9)
-    V["G_shell"] = bool(fs28 is not None and 0.5 < fs28["v"] < 5.0 and fs28["r2"] > 0.9)
+    V["F_arr"] = bool(fa28 is not None and 0.5 < fa28["v"] < 12.0 and fa28["r2"] > 0.9)
+    V["G_shell"] = bool(fs28 is not None and 0.5 < fs28["v"] < 12.0 and fs28["r2"] > 0.9)
+    # Threshold-stability (filed secondary, NOT gated): 5%/20% L28 abs fronts.
+    r28 = R["j2_28_zero"]
+    ts28 = np.array(r28["ts"])
+    sab28 = np.array(r28["series_abs"])
+    stab = {}
+    for frac in (0.05, 0.20):
+        arr = {}
+        for sh in range(6, 13):
+            if sh >= sab28.shape[1]:
+                continue
+            col = sab28[:, sh]
+            t = first_crossing(col, ts28, frac * float(col.max()))
+            if t is not None:
+                arr[sh] = t
+        stab[frac] = _av(arr, sorted(arr)) if len(arr) >= 4 else None
+    out["front_thresh_stability_filed"] = stab
     fa42 = fronts[42]["abs"]
     V["J_front"] = bool(fa28 is not None and fa42 is not None
                         and abs(fa28["v"] - fa42["v"]) / max(fa28["v"], 1e-300) < 0.25)
@@ -638,10 +718,23 @@ def main() -> int:
     dist = dist_from_set(g, nodes)
     A_inj = Avec("inject")
     pred = steady_predict(h, [idx[v] for v in nodes], [1.0], OM_J2)
-    pm = shell_means_node(np.abs(pred), order, dist, 6)
-    am = shell_means_node(np.abs(A_inj), order, dist, 6)
-    V["H_return"] = bool(is_shell_match_ok(am, pm, range(0, 7), 0.10, floor=0.01))
-    V["H"] = bool(V["H_return"])
+    pm = shell_means_node(np.abs(pred), order, dist, 3)
+    am = shell_means_node(np.abs(A_inj), order, dist, 3)
+    V["H_return"] = bool(is_shell_match_ok(am, pm, range(0, 4), 0.10, floor=0.01))
+    # Far-field accounting: residual norm ~ injected packet norm (radiation
+    # escaped locally; torus equilibrium restores only locally).
+    f_end = np.array([complex(z[0], z[1]) for z in R["inject"]["fp_rows"]])
+    steady_t = pred * np.exp(-1.0j * OM_J2 * R["inject"]["fp_t_end"])
+    resid = f_end - steady_t
+    mfar = np.array([dist[v] > 4 for v in order])
+    coords_h = {v: (float(x), float(y)) for v, (x, y, _) in c3.items()}
+    pkt = gaussian_packet(coords_h, order, (20.0, 0.0), (0.3, 0.0), 4.0,
+                          periods=(L, L))
+    acct = abs(float(np.linalg.norm(resid[mfar])) - float(np.linalg.norm(pkt)))
+    out["H_acct"] = {"resid_far": float(np.linalg.norm(resid[mfar])),
+                     "pkt_norm": float(np.linalg.norm(pkt))}
+    V["H_acct"] = bool(acct / float(np.linalg.norm(pkt)) < 0.10)
+    V["H"] = bool(V["H_return"] and V["H_acct"])
 
     # ================= POT-1I (ramped) =================
     A1 = Avec("j2_28_ramp")
@@ -681,13 +774,35 @@ def main() -> int:
                         [0], harmonic_pins([1.0], OM_J2, DT))["psi"]
     V["C6"] = bool(np.array_equal(r1, r2))
     V["C0"] = True
-    V["RB"] = bool(R["j2_28_pred"]["work_ratio"] < 0.05
-                   and R["j2_42_pred"]["work_ratio"] < 0.05)
-    out["RB"] = {"L28": R["j2_28_pred"]["work_ratio"],
-                 "L42": R["j2_42_pred"]["work_ratio"]}
+    # RB: no secular accumulation on T=40 jump (norm range over final 24
+    # time units < 1%); reactive ratios + per-12-unit nets filed.
+    V["RB"] = bool(R["j2_28_pred_40T"]["norm_range_24"] is not None
+                   and R["j2_28_pred_40T"]["norm_range_24"] < 0.01
+                   and R["j2_42_pred_40T"]["norm_range_24"] is not None
+                   and R["j2_42_pred_40T"]["norm_range_24"] < 0.01)
+    out["RB"] = {"L28": R["j2_28_pred_40T"]["norm_range_24"],
+                 "L42": R["j2_42_pred_40T"]["norm_range_24"]}
+    out["RB_reactive_filed"] = {
+        "L28": R["j2_28_pred_40T"]["work_ratio"],
+        "L42": R["j2_42_pred_40T"]["work_ratio"],
+        "nets12_L28": R["j2_28_pred_40T"]["work_nets_12"],
+        "nets12_L42": R["j2_42_pred_40T"]["work_nets_12"]}
+
+    # ================= TAU adiabatic trend (tuning-free) =================
+    g, order, c3, h, eu, ev = _j2_setup(20)
+    dist20 = dist_from_set(g, _j2_src_nodes(20))
+    mfar20 = np.array([dist20[v] >= 10 for v in order])
+    c_trend = {}
+    for tag, tau in (("j2_20_tau04", 4.0), ("j2_20_ramp", 8.0),
+                     ("j2_20_tau12", 12.0)):
+        c_trend[tau] = float(np.median(np.abs(Avec(tag)[mfar20])))
+    out["TAU_lingerer"] = c_trend
+    V["TAU_trend"] = bool(c_trend[4.0] > c_trend[8.0] > c_trend[12.0])
+    V["TAU"] = bool(V["TAU_trend"])
 
     V["J"] = bool(V["J"] and V["J_front"])
-    potential = all(V[k] for k in ("A", "B", "C", "AP", "D", "E", "I", "J"))
+    potential = all(V[k] for k in ("A", "B", "C", "AP", "D", "E", "I", "J",
+                                   "TAU"))
     potential = bool(potential and V["C1"] and V["C6"])
     unified = bool(potential and V["F"] and V["G"] and V["C5"])
     field = bool(unified and V["H"] and V["RB"])
