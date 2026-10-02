@@ -86,6 +86,16 @@ def test_cfd_units():
     assert obs0.cfd_first_peak([0, 2, 1, 1.5, 6, 1], ts) == 4.0
 
 
+def test_threshold_crossing_units():
+    ts = np.arange(6, dtype=float) * 0.05
+    assert obs0.threshold_crossing([0, 1e-7, 5e-7, 2e-6, 1e-3, 0.5], ts, 1e-6) == 0.15
+    assert obs0.threshold_crossing([0, 1e-7, 5e-7, 5e-7, 5e-7, 5e-7], ts, 1e-6) is None
+    assert obs0.threshold_crossing([0], [0], 1e-6) is None  # too short
+    assert obs0.threshold_crossing([0, 0, 0], [0, 1, 2], 0.0) is None
+    assert obs0.threshold_crossing([0, 0], [0], 1e-6) is None
+    assert obs0.THETA_WAVE == 1e-6  # Amendment-2 frozen value
+
+
 def test_calibration_math_exact():
     x = np.array([1.0, 2.0, 3.0, 4.0])
     fa = obs0.fit_affine(x, 2 * x + 1)

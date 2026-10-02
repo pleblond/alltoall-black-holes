@@ -3086,3 +3086,25 @@ range across N={800,1568,3528} exceeds 0.5 (non-geometric N-drift; observed 2.35
 OR majority-of-9-seeds outside [1.5,2.5] (original clause kept as alternative).
 d_H clause unchanged (no-window expected, D=5-6 observed). J2 gates untouched.
 NEXT: C0-origins + C1-dims, staged analysis.
+
+## OBS0-AMENDMENT-2 (wave-arrival statistic repair; FROZEN pre-J2-data (C0-origins
+in hand, J2-unopened); commit-predates-J2-campaign): the preregistered CFD-peak
+tau_W is WRONG-AS-WRITTEN on the torus: sq-L42 test shows tau_W exploding for
+R>=12 (med 17.5 at R[16,21) vs front ~9) -- torus refocusing peaks exceed the
+direct peak, CFD skips the direct arrival (GW-delta_T3=0.29, WD=0.49: broken,
+not physics). Direct peaks are unrecoverable by time-gating (refocus merges
+early for far targets). REPLACED statistic: tau_W = FIRST-THRESHOLD-CROSSING
+(first t with p(t) >= 1e-6, epsilon=1e-6 LOCKED; dt=0.05/Tmax=D unchanged).
+Rationale: front-edge feature (wrap-immune: wrap paths arrive later; 0 missing
+on sq-L42; linear law R=2.38t+6.1, slope ~= angle-averaged front speed).
+tau_D KEEPS CFD-peak (bulk-diffusion probe, p=2.06/GD-delta_T3=0.18: working;
+first-crossing would collapse it to ballistic hop-counting t*~R, near-
+tautological vs R_G -- rejected deliberately). Asymmetry is principled: each
+ruler keeps its wrap-robust BULK arrival feature (wavefront edge / diffusion
+bulk peak). ACCOMPANYING BUGFIXES (code did not match prereg text): (i) dW
+window uses the FORWARD train law tau_W=a*R+b (code passed inverse-law coeffs
+-> dW~0); (ii) arrival_volume clamps T_lo to >= dt (affine UV-curvature can
+extrapolate b<0; window must lie in measurement domain; deterministic);
+(iii) sheet-IR tau-key typo. Tests updated (crossing units). C0 gates/values
+unchanged (C0 re-runs origins with the new statistic; J2 still unopened).
+NEXT: re-run C0-origins, staged analysis.

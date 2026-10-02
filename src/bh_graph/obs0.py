@@ -15,8 +15,10 @@ Conventions (LOCKED in prereg):
              (regular graphs: Lrw == Lsym == L/z elementwise).
   d_s      = mean-return fit Pbar(t) ~ t^{-d/2} over DS_TS hops.
   tau_D    = CFD-first-peak of p_j(t) (dt=0.25, Tmax=3(D/2)^2).
-  H        = -A, J=1 (P1 banked law); delta launch; tau_W = CFD-first-peak
-             (dt=0.05, Tmax=D); R_W = V_BANKED[sub]*tau_W.
+  H        = -A, J=1 (P1 banked law); delta launch; tau_W = FIRST CROSSING
+             of p(t) >= THETA_WAVE (dt=0.05, Tmax=D; Amendment-2: CFD-peak
+             unusable on torus (refocusing exceeds direct); front-edge
+             feature); R_W = V_BANKED[sub]*tau_W.
   CFD      = first local maximum with height >= 1/2 trace global max.
   d_W      = arrival-volume fit A(T) ~ T^d over the train-law T-window.
   delta    = |Rhat - R_G| / max(R_G, 4) with globally-fitted calibration.
@@ -36,6 +38,7 @@ WEYL_LO_FRAC = 0.08
 WEYL_HI_FRAC = 0.70
 WEYL_K = 400
 CFD_FRAC = 0.5
+THETA_WAVE = 1e-6  # Amendment-2: frozen front-crossing threshold
 DT_WAVE = 0.05
 DT_DIFF = 0.25
 R_FLOOR = 4.0
@@ -278,11 +281,26 @@ def arrival_times_diff(evals, evecs, origin_idx, target_idx, D: int,
             for k, j in enumerate(target_idx)}
 
 
-def arrival_times_wave(evals, evecs, origin_idx, target_idx, D: int) -> dict:
-    """tau_W per target index (None = missing)."""
+def threshold_crossing(trace, ts, theta: float):
+    """First-crossing arrival: first t with p(t) >= theta (None if never)."""
+    p = np.asarray(list(trace), dtype=float)
+    ts = np.asarray(list(ts), dtype=float)
+    if len(p) < 2 or len(p) != len(ts):
+        return None
+    if not np.isfinite(theta) or theta <= 0:
+        return None
+    for m in range(1, len(p)):
+        if p[m] >= theta:
+            return float(ts[m])
+    return None
+
+
+def arrival_times_wave(evals, evecs, origin_idx, target_idx, D: int,
+                       theta: float = THETA_WAVE) -> dict:
+    """tau_W per target index via first-threshold-crossing (None = missing)."""
     ts = wave_grid(D)
     P = _target_traces_wave(evals, evecs, origin_idx, target_idx, ts)
-    return {int(j): cfd_first_peak(P[:, k], ts)
+    return {int(j): threshold_crossing(P[:, k], ts, theta)
             for k, j in enumerate(target_idx)}
 
 
@@ -394,11 +412,13 @@ def tercile_medians(deltas: list, terciles: list) -> dict:
 
 
 def arrival_volume_dim(taus: dict, a: float, b: float, D: int,
-                       lo_R: int = D_H_LO) -> dict:
+                       lo_R: int = D_H_LO, dt_floor: float = DT_WAVE) -> dict:
     """Wave dimension from arrival-volume A(T) over the train-law window.
 
     taus maps node -> tau_W (None allowed); window T in [a*lo_R+b,
-    a*(D/2-1)+b]. Returns {d, r2, n, window, ok}.
+    a*(D/2-1)+b] with T_lo clamped to >= dt_floor (Amendment-2: affine
+    UV-curvature can extrapolate b < 0; the window must lie in the
+    measurement domain). Returns {d, r2, n, window, ok}.
     """
     bad = {"d": float("nan"), "r2": float("nan"), "n": 0, "window": None,
            "ok": False}
@@ -407,7 +427,7 @@ def arrival_volume_dim(taus: dict, a: float, b: float, D: int,
     hi_R = int(math.floor(float(D) / 2.0)) - 1
     if hi_R <= lo_R:
         return bad
-    t_lo, t_hi = a * lo_R + b, a * hi_R + b
+    t_lo, t_hi = max(a * lo_R + b, dt_floor), a * hi_R + b
     if not t_hi > t_lo > 0:
         return bad
     vals = np.array([t for t in taus.values()

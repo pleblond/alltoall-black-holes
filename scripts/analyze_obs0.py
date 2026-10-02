@@ -93,9 +93,10 @@ def analyze_tag(outdir, tag, v_banked, n_origins=16, n_train=8):
                 per_oi.append(float(np.median(vals)))
         iqr[pair] = float(np.subtract(*np.percentile(per_oi, [75, 25]))) if len(per_oi) >= 4 else float("nan")
         uv_ir[pair] = bool(tm[2] < tm[0]) if np.isfinite(tm[2]) and np.isfinite(tm[0]) else False
-    # d_W per origin via the train law window.
+    # d_W per origin via the FORWARD train law window (tau_W = a*R + b).
+    fwd = obs0.fit_affine(Rtr[mGW], tWtr[mGW])
     dW = [obs0.arrival_volume_dim({k: v["tW"] for k, v in rec["taus"].items()},
-                                  calGW["a"], calGW["b"], D)["d"] for rec in recs]
+                                  fwd["a"], fwd["b"], D)["d"] for rec in recs]
     dims = {"dH": [r["hausdorff"]["d"] for r in recs],
             "dH_r2": [r["hausdorff"]["r2"] for r in recs],
             "ds": [r["ds_origin"]["d"] for r in recs],
@@ -160,7 +161,7 @@ def sheet_analysis(outdir, tag, L):
                 uv[R]["tD"][slot].append(t["tD"])
                 uv[R]["tW"][slot].append(t["tW"])
             if 8 <= R <= ir_hi:
-                ir["tD"][slot].append(t["t"])
+                ir["tD"][slot].append(t["tD"])
                 ir["tW"][slot].append(t["tW"])
     out = {"uv": {}, "ir": {}}
     for r in (1, 2, 3):
