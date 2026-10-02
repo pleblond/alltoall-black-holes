@@ -3075,3 +3075,61 @@ C3 E conservation every trajectory; C4 no coordinate use by dynamics
 
 **GRAV-0 handoff:** defect anatomy (longs created, restore/overlap,
 spread) recorded without propagation interpretation.
+
+## BR1-VERDICT — BR1-FLAT (rigidity debt confirmed, 14/14 gates)
+
+**Campaign:** data/br1_vacuum.json (beast run, 246 s, frozen runner).
+**Ladder:** KINEMATIC falsified (N_legal(L28) = 7,665,989,632, exact
+closed form, L4/L6 exhaustive match 47104/653184); DYNAMIC not met by any
+inventoried rule; CLASS-RIGID falsified (9/9 J2 drift runs dead by t=25);
+METASTABLE falsified (median tau_class = 25/25/25 at R12/18/24 — first
+snapshot at every size, no trend, far below the 200 bar). **= BR1-FLAT:**
+the current ontology does not explain vacuum rigidity.
+
+**Neutral drift (N1, BR-1D/F):** tau_micro = 1 move (every relocation
+changes the edge set; 3000/3000 applied, E conserved every trajectory).
+Post-verdict characterization (NOT ladder input, snapshot-every-1 rerun):
+exact tau_class = 3/9/6 moves at R12/18/24, first killer = p-drift
+(|dp| = 0.16–0.21), qfrac still >= 0.993 at death. Square-torus control
+under identical N1 also dead at t=25 both seeds: neutral drift is
+generically destructive, J2 not special. M1 anatomy (L28): disconnect
+fraction 0.0/2000, 97% of additions nonlocal (graph distance >= 4).
+
+**Existing-U audit (BR-1C):** repair rules (guillotine/anneal/slide) are
+INERT-FIXED on pristine J2 (0 accepts, L12 50 steps + L28 30 steps) and
+ACTIVE on damaged J2 (C2: 20-swap damage, longs 27 -> 5/13/14 with
+17/29/9 accepts) — genuine fixed-point behavior, not brokenness.
+Blind-form rules on J2: square/metropolis(T0.25,T1.0)/kappa FROZEN
+(0 accepts; verified: all 1891 sampled swaps carry touched-C4 delta in
+[-42,-22], mean -40.9, so metropolis acceptance ~ exp(-22) ≈ 3e-10 is
+unreachable — J2 is a deep local C4-optimum under single swaps);
+triangle DESTRUCTIVE (188 accepts, longs 0 -> 32, p 1.08 -> 0.01, leaves
+the class). scramble kills as designed (negative control).
+Caveat filed: the L12-torus p-window [5,11] is wrap-adjacent; audit
+CLASS-ALIVE calls there inherit extra sensitivity. No DYNAMIC candidate
+came close (best class-restore 1/3), so the caveat is verdict-remote.
+
+**Single defects (BR-1G, GRAV-0 anatomy, no interpretation):** one M1
+defect = exactly 1 long, bip_viol 0–1, qfrac 0.9965 (all 3 seeds); class
+impact is lottery — 1/3 kills immediately (p 1.08 -> 0.64), 2/3 absorbed.
+No bit-restores (degree-fiber pin holds exactly); class-restores
+guillotine/anneal/slide/square = 1/3, 1/3, 0/3, 0/3 (< 2/3 bar).
+Repair rules churn <= 4 edges (overlap 1148–1151/1152): they cannot reach
+across the M1 degree-fiber step.
+
+**Small-field (BR-1I):** max|dE| scales as eps^2 bit-cleanly
+(0.077 -> 7.7e-18, ratios exactly 100 to 1e-15): the landscape vanishes
+continuously, no threshold. No physical threshold inferred.
+
+**Wave (C6, characterization only):** E1 packet, pristine disp 7.11
+(PR 401 -> 608) vs N1-killed endpoint disp 16.13 (PR 401 -> 616):
+killing the class does NOT localize the packet. Filed as a curiosity
+for the wave/vacuum-track owners; BR-1 draws no conclusion from it.
+
+**BR-3 handoff (mandatory):** downhill (dE < 0) and uphill (dE > 0) per
+BR-2; neutral (dE = 0) carries **NEUTRAL-MOVE DEBT** — N0 reject =
+frozen-analytic (G == J2, survival 1.0, micro-frozen); N1 allow =
+measured-lethal (tau_class ~ 5 moves); NX existing-kinetics = VACUOUS
+(no independently-justified vacuum-domain U_G inventoried; repair-rule
+counterfactuals reported above, none selected). BR-3 must carry the
+debt, not silently adopt dE <= 0 or dE < 0.
