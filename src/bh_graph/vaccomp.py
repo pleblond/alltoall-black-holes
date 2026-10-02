@@ -226,7 +226,12 @@ def spectral_decomposition(L: int) -> dict:
     sub = vf.j2_substrate(L)
     cand = {}
     for name in ("VPLUS", "VPI", "VMINUS"):
-        psi = vf.candidate_shape(name, sub, "j2")
+        try:
+            psi = vf.candidate_shape(name, sub, "j2")
+        except ValueError:
+            # Odd L: VPI has no staggered representative (frustrated top).
+            cand[name] = None
+            continue
         ov = np.abs(v.conj().T @ psi)
         k = int(np.argmax(ov))
         lam = float(w[k])
@@ -281,9 +286,9 @@ def extremal_uniqueness(L: int) -> dict:
         "rows": rows,
         "minus8_unique": bool(rows["minus8"] is not None and rows["minus8"]["multiplicity"] == 1),
         "plus8_unique": bool(rows["plus8"] is not None and rows["plus8"]["multiplicity"] == 1),
-        "vplus_overlap": spec["candidates"]["VPLUS"]["max_overlap"],
-        "vpi_overlap": spec["candidates"]["VPI"]["max_overlap"],
-        "vminus_overlap": spec["candidates"]["VMINUS"]["max_overlap"],
+        "vplus_overlap": (spec["candidates"]["VPLUS"] or {}).get("max_overlap"),
+        "vpi_overlap": (spec["candidates"]["VPI"] or {}).get("max_overlap"),
+        "vminus_overlap": (spec["candidates"]["VMINUS"] or {}).get("max_overlap"),
     }
     return out
 

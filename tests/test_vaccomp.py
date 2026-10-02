@@ -83,6 +83,17 @@ def test_extremal_unique_L8():
     assert u["minus8_unique"] and u["plus8_unique"]
 
 
+def test_odd_L_spectral_frustrated_top():
+    s = vc.spectral_decomposition(5)
+    assert s["e_max"] < 8.0  # frustrated top, no +8 row
+    assert vc.extremal_rows(s)["plus8"] is None
+    assert s["candidates"]["VPI"] is None  # no staggered representative
+    assert s["candidates"]["VMINUS"]["residual"] < 1e-9
+    u = vc.extremal_uniqueness(5)
+    assert u["minus8_unique"] and not u["plus8_unique"]
+    assert u["vpi_overlap"] is None
+
+
 # --- 0G: zero eigenspace ---
 
 

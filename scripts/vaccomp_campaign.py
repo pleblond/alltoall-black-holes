@@ -52,16 +52,18 @@ def w_spectral(spec):
         [float(r["lambda"]), int(r["multiplicity"]), int(r["anti_rank"]), int(r["sym_rank"])]
         for r in s["table"]
     ]
-    cand = {
-        k: {
+    cand = {}
+    for k, v in s["candidates"].items():
+        if v is None:  # odd L: VPI has no staggered representative
+            cand[k] = None
+            continue
+        cand[k] = {
             "rayleigh": float(v["rayleigh"]),
             "residual": float(v["residual"]),
             "max_overlap": float(v["max_overlap"]),
             "subspace_weight": float(v["subspace_weight"]),
             "nearest_lambda": float(v["nearest_lambda"]),
         }
-        for k, v in s["candidates"].items()
-    }
     return {
         "tag": spec["tag"],
         "L": L,
@@ -482,7 +484,11 @@ def w_odd(spec):
         vstg = "constructed (unexpected)"
     except ValueError:
         vstg = "raises (even-L only)"
-    vpi = vf.candidate_shape("VPI", sub, "j2")
+    try:
+        vpi = vf.candidate_shape("VPI", sub, "j2")
+        vpi_ray = float(vf.rayleigh_energy(vpi, h))
+    except ValueError:
+        vpi_ray = None  # odd L: frustrated top, no staggered representative
     return {
         "tag": spec["tag"],
         "L": L,
@@ -491,7 +497,7 @@ def w_odd(spec):
         "e_max": float(s["e_max"]),
         "n_zero": int(s["n_zero"]),
         "plus8_row": rows["plus8"],
-        "vpi_rayleigh": float(vf.rayleigh_energy(vpi, h)),
+        "vpi_rayleigh": vpi_ray,
         "vminus_rung": lad["rung"],
         "vminus_checks": {k: bool(v) for k, v in lad["checks"].items()},
         "vstag": vstg,
