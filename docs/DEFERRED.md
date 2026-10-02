@@ -4453,3 +4453,14 @@ normalizes banked weights, linearity recomputes two-point slopes from
 banked peaks, longtime applies the absolute J bar to banked maxima.
 Campaign records and .npy sidecars are untouched.
 
+### VACEXC0-OBSOLETE-NONE / obs0 repair note (post-data, no science impact)
+
+The 9896fae consumption vendored tests/test_quot.py, which imports the
+OBS0 helper module, without vendoring src/bh_graph/obs0.py; the full
+suite therefore collected 1 error (968 passed, 2 skipped). Repaired by
+vendoring src/bh_graph/obs0.py (md5-12 6b86d1caeb06) + tests/test_obs0.py
+(md5-12 912e68d1fdc0) byte-identical from the matching QUOT tip
+(c8ad7a5; quot.py md5 identical to the consumed d250eeca640c). obs0 is
+self-contained (math/networkx/numpy only); no cascade. No campaign code
+imports obs0; no record, gate, or verdict input is affected.
+
