@@ -3,6 +3,23 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (MALUS-0 verdict)** — Malus track M0-NULL (local,
+  L28): [H,S]=0, H\*P_anti=0, symmetric=double-square all exact;
+  n_zero = 784+54 = 838 predicted exactly; sym packet ballistic
+  (v=1.2110, α=2.087), anti packet frozen (disp=0, overlap=1),
+  sheet-polarized splits 50/50 conserved ⟹ single propagating
+  sector, no polarization space in present wave dynamics;
+  MALUS-1/2 moot on bare J2 (suite 606 passed + 2 skipped;
+  M0 replicated digit-for-digit on beast, subset 51 passed).
+
+- **unreleased (MALUS-0 prereg)** — Malus track opened on PR #65 P1.1
+  wave tail: internal-sector experiment preregistered (sheet-swap
+  algebra, M0-ALG exact identities + M0-DYN 3-packet protocol on
+  L28, M0-GATE decision table; MALUS-1/2 gated on M0-POSITIVE);
+  derived prediction M0-NULL (H*P_anti = 0, symmetric = double
+  square, n_zero = N/2 + nodal; L28: 784+54 = 838 reproduces
+  banked P1.1b); sheet apparatus (`malus.py`) + 10 pins.
+
 - **unreleased (P1 B0a verdict)** — B0a frozen-scattering verdict B0-NULL
   + B1-NULL (S3 432/432 cells persisted on beast; S4 headline sitters
   L28-d1/d2/d3 + all6 sensitivity; A6 decision table applied): apparatus

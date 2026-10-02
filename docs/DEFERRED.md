@@ -3279,3 +3279,120 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## MALUS — emergent polarization from the J2 two-sheet structure (Malus track)
+
+**Fork (adopted):** from the PR #65 P1.1 bare-J2 calibrated wave tail
+(ac6a140: ballistic detector validated on ring + torus-grid + bare J2;
+complex scalar coinless walk H = -J*A, hopping-only, no coin). The
+question is whether the hidden two-sheet structure supplies an emergent
+polarization degree of freedom: coarse two-component object Psi_x =
+(psi_{x,0}, psi_{x,1}) with Malus's law I(theta) = I_0 cos^2(theta) as
+the calibration of that space IF it exists. Staged MALUS-0 (internal
+sector) -> MALUS-1 (intrinsic analyzer) -> MALUS-2 (law), each gated.
+
+**MALUS-0 PREREG (FROZEN pre-data; this commit predates ALL Malus runs):
+discover the internal sector.** On bare J2 (torus, L = 8 algebra + L =
+28 P1.1b-scale dynamics), characterize the two-sheet amplitude vector
+WITHOUT calling it polarization. Load-bearing question: does the
+present J2 wave supply TWO coherent propagating internal states, or one
+propagating combination plus a flat/dead one? Sheet-swap S: (S psi)_{x,b}
+= psi_{x,1-b}; P_sym = (I+S)/2, P_anti = (I-S)/2 (apparatus:
+src/bh_graph/malus.py + tests/test_malus.py, 10 pins in this commit).
+
+**Derived input (pen-and-paper, pre-data prediction, NOT a fit):** both
+sheets of a J2 cell share IDENTICAL coarse neighbour sets (the same 4
+square moves on each sheet: from (x,y,1) the swap action permutes move
+labels, not the move SET), so (H psi)_{x,0} = (H psi)_{x,1} = -SUM_nn
+(psi_0 + psi_1) for EVERY psi. Consequences (all pinned as exact
+identities): [H,S] = 0; H*P_anti = 0 (full antisymmetric sector, dim
+N/2, sits in ker H); symmetric sector = square-lattice walk with
+hopping 2J (E(k) = -4J(cos kx + cos ky), band [-8,+8], matching the
+P1-Amendment-1 band); flat-band decomposition n_zero = N/2 +
+nodal(square, L) with nodal = #{k: cos kx + cos ky = 0}. Predicted
+L28 decomposition: 784 + 54 = 838, reproducing the BANKED P1.1b
+n_zero = 838 as a zero-parameter consistency check (arithmetic from
+locked defs, Amendment-2 precedent). Dynamical prediction: a
+chi-polarized (antisymmetric) packet is EXACTLY stationary (E = 0,
+v_g = 0, no spreading); a sheet-polarized packet splits into a
+propagating symmetric half + a frozen antisymmetric half (sector
+weights 50/50 conserved); the (k, k+Q) branch partners are different
+MOMENTA, not an internal degree of freedom (a polarizer cannot address
+them without changing momentum), and the flat band has v_g = 0 exactly.
+
+**M0 protocol (LOCKED):** M0-ALG (exact algebra): [H,S] = 0
+(Frobenius), H*P_anti = 0 (matrix), H*U = U*H_sq (intertwining),
+P_anti subset ker H, n_zero = N/2 + nodal(L) for L in {4, 8} (pins)
++ L = 28 decomposition (campaign-filed). M0-DYN (L = 28 torus,
+P1.1b-validated window: sigma = 4, k = (0.3, 0), dt = 0.1, T = 10,
+disp < L/2 no-wrap gate): THREE packets from one coarse Gaussian --
+sym (phi), anti (chi), sheet0 (b = 0 only); per-packet readouts v_fit
++ R^2 + alpha + binned C_v + disp + norm + w_sym/w_anti traces +
+sector mixing + overlap(t) + width(t), all with P1.1b-validated
+detectors. Ballistic bar (per channel): alpha > 1.3 AND C_v binned
+positivity AND disp > 0. Frozen bar: disp < 5% of sym disp AND width
+const AND overlap ~ 1 (alpha-meaningless-when-stationary precedent
+stands). M0-GATE (decision table, no wiggle): BOTH phi AND chi
+ballistic => M0-POSITIVE (two propagating internal states;
+MALUS-1 unblocked); phi ballistic AND chi frozen AND sheet0 splits
+50/50 conserved => M0-NULL (single propagating sector; STOP --
+MALUS-1/2 MOOT, file "no polarization space in the present wave
+dynamics"); anything else => M0-INVALID (apparatus fault, fix +
+re-prereg, no shopping). Predicted: M0-NULL (theorem above).
+
+**MALUS-1/2 gates (NOT designed in detail; stubs only):** MALUS-1
+(intrinsic analyzer) runs ONLY on M0-POSITIVE: graph operation defined
+WITHOUT referencing a desired angle; derive its induced 2x2 map on
+(phi, chi) FIRST; rank-1-projector check earns the name "polarizer";
+angle defined independently of transmission. MALUS-2 (law) runs ONLY
+on an earned polarizer: plot I(theta)/I_0 vs independently defined
+relative internal angle, test I/I_0 = cos^2 with NO fitted exponent,
+plus the two-analyzer series test (0 -> pi/2 blocked; 0 -> pi/4 ->
+pi/2 transmits I_0/4). On M0-NULL none of this runs (a "polarizer"
+acting on a propagating-plus-frozen pair is a scattering/defect study,
+not Malus -- explicitly out of scope here).
+
+**Compute note:** beast EC2 (16.54.88.181) unreachable from this VM
+(no SSH key available in this agent's stores; /workspaces path
+absent); M0 needs only small linear algebra (dense 1568 eig +
+Krylov runs, seconds-minutes), so M0 runs locally and says so.
+NEXT: M0 campaign (gated on prereg commit).
+
+**MALUS-0 VERDICT (MEASURED locally, L28 torus, N = 1568; suite 606
+passed + 2 skipped): M0-NULL -- single propagating sector, STOP.**
+M0-ALG (exact, all 0.0 to machine precision): [H,S] = 0; H*P_anti =
+0 (full antisymmetric sector in ker H); H*U = U*H_sq (symmetric =
+square lattice at hopping 2J); n_zero = 838 = 784 + 54 = N/2 +
+nodal(28) (predicted decomposition EXACT, zero-parameter
+reproduction of banked P1.1b n_zero). M0-DYN (P1.1b window sigma =
+4, k = (0.3,0), dt = 0.1, T = 10, no-wrap disp < 14 holds): sym
+packet BALLISTIC (v = 1.2110, R^2 = 0.9997, alpha = 2.087, disp =
+12.18, C_v bins >= +0.991, sector mixing 9e-13; v replicates a
+banked P1.1b branch velocity digit-for-digit); anti packet FROZEN
+(v = 0.0000, disp = 0.000, width 5.639 -> 5.639, overlap 1.000000,
+norm dev 2e-16); sheet0 packet SPLITS 50/50 conserved (sector
+mixing 4e-13; total-COM alpha/C_v are two-component-split
+artifacts, filed descriptively -- per-sector readouts pinned:
+chi part stationary, phi part moved). M0-GATE: phi ballistic AND
+chi frozen AND sheet0 50/50 conserved => NULL (no wiggle room:
+chi disp is 0% of phi disp vs the 5% frozen bar). Bottom line: the
+present coinless scalar J2 wave carries ONE propagating internal
+combination (symmetric, scalar square-lattice wave) plus an
+EXACTLY dead antisymmetric sector (E = 0, v_g = 0 identically).
+Complex phases do NOT resurrect the D15.0 dead sector for the
+plain CTQW H = -A (contrast with the DEP spinorial construction,
+which needs its coined/staggered structure -- phases alone are
+not sufficient). The (k, k+Q) branch partners differ in MOMENTUM,
+not internal state; the flat band is stationary, not a second
+polarization. => NO polarization space in the present wave
+dynamics. MALUS-1/2 MOOT on bare J2 (no analyzer experiments run,
+per gate; a propagating-plus-frozen "polarizer" would be a
+defect study, not Malus). Consistent with -- and strengthening --
+the D15 rank-1 story: dead under diffusion AND under unitary wave
+dynamics, exactly. REPLICATION (beast EC2, key in shared user store):
+M0-ALG + M0-DYN rerun on beast clone match local digits exactly
+(sym v = 1.2110 / alpha = 2.087 / disp = 12.183; anti disp = 0 /
+overlap = 1; sheet0 50/50; n_zero = 838); malus+ballistic+formation
+subset 51 passed on beast; full suite 606+2 green locally (full
+beast suite deferred: box at load ~500 from concurrent campaigns).
+NEXT: none on this track (null banked).
