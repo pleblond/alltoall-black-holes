@@ -108,7 +108,8 @@ def test_wave_return_dw_units():
     assert rec0["w0"] == 1.0
     # t^-2 decay shape is read as d=2 through fit_loglog path (sanity).
     assert abs(-obs0.fit_loglog(ts, ts**-2)["p"] - 2.0) < 1e-12
-    assert list(obs0.DW_TS[:2]) == [1.5, 1.6] and obs0.DW_TS[-1] == 4.0
+    assert abs(obs0.DW_TS[0] - 1.5) < 1e-9 and abs(obs0.DW_TS[-1] - 4.0) < 1e-9
+    assert len(obs0.DW_TS) == 26
     assert obs0.DW_TOL == 1e-9
 
 

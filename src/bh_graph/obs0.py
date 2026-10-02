@@ -443,6 +443,7 @@ def wave_return_dw(evals, evecs, origin_idx, ball_idx, ts=DW_TS,
     q = np.sum(np.abs(Amp) ** 2, axis=0)
     fit = fit_loglog(ts, q)
     if fit["n"] < 3:
+        bad["w0"] = w0
         return bad
     return {"d": -float(fit["p"]), "r2": fit["r2"], "n": fit["n"],
             "w0": w0, "ok": True}
