@@ -3,6 +3,18 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **Unreleased (VAC-SELECT-0)** — Dynamical vacuum-selection campaign
+  (branch, pre-data): `src/bh_graph/vacselect.py` (VACSEL-0A/0B/0C
+  regressions + MEASURE-gate firewall + C0..C8 controls + verdict
+  ladder), `scripts/vacselect_campaign.py` (10-task beast battery) +
+  `scripts/vacselect_analyze.py` (frozen HARD gates), 20 pins in
+  `tests/test_vacselect.py` (L4/tiny), VACSEL0-PREREG in
+  `docs/DEFERRED.md`. Read-only consumption of MEASURE-0 / VAC-FIELD-0 /
+  HIDDEN-0 / HIDDEN-BR / SYM-0 / ZERO-0 / FIELD-0 / RAND-0 / QUOT / VAC-0
+  apparatus (byte-identical, sha-pinned). Headline VACSEL-0D..0Z gated
+  on an earned unique W; predicted VACSEL0-NOMEASURE via the four
+  MEASURE debt-reasons.
+
 - **Unreleased (TIME-0)** — Two-boundary history selection prereg +
   apparatus (pre-data): `src/bh_graph/time0.py` (canonical N<=6 universe,
   pairwise compatibility, exact DP counters, Theta, affine field
