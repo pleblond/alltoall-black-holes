@@ -38,6 +38,9 @@ import numpy as np
 FP_ZERO = 1e-9
 KRYLOV_BAR = 1e-9
 TIE_ATOL = 1e-12
+FS_ZERO_BAR = 1e-7  # SYM0-AMENDMENT-1(b): arccos-at-unity sqrt-fp floor
+COND_FLOOR = 1e-12  # SYM0-AMENDMENT-1(a): definedness floor (S1 readouts)
+COND_BAND_HI = 1e-6  # ambiguity-band top; band must be empty (M-INST-band)
 
 U1_ALPHAS = (math.pi / 4.0, math.pi / 2.0, math.pi, 3.0 * math.pi / 2.0)
 SCALE_GRID = (0.5, 2.0)
@@ -450,6 +453,32 @@ def evolve_rows(psi: np.ndarray, g: nx.Graph, order: list, dt: float,
     return _evolve_rows(psi, g, order, dt, n_steps)
 
 
+def com_resultant(psi: np.ndarray, coords: dict, order: list,
+                  periods=None) -> np.ndarray:
+    """Per-axis circular-mean resultant length R in [0, 1] (com conditioner).
+
+    R ~ 0: circular mean undefined (symmetric weights); R ~ 1: localized.
+    Open axes and zero field return 1.0 / 0.0 respectively (never NaN).
+    """
+    import math
+    d = len(next(iter(coords.values())))
+    pos = np.array([coords[v] for v in order], dtype=float)
+    w = np.abs(np.asarray(psi, dtype=np.complex128)) ** 2
+    tot = float(w.sum())
+    if tot == 0.0:
+        return np.zeros(d)
+    w = w / tot
+    out = np.ones(d)
+    for a in range(d):
+        L = periods[a] if periods is not None else None
+        if L is None:
+            out[a] = 1.0
+        else:
+            ang = 2.0 * math.pi * pos[:, a] / float(L)
+            out[a] = float(abs(np.sum(w * np.exp(1.0j * ang))))
+    return out
+
+
 def observe_o3(psi: np.ndarray, g: nx.Graph, order: list,
                sub: dict) -> dict:
     """O3 dynamic-local readouts (short-time response, rates, order)."""
@@ -468,6 +497,10 @@ def observe_o3(psi: np.ndarray, g: nx.Graph, order: list,
     if sub["coords"] is not None:
         out["com_t0"] = np.asarray(com(psi, sub["coords"], list(order),
                                        periods=sub["periods"]), dtype=float)
+        out["com_R_t0"] = np.asarray(com_resultant(psi, sub["coords"],
+                                                   list(order),
+                                                   periods=sub["periods"]),
+                                     dtype=float)
         out["width_t0"] = float(packet_width(psi, sub["coords"], list(order),
                                              periods=sub["periods"]))
         rows_half = _evolve_rows(psi, g, order, DT_FROZEN,
@@ -475,6 +508,14 @@ def observe_o3(psi: np.ndarray, g: nx.Graph, order: list,
         out["com_t05"] = np.asarray(com(rows_half[-1], sub["coords"],
                                          list(order), periods=sub["periods"]),
                                     dtype=float)
+        out["com_R_t05"] = np.asarray(com_resultant(rows_half[-1],
+                                                    sub["coords"], list(order),
+                                                    periods=sub["periods"]),
+                                      dtype=float)
+        per = sub["periods"]
+        d = len(next(iter(sub["coords"].values())))
+        out["com_mod"] = [(float(per[a]) if per is not None else None)
+                          for a in range(d)]
     if sub["kind"] in ("j2", "square"):
         edges = edge_table(g, list(order), sub["coords"], sub["L"])
         out["dir_order_t0"] = dict(directional_order(psi, g, list(order),
@@ -611,6 +652,101 @@ def _arrival_dist(a: dict, b: dict) -> float:
     return float(out)
 
 
+def _nm_of_jnet(jn) -> float:
+    """Resultant flux magnitude ||(qx, qy)|| (angle conditioner)."""
+    v = np.asarray(jn, dtype=float).ravel()[:2]
+    return float(np.linalg.norm(v))
+
+
+def _angle_dist(da: dict, db: dict) -> float:
+    """Circular angle distance, conditioned on defined flux (never NaN)."""
+    from bh_graph.potential import ang_diff
+    if max(_nm_of_jnet(da["J_net"]), _nm_of_jnet(db["J_net"])) < COND_FLOOR:
+        return 0.0
+    return float(ang_diff(float(da["angle"]), float(db["angle"])))
+
+
+def _trace_angle_dist(ta: dict, tb: dict) -> float:
+    """Max circular angle distance over well-conditioned rows (never NaN)."""
+    from bh_graph.potential import ang_diff
+    out = 0.0
+    aa = np.asarray(ta["angle"], dtype=float)
+    ab = np.asarray(tb["angle"], dtype=float)
+    ja = np.asarray(ta["J_net"], dtype=float)
+    jb = np.asarray(tb["J_net"], dtype=float)
+    for i in range(len(aa)):
+        na = float(np.linalg.norm(ja[i]))
+        nb = float(np.linalg.norm(jb[i]))
+        if max(na, nb) >= COND_FLOOR:
+            out = max(out, float(ang_diff(float(aa[i]), float(ab[i]))))
+    return out
+
+
+def _com_dist(ca, cb, ra, rb, mod) -> float:
+    """Per-axis circular com distance, conditioned per axis (never NaN)."""
+    ca = np.asarray(ca, dtype=float)
+    cb = np.asarray(cb, dtype=float)
+    ra = np.asarray(ra, dtype=float)
+    rb = np.asarray(rb, dtype=float)
+    out = 0.0
+    for i in range(len(ca)):
+        if max(float(ra[i]), float(rb[i])) < COND_FLOOR:
+            continue
+        dd = abs(float(ca[i]) - float(cb[i]))
+        L = (mod or [None] * len(ca))[i]
+        if L:
+            dd = min(dd, float(L) - dd)
+        out = max(out, dd)
+    return out
+
+
+def _com_defined_ok(ra, rb) -> bool:
+    """Boolean check: com fully defined on every axis (both records)."""
+    ra = np.asarray(ra, dtype=float)
+    rb = np.asarray(rb, dtype=float)
+    return bool(all(max(float(ra[i]), float(rb[i])) >= COND_FLOOR
+                    for i in range(len(ra))))
+
+
+def o3_conditioning(oa: dict, ob: dict) -> dict:
+    """Definedness audit for an O3 pair (SYM0-AMENDMENT-1(a)).
+
+    Collects every conditioning value (flux resultants, com resultants,
+    both records); counts ambiguity-band hits [COND_FLOOR, COND_BAND_HI)
+    and straddles (defined-vs-undefined across the pair per decision
+    unit). Width shares the com decision (no separate unit).
+    """
+    vals = []
+    straddle = 0
+    if "dir_order_t0" in oa and "dir_order_t0" in ob:
+        na = _nm_of_jnet(oa["dir_order_t0"]["J_net"])
+        nb = _nm_of_jnet(ob["dir_order_t0"]["J_net"])
+        vals += [na, nb]
+        if (na < COND_FLOOR) != (nb < COND_FLOOR):
+            straddle += 1
+    if "d_trace" in oa and "d_trace" in ob:
+        ja = np.asarray(oa["d_trace"]["J_net"], dtype=float)
+        jb = np.asarray(ob["d_trace"]["J_net"], dtype=float)
+        for i in range(len(ja)):
+            na = float(np.linalg.norm(ja[i]))
+            nb = float(np.linalg.norm(jb[i]))
+            vals += [na, nb]
+            if (na < COND_FLOOR) != (nb < COND_FLOOR):
+                straddle += 1
+    for kr in ("com_R_t0", "com_R_t05"):
+        if kr in oa and kr in ob:
+            ra = np.asarray(oa[kr], dtype=float)
+            rb = np.asarray(ob[kr], dtype=float)
+            vals += [float(v) for v in ra] + [float(v) for v in rb]
+            for i in range(len(ra)):
+                if (float(ra[i]) < COND_FLOOR) != (float(rb[i]) < COND_FLOOR):
+                    straddle += 1
+    amb = sum(1 for v in vals if COND_FLOOR <= v < COND_BAND_HI)
+    return {"n_ambiguous": int(amb), "n_straddle": int(straddle),
+            "cond_min": (min(vals) if vals else None),
+            "n_values": len(vals)}
+
+
 def obs_distance(oa: dict, ob: dict, family: str) -> dict:
     """Per-readout distances within one family (frozen normalizations)."""
     d = {}
@@ -638,18 +774,26 @@ def obs_distance(oa: dict, ob: dict, family: str) -> dict:
                                             ob["one_step_response"])
         d["bond_rate_norm"] = _scal_dist(oa["bond_rate_norm"],
                                          ob["bond_rate_norm"])
-        for k in ("com_t0", "com_t05"):
+        for k, kr in (("com_t0", "com_R_t0"), ("com_t05", "com_R_t05")):
             if k in oa or k in ob:
-                d[k] = _vec_dist(oa[k], ob[k])
+                d[k] = _com_dist(oa[k], ob[k], oa[kr], ob[kr],
+                                 oa.get("com_mod"))
         if "width_t0" in oa or "width_t0" in ob:
-            d["width_t0"] = _scal_dist(oa["width_t0"], ob["width_t0"])
+            if _com_defined_ok(oa["com_R_t0"], ob["com_R_t0"]):
+                d["width_t0"] = _scal_dist(oa["width_t0"], ob["width_t0"])
+            else:
+                d["width_t0"] = 0.0  # center undefined: excluded, filed
         if "dir_order_t0" in oa or "dir_order_t0" in ob:
-            for k in ("D", "S", "angle"):
+            for k in ("D", "S"):
                 d[f"dir_{k}"] = _scal_dist(oa["dir_order_t0"][k],
                                            ob["dir_order_t0"][k])
+            d["dir_angle"] = _angle_dist(oa["dir_order_t0"], ob["dir_order_t0"])
         if "d_trace" in oa or "d_trace" in ob:
-            for k in ("D", "S", "angle", "J_net"):
-                d[f"dtrace_{k}"] = _vec_dist(oa["d_trace"][k], ob["d_trace"][k])
+            for k in ("D", "S", "J_net"):
+                va = np.asarray(oa["d_trace"][k], dtype=float).ravel()
+                vb = np.asarray(ob["d_trace"][k], dtype=float).ravel()
+                d[f"dtrace_{k}"] = float(np.abs(va - vb).max(initial=0.0))
+            d["dtrace_angle"] = _trace_angle_dist(oa["d_trace"], ob["d_trace"])
     elif family == "O4":
         d["pot_omega"] = _scal_dist(oa["pot_omega"], ob["pot_omega"])
         d["pot_profile"] = _vec_dist(oa["pot_profile"] / max(oa["pot_profile"].max(), 1e-300),

@@ -202,6 +202,7 @@ def run_pair_task(cell):
     wit = sym0.witness_d(obs_x, obs_y, OB_FAMILIES)
     per = {fam: sym0.obs_distance(obs_x[fam], obs_y[fam], fam)
            for fam in OB_FAMILIES}
+    extras["cond"] = sym0.o3_conditioning(obs_x["O3"], obs_y["O3"])
     return _sanitize({"cell": list(cell), "witness": wit, "per_readout": per,
                       "extras": extras})
 
@@ -317,8 +318,9 @@ def run_dyn_task(cell):
         wit = sym0.witness_d(o1, o2, ("O1", "O2", "O3", "O4"))
     else:
         raise ValueError(kind)
+    cond = sym0.o3_conditioning(o1["O3"], o2["O3"])
     return _sanitize({"cell": list(cell), "traj_defect": traj,
-                      "endpoint": wit})
+                      "endpoint": wit, "cond": cond})
 
 
 def run_u_task(cell):

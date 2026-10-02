@@ -248,3 +248,92 @@ def test_scale_shift_exact_laws():
     e1 = sym0.edge_bj(psi, g, order)
     e2 = sym0.edge_bj(sym0.apply_scale(psi, 0.5), g, order)
     assert abs(e2["B"][(0, 1)] - 0.25 * e1["B"][(0, 1)]) == 0.0
+
+
+def test_com_resultant_triggers():
+    subs = sym0.sym0_substrates()
+    sub = subs["j2-L4"]
+    F = sym0.sym0_fields(sub)
+    r_uni = sym0.com_resultant(F["uniform"], sub["coords"], sub["order"],
+                               sub["periods"])
+    assert np.abs(r_uni).max() < sym0.COND_FLOOR  # undefined -> excluded
+    r_pkt = sym0.com_resultant(F["packet"], sub["coords"], sub["order"],
+                               sub["periods"])
+    assert np.abs(r_pkt).min() > 0.1  # localized -> defined
+    r_zero = sym0.com_resultant(F["zero"], sub["coords"], sub["order"],
+                                sub["periods"])
+    assert np.abs(r_zero).max() == 0.0
+
+
+def test_conditioned_com_u1_uniform_excluded():
+    subs = sym0.sym0_substrates()
+    sub = subs["j2-L4"]
+    psi = sym0.sym0_fields(sub)["uniform"]
+    o1 = sym0.observe_o3(psi, sub["g"], sub["order"], sub)
+    o2 = sym0.observe_o3(sym0.apply_u1(psi, 0.7), sub["g"], sub["order"], sub)
+    d = sym0.obs_distance(o1, o2, "O3")
+    assert d["com_t0"] == 0.0 and d["width_t0"] == 0.0
+    c = sym0.o3_conditioning(o1, o2)
+    assert c["n_ambiguous"] == 0 and c["n_straddle"] == 0
+
+
+def test_conditioned_com_packet_moves():
+    from bh_graph.potential import translate_perm
+    subs = sym0.sym0_substrates()
+    sub = subs["j2-L4"]
+    psi = sym0.sym0_fields(sub)["packet"]
+    psi2 = sym0.apply_pushforward(psi, sub["order"], translate_perm(4, 1, 0))
+    o1 = sym0.observe_o3(psi, sub["g"], sub["order"], sub)
+    o2 = sym0.observe_o3(psi2, sub["g"], sub["order"], sub)
+    d = sym0.obs_distance(o1, o2, "O3")
+    assert abs(d["com_t0"] - 1.0) < 1e-9  # one cell, circular metric
+
+
+def test_conditioned_angle_defined_and_excluded():
+    subs = sym0.sym0_substrates()
+    # Defined: packet carries net flux -> circular distance, U1 -> 0.
+    sub = subs["j2-L4"]
+    pkt = sym0.sym0_fields(sub)["packet"]
+    o1 = sym0.observe_o3(pkt, sub["g"], sub["order"], sub)
+    o2 = sym0.observe_o3(sym0.apply_u1(pkt, 1.3), sub["g"], sub["order"], sub)
+    assert sym0._nm_of_jnet(o1["dir_order_t0"]["J_net"]) > 0.01
+    d = sym0.obs_distance(o1, o2, "O3")
+    assert d["dir_angle"] < sym0.FP_ZERO and d["dtrace_angle"] < sym0.FP_ZERO
+    # Excluded: circulating-current stagger has zero net flux.
+    sq = subs["square-torus-4"]
+    cur = sym0.sym0_fields(sq)["current"]
+    q1 = sym0.observe_o3(cur, sq["g"], sq["order"], sq)
+    q2 = sym0.observe_o3(sym0.apply_u1(cur, 0.9), sq["g"], sq["order"], sq)
+    assert sym0._nm_of_jnet(q1["dir_order_t0"]["J_net"]) < sym0.COND_FLOOR
+    dq = sym0.obs_distance(q1, q2, "O3")
+    assert dq["dir_angle"] == 0.0
+
+
+def test_conditioning_straddle_filed():
+    subs = sym0.sym0_substrates()
+    sub = subs["j2-L4"]
+    F = sym0.sym0_fields(sub)
+    ou = sym0.observe_o3(F["uniform"], sub["g"], sub["order"], sub)
+    op = sym0.observe_o3(F["packet"], sub["g"], sub["order"], sub)
+    c = sym0.o3_conditioning(ou, op)
+    assert c["n_straddle"] >= 1  # defined-vs-undefined is recorded
+    assert c["n_ambiguous"] == 0
+
+
+def test_no_nan_zero_field_witness():
+    import math
+    subs = sym0.sym0_substrates()
+    sub = subs["j2-L4"]
+    psi = sym0.sym0_fields(sub)["zero"]
+    o1 = sym0.observe_all(psi, sub["g"], sub["order"], sub)
+    o2 = sym0.observe_all(sym0.apply_u1(psi, 0.7), sub["g"], sub["order"], sub)
+    for fam in sym0.OB_FAMILIES:
+        for v in sym0.obs_distance(o1[fam], o2[fam], fam).values():
+            assert not (isinstance(v, float) and math.isnan(v))
+    w = sym0.witness_d(o1, o2)
+    assert w["D"] == 0.0
+
+
+def test_fs_bar_scale_tiny():
+    psi = tiny_field(4, "bonding")
+    assert sym0.fs_distance(psi, sym0.apply_u1(psi, 2.0)) < sym0.FS_ZERO_BAR

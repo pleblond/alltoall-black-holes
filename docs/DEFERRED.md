@@ -3115,3 +3115,56 @@ never redundancy candidates (absolute readouts move by
 construction). Quantum-mechanical interpretation of the
 projective quotient is FORBIDDEN (no Born rule import; d_FS is
 classical state-space geometry).
+
+## SYM0-AMENDMENT-1 — Instrument corrections (2026-10-02, PRE-RERUN)
+
+First-look outcome (beast, 1973 cells, ledger archived beast-side as
+data/sym0_ledger_look1.json, superseded): SYM0-OPEN with H-D-phase
+(19 U1 cells, O3-only offenders: com/width/dtrace_angle) and
+M-X-fs-zero (1.49e-8) red. All other gates green, including the exact
+physics underneath both failures (edge B/J/E U1-invariant to fp,
+M-B-cov-U1 4.7e-16, H-T-red-U1 1.1e-14/8.9e-13). Both failures are
+representation/fp-scale instrument defects, corrected here WITHOUT
+changing any physics gate threshold except the derived arccos floor:
+
+(a) S1-valued O3 readouts: dir_angle, dtrace_angle, com on periodic
+axes, and width about com are ill-defined at symmetric points (zero
+flux: nm = ||J_net|| ~ 1e-17 fp residue -> atan2 arbitrary up to 2pi;
+uniform rho: circular resultant |z| ~ 0 -> circular-mean angle
+arbitrary, com jumps O(L)). Correction, applied UNIFORMLY to all
+pair/dyn/hierarchy comparisons: circular metrics (banked
+potential.ang_diff for angles; per-axis min(|d|, L-|d|) for com) +
+definedness conditioning (angle iff max(nm_x, nm_y) >= COND_FLOOR;
+com axis iff max(R_x, R_y) >= COND_FLOOR; width iff com fully
+defined; undefined-on-both contributes 0 and is filed). COND_FLOOR =
+1e-12 (~100x above the single-state fp-noise scale N*eps ~ 2e-14,
+1e6 below O(1) signals). Tuning-hazard control (frozen): the
+ambiguity band [1e-12, 1e-6] must contain ZERO conditioning values
+across all pair+dyn cells (new gate M-INST-band, HARD-adjacent: red
+-> SYM0-PARTIAL with the tuning hazard realized, never silently
+passed). Straddle cases (defined vs undefined across a pair) are
+excluded from distance and RECORDED (n_straddle, filed).
+
+(b) M-X-fs-zero bar 1e-9 -> 1e-7: arccos evaluation floor at unity
+(arccos(1-eps) ~= sqrt(2eps); eps ~ 2e-16 -> ~2e-8 observed
+1.49e-8). Bar 1e-7 gives 5x headroom and stays 1e7 below O(1)
+signals. Derived from IEEE arithmetic, not fitted to data. The
+frozen d_FS formula itself is UNCHANGED, as are all other bars.
+
+(c) First look also exposed 243 masked NaN distances (com/width on
+symmetric fields: max() silently ignores NaN, so gates passed
+vacuously on those readouts). The conditioning in (a) removes all
+undefined comparisons by construction; new gate M-INST-no-nan
+(HARD-adjacent like M-INST-band: red -> SYM0-PARTIAL) requires zero
+NaN tokens across pair+dyn witness/per-readout records (legitimate
+arrival-None inf distances remain allowed).
+
+Also filed from first look (interpretation, no gate change): H-E /
+H-T-red-R pass at EXACTLY 0.0 by construction (consistent
+relabeling (G, order) leaves all order-indexed arrays bit-identical;
+only label-keyed records move and transport exactly) — legitimacy
+proven by negative control (untransported coords -> D = 26.76 across
+O2/O3/O4); M-QR O4/O5 show 1 class because they are G-channels
+(psi-blind by banked construction), so the psi-hierarchy is O1..O3
+and the O1->O5 monotonicity expectation is corrected to O1..O3
+monotone + O4/O5 constant-on-fixed-G.

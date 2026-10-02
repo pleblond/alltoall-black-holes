@@ -13,13 +13,25 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from bh_graph.sym0 import FP_ZERO, KRYLOV_BAR
+from bh_graph.sym0 import FP_ZERO, FS_ZERO_BAR, KRYLOV_BAR
 
 CORE_FAMS = ("O1", "O2", "O3", "O4")
 
 
 def _fam_max(rec, fams=CORE_FAMS):
     return max(float(rec["witness"][f]) for f in fams)
+
+
+def _count_nan(o) -> int:
+    if isinstance(o, dict):
+        return sum(_count_nan(v) for v in o.values())
+    if isinstance(o, list):
+        return sum(_count_nan(v) for v in o)
+    if isinstance(o, str) and o == "nan":
+        return 1
+    if isinstance(o, float) and o != o:  # raw NaN (belt and braces)
+        return 1
+    return 0
 
 
 def main():
@@ -181,8 +193,22 @@ def main():
     fs = ledger["fs"]
     fz = [c for c in fs if c["cell"][0] == "zero"]
     fz_max = max([float(c["d_fs"]) for c in fz]) if fz else -1
-    gate("M-X-fs-zero", fz and fz_max < FP_ZERO,
-         f"n={len(fz)} max={fz_max:.3e}")
+    gate("M-X-fs-zero", fz and fz_max < FS_ZERO_BAR,
+         f"n={len(fz)} max={fz_max:.3e} bar={FS_ZERO_BAR:.0e} (A1b)")
+
+    # SYM0-AMENDMENT-1(a)(c) instrument gates (HARD-adjacent).
+    amb = sum(int(r.get("extras", {}).get("cond", {}).get("n_ambiguous", 0))
+              for r in pairs)
+    amb += sum(int(d.get("cond", {}).get("n_ambiguous", 0)) for d in dyn)
+    nstr = sum(int(r.get("extras", {}).get("cond", {}).get("n_straddle", 0))
+               for r in pairs)
+    gate("M-INST-band", amb == 0,
+         f"ambiguity-band hits={amb} (filed straddles={nstr})")
+    nans = 0
+    for r in pairs + dyn:
+        for sec in ("witness", "per_readout", "endpoint"):
+            nans += _count_nan(r.get(sec, {}))
+    gate("M-INST-no-nan", nans == 0, f"nan tokens={nans}")
     fd = [c for c in fs if c["cell"][0] == "dyn"]
     fd_max = max([float(c["drift"]) for c in fd]) if fd else -1
     gate("M-X-fs-dyn", fd and fd_max < KRYLOV_BAR,
