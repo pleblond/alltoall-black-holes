@@ -60,7 +60,7 @@ def analyze_tag(outdir, tag, v_banked, n_origins=16, n_train=8):
         rows = []
         for node, R in rec["targets"].items():
             t = rec["taus"][node]
-            rows.append((t["R"], t["t"], t["tW"], D))
+            rows.append((t["R"], t["tD"], t["tW"], D))
         per_origin.append(rows)
     train = [r for o in per_origin[:n_train] for r in o]
     test = [(oi, o) for oi, o in enumerate(per_origin[n_train:], start=n_train)]
