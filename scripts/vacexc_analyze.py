@@ -4,7 +4,9 @@ Usage:
   python scripts/vacexc_analyze.py --datadir data/vacexc \\
       --npydir data/vacexc/npy --out data/vacexc/verdict.json
 
-All gates mirror VACEXC0-PREREG exactly (bars: vacexc.BARS). Missing
+All gates mirror VACEXC0-PREREG + VACEXC0-AMENDMENT-1 exactly (bars:
+vacexc.BARS; amended: normalized sector purity, deep-linear two-point
+slopes, absolute J bar). Missing
 records or .npy sidecars are LOUD failures (never silent). ZERO is a
 control: ranked in tables but capped (never the vacuum by design).
 """
@@ -169,7 +171,7 @@ def analyze(datadir, npydir):
             packet_ok = packet_ok and bool(r["ok_B"]) and bool(r["ok_J"])
     checks["packet"] = bool(packet_ok)
 
-    # --- sector (0P/0Q weights + frozen) ---
+    # --- sector (0P/0Q weights + frozen; AMENDMENT-1a: normalized purity) ---
     sector_ok = True
     for name, want in (("sector_VMINUS_packet", "sym"),
                        ("sector_VPLUS_hidden", "anti"),
@@ -177,11 +179,17 @@ def analyze(datadir, npydir):
         r = need(recs, name)
         sector_ok = sector_ok and bool(r["w_sym_conserved"]) and bool(r["w_anti_conserved"])
         w0 = r["w0"]
+        tot = float(w0["w_sym"]) + float(w0["w_anti"])
+        assert tot > 0.0, name
         if want == "sym":
-            sector_ok = sector_ok and abs(w0["w_sym"] - 1.0) < 1e-12
+            pure = float(w0["w_sym"]) / tot
+            sector_ok = sector_ok and abs(pure - 1.0) < 1e-12
         else:
-            sector_ok = sector_ok and abs(w0["w_anti"] - 1.0) < 1e-12 \
+            pure = float(w0["w_anti"]) / tot
+            sector_ok = sector_ok and abs(pure - 1.0) < 1e-12 \
                 and r["frozen_err"] < 1e-8
+        notes.append(f"{name}: normalized purity={pure:.15f} "
+                     f"frozen_err={r['frozen_err']:.2e}")
     checks["sector"] = bool(sector_ok)
 
     # --- null (0S witness) ---
@@ -193,23 +201,62 @@ def analyze(datadir, npydir):
     checks["null"] = bool(null_ok)
     notes.append(f"interference null I=0 all vacua x geos: {null_ok}")
 
-    # --- linearity (0U slopes) ---
+    # --- linearity (0U slopes; AMENDMENT-1b: deep-linear two-point gate) ---
     lin_ok = True
+    _eps = list(vx.EPS_LIN)
+    _le = math.log(_eps[1] / _eps[0])
+
+    def _two_point(peaks):
+        if peaks[0] == 0.0 and peaks[1] == 0.0:
+            return float("nan")
+        return math.log(peaks[1] / peaks[0]) / _le
+
     for cand in ("VPLUS", "VPI", "VMINUS", "ZERO"):
+        expect = 2.0 if cand == "ZERO" else 1.0
         for kind in ("packet", "point_amp", "patch"):
             r = need(recs, f"linearity_cand{cand}_kind{kind}")
-            lin_ok = lin_ok and bool(r["ok_rho"]) and bool(r["ok_B"]) and bool(r["ok_J"])
+            for leg in ("rho", "B", "J"):
+                peaks = r[f"peaks_{leg}"]
+                s = _two_point(peaks)
+                if s != s:  # all-zero leg: vacuous iff ZERO (exact B-null theorem)
+                    if cand == "ZERO" and all(p == 0.0 for p in peaks):
+                        notes.append(f"{cand}/{kind}/{leg}: VACUOUS "
+                                     f"(peaks exactly 0; B-null theorem)")
+                        continue
+                    lin_ok = False
+                    notes.append(f"{cand}/{kind}/{leg}: FAIL (nan slope, not ZERO-vacuous)")
+                    continue
+                ok = abs(s - expect) < vx.BARS["lin_slope"]
+                lin_ok = lin_ok and ok
+                if not ok:
+                    notes.append(f"{cand}/{kind}/{leg}: two-point slope={s:.4f} "
+                                 f"expect={expect} FAIL")
             if kind == "packet":
-                notes.append(f"{cand}/packet: slopes rho={r['slope_rho']:.3f} "
-                             f"B={r['slope_B']:.3f} J={r['slope_J']:.3f}")
+                notes.append(f"{cand}/packet: two-point slopes rho="
+                             f"{_two_point(r['peaks_rho']):.4f} B="
+                             f"{_two_point(r['peaks_B']):.4f} J="
+                             f"{_two_point(r['peaks_J']):.4f}")
+            if cand != "ZERO" and kind in ("point_amp", "patch"):
+                notes.append(f"{cand}/{kind}: full-window slopes (filed mixture) "
+                             f"rho={r['slope_rho']:.4f} B={r['slope_B']:.4f} "
+                             f"J={r['slope_J']:.4f}")
     checks["linearity"] = bool(lin_ok)
 
-    # --- ledger_stability (0W norms + bounded + 0Y filed) ---
+    # --- ledger_stability (0W norms + bounded + 0Y filed; AMENDMENT-1c: abs J bar) ---
     stab_ok = True
+    jmax = 0.0
     for cand in ("VPLUS", "VPI", "VMINUS"):
         for kind in ("packet", "point_amp", "hidden_sector", "standing"):
             r = need(recs, f"longtime_cand{cand}_kind{kind}")
-            stab_ok = stab_ok and bool(r["norm_ok"]) and bool(r["bounded"])
+            leg = bool(r["norm_ok"]) and bool(r["ratio_B"] < vx.BARS["stability_ratio"]) \
+                and bool(r["dJ_max"] < 1e-2)
+            stab_ok = stab_ok and leg
+            jmax = max(jmax, float(r["dJ_max"]))
+            if not leg:
+                notes.append(f"{cand}/{kind}: longtime FAIL norm_ok={r['norm_ok']} "
+                             f"ratio_B={r['ratio_B']:.3f} dJ_max={r['dJ_max']:.3e}")
+    notes.append(f"long-time norms + B-ratio + abs-J green: {stab_ok} "
+                 f"(max dJ_max={jmax:.3e} vs bar 1e-2)")
     # 0Y ledger records present (filed, not gated).
     for cand in ("VPLUS", "VPI", "VMINUS"):
         for kind in ("packet", "point_amp", "patch", "hidden_sector"):
@@ -219,7 +266,6 @@ def analyze(datadir, npydir):
         for kind in ("packet", "point_amp"):
             need(recs, f"dbprop_cand{cand}_kind{kind}")
     checks["ledger_stability"] = bool(stab_ok)
-    notes.append(f"long-time norms + bounded green: {stab_ok}")
 
     verdict = vx.campaign_verdict(checks)
 

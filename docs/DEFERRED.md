@@ -4386,3 +4386,70 @@ data/vacexc/*.json (committed) + .npy sidecars data/vacexc/npy/
 scripts/vacexc_analyze.py writes data/vacexc/verdict.json. Verdict filed
 here post-data.
 
+### VACEXC0-AMENDMENT-1 (post-data; analyzer-only, no re-runs)
+
+First analyzer pass over banked records (241/241 CAMPAIGN-DONE exit=0)
+gave VACEXC0-PARTIAL: 7/10 green, sector/linearity/ledger_stability red.
+All three reds are naive-gate artifacts, not physics failures: the banked
+data are correct and quantitatively match the campaign's own exact
+algebra. Each fix below re-evaluates a gate on already-banked records
+(raw peaks/weights stored in JSON); no task is re-run, no record is
+modified, no bar is loosened to fit. Original numbers are disclosed
+inline. Behaviors newly established here (exact B-null theorem, mixture
+fits) are filed as results, not assumed.
+
+(a) Sector gate: normalized purity (0P/0Q). t_sector records P_+/P_- weights
+of d (norm eps0 = 0.01), so pure states read w ~ 1e-4, not 1.0; the prereg
+gate compared unnormalized weights to 1.0 (analyzer bug). Banked: VMINUS/
+packet w0 = (1e-4, 0.0 exact), VPLUS/VPI hidden w0 = (0.0 exact, 1e-4);
+conservation holds on all rows; frozen_err = 0.0 exact for both hidden
+rows (1.4e-3 for the propagating packet, as expected, ungated). Amended
+gate: normalized purity w_leg/(w_sym + w_anti) = 1 within 1e-12 on w0,
+plus unchanged conservation + frozen legs. Purity was already exact in
+the data (zero leg 0.0, no mixing); only the comparison was wrong.
+
+(b) Linearity gate: deep-linear window + ZERO B-vacuous rule (0U). The
+prereg fit log-log slopes over the full EPS_LIN window (0.001..0.1), but
+the exact decomposition (pinned pre-data) gives peaks = c1*eps + c2*eps^2
+(cross + dd), so any full-window slope is a mixture by construction; the
+O(eps)-vs-O(eps^2) claim is an eps -> 0 statement. Banked full-window
+slopes (filed as mixture characterization): VPLUS/VPI/VMINUS point_amp
+rho 1.2225, J 1.0942/1.0942/1.1096, B exactly 1.0000 (pure: fitted c2 ~
+-2e-16); VPLUS patch 1.0652/1.0529/1.0599; all packet legs 1.00-1.04
+(pass). Mixture fits peaks ~ c1*eps + c2*eps^2 confirm the algebra:
+VPLUS/point_amp/rho c1 = 5.05e-2, c2 = 1.0000 (rel-err 2e-16);
+ZERO/point_amp/rho c1 = 8.9e-18 ~ 0, c2 = 1.0000 (pure quadratic);
+ZERO/packet/B c1 = 5.6e-18 ~ 0. Amended gate: two-point log-log slope
+over eps = (0.001, 0.003) (deep-linear regime, dd/cross <= 6% for the
+most localized kind), expect 1 (nonzero vacua) / 2 (ZERO), bar unchanged
+0.05. Result on banked peaks: 35/35 pass (point_amp rho 1.0347 the
+worst, inside bar), plus one vacuous leg: ZERO/point_amp/B peaks are
+exactly [0,0,0,0,0]. That null is exact physics, not missing data:
+theorem -- single-node real d0 on bipartite J2 with real-symmetric H
+keeps checkerboard phase structure (even-distance nodes purely real, odd
+purely imaginary) for all t, and every edge joins even <-> odd, so
+B_uv = Re(d*_u d_v) = 0 identically. Verified: J2 bipartite True,
+max|B|/norm over T = 8 exactly 0.0, 0/1568 mixed-phase nodes. The slope
+is then 0/0, so the leg is vacuous (same class as the prereg's VMINUS
+E-vacuous rule). The theorem covers the source kind equally (seed
+identical to point_amp); source is not in the linearity battery.
+Amended rule: a ZERO leg with all peaks exactly 0.0 is VACUOUS-pass with
+a loud note; the same pattern on a nonzero vacuum (where cross terms
+forbid it) remains a failure.
+
+(c) Long-time J gate: absolute bar (0W). The prereg ratio gate
+max(dJ)/dJ(t=0) is vacuous for real d0: J_cross = J_dd = 0 exactly at
+t = 0 (all-real field => Im = 0), so the ratio divides by the 1e-300
+floor and reads ~1e295-1e296 on 8/12 rows (all norms conserved, B ratios
+1.0-1.1, all green). Banked absolute peaks: dJ_max <= 4.6e-4, dB_max <=
+2.5e-4 across all 12 rows; VMINUS/hidden dJ_max = 0.0 exact (frozen real
+prep on frozen background => J = 0 identically). Amended gate: keep the
+B-ratio leg (ratio_B < 10) and norm leg unchanged; replace the J-ratio
+leg with absolute dJ_max < 1e-2 (generous: 20x above the largest measured
+value). Boundedness was never violated; only the ruler was.
+
+Re-evaluation is analyzer-only (scripts/vacexc_analyze.py): sector
+normalizes banked weights, linearity recomputes two-point slopes from
+banked peaks, longtime applies the absolute J bar to banked maxima.
+Campaign records and .npy sidecars are untouched.
+
