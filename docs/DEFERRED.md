@@ -3365,3 +3365,95 @@ explained the kappa naming fix); L8/L12 wiring smokes + C3-convention pin
 N=8192 21s / N=16384 161s => N=32768 ~21min/decomp (operational, ungated).
 NEXT: prereg-commit, push, beast setup (fresh clone ~/obs0r-69cc), Phase 1
 (eigen128 j2+sq parallel, exp-N8192 eigen, validate on banked L64).
+
+## OBS0R-VERDICT (OBS0R-METRIC (wave-confirmed + six-pair IR battery);
+campaign-closed 2026-10-02; record data/obs0r_verdict.json; staged
+verdict_c0.json on beast; code a924efa (1 pre-data tooling bugfix post-
+prereg: missing-STOP ladder gate + epsilon softening, no threshold touch))
+
+GATES: validate-PASS both L64 tags (worst=0.000e+00 BITWISE: targets-only
+== all-safe exactly); C4-PASS (J2-branch 2.6/3.1% (bar 10%), sq 1.95%
+(bar 5%) -- L128 eigen == banked P1/POT waves); C3-PASS (static TRUE-xi
+1.8994 vs 1.8968 (+0.14%), range 3, residual 1e-16, positive+real+gap);
+C0-L128-PASS (dH 1.9385 (rise from banked 1.9098), ds 2.0692, dW 2.0942,
+all-6 floors <= 0.17); C0-POT-valid (sq mono all sizes); C1-POT-PASS 12/12
+reject (unanimous: mono-invalid/bin-2-undefined); C1-EXT-PASS (dH clause +
+ds drift 1.21->5.52 = 4.30 over 4 N (bar 0.5)); missing-FLAG 0.1116 (WP-map
+UV-range edge, see below; STOP-clear at 0.25). J2_opened ONLY after c0-stage
+pass (discipline kept; J2-L128 eigen/origins ran post-gate).
+
+WAVE (primary): gap128 = |2.2285-2.0942| = 0.1343 <= 0.15 (ORIGINAL DIM bar,
+in filed interval [0,0.3595], < banked gap64 0.1697) => W-FINITE-SIZE-
+CONFIRMED. Filed point was 0.050; observed 0.134 lands inside the max-resid
+band. Trajectories CROSSED: J2 dW rose 0.32->0.93->1.66->2.00->2.23 (residue
+thinning as diagnosed) while C0 drifted 2.28->2.23->2.17->2.09 (estimator
+systematics as window/resolution shift); J2 now sits ABOVE C0. Remaining gap
+is consistent with substrate-dependent systematics (purification removes
+~50% J2 vs ~3% sq) now that the beating floor is subdominant. The OBS-0 wave
+discrepancy was dominated by finite-size beating, as filed.
+
+DIM128-PASS: dH gap 0.0000 EXACT (7th year of J2-balls==2x-square: now at
+L128), ds gap 0.0005 (2.0697/2.0692, EXACT-stable across L20->128 both
+sides), dW gap 0.134. No d_P exists (prereg honest branch kept).
+
+P-BRANCH: mono-valid J2+sq at ALL sizes (28/42/64/128); void=False,
+incompatible=False. The all-path static field inverts cleanly into a scalar
+ruler on both substrates and refuses to on the expander.
+
+PAIRS@128 (non-inferiority + 0.40 cap): ALL 6 PASS with margin. J2 vs C0:
+GW 0.146/0.145, GD 0.179/0.170, WD 0.118/0.128 (J2 tighter), GP 0.083/0.081,
+DP 0.0089/0.0087, WP 0.035/0.038 (J2 tighter). Sanity@64 PASS (G/D/W banked
+0.147/0.160/0.154; P new 0.083/0.009/0.034). L scaling of P floors: FLAT
+(GP ~0.081-0.084 ALL sizes both substrates). METRIC=True: topology,
+diffusion, coherent waves and the static all-path field infer the same
+effective geometry up to fixed global calibration.
+
+UNIVERSAL-clauses (ladder already METRIC): (i') three-regime: FAIL (1/6:
+DP only). GW falls 1.83->0.12 then flat (UV-transient->floor, no interior
+max); GD U-ish but far-bin max (diffusion wrap-shift grows to the wrap
+boundary); WD dips mid-far then SPIKES 0.33 at [61,64) (wrap-edge);
+GP rises 0.072->0.083 monotone; WP valley-then-rise. NO re-convergence
+toward the far IR at L128: floors persist (GW) or rise (GD/WD) approaching
+R->D/2. The "IR concordance" is C0-relative non-inferiority (J2 reproduces
+the known-2D floor structure, often tighter), NOT absolute collapse --
+OBS-0's "SHARED not EMERGENT" verdict extends to waves+POT. (ii') IQR:
+PASS spectacularly (0.001-0.033 all 6 pairs -- no privileged origin).
+(iii') sheet: PASS (EXACT banked-pattern reproduction at L128: tD R=2
+contrast 0.1667 (banked 0.167), IR-blind both rulers, tW blind everywhere).
+POT sheet (descriptive): the tD PATTERN EXACTLY -- UV R=2 contrast 0.1407
+(L-independent to 5 decimals all 4 sizes), R=1/3 + meso 0.0000: the all-path
+field forgets sheets at the same scale as diffusion. (iv') pert: DROPPED
+per prereg (banked estimator-side fail stands). (v') scaling: PASS (G floors
+stable 0.001/0.009, P bin-2 stable ~0.001, WD-T3 DOWN L64->128: the L20->42
+rise REVERSED -- concordant regime expands with L). C0/C1 behave (above).
+UNIVERSAL=False on (i') alone.
+
+MISSING-FLAG 0.1116 (filed, mechanism understood, C0-matched): WP-map
+~11% test-missing, SIZE-INDEPENDENT constants (J2 0.1116 / sq 0.1087 all 4
+sizes): innermost-shell phi sits above the fitted -lnphi affine range (UV
+curvature from the Yukawa prefactor bends the line the global fit must
+split). Deterministic frozen-rule exclusion, same both substrates (delta
+0.003). GP-missing 0.06-0.10 (tail range), DP 0.000, GDW ~0.000.
+
+LADDER: OBS0R-METRIC (W-CONFIRMED + DIM128 + 6-pair battery + sanity; not
+UNIVERSAL via three-regime). OPENS OBS-1 (observer reconstruction) per
+prereg: an embedded observer with only operational ruler data can now be
+asked what geometry it infers. Historical OBS0-DISCORDANT at L<=42 PRESERVED
+(verdict JSON carries it; obs0.py untouched).
+
+INTERPRETATION (filed, modest): five filed gaps (1.86->0.13) closed per the
+finite-size model; four independent physical processes (shortest paths,
+diffusion, coherent propagation, static all-path response) now mutually
+predict pairwise distances up to FIXED global maps, benchmarked against a
+known-2D control they match-or-beat -- while absolute ruler floors do NOT
+collapse toward the IR (distinct asymptotic norms + wrap physics persist).
+Geometry on J2 is operationally SHARED (lattice-like, probe-independent up
+to calibration), not EMERGENT (IR-collapsing). OBS-1 must reconstruct from
+ruler relations + floors, not from convergence.
+
+**Kill relevance:** OBS0R-METRIC upgrades (not closes) the program: the
+single OBS-0 failure resolved out-of-sample as diagnosed, and a new all-path
+probe (which had every right to disagree -- POT-1 proved its route-
+sensitivity) converged onto the same operational geometry. The surviving
+non-convergence (absolute floors, far-IR wrap rise) constrains OBS-1's
+reconstruction target: calibration-relative geometry with floors.
