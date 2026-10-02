@@ -13,7 +13,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from bh_graph.grav0 import (  # noqa: E402
+from bh_graph.grav0 import (
     amplitude_series,
     delta_profiles,
     fit_front,
@@ -36,7 +36,8 @@ def load_cell(outdir, L, pert, dyn):
         outdir, f"grav0_L{L}_{pert}_{dyn}_s*.json")))
     deltas, acc_p, acc_c, conn, longs = [], [], [], [], []
     for fn in fns:
-        d = json.load(open(fn))["legs"]
+        with open(fn) as f:
+            d = json.load(f)["legs"]
         ps = {float(t): {int(r): v for r, v in prof.items()}
               for t, prof in d["pert"]["snapshots"].items()}
         cs = {float(t): {int(r): v for r, v in prof.items()}
@@ -122,8 +123,6 @@ def main():
     a = ap.parse_args()
     cells = {}
     Ls = sorted({int(fn.split("_L")[1].split("_")[0])
-                 for fn in glob.glob(os.path.join(a.datadir, "*.json"))})
-    Ps = sorted({fn.split("_P")[1].split("_")[0] if "_Pc-u5_" not in fn else "c-u5"
                  for fn in glob.glob(os.path.join(a.datadir, "*.json"))})
     print("L:", Ls)
     rows = []
