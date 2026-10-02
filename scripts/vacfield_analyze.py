@@ -76,7 +76,7 @@ def analyze(datadir, npydir):
     assert cen["L4"]["n_zero"] == 22
     assert abs(cen["L8"]["e_min"] + 8.0) < 1e-9
     assert abs(cen["L8"]["e_max"] - 8.0) < 1e-9
-    assert cen["L8"]["n_zero"] == 80  # 64 flat + nodal(8) = 64 + 14
+    assert cen["L8"]["n_zero"] == 78  # 64 flat + nodal(8) = 64 + 14 (Amend-3)
     assert cen["L8"]["bloch_max_dev"] < vf.BARS["bloch_dev"]
     notes.append("census L4/L8 exact (e_min/max, n_zero 22/80, Bloch)")
 

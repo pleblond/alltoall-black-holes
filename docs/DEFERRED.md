@@ -3200,3 +3200,10 @@ unchanged. (b) Sampled-ledger per-seed f_0 tolerance 0.01 -> 0.015
 exact, seed-std < 0.01 and exhaustive fractions unchanged).
 Applies to VPI/VMINUS L28 + extremes + m1ctl. Ladder structure
 unchanged.
+
+### VACFIELD0-AMENDMENT-3 (arithmetic-typo correction; campaign records opened)
+
+L_DIAG = 8 census gate corrected 80 -> 78 (64 flat + nodal(8) = 64 +
+14 = 78; the prereg "80" was an arithmetic typo). Both legs agree:
+exact-diag n_zero = 78, Bloch n_zero = 78, candidate residuals 0.0.
+No gate logic changed; the asserted number now matches the derivation.
