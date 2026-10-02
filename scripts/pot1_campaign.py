@@ -288,13 +288,8 @@ def main() -> int:
         cases.append(dict(substrate="j2", L=6 if smoke else 28,
                           pin_nodes=[_j2_id(6 if smoke else 28, 0, 0)],
                           s_vals=[lam], tag=f"lam_{nm}", init="zero"))
-    # ---- C1: free packet replication (pinning disabled) ----
-    if not smoke:
-        cases.append(dict(substrate="j2", L=28, pin_nodes=[],
-                          s_vals=[], tag="free_packet", init="packet",
-                          packet=dict(r0=(7.0, 14.0), k=(0.3, 0.0), sigma=4.0),
-                          t_mult=1.25))
-    # (C1 uses DT=0.02 not POT-0's 0.1: same physics, finer steps. Filed.)
+    # NOTE: C1 free-packet replication runs in-process in main (finer
+    # control of the COM trace); no pin-less worker case (dist needs pins).
 
     pool = mp.get_context("fork").Pool(args.jobs)
     recs = pool.map(_run_driven, cases)
