@@ -532,10 +532,15 @@ def propagate_forward(psi: np.ndarray, g: nx.Graph, order: list,
 
 def propagate_backward(psi: np.ndarray, g: nx.Graph, order: list,
                        dt: float = DT_FROZEN) -> np.ndarray:
-    """Reverse evolution with -dt (exact inverse to 1e-12, C0)."""
-    h = hamiltonian(g, order=list(order))
-    return np.asarray(evolve_fixed(np.asarray(psi, dtype=np.complex128), h,
-                                   -float(dt), 2)["psi"][1])
+    """Reverse evolution via the exact time-reversal identity (C0).
+
+    H(G) = -A is real symmetric, so U(dt)* = U(-dt) = U(dt)^{-1}:
+    U^{-1} phi = conj(U conj(phi)) using only the banked forward
+    propagator plus exact conjugation (no new numerics).
+    """
+    inner = propagate_forward(np.conj(np.asarray(psi, dtype=np.complex128)),
+                              g, order, dt)
+    return np.conj(np.asarray(inner, dtype=np.complex128))
 
 
 def is_identity_step_ok(X: dict, X2: dict, dt: float = DT_FROZEN,

@@ -3048,7 +3048,9 @@ transition mirror (C<->S) over every interior transition. If an
 interior mirror is missing it is REPORTED, not repaired.
 
 **TIME-0C propagator (frozen):** U(G) = banked Krylov evolve_fixed
-one step dt = 0.1; reverse = -dt. C0: roundtrip <= 1e-12 (V0
+one step dt = 0.1; reverse = conjugation identity U^-1 phi =
+conj(U conj(phi)) (H real symmetric; banked forward propagator
+only, no new numerics). C0: roundtrip <= 1e-12 (V0
 bitwise zero, pinned).
 
 **Grid (frozen):** headline N_- in 1..6 x T in 2..6, all (c_-, c_+)
