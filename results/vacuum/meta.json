@@ -1,0 +1,8 @@
+{
+ "prereg": "docs/derivation-prereg.md",
+ "branch": "cursor/vacuum-derivation-7061",
+ "commit": "0fef495d6be23acc4e508f2e5b2654967d1cbe4f",
+ "prereg_commit": "0fef495",
+ "workers": 4,
+ "elapsed_s": 21.13326907157898
+}
