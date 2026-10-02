@@ -226,7 +226,8 @@ def analyze(datadir, npydir):
                      f"split={max(s['split_err']):.2e} intertw={s['intertwining']:.2e}")
     checks["ZERO"]["sector_filed"] = True  # control: trivially in both sectors
 
-    # --- ledger_symmetric (0I) ---
+    # --- ledger_symmetric (0I; VPI one-sided exact per Amendment-1) ---
+    VPI_F0_L28 = 776 / 1559  # same-q pairs 613872/1222256 favor; rest neutral
     for c in vf.CANDIDATES:
         m1s = [need(recs, R("m1", {"cand": c, "seed": s, "amp": 1.0}))["stats"]
                for s in vf.M1_SEEDS]
@@ -234,8 +235,18 @@ def analyze(datadir, npydir):
         co4 = need(recs, R("contract", {"cand": c, "L": 4}))
         co28 = need(recs, R("contract", {"cand": c, "L": 28}))
         contract_ok = bool(co4["uniform_ok"] and co28["uniform_ok"])
-        if c in ("VPLUS", "VPI", "ZERO"):
+        if c in ("VPLUS", "ZERO"):
             m1_ok = all(s["f_zero"] == 1.0 for s in m1s) and ex["f_zero"] == 1.0
+        elif c == "VPI":
+            f0 = [s["f_zero"] for s in m1s]
+            m1_ok = (all(s["f_pos"] == 0.0 for s in m1s)
+                     and all(abs(x - VPI_F0_L28) < 0.01 for x in f0)
+                     and float(np.std(f0)) < 0.01
+                     and abs(ex["f_zero"] - 128 / 368) < 1e-12
+                     and abs(ex["f_neg"] - 240 / 368) < 1e-12
+                     and ex["f_pos"] == 0.0)
+            notes.append(f"VPI f0 L28: {[round(x, 4) for x in f0]} "
+                         f"(expect {VPI_F0_L28:.4f}), f_pos = 0 exact")
         else:
             f0 = [s["f_zero"] for s in m1s]
             m1_ok = (all(abs(x - 0.5) < 0.01 for x in f0)
@@ -270,12 +281,20 @@ def analyze(datadir, npydir):
     assert abs(rq["VPLUS"]["rayleigh"] + 8.0) < 1e-9
     assert abs(rq["VPI"]["rayleigh"] - 8.0) < 1e-9
     assert rq["VPLUS"]["rho_drift"] < 1e-8 and rq["VPI"]["B_drift"] < 1e-8
-    for sub in ("sq-28", "ring-256"):
-        for c in ("VPLUS", "VPI"):
-            for s in vf.M1_SEEDS:
-                st = need(recs, R("m1ctl", {"sub": sub, "cand": c, "seed": s}))["stats"]
-                assert st["f_zero"] == 1.0, (sub, c, s, st)
-    notes.append("0S controls exact (energies, currents, flat ledgers, H_Q)")
+    for sub, f0_vpi in (("sq-28", 388 / 779), ("ring-256", 126 / 253)):
+        for s in vf.M1_SEEDS:
+            st = need(recs, R("m1ctl", {"sub": sub, "cand": "VPLUS",
+                                        "seed": s}))["stats"]
+            assert st["f_zero"] == 1.0, (sub, s, st)
+        for s in vf.M1_SEEDS:
+            # VPI one-sided on every bipartite substrate (Amendment-1):
+            # f_pos = 0 exactly, f_0 = same-q-pair fraction.
+            st = need(recs, R("m1ctl", {"sub": sub, "cand": "VPI",
+                                        "seed": s}))["stats"]
+            assert st["f_pos"] == 0.0, (sub, s, st)
+            assert abs(st["f_zero"] - f0_vpi) < 0.01, (sub, s, st)
+    notes.append("0S controls exact (energies, currents, VPLUS-flat / "
+                 "VPI-one-sided ledgers, H_Q)")
 
     # --- ladder + 0Q table ---
     ladder_keys = ("stationary", "perturbation_ok", "current_free", "stress",
@@ -292,8 +311,9 @@ def analyze(datadir, npydir):
             "relational_Bmax": sh["B_stats"]["maxabs"],
             "current_free": checks[c]["current_free"],
             "stress": checks[c]["stress"],
-            "ledger": "flat" if c in ("VPLUS", "VPI") else
-                      ("structured" if c == "VMINUS" else "trivial"),
+            "ledger": "flat" if c == "VPLUS" else
+                      ("one-sided" if c == "VPI" else
+                       ("structured" if c == "VMINUS" else "trivial")),
             "perturbation_ok": checks[c]["perturbation_ok"],
             "sector": "P+" if c in ("VPLUS", "VPI") else
                       ("P-" if c == "VMINUS" else "trivial"),

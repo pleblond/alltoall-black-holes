@@ -508,9 +508,11 @@ def amplitude_scaling(shape: np.ndarray, g: nx.Graph, order: list,
             slope = float(np.polyfit(la, np.log(np.maximum(y, 1e-300)), 1)[0])
             out[key] = {"slope": slope, "trivial": False}
     M = np.array(normed)
-    with np.errstate(invalid="ignore"):
-        spread = float(np.nanmax(np.nanstd(M, axis=0))) if M.size else float("nan")
-    out["normed_spread"] = spread
+    if np.all(np.isnan(M)):
+        out["normed_spread"] = float("nan")
+    else:
+        with np.errstate(invalid="ignore"):
+            out["normed_spread"] = float(np.nanmax(np.nanstd(M, axis=0)))
     out["normed_trivial"] = bool(np.all(np.isnan(M)))
     return out
 
@@ -859,7 +861,10 @@ def split_roundtrip(psi: np.ndarray, g: nx.Graph, order: list, i, j,
         ph = np.array([psi2[pos2[v]] for v in order2 if v != k]
                       + [eq[0], eq[1]], dtype=np.complex128)
         dEs.append(float(energy_full(ph, h, ho, 1.0) - e0))
-    return {"roundtrip": {k: float(v) for k, v in rt.items()},
+    out_rt = {}
+    for k, v in rt.items():
+        out_rt[k] = v if isinstance(v, str) or v is None else float(v)
+    return {"roundtrip": out_rt,
             "n_covers_total": 3 ** len(nbrs), "n_covers_eval": len(covers),
             "split_dE": dEs}
 

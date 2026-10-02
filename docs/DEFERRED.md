@@ -3161,3 +3161,30 @@ checksums committed in JSON). Full suite on beast (pytest -n 90).
 Analyzer scripts/vacfield_analyze.py writes data/vacfield/
 verdict.json. Verdict filed here post-data (amendments, if any, as
 VACFIELD0-AMENDMENT-n entries with gated re-runs; none pre-data).
+
+### VACFIELD0-AMENDMENT-1 (pre-data analytic correction; no campaign data opened)
+
+Pin validation on L = 4 (tests, not campaign runs) refuted the
+preregistered prediction "VPLUS/VPI f_0 = 1 exactly". VPI's M1 ledger
+is ONE-SIDED, not flat: B_rem = -1/N on every edge (all span the
+bipartition) while B_add = +1/N on same-q non-edges, so
+dE = -2(B_add - B_rem) <= 0 always (f_pos = 0 exactly; every
+favorable move adds a bipartition-frustrating edge). Exact
+predictions: J2 L4 f_0 = 128/368, f_neg = 240/368, f_pos = 0; J2
+L28 f_0 = 776/1559, f_neg = 783/1559, f_pos = 0; square-28 f_0 =
+388/779; ring-256 f_0 = 126/253 (same-q-pair fractions; f_pos = 0
+on every bipartite substrate). The one-sidedness is
+symmetry-dictated (uniform magnitude + bipartite phase), not
+arbitrary. Gate changes (analyzer + pins): VPI ledger check =
+matches-exact-prediction (f_pos = 0 exact, f_0 fraction +/- 0.01,
+seed-std < 0.01); m1ctl VPI likewise; 0Q ledger label "one-sided".
+Ladder structure UNCHANGED (ledger_symmetric = matches prediction
+for all candidates). Firewall-symmetric reasoning (filed): the
+ladder neither promotes a field for a flat ledger nor demotes one
+for a one-sided ledger (both would be consequence-based
+selection); flat vs one-sided vs symmetric ledgers are
+distinguishing MEASUREMENTS carried into the post-data verdict,
+where the mission's JOINT language ("symmetry-balanced background
+rather than an arbitrary uniform collapse bias") is addressed per
+candidate. VPLUS (flat) and VMINUS (symmetric f_0 = 1/2)
+predictions stand as preregistered (pins green).

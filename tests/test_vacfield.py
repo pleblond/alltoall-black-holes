@@ -160,11 +160,24 @@ def test_stress_pins(sub4, ee4):
 # --- 0I: virtual ledgers (exhaustive, L = 4) ---
 
 def test_m1_exhaustive_uniform_flat(sub4):
-    for name in ("VPLUS", "VPI", "ZERO"):
+    for name in ("VPLUS", "ZERO"):
         rep = vf.m1_ledger_exhaustive(vf.candidate_shape(name, sub4, "j2"),
                                       sub4["graph"], sub4["order"])
         assert rep["stats"]["f_zero"] == 1.0, name
         assert rep["n_moves"] == 47104
+
+
+def test_m1_exhaustive_vpi_one_sided(sub4):
+    # Bipartite phase: B_rem = -1/N on every edge (all span q), while
+    # B_add = +1/N on same-q non-edges (240 of 368; N = 32) and -1/N
+    # on diff-q non-edges (128). dE = -2(B_add - B_rem) <= 0 always:
+    # one-sided ledger, f_pos = 0 exactly (Amendment-1).
+    rep = vf.m1_ledger_exhaustive(vf.candidate_shape("VPI", sub4, "j2"),
+                                  sub4["graph"], sub4["order"])
+    s = rep["stats"]
+    assert s["f_zero"] == pytest.approx(128 / 368)
+    assert s["f_neg"] == pytest.approx(240 / 368)
+    assert s["f_pos"] == 0.0
 
 
 def test_m1_exhaustive_vminus_exact_fractions(sub4):
