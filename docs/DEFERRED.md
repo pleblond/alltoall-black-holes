@@ -2988,3 +2988,95 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+POT0-PREREG (FROZEN-2026-10-02 (~02:00-UTC (commit-predates-
+ALL-POT0-campaign-runs!)); omnidirectional-potential-to-coherent-
+directed-wave (POT-0-of-POT-0/POT-1 (POT-1-gated-behind-POT-0!))).
+QUESTION (load-bearing!): can-the-SAME-two-real-scalar-field-on-J2
+support-BOTH-an-omnidirectional-source-relative-potential-like-
+response-AND-a-directed-ballistic-wave-with-direction-from-collective-
+phase-coherence/interference-only (no-directional-variable/memory/
+coin/compass-at-any-node)? FROZEN-ONTOLOGY: G=bare-J2-torus +
+psi_x=r_x+i*i_x + H(G)=-J*A(G)-UNCHANGED (bulk-law-NEVER-touched
+(potential.py-contains-NO-evolution-law (evolution-ONLY-via-
+ballistic.evolve_fixed!))); direction-is-a-property-of-a-many-node-
+configuration-only (vector-embedding-readout-only!).
+APPARATUS (this-commit (17-pins!)): bond-current-J_{u->v}=2J*Im[conj
+(psi_u)*psi_v] (H-continuity!); quotient-(x,y)-displacement-per-edge
+(all-axis-steps-pinned!); J_net=sum-J_e*d_e (orientation-invariant!) +
+S=sum-|J_e| + D=|J_net|/S (S=0->D=0!); per-class-fluxes-(positive/
+negative-part-sums (algebra-pinned: diffs=Q + sum=S!)); spectral-C =
+sheet-summed-quotient-FFT-peak-fraction (+M_eff-participation!) =
+FOURIER-space (independent-of-real-space-flux-D!); gradient-family
+(k_eff=c*k (envelope-exact; c=0-uniform-source + c=1-validated-
+packet-bit-exact-pinned!)); dephasing-family (|packet|*exp(i*(phi+
+(1-c)*eps))-seeded (amplitude/norm-exact!)); scrambling (|psi|*exp
+(i*theta)-seeded (POT-0D-intervention!)); aperture (quotient-disk-R +
+renorm (gradient-kept-pinned!)); J2-autos-rot90/reflectx/translate
+(auto-pinned + covariance-pinned!); plane-wave-D=1 + standing/real-
+D=0-pinned; global-phase-invariance-pinned; spearman-own-impl-pinned.
+HEADLINE-GEOMETRY (P1.1b-validated-window!): L=28-bare-J2-torus +
+sigma=4 + r0=(7,14) (site-centered (exact-symmetries!)) + k=(+-0.3,0)
++ zero-k + T=10-dt=0.1-J=1 (101-rows; <D>=time-mean-over-all-rows!;
+C-measured-at-PREP(t=0) (coherence-is-a-preparation-property!));
+packets-RAW (no-branch-purification (P1.1b-showed-100%-raw-purity!);
+flux-readout-is-branch-blind-BY-DESIGN!); null-ensemble-N=20-seeds-
+0..19-same-envelope (D_null-calibration!).
+POT-0A-SOURCE (unbiased-source-calibration!): prep = sigma=4-k=0-
+uniform-phase-Gaussian (same-envelope-as-packet (ONLY-phase-differs!)
++ full-J2-symmetry-respecting (D4+sheet-exact!)). PASS ⟺ <D>_source
+< 0.05 AND <D>_source <= null_mean+3*null_std (one-sided (source-
+MAY-be-more-symmetric-than-random (D~1e-15-expected (exact-
+cancellation!) vs null~1/sqrt(E)!))). ANY-persistent-direction-
+under-symmetry-neutral-source = apparatus/asymmetry-FAIL-BLOCKS-
+campaign!.
+POT-0B-PACKET (P1.1b-positive-control (NOT-discovery!)): prep =
+sigma=4-k=(0.3,0)-packet. PASS ⟺ ALL: (a)-<D>_packet > 0.5;
+(b)-(<D>_packet-<D>_source) > 0.4 AND ratio-(floor-1e-9) > 10;
+(c)-alpha > 1.3 (P1-MSD-bins!); (d)-mean-C_v-first-50-lags > 0.5;
+(e)-k->-k: cos(mean-J_net(+k),mean-J_net(-k)) < -0.95 AND |<D>|
+matched-10%; (f)-v-fit-r2 > 0.99 (+-k-runs (interference-gate!)).
+POT-0C-INTERPOLATION (LOAD-BEARING!): gradient-c-grid-{0,0.1,...,1}:
+PASS ⟺ D(1)/D(0) > 10 (floor-1e-9!) AND Spearman(v(c),c) > 0.7 AND
+v(0) < 5%-v(1) (lawful-without-analytic-form (NO-J2-v_g-law-pinned
+(no-sin-law-claim!))); dephasing-family-(seed-0)-same-grid: PASS ⟺
+Spearman(D(c),c) > 0.5 AND D(1)/D(0) > 5. BOTH-must-hold (gradient =
+selection-by-gradient; dephasing = selection-by-coherence!). C-
+constancy-check (validation-not-criterion!): gradient-C(c)-flat-
+within-5% (C-measures-concentration-not-gradient (envelope-fixed!)).
+POT-0D-MECHANISM (causal-test!): scramble (seed-0) the-k=0.3-packet
+(envelope/norm-exact!) + evolve-identical + restore (re-prep-clean).
+PASS ⟺ ALL: D_scr < 0.15*D_clean; C_scr < 0.5*C_clean (independent-
+Fourier-measure!); D_rest-within-15%-D_clean; C_rest-within-15%-
+C_clean; pooled-Spearman(C,D) > 0.5 over {noise-11 + clean/scr/
+rest} (gradient-grid-EXCLUDED-from-pool (C-degenerate-there-BY-
+DESIGN (filed-above!))). Post-hoc-ADD (allowed): aperture-R-grid
+into-pool (confinement-varies-both (strengthens-link-test!)).
+POT-0E-COLLECTIVE: R-grid-{2,3,4,6,8,12,full(full-coded-20!)}-same-
+k/center/renorm. PASS ⟺ Spearman(D(R),R) > 0.5 AND D(R=2) < 0.5*
+D(full) AND Spearman(M_eff(R),R) < -0.5 (confinement-broadening!).
+S1-AUTO: rot90: ang_diff(angle_rot,angle+pi/2) < 5deg AND |D|-5%;
+reflectx: ang_diff(angle_ref,pi-angle) < 5deg AND |D|-5%; translate
+(3,5): J_net-identical-1e-9 + D-identical-1e-9; EACH-at-prep-AND-
+evolved-<D> (both-must-pass!). S2-REVERSAL: same-as-B(e) (cos<-0.95
++ |D|-10% (time-mean-J_net-vectors!)). S3-GLOBAL-PHASE: phi-in-
+{0.7,2.1,4.0}: prep-D-identical-1e-12 + prep-C-identical-1e-12 +
+evolved-<D>-identical-1e-9. S4-ZERO-K: <D> < 0.05 AND speed < 5%-
+|v(0.3)| (same-run-as-0A (control-framing!)). S5-DETERMINISM: rerun-
+source+packet: psi-rows-bit-identical + D-traces-bit-identical.
+L42-ROBUSTNESS (appendix-with-teeth!): repeat-A+B-on-L42 (r0=(10,21)
+(scaled-quarter/half!) + same-sigma/k/T). MUST-also-pass-A+B-
+thresholds-else-verdict-CAPPED-at-POT0-SPREAD + filed-size-effect!.
+VERDICTS: POT0-NULL (no-unbiased/coherent-distinction-or-readout-
+fails-controls!); POT0-SPREAD (two-behaviors-but-coherence-not-
+shown-to-generate-direction (C-link-or-interpolation-fails!)!;
+POT0-COHERENCE-DIRECTION (A+B+C+D+S1-S5-ALL-pass (PRIMARY-SUCCESS:
+direction-is-emergent-collective-phase-coherence-on-J2!));
+POT0-COLLECTIVE (+E-passes (STRONGEST: direction-encoded-nonlocally!)).
+FORBIDDEN (POT-0-does-NOT-establish!): electromagnetism/photons-SM/
+Maxwell/charge/B-field/Born-rule/polarization/spin/static-force-law/
+backreaction ("photon-like"-phenomenological-shorthand-only!). POT-1-
+GATE (only-after-COHERENCE-DIRECTION!): fixed-source/sink-conditions
+-> stationary-profile? + source-changes-launch-modes? = static-vs-
+wave-two-regimes-of-same-field? NEXT: freeze-commit-then-beast-
+campaign (scripts/pot0_campaign.py (gated-on-prereg-commit!)).
