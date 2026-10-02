@@ -107,6 +107,11 @@ def evolve(psi0: np.ndarray, h, dt: float, n_steps: int) -> dict:
         raise ValueError("n_steps must be >= 0")
     if n_steps == 0:
         rows = psi0[None, :].copy()
+    elif n_steps == 1:
+        # Single step: endpoint form (start/stop form needs >= 2 points).
+        one = np.asarray(expm_multiply(-1.0j * h * dt, psi0),
+                         dtype=np.complex128).reshape(1, -1)
+        rows = np.vstack([psi0[None, :], one])
     else:
         tail = expm_multiply(-1.0j * h, psi0, start=dt, stop=n_steps * dt, num=n_steps)
         rows = np.vstack([psi0[None, :], np.asarray(tail, dtype=np.complex128)])

@@ -74,6 +74,24 @@ def test_0a_evolve_matches_ballistic():
     assert np.abs(a - b).max() < 1e-9
 
 
+def test_0a_evolve_step_edge_cases():
+    # n_steps = 0/1 edge cases vs dense (campaign spec cell needs n_steps=1).
+    g, order, _ = _j2(3)
+    adj = nx.to_numpy_array(g, nodelist=order)
+    h = R.hamiltonian(g, order)
+    rng = np.random.default_rng(9)
+    psi0 = rng.standard_normal(len(order)) + 1j * rng.standard_normal(len(order))
+    psi0 /= np.linalg.norm(psi0)
+    r0 = R.evolve(psi0, h, 0.3, 0)["psi"]
+    assert r0.shape == (1, len(order)) and np.abs(r0[0] - psi0).max() == 0.0
+    r1 = R.evolve(psi0, h, 0.3, 1)["psi"]
+    assert r1.shape == (2, len(order))
+    assert np.abs(r1[1] - R.kernel_dense(adj, 0.3) @ psi0).max() < 1e-9
+    c1 = R.kernel_column(g, order, order[3], np.array([0.0, 0.3]))
+    assert c1.shape == (2, len(order))
+    assert np.abs(c1[1] - R.kernel_dense(adj, 0.3)[:, 3]).max() < 1e-9
+
+
 # 0B ----------------------------------------------------------------------
 
 def test_0b_spectral_matches_dense():

@@ -3061,3 +3061,8 @@ gate-miss (audit-first (never-force!))). FORBIDDEN: force/gravity/curvature/
 metric-dynamics-claims; vacuum-declarations-from-battery; law-imposition-on-
 Rmax(r); wrap-as-long-range-return. NEXT: freeze-commit-then-beast (suite-
 parallel + campaign (gated-on-prereg-commit!)).
+
+RESPONSE0-AMENDMENT-1 (pre-data (campaign-crashed-before-results!)): evolve-
+n_steps=1-edge-case repair (expm_multiply-start/stop-form-needs->=2-points
+=> endpoint-form-for-single-step (30th-pin (dense-xcheck!))); prereg-grid +
+gates-unchanged (G0-now-30-pins).
