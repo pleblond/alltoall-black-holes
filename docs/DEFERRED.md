@@ -3251,6 +3251,157 @@ B2/B3-STAY-GATED (no-one-way-anomaly + feedback-still-underived
 results + selection!) + scripts/b0a_campaign.py + scripts/b0a_
 analyze.py. NEXT: B0b-dynamic-K-vs-close-P1-null (user-call (gated-
 on-go!)).
+
+## SPEC-PREREG (bound-state spectroscopy; FROZEN-2026-10-01 (~20:00-UTC,
+commit-predates-ALL-SPEC-runs); branch cursor/bound-spectroscopy-d8ef off
+PR-#65-tail (P1-amendment-7); non-interference with in-flight B0a-S3: reuse
+frozen elists/k4sets read-only, separate beast dir, workers<=32))
+
+QUESTION (load-bearing): does a D5inf-formed object K support discrete or
+resonant psi modes, or is the formed graph merely a structural lump? H_K =
+-A_K (J=1, hbar=1; P1 hopping-only convention LOCKED; C0 has NOT advanced
+beyond bare adjacency (no fitted trapping potential, no onsite/degree terms);
+if C0 advances later, re-run is a filed followup, not a revision).
+
+INPUTS (no new formation runs): B0a-rerun frozen states (GRID L28-d0..d3 +
+L42-d0..d1 x SAVES 1500/1800/2000 = 18 formed states; T-match-6/6-banked
+(B0a-S0); elists/k4sets consumed read-only). K = floored-k4 node set per
+save (frozen definition, Stage-0/B0a precedent). Masks node-identity-matched
+onto every control (labels shared, edges differ).
+
+CONTROLS (per formed state; 18 D1 + 18 rewired + 2 bare = 38; 56 graphs):
+(i) bare-J2-torus per L (free/extended-wave + flat-band baseline; E-matched
+by E-conservation); (ii) D1-same-sweep same-L/dyn (structureless relocation;
+reuse B0a-D1 elists; label-matched masks); (iii) degree-preserved rewired
+(spectroscopy.rewired_control, nswap=10*E LOCKED, seed=1000+state_index
+(state_index = GRIDxSAVES enumeration L28-d0-s1500=0.., LOCKED); degree
+sequence exact (pinned); giant fraction filed, never gated).
+
+APPARATUS (this commit; 11 pins): spectroscopy.full_spectrum (dense eigh,
+ascending, deterministic) + ballistic H/IPR/branch primitives (P1-locked) +
+shell1_union (near-K = K u 1-hop in THAT graph) + sheet_index_sets /
+dormant_sheet_of (K-majority sheet b* from background J2 coords, tie->0;
+dormant = 1-b*) + top_candidates_by_enrich(k=3) + top_nonflat_candidate
+(|E|>1e-9 flat exclusion) + isolation_ratios (gap/local-median, window=20) +
+window_contrast (halfwidth=0.5) + rt_partition (bisector sides, core
+excluded) + incoming_energy (<psi0|H|psi0>) + driven_run/transfer_trace
+(global J(t)=1+dJ*sin(Omega*t), graph-intrinsic, no K-detector).
+
+SPEC-0 OBSERVABLES (per mode n): E_n, IPR_n, wK_n, eK_n=wK/(|K|/N), wK1_n
+(near-K), W+/W0/W- (bare-J2 branch basis per L, B0a precedent), s0/s1 +
+dormant weight d_n + enrichment. Per graph: eKmax, IPRmax, IPRNmax=IPR*N,
+top-3 (E*/eK*/IPR*/isolation/outside-band |E*|>8 flag/window-contrast),
+accounting max-dev (W-sum=1 to 1e-9; >1/3 graphs invalid => apparatus-STOP),
+eigennorm max-dev (<1e-9), giant fraction, |K|, |shell|. GATES (hard):
+norm/accounting as above; solver determinism pinned.
+
+SPEC-0 FIRE (SPEC1 = localized spectral mode exists; residence-time ban
+STANDS: no R/delay/wbar in this fire (eigenmodes only)): F=18 formed eKmax,
+D=18 D1 eKmax, R=18 rewired eKmax, B=bare eKmax (floor anchor, excluded from
+null (B0a-A6 precedent)). SPEC1-FIRE iff ALL: (L1) median(F)>5 (5x
+delocalized (B1 precedent)); (L2) Mann-Whitney F > pooled(D u R),
+scipy.stats.mannwhitneyu(alternative='greater') p<0.05 (formed dominates
+randomized structures); (L3) >=2 distinct runs (of 6) hold >=1 save with
+eKmax>5 (object-class, not microstate lottery); (L4) size-robustness:
+median formed raw IPRmax L42 / L28 >0.6 (localized~1.0 vs extended~0.44
+(N28/N42); threshold midway, LOCKED). SECONDARIES (filed, supportive only):
+(S1) median top-eK isolation>2; (S2) fraction |E*|>8 filed (>=1/3 = strong
+outside-continuum); (S3) median window-contrast>10 (IPR vs bare same-E).
+VERDICT: all-L-fire => SPEC1 (+ publish E* predictions for SPEC-1); else =>
+SPEC0 (no localized/resonant modes beyond controls; SPEC-1/2 MOOT, STOP).
+
+SPEC-1 PREREG (frozen procedure; values TBD from SPEC-0 verdict commit; gated
+on SPEC1-FIRE): STATES = top-3 formed by eKmax (>=2 runs enforced: if top-3
+span <2 runs, replace 3rd with best state from another run (LOCKED)) +
+matched D1 + bare per (L,d,s). PREDICTIONS: E* = top_nonflat_candidate per
+state (single energy each, frozen before ANY SPEC-1 run; flat-band top
+skipped by locked rule). PROTOCOL (per state x k): frozen scattering, B0a-S3
+headline cell only (+branch, x-directed, operational approach-sign verify on
+actual graph (B0a-A4); neither-approaches => cell-invalid-filed): sigma=4,
+|k| in {0.1,..,0.8} (8 LOCKED), dt=0.1, T=200. OBSERVABLES: R/T (rt_partition
+halves at T), P_local=wbar (late-20% core weight), delay crossing-vs-bare
+(B0a first-crossing, r_core=sqrt(|K|); NaN-if-miss; >=5-non-NaN-else-void),
+E_in=incoming_energy per cell. COVERAGE: E* within [min E_in -0.5, max E_in
++0.5] else state unscorable-filed (need >=2 scorable else SPEC-1 VOID-filed).
+SPEC2-FIRE (resonance at predicted energy) iff >=2/3 scorable states satisfy
+BOTH (i) P_local(k*)>max_{k!=k*} P_local(k), k*=nearest-E_in-to-E* (peak at
+prediction), AND (ii) P_local(k*)>3x matched-D1 same-k (blob-specific, not
+generic k-dependence). R/T/delay filed descriptive (characteristic structure;
+no fire role (single-comparison discipline)). VERDICT: FIRE => SPEC2
+(formation->object->discrete spectrum (headline)); else SPEC1-capped
+(localized mode without scattering resonance).
+
+SPEC-2 PREREG (frozen procedure; gated on multi-level gate): GATE: state
+qualifies iff >=2 modes with eK>5 AND |Ea-Eb|>0.2 (distinct levels, LOCKED);
+>=1 qualifying state else SPEC-2 MOOT (single-level cap filed). STATES: top
+<=2 qualifying by eKmax. PREDICTIONS: DeltaE=|E1-E2| (top-2 eK modes) per
+state, frozen before ANY driven run. SPEC3-FIRE (reproducible multi-level
+spectrum) iff >=2 distinct runs hold qualifying states AND their DeltaE agree
+within 30% (rel. diff <0.3, LOCKED). DRIVE: psi(0)=eigenstate-1, H(t) global
+J(t)=1+0.05*sin(Omega*t) (weak, LOCKED), dt=0.05, T=200 (4000 steps),
+M(Omega)=max_t |<2|psi(t)>|^2; SCAN Omega = DeltaE*{0.7,0.8,0.9,1.0,1.1,1.2,
+1.3} (7 LOCKED). SPEC4-FIRE iff >=1/<=2 states show M(DeltaE)>max others AND
+M(DeltaE)>0.1 AND M(0.7/1.3 DeltaE)<0.5*M(DeltaE) (peak shape, LOCKED).
+VERDICT: FIRE => SPEC4 (driven transitions at predicted spacings); SPEC3-fire
++ SPEC4-null => SPEC3-capped; else SPEC2-capped.
+
+ANALYSIS LOCKS: scipy defaults (mannwhitneyu alternative='greater' as above);
+seeds/workers/checkpointing in campaign scripts (untracked, beast); verdicts
+filed here with JSON artifacts referenced, never pinned. P1/P2/P3 untouched
+(no polarity/handedness readouts in any SPEC run).
+
+NEXT: SPEC-0 campaign (gated on prereg-commit!).
+
+## SPEC-0-VERDICT (SPEC0 (beast; 56 graphs, 536s, 8 workers; acc-bad=0
+norm-bad=0; artifacts spec0_parts/{spec0_graphs,spec0_results,
+spec0_bare_repair}.json + vecs_*.npz (top-5 evecs per formed state)))
+
+FIRE-RULE (locked): L1 median-formed-eKmax=4.69 vs 5.0 FAIL (6%-below);
+L2 MW-formed>pooled(D1+rewired) p=8.1e-05 PASS; L3 3-runs-hit
+(L28-d0+L42-d0+L42-d1) PASS; L4 IPRmax-ratio-L42/L28=1.00 PASS (VACUOUS,
+see (a)). ALL-required => FIRE=False => SPEC0 (no localized/resonant
+modes beyond controls at the preregistered bar). S1 iso-med=1.19 (weak);
+S2 outband-frac=1.00 (ALL formed top-modes outside bare band); S3
+wcontrast=NaN (empty bare windows when S2=1.0, see (c)).
+
+ANATOMY (filed): formed = dense core (~30% nodes hold ALL edges, hubs
+z=45-61) + ~65-70% dust (z=0: 1022/1568 L28, 2472/3528 L42). Core edge
+states below band (E* -8.7..-11.6, S2=1.0) with K-weight 27-68%,
+enrichment 4.3-8.8 (L28-med-4.53 (11/12-states-zero-qual-modes) vs
+L42-med-6.33 (6/6-states-14-to-40-qual-modes, BOTH band edges)); mode
+footprints K-scale (IPR^-1 ~130-190 nodes vs |K|~134-246). Branch/sheet
+null: W~0.24/0.52/0.24 (random-in-bare-basis) + sheets~0.5/0.5 (no
+polarization). Candidate-IPR-ratio-L42/L28=0.69-descriptive (between
+extended-0.44 and localized-1.0).
+
+CONTROLS: D1 extended (eKmax~1.32-1.54 in-band, 0-qual-all-18);
+REWIRED-MATCHES-FORMED (med-4.33/5.85-vs-4.53/6.33; formed-vs-rewired-only
+MW-p=0.084-NS (L2-pooled-significance-driven-by-D1!); qual-pattern-identical
+incl.-L28-d0-s2000-2-qual-coincidence; multi-mode-L42-clusters-reproduced)
+=> core-edge-states-are-DENSITY/degree-driven (same-hubs-same-labels),
+NOT wiring-specific. Bare floor REPAIRED (see (b)): per-mask-eKmax
+med-2.3 max-11.46 (flat-band-CLS-lottery AT-E=0); formed distinction is
+ENERGY (S2-outside-band), not enrichment alone.
+
+OWNED-LIMITATIONS: (a) L4-as-written measured dust degeneracy
+(IPRmax=1.0-exact-both-sizes from 65-70%-z=0) not K-robustness (pass
+vacuous; candidate-IPR-0.69 filed as the intended quantity);
+(b) bare-ran-with-empty-masks (implementation-bug-vs-prereg-text;
+repaired-post-verdict-matched-masks; NO-fire-impact (B-excluded-null));
+(c) S3-NaN-by-construction when S2=1.0 (no-bare-modes-near-outside-band-E*;
+S2-itself-is-the-spectral readout); (d) L1-near-miss inside L28/L42-split
+(4.53-vs-6.33): threshold-placement-lesson for followups, NO-post-hoc-moves.
+
+INTERPRETATION: below-band core ground states concentrating on K EXIST but
+(i) sit below the preregistered absolute bar in median and (ii) are fully
+reproduced by degree-preserving rewiring => generic dense-lump hub effect,
+not an object-specific discrete spectrum. No wiring-specific bound states.
+
+DECISION: SPEC0; SPEC-1/2-MOOT-per-prereg (prediction-before-scan gates
+unmet); STOP. FOLLOWUP-PROPOSED (fresh-prereg + review, NOT-run):
+density-calibrated bars (rewired-distribution per size), candidate-IPR L4,
+L42-multi-level-cluster replication target (14-40-modes) with a
+beat-rewired (not match-rewired) bar.
 P0' RESTATEMENT (conditional — model.md NOT rewritten:
 D14 has no U): IF a separating U is exhibited + basin breadth
 passes + residue → 2 with weak-global residue characterized, THEN
