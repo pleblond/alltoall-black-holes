@@ -3087,23 +3087,6 @@ OR majority-of-9-seeds outside [1.5,2.5] (original clause kept as alternative).
 d_H clause unchanged (no-window expected, D=5-6 observed). J2 gates untouched.
 NEXT: C0-origins + C1-dims, staged analysis (SUPERSEDED by Amendment-2/3 below).
 
-## OBS0-AMENDMENT-3 (d_W estimator replacement; FROZEN pre-J2-data (C0-origins in
-hand, J2-unopened); commit-predates-J2-campaign): the preregistered arrival-
-volume d_W is WRONG-AS-WRITTEN: front-crossing taus carry a large precursor
-offset (R=2.38t+6.1), so A(T)~(T+C)^2 with C~T_window reads dW~1.1, not 2
-(offset-dominated, not geometry). REPLACED estimator: PURIFIED ball-1 quantum
-return -- remove |E|<=1e-9 spectral weight (tol LOCKED; graph-intrinsic via
-eigenbasis), measure q(t) = weight on {origin + 1-hop neighbors}, fit
-q(t)~t^{-d} over T in [1.5,4.0] (dt=0.1, 26 pts). Rationale chain (C0-diagnosed):
-onsite return is window-chaotic (revivals: -1.3..5.7 across windows/L); ball-1
-smooths to L-stable 2.12/2.27/2.22 (L20/28/42). Purification is REQUIRED on J2
-(extensive E=0 flat band ~50% weight would plateau unpurified return; same rule
-both substrates; square loses only nodal modes ~5-9%). C0-dW band WIDENED to
-[1.70,2.45] (contains true 2.0 + C0 readings with margin; DIM stays C0-relative
-so the ~2.2 systematic cancels). arrival_volume_dim SUPERSEDED for d_W (kept in
-module, tested, unused by campaign). Filed descriptively: unpurified plateau +
-N_flat/N (J2 microstructure pin). NEXT: re-run C0-origins, staged analysis.
-
 ## OBS0-AMENDMENT-2 (wave-arrival statistic repair; FROZEN pre-J2-data (C0-origins
 in hand, J2-unopened); commit-predates-J2-campaign): the preregistered CFD-peak
 tau_W is WRONG-AS-WRITTEN on the torus: sq-L42 test shows tau_W exploding for
@@ -3124,4 +3107,82 @@ window uses the FORWARD train law tau_W=a*R+b (code passed inverse-law coeffs
 extrapolate b<0; window must lie in measurement domain; deterministic);
 (iii) sheet-IR tau-key typo. Tests updated (crossing units). C0 gates/values
 unchanged (C0 re-runs origins with the new statistic; J2 still unopened).
-NEXT: re-run C0-origins, staged analysis.
+NEXT: re-run C0-origins, staged analysis (SUPERSEDED by Amendment-3 below).
+
+## OBS0-AMENDMENT-3 (d_W estimator replacement; FROZEN pre-J2-data (C0-origins in
+hand, J2-unopened); commit-predates-J2-campaign): the preregistered arrival-
+volume d_W is WRONG-AS-WRITTEN: front-crossing taus carry a large precursor
+offset (R=2.38t+6.1), so A(T)~(T+C)^2 with C~T_window reads dW~1.1, not 2
+(offset-dominated, not geometry). REPLACED estimator: PURIFIED ball-1 quantum
+return -- remove |E|<=1e-9 spectral weight (tol LOCKED; graph-intrinsic via
+eigenbasis), measure q(t) = weight on {origin + 1-hop neighbors}, fit
+q(t)~t^{-d} over T in [1.5,4.0] (dt=0.1, 26 pts). Rationale chain (C0-diagnosed):
+onsite return is window-chaotic (revivals: -1.3..5.7 across windows/L); ball-1
+smooths to L-stable 2.12/2.27/2.22 (L20/28/42). Purification is REQUIRED on J2
+(extensive E=0 flat band ~50% weight would plateau unpurified return; same rule
+both substrates; square loses only nodal modes ~5-9%). C0-dW band WIDENED to
+[1.70,2.45] (contains true 2.0 + C0 readings with margin; DIM stays C0-relative
+so the ~2.2 systematic cancels). arrival_volume_dim SUPERSEDED for d_W (kept in
+module, tested, unused by campaign). Filed descriptively: unpurified plateau +
+N_flat/N (J2 microstructure pin). NEXT: re-run C0-origins, staged analysis.
+
+## OBS0-VERDICT (OBS0-DISCORDANT-at-tested-scales (dW-only, finite-size,
+mechanism-understood); campaign-closed 2026-10-02; record data/obs0_verdict.json)
+
+GATES: C5-PASS (ring 0.03%, torus 0.67%, J2-branch 1e-5 vs banked -- eigen
+evolution == P1-Krylov to 5 decimals); C0-PASS all-L (dH 1.83/1.86/1.89 monotone
+r2>0.99, ds 2.0692 x3 EXACT-stable, dW 2.18/2.28/2.23, floors GW~0.17 GD~0.17
+WD 0.03-0.16); C1-PASS (dH no-window D=5-6; ds N-drift 1.21->3.56 range 2.35
+(Amendment-1); weyl 6-14 (wild)); missing-tau 0.0% all-tags (no FLAGS/STOPS).
+J2-opened ONLY after C0-stage pass (discipline kept; Amendments 1-3 all pre-J2).
+
+DIM (C0-relative, bar 0.15): dH gaps 0.0000 EXACT all-L (J2 balls = 2x square
+balls exactly); ds gaps 0.0005 all-L (J2 2.0697 vs C0 2.0692); dW gaps
+1.86/1.35/0.57 (L20/28/42) -- FAIL (sole failure). METRIC-pairs (L42,
+non-inferiority + 0.40 cap): GW/GD/WD ALL-PASS (J2 0.177/0.170/0.105 vs C0
+0.164/0.181/0.164 -- J2 WD TIGHTER than C0 at L20/28 (0.015/0.058 vs
+0.034/0.056)). LADDER: DIM-fails => OBS0-DISCORDANT (at L<=42).
+
+MECHANISM (dW shortfall, diagnosed post-verdict from cached eigen): J2
+purified ball-1 return drops steeply (UV, t<1) then hits a slow-mode-beating
+residue floor ~1e-3 by t~2 (oscillating, NOT ergodic: near-flat-band slow
+modes linger), masking the t^-2 ballistic decay inside window [1.5,4]; floor
+thins ~1/N with L => dW 0.32->0.93->1.66 (L20->28->42). Flat-band pin
+CONFIRMED: nflat/N = 54.7/53.4/52.3% (J2) vs 4.6% nodal (sq-L42); w0 =
+0.52-0.55 (J2) vs 0.03-0.05 (sq) -- purification removes half the J2 packet
+(same frozen rule both sides). L64-DIAGNOSTIC (filed, non-gating): J2 dW =
+2.00 vs sq 2.17 (gap 0.17, just above bar); dH 1.9098 EXACT-match; ds
+2.0697/2.0692; floors J2 0.147/0.160/0.154 vs C0 0.162/0.175/0.128
+(non-inferiority holds). PROJECTED (not a verdict): DIM-pass at L>~100 as
+residue thins below window.
+
+UNIVERSAL-clauses (all filed; ladder already decided): (i) UV->IR: INVERTED
+(J2-L42 T1->T3: GW 0.172->0.177, GD 0.103->0.170, WD 0.009->0.105 -- probes
+agree in UV (all count hops) and DIVERGE in IR (Manhattan vs Euclidean vs
+wavefront + diffusion wrap-shift); GW flips True at L64 both substrates);
+(ii) origin-IQR: PASS (0.064/0.024/0.036 <= 0.10 -- OBS-0G positive:
+no privileged origin); (iii) sheet: FAIL-as-gated (tD shows the FULL
+pattern: UV-sensitive at R=2 (0.167) -> IR-blind (0.000); tW blind at ALL
+scales (0.000 even R=1: single-hop wave arrivals sheet-degenerate at
+leading order (same J) + dt=0.05 quantization; finer grid would not reach
+0.10 -- physics, not resolution); (iv) pert: FAIL (dH/ds robust (gaps
+0.00/0.01-0.03), WD-IR within 0.013, but dW gaps 0.17-0.53: deletion splits
+the flat band past the frozen 1e-9 tol -> slow-mode artifact, estimator-side);
+(v) scaling: FAIL (W-D-T3 rises 0.015->0.105 L20->42: IR bin moves to larger
+absolute R where diffusion wrap-shift grows; G-floors stable +-0.013 PASS).
+
+INTERPRETATION (filed, modest): J2 possesses C0-identical topological (exact)
+and diffusive (4-decimal) IR dimensions AND C0-non-inferior pairwise ruler
+relations -- but its wave-spreading dimension lags at L<=42 (slow-mode
+residue) and ruler residuals do NOT shrink toward IR (distinct asymptotic
+norms). "Same dimension + same ruler relations as known-2D, but no emergent
+convergence": the geometry is SHARED (lattice-like) rather than EMERGENT
+(IR-collapsing). OBS-1 (observer reconstruction) NOT opened (gated on
+METRIC+). Followups (queued, non-gating): L128 dW convergence run; adaptive
+purification-tol for perturbed dW; fine-grid tW sheet-UV (expect still <0.10).
+
+**Kill relevance:** OBS0-DISCORDANT is a measurement outcome, not apparatus
+failure (C0/C1/C5 all pass with margin; J2 pairwise matches-or-beats C0).
+The dW-only finite-size failure + inverted UV/IR pattern constrain (not kill)
+the J2-vacuum program: any OBS-1 reconstruction must handle slow-mode residue
+and non-collapsing ruler floors.
