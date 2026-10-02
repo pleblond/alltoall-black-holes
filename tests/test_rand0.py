@@ -410,7 +410,7 @@ def test_joint_normalized():
     tg = tiny_graph("square")
     assert is_joint_normalized_ok(tg["g"], (0, 1), (2, 3))
     assert is_joint_normalized_ok(tg["g"], (0, 1), (1, 2))
-    assert not is_joint_normalized_ok(tg["g"], (0, 1), (0, 3))
+    assert not is_joint_normalized_ok(tg["g"], (0, 1), (0, 2))
 
 
 def test_factorization_disjoint_bitwise():
