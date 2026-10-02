@@ -3097,3 +3097,84 @@ envelope-m*=1/4-Manhattan-front-8) + conserved-current (J-transports-norm)
 (exact-Bloch + IR-shared-Minv + gap-analytic!)). FORBIDDEN-RESPECTED
 (no-EM-claims!). EM-1-GATE: OPEN (falsification-next (radial-vs-required/
 signed-matter/polarization/gauge/Lorentz!)).
+EM1-PREREG (FROZEN-2026-10-02 (~04:30-UTC (commit-predates-
+ALL-EM1-campaign-runs!)); electromagnetic-falsification
+(EM-1-gated-OPEN-by-EM0-BACKREACTIVE!)).
+QUESTION (5-falsifiers (ALL-required (one-or-two-green-NOT-pass!))):
+(F1)-does-frozen-theory-contain-source-accessible-gapless-static-sector?;
+(F2)-does-signed-conserved-additive-localizable-matter-quantity-exist?;
+(F3)-do-two-physical-propagating-polarization-modes-exist?;
+(F4)-does-local-redundancy-emerge-from-(G,psi)-ontology?;
+(F5)-does-source-accessible-linear-isotropic-IR-sector-exist?
+FROZEN-ONTOLOGY: EM0-frozen (G=bare-J2-torus + psi=r+i*s + H=-J*A
+(J=1-headline!)); NO-new-DOF (no-charge/no-A_mu/no-E/B/no-photon-vars/
+no-coin/no-edge-phases/no-node-components/no-gauge-links/no-onsite/
+no-couplings/no-detuning/no-new-H!). FIREWALL: POT-1/EM-0-gap-NOT-tunable-
+to-zero (w->-8-edge-access = edge-tuned-EXCLUDED (never-discovery!));
+gaplessness-must-follow-from-symmetry/spectral-zero/conservation-law.
+BANKED-INPUTS (read-only): EM0-BACKREACTIVE (one-field-static-massive-
+Helmholtz-gap-0.5-Yukawa-xi=0.5265 + radiative-Schrodinger-m*=1/4-front-8
++ conserved-J + backreactive-B (exact-Bloch + IR-shared-Minv-4I!));
+MALUS-0-NULL (7e26d06 (malus-law-m0 (single-propagating-sector ([H,S]=0/
+H*P_anti=0-exact/sym=square@2J/n_zero=838=784+54/sym-v=1.2110-anti-frozen/
+sheet0-50/50!)))); OBS-0-DISCORDANT (1563b55 (no-earned-common-metric =>
+1D-operational-leg-MOOT (intrinsic-distance-only!))); SPEC-0 (3f9292d
+(near-miss + rewired-match => SPEC-1/2-MOOT (no-bound-states!)));
+P1-B0a/B1-NULL (af2dfe9 (no-sitters/anomalies (no-matter-candidates!))).
+APPARATUS (new-module-falsification.py (ADDS-only (banked-untouched!))):
+critical_table/nodal_sample/branch_mult/inventory (1A) + gap_class/chiral/
+mirror/antisym-pins/secular-slope/solve_norm (1B) + commutant_table/range/
+flat_proj/sheet_imbalance (1E) + PR/peak (1F) + sheetpin_mirror_dev (1G) +
+mode_count/scan (1H) + local_phase/bond_law (1J) + compensation_T1T2T3/
+cycle_winding (1K) + ray_fit/critical_class/bloch_eigvecs/overlap (1L) +
+touching_rose (1M) + vortex_imprint/plaquette_circ/twist (1O).
+TESTS (tests/test_falsification.py (18-pins (NO-campaign-data!))):
+inventory-critical/nodal/L28-838 + gap-classes-frozen + chiral-algebra/
+mirror-identity/norm-equal + anticonfined-bulk-0 (+sym-contrast!) +
+slope-helper + commutant-L4 (commute-I/S/Tx/Ty/H/Pflat + Gamma-anticommute
++ ranges-0/1/1/2/global + filed-signed/conj!) + translation-unitarity +
+flat-projector-trace-22 + sheet-signed-(+1/-1/0)-conserved + PR/peak-spots
++ sheetpin-mirror-exact-negation->0.5 + mode-single-everywhere + local-
+visible-O(1)-global-0 + T1T2T3-residuals-O(1) + winding-integer-invariant
++ rays-(Gamma-quadratic/nodal-drift)-nowinding + rose-anisotropic +
+vortex-circulation-twist-law.
+RUNNER (scripts/em1_campaign.py (17-tasks-parallel!)): static/mirror/
+anticonf/xi_L20/L28/L42/L64/radial/commutant/scons/poltrans/disperse/
+sheetpin/localphase/t1t2t3/winding/vortex (+analytic-inline-1A/1H/1L/1M/1N
++ C6-det + bank-controls!).
+GATES (frozen!): A-inventory-exact + kinds; B-class-frozen + static
+(norms-finite-offband-resid-1e-6 + edge-div->3x + w0-singular!) + xiw
+(xi-monotone-4pt-to-edge + ratio-<0.35!) + mirror-
+exact + xi-mirror-1e-9 + anticonfined-bulk-1e-9 (+sym-contrast-1e-3!);
+C-xi-ratio-<1.2 + range-<=4; D-exp-beats-power-2x; E-comm-filed + ranges +
+chiral-L6 + Q_S-(+1/-1/0)-1e-9 + conserved; F-PR-ratio->50 + peak-decay->10x
++ dynasym-anti-disp-<5%-sym; G-mirror-1e-9 + negation->0.5 (FAILS!) +
+Bsorted/E-1e-9; H-maxcount-1 + n_two-0; I-sym-v-5%-R2>0.9 + anti-frozen-5%
++ sheet0-Q0-conserved; J-local->0.05-all + global-1e-9-all; K-T1T2T3->0.05-
+all + winding-integer + small-phase-invariant-1e-9 (+large-rewrap-filed
+(discrete-only!)); L-nocone + rays + overlap-1-1e-12;
+M-rose-spread->1.0; N-gap-0.5-refile (ONLY-unified-sector-massive!);
+O-PR-ratio->2 + gam-ratio-<0.6 + twist-mono-from-0 (SECONDARY!);
+C6-bit-identical + bank-xi-5% + bank-em0-5% + bank-v-2%.
+FALSIFIERS: F1-PASS-iff-(admissible-gapless-AND-xi-grows-2x)
+(EXPECTED-FAIL (only-edge-tuned-zeroes-gap (excluded!) + resonance-
+has-no-static-response + mirror-same-range + anti-confined + xi-
+saturates!)); F2-PASS-iff-bare-suitable (UNRESOLVED-iff-bare-unsuitable-
+AND-matter-immature (EXPECTED-UNRESOLVED (S-conserved-signed-but-sheet-
+automorphism-coupled (negation-fails!) + S-conjugation-propagating<->frozen
++ TxTy-momentum + H-energy + Gamma-not-conserved + Pflat-unsigned-arbitrary
++ single-site-disperses + SPEC/P1-no-matter!))); F3-PASS-iff-modecount>=2
+(EXPECTED-FAIL (count<=1-everywhere-incl-touching (flat-frozen!) +
+MALUS-replication!)); F4-PASS-iff-any-compensation-works (EXPECTED-FAIL
+(local-phases-shift-BJE-O(1) + T1T2T3-all-O(1) + only-discrete-winding
+(non-redundancy!) => complex-scalar-not-gauge-field!)); F5-PASS-iff-cone-
+exists (EXPECTED-FAIL (Gamma/M-definite + X-indefinite + nodal-drift-
+(v.q-NOT-v|q|) + eigvec-k-independent-winding-0 + rose-leading-anisotropic
++ only-unified-sector-massive!)). 1O-FILED (vortex-disperses + twist-
+continuous (momentum-not-flux!) (cannot-rescue-F1-F5!)).
+LADDER: !hard(A&B&C&D&E&F&G&H&I&J&K&L&M&N&C6&Cbank)->EM1-INVALID
+(apparatus-broken-rerun!); all-PASS->EM1-SURVIVES; any-FAIL->EM1-FALSIFIED
+(EXPECTED (F1/F3/F4/F5-FAIL + F2-UNRESOLVED!)); else->EM1-UNRESOLVED.
+EXECUTION: beast-96 (jobs<=17 (Pool!)); seeds-frozen (0/1/2/rng-pinned!);
+determinism-C6-gated; suite-parallel (pytest-xdist!); no-local-experiments
+(beast-only!). NEXT: freeze-commit-then-beast-campaign (gated!).
