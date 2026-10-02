@@ -9159,3 +9159,286 @@ finite-diff chi, heuristic visibility); QUOT-0/FIELD-0/ZERO-0/BR/CONS
 consumed read-only and byte-identical (obs0/obs0r/run_obs0/run_obs1 repair
 is test-only). ZERO stayed a capped control throughout.
 
+## MEASURE0-PREREG — Physical transition measure (FROZEN PRE-DATA)
+
+**Status:** apparatus + semantics + candidates + battery + gates + ladder
+frozen; campaign NOT YET RUN. MEASURE-0 accepts SYM0-CLOSED (X_phys =
+X/(R x U1), Theta identity, d_FS projective geometry, debt-survival
+boolean), RAND0-MEASURE-DEBT (exact admissible sets, stabilizer/orbit
+apparatus, MICRO/ORBIT-UNIFORM, multiplicity dependence), BR-2.5
+contraction/splitting ontology u-v <-> [uv], BR-2.6/CONS0-PARTIAL event
+accounting (dQ = 2B, dE = P1+P2, dxi = -c; splits DEGENERATE; no closing
+field account), BR27-NO-MODE (no firing mechanism from energetics),
+U0-INCOMPLETE (no complete deterministic U_G; H4 ties generic),
+TIME0-NULL (boundaries do not select histories; exact history space
+banked), HIDDEN0-SEPARATED (P_- locally physical, transport-hidden;
+E_- = 0 energetically invisible), VACFIELD0-JOINT (VPLUS/VPI/VMINUS
+family + ZERO background; no single vacuum selected). MEASURE-0 asks
+whether the frozen theory determines a unique W([X],[Y]) >= 0 on
+elementary physical transitions, local, representation-independent and
+time-reversal-compatible (W(X,Y) = W(Theta Y, Theta X)). P(Y|X) is
+normalization of W, never the starting point.
+
+**Frozen inputs (read-only, sha256-verified byte-identical across sibling
+tips):** sym0-e27a apparatus (accounting/backreaction/ballistic/coherence/
+conservation/continuum/contraction/driven/formation+delta/malus/obs0/obs0r/
+obs1/obs1_reveal/phase/potential/quot/rand0/slit/stability/sym0/tunnel/u0/
+ug/ug_sync/vac0 + tests + xdist config + run_obs0/run_obs1/analyze_blind),
+time0-d6cc (time0 + test), hidden0-3478 (hidden/field0 + tests),
+vacfield-8ec1 (vacfield + test). No law change on consumption. Frozen
+conventions: X = (G, psi), simple graphs, H = -A, J = 1, hbar = 1,
+dt = 0.1, sum map, B/J quadrature, E = -2 sum B, dE_contract =
+2B - 2 sum_cross (BR-2.6 MINUS). Banked theorems consumed, never
+re-derived: [H,S] = 0, H P_- = 0, Theta U(t) Theta^-1 = U(-t) (method
+re-applied on the MEASURE grid, identity not re-postulated), U0-H1
+endpoint gauge, CONS-0K split formulas, info-loss books.
+
+**Epistemic firewall (frozen):** no temperature, Boltzmann factors, Born
+rule, action, entropy maximization, Metropolis, event rates, fitted
+exponents, tunable couplings, external noise, hidden random fields,
+preferred graph or matter configuration. W ~ e^{-beta dE}, |psi|^2, |B|,
+e^{iS} appear ONLY as explicit negative controls (M-FW) with their
+parameter/derivation debt filed. No gate may be passed by a control.
+
+**Candidates (frozen, zero fitted params):** const (W = 1 on every
+distinct physical elementary transition); orbit (RAND orbit-uniform
+reconstructed on the physical quotient, control-rival). No other
+candidate may be introduced post-data; Q/R/S/T/U searches may only file
+negative/positive findings against the frozen battery, never fit.
+
+**State battery (frozen, deterministic):** tiny {k2, triangle, square,
+star4, path4} x {zero, bonding, current, antibonding} (20 states; exact
+Aut + exact-iso scope); J2-L4 (N = 32, sheet/symmetry/background scope);
+background battery {ZERO, VPLUS, VPI, VMINUS} on J2-L4 via
+vacfield.candidate_shape (VACFIELD0-JOINT is a family: headline runs ALL
+four, never selects); TIME-0 labeled N<=4 universe (44 states, history
+scope). No big-graph OBS recomputation (SYM-0 O5 cap inherited); exact
+isomorphism capped at N<=12 (RAND Amendment-1 inherited).
+
+**Stages (frozen):** A physical admissible sets A_phys (quotiented;
+representation-independence hard gate); B tiny exact transition graph
+(degrees, stabilizers, types, supports, accounting; no weights); C
+reverse-edge completeness (reversible vs graph-only vs one-way per
+contraction; halves-condition filed); D Theta map (dense-exact dynamics
+check + W reversibility per patch); E invariant inventory (B, J, rho,
+dQ, dE_psi, dE_G, dxi, cross, cycle-rank, degrees, sector, stab/orbit;
+classification table frozen in module); F minimality (param counts;
+const/orbit = 0); G const weight + P = 1/|A_phys|; H reverse consistency
+of const + stationary pi ~ d (descriptive); I orbit-uniform control +
+disagreement battery; J refinement (directed vs undirected vs iso;
+gauge-quotient stability gated, iso grain filed); K composition
+(disjoint factorization gated; shared-node exclusion filed); L locality
+(RAND U0-F support radius; both candidates); M Aut covariance (frozen
+tiny perms); N sheet covariance (J2); O global-phase redundancy (hard
+gate, U1 grid); P TR-even audit (B/rho/Q/E even; J odd filed); Q
+conservation-surface (level degeneracy census; selects = False expected);
+R projective field geometry (daughters discrete; N differs across split
+=> no common-space FS volume; negative expected); S graph combinatorial
+(1 vs |Aut|^-1 vs |orbit|; underdetermined expected); T product measure
+(not forced: B/J couple); U contraction Jacobian (discrete graph + C^2->C
+fiber; no finite invariant preimage measure); V info-loss (graph_bits =
+log2 covers identity; filed, not a derivation); W hidden sector (VMINUS
+retained; E-blindness filed); X background dependence (4/4 run; W
+battery-blindness filed); Y vacuum quiescence as prediction (P_stay =
+1/2 per edge; active, no exception); Z tiny exact transition matrices +
+stochasticity + classes; AA detailed balance (result, not repair); AB
+probability currents (audit); AC TIME-0 history comparison (W = 1 =>
+uniform over histories; NULL-survival expected); AD uniqueness audit
+(analyzer debt-reasons); AE minimality audit (param table); AF verdict.
+
+**Stage gates (frozen):** HARD (any red => MEASURE0-INCOHERENT, stop):
+H-INST-no-crash, H-A-rep-edge, H-A-rep-node, H-A-sig, H-O-phase,
+H-Z-matrix. MEASURED (filed, never gated): M-B/C/D/E/F/G/H/I/J/K/L/M/N/
+P/Q/R/S/T/U/V/W/X/Y/AA/AB/AC/FW (see analyzer for the exact list).
+No gate is tuned after opening data; amendments require a dated
+MEASURE0-AMENDMENT note pre-rerun.
+
+**Verdict ladder (frozen):** MEASURE0-CLOSED = all HARD green + zero
+debt-reasons (unique W forced: no disagreement, fully reversible
+support, an earned selector among Q/R/S/T/U, balance holds).
+MEASURE0-DEBT = all HARD green + >= 1 debt-reason (apparatus coherent,
+no unique W). MEASURE0-INCOHERENT = any HARD red. Debt-reasons
+(frozen analyzer rules): orbit-rival differs; support not fully
+reversible; no conservation selector; graph grain underdetermined.
+PREDICTION (pre-data, theorem-backed): MEASURE0-DEBT via (a) orbit
+rival differs on node patches (RAND-0C both satisfy, no earned
+preference), (b) reverse support graph-only/one-way on generic fields
+(sum-map information loss), (c) no earned selector (CONS-0 DEGENERATE,
+discrete daughters, coupled sectors, infinite fiber), (d) vacuum active
+(RAND-0H), (e) TIME0-NULL survives uniform history weighting. CLOSED
+stays data-reachable; INCOHERENT stays reachable via any HARD red.
+
+**Campaign:** scripts/measure0_campaign.py on beast (96-CPU, mp pool);
+scripts/measure0_analyze.py applies the frozen gates; full suite on
+beast in parallel (test_weighted.py skipped per standing instruction).
+Nothing local except unit pins.
+
+## MEASURE0-AMENDMENT-1 — Apparatus design-error fixes (post-first-look audit)
+
+First-look outcome (beast, 544 cells, ledger archived beast-side as
+data/measure0_ledger_look1.json, superseded): MEASURE0-DEBT with all
+HARD green, but two MEASURED cells mis-measured by apparatus bugs
+(not physics): M-J-refinement reported capped = 72/72 (iso grain
+never computed) and M-AC-history reported n_pairs = 4 (census
+misparsed). Autopsy:
+
+(a) refinement_status called split_isomorphism_classes(g, psi, order,
+k) with a missing `admissible` argument and parsed the return as a
+dict with a "classes" key; the frozen RAND API is
+split_isomorphism_classes(g, psi, order, k, admissible) -> list of
+outcome-key lists. Every call raised TypeError into the except branch
+(n_classes = -1, nonuniform = None). Fix: pass `adm`, parse the list.
+Verified locally: square d=2 -> 6 undirected / 10 directed / 5 iso
+classes, nonuniform True; star4 center d=4 -> 42/82/10, nonuniform
+True. Multiplicity dependence now measured at the iso grain too.
+
+(b) history_weight_status parsed boundary_census (which returns
+aggregates: n_pairs, n_compatible, f_unique, median/max N_hist,
+histogram) as a per-pair dict, yielding n_pairs = 4 (dict-key count
+artifact). Fix: consume the frozen aggregates directly; null_survives
+= (max N_hist > 1). Verified locally: T=2 N<=4 -> 1936 pairs, 1099
+compatible, f_unique = 0.699 (matches banked TIME-0 labeled N<=4
+T=2 value 0.70), max 18, null survives.
+
+Scope: M-J and M-AC are MEASURED (filed, not gated); no HARD gate, bar,
+threshold, battery, candidate, or verdict-ladder rule is changed. No
+physics content moves. Rerun is analyzer/apparatus-only repair with the
+frozen intent restored (RAND Amendment-2 / HIDDEN Amendment-1 precedent).
+
+## MEASURE0-VERDICT — Physical transition measure: MEASURE0-DEBT (DATA)
+
+**Campaign:** beast EC2 16.54.88.181, --jobs 90, 544 cells, 0
+run-failures, wall 2.6s; ledger data/measure0_ledger.json (197KB) +
+data/measure0_verdict.json; 52/52 test_measure0.py pins green (local +
+beast). Amendment-1 (iso + census parsing, apparatus-only, no gate
+touched) applied pre-rerun; look1 ledger superseded, archived
+beast-side. Full suite on beast: pending at filing (beast load ~2500,
+suite at 98% with no failures; count to be appended; test_weighted.py
+skipped per standing instruction). All 6 HARD gates green, all 29
+MEASURED cells filed.
+
+**Headline (frozen ladder):** 4/4 debt-reasons trigger =>
+**MEASURE0-DEBT**. The apparatus is coherent (representation-independent,
+local, covariant, TR-compatible, stochastic) and no unique inter-outcome
+weighting is forced. Matches the theorem-backed prediction; CLOSED was
+data-reachable (zero reasons) and did not occur.
+
+**A (physical sets):** A_phys well-defined on all 60 edge + 72 node
+patches; representation-independence 132/132 under reversal/shuffle x
+U1(pi/3) (class-size multisets identical). Edge: always 2 physical
+classes (N differs). Node: classes <= outcomes (merges filed per-cell).
+Signature (N/E/degrees/triangles/rank + |psi|/B/J multisets + Q/E)
+invariant 20/20 x 8 representatives. Hard gate green.
+
+**B (transition graph):** tiny exact graph 205 physical nodes, 600
+relations (60 contract + 408 split + 132 stay); degrees/reverse-degrees/
+stabilizers/types/supports recorded per edge. No weights. Filed.
+
+**C (reverse completeness):** 33 reversible / 27 graph-only / 0 one-way
+(n = 60). Graph reverse ALWAYS exists (BR-2.5 covers complete: original
+neighborhoods always among undirected covers). Full reverse exists iff
+the frozen equal-halves map restores (psi_i, psi_j), i.e. psi_i == psi_j
+(halves condition): symmetric fields (zero/uniform/bonding) reversible,
+asymmetric (current/antibonding/generic) graph-only. A reversible history
+measure cannot be built on the generic support without additional
+physics (sum-map information loss, U0-H/CONS-0M precedent). Hard
+prerequisite filed as the campaign's sharpest structural finding.
+
+**D (Theta):** dynamics identity 20/20 to KRYLOV (dense-exact U(-t)
+reference; TIME-0 -dt finding honored); W reversibility 20/20 for
+const (W(X,Y) = W(Theta Y, Theta X) holds; reduces to W(X,Y) = W(Y,X)
+on Theta-symmetric signatures only, never assumed).
+
+**E/F (inventory/minimality):** 15-quantity inventory with frozen
+(R x U1, TR, background) classification; TR-even audit 60/60 (B, rho,
+Q, E, dQ, dE, dxi, cross, degrees even; J odd filed). Fitted params:
+const 0, orbit 0; controls boltzmann 1 (beta), born 0-but-forbidden
+(no derivation), absB 1 (scale x0). Firewall kept.
+
+**G/H (const):** W = 1 well-defined on physical outcomes (SYM-0
+quotient makes it representation-independent); P = 1/|A_phys|.
+Reverse-consistent where support is reversible (automatic). Stationary
+pi ~ d pinned (descriptive, no thermodynamics).
+
+**I (orbit control):** disagreement on 36/72 node patches (exactly the
+patches with nontrivial orbit structure; edge patches vacuous 2
+singletons, orbit == micro). The 36 disagreement cells are the primary
+discrimination battery; no earned quantity prefers either weighting
+(RAND-0C both satisfy). Debt-reason 1.
+
+**J (refinement):** directed differs 72/72 (gauge double count is WRONG,
+not rival: merging directed copies restores the undirected total by
+construction). Iso grain: 32/72 nonuniform over exact iso classes
+(square d=2: 6 covers -> 5 classes; star4 center d=4: 42 -> 10),
+40/72 uniform (small patches where covers already are classes, e.g.
+d=1). Micro-uniform is grain-dependent: the quotient ontology does not
+decide the physical grain. Filed per-cell; gauge part gated, iso part
+filed (RAND Amendment-1 cap inherited, N<=12 exact throughout the tiny
+battery, capped = 0).
+
+**K/L/M/N/O (composition/locality/covariance):** disjoint factorization
+12/12 (W=1: joint 1/4 = 1/2 x 1/2; shared-node co-firing excluded by
+enumeration, filed); locality 120/120 both candidates (dist>=3 field +
+disjoint toggle; RAND U0-F radius); Aut covariance 40/40 (frozen tiny
+perms, equal law not identification); sheet covariance green (J2);
+global-phase redundancy 40/40 both candidates (hard gate green).
+
+**P (TR-even):** even 60/60; J odd with exact sign flip (filed: current
+enters scalar reversible weights only through even combinations).
+
+**Q/R/S/T/U (structural searches, all negative, filed):** Q selects
+0/72 (level sets always degenerate: >1 cover on (dxi,dQ)=(0,0);
+CONS-0M reproduced) => debt-reason 3. R selects 0/72 (daughters are
+discrete points; N differs across split so no common-space FS volume
+exists; FS stays a state-space metric, not an outcome measure). S
+underdetermined (1 vs |Aut|^-1 vs |orbit| all invariant, none forced)
+=> debt-reason 4. T not forced (B/J couple G and psi jointly). U no
+finite invariant preimage measure (graph discrete; field fiber C^1
+infinite volume; any cutoff = new parameter).
+
+**V (info-loss):** graph_bits = log2|covers| 4/4 (d=1..4; combinatorial
+identity, filed as non-derivation: counting covers twice does not
+derive a measure). Field: 2 real dims lost per event (continuous).
+
+**W/X (hidden/background):** hidden retained (VMINUS in transition
+space on all battery cells; E-blindness E_- = 0 filed, E not in W).
+Background 4/4 run (VACFIELD0-JOINT family honored, no selection);
+edge-patch n_phys = 2 on all four (sets psi-blind); B/dQ/dE anatomy
+differs per background (filed, no W dependence).
+
+**Y (vacuum quiescence):** P(stay) = 1/2 per edge, 1/|A| per node, on
+ALL backgrounds including ZERO (no exception added). Vacuum active
+under any surviving candidate (RAND-0H reproduced on the quotient).
+Prediction filed, not repaired.
+
+**Z/AA/AB (matrix/balance/currents):** K2 edge-patch matrices
+stochastic both candidates; classes {X},{Y} (contract-daughter is a
+1-node graph: no edge patch, absorbing stay). Detailed balance HOLDS
+with dev = 0.0 and currents zero -- DEGENERATELY (pi = delta on the
+absorber: 0*P terms vanish; filed as absorbing-patch triviality, NOT
+reversibility evidence). A nondegenerate balance test needs a closed
+multi-patch domain, which needs a scheduler (= new content, not in the
+frozen ontology). Filed honestly; no repair imposed.
+
+**AC (TIME-0 history):** T=2: 1936 pairs, f_unique = 0.699, median 1,
+max 18; T=3: f_unique = 0.029, median 3, max 52; null survives both.
+Matches banked TIME-0 labeled N<=4 census (0.70 -> 0.03): W = 1 weights
+histories uniformly, multiplicity survives, boundaries do not select.
+TIME0-NULL reproduced under the candidate measure.
+
+**Debts filed (not closed):** INTER-ORBIT-WEIGHT (const vs orbit, 36
+cells), GRAIN (covers vs iso classes, 32 cells), SUPPORT (27/60
+graph-only reversibility gap), SELECTOR (no Q/R/S/T/U measure),
+SCHEDULER (no global multi-patch P without new content), VACUUM-ACTIVITY
+(P_stay = 1/2 prediction). Firewall controls filed with their debts
+(beta/scale/no-derivation).
+
+**Handoff:** stochastic completion stays underdetermined on the physical
+quotient (RAND0-MEASURE-DEBT survives SYM-0, confirmed exactly). BR-3C
+stays BLOCKED. The program owes either a primitive measure postulate
+(firewall: not emergent from energetics/conservation/geometry as
+currently derived) or new physics that closes one of the six debts.
+Downstream may consume: A_phys apparatus + signatures (HARD-green),
+const/orbit weights as rival controls (never as the answer), the 36-cell
+disagreement battery, reverse-classification per transition, and the
+TIME-0 history-weighting check. No tuning of W is permitted.
