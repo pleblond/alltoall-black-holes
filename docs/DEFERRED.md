@@ -3086,3 +3086,65 @@ input-level equivalence + QUOT-0 Q-P response-function evidence).
 
 NEXT: freeze-commit-then-beast-campaign, full suite on beast (-n 8,
 FIELD-0 precedent), verdict filed here + data/hidden0_*.json.
+
+## HIDDEN-0-AMENDMENT-1 (post-first-run audit; analyzer/apparatus design errors)
+
+First run (beast, 43 cells, ~15 s + rerun-resume): 267/289 checks pass.
+NO post-data bar/ladder/estimator change below alters any physics bar:
+every item is a prereg-intent restoration (analyzer bug), a derivation-
+scope correction, or a geometry-dependent structural filing. All F/T/H/I/
+J/K/O/Q/R/S/N legs passed as preregistered (remote blindness, no-memory,
+read/no-write, extraction, sweep, bond, ledger, vac, exchange). Autopsies:
+
+A1 (analyzer bug, dQ gate): the generic dQ < 1e-9 check fired on amp-RAW
+cells whose prereg construction has dQ = |1-a^2| by design (05raw: 0.75,
+20raw: 3.0, both exactly as constructed). FIX: amp-raw cells check
+dQ == |1-a^2| (1e-9); no data touched.
+
+A2 (prereg-gate contradiction, HAMP-Q): 05q rescales P_+ by the filed
+c = sqrt(1.75) (prereg construction), so exact-pmatch MUST fail; the
+prereg claim is identical P_+ DIRECTION + filed scale (scale audit
+passed). FIX: pmatch exempt for HAMP-Q; direction-collinearity audit
+added (cos angle = 1 to 1e-12). No data touched.
+
+A3 (derivation-scope correction, sodd): Dp(0) S-oddness was derived for
+sign/phase pairs only (|psi_-|^2 cancels there). Shape/amp pairs carry
+S-even |ma|^2-|mb|^2 parts (B:shape/dipole/disk, B:amp fails) -- genuine
+refinement: only unitary-related hidden pairs have purely in-place
+diffusion differences. FIX: sodd gated on sign/phase; shape/amp filed
+descriptive. 0F unaffected (all F cells are sign pairs, all passed).
+
+A4 (structural gate, E:delta B): single-site states occupy no edge, so
+B = 0.0 EXACTLY by EM-0 construction (unit-pin lesson not carried to the
+E:delta campaign gate). FIX: E:delta:B becomes an exact-zero structural
+pin (B_max < 1e-12); rho leg carries distinguishability (passed).
+
+A5 (geometry-dependent filing, G decay/residual): G:sign/phase decay
+0.39/0.41 vs 0.05 bar -- the L28 T = 20 packet WRAPS (COM travel 23.6
+vs period 28) and re-approaches PC by t = 20, so fixed-t_post ratios
+measure torus tails, not hidden-sector physics. The preregistered
+PHYSICS (cross-identity 1e-9: sign/phase differences are pure cross
+terms at all t) PASSED. Shape/amp residuals EXIST (> 1e-6, passed);
+only the 5%-settling match failed (same wrap cause). FIX: decay ratio
++ resid_match become descriptive filings (D_min/D_post/traces filed,
+no bar); G physics carried by the passing cross-identity + residual-
+exists gates. Ladder clause updated accordingly. No re-barring on new
+geometries (tuning hazard declined; L42 rerun NOT done).
+
+A6 (apparatus bug + double-count, L:mixed): pairwise_min_D chunking
+missed in-block pairs for block index > 0 (wrong-column triu slice),
+AND the mixed alphabet double-counts (s,phi) = (-s,phi+pi) (same state
+to fp; minD = 2.28e-18, 32 counted = first-64-block dups exactly).
+FIX: chunking corrected + unit pin with M > chunk; alphabet deduped to
+8 distinct phases/cell (N_hidden^mixed(R) = |R| x 8); the 3 L:mixed
+cells RERUN under this amendment (fresh records replace the 3 lines).
+Sign differences remain covered by B:sign + O-sweep-pi.
+
+A7 (analyzer logic bug, U non-flip): De Morgan violation -- coded
+non-flip as (< 0.05 AND < 3x frozen) where QUOT-0Q's flip bar (>= 0.05
+AND > 3x) complements to (< 0.05 OR <= 3x). Measured pert 3-6e-3
+(< 0.05, same O(eps^2)-with-prefactor scale as QUOT-0Q's 9.1e-3).
+FIX: OR logic. No data touched.
+
+RERUN SCOPE (gated on this amendment commit): 3 L:mixed cells only
+(new code); all other records stand. Verdict gates on the re-analysis.

@@ -583,19 +583,21 @@ def disk_cells(center: tuple, radius: int, L: int) -> list:
 
 def census_mixed_alphabet(order: list, c3: dict, cells_R: list,
                           background: np.ndarray) -> list:
-    """Fixed-background census: bg + s e^{i phi} delta^-_c (0L/0M raw).
+    """Fixed-background census: bg + e^{i phi} delta^-_c (0L/0M raw).
 
-    positions x signs {+,-} x PHASE_GRID (8). Tags filed per state.
+    positions x PHASE_GRID (8 distinct states/cell). Sign doubling is
+    NOT counted separately: (s,phi) and (-s,phi+pi) are the same state
+    exactly (-e^{i phi} = e^{i(phi+pi)}), so counting both double-counts
+    (Amendment-1). Sign differences are covered by B:sign + O-sweep-pi.
+    Tags filed per state.
     """
     bg = np.asarray(background, dtype=np.complex128)
     out = []
     for c in cells_R:
         d = hidden_delta(order, c3, (int(c[0]), int(c[1])))
-        for s in (1.0, -1.0):
-            for j, phi in enumerate(PHASE_GRID):
-                psi = bg + s * np.exp(1.0j * float(phi)) * d
-                out.append({"tag": f"c{c[0]},{c[1]}:s{int(s)}:p{j}",
-                            "psi": psi})
+        for j, phi in enumerate(PHASE_GRID):
+            psi = bg + np.exp(1.0j * float(phi)) * d
+            out.append({"tag": f"c{c[0]},{c[1]}:p{j}", "psi": psi})
     return out
 
 
@@ -636,25 +638,26 @@ def pairwise_min_D(mat: np.ndarray, chunk: int = 64) -> dict:
     argmin = (0, 0)
     n_below = 0
     for a in range(0, m, chunk):
-        blk = M[a:a + chunk]
-        D = np.abs(blk[:, None, :] - M[None, :, :]).max(axis=2)
-        iu = np.triu_indices(blk.shape[0], k=1)
-        if iu[0].size:
-            sub = D[np.ix_(range(blk.shape[0]), range(blk.shape[0]))]
-            tri = sub[iu]
+        b = min(a + chunk, m)
+        blk = M[a:b]
+        B = b - a
+        if B > 1:
+            Dblk = np.abs(blk[:, None, :] - blk[None, :, :]).max(axis=2)
+            iu = np.triu_indices(B, k=1)
+            tri = Dblk[iu]
             k = int(np.argmin(tri))
             if float(tri[k]) < min_D:
                 min_D = float(tri[k])
                 argmin = (a + int(iu[0][k]), a + int(iu[1][k]))
             n_below += int(np.sum(tri < D_LOCAL_BAR))
-        if a + chunk < m:
-            cross = D[:, a + chunk:]
-            k = int(np.argmin(cross))
-            if float(cross.ravel()[k]) < min_D:
-                ii, jj = divmod(k, cross.shape[1])
-                min_D = float(cross.ravel()[k])
-                argmin = (a + int(ii), a + chunk + int(jj))
-            n_below += int(np.sum(cross < D_LOCAL_BAR))
+        if b < m:
+            Dcr = np.abs(blk[:, None, :] - M[None, b:, :]).max(axis=2)
+            k = int(np.argmin(Dcr))
+            if float(Dcr.ravel()[k]) < min_D:
+                ii, jj = divmod(k, Dcr.shape[1])
+                min_D = float(Dcr.ravel()[k])
+                argmin = (a + int(ii), b + int(jj))
+            n_below += int(np.sum(Dcr < D_LOCAL_BAR))
     return {"min_D": min_D if m > 1 else 0.0, "argmin": argmin,
             "n_below": n_below, "n_states": m}
 

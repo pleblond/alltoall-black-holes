@@ -324,7 +324,7 @@ def test_hidden_alphabet_sizes():
     cells = hidden.disk_cells((1, 1), 1, 4)
     bg = hidden.symmetric_uniform(len(order))
     mx = hidden.census_mixed_alphabet(order, c3, cells, bg)
-    assert len(mx) == len(cells) * 2 * 8
+    assert len(mx) == len(cells) * 8  # deduped (A6): 8 distinct phases/cell
     pu = hidden.census_pure_alphabet(order, c3, cells)
     assert len(pu) == len(cells) * 3
     assert sum(1 for s in pu if s["kind"] == "pos") == len(cells)
@@ -335,6 +335,16 @@ def test_hidden_pairwise_min_synthetic():
     r = hidden.pairwise_min_D(M)
     assert abs(r["min_D"] - 1.0) < 1e-12
     assert r["n_states"] == 3
+
+
+def test_hidden_pairwise_min_chunked():
+    # Amendment-1 regression: unique-min pair inside block index > 0.
+    v = np.arange(70, dtype=float) * 10.0
+    v[66] = v[65] + 1e-9
+    r = hidden.pairwise_min_D(v.reshape(-1, 1), chunk=64)
+    assert abs(r["min_D"] - 1e-9) < 1e-12
+    assert tuple(sorted(r["argmin"])) == (65, 66)
+    assert r["n_below"] == 1
 
 
 def test_hidden_pure_sign_quotient_exact():
