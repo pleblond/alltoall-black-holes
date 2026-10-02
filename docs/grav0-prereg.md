@@ -8,6 +8,36 @@
 **Calibration:** 2026-10-02 (T=20 per rule below; θ=0.001 leakage check
 pending on beast pre-campaign).
 
+## Amendment A1 (2026-10-02, pre-campaign, calibration-driven)
+
+U0×P2 calibration (L=42, 4 seeds, T=50) shows the ripple transient
+lives at t < 5 sweeps (footprint erased by t=5, all shells ≈0±SEM
+after; mass pure noise): the prereg snapshot grid (every 5 ticks)
+cannot resolve it. Cause: dense sweeps (N proposals/tick, ball(4)
+touch) give a fast (lightcone-limited) divergence front; front shape
+vs proposal-count is dynamics-intrinsic, so the fix is FINER SAMPLING,
+not relabeling. Changes (dynamics/perts/θ/observables untouched):
+
+- **A1.1 snapshot schedule** (replaces every-5-ticks): every N/20
+  proposals over the first 4 sweeps (80 snaps), every sweep to t=30,
+  every 5 to t=200. Keys in sweeps (float). Rationale: resolve the
+  sub-5-sweep transient with ~100 points.
+- **A1.2 L=64 extension**: U0/U4 × P2/P4 × 16 seeds (front headroom,
+  r ≤ 32); main grid unchanged (L ∈ {20,28,42} all cells).
+- **A1.3 θ rule**: θ=0.001 KEPT as a significance floor. The
+  leakage-raises-θ rule is DROPPED (invalid under exact coupling:
+  far-field signal is genuine causal arrival, and the null is
+  exact-zero, not statistical). Null check instead: U1/U2 far-field
+  must be ≡0 (frozen ⇒ no divergence; violation ⇒ coupling bug,
+  stop and investigate). θ-band robustness {0.0005, 0.002} kept.
+- **A1.4 verdict inputs**: (r_front(t), peak amplitude A(t),
+  r_peak(t), width²(t), mass M(t)) + fits. Added class:
+  TRANSIENT-DISSIPATIVE (support expands then amplitude < θ
+  everywhere; report r_max, t_rise, t_fade; L-scaling decides
+  bounded vs unbounded). FROZEN restated: total accepts < 20 over
+  200 ticks AND r_front pinned (a handful of local repairs ≠
+  carrier; U1×P2 cal showed 1 accept/50 ticks, support still r≤4).
+
 ## 0. Question
 
 Can information about a local structural disturbance propagate

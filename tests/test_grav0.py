@@ -12,19 +12,25 @@ import random
 from bh_graph.grav0 import (
     R_OBS,
     SPAN_SMAX,
+    amplitude_series,
     apply_pert,
+    default_schedule,
     delta_profiles,
     disturbance_field,
     edge_span,
     fit_front,
     front_radii,
+    half_mass_radii,
     map_swap,
+    mass_series,
     mean_delta,
     new_state,
+    peak_radii,
     pristine_geometry,
     radial_profile,
     run_trajectory,
     secondary_fields,
+    shell_sizes,
     squares_touching,
     step_reloc,
     step_swap,
@@ -233,3 +239,40 @@ def test_front_utils():
     assert f["diffusive"]["r2"] > 0.999
     m, s = mean_delta([{0: {0: 1.0}}, {0: {0: 3.0}}])
     assert m == {0: {0: 2.0}} and abs(s[0][0] - 1.0 / 2**0.5) < 1e-12
+
+
+def test_schedule_path_matches_tick_path():
+    # Refactor pin: explicit schedule at integer ticks reproduces the
+    # snapshot_every path bit-identically (same rng stream/order).
+    a = run_trajectory(8, "P2", "U0", 3, 4, 2)
+    b = run_trajectory(8, "P2", "U0", 3, 4, 2, schedule=[2.0, 4.0])
+    assert b["snapshots"] == {0: a["snapshots"][0],
+                              **{t: a["snapshots"][int(t)] for t in (2.0, 4.0)}}
+    assert b["accepts"] == a["accepts"]
+    # A1.1 grid: dense early (0.05 steps to 4), sweeps to 30, 5s after.
+    sched = default_schedule(200, 128)
+    assert sched[:5] == [0.0, 0.05, 0.1, 0.15, 0.2]
+    assert 4.0 in sched and 30.0 in sched and 200.0 in sched
+    assert all(t in sched for t in (5.0, 10.0, 29.0))
+    assert all(t in sched for t in (35.0, 100.0, 195.0))
+    c = run_trajectory(8, None, "U0", 0, 2, schedule=[0.5, 1.0, 2.0])
+    assert sorted(c["snapshots"]) == [0, 0.5, 1.0, 2.0]
+
+
+def test_shape_helpers():
+    # Amplitude/peak/mass/half-mass on a synthetic ripple.
+    mean = {0: {0: 0.2, 1: 0.1, 2: -0.05},
+            1: {0: 0.05, 1: 0.08, 2: 0.06}}
+    assert amplitude_series(mean) == {0: 0.2, 1: 0.08}
+    assert peak_radii(mean) == {0: 0, 1: 1}
+    n_r = {0: 1, 1: 8, 2: 17}
+    m = mass_series(mean, n_r)
+    assert abs(m[0]["pos"] - (0.2 + 0.8)) < 1e-12
+    assert abs(m[0]["neg"] - (-0.85)) < 1e-12
+    assert abs(m[0]["net"] - 0.15) < 1e-12
+    assert half_mass_radii(mean, n_r) == {0: 1, 1: 2}
+    assert half_mass_radii({0: {0: -1.0}}, n_r) == {0: -1}
+    assert shell_sizes(8) == dict(__import__("collections").Counter(
+        __import__("networkx").single_source_shortest_path_length(
+            __import__("bh_graph.formation", fromlist=["j2_torus_graph"]
+            ).j2_torus_graph(8), 0).values()))

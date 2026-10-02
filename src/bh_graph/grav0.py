@@ -419,14 +419,41 @@ _STEP = {"U0": ("swap", "drift"), "U1": ("swap", "guillotine"),
          "U4": ("reloc", None)}
 
 
+def default_schedule(ticks: int, n: int) -> list[float]:
+    """A1.1 snapshot grid (sweeps): dense-early + coarse-late.
+
+    Every 1/20 sweep over the first 4 sweeps, every sweep to 30,
+    every 5 to `ticks`. Resolves the sub-5-sweep transient.
+    """
+    out = [0.0]
+    i = 1
+    while i / 20 <= min(4, ticks):
+        out.append(round(i / 20, 10))
+        i += 1
+    t = 5
+    while t <= min(30, ticks):
+        out.append(float(t))
+        t += 1
+    t = 35
+    while t <= ticks:
+        out.append(float(t))
+        t += 5
+    if float(ticks) not in out:
+        out.append(float(ticks))
+    return sorted(set(out))
+
+
 def run_trajectory(L: int, pert: str | None, dyn: str, seed: int,
                    ticks: int, snapshot_every: int = 5,
-                   T: float = 20.0, secondaries: bool = False) -> dict:
+                   T: float = 20.0, secondaries: bool = False,
+                   schedule: list[float] | None = None) -> dict:
     """One (pert, dyn, L, seed) trajectory; pert=None is the control leg.
 
     Trajectory rng = Random(seed): pert/control legs consume identical
     streams (exact coupling). Returns snapshots {t: {r: D}}, accepts,
-    connectivity flag, long census.
+    connectivity flag, long census. `schedule` (sweeps, A1.1 dense
+    grid) overrides `snapshot_every` when given; accepts are still
+    per whole tick.
     """
     if dyn not in DYNS:
         raise ValueError(f"unknown dyn: {dyn}")
@@ -435,23 +462,42 @@ def run_trajectory(L: int, pert: str | None, dyn: str, seed: int,
     n = len(nbrs)
     rng = random.Random(seed)
     kind, mode = _STEP[dyn]
-    snaps = {0: radial_profile(disturbance_field(nbrs, geo), geo)}
-    secs = {0: {k: radial_profile(f, geo)
-                for k, f in secondary_fields(nbrs, geo).items()}} if secondaries else {}
+
+    def snap():
+        s = radial_profile(disturbance_field(nbrs, geo), geo)
+        sc = ({k: radial_profile(f, geo)
+               for k, f in secondary_fields(nbrs, geo).items()}
+              if secondaries else {})
+        return s, sc
+
+    s0, sc0 = snap()
+    snaps, secs = {0: s0}, ({0: sc0} if secondaries else {})
+    if schedule is None:
+        marks = {float(t) for t in range(1, ticks + 1)
+                 if t % snapshot_every == 0 or t == ticks}
+    else:
+        marks = {round(t, 10) for t in schedule if 0 < t <= ticks}
+    ordered = sorted(marks)
+    mi = 0
+    prop = 0
+    total = ticks * n
     accepts = []
-    for t in range(1, ticks + 1):
-        acc = 0
-        for _ in range(n):
-            if kind == "swap":
-                acc += step_swap(nbrs, rng, mode, T)
-            else:
-                acc += step_reloc(nbrs, rng)
-        accepts.append(acc)
-        if t % snapshot_every == 0 or t == ticks:
-            snaps[t] = radial_profile(disturbance_field(nbrs, geo), geo)
+    acc = 0
+    while prop < total:
+        if kind == "swap":
+            acc += step_swap(nbrs, rng, mode, T)
+        else:
+            acc += step_reloc(nbrs, rng)
+        prop += 1
+        if prop % n == 0:
+            accepts.append(acc)
+            acc = 0
+        while mi < len(ordered) and prop >= round(ordered[mi] * n):
+            s, sc = snap()
+            snaps[ordered[mi]] = s
             if secondaries:
-                secs[t] = {k: radial_profile(f, geo)
-                           for k, f in secondary_fields(nbrs, geo).items()}
+                secs[ordered[mi]] = sc
+            mi += 1
     return {"L": L, "pert": pert, "dyn": dyn, "seed": seed, "ticks": ticks,
             "snapshots": snaps, "accepts": accepts,
             "connected": is_connected_state(nbrs),
@@ -490,6 +536,64 @@ def front_radii(mean_delta_: dict, theta: float) -> dict:
     for t in sorted(mean_delta_):
         rs = [r for r, v in mean_delta_[t].items() if v > theta]
         out[t] = max(rs) if rs else -1
+    return out
+
+
+def shell_sizes(L: int) -> dict:
+    """Pristine shell node counts {r: n_r} (mass integrals)."""
+    import collections
+
+    import networkx as nx
+
+    from bh_graph.formation import j2_torus_graph
+
+    g = j2_torus_graph(L)
+    d0 = nx.single_source_shortest_path_length(g, 0)
+    return dict(collections.Counter(d0.values()))
+
+
+def amplitude_series(mean_delta_: dict) -> dict:
+    """Peak amplitude A(t) = max_r ΔD̄(r,t) (signed peak)."""
+    return {t: max(mean_delta_[t].values()) for t in sorted(mean_delta_)}
+
+
+def peak_radii(mean_delta_: dict) -> dict:
+    """r_peak(t) = argmax_r ΔD̄(r,t) (smallest r on ties)."""
+    out = {}
+    for t in sorted(mean_delta_):
+        m = max(mean_delta_[t].values())
+        out[t] = min(r for r, v in mean_delta_[t].items() if v == m)
+    return out
+
+
+def mass_series(mean_delta_: dict, n_r: dict) -> dict:
+    """Positive/negative/net ripple mass per t (signed-field robust)."""
+    out = {}
+    for t in sorted(mean_delta_):
+        pos = sum(n_r[r] * v for r, v in mean_delta_[t].items() if v > 0)
+        neg = sum(n_r[r] * v for r, v in mean_delta_[t].items() if v < 0)
+        out[t] = {"pos": pos, "neg": neg, "net": pos + neg}
+    return out
+
+
+def half_mass_radii(mean_delta_: dict, n_r: dict) -> dict:
+    """Smallest r holding half the positive-part mass (−1 if none)."""
+    out = {}
+    for t in sorted(mean_delta_):
+        tot = sum(n_r[r] * v for r, v in mean_delta_[t].items() if v > 0)
+        if tot <= 0:
+            out[t] = -1
+            continue
+        acc = 0.0
+        hit = -1
+        for r in sorted(mean_delta_[t]):
+            v = mean_delta_[t][r]
+            if v > 0:
+                acc += n_r[r] * v
+            if acc >= tot / 2:
+                hit = r
+                break
+        out[t] = hit
     return out
 
 
