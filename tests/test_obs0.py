@@ -88,7 +88,7 @@ def test_cfd_units():
 
 def test_threshold_crossing_units():
     ts = np.arange(6, dtype=float) * 0.05
-    assert obs0.threshold_crossing([0, 1e-7, 5e-7, 2e-6, 1e-3, 0.5], ts, 1e-6) == 0.15
+    assert abs(obs0.threshold_crossing([0, 1e-7, 5e-7, 2e-6, 1e-3, 0.5], ts, 1e-6) - 0.15) < 1e-12
     assert obs0.threshold_crossing([0, 1e-7, 5e-7, 5e-7, 5e-7, 5e-7], ts, 1e-6) is None
     assert obs0.threshold_crossing([0], [0], 1e-6) is None  # too short
     assert obs0.threshold_crossing([0, 0, 0], [0, 1, 2], 0.0) is None
