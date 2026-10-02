@@ -7,10 +7,13 @@ from bh_graph.circuits import circuit_cover_time, mean_cover_time, predicted_all
 from bh_graph.maxent import (
     maxent_k_linear, selfconsistent_k_quadratic, legs_per_node,
     fixed_point_iteration, random_tensor_page_saturation, bekenstein_check,
+    bekenstein_check_physical, is_saturated,
 )
 from bh_graph.qes import (
     qes_candidates, qes_page_k, qes_dominant, has_qes_transition,
     build_core_boundary_flow, min_cut_value, min_cut_scaling,
+    is_sgen_feasible, sgen_of_subset, sgen_scan, saturation_gate,
+    tuned_footprint, SGEN_N_MAX,
 )
 from bh_graph.evaporation import page_curve_bits, page_time, evaporate, is_evaporated
 from bh_graph.evaporation_unitary import (
@@ -59,7 +62,8 @@ from bh_graph.litcompare import (
 )
 from bh_graph.tev import (
     l_d_meters, rs_add_meters, k_add, k_crit_tev, is_pointlike_lhc,
-    thermal_null_scan,
+    thermal_null_scan, plateau_cross_section_pb, sigma_add_of_mass_pb,
+    is_plateau_lhc,
 )
 from bh_graph.echoes import (
     echo_delay_sec, echo_delay_from_k, inside_typical_window, event_echo_table,
@@ -87,7 +91,9 @@ from bh_graph.cosmic import (
 from bh_graph.lunch import lunch_trajectory, lunch_overtake_step, lunch_diverges
 from bh_graph.remnant import (
     pbh_lifetime_s, evaporation_temp_ev, omega_remnant,
-    required_beta_for_dm, remnant_dm_viable,
+    required_beta_for_dm, remnant_dm_viable, plateau_area_lp2,
+    plateau_cross_section_lp2, is_plateau, sigma_of_k,
+    mass_critical_planck, mass_critical_g, remnant_temperature,
 )
 from bh_graph.bounds import (
     t_form_s, t_form_temp_ev, f_to_beta, load_bound, bound_envelope_beta,
@@ -336,8 +342,11 @@ __all__ = [
     "circuit_cover_time", "mean_cover_time", "predicted_alltoall_log", "circuit_scaling",
     "maxent_k_linear", "selfconsistent_k_quadratic", "legs_per_node",
     "fixed_point_iteration", "random_tensor_page_saturation", "bekenstein_check",
+    "bekenstein_check_physical", "is_saturated",
     "qes_candidates", "qes_page_k", "qes_dominant", "has_qes_transition",
     "build_core_boundary_flow", "min_cut_value", "min_cut_scaling",
+    "is_sgen_feasible", "sgen_of_subset", "sgen_scan", "saturation_gate",
+    "tuned_footprint", "SGEN_N_MAX",
     "page_curve_bits", "page_time", "evaporate", "is_evaporated",
     "haar_random_unitary", "is_isometry", "is_unitary", "apply_subset_unitary",
     "random_two_qubit_gate", "scramble_subset_circuit", "build_emission_isometry",
@@ -366,7 +375,8 @@ __all__ = [
     "catalog_leg_audit",
     "LITERATURE", "grid_diameter_prediction", "head_to_head", "hierarchy_holds",
     "l_d_meters", "rs_add_meters", "k_add", "k_crit_tev", "is_pointlike_lhc",
-    "thermal_null_scan",
+    "thermal_null_scan", "plateau_cross_section_pb", "sigma_add_of_mass_pb",
+    "is_plateau_lhc",
     "echo_delay_sec", "echo_delay_from_k", "inside_typical_window", "event_echo_table",
     "z_from_dl", "kerr_legs_msun", "load_overall_posterior",
     "source_masses_and_spins", "delta_legs_posterior", "median_analysis",
@@ -380,7 +390,9 @@ __all__ = [
     "universe_scrambled",
     "lunch_trajectory", "lunch_overtake_step", "lunch_diverges",
     "pbh_lifetime_s", "evaporation_temp_ev", "omega_remnant",
-    "required_beta_for_dm", "remnant_dm_viable",
+    "required_beta_for_dm", "remnant_dm_viable", "plateau_area_lp2",
+    "plateau_cross_section_lp2", "is_plateau", "sigma_of_k",
+    "mass_critical_planck", "mass_critical_g", "remnant_temperature",
     "t_form_s", "t_form_temp_ev", "f_to_beta", "load_bound", "bound_envelope_beta",
     "remnant_exclusion_ratio", "remnant_ruled_out_everywhere", "EVAPORATION_BOUNDS",
     "tau_heal_sec", "relax_area", "merger_step_response", "scrambling_time_s",

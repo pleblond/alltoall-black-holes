@@ -95,3 +95,99 @@ def min_cut_value(n_core: int, k: int, c_int: float = 5.0, c_leg: float = 1.0) -
 
 def min_cut_scaling(n_core: int, k_grid, c_int: float = 5.0, c_leg: float = 1.0) -> np.ndarray:
     return np.array([min_cut_value(n_core, int(k), c_int, c_leg) for k in k_grid], dtype=float)
+
+
+# --- v6: enumerative S_gen(X) subset toy (small-N, toward D1) ---
+# S_gen(X) = w_int |X|(N-|X|) + w_ext (k_total - sum_X k_i) + s_bulk |X|.
+# Legs round-robin to nodes (leg j -> node j mod N), matching
+# build_core_boundary_flow. Defaults frozen from repo: w_ext = ln 2
+# (= PATCH/4, so S(empty) = S_no), s_bulk = ln 2 (saturated).
+# With large w_int the minimum sits at X = {} or X = all (two-saddle),
+# crossing at k* = N s_bulk / w_ext; small w_int allows partial islands.
+# Conditional coincidence with packing holds iff the saturation gate
+# passes (footprint k_crit == S0/ln2); otherwise thresholds differ.
+# Path-integral derivation of S_gen remains open (D1).
+
+SGEN_N_MAX = 16
+
+
+def is_sgen_feasible(n: int, n_max: int = SGEN_N_MAX) -> bool:
+    """Boolean check: is brute-force 2^N enumeration affordable?"""
+    return bool(int(n) <= int(n_max))
+
+
+def _legs_on_subset(n: int, k_total: int, mask: int) -> int:
+    """Legs assigned (round-robin) to nodes selected by bitmask."""
+    return sum(1 for j in range(int(k_total)) if (int(mask) >> (j % max(int(n), 1))) & 1)
+
+
+def sgen_of_subset(mask, n: int, k_total: int, w_int: float = 5.0,
+                   w_ext: float | None = None, s_bulk: float | None = None) -> float:
+    """S_gen for one subset (int bitmask over N nodes)."""
+    if w_ext is None:
+        w_ext = float(np.log(2.0))
+    if s_bulk is None:
+        s_bulk = float(np.log(2.0))
+    m = int(mask)
+    size = m.bit_count()
+    internal_cut = size * (int(n) - size)
+    legs_in = _legs_on_subset(int(n), int(k_total), m)
+    return float(w_int * internal_cut + w_ext * (int(k_total) - legs_in) + s_bulk * size)
+
+
+def sgen_scan(n: int, k_grid, w_int: float = 5.0,
+              w_ext: float | None = None, s_bulk: float | None = None) -> dict:
+    """Brute-force min over 2^N subsets per k. Returns S_min, island size, flags.
+
+    Includes "feasible": False with empty arrays when N exceeds SGEN_N_MAX
+    (boolean gate, never an exception).
+    """
+    ks = [int(k) for k in np.atleast_1d(np.asarray(list(k_grid), dtype=float))]
+    if not is_sgen_feasible(int(n)):
+        z = np.array([], dtype=float)
+        return {"k": np.array(ks, dtype=float), "S_min": z, "island_size": z,
+                "is_island": np.array([], dtype=bool), "S_no": z, "feasible": False}
+    if w_ext is None:
+        w_ext = float(np.log(2.0))
+    if s_bulk is None:
+        s_bulk = float(np.log(2.0))
+    s_min, sizes, s_no = [], [], []
+    for k in ks:
+        best, bsize = float("inf"), 0
+        for mask in range(2 ** int(n)):
+            v = sgen_of_subset(mask, int(n), k, w_int, w_ext, s_bulk)
+            if v < best - 1e-12:
+                best, bsize = v, mask.bit_count()
+        s_min.append(best)
+        sizes.append(bsize)
+        s_no.append(w_ext * k)
+    s_min = np.array(s_min)
+    sizes = np.array(sizes, dtype=float)
+    return {"k": np.array(ks, dtype=float), "S_min": s_min, "island_size": sizes,
+            "is_island": sizes > 0, "S_no": np.array(s_no), "feasible": True}
+
+
+def saturation_gate(n: int, s_bulk: float | None = None,
+                    r_point: float | None = None, lp: float = 1.0,
+                    rtol: float = 1e-9) -> bool:
+    """Boolean check: does the footprint saturate the bulk entropy?
+
+    Saturated iff packing k_crit(r_point) == S0/ln2 with S0 = N s_bulk,
+    i.e. pi r^2 == N s_bulk (footprint area encodes the bulk).
+    Coincidence of packing and Page thresholds holds iff this passes.
+    """
+    from bh_graph.micro import R_POINT, critical_k
+
+    if s_bulk is None:
+        s_bulk = float(np.log(2.0))
+    r = R_POINT if r_point is None else float(r_point)
+    k_have = critical_k(r, lp)
+    k_need = float(int(n) * float(s_bulk) / np.log(2.0))
+    return bool(np.isclose(k_have, k_need, rtol=rtol))
+
+
+def tuned_footprint(n: int, s_bulk: float | None = None, lp: float = 1.0) -> float:
+    """r_0 = sqrt(N s_bulk / pi): footprint that forces coincidence (calibration)."""
+    if s_bulk is None:
+        s_bulk = float(np.log(2.0))
+    return float(np.sqrt(int(n) * float(s_bulk) / np.pi) * lp)

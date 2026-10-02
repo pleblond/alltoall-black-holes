@@ -383,6 +383,12 @@ graph changes `V` (`||U_complete - U_chain|| > 1`, `is_adjacency_sensitive`).
 Fig 74b. What remains: large-`N`/thermodynamic limit, `k`-backreaction on the
 interior spectrum, emission energy/mass spectrum, and `S_gen` extremization
 from a gravitational path integral (QES still two-saddle + min-cut analogue).
+Update (v6 branch): small-`N` enumerative `S_gen(X)` subset toy closed
+(`qes.sgen_scan`, `2^N`, `N <= 16`, frozen `w_ext = s_bulk = ln2`, Fig 77):
+coincides with the packing pop iff the saturation gate passes
+(`saturation_gate`: footprint `k_crit = S0/ln2`), diverges otherwise
+(tested both branches; tuned footprint labeled calibration, not proof).
+Path-integral derivation still open.
 
 **Kill relevance:** none currently (no observed BH Page curve); referee
 honesty issue, not a falsifier.

@@ -2039,6 +2039,104 @@ def fig75b_gw190814_systematics():
     plt.close(fig)
 
 
+def fig76_plateau():
+    from bh_graph.micro import critical_k, packing_kmax
+    from bh_graph.horizon import mass_from_k
+    from bh_graph.remnant import sigma_of_k, remnant_temperature
+    from bh_graph.tev import sigma_add_of_mass_pb, plateau_cross_section_pb
+    kc = critical_k()
+    k = np.linspace(0, 60, 600)
+    sig = sigma_of_k(k)
+    t_froz = remnant_temperature(k, below="frozen")
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.8))
+    axes[0].loglog(np.maximum(k, 1e-3), np.maximum(sig, 1e-3), color="#0f766e")
+    axes[0].axvline(kc, color="red", linestyle="--", label=f"k_crit = {kc:.1f}")
+    axes[0].set_xlabel("k (exterior legs)")
+    axes[0].set_ylabel("sigma (lp^2, area convention)")
+    axes[0].set_title("4D: flat plateau, then ~k ~ M^2")
+    axes[0].legend(fontsize=8)
+    axes[1].plot(k, t_froz, color="#7c3aed", label="frozen at T(kc)")
+    axes[1].axvline(kc, color="red", linestyle="--")
+    axes[1].set_xlabel("k")
+    axes[1].set_ylabel("T (Planck, labeled assumption)")
+    axes[1].set_title("Truncated spectrum, no burst (assumed)")
+    axes[1].legend(fontsize=8)
+    m = np.linspace(1, 60, 300)
+    sadd = np.array([sigma_add_of_mass_pb(float(mm)) for mm in m])
+    axes[2].semilogy(m, sadd, color="#0369a1")
+    axes[2].axhline(plateau_cross_section_pb(), color="red", linestyle="--",
+                    label=f"plateau {plateau_cross_section_pb():.1f} pb")
+    axes[2].set_xlabel("M (TeV, MD=1, n=6)")
+    axes[2].set_ylabel("sigma (pb, cross convention)")
+    axes[2].set_title("ADD: non-thermal plateau below onset")
+    axes[2].legend(fontsize=8)
+    mc = mass_from_k(packing_kmax())
+    fig.suptitle(f"Fig 76 — Remnant plateau (Mc ~ {mc:.2f} Mp sub-Planckian 4D; "
+                 "T-cutoff assumed, ADD branch observable)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig76_plateau.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig77_sgen_pop():
+    from bh_graph.qes import sgen_scan, tuned_footprint
+    from bh_graph.micro import R_POINT, critical_k, embedding_radius
+    n = 8
+    k = np.arange(0, 21)
+    out = sgen_scan(n, k)
+    r0 = tuned_footprint(n)
+    r_def = embedding_radius(k, R_POINT, 1.0)
+    r_tun = embedding_radius(k, r0, 1.0)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.8))
+    axes[0].plot(k, out["S_no"], color="gray", linestyle="--", label="S_no")
+    axes[0].plot(k, out["S_min"], color="#0f766e", label="S_min (2^N scan)")
+    axes[0].axvline(8, color="red", linestyle=":", label="k* = 8")
+    axes[0].set_xlabel("k"); axes[0].set_ylabel("S (nats)")
+    axes[0].set_title("S_gen min crosses S_no at k* = N")
+    axes[0].legend(fontsize=8)
+    axes[1].step(k, out["island_size"], color="#7c3aed", where="mid")
+    axes[1].axvline(8, color="red", linestyle=":")
+    axes[1].set_xlabel("k"); axes[1].set_ylabel("|X| (island size)")
+    axes[1].set_title("Island jumps 0 -> N (w_int large)")
+    axes[2].plot(k, r_def, color="#0369a1", label=f"default (pop {critical_k():.1f})")
+    axes[2].plot(k, r_tun, color="#dc2626", label=f"tuned r0 (pop {critical_k(r0):.1f})")
+    axes[2].axvline(8, color="red", linestyle=":")
+    axes[2].set_xlabel("k"); axes[2].set_ylabel("R / lp")
+    axes[2].set_title("Radius pop aligns only if tuned")
+    axes[2].legend(fontsize=8)
+    fig.suptitle("Fig 77 — S_gen scan N=8: coincidence conditional on saturation gate "
+                 "(tuned r0 is calibration, not proof; analytic R, no springs)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig77_sgen_pop.png", bbox_inches="tight")
+    plt.close(fig)
+
+
+def fig78_complexity_flat():
+    from bh_graph.micro import R_POINT, embedding_radius
+    d = 2 ** 4
+    psi0 = np.zeros(d)
+    psi0[0] = 1.0
+    t = np.linspace(0, 20, 100)
+    a_s, b_s = lanczos(syk_hamiltonian(8, seed=1), psi0)
+    cs = spread_complexity(a_s, b_s, t)
+    r = embedding_radius(np.full_like(t, 6.0))
+    fig, ax1 = plt.subplots(figsize=(7, 3.8))
+    ax1.plot(t, cs, color="#0f766e", label="spread complexity C(t), SYK N=8")
+    ax1.set_xlabel("t")
+    ax1.set_ylabel("C(t)", color="#0f766e")
+    ax1.tick_params(axis="y", labelcolor="#0f766e")
+    ax2 = ax1.twinx()
+    ax2.plot(t, r, color="#7c3aed", linestyle="--", label="R(t), k=6 < k_crit")
+    ax2.set_ylabel("R / lp", color="#7c3aed")
+    ax2.tick_params(axis="y", labelcolor="#7c3aed")
+    ax2.set_ylim(R_POINT * 0.9, R_POINT * 1.1)
+    fig.suptitle("Fig 78 — Complexity grows while area frozen (fixed k; "
+                 "illustration, no C~Nt / CV claim)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig78_complexity_flat.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     fig1_scrambling()
     fig2_graph_sketches()
@@ -2118,6 +2216,9 @@ def main():
     fig74b_graphvk()
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
+    fig76_plateau()
+    fig77_sgen_pop()
+    fig78_complexity_flat()
     print(f"wrote figures to {FIG}")
     for p in sorted(FIG.glob("*.png")):
         print(" -", p.name)
