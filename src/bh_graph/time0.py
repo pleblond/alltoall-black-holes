@@ -527,7 +527,7 @@ def propagate_forward(psi: np.ndarray, g: nx.Graph, order: list,
     """One frozen identity-step evolution psi -> U(G) psi (banked Krylov)."""
     h = hamiltonian(g, order=list(order))
     return np.asarray(evolve_fixed(np.asarray(psi, dtype=np.complex128), h,
-                                   float(dt), 1)["psi"][1])
+                                   float(dt), 2)["psi"][1])
 
 
 def propagate_backward(psi: np.ndarray, g: nx.Graph, order: list,
@@ -535,7 +535,7 @@ def propagate_backward(psi: np.ndarray, g: nx.Graph, order: list,
     """Reverse evolution with -dt (exact inverse to 1e-12, C0)."""
     h = hamiltonian(g, order=list(order))
     return np.asarray(evolve_fixed(np.asarray(psi, dtype=np.complex128), h,
-                                   -float(dt), 1)["psi"][1])
+                                   -float(dt), 2)["psi"][1])
 
 
 def is_identity_step_ok(X: dict, X2: dict, dt: float = DT_FROZEN,
