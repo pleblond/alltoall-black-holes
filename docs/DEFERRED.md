@@ -2988,3 +2988,176 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## VACFIELD0-PREREG (FROZEN pre-data; commit predates ALL VAC-FIELD-0 runs)
+
+Nonzero-joint-vacuum-field campaign (VAC-FIELD-0). Question: is the
+physical vacuum of the frozen theory a nonzero stationary field state
+X_vac = (G_vac, psi_vac) with G_vac = J2, rather than psi = 0?
+Headline substrate: J2 torus (formation.j2_torus_graph, int labels).
+No geometry-update law is introduced at any stage.
+
+### Firewall (campaign level)
+
+VAC-FIELD-0 may not: modify H; add onsite terms/edge weights/vacuum
+potential; introduce a geometry-update rule; choose a field to prevent
+U0 collapse; choose an amplitude for nicer matter behavior; introduce
+a pressure constant; insert (B - B_vac) into any dynamics (0J defines
+subtracted variables readout-only); redefine matter; rerun formation;
+claim gravity; tune against RAND-0. Candidates are selected from the
+frozen field theory (spectrum + symmetry, 0A/0B) BEFORE any stability,
+ledger, or structural-consequence inspection. Tie-breaking by
+structural consequences is forbidden; joint winners are filed as a
+family. 0I ledgers are readout-only: no event is ever executed.
+
+### Frozen ontology + consumed apparatus (byte-identical, read-only)
+
+H(G) = -A(G), J = 1, hbar = 1 (P1-locked). psi = r + i s per node;
+rho = |psi|^2; B_uv = Re(psi*_u psi_v);
+J_{u->v} = 2 Im(psi*_u psi_v) (EM-0B sign); E_psi = -2 sum_edges B
+(BR-0). Consumed: ballistic.py (P1 7578176c4805), malus.py (MALUS
+0241e12445), continuum.py (EM-0 48b60373aed6), backreaction.py (BR
+1eba0ce6), driven.py (POT e3f1ff98a5a8), contraction.py (BR 7c31a3387c0b),
+phase.py (BR 4e0cac0e3980) + their test files (all green, unmodified).
+Banked theorems consumed read-only: norm conservation + continuity
+(EM-0B); [H,S] = 0, H P_- = 0, symmetric sector = square walk at 2J
+(MALUS-0); U(t)L = L U_Q(t), U(t)psi_- = psi_- (QUOT-0 apparatus);
+Bloch bands eps_disp = -4(cos kx + cos ky), eps_flat = 0 (EM-0C);
+M1 relocation dE = -2(B_add - B_rem), contraction/split ontology
+(BR-0/BR-2.5); P1 detectors (COM/v/MSD/C_v) + B0 packet settings
+(sigma = 4, |k| = 0.5). QUOT-0 re-verified locally (0R); the campaign
+does not wait for QUOT-0 to finish.
+
+### Candidates (0A/0B; symmetry-distinguished pre-data)
+
+VPLUS: uniform 1/sqrt(N), E = -8 (ground, simple; automorphism +
+translation invariant; sheet-even; min energy at fixed norm).
+VPI: (-1)^q/sqrt(N), q = (x+y)&1 bipartition, E = +8 (top, simple on
+bipartite connected G; ray-translation-invariant; sheet-even; max
+energy). VMINUS: (-1)^b/sqrt(N) (TI member of P_-), E = 0 exactly
+(H P_- = 0; sheet-odd; translation-invariant; frozen dynamics).
+ZERO: psi = 0 control (never the default vacuum; capped, never ranked).
+Nodal dispersive zeros (J2 L28: 54; ring N256: k = 64, 192; square
+torus: cos kx + cos ky = 0 set) are classified but EXCLUDED from
+candidacy: no single symmetry-distinguished member (filed reason).
+VMINUS candidacy = TI member + sector-stationarity theorem (all of
+P_- frozen). Selection table: vacfield.selection_table().
+
+### Frozen constants (all runs)
+
+J2 L_EXACT = 4 (N = 32, E = 128; dense diag + exhaustive M1: 47104
+moves) / L_DIAG = 8 (N = 128; dense diag; census gate n_zero = 80 =
+64 flat + nodal(8) = 64 + 14) / L_HEAD = 28 (N = 1568; Krylov
+headline). Controls: square torus 28 (N = 784), ring 256, quotient
+28x28 (H_Q = -2 A_sq). Dense diag gated to L <= 8 (N > 600 refused).
+Amplitudes a in {1e-3..1e3} (7, log-spaced); headline a = 1. Eps grid
+{0.003, 0.01, 0.03}, headline 0.01. T_K = 30, DT_K = 0.1 (300 rows),
+T_FIT = 8 (no-wrap v/MSD window). M1: 20000 moves x seeds {0..4},
+eps = 1e-10 (BR-0). Contraction: headline map avg, bracket
+{sum, avg, norm}; L4 all 128 edges; L28 stratified 64 (16 per
+translation edge-orbit SX/SY/F1/F2); splits = exact inverse +
+first 8 deterministic covers (3^d total filed). Zero threshold tau =
+max(1e-300, 1e-9 x run-max|psi|). Packet: r0 = (L/4, L/2), k = (0.5,
+0), sigma = 4 (B0 settings; spread gate sigma << L/6 on L28). Local
+node u0 = coarse (L//2, L//2) sheet 0. Bars: vacfield.BARS (frozen;
+eigen 1e-9, Bloch 1e-9, phase 1e-9, slope 0.01, normed 1e-9,
+current edge/div/circ/flux 1e-12, stationarity 1e-8, rate 1e-6 rel,
+stress 1e-9, sector 1e-12, accounting 1e-9, linearity 1e-10,
+corotating 1e-8, packet-v 10% + r2 > 0.9, contract 1e-9, incident
+1e-9, winding 1e-9).
+
+### Stage protocols + predictions (P) / gates (G)
+
+0C phase: thetas {0, 0.7, 2.1, 4.4}; P: rho/B/J/E invariant; G: loud
+exact (pins + campaign L4/L28).
+0D amplitude: P: rho/B/J/E slopes 2, normalized spread ~fp; G:
+is_scaling_ok (ZERO trivially False -> control cap).
+0E current: edgewise J, div_J, plaquette circulation (J2: 2xL^2
+4-cycles CCW; square: L^2; ring: 1 ring cycle; quotient via square
+graph), directional flux Fx/Fy; P: all ~0 (real states); G:
+is_current_free_ok. Plaquettes replace cycle_basis (small-cycle
+basis, preregistered choice).
+0F stationarity: evolve T = 30; P: drifts ~fp, phase rates +8/-8/0
+(d/dt arg = -E), VMINUS frozen_err ~fp; G: is_stationary_ok.
+0G/0H stress (definitions frozen here, before labels opened):
+S_u = sum B, V_u = var B incident; uniformity across translation
+orbits (nodes: vertex-transitive; J2 edges: 4 generator classes);
+P: VPLUS S = 8/N, VPI S = -8/N, VMINUS S = 0 exactly, all
+orbit-uniform; G: is_stress_balanced_ok (std bars). Interpretation
+(which pattern = balanced) is the 0H result, not a gate input.
+0I virtual: M1 sampled (L28, 5 seeds) + exhaustive (L4) + VMINUS
+extremes {1e-3, 1e3}; contraction scan; split roundtrips. P: VPLUS/
+VPI f_0 = 1 exactly (uniform B); VMINUS f_0 = 1/2 exactly (L4:
+f_neg = 176x64/47104, f_pos = 192x64/47104, derived in test), L28
+f_0 = 1/2 within MC; ZERO trivially flat (no information, the
+RAND-0 point); contraction per-class uniform. G: f_0 exactness /
+0.5 +/- 0.01 + seed-std < 0.01 + contract uniformity. "Contract/
+split" = BR-2.5 ontology (contract_edge/split_with_record/covers).
+0J subtraction: definitions + exact bilinear identity; G: identity
+test (pins + subcheck). No dynamics insertion.
+0K perturbations: kinds amplitude/phase/packet/source, matched
+||dpsi|| = eps x a (ZERO: eps x 1; phase SKIPPED on ZERO: no
+carrier). P: P1 detectors on dpsi; packet v = (4 sin0.5, 0) within
+10%, r2 > 0.9 (all backgrounds: dpsi evolution is bg-independent);
+norm accounting exact. G: perturbation_ok = norms-ok (all) AND
+packet-v-ok (eps = 0.01) AND eps-independence (packet/amplitude/
+source v rel-spread < 1e-6; phase excluded: O(eps) direction
+correction, filed) AND cross-bg dpsi max-dev < 1e-9 (packet/
+amplitude/source, all 4 backgrounds incl ZERO; bitwise checksums
+filed). Comparison with banked P1 = Bloch-analytic + dpsi-alone
+leg (B0a formed-graph data NOT a clean comparator: skipped, filed).
+0L linearity: P: split + co-rotating (H - E) errs ~fp; G:
+is_linearity_ok (packet/amplitude x all candidates). Load-bearing.
+0M/0P amplitude-vs-excitations (VPLUS packet/amplitude full series
+x {abs, frac} + VPI/VMINUS packet frac bracket {0.1, 1, 10}): abs
+leg = eps_param 0.01/a (norm 0.01); frac leg = eps 0.01 (norm
+0.01a). P: frac normalized rows collapse (max-dev < 1e-9), frac
+peak_dB_rel const (spread < 1e-6), abs peak_dB_rel slope -1 +/-
+0.05, packet v a-independent (< 1e-6); abs raw rows identical (<
+1e-9). G: normalized_robust (VPLUS full; VPI/VMINUS bracket
+collapse; ZERO False). Answers: only departures-relative-to-bg
+matter (prediction).
+0N zeros: census on all 0K runs (count FILED, anatomy GATED) +
+exact-zero demo (constructed single-node null, T = 6, all nonzero).
+P: no accidental zeros at eps <= 0.03 (filed, NOT gated);
+constructed event found (n >= 1) with incident B/J < bar. G:
+every event (all runs) incident B/J < bar.
+0O winding: plaquette W with per-bond temporal unwrapping; P:
+drift ~0 where min|psi| > tau; G: winding drift < bar on clean
+plaquettes (zero-demo leg). Question filed: is psi = 0 the
+phase-undefined boundary (yes by construction; anatomy measured).
+0Q ZERO control: full comparison table (stationarity, relational
+info Bmax, current, stress, ledger, perturbation, sector,
+phase-defined-everywhere). Note: ZERO passes dynamics checks
+trivially (expected rung BACKGROUND as control) but carries no
+relational information, undefined phase everywhere, trivial
+ledger. The verdict ladder ranks NONZERO candidates only.
+0R sectors: weights L4/L8/L28 + frozen/split/intertwining
+re-verification; P: VPLUS/VPI sym-pure, VMINUS anti-pure, errs
+~fp; G: sector_filed. P_- operational invisibility: analysis
+filed, never selected on.
+0S substrates: square/ring energies (VPLUS -4/-2, VPI +4/+2),
+residuals, currents, stress-lite, M1 flat (f_0 = 1, 5 seeds);
+quotient H_Q energies -8/+8 + stationarity + intertwining.
+VMINUS J2-specific (no sheet structure elsewhere; constructor
+raises). Ring/square nodal zeros: nonextensive, excluded like J2
+nodal set. Quotient M1 = square-graph M1 (dedup, filed). All exact
+predictions loud (asserted in analyzer).
+0T ladder (per nonzero candidate): BACKGROUND = stationary AND
+perturbation_ok (distinguished-by-construction 0B). BALANCED =
+BACKGROUND + current_free + stress + amplitude_coherent. JOINT =
+BALANCED + linearity + normalized_robust + zero_anatomy +
+sector_filed + ledger_symmetric. Campaign headline = max rung
+over {VPLUS, VPI, VMINUS} (VACFIELD0-ZERO/BACKGROUND/BALANCED/
+JOINT). Joint winners filed as family (extremal uniform-B pair
+if VPLUS+VPI). No tie-breaking by structural consequences.
+
+### Execution
+
+190 tasks (scripts/vacfield_campaign.py --print-all), beast EC2
+(16.54.88.181, xargs -P 90), JSON records data/vacfield/*.json
+(committed) + .npy sidecars data/vacfield/npy/ (gitignored,
+checksums committed in JSON). Full suite on beast (pytest -n 90).
+Analyzer scripts/vacfield_analyze.py writes data/vacfield/
+verdict.json. Verdict filed here post-data (amendments, if any, as
+VACFIELD0-AMENDMENT-n entries with gated re-runs; none pre-data).
