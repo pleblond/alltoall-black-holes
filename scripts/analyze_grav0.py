@@ -247,10 +247,10 @@ def main():
     with open(a.out, "w") as f:
         json.dump(out, f, indent=1)
     print("wrote", a.out)
-    make_figs(cells, a.figdir)
+    make_figs(cells, a.figdir, a.datadir)
 
 
-def make_figs(cells, figdir):
+def make_figs(cells, figdir, datadir):
     import matplotlib
 
     matplotlib.use("Agg")
@@ -298,6 +298,40 @@ def make_figs(cells, figdir):
     plt.tight_layout()
     plt.savefig(os.path.join(figdir, "figGRAV0_fronts_L42.png"), dpi=120)
     plt.close()
+    # Fig 3: bump decay + background melt (P2xU0 L=42).
+    key = (42, "P2", "U0")
+    if key in cells:
+        import json as _json
+
+        c = cells[key]
+        ts = sorted(c["mean"])
+        amp = [max(c["mean"][t].values()) for t in ts]
+        bg = {}
+        for fn in sorted(glob.glob(os.path.join(datadir, "*.json"))):
+            if "L42_P2_U0" not in fn:
+                continue
+            with open(fn) as f:
+                d = _json.load(f)["legs"]
+            for t, prof in d["ctrl"]["snapshots"].items():
+                bg.setdefault(float(t), []).append(
+                    sum(v for r, v in prof.items() if int(r) <= 2) / 3)
+        bt = sorted(bg)
+        bv = [sum(bg[t]) / len(bg[t]) for t in bt]
+        _, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+        ax1.semilogx([max(t, 0.03) for t in ts], amp, "k-", lw=1.5)
+        ax1.axhline(0.001, color="r", ls="--", lw=1, label="theta")
+        ax1.set_xlabel("t (sweeps, log)")
+        ax1.set_ylabel("bump amplitude A(t)")
+        ax1.set_title("P2xU0 L=42: ripple amplitude (peak pinned r<=1)")
+        ax1.legend()
+        ax2.plot(bt, bv, "b-", lw=1.5, label="U0 ctrl background")
+        ax2.set_xlabel("t (sweeps)")
+        ax2.set_ylabel("D_ctrl (r<=2)")
+        ax2.set_title("vacuum melts by t~10 (same runs)")
+        ax2.legend()
+        plt.tight_layout()
+        plt.savefig(os.path.join(figdir, "figGRAV0_bumpdecay_L42.png"), dpi=120)
+        plt.close()
     print("figs ->", figdir)
 
 
