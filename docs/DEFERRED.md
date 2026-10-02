@@ -2988,3 +2988,87 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## OBS0-PREREG (Operational Geometry Concordance; FROZEN-2026-10-02 (~03:30-UTC,
+commit-predates-ALL-OBS0-campaign-data); branch cursor/obs0-concordance-69cc off
+main-tail-a0c248c; beast-dir ~/obs0-69cc; workers<=90; NO-local-experiments (unit
+tests only))
+
+QUESTION: do independent physical probes on J2 (graph balls, random walk, wave
+H=-A) infer the SAME large-scale geometry (dims + pairwise distances up to fixed
+global calibration), with UV disagreement collapsing to an IR floor? Firewall:
+rulers take (graph, node-ids) ONLY (no coords/quotient/r/generators/pairwise
+fits); J2 coords = ground truth for test-set construction + post-hoc grouping
+(sheet/shell labels) and C5 regression ONLY (C2-audited: permutation-invariance
++ source-token tests).
+
+SUBSTRATES (frozen): J2-torus L in {20,28,42} (N=2L^2); C0 square-torus same L;
+C1 random-regular d=8 N-matched seeds {0,1,2} (dims only); OBS-0I J2-L28 q=0.05
+deletion (test_j2-frozen rule) seeds {0,1,2,3} (reduced battery). L64 d_H+Weyl
+extension OPTIONAL (non-gated, filed-if-run). Intrinsic D = BFS depth from node
+0 (vertex-transitive: = diameter); wrap-safe R < D/2 (C4, intrinsic).
+
+RULERS (frozen, apparatus src/bh_graph/obs0.py this commit): (A) R_G = BFS dist;
+d_H = log-log OLS over r in [4, floor(D/2)-1] (empty window = honest no-fit).
+(B) unbiased CT walk generator -Lrw (jump-rate-1; exact via Lsym conjugation;
+regular graphs: Lrw=Lsym=L/z): d_s from mean return Pbar(t)~t^{-d/2} over
+t in {12,14,16,20,24} (hop units; per-origin P_ii same window); Weyl
+counting_ds frozen (0.08,0.70) k=min(400,N-2) SECONDARY (filed). tau_D =
+CFD-first-peak (first local max with height >= 1/2 trace-global-max, fraction
+1/2 LOCKED), dt=0.25, Tmax=3(D/2)^2. (C) H=-A J=1 (P1 law, eigen-evolution;
+C5 proves equivalence): delta launch (coordinate-free isotropic source);
+tau_W = CFD-first-peak same rule, dt=0.05, Tmax=D; R_W = v_banked*tau_W with
+v_banked J2=1.2075 (P1.1b (1.2039+1.2110)/2) / square=0.9658 (P1.1a mean);
+d_W from arrival-volume A(T)=#{tau_W<=T} fit A~T^d over T in [that(4),
+that(D/2-1)] via train-fitted affine law tau_W=a*R_G+b (a<=0 = no-fit).
+Missing tau (none found) = None (excluded; <10% required per (substrate,L)
+else FLAG, >25% = STOP). (D) POTENTIAL ruler ABSENT (POT1-NULL stands at
+prereg, amend-3-rerun unexecuted); revival trigger: POT-1 >= POT1-POTENTIAL
+=> OBS-0D followup (inversion preregistered then, pre-data).
+
+SAMPLING (frozen): 16 origins per (substrate,L): origin_k = rng.integers(N),
+rng=default_rng(6900+100*si+L), si: J2=0 sq=1 (pert: rng(7900+10*seed+L)).
+Targets: 25 uniform-random per equal-width R_G-tercile of [1,D/2) per origin
+(rng(8100+oi); 75/origin, 1200/(substrate,L)). Train = origins 0-7, test = 8-15
+(split-by-origin = cross-prediction AND origin-independence). E2-secondary:
+shell-averaged radial laws tbar(R) (descriptive, pooled origins).
+
+CALIBRATION (frozen families, fit-train/freeze/predict-test): (G,W):
+R_G = a*R_W+b (affine); (G,D): tau_D = A*R_G^p (log-log OLS); (W,D):
+tau_D = A*R_W^p. Inverted to R_G units: Rhat_W = a*R_W+b,
+Rhat_D = (tau_D/A)^{1/p}; delta = |Rhat-R_G|/max(R_G,4) (R-floor-4 LOCKED).
+E1-primary: median delta per tercile on TEST (T3 = IR). E2: shell-law
+residuals (descriptive). F: epsilon_ab(R) = median-delta in R_G bins
+([1,4),[4,8),[8,12),[12,D/2)) (descriptive + UNIVERSAL-i).
+
+GATES (frozen): C5 (wave regression, coords allowed): ring-400
+|v-2sin0.5|/2sin0.5<0.01; torus-30 |v-0.9658|<5%; J2-L28 branch-pair
+(k=(0.3,0)/partners, sigma=4.0, purified, T=10) within 10% of (1.2039,1.2110).
+ALL-pass => wave apparatus valid. C0 (per L, pre-J2): d_H in [1.70,2.05] +
+r2>0.99 + monotone-rise L20<28<42; d_s in [1.85,2.20]; d_W in [1.70,2.30];
+floors filed (sanity each-delta_IR<=0.45 else investigate). ALL-pass =>
+J2 interpretation UNBLOCKED (else STOP+amend, pre-J2-data legitimate). C1
+(majority >=2/3 seeds each clause): d_H no-window OR |p-2|>0.5 OR r2<0.9;
+AND d_s outside [1.5,2.5] (else apparatus-STOP reports-2-universally).
+DIM-PASS (J2 per L): max_a |d_a(J2)-d_a(C0 same L)|<=0.15, a in {H,s,W}
+(origin-means; C0-relative because estimator systematics (Manhattan-1.89
+vs heat-2.07) are SHARED, absolute spreads filed). OBS0-METRIC: DIM-PASS
+at L28+L42 AND all-3-pairs at L42: delta_IR(J2)<=delta_IR(C0)+0.05 AND
+<=0.40 (L28 sanity <=0.45). DIMENSION-ONLY: DIM-PASS but metric fails.
+DISCORDANT: DIM-PASS fails at L42 (L-trend filed; verdict-at-tested-scales).
+UNIVERSAL: METRIC + (i) delta_T3<delta_T1 strictly all-3-pairs L42 + (ii)
+per-origin median-delta_T3 IQR<=0.10 all-pairs L42 + (iii) sheet-PASS
+(L28+L42: UV R in {1,2,3} >=1-R with |med_same-med_cross|/pooled>0.10
+AND IR R in [8,min(12,D/2-1)] pooled <0.05, BOTH rulers) + (iv) pert-PASS
+(|d_pert-d_unpert|<=0.2 all-rulers + W-D-delta_IR within 0.05) + (v)
+W-D-delta_T3 non-increasing L20->28->42 AND G-pair floors stable +-0.05.
+Sheet labels = validation-only test-set construction (allowed). EXPECTED
+STRUCTURE (not gated): floors persist (Manhattan-vs-Euclidean-vs-wavefront
+norm mismatch ~10-30%, C0 measures it); W-D tightest (both continuum);
+shell-laws tighter than pairwise.
+
+ANALYSIS (frozen): scripts/run_obs0.py (units: eigen|c5|origin|dims) + scripts/
+analyze_obs0.py (verdict JSON). Eigensystems cached beast-side (npz, NOT
+committed); committed: prereg+module+tests+scripts+verdict-JSON(data/obs0/).
+Paper figures ONLY if verdict >= METRIC. NEXT: module+tests commit, then
+beast C5/C0/C1 validation (gated on this commit).
