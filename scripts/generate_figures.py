@@ -1964,6 +1964,59 @@ def fig74b_graphvk():
     plt.close(fig)
 
 
+def fig74c_graphvkn():
+    from bh_graph.graphvk import evaporate_graph, page_deviation
+    from bh_graph.graphvkn import evaporate_graph_sparse
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.5))
+    # N=12 Page curves: sparse Krylov, entropy from rho_rad
+    n = 12
+    t, s_exact = page_curve_exact_bits(n)
+    for kind, color, marker in [("complete", "#0f766e", "o"), ("chain", "#d97706", "s")]:
+        acc = np.zeros(n + 1)
+        for seed in range(4):
+            acc += evaporate_graph_sparse(n, kind=kind, dt=1.0, seed=seed)["S_rad"]
+        mean = acc / 4
+        axes[0].plot(t, mean, f"{marker}-", color=color, ms=4,
+                     label=f"{kind} (dev {page_deviation(mean, s_exact):.2f})")
+    axes[0].plot(t, s_exact, color="#2563eb", label="Page exact")
+    axes[0].set_xlabel("t"); axes[0].set_ylabel("S_rad (bits)")
+    axes[0].set_title("N=12: all:all Page-like, chain sags")
+    axes[0].legend(fontsize=7)
+    # deviation gap vs N: hierarchy sharpens, not a small-N artifact
+    ns = [6, 8, 10, 12, 14]
+    dev_c, dev_l = [], []
+    for nn in ns:
+        _, se = page_curve_exact_bits(nn)
+        mc = np.zeros(nn + 1)
+        ml = np.zeros(nn + 1)
+        nsd = 4 if nn <= 12 else 2
+        for seed in range(nsd):
+            if nn <= 8:
+                mc += evaporate_graph(nn, kind="complete", dt=1.0, seed=seed)["S_rad"]
+                ml += evaporate_graph(nn, kind="chain", dt=1.0, seed=seed)["S_rad"]
+            else:
+                mc += evaporate_graph_sparse(nn, kind="complete", dt=1.0, seed=seed)["S_rad"]
+                ml += evaporate_graph_sparse(nn, kind="chain", dt=1.0, seed=seed)["S_rad"]
+        dev_c.append(page_deviation(mc / nsd, se))
+        dev_l.append(page_deviation(ml / nsd, se))
+    axes[1].plot(ns, dev_c, "o-", color="#0f766e", label="complete")
+    axes[1].plot(ns, dev_l, "s-", color="#d97706", label="chain")
+    axes[1].set_xlabel("N"); axes[1].set_ylabel("mean dev. from Page (bits)")
+    axes[1].set_title("Complete-chain gap grows with N")
+    axes[1].legend(fontsize=7)
+    # hole-energy drain diagnostic (N=12, seed 0)
+    for kind, color in [("complete", "#0f766e"), ("chain", "#d97706")]:
+        run = evaporate_graph_sparse(12, kind=kind, dt=1.0, seed=0)
+        axes[2].plot(run["t"][:-1], run["E_hole"][:-1], "o-", color=color, ms=3, label=kind)
+    axes[2].set_xlabel("t"); axes[2].set_ylabel("<H_hole>")
+    axes[2].set_title("Hole energy drains (diagnostic)")
+    axes[2].legend(fontsize=7)
+    fig.suptitle("Fig 74c — D1 large-N: sparse graph V_k to N=14 (not a small-N artifact)")
+    fig.tight_layout()
+    fig.savefig(FIG / "fig74c_graphvkn_scaling.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def fig75_gw190814_audit():
     from bh_graph.massgaps import (
         gw190814_blue_mag, GW190814_CFHT_G_EPOCHS, GW190814_GROWTH_I_EPOCHS,
@@ -2116,6 +2169,7 @@ def main():
     fig73_uv_n4000()
     fig74_unitary_page()
     fig74b_graphvk()
+    fig74c_graphvkn()
     fig75_gw190814_audit()
     fig75b_gw190814_systematics()
     print(f"wrote figures to {FIG}")
