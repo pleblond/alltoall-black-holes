@@ -206,11 +206,18 @@ def analyze(datadir, npydir):
                                              "amp": a}))[sl]["cross"] for a in amps]
             dd = [need(recs, R("ampdecomp", {"cand": "VPLUS", "kind": k,
                                              "amp": a}))[sl]["dd"] for a in amps]
-            assert min(cr) > 0.0 and min(dd) > 0.0, (k, sl)
+            assert min(cr) > 0.0, (k, sl)
             sc = float(np.polyfit(la, np.log(cr), 1)[0])
-            sd = float(np.polyfit(la, np.log(dd), 1)[0])
-            decomp_ok = decomp_ok and abs(sc - 1.0) < 0.05 and abs(sd) < 0.05
-            notes.append(f"decomp {k} {sl}: cross-slope={sc:.4f} dd-slope={sd:.4f}")
+            decomp_ok = decomp_ok and abs(sc - 1.0) < 0.05
+            if max(dd) == 0.0:
+                # Exact-zero slice (single-node support at t = 0):
+                # vacuous, verified exact (Amendment-4 addendum).
+                notes.append(f"decomp {k} {sl}: cross-slope={sc:.4f} dd==0 exact")
+            else:
+                assert min(dd) > 0.0, (k, sl)
+                sd = float(np.polyfit(la, np.log(dd), 1)[0])
+                decomp_ok = decomp_ok and abs(sd) < 0.05
+                notes.append(f"decomp {k} {sl}: cross-slope={sc:.4f} dd-slope={sd:.4f}")
     abs_ok = abs_ok and decomp_ok
     checks["VPLUS"]["normalized_robust"] = bool(frac_ok and abs_ok)
     for c in ("VPI", "VMINUS"):

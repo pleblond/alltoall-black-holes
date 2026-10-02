@@ -3237,3 +3237,12 @@ feature, not a scaling defect.
 
 Task count 190 -> 204 (14 follow-ups). Ladder structure unchanged.
 Cosmetic: analyzer note "22/80" -> "22/78".
+
+### VACFIELD0-AMENDMENT-4 ADDENDUM (analytic edge case; verdict not yet filed)
+
+Single-node perturbations (amplitude kind) have dd = 0 EXACTLY at
+t = 0 (no bond has both ends excited: support argument, not a fit).
+The dd-slope gate is therefore scoped to slices with dd != 0;
+exact-zero slices are verified == 0.0 at every amplitude (vacuous
+pass, same class as the VMINUS E-vacuous rule). Cross gate
+unchanged (all slices > 0). No predictions altered.
