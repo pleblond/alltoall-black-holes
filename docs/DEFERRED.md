@@ -3155,6 +3155,86 @@ both sides); other pairs can only lose spurious splits. NaN is now
 impossible by construction (zero-field com/width always excluded);
 M-INST-no-nan proves it.
 
+## SYM0-VERDICT — Physical state space and equivalence census (POST-DATA)
+
+**Verdict: SYM0-CLOSED** (beast, 1973 cells, 96 workers, wall 8.1s;
+ledger data/sym0_ledger.json 1.0MB + data/sym0_verdict.json committed;
+look1/look2 ledgers superseded, archived beast-side). Hard gates 8/8
+green, all MEASURED cells filed, both instrument gates green
+(M-INST-band 0 ambiguity hits with 48 filed straddles; M-INST-no-nan
+0 tokens). No probability measure introduced; no dynamics modified.
+
+**The physical state space (earned):** the representation-redundant
+descriptions of X = (G, psi) are EXACTLY node relabelings (R: H-E
+120 cells at 0.0, negative control without coords transport fails at
+D = 26.76, proving the gate bites) and global phase (U1: H-D 300
+cells max 7.9e-13; Sign is the U1(pi) alias by construction). Both
+are dynamics-preserving (H-T: R traj 0.0, U1 traj 1.1e-14). The
+representation-independent microscopic state space is therefore
+X_red = X / (relabeling x U(1)); at fixed nonzero norm the field
+sector is the projective quotient with metric d_FS (M-X: redundant
+pairs 0 to 1.5e-08 under the 1e-7 arccos floor, dynamics-preserving
+to 2.2e-15, triangle verified). No Born rule is attached (firewall
+kept). Everything else tested is NOT redundancy:
+
+**Symmetry (distinct states, corresponding observables):** graph
+automorphisms (Aut: 11/11 packet cells move COM, shape/energy
+invariant), quotient translations (T: landmark protocol rel_AO =
+(3,3) vs rel_BO = rel_TAO = (4,3), TA = B to 0.0: translated-both is
+relationally identical, translated-system is distinguished),
+sheet exchange (S: intertwines dynamics to 0.0; coarse rho identical,
+sheet-resolved rho moved, maxD 0.50). SectorSign is PROVEN equal to S
+(18 cells, 3.9e-17), not an independent transformation.
+
+**Time reversal:** Theta U(t) Theta^-1 = U(-t) to 1.7e-14 (87 cells);
+J-odd, rho/B-even. Relates histories; not a redundancy.
+
+**Conditional distinguishability:** conjugation is visible iff J != 0
+(29/29 J-carrying pairs D > 0 via J; 31/31 J-absent pairs D = 0,
+including real standing/uniform fields). Never quotient psi ~ psi*.
+
+**Physical, not redundant:** amplitude scaling (exact a^2 laws, defect
+0.0; normalized shape identical but absolute readouts move; norm
+sector stays OPEN pending VAC-FIELD), additive shift (non-covariance
+defect >= 0.049; uniform mode is an eigenmode with E_0 = -z, hence
+non-stationary, pinning the no-zero-mode result), sheet-relative
+phase (32/36 visible; 4 invisible are the zero-field cells, exact).
+
+**Operational hierarchy (distinction lattice, not a chain):** probe
+battery classes O1/O2/O3 = 6/11/10 (current vs current-C split at O2
+via J and remerge at O3 where flux angle is undefined: families are
+NOT nested, so counts need not be monotone — the prereg monotonicity
+expectation is corrected); O4/O5 = 1 class (G-channels, psi-blind by
+banked construction: POT/wave/arrival/diffusion are properties of
+(G, source), constant on fixed G). Packet-C is IDENTICAL to packet-k
+(banked prep pin), correctly merged at every family.
+
+**Transition covariance (SYM-0U):** A(gX) = gA(X) exact for R/Aut/U1
+across UB/UL/UEc (348 cells); S-covariant (24/24); conjugation leaves
+all U0 marks invariant (B/L are conjugation-even, 87/87); scale
+preserves all marks (87/87: signs survive a^2 rescaling even though
+absolute readouts move — filed nuance); shift preserves 55/87.
+
+**RAND handoff (SYM-0V/W, read-only):** recount over T1..T8+U1..U8
+reproduces the multiplicity dependence under every defensible grain
+(e.g. T8 d=2: directed 10 vs undirected 6 vs iso 6 vs orbits 5 vs red
+6; U2/U4 d=8: 6562 vs 3282 with iso/stab capped as preregistered):
+24 differing grains across 16 states -> debt_survives = True. The
+RAND0-MEASURE-DEBT (replayed verdict, sha256 6b2991cd...) is therefore
+NOT an artifact of counting redundant descriptions: it survives the
+quotient to actual physical states. No uniform measure is endorsed.
+
+**Banked replay (read-only, hashes in ledger):** QUOT sector algebra
+exact at L=28 (comm/anti/intertwining 0.0), U0-INCOMPLETE, RAND0-
+MEASURE-DEBT, CONS-0 ledger all replayed by hash. ZERO-0 apparatus
+unavailable (mid-flight, filed); RESPONSE-0 apparatus exists but is
+pre-data unvalidated (resp0-eef4) and was NOT consumed; O3/O4
+dynamics + POT + driven pinning cover response readouts instead.
+
+**Debts filed (not closed):** norm-sector ontology (VAC-FIELD);
+O5 big-graph OBS recomputation (scope cap kept); operational sheet
+blindness at scale (banked QUOT-0, replayed not rebuilt).
+
 (b) M-X-fs-zero bar 1e-9 -> 1e-7: arccos evaluation floor at unity
 (arccos(1-eps) ~= sqrt(2eps); eps ~ 2e-16 -> ~2e-8 observed
 1.49e-8). Bar 1e-7 gives 5x headroom and stays 1e7 below O(1)
