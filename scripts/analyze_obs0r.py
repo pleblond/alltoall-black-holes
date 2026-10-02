@@ -150,7 +150,9 @@ def epsilon_GDW(outdir_or_banked, tag, v_banked, n_train=8):
                 if pair == "WD" and (tW is None or tD is None):
                     continue
                 Rall.append(R)
-        assert len(Rall) == len(dl), (tag, pair, len(Rall), len(dl))
+        if len(Rall) != len(dl):
+            out[pair] = {"error": f"R-count mismatch {len(Rall)} vs {len(dl)}"}
+            continue
         out[pair] = obs0r.epsilon_profile(dl, Rall, float(D) / 2.0)
     return out
 
@@ -434,7 +436,8 @@ def main():
                      jP[128]["cals"], jP[128]["mono"])
     tri = {}
     for p in ("GW", "GD", "WD"):
-        tri[p] = obs0r.interior_maximum([eps[p][k] for k in sorted(eps[p])])
+        tri[p] = False if "error" in eps[p] else obs0r.interior_maximum(
+            [eps[p][k] for k in sorted(eps[p])])
     for p in P_PAIRS:
         tri[p] = obs0r.interior_maximum([epsP[p][b] for b in (0, 1, 2)])
     verdict["epsilon128"] = {"GDW": eps, "P": epsP}
@@ -484,8 +487,11 @@ def main():
                      and verdict["C1_POT"]["pass"] and c1ext)
     verdict["gates"]["UNIVERSAL"] = universal
 
-    # Ladder.
-    if not j2_open:
+    # Ladder (missing-STOP re-gates at full stage per OBS-0 precedent:
+    # >25% missing on any opened cell blocks interpretation).
+    j2_open_full = bool(j2_open and miss_max <= 0.25)
+    verdict["gates"]["J2_open_full"] = j2_open_full
+    if not j2_open_full:
         ladder = "OBS0R-BLOCKED"
     elif p_incompat:
         ladder = "OBS0R-DISCORDANT"
