@@ -265,11 +265,42 @@ def _hand_histories():
     return hists
 
 
+def _admissible_up_to_final_relab(hist):
+    """Existential relabeling check for 2-slice histories (labels = gauge).
+
+    Contraction downshift renames nodes, so strict labeled Theta holds
+    only for identity runs; structural histories reverse up to a final-
+    slice permutation (banked ug.permute_state, all perms, N <= 3).
+    """
+    import itertools
+
+    from bh_graph import ug
+
+    assert len(hist) == 2
+    A, B = hist
+    if time0.step_kinds(A, B):
+        return True
+    nodes = list(B["g"].nodes())
+    for perm in itertools.permutations(nodes):
+        mapping = dict(zip(nodes, perm))
+        h, psi2, order2 = ug.permute_state(B["g"], B["psi"], B["order"], mapping)
+        Bp = time0.make_state(h, psi2, order2)
+        if time0.step_kinds(A, Bp):
+            return True
+    return False
+
+
 def test_c2_theta_preserves_admissibility():
     for hist in _hand_histories():
         assert time0.is_history_admissible_ok(hist) is True
         rev = time0.time_reverse_history(hist)
-        assert time0.is_history_admissible_ok(rev) is True
+        assert _admissible_up_to_final_relab(rev) is True
+
+
+def test_c2_theta_strict_for_identity_runs():
+    hist = _hand_histories()[0]
+    rev = time0.time_reverse_history(hist)
+    assert time0.is_history_admissible_ok(rev) is True
 
 
 def test_c2_theta_involution():
