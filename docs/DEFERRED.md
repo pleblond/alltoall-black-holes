@@ -3072,3 +3072,48 @@ partition (I-negative -> false). PREDICTION: ACCOUNTED.
 new physics); SPLIT-DEGENERACY reduced stands; INFORMATION-LOSS stands
 (theorem); TICK-SCHEDULER stands (conditional). PREDICTION: BR-3C stays
 BLOCKED on EVENT-RATE (+ ratios); P is the admissible constrained probe.
+
+## BR26-VERDICT — BR26-ACCOUNTED (10/10 gates, predicted by the algebra)
+
+**Campaign:** data/br26_accounting.json (beast run, sub-second census +
+V-tripwire, frozen runner). **Ladder:** V-tripwire holds (6/6
+constructed B_* states balance to <= 6e-14 through the full apparatus)
+-> conditional closure VERIFIED; no-go exhibits re-verified; P families
+match every prediction -> NOT no-closure. No ratio-fixing principle
+exists (vacuum-tuning forbidden) -> NOT admissibility. I returns
+NEGATIVE (equality non-firing, inequality unjustified) -> NOT event-law.
+**= BR26-ACCOUNTED:** accounting is closed; event-rate law remains debt.
+
+**What conservation derives (earned):** the conditional invariant family
+DQ_tot = 0 IFF B_ij = B_*(c) = (a + b(1+c))/2g (form derived, verified
+end-to-end); universal closure PROVEN impossible (linear + E-extended,
+constructive exhibits); graph reservoir PROVEN nonexistent
+(independence); energy ledger EXACT (dE = 2B - 2S_cross, common-collapse
+neutrality, B-insufficiency pinned); sum-identity banked (zero selection
+power, filed honestly); split degeneracy REDUCED to the B_*-level-set
+(solvable iff B_*(o) <= |s|^2/4, continuous family remains).
+Delta(E - N) = -c remark pinned (graph-only c = 0 rule exists for the
+(-1,1,0) ratios — NOT selected: ratios unjustified either way).
+
+**What conservation does not derive (debts):** firing (equality is
+codimension-1, non-firing); direction (contract/split inequality needs
+new physics); the two coefficient ratios (free continuous family);
+reversibility (many-to-one proven: log2((3^d+1)/2) bits + 2 real dims
+per event); scheduling (seeded-random matching derived conditionally,
+vacuous without firing). The overlay sensitivity table demonstrates the
+underdetermination directly: firing fraction swings 0 -> 1 across
+stated (ratio, eps) reference choices — which is why none is selected.
+
+**P-census (algebra validation):** zero all B == 0; bonding all B > 0
+(+1.00); current all B = 0 with |J| = rho^2 saturated; antibonding all
+B < 0 (-1.00); random +0.49/-0.51 mixed; irregular mixed with c in
+{0..4} (107/115/49/13/3); J2 all c = 0 (triangle-free, data).
+
+**Six debts (final statuses):** NORM-ACCOUNT reduced (conditional
+family, ratios free); ENERGY-ACCOUNT ledgered non-conserving;
+EVENT-RATE stands; SPLIT-DEGENERACY reduced stands; INFORMATION-LOSS
+stands (theorem); TICK-SCHEDULER stands (conditional). **BR-3C stays
+BLOCKED on EVENT-RATE (+ ratios).** The constrained P-census above is
+the admissible probe until firing physics is earned. M/N hold with the
+filed vacuity caveat (measure-zero firing is quiescent everywhere;
+zero-field and pure-current quiescence verified in the letter).

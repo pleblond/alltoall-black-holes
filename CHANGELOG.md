@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (BR-2.6 joint accounting)** — D14-BR2.6/CONS-0 campaign:
+  new `accounting.py` (itemized event ledger, dE formula, Qtot/B_star
+  algebra, constructive no-go exhibits, split-conservation, conditional
+  matching scheduler, info books); 18 pins incl. universal/extended/
+  reservoir no-go exhibits, B-insufficiency, far-change locality C4,
+  4-substrate O/C6; verdict BR26-ACCOUNTED (10/10): conditional closure
+  B = B_*(c) verified to 1e-13, universal closure proven impossible,
+  I returns NEGATIVE (equality non-firing). Six debts with statuses;
+  BR-3C stays BLOCKED on EVENT-RATE.
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).
