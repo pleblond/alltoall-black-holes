@@ -3,6 +3,39 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (FEP-0 prereg)** — D14-FEP finite-excitation
+  phenomenology scan opened on P1 tail (ac6a140): discovery (not
+  fitting) of persistent composite K+ψ excitations under the frozen
+  one-way P1.2 coupling (C0-merge not required, reciprocal channel
+  banned, P3-D excluded, D15 read-only); A1/A2 banked (Stage-0 +
+  P1.1), A3 = S2 coupled grid (6 D5∞ trajectories, sitter-selected,
+  3 launches × H=150, σ∈{4,2}, partner-momenta branches, 3
+  substrates, S-bracket {1,10,100} on headline cells); six frozen
+  gates (localization/association/bounded/lifetime/occupation/
+  K-survival) + class rule (≥2 fires, ≥2 sitters, S-robustness) +
+  E0–E8 ladder operationalization (E5 architecture-null, E6/E8
+  deferred) + NULL-0/SCATTERING-ONLY/FLAT-TRAP/E0+ hard stops +
+  electron firewall; composite readouts + gates (`fep.py`) + 11
+  pins (pre-data).
+
+- **unreleased (FEP amendment-1)** — D14-FEP zero-k yardstick repair
+  (pre-data, pure arithmetic): G4 crossings used matched bare speed,
+  which is 0 for validated zero-k nulls, making E2 vacuous as
+  written; repaired with the family yardstick (matched minus-
+  x-approach bare speed, plus fallback, else run-invalid); <Γ>
+  trace added to S2 cells (prereg-required, pre-launch).
+
+- **unreleased (FEP-0 verdict NULL-0)** — D14-FEP S0–S4 complete
+  (beast): 6/6 formation reruns cap/2000, sitters L28-d1/d2/d3
+  (A1 banked, determinism cross-check exact vs P1); 405/405 wave
+  cells sealed (suite green 607 + 2 skipped); S3 verdict NULL-0
+  (109 scored formed, 0 fires, persist identically 0, excess ≤1.08
+  vs 5× bar, no residence/mixing fires, 0 flat-traps); E0–E3 NULL,
+  E4/E7 OPEN, E5 architecture-null, E6/E8 deferred; electron
+  comparison table filed post-freeze (no aggregate). No finite
+  persistent K+ψ composite exists under the frozen one-way
+  coupling; no tuning rescue per prereg.
+
 - **unreleased (SPEC-0 verdict)** — Bound-state spectroscopy result SPEC0
   (beast, 56 graphs): L1 median eKmax 4.69 vs 5.0 FAIL (near-miss in
   L28/L42 split 4.53/6.33); L2/L3/L4 pass as written (L4 dust-vacuous,
