@@ -285,7 +285,8 @@ def cmd_anatomy(args):
     origin = order[origins[oi]]
     dist = dict(nx.single_source_shortest_path_length(g, origin))
     idx = {v: i for i, v in enumerate(order)}
-    out = {"kind": kind, "oi": oi, "origin": list(origin)}
+    out = {"kind": kind, "oi": oi, "origin": int(origin),
+           "origin_cell": [int(v) for v in c3[origin]]}
     if kind == "diff-pattern":
         wl, Vl, _ = obs0.load_system(find("eigen_lsym_j2-L28.npz", datadirs))
         with open(find("info_j2-L28.json", datadirs)) as f:
