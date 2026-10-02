@@ -10,7 +10,10 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   classes), covariance/locality/factorization/census/effect-radius gates
   (`src/bh_graph/rand0.py`, `tests/test_rand0.py`,
   `scripts/run_rand0_campaign.py`, `scripts/analyze_rand0.py`); campaign
-  not yet run; prediction RAND0-MEASURE-DEBT (pre-data).
+  complete on beast (64 jobs): RAND0-MEASURE-DEBT (263/270 gates green;
+  apparatus coherent; MICRO- vs ORBIT-UNIFORM differ; directed !=
+  undirected coarse on all states; iso-classes coarser + non-uniform;
+  P(R_effect) concentrates near N; vacuum not quiescent, no exception).
 
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;

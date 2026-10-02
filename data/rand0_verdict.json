@@ -1,0 +1,1510 @@
+{
+ "gates": [
+  {
+   "gate": "I-edge2[T1]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[T1]",
+   "ok": true,
+   "detail": "n=3 d=1"
+  },
+  {
+   "gate": "I-directed[T1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[T1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-inducedsum[T1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-orbitsum[T1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[T1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[T1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[T2]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[T2]",
+   "ok": true,
+   "detail": "n=3 d=1"
+  },
+  {
+   "gate": "I-directed[T2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[T2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-inducedsum[T2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-orbitsum[T2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[T2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[T2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[T3]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[T3]",
+   "ok": true,
+   "detail": "n=3 d=1"
+  },
+  {
+   "gate": "I-directed[T3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[T3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-inducedsum[T3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-orbitsum[T3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[T3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[T3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[T4]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[T4]",
+   "ok": true,
+   "detail": "n=3 d=1"
+  },
+  {
+   "gate": "I-directed[T4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[T4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-inducedsum[T4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-orbitsum[T4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[T4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[T4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[T5]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[T5]",
+   "ok": true,
+   "detail": "n=6 d=2"
+  },
+  {
+   "gate": "I-directed[T5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[T5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-inducedsum[T5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-orbitsum[T5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[T5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[T5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[T6]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[T6]",
+   "ok": true,
+   "detail": "n=6 d=2"
+  },
+  {
+   "gate": "I-directed[T6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[T6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-inducedsum[T6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-orbitsum[T6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[T6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[T6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[T7]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[T7]",
+   "ok": true,
+   "detail": "n=3 d=1"
+  },
+  {
+   "gate": "I-directed[T7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[T7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-inducedsum[T7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-orbitsum[T7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[T7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[T7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[T8]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[T8]",
+   "ok": true,
+   "detail": "n=6 d=2"
+  },
+  {
+   "gate": "I-directed[T8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[T8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-inducedsum[T8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-orbitsum[T8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[T8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[T8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[U1]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[U1]",
+   "ok": true,
+   "detail": "n=3282 d=8"
+  },
+  {
+   "gate": "I-directed[U1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[U1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-isocap[U1]",
+   "ok": true,
+   "detail": "capped"
+  },
+  {
+   "gate": "I-effectsum[U1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[U1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[U2]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[U2]",
+   "ok": true,
+   "detail": "n=3282 d=8"
+  },
+  {
+   "gate": "I-directed[U2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[U2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-isocap[U2]",
+   "ok": true,
+   "detail": "capped"
+  },
+  {
+   "gate": "I-effectsum[U2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[U2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[U3]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[U3]",
+   "ok": true,
+   "detail": "n=3282 d=8"
+  },
+  {
+   "gate": "I-directed[U3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[U3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-isocap[U3]",
+   "ok": true,
+   "detail": "capped"
+  },
+  {
+   "gate": "I-effectsum[U3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[U3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[U4]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[U4]",
+   "ok": true,
+   "detail": "n=3282 d=8"
+  },
+  {
+   "gate": "I-directed[U4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[U4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-isocap[U4]",
+   "ok": true,
+   "detail": "capped"
+  },
+  {
+   "gate": "I-effectsum[U4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[U4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[U5]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[U5]",
+   "ok": true,
+   "detail": "n=42 d=4"
+  },
+  {
+   "gate": "I-directed[U5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[U5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-isocap[U5]",
+   "ok": true,
+   "detail": "capped"
+  },
+  {
+   "gate": "I-orbitsum[U5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[U5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[U5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[U6]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[U6]",
+   "ok": true,
+   "detail": "n=6 d=2"
+  },
+  {
+   "gate": "I-directed[U6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[U6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-isocap[U6]",
+   "ok": true,
+   "detail": "capped"
+  },
+  {
+   "gate": "I-orbitsum[U6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[U6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[U6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[U7]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[U7]",
+   "ok": true,
+   "detail": "n=1095 d=7"
+  },
+  {
+   "gate": "I-directed[U7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[U7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-isocap[U7]",
+   "ok": true,
+   "detail": "capped"
+  },
+  {
+   "gate": "I-orbitsum[U7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-effectsum[U7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[U7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-edge2[U8]",
+   "ok": true,
+   "detail": "n=2"
+  },
+  {
+   "gate": "I-nodecount[U8]",
+   "ok": true,
+   "detail": "n=3282 d=8"
+  },
+  {
+   "gate": "I-directed[U8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-coarsesum[U8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-isocap[U8]",
+   "ok": true,
+   "detail": "capped"
+  },
+  {
+   "gate": "I-effectsum[U8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-tickbooks[U8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[T1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[T2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[T3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[T4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[T5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[T6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[T7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[T8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[U1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[U2]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[U3]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[U4]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[U5]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[U6]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[U7]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "C-coherent[U8]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "R-census[T1,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T1,node]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T2,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T2,node]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T3,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T3,node]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T4,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T4,node]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T5,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T5,node]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T6,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T6,node]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T7,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T7,node]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T8,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[T8,node]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[U1,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[U1,node]",
+   "ok": false,
+   "detail": "pcg64=False;philox=False;sfc64=False"
+  },
+  {
+   "gate": "R-census[U2,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[U2,node]",
+   "ok": false,
+   "detail": "pcg64=False;philox=False;sfc64=False"
+  },
+  {
+   "gate": "R-census[U3,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[U3,node]",
+   "ok": false,
+   "detail": "pcg64=False;philox=False;sfc64=False"
+  },
+  {
+   "gate": "R-census[U4,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[U4,node]",
+   "ok": false,
+   "detail": "pcg64=False;philox=False;sfc64=False"
+  },
+  {
+   "gate": "R-census[U5,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[U5,node]",
+   "ok": false,
+   "detail": "pcg64=True;philox=False;sfc64=True"
+  },
+  {
+   "gate": "R-census[U6,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[U6,node]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[U7,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[U7,node]",
+   "ok": false,
+   "detail": "pcg64=False;philox=False;sfc64=False"
+  },
+  {
+   "gate": "R-census[U8,edge]",
+   "ok": true,
+   "detail": "pcg64=True;philox=True;sfc64=True"
+  },
+  {
+   "gate": "R-census[U8,node]",
+   "ok": false,
+   "detail": "pcg64=False;philox=False;sfc64=False"
+  },
+  {
+   "gate": "R-census-repaired[T1,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[T1,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.935 chi2-p=0.419);philox=True(z=2.935 chi2-p=0.579);sfc64=True(z=2.935 chi2-p=0.957)"
+  },
+  {
+   "gate": "R-census-repaired[T2,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[T2,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.935 chi2-p=0.419);philox=True(z=2.935 chi2-p=0.579);sfc64=True(z=2.935 chi2-p=0.957)"
+  },
+  {
+   "gate": "R-census-repaired[T3,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[T3,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.935 chi2-p=0.419);philox=True(z=2.935 chi2-p=0.579);sfc64=True(z=2.935 chi2-p=0.957)"
+  },
+  {
+   "gate": "R-census-repaired[T4,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[T4,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.935 chi2-p=0.419);philox=True(z=2.935 chi2-p=0.579);sfc64=True(z=2.935 chi2-p=0.957)"
+  },
+  {
+   "gate": "R-census-repaired[T5,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[T5,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=3.144 chi2-p=0.444);philox=True(z=3.144 chi2-p=0.753);sfc64=True(z=3.144 chi2-p=0.615)"
+  },
+  {
+   "gate": "R-census-repaired[T6,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[T6,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=3.144 chi2-p=0.444);philox=True(z=3.144 chi2-p=0.753);sfc64=True(z=3.144 chi2-p=0.615)"
+  },
+  {
+   "gate": "R-census-repaired[T7,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[T7,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.935 chi2-p=0.419);philox=True(z=2.935 chi2-p=0.579);sfc64=True(z=2.935 chi2-p=0.957)"
+  },
+  {
+   "gate": "R-census-repaired[T8,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[T8,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=3.144 chi2-p=0.444);philox=True(z=3.144 chi2-p=0.753);sfc64=True(z=3.144 chi2-p=0.615)"
+  },
+  {
+   "gate": "R-census-repaired[U1,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[U1,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=4.668 chi2-p=0.139);philox=True(z=4.668 chi2-p=0.408);sfc64=True(z=4.668 chi2-p=0.783)"
+  },
+  {
+   "gate": "R-census-repaired[U2,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[U2,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=4.668 chi2-p=0.139);philox=True(z=4.668 chi2-p=0.408);sfc64=True(z=4.668 chi2-p=0.783)"
+  },
+  {
+   "gate": "R-census-repaired[U3,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[U3,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=4.668 chi2-p=0.139);philox=True(z=4.668 chi2-p=0.408);sfc64=True(z=4.668 chi2-p=0.783)"
+  },
+  {
+   "gate": "R-census-repaired[U4,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[U4,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=4.668 chi2-p=0.139);philox=True(z=4.668 chi2-p=0.408);sfc64=True(z=4.668 chi2-p=0.783)"
+  },
+  {
+   "gate": "R-census-repaired[U5,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[U5,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=3.675 chi2-p=0.690);philox=True(z=3.675 chi2-p=0.032);sfc64=True(z=3.675 chi2-p=0.823)"
+  },
+  {
+   "gate": "R-census-repaired[U6,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[U6,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=3.144 chi2-p=0.444);philox=True(z=3.144 chi2-p=0.753);sfc64=True(z=3.144 chi2-p=0.615)"
+  },
+  {
+   "gate": "R-census-repaired[U7,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[U7,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=4.437 chi2-p=0.191);philox=True(z=4.437 chi2-p=0.582);sfc64=True(z=4.437 chi2-p=0.767)"
+  },
+  {
+   "gate": "R-census-repaired[U8,edge]",
+   "ok": true,
+   "detail": "pcg64=True(z=2.807 chi2-p=0.782);philox=True(z=2.807 chi2-p=0.816);sfc64=True(z=2.807 chi2-p=0.809)"
+  },
+  {
+   "gate": "R-census-repaired[U8,node]",
+   "ok": true,
+   "detail": "pcg64=True(z=4.668 chi2-p=0.139);philox=True(z=4.668 chi2-p=0.408);sfc64=True(z=4.668 chi2-p=0.783)"
+  },
+  {
+   "gate": "N-disjoint[T1]",
+   "ok": true,
+   "detail": "absent"
+  },
+  {
+   "gate": "N-overlapping[T1]",
+   "ok": true,
+   "detail": "absent"
+  },
+  {
+   "gate": "N-disjoint[T2]",
+   "ok": true,
+   "detail": "absent"
+  },
+  {
+   "gate": "N-overlapping[T2]",
+   "ok": true,
+   "detail": "absent"
+  },
+  {
+   "gate": "N-disjoint[T3]",
+   "ok": true,
+   "detail": "absent"
+  },
+  {
+   "gate": "N-overlapping[T3]",
+   "ok": true,
+   "detail": "absent"
+  },
+  {
+   "gate": "N-disjoint[T4]",
+   "ok": true,
+   "detail": "absent"
+  },
+  {
+   "gate": "N-overlapping[T4]",
+   "ok": true,
+   "detail": "absent"
+  },
+  {
+   "gate": "N-disjoint[T5]",
+   "ok": true,
+   "detail": "absent"
+  },
+  {
+   "gate": "N-overlapping[T5]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[T6]",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "N-overlapping[T6]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[T7]",
+   "ok": true,
+   "detail": "absent"
+  },
+  {
+   "gate": "N-overlapping[T7]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[T8]",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "N-overlapping[T8]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[U1]",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "N-overlapping[U1]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[U2]",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "N-overlapping[U2]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[U3]",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "N-overlapping[U3]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[U4]",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "N-overlapping[U4]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[U5]",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "N-overlapping[U5]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[U6]",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "N-overlapping[U6]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[U7]",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "N-overlapping[U7]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "N-disjoint[U8]",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "N-overlapping[U8]",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "C7-no-tuning",
+   "ok": true,
+   "detail": "pinned in tests/test_rand0.py::test_no_hidden_tuning"
+  },
+  {
+   "gate": "E-measured[T1]",
+   "ok": true,
+   "detail": "dir=True cls=3/3 nonunif=False"
+  },
+  {
+   "gate": "E-measured[T2]",
+   "ok": true,
+   "detail": "dir=True cls=3/3 nonunif=False"
+  },
+  {
+   "gate": "E-measured[T3]",
+   "ok": true,
+   "detail": "dir=True cls=3/3 nonunif=False"
+  },
+  {
+   "gate": "E-measured[T4]",
+   "ok": true,
+   "detail": "dir=True cls=3/3 nonunif=False"
+  },
+  {
+   "gate": "E-measured[T5]",
+   "ok": true,
+   "detail": "dir=True cls=5/6 nonunif=True"
+  },
+  {
+   "gate": "E-measured[T6]",
+   "ok": true,
+   "detail": "dir=True cls=5/6 nonunif=True"
+  },
+  {
+   "gate": "E-measured[T7]",
+   "ok": true,
+   "detail": "dir=True cls=3/3 nonunif=False"
+  },
+  {
+   "gate": "E-measured[T8]",
+   "ok": true,
+   "detail": "dir=True cls=6/6 nonunif=False"
+  },
+  {
+   "gate": "E-measured[U1]",
+   "ok": true,
+   "detail": "dir=True iso-capped"
+  },
+  {
+   "gate": "E-measured[U2]",
+   "ok": true,
+   "detail": "dir=True iso-capped"
+  },
+  {
+   "gate": "E-measured[U3]",
+   "ok": true,
+   "detail": "dir=True iso-capped"
+  },
+  {
+   "gate": "E-measured[U4]",
+   "ok": true,
+   "detail": "dir=True iso-capped"
+  },
+  {
+   "gate": "E-measured[U5]",
+   "ok": true,
+   "detail": "dir=True iso-capped"
+  },
+  {
+   "gate": "E-measured[U6]",
+   "ok": true,
+   "detail": "dir=True iso-capped"
+  },
+  {
+   "gate": "E-measured[U7]",
+   "ok": true,
+   "detail": "dir=True iso-capped"
+  },
+  {
+   "gate": "E-measured[U8]",
+   "ok": true,
+   "detail": "dir=True iso-capped"
+  },
+  {
+   "gate": "D-separation[T1]",
+   "ok": true,
+   "detail": "coincide"
+  },
+  {
+   "gate": "D-separation[T2]",
+   "ok": true,
+   "detail": "coincide"
+  },
+  {
+   "gate": "D-separation[T3]",
+   "ok": true,
+   "detail": "coincide"
+  },
+  {
+   "gate": "D-separation[T4]",
+   "ok": true,
+   "detail": "coincide"
+  },
+  {
+   "gate": "D-separation[T5]",
+   "ok": true,
+   "detail": "DIFFER"
+  },
+  {
+   "gate": "D-separation[T6]",
+   "ok": true,
+   "detail": "DIFFER"
+  },
+  {
+   "gate": "D-separation[T7]",
+   "ok": true,
+   "detail": "coincide"
+  },
+  {
+   "gate": "D-separation[T8]",
+   "ok": true,
+   "detail": "DIFFER"
+  },
+  {
+   "gate": "D-separation[U1]",
+   "ok": true,
+   "detail": "cap"
+  },
+  {
+   "gate": "D-separation[U2]",
+   "ok": true,
+   "detail": "cap"
+  },
+  {
+   "gate": "D-separation[U3]",
+   "ok": true,
+   "detail": "cap"
+  },
+  {
+   "gate": "D-separation[U4]",
+   "ok": true,
+   "detail": "cap"
+  },
+  {
+   "gate": "D-separation[U5]",
+   "ok": true,
+   "detail": "DIFFER"
+  },
+  {
+   "gate": "D-separation[U6]",
+   "ok": true,
+   "detail": "DIFFER"
+  },
+  {
+   "gate": "D-separation[U7]",
+   "ok": true,
+   "detail": "DIFFER"
+  },
+  {
+   "gate": "D-separation[U8]",
+   "ok": true,
+   "detail": "cap"
+  },
+  {
+   "gate": "VERDICT",
+   "ok": true,
+   "detail": "RAND0-MEASURE-DEBT"
+  },
+  {
+   "gate": "VERDICT-original-gates",
+   "ok": true,
+   "detail": "RAND0-INCOHERENT"
+  }
+ ],
+ "multiplicity": {
+  "T1": {
+   "directed_differs": true,
+   "iso_capped": false,
+   "classes_coarser": false,
+   "nonuniform_over_classes": false,
+   "coarse_mu_split": 0.6666666666666666,
+   "coarse_directed_split": 0.75
+  },
+  "T2": {
+   "directed_differs": true,
+   "iso_capped": false,
+   "classes_coarser": false,
+   "nonuniform_over_classes": false,
+   "coarse_mu_split": 0.6666666666666666,
+   "coarse_directed_split": 0.75
+  },
+  "T3": {
+   "directed_differs": true,
+   "iso_capped": false,
+   "classes_coarser": false,
+   "nonuniform_over_classes": false,
+   "coarse_mu_split": 0.6666666666666666,
+   "coarse_directed_split": 0.75
+  },
+  "T4": {
+   "directed_differs": true,
+   "iso_capped": false,
+   "classes_coarser": false,
+   "nonuniform_over_classes": false,
+   "coarse_mu_split": 0.6666666666666666,
+   "coarse_directed_split": 0.75
+  },
+  "T5": {
+   "directed_differs": true,
+   "iso_capped": false,
+   "classes_coarser": true,
+   "nonuniform_over_classes": true,
+   "coarse_mu_split": 0.8333333333333333,
+   "coarse_directed_split": 0.8999999999999999
+  },
+  "T6": {
+   "directed_differs": true,
+   "iso_capped": false,
+   "classes_coarser": true,
+   "nonuniform_over_classes": true,
+   "coarse_mu_split": 0.8333333333333333,
+   "coarse_directed_split": 0.8999999999999999
+  },
+  "T7": {
+   "directed_differs": true,
+   "iso_capped": false,
+   "classes_coarser": false,
+   "nonuniform_over_classes": false,
+   "coarse_mu_split": 0.6666666666666666,
+   "coarse_directed_split": 0.75
+  },
+  "T8": {
+   "directed_differs": true,
+   "iso_capped": false,
+   "classes_coarser": false,
+   "nonuniform_over_classes": false,
+   "coarse_mu_split": 0.8333333333333333,
+   "coarse_directed_split": 0.8999999999999999
+  },
+  "U1": {
+   "directed_differs": true,
+   "iso_capped": true,
+   "classes_coarser": null,
+   "nonuniform_over_classes": null,
+   "coarse_mu_split": 0.9996953077391217,
+   "coarse_directed_split": 0.9998476074368703
+  },
+  "U2": {
+   "directed_differs": true,
+   "iso_capped": true,
+   "classes_coarser": null,
+   "nonuniform_over_classes": null,
+   "coarse_mu_split": 0.9996953077391217,
+   "coarse_directed_split": 0.9998476074368703
+  },
+  "U3": {
+   "directed_differs": true,
+   "iso_capped": true,
+   "classes_coarser": null,
+   "nonuniform_over_classes": null,
+   "coarse_mu_split": 0.9996953077391217,
+   "coarse_directed_split": 0.9998476074368703
+  },
+  "U4": {
+   "directed_differs": true,
+   "iso_capped": true,
+   "classes_coarser": null,
+   "nonuniform_over_classes": null,
+   "coarse_mu_split": 0.9996953077391217,
+   "coarse_directed_split": 0.9998476074368703
+  },
+  "U5": {
+   "directed_differs": true,
+   "iso_capped": true,
+   "classes_coarser": null,
+   "nonuniform_over_classes": null,
+   "coarse_mu_split": 0.9761904761904769,
+   "coarse_directed_split": 0.9878048780487811
+  },
+  "U6": {
+   "directed_differs": true,
+   "iso_capped": true,
+   "classes_coarser": null,
+   "nonuniform_over_classes": null,
+   "coarse_mu_split": 0.8333333333333333,
+   "coarse_directed_split": 0.8999999999999999
+  },
+  "U7": {
+   "directed_differs": true,
+   "iso_capped": true,
+   "classes_coarser": null,
+   "nonuniform_over_classes": null,
+   "coarse_mu_split": 0.9990867579908808,
+   "coarse_directed_split": 0.9995429616088134
+  },
+  "U8": {
+   "directed_differs": true,
+   "iso_capped": true,
+   "classes_coarser": null,
+   "nonuniform_over_classes": null,
+   "coarse_mu_split": 0.9996953077391217,
+   "coarse_directed_split": 0.9998476074368703
+  }
+ },
+ "separation": {
+  "T1": true,
+  "T2": true,
+  "T3": true,
+  "T4": true,
+  "T5": false,
+  "T6": false,
+  "T7": true,
+  "T8": false,
+  "U1": null,
+  "U2": null,
+  "U3": null,
+  "U4": null,
+  "U5": false,
+  "U6": false,
+  "U7": false,
+  "U8": null
+ },
+ "edge_orbits_vacuous": true,
+ "rival_differs": true,
+ "multiplicity_found": true,
+ "coherence_repaired": true,
+ "coherence_original_gates": false,
+ "verdict": "RAND0-MEASURE-DEBT",
+ "interpretation": "apparatus coherent; no unique inter-orbit weighting (PROBABILITY-MEASURE DEBT)",
+ "verdict_original_gates": "RAND0-INCOHERENT"
+}
