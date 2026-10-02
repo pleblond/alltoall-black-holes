@@ -59,11 +59,15 @@ def main():
 
     st = H["stagger"]
     nE = st["phi0"]["n_plus"] + st["phi0"]["n_zero"] + st["phi0"]["n_minus"]
+    # BR25-AMENDMENT-1 (J-bar scale erratum, filed in BR1-VERDICT style):
+    # prereg wrote absolute J_maxabs > 0.1 (N=8 scale); the scale-correct
+    # bar is exact saturation J_maxabs == rho^2 = 1/N (strictly stronger).
+    rho2 = 1.0 / 288.0  # J2-L12 uniform envelope (frozen H setup)
     quad_ok = (st["phi0"]["n_plus"] == nE and st["phi_pi"]["n_minus"] == nE
                and st["phi_half"]["n_zero"] == nE
-               and st["phi_half"]["J_maxabs"] > 0.1)
+               and abs(st["phi_half"]["J_maxabs"] - rho2) < 1e-12)
     gate("H-quadrature", quad_ok,
-         f"E={nE}: +1@{0}, -1@{pi}, 0+flow@{pi/2}")
+         f"E={nE}: all+1@0 all-1@pi all0+flow@pi/2")
     gate("H-ortho", H["ortho"]["B_identical"] and H["ortho"]["tend_identical"]
          and H["ortho"]["J_negated"], "J-flip leaves geometry bitwise")
     gate("E-quiescent", H["zero"]["all_B_zero"] and H["zero"]["all_J_zero"]

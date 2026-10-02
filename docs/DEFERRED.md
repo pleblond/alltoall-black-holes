@@ -3061,3 +3061,69 @@ without a reservoir) WILL be filed; event-rate law stays unearned
 unless exchanged/stored somewhere); INFO-ACCOUNT (relative mode +
 partition forgotten per event; record size quantified in L); RATE-LAW
 (no tendency->probability map derived or assumed).
+
+## BR25-AMENDMENT-1 — J-bar scale erratum (filed, BR0-AMENDMENT-1 style)
+
+The prereg H bar wrote absolute J_maxabs > 0.1 (N=8 unit-test scale) for
+the J2-L12 campaign table (N=288, rho^2 = 1/288). The data show perfect
+separation (1152/1152 neutral with |J| = rho^2 exactly); only the
+absolute bar misfired on scale. Corrected bar (strictly stronger):
+|J_maxabs - rho^2| < 1e-12 (exact saturation at the theoretical maximum).
+Analyzer updated + rerun; 15/15. The physics affirmed is stronger than
+the physics preregistered (saturation, not presence).
+
+## BR25-VERDICT — BR25-ONTOLOGY (15/15 gates, debts owned)
+
+**Campaign:** data/br25_contraction.json (beast run, 58 s, frozen runner).
+**Ladder:** consistent (census/cone/unitarity exact) -> reversible-attempt
+viable (record-exact + oracle-among-degenerate + deterministic) -> LOCAL
+(+ multitick cone + M1-contrast) -> QUADRATURE (+ H separation, ortho,
+E-quiescence, 2B-wiring) -> ONTOLOGY (+ J + L + M). All five checklist
+items hold; the four pre-filed debts stay filed (below).
+
+**Primitive (A/C):** dN = -1, dE = -(1+c) exact on every map and substrate
+(J2 triangle-free -> c = 0, dE = -1); sum-map Dn = +2B_ij wired to the
+BR-2 quantity (campaign edge residual 0.0); single contraction moves IR
+barely (p 1.0797 -> 1.0854, C4 -21 local, spectral radius 8.0 -> 8.11).
+M1 contrast: one relocation reaches 8 hops with a length-3 chord vs R_U
+= 1 by construction (pinned units + campaign, single + 3-tick).
+
+**Splitting (D/G):** record-inverse bit-exact; oracle cover unique among
+3^14 = 4,782,969 degenerate policies (D2 finite for graphs); field
+roundtrip error = |a-b|^2/2 exactly (uniform fields roundtrip with error
+0.0; staggered derr = rho^2 = 0.0035 = formula). The D3 field-mode loss
+is QUANTIFIED, not hand-waved (INFO-ACCOUNT DEBT stands).
+
+**Quadrature (H/E):** phi=0: 1152/1152 contractive (B = +rho^2, J = 0);
+phi=pi: 1152/1152 expansive (B = -rho^2, J = 0); phi=+/-pi/2: 1152/1152
+neutral with |J| = rho^2 saturated, geometric readouts bitwise identical
+under J -> -J. psi=0: B=J=tendency all zero bitwise (quiescence follows
+from the tendency-proportional-to-B FORM — the form itself is the tested
+candidate, not a derivation; owned).
+
+**Wave (J):** evolution deterministic across events (bitwise rerun);
+unitary between events at the post-jump norm (ring jump 2.2e-07 =
+packet-tail 2B, accounted); H(G') + B/J readers history-free on fresh
+labels.
+
+**Collapse (L):** region 170 -> 1 in 169 steps; ext degree 56 = boundary
+exactly; through-distance 28 -> 16, diameter 28 -> 22; packet propagates
+through the collapsed state nearly identically (disp 7.34 vs 7.11,
+PR 397->571 vs 401->608 — no reflection catastrophe, characterization).
+Banked as a COLLAPSED GRAPH STATE (no horizon language).
+
+**Merger (M):** adjacent collapsed regions compose via the SAME
+contract_edge on the bridge (dE = -1 = formula, ext 76 = union boundary
+exactly). No special merger law; ontological economy holds.
+
+**Debts (filed, verdict-remote):** NORM-ACCOUNT (each event creates /
+destroys 2B of ||psi||^2 with no reservoir — BR-3C must specify exchange
+or storage); INFO-ACCOUNT (partition + relative mode forgotten per
+event; record size = explicit reversibility price); RATE-LAW (no
+tendency->probability map derived or assumed — BR-3C must earn it);
+K DESIGN-OPEN (no formation demo attempted, per prereg).
+
+**Handoff:** M1 relocation demoted to experimental/formation tool (per
+the ONTOLOGY clause); the BR-3 loop is REPLACED by BR-3C (coupled
+contraction dynamics: psi -> B -> G' -> H(G') -> psi') once the rate law
+is earned. GRAV-0 input: exact structural light cone R_U = 1/tick.
