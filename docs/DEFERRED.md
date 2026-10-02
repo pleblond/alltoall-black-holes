@@ -5766,3 +5766,132 @@ a!=b), INFORMATION-LOSS (>=2 covers + mode erasure).
 contraction law; may consume the xi domain constraint + split
 counts but must carry all five debts. The model owes a
 reservoir/principle for norm/energy event accounting.
+
+## BR26-PREREG — Joint accounting + event-law derivation (FROZEN PRE-DATA)
+
+**Status:** derivations + apparatus + ladder frozen; census NOT YET RUN.
+Derivation campaign: conservation decides, nothing is chosen. No
+temperature, Metropolis, threshold, rate, coupling, reservoir, ranking,
+or vacuum-restoration term is introduced (firewall).
+
+**D-no-go (proven pre-data, pinned constructively):** for Q_tot =
+aN + bE + gQ with FIXED coefficients, universal per-event conservation
+(-a - b(1+c) + 2gB = 0 for ALL events) forces a = b = g = 0. Proof: fix
+(G,i,j), vary psi (B ranges over R) -> g = 0; vary c over edges -> b =
+0; remainder -a = 0. Admitting dE_psi does not help: varying one cross
+neighbor field moves only the d-term -> d = 0, reducing to the linear
+case. Corollary (F): NO graph-defined reservoir can satisfy DQ_G = -2B
+(graph side fixed while B varies). Pinned via find_*_violation exhibits.
+
+**Sum-identity (banked, zero selection power):** sum-map contraction
+preserves Sigma psi exactly, hence |Sigma psi|^2; holds for EVERY event
+identically, so it constrains nothing (filed, not a closure).
+
+**H-form (derived, ratios free):** conditional conservation DQ_tot = 0
+holds IFF B_ij = B_*(c) = (a + b(1+c))/2g (affine in c). The FORM is
+derived; the TWO RATIOS (a/g, b/g) are free: nothing in the ontology
+fixes them, and vacuum-tuning them (e.g. to quiesce J2) is firewall
+forbidden. g = 0 special cases: graph-only c_* = -a/b - 1 (an infinite
+discrete family over k >= 0; selecting k = 0 "because J2" is forbidden);
+a-only -> never; all-zero -> trivial. Remark (pinned, not a law):
+Delta(E - N) = -c, i.e. E - N is conserved iff c = 0.
+
+**I-prediction (NEGATIVE):** conservation yields EQUALITY-selection
+(B = B_*, codimension-1, non-firing); the step to a firing
+inequality/direction needs new physics. No deterministic zero-parameter
+(C,N,S) partition follows. If the algebra holds, I returns NEGATIVE and
+the firing/direction problem becomes EVENT-RATE debt (this is a result,
+not a failure).
+
+**G-formula (derived):** Delta E_psi^contract = 2B_ij - 2 Sigma_cross
+(common collapse energy-neutral; pinned vs direct). Sign needs the
+1-neighborhood: B alone is insufficient (B-insufficiency pinned by
+same-B/different-cross exhibit).
+
+**K-prediction:** conservation selects the B_*-level-set among degenerate
+splits (solvable iff B_*(o) <= |s|^2/4); a continuous 1-real-dim family
+remains -> SPLIT-DEGENERACY debt REDUCED, stands.
+
+**L-result:** per-event loss = log2((3^d+1)/2) graph bits + 2 real field
+dims (relative mode); exact reversibility incompatible with (G,psi)-only
+state (many-to-one theorem). INFORMATION-LOSS debt stands.
+
+**J-result (conditional):** seeded-random maximal matching is the unique
+score-free, label-fair (in distribution) conflict resolution (validity /
+maximality / seed-determinism pinned); with non-firing admissibility it
+is VACUOUS. TICK-SCHEDULER debt stands.
+
+**M/N-predictions:** psi = 0 -> B = J = Q = 0 bitwise; pure current ->
+B = 0, |J| = rho^2, no event at generic ratios (separation holds, with
+the filed vacuity caveat: measure-zero firing is quiescent everywhere).
+
+**P-grid (frozen):** J2-L12 families {zero, bonding, current,
+antibonding, random(seed 777)} + ER72-random control (seed 778):
+per-edge (B, J, c) census; reference overlays R0 = (0,0,1) [B_* = 0],
+R1 = (1,0,2) [B_* = 1/4], R2 = (0,1,1) [B_* = (1+c)/2] with eps-grid
+{1e-3, 1e-2, 0.1} sensitivity (LABELED, BR-1H style; nothing selected).
+Predictions: zero all B == 0; bonding all B > 0; current all B = 0 with
+|J| = rho^2; antibonding all B < 0; random/irregular mixed-sign;
+J2 all c = 0.
+
+**V-tripwire (ACCOUNTED bar):** 6 constructed B_* states (3 ratio points
+x {J2-L6, path-8}) must balance |DQ| < 1e-9 through the FULL apparatus
+(contraction_census, not the algebra shortcut).
+
+**Verdict ladder (frozen):** NO-CLOSURE iff V fails (algebra breaks);
+ACCOUNTED iff V + P + no-go re-verification pass (conditional closure
+verified); ADMISSIBILITY iff + ratio-fixing principle found (none on
+the table -> structurally false, documented); EVENT-LAW iff + derived
+partition (I-negative -> false). PREDICTION: ACCOUNTED.
+
+**Six debts (pre-filed with predicted statuses):** NORM-ACCOUNT reduced
+(conditional family, ratios free); ENERGY-ACCOUNT ledgered non-conserving
+(B insufficient); EVENT-RATE stands (non-firing equality; firing needs
+new physics); SPLIT-DEGENERACY reduced stands; INFORMATION-LOSS stands
+(theorem); TICK-SCHEDULER stands (conditional). PREDICTION: BR-3C stays
+BLOCKED on EVENT-RATE (+ ratios); P is the admissible constrained probe.
+
+## BR26-VERDICT — BR26-ACCOUNTED (10/10 gates, predicted by the algebra)
+
+**Campaign:** data/br26_accounting.json (beast run, sub-second census +
+V-tripwire, frozen runner). **Ladder:** V-tripwire holds (6/6
+constructed B_* states balance to <= 6e-14 through the full apparatus)
+-> conditional closure VERIFIED; no-go exhibits re-verified; P families
+match every prediction -> NOT no-closure. No ratio-fixing principle
+exists (vacuum-tuning forbidden) -> NOT admissibility. I returns
+NEGATIVE (equality non-firing, inequality unjustified) -> NOT event-law.
+**= BR26-ACCOUNTED:** accounting is closed; event-rate law remains debt.
+
+**What conservation derives (earned):** the conditional invariant family
+DQ_tot = 0 IFF B_ij = B_*(c) = (a + b(1+c))/2g (form derived, verified
+end-to-end); universal closure PROVEN impossible (linear + E-extended,
+constructive exhibits); graph reservoir PROVEN nonexistent
+(independence); energy ledger EXACT (dE = 2B - 2S_cross, common-collapse
+neutrality, B-insufficiency pinned); sum-identity banked (zero selection
+power, filed honestly); split degeneracy REDUCED to the B_*-level-set
+(solvable iff B_*(o) <= |s|^2/4, continuous family remains).
+Delta(E - N) = -c remark pinned (graph-only c = 0 rule exists for the
+(-1,1,0) ratios — NOT selected: ratios unjustified either way).
+
+**What conservation does not derive (debts):** firing (equality is
+codimension-1, non-firing); direction (contract/split inequality needs
+new physics); the two coefficient ratios (free continuous family);
+reversibility (many-to-one proven: log2((3^d+1)/2) bits + 2 real dims
+per event); scheduling (seeded-random matching derived conditionally,
+vacuous without firing). The overlay sensitivity table demonstrates the
+underdetermination directly: firing fraction swings 0 -> 1 across
+stated (ratio, eps) reference choices — which is why none is selected.
+
+**P-census (algebra validation):** zero all B == 0; bonding all B > 0
+(+1.00); current all B = 0 with |J| = rho^2 saturated; antibonding all
+B < 0 (-1.00); random +0.49/-0.51 mixed; irregular mixed with c in
+{0..4} (107/115/49/13/3); J2 all c = 0 (triangle-free, data).
+
+**Six debts (final statuses):** NORM-ACCOUNT reduced (conditional
+family, ratios free); ENERGY-ACCOUNT ledgered non-conserving;
+EVENT-RATE stands; SPLIT-DEGENERACY reduced stands; INFORMATION-LOSS
+stands (theorem); TICK-SCHEDULER stands (conditional). **BR-3C stays
+BLOCKED on EVENT-RATE (+ ratios).** The constrained P-census above is
+the admissible probe until firing physics is earned. M/N hold with the
+filed vacuity caveat (measure-zero firing is quiescent everywhere;
+zero-field and pure-current quiescence verified in the letter).
