@@ -2988,3 +2988,51 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+FIELD0-PREREG (FROZEN-2026-10-02 (commit-predates-beast-runs!)): two-excitation
+interaction null under frozen H=-A (J=1-headline (quotient-J_eff=2 (H_Q=-2A!))).
+FROZEN-INPUTS (read-only (banked-tips-byte-identical!)): P1-ballistic (P1-tip
+af2dfe9 (H=-A + evolve_fixed + gaussian_packet + COM/velocity/width!)); POT-0
+potential (POT0-tip ee58bbc (flux-D + spectral-C + scramble!)); EM-0 continuum
++ backreaction + driven (EM0-tip 3128ff9 (rho/B/J/E + continuity + Bloch +
+steady_predict + bilinears!)); MALUS (MALUS-tip 11d800c (sheet-projectors!));
+QUOT (QUOT-tip f00adf1 (sector-anatomy!)); COH (COH-tip 521530f (overlap +
+pair + visibility!)). NO-VAC-FIELD-INPUT (VAC-FIELD-branch-empty (R-appendix-
+pending (no-redesign!))). FIREWALL: geometry-frozen + H=-A-only (no-evolution/
+contraction/nonlinear/onsite/packet-H/potentials/labels/forces/particles/
+stochastic/feedback/steering!). APPARATUS (field0.py (24-pins!)): substrates
+j2/square/ring/quotient + group_speed (J2-4sin/square-2sin/ring-2sin/quot-4sin
+(pinned-vs-Bloch/chain!)); make_packet (normalized-x-amp-x-exp(i*phi)!);
+collision_geometry (7-names (headon/coprop/orthogonal/oblique/overtaking/
+nearmiss(b)/overlap (L28-r0/k0.3/sig4-derived!))); predict_tcoll (ballistic-
+closest-approach (coprop-inf/overlap-0-pinned!)); define_windows (Delta=
+2*sig/vrel+2 (PRE/OVERLAP/POST-partition-pinned!)); evolve_triplet (psi1+psi2+
+psi12 (eps=||psi12-psi1-psi2||!)); rho/B/J/E + cross (I_rho=2Re + Bx/Jx/Ex
+(exact-bilinear-pinned!)); momentum_peak (J2-sheet-summed/square/ring-FFT
+(k+C+Meff!)); spectral_support (P/Pmax>1e-6 (S12-subset-union-pinned!));
+coherence_of (C+D (POT-banked!)); naive_peak + false_acceleration (argmax +
+total-COM (apparent-force-proxy!)); overlap_S + residence_on_disk + beat_
+lifetime; sector_packets/weights (MALUS!); static_field_j2 (driven-steady
+(omega=-8.5 (residual-pinned!))); witness_components (eps/dP1/dP2/snew/dE +
+I=max (I=0-null!)). GRID (56-cells (scripts/field0_campaign.py!)): D-geometry-
+7 (J2-headline (nearmiss-b=4!)); E-phase-8 (headon (phi2=j*pi/4!)); F-amp-7
+(headon (a1=1/a2=1/8..8!)); G-width-5 (headon (sig-2..6!)); H-impact-6
+(nearmiss (b-0..12!)); S-substrate-12 (headon/coprop/overlap-x-4-substrates
+(J2-L28/square-28/ring-64/quot-28!)); P-sector-3 (+/+/+/-/-/- (J2-headon!));
+Q-static-2 (pass+far (phi_norm+packet!)); N-standing-2 (overlap-phi0/pi!);
+O-coherence-3 (scr1/scr2/scrB (seeds-1000/2000+cid!)); M-binding-2 (overlap/
+headon-slow-k=0.1!). T=20-dt=0.1 (201-rows (sampled-every-5+endpoints!)).
+GATES (C0-C8 (all-must-pass-for-LINEAR!)): C0-eps_max<1e-8-all-cells;
+C1-rho-decomp-exact-1e-12 (max-overlap-sample!); C2/C3-B/J-decomp-1e-12;
+C4-E-decomp-1e-9; C5-global-phase-1e-12; C6-relative-phase-trig-exact
+(pinned!); C7-isolation-overlap<1e-6 (far-separated!); C8-substrate-regression
+(single-packet-ring-v-within-15%-2sin + J2-banked-window!). WITNESS (U):
+I=max(eps,dP1,dP2,snew,dE) (snew=0-required + dP/dE<1e-6 (POST-vs-PRE-
+isolated!)). VERDICTS: FIELD0-LINEAR (C0-C8 + I=0-all-cells (psi-field-self-
+noninteracting!)); FIELD0-APPARENT (+strong-naive-effects (false-accel/
+pseudo-binding/standing/delayed-peaks/current-reversal (atlas-with-exact-
+decomp (mandatory-future-calibration!)))); FIELD0-RESIDUAL (reproducible-I>0
+(implementation-audit-first (never-force!))). FORBIDDEN: force/interaction/
+binding-claims-from-rho/B/J-drama-alone (I=0-required!); vacuum-selection-
+inside-FIELD-0; graph-evolution; matter-labels. NEXT: freeze-commit-then-
+beast-campaign (FIELD0_WORKERS=32 (gated-on-prereg-commit!)).
