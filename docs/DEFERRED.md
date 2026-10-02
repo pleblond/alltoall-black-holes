@@ -9442,3 +9442,160 @@ Downstream may consume: A_phys apparatus + signatures (HARD-green),
 const/orbit weights as rival controls (never as the answer), the 36-cell
 disagreement battery, reverse-classification per transition, and the
 TIME-0 history-weighting check. No tuning of W is permitted.
+
+## HIDDEN-BR-PREREG (FROZEN pre-data; this commit predates ALL beast HIDDEN-BR runs)
+
+Mission: determine whether transport-hidden (P_-) field information produces
+a locally distinct geometric backreaction tendency through the banked
+geometry-conjugate B_uv = Re(psi_u* psi_v), while matched states remain
+identical in transported information, propagating sector, total field
+energy, and remote operational observables. Virtual structural ledger
+only: NO graph mutation, NO contraction/split execution, NO event
+scheduler, NO U_G, NO history measure (HISTORY-MEASURE DEBT still blocks
+actual geometry dynamics). HBR-0S omitted (RESPONSE-0 has no verdict).
+
+Frozen inputs (read-only, byte-identical vendor, commit 8a38be8):
+  HIDDEN-0 HIDDEN0-SEPARATED 279/279 .... cursor/hidden0-local-dof-3478 @90aaa53
+  BR-2.6 BR26-ACCOUNTED 10/10 ............ cursor/backreaction-br26-bb0f @dd956e0
+  CONS-0 PARTIAL 22/22 ................... cursor/cons0-invariant-census-4129 @c551cb5
+  SYM-0 SYM0-CLOSED 8/8 .................. cursor/sym0-state-census-e27a @43ac69a
+  ZERO-0 Z1-Z3 earned, Z4 filed .......... cursor/zero-crossing-census-ee5c @c4c2fb6
+  FIELD-0 LINEAR+APPARENT ................ cursor/field0-null-960b @b9dea0c
+  VAC-FIELD-0 JOINT ...................... cursor/vac-field-nonzero-joint-8ec1 @3dbfe34
+  base origin/main @a0c248c. No formula modified (spec firewall).
+
+Frozen law/constants: i dpsi/dt = -A psi, J=1, J2 L28 headline (L6 exact
+pins), T=20/dt=0.1, packet r0=(7,14) k=(0.3,0) sig=4 (HIDDEN-0 values).
+
+Stages -> cells (35 cells, J2 L28 unless noted; no fitting/selection):
+  pair-ledger x10 (HBR-0A/B/C/D/F/G/H/I; C0/C1/C2): B:sign x
+    {packet,uniform,twocell} (3), B:phase:packet x {pi/2,pi} (2),
+    B:shape:packet x {dipole,disk} (2), B:amp:packet {05raw,20raw} (2),
+    B:amp:packet:05q (1, NON-QUALIFYING control, see P1). Each: P_+
+    match, E_A=E_B + E_-=E_x=0, D_local>0 + D_remote~0 (wave+diff
+    shells 2/4/6 + POT), dB census (n/max/mean/support/signs),
+    perturbation census (sign+mag differ rates), full BR-2.6 ledger
+    census (frac nonzero, sign flips + edges, magnitudes).
+  conjugate x2 L6+L28 (HBR-0E; C3): centered-FD dE/dA_uv vs -2B_uv.
+  equalledger x2 (HBR-0J): conjugation pairs (real bg + complex
+    hidden): expect dB=0, ledger=0, d_J>0.
+  purehidden x4 (HBR-0K): {delta,disk,checker,complex}: E=0 + B/ledger.
+  vminus x1 (HBR-0L): VMINUS B/J/ledger + translation covariance + balance.
+  phasesweep x2 (HBR-0M): packet:delta, uniform:disk: B(phi)+ledger(phi)
+    trig fits + E const over frozen 8-phase grid.
+  ampsweep x2 (HBR-0N): packet:delta, uniform:disk: a in {0,.25,.5,1,2,4},
+    [1,a,a^2] fits + linear/quadratic split.
+  shape x1 (HBR-0O): dipole/disk/checker fixed-norm ledger distances.
+  locality x3 (HBR-0P/Q; C5): graded-radius boundary, far control, support.
+  passwave x2 (HBR-0R): delta/disk bg: ledger(t) overlap + post-exit + I.
+  zero x1 (HBR-0T): min|psi| on nonzero-ledger supports; need-zero frac.
+  sym x1 (HBR-0U; C6/C7): U1 x4 alphas, shuffle relabel, S covariance.
+  vac x1 (HBR-0V): VPLUS/VPI/VMINUS sector split + B/ledger contributions.
+  firewall x1 (HBR-0W; C8): head-on two-packet witness I=0 replay.
+  ledgercheck x1 (C4): event_ledger formula vs contraction_census direct.
+  infomap x1 (HBR-0X): R2 mixed census (168) R_G min-separation.
+
+Bars (frozen): PMATCH 1e-12 (C1); E-match |E_A-E_B|<=1e-9 + |E_-|,|E_x|
+<=1e-12 (C2); D_LOCAL 1e-6 / D_REMOTE 1e-9 (C0); ledger-nonzero 1e-9
+(max|dB|>1e-6 headline); sign-flip needs both |vals|>1e-9 strict-opposite;
+trig/[1,a,a^2] fit res <1e-9; FD-conjugacy <1e-9 (E linear in A_uv, exact);
+C4 direct-vs-formula <1e-9; U1/locality <1e-12; witness 1e-6 (FIELD-0).
+
+Pre-data predictions: P1 E=E_+ replay all pairs; HAMP-Q EXPECTED to fail
+C2 with E_B'/E_A=c^2 exactly (rescale control, excluded from verdict with
+cause). P2 B/ledger in span{1,cos,sin}. P3 B/ledger in span{1,a,a^2}.
+P4 conjugation control exact-null ledger, d_J>0. P5 pure-hidden E=0,
+nontrivial B. P6 VMINUS pure P_-, per-edge-class uniform ledger. P7 sharp
+locality boundary at 1-hop ledger support. P8 C0 regression. P9 NO
+prediction on sign-flip existence (genuine measurement, HBR-0I).
+
+VERDICT LADDER (frozen): HBR0-NULL if every qualifying pair has max|dB|
+<1e-9 AND every ledger d_hidden=0 (hidden geometrically inert; requires
+HIDDEN-0 dB non-reproduction). HBR0-GRADIENT (primary positive) if >=1
+qualifying equal-E pair has max|dB|>1e-6 (hence dE/dA differs) with C0-C8
+green. HBR0-SIGNREV (distinguished refinement): GRADIENT + >=1 strict
+opposite-sign ledger edge. HBR0-PARTIAL otherwise (incl. dB!=0 but all
+ledgers cancel, or control failures). Pairs failing C1/C2 are excluded
+with filed cause, never counted.
+
+## HIDDEN-BR-AMENDMENT-1 (pre-beast-data; post-local-validation audit)
+
+Status: NO beast HIDDEN-BR data taken yet (beast checkout untouched). A full
+local instrument-validation run (same code, 35 cells, 201/215 green) exposed
+two scope errors in the preregistered C0/X gates. Both are fixed here with
+derived mechanisms (not tuned bars); the verdict ladder, headline bars, and
+all other stages are unchanged. The beast run below is therefore a
+CONFIRMATION run for A1's predictions (independent execution, frozen record).
+
+A1a (HBR-0C scope): diffusion-blindness holds iff Dp(0) is S-odd. Sign/phase
+pairs have pure cross-term Dp (S-odd exactly: P_- eigenmode of Lrw, decays
+in place) and stay diff-blind; shape/amplitude-raw pairs carry an S-even
+|psi_-|^2 difference (|ma|^2-|mb|^2 != 0) that DIFFUSES remotely (measured
+locally: 0.005-0.43 on shells 2/6, monotone in hidden amplitude). HIDDEN-0's
+0F remote battery tested sign pairs only, so this REFINES (not refutes)
+HIDDEN0-SEPARATED: wave+POT stay blind UNIVERSALLY for all matched pairs
+(the A-B difference never leaves the hidden support under U(t); POT drive
+differences are pure-anti), diffusion only for S-odd-Dp pairs. Analyzer
+change: C0_diff gated only when the pair record has sodd=true; sodd pattern
+itself gated (sign/phase True, shape/amp-raw False, both analytic); 05q
+sodd filed. C0-green redefined accordingly. No bar moved.
+
+A1b (HBR-0X refinement): R_G = (B, ledger) separates the R2 mixed census UP
+TO CONJUGATION. B and L are conjugation-even, so conjugate census states
+(same cell, phases +-phi, real background) agree to fp (measured: 63/63
+pairs, max D 5.2e-18 scale) while differing in J (the HBR-0J mechanism).
+3 conjugate pairs/cell x 21 cells = 63 exactly. X cell now records conj-aware
+fields (min over non-conjugate pairs + conjugate max-D); analyzer gates
+non-conjugate separation (min_D > 1e-6, n_below = 0) plus n_conj = 63 and
+conj_max_D < 1e-12. The "M_O equal" premise is scoped to wave+POT (universal)
+since cross-cell census pairs are diffusion-visible per A1a.
+
+A1c (P1 formalized): 05q fails C1 by |c-1|*max|P_+| exactly (pinned in
+tests/test_hiddenbr.py), alongside the preregistered E_B/E_A = c^2 law.
+Cause filed, pair excluded. No gate change.
+
+## HIDDEN-BR-VERDICT (filed 2026-10-02): HBR0-SIGNREV (primary positive + sign reversal)
+
+Beast confirmation run (35 cells, 32 workers, wall 23s; records
+data/hiddenbr_{cells,verdict,stage}.json committed): 214/214 frozen checks
+green (Amendment-1 applied), 9/9 qualifying pairs valid (C1+C2), C0-C8 all
+green, 1346 strict sign-flip edges. Suite 1296 passed + 2 skipped on beast
+(-n 8; test_weighted.py skipped per standing instruction).
+
+Headline: matched states with P_+ equal, E_A = E_B to fp (dE <= 1.8e-15),
+and wave+POT remote blindness (<= 2.5e-15 / 2.1e-17) nevertheless have
+different B landscapes (max|dB| 0.025-0.71 over 4-96 edges) and therefore
+different dE/dA = -2B (conjugacy pinned < 1e-9 on L6+L28): EQUAL FIELD
+ENERGY DOES NOT IMPLY EQUAL GEOMETRIC RESPONSE LANDSCAPE. Stronger: 1346
+edges across the battery carry STRICT opposite-sign virtual contraction
+ledgers (70 on local pairs + 1276 on the VMINUS sign pair): changing only
+transport-hidden information REVERSES the energetic ordering of structural
+alternatives. All virtual (no graph op executed anywhere).
+
+Stage highlights: HBR-0J conjugation control exact (dB = dL = 0, d_J > 0:
+ledger-blind but J-visible). HBR-0K: zero-energy pure-hidden states carry
+nontrivial ledgers (disk/checker/complex B_max 0.04-0.06, 96 ledger edges;
+delta has B = 0 ON EVERY EDGE yet 16 nonzero ledger edges via non-edge
+cross bonds: a vanishing bond field with a non-vanishing gradient
+landscape). HBR-0M/N: B/ledger in span{1,cos,sin} / span{1,a,a^2} to fp
+(res ~1e-16), E constant over both sweeps (range 0.0). HBR-0O: shape matters
+at fixed norm (pairwise db 0.14-0.38, 50-60 flips each). HBR-0P/Q: sharp
+locality (test-edge dh exactly 0.0 at support distance >= 2 through
+antipodal; far control bitwise 0.0). HBR-0R: overlap ledger modulation
+0.50/0.27 with bitwise-zero far field and witness I ~ 1e-12 (no memory).
+HBR-0T: nonzero-ledger supports need no zero (filed frac). HBR-0U: U1 /
+relabel / sheet covariance < 1e-12 (redundancies quotient cleanly).
+HBR-0V: VPLUS/VPI pure P_+ (E -8/+8), VMINUS pure P_- (E = 0, 12
+offset classes, spread 0.0). HBR-0W/C8: head-on witness I = 0 (no force).
+C4: BR-2.6 formula vs direct contraction < 1e-9. HBR-0X: R_G separates the
+R2 census (min_D 0.052 over 14028-63 pairs) UP TO CONJUGATION (63/63
+conjugate pairs fp-identical at 2.2e-16: the geometric response is blind
+to hidden conjugation, which lives in J alone).
+
+Refinement of HIDDEN-0 (Amendment-1, mechanism-derived): diffusion-blindness
+holds iff Dp(0) is S-odd (sign/phase: diff <= 6.1e-16; shape/amp-raw: diff
+0.005-0.43, S-even |psi_-|^2 difference diffuses); wave+POT blind for ALL
+matched pairs. HAMP-Q control exact (E_B/E_A = c^2 = 1.75 to 1e-12, C1 fail
+at predicted |c-1|max|P_+|). HBR-0S omitted (no RESPONSE-0 verdict).
+HISTORY-MEASURE DEBT still blocks actual geometry dynamics: no tendency,
+rate, or event claim is made.

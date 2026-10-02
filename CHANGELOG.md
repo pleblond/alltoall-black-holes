@@ -3,6 +3,20 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **HIDDEN-BR** (unreleased) — Hidden-sector geometric backreaction ledger:
+  HBR0-SIGNREV (214/214 checks, 35 beast cells, J2 L28). Matched equal-E
+  pairs (dE <= 1.8e-15, wave+POT remote <= 2.5e-15) have different B
+  (max|dB| 0.025-0.71) hence different dE/dA, with 1346 strict
+  opposite-sign contraction-ledger edges (70 local + 1276 VMINUS pair).
+  Zero-energy pure-hidden states carry nontrivial ledgers (delta: B = 0
+  everywhere yet 16 ledger edges via non-edge cross bonds). Phase/amp
+  sweeps exact (trig/[1,a,a^2] res ~1e-16, E const); shape matters at
+  fixed norm; locality bitwise-sharp; R_G separates the R2 census up to
+  conjugation (63/63 conj pairs fp-identical). Refinement: diffusion sees
+  S-even hidden differences (0.005-0.43) while wave+POT stay universally
+  blind. Virtual ledger only (no graph ops). Suite 1296 passed + 2
+  skipped on beast (-n 8).
+
 - **unreleased (VAC-EXC-0 verdict)** — VACEXC0-COMPLETE banked (beast,
   241/241 records): bitwise cross-vacuum dpsi identity 7/7 + packet v
   identical on all 4 backgrounds + interference null I ~ 6e-16 on all
