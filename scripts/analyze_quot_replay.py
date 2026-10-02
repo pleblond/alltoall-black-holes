@@ -29,7 +29,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 import run_obs0  # noqa: E402
 from analyze_obs1_reveal import blind_set_flags, reveal_set  # noqa: E402
-from bh_graph import obs1, quot  # noqa: E402
+from bh_graph import obs1, obs1_reveal, quot  # noqa: E402
 from bh_graph.formation import j2_torus_graph  # noqa: E402
 
 MAJ = 2
@@ -66,6 +66,74 @@ def _maj(flags):
     return sum(1 for f in flags if f) >= MAJ
 
 
+def reveal_set_disconnected(cell_rec, tag, nodes, g, L):
+    """reveal_set body with disconnect-tolerant Hg (ctrl bilayer ONLY).
+
+    The vendored reveal_set assumes a connected hidden graph
+    (hidden_graph_matrix KeyErrors on unreachable pairs). The Q-R
+    control substrate is disconnected BY DESIGN (two decoupled layers),
+    so this caller replicates the vendored reveal_set body line-for-line
+    -- same primitives, same order, same conditions -- with the single
+    documented deviation that unreachable Hg pairs are +inf (honestly
+    recording disconnectedness; cross_probe_rms masks non-finite pairs,
+    so micro-RMS is computed over same-layer pairs only). The vendored
+    module is never patched (firewall); this is a new comparison caller.
+    """
+    import networkx as nx
+
+    C = cell_rec["probes"]["C"]
+    n = len(nodes)
+    D = np.asarray(C["D"], dtype=float)
+    X = np.asarray(C["coords"], dtype=float) \
+        if C["coords"] is not None else None
+    coords = obs1_reveal.hidden_quotient_coords(tag, L)
+    Hq = obs1_reveal.hidden_quotient_matrix(coords, nodes, L) \
+        if coords is not None else None
+    dists = [dict(nx.single_source_shortest_path_length(g, v))
+             for v in nodes]
+    Hg = np.full((n, n), np.inf)
+    np.fill_diagonal(Hg, 0.0)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if nodes[j] in dists[i]:
+                d = float(dists[i][nodes[j]])
+                Hg[i, j] = Hg[j, i] = d
+    A = np.zeros((n, n), dtype=bool)
+    for a, b in C["edges"]:
+        A[a, b] = A[b, a] = True
+    out = {}
+    out["align"] = obs1_reveal.hidden_alignment(X, coords, nodes) \
+        if X is not None and coords is not None \
+        else {"eps": float("nan")}
+    out["local"] = obs1_reveal.local_chart_report(D, coords, nodes, L) \
+        if coords is not None \
+        else {"med": float("nan"), "n": 0, "pass": False}
+    out["locality"] = obs1_reveal.locality_report(A, Hq) \
+        if Hq is not None else {"frac": float("nan"), "pass": False}
+    sheets = obs1_reveal.hidden_sheets(tag, L)
+    out["sheet"] = obs1_reveal.sheet_report(
+        D, [sheets[v] for v in nodes]) if sheets is not None \
+        else {"contrast": float("nan"), "pass": False}
+    out["topo"] = obs1_reveal.topology_report(C["wrap"]["pairs"], coords,
+                                              nodes, L, Hq) \
+        if coords is not None else {"precision": float("nan"),
+                                    "n": 0, "pass": False}
+    out["match"] = obs1_reveal.geometry_match(D, Hq, Hg)
+    out["probe_dist"] = {}
+    for ch in obs1.PROBES:
+        Dp = np.asarray(cell_rec["probes"][ch]["D"], dtype=float)
+        out["probe_dist"][ch] = obs1_reveal.geometry_match(
+            Dp, Hq, Hg)["quot"] if Hq is not None else float("nan")
+    out["probe_eps"] = {}
+    for ch in obs1.PROBES:
+        Dp = np.asarray(cell_rec["probes"][ch]["D"], dtype=float)
+        out["probe_eps"][ch] = obs1_reveal.local_chart_report(
+            Dp, coords, nodes, L)["med"] \
+            if coords is not None else float("nan")
+    out["Hg_disconnected"] = True
+    return out
+
+
 def _med(vals):
     v = [x for x in vals if x is not None and np.isfinite(x)]
     return float(np.median(v)) if v else float("nan")
@@ -100,7 +168,24 @@ def reveal_dataset(datadir, dataset):
             nodes = [sm["stations"][f"S{i}"] for i in range(obs1.N_STATIONS)]
             rec = blind["cells"][str(c)]["sets"][str(s)]
             per_set[s] = blind_set_flags(rec["probes"])
-            rev[s] = reveal_set(rec, rtag, nodes, g, L)
+            C = rec["probes"]["C"]
+            if C["coords"] is not None and C["dstar"] == 2:
+                if tag == "ctrl-L28":
+                    rev[s] = reveal_set_disconnected(rec, rtag, nodes, g, L)
+                else:
+                    rev[s] = reveal_set(rec, rtag, nodes, g, L)
+            else:
+                # Degenerate observer (no valid 2D embedding: d* != 2 or
+                # missing coords): reveal metrics are undefined, recorded
+                # as fail with reason (P- no-geometry prediction). The
+                # vendored reveal_set assumes 2D coords and is never
+                # patched (firewall); it is simply not called here.
+                rev[s] = {"degenerate": True, "dstar": C["dstar"],
+                          "local": {"pass": False, "med": float("nan")},
+                          "match": {"quot_pass": False, "quot": float("nan")},
+                          "locality": {"pass": False, "frac": float("nan")},
+                          "sheet": {"pass": False, "contrast": float("nan")},
+                          "topo": {"pass": False}}
         ds = [per_set[s]["d"] for s in SETS]
         dok = [per_set[s]["dim_ok"] for s in SETS]
         dist = [rev[s]["match"].get("quot", float("nan")) for s in SETS]
@@ -148,11 +233,14 @@ def main():
     p_plus = out["datasets"]["p_plus"]["cells"]["j2-L42@cell0"]
     p_minus = out["datasets"]["p_minus"]["cells"]["j2-L42@cell0"]
 
-    def qclauses(cell):
+    def qclauses(cell, j2=True):
         metric = bool(cell["METRIC_OK"] and cell["DIM_STABLE"] and cell["EMB_OK"])
         d_ok = bool(np.isfinite(cell["DIM"]) and abs(cell["DIM"] - 2.0) <= 0.5)
-        return bool(metric and d_ok and cell["DIST_OK"] and cell["LOCAL_OK"]
-                    and cell["LOC_OK"] and cell["SHEET_OK"])
+        base = bool(metric and d_ok and cell["DIST_OK"] and cell["LOCAL_OK"]
+                    and cell["LOC_OK"])
+        # J2 cells add SHEET_OK (quotient-vs-micro); sq cells mirror the
+        # OBS-1 C0_PASS exactly (no sheet clause: no sheets exist).
+        return bool(base and cell["SHEET_OK"]) if j2 else base
 
     out["qclauses_fn_note"] = "qclauses mirrors OBS-1 QUOTIENT (METRIC & |d-2|<=.5 & DIST & LOCAL & LOC & SHEET)"
     dd = abs(p_plus["DIM"] - j_mixed["DIM"]) \
@@ -167,7 +255,7 @@ def main():
         "p_minus_meas": float(p_minus["meas_med"]),
         "p_minus_nogeometry": bool(p_minus["meas_med"] < 0.5
                                    and not (p_minus["METRIC_OK"] and p_minus["EMB_OK"])),
-        "c0_mixed": qclauses(mx["sq-L42@cell3"]),
+        "c0_mixed": qclauses(mx["sq-L42@cell3"], j2=False),
     }
     e = mx["exp-N3528-s0@cell6"]
     twod = sum(1 for s in SETS
