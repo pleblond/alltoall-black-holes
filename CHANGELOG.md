@@ -3,6 +3,12 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (U0)** — Minimal-geometry-dynamics campaign (branch):
+  read-only consumption of BR-2.7/CONS-0/UG-0 apparatus (byte-identical);
+  U0-PREREG frozen (UB/UL/UEc semantics, full-sync quotient tick, S1..S8
+  battery, gates, verdict mapping, INCOMPLETE predicted); u0.py apparatus
+  + 165 pins + beast campaign runner/analyzer (pre-data).
+
 - **v5.5** — Foundational-manuscript v0.1 page renders archived under
   `paper/model/draft/` (8 PNGs, 15pp, author-review draft, backup only;
   `.tex` source to follow); paper v5 unchanged (12pp + 15pp, 49 refs).

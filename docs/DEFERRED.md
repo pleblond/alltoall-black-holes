@@ -2988,3 +2988,160 @@ discipline; no U, no theorems — sketch only.
 **Kill relevance:** none until a separating U is exhibited; then the
 basin-breadth test above is the wire (single-ensemble separation =
 curiosity, broad-basin = genuine attractor).
+
+## U0-PREREG — Minimal geometry dynamics (FROZEN PRE-DATA)
+
+**Status:** apparatus + semantics + tick + states + gates + ladder
+frozen; campaign NOT YET RUN. U0 accepts BR27-NO-MODE (no mechanism
+in the current ontology causes structural events) and CONS0-PARTIAL
+(no conservation-derived contraction law). It proposes, freezes, and
+falsifies minimal primitive firing laws U_G: (G_t, psi_t) -> G_{t+1}.
+Any survivor is A NEW PRIMITIVE DYNAMICAL POSTULATE (firewall: not
+emergent, not derived from conservation/energy/instability/BR-2/
+gravity/known physics). Previous results constrain form, imply nothing.
+
+**Frozen inputs (read-only, md5-verified byte-identical):** BR-2.7 tip
+f82566d (ballistic/backreaction/phase/contraction/accounting/stability
++ formation delta + 6 test files); CONS-0 tip c551cb5 (conservation/
+continuum/driven + 3 test files + closure pins + xdist config); UG-0
+tip 0373c5d (ug/ug_sync design apparatus + tests). No law change on
+consumption (commit 9a350ba). Frozen conventions: H(G) = -A(G), J = 1,
+hbar = 1; sum map psi_k = psi_i + psi_j; simple graphs; B/J
+quadrature; E_psi = -2 sum_E B; dE_contract = 2B - 2 sum_cross
+(BR-2.6 MINUS convention); L := B - sum_cross; dt = DT_DEFAULT = 0.1
+(P1-frozen, not a new parameter).
+
+**U0-A semantics (frozen, analytic):** UB: sign(B) (B > 0 CONTRACT,
+= 0 NONE, < 0 SPLIT). UL: sign(L) (same orientation; frozen by (i)
+L -> B continuity as cross -> 0 (pinned on K2), (ii) UG-0
+byte-continuity, (iii) opposite orientation covered by UEc, no gap).
+UEc (contraction-only energy selection): per-edge {separate,
+contracted} exact-energy comparison, contract iff dE = 2L < 0 else
+NONE (strict descent; ties -> NONE = minimal action). THEOREM
+(pinned): UEc contracts exactly where flipped-UL would and never
+SPLITs (no per-edge split state in the frozen ontology). SPLIT marks
+are reported per edge (tendency census); node-split REALIZATION is
+undefined for all candidates (U0-H): repeated dynamics are
+contraction-only (splits counted, never applied). Consequence
+(theorems, pinned): N(t) monotone nonincreasing; explosion/
+fragmentation structurally unreachable (filed, not measured).
+Zero-parameter throughout; no targets (J2/matter/etc.) anywhere.
+
+**U0-B/C/D derivations (frozen single-tick consequences, pinned in
+tests/test_u0.py, re-measured in campaign):** zero field: B = L =
+dE = 0 -> ALL laws neutral on ALL edges; tick fully quiescent
+(G identical, psi = 0; consequence banked, no exception).
+Pure-current (exact B = 0, J = +-rho^2, J2-L6 stagger): UB all
+NEUTRAL; UL all SPLIT (L = -n_cross rho^2 < 0, derived); UEc all
+CONTRACT. Bonding uniform (n_cross >= 2): UB all CONTRACT, UL all
+SPLIT (L = (1 - n_cross) rho^2), UEc all CONTRACT. Antibonding
+stagger: UB all SPLIT, UL all SPLIT, UEc all CONTRACT. The three
+laws are pairwise separated by the {bonding, current, antibonding}
+triplet (derived, not selected).
+
+**U0-I tick (frozen full-sync quotient, zero new parameters):** from
+X_t = (G_t, psi_t): marks from X_t only; CONTRACT classes merge
+simultaneously (quotient graph, simple kind; singletons keep labels,
+merged classes take fresh ints in min-member order -- naming only);
+psi^e = evolve_fixed(psi_t, H(G_t), dt = 0.1, one step); psi_{t+1} =
+sum-thread psi^e onto G_{t+1}. Both updates see X_t only; no
+within-tick ordering exists (U0-G commutation: quotient equals
+any-order sequential merger as unlabeled graphs + field multisets,
+pinned). Rationale (pre-data, banked): UG-0's fire-none census shows
+TOTAL STALL on all uniform-field states (30/30 rows fire 0 except
+isolated spikes) -- freezing fire-none would probe scheduler stall,
+not the firing law. Quotient-sync removes scheduler debt with zero
+new parameters (no tie-breaking, ordering, labels). Cost filed
+openly (U0-F split verdict): decision radius stays 1; one-tick
+effect reach = marked-component diameter (unbounded a priori;
+GRAV-1C input, not claimed here).
+
+**U0-G conflict rule:** there is no conflict to resolve: adjacency
+of CONTRACT marks IS the merger instruction (synchronous sets that
+commute, pinned). Deterministic, decision-local, relabeling-
+covariant, zero-parameter (gated per config in campaign).
+
+**U0-H split status (frozen):** (H1) endpoint assignment is gauge
+(swapped-endpoint splits isomorphic + field-multiset equal, pinned);
+the problem is selecting the UNORDERED cover ((3^d + 1)/2, pinned).
+(H2) No earned quantity selects: J-guided vs B-guided covers differ
+on banked states (pinned exhibit) -- any discriminator is unforced
+new-primitive content. (H3) No split realization in U0 apparatus
+(by frozen construction). (H4) The one forced selection attempt:
+per-node energy-argmin over undirected covers x {equal, norm}
+(CONS-0K formulas, direct-verified 1e-9 every option; tie iff >= 2
+options within 1e-12 of min). THEOREM (pinned): zero-field all-tie
+(all options dE = 0); all-shared equal split dE = -|s|^2/2 <= 0
+(splits always energetically available where s != 0 -- full-U-E
+would split ubiquitously, never vacuously). Prediction: H4 ties
+generic -> no forced unique selection -> full laws incomplete.
+
+**U0-E/F/J/K (frozen gates):** E: global-phase invariance,
+conjugation covariance (J-blind, B-even), endpoint exchange,
+relabeling covariance (marks + full tick) -- all laws, all states.
+F: mark bitwise-invariance under field mutation at dist >= 3 and
+(L/UEc) graph toggle disjoint from N[{i,j}] (decision radius 1);
+UB graph-blindness; effect reach measured (= max class size/
+diameter, filed). J: repeat trajectories bitwise-identical G +
+1e-9 psi; relabeled trajectories isomorphic + mapped fields.
+K: single-edge BR-2.6/CONS-0 books (dE/dQ formulas vs direct,
+parts vs direct) + per-tick multi-merger books (dQ pair-formula
+dQ = 2 sum_classes sum_pairs B_pair vs direct 1e-12; dE direct;
+cycle rank; triangles; components).
+
+**U0-L battery (frozen):** S1 zero J2-L6; S2 bonding J2-L6; S3
+exact pure-current J2-L6; S4 antibonding J2-L6; S5 bonding
+square-torus-6; S6 bonding ring-24; S7 BFS-parity current ER-24
+(mixed B, B-zero fraction characterized); S8 bonding
+collapsed-mini. All psi normalized except S1. Exact quadrature
+states (rho/i rho/-rho/-i rho, bitwise B/J) with 1e-12
+cross-check vs frozen BR-2 float stagger. 8 states x 3 laws =
+24 trajectories, T = 20 ticks each, always full T (N = 1 ticks
+are exact no-ops, pinned; no early stop -- fields can
+reactivate marks). Per-tick observables (frozen list): N, E,
+ncomp, Q, Epsi, IPR, max/mean degree, triangles, squares,
+diameter (largest component), cycle rank, B-zero fraction,
+n_C/n_S marks, n_merged, max class, dN, dE_graph, dQ
+(direct + pair-formula), dE_psi.
+
+**U0-M classifier (frozen decision tree, contraction-only):**
+quiescent iff zero applied mergers; collapse iff Nf <= max(2,
+ceil(0.1 N0)); else other/{settled-partial (quiet last-3 tail),
+reactivated (>= 2 bursts separated by >= 2 quiet ticks),
+window-unresolved}. Bounded-active/oscillatory-in-N/explosion/
+fragmentation are structurally unreachable under contraction-only
+(N-monotone + connectivity theorems, pinned) -- filed, not
+measured. Analyzer recomputes classes from rows (no trust).
+
+**U0-N/O (frozen):** report J2 fate per law (no preservation
+target; J2 destruction means J2 is not a vacuum of the completed
+machine); report structures without matter labels.
+
+**U0-P (frozen rows, foundational only):** complete? /
+deterministic? / decision-local R1? (+ effect reach filed) /
+automorphism-covariant? / zero free parameters? / split resolved?
+/ scheduler resolved? / accounting explicit? -- per law. No
+gravity/particle/J2-survival scoring.
+
+**Ladder-eligibility rule (frozen, definitional):** completeness
+requires contraction + split realization (U0-H). Contraction-only
+restrictions, however fully specified as dynamics, are NOT
+complete U_G for ladder purposes; they are evaluated separately
+with consequences filed (U0-H text; otherwise its "candidate
+incomplete" is vacuous; the frozen structural primitive is
+bidirectional). Mapping: U0-NONE iff no contraction-only law
+passes all foundational gates; U0-INCOMPLETE iff >= 1 passes and
+no full law is complete; U0-PRIMITIVE iff exactly one full law
+complete; U0-DEGENERATE iff >= 2 full laws complete.
+PREDICTION (theorem-backed): U0-INCOMPLETE (tendencies viable,
+splits unrealized, effect-extensive + monotone-N costs filed).
+U0-NONE stays data-reachable; PRIMITIVE/DEGENERATE rungs defined
+but predicted empty (zero-field tie theorem + unforced exhibit;
+cf. BR-2.7 precedent). Handoff: INCOMPLETE keeps BR-3C BLOCKED;
+the primitive-law design problem (forced split selection) stays open.
+
+**Integrity gates (campaign validity, hard fail):** N-monotone +
+ncomp == 1 every row; dQ pair-formula 1e-9 every tick; single-edge
+books 1e-9/1e-12; H4 formula residuals 1e-9; J-battery pass.
+Campaign + full suite run on beast (96 CPU, mp pools); nothing
+local except unit pins.
