@@ -3,6 +3,16 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (BR-2.5 contraction ontology)** — D14-BR2.5 campaign: new
+  `contraction.py` (exact edge contraction, 3 candidate field maps with
+  exact census, record/oracle/cover splits, tendency readouts, cone
+  checker); 20 pins incl. Dn=+2B accounting theorem, 3^d degeneracy,
+  roundtrip-error formula, R_U=1 + multitick bound; verdict BR25-ONTOLOGY
+  (15/15 gates + BR25-AMENDMENT-1 J-bar scale erratum): local primitive
+  consistent, quadrature-controlled (B geometry / J flow, J-orthogonal),
+  quiescent at zero field, collapsed states + merger compose; M1 demoted
+  to formation tool. Debts: norm account, info account, rate law (BR-3C).
+
 - **unreleased (EM-1 falsification)** — Electromagnetic-falsification
   campaign on frozen J2 wave (read-only EM-0/MALUS-0/OBS-0/SPEC-0/P1
   apparatus, no new DOF, gap-tuning firewalled): new `falsification.py`

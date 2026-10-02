@@ -5356,3 +5356,142 @@ RESPECTED (no-EM-claims (falsification-complete!)). EM-PROGRAM-BRANCH-POINT
 (filed-not-decided!): (i)-new-microscopic-DOF (coin/edge-phases/vector);
 (ii)-new-substrate (beyond-bare-J2); (iii)-drop-EM-target (scalar-program-
 continues (backreaction/cosmology/gravity-tracks-unaffected!)).
+
+## BR25-PREREG — Contraction/splitting ontology (D14-BR2.5, FROZEN PRE-DATA)
+
+**Status:** apparatus + ladder frozen; campaign NOT YET RUN. Derivation +
+consistency campaign: tests whether local contraction/splitting can carry
+the BR-2 quadrature without violating banked invariants. Introduces NO
+event-rate law, NO new dynamics, privileges NO field map pre-data.
+
+**BR-2.5A conventions (derived from simple-graph ontology, not tuned):**
+V' = V - {i,j} + {k} (k fresh, history-free); N(k) = (N(i) u N(j)) \ {i,j};
+common neighbors collapse to ONE edge (multiplicity recorded in the
+contraction record, not kept: A_ij in {0,1} is frozen); the consumed edge
+becomes a self-loop on k and is DISCARDED (mutual relation of two now
+indistinguishable locations is vacuous). Consequences pinned pre-data:
+dN = -1, dE = -(1+c), simplicity preserved, R_U = 1 (neighborhoods at
+distance >= 2 bit-identical; t ticks <= t hops).
+
+**BR-2.5B candidate maps (all implemented, none privileged):** S sum
+(a+b; Dn = +2B_ij), A average ((a+b)/2), N norm-preserving
+(sum-direction x local norm; SINGULAR at a+b == 0 -> defined 0, filed).
+No map selected cosmetically; the census decides.
+
+**BR-2.5C census claims:** exact formulas dN/dE/dnorm per map (pinned in
+units + campaign gates); dEpsi direct (no closed local form claimed).
+Norm across contraction is EXPLICITLY ACCOUNTED, not forced conserved.
+
+**BR-2.5D operationalization:** D1-with-record = exact graph inverse with
+nonlocal memory (proves nothing local). Record-free split = cover
+policies (A,B), A u B = N(k): 3^d degenerate policies (D2, finite).
+Field: sum-equal roundtrip error = |a-b|^2/2 exactly (relative-mode
+power = the obstruction; uniform fields roundtrip exactly). JUDGMENT
+(frozen): the continuous field-mode loss is filed as INFO-ACCOUNT DEBT,
+not the IRREVERSIBLE rung, because degenerate splitting IS derivable
+from surviving local state; IRREVERSIBLE triggers only if no split
+policy is restorative even with oracle choice or the wave law breaks.
+Reversibility of graph dynamics was never banked; unitarity between
+graph events was (gated).
+
+**Campaign grid (frozen):** F: L12-torus edge (elist[10] avoiding node 0)
+x 3 maps + R18-ball edge (elist[100] avoiding src) + L8 spectrum +
+M1 contrast (seed 777), uniform field; G: record/oracle/field roundtrips
+on the F edge (+ staggered phi=pi/2 field case); H: stagger tables
+phi in {0, pi, pi/2, -pi/2} on J2-L12 uniform envelope + E zero-field;
+J: ring-60 evolve10/contract(45,46)/evolve10 + J2-L28 E1 packet + contract
+elist[10]; L: collapse ball r<=6 around node 0 on J2-L28 (seed 0) +
+pristine/collapsed wave + spectra; M: collapse r<=4 balls at distance 9
+(seeds 1/2) + bridge contraction with the SAME primitive; I: L28 cone +
+3-tick chain; K: 3^d census only, DESIGN-OPEN (no event-rate law earned,
+no pseudo-formation demo — explicit non-goal).
+
+**Verdict ladder (frozen bars, scripts/analyze_br25.py):**
+- INCONSISTENT iff census/cone/between-events gates fail.
+- IRREVERSIBLE iff consistent but no restorative split policy (even
+  oracle) or across-event evolution non-deterministic.
+- LOCAL iff consistent + reversible-attempt viable + multitick cone +
+  M1-contrast (R_U=1 vs remote reach).
+- QUADRATURE iff LOCAL + H separation (all +1 @0, all -1 @pi, all 0 with
+  max|J|>0.1 @pi/2) + J-orthogonality bitwise + E bitwise null +
+  sum-map Dn == 2B on the campaign edge.
+- ONTOLOGY iff QUADRATURE + J deterministic + L collapsed-state
+  well-defined (ext == boundary, steps == size-1) + M composes
+  (same primitive, census exact, ext == union boundary).
+
+**Predictions (filed, not gates):** LOCAL + QUADRATURE reachable;
+ONTOLOGY iff L/M/J clean; D3 field-mode loss WILL be found (dimension
+counting) and filed; NORM-ACCOUNT DEBT (2B created/destroyed per event
+without a reservoir) WILL be filed; event-rate law stays unearned
+(BR-3C debt); K stays DESIGN-OPEN.
+
+**Debts pre-filed:** NORM-ACCOUNT (contraction changes ||psi||^2 by 2B
+unless exchanged/stored somewhere); INFO-ACCOUNT (relative mode +
+partition forgotten per event; record size quantified in L); RATE-LAW
+(no tendency->probability map derived or assumed).
+
+## BR25-AMENDMENT-1 — J-bar scale erratum (filed, BR0-AMENDMENT-1 style)
+
+The prereg H bar wrote absolute J_maxabs > 0.1 (N=8 unit-test scale) for
+the J2-L12 campaign table (N=288, rho^2 = 1/288). The data show perfect
+separation (1152/1152 neutral with |J| = rho^2 exactly); only the
+absolute bar misfired on scale. Corrected bar (strictly stronger):
+|J_maxabs - rho^2| < 1e-12 (exact saturation at the theoretical maximum).
+Analyzer updated + rerun; 15/15. The physics affirmed is stronger than
+the physics preregistered (saturation, not presence).
+
+## BR25-VERDICT — BR25-ONTOLOGY (15/15 gates, debts owned)
+
+**Campaign:** data/br25_contraction.json (beast run, 58 s, frozen runner).
+**Ladder:** consistent (census/cone/unitarity exact) -> reversible-attempt
+viable (record-exact + oracle-among-degenerate + deterministic) -> LOCAL
+(+ multitick cone + M1-contrast) -> QUADRATURE (+ H separation, ortho,
+E-quiescence, 2B-wiring) -> ONTOLOGY (+ J + L + M). All five checklist
+items hold; the four pre-filed debts stay filed (below).
+
+**Primitive (A/C):** dN = -1, dE = -(1+c) exact on every map and substrate
+(J2 triangle-free -> c = 0, dE = -1); sum-map Dn = +2B_ij wired to the
+BR-2 quantity (campaign edge residual 0.0); single contraction moves IR
+barely (p 1.0797 -> 1.0854, C4 -21 local, spectral radius 8.0 -> 8.11).
+M1 contrast: one relocation reaches 8 hops with a length-3 chord vs R_U
+= 1 by construction (pinned units + campaign, single + 3-tick).
+
+**Splitting (D/G):** record-inverse bit-exact; oracle cover unique among
+3^14 = 4,782,969 degenerate policies (D2 finite for graphs); field
+roundtrip error = |a-b|^2/2 exactly (uniform fields roundtrip with error
+0.0; staggered derr = rho^2 = 0.0035 = formula). The D3 field-mode loss
+is QUANTIFIED, not hand-waved (INFO-ACCOUNT DEBT stands).
+
+**Quadrature (H/E):** phi=0: 1152/1152 contractive (B = +rho^2, J = 0);
+phi=pi: 1152/1152 expansive (B = -rho^2, J = 0); phi=+/-pi/2: 1152/1152
+neutral with |J| = rho^2 saturated, geometric readouts bitwise identical
+under J -> -J. psi=0: B=J=tendency all zero bitwise (quiescence follows
+from the tendency-proportional-to-B FORM — the form itself is the tested
+candidate, not a derivation; owned).
+
+**Wave (J):** evolution deterministic across events (bitwise rerun);
+unitary between events at the post-jump norm (ring jump 2.2e-07 =
+packet-tail 2B, accounted); H(G') + B/J readers history-free on fresh
+labels.
+
+**Collapse (L):** region 170 -> 1 in 169 steps; ext degree 56 = boundary
+exactly; through-distance 28 -> 16, diameter 28 -> 22; packet propagates
+through the collapsed state nearly identically (disp 7.34 vs 7.11,
+PR 397->571 vs 401->608 — no reflection catastrophe, characterization).
+Banked as a COLLAPSED GRAPH STATE (no horizon language).
+
+**Merger (M):** adjacent collapsed regions compose via the SAME
+contract_edge on the bridge (dE = -1 = formula, ext 76 = union boundary
+exactly). No special merger law; ontological economy holds.
+
+**Debts (filed, verdict-remote):** NORM-ACCOUNT (each event creates /
+destroys 2B of ||psi||^2 with no reservoir — BR-3C must specify exchange
+or storage); INFO-ACCOUNT (partition + relative mode forgotten per
+event; record size = explicit reversibility price); RATE-LAW (no
+tendency->probability map derived or assumed — BR-3C must earn it);
+K DESIGN-OPEN (no formation demo attempted, per prereg).
+
+**Handoff:** M1 relocation demoted to experimental/formation tool (per
+the ONTOLOGY clause); the BR-3 loop is REPLACED by BR-3C (coupled
+contraction dynamics: psi -> B -> G' -> H(G') -> psi') once the rate law
+is earned. GRAV-0 input: exact structural light cone R_U = 1/tick.
