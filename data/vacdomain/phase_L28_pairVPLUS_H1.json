@@ -1,0 +1,1 @@
+{"task": "phase_L28_pairVPLUS_H1", "params": {"task": "phase", "L": 28, "pair": "VPLUS_H1"}, "payload": {"dev": {"rho": 3.903127820947816e-18, "B": 2.8189256484623115e-18, "J": 5.2329695481370675e-18}}, "provenance": {"git_rev": "7afa611a53f9cada912a516d435b5eb9873d3645", "utc": "2026-10-03T00:57:49Z", "host": "ip-172-31-39-189"}}
