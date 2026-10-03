@@ -202,8 +202,7 @@ def test_principle_masks_exact():
     assert r0.principle_mask(rows, "HID") == [True, False]
 
 
-def test_census_state_tiny_counts():
-    g = r0.tiny_graph("ring6")
+def test_census_state_tiny_counts():    g = r0.tiny_graph("ring6")
     order = list(g.nodes())
     psi = r0.tiny_field("uniform", order)
     rep = r0.census_state(g, psi, order)
@@ -315,3 +314,31 @@ def test_verdict_class_only():
                             "covariance": {"CONS": {"covariant": True}}}]}
     v = r0.campaign_verdict({"headline": head, "specified": spec})
     assert v["verdict"] == "REWIRE0-CLASS"
+
+
+def test_cache_bit_identical():
+    import math
+
+    from bh_graph import ug
+    from bh_graph.update_rule import edge_span
+
+    g = r0.tiny_graph("k4minus")
+    order = list(g.nodes())
+    psi = r0.tiny_field("random_s7", order)
+    E_old = float(ug.field_energy(psi, g, order))
+    nc0 = nx.number_connected_components(g)
+    spans = {}
+    for u, v in g.edges():
+        e = (u, v) if u < v else (v, u)
+        spans[e] = int(edge_span(g, u, v, r0.SPAN_RADIUS))
+    cache = {"E_old": E_old, "nc0": int(nc0), "spans": spans}
+    for r in r0.enumerate_rewires(g):
+        q0 = r0.rewire_quantities(g, psi, order, r)
+        q1 = r0.rewire_quantities(g, psi, order, r, _cache=cache)
+        assert q0.keys() == q1.keys()
+        for k in q0:
+            a, b = q0[k], q1[k]
+            if isinstance(a, float) and math.isnan(a):
+                assert isinstance(b, float) and math.isnan(b)
+            else:
+                assert a == b, k

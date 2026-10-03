@@ -454,13 +454,17 @@ def _tris_touching_count(h: nx.Graph, S: set) -> int:
 
 
 def rewire_quantities(g: nx.Graph, psi: np.ndarray, order: list,
-                      r: dict, smax: int | None = None) -> dict:
+                      r: dict, smax: int | None = None,
+                      _cache: dict | None = None) -> dict:
     """Earned exact quantities for one rewire (all zero-parameter).
 
     CONS: d_ncomp/d_xi (dE=dN=0 so d_xi=d_ncomp), d_T, dQ=0, dD2=0.
     GRAPH (local): touched-square/triangle deltas, old/new span pairs,
       d_loc. FIELD: B/J old/new sums, E_old/E_new. LEDGER: dE (exact).
     HID: J2 sheet-class pattern + ||H' psi|| residual + E'.
+    _cache (optional): parent-level cached values (E_old, nc0,
+      old-span map). Pure memoization of deterministic quantities:
+      outputs bit-identical with or without the cache.
     """
     from bh_graph import ug
     from bh_graph.update_rule import edge_span
@@ -473,13 +477,21 @@ def rewire_quantities(g: nx.Graph, psi: np.ndarray, order: list,
     S = {a, b, c, d}
 
     h = _apply_rewire(g, r)
+    cache = _cache or {}
 
     # CONS (exact; several legs trivially zero for rewire, pinned).
-    try:
-        nc0 = nx.number_connected_components(g)
-        nc1 = nx.number_connected_components(h)
-    except Exception:
-        nc0, nc1 = 1, 1
+    if "nc0" in cache:
+        nc0 = cache["nc0"]
+        try:
+            nc1 = nx.number_connected_components(h)
+        except Exception:
+            nc1 = nc0
+    else:
+        try:
+            nc0 = nx.number_connected_components(g)
+            nc1 = nx.number_connected_components(h)
+        except Exception:
+            nc0, nc1 = 1, 1
     d_ncomp = int(nc1 - nc0)
     d_xi = int(d_ncomp)  # dE=dN=0 exactly
     t0 = sum(nx.triangles(g, list(S)).values()) // 1
@@ -500,8 +512,15 @@ def rewire_quantities(g: nx.Graph, psi: np.ndarray, order: list,
     except Exception:
         sq0, sq1 = 0, 0
     try:
-        sp_old = sorted((edge_span(g, a, b, SPAN_RADIUS),
-                         edge_span(g, c, d, SPAN_RADIUS)))
+        if "spans" in cache:
+            sp = cache["spans"]
+            sp_old = sorted((sp.get(_canon_edge(a, b),
+                                    edge_span(g, a, b, SPAN_RADIUS)),
+                             sp.get(_canon_edge(c, d),
+                                    edge_span(g, c, d, SPAN_RADIUS))))
+        else:
+            sp_old = sorted((edge_span(g, a, b, SPAN_RADIUS),
+                             edge_span(g, c, d, SPAN_RADIUS)))
         sp_new = sorted((edge_span(h, u1, v1, SPAN_RADIUS),
                          edge_span(h, u2, v2, SPAN_RADIUS)))
     except Exception:
@@ -519,11 +538,18 @@ def rewire_quantities(g: nx.Graph, psi: np.ndarray, order: list,
     B_new = float(_B(u1, v1) + _B(u2, v2))
     J_old = float(_J(a, b) + _J(c, d))
     J_new = float(_J(u1, v1) + _J(u2, v2))
-    try:
-        E_old = float(ug.field_energy(psi, g, order))
-        E_new = float(ug.field_energy(psi, h, order))
-    except Exception:
-        E_old, E_new = 0.0, 0.0
+    if "E_old" in cache:
+        E_old = cache["E_old"]
+        try:
+            E_new = float(ug.field_energy(psi, h, order))
+        except Exception:
+            E_new = E_old
+    else:
+        try:
+            E_old = float(ug.field_energy(psi, g, order))
+            E_new = float(ug.field_energy(psi, h, order))
+        except Exception:
+            E_old, E_new = 0.0, 0.0
     dE = float(E_new - E_old)
     dE_formula = float(-2.0 * (B_new - B_old))
     rho_S = sorted(float(abs(complex(psi[idx[v]])) ** 2) for v in S)
@@ -622,9 +648,28 @@ def census_rows(g: nx.Graph, psi: np.ndarray, order: list,
         href = float(np.linalg.norm(H0d @ psi))
     except Exception:
         href = float("nan")
+    # Parent-level memoization (deterministic; bit-identical outputs).
+    from bh_graph import ug
+    from bh_graph.update_rule import edge_span
+
+    try:
+        E_old = float(ug.field_energy(psi, g, order))
+    except Exception:
+        E_old = 0.0
+    try:
+        nc0 = nx.number_connected_components(g)
+    except Exception:
+        nc0 = 1
+    spans = {}
+    try:
+        for u, v in g.edges():
+            spans[_canon_edge(u, v)] = int(edge_span(g, u, v, SPAN_RADIUS))
+    except Exception:
+        spans = {}
+    cache = {"E_old": E_old, "nc0": int(nc0), "spans": spans}
     rows = []
     for r in rewires:
-        qr = rewire_quantities(g, psi, order, r, smax=smax)
+        qr = rewire_quantities(g, psi, order, r, smax=smax, _cache=cache)
         qr["_href"] = href
         rows.append(qr)
     return rows, href
