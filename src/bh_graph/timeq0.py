@@ -377,12 +377,16 @@ def is_enlarged_equiv_ok(X1: dict, X2: dict,
                 except Exception:
                     return False
         # General: constrained lazy enumeration. Present-Q keys must map
-        # to present-Q keys (node_match pruning on copies); maps tested
-        # one by one with early exit (no pre-listing to ISO_CAP).
-        if not nx.isomorphism.GraphMatcher(g1, g2).is_isomorphic():
-            return False
+        # to present-Q keys (node_match pruning on copies, used for BOTH
+        # the iso decision and the enumeration: an unconstrained decision
+        # explodes on inequivalent symmetric pairs); maps tested one by
+        # one with early exit (no pre-listing to ISO_CAP).
         pr1 = present_keys(X1)
         pr2 = present_keys(X2)
+        if len(pr1) != len(pr2):
+            return False
+        if len(absent_keys(X1)) != len(absent_keys(X2)):
+            return False
         h1 = g1.copy()
         h2 = g2.copy()
         for v in h1.nodes():
@@ -391,6 +395,8 @@ def is_enlarged_equiv_ok(X1: dict, X2: dict,
             h2.nodes[v]["q"] = 1 if v in pr2 else 0
         gm = nx.isomorphism.GraphMatcher(
             h1, h2, node_match=lambda a, b: a.get("q") == b.get("q"))
+        if not gm.is_isomorphic():
+            return False
         n = 0
         for mp in gm.isomorphisms_iter():
             n += 1
