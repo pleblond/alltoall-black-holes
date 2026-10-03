@@ -387,13 +387,19 @@ def eval_ports(datadir):
             else:
                 sc_ok = bool(v["scaling_ok"])
             led = v["ledger"]
+            # Banked-verbatim patterns (vacfield_analyze ledger_symmetric):
+            # VPLUS flat (f0==1); VPI one-sided NEGATIVE (f_pos==0 exact,
+            # J2 precedent fneg=0.50/fpos=0.0); VMINUS symmetric (both
+            # sides present, f0~=0.5; single-seed sampling window 0.05,
+            # ~14x the 20000-move sampling noise -- validity, not a fit).
             if name == "VPLUS":
                 pat = bool(led["f_zero"] == 1.0)
             elif name == "VPI":
-                pat = bool(led["f_neg"] == 0.0 and led["f_zero"] < 1.0)
+                pat = bool(led["f_pos"] == 0.0 and led["f_neg"] > 0.0
+                           and led["f_zero"] < 1.0)
             else:
                 pat = bool(led["f_neg"] > 0.0 and led["f_pos"] > 0.0
-                           and abs(led["mean"]) < 1e-12)
+                           and abs(led["f_zero"] - 0.5) < 0.05)
             cands[name] = bool(v["eigen_res"] < 1e-9
                                and v["stationary"]["ok"] and v["current_ok"]
                                and v["phase_ok"] and sc_ok

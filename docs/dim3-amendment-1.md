@@ -126,6 +126,19 @@ Amendment-1: the |psi_-|^2 S-even part diffuses -- VISIBLE-expected,
 never gated) MINUS dQ on amp_raw (RAW variant). Neighborhood R_PREP=2
 (banked convention). Uniform background = VPLUS shape.
 
+## A7. Vacuum ledger: banked-verbatim one-sided/symmetric patterns
+
+Smoke review against vacfield_analyze.py (banked ledger_symmetric):
+VPI one-sidedness is NEGATIVE-side (f_pos == 0.0 exact, J2 precedent
+fneg = 0.50/fpos = 0.0) -- the analyzer's f_neg == 0.0 side was flipped.
+J3 smoke reproduces the banked pattern exactly (fp = 0.0, fn ~= 0.50).
+VMINUS "symmetric" is the both-sides-present + f0 ~= 0.5 pattern (banked
+sampled +/-0.015 across seeds, exact fractions exhaustive); the
+mean < 1e-12 leg was non-banked and fails on single-seed sampling noise
+by construction. Fixed: VPI f_pos==0 & f_neg>0 & f_zero<1;
+VMINUS f_neg>0 & f_pos>0 & |f_zero-0.5|<0.05 (single-seed validity
+window, ~14x sampling noise). Patterns gated, values filed (prereg I-c).
+
 ## Task count
 
 76 = 30 stations + 25 spread + 3 tladder + 3 packet + 2 pot0 + 3 pot1
