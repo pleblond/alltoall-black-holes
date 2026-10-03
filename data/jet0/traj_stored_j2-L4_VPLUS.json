@@ -1,0 +1,1617 @@
+{
+ "kind": "stored",
+ "sub": "j2-L4",
+ "ftag": "VPLUS",
+ "ladder": [
+  0.0,
+  0.5,
+  1.0,
+  2.0,
+  4.0,
+  8.0
+ ],
+ "dt": 0.05,
+ "cert": {
+  "is_zero": false,
+  "is_eigen": false,
+  "resid": 0.4575396819442372,
+  "lam": [
+   -8.294117647058824,
+   0.0
+  ]
+ },
+ "edge_ref": null,
+ "note": "decoded-evolving",
+ "n_fiber": 9520,
+ "n_rewire": 0,
+ "rungs": [
+  {
+   "t": 0.0,
+   "fiber_counts": {
+    "full": 5,
+    "lower-only": 335,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8540,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8708,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  },
+  {
+   "t": 0.5,
+   "fiber_counts": {
+    "full": 5,
+    "lower-only": 335,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8540,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8708,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  },
+  {
+   "t": 1.0,
+   "fiber_counts": {
+    "full": 5,
+    "lower-only": 335,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8540,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8708,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  },
+  {
+   "t": 2.0,
+   "fiber_counts": {
+    "full": 5,
+    "lower-only": 335,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8540,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8708,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  },
+  {
+   "t": 4.0,
+   "fiber_counts": {
+    "full": 5,
+    "lower-only": 335,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8540,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8708,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  },
+  {
+   "t": 8.0,
+   "fiber_counts": {
+    "full": 5,
+    "lower-only": 335,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8540,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8708,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  }
+ ],
+ "crossings": [
+  {
+   "alt": "split:0",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:1",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:2",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:3",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:4",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:5",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:6",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:7",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:8",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:9",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:10",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:11",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:12",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:13",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:14",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:15",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:16",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:17",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:18",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:19",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:20",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:21",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:22",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:23",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:24",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:25",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:26",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:27",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:28",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:29",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:30",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:31",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:32",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:33",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:34",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:35",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:36",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:37",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:38",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:39",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:40",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:41",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:42",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:43",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:44",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:45",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:46",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "split:47",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  }
+ ],
+ "n_crossed": 0,
+ "theta_history_ok": true,
+ "theta_history": {
+  "t": 2.0,
+  "dev": 0.0,
+  "note": "stored-leg-vacuous"
+ },
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

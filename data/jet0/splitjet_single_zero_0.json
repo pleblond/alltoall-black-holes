@@ -1,0 +1,18 @@
+{
+ "cell": "single/zero",
+ "k": 0,
+ "pred_ok": true,
+ "m_ref": 1,
+ "n_alts": 27,
+ "counts": {
+  "full": 0,
+  "lower-only": 0,
+  "no": 27
+ },
+ "triviality_counts": {
+  "not-a-match": 27
+ },
+ "match_rows": [],
+ "n_match_rows": 0,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

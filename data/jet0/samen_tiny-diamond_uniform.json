@@ -1,0 +1,20 @@
+{
+ "sub": "tiny-diamond",
+ "ftag": "uniform",
+ "n_rewires": 0,
+ "n_cospec": 0,
+ "n_iso": 0,
+ "n_compat": 0,
+ "orbits": {
+  "n_survivors": 0,
+  "n_orbits": 0,
+  "n_nontrivial": 0,
+  "exact": true,
+  "n_perms": 4
+ },
+ "n_jet_tests": 0,
+ "n_full": 0,
+ "full_rows": [],
+ "triviality_counts": {},
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

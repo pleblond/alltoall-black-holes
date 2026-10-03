@@ -1,0 +1,158 @@
+{
+ "sub": "er-24",
+ "ftag": "random777",
+ "member": "",
+ "edge": [
+  6,
+  13
+ ],
+ "regression_ok": true,
+ "m_u": 24,
+ "order_method": "exact",
+ "algebra_ok": true,
+ "deriv_max_resid": 0.0,
+ "deriv_ok": true,
+ "reservoir_jet_ok": true,
+ "n_alts": 8064,
+ "counts": {
+  "full": 0,
+  "lower-only": 0,
+  "no": 8064
+ },
+ "triviality_counts": {
+  "not-a-match": 8064
+ },
+ "true_found": 0,
+ "true_unique": false,
+ "match_rows": [],
+ "n_match_rows": 0,
+ "audit_rows": [
+  {
+   "fa": 0,
+   "cover": [
+    [
+     1,
+     8,
+     9,
+     10,
+     11,
+     14,
+     15,
+     16,
+     18,
+     19,
+     20,
+     21
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": 6.150503022719392e+18,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 1,
+   "cover": [
+    [
+     1,
+     8,
+     9,
+     10,
+     11,
+     14,
+     15,
+     16,
+     18,
+     19,
+     20,
+     21
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": 2.6797857372924897e+18,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 2,
+   "cover": [
+    [
+     1,
+     8,
+     9,
+     10,
+     11,
+     14,
+     15,
+     16,
+     18,
+     19,
+     20,
+     21
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": 6.827659415276649e+18,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 3,
+   "cover": [
+    [
+     1,
+     8,
+     9,
+     10,
+     11,
+     14,
+     15,
+     16,
+     18,
+     19,
+     20,
+     21
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": 3.996185338085781e+18,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "theta_counterpart_ok": true,
+ "edge_pos": 2,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

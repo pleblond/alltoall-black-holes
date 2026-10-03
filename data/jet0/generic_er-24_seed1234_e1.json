@@ -1,0 +1,160 @@
+{
+ "sub": "er-24",
+ "ftag": "GENERIC:1234",
+ "member": "",
+ "edge": [
+  0,
+  16
+ ],
+ "regression_ok": true,
+ "m_u": 24,
+ "order_method": "exact",
+ "algebra_ok": true,
+ "deriv_max_resid": 0.0,
+ "deriv_ok": true,
+ "reservoir_jet_ok": true,
+ "n_alts": 8064,
+ "counts": {
+  "full": 0,
+  "lower-only": 0,
+  "no": 8064
+ },
+ "triviality_counts": {
+  "not-a-match": 8064
+ },
+ "true_found": 0,
+ "true_unique": false,
+ "match_rows": [],
+ "n_match_rows": 0,
+ "audit_rows": [
+  {
+   "fa": 0,
+   "cover": [
+    [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     15,
+     22
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": 3.4410369792805263e+18,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 1,
+   "cover": [
+    [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     15,
+     22
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": 3.466453699160718e+17,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 2,
+   "cover": [
+    [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     15,
+     22
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": 4.628981138374388e+18,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 3,
+   "cover": [
+    [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     15,
+     22
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": 3.115588852710517e+18,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "theta_counterpart_ok": true,
+ "codim_first_alt": 24,
+ "codim_method": "exact",
+ "seed": 1234,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

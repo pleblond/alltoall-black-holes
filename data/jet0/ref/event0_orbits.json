@@ -1,0 +1,2816 @@
+{
+ "traj_bare_handbuilt_uniform.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 2), (4, 5)), ((0, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 3), (4, 5)), ((0, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 4), (5, 6)), ((1, 5), (4, 6)))"
+    }
+   ],
+   "compat": {
+    "(((0, 2), (4, 5)), ((0, 4), (2, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 3), (4, 5)), ((0, 4), (3, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 4), (5, 6)), ((1, 5), (4, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "n_cospec": 3,
+   "n_iso": 3,
+   "n_nontrivial": 2,
+   "n_rewires": 18,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 2,
+    "n_perms": 2,
+    "n_survivors": 3
+   }
+  },
+  "ftag": "uniform",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 8,
+  "n_nodes": 7,
+  "sub": "handbuilt"
+ },
+ "traj_bare_handbuilt_zero.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 2), (4, 5)), ((0, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 3), (4, 5)), ((0, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 4), (5, 6)), ((1, 5), (4, 6)))"
+    }
+   ],
+   "compat": {
+    "(((0, 2), (4, 5)), ((0, 4), (2, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 3), (4, 5)), ((0, 4), (3, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 4), (5, 6)), ((1, 5), (4, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   "n_cospec": 3,
+   "n_iso": 3,
+   "n_nontrivial": 2,
+   "n_rewires": 18,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 2,
+    "n_perms": 2,
+    "n_survivors": 3
+   }
+  },
+  "ftag": "zero",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 8,
+  "n_nodes": 7,
+  "sub": "handbuilt"
+ },
+ "traj_bare_path-8_spike0.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (3, 4)), ((1, 3), (2, 4)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (4, 5)), ((1, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (5, 6)), ((1, 5), (2, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (6, 7)), ((1, 6), (2, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((0, 1), (2, 3)), ((0, 2), (1, 3)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (3, 4)), ((0, 3), (1, 4)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (4, 5)), ((0, 4), (1, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (5, 6)), ((0, 5), (1, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (3, 4)), ((1, 3), (2, 4)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (4, 5)), ((1, 4), (2, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (5, 6)), ((1, 5), (2, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (6, 7)), ((1, 6), (2, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "n_cospec": 14,
+   "n_iso": 14,
+   "n_nontrivial": 8,
+   "n_rewires": 23,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 8,
+    "n_perms": 2,
+    "n_survivors": 14
+   }
+  },
+  "ftag": "spike0",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 7,
+  "n_nodes": 8,
+  "sub": "path-8"
+ },
+ "traj_bare_path-8_stagger0.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (3, 4)), ((1, 3), (2, 4)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (4, 5)), ((1, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (5, 6)), ((1, 5), (2, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (6, 7)), ((1, 6), (2, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((0, 1), (2, 3)), ((0, 2), (1, 3)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (3, 4)), ((0, 3), (1, 4)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (4, 5)), ((0, 4), (1, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (5, 6)), ((0, 5), (1, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (3, 4)), ((1, 3), (2, 4)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (4, 5)), ((1, 4), (2, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (5, 6)), ((1, 5), (2, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (6, 7)), ((1, 6), (2, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "n_cospec": 14,
+   "n_iso": 14,
+   "n_nontrivial": 8,
+   "n_rewires": 23,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 8,
+    "n_perms": 2,
+    "n_survivors": 14
+   }
+  },
+  "ftag": "stagger0",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 7,
+  "n_nodes": 8,
+  "sub": "path-8"
+ },
+ "traj_bare_path-8_uniform.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (3, 4)), ((1, 3), (2, 4)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (4, 5)), ((1, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (5, 6)), ((1, 5), (2, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (6, 7)), ((1, 6), (2, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((0, 1), (2, 3)), ((0, 2), (1, 3)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (3, 4)), ((0, 3), (1, 4)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (4, 5)), ((0, 4), (1, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (5, 6)), ((0, 5), (1, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (3, 4)), ((1, 3), (2, 4)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (4, 5)), ((1, 4), (2, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (5, 6)), ((1, 5), (2, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (6, 7)), ((1, 6), (2, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "n_cospec": 14,
+   "n_iso": 14,
+   "n_nontrivial": 8,
+   "n_rewires": 23,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 8,
+    "n_perms": 2,
+    "n_survivors": 14
+   }
+  },
+  "ftag": "uniform",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 7,
+  "n_nodes": 8,
+  "sub": "path-8"
+ },
+ "traj_bare_path-8_zero.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (3, 4)), ((1, 3), (2, 4)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (4, 5)), ((1, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (5, 6)), ((1, 5), (2, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 2), (6, 7)), ((1, 6), (2, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((0, 1), (2, 3)), ((0, 2), (1, 3)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (3, 4)), ((0, 3), (1, 4)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (4, 5)), ((0, 4), (1, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (5, 6)), ((0, 5), (1, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (3, 4)), ((1, 3), (2, 4)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (4, 5)), ((1, 4), (2, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (5, 6)), ((1, 5), (2, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (6, 7)), ((1, 6), (2, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   "n_cospec": 14,
+   "n_iso": 14,
+   "n_nontrivial": 8,
+   "n_rewires": 23,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 8,
+    "n_perms": 2,
+    "n_survivors": 14
+   }
+  },
+  "ftag": "zero",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 7,
+  "n_nodes": 8,
+  "sub": "path-8"
+ },
+ "traj_bare_ring-8_spike0.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (6, 7)), ((0, 6), (1, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (5, 6)), ((0, 6), (5, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (3, 4)), ((1, 3), (2, 4)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (4, 5)), ((1, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (5, 6)), ((1, 5), (2, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (6, 7)), ((1, 6), (2, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((0, 1), (2, 3)), ((0, 2), (1, 3)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (3, 4)), ((0, 3), (1, 4)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (4, 5)), ((0, 4), (1, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (5, 6)), ((0, 5), (1, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (6, 7)), ((0, 6), (1, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 7), (1, 2)), ((0, 2), (1, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 7), (2, 3)), ((0, 3), (2, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 7), (3, 4)), ((0, 4), (3, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 7), (4, 5)), ((0, 5), (4, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 7), (5, 6)), ((0, 6), (5, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (3, 4)), ((1, 3), (2, 4)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (4, 5)), ((1, 4), (2, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (5, 6)), ((1, 5), (2, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (6, 7)), ((1, 6), (2, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "n_cospec": 20,
+   "n_iso": 20,
+   "n_nontrivial": 3,
+   "n_rewires": 32,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 3,
+    "n_perms": 16,
+    "n_survivors": 20
+   }
+  },
+  "ftag": "spike0",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 8,
+  "n_nodes": 8,
+  "sub": "ring-8"
+ },
+ "traj_bare_ring-8_stagger0.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (6, 7)), ((0, 6), (1, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (5, 6)), ((0, 6), (5, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (3, 4)), ((1, 3), (2, 4)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (4, 5)), ((1, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (5, 6)), ((1, 5), (2, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (6, 7)), ((1, 6), (2, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((0, 1), (2, 3)), ((0, 2), (1, 3)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (3, 4)), ((0, 3), (1, 4)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (4, 5)), ((0, 4), (1, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (5, 6)), ((0, 5), (1, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (6, 7)), ((0, 6), (1, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (1, 2)), ((0, 2), (1, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (2, 3)), ((0, 3), (2, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (3, 4)), ((0, 4), (3, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (4, 5)), ((0, 5), (4, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (5, 6)), ((0, 6), (5, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (3, 4)), ((1, 3), (2, 4)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (4, 5)), ((1, 4), (2, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (5, 6)), ((1, 5), (2, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (6, 7)), ((1, 6), (2, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   "n_cospec": 20,
+   "n_iso": 20,
+   "n_nontrivial": 3,
+   "n_rewires": 32,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 3,
+    "n_perms": 16,
+    "n_survivors": 20
+   }
+  },
+  "ftag": "stagger0",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 8,
+  "n_nodes": 8,
+  "sub": "ring-8"
+ },
+ "traj_bare_ring-8_tiny_antibonding.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (6, 7)), ((0, 6), (1, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (5, 6)), ((0, 6), (5, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (3, 4)), ((1, 3), (2, 4)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (4, 5)), ((1, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (5, 6)), ((1, 5), (2, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (6, 7)), ((1, 6), (2, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((0, 1), (2, 3)), ((0, 2), (1, 3)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (3, 4)), ((0, 3), (1, 4)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (4, 5)), ((0, 4), (1, 5)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 1), (5, 6)), ((0, 5), (1, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (6, 7)), ((0, 6), (1, 7)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 7), (1, 2)), ((0, 2), (1, 7)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 7), (2, 3)), ((0, 3), (2, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (3, 4)), ((0, 4), (3, 7)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 7), (4, 5)), ((0, 5), (4, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (5, 6)), ((0, 6), (5, 7)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (3, 4)), ((1, 3), (2, 4)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (4, 5)), ((1, 4), (2, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (5, 6)), ((1, 5), (2, 6)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 2), (6, 7)), ((1, 6), (2, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "n_cospec": 20,
+   "n_iso": 20,
+   "n_nontrivial": 1,
+   "n_rewires": 32,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 3,
+    "n_perms": 16,
+    "n_survivors": 20
+   }
+  },
+  "ftag": "tiny:antibonding",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 8,
+  "n_nodes": 8,
+  "sub": "ring-8"
+ },
+ "traj_bare_ring-8_uniform.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (6, 7)), ((0, 6), (1, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (5, 6)), ((0, 6), (5, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (3, 4)), ((1, 3), (2, 4)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (4, 5)), ((1, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (5, 6)), ((1, 5), (2, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (6, 7)), ((1, 6), (2, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((0, 1), (2, 3)), ((0, 2), (1, 3)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (3, 4)), ((0, 3), (1, 4)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (4, 5)), ((0, 4), (1, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (5, 6)), ((0, 5), (1, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (6, 7)), ((0, 6), (1, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (1, 2)), ((0, 2), (1, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (2, 3)), ((0, 3), (2, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (3, 4)), ((0, 4), (3, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (4, 5)), ((0, 5), (4, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (5, 6)), ((0, 6), (5, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (3, 4)), ((1, 3), (2, 4)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (4, 5)), ((1, 4), (2, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (5, 6)), ((1, 5), (2, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (6, 7)), ((1, 6), (2, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   "n_cospec": 20,
+   "n_iso": 20,
+   "n_nontrivial": 3,
+   "n_rewires": 32,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 3,
+    "n_perms": 16,
+    "n_survivors": 20
+   }
+  },
+  "ftag": "uniform",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 8,
+  "n_nodes": 8,
+  "sub": "ring-8"
+ },
+ "traj_bare_ring-8_zero.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 1), (6, 7)), ((0, 6), (1, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((0, 7), (5, 6)), ((0, 6), (5, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (3, 4)), ((1, 3), (2, 4)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (4, 5)), ((1, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (5, 6)), ((1, 5), (2, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((1, 2), (6, 7)), ((1, 6), (2, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 16,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((0, 1), (2, 3)), ((0, 2), (1, 3)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (3, 4)), ((0, 3), (1, 4)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (4, 5)), ((0, 4), (1, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (5, 6)), ((0, 5), (1, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 1), (6, 7)), ((0, 6), (1, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (1, 2)), ((0, 2), (1, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (2, 3)), ((0, 3), (2, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (3, 4)), ((0, 4), (3, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (4, 5)), ((0, 5), (4, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((0, 7), (5, 6)), ((0, 6), (5, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (3, 4)), ((1, 3), (2, 4)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (4, 5)), ((1, 4), (2, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (5, 6)), ((1, 5), (2, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((1, 2), (6, 7)), ((1, 6), (2, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   "n_cospec": 20,
+   "n_iso": 20,
+   "n_nontrivial": 3,
+   "n_rewires": 32,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 3,
+    "n_perms": 16,
+    "n_survivors": 20
+   }
+  },
+  "ftag": "zero",
+  "kind": "bare",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 8,
+  "n_nodes": 8,
+  "sub": "ring-8"
+ },
+ "traj_int_handbuilt_INT-hb-twospike.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 2), (4, 5)), ((0, 4), (2, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((0, 3), (4, 5)), ((0, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((1, 4), (5, 6)), ((1, 5), (4, 6)))"
+    }
+   ],
+   "compat": {
+    "(((0, 2), (4, 5)), ((0, 4), (2, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((0, 3), (4, 5)), ((0, 4), (3, 5)))": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((1, 4), (5, 6)), ((1, 5), (4, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "n_cospec": 3,
+   "n_iso": 3,
+   "n_nontrivial": 2,
+   "n_rewires": 18,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 2,
+    "n_perms": 2,
+    "n_survivors": 3
+   }
+  },
+  "ftag": "INT-hb-twospike",
+  "kind": "int",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 8,
+  "n_nodes": 7,
+  "sub": "handbuilt"
+ },
+ "traj_stored_handbuilt_uniform.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 7), (5, 6)), ((2, 5), (6, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 7), (5, 6)), ((3, 5), (6, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((4, 7), (5, 6)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((2, 7), (5, 6)), ((2, 5), (6, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 7), (5, 6)), ((3, 5), (6, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((4, 7), (5, 6)), ((4, 6), (5, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "n_cospec": 3,
+   "n_iso": 3,
+   "n_nontrivial": 2,
+   "n_rewires": 7,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 2,
+    "n_perms": 2,
+    "n_survivors": 3
+   }
+  },
+  "ftag": "uniform",
+  "kind": "stored",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 5,
+  "n_nodes": 6,
+  "sub": "handbuilt"
+ },
+ "traj_stored_path-8_uniform.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 8), (3, 4)), ((2, 4), (3, 8)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 8), (4, 5)), ((2, 5), (4, 8)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 8), (5, 6)), ((2, 6), (5, 8)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((2, 8), (6, 7)), ((2, 7), (6, 8)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 2,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    }
+   ],
+   "compat": {
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 8), (3, 4)), ((2, 4), (3, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 8), (4, 5)), ((2, 5), (4, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 8), (5, 6)), ((2, 6), (5, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 8), (6, 7)), ((2, 7), (6, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "n_cospec": 10,
+   "n_iso": 10,
+   "n_nontrivial": 6,
+   "n_rewires": 16,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 6,
+    "n_perms": 2,
+    "n_survivors": 10
+   }
+  },
+  "ftag": "uniform",
+  "kind": "stored",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 6,
+  "n_nodes": 7,
+  "sub": "path-8"
+ },
+ "traj_stored_ring-8_uniform.json": {
+  "dt": 0.05,
+  "equiv": {
+   "anchored": false,
+   "cands": [
+    {
+     "n_maps": 14,
+     "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((2, 8), (3, 4)), ((2, 4), (3, 8)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((2, 8), (4, 5)), ((2, 5), (4, 8)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((2, 8), (5, 6)), ((2, 6), (5, 8)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((2, 3), (7, 8)), ((2, 7), (3, 8)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((2, 8), (6, 7)), ((2, 7), (6, 8)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((3, 4), (7, 8)), ((3, 7), (4, 8)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((4, 5), (7, 8)), ((4, 7), (5, 8)))"
+    },
+    {
+     "n_maps": 14,
+     "rkey": "(((5, 6), (7, 8)), ((5, 7), (6, 8)))"
+    }
+   ],
+   "compat": {
+    "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((2, 3), (7, 8)), ((2, 7), (3, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 8), (3, 4)), ((2, 4), (3, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 8), (4, 5)), ((2, 5), (4, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 8), (5, 6)), ((2, 6), (5, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((2, 8), (6, 7)), ((2, 7), (6, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((3, 4), (7, 8)), ((3, 7), (4, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((4, 5), (7, 8)), ((4, 7), (5, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "(((5, 6), (7, 8)), ((5, 7), (6, 8)))": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "n_cospec": 14,
+   "n_iso": 14,
+   "n_nontrivial": 2,
+   "n_rewires": 21,
+   "orbits": {
+    "exact": true,
+    "n_orbits": 2,
+    "n_perms": 14,
+    "n_survivors": 14
+   }
+  },
+  "ftag": "uniform",
+  "kind": "stored",
+  "ladder": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "member": null,
+  "n_edges": 7,
+  "n_nodes": 7,
+  "sub": "ring-8"
+ }
+}

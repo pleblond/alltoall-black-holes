@@ -1,0 +1,148 @@
+{
+ "sub": "er-24",
+ "ftag": "GENERIC:31337",
+ "member": "",
+ "edge": [
+  0,
+  2
+ ],
+ "regression_ok": true,
+ "m_u": 24,
+ "order_method": "exact",
+ "algebra_ok": true,
+ "deriv_max_resid": 0.0,
+ "deriv_ok": true,
+ "reservoir_jet_ok": true,
+ "n_alts": 5880,
+ "counts": {
+  "full": 0,
+  "lower-only": 0,
+  "no": 5880
+ },
+ "triviality_counts": {
+  "not-a-match": 5880
+ },
+ "true_found": 0,
+ "true_unique": false,
+ "match_rows": [],
+ "n_match_rows": 0,
+ "audit_rows": [
+  {
+   "fa": 0,
+   "cover": [
+    [
+     4,
+     7,
+     9,
+     11,
+     12,
+     14,
+     15,
+     16,
+     22
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": 8.557509635586653e+17,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 1,
+   "cover": [
+    [
+     4,
+     7,
+     9,
+     11,
+     12,
+     14,
+     15,
+     16,
+     22
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": 3.761610419770069e+17,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 2,
+   "cover": [
+    [
+     4,
+     7,
+     9,
+     11,
+     12,
+     14,
+     15,
+     16,
+     22
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": 1.4980284647571845e+18,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 3,
+   "cover": [
+    [
+     4,
+     7,
+     9,
+     11,
+     12,
+     14,
+     15,
+     16,
+     22
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": 1.285798078662591e+18,
+   "m_u": 24,
+   "m_p": 24,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "theta_counterpart_ok": true,
+ "codim_first_alt": 24,
+ "codim_method": "exact",
+ "seed": 31337,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}
