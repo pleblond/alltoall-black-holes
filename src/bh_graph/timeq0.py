@@ -1104,11 +1104,12 @@ def _seq_pair(name: str, ftag: str):
 def _hidden_pair(ftag: str, kind: str = "merge1"):
     sub = m0.build_substrate("j2-L4")
     g0, order0 = sub["g"], sub["order"]
-    psi0 = np.asarray(m0.build_field(sub, ftag), dtype=np.complex128)
-    if isinstance(psi0, dict):
-        psi0 = np.asarray(psi0["psi_A"], dtype=np.complex128)
+    raw = m0.build_field(sub, ftag)
+    if isinstance(raw, dict):
+        psi0 = np.asarray(raw["psi_A"], dtype=np.complex128)
         ftag_use = f"{ftag}:A"
     else:
+        psi0 = np.asarray(raw, dtype=np.complex128)
         ftag_use = ftag
     edges = m0.task_edges(sub, ftag)
     e = tuple(edges[0])
