@@ -105,7 +105,7 @@ def t_battery(p, outdir, record):
             design[f"{bg}/{eps}"] = vs.is_protected_design_ok(
                 bg, sub, eps, 1.0, "abs")
         design[f"{bg}/frac"] = vs.is_protected_design_ok(
-            bg, sub, vs.EPS_FRAC, 1.0, "frac")
+            bg, sub, vs.eps_frac_for(bg), 1.0, "frac")
     ok = vs.is_battery_ok(sub) and all(design.values())
     return {"ok": bool(ok), "design": design}
 
@@ -172,8 +172,9 @@ def t_stab(p, outdir, record):
 
 
 def t_amp(p, outdir, record):
-    return _stab_payload(p["bg"], p["kind"], vs.L_HEAD, vs.EPS_FRAC,
-                         p["amp"], "frac", vs.T_HEAD)
+    return _stab_payload(p["bg"], p["kind"], vs.L_HEAD,
+                         vs.eps_frac_for(p["bg"]), p["amp"], "frac",
+                         vs.T_HEAD)
 
 
 def t_lscan(p, outdir, record):

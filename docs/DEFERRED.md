@@ -10576,3 +10576,15 @@ bound holds on a live short run; O(N) sector/coarse forms match
 dense/banked forms; point C = N, uniform C = 1; streaming chunk
 invariant; hidden legs frozen (F = 1, R_C = 1, late_ok vacuous);
 hidden-on-sym coarse_sup = ||d0||^2 exactly; xbg bitwise.
+
+### VACSTAB0-AMENDMENT-1 (pre-data correction; no campaign records exist)
+
+Fractional amplitude-leg eps is per-background: 0.01 for
+uniform-magnitude backgrounds, 0.001 for interior circle points
+(CIRCLE@pi/6, CIRCLE@pi/3). Reason: frac ||d|| = eps*a scales with
+the carrier, so protection needs u_min > eps; interior u_min =
+||cos|-|sin||/sqrt(N) = 0.0092 (L28) < 0.01, failing the design
+gate (caught by the battery smoke task). Uniform u_min =
+1/sqrt(N) = 0.0252 > 0.01 keeps eps = 0.01. No gate, bar, or stage
+change; battery design + t_amp use eps_frac_for(bg). Pinned:
+test_protected_design_grids.

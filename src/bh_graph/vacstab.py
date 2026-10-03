@@ -67,7 +67,11 @@ EPS_INTERIOR = (0.001, 0.003)
 
 AMPLITUDES = (1e-3, 1e-2, 1e-1, 1.0, 10.0, 100.0, 1000.0)
 A_HEADLINE = 1.0
-EPS_FRAC = 0.01  # amplitude-leg fractional eps (uniformly protected)
+# Amplitude-leg fractional eps (uniformly protected at every a: frac
+# ||d|| = eps*a scales with the carrier, so a*u_min - eps*a > 0 iff
+# u_min > eps; interiors need the finer value).
+EPS_FRAC_UNIFORM = 0.01
+EPS_FRAC_INTERIOR = 0.001
 
 L_HEAD = 28
 L_SCAN = (4, 8, 12, 16, 20, 28)
@@ -137,6 +141,13 @@ def eps_grid_for(name: str) -> tuple:
     """Frozen protected-regime eps grid for a background (abs, a = 1)."""
     if name in BACKGROUNDS:
         return EPS_INTERIOR if name in INTERIOR_BGS else EPS_UNIFORM
+    raise ValueError(f"unknown background: {name}")
+
+
+def eps_frac_for(name: str) -> float:
+    """Frozen amplitude-leg fractional eps for a background."""
+    if name in BACKGROUNDS:
+        return EPS_FRAC_INTERIOR if name in INTERIOR_BGS else EPS_FRAC_UNIFORM
     raise ValueError(f"unknown background: {name}")
 
 

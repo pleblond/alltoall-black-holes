@@ -79,10 +79,17 @@ def test_protected_design_grids():
     for bg in vs.BACKGROUNDS:
         for eps in vs.eps_grid_for(bg):
             assert vs.is_protected_design_ok(bg, sub, eps, 1.0, "abs")
-        assert vs.is_protected_design_ok(bg, sub, vs.EPS_FRAC, 1.0, "frac")
+        assert vs.is_protected_design_ok(bg, sub, vs.eps_frac_for(bg),
+                                         1.0, "frac")
+        assert vs.is_protected_design_ok(bg, sub, vs.eps_frac_for(bg),
+                                         100.0, "frac")
     assert not vs.is_protected_design_ok("VPLUS", sub, 1.0, 1.0, "abs")
-    assert vs.is_protected_design_ok("VPLUS", sub, 0.01, 100.0, "frac")
+    sub28 = vf.j2_substrate(vs.L_HEAD)
+    assert not vs.is_protected_design_ok("CIRCLE@pi/6", sub28, 0.01, 1.0,
+                                         "frac")
     assert not vs.is_protected_design_ok("BOGUS", sub, 0.01)
+    with pytest.raises(ValueError):
+        vs.eps_frac_for("BOGUS")
 
 
 def test_battery_ok():
