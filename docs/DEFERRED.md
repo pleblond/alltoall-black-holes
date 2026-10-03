@@ -10736,3 +10736,450 @@ multiplicity (pred == succ), history multiplicity (timed-skeleton
 identity + waiting/skeleton split), scheduler multiplicity (m!),
 and hidden-state books (distinctness + R-equality pins) are all
 exact counts with binary logs; no -sum p log p anywhere.
+## SOURCE0-PREREG (FROZEN pre-data; commit predates ALL SOURCE-0 runs)
+
+Persistent-sources campaign (SOURCE-0). Mission: determine what a persistent
+local source means after the vacuum becomes `psivac + dpsi`, and test whether
+POT's stationary field is the driven/time-integrated counterpart of the
+RESPONSE-0 impulse kernel.
+
+Central question: for a maintained local source (forcing/boundary data held
+fixed in the vacuum frame), does one driven linear law -- derived from the
+frozen operator plus the RESPONSE kernel -- predict the direct driven
+evolution on every earned vacuum, with vacuum dependence entering only
+through (drive frequency = vacuum energy, pin phase, background
+susceptibility)?
+
+### Firewall (campaign level)
+
+SOURCE-0 may not claim: charge, mass, matter, force, gravity, curvature,
+actual geometry change, or vacuum selection. Sources are called ONLY
+maintained amplitude/phase/complex displacement, flux boundary condition
+(if defined in banked code), or the banked POT source protocol. No H
+modification, no onsite terms, no edge weights, no vacuum potential, no
+geometry-update rule, no amplitude tuning, no (B - B_vac) in any dynamics,
+no nonlinear field term, no source feedback, no stochastic dynamics, no
+structural event, no source-specific retuning (one DT/T/threshold table for
+all sources). Delta variables are readout-only: dO = O[vac + d] - O[vac] at
+EQUAL time (co-evolving vacuum frame). Virtual ledgers are readout-only: no
+event is ever executed. `R_G -> dG` remains blocked by MEASURE0-DEBT.
+
+### Frozen ontology + consumed apparatus (byte-identical, read-only)
+
+H(G) = -A(G), J = 1, hbar = 1 (P1-locked). psi_u = r_u + i s_u per node;
+rho = |psi|^2; B_uv = Re(psi*_u psi_v); J_{u->v} = 2 Im(psi*_u psi_v)
+(EM-0B continuity convention; driven.bilinears J is the bare Im part and is
+rescaled x2 wherever J is reported). E_psi = -2 sum_edges B (BR-0).
+Consumed (md5-12 at branch base): vacfield a9fe0f5fa241 (VACFIELD0-JOINT),
+vacexc 841897f6ce7e (VACEXC0-COMPLETE), response 63cebb004341
+(RESPONSE0-VERDICT-KERNEL), driven 3666ab13ee1c (POT1-FIELD apparatus),
+bgresp banked (BGRESP0-COMPLETE), field0 79de081f65d9 (FIELD-0 null),
+sym0 1efe9ac53c37 (SYM0-CLOSED), hidden 85a055e7dd40, hiddenbr 6df6ce530d83,
+zero 5185bba6d6ed, quot d250eeca640c, vaccomp 0bd50db361e8
+(VACCOMP0-COMPLETE), measure0 3ad802750d56 (MEASURE0-DEBT) + their test
+files (all green, unmodified). Ballistic/malus/formation/continuum/
+backreaction/contraction/phase/potential/conservation are main-tail tips,
+byte-identical to sibling consumption. Banked theorems consumed: U(t)(vac +
+d) = U(t)vac + U(t)d + co-rotating law (VACFIELD0-0L); cross-bg bitwise
+dpsi identity + bipartite B-null (VACEXC0); K(t) kernel + retarded-Green
+identity + switch protocol + two-source anatomy (RESPONSE-0 0A/0X/0Y/0Z);
+pinning + steady harmonic solve + stroboscopic separation (POT-1/driven);
+chi operators + same-carrier theorem (BGRESP0); superposition + witness I
+(FIELD-0); X_phys = X/(R x U(1)) + FS metric (SYM-0); hidden RP^1 circle +
+VSTAG (VACCOMP0); no transition measure (MEASURE0-DEBT).
+
+### Source families (preregistered; no other sources may run)
+
+All sources are boundary data on dpsi at pinned nodes (pinning evolution,
+banked driven.pinning_evolve; bulk sees only H). Vacuum co-evolves
+analytically vac(t) = vac0 e^{-iEt}; total psi_S(t) = vac_S(t) + s(t).
+Single-source node u0 = j2_u0(L) (VACFIELD0 u0, center cell sheet 0).
+Two-source adds u1 = cell ((L//2 + dx) % L, L//2) sheet 0 with
+dx = max(1, L//4) (L28 -> 7, L8 -> 2, L4 -> 1). Local pin phase
+uhat = vac0[u0]/|vac0[u0]| (real +/-1 on all banked vacua; ZERO: uhat = 1).
+
+- AMP (maintained amplitude displacement): s(t) = s0 e^{-iEt} with
+  s0 = eps * uhat (real, headline eps = 0.01; ladder {0.001, 0.01, 0.1}).
+- PHASE (maintained phase displacement): s(t) = s0 e^{-iEt} with
+  s0 = i * eps * uhat (headline eps = 0.01).
+- COMPLEX (maintained complex displacement): s(t) = s0 e^{-iEt} with
+  s0 = eps * (1 + i)/sqrt(2) * uhat (headline eps = 0.01).
+  E = vacuum Rayleigh energy (VPLUS -8, VPI +8, all E=0 vacua 0).
+  Rationale (frozen choice): a maintained displacement is fixed in the
+  vacuum frame; lab-static pins would beat against E != 0 vacua and are
+  not maintained. Consequence (prediction P-RES, not assumption): drive at
+  band edge / flat band is the resonant regime; stationary existence is
+  MEASURED via the invertibility rule below.
+- POT (banked POT source protocol): s(t) = s0 e^{-iwt} with w = -8.5
+  (banked OMEGA_J2, gapped) and s0 real; s0 = 1.0 headline (POT-1
+  regression vehicle) + s0 = 0.01 matched leg (cross-family comparison).
+  Vacuum-independent carrier by construction (drive references no vacuum).
+- FLUX: VACUOUS. Survey of banked code (driven/ballistic/potential/
+  continuum/response/field0) finds flux ONLY as readout
+  (potential.flux_decomposition, continuum div_J, bond currents), never as
+  boundary-condition apparatus. Inventing one would violate
+  no-source-specific-retuning. Filed as omitted-with-cause; the campaign
+  runs the 4 defined families (AMP/PHASE/COMPLEX/POT).
+
+### Vacua + substrates (earned, not selected)
+
+VPLUS (E=-8, P_+), VPI (E=+8, P_+, even L), VMINUS (E=0, P_-, circle a=0),
+VSTAG (E=0, P_-, circle a=pi/2, even L; vaccomp.vstag_shape), CIRCH (E=0,
+P_-, circle a=pi/8 interior JOINT non-TI point, even L;
+vaccomp.two_value_family alpha grid index 3), ZERO control (psi = 0, E = 0,
+uhat = 1). Representative hidden-vacuum points = {VMINUS, VSTAG, CIRCH}.
+Headline amplitude a = 1 (normalized shapes); no amplitude ladder (BGRESP0
+banks chi scaling; SOURCE-0 holds a fixed to isolate source physics).
+Substrates: J2 torus L in {4 (N=32, dense/exact), 8 (N=128), 28 (N=1568,
+headline Krylov)}. Even only (VPI/VSTAG need bipartite).
+
+### Frozen time grids + vehicles (no per-source tuning)
+
+- DT_HARM = 0.02 for harmonic drives (POT w=-8.5, maintained E=+/-8;
+  ~37 steps/drive-period); DT_STATIC = 0.05 for E=0 static pins;
+  DT_FREE = 0.05 for free (release) evolution; DT_POT1 = 2*pi/8.5/296
+  (banked) for the POT-1 regression task only.
+- Jump vehicle (init = steady_predict, pins on): T_JUMP = 8 (POT-1
+  WIN[28] precedent, all L). Gated (POT-1 bars).
+- Turn-on vehicle (init d = 0, pins on): T_ON_POT = 24 (POT s0=1.0),
+  T_ON_MAINT = 16 (maintained E=+/-8), T_GROW = 30 (E=0 static,
+  VACFIELD horizon). Turn-on approach filed; K2 reconstruction gated.
+- Release vehicle (pins off after jump-final): T_REL = 16, DT_FREE
+  (RESPONSE switch precedent, L28 fronts).
+- Green identity (K1): response.green_static_approx DT=0.05, T=200,
+  eta=0.03 (RESPONSE G10 j2 precedent).
+
+### Stage protocols + predictions (P) / gates (G)
+
+S0 formulation: every source is boundary data s(t) on dpsi (S0A) with the
+equivalent forcing view as recorded per-step correction impulses c_k at S
+(S0B: pinning = free hop + correction impulse, exact). G: formulation
+identity (correction replay = pinning row, fp < 1e-9, every evolution
+task; doubles as K2 below).
+
+S1 driven-from-kernel: K1 static retarded-Green identity
+steady_predict vs green_static_approx (RESPONSE-0 0X form, bulk
+propagator). P: POT (gapped) agrees within regulator bar. G: K1 dev < 0.1
+(RESPONSE G10 bar) on POT legs (all L, VPLUS vacuum; carrier is
+vacuum-independent so one vacuum suffices + sha gate S5). K1 on
+maintained E=+/-8 FILED (near-edge convergence, no gate). K1 skipped
+with cause where the invertibility rule reports singular.
+K2 time-domain reconstruction: d(T) = sum_k U(T - t_k) c_k e_S with U
+rows from response.kernel_column (independent implementation path from
+driven.pinning_evolve). P: exact (linearity + kernel completeness).
+G: recon dev < 1e-8 (Krylov-vs-Krylov bar, RESPONSE G2 precedent 1e-9
+loosened 10x for the overwrite path) in EVERY evolution task.
+
+S2 stationary/growth: invertibility rule (frozen): cond(H_BB - w) via
+dense cond (L<=8) / svds extremal estimate (L28); cond < 1e12 ->
+stationary expected (jump vehicle must show period-epsilon < 0.02 +
+global match < 0.05, POT-1 B bars); else resonant -> no stationary
+claimed, growth leg instead. P-RES: VPLUS/VPI maintained (E=-/+8,
+simple full eigenvalue with support on pin) invertible; E=0 vacua
+(ker H_BB extensive: flat band minus one node) singular with secular
+growth ~ t in ker directions; POT (gapped w) invertible on all vacua.
+G: jump self-consistency on invertible legs; growth legs gate (a) K2
+recon (S1, holds regardless), (b) linear ||d|| slope fit over t in
+[10, 30] with r2 > 0.99 + slope > 0 filed, (c) E=0 carrier |d| sha
+equality across {VMINUS, VSTAG, CIRCH, ZERO} at matched s0 (bitwise
+sign-symmetric evolution; sha(|d_final|) hex equal).
+
+S3 profiles: stationary (jump-final co-rotating: d e^{+iwt}) dpsi/drho/
+dB/dJ shells (graph + quotient), range = last shell with mean|dpsi| >
+0.05|s0| (POT precedent, scaled), radial law = log-linear fit shells
+2..6 (kappa + r2 filed; r2 > 0.9 gated for gapped POT legs only),
+relational chi-consistency: cross legs vs bgresp.chi_apply at sampled
+times. G: chi-consistency dev < 1e-9 every steady leg (BGRESP pin
+< 1e-12, loosened 1000x for the driven path); range/law filed (no
+cross-vacuum equality assumed).
+
+S4 all-path: wall-cut variant (POT-1 AP geometry: wall x=1->2 gap row 1,
+identical cut for comparability), jump vehicle, cases POT(s0=1.0)/VPLUS
+L28 + AMP/VPLUS L28. Predicted delta from steady_predict on cut vs
+uncut graphs (derived, not fitted). G: |d_meas - d_pred|/d_pred < 0.35
+(POT-1 AP_diff bar) + 1D-reject res1d > 3 respred (POT-1 AP_1d bar).
+
+S5 background separation: matched sources (same family/s0/node) on all
+5 vacua + ZERO. P: POT carrier bitwise identical across all vacua
+(sha(d_final) hex equal -- drive references no vacuum); E=0 maintained
+carriers sign-equal (S2c); VPLUS vs VPI maintained differ by drive
+frequency (filed, no equality claimed); relational responses differ per
+banked chi (S3 gate). G: POT sha equality (6 vacua x L28 + L8 + L4) +
+E=0 |sha| equality + chi-consistency (S3) on every leg.
+
+S6 switch: release (pins off from jump-final) deviation
+D(t) = d(t) - e^{-iwt} phi0 (RESPONSE switch_deviation); turn-on
+arrivals from d=0. Shell arrivals threshold 0.1 x col.max per shell
+(POT-1 F precedent), front fit quotient shells 2..10. G: v in (0.5, 12)
+with r2 > 0.9 (RESPONSE V_GATE + POT F/G precedent) on release legs
+{POT/VPLUS, AMP/VPLUS, AMP/VMINUS} L28 + turn-on legs {POT/VPLUS,
+AMP/VPLUS, AMP/VMINUS} L28. Causality: pre-arrival (t < t0 + (r-2)/12)
+dev < 1e-6 (POT-1 F_C4 bar 1e-6). NOTE: finite-t evolution from d=0 is
+strictly causal (local hopping) even in the resonant regime; eigen-
+expansion growth is a t->inf limit. Released-transient sector weights
+(P_+/P_-) filed.
+
+S7 two-source: pins u0,u1 same drive class (same vacuum E or same POT
+w): joint vs singles. P: field-exact d12 = d1 + d2 (pinning is affine-
+linear in (psi, s)); relational = singles + quadratic cross
+(response.quadratic_cross_terms form). G: field dev < 1e-9 +
+cross-anatomy dev < 1e-9 (RESPONSE 0Z fp precedent) on cases
+{AMP+AMP/VPLUS L28, POT+POT(s0=0.01)/VMINUS L28, AMP+AMP/VPLUS L4}.
+Vehicles: turn-on T=16 (maintained DT_HARM; POT DT_HARM).
+
+S8 sign/phase: sign flip s0 -> -s0 (cases -AMP/VPLUS L28, -AMP/VMINUS
+L28, jump/static vehicles): P: d -> -d bitwise (fp gate < 1e-12 on
+||d_plus + d_minus||), cross relational flips (fp), dd unchanged (fp).
+Phase rotation (same |s0|, AMP vs PHASE vs COMPLEX): P: (H_BB - E)
+real -> d(i s0) = i d(s0) bitwise (fp gate < 1e-12 across the three
+family sidecars at matched vacuum/L). Relational patterns filed +
+chi-predicted (S3 gate covers). POT phase leg s0 -> s0 e^{i0.7}
+(VPLUS L28): relational change filed + chi-predicted (global phase of
+d ALONE is not a symmetry; the covariance control rotates vac AND s0).
+
+S9 quotient (SYM-0): source descriptors tested: location u0 mod Aut(J2),
+strength |s0|, relative phase arg(s0/uhat), drive class (maintained-E vs
+POT-w), two-source separation (graph distance, Aut-invariant) vs
+redundant: global phase, node labels. L8 battery: (a) U1: (vac,s0) ->
+e^{ialpha}(vac,s0) alpha in {0.7, 2.1}: relational invariant < 1e-12,
+carrier rotates (fp); (b) R relabel (shuffle seed 11, SYM-0 precedent):
+transported relational exact after transport-back (fp); (c) Aut
+translation T_(5,9): source at T(u0) gives transported pattern (fp)
+with d_FS > 0 (distinct states, physical symmetry); (d) scale s0 -> 2
+s0: relational changes (cross x2, dd x4, fp -- physical, not
+redundant); (e) FS metric (sym0.fs_distance): d_FS = 0 (< FS_ZERO_BAR
+1e-7, SYM-0 Amendment-1) iff U1-related, > 0 otherwise. G: all five
+legs. Deliverable: survival table (which descriptors index distinct
+physical sourced states).
+
+S10 controls: (a) POT-1 regression (minimal replica via banked driven.*
+calls): path_a (n=60 OM_PA jump: solve-analytic < 1e-9 + jump-global <
+0.05 + kappa 5% + eps < 0.02) + j2_28 jump-global < 0.05 + eps < 0.02
+(banked POT-1 A/B bars, DT_POT1/T=8/init=pred). (b) RESPONSE kernel:
+L8 Krylov-vs-spectral max_dev < 1e-8 (G1 bar) + K(0)=I + unitarity (fp).
+(c) FIELD-0 witness: two-packet d-collision around VPLUS L28 (bgresp
+t_witness protocol): I < 1e-6. (d) global-phase covariance: S9a.
+(e) no graph evolution: edge count + H_nnz frozen per L (J2: E = 4N;
+L4/8/28 -> 128/512/6272; wall-cut tasks file cut count). (f) no
+retuning: analyzer asserts every record's (DT, T, thresholds) equals
+the frozen table. G: all six.
+
+S11 handoff: virtual M1 ledger diff R_G[psi] - R_G[vac] (vacexc/
+bgresp protocol, N_MOVES=20000, seeds {0,1,2} pooled) at jump-final
+total psi = vac(t) + d(t) vs vac(t), cases {VPLUS,VPI,VMINUS} x
+{AMP, POT(s0=1.0)} L28 + E=0 grown state (t=T_GROW) filed. Banks
+persistent source -> dpsi(r,t) -> dB(r,t) -> R_G. R_G -> dG NOT
+inferred (MEASURE0-DEBT blocks: no transition measure).
+
+### Frozen task list (74 tasks, one invocation each, self-contained)
+
+steady (42): vacuum {VPLUS,VPI,VMINUS,VSTAG,CIRCH,ZERO} x family
+{AMP,PHASE,COMPLEX,POT1.0,POT0.01} x L28 (30) + (VPLUS,VPI,VMINUS) x
+(AMP,POT0.01) x L{8,4} (12). Each: cond rule + solve-or-growth +
+K1 (POT/VPLUS + filed others) + jump/static evolution + K2 + profiles
++ range/law + sha filing + chi-consistency.
+turnon (8): L28 {VPLUSxAMP, VPLUSxPOT1.0, VPIxAMP, VMINUSxAMP} + L8/L4
+{VPLUSxAMP, VMINUSxAMP}. Each: turn-on evolution + K2 + arrivals/front.
+release (3): L28 {POT/VPLUS, AMP/VPLUS, AMP/VMINUS} (from jump-final).
+pair (3): L28 {AMP+AMP/VPLUS, POT+POT(0.01)/VMINUS} + L4 {AMP+AMP/VPLUS}.
+allpath (2): L28 {POT1.0/VPLUS, AMP/VPLUS} wall-cut jump.
+signphase (2): L28 {-AMP/VPLUS, -AMP/VMINUS} + rotation identities.
+quotient (2): L8 {sym (U1/R/Aut/scale), fs (metric battery)}.
+ledger (6): L28 {VPLUS,VPI,VMINUS} x {AMP, POT1.0}.
+controls (4): {pot1_path, pot1_j2, resp_kernel_L8, field0_witness}.
+lin (2): L28 + L4 {AMP/VPLUS eps ladder 0.001/0.01/0.1} (d-peak slope
+1 +/- 0.05, cross 1 +/- 0.05, dd filed).
+Total 42+8+3+3+2+2+2+6+4+2 = 74. Records data/source0/*.json; .npy
+sidecars beast-local (gitignored), shas in JSON.
+
+### Frozen bars (source0.BARS; single table, all sources)
+
+decomp 1e-12, k1_green 0.1, k2_recon 1e-8, formulation 1e-9, jump_eps
+0.02, jump_global 0.05, growth_r2 0.99, chi_consistent 1e-9, range_r2
+0.9, ap_diff 0.35, velocity (0.5, 12) + r2 0.9, causality 1e-6,
+linearity 1e-9, cross_anatomy 1e-9, sign_flip 1e-12, rotation 1e-12,
+covariance 1e-12, fs_zero 1e-7, pot1 (banked A/B bars), resp_g1 1e-8,
+witness 1e-6, slope_lin 0.05, cond_stationary 1e12.
+
+### Verdict ladder (frozen decision procedure)
+
+10 checks: kernel (S1: K1 POT + K2 all evolutions), stationary (S2:
+jump self-consistency on invertible legs + growth r2/slope/sha on
+resonant legs), range_law (S3: chi-consistency all legs + gapped r2),
+allpath (S4), sign_phase (S8 + lin slopes), background (S5: POT sha +
+E=0 |sha| + per-vacuum tables banked), switch (S6 all six fronts +
+causality), superposition (S7), quotient (S9 five legs), controls
+(S10 six legs). Analyzer scripts/source0_analyze.py evaluates from
+records only (no re-runs, no bar adjustments).
+Headline: SOURCE0-GREEN iff all 10 green. Else (deterministic
+attribution): any task missing/corrupt or controls red ->
+SOURCE0-INCOMPLETE; elif background red while kernel+superposition+
+switch green -> SOURCE0-BG (per-vacuum source law; banked tables are
+the deliverable); elif sign_phase red while background green ->
+SOURCE0-CLASSES (family-indexed source law); else SOURCE0-INCOMPLETE.
+Blinding: none beyond frozen bars (all predictions quantitative
+pre-data; no human tuning between campaign and analyzer).
+
+### Handoff (frozen)
+
+Bank persistent source -> dpsi(r,t) -> dB(r,t) -> R_G per (vacuum,
+family) (S11 + S3/S5 records); `R_G -> dG` remains blocked by
+MEASURE0-DEBT (cite data/measure0_verdict.json). No charge/mass/matter
+language in any record.
+
+### SOURCE0-AMENDMENT-1 (pre-data; no SOURCE-0 task has run)
+
+DT_HARM 0.02 -> 0.005 (all harmonic-drive evolutions: POT w=-8.5 and
+maintained E=+/-8). Cause: discrete-pinning steady error scales as O(dt^2)
+(mismatch between the continuous-time steady_predict and the discrete
+pin-overwrite map, POT-1 jump-global precedent at DT=2*pi/8.5/296 ~=
+0.0025); DT=0.02 would inflate POT-1's jump-global deviation ~64x and risk
+the frozen 0.05 bar without changing any physics. DT=0.005 keeps the
+frozen bars with ~4x margin scaling. Costs (beast): jump T=8 -> 1600
+steps, maintained turn-on T=16 -> 3200 steps, POT turn-on T=24 -> 4800
+steps; all within the parallel budget. DT_STATIC=0.05, DT_FREE=0.05,
+DT_POT1, all horizons, and all bars unchanged.
+
+### SOURCE0-AMENDMENT-2 (pre-data; no SOURCE-0 task has run)
+
+P-RES correction: E=0 static legs are BOUNDED quasi-steady, not secularly
+growing. Cause (measured, unit-scale methodology pins L4/L8 only; no
+campaign task, headline L28 untouched): ||P_ker(H_BB) f||/||f|| = 1.2e-15
+(L4, nullity 21) / 6.0e-16 (L8, nullity 77) -- the single-pin drive is
+exactly (fp-zero) orthogonal to the bulk kernel, so no ker direction is
+forced and no ~t growth exists. Mechanism conjectured bipartite/
+single-pin (drive supported on pin neighbors vs ker structure); filed as
+observation, not theorem. The cond rule still reports singular (cond
+1.1e50/1.2e81 >> 1e12), so the S2 branch structure is unchanged: E=0 legs
+take the static vehicle. Only the resonant-leg gate (b) changes:
+linear-growth fit (r2 > 0.99, slope > 0) is REPLACED by the bounded
+quasi-steady gate on ||d||(t): rel_drift = |slope[10,30]|*20/mean < 0.25
+AND rel_osc = half-range[20,30]/mean < 0.5. Calibration (same L4/L8 pins,
+all 4 E0 vacua x AMP/PHASE/COMPLEX identical by linearity + real uhat):
+worst rel_drift 0.057, worst rel_osc 0.16 -> 4.4x/3.1x margin; true ~t
+growth would give rel_drift ~ O(2), cleanly rejected. Gates (a) K2 recon
+(verified 1e-13 on static legs, bar 1e-8 unchanged) and (c) E=0 |sha|
+equality (verified bitwise across vacua at matched family) are UNCHANGED.
+BARS: growth_r2 retired -> bounded_drift 0.25, bounded_osc 0.5. Code:
+growth_fit/is_growth_ok -> bounded_fit/is_bounded_ok (r2 still filed);
+record key "growth" -> "bounded"; analyzer stationary check reads
+bounded.ok on resonant legs. Vehicle name "static", T_GROW=30, DT_STATIC,
+all horizons, and the verdict ladder are unchanged (ladder wording
+"growth r2/slope/sha" now reads "bounded drift/oscillation/sha").
+
+### SOURCE0-AMENDMENT-3 (pre-data; no SOURCE-0 task has run)
+
+S7 protocol correction: the gated superposition identity uses SAME-PIN-SET
+singles, not separately-pinned singles. Cause (measured, unit-scale L4
+methodology pin): joint (pins {u0,u1}) vs naive singles (pins {u0} / {u1})
+gives field dev 0.187 -- pinning is affine-linear in (psi, s) at FIXED pin
+geometry, but the naive singles leave the other node free (bulk) while the
+joint run overwrites it, so no exact identity exists across pin sets
+(RESPONSE-0 0Z precedent is free evolution, which has no boundary data).
+Corrected protocol: single-A pins BOTH nodes with sources (sa, 0),
+single-B with (0, sb), joint with (sa, sb); measured field dev 6.3e-16,
+cross-anatomy dev 2.5e-17 (fp-exact, L4). Gates UNCHANGED (field < 1e-9,
+cross < 1e-9); cases, vehicles, and DT/T unchanged. The naive-sum
+deviation is additionally FILED per pair case as `naive_dev` (boundary
+cross-talk magnitude: separation-dependent physics, no gate). Analyzer
+superposition check unchanged (reads field_ok/cross_ok).
+
+### SOURCE0-AMENDMENT-4 (pre-data; no campaign record exists)
+
+S4 wall translated: x=1->2 becomes x=(L/2-1)->(L/2) (L28: 13->14, adjacent
+to the source column x=14); gap row 1, wall shape, and 108-edge cut
+UNCHANGED. Cause (measured, /tmp scratch validation, no campaign data):
+POT d_pred at x=1 is 0.0010, below the jump discretization floor
+(global_dev 0.0155) -- the far-wall effect is unresolvable (smoke d_meas
+0.0069, ap_ok false). Translated wall: d_pred 0.46 (POT) / 0.97 (AMP),
+30x+ above the floor. POT-1 comparability preserved (shape-identical cut,
+source-adjacent as in POT-1). S0 u0 rule UNTOUCHED; gates (0.35 +
+1D-reject) UNCHANGED; analyzer additionally asserts cut_edges == 108 on
+both wall-cut records (frozen geometry).
+
+### SOURCE0-AMENDMENT-5 (pre-data; no campaign record exists)
+
+S6 causality rescoped: turn-on legs gate pre-signal < 1e-5 (absolute bar,
+was 1e-6); release legs keep the front gate but FILE pre-signal (no gate).
+Cause (measured, /tmp scratch): turn-on pre-signal floor is
+amplitude-proportional stepping noise, worst 1.2e-6|s0| across 3 L28 legs
+(POT s0=1.0: 1.17e-6; VPLUS AMP: 1.18e-8 at s0=0.01; VMINUS AMP: 3.99e-9)
+-- POT-1's 1e-6 was calibrated at DT_POT1 ~= 0.0025, ours at DT_HARM=0.005.
+Bar 1e-5 gives 8x margin at worst case, 4 orders below front signal.
+Release-from-extended-state has O(1e-3) local pre-response by construction
+(measured 1.26e-3 POT: initial support is everywhere, so pre-arrival
+silence cannot hold); the radiated-transient front (v=5.8, r2=0.996) is
+still gated. Analyzer switch check splits accordingly. BARS causality
+1e-6 -> 1e-5.
+
+### SOURCE0-AMENDMENT-6 (pre-data; no campaign record exists)
+
+S2 cond rule implementation: dense 2-norm cond at ALL L (conservative
+substitution for the preregistered L28 svds extremal estimate). Cause:
+exact exceeds estimate (svds near a singular matrix risks estimation
+error); every leg sits >10 orders from the 1e12 boundary on either side
+(measured: POT L28 32.8; E=0 L28 3.0e127; L4/L8 same split), so branch
+outcomes are identical under either implementation; cost is seconds per
+leg. Rule threshold and branch structure UNCHANGED.
+
+## SOURCE0-VERDICT: SOURCE0-INCOMPLETE (9/10 green; 74/74 records)
+
+Headline per the frozen ladder: nothing missing, controls green,
+background green, sign_phase green, switch red -> else-branch
+SOURCE0-INCOMPLETE. INCOMPLETE here denotes a falsified frozen prediction
+with complete data and full attribution -- not missing work. No post-data
+bar, gate, or ladder change was made (6 pre-data amendments, 0 post-data).
+
+Checks (analyzer data/source0/verdict.json, beast 2026-10-03): kernel
+GREEN (gated K1 4/4, dev 0.024-0.037 < 0.1; K2 53/53, worst 6.6e-12 <
+1e-8); stationary GREEN (28 jump legs, worst eps 0.0125/global 0.0201;
+14 bounded legs, worst drift 0.057/osc 0.16); range_law GREEN (chi 42/42
+< 1e-9; POT k=0.515 r2=0.999 range 3 on all vacua); allpath GREEN (POT
+d_meas 0.4598 vs d_pred 0.4608; AMP 0.9713 vs 0.9714; 1D-reject both);
+sign_phase GREEN (sign flip + rotation bitwise; lin slopes 1.000/1.000,
+dd 2.000 filed); background GREEN (POT sha 1 unique per fam/L; E=0 |sha|
+1 unique per fam); switch RED (see attribution); superposition GREEN
+(same-set field 1e-14/cross 1e-18; naive cross-talk 0.11 L28 / 6.95 L4
+filed); quotient GREEN (U1/relabel/Aut exact; FS zero iff U1-related);
+controls GREEN (POT-1 path+J2, kernel 1.1e-14, witness 9.7e-16,
+covariance, frozen graphs/params incl. cut==108 + wall geometry).
+
+Switch attribution (falsified: S6 release fronts on AMP legs):
+- Turn-on (switch-ON) always radiates: 4/4 L28 fronts v=5.54-5.62,
+  r2>0.99, causality <=1.2e-6 < 1e-5. POT release radiates: O(1)
+  transient (max|D|/max|phi0|=1.53), front v=5.83 r2=0.996.
+- AMP/VPLUS release is SILENT BY THEOREM: maintained-drive steady state
+  equals c.u+ to 7.4e-15 (pin s0=eps.uhat is eigenvector-proportional,
+  bulk equation solved exactly by c.u_B; shells flat 0.01 all r), so
+  U(t)(c.u+)=c.u+e^{+i8t} exactly and D is fp-zero (ratio 6.4e-12,
+  sector weights 1e-25/1e-30). No transient exists; front fit on noise
+  (v=-150, r2=0.25). Same for VPI (7.4e-15; no release leg).
+- AMP/VMINUS release is beating-dominated and frontless: static-final is
+  the small localized ker-perp response (|d|~0.012 vs |c.v-|=0.396,
+  resid 0.9996), still beating 6% at T=30 (pinning has no dissipation);
+  release D is 30% global beating (v=-50, r2=0.34).
+Rule: switch-OFF radiates only when the released state mismatches free
+evolution (gapped POT yes; eigenvector-coincident maintained no).
+
+Mission answers: (1) persistent source = boundary data s(t) on dpsi in
+the vacuum frame (S0 exact; K2 53/53 exact); (2) YES -- POT stationary
+is the driven counterpart of the RESPONSE kernel (K1 dev 0.024-0.037
+within the 0.1 regulator bar; maintained K1 filed 0.13/0.52/0.99 at
+L4/L8/L28, correctly never gated); (3) carrier vacuum-independent (POT
+sha) or sign-identical (E=0 |sha|) with per-vacuum relational response
+via banked chi (42/42); (4) surviving descriptors: location mod Aut(J2),
+|s0|, relative phase arg(s0/uhat), drive class, two-source separation;
+redundant: global phase, node labels.
+
+Handoff (data/source0/*.json): persistent source -> dpsi(r,t) -> dB(r,t)
+-> R_G per (vacuum, family): ranges (POT 3 all vacua; maintained 28),
+laws (POT k=0.515 r2=0.999; E=0 k=0.414 r2=0.67 filed; edge k=0 flat
+filed), POT/E0 sha groups, ledger diffs (6 cases x 3 seeds, N=20000),
+fronts, sectors, naive cross-talk. `R_G -> dG` REMAINS BLOCKED by
+MEASURE0-DEBT. Firewall held: no charge/mass/matter/force language, no H
+change, readout-only deltas/ledgers, single frozen tables.
+
+Follow-up (NOT this campaign): S6 release predictions need drive-class
+scoping (gapped radiates / eigenvector-coincident silent /
+beating-dominated frontless) before any re-gating; SOURCE0 data already
+banks all three regimes.
