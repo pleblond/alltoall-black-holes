@@ -10415,3 +10415,63 @@ scripts/vactexture_analyze.py writes data/vactexture/verdict.json. Full
 suite on beast (pytest -n 90; pyproject addopts already skips
 tests/test_weighted.py). Branch cursor/vac-texture-0-1b52, base main
 tail 81bf7b4. Verdict filed here post-data.
+
+### VACTEXTURE0-VERDICT (VACTEXTURE-GRADIENT, 14/14)
+
+Branch cursor/vac-texture-0-1b52 (base main tail 81bf7b4). 28/28 specs
+CAMPAIGN-DONE on beast (16.54.88.181, mp.Pool --jobs 28, OMP threads 1,
+nice, <2 min); records data/vactexture/results.json + verdict.json banked.
+Analyzer scripts/vactexture_analyze.py per PREREG (one apparatus fix for
+the scaling endpoint check, which sorted ascending-lambda against a
+gradient-ascending comparison: slope was already +0.173 with B_pcmax
+strictly ordered in gradient, results.json untouched, committed as
+1da1819). Full suite on beast (venv, -n 90, pyproject addopts skips
+tests/test_weighted.py): 1819 passed, 2 skipped, 0 failed.
+
+Headline: the hidden JOINT vacuum orientation CAN vary spatially while
+remaining exactly vacuum-like. Every (family, params, L, a) texture sits
+in P_- E_0 with w_sym = 0.0, ||H psi|| = 0.0, E = 0.0 bitwise over all
+sweep/amplitude/scaling rows (L4/L8/L28, 7 amplitudes), emits no P_+
+along the flow (trace max 0.0), and stays frozen (rho/B/J drifts 0.0,
+phase rate 0.0, all families incl. sharp steps). The obstruction is
+identically zero, as derived pre-data from construction + banked
+H P_- = 0.
+
+Gradients are visible but dynamically silent. Local leg: D(sine/step vs
+uniform) = 6.4e-4 at L28 (d_B carrying it, J legs exact-zero), 3.1e-2 at
+L4. Observer leg: static coarse pattern visible (d_coarse 1.3e-3 L28,
+6.3e-2 L4) while symmetric amplitude is exactly 0.0 for every texture
+and difference: quotient image absent at L4 + L28 (visible pattern,
+blind dynamics). Ledger leg: R_G separates textures from uniform
+(dmax 0.151 L4 / 0.00303 L28); M1 f-stats strongly restructured by sine
+textures (f0 0.50 uniform -> 0.0097 textured); contraction uniformity
+breaks on sine textures at L4 + L28 and on step textures at L4, while
+holding on uniform rays. Filed: L28 step textures elude the sparse
+16-edge contraction sample (jumps on 2 of 28 columns missed by
+4-per-class sampling), so that single cell stays uniform.
+
+Scaling (derived, nothing imposed): B_pcmax ordered in the analytic
+gradient over lam = 28/14/7 at fixed delta = pi/4 (2.31/2.47/2.94e-4),
+log-log slope +0.173; Q = a^2 exact over all 7 amplitudes (slope 2.0
+to fp). Smooth vs sharp: D(sine, step) = 8.9e-4/1.28e-3/1.46e-3 at
+delta = pi/8, pi/4, pi/2 (L28) with exact gradient concentration
+(step delta >= sine 2 pi delta / lam). Carrier: packet splits exactly
+on texture backgrounds (split err ~9e-16), texture frozen 0.0, packet
+ballistic (v = 1.92, r2 = 0.99998, msd alpha = 2.03, identical on sine
+and step backgrounds).
+
+Controls: uniform circle 12/13 JOINT + pi/4 BACKGROUND-capped (B == 0
+point) at L4/L6/L28; global phase, projective periodicity
+(psi(alpha + pi) = -psi exact, uniform + texture), and origin
+covariance (odd shift (1,2) via the staggered-structure reflection
+alpha -> -alpha) all exact; FIELD-0 witness I = 1.6e-17 on texture
+superpositions; odd-L5 appendix P_- E_0 exact with J = 0.
+
+Interpretation (boxed): orientation gradients inside the hidden vacuum
+component are relationally real (local B/rho structure, static coarse
+pattern, ledger restructuring, derived positive scaling) and dynamically
+void (frozen flow, no emission, no quotient image, null witness). The
+vacuum tolerates arbitrary preregistered orientation textures without
+leaving E_0; what varies is the measurable relational landscape, never
+the vacuum character. Nothing here moves geometry or selects a vacuum;
+filed as input to future geometry coupling.
