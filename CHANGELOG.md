@@ -1,5 +1,20 @@
 # Changelog
 
+- **v5.6 (SPLIT-0)** — Deterministic inverse constraints and residual split
+  information: `src/bh_graph/split0.py` (exact graph/field inverse census,
+  sum-map fiber parametrization `(s,d)`, halves section, covariant residual
+  `xi = (cover, d)`, information dimensions, locality, hidden anatomy,
+  deterministic core, `M+xi<->X` roundtrip + minimality witnesses, no-measure
+  control, frozen verdict ladder),   `tests/test_split0.py` (49 pins),
+  140-task campaign + frozen analyzer. VERDICT SPLIT0-MIXED (10/10 gates):
+  every tested inverse decomposes into forced-plus-residual with 824/824
+  roundtrips; full inverse never singleton (continuous fiber, `d_cont` 1-2);
+  halves-restricted deterministic exactly on the 4 isolated-node cells;
+  reverse support holds exactly on the halves subset (36/24/0, correcting 3
+  J-orientation signature artifacts via exact labeled comparison); anatomy
+  unchanged under RAND/MEASURE rival weightings (no measure derived).
+  Records in `data/split0_ledger.json` + `data/split0_verdict.json`.
+
 - **v5.6 (VAC-DOMAIN-0)** — Interfaces between disconnected joint-vacuum
   components: `src/bh_graph/vacdomain.py` (sharp slab joins, D-NOGO /
   D-FLAT / D-SWAP theorems, interface/front/width/spectral/witness/ledger
