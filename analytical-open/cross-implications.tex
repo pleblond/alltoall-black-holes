@@ -2423,18 +2423,21 @@ The adjacent values are fixed by the same identity:
 \[
 \lambda_\infty(1,0)=\frac18.
 \]
-The next three shells are
+The next shells are
 \begin{align*}
 \lambda_\infty(1,1)
 &=\frac1{16}+\frac1{4\pi},\\
 \lambda_\infty(2,0)
 &=\frac5{16}-\frac1{2\pi},\\
 \lambda_\infty(2,1)
-&=\frac1{2\pi},
+&=\frac1{2\pi},\\
+\lambda_\infty(3,0)
+&=\frac98-\frac3\pi,
 \end{align*}
 up to signs and interchange of the axes.
 The cancelled coefficients \(16\pi/\lambda_\infty(r)\) on these shells are
-\(128\pi\), \(256\pi^2/(\pi+4)\), \(256\pi^2/(5\pi-8)\), and \(32\pi^2\).
+\(128\pi\), \(256\pi^2/(\pi+4)\), \(256\pi^2/(5\pi-8)\), \(32\pi^2\), and
+\(128\pi^2/(9\pi-24)\).
 \end{proposition}
 
 \begin{proof}
@@ -2524,7 +2527,20 @@ The integrand is \(2(2-w^2)^{-1/2}-(2-w^2)^{1/2}\).
 The integral equals \(\pi/4-1/2\), so \(f(2,0)=1/2-1/\pi\) and
 \(\lambda_\infty(2,0)=5/16-1/(2\pi)\).
 
-Dividing \(16\pi\) by each of the four values gives the cancelled
+The neighbours of \((2,0)\) are \((3,0)\), \((1,0)\), \((2,1)\) and
+\((2,-1)\).
+The mean-value property and \(f(2,1)=f(2,-1)\) give
+\[
+4f(2,0)=f(3,0)+f(1,0)+2f(2,1).
+\]
+The values already obtained are \(f(1,0)=1/8\), \(f(2,0)=1/2-1/\pi\) and
+\(f(2,1)=1/\pi-1/8\), so
+\[
+f(3,0)=\frac{17}{8}-\frac{6}{\pi}.
+\]
+Half of this, added to \(1/16\), is \(\lambda_\infty(3,0)=9/8-3/\pi\).
+
+Dividing \(16\pi\) by each of these values gives the cancelled
 coefficients.
 \end{proof}
 
