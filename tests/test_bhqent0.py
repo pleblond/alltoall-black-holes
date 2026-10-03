@@ -253,15 +253,16 @@ def test_law_gates_branches():
     g = bq.law_gates_bhqent(rows)
     assert g["blind_none_gate"]
     assert bq.verdict_of(g, True) == "BHQENT0-BLIND-NONE"
-    # Volume: D = 2n-4 (star-like).
+    # Volume: D = 2n-4 exact on evenly spaced n, b decorrelated from n
+    # (names avoid the P* fixed-b path prefix on purpose).
     rows = [{"spec": s, "n_R": n, "b_R": b, "D_joint": 2 * n - 4,
              "D_static": 2 * (n - 1)}
-            for s, n, b in (("S3_2", 4, 2), ("S4_3", 5, 3),
-                            ("S6_4", 7, 4), ("S8_6", 9, 6))]
+            for s, n, b in (("S3_2", 4, 6), ("S5_3", 6, 2),
+                            ("S6_4", 8, 4), ("S9_6", 10, 3))]
     g = bq.law_gates_bhqent(rows)
-    # Volume or mixed-dim depending on boundary correlation; must not be
-    # blind-none/boundary.
+    assert g["volume_gate"]
     assert not g["blind_none_gate"] and not g["boundary_gate"]
+    assert bq.verdict_of(g, True) == "BHQENT0-VOLUME-DIM"
     # Boundary: D = b (clean).
     rows = [{"spec": s, "n_R": n, "b_R": b, "D_joint": b,
              "D_static": 2 * (n - 1)}
@@ -272,16 +273,16 @@ def test_law_gates_branches():
     # this synthetic row set is illustrative, gates must run.
     g = bq.law_gates_bhqent(rows)
     assert "boundary_gate" in g and "volume_gate" in g
-    # Unclassified: topology-split (P4 vs S3_2 same n,b different D).
-    rows = [{"spec": "P4", "n_R": 4, "b_R": 2, "D_joint": 0,
-             "D_static": 6},
-            {"spec": "S3_2", "n_R": 4, "b_R": 2, "D_joint": 4,
-             "D_static": 6},
-            {"spec": "P8", "n_R": 8, "b_R": 2, "D_joint": 0,
-             "D_static": 14},
-            {"spec": "S8_6", "n_R": 9, "b_R": 6, "D_joint": 14,
-             "D_static": 16}]
+    # Unclassified: fixed-b growth plus scattered D kills every law
+    # (boundary/volume/mixed fits all poor, blind-none false).
+    rows = [{"spec": s, "n_R": n, "b_R": b, "D_joint": d,
+             "D_static": 2 * (n - 1)}
+            for s, n, b, d in (("P4", 4, 2, 0), ("P8", 8, 2, 6),
+                              ("S3_2", 4, 2, 4), ("S8_6", 9, 6, 2))]
     g = bq.law_gates_bhqent(rows)
+    assert not (g["boundary_gate"] or g["volume_gate"]
+                or g["mixed_gate"] or g["mixed_dim_gate"]
+                or g["blind_none_gate"])
     assert bq.verdict_of(g, True) == "BHQENT0-UNCLASSIFIED"
     assert bq.verdict_of(g, False, True, "X red").startswith(
         "BHQENT0-INCOMPLETE")
