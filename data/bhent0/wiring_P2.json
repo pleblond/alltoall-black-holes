@@ -1,0 +1,1 @@
+{"task": "wiring_P2", "params": {"spec": "P2"}, "payload": {"n": 2, "b": 2, "e_cut": 2, "full_orbits": "5", "leg_orbits": "2", "log2_full": 2.321928094887362, "log2_leg": 1.0, "m_predictor": 2.0, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T01:55:49Z", "host": "ip-172-31-39-189"}}

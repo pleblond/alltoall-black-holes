@@ -1,0 +1,1 @@
+{"task": "joint_P6_c15", "params": {"spec": "P6", "chunk": 15}, "payload": {"n": 6, "b": 2, "lo": 7680, "hi": 8192, "n_keys": 172566, "n_labeled": 2032128, "n_connected": 1999290, "keys": [], "key_sha_note": "see chunks_full/ sidecar (gitignored)"}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T02:50:43Z", "host": "ip-172-31-39-189"}}

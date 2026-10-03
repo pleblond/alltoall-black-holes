@@ -1,0 +1,1 @@
+{"task": "joint_J2L4edge_union", "params": {"spec": "J2L4edge"}, "payload": {"n_orbits": 4782969, "n_labeled": 9565938, "n_connected": 9565936, "n_chunks": 2, "key_sha": "7120b8a3a7805919d54d76566c22274ad218b888524f6b25b734eebade14fd3d", "mode": "banked"}, "provenance": {"note": "union of full-audit chunk keys (sidecar chunks_full/)"}}

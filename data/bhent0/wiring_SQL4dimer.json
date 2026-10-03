@@ -1,0 +1,1 @@
+{"task": "wiring_SQL4dimer", "params": {"spec": "SQL4dimer"}, "payload": {"n": 2, "b": 6, "e_cut": 6, "full_orbits": "365", "leg_orbits": "32", "log2_full": 8.51175265376738, "log2_leg": 5.0, "m_predictor": 6.0, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T01:56:05Z", "host": "ip-172-31-39-189"}}

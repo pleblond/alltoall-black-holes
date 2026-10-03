@@ -1,0 +1,1 @@
+{"task": "joint_SQL4dimer", "params": {"spec": "SQL4dimer"}, "payload": {"n": 2, "b": 6, "e_cut": 6, "n_orbits": 729, "n_labeled": 1458, "n_connected": 1456, "log2_orbits": 9.509775004326936, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T01:55:49Z", "host": "ip-172-31-39-189"}}

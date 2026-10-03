@@ -1,0 +1,1 @@
+{"task": "wiring_P12", "params": {"spec": "P12"}, "payload": {"n": 12, "b": 2, "e_cut": 2, "full_orbits": "430", "leg_orbits": "2", "log2_full": 8.74819284958946, "log2_leg": 1.0, "m_predictor": 7.169925001442312, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T01:55:46Z", "host": "ip-172-31-39-189"}}

@@ -10413,3 +10413,47 @@ with per-shell wave/diffusion filing split into near (d = 1) vs far
 control); single-alphabet records stand. No verdict gate involves dyn
 counts, so the ladder is unchanged; near/far blind counts are filed
 descriptively.
+
+### BHENT0-VERDICT (filed post-data): BHENT0-UNCLASSIFIED (153/153)
+
+Branch cursor/bh-ent-0-census-865a (base main tail 81bf7b4). 140/140
+tasks CAMPAIGN-DONE on beast (16.54.88.181, xargs -P 90 + 5 follow-up,
+OMP threads 1, nice; shared-machine contention ~2x); records
+data/bhent0/*.json (143 files incl. 2 union records + verdict.json)
+banked; full-key chunk sidecars under data/bhent0/chunks_full/
+(gitignored, shas in union records; banked-mode analyzer reproduces
+the verdict). Full suite on beast (venv, -n 60,
+--ignore=tests/test_weighted.py per default): 1819 passed, 2 skipped,
+0 failed.
+
+Headline (exact joint census, paths P2..P6, fixed b = 2): orbits
+8 / 67 / 701 / 10047 / 218083 (log2 3.000 / 6.066 / 9.453 / 13.294 /
+17.735; P6 union over 64 chunks, labeled 130056192 = bound exactly).
+Linear fit slope 3.67, R^2 = 0.9945, but second differences
+[0.321, 0.454, 0.599] (mean 0.458 vs 0.25 bar) and quadratic F-test
+p = 0.0052 < 0.01: strict VOLUME rejected. Growth at fixed boundary
+rejects BOUNDARY. Full-wiring branch vs b log2 n: R^2 = 0.928,
+slope 5.91 outside (0.5, 2.5): MIXED rejected. Discrete census
+nontrivial: CONTINUOUS not triggered. Controls all green: C1 orbit
+counts relabel-invariant; C2 automorphs distinct preimages sharing
+the collapsed sum; C3 every collapse step reproduces the BR-2.6/CONS-0
+books (dev < 1e-9); C4 firewall scan clean. Census valid, no tested
+asymptotic law supported: BHENT0-UNCLASSIFIED, as predicted pre-data.
+
+Filed characterization (descriptive, not a tested law): interior-graph
+multiplicity dominates and is volume-superlinear (unlabeled-graph
+growth ~ 2^{n^2/2}/n!, quotient-corrected); boundary-carried wiring
+multiplicity is polylog/saturating (path leg wirings = 2 for all n;
+P12 full-wiring log2 = 8.75). Same-(n,b,exterior-profile) regions
+share censuses structurally (S3_2 = P4 = 701/12424). J2L4edge:
+4782969 orbits; SQL4dimer 729 (Burnside audit exact). Field fiber real
+dim 2(n-1) exact; blind-submanifold dims filed (P8: 10, J2L6r1: 2,
+S4_3: 6); no finite count derived (MEASURE0-DEBT). Exterior channels:
+collapsed edge-set + field + static exterior identical across
+preimages; POT distinguishes graph pairs (0.068/0.002/0.008);
+single-sided alphabets wave-blind on J2 (~6e-15) but diffusion-visible
+(S-even remnant); matched sign pairs 36/36 near+far blind on J2
+(VPLUS and VPI, L6 and L28) vs 0/12 paths and 0/16 square: hidden-
+sector field multiplicity is exterior-blind and extensive in |R|,
+while graph multiplicity is dynamically exterior-visible. No S_BH
+identification anywhere (firewall held).

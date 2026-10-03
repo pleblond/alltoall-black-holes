@@ -1,0 +1,1 @@
+{"task": "control_C2_P4", "params": {"kind": "C2", "spec": "P4"}, "payload": {"applicable": true, "fs": 0.2114848181995116, "same_collapsed_sum": true, "distinct": true, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T02:59:27Z", "host": "ip-172-31-39-189"}}

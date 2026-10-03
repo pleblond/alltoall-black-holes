@@ -3,6 +3,23 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **v5.6 (BH-ENT-0)** — Collapsed-region microstate census:
+  `src/bh_graph/bhent.py` (region battery, order-free C_R collapse, exact
+  joint graph census via interior-Sym(R) canonicalization, partition-exact
+  wiring Burnside, rooted interior recurrence + orbit bounds, exact fiber/
+  blind-submanifold dimensions, frozen exterior channels, C1-C4 controls,
+  law gates + verdict ladder), `tests/test_bhent.py` (33 pins incl.
+  brute-force cross-checks), `scripts/bhent0_campaign.py` (140 tasks) +
+  `scripts/bhent0_analyze.py` (frozen), BHENT0-PREREG + 4 pre/post-data
+  amendments in `docs/DEFERRED.md`. Read-only consumption of BR-2.5/2.6,
+  CONS-0, SYM-0, QUOT-0, HIDDEN-0, HIDDEN-BR, VAC-COMP, OBS-1, MEASURE-0
+  apparatus (byte-identical). VERDICT BHENT0-UNCLASSIFIED (153/153):
+  headline orbits 8/67/701/10047/218083 (P2..P6) reject strict
+  boundary/volume/mixed laws (superlinear volume-dominated graph growth;
+  wiring saturates); matched hidden-sector pairs 36/36 exterior-blind on
+  J2 vs 0 elsewhere. Full suite 1819 passed / 2 skipped. Records under
+  `data/bhent0/` (704K banked; full-key sidecars gitignored).
+
 - **v5.6** — Relational field program release (rolls up the 40-odd v5.6
   campaign entries below, all merged): FP1/FP2 (`ψ = r + is`, `H = -A`)
   with derived B/J anatomy (VAC-0A LAW); EM-1 falsification (ψ is a
