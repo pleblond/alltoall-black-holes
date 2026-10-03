@@ -66,6 +66,11 @@ checked in §D8.4).
 
 ## D8.4 Reproduction check (filled after rerun)
 
-- [ ] Valid-cell verdicts (D_cell/E_cell + gates) identical to the D7 run.
-- [ ] j2_L28 C1 regression vs POT-0 within 15% (D5).
-- [ ] ring_N400 P1.1a within 2%; j2_L28 branch anatomy (w0 = 0).
+- [x] Valid-cell verdicts (D_cell/E_cell + gates) identical to the D7 run
+  (verified from both full run transcripts: hex/j2quot/square28/40/
+  tri PASS/PASS, ring D-PASS/E-FAIL, RR UNDEFINED — all unchanged).
+- [x] j2_L28 C1 regression vs POT-0: mean_D 0.8551/alpha 2.087/v
+  1.2110/prep_C 0.4116 reproduce POT-0B to the digit (margin ~1e4×).
+- [x] ring_N400 P1.1a within 2% (v 0.6%, alpha 0.15%); square_n30
+  P1.1a within 5% (v 1.3%, alpha 2.0%); j2_L28 branch anatomy w0 =
+  9e-6 (0.0000 at P1.1b filed precision), mixing 3e-17 < 1e-6.
