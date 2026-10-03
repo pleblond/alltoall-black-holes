@@ -163,6 +163,38 @@ Open threads (not VAC-0's to close): the exact F mechanism, a unified
 H-turnon property, the LB = 8 tunnelling floor, the held-out VAC-0Q
 battery.
 
+## 2.3 The CLASS components get structural rules — three exact, three impossible
+
+SUBSTRATE-CLASS-0 (#130), verdict **SUBCLASS0-PARTIAL** ✓ (31 cells,
+31/31 spectrum certificates match, 0 mismatches). Three CLASS components
+admit exact minimal structural rules — each in BOTH a spectral and a
+simple-combinatorial form, so inequivalent descriptions remain
+(E ordered-dim, H-shell turn-on, G TUN square-grade with the plaquette
+form exact-but-non-minimal). The other three provably admit NO exact
+rule in the frozen feature space: F is sufficient-only (the two J₂-swap
+seeds form a PASS/FAIL pair with identical feature vectors), H_TAU
+manages only diameter with 4 errors, and J_useful inherits H_TAU plus
+gap-scale misses. Degree-preserving rewires move 19–25 descriptors;
+sheets are unnecessary for every CLASS phenomenon; LAW controls stay
+green (J_alg 27/27, H-cores, D passing on non-square cells — the
+classification is not rediscovered field identities). Necessary
+structure is narrowed everywhere; a single exact class condition does
+not exist on this battery. Data-quality flag filed: VAC-0 prose says
+J_useful 13/27 but `j_results.json` counts 12 PASS (JSON authoritative).
+
+## 2.4 Large-L asymptotics are banked, not extrapolated
+
+SCALE-0 (#113), verdict **SCALE0-BANKED** ✓ (8/8 regress gates,
+COMPLETE 178/178 cells at L = 64/128/256/512, 602 matrix rows, 82
+fits). The frozen-geometry scaling bank: `d_H → 2` monotone with
+J₂/square universality to machine precision, `d_s` L-independent,
+RESPONSE velocities/exponents saturated by L256, P1 PRE velocity
+converged, POT `ξ`/range exact, QUOT antisymmetric/sheet exact-zero at
+all L, ZERO near-ubiquity, VACEXC vacuum-independence exact, VACCOMP
+formula exact (ladder legs at L ≥ 256 filed unresolved-cost: dense
+infeasible). What the bank buys every later campaign: the L at which
+each readout stops moving.
+
 ---
 
 # 3. Geometry from the fabric
@@ -231,6 +263,21 @@ reads `R²`, and the static channel compresses (`P`-range `∝ 1/ξ`).
 Fronts ride at 2/3 of bound on J₃ and cubic alike (forerunner
 artifact; packets ride at Bloch speed). The 3D-geometry result stands
 where the apparatus validates; 3D-calibrated rulers are DIM-3-1 work.
+
+## 3.2 The 3D-calibrated rulers read 3 on every channel; transfer fails
+
+DIM-3-1 (#129), verdict **DIM31-GEOMETRIC** ◇ (2 failures, both on the
+same transfer-validation leg). Blind J₃ run: L16 fails `tol_agree` by
+0.007, L20 by 0.042 (not close to flipping), L24 passes — per the
+frozen all-gates OPERATIONAL definition, GEOMETRIC. Everything else
+passed: `d_arr` transfer medians 3.46/3.55/3.76 (absolute + exact-L
+identity + 2D mismatch at all L), `d*` 9/9 at 3 (blind = audit),
+charts 9/9 at 3, banked static predictions confirmed (L20 2.93, L24
+3.14, `ξ`-gate; J₃/cubic bitwise-identical to 6dp), spread and packets
+PASS. Filed reading, no re-tuning: every dimension channel says 3;
+what failed is the transfer assumption `γ_J3 = γ_cb` beyond cubic
+self-variation at small L, with an L-decaying signature. Follow-up
+belongs to a new campaign.
 
 ---
 
@@ -469,6 +516,50 @@ split-fiber sampling is needed when the complete microscopic state is
 known — but the store is kept information, not derived selection:
 record-free splitting still faces the fiber debt, and nothing here writes,
 prices, or erases the record.
+
+## 8.4 The store does not evolve; the energy account is event-local
+
+Q-DYN-0 (#128) tests the null `Q̇ = 0` — no inter-event update of the
+stored record under fixed-graph waiting. Verdict **QDYN0-INCOMPLETE** ✓
+(33/35, autopsy-resolved): the frozen-sufficient core is fully green
+(Q bitwise identical on all 414 wait rungs, current-M reversal exact,
+semigroup exact, firewall green), but the `E`-readout/`F`-total
+eigenstate-spread legs fail (spreads 0.127–1.5 vs `1e-9`). The autopsy
+finds no Q-dynamics residual, only false premises, both linear algebra:
+eigenstate-ness does not survive the merge (exact `H(G)` eigenstates
+pre-merge evolve under post-merge `H(G2)` on a smaller space,
+residuals 0.094–0.458), and even true `H(G2)` eigenstates drift when
+stored `d ≠ 0` (`Rformula` rotates under phase flow: spread 1.76 vs
+`3e-13` at `d = 0`).
+
+Q-DYN-0b (#131) gates the autopsy prescription. Verdict
+**QDYN0B-EVENT-LOCAL** ✓ (51/51): Q stays frozen with all readout drift
+predicted by `E_Q = F_R(M,Q)` (closure 0.0, fixed-Q U(1) law `4.4e-16`,
+current-account inversion `6.7e-15`, E-vendored bitwise 0.0) — but
+`E_aug` drifts to 2.05 while `E_ψ + E_G` holds to `2.4e-12`, and the
+inverse-split account is the negative of the current account, not the
+original. Two conclusions: zero evidence for Q dynamics, and the
+account is event-local, evaluated when the structural map executes.
+Decay/event timing remains a separate primitive debt; no further
+Q-dynamics campaign is justified.
+
+## 8.5 Interior multiplicity is censused — and unclassified
+
+BH-ENT-0 (#120) asks whether collapsed-region microstate multiplicity
+scales with boundary, volume, or another quantity. Verdict
+**BHENT0-UNCLASSIFIED** ✓ (153/153 checks green): the exact joint graph
+census (paths P2..P6 at fixed `b = 2`: physical preimage orbits 8 / 67
+/ 701 / 10047 / 218083) rejects strict volume (2nd diffs, quadratic
+F-test `p = 0.005`), rejects boundary (3.67 bits/node at fixed
+boundary), and rejects mixed on the wiring branch (`R² = 0.928`, slope
+off-band) — every rejection confirming the pre-data prediction. Filed
+characterization: interior-graph multiplicity is volume-superlinear
+(`~2^{n²/2}/n!`) while boundary-carried wiring multiplicity saturates
+(path leg wirings = 2 for all `n`). Exterior-blind counting: matched
+hidden-sector pairs are 36/36 near+far blind on J₂ (VPLUS/VPI, L6/L28)
+vs 0/12 paths and 0/16 square — graph multiplicity is dynamically
+exterior-visible (POT distinguishes pairs). Firewall held: no scaling
+is identified with `S_BH`.
 
 ---
 
@@ -1039,6 +1130,7 @@ POSTULATES
            → deterministic merge update        ✓  MERGE0 (unique, ledgered)
            → missing account = f(lost info)    ✓  RES0-XI (no reservoir invented)
            → stored ξ makes merge reversible   ✓  STORE0 (recovery + closure exact)
+           → store frozen; account event-local ✓  Q-DYN-0b (zero Q dynamics)
            → conditional accounting            ✓
            → firing law absent                 ✓  BR27-NO-MODE + TRIGGER0
                                                   (19 conditions, 0 implications)
@@ -1087,6 +1179,12 @@ FOUNDATIONS, CLOSED OR OPEN
 ├── REWIRE-0         rewire selector            ✓ DEGENERATE (none earned)
 ├── STORE-0          reversible split store     ✓ REVERSIBLE (ξ kept; minimal c+d)
 ├── DIM-3-0          operational 3D vacuum      ◇ GEOMETRIC (quotient cubic; 2D rulers outrun)
+├── DIM-3-1          3D-calibrated rulers       ◇ GEOMETRIC (channels read 3; transfer fails)
+├── SCALE-0          asymptotic scaling bank    ✓ BANKED (178/178; L-limits filed)
+├── SUBSTRATE-CLASS-0 CLASS structural rules   ✓ PARTIAL (3 exact, 3 impossible)
+├── Q-DYN-0          store-dynamics census      ✓ INCOMPLETE (Q frozen; spreads fail)
+├── Q-DYN-0b         frozen readout             ✓ EVENT-LOCAL (no Q dynamics)
+├── BH-ENT-0         interior multiplicity      ✓ UNCLASSIFIED (census rejects 3 laws)
 └── QUOT-0           quotient mechanism         ✓ operational, not derived
 
 BLOCKED UNTIL THE DEBTS MOVE
@@ -1104,8 +1202,10 @@ BLOCKED UNTIL THE DEBTS MOVE
 
 | Debt | Origin | Meaning | What can close it |
 |---|---|---|---|
-| Substrate uniqueness | J₂ adoption, PR #62 | Working fabric, not a derived unique substrate; VAC-0 Final MIXED dissolves it into per-phenomenon classes (nothing needs J₂ only) | The F mechanism, VAC-0Q held-out battery, or a derivation that survives per-phenomenon classification |
-| 3D-blind rulers | DIM-3-0 (#117) ◇ | J₃ is quotient-cubic with 3D far-field laws, but the 2D-calibrated blind rulers misread it three proven ways (`d*` capped at 2, supralinear arrivals, static compression) | DIM-3-1: γ-aware arrival dimension, 3-resolving `d*` rule, ξ-aware static channel |
+| Substrate uniqueness | J₂ adoption, PR #62 | Working fabric, not a derived unique substrate; VAC-0 Final MIXED dissolves it into per-phenomenon classes (nothing needs J₂ only) | The F mechanism, VAC-0Q held-out battery, or a derivation that survives per-phenomenon classification; SUBCLASS0-PARTIAL proves no exact F/H_TAU/J rule in frozen space |
+| 3D-blind rulers | DIM-3-0 (#117) ◇ + DIM-3-1 (#129) ◇ | 3D-calibrated rulers read 3 on every channel (`d*` 9/9, charts 9/9, `d_arr` ~3.5–3.8, static confirmed); what fails is cross-substrate transfer (`γ_J3 = γ_cb` beyond cubic self-variation at small L) | A transfer-validated estimator set, or a new campaign scoping transfer per substrate |
+| Interior multiplicity | BH-ENT-0 (#120) ✓ | Exact census rejects volume/boundary/mixed laws; filed volume-superlinear with saturated wiring and exterior-blind hidden pairs | A new law candidate surviving the census, or a derivation of the filed scaling |
+| Event timing | Q-DYN-0b (#131) ✓ | Q frozen with an event-local energy account; no Q dynamics, no inter-event clock | A timing primitive (decay/event timing), separate from the store |
 | Vacuum-field member | VAC-FIELD-0 (#100) ✓ | Three nonzero states are joint vacua; `ψ = 0` is the no-information limit; VAC-SELECT refuses to rank them without a measure | A principle that selects inside the VAC-COMP manifold without using later consequences; needs the history measure first |
 | History measure | U0, TIME-0, RAND-0, MEASURE-0 (#105) ✓ + FIBER-0 (#123) ✓ | Admissible histories are known more sharply than their weights; MEASURE-0 shows no unique weighting is forced; FIBER-0 exhibits two rivals with 520 residual dof | A measure principle that is reversible and matches both readings |
 | Physical-state counting | RAND-0 orbit mismatch | Settled by SYM-0 (#102) ✓: `X/(R × U(1))` with `d_FS`. The measure on it is still missing | The same completion as history measure |

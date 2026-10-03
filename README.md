@@ -22,7 +22,7 @@
 > plus an upper-gap null and a GW190814 audit (tension, not exclusion).
 
 > **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 13pp) ·
-> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 21pp, S1–S12) ·
+> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 22pp, S1–S12) ·
 > build [`notes`](paper/v5/README.md)
 
 ## Abstract
@@ -65,11 +65,11 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 
 | Path | Description | License |
 |---|---|---|
-| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 13pp main text + 21pp S1–S12 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
+| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 13pp main text + 22pp S1–S12 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 2253 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 2409 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -94,7 +94,8 @@ Field program (`docs/model.md` §10): `ballistic`, `coherence`, `slit`,
 `bgresp`, `vac0`, `vacfield`, `vacexc`, `vaccomp`, `vacselect`,
 `hidden`, `hiddenbr`, `zero`, `split0`, `rewire0`, `merge0`,
 `reservoir0`, `trigger0`, `fiber0`, `info0`, `vacdomain`, `vactexture`,
-`vacstab`, `source0`, `store0`, `dim3`, `dim3_reveal`; side apparatus `spectroscopy`, `fep`,
+`vacstab`, `source0`, `store0`, `dim3`, `dim3_reveal`, `subclass0`, `scale0`,
+`qdyn0`, `qdyn0b`, `bhent`, `dim31`; side apparatus `spectroscopy`, `fep`,
 `stern_gerlach`, `mergershed`, `graphvk`.
 
 ## Quickstart
@@ -103,7 +104,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 2253 tests (2 torch/GPU-only skip without torch)
+python -m pytest tests/ -q          # 2409 tests (2 torch/GPU-only skip without torch)
 python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
@@ -222,6 +223,15 @@ release:
 
 ## Status
 
+v5.9: substrate and store — [`main.pdf`](paper/v5/main.pdf) (13pp) +
+[`supplement.pdf`](paper/v5/supplement.pdf) (22pp S1–S12 methods, 49/49
+references cited, S12 +4 paragraphs, module map +6, Q-DYN kill wire);
+SUBCLASS0-PARTIAL (exact E/H-shell/G rules, F/H-TAU impossible in frozen
+space); SCALE0-BANKED (178/178, j2 == sq to machine precision);
+Q-DYN-0/0b (Q frozen on 414 rungs, R event-local); BHENT0-UNCLASSIFIED
+(exact orbits 8–218083, no entropy law); DIM31-GEOMETRIC (dimension 3,
+transfer leg open); [`model.md`](docs/model.md) v0.10. 2409 tests
+(2407 passed + 2 skipped), 86 figure files (Figs 1–75).
 v5.8: store and 3D — [`main.pdf`](paper/v5/main.pdf) (13pp) +
 [`supplement.pdf`](paper/v5/supplement.pdf) (21pp S1–S12 methods, 49/49
 references cited, S12 +2 paragraphs, module map +3, STORE0 kill wire);
