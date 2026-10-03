@@ -1671,6 +1671,284 @@ The coefficient \(8\pi\sqrt{2}\) does not depend on \(r\).
 The cancelled channel does: its logarithm is \(16\pi/\lambda_\infty(r)\).
 
 \begin{proposition}
+\label{prop:twowt}
+Join three copies by two edges of equal hopping \(t\neq 0\), from outer
+vertices \(a\) and \(b\) into host cells separated by a nonzero \(r\).
+Let \(\lambda\) be either host factor \(\mathcal{G}\pm\Gamma_r\), and let
+\(E\notin[-8,8]\) be a root of \(t^2\mathcal{G}(E)\lambda(E)=1\).
+On the corresponding normalised eigenstate,
+\begin{equation}
+\label{eq:twowt}
+|\psi(a)|^2=|\psi(b)|^2
+=\frac{\mathcal{G}(E)^2\lambda(E)}
+{2\bigl(-(\mathcal{G}\lambda)'(E)\bigr)},
+\end{equation}
+and each host contact carries the weight \((\lambda/\mathcal{G})|\psi(a)|^2\).
+Above \(8\), the stitch from an outer vertex to its host contact has
+relative phase \(\pi\) when \(t>0\) and \(0\) when \(t<0\).
+Below \(-8\) the phase is the opposite.
+On the channel \(\mathcal{G}+\Gamma_r\) one has \(\psi(a)=\psi(b)\); on the
+channel \(\mathcal{G}-\Gamma_r\) one has \(\psi(a)=-\psi(b)\).
+As \(t\to 0\), every cancelled root and every divergent root satisfies,
+respectively,
+\begin{equation}
+\label{eq:wcanc}
+|\psi(a)|^2
+=512\pi\, e^{\pi}\,
+\lambda_\infty(r)^{-2}\, t^{-4}
+\exp\Bigl(-\frac{16\pi}{\lambda_\infty(r)\, t^2}\Bigr)
+\bigl(1+o(1)\bigr)
+\end{equation}
+and
+\begin{equation}
+\label{eq:wdiv}
+|\psi(a)|^2
+=128\pi\,
+\exp\bigl(\pi-4\pi\lambda_\infty(r)\bigr)\,
+t^{-2}
+\exp\Bigl(-\frac{8\sqrt{2}\,\pi}{|t|}\Bigr)
+\bigl(1+o(1)\bigr).
+\end{equation}
+In that limit each outer copy carries half the norm on the cancelled
+channel, and the host carries a vanishing fraction.
+On the divergent channel each outer copy carries one quarter, the host
+carries one half, and the squared modulus at each host contact is twice
+the outer weight.
+\end{proposition}
+
+\begin{proof}
+The perturbation is
+\[
+V=-t\bigl(|a\rangle\langle x|+|x\rangle\langle a|
++|b\rangle\langle y|+|y\rangle\langle b|\bigr).
+\]
+The eigenvalue equation is \((E-H_0)\psi=V\psi\).
+The resolvent is block diagonal across copies, so
+\(\psi(a)=-t\mathcal{G}(E)\psi(x)\) and
+\(\psi(b)=-t\mathcal{G}(E)\psi(y)\).
+The host values are
+\begin{align*}
+\psi(x)
+&=-t\,\mathcal{G}(E)\,\psi(a)-t\,\Gamma_r(E)\,\psi(b),\\
+\psi(y)
+&=-t\,\Gamma_r(E)\,\psi(a)-t\,\mathcal{G}(E)\,\psi(b).
+\end{align*}
+Substitution produces
+\(\bigl(1-t^2\mathcal{G}^2\bigr)\psi(a)=t^2\mathcal{G}\Gamma_r\,\psi(b)\).
+At a root of \(t^2\mathcal{G}(\mathcal{G}+\Gamma_r)=1\) one has
+\(\psi(a)=\psi(b)\).
+At a root of \(t^2\mathcal{G}(\mathcal{G}-\Gamma_r)=1\) one has
+\(\psi(a)=-\psi(b)\).
+For real \(E\) outside the spectrum the resolvent is real symmetric, so a
+global phase makes \(\psi\) real.
+The ratio \(\psi(a)/\psi(x)\) equals \(-t\mathcal{G}(E)\).
+Above \(8\), \(\mathcal{G}\) is positive, so the phase is \(\pi\) when
+\(t>0\) and \(0\) when \(t<0\).
+Below \(-8\), \(\mathcal{G}\) is negative and the phase reverses.
+
+The outer copy of \(a\) carries the squared mass
+\(t^2|\psi(x)|^2(-\mathcal{G}')
+=|\psi(a)|^2(-\mathcal{G}')/\mathcal{G}^2\),
+and the copy of \(b\) carries the same.
+The host vector is \(-t\psi(a)\,R|x\rangle-t\psi(b)\,R|y\rangle\), where
+\(R=(E-H_0)^{-1}\).
+Its squared norm is \(2t^2|\psi(a)|^2(-\lambda')\): one has
+\(\|R|x\rangle\|^2=-\mathcal{G}'\) and
+\(\langle x|R^2|y\rangle=-\Gamma_r'\), and the sign of
+\(\psi(a)\psi(b)\) selects \(\lambda=\mathcal{G}\pm\Gamma_r\).
+Normalisation therefore reads
+\[
+1
+=2|\psi(a)|^2\Biggl(
+\frac{-\mathcal{G}'}{\mathcal{G}^2}+t^2(-\lambda')
+\Biggr).
+\]
+At the root, \(t^2=1/(\mathcal{G}\lambda)\), and the parenthesis equals
+\((-(\mathcal{G}\lambda)')/(\mathcal{G}^2\lambda)\).
+This is \eqref{eq:twowt}.
+The host contact has squared modulus
+\(|\psi(a)|^2/(t^2\mathcal{G}^2)=(\lambda/\mathcal{G})|\psi(a)|^2\).
+
+The weight at \(-E\) agrees.
+The shift in the proof of Proposition~\ref{prop:anysep} gives
+\(\Gamma_r(-E)=-\sigma(r)\Gamma_r(E)\), so the host eigenvalues at \(-E\)
+are \(-\lambda_{\mathrm{div}}(E)\) and \(-\lambda_{\mathrm{canc}}(E)\).
+Differentiating \(\mathcal{G}(-E)+\Gamma_r(-E)=-\lambda_{\mathrm{div}}(E)\)
+brings down a minus from the chain rule that cancels the minus in front
+of \(\lambda_{\mathrm{div}}\), and \(\mathcal{G}'\) is even.
+The parenthesis is unchanged.
+The cancelled channel is the same with \(\lambda_{\mathrm{canc}}\).
+
+For the cancelled asymptotic, write \(E=8+\delta\) and \(L=\ln(1/\delta)\).
+After the shift in \eqref{eq:lamr}, with
+\(Q(k)=8\sin^2(k_x/2)+8\sin^2(k_y/2)\),
+\[
+\lambda_{\mathrm{canc}}(E)
+=\frac{1}{2E}
++\frac12\int\frac{1-\cos(k\cdot r)}{Q(k)+\delta}
+\,\frac{d^2k}{(2\pi)^2}
+\]
+and \(\lambda_\infty(r)\) is the same formula at \(\delta=0\), the flat term
+being \(1/16\).
+The difference of the integrals equals
+\[
+-\frac{\delta}{2}\int
+\frac{1-\cos(k\cdot r)}{Q(k)\,(Q(k)+\delta)}
+\,\frac{d^2k}{(2\pi)^2}.
+\]
+The quotient \((1-\cos(k\cdot r))/Q(k)\) extends to a bounded function, by
+the removal of the singularity in Proposition~\ref{prop:anysep}.
+On the torus of that shift, \(Q(k)\) is at least a constant multiple of
+\(|k|^2\), and \(\int_{|k|<1}(|k|^2+\delta)^{-1}\,d^2k\) is a constant
+multiple of \(\log(1/\delta)\).
+Thus \(\lambda_{\mathrm{canc}}(E)-\lambda_\infty(r)\) is a constant
+multiple of \(\delta\log(1/\delta)\).
+Differentiating under the integral for \(\delta>0\) gives
+\[
+\lambda_{\mathrm{canc}}'(E)
+=-\frac{1}{2E^2}
+-\frac12\int\frac{1-\cos(k\cdot r)}{(Q(k)+\delta)^2}
+\,\frac{d^2k}{(2\pi)^2}.
+\]
+The integrand is bounded by a constant multiple of
+\(|k|^2/(|k|^2+\delta)^2\), whose integral over the unit disc is a constant
+multiple of \(\log(1/\delta)\).
+Hence \(\lambda_{\mathrm{canc}}'\) is a constant multiple of
+\(\log(1/\delta)\).
+
+Proposition~\ref{prop:endpoint} gives
+\(\delta(-\mathcal{G}'(8+\delta))\to 1/(16\pi)\).
+The expansion of \(\mathcal{G}\) in the proof of
+Proposition~\ref{prop:stitch} says that \(\mathcal{G}\) differs from
+\(L/(16\pi)\) by a bounded quantity.
+The ratio
+\(\mathcal{G}\lambda_{\mathrm{canc}}'/(\lambda_{\mathrm{canc}}\mathcal{G}')\)
+is then a constant multiple of \(\delta L^2\) and tends to \(0\).
+Therefore
+\(-(\mathcal{G}\lambda_{\mathrm{canc}})'
+=\lambda_{\mathrm{canc}}(-\mathcal{G}')\,(1+o(1))\),
+and the weight is
+\[
+|\psi(a)|^2
+=\frac{\mathcal{G}^2}{2(-\mathcal{G}')}\,(1+o(1))
+=8\pi\,\delta\,\mathcal{G}^2\,(1+o(1)).
+\]
+The secular equation says
+\(\mathcal{G}=1/(t^2\lambda_{\mathrm{canc}})\).
+Since \(\lambda_{\mathrm{canc}}\to\lambda_\infty(r)\),
+\[
+|\psi(a)|^2
+=\frac{8\pi\,\delta}{t^4\lambda_\infty(r)^2}\,(1+o(1)).
+\]
+With \(C_0=1/16+3\ln 2/(8\pi)\) and with the remainder \(r(\delta)\to 0\) of
+that expansion,
+\[
+\mathcal{G}
+=\frac{L}{16\pi}+C_0+r(\delta)
+=\frac{1}{t^2\lambda_{\mathrm{canc}}},
+\]
+so
+\[
+\delta
+=\exp\Bigl(-\frac{16\pi}{t^2\lambda_{\mathrm{canc}}}\Bigr)
+\exp(16\pi C_0)\,e^{16\pi r(\delta)}.
+\]
+The constant equals \(64 e^{\pi}\), because
+\(16\pi C_0=\pi+6\ln 2\).
+Replacing \(\lambda_{\mathrm{canc}}\) by \(\lambda_\infty(r)\) changes the
+exponent by a constant multiple of
+\(\delta\log(1/\delta)/t^2\).
+At the root, \(t^2\) is \(1/(\mathcal{G}\lambda_{\mathrm{canc}})\) and
+\(\mathcal{G}\) is a constant multiple of \(L\), so the change tends to
+\(0\).
+Thus
+\[
+\delta
+=64 e^{\pi}
+\exp\Bigl(-\frac{16\pi}{\lambda_\infty(r)\,t^2}\Bigr)
+(1+o(1)),
+\]
+which is \eqref{eq:wcanc}.
+The outer mass equals
+\(8\pi\,\delta(-\mathcal{G}')\,(1+o(1))\) and tends to \(1/2\).
+The two outer copies account for the whole norm in the limit.
+
+For the divergent channel,
+\(\lambda_{\mathrm{div}}=2\mathcal{G}-\lambda_{\mathrm{canc}}\) and
+\(t^2\mathcal{G}\lambda_{\mathrm{div}}=1\), so
+\[
+\mathcal{G}
+=\frac14\Biggl(
+\lambda_{\mathrm{canc}}
++\sqrt{\lambda_{\mathrm{canc}}^2+\frac{8}{t^2}}
+\Biggr).
+\]
+The positive square root is the branch compatible with \(\mathcal{G}>0\).
+Replacing \(\lambda_{\mathrm{canc}}\) by \(\lambda_\infty(r)\) changes
+\(\mathcal{G}\) by a quantity that tends to \(0\).
+The bound \(\sqrt{1+u}\le 1+u/2\) gives
+\[
+\sqrt{\lambda_\infty(r)^2+\frac{8}{t^2}}
+=\frac{2\sqrt{2}}{|t|}
+\]
+plus a remainder at most a constant multiple of \(|t|\).
+Hence
+\[
+\mathcal{G}
+=\frac{1}{|t|\sqrt{2}}+\frac{\lambda_\infty(r)}{4}+o(1).
+\]
+The expansion of \(\mathcal{G}\) used above yields
+\[
+\delta
+=64 e^{\pi}
+\exp\bigl(-4\pi\lambda_\infty(r)\bigr)
+\exp\Bigl(-\frac{8\sqrt{2}\,\pi}{|t|}\Bigr)
+(1+o(1)),
+\]
+because \(16/(\sqrt{2})=8\sqrt{2}\) and
+\(16\pi\cdot\lambda_\infty(r)/4=4\pi\lambda_\infty(r)\).
+Differentiating \(\lambda_{\mathrm{div}}=2\mathcal{G}-\lambda_{\mathrm{canc}}\)
+gives
+\[
+-(\mathcal{G}\lambda_{\mathrm{div}})'
+=(-\mathcal{G}')\bigl(4\mathcal{G}-\lambda_{\mathrm{canc}}\bigr)
++\mathcal{G}\,\lambda_{\mathrm{canc}}'.
+\]
+The ratio of the second summand to the first is a constant multiple of
+\(\delta L^2\) and tends to \(0\).
+The quotient
+\((2\mathcal{G}-\lambda_{\mathrm{canc}})/(4\mathcal{G}-\lambda_{\mathrm{canc}})\)
+tends to \(1/2\).
+The weight simplifies to
+\[
+|\psi(a)|^2
+=\frac{\mathcal{G}^2}{4(-\mathcal{G}')}\,(1+o(1))
+=4\pi\,\delta\,\mathcal{G}^2\,(1+o(1)).
+\]
+Here \(\mathcal{G}^2=1/(2t^2)\,(1+o(1))\), so
+\(|\psi(a)|^2=(2\pi\,\delta/t^2)\,(1+o(1))\),
+which is \eqref{eq:wdiv}.
+The outer mass tends to \(1/4\), and the host carries the remaining half.
+The ratio of squared moduli at the host contact and at the outer endpoint
+is \(\lambda_{\mathrm{div}}/\mathcal{G}\), which tends to \(2\).
+\end{proof}
+
+For a neighbour one has \(\lambda_\infty=1/8\), so
+\(\lambda_\infty^{-2}=64\) and \(16\pi/\lambda_\infty=128\pi\).
+The cancelled weight in \eqref{eq:wcanc} is
+\(32768\pi e^{\pi}\, t^{-4}\exp(-128\pi/t^2)\), and the exponent
+\(\pi-4\pi\lambda_\infty\) in \eqref{eq:wdiv} equals \(\pi/2\).
+These are the two channels of \eqref{eq:adjlog}.
+On the divergent channel
+\(|\psi(x)|/|\psi(a)|\to\sqrt{2}\), so
+\[
+\frac{|B_{ax}|}{q_{ax}/2}\to\frac{2\sqrt{2}}{3}.
+\]
+On the cancelled channel the same ratio tends to \(0\).
+The moduli are unequal in both limits, so neither channel saturates
+Lemma~\ref{lem:bond-expand}.
+
+\begin{proposition}
 \label{prop:logsep}
 Let
 \[
