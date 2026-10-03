@@ -10351,3 +10351,18 @@ data/info0_verdict.json. Beast EC2 (16.54.88.181, 96 CPU, OMP threads 1).
 Full suite on beast (pytest -n 90 --ignore=tests/test_weighted.py).
 No fitting after data. Amendments, if any, as INFO0-AMENDMENT-n with
 gated re-runs; none pre-data.
+
+## INFO0-AMENDMENT-1 — Scheduler validity no-op fix (pre-campaign-data)
+
+Found via unit tests (test_sync_scheduler_square, pre-campaign-data, no
+campaign records affected). Design error in
+info0.sequential_orders_for_subset: strict validity (every perm step must
+contract) fails for cyclic marked subsets (e.g., square full 4-edge set:
+4 nodes need 3 merges, 4th mark is intra-class). The quotient absorbs
+intra-class edges; sequential simulation must skip ra == rb no-ops
+(continue, not failure). Missing-edge (ra != rb but no edge) remains a
+genuine failure (filed, predicted never to occur). Prediction unchanged
+(all m! valid and matching, U0-G commutation); prereg scheduler text
+("validity + quotient matching counted") now reads with this no-op rule.
+Gated re-runs: tests/test_info0.py scheduler pins (square f_all_match).
+No banked data exists yet; campaign runs under PREREG + AMENDMENT-1.

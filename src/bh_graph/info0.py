@@ -728,12 +728,15 @@ def sequential_orders_for_subset(g: nx.Graph, psi: np.ndarray, order: list,
     subset: iterable of sorted edges (marked for contraction). Enumerates
     all m! permutations (m = |subset|); each order is simulated as m
     sequential single-edge BR-2.5 contractions with sum-map threading
-    (fresh labels max+1..., rep tracking like U0-G). An order is valid
-    iff every step finds its (remapped) edge; matching iff the final
-    (G, |psi|)-multiset matches the synchronous quotient outcome
-    (isomorphic graphs + 1e-6 magnitude multisets). I_sched = log2(#valid)
-    (None for m = 0? No: m = 0 has exactly 1 valid order (empty), I = 0).
-    Predicted: all m! valid and matching (synchronous sets commute).
+    (fresh labels max+1..., rep tracking like U0-G). Redundant marks in
+    cyclic subsets become no-ops (ra == rb after prior merges within the
+    same marked component: skipped, not failures; the quotient absorbs
+    intra-class edges). An order is valid iff it completes without a
+    missing-edge failure (ra != rb but no edge: genuine failure, filed);
+    matching iff the final (G, |psi|)-multiset matches the synchronous
+    quotient outcome (isomorphic graphs + 1e-6 magnitude multisets).
+    I_sched = log2(#valid) (m = 0 has exactly 1 valid order (empty),
+    I = 0). Predicted: all m! valid and matching (sets commute).
     """
     from bh_graph.contraction import contract_edge
 
@@ -764,7 +767,9 @@ def sequential_orders_for_subset(g: nx.Graph, psi: np.ndarray, order: list,
         ok = True
         for (a, b) in perm:
             ra, rb = rep[a], rep[b]
-            if ra == rb or not h.has_edge(ra, rb):
+            if ra == rb:
+                continue  # redundant cyclic mark: intra-class, absorbed.
+            if not h.has_edge(ra, rb):
                 ok = False
                 break
             va, vb = live.pop(ra), live.pop(rb)
