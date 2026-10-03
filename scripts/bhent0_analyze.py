@@ -60,7 +60,7 @@ def main():
         p = recs[f"joint_{spec}"]["payload"]
         chk(f"joint_{spec}:orbits", p["n_orbits"] > 1, p["n_orbits"])
         chk(f"joint_{spec}:audit",
-            p["n_orbits"] * math.factorial(p["n"]) >= p["n_connected"]))
+            p["n_orbits"] * math.factorial(p["n"]) >= p["n_connected"])
         path_ns.append(p["n"])
         path_y.append(p["log2_orbits"])
     # Chunked unions (P6 headline + J2L4edge).
