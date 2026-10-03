@@ -1,0 +1,341 @@
+{
+ "blind_sha256": "01a035d0307f5345a2c2f485421ef365f6809725a3589840173f3a337de9e802",
+ "ladder_literal": "DIM3-NOT3D",
+ "dstar_stress2_over_stress1": {
+  "j3-L8": [
+   0.363,
+   0.3824,
+   0.3643
+  ],
+  "j3-L12": [
+   0.3718,
+   0.3742,
+   0.3729
+  ],
+  "j3-L16": [
+   0.448,
+   0.4407,
+   0.3651
+  ],
+  "cb-L10": [
+   0.2806,
+   0.29,
+   0.3716
+  ],
+  "cb-L15": [
+   0.3313,
+   0.3464,
+   0.3835
+  ],
+  "cb-L20": [
+   0.4042,
+   0.4086,
+   0.4086
+  ],
+  "j2-L42": [
+   0.2977,
+   0.2891,
+   0.3531
+  ]
+ },
+ "dstar_rule": "smallest d>=2 with stress_d<=0.5*stress_1 (obs1.select_dimension); all ratios<0.5 forces d*=2",
+ "arrival_gamma": {
+  "j3-L8": {
+   "W": {
+    "gamma": 1.666,
+    "vol_d": 1.516,
+    "pred_gamma": 1.979
+   },
+   "D": {
+    "gamma": 1.145,
+    "vol_d": 1.495,
+    "pred_gamma": 2.007
+   }
+  },
+  "j3-L12": {
+   "W": {
+    "gamma": 1.595,
+    "vol_d": 1.601,
+    "pred_gamma": 1.874
+   },
+   "D": {
+    "gamma": 1.319,
+    "vol_d": 1.875,
+    "pred_gamma": 1.6
+   }
+  },
+  "j3-L16": {
+   "W": {
+    "gamma": 1.48,
+    "vol_d": 2.019,
+    "pred_gamma": 1.486
+   },
+   "D": {
+    "gamma": 1.328,
+    "vol_d": 1.993,
+    "pred_gamma": 1.505
+   }
+  },
+  "cb-L10": {
+   "W": {
+    "gamma": 1.869,
+    "vol_d": 1.504,
+    "pred_gamma": 1.995
+   },
+   "D": {
+    "gamma": 1.246,
+    "vol_d": 1.647,
+    "pred_gamma": 1.821
+   }
+  },
+  "cb-L15": {
+   "W": {
+    "gamma": 1.664,
+    "vol_d": 1.804,
+    "pred_gamma": 1.663
+   },
+   "D": {
+    "gamma": 1.343,
+    "vol_d": 2.044,
+    "pred_gamma": 1.468
+   }
+  },
+  "cb-L20": {
+   "W": {
+    "gamma": 1.479,
+    "vol_d": 2.044,
+    "pred_gamma": 1.468
+   },
+   "D": {
+    "gamma": 1.331,
+    "vol_d": 2.188,
+    "pred_gamma": 1.371
+   }
+  },
+  "j2-L42": {
+   "W": {
+    "gamma": 1.418,
+    "vol_d": 1.478,
+    "pred_gamma": 1.353
+   },
+   "D": {
+    "gamma": 1.182,
+    "vol_d": 1.61,
+    "pred_gamma": 1.242
+   }
+  }
+ },
+ "gamma_mechanism": "fixed-threshold arrival + amplitude decay -> M~r^gamma supralinear -> V(R)~R^{dim/gamma}; J3 W gamma=1.48 == cubic 1.48",
+ "P_compression": {
+  "j3-L16": {
+   "q10": 5.35,
+   "q25": 6.42,
+   "q65": 7.66,
+   "vol_d": 5.25
+  },
+  "cb-L20": {
+   "q10": 6.73,
+   "q25": 8.49,
+   "q65": 10.65,
+   "vol_d": 4.23
+  },
+  "j2-L42": {
+   "q10": 5.42,
+   "q25": 7.82,
+   "q65": 11.61,
+   "vol_d": 2.39
+  }
+ },
+ "P_mechanism": "P-range ~ 1/xi; xi_J3~1.5 vs xi_J2~0.53 predicts 0.35x range; observed (9.04-5.35)/(15.9-5.42)=0.35",
+ "spread_R": {
+  "cb-L10": {
+   "v": 4.468,
+   "psi": [
+    null,
+    0,
+    null
+   ],
+   "rho": [
+    null,
+    0
+   ],
+   "J": [
+    null,
+    0
+   ],
+   "bmax": 0.0
+  },
+  "cb-L15": {
+   "v": 4.027,
+   "psi": [
+    1.26,
+    3,
+    0.999
+   ],
+   "rho": [
+    2.519,
+    3
+   ],
+   "J": [
+    2.008,
+    3
+   ],
+   "bmax": 0.008035633423002045
+  },
+  "cb-L20": {
+   "v": 4.027,
+   "psi": [
+    0.989,
+    5,
+    0.957
+   ],
+   "rho": [
+    1.978,
+    5
+   ],
+   "J": [
+    1.654,
+    4
+   ],
+   "bmax": 0.0
+  },
+  "j2-L28": {
+   "v": 7.947,
+   "psi": [
+    0.5,
+    9,
+    0.908
+   ],
+   "rho": [
+    1.0,
+    9
+   ],
+   "J": [
+    0.949,
+    9
+   ],
+   "bmax": 0.0
+  },
+  "j3-L12": {
+   "v": 8.696,
+   "psi": [
+    null,
+    0,
+    null
+   ],
+   "rho": [
+    null,
+    0
+   ],
+   "J": [
+    null,
+    0
+   ],
+   "bmax": 0.0
+  },
+  "j3-L16": {
+   "v": 7.947,
+   "psi": [
+    1.26,
+    3,
+    0.999
+   ],
+   "rho": [
+    2.52,
+    3
+   ],
+   "J": [
+    2.009,
+    3
+   ],
+   "bmax": 0.0
+  },
+  "j3-L20": {
+   "v": 8.108,
+   "psi": [
+    1.007,
+    4,
+    0.936
+   ],
+   "rho": [
+    2.015,
+    4
+   ],
+   "J": [
+    1.657,
+    4
+   ],
+   "bmax": 0.0
+  },
+  "j3-L24": {
+   "v": 8.108,
+   "psi": [
+    0.904,
+    6,
+    0.945
+   ],
+   "rho": [
+    1.809,
+    6
+   ],
+   "J": [
+    1.575,
+    6
+   ],
+   "bmax": 0.0
+  },
+  "j3-L28": {
+   "v": 8.108,
+   "psi": [
+    0.902,
+    7,
+    0.958
+   ],
+   "rho": [
+    1.804,
+    7
+   ],
+   "J": [
+    1.572,
+    7
+   ],
+   "bmax": 0.0
+  },
+  "j3-L32": {
+   "v": 8.108,
+   "psi": [
+    0.858,
+    8,
+    0.955
+   ],
+   "rho": [
+    1.717,
+    8
+   ],
+   "J": [
+    1.527,
+    8
+   ],
+   "bmax": 0.0
+  },
+  "j3-L8": {
+   "v": 8.861,
+   "psi": [
+    null,
+    0,
+    null
+   ],
+   "rho": [
+    null,
+    0
+   ],
+   "J": [
+    null,
+    0
+   ],
+   "bmax": 0.0
+  }
+ },
+ "filed_verdict": "DIM3-GEOMETRIC",
+ "filed_reason": "ladder-literal NOT3D trigger (d*=2 stable) fires identically on known-3D cubic control -> trigger invalidated as dimension measurement; nothing recovers 2D physics (exponents r^-1/r^-2 exclude 2D windows; D-stage confirms 3D quotient: match 0.04, factor 2.6, LOCAL3pass/LOCAL2fail, SHEET 0.0); operational stages do not jointly pass 2D-calibrated bars -> GEOMETRIC per prereg definitions"
+}
