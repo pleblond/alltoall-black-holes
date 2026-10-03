@@ -797,20 +797,87 @@ def is_dimension_formula_ok(g2: nx.Graph, psi2: np.ndarray, order2: list,
         return False
 
 
+def wl_group_count(g2: nx.Graph, k) -> dict:
+    """Fast WL+invariant grouping of undirected covers (descriptive).
+
+    Groups covers by (WL hash, edge count, degree sequence): every key
+    is a graph-isomorphism invariant, so different keys => definitely
+    different classes (sound non-isomorphism). Same key => candidate
+    pair the exact test would still have to decide, so the group count
+    is a LOWER bound on the true class count (filed as such, never
+    gated as exact). J2-safe (no pairwise isomorphism).
+    """
+    preds = undirected_predecessors(g2, k)
+    groups: dict = {}
+    for n, row in enumerate(preds):
+        wl = nx.weisfeiler_lehman_graph_hash(row["h"])
+        key = (wl, row["h"].number_of_edges(),
+               tuple(sorted(dd for _, dd in row["h"].degree())))
+        groups.setdefault(key, []).append(n)
+    return {"n_groups": len(groups), "n_covers": len(preds),
+            "group_sizes": sorted(len(v) for v in groups.values())}
+
+
+def inverse_dimensions_capped(g2: nx.Graph, psi2: np.ndarray, order2: list,
+                              k, cap: int = 200) -> dict:
+    """Inverse anatomy with an exact-isomorphism cap (J2 legs).
+
+    Cells with n_undirected <= cap: exact inverse_dimensions +
+    iso_capped False. Larger cells (e.g. J2 d = 8: 3281 covers):
+    formula counts + physical fiber dims + WL-group lower bound, with
+    iso_capped True and NO exact class claims. The load-bearing exact
+    claims (detcore census, roundtrip, minimality) run on the tiny
+    battery only (all cells uncapped); J2 legs use this descriptive
+    form for sheet/hidden/locality only.
+    """
+    from bh_graph.ballistic import index_of
+
+    psi2 = np.asarray(psi2, dtype=np.complex128)
+    order2 = list(order2)
+    d = int(g2.degree(k))
+    n_und = undirected_cover_count(d)
+    s = complex(psi2[index_of(order2)[k]])
+    phys = physical_fiber_dims(rest_nonzero(psi2, order2, k), s)
+    if n_und <= int(cap):
+        dims = inverse_dimensions(g2, psi2, order2, k)
+        dims["iso_capped"] = False
+        return dims
+    wl = wl_group_count(g2, k)
+    return {"d": d, "n_directed": directed_cover_count(d),
+            "n_undirected": n_und,
+            "n_iso_graph": None, "n_phys_halves": None,
+            "n_wl_groups": wl["n_groups"],
+            "d_cont_full": int(phys["d_cont_phys"]),
+            "d_cont_halves": 0,
+            "I_disc_full": None, "I_disc_halves": None,
+            "redundant_phase": bool(phys["redundant_phase"]),
+            "s_is_zero": bool(s == 0.0), "iso_capped": True}
+
+
 # ---------------------------------------------------------------------------
 # SPLIT-0F: locality
 # ---------------------------------------------------------------------------
 
 def is_inverse_local_ok(g2: nx.Graph, psi2: np.ndarray, order2: list,
                         k) -> bool:
-    """Boolean check: inverse family invariant under remote mutations.
+    """Boolean check: LOCAL inverse data invariant under remote mutations.
 
     Frozen support radius (RAND U0-F / BR-2.6 ledger convention): field
     mutation at distance >= 3 from k, edge toggle outside the closed
-    neighborhood N[k]. Compares {undirected cover keys, fiber dims,
-    n_iso_graph, n_phys_halves} before/after. Vacuous True (with the
-    mutation inapplicable) when no remote site exists; the campaign
-    records applicability separately.
+    neighborhood N[k]. Compares the local fingerprint {undirected cover
+    keys, merged value s, unquotiented fiber relation on the D_SWEEP
+    probe, halves point} before/after. Vacuous True (with the mutation
+    inapplicable) when no remote site exists; the campaign records
+    applicability separately.
+
+    Scope note (derived, filed openly): the fingerprint excludes (i)
+    global isomorphism-class counts (a whole-graph quotient phenomenon
+    that can use remote symmetries -- not part of the local residual
+    xi = (cover, d)) and (ii) the U1-quotiented fiber dimension
+    d_cont_phys (gauge fixing by the rest field is global by definition
+    of the SYM0-CLOSED quotient: a remote zero/nonzero flip can change
+    it -- see locality_quotient_note, descriptive). The LOCAL residual
+    information itself (cover pattern + relative mode) is exactly local.
     """
     try:
         psi2 = np.asarray(psi2, dtype=np.complex128)
@@ -819,13 +886,15 @@ def is_inverse_local_ok(g2: nx.Graph, psi2: np.ndarray, order2: list,
         from bh_graph.u0 import undirected_covers
 
         def _fam(g, psi):
+            psi = np.asarray(psi, dtype=np.complex128)
             covers = [key for key, _A, _B
                       in undirected_covers(sorted(g.neighbors(k)))]
-            dims = inverse_dimensions(g, np.asarray(psi,
-                                                    dtype=np.complex128),
-                                      list(order2), k)
-            return (covers, dims["d_cont_full"], dims["n_iso_graph"],
-                    dims["n_phys_halves"])
+            idx = index_of(list(order2))
+            s = complex(psi[idx[k]])
+            probe = tuple(is_sum_consistent_ok(*fiber_point(s, d), s)
+                          for d in D_SWEEP)
+            return (covers, s, probe, halves_point(s),
+                    undirected_cover_count(int(g.degree(k))))
 
         fam0 = _fam(g2, psi2)
         dist = dict(nx.single_source_shortest_path_length(g2, k))
@@ -854,6 +923,39 @@ def is_inverse_local_ok(g2: nx.Graph, psi2: np.ndarray, order2: list,
         return True
     except Exception:
         return False
+
+
+def locality_quotient_note(g2: nx.Graph, psi2: np.ndarray, order2: list,
+                           k) -> dict:
+    """Descriptive: U1-quotiented fiber dims under remote mutation (filed).
+
+    Reports d_cont_phys before/after the frozen remote field mutation
+    (dist >= 3). A change here is the earned global-gauge subtlety (U1
+    fixing uses the whole rest field), NOT a locality violation of the
+    local residual xi. Inapplicable (no remote site) cells file None.
+    """
+    try:
+        from bh_graph.ballistic import index_of
+
+        psi2 = np.asarray(psi2, dtype=np.complex128)
+        order2 = list(order2)
+        idx = index_of(order2)
+        s = complex(psi2[idx[k]])
+        before = physical_fiber_dims(rest_nonzero(psi2, order2, k),
+                                     s)["d_cont_phys"]
+        dist = dict(nx.single_source_shortest_path_length(g2, k))
+        far = [v for v in order2 if dist.get(v, 10 ** 9) >= 3]
+        if not far:
+            return {"applicable": False, "before": int(before),
+                    "after": None}
+        mut = np.array(psi2, dtype=np.complex128)
+        mut[idx[far[0]]] += complex(0.5, -0.25)
+        after = physical_fiber_dims(rest_nonzero(mut, order2, k),
+                                    s)["d_cont_phys"]
+        return {"applicable": True, "before": int(before),
+                "after": int(after)}
+    except Exception:
+        return {"applicable": False, "before": -1, "after": None}
 
 
 def locality_applicability(g2: nx.Graph, order2: list, k) -> dict:
@@ -890,12 +992,16 @@ def hidden_anatomy(g2: nx.Graph, psi2: np.ndarray, order2: list, k,
     """
     from bh_graph.ballistic import index_of
 
+    from bh_graph.u0 import undirected_covers
+
     psi2 = np.asarray(psi2, dtype=np.complex128)
     order2 = list(order2)
     idx = index_of(order2)
     s = complex(psi2[idx[k]])
-    rows = undirected_predecessors(g2, k)
-    first = rows[0]
+    # Keys-only enumeration (J2-safe: no eager graph builds); the sweep
+    # fixes the first undirected cover.
+    first_key, first_A, first_B = undirected_covers(sorted(g2.neighbors(k)))[0]
+    first = {"key": first_key, "A": first_A, "B": first_B}
     i, j = fresh_labels(g2)
     rhos, Bs, merged = [], [], []
     for d in d_values:
@@ -913,6 +1019,9 @@ def hidden_anatomy(g2: nx.Graph, psi2: np.ndarray, order2: list, k,
                  max(r[1] for r in rhos) - min(r[1] for r in rhos))
     b_range = max(Bs) - min(Bs) if Bs else 0.0
     d_merged = max(abs(m[0] - merged[0][0]) for m in merged)
+    # Hidden dims retained = physical fiber dims, computed directly from
+    # the exact case analysis (no isomorphism census: J2-safe).
+    phys = physical_fiber_dims(rest_nonzero(psi2, order2, k), s)
     return {"cover_key": first["key"], "s": s,
             "n_sweep": len(d_values),
             "D_merged": float(d_merged),
@@ -920,8 +1029,7 @@ def hidden_anatomy(g2: nx.Graph, psi2: np.ndarray, order2: list, k,
             "B_range": float(b_range),
             "locally_varies": bool(max(rho_range[0], rho_range[1],
                                        b_range) > 0.0),
-            "hidden_dims_retained": inverse_dimensions(g2, psi2, order2,
-                                                       k)["d_cont_full"]}
+            "hidden_dims_retained": int(phys["d_cont_phys"])}
 
 
 def is_hidden_retained_ok(g2: nx.Graph, psi2: np.ndarray, order2: list,

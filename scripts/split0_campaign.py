@@ -145,8 +145,10 @@ def run_j2_task(bg):
     han = s0.hidden_anatomy(g, psi, order, k)
     local = s0.is_inverse_local_ok(g, psi, order, k)
     appl = s0.locality_applicability(g, order, k)
-    dims = s0.inverse_dimensions(g, psi, order, k)
+    dims = s0.inverse_dimensions_capped(g, psi, order, k)
+    qnote = s0.locality_quotient_note(g, psi, order, k)
     return _sanitize({"background": bg, "k": k, "d": dims["d"],
+                      "quotient_note": qnote,
                       "sheet_covariant": bool(sheet),
                       "hidden": bool(hidden),
                       "D_merged": han["D_merged"],

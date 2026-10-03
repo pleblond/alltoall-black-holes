@@ -252,6 +252,28 @@ def test_inverse_dimensions_allzero_single():
     assert dims["I_disc_full"] == 0.0
 
 
+def test_inverse_dimensions_capped_j2():
+    spot = s0.j2_merged_spot(4, "uniform")
+    dims = s0.inverse_dimensions_capped(spot["g"], spot["psi"],
+                                        spot["order"], spot["k"])
+    assert dims["d"] == 8
+    assert dims["n_undirected"] == 3281
+    assert dims["iso_capped"] is True
+    assert dims["n_iso_graph"] is None
+    assert 1 <= dims["n_wl_groups"] <= 3281
+    assert dims["d_cont_full"] == 2
+
+
+def test_locality_quotient_note_filed():
+    g, psi, order = _M("path4", "zero")
+    note = s0.locality_quotient_note(g, psi, order, 0)
+    assert note["applicable"] is True  # dist-3 site exists
+    assert note["before"] == 1  # all-zero: phase redundant
+    assert note["after"] == 2  # remote mutation fixes the gauge (filed)
+    g1, psi1, order1 = _M("single", "zero")
+    assert s0.locality_quotient_note(g1, psi1, order1, 0)["applicable"] is False
+
+
 # SPLIT-0F: locality ----------------------------------------------------------
 
 def test_inverse_local_tiny_cells():
