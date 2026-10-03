@@ -12130,3 +12130,51 @@ estimators (γ-aware arrival-time dimension, 3-resolving d* rule,
 far-shell-only exponent windows. No post-data bar was moved in this
 campaign: every literal failure is filed with its mechanism proof and
 control-fails-bar defense.
+
+## QDYN0B-VERDICT (filed 2026-10-03): QDYN0B-EVENT-LOCAL (51/51; frozen store with event-local energy accounting, zero Q-dynamics residual)
+
+Campaign: Q-DYN-0b — Frozen Store and Relational Energy Readout,
+surgical follow-up to Q-DYN-0 (branch
+cursor/q-dyn-0b-frozen-readout-8e3d, based on main tail cd2e96c).
+Fixed-graph waiting (H(G) = -A, J = 1, Krylov-exact),
+T_LADDER = (0,.5,1,2,4,8), DT = 0.05, T_CYC = 2.0. Q-DYN-0 apparatus
+forwarded byte-identical (main's store0.py md5-identical to the
+branch-vendored copy; no dependency changed 4454bdb..main); Q-DYN-0
+verdict + autopsy + 69 waits consumed read-only as frozen refs
+(data/qdyn0b/ref/, SOURCES.txt provenance). No original Q-DYN-0 data
+or gate rewritten. Prereg docs/qdyn0b-prereg.md FROZEN pre-data +
+Amendment-1 (pre-data backward-leg realization via negated
+Hamiltonian; no gate/bar/ladder/battery change), prediction
+QDYN0B-EVENT-LOCAL. Beast wave: 504 tasks (349 reg + 69 waitb + 10
+eigen + 12 splitback + 6 cycle + 12 sym + 10 loc + 8 hid + 12 src + 9
+multi + 6 stoch + 1 audit), xargs -P 96, 504/504 filed, 0 lost;
+files stamped _git = 601a082, analyzed at the same commit. Records
+data/qdyn0b/ (504 census + verdict.json). STORE regression: 79 fiber
+cells, 5784/5784 rows exact, bad = 0. Suite on beast: 2287 passed +
+2 skipped, test_weighted.py skipped per standing instruction; 3
+failures (test_potential / test_emergent_dim / test_tunnel) are the
+identical pre-existing set documented by Q-DYN-0 at base 4454bdb, and
+this branch modifies no existing file, so they are unrelated by
+construction. Branch pins 40/40 (test_qdyn0b 21 + test_qdyn0 19).
+
+Headline: Q frozen with all readout drift predicted by E_Q = F_R(M,Q)
+(decomposition closure exactly 0.0 on all 414 rungs, rebuild
+selfcheck 0.0, fixed-Q U1 law <= 4.4e-16, d=0 Re suppression with
+drift == dA on 34 cells, cos law exact on 35 d!=0 cells,
+current-account inversion <= 6.7e-15, splitback/cycle ledgers <=
+2.4e-14, forth-back return <= 5.4e-15, E-vendored BITWISE 0.0 vs
+Q-DYN-0 refs, R-orig preserving QDYN0-INCOMPLETE with red conjuncts
+reproduced), but E_aug = E_psi + E_G + E_Q not conserved (drift 2.05
+while E_psi + E_G conserved to 2.4e-12): R earned as an event-local
+accounting functional evaluated when the structural map executes.
+Two separate conclusions: q_dynamics_evidence = none (zero evidence
+for Q dynamics; not an event-clock statement) and
+energy_interpretation = event-local. Autopsy mechanisms gated (not
+exhibits): post-merge H(G2) residuals 0.094-0.458 on exact pre-merge
+eigenstates, true-eigenvector d=0/d!=0 split <= 3.2e-13 vs 1.7626.
+Full record: docs/qdyn0b-verdict.md.
+
+Handoff: Q is retained internal information with no earned inter-event
+clock; decay/event timing remains a separate primitive debt. No
+corrected residual remains, so no further Q-dynamics campaign is
+justified. No gate, bar, or ladder rung changed post-data.
