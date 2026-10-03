@@ -1,0 +1,188 @@
+{
+ "hex_L28": {
+  "disp_family": "hex",
+  "family_ok": true,
+  "path": "data/subclass0/desc_hex_L28.json",
+  "seconds": 0.2
+ },
+ "hex_L40": {
+  "disp_family": "hex",
+  "family_ok": true,
+  "path": "data/subclass0/desc_hex_L40.json",
+  "seconds": 0.9
+ },
+ "j2_L20": {
+  "disp_family": "j2",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2_L20.json",
+  "seconds": 0.3
+ },
+ "j2_L28": {
+  "disp_family": "j2",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2_L28.json",
+  "seconds": 0.9
+ },
+ "j2_L40": {
+  "disp_family": "j2",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2_L40.json",
+  "seconds": 4.9
+ },
+ "j2quot_L20": {
+  "disp_family": "square",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2quot_L20.json",
+  "seconds": 0.1
+ },
+ "j2quot_L28": {
+  "disp_family": "square",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2quot_L28.json",
+  "seconds": 0.2
+ },
+ "j2quot_L40": {
+  "disp_family": "square",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2quot_L40.json",
+  "seconds": 1.0
+ },
+ "j2rewire_s0": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2rewire_s0.json",
+  "seconds": 1.3
+ },
+ "j2rewire_s1": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2rewire_s1.json",
+  "seconds": 1.3
+ },
+ "j2rewire_s2": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2rewire_s2.json",
+  "seconds": 1.3
+ },
+ "j2swap8_s0": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2swap8_s0.json",
+  "seconds": 1.0
+ },
+ "j2swap8_s1": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2swap8_s1.json",
+  "seconds": 1.0
+ },
+ "j2swap8_s2": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_j2swap8_s2.json",
+  "seconds": 1.0
+ },
+ "open_70x61": {
+  "disp_family": "open_grid",
+  "family_ok": true,
+  "path": "data/subclass0/desc_open_70x61.json",
+  "seconds": 9.9
+ },
+ "ring_N1600": {
+  "disp_family": "ring",
+  "family_ok": true,
+  "path": "data/subclass0/desc_ring_N1600.json",
+  "seconds": 0.8
+ },
+ "ring_N400": {
+  "disp_family": "ring",
+  "family_ok": true,
+  "path": "data/subclass0/desc_ring_N400.json",
+  "seconds": 0.1
+ },
+ "rr3_s0": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_rr3_s0.json",
+  "seconds": 1.2
+ },
+ "rr3_s1": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_rr3_s1.json",
+  "seconds": 1.1
+ },
+ "rr3_s2": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_rr3_s2.json",
+  "seconds": 1.1
+ },
+ "rr4_s0": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_rr4_s0.json",
+  "seconds": 1.2
+ },
+ "rr4_s1": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_rr4_s1.json",
+  "seconds": 1.1
+ },
+ "rr4_s2": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_rr4_s2.json",
+  "seconds": 1.1
+ },
+ "rr8_s0": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_rr8_s0.json",
+  "seconds": 1.1
+ },
+ "rr8_s1": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_rr8_s1.json",
+  "seconds": 1.0
+ },
+ "rr8_s2": {
+  "disp_family": "none",
+  "family_ok": true,
+  "path": "data/subclass0/desc_rr8_s2.json",
+  "seconds": 1.0
+ },
+ "square_n28": {
+  "disp_family": "square",
+  "family_ok": true,
+  "path": "data/subclass0/desc_square_n28.json",
+  "seconds": 0.2
+ },
+ "square_n30": {
+  "disp_family": "square",
+  "family_ok": true,
+  "path": "data/subclass0/desc_square_n30.json",
+  "seconds": 0.3
+ },
+ "square_n40": {
+  "disp_family": "square",
+  "family_ok": true,
+  "path": "data/subclass0/desc_square_n40.json",
+  "seconds": 0.9
+ },
+ "tri_L28": {
+  "disp_family": "tri",
+  "family_ok": true,
+  "path": "data/subclass0/desc_tri_L28.json",
+  "seconds": 0.2
+ },
+ "tri_L40": {
+  "disp_family": "tri",
+  "family_ok": true,
+  "path": "data/subclass0/desc_tri_L40.json",
+  "seconds": 0.9
+ }
+}

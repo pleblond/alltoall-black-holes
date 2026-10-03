@@ -1,5 +1,19 @@
 # Changelog
 
+- **unreleased (SUBSTRATE-CLASS-0)** — Structural characterization of
+  the VAC-0 class: `src/bh_graph/subclass0.py` (exact descriptors —
+  Bloch spectrum certificates, motif counts, girth, ball volumes,
+  Fiedler locality, sheet/quotient block — 21 boolean features,
+  11 theory-justified rules, frozen verdict ladder),
+  `tests/test_subclass0.py` (36 pins), 31-cell beast descriptor
+  battery + frozen analyzer, `docs/subclass0-prereg.md` (pre-data).
+  VERDICT SUBCLASS0-PARTIAL: E/H-shell/G exact-minimal in both
+  spectral and combinatorial forms (inequivalent descriptions
+  remain); F sufficient-only; H_TAU/J without exact rules, with
+  impossibility proofs in frozen space (swap-seed F pair and ring
+  H_TAU pair share identical feature vectors); degree-preserving
+  rewires move 19–25 descriptors; sheets unnecessary for all CLASS
+  phenomena. Records under `data/subclass0/`.
 - **v5.8** — Store-and-3D release (rolls up the 2 post-v5.7 campaign
   entries below, all merged): STORE-0 reversible kept-`ξ` store (exact
   predecessor recovery + energy closure from the same content, minimal
