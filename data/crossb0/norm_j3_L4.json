@@ -1,0 +1,20 @@
+{
+ "sub": "j3",
+ "L": 4,
+ "n_nodes": 128,
+ "submax": 11.999999999999986,
+ "submin": -12.000000000000007,
+ "edge_up_dev": -1.4210854715202004e-14,
+ "edge_lo_dev": -7.105427357601002e-15,
+ "bloch_max": 12.0,
+ "intertwining": 0.0,
+ "anti_dead": 0.0,
+ "commutator": 0.0,
+ "k_identity": -2.220446049250313e-16,
+ "swap_cov": 3.469446951953614e-18,
+ "v_hermitian": 0.0,
+ "v_norm": 1.0,
+ "v_rank": 4,
+ "sig_table": {},
+ "_git": "469523987dba221349e6e092011d93b02f3e91e4"
+}
