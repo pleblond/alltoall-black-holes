@@ -160,7 +160,7 @@ def main():
         from collections import Counter
         uni = t0.tiny_universe()
         tra = t0.canonical_transitions(uni)
-        byn = t0.universe_by_n(uni())
+        byn = t0.universe_by_n(uni)
         c = Counter(r["cid"][0] for r in uni)
         a_uni = (dict(c) == {1: 1, 2: 1, 3: 2, 4: 6, 5: 21, 6: 112}
                  and len(uni) == 143)
