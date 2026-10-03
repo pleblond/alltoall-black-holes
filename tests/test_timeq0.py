@@ -292,6 +292,16 @@ def test_parallel_scan_matches_serial():
     assert len(q0._POOLS) > npool_before
 
 
+def test_parallel_grouping_matches_serial():
+    b = q0.boundary_for_task(("roundtrip", "triangle", 2))
+    a = q0.count_histories_Q(b["Xm"], b["Xp"], 2, nworkers=1)
+    p = q0.count_histories_Q(b["Xm"], b["Xp"], 2, nworkers=2)
+    assert a == p
+    s1 = q0.skeleton_Q(b["Xm"], b["Xp"], 2, nworkers=1)
+    s2 = q0.skeleton_Q(b["Xm"], b["Xp"], 2, nworkers=2)
+    assert s1 == s2
+
+
 def test_scheduler_orders_distinct_histories():
     # Q-finer classes: scheduler orders are distinct class-paths (N_Q=6)
     # while canonical reduced counting sees one class-walk (N_red=1).
