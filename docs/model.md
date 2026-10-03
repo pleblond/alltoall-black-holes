@@ -930,7 +930,7 @@ Single table; every symbol in §1–§4 appears here with its home.
   `python scripts/generate_figures.py` + `python scripts/generate_v5_figs.py`
   (86 figure files, Figs 1–75), `streamlit run app.py`.
 
-Counts above are v5.6 (`main.pdf` 12pp + `supplement.pdf` 15pp+, S1–S12, 49
+Counts above are v5.6 (`main.pdf` 13pp + `supplement.pdf` 19pp, S1–S12, 49
 references cited). The v4.1 living document stays archived as the extended
 record; v5 is canonical.
 

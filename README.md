@@ -21,8 +21,8 @@
 > with a kill-or-confirm [`protocol`](docs/observation-protocol.md),
 > plus an upper-gap null and a GW190814 audit (tension, not exclusion).
 
-> **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 12pp) ·
-> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 15pp, S1–S11) ·
+> **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 13pp) ·
+> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 19pp, S1–S12) ·
 > build [`notes`](paper/v5/README.md)
 
 ## Abstract
@@ -65,7 +65,7 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 
 | Path | Description | License |
 |---|---|---|
-| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 12pp main text + 15pp S1–S12 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
+| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 13pp main text + 19pp S1–S12 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |

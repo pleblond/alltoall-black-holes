@@ -39,7 +39,14 @@ D12 reconstruction & $\forall M_O \in \mathcal{A}_{\mathrm{macro}}$ same IR & op
 D13 causal order & D13.0 control measured; stages 1--4 open & static control measured (S11) & $V_G$, $8r{+}4$ law; family (tri/hex/Del/Lloyd/Gab/kNN/medial +, gated-wall/rewired $-$); sweep: N* O(1) range, f*→0 hypoth.; spectral $d_s$ band; twins C3 \\
 $U$-rule search & locality protection by $U$ & third pass: blind-$U$ + substrate census & blind-$U$ + admissibility; 7-substrate coord.\ verdicts; self-cal.\ census \\
 D14 pricing origin & hierarchy gain $\sim$350 & debt by elimination (measured) & basin + feedback OK; formation: DARK, NO-coex ($N^*$), SSB-1, St-0 NULL \\
-J2 micro/macro probe & quotient = square lattice & measured; working vacuum (v5.4) & quotient $4r$ exact; bipartite; perturb.\ family-typical; orient.\ absent (32 runs) \\
+J2 micro/macro probe & quotient = square lattice & measured; working vacuum (v5.4) & quotient $4r$ exact; bipartite; perturb.\ family-typical; orient.\ absent (32 runs) \\\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]\centering\scriptsize\renewcommand{\arraystretch}{0.84}
+\caption{Honesty ledger, continued: relational field program (S12). Same status words.}
+\begin{tabular}{@{}p{3.4cm} p{3.4cm} p{2.6cm} p{4.4cm}@{}}\toprule
+param & value & status & notes \\\midrule
 field postulates & $\psi{=}r{+}is$ per node, $H{=}{-}A$ & postulated FP1 / working law FP2 & one-way $G{\to}\psi$ map; not derived (S12) \\
 field anatomy & $B/J$ conjugacy $\partial E/\partial A{=}{-}2B$ & derived LAW (all simple graphs) & VAC-0A A1--A6 on hostile graphs; quadrature $B{\sim}\cos$, $J/2{\sim}\sin$ \\
 EM reading & $\psi$ is ordinary electromagnetism & rejected (EM1-FALSIFIED) & range saturates $\xi{\approx}0.53$; 1 scalar mode; no gauge redundancy; drift $v{\cdot}q$ \\
@@ -824,14 +831,20 @@ electromagnetic identification (EM1-FALSIFIED): static range saturates
 ($\xi \approx 0.53$, range 3), one propagating scalar mode, local phase
 moves $B/J/E$ by order one, nodal drift tracks $v\cdot q$ not $v|q|$;
 the conserved signed charge is sheet-tied with frozen conjugate.
-Reproduce: \path{pytest tests/test_potential.py tests/test_driven.py
-tests/test_continuum.py tests/test_falsification.py -q}.
+Reproduce:
+\begin{quote}\small
+\path{pytest tests/test_potential.py tests/test_driven.py -q}\\
+\path{pytest tests/test_continuum.py tests/test_falsification.py -q}
+\end{quote}
 Interference apparatus: two-path PASS on open square, square torus, J2,
 and the J2 quotient; FAIL on tri/hex; rewires fail the phase rung; MZ
 corridor LAW-level after a window erratum (VAC-0F: square class, not
 J2-only; H/I verdicts open).
-Reproduce: \path{pytest tests/test_slit.py tests/test_coherence.py
-tests/test_tunnel.py -q}.
+Reproduce:
+\begin{quote}\small
+\path{pytest tests/test_slit.py tests/test_coherence.py -q}\\
+\path{pytest tests/test_tunnel.py -q}
+\end{quote}
 
 \textbf{Operational geometry and quotient.} OBS-0R meets six rulers on
 J2 (balls/Hausdorff gap 0, diffusion/spectral gap 0.0005, wave gap 0.134
@@ -871,9 +884,13 @@ selects. BR-2.7 derives the no-mode verdict (BR27-NO-MODE): downhill
 scans do not fire, spectral radius exactly 1, no deformation coordinate
 in a binary graph --- one further primitive postulate required; strong
 stop on rate shopping.
-Reproduce: \path{pytest tests/test_backreaction.py tests/test_phase.py
-tests/test_rigidity.py tests/test_contraction.py tests/test_conservation.py
-tests/test_accounting.py tests/test_stability.py -q}.
+Reproduce:
+\begin{quote}\small
+\path{pytest tests/test_backreaction.py tests/test_phase.py -q}\\
+\path{pytest tests/test_rigidity.py tests/test_contraction.py -q}\\
+\path{pytest tests/test_conservation.py tests/test_accounting.py -q}\\
+\path{pytest tests/test_stability.py -q}
+\end{quote}
 
 \textbf{Dynamics completion (debt-filing).} U0: three contraction-only
 laws pass the structural gates but splits are unrealized and ties are
@@ -907,8 +924,11 @@ isolated extremal rays plus a hidden real $RP^1$ JOINT circle
 ($\pi_0 = 2$); generic eigenstates excluded; mixed beats at
 $dE = 16/8/8$ (VACCOMP0-COMPLETE). VAC-SELECT-0: predicted refusal ---
 MEASURE gate unready, 0/23 headline stages ran (VACSEL0-NOMEASURE).
-Reproduce: \path{pytest tests/test_vacfield.py tests/test_vacexc.py
-tests/test_vaccomp.py tests/test_vacselect.py -q}.
+Reproduce:
+\begin{quote}\small
+\path{pytest tests/test_vacfield.py tests/test_vacexc.py -q}\\
+\path{pytest tests/test_vaccomp.py tests/test_vacselect.py -q}
+\end{quote}
 
 \textbf{Hidden sector, linearity, response, zeros, gravity null.}
 HIDDEN-0: hidden transformations distinguish locally (5--6 orders above
@@ -935,9 +955,13 @@ $|\Delta\theta| \approx \pi$. GRAV-0: no tested strictly local
 graph-only update both preserves J2 and carries a far disturbance ---
 the carrier must come from coupled $(G,\psi)$ dynamics; the L1
 weak-field interface is not retracted.
-Reproduce: \path{pytest tests/test_hidden.py tests/test_hiddenbr.py
-tests/test_field0.py tests/test_response.py tests/test_bgresp.py
-tests/test_zero.py tests/test_zero0_campaign.py tests/test_grav0.py -q}.
+Reproduce:
+\begin{quote}\small
+\path{pytest tests/test_hidden.py tests/test_hiddenbr.py -q}\\
+\path{pytest tests/test_field0.py tests/test_response.py -q}\\
+\path{pytest tests/test_bgresp.py tests/test_zero.py -q}\\
+\path{pytest tests/test_zero0_campaign.py tests/test_grav0.py -q}
+\end{quote}
 
 \textbf{Debts (by name; D14/D15 taken).} Substrate uniqueness (VAC-0H/I);
 vacuum-field member (needs the history measure first); history measure
