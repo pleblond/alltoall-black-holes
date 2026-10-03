@@ -168,7 +168,8 @@ def wall_graph(fam, wall_cols, seed=0):
     if fam == "j2":
         g, ncut = wall_graph_j2(L_G, wall)
         _, x_of, _ = _coords_of(fam)
-        dmax = max(d for v, d in g.degree() if x_of[v] in wall)
+        # G5: LB=0 has no wall columns; mirror the non-J2 branch (dmax 0).
+        dmax = max((d for v, d in g.degree() if x_of[v] in wall), default=0)
         return g, ncut, dmax
     g = _graph_of(fam, seed)
     _, x_of, y_of = _coords_of(fam)
