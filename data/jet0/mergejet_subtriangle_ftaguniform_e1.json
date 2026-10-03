@@ -1,0 +1,161 @@
+{
+ "sub": "triangle",
+ "ftag": "uniform",
+ "member": "",
+ "edge": [
+  0,
+  2
+ ],
+ "regression_ok": true,
+ "m_u": 1,
+ "order_method": "exact",
+ "algebra_ok": true,
+ "deriv_max_resid": 0.0,
+ "deriv_ok": true,
+ "reservoir_jet_ok": true,
+ "n_alts": 56,
+ "counts": {
+  "full": 1,
+  "lower-only": 1,
+  "no": 54
+ },
+ "triviality_counts": {
+  "not-a-match": 55,
+  "T2": 1
+ },
+ "true_found": 1,
+ "true_unique": true,
+ "match_rows": [
+  {
+   "fa": 0,
+   "cover": [
+    [
+     1
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 0.0,
+   "m_u": 1,
+   "m_p": 3,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 28,
+   "cover": [
+    [
+     1
+    ],
+    [
+     1
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": true,
+   "class": "full",
+   "max_dev": 0.0,
+   "m_u": 1,
+   "m_p": 1,
+   "orientation": 1,
+   "quotient_equal": false,
+   "triviality": "T2",
+   "T2_by": "known-perm"
+  }
+ ],
+ "n_match_rows": 2,
+ "audit_rows": [
+  {
+   "fa": 0,
+   "cover": [
+    [
+     1
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "lower-only",
+   "max_dev": 0.0,
+   "m_u": 1,
+   "m_p": 3,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 1,
+   "cover": [
+    [
+     1
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 1,
+   "m_p": 3,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 2,
+   "cover": [
+    [
+     1
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 1,
+   "m_p": 3,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 3,
+   "cover": [
+    [
+     1
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 1,
+   "m_p": 3,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "theta_counterpart_ok": true,
+ "edge_pos": 1,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

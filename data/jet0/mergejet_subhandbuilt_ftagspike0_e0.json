@@ -1,0 +1,825 @@
+{
+ "sub": "handbuilt",
+ "ftag": "spike0",
+ "member": "",
+ "edge": [
+  0,
+  1
+ ],
+ "regression_ok": true,
+ "m_u": 6,
+ "order_method": "exact",
+ "algebra_ok": true,
+ "deriv_max_resid": 0.0,
+ "deriv_ok": true,
+ "reservoir_jet_ok": true,
+ "n_alts": 392,
+ "counts": {
+  "full": 1,
+  "lower-only": 27,
+  "no": 364
+ },
+ "triviality_counts": {
+  "not-a-match": 391,
+  "T2": 1
+ },
+ "true_found": 1,
+ "true_unique": true,
+ "match_rows": [
+  {
+   "fa": 1,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 17.0,
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 8,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 4.0,
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 29,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 12.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 36,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 5.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 57,
+   "cover": [
+    [
+     2
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 8.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 64,
+   "cover": [
+    [
+     2
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 11.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 85,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     3
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 7.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 92,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     3
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": true,
+   "class": "full",
+   "max_dev": 0.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": -1,
+   "quotient_equal": false,
+   "triviality": "T2",
+   "T2_by": "known-perm"
+  },
+  {
+   "fa": 113,
+   "cover": [
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 5.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 120,
+   "cover": [
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 6.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 141,
+   "cover": [
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 5.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 148,
+   "cover": [
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 6.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 169,
+   "cover": [
+    [
+     2,
+     3
+    ],
+    [
+     4
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 10.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 176,
+   "cover": [
+    [
+     2,
+     3
+    ],
+    [
+     4
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 8.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 197,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     3,
+     4
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 0.0,
+   "m_u": 6,
+   "m_p": 1,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 204,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     3,
+     4
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 0.0,
+   "m_u": 6,
+   "m_p": 1,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 225,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     4
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 6.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 232,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     4
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 1.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 253,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 12.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 260,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 5.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 281,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 6.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 288,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 1.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 309,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     4
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 11.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 316,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     4
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 4.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 337,
+   "cover": [
+    [
+     2,
+     4
+    ],
+    [
+     3
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 11.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 344,
+   "cover": [
+    [
+     2,
+     4
+    ],
+    [
+     3
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 8.0,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 365,
+   "cover": [
+    [
+     2,
+     4
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 0.0,
+   "m_u": 6,
+   "m_p": 2,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 372,
+   "cover": [
+    [
+     2,
+     4
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    -1.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 0.0,
+   "m_u": 6,
+   "m_p": 2,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "n_match_rows": 28,
+ "audit_rows": [
+  {
+   "fa": 0,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 1,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "class": "lower-only",
+   "max_dev": 17.0,
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 2,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 3,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "theta_counterpart_ok": true,
+ "edge_pos": 0,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

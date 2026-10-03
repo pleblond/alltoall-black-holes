@@ -1,0 +1,179 @@
+{
+ "verdict": "JET0-INCOMPLETE",
+ "reason": "instrument red: ['F-orbits']",
+ "n_gates": 32,
+ "n_pass": 31,
+ "gates": [
+  {
+   "gate": "count-ord",
+   "ok": true,
+   "detail": "got=17 want=17"
+  },
+  {
+   "gate": "count-mergejet",
+   "ok": true,
+   "detail": "got=235 want=235"
+  },
+  {
+   "gate": "count-splitjet",
+   "ok": true,
+   "detail": "got=79 want=79"
+  },
+  {
+   "gate": "count-samen",
+   "ok": true,
+   "detail": "got=24 want=24"
+  },
+  {
+   "gate": "count-forbit",
+   "ok": true,
+   "detail": "got=15 want=15"
+  },
+  {
+   "gate": "count-traj",
+   "ok": true,
+   "detail": "got=28 want=28"
+  },
+  {
+   "gate": "count-lower",
+   "ok": true,
+   "detail": "got=10 want=10"
+  },
+  {
+   "gate": "count-hidden",
+   "ok": true,
+   "detail": "got=24 want=24"
+  },
+  {
+   "gate": "count-source",
+   "ok": true,
+   "detail": "got=10 want=10"
+  },
+  {
+   "gate": "count-generic",
+   "ok": true,
+   "detail": "got=40 want=40"
+  },
+  {
+   "gate": "count-witness",
+   "ok": true,
+   "detail": "got=14 want=14"
+  },
+  {
+   "gate": "A-algebra",
+   "ok": true,
+   "detail": "n=299 bad=[]"
+  },
+  {
+   "gate": "B-order",
+   "ok": true,
+   "detail": "n=17 bad=[] m_ok=True"
+  },
+  {
+   "gate": "C-recurrence",
+   "ok": true,
+   "detail": "exact_bad=[] probe_ok=True "
+  },
+  {
+   "gate": "D-decoder",
+   "ok": true,
+   "detail": "3 frozen probes covariant"
+  },
+  {
+   "gate": "E-regression",
+   "ok": true,
+   "detail": "merge_bad=[] split_bad=[]"
+  },
+  {
+   "gate": "F-orbits",
+   "ok": false,
+   "detail": "n=15 bad=['forbit_traj_bare_ring-8_tiny_antibonding_json.json', 'forbit_traj_int_handbuilt_INT-hb-twospike_json.json']"
+  },
+  {
+   "gate": "G-j2neg",
+   "ok": true,
+   "detail": "want=5 got_j2=5"
+  },
+  {
+   "gate": "H-census",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "I-theta",
+   "ok": true,
+   "detail": "merge_bad=[] traj_bad=[] probe=True"
+  },
+  {
+   "gate": "J-setsurface",
+   "ok": true,
+   "detail": "theta_cov=True merge_gen=0 split_gen=0 (empty-empty equal; non-empty filed for audit)"
+  },
+  {
+   "gate": "K-crossing",
+   "ok": true,
+   "detail": "n_traj=28 bad=[]"
+  },
+  {
+   "gate": "L-orientation",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "M-lower",
+   "ok": true,
+   "detail": "n=10 bad=[]"
+  },
+  {
+   "gate": "N-hidden",
+   "ok": true,
+   "detail": "n=24 bad=[]"
+  },
+  {
+   "gate": "O-source",
+   "ok": true,
+   "detail": "n=10 bad=[]"
+  },
+  {
+   "gate": "P-generic",
+   "ok": true,
+   "detail": "n=40 bad=[]"
+  },
+  {
+   "gate": "Q-unique",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "R-compare",
+   "ok": true,
+   "detail": "six families filed"
+  },
+  {
+   "gate": "S-witness",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "X-firewall",
+   "ok": true,
+   "detail": "clean"
+  },
+  {
+   "gate": "S-report",
+   "ok": true,
+   "detail": "one rung filed (see verdict)"
+  }
+ ],
+ "classification": "INCOMPLETE",
+ "n_genuine": 0,
+ "merge_dir_genuine": 0,
+ "split_dir_genuine": 0,
+ "degen_tasks": [],
+ "k_crossed": {
+  "ordinary_n": 18,
+  "crossed": false,
+  "hits": [],
+  "n_hits": 0
+ }
+}

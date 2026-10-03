@@ -1,0 +1,41 @@
+{
+ "sub": "j2-L4",
+ "edge": [
+  0,
+  2
+ ],
+ "construction": "z1-zero",
+ "feasible": true,
+ "rank": 1,
+ "jet_abs": [
+  0.0,
+  0.0,
+  4.0
+ ],
+ "anatomy": {
+  "m": 4,
+  "d": [
+   0.0,
+   0.0
+  ],
+  "W": [
+   0.0,
+   0.0
+  ],
+  "z1": [
+   0.0,
+   0.0
+  ],
+  "R": 1.0,
+  "Delta": 2.0,
+  "full_static": false,
+  "jet_abs": [
+   0.0,
+   0.0,
+   4.0,
+   24.0
+  ]
+ },
+ "vs_static_class": "lower-only",
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

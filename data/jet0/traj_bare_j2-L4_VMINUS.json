@@ -1,0 +1,1147 @@
+{
+ "kind": "bare",
+ "sub": "j2-L4",
+ "ftag": "VMINUS",
+ "ladder": [
+  0.0,
+  0.5,
+  1.0,
+  2.0,
+  4.0,
+  8.0
+ ],
+ "dt": 0.05,
+ "cert": {
+  "is_zero": false,
+  "is_eigen": true,
+  "resid": 0.0,
+  "lam": [
+   0.0,
+   0.0
+  ]
+ },
+ "edge_ref": [
+  0,
+  2
+ ],
+ "note": "bare-evolving",
+ "n_fiber": 9520,
+ "n_rewire": 0,
+ "rungs": [
+  {
+   "t": 0.0,
+   "fiber_counts": {
+    "full": 3,
+    "lower-only": 337,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  },
+  {
+   "t": 0.5,
+   "fiber_counts": {
+    "full": 3,
+    "lower-only": 337,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  },
+  {
+   "t": 1.0,
+   "fiber_counts": {
+    "full": 3,
+    "lower-only": 337,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  },
+  {
+   "t": 2.0,
+   "fiber_counts": {
+    "full": 3,
+    "lower-only": 337,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  },
+  {
+   "t": 4.0,
+   "fiber_counts": {
+    "full": 3,
+    "lower-only": 337,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  },
+  {
+   "t": 8.0,
+   "fiber_counts": {
+    "full": 3,
+    "lower-only": 337,
+    "no": 9180
+   },
+   "fiber_full": [
+    {
+     "vi": 7476,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8512,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    },
+    {
+     "vi": 8680,
+     "cover": [
+      [
+       1,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26
+      ],
+      [
+       1,
+       3,
+       4,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       24,
+       25,
+       26,
+       27
+      ]
+     ],
+     "d": [
+      0.0,
+      0.0
+     ],
+     "triviality": "T4"
+    }
+   ],
+   "rewire_counts": {
+    "full": 0,
+    "lower-only": 0,
+    "no": 0,
+    "compat": 0
+   },
+   "rewire_full": []
+  }
+ ],
+ "crossings": [
+  {
+   "alt": "fiber:0",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:1",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:2",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:3",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:4",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:5",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:6",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:7",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:8",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:9",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:10",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:11",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:12",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:13",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:14",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:15",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:16",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:17",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:18",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:19",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:20",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:21",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:22",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:23",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:24",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:25",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:26",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:27",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:28",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:29",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:30",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:31",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:32",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:33",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:34",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:35",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:36",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:37",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:38",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:39",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:40",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:41",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:42",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:43",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:44",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:45",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:46",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  },
+  {
+   "alt": "fiber:47",
+   "class": "never",
+   "zeros": [],
+   "orientation": null
+  }
+ ],
+ "n_crossed": 0,
+ "theta_history_ok": true,
+ "theta_history": {
+  "t": 2.0,
+  "d_theta": [
+   0.0,
+   0.0
+  ],
+  "conj_d_back": [
+   2.7755575615628914e-16,
+   6.322249474307164e-16
+  ],
+  "dev": 6.904676545134185e-16
+ },
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}
