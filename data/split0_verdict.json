@@ -1,0 +1,70 @@
+{
+ "gates": [
+  {
+   "gate": "H-A-graph",
+   "ok": true,
+   "detail": "n=76 bad=0"
+  },
+  {
+   "gate": "H-B-roundtrip",
+   "ok": true,
+   "detail": "n=824 bad=0"
+  },
+  {
+   "gate": "H-C-minimal",
+   "ok": true,
+   "detail": "n=76 bad=0 drop_cover_cells=72"
+  },
+  {
+   "gate": "H-D-covariance",
+   "ok": true,
+   "detail": "cells=76 bad=0 sheet_bad=[]"
+  },
+  {
+   "gate": "M-E-dims",
+   "ok": true,
+   "detail": "d_cont_values=[1, 2] max=2"
+  },
+  {
+   "gate": "M-F-local",
+   "ok": true,
+   "detail": "cells=76 bad=0 nontrivial_tiny=24 nontrivial_j2=3/3"
+  },
+  {
+   "gate": "M-G-hidden",
+   "ok": true,
+   "detail": "cells=76 bad=0 j2_bad=[]"
+  },
+  {
+   "gate": "M-H-detcore",
+   "ok": true,
+   "detail": "halves_det=4 (d0_only=True) full_det=0 need_residual=76"
+  },
+  {
+   "gate": "M-C-reverse",
+   "ok": true,
+   "detail": "n=60 rev=36 graph_only=24 one_way=0"
+  },
+  {
+   "gate": "M-J-nomeasure",
+   "ok": true,
+   "detail": "cells=76 bad=0 firewall=True"
+  }
+ ],
+ "hard_ok": true,
+ "census": {
+  "n_cells": 76,
+  "n_halves_deterministic": 4,
+  "n_need_residual": 76,
+  "d_cont_max": 2
+ },
+ "verdict": "SPLIT0-MIXED",
+ "interpretation": "deterministic core nonempty (halves d=0) while other cells need residual info",
+ "provenance": {
+  "git": "45be554f9f6ef74f3279cda3ac484d2c9808a8c5",
+  "platform": "Linux-6.17.0-1017-aws-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "workers": 64,
+  "elapsed_s": 46.0
+ }
+}
