@@ -38,14 +38,32 @@ P_-=\frac{|d|^2}{|s|^2+|d|^2}
 =\frac12-\frac{B_{ij}}{q_{ij}},\qquad
 P_+=\frac12+\frac{B_{ij}}{q_{ij}}.
 \end{equation}
-Furthermore \(|B_{ij}|\le q_{ij}/2\), with equality if and only if
-\(\psi_i\) and \(\psi_j\) are nonnegative real multiples of one complex phase.
+Furthermore \(|B_{ij}|\le q_{ij}/2\).
+If \(q_{ij}=0\), both sides vanish.
+If \(q_{ij}>0\), equality holds if and only if \(|\psi_i|=|\psi_j|\) and the
+relative phase is \(0\) or \(\pi\).
+Phase \(0\) gives \(B_{ij}=+q_{ij}/2\).
+Phase \(\pi\) gives \(B_{ij}=-q_{ij}/2\).
 \end{lemma}
 
 \begin{proof}
 Expand \(|\psi_i\pm\psi_j|^2\).
 The cross term is \(2\Re(\psi_i^*\psi_j)\).
-Cauchy--Schwarz gives the bound on \(B_{ij}\).
+The bound is
+\[
+|B_{ij}|
+=|\Re(\psi_i^*\psi_j)|
+\le|\psi_i||\psi_j|
+\le\frac{q_{ij}}{2}.
+\]
+The first inequality is equality when \(\psi_i^*\psi_j\) is real, and the second
+when the moduli agree.
+If \(q_{ij}>0\) and either modulus vanishes, then \(B_{ij}=0<q_{ij}/2\).
+If the moduli agree and the product is positive real, a common phase
+factors out, the relative phase is \(0\), and
+\(B_{ij}=|\psi_i|^2=q_{ij}/2\).
+If the product is negative real, the relative phase is \(\pi\) and
+\(B_{ij}=-q_{ij}/2\).
 The unitary modes \(\alpha=s/\sqrt{2}\) and \(\beta=d/\sqrt{2}\)
 produce the same ratio \(P_-\), because the factors of \(2\) cancel.
 \end{proof}
@@ -88,7 +106,8 @@ s_e=h_2(P_-),\qquad
 h_2(p)=-p\log_2 p-(1-p)\log_2(1-p).
 \end{equation}
 Then \(0\le s_e\le 1\), with \(s_e=1\) if and only if \(B_{ij}=0\),
-and \(s_e=0\) at the Cauchy--Schwarz ends.
+and \(s_e=0\) at both endpoints of Lemma~\ref{lem:bond-expand},
+relative phase \(0\) and relative phase \(\pi\).
 This \(s_e\) is the uncertainty of one projective \(\pm\) measurement.
 It is not the von Neumann entropy of a pure global state.
 It does not see the phase of \(d\) relative to \(s\).
@@ -188,6 +207,40 @@ The normalised all-ones vector on \(K_N\), which is the ground state of
 \(H=-A\), has \(B_{ij}/q_{ij}=1/2\) on every edge, hence \(P_-=0\) and \(h_2=0\).
 \end{proposition}
 
+\begin{proposition}
+\label{prop:oddsat}
+Let \(\psi\) be a sheet-odd state on one copy of \(J_2\) or of \(J_3\),
+with cell function \(u\), so the two bits of a cell \(c\) carry \(u(c)\)
+and \(-u(c)\).
+Wherever \(u(c)\neq 0\), the pair of bits saturates the negative endpoint
+of Lemma~\ref{lem:bond-expand}:
+\[
+B=-|u(c)|^2=-\frac q2,\qquad P_-=1,\qquad h_2(P_-)=0,
+\]
+and the rung current \(\Im\bigl(u(c)^*(-u(c))\bigr)\) vanishes.
+If \(\psi\) is normalised, the sum of these rung bonds equals \(-1/2\).
+On the \(L\)-torus the space of such states has dimension \(L^2\) for
+\(J_2\) and \(L^3\) for \(J_3\).
+The sum of \(h_2\) over occupied rungs is \(0\) on every state in that space.
+\end{proposition}
+
+\begin{proof}
+Lemmas~\ref{lem:sectors} and~\ref{lem:j3sectors} are the odd splitting:
+the two bits are opposite and the state is a zero mode of \(H=-A\).
+The rung is not an edge of either graph.
+On it,
+\(B=\Re\bigl(u(c)^*(-u(c))\bigr)=-|u(c)|^2\) and \(q=2|u(c)|^2\),
+so \(B=-q/2\).
+The moduli agree and the relative phase is \(\pi\).
+Equation~\eqref{eq:Pminus} gives \(P_-=1\), and \(h_2(1)=0\).
+The product \(u(c)^*(-u(c))\) is real, so the current is zero.
+Normalisation is \(2\sum_c|u(c)|^2=1\), and summing the rung bonds produces
+\(-\sum_c|u(c)|^2=-1/2\).
+The cell function \(u\) is arbitrary, which is the dimension count in the
+two lemmas.
+Each occupied rung contributes \(h_2=0\).
+\end{proof}
+
 A flat-magnitude random-phase vector is Proposition~\ref{prop:arcsine},
 not Theorem~\ref{thm:haar}.
 The two means differ:
@@ -281,11 +334,28 @@ enter \(H\) (the store is frozen between events), the Jacobian on the
 An area law for this kernel would need either \(N_Q\) itself of order \(b\),
 or an imprint whose rank cancels the bulk and leaves a boundary layer.
 Neither is implied by \(H=-A\) or by the sum map.
-You could have a volume law for \(D_Q\) and, on a different set of edges,
-an area law for \(\sum h_2\).
-They count different things: interior relative modes, and leg channels.
+Three counts sit side by side and are not interchangeable.
+The continuous store dimension is \(D_Q=2N_d\), up to the all-zero
+correction \(D_c\) already in the ledger.
+The optional qubit weight of one selected channel is \(h_2(P_-)\).
+The third count is the number of boundary channels in the sum.
+The area sum is the product of the second with the third,
+\[
+S_Q=\sum_e h_2(P_{-,e}),
+\]
+the sum running over those channels.
+It is not \(D_Q\), and it is not a count of every hidden interior mode.
+A volume law for \(D_Q\) and an area law for \(S_Q\) can hold together:
+one grows with the interior merges, the other with the number of boundary
+channels, each weighted by \(h_2\).
+You could regard BHQENT0 as a reading of \(D_Q\), and BHQAREA0 as a reading
+of \(S_Q\).
 Promoting the factor \(2\) in \(D_Q=2N_d\) to two bits per merge
-is a third count, distinct from I1a's one bit per saturated leg.
+is yet another count, distinct from I1a's one bit per saturated leg.
+Proposition~\ref{prop:oddsat} is the same separation on the flat band.
+A normalised sheet-odd state saturates every occupied rung at phase
+\(\pi\), so the sum of \(h_2\) over those rungs is \(0\), while the space
+of such states has dimension equal to the number of cells.
 
 \section{One length in the chain weave}
 \label{sec:ell}
@@ -456,6 +526,7 @@ of the earned unitary, and a motif with such an eigenvalue as a spectral
 bound state.
 The flat band on pure \(J_2\) is a protected kernel, extensive in the
 sheet-antisymmetric sector, and it does not propagate in the quotient.
+What one stitch does to that kernel is Section~\ref{sec:stitch}.
 
 The event account \(R=A_{\mathrm{coef}}+|d|^2/2+\Re(\bar d\, W)\)
 telescopes along a sequence of merges to the change in known energy.
@@ -478,6 +549,2468 @@ Isolated \(K_n\) has spectrum \(\{-(n-1)\}\) once and \(\{+1\}\) with
 multiplicity \(n-1\).
 Only the ground level can sit below \(-8\), and only for \(n\ge 10\).
 The level \(+1\) lies in \([-8,8]\).
+
+\section{One stitch and the flat band}
+\label{sec:stitch}
+
+The eight generators of \(J_2\) are the axis steps
+\((\pm 1,0)\) and \((0,\pm 1)\), each once with the sheet bit fixed and
+once with the sheet bit flipped.
+On the sheet with bit \(1\) the axes in the group law are swapped.
+At hopping \(1\), \(H=-A\).
+
+\begin{lemma}
+\label{lem:sectors}
+If \(\psi(x,y,1)=-\psi(x,y,0)\) at every cell, then \(A\psi=0\).
+If \(\psi(x,y,1)=\psi(x,y,0)=\varphi(x,y)\), then
+\[
+(A\psi)(x,y,b)=2(A_\square\varphi)(x,y)
+\]
+at both values of the bit, where \(A_\square\) is the adjacency of the
+square lattice.
+The eigenvalues of \(H\) on the even Bloch waves are therefore
+\(-4(\cos q_x+\cos q_y)\), and every odd state is a zero mode.
+On the \(L\)-torus the odd space has dimension \(L^2\).
+\end{lemma}
+
+\begin{proof}
+At bit \(0\) the eight neighbours of \((x,y)\) are the four adjacent cells
+on bit \(0\) and the same four cells on bit \(1\).
+An odd state assigns opposite amplitudes to those two bits, so the eight
+terms cancel in pairs.
+At bit \(1\) the swapped axes still reach exactly the same four adjacent
+cells, on each bit, and the same cancellation applies.
+An even state assigns the same amplitude \(\varphi\) on both bits, so each
+pair of neighbours contributes \(2\varphi\), which is \(2(A_\square\varphi)\).
+The symbol of \(A_\square\) is \(2(\cos q_x+\cos q_y)\), and \(H=-A\)
+contributes a further minus sign together with that factor \(2\).
+The odd space is a free function of the cell, hence dimension \(L^2\).
+\end{proof}
+
+A stitch is one added edge of hopping \(1\) between a vertex \(a\) on one
+copy of this graph and a vertex \(b\) on another copy.
+The perturbation of \(H\) is
+\(V=-(|a\rangle\langle b|+|b\rangle\langle a|)\).
+The two copies do not meet in \(H_0\), so the resolvent of \(H_0\) is
+diagonal across copies.
+
+\begin{proposition}
+\label{prop:green}
+For \(E\notin[-8,8]\) the diagonal resolvent entry of one copy is independent
+of the vertex.
+For \(E>8\),
+\begin{equation}
+\label{eq:Gell}
+\mathcal{G}(E)
+=\frac{1}{2E}+\frac{1}{\pi E}\,K\Bigl(\frac{8}{E}\Bigr),
+\qquad
+K(k)=\int_0^{\pi/2}\frac{d\theta}{\sqrt{1-k^2\sin^2\theta}}.
+\end{equation}
+The function is odd, \(\mathcal{G}(-E)=-\mathcal{G}(E)\), wherever both sides are defined.
+On \((8,\infty)\) it is strictly decreasing, from \(+\infty\) down to \(0\).
+\end{proposition}
+
+\begin{proof}
+In the Bloch basis of Lemma~\ref{lem:sectors} the sheet block at momentum
+\(q\) has eigenvalues \(0\) and \(\varepsilon(q)=-4(\cos q_x+\cos q_y)\),
+with equal diagonal weight \(1/2\) in either bit.
+Hence
+\[
+\mathcal{G}(E)=\frac{1}{2E}
++\frac12\int_{[0,2\pi]^2}\frac{d^2q}{(2\pi)^2}\,
+\frac{1}{E-\varepsilon(q)},
+\]
+for \(E\) outside the range of \(\varepsilon\), which is \([-8,8]\).
+The shift \(q\mapsto q+(\pi,\pi)\) sends \(\varepsilon\) to \(-\varepsilon\) and
+preserves the measure, so the integral is an odd function of \(E\), and
+so is \(1/(2E)\).
+
+For the closed form, write \(E-\varepsilon(q)=E+4(\cos q_x+\cos q_y)\) and
+\[
+\int\frac{d^2q}{(2\pi)^2}\,\frac{1}{E-\varepsilon(q)}
+=\frac14\int\frac{d^2q}{(2\pi)^2}\,
+\frac{1}{a+\cos q_x+\cos q_y},
+\qquad a=\frac{E}{4}>2.
+\]
+Shifting both angles by \(\pi\) replaces the denominator by
+\(a-\cos q_x-\cos q_y\).
+The inner average is a contour integral.
+With \(z=e^{i\phi}\),
+\[
+\frac{1}{2\pi}\int_0^{2\pi}\frac{d\phi}{b-\cos\phi}
+=\frac{1}{\sqrt{b^2-1}},\qquad b>1,
+\]
+because the integrand becomes
+\(2i\,dz/((z-z_+)(z-z_-))\) with poles
+\(z_\pm=b\pm\sqrt{b^2-1}\), only \(z_-\) inside the unit circle, and the
+residue computation produces this value.
+The condition \(b=a-\cos q_x>1\) holds for all \(q_x\) precisely when \(a>2\).
+The momentum integral therefore equals
+\[
+J(a)=\frac{1}{2\pi}\int_0^{2\pi}
+\frac{dk}{\sqrt{(a-\cos k)^2-1}}
+=\frac{2}{\pi a}\,K\Bigl(\frac{2}{a}\Bigr).
+\]
+The evaluation of \(J\) is the substitution \(t=\tan(k/2)\) on \((0,\pi)\),
+followed by \(t=\sqrt{(a-2)/a}\,\tan\theta\).
+It produces the modulus \(2/a\).
+Since \(a=E/4\), one has \(2/a=8/E\), and
+\[
+\frac12\cdot\frac14\cdot J(a)
+=\frac{1}{\pi E}\,K\Bigl(\frac{8}{E}\Bigr).
+\]
+Adding the flat pole \(1/(2E)\) gives \eqref{eq:Gell}.
+
+Each summand \(1/(E-\varepsilon(q))\) is strictly decreasing for \(E>8\), so
+\(\mathcal{G}\) is strictly decreasing.
+As \(E\to\infty\), \(\mathcal{G}(E)\to 0\).
+As \(E\downarrow 8\), \(K(8/E)\to\infty\) because the integrand of \(K\)
+ceases to be integrable at modulus \(1\), so \(\mathcal{G}(E)\to+\infty\).
+\end{proof}
+
+\begin{proposition}
+\label{prop:stitch}
+Let \(H=H_0+V\) be two copies joined by one stitch.
+An energy \(E\notin[-8,8]\) is an eigenvalue if and only if \(\mathcal{G}(E)^2=1\).
+There is a unique \(E_*>8\) with \(G(E_*)=1\), and the partner \(-E_*\) is the
+unique solution of \(\mathcal{G}(E)=-1\) below \(-8\).
+These two eigenvalues lie outside the essential spectrum, which
+Proposition~\ref{prop:clique} keeps equal to \([-8,8]\) together with the
+flat band.
+The distance above the edge admits the expansion
+\begin{equation}
+\label{eq:Estar}
+\ln\frac{1}{E_*-8}=15\pi-6\ln 2-16\pi\, r(E_*-8),
+\end{equation}
+where \(r(\delta)\to 0\) as \(\delta\downarrow 0\), and \(r(E_*-8)\) is the
+value of that remainder at the root.
+\end{proposition}
+
+\begin{proof}
+The eigenvalue equation \((E-H_0)\psi=V\psi\) gives
+\[
+\psi=-\mathcal{G}_0(E)\bigl(\psi(b)\,|a\rangle+\psi(a)\,|b\rangle\bigr).
+\]
+Off-diagonal blocks of \(\mathcal{G}_0\) between the copies vanish, so
+\(\psi(a)=-\mathcal{G}(E)\psi(b)\) and \(\psi(b)=-\mathcal{G}(E)\psi(a)\).
+A solution with \(\psi(a)\) or \(\psi(b)\) nonzero exists exactly when
+\(\mathcal{G}(E)^2=1\).
+Proposition~\ref{prop:green} supplies one root of \(G=1\) in \((8,\infty)\)
+and, by oddness, one root of \(G=-1\) in \((-\infty,-8)\).
+A finite-rank perturbation does not move the essential spectrum, so
+\(\pm E_*\) are discrete.
+
+For the logarithm, the representation
+\[
+K(k)=\int_0^\infty\frac{dt}{\sqrt{(1+t^2)(1+k'^2 t^2)}},
+\qquad k'=\sqrt{1-k^2},
+\]
+follows from \(t=\tan\theta\).
+Equivalently, with \(u=k't\),
+\[
+K(k)=\int_0^\infty\frac{du}{\sqrt{(u^2+k'^2)(1+u^2)}}.
+\]
+Splitting at \(u=1\) gives the identity
+\begin{align*}
+K(k)-\ln\frac{2}{k'}
+&=\int_0^1\frac{1}{\sqrt{u^2+k'^2}}
+\Bigl(\frac{1}{\sqrt{1+u^2}}-1\Bigr)\,du\\
+&\quad+\int_1^\infty\frac{du}{\sqrt{(u^2+k'^2)(1+u^2)}}
++\ln\frac{1+\sqrt{1+k'^2}}{2},
+\end{align*}
+because
+\[
+\int_0^1\frac{du}{\sqrt{u^2+k'^2}}=\ln\frac{1+\sqrt{1+k'^2}}{k'}.
+\]
+As \(k'\to 0\) the logarithm tends to \(0\) and the integrands increase to
+their pointwise limits, which are integrable, so
+\[
+K(k)-\ln\frac{2}{k'}\to
+\int_0^1\frac1u\Bigl(\frac{1}{\sqrt{1+u^2}}-1\Bigr)\,du
++\int_1^\infty\frac{du}{u\sqrt{1+u^2}}.
+\]
+Those two integrals sum to \(\ln 2\).
+The first of those is \(\ln 2-\ln(1+\sqrt{2})\) after
+\(w=u^2\) and \(\sqrt{1+w}=s\); the second is \(\operatorname{arsinh} 1=\ln(1+\sqrt{2})\).
+Thus \(K(k)=\ln(4/k')+o(1)\) as \(k'\to 0\).
+
+At \(E=8+\delta\) the modulus in \eqref{eq:Gell} is \(k=8/E\), so
+\[
+k'=\sqrt{1-\frac{64}{E^2}}
+=\frac{\sqrt{\delta(16+\delta)}}{8+\delta}
+\]
+and
+\[
+\ln\frac{4}{k'}=\frac12\ln\frac1\delta+3\ln 2+\eta(\delta),
+\]
+with \(\eta(\delta)\to 0\) as \(\delta\downarrow 0\).
+Dividing by \(\pi E\) and adding \(1/(2E)\) produces
+\[
+G(8+\delta)
+=\frac{1}{16\pi}\ln\frac1\delta+\frac1{16}+\frac{3\ln 2}{8\pi}+r(\delta),
+\]
+where the remainder \(r(\delta)\) tends to \(0\) as \(\delta\downarrow 0\).
+Rearrangement at the unique root of \(G=1\) is \eqref{eq:Estar}.
+\end{proof}
+
+The values \(\pm 1/2\) are the eigenvalues of the stitch projected onto the
+odd sector: the normalised odd state has amplitude \(1/\sqrt{2}\) on the
+touched bit, and the two copies couple with matrix element of absolute
+value \(1/2\).
+Both numbers lie in \((-8,8)\).
+Inside that interval the resolvent is not the real function \eqref{eq:Gell},
+and \(\mathcal{G}(E)=\pm 1\) has no solution there.
+The projection onto the flat band is not the spectrum of \(H\).
+
+\begin{proposition}
+\label{prop:endpoint}
+Normalise the bound state at \(E_*\) with \(\mathcal{G}(E_*)=1\).
+Its values at the two endpoints are opposite, the stitch bond saturates
+the negative endpoint of Lemma~\ref{lem:bond-expand}, and
+\[
+|\psi(a)|^2=|\psi(b)|^2=\frac{1}{2\bigl(-\mathcal{G}'(E_*)\bigr)}
+=-\,B_{ab}.
+\]
+The partner at \(-E_*\) saturates the positive endpoint, with the same
+endpoint weight.
+In both cases
+\begin{equation}
+\label{eq:endwt}
+\lim\frac{|\psi(a)|^2}{|E|-8}=8\pi,
+\end{equation}
+the limit being taken at \(E=\pm E_*\).
+\end{proposition}
+
+\begin{proof}
+The resolvent identity in the proof of Proposition~\ref{prop:stitch} gives
+\(\psi(a)=-\mathcal{G}(E)\psi(b)\).
+At \(E_*\) one has \(\psi(a)=-\psi(b)\).
+For real \(E\) outside the spectrum, \((E-H_0)^{-1}\) is real symmetric, so a
+global phase makes \(\psi\) real.
+Thus \(B_{ab}=\psi(a)\psi(b)=-|\psi(a)|^2\) and \(q_{ab}=2|\psi(a)|^2\).
+The moduli agree and the relative phase is \(\pi\).
+At \(-E_*\) one has \(\mathcal{G}=-1\), so \(\psi(a)=\psi(b)\) and the phase is \(0\).
+
+Differentiating the resolvent gives
+\(\|(E-H_0)^{-1}|a\rangle\|^2=-\mathcal{G}'(E)\).
+The two copies are orthogonal, and
+\[
+\psi=-\psi(b)\,(E-H_0)^{-1}|a\rangle-\psi(a)\,(E-H_0)^{-1}|b\rangle.
+\]
+Normalisation at either root, where \(|\psi(a)|=|\psi(b)|\) and
+\(\mathcal{G}'(-E_*)=\mathcal{G}'(E_*)\) because \(\mathcal{G}\) is odd, produces
+the displayed weight. The bond is then \(\mp|\psi(a)|^2\).
+
+For the limit, write \(E=8+\delta\) and \(k'=k'(8/E)\) as in the proof of
+Proposition~\ref{prop:stitch}, and set
+\(\rho(\delta)=K(8/E)-\ln(4/k')\).
+That proof gives \(\rho(\delta)\to 0\), and
+\[
+\ln\frac4{k'}=\frac12\ln\frac1\delta+3\ln 2+\eta(\delta)
+\]
+with \(\eta(\delta)=\ln\bigl((8+\delta)/(2\sqrt{16+\delta})\bigr)\), so
+\(\eta'(\delta)\) stays bounded.
+Thus
+\[
+\mathcal{G}(E)
+=\frac{1}{2E}+\frac{\ln(1/\delta)}{2\pi E}+\frac{3\ln 2+\eta(\delta)}{\pi E}
++\frac{\rho(\delta)}{\pi E}.
+\]
+Multiplying the derivative of \(\ln(1/\delta)/(2\pi E)\) by \(\delta\)
+produces \(-1/(16\pi)\) in the limit.
+Every term built from \(1/E\), \(\eta\), or \(\rho\) without a derivative
+of \(\rho\) contributes \(o(1/\delta)\) to \(\mathcal{G}'\).
+
+It remains to show \(\delta\rho'(\delta)\to 0\).
+Differentiate the integral identity for \(K-\ln(2/k')\) in that proof.
+The derivative in \(k'\) of each integrand is bounded by a multiple of
+\(k'(u^2+k'^2)^{-3/2}\).
+On \([0,1]\) the weight \(1-1/\sqrt{1+u^2}\) is \(O(u^2)\), and the
+substitution \(u=k'v\) returns a factor \(k'\log(1/k')\).
+On \([1,\infty)\) the integral is \(O(k')\).
+Hence \(d\rho/dk'=O\bigl(k'\log(1/k')\bigr)\).
+The explicit formula for \(k'\) gives \(dk'/d\delta=O(\delta^{-1/2})\), so
+\(\rho'(\delta)=O\bigl(\log(1/\delta)\bigr)\) and \(\delta\rho'\to 0\).
+
+Therefore \(\delta\bigl(-\mathcal{G}'(8+\delta)\bigr)\to 1/(16\pi)\).
+Dividing the endpoint weight by \(\delta\) produces \(8\pi\).
+The value at \(-E_*\) is the same because \(\mathcal{G}'\) is even.
+\end{proof}
+
+\begin{proposition}
+\label{prop:weak}
+Replace the stitch by an edge of hopping \(t\neq 0\), with perturbation
+\(-t(|a\rangle\langle b|+|b\rangle\langle a|)\).
+There is a unique root \(E_+(t)>8\) of \(\mathcal{G}(E)=1/|t|\), and the partner
+\(-E_+(t)\) is the unique root of \(\mathcal{G}(E)=-1/|t|\) below \(-8\).
+On the normalised upper state the endpoint weight is
+\[
+|\psi(a)|^2=|\psi(b)|^2
+=\frac{1}{2t^2\bigl(-\mathcal{G}'(E_+(t))\bigr)},
+\]
+the two moduli agree, and the relative phase is \(\pi\) when \(t>0\) and
+\(0\) when \(t<0\).
+The lower state has the same weight and the opposite phase.
+As \(t\to 0\),
+\begin{equation}
+\label{eq:weak}
+|\psi(a)|^2
+=512\pi\, e^{\pi}\, t^{-2}\exp\Bigl(-\frac{16\pi}{|t|}\Bigr)
+\bigl(1+o(1)\bigr).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The resolvent step of Proposition~\ref{prop:stitch} acquires a factor \(t\),
+so \(\psi(a)=-t\mathcal{G}(E)\psi(b)\) and
+\(t^2\mathcal{G}(E)^2=1\).
+On \((8,\infty)\) the function \(\mathcal{G}\) falls from \(+\infty\) to \(0\),
+so it meets \(1/|t|\) once.
+Oddness supplies the partner.
+The norm computation of Proposition~\ref{prop:endpoint} acquires \(t^2\) in
+front of each copy and gives the weight.
+The phase is the sign of \(-t\mathcal{G}(E_+(t))=-\operatorname{sign}(t)\).
+
+For the asymptotic, the expansion in the proof of
+Proposition~\ref{prop:stitch} reads
+\[
+\mathcal{G}(8+\delta)
+=\frac{1}{16\pi}\ln\frac1\delta
++\frac1{16}+\frac{3\ln 2}{8\pi}+r(\delta),
+\]
+with \(r(\delta)\to 0\).
+Setting this equal to \(1/|t|\) and using
+\(16\pi(1/16+3\ln 2/(8\pi))=\pi+6\ln 2\) gives
+\[
+\ln\frac1\delta
+=\frac{16\pi}{|t|}-\pi-6\ln 2-16\pi\, r(\delta).
+\]
+Hence
+\(\delta=64 e^{\pi}\exp(-16\pi/|t|)\,e^{16\pi r(\delta)}\).
+The root tends to the edge, so the remainder tends to \(0\).
+Proposition~\ref{prop:endpoint} gives
+\(\delta\bigl(-\mathcal{G}'(8+\delta)\bigr)\to 1/(16\pi)\), and therefore
+\[
+|\psi(a)|^2
+=\frac{8\pi\,\delta}{t^2}\bigl(1+o(1)\bigr).
+\]
+Inserting \(\delta\) produces \eqref{eq:weak}.
+The lower state has the same weight because \(\mathcal{G}'\) is even.
+\end{proof}
+
+\begin{proposition}
+\label{prop:stubs}
+Every eigenstate of \(H_0\) that vanishes at both endpoints of the stitch
+remains an eigenstate of \(H_0+V\) with the same energy.
+On the \(L\)-torus the joint evaluation \(\psi\mapsto(\psi(a),\psi(b))\) is
+surjective on \(\ker H_0\), so the nullity drops by exactly \(2\).
+The two lost dimensions reappear as the two eigenvalues of the torus
+outside \([-8,8]\).
+In the infinite-sheet limit those eigenvalues are the pair \(\pm E_*\) of
+Proposition~\ref{prop:stitch}.
+An odd state on a copy remains a zero mode precisely when its cell
+function vanishes at the cell of that copy's endpoint.
+The bit of the endpoint does not impose a second condition.
+\end{proposition}
+
+\begin{proof}
+If \(H_0\psi=E\psi\) and \(\psi(a)=\psi(b)=0\), then \(V\psi=0\).
+The odd state supported on the first copy, with cell function a delta at
+the cell of \(a\), is a zero mode by Lemma~\ref{lem:sectors} and takes a
+nonzero value at \(a\) and the value \(0\) at \(b\).
+The symmetric construction on the second copy separates the two
+coordinates, so the evaluation has rank \(2\).
+On the \(L\)-torus, where the kernel is finite,
+\[
+\dim\bigl(\ker H_0\cap\{\psi(a)=\psi(b)=0\}\bigr)=\dim\ker H_0-2.
+\]
+The perturbed kernel is no larger.
+If \((H_0+V)\psi=0\), then \(H_0\psi=\psi(b)|a\rangle+\psi(a)|b\rangle\).
+Every \(\varphi\in\ker H_0\) is orthogonal to \(H_0\psi\), so
+\(\psi(b)\,\varphi(a)^*+\psi(a)\,\varphi(b)^*=0\).
+The two test states force \(\psi(a)=\psi(b)=0\), and therefore \(H_0\psi=0\).
+On an odd state the two bits of a cell carry opposite nonzero multiples of
+the same cell amplitude, so vanishing at either bit is the condition that
+the cell amplitude vanish.
+\end{proof}
+
+\begin{proposition}
+\label{prop:cellpole}
+Outside the spectrum of one copy, the resolvent between vertices
+\((x,b)\) and \((y,b')\) is
+\begin{equation}
+\label{eq:cellpole}
+\langle x,b|(E-H)^{-1}|y,b'\rangle
+=\frac{\delta_{xy}}{2E}\,s(b,b')
++\frac12\bigl[(E+2A_\square)^{-1}\bigr]_{xy},
+\end{equation}
+where \(s(b,b')=+1\) when the bits agree and \(s(b,b')=-1\) when they differ.
+The first term is the flat band. It is supported on a single cell.
+The second term is the resolvent of \(-2A_\square\) and does not see the bit.
+On \(J_3\) the same formula holds with \(A_{\mathrm{cubic}}\) in place of
+\(A_\square\), for \(E\notin[-12,12]\).
+\end{proposition}
+
+\begin{proof}
+Lemma~\ref{lem:sectors} splits the Hilbert space into odd and even states,
+and \(H\) preserves both. On the odd summand \(H=0\), so the resolvent is
+\(1/E\). The odd projector acts cell by cell: its matrix on the two bits is
+\(\tfrac12\begin{pmatrix}1&-1\\-1&1\end{pmatrix}\), and it has no entry
+between distinct cells. That is the first term.
+On the even summand the map \(\varphi\mapsto\psi\), with both bits equal to
+\(\varphi/\sqrt{2}\), intertwines \(H\) with \(-2A_\square\).
+A site vector's even part is independent of the bit and equals that map
+applied to \(e_x/\sqrt{2}\). The resulting matrix element is half the
+square-lattice resolvent, for every pair of bits.
+The \(J_3\) case is the same splitting from Lemma~\ref{lem:j3sectors}.
+\end{proof}
+
+The flat pole does not couple distinct cells. In the compressed resolvent
+of several stubs, a \(1/E\) entry appears only when two stubs occupy the
+same cell, and then only with the sign \(s(b,b')\). Stubs in different
+cells communicate through \(-2A_\square\) alone.
+
+For a finite set of stitches, with adjacency \(A_W\) supported on the stub
+set \(\Sigma\), the same resolvent identity says that
+\(E\notin[-8,8]\) is an eigenvalue if and only if
+\begin{equation}
+\label{eq:detstitch}
+\det\bigl(I+\mathcal{G}_\Sigma(E)\,A_W\bigr)=0,
+\end{equation}
+where \(\mathcal{G}_\Sigma(E)\) is the resolvent of \(H_0\) compressed to \(\Sigma\).
+It is block diagonal across copies.
+If the stitches form a matching and each copy carries at most one stub,
+then \(\mathcal{G}_\Sigma\) is a scalar matrix \(\mathcal{G}(E)I\) and \(A_W\) is a permutation of
+disjoint transpositions, so \eqref{eq:detstitch} reduces to \(\mathcal{G}(E)^2=1\)
+with multiplicity equal to the number of stitches.
+Odd zero modes survive on each copy subject to one linear condition per
+distinct stub cell of that copy.
+Cells touched twice, or on both bits, still impose one condition.
+A sheet with no stub keeps its whole odd kernel.
+The count of surviving flat zeros is fixed by the set of stub cells, not
+by the number of stitches and not by \(\ell_W\).
+
+\section{The same stitch on \texorpdfstring{\(J_3\)}{J3}}
+\label{sec:stitch3}
+
+The twelve generators of \(J_3\) are the axis steps \(\pm e_1,\pm e_2,\pm e_3\),
+each once with the sheet bit fixed and once with the sheet bit flipped.
+The sheet exchange transposes two axes.
+That transposition preserves the set of six axis steps, so the cells
+adjacent to \((x,y,z)\) are the same six cells on each bit.
+
+\begin{lemma}
+\label{lem:j3sectors}
+If \(\psi(x,y,z,1)=-\psi(x,y,z,0)\) at every cell, then \(A\psi=0\).
+If the two bits carry the same cell function
+\(\varphi\), then
+\[
+(A\psi)(x,y,z,b)=2(A_{\mathrm{cubic}}\varphi)(x,y,z)
+\]
+at both values of the bit.
+The eigenvalues of \(H=-A\) on the even Bloch waves are
+\(-4(\cos q_x+\cos q_y+\cos q_z)\), with range \([-12,12]\), and every odd
+state is a zero mode.
+On the \(L\)-torus the odd space has dimension \(L^3\).
+\end{lemma}
+
+\begin{proof}
+The twelve neighbours of a cell are its six adjacent cells on each bit.
+An odd state cancels them in pairs.
+An even state counts each adjacent cell twice, which is twice the cubic
+adjacency.
+The symbol of that adjacency is \(2(\cos q_x+\cos q_y+\cos q_z)\), and the
+factor \(-2\) from \(H=-A\) produces the displayed band.
+The sum of three cosines fills \([-3,3]\), so the band fills \([-12,12]\).
+\end{proof}
+
+The diagonal resolvent of one copy is again half the flat pole plus half
+the dispersive average. Write \(\varepsilon_3(q)=-4(\cos q_x+\cos q_y+\cos q_z)\)
+and
+\[
+\mathcal{G}_3(E)
+=\frac{1}{2E}
++\frac12\int_{[0,2\pi]^3}\frac{d^3q}{(2\pi)^3}\,
+\frac{1}{E-\varepsilon_3(q)}
+\]
+for \(E\notin[-12,12]\).
+The shift \(q\mapsto q+(\pi,\pi,\pi)\) sends \(\varepsilon_3\) to \(-\varepsilon_3\),
+so \(\mathcal{G}_3\) is odd.
+On \((12,\infty)\) it is strictly decreasing.
+
+\begin{proposition}
+\label{prop:j3stitch}
+The limit \(\mathcal{G}_3(12+)\) exists and is finite, and
+\[
+\mathcal{G}_3(12+)<\frac{11}{48}<1.
+\]
+Two infinite copies of \(J_3\) joined by one stitch of hopping \(1\)
+therefore have no eigenvalue outside \([-12,12]\).
+The secular equation is \(\mathcal{G}_3(E)^2=1\), and it has no root in
+that region.
+The nullity statement of Proposition~\ref{prop:stubs} applies with cells
+in \(\mathbb{Z}^3\): the torus nullity drops by exactly \(2\), and an odd state
+survives when its cell function vanishes at the stub cell.
+Those two dimensions do not reappear as eigenvalues outside the band.
+\end{proposition}
+
+\begin{proof}
+For \(E>12\) the integrand is positive and increases as \(E\downarrow 12\),
+so the limit exists in \((0,\infty]\).
+It remains to show that the limit is finite and smaller than \(11/48\).
+At the edge,
+\[
+12-\varepsilon_3(q)=4\bigl(3+\cos q_x+\cos q_y+\cos q_z\bigr),
+\]
+so the dispersive half of the limit equals \(I/8\), where
+\[
+I=\int_{[0,2\pi]^3}\frac{d^3q}{(2\pi)^3}\,
+\frac{1}{3+\cos q_x+\cos q_y+\cos q_z},
+\]
+and the flat pole contributes \(1/24\).
+For \(a>0\), \(1/a=\int_0^\infty e^{-at}\,dt\).
+The denominator is positive almost everywhere.
+Tonelli's theorem gives
+\[
+I=\int_0^\infty e^{-3t}\,I_0(t)^3\,dt,
+\qquad
+I_0(t)=\frac{1}{2\pi}\int_0^{2\pi}e^{t\cos\theta}\,d\theta.
+\]
+Indeed \(e^{-t\cos q}=e^{t\cos(q+\pi)}\), so each axis contributes a factor
+\(I_0(t)\).
+
+The bound \(I_0(t)\le e^{t}\) is immediate from \(\cos\theta\le 1\).
+Thus \(e^{-3t}I_0(t)^3\le 1\) and
+\[
+\int_0^1 e^{-3t}I_0(t)^3\,dt\le 1.
+\]
+For the tail, use \(\cos\theta-1=-2\sin^2(\theta/2)\) and the symmetry that
+halves the period:
+\[
+I_0(t)=\frac{e^{t}}{\pi}\int_0^{\pi}e^{-2t\sin^2(\theta/2)}\,d\theta
+=\frac{2e^{t}}{\pi}\int_0^{\pi/2}e^{-2t\sin^2\phi}\,d\phi.
+\]
+On \([0,\pi/2]\) the concavity of sine gives \(\sin\phi\ge 2\phi/\pi\), so
+\[
+\int_0^{\pi/2}e^{-2t\sin^2\phi}\,d\phi
+<\int_0^{\infty}e^{-(8t/\pi^2)\phi^2}\,d\phi
+=\frac{\pi}{2}\sqrt{\frac{\pi}{8t}}.
+\]
+Multiplying by the prefactor \(2e^{t}/\pi\) gives
+\(I_0(t)<e^{t}\sqrt{\pi/(8t)}\) for \(t>0\), and
+\[
+\int_1^{\infty}e^{-3t}I_0(t)^3\,dt
+<\int_1^{\infty}\Bigl(\frac{\pi}{8t}\Bigr)^{3/2}\,dt
+=2\Bigl(\frac{\pi}{8}\Bigr)^{3/2}.
+\]
+The comparison \(2(\pi/8)^{3/2}<1/2\) is \(\pi^3<32\).
+Since \(\pi<22/7\) and
+\[
+\Bigl(\frac{22}{7}\Bigr)^3=\frac{10648}{343}<32=\frac{10976}{343},
+\]
+the tail is strictly less than \(1/2\).
+Therefore \(I<3/2\), and
+\[
+\mathcal{G}_3(12+)
+=\frac{1}{24}+\frac{I}{8}
+<\frac{1}{24}+\frac{3}{16}
+=\frac{11}{48}.
+\]
+For \(E>12\) one has \(\mathcal{G}_3(E)<\mathcal{G}_3(12+)\), so
+\(\mathcal{G}_3(E)=1\) has no root in \([12,\infty)\).
+Oddness rules out \(\mathcal{G}_3(E)=-1\) in \((-\infty,-12]\).
+The resolvent argument of Proposition~\ref{prop:stitch} then produces no
+eigenvalue outside \([-12,12]\).
+The kernel count is the pairing argument of Proposition~\ref{prop:stubs},
+with the odd delta on a cell of \(\mathbb{Z}^3\) in place of a cell of \(\mathbb{Z}^2\).
+\end{proof}
+
+The projection of the stitch onto the odd sector is the same rank-one
+coupling of strength \(1/2\) as on \(J_2\).
+The numbers \(\pm 1/2\) lie in \((-12,12)\) and are not eigenvalues.
+On \(J_2\) the resolvent diverges at the edge, so a root of
+\(\mathcal{G}(E)=1\) is forced to exist.
+On \(J_3\) the same edge is a quadratic maximum in three momenta, the
+integral of \(1/|q|^2\) converges, and the resolvent stays below \(11/48\).
+For a stitch of hopping \(t\) the secular equation is
+\(\mathcal{G}_3(E)=\pm 1/t\).
+A root with \(|E|>12\) would require \(1/|t|<\mathcal{G}_3(12+)\).
+Every \(|t|\le 48/11\) fails that inequality, and the sheet hopping \(t=1\)
+is in this range.
+On \(J_2\) the edge divergence means every \(t\neq 0\) produces a pair
+outside \([-8,8]\).
+
+On the \(L\)-torus with \(L\) even, the momentum \((\pi,\pi,\pi)\) lies on
+the grid, so the finite resolvent has a simple pole at \(12\) and at \(-12\).
+Each pole sends the secular function to infinity, and the function tends
+to \(0\) at infinity, so each even torus does have one eigenvalue above
+\(12\) and one below \(-12\).
+Any limit of these eigenvalues along even \(L\) lies in \([-12,12]\):
+a limit \(E_\infty>12\) would satisfy \(\mathcal{G}_3(E_\infty)=1\).
+
+\section{The edge joining the two bits of one cell}
+\label{sec:rung}
+
+Every generator of \(J_2\) or of \(J_3\) that flips the sheet bit also changes
+the cell.
+The two bits of one cell are not adjacent.
+An edge of hopping \(t\) between those two bits is a different modification
+from a stitch between two copies.
+
+\begin{proposition}
+\label{prop:rung}
+On one copy of \(J_2\), or of \(J_3\), add an edge of hopping \(t\neq 0\)
+between the two bits of a single cell \(c\).
+Let \(\psi\) be the odd delta of that cell, with amplitudes
+\(1/\sqrt{2}\) and \(-1/\sqrt{2}\) on the two bits and with every other
+amplitude zero.
+Then \(H\psi=t\psi\).
+Every odd state whose cell function vanishes at \(c\) remains a zero mode.
+On the even summand the same edge is the on-site potential \(-t\) at \(c\).
+Write \(g(E)\) for the on-site entry of \((E+2A)^{-1}\), with
+\(A=A_\square\) on \(J_2\) and \(A=A_{\mathrm{cubic}}\) on \(J_3\).
+The eigenvalues outside the even band are the energy \(t\), when \(|t|\)
+exceeds that band, together with the solutions of \(g(E)=-1/t\).
+On \(J_2\), for \(E>8\),
+\begin{equation}
+\label{eq:rungG}
+g(E)=\frac{2}{\pi E}\,K\Bigl(\frac{8}{E}\Bigr),
+\end{equation}
+where \(K\) is the elliptic integral of \eqref{eq:Gell}.
+The function \(g\) is odd, and on \((8,\infty)\) it falls strictly from
+\(+\infty\) to \(0\).
+Every \(t\neq 0\) therefore produces exactly one even eigenvalue outside
+\([-8,8]\), below the band when \(t>0\) and above the band when \(t<0\).
+On \(J_3\) the edge value is \(g(12+)=I/4\), with \(I\) the integral in the
+proof of Proposition~\ref{prop:j3stitch}, so \(g(12+)<3/8\).
+Every \(|t|\le 8/3\) produces no even eigenvalue outside \([-12,12]\).
+\end{proposition}
+
+\begin{proof}
+The pure adjacency annihilates \(\psi\) by Lemma~\ref{lem:sectors} or
+Lemma~\ref{lem:j3sectors}.
+The added edge sends one bit to the other.
+On \(\psi\) the two bits are opposite, so that exchange contributes \(-\psi\),
+and \(H=-A\) turns the minus into the eigenvalue \(+t\).
+An odd state that vanishes at \(c\) vanishes on both bits, so the added edge
+contributes nothing.
+
+The unitary map in the proof of Proposition~\ref{prop:cellpole} intertwines
+the pure Hamiltonian with \(-2A\).
+Both bits of an even state carry the same cell function, and the added edge
+multiplies the value of that function at \(c\) by \(-t\).
+The even operator is therefore \(-2A-t|c\rangle\langle c|\).
+For \(E\) outside the spectrum of \(-2A\),
+\[
+(E+2A+t|c\rangle\langle c|)\varphi=0
+\]
+if and only if \(\varphi=-t\,\varphi(c)\,(E+2A)^{-1}|c\rangle\).
+Evaluating at \(c\) yields \(g(E)=-1/t\), unless \(\varphi=0\).
+The odd eigenvalue \(t\) lies outside the even band precisely when \(|t|\)
+exceeds the edge.
+
+On \(J_2\), Proposition~\ref{prop:cellpole} and \eqref{eq:Gell} give
+\(\mathcal{G}(E)=1/(2E)+g(E)/2\), which is the displayed formula.
+For \(E>8\) every Bloch denominator \(E-\varepsilon(q)\) is positive and
+strictly decreasing, so \(g\) falls strictly from \(+\infty\) to \(0\).
+The shift \(q\mapsto q+(\pi,\pi)\) sends \(\varepsilon\) to \(-\varepsilon\), so
+\(g\) is odd.
+The value \(-1/t\) lies in \((0,\infty)\) exactly when \(t<0\), and then at
+one energy above \(8\).
+Oddness places the root below \(-8\) when \(t>0\).
+
+On \(J_3\) the same half-and-half splitting gives
+\(g(12+)=2\bigl(\mathcal{G}_3(12+)-1/24\bigr)=I/4\).
+The bound \(I<3/2\) yields \(g(12+)<3/8\).
+On \((12,\infty)\) the entry \(g\) falls strictly through \((0,g(12+))\).
+A root of \(g(E)=-1/t\) outside \([-12,12]\) therefore requires
+\(1/|t|<g(12+)\), and every \(|t|\le 8/3\) fails that inequality.
+\end{proof}
+
+The eigenvalue \(t\) is supported on two vertices.
+It remains an eigenstate when \(|t|\) lies inside the even band: the added
+edge preserves the odd summand, and the odd spectrum of the pure sheet is
+\(\{0\}\).
+
+A stitch of hopping \(t\) between two copies removes two kernel dimensions.
+On \(J_2\) it binds a pair next to both edges, and on \(J_3\) it binds nothing
+outside the band when \(|t|\le 48/11\).
+The edge inside one cell moves one flat mode from \(0\) to \(t\), and it
+binds at most one even eigenvalue, on the side opposite the sign of \(t\).
+
+On the \(L\)-torus the odd multiplicity of \(0\) drops by exactly \(1\).
+If some even zero mode is nonzero at \(c\), the even multiplicity of \(0\)
+also drops by exactly \(1\), for every \(t\neq 0\).
+A vector with \(-2A\varphi=t\,\varphi(c)\,|c\rangle\) pairs to zero against
+that mode, which forces \(\varphi(c)=0\) and then forces \(\varphi\) into the
+even kernel.
+The momentum \(0\) lies on every grid, so the even bottom equals the
+infinite-volume edge, and every \(t>0\) produces one even eigenvalue below
+that edge.
+The opposite edge lies on the grid only for even \(L\).
+When it is absent, a negative hopping can leave the finite band and still
+remain inside \((-8,8)\) on \(J_2\), or inside \((-12,12)\) on \(J_3\).
+When the edge momentum is present, the finite resolvent has a pole there,
+so an even eigenvalue sits outside the finite band.
+On \(J_2\) any limit of these eigenvalues along growing tori satisfies
+\(g(E)=-1/t\) and therefore stays outside \([-8,8]\).
+On \(J_3\), if \(1/|t|\ge g(12+)\), every such limit lies back in
+\([-12,12]\).
+
+\begin{proposition}
+\label{prop:rungwt}
+In the geometry of Proposition~\ref{prop:rung}, the odd eigenstate at
+energy \(t\) is the odd delta of the cell.
+Its bond saturates the negative endpoint of
+Lemma~\ref{lem:bond-expand}.
+On the normalised even eigenstate outside the even band, the two bits
+are equal, so the bond saturates the positive endpoint, \(P_-=0\), and
+\(h_2(P_-)=0\).
+The cell carries
+\begin{equation}
+\label{eq:rungwt}
+|\varphi(c)|^2=\frac{1}{t^2\bigl(-g'(E)\bigr)},
+\end{equation}
+and each bit carries half of that weight.
+On \(J_2\), as \(t\to 0\),
+\begin{equation}
+\label{eq:rungexp}
+|\varphi(c)|^2
+=512\pi\, t^{-2}
+\exp\Bigl(-\frac{8\pi}{|t|}\Bigr)
+\bigl(1+o(1)\bigr),
+\end{equation}
+and \(|t|\ln\bigl(1/(|E|-8)\bigr)\to 8\pi\).
+\end{proposition}
+
+\begin{proof}
+The odd delta is the eigenstate of Proposition~\ref{prop:rung}, with
+amplitudes \(1/\sqrt{2}\) and \(-1/\sqrt{2}\).
+Proposition~\ref{prop:oddsat} gives the negative endpoint.
+
+The even intertwining of Proposition~\ref{prop:cellpole} puts both bits
+equal to \(\varphi/\sqrt{2}\).
+The moduli agree and the relative phase is \(0\), so
+\(B=q/2\) with \(q=|\varphi(c)|^2\).
+Then \(P_-=0\) and \(h_2(P_-)=0\).
+The identity \(\varphi=-t\,\varphi(c)\,(E+2A)^{-1}|c\rangle\) in the proof of
+Proposition~\ref{prop:rung} gives
+\(\|\varphi\|^2=t^2|\varphi(c)|^2(-g'(E))\).
+Normalisation is \eqref{eq:rungwt}.
+Each sheet bit carries \(|\varphi(c)|^2/2\).
+
+On \(J_2\), \(g=2\mathcal{G}-1/E\).
+The expansion of \(\mathcal{G}\) in the proof of
+Proposition~\ref{prop:stitch}, at \(E=8+\delta\) with \(L=\ln(1/\delta)\) and
+\(C_0=1/16+3\ln 2/(8\pi)\), gives
+\[
+g(8+\delta)
+=\frac{L}{8\pi}+\frac{3\ln 2}{4\pi}+\rho(\delta),
+\]
+where \(\rho(\delta)\to 0\).
+The constant terms \(2\cdot(1/16)\) and \(-1/8\) cancel.
+For \(t<0\) the root above \(8\) solves \(g=1/|t|\), so
+\[
+L=\frac{8\pi}{|t|}-6\ln 2-8\pi\,\rho(\delta)
+\]
+and \(\delta=64\exp(-8\pi/|t|)\,(1+o(1))\).
+Differentiating \(g=2\mathcal{G}-1/E\) and using
+\(\delta(-\mathcal{G}')\to 1/(16\pi)\) from
+Proposition~\ref{prop:endpoint} gives
+\(\delta(-g')\to 1/(8\pi)\).
+Therefore
+\(|\varphi(c)|^2=8\pi\,\delta/t^2\,(1+o(1))\),
+which is \eqref{eq:rungexp}.
+The function \(g\) is odd and \(g'\) is even, so the root below \(-8\),
+present when \(t>0\), has the same cell weight.
+The logarithm is the exponent of \(\delta\).
+\end{proof}
+
+The factor \(64\) is \(e^{6\ln 2}\) and carries no factor \(e^{\pi}\).
+The flat-pole term \(1/(2E)\) in \(\mathcal{G}\) cancels the edge value
+\(1/8\) inside \(g=2\mathcal{G}-1/E\), which is why this exponent is
+\(8\pi/|t|\) rather than the stitch exponent \(16\pi/|t|\).
+The even state remains saturated at \(+q/2\) for every \(t\neq 0\), while
+its cell weight tends to zero.
+
+\section{Two stitches into the two bits of one cell}
+\label{sec:twobit}
+
+The flat pole of Proposition~\ref{prop:cellpole} distinguishes the two bits
+of one cell from two stubs in different cells.
+Take three copies, and join them by two edges of the same hopping \(t\neq 0\):
+one edge from a vertex \(a\) on the first copy to bit \(0\) of a cell \(c\) on
+the third, and one edge from a vertex \(b\) on the second copy to bit \(1\)
+of the same cell.
+Each outer copy carries one stub.
+The host carries both bits of one cell.
+
+\begin{proposition}
+\label{prop:twobit}
+Let \(\mathcal{G}\) be the diagonal resolvent entry of one pure copy, and
+let \(g\) be the on-site entry of Proposition~\ref{prop:rung}.
+Outside the even band, \(E\) is an eigenvalue if and only if
+\begin{equation}
+\label{eq:twobit}
+t^2\,\mathcal{G}(E)\,g(E)=1
+\qquad\text{or}\qquad
+t^2\,\frac{\mathcal{G}(E)}{E}=1.
+\end{equation}
+On \(J_2\) each equation has exactly one root above \(8\) and, by oddness of
+\(\mathcal{G}\) and of \(g\), the partner of that root below \(-8\).
+On \(J_3\) one has \(g(12+)<3/8\) and \(\mathcal{G}_3(12+)<11/48\), so
+\[
+\mathcal{G}_3(12+)\,g(12+)<\frac{11}{128},
+\qquad
+\frac{\mathcal{G}_3(12+)}{12}<\frac{11}{576}.
+\]
+Every \(|t|\le\sqrt{128/11}\) fails the first equation outside \([-12,12]\),
+and every \(|t|\le 24/\sqrt{11}\) fails the second.
+In particular the sheet hopping \(t=1\) produces no eigenvalue outside
+\([-12,12]\).
+\end{proposition}
+
+\begin{proof}
+The compression \eqref{eq:detstitch} applies to these four stubs, with the
+band of the host in place of \([-8,8]\) on \(J_3\): an energy outside that
+band is an eigenvalue precisely when the secular determinant on the stubs
+vanishes.
+Write \(|e\rangle\) and \(|o\rangle\) for the normalized even and odd states of
+the cell \(c\).
+Proposition~\ref{prop:cellpole} puts the resolvent entry of \(|e\rangle\)
+equal to \(g(E)\) and the resolvent entry of \(|o\rangle\) equal to \(1/E\).
+The two outer vertices lie on different copies, so the resolvent is diagonal
+across them, with entry \(\mathcal{G}(E)\) at each.
+The combinations \(|p\rangle=(|a\rangle+|b\rangle)/\sqrt{2}\) and
+\(|m\rangle=(|a\rangle-|b\rangle)/\sqrt{2}\) therefore have the same
+resolvent entry \(\mathcal{G}(E)\).
+The added edges contribute
+\(-t\) times the exchange of \(a\) with bit \(0\) and of \(b\) with bit \(1\).
+The only nonzero matrix elements of that perturbation among these four
+states are
+\[
+\langle p|V|e\rangle=-t,
+\qquad
+\langle m|V|o\rangle=-t.
+\]
+The even pair and the odd pair decouple.
+On a pair with resolvent entries \(\mathcal{G}\) and \(\gamma\) and with
+off-diagonal \(-t\), the secular equation is \(t^2\mathcal{G}\gamma=1\).
+The even pair has \(\gamma=g(E)\), and the odd pair has \(\gamma=1/E\).
+
+On \(J_2\), for \(E>8\), both \(\mathcal{G}\) and \(g\) fall strictly from
+\(+\infty\) to \(0\).
+The product \(\mathcal{G}g\) and the quotient \(\mathcal{G}/E\) do the same,
+so each equation has one root above \(8\).
+Both \(\mathcal{G}\) and \(g\) are odd, hence \(\mathcal{G}g\) and
+\(\mathcal{G}/E\) are even, and each positive root has a negative partner.
+
+On \(J_3\) the same two functions remain positive and strictly decreasing on
+\((12,\infty)\), from a finite edge value.
+The bounds of Proposition~\ref{prop:j3stitch} and
+Proposition~\ref{prop:rung} give the two comparisons above.
+A root of the first equation above \(12\) would require
+\(1/t^2<\mathcal{G}_3(12+)g(12+)\), and a root of the second would require
+\(1/t^2<\mathcal{G}_3(12+)/12\).
+Both fail for the hoppings stated, and oddness rules out the partners
+below \(-12\).
+\end{proof}
+
+The first factor is the even channel of the cell.
+The second is the odd channel, built from the flat pole \(1/E\).
+Touching both bits still imposes one condition on the odd kernel of the
+host, as in the count after \eqref{eq:detstitch}, and each outer copy
+imposes one more.
+The four roots on \(J_2\) are these two channels, each with a partner, rather
+than four lost zero modes.
+Unequal hoppings mix \(|e\rangle\) with \(|o\rangle\), and the factorization
+uses the equality of the two hoppings.
+
+\begin{proposition}
+\label{prop:bitwt}
+On \(J_2\), normalise an eigenstate of the two-bit geometry in
+Proposition~\ref{prop:twobit}, at a root of either secular equation.
+The outer endpoints have equal weight
+\begin{equation}
+\label{eq:bitwt}
+|\psi(a)|^2=|\psi(b)|^2
+=\frac{\mathcal{G}(E)^2\lambda(E)}
+{2\bigl(-(\mathcal{G}\lambda)'(E)\bigr)},
+\end{equation}
+where \(\lambda=g\) on the even channel and \(\lambda=1/E\) on the odd
+channel.
+Above \(8\), each stitch has relative phase \(\pi\) when \(t>0\) and \(0\)
+when \(t<0\).
+Below \(-8\) that phase is the opposite.
+On the even channel \(\psi(a)=\psi(b)\) and the two host bits are equal, so
+their bond saturates the positive endpoint of
+Lemma~\ref{lem:bond-expand}.
+On the odd channel \(\psi(a)=-\psi(b)\), the host component is a scalar
+multiple of the odd delta of the cell, and the host bond saturates the
+negative endpoint.
+The host mass on the odd channel equals the sum of the two bit
+probabilities.
+As \(t\to 0\),
+\begin{equation}
+\label{eq:bitodd}
+|\psi(a)|^2
+=32768\pi\, e^{\pi}\, t^{-4}
+\exp\Bigl(-\frac{128\pi}{t^2}\Bigr)
+\bigl(1+o(1)\bigr)
+\end{equation}
+on the odd channel, and
+\begin{equation}
+\label{eq:biteven}
+|\psi(a)|^2
+=128\pi\, e^{\pi/2}\, t^{-2}
+\exp\Bigl(-\frac{8\sqrt{2}\,\pi}{|t|}\Bigr)
+\bigl(1+o(1)\bigr)
+\end{equation}
+on the even channel.
+The odd state puts half its norm on each outer copy.
+The even state puts one quarter on each outer copy and one half on the
+host.
+In the same limit,
+\(t^2\ln(1/(E-8))\to 128\pi\) on the odd channel and
+\(|t|\ln(1/(E-8))\to 8\pi\sqrt{2}\) on the even channel.
+\end{proposition}
+
+\begin{proof}
+Write \(x\) and \(y\) for the two host bits, and let \(R=(E-H_0)^{-1}\).
+Proposition~\ref{prop:cellpole} gives the host entries
+\(D=\mathcal{G}=1/(2E)+g/2\) and \(F=-1/(2E)+g/2\), so
+\(D+F=g\) and \(D-F=1/E\).
+The eigenvalue equation produces
+\(\psi(a)=-t\mathcal{G}\,\psi(x)\) and \(\psi(b)=-t\mathcal{G}\,\psi(y)\), and
+\begin{align*}
+\psi(x)&=-t D\,\psi(a)-t F\,\psi(b),\\
+\psi(y)&=-t F\,\psi(a)-t D\,\psi(b).
+\end{align*}
+Hence
+\(\bigl(1-t^2\mathcal{G}^2\bigr)\psi(a)=t^2\mathcal{G} F\,\psi(b)\).
+The root of \(t^2\mathcal{G} g=1\) has \(\psi(a)=\psi(b)\), and the root of
+\(t^2\mathcal{G}/E=1\) has \(\psi(a)=-\psi(b)\).
+A global phase makes \(\psi\) real.
+The stitch phase is the sign of \(-t\mathcal{G}\).
+
+On the odd channel, \(\psi(b)=-\psi(a)\), so the host vector is
+\(-t\psi(a)\,R(|x\rangle-|y\rangle)\).
+The odd delta is a zero mode of \(H_0\), and therefore
+\(R(|x\rangle-|y\rangle)=(1/E)(|x\rangle-|y\rangle)\).
+The host component is supported on the two bits,
+\(\psi(y)=-\psi(x)\), and
+\(|\psi(x)|^2=t^2|\psi(a)|^2/E^2\).
+The moduli agree and the relative phase is \(\pi\), so the host bond
+equals \(-q/2\).
+Its mass is \(|\psi(x)|^2+|\psi(y)|^2\).
+
+On the even channel the same substitution gives
+\(\psi(x)=\psi(y)=-t g\,\psi(a)\).
+The moduli agree and the relative phase is \(0\), so the host bond equals
+\(+q/2\).
+
+Each outer copy carries the squared mass
+\(|\psi(a)|^2(-\mathcal{G}')/\mathcal{G}^2\).
+The host mass is \(2t^2|\psi(a)|^2(-\lambda')\), because
+\(\|R|x\rangle\|^2=-\mathcal{G}'\), the cross term is \(-\partial_E F\), and
+the sign of \(\psi(a)\psi(b)\) selects \(\lambda=g\) or \(\lambda=1/E\).
+At the root, \(t^2=1/(\mathcal{G}\lambda)\), and normalisation produces
+\eqref{eq:bitwt}.
+Both \(\mathcal{G}g\) and \(\mathcal{G}/E\) are even, and \(\mathcal{G}'\) is
+even, so the weight at \(-E\) agrees with the weight at \(E\).
+
+For the odd asymptotic, write \(E=8+\delta\) and \(L=\ln(1/\delta)\).
+The secular equation is \(\mathcal{G}=E/t^2\).
+The expansion of \(\mathcal{G}\) in the proof of
+Proposition~\ref{prop:stitch}, with
+\(C_0=1/16+3\ln 2/(8\pi)\), gives
+\[
+\delta
+=64 e^{\pi}
+\exp\Bigl(-\frac{16\pi E}{t^2}\Bigr)
+\bigl(1+o(1)\bigr)
+\]
+as \(\delta\to 0\), since \(16\pi C_0=\pi+6\ln 2\).
+The root tends to the edge, so \(E\to 8\) and
+\[
+\delta=64 e^{\pi}\exp(-128\pi/t^2)\,(1+o(1)).
+\]
+Proposition~\ref{prop:endpoint} gives
+\(\delta(-\mathcal{G}')\to 1/(16\pi)\).
+In the denominator of \eqref{eq:bitwt},
+\[
+-\Bigl(\frac{\mathcal{G}}{E}\Bigr)'
+=\frac{E(-\mathcal{G}')+\mathcal{G}}{E^2},
+\]
+and \(\mathcal{G}/E=1/t^2\) is negligible beside \(-\mathcal{G}'\).
+The weight is \(8\pi\delta\,\mathcal{G}^2\,(1+o(1))\).
+Inserting \(\mathcal{G}=8/t^2\,(1+o(1))\) produces \eqref{eq:bitodd}.
+The outer mass is \(8\pi\delta(-\mathcal{G}')\,(1+o(1))\) and tends to \(1/2\).
+
+For the even channel, \(g=2\mathcal{G}-1/E\), so
+\[
+\mathcal{G}
+=\frac14\Biggl(\frac1E+\sqrt{\frac1{E^2}+\frac8{t^2}}\Biggr).
+\]
+The bound \(\sqrt{1+u}\le 1+u/2\) gives
+\[
+\mathcal{G}
+=\frac{1}{|t|\sqrt{2}}+\frac{1}{32}+o(1),
+\]
+because \(1/(4E)\to 1/32\).
+The same expansion of \(\mathcal{G}\) yields
+\[
+\delta
+=64 e^{\pi/2}
+\exp\Bigl(-\frac{8\sqrt{2}\,\pi}{|t|}\Bigr)
+\bigl(1+o(1)\bigr),
+\]
+since \(16\pi/32=\pi/2\) and \(16/\sqrt{2}=8\sqrt{2}\).
+Differentiating \(g=2\mathcal{G}-1/E\) gives
+\[
+-(\mathcal{G} g)'
+=(-\mathcal{G}')\Bigl(4\mathcal{G}-\frac1E\Bigr)
+-\frac{\mathcal{G}}{E^2}.
+\]
+The second summand is negligible: its ratio to the first is a constant
+multiple of \(\delta L\).
+The quotient \((2\mathcal{G}-1/E)/(4\mathcal{G}-1/E)\) tends to \(1/2\).
+The weight simplifies to
+\(4\pi\delta\,\mathcal{G}^2\,(1+o(1))\).
+Here \(\mathcal{G}^2=1/(2t^2)\,(1+o(1))\), which is \eqref{eq:biteven}.
+The outer mass tends to \(1/4\), and the host carries the remaining half.
+The logarithm statements are the exponents in the two expansions of
+\(\delta\).
+\end{proof}
+
+The value \(1/8\) is doing two jobs.
+It is the edge value of the flat pole \(1/E\), and it is the adjacent-cell
+edge value \(\lambda_\infty=1/8\) of Proposition~\ref{prop:mean}.
+That common value is why \eqref{eq:bitodd} and \eqref{eq:biteven} reproduce
+the adjacent weights in \eqref{eq:wcanc} and \eqref{eq:wdiv}.
+The states do not.
+On the odd channel the host mass sits on two vertices; on the adjacent
+cancelled channel it spreads over the sheet and tends to zero only after
+that spreading.
+On the even channel the stitch-bond ratio \(|B|/(q/2)\) tends to
+\(2\sqrt{2}/3\), while the bond of the two host bits remains saturated at
+\(+q/2\) for every \(t\neq 0\).
+
+\section{Two stitches into adjacent cells}
+\label{sec:neighbor}
+
+Distinct cells do not share the flat pole.
+Between adjacent cells the even resolvent is fixed by the same elliptic
+integral that gives the diagonal.
+
+\begin{proposition}
+\label{prop:neighbor}
+For \(E>8\) the resolvent entry of one \(J_2\) copy between two adjacent
+cells is independent of the bits and equals
+\begin{equation}
+\label{eq:Gamma}
+\Gamma(E)=\frac{\pi-2K(8/E)}{16\pi},
+\end{equation}
+where \(K\) is the elliptic integral of \eqref{eq:Gell}.
+The function is even, \(\Gamma(-E)=\Gamma(E)\).
+\end{proposition}
+
+\begin{proof}
+For distinct cells, Proposition~\ref{prop:cellpole} halves the resolvent
+of \(E+2A_\square\).
+At the origin that resolvent column obeys
+\(E g+8 R_{\mathrm{nn}}=1\): the square lattice has four neighbors, and
+symmetry gives them a common entry.
+Hence \(R_{\mathrm{nn}}=(1-Eg)/8\), and the sheet entry is
+\((1-Eg)/16\).
+From \eqref{eq:Gell}, \(Eg=(2/\pi)K(8/E)\), which is \eqref{eq:Gamma}.
+The diagonal entry \(g\) is odd, so
+\[
+R_{\mathrm{nn}}(-E)
+=\frac{1-(-E)g(-E)}{8}
+=\frac{1-Eg(E)}{8}.
+\]
+The neighbor entry is even.
+\end{proof}
+
+\begin{proposition}
+\label{prop:adj}
+Join three copies by two edges of equal hopping \(t\neq 0\), from two
+outer vertices into two adjacent cells of the host, on either bit.
+Outside \([-8,8]\), \(E\) is an eigenvalue if and only if
+\begin{equation}
+\label{eq:adj}
+t^2\,\mathcal{G}(E)\bigl(\mathcal{G}(E)+\Gamma(E)\bigr)=1
+\quad\text{or}\quad
+t^2\,\mathcal{G}(E)\bigl(\mathcal{G}(E)-\Gamma(E)\bigr)=1.
+\end{equation}
+On \((8,\infty)\) each product is positive and strictly decreasing, from
+\(+\infty\) at the edge to \(0\) at infinity, so each equation has exactly
+one root above \(8\).
+The two roots are distinct.
+The substitution \(E\mapsto -E\) exchanges the two products, and there are
+exactly four eigenvalues outside \([-8,8]\).
+If \(E_+(t)\) and \(E_-(t)\) are the roots above \(8\) of the first and
+second equations, then
+\begin{equation}
+\label{eq:adjlog}
+\lim_{t\to 0}
+|t|\ln\frac{1}{E_-(t)-8}
+=8\pi\sqrt{2},
+\qquad
+\lim_{t\to 0}
+t^2\ln\frac{1}{E_+(t)-8}
+=128\pi.
+\end{equation}
+On \(J_3\), the same two stitches into any two distinct cells of the host
+produce no eigenvalue outside \([-12,12]\) whenever
+\(|t|\le 24/\sqrt{55}\).
+\end{proposition}
+
+\begin{proof}
+The compression \eqref{eq:detstitch} reduces the problem to the four
+stubs.
+The host block is diagonal \(\mathcal{G}\) with off-diagonal \(\Gamma\),
+so its eigenvalues are \(\mathcal{G}\pm\Gamma\).
+Equal hoppings decouple the corresponding combinations, and each outer
+vertex contributes a factor \(\mathcal{G}\).
+The secular equation on a combination with host entry \(\lambda\) is
+\(t^2\mathcal{G}\lambda=1\).
+
+Both combinations are positive for \(E>8\).
+Indeed \((E-8)g(E)=\int (E-8)/(E-\varepsilon)\,d\mu<1\), the integrand
+being strictly smaller than \(1\) off the band maximum, so
+\[
+\mathcal{G}+\Gamma
+=\frac{1}{2E}+\frac{1}{16}-\frac{(E-8)g}{16}
+>\frac{1}{2E}.
+\]
+In the other direction \(E-\varepsilon\le E+8\), so \(g\ge 1/(E+8)\), and
+the inequality is strict.
+Thus \((E+8)g>1\) and
+\[
+\mathcal{G}-\Gamma
+=\frac{1}{2E}-\frac{1}{16}+\frac{(E+8)g}{16}
+>\frac{1}{2E}.
+\]
+The sum \(\lambda_+=\mathcal{G}+\Gamma\) decreases.
+Its derivative receives \(-1/(2E^2)\) from the first term and, from
+\(g(8-E)\),
+\[
+(8-E)g'-g
+=\int\frac{\varepsilon-8}{(E-\varepsilon)^2}\,d\mu<0,
+\]
+where \(g'=-\int(E-\varepsilon)^{-2}\,d\mu\).
+The difference \(\lambda_-=\mathcal{G}-\Gamma\) decreases because
+\[
+\frac{d}{dE}\bigl[(E+8)g\bigr]
+=\int\frac{-\varepsilon-8}{(E-\varepsilon)^2}\,d\mu<0.
+\]
+The diagonal \(\mathcal{G}\) decreases, as each Bloch factor
+\(1/(E-\varepsilon(q))\) does.
+A product of positive strictly decreasing functions is strictly
+decreasing.
+
+As \(E\to\infty\), \(K(8/E)\to\pi/2\), so \(\Gamma\to 0\) and
+\(\mathcal{G}\to 0\).
+As \(E\downarrow 8\), \(\mathcal{G}\to+\infty\) by the logarithm in the
+proof of Proposition~\ref{prop:stitch}.
+The same expansion gives \((E-8)K(8/E)\to 0\), hence
+\((E-8)g\to 0\) and \(\lambda_+\to 1/8\).
+Therefore \(\mathcal{G}\lambda_+\to+\infty\) and
+\(\lambda_-=2\mathcal{G}-\lambda_+\to+\infty\).
+Each product runs from \(+\infty\) down to \(0\) and hits \(1/t^2\) once.
+The roots differ because \(\Gamma=0\) would force \(K(8/E)=\pi/2\), hence
+\(E=\infty\).
+Evenness of \(\Gamma\) and oddness of \(\mathcal{G}\) exchange the products
+under \(E\mapsto -E\).
+
+For the logarithms, write \(L=\ln(1/\delta)\) at \(E=8+\delta\) and use the
+expansion of \(\mathcal{G}\) in the proof of Proposition~\ref{prop:stitch},
+together with \(K=\tfrac12 L+3\ln 2+\theta(\delta)\) and \(\theta(\delta)\to 0\).
+Then \(\lambda_+=1/8+\rho(\delta)\) and
+\[
+\mathcal{G}\lambda_-
+=\frac{L^2}{128\pi^2}\bigl(1+o(1)\bigr),
+\qquad
+\mathcal{G}\lambda_+
+=\frac{L}{128\pi}\bigl(1+o(1)\bigr),
+\]
+as \(\delta\downarrow 0\).
+As \(t\to 0\) one has \(1/t^2\to\infty\), so both roots approach the edge
+and \(L\to\infty\).
+Matching powers of \(L\) gives \eqref{eq:adjlog}.
+
+On \(J_3\), for \(E>12\) and any nonzero cell separation, the off-diagonal
+entry of \((E+2A_{\mathrm{cubic}})^{-1}\) is an oscillatory integral of a
+positive function, so its absolute value is at most the diagonal entry
+\(g(E)\).
+Proposition~\ref{prop:cellpole} halves that entry.
+The host eigenvalues \(\lambda\) therefore satisfy
+\(|\lambda|\le\mathcal{G}+g/2\).
+Both \(\mathcal{G}\) and \(g\) are positive and strictly decreasing on
+\((12,\infty)\), and so is \(\mathcal{G}(\mathcal{G}+g/2)\).
+At the edge, Proposition~\ref{prop:j3stitch} and
+Proposition~\ref{prop:rung} give
+\(\mathcal{G}_3(12+)<11/48\) and \(g(12+)<3/8\), hence
+\[
+\mathcal{G}\Bigl(\mathcal{G}+\frac g2\Bigr)
+<\frac{11}{48}\Bigl(\frac{11}{48}+\frac{3}{16}\Bigr)
+=\frac{55}{576}.
+\]
+The same bound holds for \(E<-12\) because \(\mathcal{G}\) and \(g\) are odd
+and \(|\Gamma(E)|\le |g(E)|/2\).
+A root of \(t^2\mathcal{G}\lambda=1\) would require
+\(1/t^2<55/576\).
+Every \(|t|\le 24/\sqrt{55}\) fails that inequality.
+\end{proof}
+
+The flat pole does not enter \eqref{eq:adj}.
+On \(J_2\) the logarithm in the even resolvent is what forces the four
+eigenvalues.
+On \(J_3\) that logarithm is absent, and the same absence persists at every
+positive distance between the two cells.
+
+\section{Any separation on one sheet}
+\label{sec:anysep}
+
+The logarithm is not special to adjacent cells.
+Fix a nonzero cell separation \(r=(r_1,r_2)\) and write
+\(\sigma(r)=(-1)^{r_1+r_2}\).
+
+\begin{proposition}
+\label{prop:anysep}
+For \(E>8\) the resolvent entry \(\Gamma_r(E)\) of one \(J_2\) copy between
+two cells separated by \(r\) is real and independent of the bits.
+As \(E\downarrow 8\),
+\[
+\mathcal{G}(E)-\sigma(r)\,\Gamma_r(E)
+\to\lambda_\infty(r),
+\]
+where
+\begin{equation}
+\label{eq:lamr}
+\lambda_\infty(r)
+=\frac{1}{16}
++\frac12\int_{[0,2\pi]^2}
+\frac{1-\sigma(r)\cos(q\cdot r)}{8-\varepsilon(q)}
+\,\frac{d^2q}{(2\pi)^2}
+\end{equation}
+and \(\varepsilon(q)=-4(\cos q_x+\cos q_y)\).
+The integrand extends to a bounded function on the torus, and
+\(\lambda_\infty(r)>1/16\).
+The other combination \(\mathcal{G}+\sigma(r)\,\Gamma_r\) tends to \(+\infty\).
+Both products \(\mathcal{G}(\mathcal{G}\pm\Gamma_r)\) tend to \(+\infty\) as
+\(E\downarrow 8\) and to \(0\) as \(E\to\infty\).
+For every hopping \(t\neq 0\), each of the equations
+\begin{equation}
+\label{eq:anysep}
+t^2\,\mathcal{G}(E)\bigl(\mathcal{G}(E)\pm\Gamma_r(E)\bigr)=1
+\end{equation}
+therefore has at least one root above \(8\).
+The set of those roots is invariant under \(E\mapsto -E\).
+Every such root approaches \(8\) as \(t\to 0\), and
+\begin{equation}
+\label{eq:rlog}
+\lim_{t\to 0}
+|t|\ln\frac{1}{E_{\mathrm{div}}(t)-8}
+=8\pi\sqrt{2},
+\qquad
+\lim_{t\to 0}
+t^2\ln\frac{1}{E_{\mathrm{canc}}(t)-8}
+=\frac{16\pi}{\lambda_\infty(r)},
+\end{equation}
+where \(E_{\mathrm{div}}\) is any root of the equation whose host factor is
+\(\mathcal{G}+\sigma(r)\Gamma_r\), and \(E_{\mathrm{canc}}\) is any root of
+the equation whose host factor is \(\mathcal{G}-\sigma(r)\Gamma_r\).
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:cellpole} gives
+\(\Gamma_r(E)=\tfrac12 R_r(E)\) for \(r\neq 0\), with
+\[
+R_r(E)
+=\int_{[0,2\pi]^2}
+\frac{\cos(q\cdot r)}{E-\varepsilon(q)}
+\,\frac{d^2q}{(2\pi)^2}.
+\]
+The sine term integrates to zero against an even denominator, so
+\(R_r\) is real.
+The diagonal \(R_0\) is the function \(g\) of Proposition~\ref{prop:rung},
+and \(\mathcal{G}=1/(2E)+R_0/2\).
+Hence
+\[
+\mathcal{G}-\sigma(r)\Gamma_r
+=\frac{1}{2E}
++\frac12\int
+\frac{1-\sigma(r)\cos(q\cdot r)}{E-\varepsilon(q)}
+\,\frac{d^2q}{(2\pi)^2}.
+\]
+The numerator is nonnegative, because
+\(|\sigma(r)\cos(q\cdot r)|\le 1\), and for \(r\neq 0\) it is not
+identically zero.
+As \(E\downarrow 8\) the integrand increases.
+At energy \(8\) the denominator vanishes at \(q=(\pi,\pi)\).
+Shift \(q=(\pi,\pi)+k\).
+Then \(\varepsilon=4(\cos k_x+\cos k_y)\) and
+\(1-\sigma(r)\cos(q\cdot r)=1-\cos(k\cdot r)\),
+while
+\[
+8-\varepsilon(q)
+=8\sin^2\frac{k_x}{2}+8\sin^2\frac{k_y}{2}.
+\]
+The numerator and the denominator are both quadratic at \(k=0\), so the
+singularity is removable and the extended integrand is bounded.
+Monotone convergence passes the limit inside the integral and produces
+\eqref{eq:lamr}.
+The integral is strictly positive, so \(\lambda_\infty(r)>1/16\).
+The diagonal \(\mathcal{G}\) tends to \(+\infty\) by the logarithm in the
+proof of Proposition~\ref{prop:stitch}, and therefore
+\[
+\mathcal{G}+\sigma(r)\Gamma_r
+=2\mathcal{G}-\bigl(\mathcal{G}-\sigma(r)\Gamma_r\bigr)
+\to+\infty.
+\]
+Both products with \(\mathcal{G}\) tend to \(+\infty\).
+As \(E\to\infty\), \(R_0=1/E+O(1/E^2)\).
+For \(r\neq 0\) the integral of \(\cos(q\cdot r)\) over the torus vanishes, so
+\(R_r=O(1/E^2)\).
+Both combinations are asymptotic to \(1/E\), and the products tend to \(0\)
+from above.
+
+Each product is continuous on \((8,\infty)\).
+For each fixed \(t\neq 0\) it is larger than \(1/t^2\) sufficiently near
+\(8\) and smaller than \(1/t^2\) for large \(E\), so each equation has at
+least one root in \((8,\infty)\).
+On any interval \([8+\delta,\infty)\) the product is bounded, because it
+tends to \(0\) at infinity.
+Thus every root tends to \(8\) as \(t\to 0\).
+
+For the symmetry, shift the momentum in \(R_r(-E)\) by \((\pi,\pi)\).
+The dispersion changes sign and the cosine acquires a factor
+\(\sigma(r)\), which gives
+\(R_r(-E)=-\sigma(r)\,R_r(E)\).
+Therefore \(\Gamma_r(-E)=-\sigma(r)\,\Gamma_r(E)\).
+With \(\mathcal{G}\) odd, the two products at \(-E\) are the two products
+\(\mathcal{G}(\mathcal{G}\pm\sigma(r)\Gamma_r)\) at \(E\).
+The set of roots is invariant under \(E\mapsto -E\).
+
+For the logarithms, write \(L=\ln(1/\delta)\) at \(E=8+\delta\) and use the
+expansion of \(\mathcal{G}\) in the proof of Proposition~\ref{prop:stitch}.
+The cancelled combination differs from \(\lambda_\infty(r)\) by a quantity
+that tends to \(0\), and
+\[
+\mathcal{G}+\sigma(r)\Gamma_r
+=\frac{L}{8\pi}+O(1).
+\]
+The divergent product is \(L^2/(128\pi^2)\) times \(1+o(1)\), and the
+cancelled product is \(\lambda_\infty(r)\,L/(16\pi)\) times \(1+o(1)\).
+Matching these with \(1/t^2\) gives \eqref{eq:rlog}.
+\end{proof}
+
+For a nearest neighbour, \(\sigma=-1\) and \(\lambda_\infty=1/8\), so
+\eqref{eq:rlog} reduces to \eqref{eq:adjlog}, and
+Proposition~\ref{prop:adj} supplies the missing uniqueness.
+At every other separation the same leading logarithm forces at least four
+eigenvalues outside \([-8,8]\), counted in \(\pm\) pairs.
+The coefficient \(8\pi\sqrt{2}\) does not depend on \(r\).
+The cancelled channel does: its logarithm is \(16\pi/\lambda_\infty(r)\).
+
+\begin{proposition}
+\label{prop:twowt}
+Join three copies by two edges of equal hopping \(t\neq 0\), from outer
+vertices \(a\) and \(b\) into host cells separated by a nonzero \(r\).
+Let \(\lambda\) be either host factor \(\mathcal{G}\pm\Gamma_r\), and let
+\(E\notin[-8,8]\) be a root of \(t^2\mathcal{G}(E)\lambda(E)=1\).
+On the corresponding normalised eigenstate,
+\begin{equation}
+\label{eq:twowt}
+|\psi(a)|^2=|\psi(b)|^2
+=\frac{\mathcal{G}(E)^2\lambda(E)}
+{2\bigl(-(\mathcal{G}\lambda)'(E)\bigr)},
+\end{equation}
+and each host contact carries the weight \((\lambda/\mathcal{G})|\psi(a)|^2\).
+Above \(8\), the stitch from an outer vertex to its host contact has
+relative phase \(\pi\) when \(t>0\) and \(0\) when \(t<0\).
+Below \(-8\) the phase is the opposite.
+On the channel \(\mathcal{G}+\Gamma_r\) one has \(\psi(a)=\psi(b)\); on the
+channel \(\mathcal{G}-\Gamma_r\) one has \(\psi(a)=-\psi(b)\).
+As \(t\to 0\), every cancelled root and every divergent root satisfies,
+respectively,
+\begin{equation}
+\label{eq:wcanc}
+|\psi(a)|^2
+=512\pi\, e^{\pi}\,
+\lambda_\infty(r)^{-2}\, t^{-4}
+\exp\Bigl(-\frac{16\pi}{\lambda_\infty(r)\, t^2}\Bigr)
+\bigl(1+o(1)\bigr)
+\end{equation}
+and
+\begin{equation}
+\label{eq:wdiv}
+|\psi(a)|^2
+=128\pi\,
+\exp\bigl(\pi-4\pi\lambda_\infty(r)\bigr)\,
+t^{-2}
+\exp\Bigl(-\frac{8\sqrt{2}\,\pi}{|t|}\Bigr)
+\bigl(1+o(1)\bigr).
+\end{equation}
+In that limit each outer copy carries half the norm on the cancelled
+channel, and the host carries a vanishing fraction.
+On the divergent channel each outer copy carries one quarter, the host
+carries one half, and the squared modulus at each host contact is twice
+the outer weight.
+\end{proposition}
+
+\begin{proof}
+The perturbation is
+\[
+V=-t\bigl(|a\rangle\langle x|+|x\rangle\langle a|
++|b\rangle\langle y|+|y\rangle\langle b|\bigr).
+\]
+The eigenvalue equation is \((E-H_0)\psi=V\psi\).
+The resolvent is block diagonal across copies, so
+\(\psi(a)=-t\mathcal{G}(E)\psi(x)\) and
+\(\psi(b)=-t\mathcal{G}(E)\psi(y)\).
+The host values are
+\begin{align*}
+\psi(x)
+&=-t\,\mathcal{G}(E)\,\psi(a)-t\,\Gamma_r(E)\,\psi(b),\\
+\psi(y)
+&=-t\,\Gamma_r(E)\,\psi(a)-t\,\mathcal{G}(E)\,\psi(b).
+\end{align*}
+Substitution produces
+\(\bigl(1-t^2\mathcal{G}^2\bigr)\psi(a)=t^2\mathcal{G}\Gamma_r\,\psi(b)\).
+At a root of \(t^2\mathcal{G}(\mathcal{G}+\Gamma_r)=1\) one has
+\(\psi(a)=\psi(b)\).
+At a root of \(t^2\mathcal{G}(\mathcal{G}-\Gamma_r)=1\) one has
+\(\psi(a)=-\psi(b)\).
+For real \(E\) outside the spectrum the resolvent is real symmetric, so a
+global phase makes \(\psi\) real.
+The ratio \(\psi(a)/\psi(x)\) equals \(-t\mathcal{G}(E)\).
+Above \(8\), \(\mathcal{G}\) is positive, so the phase is \(\pi\) when
+\(t>0\) and \(0\) when \(t<0\).
+Below \(-8\), \(\mathcal{G}\) is negative and the phase reverses.
+
+The outer copy of \(a\) carries the squared mass
+\(t^2|\psi(x)|^2(-\mathcal{G}')
+=|\psi(a)|^2(-\mathcal{G}')/\mathcal{G}^2\),
+and the copy of \(b\) carries the same.
+The host vector is \(-t\psi(a)\,R|x\rangle-t\psi(b)\,R|y\rangle\), where
+\(R=(E-H_0)^{-1}\).
+Its squared norm is \(2t^2|\psi(a)|^2(-\lambda')\): one has
+\(\|R|x\rangle\|^2=-\mathcal{G}'\) and
+\(\langle x|R^2|y\rangle=-\Gamma_r'\), and the sign of
+\(\psi(a)\psi(b)\) selects \(\lambda=\mathcal{G}\pm\Gamma_r\).
+Normalisation therefore reads
+\[
+1
+=2|\psi(a)|^2\Biggl(
+\frac{-\mathcal{G}'}{\mathcal{G}^2}+t^2(-\lambda')
+\Biggr).
+\]
+At the root, \(t^2=1/(\mathcal{G}\lambda)\), and the parenthesis equals
+\((-(\mathcal{G}\lambda)')/(\mathcal{G}^2\lambda)\).
+This is \eqref{eq:twowt}.
+The host contact has squared modulus
+\(|\psi(a)|^2/(t^2\mathcal{G}^2)=(\lambda/\mathcal{G})|\psi(a)|^2\).
+
+The weight at \(-E\) agrees.
+The shift in the proof of Proposition~\ref{prop:anysep} gives
+\(\Gamma_r(-E)=-\sigma(r)\Gamma_r(E)\), so the host eigenvalues at \(-E\)
+are \(-\lambda_{\mathrm{div}}(E)\) and \(-\lambda_{\mathrm{canc}}(E)\).
+Differentiating \(\mathcal{G}(-E)+\Gamma_r(-E)=-\lambda_{\mathrm{div}}(E)\)
+brings down a minus from the chain rule that cancels the minus in front
+of \(\lambda_{\mathrm{div}}\), and \(\mathcal{G}'\) is even.
+The parenthesis is unchanged.
+The cancelled channel is the same with \(\lambda_{\mathrm{canc}}\).
+
+For the cancelled asymptotic, write \(E=8+\delta\) and \(L=\ln(1/\delta)\).
+After the shift in \eqref{eq:lamr}, with
+\(Q(k)=8\sin^2(k_x/2)+8\sin^2(k_y/2)\),
+\[
+\lambda_{\mathrm{canc}}(E)
+=\frac{1}{2E}
++\frac12\int\frac{1-\cos(k\cdot r)}{Q(k)+\delta}
+\,\frac{d^2k}{(2\pi)^2}
+\]
+and \(\lambda_\infty(r)\) is the same formula at \(\delta=0\), the flat term
+being \(1/16\).
+The difference of the integrals equals
+\[
+-\frac{\delta}{2}\int
+\frac{1-\cos(k\cdot r)}{Q(k)\,(Q(k)+\delta)}
+\,\frac{d^2k}{(2\pi)^2}.
+\]
+The quotient \((1-\cos(k\cdot r))/Q(k)\) extends to a bounded function, by
+the removal of the singularity in Proposition~\ref{prop:anysep}.
+On the torus of that shift, \(Q(k)\) is at least a constant multiple of
+\(|k|^2\), and \(\int_{|k|<1}(|k|^2+\delta)^{-1}\,d^2k\) is a constant
+multiple of \(\log(1/\delta)\).
+Thus \(\lambda_{\mathrm{canc}}(E)-\lambda_\infty(r)\) is a constant
+multiple of \(\delta\log(1/\delta)\).
+Differentiating under the integral for \(\delta>0\) gives
+\[
+\lambda_{\mathrm{canc}}'(E)
+=-\frac{1}{2E^2}
+-\frac12\int\frac{1-\cos(k\cdot r)}{(Q(k)+\delta)^2}
+\,\frac{d^2k}{(2\pi)^2}.
+\]
+The integrand is bounded by a constant multiple of
+\(|k|^2/(|k|^2+\delta)^2\), whose integral over the unit disc is a constant
+multiple of \(\log(1/\delta)\).
+Hence \(\lambda_{\mathrm{canc}}'\) is a constant multiple of
+\(\log(1/\delta)\).
+
+Proposition~\ref{prop:endpoint} gives
+\(\delta(-\mathcal{G}'(8+\delta))\to 1/(16\pi)\).
+The expansion of \(\mathcal{G}\) in the proof of
+Proposition~\ref{prop:stitch} says that \(\mathcal{G}\) differs from
+\(L/(16\pi)\) by a bounded quantity.
+The ratio
+\(\mathcal{G}\lambda_{\mathrm{canc}}'/(\lambda_{\mathrm{canc}}\mathcal{G}')\)
+is then a constant multiple of \(\delta L^2\) and tends to \(0\).
+Therefore
+\(-(\mathcal{G}\lambda_{\mathrm{canc}})'
+=\lambda_{\mathrm{canc}}(-\mathcal{G}')\,(1+o(1))\),
+and the weight is
+\[
+|\psi(a)|^2
+=\frac{\mathcal{G}^2}{2(-\mathcal{G}')}\,(1+o(1))
+=8\pi\,\delta\,\mathcal{G}^2\,(1+o(1)).
+\]
+The secular equation says
+\(\mathcal{G}=1/(t^2\lambda_{\mathrm{canc}})\).
+Since \(\lambda_{\mathrm{canc}}\to\lambda_\infty(r)\),
+\[
+|\psi(a)|^2
+=\frac{8\pi\,\delta}{t^4\lambda_\infty(r)^2}\,(1+o(1)).
+\]
+With \(C_0=1/16+3\ln 2/(8\pi)\) and with the remainder \(r(\delta)\to 0\) of
+that expansion,
+\[
+\mathcal{G}
+=\frac{L}{16\pi}+C_0+r(\delta)
+=\frac{1}{t^2\lambda_{\mathrm{canc}}},
+\]
+so
+\[
+\delta
+=\exp\Bigl(-\frac{16\pi}{t^2\lambda_{\mathrm{canc}}}\Bigr)
+\exp(16\pi C_0)\,e^{16\pi r(\delta)}.
+\]
+The constant equals \(64 e^{\pi}\), because
+\(16\pi C_0=\pi+6\ln 2\).
+Replacing \(\lambda_{\mathrm{canc}}\) by \(\lambda_\infty(r)\) changes the
+exponent by a constant multiple of
+\(\delta\log(1/\delta)/t^2\).
+At the root, \(t^2\) is \(1/(\mathcal{G}\lambda_{\mathrm{canc}})\) and
+\(\mathcal{G}\) is a constant multiple of \(L\), so the change tends to
+\(0\).
+Thus
+\[
+\delta
+=64 e^{\pi}
+\exp\Bigl(-\frac{16\pi}{\lambda_\infty(r)\,t^2}\Bigr)
+(1+o(1)),
+\]
+which is \eqref{eq:wcanc}.
+The outer mass equals
+\(8\pi\,\delta(-\mathcal{G}')\,(1+o(1))\) and tends to \(1/2\).
+The two outer copies account for the whole norm in the limit.
+
+For the divergent channel,
+\(\lambda_{\mathrm{div}}=2\mathcal{G}-\lambda_{\mathrm{canc}}\) and
+\(t^2\mathcal{G}\lambda_{\mathrm{div}}=1\), so
+\[
+\mathcal{G}
+=\frac14\Biggl(
+\lambda_{\mathrm{canc}}
++\sqrt{\lambda_{\mathrm{canc}}^2+\frac{8}{t^2}}
+\Biggr).
+\]
+The positive square root is the branch compatible with \(\mathcal{G}>0\).
+Replacing \(\lambda_{\mathrm{canc}}\) by \(\lambda_\infty(r)\) changes
+\(\mathcal{G}\) by a quantity that tends to \(0\).
+The bound \(\sqrt{1+u}\le 1+u/2\) gives
+\[
+\sqrt{\lambda_\infty(r)^2+\frac{8}{t^2}}
+=\frac{2\sqrt{2}}{|t|}
+\]
+plus a remainder at most a constant multiple of \(|t|\).
+Hence
+\[
+\mathcal{G}
+=\frac{1}{|t|\sqrt{2}}+\frac{\lambda_\infty(r)}{4}+o(1).
+\]
+The expansion of \(\mathcal{G}\) used above yields
+\[
+\delta
+=64 e^{\pi}
+\exp\bigl(-4\pi\lambda_\infty(r)\bigr)
+\exp\Bigl(-\frac{8\sqrt{2}\,\pi}{|t|}\Bigr)
+(1+o(1)),
+\]
+because \(16/(\sqrt{2})=8\sqrt{2}\) and
+\(16\pi\cdot\lambda_\infty(r)/4=4\pi\lambda_\infty(r)\).
+Differentiating \(\lambda_{\mathrm{div}}=2\mathcal{G}-\lambda_{\mathrm{canc}}\)
+gives
+\[
+-(\mathcal{G}\lambda_{\mathrm{div}})'
+=(-\mathcal{G}')\bigl(4\mathcal{G}-\lambda_{\mathrm{canc}}\bigr)
++\mathcal{G}\,\lambda_{\mathrm{canc}}'.
+\]
+The ratio of the second summand to the first is a constant multiple of
+\(\delta L^2\) and tends to \(0\).
+The quotient
+\((2\mathcal{G}-\lambda_{\mathrm{canc}})/(4\mathcal{G}-\lambda_{\mathrm{canc}})\)
+tends to \(1/2\).
+The weight simplifies to
+\[
+|\psi(a)|^2
+=\frac{\mathcal{G}^2}{4(-\mathcal{G}')}\,(1+o(1))
+=4\pi\,\delta\,\mathcal{G}^2\,(1+o(1)).
+\]
+Here \(\mathcal{G}^2=1/(2t^2)\,(1+o(1))\), so
+\(|\psi(a)|^2=(2\pi\,\delta/t^2)\,(1+o(1))\),
+which is \eqref{eq:wdiv}.
+The outer mass tends to \(1/4\), and the host carries the remaining half.
+The ratio of squared moduli at the host contact and at the outer endpoint
+is \(\lambda_{\mathrm{div}}/\mathcal{G}\), which tends to \(2\).
+\end{proof}
+
+For a neighbour one has \(\lambda_\infty=1/8\), so
+\(\lambda_\infty^{-2}=64\) and \(16\pi/\lambda_\infty=128\pi\).
+The cancelled weight in \eqref{eq:wcanc} is
+\(32768\pi e^{\pi}\, t^{-4}\exp(-128\pi/t^2)\), and the exponent
+\(\pi-4\pi\lambda_\infty\) in \eqref{eq:wdiv} equals \(\pi/2\).
+These are the two channels of \eqref{eq:adjlog}.
+On the divergent channel
+\(|\psi(x)|/|\psi(a)|\to\sqrt{2}\), so
+\[
+\frac{|B_{ax}|}{q_{ax}/2}\to\frac{2\sqrt{2}}{3}.
+\]
+On the cancelled channel the same ratio tends to \(0\).
+The moduli are unequal in both limits, so neither channel saturates
+Lemma~\ref{lem:bond-expand}.
+
+\begin{proposition}
+\label{prop:logsep}
+Let
+\[
+\gamma_{\mathrm{E}}
+=-\int_0^\infty e^{-u}\log u\,du.
+\]
+As \(|r|\to\infty\) through nonzero lattice vectors,
+\begin{equation}
+\label{eq:lamconst}
+\lambda_\infty(r)
+=\frac{1}{8\pi}\log|r|
++\frac{1}{16}
++\frac{\gamma_{\mathrm{E}}+\frac32\log 2}{8\pi}
++\varepsilon(r),
+\end{equation}
+where \(\varepsilon(r)\to 0\).
+The constant term does not depend on the direction of \(r\).
+Consequently the cancelled coefficient in \eqref{eq:rlog} is
+\begin{equation}
+\label{eq:cancconst}
+\frac{16\pi}{\lambda_\infty(r)}
+=\frac{128\pi^2}
+{\log|r|+\gamma_{\mathrm{E}}+\frac32\log 2+\frac\pi2+\varepsilon_1(r)},
+\end{equation}
+with \(\varepsilon_1(r)\to 0\).
+\end{proposition}
+
+\begin{proof}
+The constant \(\gamma_{\mathrm{E}}\) is also the limit
+\[
+\gamma_{\mathrm{E}}
+=\lim_{R\to\infty}
+\Biggl(
+\int_0^R\frac{1-e^{-s}}{s}\,ds-\log R
+\Biggr).
+\]
+Indeed, \(\log u=\int_1^u dt/t\).
+Splitting at \(u=1\) and changing the order, which is legitimate on each
+piece because \(\int_0^1|\log u|\,e^{-u}\,du\) and
+\(\int_1^\infty\log u\,e^{-u}\,du\) both converge, gives
+\[
+\int_0^\infty e^{-u}\log u\,du
+=\int_1^\infty\frac{e^{-t}}{t}\,dt
+-\int_0^1\frac{1-e^{-t}}{t}\,dt.
+\]
+The same splitting shows that the limit equals the negative of this value.
+The tail \(\int_R^\infty e^{-s}/s\,ds\) is the rate.
+
+Write \(T=[-\pi,\pi]^2\) and
+\[
+Q(k)=8\sin^2\frac{k_x}{2}+8\sin^2\frac{k_y}{2},
+\]
+so that \(Q(k)=2|k|^2+O(|k|^4)\) at the origin and \(Q\) vanishes only there.
+After the shift used in \eqref{eq:lamr},
+\[
+\lambda_\infty(r)
+=\frac1{16}+\frac12 D(r),
+\qquad
+D(r)
+=\int_T\frac{1-\cos(k\cdot r)}{Q(k)}\,\frac{d^2k}{(2\pi)^2}.
+\]
+For \(t>0\) define
+\begin{align*}
+p_t(x)
+&=\int_T e^{-t Q(k)/2}\cos(k\cdot x)\,\frac{d^2k}{(2\pi)^2},\\
+g_t(x)
+&=\int_{\R^2} e^{-t|k|^2}\cos(k\cdot x)\,\frac{d^2k}{(2\pi)^2}
+=\frac{1}{4\pi t}\exp\Bigl(-\frac{|x|^2}{4t}\Bigr).
+\end{align*}
+The Gaussian evaluation is the polar integral
+\(\int_0^\infty e^{-t\kappa^2}\kappa\,d\kappa/(2\pi)=1/(4\pi t)\).
+Integrating the multiplier in \(t\) gives
+\[
+\int_0^\infty\bigl(p_t(0)-p_t(r)\bigr)\,dt
+=\int_T\frac{1-\cos(k\cdot r)}{Q(k)/2}\,\frac{d^2k}{(2\pi)^2}
+=2D(r).
+\]
+
+The ratio \(Q(k)/(2|k|^2)\) extends continuously by the value \(1\) at the origin,
+and the extension is positive on the compact torus, so
+\(Q(k)/2\ge c|k|^2\) for some \(c>0\).
+The Taylor comparison \(Q(k)/2-|k|^2=O(|k|^4)\) then yields, for every \(t\ge 1\)
+and every lattice vector \(x\),
+\[
+\bigl|p_t(x)-g_t(x)\bigr|\le\frac{M}{t^2}.
+\]
+The contribution of \(\R^2\setminus T\) is \(O(e^{-\pi^2 t})\).
+On \(T\), the difference of the two exponentials is at most
+\(C t|k|^4 e^{-c't|k|^2}\), and the change of scale \(k=u/\sqrt{t}\) turns the
+integral of that majorant into a constant multiple of \(t^{-2}\).
+In particular \(p_t(0)=1/(4\pi t)+O(t^{-2})\).
+
+Thus the limit
+\[
+C_{\mathrm{diag}}
+=\lim_{A\to\infty}
+\Biggl(\int_0^A p_t(0)\,dt-\frac{\log A}{4\pi}\Biggr)
+\]
+exists.
+Its value is read from the Laplace transform
+\[
+L(\beta)
+=\int_0^\infty e^{-\beta t}p_t(0)\,dt
+=\int_T\frac{1}{\beta+Q(k)/2}\,\frac{d^2k}{(2\pi)^2},
+\qquad\beta>0.
+\]
+Integration by parts writes \(L(\beta)\) as
+\(\beta\int_0^\infty e^{-\beta A}F(A)\,dA\), where \(F(A)=\int_0^A p_t(0)\,dt\).
+Substitute \(F(A)=(\log A)/(4\pi)+C_{\mathrm{diag}}+\varepsilon(A)\) for \(A\ge 1\),
+with \(\varepsilon(A)\to 0\) and \(|\varepsilon(A)|\le M/A\).
+The piece over \((0,1)\) is \(O(\beta)\).
+The identity
+\(\beta\int_0^\infty e^{-\beta A}\log A\,dA=-\gamma_{\mathrm{E}}-\log\beta\),
+together with \(\beta\int_1^\infty e^{-\beta A}\varepsilon(A)\,dA\to 0\), gives
+\[
+L(\beta)
+=-\frac{\log\beta}{4\pi}
+-\frac{\gamma_{\mathrm{E}}}{4\pi}
++C_{\mathrm{diag}}+o(1).
+\]
+
+For the expansion of \(L\), set \(\alpha=2+\beta/2\).
+Then \(\beta+Q/2=2(\alpha-\cos k_x-\cos k_y)\), and the inner average
+of the proof of Proposition~\ref{prop:green} produces
+\[
+L(\beta)=\frac{1}{\pi\alpha}\,K\Bigl(\frac{2}{\alpha}\Bigr).
+\]
+The complementary modulus is
+\(k'=\sqrt{\alpha^2-4}/\alpha\), so
+\[
+\log\frac{4}{k'}+\frac12\log\beta
+=\log 4+\log\alpha+\frac12\log 2-\frac12\log\Bigl(4+\frac\beta2\Bigr).
+\]
+As \(\beta\downarrow 0\) the right-hand side tends to \(\tfrac52\log 2\).
+Proposition~\ref{prop:stitch} supplies
+\(K(2/\alpha)=\log(4/k')+o(1)\), and therefore
+\(K(2/\alpha)+\tfrac12\log\beta\to\tfrac52\log 2\).
+Since \(\alpha\to 2\) and \(\beta\log\beta\to 0\),
+\[
+L(\beta)+\frac{\log\beta}{4\pi}
+\to\frac{5\log 2}{4\pi}.
+\]
+Comparing the two expansions of \(L\) yields
+\(C_{\mathrm{diag}}=(\gamma_{\mathrm{E}}+5\log 2)/(4\pi)\).
+
+It remains to pass from the diagonal to separation \(r\).
+For \(1\le t<\infty\),
+\[
+\int_1^\infty\bigl(p_t(r)-g_t(r)\bigr)\,dt
+=\int_{\R^2}\psi(k)\cos(k\cdot r)\,\frac{d^2k}{(2\pi)^2},
+\]
+where
+\[
+\psi(k)
+=1_T(k)\,\frac{e^{-Q(k)/2}}{Q(k)/2}
+-\frac{e^{-|k|^2}}{|k|^2}.
+\]
+Fubini applies: the \(k\)-integral of the absolute difference of the two
+multipliers is \(O(t^{-2})\), which is integrable on \([1,\infty)\).
+Hence \(\psi\in L^1(\R^2)\).
+The Riemann–Lebesgue lemma sends the integral to \(0\) as \(|r|\to\infty\).
+
+On any interval \([\eta,1]\) with \(\eta>0\),
+\[
+\int_\eta^1 p_t(r)\,dt
+=\int_T\cos(k\cdot r)\,
+\frac{e^{-\eta Q/2}-e^{-Q/2}}{Q/2}
+\,\frac{d^2k}{(2\pi)^2}.
+\]
+The weight extends to a bounded function on \(T\), because its limit at the
+origin is \(1-\eta\).
+Riemann–Lebesgue again sends the integral to \(0\), while
+\(\bigl|\int_0^\eta p_t(r)\,dt\bigr|\le\eta\).
+Thus \(\int_0^1 p_t(r)\,dt\to 0\).
+
+The Gaussian integral is elementary.
+With \(s=|r|^2/(4t)\),
+\[
+\int_1^\infty\bigl(g_t(0)-g_t(r)\bigr)\,dt
+=\frac{1}{4\pi}\int_0^{|r|^2/4}\frac{1-e^{-s}}{s}\,ds
+=\frac{1}{2\pi}\log|r|
++\frac{\gamma_{\mathrm{E}}-2\log 2}{4\pi}+o(1).
+\]
+Combining these limits,
+\begin{align*}
+2D(r)
+&=C_{\mathrm{diag}}
++\int_1^\infty\bigl(g_t(0)-g_t(r)\bigr)\,dt+o(1)\\
+&=\frac{1}{2\pi}\log|r|
++\frac{2\gamma_{\mathrm{E}}+3\log 2}{4\pi}+o(1).
+\end{align*}
+One quarter of this expansion is \(D(r)/2\).
+Added to \(1/16\), it is \eqref{eq:lamconst}.
+Every term that survives is radial, so the constant does not depend on
+direction.
+Clearing the positive factor \(1/(8\pi)\) in \eqref{eq:lamconst} produces
+\eqref{eq:cancconst}.
+\end{proof}
+
+The same integral is discrete-harmonic away from the origin.
+On the first few shells it is an elementary number, so the cancelled
+coefficient in \eqref{eq:rlog} is a closed value rather than a logarithm.
+
+\begin{proposition}
+\label{prop:mean}
+Let \(T=[-\pi,\pi]^2\) and let \(Q\) be the symbol in the proof of
+Proposition~\ref{prop:logsep}.
+Define
+\[
+f(r)
+=\int_T\frac{1-\cos(k\cdot r)}{Q(k)}\,\frac{d^2k}{(2\pi)^2}
+\]
+for every lattice vector \(r\), so that \(f(0)=0\) and
+\(\lambda_\infty(r)=1/16+f(r)/2\) for \(r\neq 0\).
+The operator
+\[
+(\mathcal{L}u)(x)
+=8u(x)-2\sum_{y\sim x}u(y)
+\]
+satisfies \(\mathcal{L}f=-\delta_0\).
+Off the origin, \(f\) equals the average of its four neighbouring values,
+the value \(f(0)=0\) being used when the origin is one of them.
+The same average holds for \(\lambda_\infty\) at every lattice point whose
+four neighbours are nonzero.
+The adjacent values are fixed by the same identity:
+\[
+\lambda_\infty(1,0)=\frac18.
+\]
+The next shells are
+\begin{align*}
+\lambda_\infty(1,1)
+&=\frac1{16}+\frac1{4\pi},\\
+\lambda_\infty(2,0)
+&=\frac5{16}-\frac1{2\pi},\\
+\lambda_\infty(2,1)
+&=\frac1{2\pi},\\
+\lambda_\infty(3,0)
+&=\frac98-\frac3\pi,
+\end{align*}
+up to signs and interchange of the axes.
+The cancelled coefficients \(16\pi/\lambda_\infty(r)\) on these shells are
+\(128\pi\), \(256\pi^2/(\pi+4)\), \(256\pi^2/(5\pi-8)\), \(32\pi^2\), and
+\(128\pi^2/(9\pi-24)\).
+\end{proposition}
+
+\begin{proof}
+The symbol of \(\mathcal{L}\) is \(Q\).
+Explicitly,
+\[
+\sum_{e}\cos\bigl(k\cdot(x+e)\bigr)
+=\bigl(2\cos k_x+2\cos k_y\bigr)\cos(k\cdot x),
+\]
+the sine terms cancelling in pairs.
+Therefore
+\begin{align*}
+(\mathcal{L}f)(x)
+&=\int_T\cos(k\cdot x)\,
+\frac{-8+4\cos k_x+4\cos k_y}{Q(k)}
+\,\frac{d^2k}{(2\pi)^2}\\
+&=-\int_T\cos(k\cdot x)\,\frac{d^2k}{(2\pi)^2}
+=-\delta_{x0},
+\end{align*}
+where the constant terms \(8-8\) have cancelled before the division.
+At the origin the four neighbours are equal, \(f(0)=0\), and
+\(-8f(1,0)=-1\), so \(f(1,0)=1/8\).
+Hence \(\lambda_\infty(1,0)=1/16+1/16=1/8\), in agreement with the limit
+\(\lambda_+\to 1/8\) in the proof of Proposition~\ref{prop:adj}.
+Off the origin, \(\mathcal{L}f=0\) is the mean-value property.
+A constant is annihilated by \(\mathcal{L}\), so the same average holds for
+\(\lambda_\infty\) at every point whose four neighbours are nonzero.
+
+For the diagonal shell the odd product \(\sin k_x\sin k_y\) drops out, and
+\(Q=4(2-\cos k_x-\cos k_y)\).
+With \(b=2-\cos k_x\), the average in the proof of
+Proposition~\ref{prop:green} gives
+\[
+\frac{1}{2\pi}\int_0^{2\pi}
+\frac{1-\cos k_x\cos\phi}{b-\cos\phi}\,d\phi
+=\cos k_x+\frac{(1-\cos k_x)^2}{\sqrt{b^2-1}},
+\]
+because \(1-\cos k_x\cos\phi=\cos k_x\,(b-\cos\phi)+(1-\cos k_x)^2\).
+The cosine averages to zero, and
+\(\sqrt{b^2-1}=\sqrt{(1-\cos k_x)(3-\cos k_x)}\).
+Division by the factor \(4\) in \(Q\) therefore gives
+\[
+f(1,1)
+=\frac{1}{8\pi}\int_0^{2\pi}
+\frac{(1-\cos x)^{3/2}}{\sqrt{3-\cos x}}\,dx.
+\]
+The half-angle identities
+\(1-\cos x=2\sin^2(x/2)\) and \(3-\cos x=2\bigl(1+\sin^2(x/2)\bigr)\)
+turn the integrand into \(2\sin^3(x/2)/\sqrt{1+\sin^2(x/2)}\).
+The substitution \(\varphi=x/2\), followed by \(w=\cos\varphi\), produces
+\[
+f(1,1)
+=\frac{1}{\pi}\int_0^1
+\Biggl(\sqrt{2-w^2}-\frac{1}{\sqrt{2-w^2}}\Biggr)\,dw.
+\]
+The antiderivative of \((2-w^2)^{-1/2}\) is \(\arcsin(w/\sqrt{2})\),
+equal to \(\pi/4\) at the upper limit.
+The antiderivative of \((2-w^2)^{1/2}\) is
+\[
+\frac12\Bigl(w\sqrt{2-w^2}+2\arcsin(w/\sqrt{2})\Bigr),
+\]
+equal to \(\tfrac12+\pi/4\) at \(w=1\).
+The integral equals \(1/2\), and \(f(1,1)=1/(2\pi)\).
+Thus \(\lambda_\infty(1,1)=1/16+1/(4\pi)\).
+
+The point \((1,1)\) is not adjacent to the origin.
+Its neighbours are \((2,1)\), \((0,1)\), \((1,2)\) and \((1,0)\), so
+\[
+4f(1,1)=2f(2,1)+2f(1,0).
+\]
+Therefore \(f(2,1)=1/\pi-1/8\) and
+\(\lambda_\infty(2,1)=1/(2\pi)\).
+
+For the axial shell,
+\[
+f(2,0)
+=\frac{1}{8\pi}\int_0^{2\pi}
+\frac{1-\cos(2x)}{\sqrt{(1-\cos x)(3-\cos x)}}\,dx.
+\]
+Now \(1-\cos(2x)=2(1-\cos x)(1+\cos x)\), and the same half-angle reduction
+produces
+\[
+f(2,0)
+=\frac{2}{\pi}\int_0^1\frac{w^2}{\sqrt{2-w^2}}\,dw.
+\]
+The integrand is \(2(2-w^2)^{-1/2}-(2-w^2)^{1/2}\).
+The integral equals \(\pi/4-1/2\), so \(f(2,0)=1/2-1/\pi\) and
+\(\lambda_\infty(2,0)=5/16-1/(2\pi)\).
+
+The neighbours of \((2,0)\) are \((3,0)\), \((1,0)\), \((2,1)\) and
+\((2,-1)\).
+The mean-value property and \(f(2,1)=f(2,-1)\) give
+\[
+4f(2,0)=f(3,0)+f(1,0)+2f(2,1).
+\]
+The values already obtained are \(f(1,0)=1/8\), \(f(2,0)=1/2-1/\pi\) and
+\(f(2,1)=1/\pi-1/8\), so
+\[
+f(3,0)=\frac{17}{8}-\frac{6}{\pi}.
+\]
+Half of this, added to \(1/16\), is \(\lambda_\infty(3,0)=9/8-3/\pi\).
+
+Dividing \(16\pi\) by each of these values gives the cancelled
+coefficients.
+\end{proof}
+
+\begin{proposition}
+\label{prop:shells}
+Up to signs and interchange of the axes,
+\begin{align*}
+\lambda_\infty(2,2)
+&=\frac1{16}+\frac1{3\pi},\\
+\lambda_\infty(3,2)
+&=\frac18+\frac1{6\pi},\\
+\lambda_\infty(3,1)
+&=\frac{23}{12\pi}-\frac7{16},\\
+\lambda_\infty(4,0)
+&=\frac{81}{16}-\frac{46}{3\pi},\\
+\lambda_\infty(4,1)
+&=\frac{10}{\pi}-3,\\
+\lambda_\infty(5,0)
+&=\frac{201}{8}-\frac{235}{3\pi},\\
+\lambda_\infty(3,3)
+&=\frac1{16}+\frac{23}{60\pi},\\
+\lambda_\infty(4,3)
+&=\frac{3}{5\pi}.
+\end{align*}
+The cancelled coefficients \(16\pi/\lambda_\infty\) on these shells are
+\(768\pi^2/(16+3\pi)\), \(384\pi^2/(4+3\pi)\),
+\(768\pi^2/(92-21\pi)\), \(768\pi^2/(243\pi-736)\),
+\(16\pi^2/(10-3\pi)\), \(384\pi^2/(603\pi-1880)\),
+\(3840\pi^2/(15\pi+92)\), and \(80\pi^2/3\).
+\end{proposition}
+
+\begin{proof}
+The sine term in \(\cos(2k_x+2k_y)\) is odd in \(k_y\) and drops out.
+Write \(c=\cos(2k_x)\), \(b=2-\cos k_x\), and \(z=\cos k_y\).
+Then \(Q=4(b-z)\) and \(\cos(2k_y)=2z^2-1\), so
+\[
+1-c(2z^2-1)
+=(1+c-2cb^2)+4cb\,(b-z)-2c(b-z)^2.
+\]
+Dividing by \(b-z\) and averaging in \(k_y\) replaces \(1/(b-z)\) by
+\(1/\sqrt{b^2-1}\) and \(b-z\) by \(b\).
+The sheet integral becomes
+\[
+f(2,2)
+=\frac{1}{8\pi}\int_0^{2\pi}
+\Biggl(
+2b\cos(2x)
++\frac{1+\cos(2x)-2\cos(2x)\,b^2}{\sqrt{b^2-1}}
+\Biggr)\,dx.
+\]
+The prefactor integrates to zero:
+\((2-\cos x)(2\cos^2 x-1)=-2+\cos x+4\cos^2 x-2\cos^3 x\),
+and \(\int_0^{2\pi}\cos=\int_0^{2\pi}\cos^3=0\) while
+\(\int_0^{2\pi}\cos^2=\pi\), so \(-4\pi+4\pi=0\).
+The remaining numerator, in \(u=\cos x\), is
+\(N=-4u^4+16u^3-12u^2-8u+8\).
+Set \(v=\sin^2(x/2)\), so \(u=1-2v\), \(\cos(2x)=1-8v+8v^2\) and
+\(b=1+2v\). Then
+\[
+(1-8v+8v^2)(1+4v+4v^2)=1-4v-20v^2+32v^4,
+\]
+and \(N=48v^2-64v^4=16\sin^4(x/2)\bigl(3-4\sin^4(x/2)\bigr)\).
+Also \(\sqrt{b^2-1}=2\sin(x/2)\sqrt{1+\sin^2(x/2)}\) on \((0,2\pi)\).
+The quotient is
+\(8\sin^3(x/2)\bigl(3-4\sin^4(x/2)\bigr)/\sqrt{1+\sin^2(x/2)}\).
+The substitution \(x=2\varphi\) and the symmetry about \(\varphi=\pi/2\)
+turn the integral of \(N/\sqrt{b^2-1}\) into
+\[
+32\int_0^1\frac{4w^6-12w^4+9w^2-1}{\sqrt{2-w^2}}\,dw,
+\]
+where \(w=\cos\varphi\) and the numerator is
+\((1-w^2)\bigl(3-4(1-w^2)^2\bigr)\).
+
+The substitution \(w=\sqrt{2}\sin\theta\) gives
+\[
+\int_0^1\frac{w^{2n}}{\sqrt{2-w^2}}\,dw
+=2^n\int_0^{\pi/4}\sin^{2n}\theta\,d\theta.
+\]
+The cases \(n=0,1,2\) are \(\pi/4\), \(\pi/4-1/2\), and \(3\pi/8-1\).
+For \(n=3\),
+\[
+\sin^6\theta
+=\frac{10-15\cos 2\theta+6\cos 4\theta-\cos 6\theta}{32}.
+\]
+Integrating from \(0\) to \(\pi/4\) and multiplying by \(8\) produces
+\(5\pi/8-11/6\).
+The numerator \(4w^6-12w^4+9w^2-1\) therefore integrates to
+\begin{align*}
+&4\Bigl(\frac{5\pi}{8}-\frac{11}{6}\Bigr)
+-12\Bigl(\frac{3\pi}{8}-1\Bigr)
++9\Bigl(\frac\pi4-\frac12\Bigr)
+-\frac\pi4\\
+&\qquad=-\frac{22}{3}+12-\frac92
+=\frac16.
+\end{align*}
+The coefficients of \(\pi\) cancel.
+Thus the \(x\)-integral equals \(32/6=16/3\), and
+\(f(2,2)=(16/3)/(8\pi)=2/(3\pi)\).
+Therefore \(\lambda_\infty(2,2)=1/16+1/(3\pi)\).
+
+The neighbours of \((2,2)\) are two copies of \((3,2)\) and two copies of
+\((2,1)\), so \(2f(2,2)=f(3,2)+f(2,1)\).
+With \(f(2,1)=1/\pi-1/8\) this gives \(f(3,2)=1/(3\pi)+1/8\) and
+\(\lambda_\infty(3,2)=1/8+1/(6\pi)\).
+The neighbours of \((2,1)\) give
+\[
+4f(2,1)=f(3,1)+f(1,1)+f(2,2)+f(2,0),
+\]
+hence \(f(3,1)=23/(6\pi)-1\) and
+\(\lambda_\infty(3,1)=23/(12\pi)-7/16\).
+The neighbours of \((3,0)\) give
+\[
+4f(3,0)=f(4,0)+f(2,0)+2f(3,1),
+\]
+hence \(f(4,0)=10-92/(3\pi)\) and
+\(\lambda_\infty(4,0)=81/16-46/(3\pi)\).
+The neighbours of \((3,1)\) give
+\[
+4f(3,1)=f(4,1)+f(2,1)+f(3,2)+f(3,0),
+\]
+hence \(f(4,1)=20/\pi-49/8\) and \(\lambda_\infty(4,1)=10/\pi-3\).
+The neighbours of \((4,0)\) give
+\[
+4f(4,0)=f(5,0)+f(3,0)+2f(4,1),
+\]
+hence \(f(5,0)=401/8-470/(3\pi)\) and
+\(\lambda_\infty(5,0)=201/8-235/(3\pi)\).
+
+The sine term in \(\cos(3k_x+3k_y)\) is odd in \(k_y\) and drops out.
+Write \(c=\cos(3k_x)\), \(b=2-\cos k_x\), and \(z=\cos k_y\).
+Then \(Q=4(b-z)\) and \(\cos(3k_y)=4z^3-3z\).
+Set \(w=b-z\). Expanding gives
+\[
+1-c(4z^3-3z)
+=(1-c(4b^3-3b))+c(12b^2-3)w-12cb\,w^2+4c\,w^3.
+\]
+Dividing by \(w\) and averaging in \(k_y\) replaces \(1/w\) by
+\(1/\sqrt{b^2-1}\), \(w\) by \(b\), and \(w^2\) by \(b^2+1/2\).
+The regular piece collapses to \(c(4b^2-1)\):
+\[
+c(12b^2-3)-12cb\cdot b+4c\Bigl(b^2+\frac12\Bigr)
+=c(4b^2-1).
+\]
+Here \(4b^2-1=15-16\cos x+4\cos^2 x\).
+The products
+\[
+\cos(3x)\cos x=\frac12\bigl(\cos 4x+\cos 2x\bigr)
+\]
+and
+\[
+\cos(3x)\cos^2 x
+=\frac12\cos(3x)+\frac14\bigl(\cos 5x+\cos x\bigr)
+\]
+are sums of \(\cos(nx)\) for \(n\neq 0\), so
+\(\int_0^{2\pi}c(4b^2-1)\,dx=0\).
+
+The singular numerator is \(S=1-c(4b^3-3b)\).
+Set \(v=\sin^2(x/2)\), so \(\cos x=1-2v\) and \(b=1+2v\).
+Then
+\[
+c=(1+48v^2)-(18v+32v^3),
+\qquad
+4b^3-3b=(1+48v^2)+(18v+32v^3),
+\]
+and the product is the difference of squares
+\[
+(1+48v^2)^2-(18v+32v^3)^2
+=1-228v^2+1152v^4-1024v^6.
+\]
+Hence
+\[
+S=228v^2-1152v^4+1024v^6
+=4v^2\bigl(57-288v^2+256v^4\bigr).
+\]
+On \((0,2\pi)\),
+\(\sqrt{b^2-1}=2\sin(x/2)\sqrt{1+\sin^2(x/2)}\), so with
+\(\varphi=x/2\),
+\[
+\frac{S}{\sqrt{b^2-1}}
+=2\sin^3\varphi\cdot
+\frac{57-288\sin^4\varphi+256\sin^8\varphi}{\sqrt{1+\sin^2\varphi}}.
+\]
+The factor \(1/4\) in \(1/Q\) puts the same \(1/(8\pi)\) in front of the
+\(x\)-integral as in the diagonal case.
+The regular integral vanishes, and the substitution \(x=2\varphi\)
+together with the symmetry about \(\varphi=\pi/2\) gives
+\[
+f(3,3)
+=\frac{1}{\pi}\int_0^1
+\frac{(1-w^2)P(1-w^2)}{\sqrt{2-w^2}}\,dw,
+\]
+where \(w=\cos\varphi\) and \(P(s)=57-288s^2+256s^4\).
+The numerator is
+\[
+25-473w^2+1696w^4-2272w^6+1280w^8-256w^{10}.
+\]
+Write
+\[
+A_n=\int_0^1\frac{w^{2n}}{\sqrt{2-w^2}}\,dw.
+\]
+The values already used are \(A_0=\pi/4\), \(A_1=\pi/4-1/2\),
+\(A_2=3\pi/8-1\), and \(A_3=5\pi/8-11/6\).
+Thus \(\int_0^{\pi/4}\sin^6\theta\,d\theta=5\pi/64-11/48\).
+The reduction
+\[
+\int_0^{\pi/4}\sin^m\theta\,d\theta
+=-\frac{2^{-m/2}}{m}+\frac{m-1}{m}
+\int_0^{\pi/4}\sin^{m-2}\theta\,d\theta
+\]
+at \(m=8\) gives
+\[
+\int_0^{\pi/4}\sin^8\theta\,d\theta
+=-\frac1{128}+\frac78\Bigl(\frac{5\pi}{64}-\frac{11}{48}\Bigr)
+=-\frac5{24}+\frac{35\pi}{512},
+\]
+and multiplication by \(2^4\) produces \(A_4=35\pi/32-10/3\).
+At \(m=10\),
+\[
+\int_0^{\pi/4}\sin^{10}\theta\,d\theta
+=-\frac1{320}+\frac9{10}\Bigl(-\frac5{24}+\frac{35\pi}{512}\Bigr)
+=-\frac{61}{320}+\frac{63\pi}{1024},
+\]
+and multiplication by \(2^5\) produces \(A_5=63\pi/32-61/10\).
+The integral is \(J\), where
+\[
+J=25A_0-473A_1+1696A_2-2272A_3+1280A_4-256A_5.
+\]
+The coefficient of \(\pi\) is
+\begin{align*}
+&\frac{25-473}{4}
++\frac{3\cdot 1696-5\cdot 2272}{8}
++\frac{35\cdot 1280-63\cdot 256}{32}\\
+&\qquad=-112-784+896=0.
+\end{align*}
+The rational part is
+\begin{align*}
+&\frac{473}{2}-1696+\frac{2272\cdot 11}{6}
+-\frac{1280\cdot 10}{3}+\frac{256\cdot 61}{10}\\
+&\qquad=-\frac{2919}{2}-\frac{304}{3}+\frac{15616}{10}
+=\frac{-43785-3040+46848}{30}
+=\frac{23}{30}.
+\end{align*}
+Thus \(f(3,3)=23/(30\pi)\) and
+\(\lambda_\infty(3,3)=1/16+23/(60\pi)\).
+
+The neighbours of \((3,3)\) are two copies of \((4,3)\) and two copies of
+\((3,2)\), so \(2f(3,3)=f(4,3)+f(3,2)\).
+With \(f(3,2)=1/(3\pi)+1/8\) this gives
+\(f(4,3)=6/(5\pi)-1/8\) and \(\lambda_\infty(4,3)=3/(5\pi)\).
+Dividing \(16\pi\) by each value gives the cancelled coefficients.
+\end{proof}
+
+On \(J_3\) the threshold of Proposition~\ref{prop:adj} already applies at
+every positive separation.
+Adjacent cells admit a sharper value, because the coordination identity
+cancels the integral \(I\) in one channel.
+
+\begin{proposition}
+\label{prop:j3nn}
+On \(J_3\), for \(E>12\), the resolvent entry between adjacent cells is
+independent of the bits and of the axis, and equals
+\[
+\Gamma(E)=\frac{1-Eg(E)}{24}.
+\]
+It is even in \(E\).
+At the upper edge,
+\[
+\mathcal{G}_3(12+)+\Gamma(12+)=\frac{1}{12},
+\qquad
+\mathcal{G}_3(12+)-\Gamma(12+)=\frac{I}{4},
+\]
+with \(I\) the integral in the proof of Proposition~\ref{prop:j3stitch}.
+Both products \(\mathcal{G}_3(\mathcal{G}_3\pm\Gamma)\) are positive and
+strictly decreasing on \((12,\infty)\), from these edge values down to \(0\).
+The equation \(t^2\mathcal{G}_3(\mathcal{G}_3+\Gamma)=1\) has a root above
+\(12\) if and only if
+\(t^2>12/\mathcal{G}_3(12+)\),
+and \(t^2\mathcal{G}_3(\mathcal{G}_3-\Gamma)=1\) has a root above \(12\) if
+and only if
+\(t^2>4/(I\,\mathcal{G}_3(12+))\).
+In either case the substitution \(E\mapsto -E\) supplies the partner below
+\(-12\).
+Every \(|t|\le\sqrt{128/11}\) fails both inequalities.
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:cellpole} halves the resolvent of
+\(E+2A_{\mathrm{cubic}}\).
+That column satisfies \(Eg+12 R_{\mathrm{nn}}=1\), since the cubic lattice
+has six neighbors and the factor \(2\) in \(E+2A\) doubles their contribution.
+Thus \(R_{\mathrm{nn}}=(1-Eg)/12\) and the sheet entry is \((1-Eg)/24\).
+Oddness of \(g\) gives \(\Gamma(-E)=\Gamma(E)\), by the same algebra as in
+Proposition~\ref{prop:neighbor}.
+At \(E=12\),
+\begin{align*}
+\mathcal{G}_3+\Gamma
+&=\frac{1}{24}+\frac g2+\frac{1-12g}{24}
+=\frac{1}{12},\\
+\mathcal{G}_3-\Gamma
+&=\frac{1}{24}+\frac g2-\frac{1-12g}{24}
+=g=\frac I4,
+\end{align*}
+where the edge value \(g(12+)=I/4\) is the one recorded in
+Proposition~\ref{prop:rung}.
+
+For \(E>12\) the same comparisons as in Proposition~\ref{prop:adj}, with
+\(8\) replaced by \(12\), give
+\[
+(E-12)g'-g
+=\int\frac{\varepsilon-12}{(E-\varepsilon)^2}\,d\mu<0
+\]
+and
+\[
+\frac{d}{dE}\bigl[(E+12)g\bigr]
+=\int\frac{-\varepsilon-12}{(E-\varepsilon)^2}\,d\mu<0.
+\]
+Hence \(\mathcal{G}_3+\Gamma\) and \(\mathcal{G}_3-\Gamma\) are strictly
+decreasing.
+Both stay positive: \((E-12)g<1\), so
+\(\mathcal{G}_3+\Gamma>1/(2E)\), and \(g>1/(E+12)\), so
+\(\mathcal{G}_3-\Gamma>1/(2E)\).
+The diagonal \(\mathcal{G}_3\) decreases, and therefore so do the two
+products.
+Each tends to \(0\) at infinity and is continuous up to the edge value just
+computed, so it meets \(1/t^2\) above \(12\) exactly when that value exceeds
+\(1/t^2\).
+Evenness of \(\Gamma\) and oddness of \(\mathcal{G}_3\) exchange the products
+under \(E\mapsto -E\), because a neighbor has \(\sigma=-1\).
+
+Proposition~\ref{prop:j3stitch} and Proposition~\ref{prop:rung} give
+\(\mathcal{G}_3(12+)<11/48\) and \(I<3/2\).
+The edge products are therefore strictly less than
+\[
+\frac{11}{48}\cdot\frac{1}{12}=\frac{11}{576}
+\qquad\text{and}\qquad
+\frac{11}{48}\cdot\frac{3}{8}=\frac{11}{128}.
+\]
+The larger of these is \(11/128\), so every
+\(|t|\le\sqrt{128/11}\) satisfies \(1/t^2\ge 11/128\) and misses both
+products.
+\end{proof}
+
+The identity \(\mathcal{G}_3+\Gamma=1/12\) does not use the value of \(I\).
+The integral remains only in the antisymmetric channel, as \(I/4\).
+That adjacent value is the most permissive separation, not a special case.
+
+\begin{proposition}
+\label{prop:j3max}
+Let \(r\in\mathbb{Z}^3\) be nonzero and write \(\sigma(r)=(-1)^{r_1+r_2+r_3}\).
+For \(E>12\) both combinations \(\mathcal{G}_3(E)\pm\Gamma_r(E)\) are positive
+and strictly decreasing, from finite edge values down to \(0\).
+Consequently \(t^2\mathcal{G}_3(\mathcal{G}_3\pm\Gamma_r)=1\) has a root above
+\(12\) if and only if \(t^2\) exceeds the reciprocal of the corresponding
+edge product, and \(E\mapsto -E\) reproduces the two products.
+The larger edge product, over both channels and every nonzero \(r\),
+equals \(\mathcal{G}_3(12+)\cdot I/4\), and the equality holds only when
+the two cells are adjacent.
+Every non-adjacent separation has a strictly larger critical hopping.
+In particular every \(|t|\le\sqrt{128/11}\) produces no eigenvalue outside
+\([-12,12]\), at every separation.
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:cellpole} gives, for \(r\neq 0\),
+\[
+\Gamma_r(E)
+=\frac12\int\frac{\cos(q\cdot r)}{E-\varepsilon_3(q)}\,\frac{d^3q}{(2\pi)^3}.
+\]
+Adding and subtracting the diagonal produces
+\[
+\mathcal{G}_3\pm\Gamma_r
+=\frac{1}{2E}
++\frac12\int\frac{1\pm\cos(q\cdot r)}{E-\varepsilon_3(q)}\,\frac{d^3q}{(2\pi)^3}.
+\]
+The numerators are nonnegative and not identically zero.
+Each integrand falls as \(E\) increases, and so does \(1/(2E)\).
+Both combinations are therefore positive and strictly decreasing on
+\((12,\infty)\).
+As \(E\to\infty\) they are asymptotic to \(1/E\), so the products with
+\(\mathcal{G}_3\) fall from their edge values to \(0\).
+A decreasing continuous function meets \(1/t^2\) exactly once above \(12\)
+when its edge value exceeds \(1/t^2\), and otherwise not at all.
+
+The upper edge of \(\varepsilon_3\) sits at \((\pi,\pi,\pi)\).
+Shift by that momentum.
+The denominator \(12-\varepsilon_3\) becomes
+\[
+Q_3(k)=4\bigl(3-\cos k_x-\cos k_y-\cos k_z\bigr),
+\]
+and \(1-\sigma(r)\cos(q\cdot r)\) becomes \(1-\cos(k\cdot r)\).
+Near the origin \(Q_3(k)\sim 2|k|^2\), so \(1/Q_3\) is integrable on the
+three-torus.
+Both edge values are therefore finite, and
+\[
+\lim_{E\downarrow 12}\bigl(\mathcal{G}_3-\sigma(r)\Gamma_r\bigr)
+=\frac1{24}+\frac12 f(r),
+\]
+where
+\[
+f(r)
+=\int\frac{1-\cos(k\cdot r)}{Q_3(k)}\,\frac{d^3k}{(2\pi)^3}.
+\]
+The other combination tends to \(2\mathcal{G}_3(12+)-1/24-f(r)/2\).
+
+The same shift that proves \(\Gamma_r(-E)=-\sigma(r)\Gamma_r(E)\) in
+Proposition~\ref{prop:anysep} applies to \(\varepsilon_3\).
+With \(\mathcal{G}_3\) odd, the two products at \(-E\) are the two products
+at \(E\).
+
+The symbol of \(\mathcal{L}u=12u-2\sum_{y\sim x}u(y)\) is \(Q_3\):
+each pair of opposite neighbours contributes a factor \(2\cos k_j\), and
+\(12-4(\cos k_x+\cos k_y+\cos k_z)=Q_3\).
+The cancellation in the proof of Proposition~\ref{prop:mean} therefore
+gives \(\mathcal{L}f=-\delta_0\).
+Off the origin, \(f\) equals the average of its six neighbours, counting
+\(f(0)=0\).
+At the origin this flux gives \(f(1,0,0)=1/12\).
+Thus one edge value on a neighbouring cell is \(1/12\), and the other is
+\[
+2\mathcal{G}_3(12+)-\frac1{12}
+=\frac I4,
+\]
+since \(\mathcal{G}_3(12+)=1/24+I/8\).
+
+The integrand of \(I\) is not constant, and \(u\mapsto 1/u\) is strictly
+convex on \((0,\infty)\), so
+\[
+I>\frac{1}{\int(3+\cos q_x+\cos q_y+\cos q_z)\,d\mu}=\frac13.
+\]
+Therefore \(I/4>\mathcal{G}_3(12+)>1/12\).
+
+For the ordering of \(f\), write
+\[
+\frac{1}{Q_3(k)}=\int_0^\infty e^{-s Q_3(k)}\,ds.
+\]
+The exponential factors across the three axes, and
+\[
+\frac{1}{2\pi}\int_0^{2\pi}e^{\alpha\cos\theta}\cos(m\theta)\,d\theta
+=\sum_{k\ge 0}\frac{1}{k!\,(k+|m|)!}\Bigl(\frac\alpha2\Bigr)^{2k+|m|}
+\]
+is positive for every \(\alpha>0\) and every integer \(m\).
+Thus \(\int\cos(k\cdot r)/Q_3\,d\mu>0\) for every \(r\), which is
+\(f(r)<f(\infty)\), where the limit
+\[
+\lim_{|r|\to\infty}f(r)
+=\int\frac{1}{Q_3}\,d\mu=\frac I4
+\]
+is Riemann–Lebesgue.
+In particular \(f(r)<I/4\) and the two edge values are strictly ordered,
+the larger being \(2\mathcal{G}_3(12+)-1/24-f(r)/2\).
+
+That larger value increases as \(f\) decreases.
+The minimum of \(f\) on \(\mathbb{Z}^3\setminus\{0\}\) is attained, because
+\(f(r)\to I/4>f(1,0,0)\) and only finitely many values can lie below
+\((1/12+I/4)/2\).
+Every nonzero lattice point has a neighbour of strictly larger Euclidean
+norm: increase a nonzero coordinate.
+A minimizer of maximal norm therefore cannot have all six neighbours equal
+to it, so it must be adjacent to the origin, where the missing neighbour
+is the origin itself and \(f=1/12\).
+Any other point of the minimizing set would have larger norm and would
+not be adjacent to the origin, which the same comparison forbids.
+The minimum \(1/12\) is attained only at the six neighbours of the origin.
+The larger edge product is therefore at most
+\(\mathcal{G}_3(12+)\cdot I/4\), with equality only for adjacent cells.
+
+Proposition~\ref{prop:j3nn} already bounds that product by \(11/128\).
+Every \(|t|\le\sqrt{128/11}\) lies below every edge product, and the
+products decrease, so neither channel has a root outside \([-12,12]\).
+\end{proof}
 
 \section{Codimension along a unitary orbit}
 \label{sec:codim}
