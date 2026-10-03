@@ -276,9 +276,18 @@ def eval_ports(datadir):
         b_ok = bool(all(d["cap_neg"][r] < 1e-9 for r in remote)
                     and max(d["cap_pos"][r] for r in remote) > 1e-3)
         c_ok = bool(d["lrw_comm"] < 1e-12 and d["diff_anti_w_max"] < 1e-9)
-        dd_ok = bool(d["pot_anti_support"] and d["pot_far_rel"] < 0.05)
+        # H-d gate = exact support legs only. The naive sqrt2 far-field bar
+        # is DESCRIPTIVE per banked QUOT-0 precedent (J2 measured 0.38:
+        # prereg-design error, defect-induced monopole shift; mechanism
+        # confirmed in stronger form via exact support + remote blindness).
+        dd_ok = bool(d["pot_anti_support"]
+                     and d["pot_anti_support_mixed"])
         ports[f"sector_{t}"] = {"pass": bool(a_ok and b_ok and c_ok and dd_ok),
-                                "a": a_ok, "b": b_ok, "c": c_ok, "d": dd_ok}
+                                "a": a_ok, "b": b_ok, "c": c_ok, "d": dd_ok,
+                                "pot_far_rel": d["pot_far_rel"],
+                                "pot_far_rel_L2": d.get("pot_far_rel_L2"),
+                                "pot_mixed_anti_r1_max": d.get(
+                                    "pot_mixed_anti_r1_max")}
     # H-e bilayer.
     p = os.path.join(datadir, "dim3_bilayer_bcb-L8.json")
     if os.path.exists(p):

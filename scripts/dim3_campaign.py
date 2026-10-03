@@ -682,6 +682,21 @@ def cmd_sector(args):
     num = np.abs(phis["mixed"][far] - phis["sym"][far] / math.sqrt(2.0)).max()
     den = np.abs(phis["mixed"][far]).max()
     rec["pot_far_rel"] = float(num / den) if den > 0 else float("nan")
+    # Banked-verbatim far-field (QUOT-0 rule: L2 over coarse shells r>=4,
+    # ||mixed/sqrt2 - sym||/||sym||). DESCRIPTIVE, not gated: banked J2
+    # measured 0.38 (FAIL on the naive sqrt2 bar -- defect-induced
+    # monopole shift; mechanism confirmed in stronger form). Filed here
+    # for direct J2/J3 comparison.
+    far4 = sorted(i for r in shells for i in shells[r] if r >= Q.POT_FAR_R)
+    num2 = float(np.linalg.norm(
+        phis["mixed"][far4] / math.sqrt(2.0) - phis["sym"][far4]))
+    den2 = float(np.linalg.norm(phis["sym"][far4]))
+    rec["pot_far_rel_L2"] = float(num2 / den2) if den2 > 0 else float("nan")
+    # Banked "stronger form" readout (DESCRIPTIVE): mixed-drive anti part
+    # far from the source cell (J2: exactly 0 at coarse r>=1).
+    far1 = sorted(i for r in shells for i in shells[r] if r >= 1)
+    rec["pot_mixed_anti_r1_max"] = float(
+        np.abs(decomp["mixed"]["anti"][far1]).max())
     with open(os.path.join(outdir, f"dim3_sector_{tag}.json"), "w") as f:
         json.dump(jsonable(rec), f)
     print(f"sector {tag}: comm={rec['comm']:.1e} dead={rec['dead']:.1e} "
