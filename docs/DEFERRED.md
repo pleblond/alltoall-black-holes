@@ -10220,3 +10220,258 @@ along global phase. ZERO is the no-linear-susceptibility limit. Nothing
 here selects a vacuum or moves geometry; the response differences are
 mathematical facts about established relational observables, filed as input
 to future geometry coupling.
+
+## VACTEXTURE0-PREREG (FROZEN pre-data; commit predates ALL VACTEXTURE-0 runs)
+
+Spatial textures inside the hidden vacuum component (VAC-TEXTURE-0).
+Mission: determine whether the hidden JOINT vacuum orientation can vary
+spatially while remaining vacuum-like, and characterize what gradients of
+that orientation become under frozen H = -A.
+
+At fixed amplitude parameter a, real basis (VMINUS, VSTAG) with
+psi_hid(alpha) = a [cos alpha VMINUS + sin alpha VSTAG], alpha ~ alpha + pi
+(global ray identification). Textures assign one angle per coarse cell,
+alpha: cells -> [0, pi), with node field psi_{x,y,b} = (a / sqrt(N)) s_b
+[cos alpha_{x,y} + sin alpha_{x,y} (-1)^{x+y}], s_b = +1/-1 for b = 0/1.
+Every texture is real and sheet-antisymmetric by construction, hence in P_-
+exactly; the banked identity H P_- = 0 (MALUS-0, QUOT-0) then places every
+texture in E_0 exactly. The campaign tests this derivation, measures what
+gradients become (emitted P_+, rho/B/J, energy, transport, observer and
+ledger readouts), and derives gradient scaling without imposing any
+continuum action.
+
+### Firewall (campaign level)
+
+VAC-TEXTURE-0 may not claim, and its interpretation layer may not use:
+Goldstone, spin, gauge, defect, or particle terminology. Textures are
+described ONLY as spatial variation of the hidden vacuum orientation with
+measured relational, transport, observer, and ledger readouts. No continuum
+action is imposed: gradient scaling is DERIVED from measured relational
+observables, never fitted as an input action. No geometry evolution, no
+onsite terms, no edge weights, no nonlinear field term, no source feedback,
+no stochastic dynamics, no structural event. Virtual ledgers are
+readout-only. Different B/rho landscapes are not forces (0H/0I gate frozen
+flow + FIELD-0 witness I = 0).
+
+### Frozen ontology + consumed apparatus (byte-identical, read-only)
+
+H(G) = -A(G), J = 1, hbar = 1. psi_u = r_u + i s_u per node;
+rho = |psi|^2; B_uv = Re(psi*_u psi_v); J_{u->v} = 2 Im(psi*_u psi_v);
+E_psi = -2 sum_edges B. Geometry frozen (J2 torus). Consumed (md5-12):
+vacfield a9fe0f5fa241, vaccomp 0bd50db361e8, hidden 85a055e7dd40, hiddenbr
+6df6ce530d83, bgresp f93cadaacb27, response 63cebb004341, field0
+79de081f65d9, zero 5185bba6d6ed, quot d250eeca640c, sym0 1efe9ac53c37,
+ballistic e877d1160fff, malus e835f72eeb3d, continuum 30c4d79d9c66,
+backreaction 2752f060e3aa, driven 3666ab13ee1c, contraction c7aa09140bf1,
+phase b3163f5e2b8d, formation 3527ac1aea14 + their test files (all green,
+unmodified). Banked theorems consumed: H P_- = 0 + [H, S] = 0 (MALUS-0);
+uniform-alpha JOINT RP1 circle (VAC-COMP-0); local read + remote blindness
+(HIDDEN-0); R_G + M1 + contraction uniformity (VAC-COMP/VAC-FIELD ledger);
+superposition + witness I (FIELD-0); U(1) redundancy vs physical scale
+(SYM-0); coarse pattern vs quotient dynamics (QUOT-0/MALUS); linearity of
+U(t) on backgrounds (VAC-EXC-0 0A form).
+
+### Texture families + amplitudes (preregistered, not adapted)
+
+Six families (vactexture.FAMILIES): uniform (constant map); sine-x
+(alpha0 + delta sin(2 pi x / lam)); sine-xy (separable product);
+linear (alpha0 + winding pi x / L, integer winding ray-periodic); wall
+(periodic tanh pair, widths {1.0, 2.0}); step (periodic sharp pair).
+DELTA_GRID = {pi/8, pi/4, pi/2}, ALPHA0_GRID = {0, pi/8}, lam in
+{L, L/2} (L4/L8) and {28, 14, 7} (L28), windings {1, 2}. Amplitude
+parameter a in AMPS = {1e-3, ..., 1e3} (VACFIELD0 set); headline a = 1.
+Norm theorems (exact, pinned pre-data): x-only maps (uniform, sine-x,
+linear, wall, step) preserve Q = a^2 exactly at any alpha0 (the cross
+term sin(2 alpha) (-1)^{x+y} sums to zero over y in every row); sine-xy
+at alpha0 = 0 on even L preserves Q = a^2 exactly (y <-> L-y pairing);
+Q varies at fixed a only through y-dependent maps at alpha0 != 0
+(mod pi). Amplitude direction is physical (SYM-0 scale).
+
+### Frozen constants (all runs)
+
+J2 L_EXACT = 4 (N = 32), L_DIAG = 8 (N = 128), L_HEAD = 28 (N = 1568),
+L_LIST = {4, 6, 8, 12, 16, 20, 28} (even; size scaling). ALPHA_GRID =
+13 points on [0, pi/2] (circle reproduction). T_K = 30, DT_K = 0.1
+(300 rows); T_FIT = 8 (no-wrap window). Carrier packet: VAC-FIELD B0
+Gaussian, eps = 0.01. Ledger: 20000 M1 moves, seed 0; contraction scan
+16 stratified edges. Bars: vactexture.BARS (frozen; sector_weight 1e-12,
+h_residual 1e-9, energy_zero 1e-9, stationarity 1e-8, current_edge 1e-12,
+stress_uniform 1e-9, local_bar 1e-6, remote_bar 1e-9, coarse_visible 1e-4,
+ledger_visible 1e-6, witness 1e-6 FIELD-0 bar, scaling_tol 0.05).
+
+### Stage protocols + predictions (P) / gates (G)
+
+0A uniform-circle reproduction: P: uniform rays reproduce the VAC-COMP
+JOINT census at every even L: JOINT except the B == 0 point at
+alpha = pi/4 (BACKGROUND-capped by the strict Bmax gate). G:
+uniform_circle check (L4/L6/L28 x 13 alphas).
+
+0B texture construction: P: every family output real, P_- exact;
+constant map == uniform ray to fp; periodicity params exact (lam | L,
+integer winding; wall/step/uniform always periodic). Filed + unit pins
+(no campaign gate beyond 0C membership).
+
+0C P_- E_0 membership: P: w_sym = 0, ||H psi|| = 0, E = 0 exactly for
+every (family, params, L, a) row: the obstruction is identically zero
+by construction + banked H P_- = 0. Any nonzero entry IS the derived
+obstruction. G: pminus_e0 check (all sweep/amplitude/scaling rows).
+
+0D emitted P_+ content: P: w_sym stays 0 along U(t) (banked [H, S] = 0);
+no P_+ emission from any texture. G: E legs folded into pminus_e0
+(stationary_L4/L28 traces, max + endpoint).
+
+0E relational anatomy: P: J = 0 and E = 0 exactly (real states); B/rho
+nonuniform tracking the orientation gradient. Derived pre-data: the
+gradient readout is the per-class B spread B_pcmax (uniform hidden
+vacua exactly uniform per class); global B_std carries a class-mixing
+baseline (1/N on uniform VMINUS) and is filed, not gated. G:
+local_B_std supporting (max B_pcmax over nonuniform L28 rows > 1e-6).
+
+0F wavelength/amplitude sweeps + scaling: P: B_pcmax ordered in the
+analytic gradient (2 pi delta / lam) over the lam grid at fixed
+delta = pi/4; log-log slope derived (no functional form imposed),
+predicted positive; Q = a^2 exactly over AMPS (log-log slope 2 to
+1e-9). G: scaling check (finite positive slope + endpoint ordering);
+amp_scaling filed.
+
+0G smooth vs sharp: P: matched sine-x vs step textures at shared delta
+are locally distinguishable (D > 1e-6 at every delta, L4 + L28); exact
+gradient concentration (step max_grad = delta >= sine max_grad for
+lam >= 4). B_std/B_range landscapes filed descriptively (global-range
+ordering NOT gated: class-mixing baselines make it non-robust,
+derived pre-data). G: smooth_sharp check.
+
+0H stationary-hidden vs propagating: P: textures frozen (rho/B/J drifts
+0, phase rate 0: H psi = 0 gives U(t) = I on the state); a B0 packet
+on a texture background splits exactly (full - texture == d-alone to
+1e-10), the texture stays frozen, the packet stays ballistic
+(speed > 0.5, r2 > 0.9). G: stationary + carrier checks.
+
+0I observer visibility + local distinguishability: P: texture vs
+uniform reference locally visible (D > 1e-6 with d_B carrying it,
+J legs exact-zero); static coarse pattern visible (d_coarse > 1e-4)
+while symmetric amplitude exactly 0 for texture and difference
+(no quotient image, no propagating content: visible pattern, blind
+dynamics). G: local_gradient + observer_blind checks (ladder);
+observer_static filed (reported, not ladder-forcing).
+
+0J structural-ledger projection: P: R_G distances separate textures
+from uniform (> 1e-6, L4 + L28); contraction uniformity breaks on
+textures while holding on uniform alpha = 0; M1 f-stats filed per
+texture. G: ledger check (readout-only, no event run).
+
+0K size scaling: P: obstruction zero at every L in L_LIST; gradient
+readouts filed per L (headline sine n_periods = 1, analytic grad
+2 pi delta / L shrinking with L). G: size_scaling (membership +
+endpoints; filed, not ladder).
+
+0Q quotient control: P: symmetric part of every texture exactly zero,
+so the quotient image is absent (no H_Q dynamics, no quotient
+transport). G: quotient (filed; supports observer_blind).
+
+C0 uniform JOINT (folded into 0A). C1 global phase: P: rho/B/J/E
+invariant under global phase on textures (SYM-0 U(1)). G: phase.
+C2 projective periodicity: P: psi(alpha + pi) = -psi(alpha) exactly
+(uniform rays + whole-map shift), observables identical. G:
+projective. C3 origin covariance: P: exact symmetry (derived
+pre-data): even dx+dy -> shifted map gives translated field; odd
+dx+dy -> translated field composed with the staggered-structure
+reflection alpha -> -alpha (odd translations map VSTAG -> -VSTAG
+while VMINUS -> VMINUS; the (-1)^{x+y} factor is pinned to absolute
+coordinates). G: covariance (L4 + L28, odd shift (1,2)). C4 FIELD-0
+witness: P: I = 0 on texture superpositions (linear law for extended
+states; textures static, PRE = t0, POST = t_end). G: witness.
+
+Odd-L appendix (L5): P: textures still P_- E_0 exact (construction is
+per-cell); uniform census: VMINUS ray JOINT, staggered direction
+frustrated (filed, VAC-COMP precedent). G: odd (filed, not ladder).
+
+### Verdict ladder (analyzer-gated)
+
+Checks (14, all boolean): pminus_e0, uniform_circle, local_gradient,
+scaling, smooth_sharp, stationary, carrier, observer_static,
+observer_blind, ledger, phase, projective, covariance, witness.
+Headline (frozen logic, mirrored in vactexture.campaign_verdict and
+scripts/vactexture_analyze.py): VACTEXTURE-RADIATIVE if stationary,
+carrier, pminus_e0, or observer_blind fails; else VACTEXTURE-NOLOCAL
+if pminus_e0 holds but local_gradient + ledger + scaling all fail
+with apparatus (circle/phase/projective/covariance/witness) green;
+else VACTEXTURE-FLAT if pminus_e0 holds but local_gradient + ledger
+fail; else VACTEXTURE-GRADIENT if pminus_e0, local_gradient,
+stationary, carrier, observer_blind, ledger, scaling, smooth_sharp,
+and apparatus all green; else VACTEXTURE-PARTIAL (mixed or apparatus
+failure; filed with the check table, never forced). Pre-data
+derivation: RADIATIVE excluded by H P_- = 0 + [H, S] = 0 (frozen,
+blind); FLAT/NOLOCAL excluded by the B/rho/ledger/coarse gradient
+readouts; predicted headline VACTEXTURE-GRADIENT. Amendments, if any,
+as VACTEXTURE0-AMENDMENT-n with gated re-runs; none pre-data.
+
+### Execution
+
+28 specs (scripts/vactexture_campaign.py, mp.Pool, --jobs <= 90), beast
+EC2 (16.54.88.181, OMP threads 1), JSON record
+data/vactexture/results.json (committed). Analyzer
+scripts/vactexture_analyze.py writes data/vactexture/verdict.json. Full
+suite on beast (pytest -n 90; pyproject addopts already skips
+tests/test_weighted.py). Branch cursor/vac-texture-0-1b52, base main
+tail 81bf7b4. Verdict filed here post-data.
+
+### VACTEXTURE0-VERDICT (VACTEXTURE-GRADIENT, 14/14)
+
+Branch cursor/vac-texture-0-1b52 (base main tail 81bf7b4). 28/28 specs
+CAMPAIGN-DONE on beast (16.54.88.181, mp.Pool --jobs 28, OMP threads 1,
+nice, <2 min); records data/vactexture/results.json + verdict.json banked.
+Analyzer scripts/vactexture_analyze.py per PREREG (one apparatus fix for
+the scaling endpoint check, which sorted ascending-lambda against a
+gradient-ascending comparison: slope was already +0.173 with B_pcmax
+strictly ordered in gradient, results.json untouched, committed as
+1da1819). Full suite on beast (venv, -n 90, pyproject addopts skips
+tests/test_weighted.py): 1819 passed, 2 skipped, 0 failed.
+
+Headline: the hidden JOINT vacuum orientation CAN vary spatially while
+remaining exactly vacuum-like. Every (family, params, L, a) texture sits
+in P_- E_0 with w_sym = 0.0, ||H psi|| = 0.0, E = 0.0 bitwise over all
+sweep/amplitude/scaling rows (L4/L8/L28, 7 amplitudes), emits no P_+
+along the flow (trace max 0.0), and stays frozen (rho/B/J drifts 0.0,
+phase rate 0.0, all families incl. sharp steps). The obstruction is
+identically zero, as derived pre-data from construction + banked
+H P_- = 0.
+
+Gradients are visible but dynamically silent. Local leg: D(sine/step vs
+uniform) = 6.4e-4 at L28 (d_B carrying it, J legs exact-zero), 3.1e-2 at
+L4. Observer leg: static coarse pattern visible (d_coarse 1.3e-3 L28,
+6.3e-2 L4) while symmetric amplitude is exactly 0.0 for every texture
+and difference: quotient image absent at L4 + L28 (visible pattern,
+blind dynamics). Ledger leg: R_G separates textures from uniform
+(dmax 0.151 L4 / 0.00303 L28); M1 f-stats strongly restructured by sine
+textures (f0 0.50 uniform -> 0.0097 textured); contraction uniformity
+breaks on sine textures at L4 + L28 and on step textures at L4, while
+holding on uniform rays. Filed: L28 step textures elude the sparse
+16-edge contraction sample (jumps on 2 of 28 columns missed by
+4-per-class sampling), so that single cell stays uniform.
+
+Scaling (derived, nothing imposed): B_pcmax ordered in the analytic
+gradient over lam = 28/14/7 at fixed delta = pi/4 (2.31/2.47/2.94e-4),
+log-log slope +0.173; Q = a^2 exact over all 7 amplitudes (slope 2.0
+to fp). Smooth vs sharp: D(sine, step) = 8.9e-4/1.28e-3/1.46e-3 at
+delta = pi/8, pi/4, pi/2 (L28) with exact gradient concentration
+(step delta >= sine 2 pi delta / lam). Carrier: packet splits exactly
+on texture backgrounds (split err ~9e-16), texture frozen 0.0, packet
+ballistic (v = 1.92, r2 = 0.99998, msd alpha = 2.03, identical on sine
+and step backgrounds).
+
+Controls: uniform circle 12/13 JOINT + pi/4 BACKGROUND-capped (B == 0
+point) at L4/L6/L28; global phase, projective periodicity
+(psi(alpha + pi) = -psi exact, uniform + texture), and origin
+covariance (odd shift (1,2) via the staggered-structure reflection
+alpha -> -alpha) all exact; FIELD-0 witness I = 1.6e-17 on texture
+superpositions; odd-L5 appendix P_- E_0 exact with J = 0.
+
+Interpretation (boxed): orientation gradients inside the hidden vacuum
+component are relationally real (local B/rho structure, static coarse
+pattern, ledger restructuring, derived positive scaling) and dynamically
+void (frozen flow, no emission, no quotient image, null witness). The
+vacuum tolerates arbitrary preregistered orientation textures without
+leaving E_0; what varies is the measurable relational landscape, never
+the vacuum character. Nothing here moves geometry or selects a vacuum;
+filed as input to future geometry coupling.
