@@ -634,3 +634,324 @@ A later weave window at \(3\) is Section~\ref{sec:ell}, and it is
 intermediate when \(S\) is finite.
 A rise of \(d_{\mathrm{eff}}\) from \(1\) toward \(3\) is a different path
 through the same \((f_\square,d_{\mathrm{eff}})\) plane.
+
+\section{The fibre circle}
+\label{sec:circle}
+
+The sum map fixes \(s\) and leaves \(d\in\C\).
+The bond and the pair current are two real coordinates on that line,
+not two different mechanisms.
+
+\begin{lemma}
+\label{lem:BJ}
+Let \(\mathcal{J}_{ij}=\Im(\psi_i^*\psi_j)\), so that
+\(\psi_i^*\psi_j=B_{ij}+i\mathcal{J}_{ij}\).
+Then
+\begin{align*}
+B_{ij}&=\frac{|s|^2-|d|^2}{4},&
+\mathcal{J}_{ij}&=\frac12\Im(\bar d\, s),\\
+B_{ij}^2+\mathcal{J}_{ij}^2&=|\psi_i|^2|\psi_j|^2.
+\end{align*}
+At hopping \(1\), the continuity flux on the bond is \(2\mathcal{J}_{ij}\).
+\end{lemma}
+
+\begin{proof}
+Substitute \(\psi_i=(s+d)/2\) and \(\psi_j=(s-d)/2\).
+The cross term \(d^*s-s^*d\) is purely imaginary and equals
+\(2i\Im(d^*s)\), which produces the formula for \(\mathcal{J}_{ij}\).
+The identity \(B^2+\mathcal{J}^2=|\psi_i|^2|\psi_j|^2\) is
+\(|\psi_i^*\psi_j|^2=|\psi_i|^2|\psi_j|^2\).
+The factor \(2\) in the flux is the divergence convention
+\(\sum_{j\sim i}2\Im(\psi_i^*\psi_j)\).
+\end{proof}
+
+\begin{proposition}
+\label{prop:circle}
+Fix \(s\) and a real level \(B_*\).
+The fibre set \(B(s,d)=B_*\) is empty when \(B_*>|s|^2/4\),
+a single point when equality holds, and the circle
+\[
+|d|^2=|s|^2-4B_*
+\]
+when \(B_*<|s|^2/4\).
+The weight \(P_-\), and therefore \(h_2(P_-)\), is constant on that circle.
+The endpoint identification \(d\mapsto -d\) preserves the circle,
+preserves \(B\), and sends \(\mathcal{J}\) to \(-\mathcal{J}\).
+\end{proposition}
+
+\begin{proof}
+Lemma~\ref{lem:BJ} rearranges to the displayed radius.
+\(P_-\) depends on the pair only through \(|d|^2/(|s|^2+|d|^2)\).
+Replacing \(d\) by \(-d\) changes the sign of \(\Im(\bar d\, s)\) and
+does not change \(|d|\).
+\end{proof}
+
+A bond threshold is one real condition.
+It selects the radius and leaves the angle.
+The angle is the pair current.
+Remark~\ref{rem:h2} sees only the radius, so an entropy built from
+\(h_2\) is constant on a set of fibre states that the current separates.
+The conditional balance
+\(-\alpha-\beta(1+c)+2\gamma B=0\)
+likewise fixes a radius when \(\gamma\neq 0\):
+\(B_*=\bigl(\alpha+\beta(1+c)\bigr)/(2\gamma)\),
+with the two ratios \(\alpha/\gamma\) and \(\beta/\gamma\) unfixed.
+Those ratios move the circle.
+They do not select a point on it.
+Two real witnesses of a level set are two points of this circle.
+
+\begin{corollary}
+\label{cor:balanced}
+If the exclusive neighbourhoods have equal cardinality,
+the coefficient of \(d\) in \(\ddot\mu(t_0)\) vanishes.
+\end{corollary}
+
+\begin{proof}
+Lemma~\ref{lem:mu} gives that coefficient as
+\(-\tfrac12\bigl(|X_i|-|X_j|\bigr)\).
+\end{proof}
+
+A symmetric cover therefore leaves the circle intact at the first two
+orders of the summed amplitude.
+The current is still free at those orders.
+An asymmetric cover can pin \(d\) at second order, and then only the
+value that cancels the imbalance.
+
+\section{Additive bits on a matching}
+\label{sec:bits}
+
+\begin{lemma}
+\label{lem:varh}
+For \(h_2\) as in \eqref{eq:se},
+\[
+\int_0^1 h_2(p)^2\,dp
+=\frac{\tfrac56-\pi^2/18}{(\ln 2)^2}.
+\]
+If \(P_-\) is uniform on \([0,1]\),
+\[
+\mathrm{Var}\bigl(h_2(P_-)\bigr)
+=\frac{21-2\pi^2}{36(\ln 2)^2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Write \(A(p)=p\ln p+(1-p)\ln(1-p)\), so \(h_2=-A/\ln 2\) and the
+integral of \(A^2\) is the numerator.
+Symmetry gives
+\[
+\int_0^1 A^2
+=2\int_0^1 p^2(\ln p)^2\,dp
++2\int_0^1 p(1-p)\ln p\ln(1-p)\,dp.
+\]
+The substitution \(p=e^{-u}\) yields
+\(\int_0^1 p^2(\ln p)^2\,dp=2/27\).
+The cross term is \(\partial_\alpha\partial_\beta B(\alpha,\beta)\) at
+\((\alpha,\beta)=(2,2)\).
+There \(B(2,2)=1/6\), \(\psi(2)-\psi(4)=-5/6\), and
+\(\psi'(4)=\pi^2/6-49/36\), so
+\[
+\partial_\alpha\partial_\beta B(2,2)
+=\frac1{6}\Bigl(\frac{37}{18}-\frac{\pi^2}{6}\Bigr)
+=\frac{37}{108}-\frac{\pi^2}{36}.
+\]
+Adding the two contributions produces
+\(\int A^2=5/6-\pi^2/18\).
+The variance subtracts
+\(\bigl(1/(2\ln 2)\bigr)^2\), and
+\[
+\frac56-\frac14-\frac{\pi^2}{18}
+=\frac{7}{12}-\frac{\pi^2}{18}
+=\frac{21-2\pi^2}{36}.
+\]
+\end{proof}
+
+\begin{theorem}
+\label{thm:disjoint}
+Let \(\psi\) be Haar-uniform on the unit sphere in \(\C^N\), and let
+\(e_1,\ldots,e_k\) be pairwise disjoint coordinate pairs, \(2k\le N\).
+Then the variables \(P_-(e_a)\) are i.i.d.\ uniform on \([0,1]\).
+With \(s_e=h_2(P_-(e))\),
+\begin{align*}
+\mathbb{E}\sum_{a=1}^k s_{e_a}
+&=\frac{k}{2\ln 2},\\
+\mathrm{Var}\Bigl(\sum_{a=1}^k s_{e_a}\Bigr)
+&=k\,\frac{21-2\pi^2}{36(\ln 2)^2}.
+\end{align*}
+The mean and the variance are fixed by the same law.
+No further parameter enters either.
+\end{theorem}
+
+\begin{proof}
+Haar measure is the direction of a vector with i.i.d.\ standard complex
+normal coordinates.
+\(P_-\) on a pair depends only on those two coordinates and is invariant
+under a global rescaling, so it is a function of the corresponding
+\(\C^2\) marginal.
+Disjoint pairs use disjoint coordinates and are independent.
+Uniformity of each marginal is Theorem~\ref{thm:haar}.
+The variance of one summand is Lemma~\ref{lem:varh}, and independence
+adds the variances.
+\end{proof}
+
+\begin{proposition}
+\label{prop:cov}
+If two pairs share a vertex, each marginal of \(P_-\) is still uniform,
+so the expectations of \(h_2\) still add.
+The covariance equals the variance of the conditional expectation of
+\(h_2\) given the shared amplitude, and that variance is strictly positive.
+\end{proposition}
+
+\begin{proof}
+Let \(f_{12}=h_2(P_-)\) on coordinates \((z_1,z_2)\), and \(f_{13}\) on
+\((z_1,z_3)\), with \(z_a\) i.i.d.\ standard complex normal.
+Conditioning on \(z_1\) makes \(z_2\) and \(z_3\) independent, so
+\[
+\mathbb{E}[f_{12}f_{13}]
+=\mathbb{E}\bigl[\bigl(\mathbb{E}[f_{12}\mid z_1]\bigr)^2\bigr].
+\]
+The covariance is \(\mathrm{Var}(\mathbb{E}[f_{12}\mid z_1])\).
+For each fixed finite nonzero \(z_1\) the relative phase is uniform and
+the amplitude ratio is finite, so \(h_2<1\) on a set of positive
+probability and the conditional expectation is strictly less than \(1\).
+As \(|z_1|\to\infty\) the ratio \(\lambda\) of
+Proposition~\ref{prop:lambda} tends to \(0\), and bounded convergence
+gives conditional expectation tending to \(1\).
+The law of \(|z_1|\) charges both regimes, so the conditional expectation
+is not almost surely constant.
+\end{proof}
+
+A cut that is a matching of \(k\) legs therefore has bit sum
+\(k/(2\ln 2)\) and variance proportional to \(k\), under the Haar law.
+A cut whose legs share interior vertices keeps the same mean per leg and
+replaces the variance by a sum of the covariances of
+Proposition~\ref{prop:cov}.
+The incidence graph of the cut is part of the fluctuation.
+It is not part of the one-edge mean.
+The dimension \(D_Q\) of Section~\ref{sec:kernel} does not enter this
+variance: \(h_2\) is constant on the circle of Proposition~\ref{prop:circle},
+while \(D_Q\) counts that circle's real plane.
+
+A symmetric law of \(B/q\) has mean bond zero and, unless the law is a
+point mass at \(0\), mean \(h_2\) strictly below \(1\).
+Lemma~\ref{lem:taylor} makes the deficit even in \(B/q\).
+Vanishing of \(\mathbb{E}[B]\) is a different condition from
+\(h_2=1\).
+
+\section{Separable symbols, to every order}
+\label{sec:sep}
+
+\begin{proposition}
+\label{prop:sep}
+Suppose \(\varepsilon(q)=\sum_{i=1}^d f_i(q_i)\).
+Every partial derivative that involves two distinct momenta vanishes
+identically, so every mixed monomial has coefficient zero.
+Both dispersive bands are of this form,
+\[
+\varepsilon_{J_2}=-4J(\cos q_x+\cos q_y),\qquad
+\varepsilon_{J_3}=-4J\sum_{i=1}^3\cos q_i.
+\]
+No order of either Taylor series satisfies \(\gamma/\beta=2\).
+\end{proposition}
+
+\begin{proof}
+A mixed partial of a sum of univariate functions is zero.
+The degree-\(4\) rotational invariant and the degree-\(4\) term of
+\(\sqrt{m^2c^4+c^2|q|^2}\) both contain \(q_i^2 q_j^2\) with
+\(\gamma/\beta=2\), as in Theorem~\ref{thm:ratio}.
+A coefficient that is zero at every order cannot match a coefficient
+that is not.
+\end{proof}
+
+The \(J_2\) generators are axis steps, half of them flipping the sheet bit.
+The sheet bit produces the flat band at eigenvalue \(0\).
+It does not produce a mixed monomial in \((q_x,q_y)\).
+A spatial generator along \(x+y\) would.
+Its symbol contains \(\cos q_x\cos q_y\), whose Taylor series contains
+\(q_x^2 q_y^2\).
+The obstruction of Theorem~\ref{thm:ratio} is the absence of those
+generators, not a truncation.
+
+\section{One length, three readings of its fluctuations}
+\label{sec:moments}
+
+\begin{proposition}
+\label{prop:rayleigh}
+Let stitch endpoints be a homogeneous Poisson process of intensity
+\(\rho\) on the sheet, and set \(\ell_W=\rho^{-1/2}\).
+The distance \(R\) from a sheet point to the nearest endpoint satisfies
+\[
+\mathbb{E}[R]=\frac12\ell_W,\qquad
+\frac{\mathrm{Var}(R)}{(\mathbb{E}[R])^2}=\frac4\pi-1.
+\]
+The coefficient of variation does not depend on \(\rho\).
+\end{proposition}
+
+\begin{proof}
+The void probability is \(\mathbb{P}(R>r)=\exp(-\rho\pi r^2)\).
+Hence
+\[
+\mathbb{E}[R]
+=\int_0^\infty\exp(-\pi\rho r^2)\,dr
+=\frac12\rho^{-1/2}.
+\]
+The random variable \(\pi R^2\) is exponential with mean \(1/\rho\), so
+\(\mathbb{E}[R^2]=1/(\pi\rho)\).
+Then
+\[
+\mathrm{Var}(R)
+=\frac1{\pi\rho}-\frac1{4\rho}
+=\frac{4-\pi}{4\pi\rho},
+\]
+and dividing by \((\mathbb{E}[R])^2=1/(4\rho)\) produces \(4/\pi-1\).
+\end{proof}
+
+The construction's length and the mean nearest-endpoint distance are the
+same power of \(\lambda\), and they differ by the factor \(1/2\).
+The relative width \(\sqrt{4/\pi-1}\) stays put as \(\lambda\to 0\).
+Scale separation enlarges the mean axis ratio.
+It does not tighten the transverse spacing about that mean.
+In-plane shifts move the endpoints.
+They do not change the law of \(R/\ell_W\).
+
+\begin{proposition}
+\label{prop:avol}
+Suppose the in-plane scale factor is \(1\) and the transverse factor is
+\(a_\perp\).
+The geometric mean of the three coordinate scales is \(a_\perp^{1/3}\).
+If \(a_\perp\propto t^\alpha\), the geometric mean grows as \(t^{\alpha/3}\).
+The isotropic substitution
+\(\alpha\mapsto(2-3\alpha)/(3\alpha)\)
+returns \((2-3\alpha)/(3\alpha)\) when \(\alpha\) is the transverse exponent
+and \((2-\alpha)/\alpha\) when \(\alpha\) is replaced by the volume exponent
+\(\alpha/3\).
+\end{proposition}
+
+\begin{proof}
+A coordinate cell has volume proportional to \(a_\perp\), so the geometric
+mean of the three edge lengths is \(a_\perp^{1/3}\).
+Insert \(\alpha\) and \(\alpha/3\) into \((2-3\alpha)/(3\alpha)\).
+The second insertion is
+\[
+\frac{2-3\cdot(\alpha/3)}{3\cdot(\alpha/3)}=\frac{2-\alpha}{\alpha}.
+\]
+\end{proof}
+
+No earned equation supplies \(\alpha\).
+The two substitutions are what the same isotropic formula returns on the
+two exponents that \eqref{eq:ds} distinguishes.
+The difference \(H_\perp-H_\parallel\) is then of order the expansion rate
+itself, because \(H_\parallel=0\) while \(a_\parallel\) is held at \(1\).
+Nothing in \(H=-A\) damps that difference.
+Section~\ref{sec:h-orient} is the same absence of a drift, read on
+\(M_{ab}\) rather than on \(\ell_W\).
+
+Balls of the graph distance are the balls of \eqref{eq:ds}.
+The static symbol \(\tfrac12+2|q|^2\) decays in that graph distance, with
+Helmholtz constant \(\kappa=1/2\).
+In coordinates where a sheet step has size \(1\), the same ball has
+transverse radius smaller by \(\ell_W\).
+A short range in hopping units and a large axis ratio are the same ball
+written in two coordinate systems.
+The excluded gapless response would be constant on the same family of
+ellipsoids, with \(\kappa=0\).
+
