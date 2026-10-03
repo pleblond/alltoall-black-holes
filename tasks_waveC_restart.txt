@@ -1,0 +1,13 @@
+dim --tag c1-S16L24
+dim --tag c2-S16L24-lam004-s27
+dim --tag c2-S16L24-lam004-s37
+dim --tag c2-S16L24-lam004-s67
+dim --tag c2-S16L24-lam004-s7
+dim --tag c2-S16L32-lam004-s37
+dim --tag c2-S16L32-lam004-s7
+dim --tag c2-S24L24-lam004-s37
+dim --tag c2-S24L24-lam004-s7
+dim --tag c3-j3L26
+dim --tag c4-cbL26
+hidden --tag c2-S16L24-lam004-s7
+vacuum --tag c2-S16L24-lam004-s7

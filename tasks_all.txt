@@ -1,0 +1,270 @@
+construct --tag c0-j2L44
+dim --tag c0-j2L44
+construct --tag c1-S8L16
+dim --tag c1-S8L16
+construct --tag c1-S16L24
+dim --tag c1-S16L24
+construct --tag c3-j3L26
+dim --tag c3-j3L26
+construct --tag c4-cbL26
+dim --tag c4-cbL26
+construct --tag c2-S16L24-lam0001-s7
+dim --tag c2-S16L24-lam0001-s7
+construct --tag c2-S16L24-lam0001-s17
+dim --tag c2-S16L24-lam0001-s17
+construct --tag c2-S16L24-lam0001-s27
+dim --tag c2-S16L24-lam0001-s27
+construct --tag c2-S16L24-lam0001-s37
+dim --tag c2-S16L24-lam0001-s37
+construct --tag c2-S16L24-lam0001-s47
+dim --tag c2-S16L24-lam0001-s47
+construct --tag c2-S16L24-lam0001-s57
+dim --tag c2-S16L24-lam0001-s57
+construct --tag c2-S16L24-lam0001-s67
+dim --tag c2-S16L24-lam0001-s67
+construct --tag c2-S16L24-lam0001-s77
+dim --tag c2-S16L24-lam0001-s77
+construct --tag c2-S16L24-lam0005-s7
+dim --tag c2-S16L24-lam0005-s7
+construct --tag c2-S16L24-lam0005-s17
+dim --tag c2-S16L24-lam0005-s17
+construct --tag c2-S16L24-lam0005-s27
+dim --tag c2-S16L24-lam0005-s27
+construct --tag c2-S16L24-lam0005-s37
+dim --tag c2-S16L24-lam0005-s37
+construct --tag c2-S16L24-lam0005-s47
+dim --tag c2-S16L24-lam0005-s47
+construct --tag c2-S16L24-lam0005-s57
+dim --tag c2-S16L24-lam0005-s57
+construct --tag c2-S16L24-lam0005-s67
+dim --tag c2-S16L24-lam0005-s67
+construct --tag c2-S16L24-lam0005-s77
+dim --tag c2-S16L24-lam0005-s77
+construct --tag c2-S16L24-lam001-s7
+dim --tag c2-S16L24-lam001-s7
+construct --tag c2-S16L24-lam001-s17
+dim --tag c2-S16L24-lam001-s17
+construct --tag c2-S16L24-lam001-s27
+dim --tag c2-S16L24-lam001-s27
+construct --tag c2-S16L24-lam001-s37
+dim --tag c2-S16L24-lam001-s37
+construct --tag c2-S16L24-lam001-s47
+dim --tag c2-S16L24-lam001-s47
+construct --tag c2-S16L24-lam001-s57
+dim --tag c2-S16L24-lam001-s57
+construct --tag c2-S16L24-lam001-s67
+dim --tag c2-S16L24-lam001-s67
+construct --tag c2-S16L24-lam001-s77
+dim --tag c2-S16L24-lam001-s77
+construct --tag c2-S16L24-lam002-s7
+dim --tag c2-S16L24-lam002-s7
+construct --tag c2-S16L24-lam002-s17
+dim --tag c2-S16L24-lam002-s17
+construct --tag c2-S16L24-lam002-s27
+dim --tag c2-S16L24-lam002-s27
+construct --tag c2-S16L24-lam002-s37
+dim --tag c2-S16L24-lam002-s37
+construct --tag c2-S16L24-lam002-s47
+dim --tag c2-S16L24-lam002-s47
+construct --tag c2-S16L24-lam002-s57
+dim --tag c2-S16L24-lam002-s57
+construct --tag c2-S16L24-lam002-s67
+dim --tag c2-S16L24-lam002-s67
+construct --tag c2-S16L24-lam002-s77
+dim --tag c2-S16L24-lam002-s77
+construct --tag c2-S16L24-lam004-s7
+dim --tag c2-S16L24-lam004-s7
+construct --tag c2-S16L24-lam004-s17
+dim --tag c2-S16L24-lam004-s17
+construct --tag c2-S16L24-lam004-s27
+dim --tag c2-S16L24-lam004-s27
+construct --tag c2-S16L24-lam004-s37
+dim --tag c2-S16L24-lam004-s37
+construct --tag c2-S16L24-lam004-s47
+dim --tag c2-S16L24-lam004-s47
+construct --tag c2-S16L24-lam004-s57
+dim --tag c2-S16L24-lam004-s57
+construct --tag c2-S16L24-lam004-s67
+dim --tag c2-S16L24-lam004-s67
+construct --tag c2-S16L24-lam004-s77
+dim --tag c2-S16L24-lam004-s77
+construct --tag c2-S16L24-lam008-s7
+dim --tag c2-S16L24-lam008-s7
+construct --tag c2-S16L24-lam008-s17
+dim --tag c2-S16L24-lam008-s17
+construct --tag c2-S16L24-lam008-s27
+dim --tag c2-S16L24-lam008-s27
+construct --tag c2-S16L24-lam008-s37
+dim --tag c2-S16L24-lam008-s37
+construct --tag c2-S16L24-lam008-s47
+dim --tag c2-S16L24-lam008-s47
+construct --tag c2-S16L24-lam008-s57
+dim --tag c2-S16L24-lam008-s57
+construct --tag c2-S16L24-lam008-s67
+dim --tag c2-S16L24-lam008-s67
+construct --tag c2-S16L24-lam008-s77
+dim --tag c2-S16L24-lam008-s77
+construct --tag c2-S16L24-lam016-s7
+dim --tag c2-S16L24-lam016-s7
+construct --tag c2-S16L24-lam016-s17
+dim --tag c2-S16L24-lam016-s17
+construct --tag c2-S16L24-lam016-s27
+dim --tag c2-S16L24-lam016-s27
+construct --tag c2-S16L24-lam016-s37
+dim --tag c2-S16L24-lam016-s37
+construct --tag c2-S16L24-lam016-s47
+dim --tag c2-S16L24-lam016-s47
+construct --tag c2-S16L24-lam016-s57
+dim --tag c2-S16L24-lam016-s57
+construct --tag c2-S16L24-lam016-s67
+dim --tag c2-S16L24-lam016-s67
+construct --tag c2-S16L24-lam016-s77
+dim --tag c2-S16L24-lam016-s77
+construct --tag c2-S8L16-lam004-s7
+dim --tag c2-S8L16-lam004-s7
+construct --tag c2-S8L16-lam004-s17
+dim --tag c2-S8L16-lam004-s17
+construct --tag c2-S8L16-lam004-s27
+dim --tag c2-S8L16-lam004-s27
+construct --tag c2-S8L16-lam004-s37
+dim --tag c2-S8L16-lam004-s37
+construct --tag c2-S8L16-lam004-s47
+dim --tag c2-S8L16-lam004-s47
+construct --tag c2-S8L16-lam004-s57
+dim --tag c2-S8L16-lam004-s57
+construct --tag c2-S8L16-lam004-s67
+dim --tag c2-S8L16-lam004-s67
+construct --tag c2-S8L16-lam004-s77
+dim --tag c2-S8L16-lam004-s77
+construct --tag c2-S24L24-lam004-s7
+dim --tag c2-S24L24-lam004-s7
+construct --tag c2-S24L24-lam004-s37
+dim --tag c2-S24L24-lam004-s37
+construct --tag c2-S16L32-lam004-s7
+dim --tag c2-S16L32-lam004-s7
+construct --tag c2-S16L32-lam004-s37
+dim --tag c2-S16L32-lam004-s37
+construct --tag c2dense-S16L24-lam004-s7
+dim --tag c2dense-S16L24-lam004-s7
+construct --tag c2er3-S16L24-lam004-s7
+dim --tag c2er3-S16L24-lam004-s7
+construct --tag c2sq-S16L24-lam004-s7
+dim --tag c2sq-S16L24-lam004-s7
+construct --tag c2dense-S16L24-lam004-s37
+dim --tag c2dense-S16L24-lam004-s37
+construct --tag c2er3-S16L24-lam004-s37
+dim --tag c2er3-S16L24-lam004-s37
+construct --tag c2sq-S16L24-lam004-s37
+dim --tag c2sq-S16L24-lam004-s37
+construct --tag c2dense-S16L24-lam004-s67
+dim --tag c2dense-S16L24-lam004-s67
+construct --tag c2er3-S16L24-lam004-s67
+dim --tag c2er3-S16L24-lam004-s67
+construct --tag c2sq-S16L24-lam004-s67
+dim --tag c2sq-S16L24-lam004-s67
+construct --tag c2nb-S16L24-lam004-s7
+dim --tag c2nb-S16L24-lam004-s7
+construct --tag c2nb-S16L24-lam004-s37
+dim --tag c2nb-S16L24-lam004-s37
+construct --tag c5-S16L24-lam004-s7
+dim --tag c5-S16L24-lam004-s7
+construct --tag c5-S16L24-lam004-s17
+dim --tag c5-S16L24-lam004-s17
+construct --tag c5-S16L24-lam004-s27
+dim --tag c5-S16L24-lam004-s27
+construct --tag c5-S16L24-lam004-s37
+dim --tag c5-S16L24-lam004-s37
+construct --tag c5-S16L24-lam004-s47
+dim --tag c5-S16L24-lam004-s47
+construct --tag c5-S16L24-lam004-s57
+dim --tag c5-S16L24-lam004-s57
+construct --tag c5-S16L24-lam004-s67
+dim --tag c5-S16L24-lam004-s67
+construct --tag c5-S16L24-lam004-s77
+dim --tag c5-S16L24-lam004-s77
+stations --cell 0 --set 0
+stations --cell 0 --set 1
+stations --cell 0 --set 2
+stations --cell 1 --set 0
+stations --cell 1 --set 1
+stations --cell 1 --set 2
+stations --cell 2 --set 0
+stations --cell 2 --set 1
+stations --cell 2 --set 2
+stations --cell 3 --set 0
+stations --cell 3 --set 1
+stations --cell 3 --set 2
+stations --cell 4 --set 0
+stations --cell 4 --set 1
+stations --cell 4 --set 2
+stations --cell 5 --set 0
+stations --cell 5 --set 1
+stations --cell 5 --set 2
+stations --cell 6 --set 0
+stations --cell 6 --set 1
+stations --cell 6 --set 2
+stations --cell 7 --set 0
+stations --cell 7 --set 1
+stations --cell 7 --set 2
+stations --cell 8 --set 0
+stations --cell 8 --set 1
+stations --cell 8 --set 2
+stations --cell 9 --set 0
+stations --cell 9 --set 1
+stations --cell 9 --set 2
+stations --cell 10 --set 0
+stations --cell 10 --set 1
+stations --cell 10 --set 2
+stations --cell 11 --set 0
+stations --cell 11 --set 1
+stations --cell 11 --set 2
+spread --tag c0-j2L28 --kind R
+spread --tag c0-j2L28 --kind I
+spread --tag c4-cbL16 --kind R
+spread --tag c4-cbL16 --kind I
+spread --tag c5-S16L24-lam004-s7 --kind R
+spread --tag c5-S16L24-lam004-s7 --kind I
+spread --tag c2-S16L24-lam001-s7 --kind R
+spread --tag c2-S16L24-lam001-s7 --kind I
+spread --tag c2-S16L24-lam001-s37 --kind R
+spread --tag c2-S16L24-lam001-s37 --kind I
+spread --tag c2-S16L24-lam002-s7 --kind R
+spread --tag c2-S16L24-lam002-s7 --kind I
+spread --tag c2-S16L24-lam002-s37 --kind R
+spread --tag c2-S16L24-lam002-s37 --kind I
+spread --tag c2-S16L24-lam004-s7 --kind R
+spread --tag c2-S16L24-lam004-s7 --kind I
+spread --tag c2-S16L24-lam004-s37 --kind R
+spread --tag c2-S16L24-lam004-s37 --kind I
+packet --tag c0-j2L16 --sheet 0 --axis x --sign 1
+packet --tag c1-S8L16 --sheet 0 --axis x --sign 1
+packet --tag c1-S8L16 --sheet 0 --axis x --sign -1
+packet --tag c1-S8L16 --sheet 0 --axis y --sign 1
+packet --tag c1-S8L16 --sheet 0 --axis y --sign -1
+packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis x --sign 1
+packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis x --sign -1
+packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis y --sign 1
+packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis y --sign -1
+packet --tag c2-S8L16-lam004-s7 --sheet 3 --axis x --sign 1
+packet --tag c2-S8L16-lam004-s37 --sheet 0 --axis x --sign 1
+packet --tag c2-S8L16-lam004-s37 --sheet 0 --axis x --sign -1
+transverse --tag c1-S8L16
+transverse --tag c2-S8L16-lam004-s7
+transverse --tag c2-S8L16-lam004-s37
+transverse --tag c2-S8L16-lam002-s7
+switch --tag c1-S8L16
+switch --tag c2-S8L16-lam004-s7
+hidden --tag c0-j2L16
+hidden --tag c1-S8L16
+hidden --tag c2-S8L16-lam004-s7
+hidden --tag c2-S8L16-lam004-s37
+hidden --tag c2-S8L16-lam002-s7
+hidden --tag c2-S16L24-lam004-s7
+hidden --tag c4-cbL16
+vacuum --tag c0-j2L16
+vacuum --tag c1-S8L16
+vacuum --tag c2-S8L16-lam004-s7
+vacuum --tag c2-S8L16-lam004-s37
+vacuum --tag c2-S8L16-lam002-s7
+vacuum --tag c2-S16L24-lam004-s7
+vacuum --tag c4-cbL16
