@@ -717,6 +717,49 @@ The current is still free at those orders.
 An asymmetric cover can pin \(d\) at second order, and then only the
 value that cancels the imbalance.
 
+\begin{proposition}
+\label{prop:circle-energy}
+At hopping \(1\), the field energy is \(E_\psi=-2\sum_e B_e\), so no
+current appears in it.
+On the circle of Proposition~\ref{prop:circle} the contracted bond \(B\)
+is constant, and the contraction energy is
+\[
+\Delta E_\psi
+=2B-\Re(s^* S_{\mathrm{ex}})-\Re(d^* V),
+\]
+where \(S_{\mathrm{ex}}\) is the sum of the amplitudes on the exclusive
+neighbourhoods \(X_i\) and \(X_j\), and
+\[
+V=\sum_{n\in X_j}\psi_n-\sum_{m\in X_i}\psi_m.
+\]
+As the angle runs, \(\Delta E_\psi\) sweeps an interval of half-width
+\(|d|\,|V|\) about \(2B-\Re(s^* S_{\mathrm{ex}})\).
+The same half-width is the oscillation of the mixed piece of the event
+account, \(R_{\mathrm{mixed}}=2\Sigma_{\mathrm{cross}}\).
+The norm change \(2B\) and the fibre piece \(-2B\) stay constant.
+\(V=0\) is the vanishing of that oscillation.
+Equal cardinalities \(|X_i|=|X_j|\) do not imply it.
+\end{proposition}
+
+\begin{proof}
+The sum \(E_\psi=-2\sum_e B_e\) is the quadratic form of \(H=-A\).
+The ledger cross sum is
+\(\Sigma_{\mathrm{cross}}
+=\sum_{m\in X_i}\Re(\psi_j^*\psi_m)
++\sum_{n\in X_j}\Re(\psi_i^*\psi_n)\),
+and \(\Delta E_\psi=2B-2\Sigma_{\mathrm{cross}}\).
+Substitute \(\psi_i=(s+d)/2\) and \(\psi_j=(s-d)/2\).
+The terms linear in \(d\) collect into \(\Re(d^* V)/2\), and the terms
+without \(d\) collect into \(\Re(s^* S_{\mathrm{ex}})/2\).
+Doubling produces the displayed formula.
+On the circle \(B\), \(s\), and \(|d|\) are fixed, so the only variation
+is \(-\Re(d^* V)\), whose range has half-width \(|d|\,|V|\).
+The split of the event account into cover, fibre, and mixed pieces
+identifies the mixed piece with \(2\Sigma_{\mathrm{cross}}\).
+Common neighbours do not enter \(V\): their collapse cancels in
+\(\Delta E_\psi\).
+\end{proof}
+
 \section{Additive bits on a matching}
 \label{sec:bits}
 
@@ -836,6 +879,72 @@ point mass at \(0\), mean \(h_2\) strictly below \(1\).
 Lemma~\ref{lem:taylor} makes the deficit even in \(B/q\).
 Vanishing of \(\mathbb{E}[B]\) is a different condition from
 \(h_2=1\).
+
+\section{The current conditional on the bond}
+\label{sec:condJ}
+
+\begin{theorem}
+\label{thm:condJ}
+Let the pair be two i.i.d.\ standard complex normals, or equivalently
+any fixed coordinate pair of a Haar vector.
+Set \(x=B/q\) and \(y=\mathcal{J}/q\).
+The joint law is supported on the disk \(x^2+y^2<1/4\), with density
+\[
+f(x,y)=\frac{2}{\pi\sqrt{1-4(x^2+y^2)}}.
+\]
+The marginal of \(x\) is uniform on \([-1/2,1/2]\).
+Conditional on \(x\),
+\[
+y=\sqrt{\tfrac14-x^2}\,\sin\Theta,
+\]
+where \(\Theta\) is uniform on \((-\pi/2,\pi/2)\), and
+\[
+\mathrm{Var}(y\mid x)=\frac{1-4x^2}{8}.
+\]
+The differential entropy of this conditional law is
+\[
+\ln\Bigl(\frac{\pi}{2}\sqrt{\tfrac14-x^2}\Bigr)
+\]
+nats.
+\end{theorem}
+
+\begin{proof}
+For two i.i.d.\ exponential squared moduli the ratio
+\(\rho=|\psi_i|^2/q\) is uniform on \([0,1]\) and independent of the
+relative phase \(\varphi\), which is itself uniform on \([0,2\pi)\).
+Then \(x=\sqrt{\rho(1-\rho)}\cos\varphi\) and
+\(y=\sqrt{\rho(1-\rho)}\sin\varphi\).
+The push-forward of \(\rho(1-\rho)\) and of the uniform angle, written in
+polar coordinates on the \((x,y)\) plane and divided by the radius,
+is the displayed density.
+Its integral in \(y\) equals \(1\) for each \(x\in(-1/2,1/2)\), which is
+the marginal already implied by Theorem~\ref{thm:haar}.
+The change of variables \(y=\sqrt{1/4-x^2}\,\sin\Theta\) flattens the
+conditional density to \(d\Theta/\pi\) on \((-\pi/2,\pi/2)\).
+The second moment of \(\sin\Theta\) on that interval is \(1/2\), so the
+conditional variance is \((1/4-x^2)/2=(1-4x^2)/8\).
+The same change of variables, together with
+\(\int_0^{\pi/2}\ln(\cos\theta)\,d\theta=-(\pi/2)\ln 2\),
+produces the differential entropy.
+\end{proof}
+
+The density depends on the pair only through \(x^2+y^2\).
+The ensemble is isotropic in the \((B,\mathcal{J})\) plane.
+The optional bit \(h_2\) is not: it is a function of \(x\) alone.
+Conditioning on \(h_2\) fixes \(|x|\) and leaves the conditional law above.
+That differential entropy is not a summand of \(h_2\).
+One is the Shannon entropy of a binary weight.
+The other is a continuous entropy of a current.
+Section~\ref{sec:kernel} counts the real plane in which both sit, and
+counts it once.
+
+If the two moduli are equal and the phase is uniform, then
+\(x^2+y^2=1/4\), so \(y=\pm\sqrt{1/4-x^2}\).
+The conditional law collapses to a sign.
+The ground state of Proposition~\ref{prop:ground} is the further collapse
+\(x=\pm 1/2\), \(y=0\).
+The amount of current left after the bond is fixed is a property of the
+ensemble.
 
 \section{Separable symbols, to every order}
 \label{sec:sep}
