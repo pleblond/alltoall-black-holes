@@ -1,4 +1,4 @@
-# The model, stated first (v0.6)
+# The model, stated first (v0.7)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
@@ -54,6 +54,21 @@ D10b costs gate D10a), and the companion essay
 `docs/relaxed-vacuum.md` (full explanation). L0 theorems, L1 imports, L2
 calibrations unchanged; import IDs stable.
 
+**v0.7 field-program release.** No number changes:
+new F-layer, §10. States the relational field program built on top of the
+graph — field postulates FP1/FP2 (`ψ = r + is`, `H = -A`), the derived
+`B`/`J` anatomy, the J₂ working fabric, contraction/splitting ontology,
+conditional accounting, the observer quotient, the joint vacuum family,
+the hidden sector, the response kernel, and the filed dynamics debts —
+with every verdict quoted from `docs/scaffolding-history.md` (§§1–19),
+the named `docs/DEFERRED.md` verdict section, or committed `data/`
+records. Names FP1/FP2 are field-program postulates, not model.md P1/P2;
+F1–F6 stay L2 calibrations. L0/L2 untouched; L1 T7/D1 record the merged
+small-N `graphvk` closure (previously-merged main, not new in this release);
+no new D-numbers
+(D14/D15 are taken in DEFERRED.md — field debts are filed by name in
+§10 with a pointer to the §19 debt register).
+
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
 figures, and measurements are cited as *evidence about* the model, never as its
@@ -65,7 +80,7 @@ observation plan (see `docs/observation-protocol.md`), the paper (see
 `docs/scaffolding-history.md`). It does not re-derive anything; it states what
 is assumed, what follows, and what is still missing.
 
-**How to read it:** three layers, in hardening order.
+**How to read it:** three layers, in hardening order, plus the field program.
 
 - **L0 — Graph kinematics.** The robust core. Almost everything here is a theorem
   of the wiring, not a fit.
@@ -75,10 +90,16 @@ is assumed, what follows, and what is still missing.
 - **L2 — Compact-object phenomenology.** Calibrated, not core. Fitted numbers,
   a solved weight, one ansatz map, and one extrapolation prescription. Killing L2
   must not kill L0/L1.
+- **F — Relational field program (§10).** Two scalars per node plus `H = -A`
+  on a working fabric: what follows (anatomy, propagation, quotient, vacuum
+  family, response) and what stays debt (firing law, history measure, matter,
+  gravity carrier). Killing any F verdict must not kill L0/L1.
 
 Open derivations (D1–D13 in `docs/DEFERRED.md`) are fenced in §5 and referenced
 from the exact postulate or theorem they would promote. Nothing in §2–§4 depends
-on them silently.
+on them silently. Field-program debts are fenced separately in §10 by name
+(no new D-numbers; D14/D15 are taken in DEFERRED.md) with a pointer to the
+debt register in `docs/scaffolding-history.md` §19.
 
 Conventions: Planck units `G = c = 1` unless stated; `l_p` written explicitly at
 physical interfaces. `N` = interior node count, `k` = exterior leg count,
@@ -462,8 +483,17 @@ and `N`-shrinking modes. Scope, stated exactly:
   `N = 8`), finite-depth all:all circuits converging to Page by depth `~5`/step
   without assuming Haar.
 - **Open**: the graph instance `V_k: H_graph,k → H_graph,k−1 ⊗ H_leg` derived
-  from graph dynamics (D1). "Page curve is a theorem of graph dynamics" is the
-  close criterion, not the current claim.
+  from graph dynamics at scale (D1 remainder). "Page curve is a theorem of
+  graph dynamics" in the thermodynamic limit is the close criterion, not the
+  current claim.
+- **Done (small-N ED)**: `graphvk` derives per-step `V_k = exp(−iH_graph·dt)`
+  from the hole adjacency (disordered Heisenberg, one random XYZ term per
+  edge), proves `V†V = I` (including a composed-map inner-product test),
+  computes `S_rad` from `ρ_rad`: all:all tracks exact Page (mean dev `< 0.25`
+  bits at `N = 8`, typically `~0.01`) while the same `dt` on a chain sags
+  below Page (mean dev `> 0.4`); changing the graph changes `V`
+  (`‖U_complete − U_chain‖ > 1`). What remains: large-`N` limit,
+  `k`-backreaction on the interior spectrum, emission energy/mass spectrum.
 
 QEC mirror: recovery error `err(k) = min(1/2, 2^{N/2+1−k})` reaches 99% at
 `k ≥ N/2+1+log₂100`, sealing at `k → 0` (Hayden–Preskill primitive).
@@ -680,7 +710,7 @@ supplement.tex S1/S3 uses bare (D2) for both meanings (flagged paper-side).
 
 | ID | Missing | Close criterion | Gates / kill relevance |
 |---|---|---|---|
-| D1 | Graph evaporation isometry `V_k: H_graph,k → H_graph,k−1 ⊗ H_leg` from graph dynamics; genuine QES extremization; `C_vac` preservation (`U(G_vac) ∈ C_vac`, self-healing vs amplify) | derive (not choose) a scrambling `V_k` from the graph Hamiltonian/adjacency; reduced radiation spectrum follows Page under all:all dynamics; extremize `S_gen` from a path integral; trajectory stays in `C_vac` (`⟨Λ⟩_U` in-basin; injection test) | promotes T6/T7 from scoped to full; no current falsifier (no observed BH Page curve) — referee-honesty issue |
+| D1 | Graph evaporation isometry `V_k: H_graph,k → H_graph,k−1 ⊗ H_leg` from graph dynamics (small-N ED instance closed: `graphvk` derives `V_k = exp(−iH_graph·dt)` from hole adjacency, `V†V = I`, all:all tracks Page `< 0.25` bits at `N = 8` vs chain sag `> 0.4`); genuine QES extremization; `C_vac` preservation (`U(G_vac) ∈ C_vac`, self-healing vs amplify) | derive (not choose) a scrambling `V_k` from the graph Hamiltonian/adjacency at scale (large-`N` limit, `k`-backreaction, emission spectrum still open); reduced radiation spectrum follows Page under all:all dynamics; extremize `S_gen` from a path integral; trajectory stays in `C_vac` (`⟨Λ⟩_U` in-basin; injection test) | promotes T6/T7 from scoped to full; no current falsifier (no observed BH Page curve) — referee-honesty issue |
 | D2 | Kerr multipoles from the graph: `M₂ = −Ma²`, `g_tφ`, `r_ISCO(M,J)`, Kerr QNM spectrum | derive `Q = −Ma²(1+δ_Q)` without assuming Kerr; exterior perturbation `δω_nlm` vs Kerr | future wires: graph `|δ_Q| ≳ 0.17` ruled out by GW241011; QNM benchmark from GW250114 (`δf_220~2%`, `δτ_220~10%`, `δf_221~30%`, `δf_440~tens%`); GW250114/GW241011 currently consistent *by construction*, not passed predictions |
 | D3 | Quantitative Ollivier–Ricci `κ → c₂` map | derive the map; resolve power-law vs `1/r²` disagreement | promotes F4 to derived; kill wire `p = 0.92 ± 0.056` at `N = 1024` class held to N=16000; v0.5 route: curvature as failure of `V(r)` to scale uniformly via `d_eff(r)` (`emergent_dim`) |
 | D4 | `β(N)` and `w` from geometry | derive `β(N)` from `N(r)` geometry, `w` from the graph Laplacian (Damour–Schäfer from wiring) | promotes F2/F3 to derived; v0.5 route: `β(N)` from `N(r)` implied by `V(r)` scaling (`emergent_dim`) |
@@ -780,6 +810,25 @@ Stated so no reader misses them:
   control measured (`t²` + plug sign pattern), but no update rule, no
   `T_U`/`≺_U` measurement, no clock model (D13 stages 1–4 open; D1
   provides `U`).
+- No electromagnetic identification of `ψ`: EM1-FALSIFIED on four
+  structural wires (static range saturates `ξ ≈ 0.53`; one propagating
+  scalar mode; local phase moves `B`/`J`/`E` by order one; nodal drift
+  tracks `v · q`, not `v |q|`); the signed charge is sheet-tied with a
+  frozen conjugate (§10).
+- No firing law for geometry change: BR27-NO-MODE derives the absence
+  (downhill scans don't fire, spectral radius exactly 1, binary graph
+  has no deformation coordinate); no rate may be shopped on top (§10).
+- No history measure: TIME0-NULL + RAND0-MEASURE-DEBT + MEASURE0-DEBT
+  (4/4 debt reasons) leave `μ(Γ)` absent; SYM-0 settles only the
+  counting list (§10).
+- No matter, no gravitational carrier from the coupled `(G, ψ)`
+  dynamics, no vacuum-member selection (VACSEL0-NOMEASURE refuses
+  without the missing measure); `ψ = 0` is the no-information limit,
+  not the vacuum (§10).
+- No J₂ uniqueness: the working fabric is forced, not derived; VAC-0F
+  establishes a square *class*, not J₂-only; VAC-0H/I verdicts open (§10).
+- No derived observer quotient yet: QUOT0-OPERATIONAL is the mechanism
+  (transporting symmetric sector); the DERIVED rung stays open (§10).
 
 ---
 
@@ -819,6 +868,15 @@ Single table; every symbol in §1–§4 appears here with its home.
 | `p`, `β(N)`, `c₁`, `c₂`, `w`, `c_tot` | radial exponent, bridge exponent, 2PN coefficients/weight | §4 F1–F4, `orici`/`pulsar` |
 | `e_init/final`, `ε`, `M_ej` | shed fractions, efficiency, ejecta mass | §4 F5–F6, `collapse` |
 | `m_g`, `m_i` | peak apparent mags (analytic, `BC = 0`) | §4, `collapse.peak_apparent_mags` |
+| `ψ_u`, `r_u`, `s_u` | node field `ψ_u = r_u + i s_u` (two real scalars) | FP1 (§10), `ballistic` |
+| `H` | field law `H = -A` (frozen `J = 1`) | FP2 (§10), `ballistic` |
+| `ρ_u`, `Q_ψ`, `E_ψ` | `|ψ_u|²`, conserved norm, `⟨ψ|H|ψ⟩ = -2ΣB` | §10 anatomy, `continuum` |
+| `B_uv`, `J_{u→v}` | `Re(ψ*_u ψ_v)`, `2Im(ψ*_u ψ_v)` (continuity current) | §10 anatomy, `continuum` |
+| `χ_+`, `χ_π`, `χ_-` | vacuum susceptibility operators (math response only) | §10, `bgresp` (distinct from congestion `χ`) |
+| `[G]` | vacuum connectivity class (J₂ = working member) | §10, `docs/j2-status.md` |
+| `d_O` | blind-observer reconstructed dimension (`2.02`) | §10, `obs1` |
+| `X_red`, `d_FS` | `X/(relabel × U(1))`, projective metric | §10, `sym0` |
+| `μ(Γ)` | history weight (absent: the measure debt) | §10, `measure0` |
 
 ---
 
@@ -843,16 +901,36 @@ Single table; every symbol in §1–§4 appears here with its home.
   `bounds`, `remnant`, `cosmic`, `ds`, `lunch`, `uvscatter` (BV derivation of
   `c`), `sinkor`, `shellscale` (N-scale backends).
 - **L2**: `pulsar`, `orici` (gradient shells), `collapse` (leg-shedding),
-  `massgaps` (lower-gap continuity + upper-gap null + GW190814 audit).
+  `massgaps` (lower-gap continuity + upper-gap null + GW190814 audit),
+  `mergershed` (BU2: `q`-shape + mass independence derived,
+  `frac(q) = η·2q/(1+q)²`; flat law kept as the O5 falsifier, sample
+  adjudicates; `ε(M,a)` shutoff still open).
+- **F** (§10): `ballistic` (P1 waves), `coherence` + `slit` + `tunnel`
+  (interference), `potential` (POT-0) + `driven` (POT-1), `continuum`
+  (EM-0) + `falsification` (EM-1), `malus` (sheet sectors), `obs0` +
+  `obs0r` + `obs1` + `obs1_reveal` + `quot` (rulers, blind observer,
+  quotient), `backreaction` (BR-0) + `phase` (BR-2) + `rigidity` (BR-1),
+  `contraction` (BR-2.5) + `conservation` + `accounting` (CONS-0/BR-2.6)
+  + `stability` (BR-2.7), `u0` + `time0` + `rand0` + `measure0` + `sym0`
+  (dynamics completion + state census), `field0` (linearity null),
+  `response` + `bgresp` (kernel + vacuum susceptibility), `vac0` +
+  `vacfield` + `vacexc` + `vaccomp` + `vacselect` (LAW/class split +
+  vacuum family), `hidden` + `hiddenbr` (dead-sector info + response),
+  `zero` (nodal census), `grav0` (graph-only null). Side apparatus:
+  `spectroscopy` (SPEC0 null: no localized modes beyond controls),
+  `stern_gerlach` (SG gate fails), `fep` (FEP0 null), `graphvk` (D1 graph
+  instance closed at small-N ED: all:all `< 0.25` bits vs chain sag `> 0.4`
+  at `N = 8`; large-N open).
 - **Falsifiers**: AF quench ratio, `α ∈ [9.0,12.4]`, `A ∝ N` TN wire, LHC
   thermality below `k_crit`, `s_leg ≤ l_p²/4` wire, linear LIV, `p` wire, gap/BBH
-  kilonova wires, NICER wire, Kerr-quadrupole future wire — see the v5 kill
+  kilonova wires, NICER wire, Kerr-quadrupole future wire, field-program wires
+  (second-`M_O` quotient refuter, `I > 0` linearity breaker — §10) — see the v5 kill
   table (`paper/v5/main.tex` §6) and `docs/observation-protocol.md`.
-- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (398 tests),
+- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (1789 tests),
   `python scripts/generate_figures.py` + `python scripts/generate_v5_figs.py`
-  (81 figure files, Figs 1–75), `streamlit run app.py`.
+  (86 figure files, Figs 1–75), `streamlit run app.py`.
 
-Counts above are v5.0 (`main.pdf` 12pp + `supplement.pdf` 11pp, S1–S10, 46/46
+Counts above are v5.6 (`main.pdf` 13pp + `supplement.pdf` 19pp, S1–S12, 49
 references cited). The v4.1 living document stays archived as the extended
 record; v5 is canonical.
 
@@ -867,7 +945,8 @@ figure-computed (`25` trials `N = 8…128`, depth-`5` convergence scan,
 deficit orderings), and paper-quoted (`0.002`-bit tracking, `42.99`,
 `0.57`/`100%` posteriors, `32` live BBH, MSS `0.50–0.68`, `1e-80/1e-160`
 dimensional estimate). Suite at v0.6: 425 collected, 423 passed,
-2 torch/GPU-only skipped.
+2 torch/GPU-only skipped. Suite at v0.7: 1789 collected (field-program
+campaigns banked; L0/L1/L2 pins unchanged).
 
 ---
 
@@ -892,9 +971,345 @@ dimensional estimate). Suite at v0.6: 425 collected, 423 passed,
   pin: bare shortest-path rejected for tense regions), and
   `docs/relaxed-vacuum.md`, with
   no number changes and stable import IDs.
+  v0.7 adds the F-layer (§10: field postulates FP1/FP2, derived anatomy,
+  J₂ working fabric, backreaction ontology + accounting, observer
+  quotient, vacuum family, hidden sector, response kernel, filed dynamics
+  debts) with no number changes, no new D-numbers, and stable L0/L2;
+  L1 T7/D1 record the merged small-N `graphvk` closure.
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:
   T14 TeV absolutes follow the code (post-BS), not v5 prose (pre-BS).
+
+---
+
+## 10. The relational field program (F-layer)
+
+Built on top of the L0 graph: two real scalars per node evolving under
+`H = -A` on a working fabric, asking how geometry may change and what an
+observer reconstructs. Authority for every verdict below is
+`docs/scaffolding-history.md` (§§1–19), the named `docs/DEFERRED.md`
+verdict section, or committed `data/` records; this section states, never
+re-derives. **Names:** FP1/FP2 are field-program postulates — not model.md
+P1 (wiring) / P2 (edge), and F1–F6 stay L2 calibrations. Status words follow
+the scaffold: POSTULATE, DERIVED, EMPIRICALLY ESTABLISHED, WORKING CHOICE,
+OPEN / DEBT.
+
+### FP1 (field postulate). Two real scalars per node.
+
+Each node carries `(r_u, s_u)`, written `ψ_u = r_u + i s_u`. No vector,
+momentum register, or coordinate is stored at the node. Status: **POSTULATE**
+of the field program; the frozen node field of every campaign below.
+(`ballistic`.)
+
+### FP2 (field law). `i ∂_t ψ = H ψ` with `H = -A`.
+
+`A` is the adjacency (`J = 1` in the frozen convention; hopping only).
+Status: **WORKING LAW** — the one-way map from a fixed graph to `ψ`,
+not derived from a deeper dynamical principle. Once granted, the anatomy
+below follows and VAC-0A shows it holds on every simple graph.
+(`ballistic`.)
+
+### Field anatomy (DERIVED for every simple undirected graph).
+
+`H = -A` is real symmetric, so evolution is unitary: `ρ_u = |ψ_u|²`,
+`Q_ψ = Σ_u |ψ_u|²`, `dQ_ψ/dt = 0`. The bond correlator splits into a
+symmetric part and an antisymmetric part:
+
+```
+B_uv     = Re(ψ*_u ψ_v)            bond energy
+J_{u→v}  = 2 Im(ψ*_u ψ_v)          continuity current
+dρ_u/dt + Σ_v A_uv J_{u→v} = 0
+E_ψ = ⟨ψ|H|ψ⟩ = -2 Σ_{(uv) ∈ E} B_uv
+∂E_ψ/∂A_uv = -2 B_uv               conjugacy (central scaffolding identity)
+```
+
+Quadrature, algebraic: `B ~ cos Δθ`, `J/2 ~ sin Δθ`. Some backreaction
+readouts store the bare imaginary part — exactly half of this continuity
+current; the factor is a convention, not a second current. Nothing about
+J₂ enters: VAC-0A (A1–A6 identities on hostile graphs) promotes the
+anatomy to **LAW**. First pinned on the J₂ stack inside EM-0.
+(`continuum`, `vac0`.)
+
+### Propagation and response (EMPIRICALLY ESTABLISHED).
+
+Direction is collective phase, not a node-level arrow (POT0-COLLECTIVE:
+symmetric source spreads without direction; coherent packet goes
+ballistic; phase scrambling kills direction; coherence restores it).
+One field has a static regime and a propagating regime (POT1-FIELD +
+EM0-BACKREACTIVE): stationary source-relative response plus a front when
+the source changes — no second field required. EM-0 adds the continuum
+reading later tests use (J₂ Bloch bands, long-wave Schrödinger sector,
+continuity to numerical zero, same `B`/`J` quadrature) with no Maxwell,
+charge, or photon claim. (`potential`, `driven`, `continuum`.)
+
+### EM1-FALSIFIED. `ψ` is a complex relational scalar, not ordinary electromagnetism.
+
+| Test | Result |
+|---|---|
+| Long-range gapless static sector | fail; static range saturates (`ξ ≈ 0.53`, range 3) |
+| Polarization | fail; one propagating scalar mode (the MALUS sector) |
+| Local gauge redundancy | fail; a local phase moves `B`, `J`, `E` by order one |
+| Propagation / cone | fail; nodal drift tracks `v · q`, not `v |q|` |
+| Signed source | unresolved; conserved signed charge exists, tied to the sheet automorphism with frozen conjugate |
+
+The field results above survive; the EM program is closed unless the
+ontology changes (new degrees of freedom, or a different substrate).
+(`falsification`.)
+
+### Fabric: J₂ working choice plus operational geometry.
+
+J₂ is the canonical working vacuum substrate: **WORKING CHOICE**, forced —
+adopted because later work needs one concrete sheet and J₂ survives the
+required probes (exact square quotient with shells `4r`, UV structure
+kept, family-typical perturbations, formation transfer, no persistent
+orientation). Forced is not derived: **substrate uniqueness stays debt**.
+VAC-0F splits LAW from class: two-path interference PASSES on the open
+grid, square torus, J₂, and the J₂ quotient, and FAILS on triangular/hex
+(rewires fail the phase rung; the MZ corridor passes at LAW level after
+a window erratum) — a square **CLASS** result, not yet J₂-only. VAC-0H/I
+verdicts stay open. (`vac0`, `docs/j2-status.md`.)
+
+Independent rulers on J₂ meet (OBS0R-METRIC): graph balls/Hausdorff match
+the square control (gap 0 at L = 128), diffusion/spectral agree to 4
+decimals (gap 0.0005), the coherent-wave ruler disagrees at small L and
+converges as a finite-size residue (gap 0.134 at L = 128), and the
+all-path static POT ruler joins the same geometry — six pairwise ruler
+gaps pass. The blind observer (no graph, coordinates, or dimension
+target) reconstructs the quotient, not the microscopic graph
+(OBS1-QUOTIENT): `d_O = 2.02` unprompted, `d* = 2` on train and test,
+distance match 8% against the quotient (twice as close as microscopic),
+local charts 6%, locality above 95%, sheet contrast below 0.03;
+expanders come out non-2D (`d* = 3`). `M_O(J₂) ≈ J₂ / sheet`. A
+static-channel floor blocks a full three-way cross-probe at L = 128;
+calling the quotient metric spacetime is not established. (`obs0`,
+`obs0r`, `obs1`.)
+
+The quotient has an operational mechanism (QUOT0-OPERATIONAL): the
+symmetric sheet sector transports while the antisymmetric sector is
+exactly dead under `H = -A` (MALUS-0 M0-NULL) — only
+quotient-compatible modes carry information, and that is the geometry
+the observer reconstructs (symmetric projector returns the quotient
+with `d` drift 0.022; antisymmetric measures no geometry; a bilayer
+control stays two worlds at layer contrast 0.61; a staggered onsite
+perturbation induces only order-`ε²` remote sheet signal). The DERIVED
+rung stays open: four pre-registered sub-bars were design errors in the
+ratio tests, filed with autopsies, never retuned. (`malus`, `quot`.)
+
+### Backreaction: `B` couples to connectivity; accounting is not a firing law.
+
+Three independent uses of `B` meet: the conjugacy `∂E_ψ/∂A = -2B`
+(**DERIVED**), the energetic selectivity of excitations (BR-0:
+BR0-D-SELECTIVE* — the zero field is exactly flat under the sampled
+moves while an excitation opens energetically favorable channels; §13
+below re-reads that flat state as the no-information limit, not the
+vacuum), the phase response (BR-2: BR2-QUADRATURE — structural response
+tracks `cos Δθ` through `B`, staggered flux tracks `sin Δθ` through
+`J`), and the contraction sum map (BR-2.5: `ψ_[uv] = ψ_u + ψ_v`,
+`Δ‖ψ‖² = +2 B_uv`). Conclusion: `B` is the field quantity coupled
+directly to connectivity. `B` causes gravity is not established (see
+GRAV-0 below). (`backreaction`, `phase`, `contraction`.)
+
+The admitted primitive is the local exchange `u—v ↔ [uv]`
+(BR25-ONTOLOGY): local, simple-graph-preserving, repeatable into
+collapse; remote relocation is demoted to a formation/diagnostic tool.
+Contraction is many-to-one, so a record-free split has many preimages
+(CONS-0: powers of two, plus amplitude-match degeneracy; the sum-map
+information loss is exact, `|a − b|²/2`). **Split selection stays
+debt.** On pristine J₂ the neutral drift the legal moves allow destroys
+the vacuum class in a handful of moves at every tested size (BR1-FLAT):
+**neutral quiescence stays debt.** (`contraction`, `conservation`,
+`rigidity`.)
+
+Event accounting closes conditionally and exactly where it closes
+(CONS0-PARTIAL + BR26-ACCOUNTED): cycle rank on triangle-free domains
+changes by the local contraction count; the ledger closes end to end
+when `B` sits on the admissibility surface `B = B_*(c)` (six constructed
+families, residuals at `1e−13`); the contraction energy change has an
+exact formula that `B` alone does not balance. Proved absent: no linear
+combination of node count, graph energy, `Q_ψ`, `E_ψ` is conserved for
+arbitrary states; no graph reservoir closes the books; split
+conservation constrains but never selects. Zero-field contraction stays
+allowed. Conservation yields admissibility and equalities — never a law
+that says when the graph fires. (`conservation`, `accounting`.)
+
+No firing mechanism derives from the instantaneous ontology
+(BR27-NO-MODE): every uniform scan is downhill yet discrete maxima do
+not fire; unitary `ψ` evolution has spectral radius exactly 1 (`H` does
+not see `ψ`); the binary graph admits no continuous deformation
+coordinate (a weighted path leaves the frozen kind of `H`). One further
+primitive dynamical postulate is required before geometry changes; the
+strong stop holds (no rate shopping on this null). (`stability`.)
+
+### Dynamics completion: four debt-filing verdicts.
+
+U0 asks for `(G_t, ψ_t) → (G_{t+1}, ψ_{t+1})` from admitted local moves
+only: three contraction-only laws (bond sign, ledger sign, energy
+selection) pass the structural gates, but splits are unrealized, energy
+minimization ties (a theorem at zero field), and one-tick effects escape
+the decision radius — U0-INCOMPLETE. TIME-0 asks whether two boundaries
+pick one history: exact census (143 canonical classes, 102245 pairs)
+gives unique-history fraction 0.051 below the 0.2 bar, the `T = 2`
+uniqueness dissolves under truncation-free follow-up (0.554 → 0.073),
+and the median history count from the initial state alone runs 74 to
+`8×10⁵` — TIME0-NULL (microscopic reversibility intact, uniqueness
+failed). RAND-0 builds the stochastic completion coherently (exact
+admissible set, symmetry orbits, bitwise factorization, three agreeing
+generators) but the measure is underived: micro-move-uniform and
+orbit-uniform disagree at every nontrivial stabilizer, directed and
+undirected coarse-grainings disagree everywhere tested, and the vacuum
+is not quiescent at one-half per edge — RAND0-MEASURE-DEBT. MEASURE-0
+formalizes the debt (544 cells, six HARD gates,
+representation-independent): all four frozen debt-reasons trigger, so no
+unique inter-outcome weighting is forced; CLOSED was data-reachable and
+did not occur — MEASURE0-DEBT. Downstream may consume the apparatus and
+the disagreement battery, never a tuned weight. (`u0`, `time0`, `rand0`,
+`measure0`.)
+
+Synthesis: admissible states plus admissible local transitions give
+admissible histories; the weight `μ(Γ)` on them is missing — the
+**history-measure debt**. What counts as one microstate is settled
+(SYM0-CLOSED, 1973 cells, 8/8 gates): representation redundancy is
+exactly node relabelings and global phase, so the state space is
+`X_red = X / (relabeling × U(1))` with projective metric `d_FS` at
+fixed nonzero norm — graph symmetries, time reversal, observer
+equivalence, and accidental degeneracies are all tested non-redundant.
+No Born rule is attached. (`sym0`.)
+
+### The vacuum field is a family; `ψ = 0` is the no-information limit.
+
+VACFIELD0-JOINT (frozen `(J₂, H = -A)`, no geometry-update rule,
+candidates fixed by spectrum and symmetry before consequences were
+read): three nonzero states reach the full JOINT ladder (stationary,
+perturbation-stable, current-free, uniform stress, amplitude-coherent,
+linear, normalized-robust, zeros in place, sector recorded, exact
+symmetry-predicted ledger), while `ψ = 0` stops at BACKGROUND — no
+relational information (`Bmax = 0`), phase undefined at every node, a
+ledger with no distinguishing power:
+
+```
+VPLUS    ground state, E = -8, flat ledger, sector P+ (propagating, quotient-visible)
+VPI      variational maximum, E = +8, one-sided ledger, sector P+ (propagating, quotient-visible)
+VMINUS   E = 0, symmetric ledger, sector P- (joint as a state, operationally decoupled)
+ψ = 0    no-information limit, not the vacuum
+```
+
+Perturbations propagate identically on all four backgrounds (packet
+speed 1.9204, bitwise-identical `δψ`): the nonzero states add a
+uniform, phase-defined, stationary relational background with a
+predictive ledger. No member is chosen; tie-breaking by later
+consequences is refused. (`vacfield`.)
+
+Excitations see every vacuum the same way (VACEXC0-COMPLETE, 241
+tasks): `δψ = ψ − ψ_vac` evolves as `δψ(t) = U(t)δ0` in the co-evolving
+frame (split error `≤ 1.2e-13`), bitwise-identical across VPLUS, VPI,
+VMINUS, and ZERO. The carrier is background-independent; per-vacuum
+differences live in the relational response (see susceptibility
+below). (`vacexc`.)
+
+The joint manifold is fully censused (VACCOMP0-COMPLETE, modulo
+`R × U(1)`): on even L, two isolated extremal rays (VPLUS at `E = −8`,
+VPI at `E = +8`, both nondegenerate) plus one hidden real `RP¹` JOINT
+circle (the VMINUS–VSTAG span in the `P₋` zero-energy sector, JOINT
+except at `B = 0` BACKGROUND points), each times a full amplitude ray
+(`10⁻³…10³` all JOINT) — `π_0 = 3`; on odd L only VPLUS and VMINUS
+rays survive (VPI frustrated) — `π_0 = 2`. Generic eigenstates are
+excluded (current binds complex 16/16, stress binds real 8/8);
+mixed-eigenvalue beats sit at `dE = 16/8/8` with no interior JOINT and
+no cross-term cancellation; ledger classes are distinct per member.
+(`vaccomp`.)
+
+Member selection refuses without a measure (VACSEL0-NOMEASURE, the
+pre-registered predicted outcome): the MEASURE gate re-evaluated from
+code is not ready (all four MEASURE-0 debt-reasons hold), so none of
+the 23 headline selection stages ran — all refusal records, no vacuum
+ranked, no weight chosen. (`vacselect`.)
+
+### The dead sector stores local information that reverses geometric response.
+
+Every hidden transformation tested — sign, phase, shape, amplitude —
+distinguishes locally on at least one of `ρ`/`B`/`J` (5–6 orders above
+bar) while remote shells stay at `≤ 5.2e-15` (wave and diffusion) and
+the POT remote is exactly 0.0 (HIDDEN0-SEPARATED, 279/279): the
+antisymmetric sector is transport-dead and informationally live — local
+physics sees more than the quotient observer. (`hidden`.)
+
+Matched states with equal energy and wave+POT remote blindness carry
+different `B` landscapes, hence different `dE/dA = −2B` (HIDDEN-BR:
+HBR0-SIGNREV, 214/214): equal field energy does not imply equal
+geometric response — and 1346 edges carry strictly opposite-sign
+virtual contraction ledgers, so changing only transport-hidden
+information reverses the energetic ordering of structural alternatives.
+A zero-energy pure-hidden state carries a nontrivial ledger (vanishing
+bond field, non-vanishing gradient). All virtual; no graph operation
+executed anywhere. (`hiddenbr`.)
+
+### Linearity holds; the response kernel is banked per vacuum.
+
+Fifty-seven collision cells on frozen `H = -A` evolve exactly as the
+linear theory (FIELD0-LINEAR): the interaction witness stays at
+numerical zero (`I = 0`) while `ρ`/`B`/`J` still show cross terms —
+including large false accelerations (order 50–80) and a static
+arrangement that looks forceful and is not (FIELD0-APPARENT). Any later
+force or matter coupling must beat this null with `I > 0`, not a
+picture of fringes. (`field0`.)
+
+The map local `δψ →` remote `δψ → δρ, δB, δJ` is measured with no force
+claimed (RESPONSE0-KERNEL-BANKED, G0–G14, 45 cells): the field front
+rides at Bloch-max speed (`v = 7.95`, `v/8 = 0.993`), quadratic fronts
+(`ρ`, `J`) ride slower (`v ≈ 5.94`), first-order `B`/`J` fronts on
+nonzero backgrounds ride at field speed; distance laws `|δψ| ~ r^−0.50`,
+`δρ ~ r^−1.00`, `δJ ~ r^−0.95`; the bipartite `B`-blindness theorem is
+pinned (chiral-real data gives `B = 0` exactly) with the sharpening
+that two-sublattice real regions are not blind (the prereg
+overgeneralization was falsified and corrected). (`response`.)
+
+Same carrier, different response per vacuum (BGRESP0-COMPLETE, 77
+tasks): the susceptibility operators differ as operators
+(`χ_+ ≠ χ_π ≠ χ_-`, pairwise Frobenius distance `√88` at every size),
+each of rank `2N − 1` with the sole null direction exactly global
+phase, while `χ_ZERO = 0` — pinned to floating-point precision.
+"Susceptibility" means only this mathematical response of established
+relational observables: no force, charge, or curvature is claimed.
+(`bgresp`.)
+
+### Zeros are nodal; graph-only gravity is a null.
+
+Exact zeros are reachable but not generic (ZERO-0, 4432 ledger rows):
+1588 certified-modal events, all from matched-amplitude two-packet
+destructive interference at relative phase `π`, plus nodal eigenstates
+(the only persistent class); generic and single-packet states yield
+zero certified exact zeros in 1900+ rows while near-zeros are common.
+A zero is a regular point of `(r, s)` with three exact relational
+consequences (incident `B = J = 0`, `ρ̇ = 0` with quadratic touch,
+undefined phase). Cycle winding changes without any zero, via bond
+phase-slip at `|Δθ| ≈ π` — the continuum intuition does not transfer.
+No zero is called a particle, defect, or source. (`zero`.)
+
+No tested strictly local graph update both preserves J₂ and carries a
+disturbance past the near field (GRAV-0): a gravitational carrier must
+come from inside the coupled `(G, ψ)` dynamics, not from a retry of
+graph-only relocation. GRAV-0 does not retract the merged L1
+weak-field interface (Newton through Mercury, conditional on its
+imports) — it says that interface has not been re-derived as a far
+signal of local fabric updates. (`grav0`.)
+
+### F-layer debts (filed by name, not number).
+
+No new D-numbers are minted here (D14/D15 are taken in DEFERRED.md).
+The open debts, each with its closer in `docs/scaffolding-history.md`
+§19: **substrate uniqueness** (VAC-0H/I split LAW/CLASS/J₂);
+**vacuum-field member** (a principle selecting inside the VAC-COMP
+manifold without using later consequences — needs the history measure
+first); **history measure** `μ(Γ)` (a reversible measure matching both
+the whole-history and conditional-local readings); **structural
+kinetics** (the firing postulate, if that is what it is);
+**split information** (a history/stochastic treatment carrying the lost
+record, or a new ontology); **neutral quiescence** (a dynamics making
+the vacuum an attractor); **matter** (formation after a real dynamics,
+beating the FIELD-0 null); **gravity carrier** (inside coupled `(G, ψ)`
+dynamics). Blocked until the debts move: a complete graph dynamics,
+formation under it, matter, the carrier, decay, and force
+phenomenology beyond the FIELD-0 null.
 
 ---
 
@@ -902,5 +1317,9 @@ dimensional estimate). Suite at v0.6: 425 collected, 423 passed,
 distance). L1 says what spacetime costs (4ln2 per leg, one GR input, borrowed
 thermodynamics) and what that buys (scrambling, Page, Newton-to-Mercury,
 quadratic-only UV). L2 says what compact objects are (one `k ∝ M²` family, shed
-legs, flash in O5) and what kills it (ten clean misses). §5 lists exactly what
+legs, flash in O5) and what kills it (ten clean misses). F says what the field
+is (`ψ = r + is`, `H = -A` on J₂: derived anatomy, collective direction,
+quotient geometry, a vacuum family with `ψ = 0` demoted, hidden information
+that steers response) and what stays debt (firing law, history measure,
+matter, gravity carrier). §5 lists exactly what
 would turn calibrations into theorems. Everything else is evidence.*

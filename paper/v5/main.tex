@@ -11,8 +11,8 @@
 \title{Compact Objects as Almost-Perfect All:All Entanglement Graphs:\\
 \large From fast scrambling and weak-field gravity to a testable gap-kilonova prediction}
 \author{Philippe Leblond \\ \small leblond.philippe@gmail.com \\
-\small Draft v5.0 --- main text (companion supplement with methods; 12pp preprint $\approx$ 8pp journal two-column) \\
-\small\texttt{python scripts/generate\_figures.py} reproduces every figure; 576 tests}
+\small Draft v5.0 --- main text (companion supplement with methods; 13pp preprint $\approx$ 9pp journal two-column) \\
+\small\texttt{python scripts/generate\_figures.py} reproduces every figure; 1789 tests}
 \date{\today}
 \begin{document}
 \maketitle
@@ -47,13 +47,17 @@ $\sim 44\,M_\odot$ pair-instability edge now seen in GWTC-4 (leaving that
 boundary to stellar physics) while extending the shedding law to binary
 black holes ($M_{\mathrm{ej}} = 0.0168\,M_{\mathrm{tot}}$, independent of
 mass ratio) --- a universal transient prediction already pressured, but not
-excluded, by GW190814. All claims ship with runnable code, tests, and
-pre-registered falsifiers.
+excluded, by GW190814. A relational field program ($\psi = r+is$,
+$H = -A$ on the J2 working fabric) derives the field anatomy, reconstructs
+quotient geometry blind, and banks a joint vacuum family, with the firing
+law and the history measure filed as open debts. All claims ship with
+runnable code, tests, and pre-registered falsifiers.
 \end{abstract}
 
 \noindent\textit{Roadmap.} \S\ref{sec:intro} motivates the model and states
 how it differs from neighbours. \S\ref{sec:model} defines the three claims
-precisely. \S\ref{sec:gravity} summarises gravity to 1PN with a 2PN preview.
+precisely, plus the vacuum fabric and the relational field program built on
+it. \S\ref{sec:gravity} summarises gravity to 1PN with a 2PN preview.
 \S\ref{sec:qi} covers UV dispersion and quantum information.
 \S\ref{sec:compact} unifies compact objects and states the gap-kilonova
 prediction. \S\ref{sec:fals} lists falsifiers and concludes. The supplement
@@ -251,6 +255,40 @@ selection; isotropic J2 orientation; achiral Stage-0 NULL stopping the
 debt-free pure-D5$\infty$ route), and the J2 working-vacuum adoption (exact
 square quotient, perturbation family-typical;
 \path{docs/j2-status.md}) extend the recorded methods (supplement S11).
+
+\paragraph{Relational field program.}
+On top of the fabric sits a field program with two postulates: each node
+carries $(r_u, s_u)$, written $\psi_u = r_u + i s_u$ (FP1), evolving under
+$i\partial_t\psi = H\psi$ with $H = -A$ (FP2, working law). Granted only
+this, the field anatomy is derived for every simple undirected graph
+(supplement S12): conserved density $\rho_u = |\psi_u|^2$, bond energy
+$B_{uv} = \mathrm{Re}(\psi^*_u\psi_v)$, continuity current
+$J_{u\to v} = 2\,\mathrm{Im}(\psi^*_u\psi_v)$, and the conjugacy
+$\partial E_\psi/\partial A_{uv} = -2B_{uv}$ coupling the field to
+connectivity. Direction is collective phase (scrambling kills it,
+coherence restores it); one field carries both a static regime and a
+propagating front. The electromagnetic reading is rejected on the record
+(EM1-FALSIFIED: static range saturates at $\xi \approx 0.53$, one scalar
+mode, no local gauge redundancy, nodal drift $\propto v\cdot q$), so
+$\psi$ is a complex relational scalar, nothing more. Geometry change is
+admitted only as local contraction/splitting $u$--$v \leftrightarrow [uv]$
+with an exact conditional ledger, but no firing law follows (BR27-NO-MODE:
+downhill scans do not fire, spectral radius exactly 1, no deformation
+coordinate) and no history measure is forced (TIME0-NULL, RAND0, MEASURE0
+all file the debt, never a tuned weight). What the program does establish:
+six independent rulers meet on J2 (OBS0R-METRIC); a blind observer with no
+graph, coordinates, or dimension target reconstructs the quotient
+$M_O(\mathrm{J2}) \approx \mathrm{J2}/\mathrm{sheet}$ with $d_O = 2.02$
+(OBS1-QUOTIENT), via the transporting symmetric sheet sector
+(QUOT0-OPERATIONAL, derived rung open); the vacuum field is a characterised
+joint family (VPLUS/VPI/VMINUS, with $\psi = 0$ demoted to the
+no-information limit), whose excitations evolve background-free while the
+relational response differs per vacuum (BGRESP0); the transport-dead
+antisymmetric sector stores local information that reverses virtual
+geometric response (HIDDEN0/HIDDEN-BR); and fifty-seven collision cells
+hold the linearity null ($I = 0$) that any future force must beat.
+Member selection refuses without the missing measure (VACSEL0-NOMEASURE,
+pre-registered). Full verdict ladder and debt register: S12.
 
 %=====================================================================
 \section{Weak-field gravity to 1PN, with a 2PN preview}
@@ -557,6 +595,7 @@ NICER radius & $R_{1.4}$ at 11--13\,km, 5\%, unreproducible by routing stiffness
 Linear LIV & finite $E_{QG,1}$, or $\Delta t \propto E$, or $10^{-3}$ chromatic bending & Fermi already kills linear models & archival + CTA \\
 2PN exponent & $p$ outside $0.92 \pm 0.056$ at $N = 1024$ class, 80 graphs & $0.913 \pm 0.049$, passes $5\times$ & held to N=16000 \\
 Tension spectrum & simulator $d_{\mathrm{eff}}(l)$ shape-mismatch (dip/overshoot/$\to3^+$) after mapping fixed & GR side computed; bare shortest-path rejected & open (S11) \\
+Field quotient & second admissible $M_O$ with robustly non-3D IR, or interaction witness $I > 0$ & quotient holds; $I = 0$ in 57 cells & open (S12) \\
 Kerr quadrupole & graph $|\delta_Q|\gtrsim0.17$ ($Q=-Ma^2(1+\delta_Q)$) & no $M_2$ yet & target (S1/S3) \\
 Lab quench & same-device grid$\to$all:all $t^*$ ratio $< 1.3$ (predicted $2$--$3\times$) & untested & when run \\\bottomrule
 \end{tabular}
@@ -588,7 +627,12 @@ dimensional fingerprint as the next quantitative wire and the
 reconstruction/causal-order program (D12/D13, S11) recording what
 ``why spacetime?'' still requires; the D1 update-rule tournament, the D14
 formation-design campaign, and the J2 working-vacuum adoption narrow it
-further (S11).
+further (S11). The relational field program (S12) derives the field
+anatomy from $\psi = r+is$ and $H = -A$, reconstructs quotient geometry
+through a blind observer, and banks a joint vacuum family with a dead
+sector that steers response --- while filing the firing law, the history
+measure, and the gravity carrier as explicit debts rather than tuning
+around them.
 
 \paragraph{Methods summary.}
 Full methods in the supplement. Gradient shells

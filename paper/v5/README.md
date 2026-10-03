@@ -3,12 +3,13 @@
 v5 restructures the v4.1 living document (1758 lines, 68 appendices, 77 figures)
 into a submittable pair (both compile; counts as of this commit):
 
-- `main.tex` — journal text, 12pp preprint single-column 11pt (≈8pp two-column).
-  Motivation, 3 claims in §2, gravity to 1PN + 2PN preview, UV + QI,
+- `main.tex` — journal text, 13pp preprint single-column 11pt (≈9pp two-column).
+  Motivation, 3 claims in §2, vacuum fabric + relational field program, gravity
+  to 1PN + 2PN preview, UV + QI,
   one-family compact objects + gap-KN prediction, falsifiers + conclusion.
   5 figures (1 new survival matrix + 4 tested artifacts), 49 references.
-- `supplement.tex` — methods, 15pp: parameter audit, gravity/QI/BU/BV methods,
-  emergent-dimension methods (S11),
+- `supplement.tex` — methods, 19pp: parameter audit, gravity/QI/BU/BV methods,
+  emergent-dimension methods (S11), field-program methods (S12),
   N-scale table (300→16000, 6 points), PPN ledger, archival ledger, O5 protocol
   summary, kill list, module map. 12 ported evidence figures (lensing, Mercury,
   UV-c, Page, unitary-Page, N-scale, 2PN, p-fit, O5, healing, dispersion,
@@ -47,8 +48,8 @@ with paper text. v5/main.tex:
 
 ```bash
 cd paper/v5
-pdflatex main.tex && pdflatex main.tex            # main.pdf, 12pp
-pdflatex supplement.tex && pdflatex supplement.tex # supplement.pdf, 15pp (rerun until zero warnings)
+pdflatex main.tex && pdflatex main.tex            # main.pdf, 13pp
+pdflatex supplement.tex && pdflatex supplement.tex # supplement.pdf, 19pp (rerun until zero warnings)
 ```
 
 Figures resolve via `../../figures/`.
