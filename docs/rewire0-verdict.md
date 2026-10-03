@@ -143,7 +143,8 @@ they are reported, not promoted.
 
 - `tests/test_rewire0.py`: 32/32 pins green on beast.
 - Full suite on beast (`pytest -n 60`, pyproject addopts skips
-  `tests/test_weighted.py`): TO-FILL (run post-verdict; filed here).
+  `tests/test_weighted.py`): **1876 passed, 2 skipped, 0 failed**
+  in 65 s (`~/rewire0-suite.log`).
 
 ## 10. Bottom line (boxed)
 
