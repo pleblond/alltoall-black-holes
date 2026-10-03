@@ -46,6 +46,14 @@ def analyze_ladder(cell_set: dict, bars=None) -> dict:
     return out
 
 
+def load_bars(path: str) -> dict:
+    """Frozen per-channel bars with int d keys (post-freeze claims)."""
+    with open(path) as f:
+        raw = json.load(f)["bars"]
+    return {ch: {int(k): float(v) for k, v in bd.items()}
+            for ch, bd in raw.items()}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--measdir", required=True)
@@ -56,8 +64,7 @@ def main():
     args = ap.parse_args()
     bars = None
     if args.bars:
-        with open(args.bars) as f:
-            bars = json.load(f)
+        bars = load_bars(args.bars)
     out = {"cells": {}, "meta": {"cells": args.cells, "sets": args.sets,
                                  "bars": bars is not None}}
     for c in args.cells:

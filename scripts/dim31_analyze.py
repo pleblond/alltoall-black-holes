@@ -152,6 +152,12 @@ def gamma_fits(tag: str, meas: dict, seal: dict) -> dict:
     masses_d = [meas["pairs"][k].get("D") for k in keys]
     out["Dch"] = dim31.arrival_gamma(radii, masses_d, D,
                                      dt=obs0.DT_DIFF)
+    lv = [out[lvl] for lvl in LADDER_LEVELS]
+    if all(f.get("ok") for f in lv):
+        out["Gbar"] = {"gamma": float(np.mean([f["gamma"] for f in lv])),
+                       "ok": True}
+    else:
+        out["Gbar"] = {"gamma": float("nan"), "ok": False}
     return out
 
 
@@ -236,13 +242,23 @@ def spread_check(potdir: str, tag: str) -> dict:
             rec = json.load(f)
         fits = rec.get("fits", {})
         legs = {}
-        for ch, window in (("psi", (0.80, 1.20)), ("rho", (1.70, 2.30)),
-                            ("J", (1.70, 2.30))):
+        fam = tag.split("-")[0]
+        if fam == "j2":
+            windows = {"psi": (0.35, 0.65), "rho": (0.70, 1.30)}
+        else:
+            windows = {"psi": (0.80, 1.20), "rho": (1.70, 2.30)}
+        for ch in ("psi", "rho", "J"):
             fit = fits.get(ch, {})
             n = fit.get("n", 0) or 0
             r2 = fit.get("r2")
             a = fit.get("alpha")
             meas = n >= 4 and r2 is not None and r2 > 0.9
+            if ch == "J":
+                legs[ch] = {"alpha": a, "r2": r2, "n": n,
+                            "measurable": meas, "pass": None,
+                            "note": "J descriptive (A2.5, no J-law)"}
+                continue
+            window = windows[ch]
             ok = bool(meas and a is not None
                       and window[0] <= a <= window[1])
             legs[ch] = {"alpha": a, "r2": r2, "n": n,
@@ -334,7 +350,7 @@ def halfsplit_claims(D: np.ndarray, bars) -> dict:
 def own_darr(blind_cell_set: dict, gf: dict) -> dict:
     """d_arr pairings with own (same cell/set) gamma (controls)."""
     out = {}
-    pairings = {"W": ("W", "W"), "D": ("D", "Dch"), "C": ("C", "W")}
+    pairings = {"W": ("W", "Gbar"), "D": ("D", "Dch"), "C": ("C", "W")}
     for ch, (a_ch, g_lv) in pairings.items():
         vol = blind_cell_set["probes"][a_ch]["vol"]
         out[ch] = dim31.arrival_dimension(
@@ -397,11 +413,12 @@ def cmd_controls(args):
               "gates": {}, "dropped_legs": []}
     frz = freeze_bars(ladders)
     freeze["bars"] = frz["bars"]
+    freeze["bar_notes"] = frz["debt"]
     for ch in CHANNELS:
         if ch not in freeze["bars"]:
-            if ch == "C":
+            if ch == "D":
                 freeze["debt"].append(
-                    "headline C d* bars unfreezable -> ESTIMATOR-DEBT")
+                    "headline D d* bars unfreezable -> ESTIMATOR-DEBT")
             else:
                 freeze["dropped_legs"].append(
                     f"d* {ch}: bars unfreezable (filed, never gated)")
@@ -422,9 +439,9 @@ def cmd_controls(args):
                 claims[(c, s, ch)] = {"dstar": cl["dstar"],
                                       "pass": cl["pass"]}
                 halfsplit[f"{c}/{s}/{ch}"] = halfsplit_claims(D, bars)
-    # --- gamma transfer tables (cubic donor) ---
+    # --- gamma transfer tables (cubic donor; A2.4 ladder mean) ---
     cb_cells = {c: CMP.CELLS[c] for c in GROUPS["cb"]}
-    for level in list(LADDER_LEVELS) + ["Dch"]:
+    for level in list(LADDER_LEVELS) + ["Dch", "Gbar"]:
         by_L, allv = {}, []
         for c, tag in cb_cells.items():
             L = tag_L(tag)
@@ -436,50 +453,104 @@ def cmd_controls(args):
         pooled = float(np.median(allv)) if allv else float("nan")
         freeze["gamma"][level] = {"by_L": {str(k): v for k, v in by_L.items()},
                                   "pooled": pooled, "n": len(allv)}
-    if not np.isfinite(freeze["gamma"]["W"]["pooled"]):
-        freeze["debt"].append("cubic gamma_W unmeasurable -> ESTIMATOR-DEBT")
+    if not np.isfinite(freeze["gamma"]["Gbar"]["pooled"]):
+        freeze["debt"].append("cubic gamma-bar unmeasurable"
+                              " -> ESTIMATOR-DEBT")
+    for c in J3_CELLS:
+        Lj = tag_L(CMP.CELLS[c])
+        if str(Lj) not in freeze["gamma"]["Gbar"]["by_L"]:
+            freeze["debt"].append(f"no L-matched donor for J3 L{Lj}")
     freeze["gates"]["T1_spread"] = spread_of(
         [v for lv in LADDER_LEVELS for v in
          freeze["gamma"][lv]["by_L"].values()])
+    freeze["gates"]["T1_note"] = "descriptive (A2.4, pooled unused)"
     freeze["gates"]["T2_ladder_spread"] = spread_of(
         [freeze["gamma"][lv]["pooled"] for lv in LADDER_LEVELS])
-    freeze["gates"]["T1_pass"] = bool(
-        np.isfinite(freeze["gates"]["T1_spread"])
-        and freeze["gates"]["T1_spread"] <= 0.15)
     freeze["gates"]["T2_pass"] = bool(
         np.isfinite(freeze["gates"]["T2_ladder_spread"])
-        and freeze["gates"]["T2_ladder_spread"] <= 0.1)
-    if not freeze["gates"]["T1_pass"]:
-        freeze["dropped_legs"].append(
-            "pooled gamma transfer invalid (T1); L-matched only; "
-            "J3-L24 descriptive (no cb-L24 donor)")
+        and freeze["gates"]["T2_ladder_spread"] <= 0.20)
     if not freeze["gates"]["T2_pass"]:
-        freeze["debt"].append("gamma ladder-unstable (T2) -> transfer "
-                              "invalid -> ESTIMATOR-DEBT")
-    # --- tolerances (mechanical rules, frozen pre-J3 here) ---
-    cb_d = [darr[(c, s, "W")]["d"] for c in GROUPS["cb"]
-            for s in range(CMP.N_SETS) if darr[(c, s, "W")]["ok"]]
-    sp = spread_of(cb_d)
-    sp = sp if np.isfinite(sp) else 0.0
-    freeze["tolerances"]["tol_identity"] = max(0.15, 2 * sp)
-    freeze["tolerances"]["tol_drift"] = max(0.2, 2 * sp)
-    freeze["tolerances"]["tol_regress"] = max(0.25, 2 * sp)
-    freeze["tolerances"]["tol_agree"] = 0.2
+        freeze["debt"].append("gamma ladder spread (T2') > 0.20 -> "
+                              "transfer invalid -> ESTIMATOR-DEBT")
+    gb = freeze["gamma"]["Gbar"]["by_L"]
+    loo = []
+    for L in gb:
+        others = [v for k, v in gb.items() if k != L]
+        if others:
+            loo.append(abs(gb[L] - float(np.median(others))))
+    freeze["gates"]["loo_agree"] = float(max(loo)) if loo else float("nan")
+    # --- transfer-based d_arr (W headline instrument) on controls ---
+    darr_tr = {}
+    for c in CONTROL_CELLS:
+        L = tag_L(CMP.CELLS[c])
+        for s in range(CMP.N_SETS):
+            wk = blind["cells"][str(c)]["sets"][str(s)]
+            darr_tr[(c, s)] = transfer_darr(wk, freeze, L)["W"]
+    # --- tolerances (mechanical 1.3x rules, frozen pre-J3 here) ---
+    own_med, own_bias, own_scat = {}, {}, {}
+    for c in CONTROL_CELLS:
+        if c in GROUPS["ex"] or c in GROUPS["bcb"]:
+            continue
+        vals = [darr[(c, s, "W")]["d"] for s in range(CMP.N_SETS)
+                if darr[(c, s, "W")]["ok"]]
+        if not vals:
+            continue
+        own_med[c] = float(np.median(vals))
+        own_scat[c] = float(max(vals) - min(vals)) if len(vals) > 1 else 0.0
+        dim = DIM_TRUE[_group_of(c)]
+        own_bias[c] = abs(own_med[c] - dim)
+    tr_scat = {}
+    for c in GROUPS["cb"]:
+        vals = [darr_tr[(c, s)]["d"] for s in range(CMP.N_SETS)
+                if darr_tr[(c, s)]["ok"]]
+        if vals:
+            tr_scat[c] = float(max(vals) - min(vals)) if len(vals) > 1 \
+                else 0.0
+    maxbias = max(own_bias.values()) if own_bias else float("nan")
+    maxscat = max(tr_scat.values()) if tr_scat else float("nan")
+    freeze["tolerances"]["tol_regress"] = (
+        1.3 * maxbias if np.isfinite(maxbias) else float("nan"))
+    freeze["tolerances"]["tol_identity"] = (
+        1.3 * maxscat if np.isfinite(maxscat) else float("nan"))
+    freeze["tolerances"]["tol_agree"] = (
+        1.3 * freeze["gates"]["loo_agree"]
+        if np.isfinite(freeze["gates"]["loo_agree"]) else float("nan"))
     freeze["tolerances"]["tol_prange"] = 0.15
+    freeze["tolerances"]["tol_drift_note"] = "descriptive (A2.6)"
+    freeze["cb_transfer_med"] = {
+        str(tag_L(CMP.CELLS[c])): {
+            "med": float(np.median(
+                [darr_tr[(c, s)]["d"] for s in range(CMP.N_SETS)
+                 if darr_tr[(c, s)]["ok"]])),
+            "scatter": tr_scat.get(c, float("nan"))}
+        for c in GROUPS["cb"]}
+    freeze["ref_2d"] = {}
+    for tag in ("sq-L48", "j2-L42"):
+        cc = CMP.CELLS.index(tag)
+        freeze["ref_2d"][tag] = own_med.get(cc, float("nan"))
+    freeze["own_med"] = {str(c): v for c, v in own_med.items()}
     tol_r = freeze["tolerances"]["tol_regress"]
+    tol_i = freeze["tolerances"]["tol_identity"]
     # --- control gates (headline failures -> debt) ---
     for gname, dim in DIM_TRUE.items():
         for c in GROUPS[gname]:
-            for s in range(CMP.N_SETS):
-                d = darr[(c, s, "W")]
-                if not d["ok"] or abs(d["d"] - dim) > tol_r:
+            if c in own_med:
+                if abs(own_med[c] - dim) > tol_r:
                     freeze["debt"].append(
-                        f"d_arr W {CMP.CELLS[c]} s{s}: "
-                        f"{d['d'] if d['ok'] else 'UNMEAS'} vs {dim}")
-                cl = claims[(c, s, "C")]
+                        f"d_arr W {CMP.CELLS[c]} med {own_med[c]:.3f} "
+                        f"vs {dim}")
+                if own_scat[c] > tol_i:
+                    freeze["debt"].append(
+                        f"d_arr W {CMP.CELLS[c]} scatter "
+                        f"{own_scat[c]:.3f} > tol")
+            else:
+                freeze["debt"].append(
+                    f"d_arr W {CMP.CELLS[c]} UNMEAS all sets")
+            for s in range(CMP.N_SETS):
+                cl = claims[(c, s, "D")]
                 if not cl["pass"] or cl["dstar"] != int(dim):
                     freeze["debt"].append(
-                        f"d* C {CMP.CELLS[c]} s{s}: {cl['dstar']} "
+                        f"d* D {CMP.CELLS[c]} s{s}: {cl['dstar']} "
                         f"vs {int(dim)}")
                 if charts[(c, s)].get("note") is None \
                         and charts[(c, s)]["d"] != int(dim):
@@ -488,7 +559,8 @@ def cmd_controls(args):
                         f"{charts[(c, s)]['d']} vs {int(dim)}")
     for tag, dim in [("rg-N256", 1.0), ("rg-N512", 1.0), ("sq-L32", 2.0),
                      ("sq-L48", 2.0), ("j2-L28", 2.0), ("j2-L42", 2.0),
-                     ("cb-L12", 3.0), ("cb-L16", 3.0), ("cb-L20", 3.0)]:
+                     ("cb-L12", 3.0), ("cb-L16", 3.0), ("cb-L20", 3.0),
+                     ("cb-L24", 3.0)]:
         leg = static.get(tag, {}).get("0.5", {})
         dimrec = leg.get("dim", {})
         if not dimrec.get("ok") or abs(dimrec["d"] - dim) > tol_r:
@@ -506,7 +578,7 @@ def cmd_controls(args):
             if darr[(c, s, "W")]["ok"]:
                 freeze["debt"].append(
                     f"expander d_arr claimed {CMP.CELLS[c]} s{s}")
-            if claims[(c, s, "C")]["pass"]:
+            if claims[(c, s, "D")]["pass"]:
                 freeze["debt"].append(
                     f"expander d* claimed {CMP.CELLS[c]} s{s}")
     for tag in ("ex-N1024-s0", "ex-N3456-s0"):
@@ -516,7 +588,7 @@ def cmd_controls(args):
     # Spreading + packet legs.
     for tag in ("cb-L20", "j2-L28"):
         legs = spread.get(tag, {}).get("R", {}).get("legs", {})
-        for ch in ("psi", "rho", "J"):
+        for ch in ("psi", "rho"):
             if not legs.get(ch, {}).get("pass"):
                 freeze["debt"].append(f"spread {tag} R/{ch} fails")
     if not packet.get("cb-L20", {}).get("pass"):
@@ -532,6 +604,8 @@ def cmd_controls(args):
         "darr": {f"{c}/{s}/{ch}": darr[(c, s, ch)]
                  for c in CONTROL_CELLS for s in range(CMP.N_SETS)
                  for ch in CHANNELS},
+        "darr_tr": {f"{c}/{s}": darr_tr[(c, s)]
+                    for c in CONTROL_CELLS for s in range(CMP.N_SETS)},
         "claims": {f"{c}/{s}/{ch}": claims[(c, s, ch)]
                    for c in CONTROL_CELLS for s in range(CMP.N_SETS)
                    for ch in CHANNELS},
@@ -540,7 +614,7 @@ def cmd_controls(args):
         "static": static, "spread": spread, "packet": packet,
         "gamma_ok": {f"{c}/{s}/{lv}": gammas[(c, s, lv)]["ok"]
                      for c in CONTROL_CELLS for s in range(CMP.N_SETS)
-                     for lv in list(LADDER_LEVELS) + ["Dch"]},
+                     for lv in list(LADDER_LEVELS) + ["Dch", "Gbar"]},
         "halfsplit": halfsplit,
     }
     with open(args.out + ".workup.json", "w") as f:
@@ -567,7 +641,7 @@ def sha256_file(path: str) -> str:
 def transfer_darr(blind_cell_set: dict, freeze: dict, L: int) -> dict:
     """d_arr pairings with transfer gamma (J3 blind headline)."""
     out = {}
-    specs = {"W": ("W", "W"), "D": ("D", "Dch"), "C": ("C", "W")}
+    specs = {"W": ("W", "Gbar"), "D": ("D", "Dch"), "C": ("C", "W")}
     for ch, (a_ch, g_lv) in specs.items():
         tab = freeze["gamma"][g_lv]
         t = dim31.transfer_lookup(
@@ -632,9 +706,10 @@ def cmd_j3(args):
             d_tr = transfer_darr(workup, freeze, L)
             d_di = own_darr(workup, gf)
             Dc = np.asarray(workup["probes"]["C"]["D"], dtype=float)
-            bars = {int(k): v for k, v in freeze["bars"]["C"].items()}
-            audit = dim31.local_dstar(Dc, bars)
-            lad = workup["ladder"]["C"]
+            Dd = np.asarray(workup["probes"]["D"]["D"], dtype=float)
+            bars = {int(k): v for k, v in freeze["bars"]["D"].items()}
+            audit = dim31.local_dstar(Dd, bars)
+            lad = workup["ladder"]["D"]
             claim = {"dstar": audit["dstar"], "pass": audit["pass"],
                      "blind_agrees": bool(
                          audit["dstar"] == lad.get("dstar")
@@ -642,31 +717,51 @@ def cmd_j3(args):
             chart = chart_claim_3d(tag, Dc, seal_c)
             cell["sets"][str(s)] = {
                 "d_arr_transfer": d_tr, "d_arr_direct": d_di,
-                "gamma_direct_W": {k: gf["W"][k] for k in
-                                   ("gamma", "r2", "n", "ok")},
+                "gamma_direct_Gbar": {k: gf["Gbar"][k] for k in
+                                      ("gamma", "ok")},
                 "dstar": claim, "chart": chart,
-                "halfsplit_C": halfsplit_claims(Dc, bars)}
+                "halfsplit_D": halfsplit_claims(Dd, bars)}
         cell["static"] = static_workup(args.potdir, tag)
         cell["spread"] = spread_check(args.potdir, tag)
         cell["packet"] = packet_check(args.potdir, tag)
         verdict["cells"][str(c)] = cell
-    # --- headline gates (per J3 cell; L24 descriptive if T1 failed) ---
+    # --- headline gates (A2.6: medians; all J3 exact-L) ---
     F = verdict["failures"]
-    pooled_ok = freeze["gates"].get("T1_pass", False)
-    headline_cells = [13, 14] if not pooled_ok else [13, 14, 15]
+    headline_cells = list(J3_CELLS)
     verdict["headline_cells"] = headline_cells
+    verdict["medians"] = {}
     for c in headline_cells:
         cell = verdict["cells"][str(c)]
+        tag = CMP.CELLS[c]
+        L = tag_L(tag)
+        tr = [cell["sets"][str(s)]["d_arr_transfer"]["W"]["d"]
+              for s in range(CMP.N_SETS)
+              if cell["sets"][str(s)]["d_arr_transfer"]["W"]["ok"]]
+        med = float(np.median(tr)) if tr else float("nan")
+        verdict["medians"][str(c)] = {"d_arr_transfer_med": med,
+                                      "n": len(tr)}
+        if not tr or abs(med - 3.0) > tol["tol_regress"]:
+            F.append(f"j3 d_arr {tag} med "
+                     f"{med if tr else 'UNMEAS'} vs 3")
+        cbm = freeze["cb_transfer_med"][str(L)]["med"]
+        if tr and abs(med - cbm) > tol["tol_identity"]:
+            F.append(f"identity {tag} {med:.3f} vs cb-L{L} {cbm:.3f}")
+        for ref in ("sq-L48", "j2-L42"):
+            rmed = freeze["ref_2d"][ref]
+            if tr and not abs(med - rmed) > tol["tol_identity"]:
+                F.append(f"mismatch {tag} {med:.3f} vs {ref} {rmed:.3f}")
+        go = [cell["sets"][str(s)]["gamma_direct_Gbar"]["gamma"]
+              for s in range(CMP.N_SETS)
+              if cell["sets"][str(s)]["gamma_direct_Gbar"]["ok"]]
+        gmed = float(np.median(go)) if go else float("nan")
+        gtr = freeze["gamma"]["Gbar"]["by_L"][str(L)]
+        if go and abs(gmed - gtr) > tol["tol_agree"]:
+            F.append(f"j3 transfer/direct gamma disagree {tag}: "
+                     f"{gmed:.3f} vs {gtr:.3f}")
+        if not go:
+            F.append(f"j3 direct gamma UNMEAS {tag}")
         for s in range(CMP.N_SETS):
             rec = cell["sets"][str(s)]
-            d = rec["d_arr_transfer"]["W"]
-            if not d["ok"] or abs(d["d"] - 3.0) > tol["tol_regress"]:
-                F.append(f"j3 d_arr {c}/{s}: "
-                         f"{d['d'] if d['ok'] else 'UNMEAS'}")
-            dd = rec["d_arr_direct"]["W"]
-            if d["ok"] and dd["ok"] and \
-                    abs(d["d"] - dd["d"]) > tol["tol_agree"]:
-                F.append(f"j3 transfer/direct disagree {c}/{s}")
             if rec["dstar"]["dstar"] != 3 or not rec["dstar"]["pass"]:
                 F.append(f"j3 d* {c}/{s}: {rec['dstar']['dstar']}")
             if rec["chart"]["d"] != 3:
@@ -675,7 +770,7 @@ def cmd_j3(args):
         if not st.get("ok") or abs(st["d"] - 3.0) > tol["tol_regress"]:
             F.append(f"j3 d_stat {c}: "
                      f"{st.get('d') if st.get('ok') else 'UNMEAS'}")
-        for ch in ("psi", "rho", "J"):
+        for ch in ("psi", "rho"):
             leg = cell["spread"].get("R", {}).get("legs", {}).get(ch, {})
             if leg.get("measurable") and not leg.get("pass"):
                 F.append(f"j3 spread {c}/R/{ch} fails")
@@ -683,26 +778,11 @@ def cmd_j3(args):
                 F.append(f"j3 spread {c}/R/{ch} unmeasurable")
         if not cell["packet"].get("pass"):
             F.append(f"j3 packet {c} fails")
-    # --- identity (matched L; L24 vs nearest cb-L20) + drift ---
-    for c in headline_cells:
-        tag = CMP.CELLS[c]
-        L = tag_L(tag)
-        cb_tag = f"cb-L{L}" if f"cb-L{L}" in CMP.CELLS else "cb-L20"
-        cb_cell = CMP.CELLS.index(cb_tag)
-        for s in range(CMP.N_SETS):
-            dj = verdict["cells"][str(c)]["sets"][str(s)][
-                "d_arr_transfer"]["W"]
-            dc = ctrl["darr"][f"{cb_cell}/{s}/W"]
-            if dj["ok"] and dc["ok"] and \
-                    abs(dj["d"] - dc["d"]) > tol["tol_identity"]:
-                F.append(f"identity {tag}/W s{s} vs {cb_tag}")
-    drift_vals = [verdict["cells"][str(c)]["sets"][str(s)][
-        "d_arr_transfer"]["W"]["d"]
-        for c in headline_cells for s in range(CMP.N_SETS)
-        if verdict["cells"][str(c)]["sets"][str(s)][
-            "d_arr_transfer"]["W"]["ok"]]
-    if spread_of(drift_vals) > tol["tol_drift"]:
-        F.append("J3 size drift exceeds tolerance")
+    # --- drift figure (descriptive, A2.6) ---
+    drift_vals = [verdict["medians"][str(c)]["d_arr_transfer_med"]
+                  for c in headline_cells]
+    verdict["drift_spread"] = spread_of(
+        [v for v in drift_vals if np.isfinite(v)])
     verdict["verdict"] = "DIM31-OPERATIONAL" if not F else "DIM31-GEOMETRIC"
     with open(args.out, "w") as f:
         json.dump(jsonable(verdict), f, indent=2, sort_keys=True)

@@ -298,3 +298,18 @@ def test_seal_script(tmp_path):
          "--out", str(tmp_path / "seal3.json")],
         capture_output=True, text=True, cwd=repo, check=False)
     assert r.returncode != 0
+
+
+def test_load_bars_int_keys(tmp_path):
+    import json
+    import sys
+    sys.path.insert(0, os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "scripts"))
+    import dim31_blind
+    p = tmp_path / "freeze.json"
+    p.write_text(json.dumps({"bars": {"D": {"1": 0.01, "2": 0.02,
+                                            "3": 0.05}}}))
+    bars = dim31_blind.load_bars(str(p))
+    assert bars == {"D": {1: 0.01, 2: 0.02, 3: 0.05}}
+    assert dim31.is_bars_ok(bars["D"]) is True
