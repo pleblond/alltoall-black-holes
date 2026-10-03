@@ -1,0 +1,1 @@
+{"task": "phase_L28_pairVPLUS_VPI", "params": {"task": "phase", "L": 28, "pair": "VPLUS_VPI"}, "payload": {"dev": {"rho": 2.4936649967166602e-18, "B": 2.2768245622195593e-18, "J": 4.119968255444917e-18}}, "provenance": {"git_rev": "7afa611a53f9cada912a516d435b5eb9873d3645", "utc": "2026-10-03T00:57:49Z", "host": "ip-172-31-39-189"}}

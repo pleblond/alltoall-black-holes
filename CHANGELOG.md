@@ -1,5 +1,16 @@
 # Changelog
 
+- **v5.6 (VAC-DOMAIN-0)** — Interfaces between disconnected joint-vacuum
+  components: `src/bh_graph/vacdomain.py` (sharp slab joins, D-NOGO /
+  D-FLAT / D-SWAP theorems, interface/front/width/spectral/witness/ledger
+  apparatus), `tests/test_vacdomain.py` (25 pins), 204-task campaign +
+  frozen analyzer, prereg + verdict in `docs/vacdomain-*.md`. VERDICT
+  VACDOMAIN-RADIATIVE (7/7 gates): all 9 disconnected joins emit ballistic
+  fronts (R^2 0.89-0.92, v ~5-6 vs banked 5.94) with fully persistent steps
+  (0.999) and plateaus; hidden-hidden exactly stationary; mixed-sector P_-
+  residue frozen at weight 1/2; witness I = 0. Full suite 1812 passed /
+  2 skipped (weighted skipped). Records under `data/vacdomain/`.
+
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
