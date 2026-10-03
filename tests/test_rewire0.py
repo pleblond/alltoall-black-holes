@@ -202,7 +202,8 @@ def test_principle_masks_exact():
     assert r0.principle_mask(rows, "HID") == [True, False]
 
 
-def test_census_state_tiny_counts():    g = r0.tiny_graph("ring6")
+def test_census_state_tiny_counts():
+    g = r0.tiny_graph("ring6")
     order = list(g.nodes())
     psi = r0.tiny_field("uniform", order)
     rep = r0.census_state(g, psi, order)
