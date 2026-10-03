@@ -144,27 +144,53 @@ def src_node(tag: str, g) -> int:
     raise ValueError(f"no src for {tag}")
 
 
-def quotient_shells_of(tag: str, g, src) -> dict:
-    """{shell_r: [node indices]} by quotient-graph BFS from src's cell."""
-    import networkx as nx
+def euclidean_shells_of(tag: str, g, src) -> dict:
+    """Rounded min-image Euclidean quotient shells (banked coarse_shells rule).
 
+    RESPONSE-0 fronts/fits run on quot.coarse_shells (Euclidean, NOT
+    quotient-BFS/Manhattan: Manhattan shells lean inward and bias the
+    front fast -- validated by exact replication v=7.947/r2=0.984 on
+    J2-L28 with this rule). J3/cb legs use the dimensional port
+    dim3.coarse_shells_3d; J2 uses quot.coarse_shells verbatim.
+    """
+    from bh_graph import quot as Q
+
+    fam = tag.split("-")[0]
+    L = tag_L(tag)
     order = node_order(g)
-    pos = {v: i for i, v in enumerate(order)}
-    cell_of = tag_cells(tag, g)
-    cells, q, _ = dim3.quotient_cells_edges(g, cell_of)
-    if tag.split("-")[0] == "cb":
-        # Quotient of the cubic control is itself (cells are singletons).
-        dist = dict(nx.single_source_shortest_path_length(g, src))
-        shells: dict = {}
-        for v, d in dist.items():
-            shells.setdefault(d, []).append(pos[v])
-        return shells
-    d = dict(nx.single_source_shortest_path_length(q, cell_of[src]))
-    shells = {}
-    for cell, r in d.items():
-        for v in cells[cell]:
-            shells.setdefault(r, []).append(pos[v])
-    return shells
+    if fam == "j2":
+        c3 = j2_torus_coords(L)
+        cell = (c3[src][0], c3[src][1])
+        return Q.coarse_shells(c3, order, cell, L, SPREAD_RMAX)
+    if fam in ("j3", "bcb"):
+        c4 = dim3.j3_torus_coords(L)
+        return dim3.coarse_shells_3d(c4, order, c4[src][:3], L, SPREAD_RMAX)
+    if fam == "cb":
+        cc = dim3.cubic_torus_coords(L)
+        c4 = {v: (x, y, z, 0) for v, (x, y, z) in cc.items()}
+        return dim3.coarse_shells_3d(c4, order, cc[src], L, SPREAD_RMAX)
+    raise ValueError(f"no shells for {tag}")
+
+
+# E/F/G-d spread protocol (banked RESPONSE-0 rule, dimensionally ported).
+SPREAD_RMAX = 25    # banked coarse_shells rmax
+SPREAD_RCAP = 16    # banked rmax_cap for remote-peak/analysis
+SPREAD_REL_THETA = 1e-3
+SPREAD_FLOORS = {"psi": 1e-12, "rho": 1e-14, "bond": 1e-14}
+# Bloch-Manhattan velocity bound per family (derived from the locked law,
+# pre-data): j3 4/sin-axis x3 = 12; cb 2/sin-axis x3 = 6; j2 banked 8.
+SPREAD_VMAX = {"j3": 12.0, "bcb": 6.0, "cb": 6.0, "j2": 8.0}
+
+
+def spread_window(r: float, L: int, fam: str):
+    """Causal peak window (r/1.5Vmax, (L-r)/Vmax).
+
+    J2 values verbatim banked ((r/12, (L-r)/8)); J3/cb carry the same
+    1.5x precursor-exclusion ratio with their derived Bloch-Manhattan
+    bounds. None when empty (shell filed without a peak, never imputed).
+    """
+    v = SPREAD_VMAX[fam]
+    return R.arrival_window(float(r), int(L), v_hi=1.5 * v, v=v)
 
 
 # ---------------------------------------------------------------------------
@@ -280,6 +306,8 @@ def cmd_spread(args):
     pos = index_of(order)
     h = R.hamiltonian(g, order)
     eu, ev = R.edge_index_arrays(g, order)
+    fam = tag.split("-")[0]
+    L = tag_L(tag)
     src = src_node(tag, g)
     iu = pos[src]
     n_steps = int(round(T_END / DT))
@@ -287,66 +315,103 @@ def cmd_spread(args):
     bg0 = _bg_state(bg, tag, g, order)
     eps = amp if kind == "R" else amp * 1j
     d0 = R.point_source(len(order), iu, complex(eps))
-    rec_bg = R.evolve(bg0, h, DT, n_steps)
+    has_bg = float(np.linalg.norm(bg0)) > 0
+    rows_bg = R.evolve(bg0, h, DT, n_steps)["psi"] if has_bg else None
     rec_d = R.evolve(d0, h, DT, n_steps)
-    rows_bg, rows_d = rec_bg["psi"], rec_d["psi"]
-    rows = rows_bg + rows_d
-    shells = quotient_shells_of(tag, g, src)
-    # Per-shell traces of shell-max observables.
-    max_shell = max(shells)
+    rows_d = rec_d["psi"]
+    rows = rows_d if rows_bg is None else rows_bg + rows_d
+    rho_bg = None if rows_bg is None else np.abs(rows_bg) ** 2
+    qs = euclidean_shells_of(tag, g, src)
+    max_shell = max(qs)
     psi_tr = np.zeros((len(ts), max_shell + 1))
     rho_tr = np.zeros((len(ts), max_shell + 1))
-    bond_shells: dict = {}
+    j_tr = np.zeros((len(ts), max_shell + 1))
     node_shell_of = {}
-    for r, members in shells.items():
+    for r, members in qs.items():
         for m in members:
             node_shell_of[m] = r
+    bond_shells: dict = {}
     for e in range(len(eu)):
         s = min(node_shell_of[int(eu[e])], node_shell_of[int(ev[e])])
         bond_shells.setdefault(s, []).append(e)
-    j_tr = np.zeros((len(ts), max_shell + 1))
     bmax = 0.0
     for t in range(len(ts)):
         a_d = np.abs(rows_d[t])
-        drho = np.abs(R.node_density(rows[t]) - R.node_density(rows_bg[t]))
+        drho = np.abs(R.node_density(rows[t])
+                      - (0.0 if rho_bg is None else rho_bg[t]))
         b_full = R.bond_B(rows[t], eu, ev)
-        b_bg = R.bond_B(rows_bg[t], eu, ev)
         j_full = R.bond_J(rows[t], eu, ev)
-        j_bg = R.bond_J(rows_bg[t], eu, ev)
-        db = b_full - b_bg
-        dj = j_full - j_bg
-        bmax = max(bmax, float(np.abs(db).max()))
-        for r, members in shells.items():
+        if rows_bg is not None:
+            b_full = b_full - R.bond_B(rows_bg[t], eu, ev)
+            j_full = j_full - R.bond_J(rows_bg[t], eu, ev)
+        bmax = max(bmax, float(np.abs(b_full).max()))
+        dj = np.abs(j_full)
+        for r, members in qs.items():
+            if not members:
+                continue
             m = np.asarray(members, dtype=int)
             psi_tr[t, r] = float(a_d[m].max())
             rho_tr[t, r] = float(drho[m].max())
         for r, members in bond_shells.items():
             m = np.asarray(members, dtype=int)
-            j_tr[t, r] = float(np.abs(dj[m]).max())
-    peaks = {name: dim3.shell_peak_map(
-        {r: float(tr[:, r].max()) for r in range(max_shell + 1)}, {r: [r] for r in range(max_shell + 1)})
-        for name, tr in (("psi", psi_tr), ("rho", rho_tr), ("J", j_tr))}
-    fits = {name: dim3.fit_exponent(peaks[name], FIT_SHELLS[0], FIT_SHELLS[-1])
-            for name in ("psi", "rho", "J")}
-    arrivals = {}
-    for r in FIT_SHELLS:
-        if r <= max_shell:
-            arrivals[r] = R.arrival_time(psi_tr[:, r], ts, R.THETA_PSI)
-    ok_shells = [r for r in FIT_SHELLS if arrivals.get(r) is not None]
-    front = R.front_velocity({r: arrivals[r] for r in ok_shells}, ok_shells) \
-        if len(ok_shells) >= 3 else {"v": None, "r2": None, "n": 0}
+            j_tr[t, r] = float(dj[m].max())
+
+    def analyze(tr, floor):
+        # Banked rule: remote peak over shells 1..16 (shell 1 included).
+        rcap = min(max_shell, SPREAD_RCAP)
+        remote_peak = max(float(tr[:, s].max()) for s in range(1, rcap + 1))
+        theta = max(SPREAD_REL_THETA * remote_peak, floor)
+        arrivals = {s: R.arrival_time(tr[:, s], ts, theta)
+                    for s in FIT_SHELLS if s <= max_shell}
+        use = [s for s in FIT_SHELLS if arrivals.get(s) is not None]
+        front = R.front_velocity({s: arrivals[s] for s in use}, use) \
+            if len(use) >= 3 else {"v": None, "r2": None, "n": 0}
+        peaks, tstars = {}, {}
+        for s in FIT_SHELLS:
+            if s > max_shell:
+                continue
+            win = spread_window(s, L, fam)
+            pk = R.peak_in_window(tr[:, s], ts, *win) if win else None
+            if pk is not None:
+                peaks[s] = pk["Rmax"]
+                tstars[s] = pk["tstar"]
+        fit = dim3.fit_exponent(peaks, FIT_SHELLS[0], FIT_SHELLS[-1])
+        return {"theta": theta, "remote_peak": remote_peak,
+                "arrivals": arrivals, "front": front, "peaks": peaks,
+                "tstars": tstars, "fit": fit}
+
+    a_psi = analyze(psi_tr, SPREAD_FLOORS["psi"])
+    a_rho = analyze(rho_tr, SPREAD_FLOORS["rho"])
+    a_j = analyze(j_tr, SPREAD_FLOORS["bond"])
     rec = {"tag": tag, "bg": bg, "kind": kind, "amp": amp, "src": src,
            "T": T_END, "dt": DT, "n": len(order),
-           "peaks": peaks, "fits": fits, "arrivals": arrivals,
-           "front": front, "bmax": bmax,
-           "norms_drift": float(np.abs(rec_d["norms"] - rec_d["norms"][0]).max())}
+           "theta": {k: v["theta"]
+                     for k, v in (("psi", a_psi), ("rho", a_rho),
+                                   ("J", a_j))},
+           "peaks": {k: v["peaks"]
+                     for k, v in (("psi", a_psi), ("rho", a_rho),
+                                   ("J", a_j))},
+           "tstars": {k: v["tstars"]
+                      for k, v in (("psi", a_psi), ("rho", a_rho),
+                                    ("J", a_j))},
+           "fits": {k: v["fit"]
+                    for k, v in (("psi", a_psi), ("rho", a_rho),
+                                  ("J", a_j))},
+           "arrivals": a_psi["arrivals"], "front": a_psi["front"],
+           "fronts": {k: v["front"]
+                      for k, v in (("psi", a_psi), ("rho", a_rho),
+                                    ("J", a_j))},
+           "bmax": bmax,
+           "norms_drift": float(np.abs(rec_d["norms"]
+                                       - rec_d["norms"][0]).max())}
     fn = os.path.join(outdir, f"dim3_spread_{tag}_{bg}_{kind}_{amp:g}.json")
     with open(fn, "w") as f:
         json.dump(jsonable(rec), f)
     print(f"spread {tag} {bg} {kind} amp={amp:g}: "
-          f"a_psi={fits['psi']['alpha']:.3f} a_rho={fits['rho']['alpha']:.3f} "
-          f"a_J={fits['J']['alpha']:.3f} v={front.get('v')} bmax={bmax:.1e}",
-          flush=True)
+          f"a_psi={rec['fits']['psi']['alpha']:.3f} "
+          f"a_rho={rec['fits']['rho']['alpha']:.3f} "
+          f"a_J={rec['fits']['J']['alpha']:.3f} v={rec['front'].get('v')} "
+          f"bmax={bmax:.1e}", flush=True)
 
 
 # ---------------------------------------------------------------------------
@@ -418,23 +483,52 @@ def _edges_3d(tag, g, order):
     return edges
 
 
-def _evolve_com_D(tag, g, order, coords, periods, edges, psi0, dt=0.1,
-                  n_steps=80):
+POT0_KX = 0.3  # banked POT-0 KX
+POT0_T = 10.0  # banked POT-0 T
+POT0_DT = 0.1  # banked POT-0 DT
+POT0_N = int(round(POT0_T / POT0_DT))
+POT0_C_GRID = tuple(round(c * 0.1, 10) for c in range(11))  # banked
+
+
+def _evolve_case_3d(g, order, coords, periods, edges, cfield, L, psi0,
+                    dt=POT0_DT, n_steps=POT0_N):
+    """Banked POT-0 _evolve_case readout, dimensionally ported (3-vector J).
+
+    Same instruments (gaussian prep outside; evolve_fixed; com/unwrap;
+    msd exponent; velocity autocorr; fit_velocity; D/J flux traces;
+    spectral coherence at prep). Returns the banked per-case keys.
+    """
+    from bh_graph.ballistic import velocity_autocorr
+
     h = hamiltonian(g, order=order)
+    spec = dim3.spectral_coherence_3d(psi0, order, cfield, L)
     rec = evolve_fixed(psi0, h, dt, n_steps)
-    ts = np.arange(n_steps + 1) * dt
-    rs = np.array([com(p, coords, order, periods=periods) for p in rec["psi"]])
-    ru = unwrap_trace(rs, periods)
-    dtr = dim3.d_trace_3d(rec["psi"], edges)
-    fit = fit_velocity(ru, ts)
-    return {"mean_D": float(np.mean(dtr["D"])), "fit": fit,
-            "alpha": msd_exponent_rs(ru, ts), "rs": ru, "ts": ts}
+    ts = np.arange(rec["psi"].shape[0]) * dt
+    rs = unwrap_trace(
+        np.array([com(p, coords, order, periods=periods)
+                  for p in rec["psi"]]), periods=periods)
+    alpha = msd_exponent_rs(rs, ts)
+    cv = velocity_autocorr(rs, ts)
+    fit = fit_velocity(rs, ts)
+    tr = dim3.d_trace_3d(rec["psi"], edges)
+    jnet = np.asarray(tr["J_net"], dtype=float)
+    return {"prep_C": spec["C"], "prep_M": spec["M_eff"],
+            "mean_D": float(tr["D"].mean()),
+            "max_D": float(tr["D"].max()),
+            "mean_J": [float(jnet[:, i].mean()) for i in range(3)],
+            "alpha": float(alpha),
+            "cv_mean50": float(np.mean(cv[:50])),
+            "v": [float(x) for x in fit["v"]],
+            "speed": float(fit["speed"]), "r2": float(fit["r2"]),
+            "norm_dev": float(np.abs(rec["norms"] - 1.0).max())}
 
 
 def cmd_pot0(args):
     tag = args.tag
     outdir = args.outdir
     os.makedirs(outdir, exist_ok=True)
+    from bh_graph.potential import dephasing_family
+
     L = tag_L(tag)
     g = tag_graph(tag)
     order = node_order(g)
@@ -444,55 +538,49 @@ def cmd_pot0(args):
     sigma = L / 8.0
     r0 = (L / 4.0, L / 2.0, L / 2.0)[:ndim]
     cfield = tag_cells(tag, g)
-    out = {"tag": tag}
+    out = {"tag": tag, "KX": POT0_KX, "T": POT0_T, "dt": POT0_DT,
+           "C_GRID": list(POT0_C_GRID)}
+    case = lambda psi0: _evolve_case_3d(g, order, coords, periods, edges,
+                                        cfield, L, psi0)
     # A: symmetric source (k=0).
-    src0 = gaussian_packet(coords, order, r0, (0.0,) * ndim, sigma,
-                           periods=periods)
-    out["A"] = _evolve_com_D(tag, g, order, coords, periods, edges, src0)
-    # B: coherent packet + reversal.
-    pkt0 = gaussian_packet(coords, order, r0, (0.5,) + (0.0,) * (ndim - 1),
+    out["A"] = case(gaussian_packet(coords, order, r0, (0.0,) * ndim,
+                                    sigma, periods=periods))
+    # B: coherent packet + reversal (banked KX).
+    pkt0 = gaussian_packet(coords, order, r0,
+                           (POT0_KX,) + (0.0,) * (ndim - 1),
                            sigma, periods=periods)
-    pktm0 = gaussian_packet(coords, order, r0, (-0.5,) + (0.0,) * (ndim - 1),
+    pktm0 = gaussian_packet(coords, order, r0,
+                            (-POT0_KX,) + (0.0,) * (ndim - 1),
                             sigma, periods=periods)
-    out["B"] = _evolve_com_D(tag, g, order, coords, periods, edges, pkt0)
-    out["Bm"] = _evolve_com_D(tag, g, order, coords, periods, edges, pktm0)
-    vp = np.asarray(out["B"]["fit"]["v"], dtype=float)
-    vm = np.asarray(out["Bm"]["fit"]["v"], dtype=float)
-    out["cos_pm"] = float(vp @ vm / (np.linalg.norm(vp) * np.linalg.norm(vm)))
-    # C: gradient rung (phase-ramp strengths).
-    cgrid = (0.02, 0.1, 0.2, 0.3, 0.5)
-    gv = []
-    for kx in cgrid:
-        p = gaussian_packet(coords, order, r0, (kx,) + (0.0,) * (ndim - 1),
-                            sigma, periods=periods)
-        r = _evolve_com_D(tag, g, order, coords, periods, edges, p)
-        gv.append(float(np.linalg.norm(r["fit"]["v"])))
-    out["C"] = {"grid": list(cgrid), "gv": gv}
-    # D: scramble kill + restore + dephase correlation pool.
-    sc = scramble_phases(pkt0, seed=0)
-    out["D_scr"] = _evolve_com_D(tag, g, order, coords, periods, edges, sc)
-    rest = gaussian_packet(coords, order, r0, (0.5,) + (0.0,) * (ndim - 1),
-                           sigma, periods=periods)
-    out["D_rest"] = _evolve_com_D(tag, g, order, coords, periods, edges, rest)
-    out["C_prep"] = {"pkt": dim3.spectral_coherence_3d(pkt0, order, cfield, L)["C"],
-                     "scr": dim3.spectral_coherence_3d(sc, order, cfield, L)["C"],
-                     "rest": dim3.spectral_coherence_3d(rest, order, cfield, L)["C"]}
-    pool_c, pool_d = [], []
-    rng = np.random.default_rng(11)
-    for strength in (0.0, 0.5, 1.0, 2.0, 4.0):
-        noise = np.exp(1j * strength * rng.standard_normal(len(order)))
-        p = pkt0 * noise
-        p = p / np.linalg.norm(p)
-        r = _evolve_com_D(tag, g, order, coords, periods, edges, p)
-        pool_c.append(dim3.spectral_coherence_3d(p, order, cfield, L)["C"])
-        pool_d.append(r["mean_D"])
-    out["pool"] = {"C": pool_c, "D": pool_d}
-    keep = {k: ({kk: vv for kk, vv in v.items() if kk != "rs"}
-                if isinstance(v, dict) else v) for k, v in out.items()}
+    out["B"] = case(pkt0)
+    out["Bm"] = case(pktm0)
+    # C: gradient rung (k = c*KX multipliers, banked) + dephase leg.
+    grad = [case(gaussian_packet(
+        coords, order, r0, (c * POT0_KX,) + (0.0,) * (ndim - 1),
+        sigma, periods=periods)) for c in POT0_C_GRID]
+    fam = dephasing_family(pkt0, tuple(POT0_C_GRID), seed=0)
+    noise = [case(fam[float(c)]) for c in POT0_C_GRID]
+    out["C"] = {"gd": [r["mean_D"] for r in grad],
+                "gv": [r["speed"] for r in grad],
+                "gc": [r["prep_C"] for r in grad],
+                "nd": [r["mean_D"] for r in noise],
+                "nc": [r["prep_C"] for r in noise]}
+    # D: scramble kill + restore + dephase correlation pool (banked).
+    out["D_scr"] = case(scramble_phases(pkt0, seed=0))
+    out["D_rest"] = case(gaussian_packet(
+        coords, order, r0, (POT0_KX,) + (0.0,) * (ndim - 1),
+        sigma, periods=periods))
+    out["pool"] = {
+        "C": [r["prep_C"] for r in noise]
+             + [out["B"]["prep_C"], out["D_scr"]["prep_C"],
+                out["D_rest"]["prep_C"]],
+        "D": [r["mean_D"] for r in noise]
+             + [out["B"]["mean_D"], out["D_scr"]["mean_D"],
+                out["D_rest"]["mean_D"]]}
     with open(os.path.join(outdir, f"dim3_pot0_{tag}.json"), "w") as f:
-        json.dump(jsonable(keep), f)
+        json.dump(jsonable(out), f)
     print(f"pot0 {tag}: A_D={out['A']['mean_D']:.4f} "
-          f"B_D={out['B']['mean_D']:.4f} cos={out['cos_pm']:.4f}", flush=True)
+          f"B_D={out['B']['mean_D']:.4f}", flush=True)
 
 
 # ---------------------------------------------------------------------------
@@ -520,8 +608,8 @@ def cmd_pot1(args):
     res = a @ phi
     den = float(np.linalg.norm((h[bulk, :][:, [pos[src]]]).toarray()))
     resid = float(np.linalg.norm(res[bulk])) / den if den > 0 else float("nan")
-    # Radial profile on quotient shells (xi filed descriptively).
-    shells = quotient_shells_of(tag, g, src)
+    # Radial profile on Euclidean quotient shells (xi filed descriptively).
+    shells = euclidean_shells_of(tag, g, src)
     prof = {}
     for r, members in shells.items():
         m = np.asarray(members, dtype=int)
@@ -562,15 +650,19 @@ def cmd_switch(args):
     drv = pinning_evolve(phi, h, DT, n_steps, [iu],
                          harmonic_pins(np.array([1.0]), omega, DT))["psi"]
     dev = np.abs(free - drv)
-    shells = quotient_shells_of(tag, g, src)
+    shells = euclidean_shells_of(tag, g, src)
     max_shell = max(shells)
     tr = np.zeros((len(ts), max_shell + 1))
     for r, members in shells.items():
+        if not members:
+            continue
         m = np.asarray(members, dtype=int)
         tr[:, r] = dev[:, m].max(axis=1)
-    # Threshold: relative 1e-3 x remote peak (same rule as RESPONSE-0).
-    remote = tr[:, 2:].max() if max_shell >= 2 else tr.max()
-    theta = 1e-3 * remote
+    # Threshold: relative 1e-3 x remote peak over shells 1..16 + floor
+    # (banked RESPONSE-0 switch rule verbatim).
+    rcap = min(max_shell, SPREAD_RCAP)
+    remote = max(float(tr[:, s].max()) for s in range(1, rcap + 1))
+    theta = max(1e-3 * remote, 1e-12)
     arrivals = {}
     for r in FIT_SHELLS:
         if r <= max_shell:

@@ -221,26 +221,46 @@ def eval_ports(datadir):
                   and abs(vp - vm) / max(vp, 1e-300) < 0.10)
         ports[f"packet_{t}"] = {"pass": ok, "v+": vp, "v Bloch": vb,
                                 "cos": d["cos_pm"]}
-    # G-b POT0 rungs (same numeric bars as POT-0).
+    # G-b POT0 rungs (banked POT-0 bars on the 4-rung core).
     for t in ("j3-L12", "cb-L15"):
         p = os.path.join(datadir, f"dim3_pot0_{t}.json")
         if not os.path.exists(p):
             ports[f"pot0_{t}"] = {"pass": False, "missing": True}
             continue
+        from bh_graph.potential import (cos_between, is_match_ok,  # noqa: E402
+                                        spearman)
         d = load_json(p)
-        A = bool(d["A"]["mean_D"] < 0.05)
-        B = bool(d["B"]["mean_D"] > 0.5
-                 and (d["B"]["mean_D"] - d["A"]["mean_D"]) > 0.4
-                 and d["B"]["alpha"] > 1.3
-                 and d["cos_pm"] < -0.95 and d["B"]["fit"]["r2"] > 0.99)
-        gv = d["C"]["gv"]
-        C = bool(gv[-1] / max(gv[0], 1e-9) > 10)
-        D = bool(d["D_scr"]["mean_D"] < 0.15 * d["B"]["mean_D"]
-                 and d["C_prep"]["scr"] < 0.5 * d["C_prep"]["pkt"]
-                 and abs(d["D_rest"]["mean_D"] - d["B"]["mean_D"])
-                 / max(d["B"]["mean_D"], 1e-300) < 0.15)
+        src = d["A"]
+        pkt = d["B"]
+        pktm = d["Bm"]
+        A = bool(src["mean_D"] < 0.05)
+        ratio = pkt["mean_D"] / max(src["mean_D"], 1e-9)
+        cos_pm = cos_between(np.asarray(pkt["mean_J"], dtype=float),
+                             np.asarray(pktm["mean_J"], dtype=float))
+        B = bool(pkt["mean_D"] > 0.5
+                 and (pkt["mean_D"] - src["mean_D"]) > 0.4 and ratio > 10
+                 and pkt["alpha"] > 1.3 and pkt["cv_mean50"] > 0.5
+                 and cos_pm < -0.95
+                 and is_match_ok(pkt["mean_D"], pktm["mean_D"], 0.10)
+                 and pkt["r2"] > 0.99 and pktm["r2"] > 0.99)
+        grid = list(d["C_GRID"])
+        gv, gd = d["C"]["gv"], d["C"]["gd"]
+        nd = d["C"]["nd"]
+        C = bool(gd[-1] / max(gd[0], 1e-9) > 10
+                 and spearman(gv, grid) > 0.7
+                 and gv[0] < 0.05 * max(gv[-1], 1e-300)
+                 and spearman(nd, grid) > 0.5
+                 and nd[-1] / max(nd[0], 1e-9) > 5)
+        scr = d["D_scr"]
+        rest = d["D_rest"]
+        D = bool(scr["mean_D"] < 0.15 * pkt["mean_D"]
+                 and scr["prep_C"] < 0.5 * pkt["prep_C"]
+                 and is_match_ok(rest["mean_D"], pkt["mean_D"], 0.15)
+                 and is_match_ok(rest["prep_C"], pkt["prep_C"], 0.15)
+                 and spearman(d["pool"]["C"], d["pool"]["D"]) > 0.5)
         ports[f"pot0_{t}"] = {"pass": bool(A and B and C and D),
-                              "A": A, "B": B, "C": C, "D": D}
+                              "A": A, "B": B, "C": C, "D": D,
+                              "cos_pm": cos_pm}
     # G-c POT1 existence + exactness.
     for t in ("j3-L12", "j3-L16", "cb-L15"):
         p = os.path.join(datadir, f"dim3_pot1_{t}.json")
@@ -250,7 +270,8 @@ def eval_ports(datadir):
         d = load_json(p)
         ports[f"pot1_{t}"] = {"pass": bool(d["resid"] < 1e-9),
                               "resid": d["resid"], "xi": d["xi"]}
-    # G-d switch fronts.
+    # G-d switch fronts (family Bloch-Manhattan normalization; J3 /12
+    # prereg-verbatim, cubic /6 dimensional analog).
     for t in ("j3-L16", "cb-L20"):
         p = os.path.join(datadir, f"dim3_switch_{t}.json")
         if not os.path.exists(p):
@@ -258,11 +279,12 @@ def eval_ports(datadir):
             continue
         d = load_json(p)
         v = (d.get("front") or {}).get("v")
+        vmax = 12.0 if t.startswith("j3") else 6.0
         ports[f"switch_{t}"] = {
             "pass": bool(v is not None and np.isfinite(v)
-                         and 0.85 <= v / 12.0 <= 1.00
+                         and 0.85 <= v / vmax <= 1.00
                          and (d["front"].get("r2") or 0) > 0.9),
-            "v": v}
+            "v": v, "vmax": vmax}
     # H-a..H-d sectors.
     for t in ("j3-L8", "j3-L12", "j3-L16"):
         p = os.path.join(datadir, f"dim3_sector_{t}.json")
@@ -351,13 +373,19 @@ def eval_ports(datadir):
     return ports
 
 
-def eval_spread(d):
-    """Evaluate one spread record against the E/F gates."""
+def eval_spread(d, tag):
+    """Evaluate one spread record against the E/F gates.
+
+    Velocity normalized by the family Bloch-Manhattan bound (j3: 12
+    prereg-verbatim; cb: 6, j2: 8 dimensionally-correct analogs, filed).
+    """
+    fam = tag.split("-")[0]
+    vmax = {"j3": 12.0, "cb": 6.0, "j2": 8.0}[fam]
     f = d["fits"]
     front = d.get("front", {})
     v = front.get("v")
     v_ok = (v is not None and np.isfinite(v)
-            and 0.90 <= v / 12.0 <= 1.00
+            and 0.90 <= v / vmax <= 1.00
             and (front.get("r2") or 0) > 0.9)
     e_psi = f["psi"]
     e_rho = f["rho"]
@@ -369,8 +397,9 @@ def eval_spread(d):
     j_ok = (np.isfinite(e_j["alpha"] or np.nan)
             and 1.70 <= e_j["alpha"] <= 2.30 and e_j["r2"] > 0.9)
     b_ok = (d.get("bmax") or np.inf) < 1e-9
-    return {"v": v, "v_ok": bool(v_ok), "psi_ok": bool(psi_ok),
-            "rho_ok": bool(rho_ok), "j_ok": bool(j_ok), "b_ok": bool(b_ok)}
+    return {"v": v, "vmax": vmax, "v_ok": bool(v_ok),
+            "psi_ok": bool(psi_ok), "rho_ok": bool(rho_ok),
+            "j_ok": bool(j_ok), "b_ok": bool(b_ok)}
 
 
 def main():
@@ -506,16 +535,18 @@ def main():
 
     # Stages E/F from spread records.
     datadir = os.path.dirname(args.blind)
-    spread, E_tags, F_tags = {}, {}, {}
+    spread, E_tags, P_tags, F_tags = {}, {}, {}, {}
     for t in DC.SPREAD_TAGS:
         spread[t] = {}
         for kind in ("R", "I"):
             p = os.path.join(datadir, f"dim3_spread_{t}_BG0_{kind}_1.json")
             if os.path.exists(p):
-                spread[t][kind] = eval_spread(load_json(p))
+                spread[t][kind] = eval_spread(load_json(p), t)
         if spread[t]:
             E_tags[t] = bool(all(spread[t][k]["v_ok"]
                                  and spread[t][k]["psi_ok"]
+                                 for k in spread[t]))
+            P_tags[t] = bool(all(spread[t][k]["psi_ok"]
                                  for k in spread[t]))
             F_tags[t] = bool(all(spread[t][k]["rho_ok"]
                                  and spread[t][k]["j_ok"]
@@ -534,9 +565,11 @@ def main():
         a = load_json(p)["fits"]["psi"]
         Ec = Ec and bool(np.isfinite(a["alpha"] or np.nan)
                          and 0.40 <= a["alpha"] <= 0.60 and a["r2"] > 0.9)
-    # F-d cubic class check (filed + gated same windows).
+    # F-d cubic class check: same EXPONENT windows (psi/rho/J/b), filed.
+    # Cubic velocity is filed under its own /6 normalization (eval_spread),
+    # not the J3 /12 bar.
     Fd = bool(all(F_tags.get(t, False) for t in ("cb-L10", "cb-L15", "cb-L20"))
-              and all(E_tags.get(t, False)
+              and all(P_tags.get(t, False)
                       for t in ("cb-L10", "cb-L15", "cb-L20")))
 
     # Stage J size consistency (filed spreads; gates).
