@@ -609,17 +609,20 @@ def evolve_back(psi_T: np.ndarray, g: nx.Graph, order: list,
                 t_end: float, dt: float = DT_QDYN) -> dict:
     """Backward unitary leg psi(T) -> psi(0) under fixed H(G).
 
-    Same Krylov law with negative step (expm_multiply at negative
-    times); the forth-back pair closes the state up to FP error.
+    Same Krylov law with the time-reversed generator: evolving under
+    -H for +t gives U(-t) = exp(+iHt) exactly (scipy expm_multiply
+    requires ascending time samples, so the backward leg negates the
+    Hamiltonian instead of the step; Amendment-1, pre-data). The
+    forth-back pair closes the state up to FP error.
     """
     from bh_graph.ballistic import evolve_fixed, hamiltonian
 
     psi_T = np.asarray(psi_T, dtype=np.complex128)
     n_steps = int(round(float(t_end) / float(dt)))
-    rec = evolve_fixed(psi_T, hamiltonian(g, j=1.0, order=list(order)),
-                       -float(dt), n_steps)
+    rec = evolve_fixed(psi_T, -hamiltonian(g, j=1.0, order=list(order)),
+                       float(dt), n_steps)
     return {"psi": rec["psi"], "norms": rec["norms"],
-            "dt": -float(dt), "n_steps": int(n_steps)}
+            "dt": float(dt), "n_steps": int(n_steps)}
 
 
 def cycle_record(subname: str, ftag: str, ei: int,

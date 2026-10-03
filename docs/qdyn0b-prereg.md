@@ -50,8 +50,11 @@ Q-DYN-0b modifies no banked module and no frozen data file; it adds
 - Physical quotient: `R x U(1)` per SYM0-CLOSED.
 - Field law on fixed G: `H(G) = -A(G)`, `J = 1`, `hbar = 1`,
   `psi(t) = U_G(t) psi(0)` via Krylov (`ballistic.evolve_fixed`).
-  Forth-back closed cycles use the same law with negative step
-  (`qdyn0b.evolve_back`: expm_multiply at negative times). Graph G is
+  Forth-back closed cycles use the same law with the time-reversed
+  generator (`qdyn0b.evolve_back`: evolution under -H for +t gives
+  U(-t) exactly; Amendment-1, pre-data -- scipy expm_multiply requires
+  ascending time samples, so the backward leg negates the Hamiltonian
+  instead of the step). Graph G is
   fixed during waiting; no structural event fires except externally
   supplied STORE regression/splitback operations.
 - Energy convention (verbatim STORE0/RES0, FROZEN): `E_psi =
