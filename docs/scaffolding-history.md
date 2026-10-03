@@ -130,22 +130,38 @@ Confirmations that the forced sheet can carry the field program, all ✓, none
 of which pay the debt: coherence #70, interference #69, POT-0/POT-1 #76/#78,
 OBS-1 #90.
 
-Follow-up, partly open: **VAC-0** (#93). Completed pieces already split the physics:
+Follow-up, now closed: **VAC-0** (#93 + completion #114). The finished
+split of the physics:
 
 ```text
 VAC-0A  A1–A6 identities hold on hostile graphs     → LAW        ✓
+VAC-0D  ballistic propagation, any coordination    → LAW        ✓
 VAC-0F  interference passes on J₂, open square,
-        and the square quotient; fails on tri/hex   → square CLASS,
-                                                      not yet J₂-only  ✓
-VAC-0H/I  substrate-wide verdicts                   → apparatus banked,
-                                                      verdicts OPEN
+        and the square quotient; fails on tri/hex   → square CLASS ✓
+VAC-0E  coherence-direction battery                 → 2D-ordered CLASS ✓
+VAC-0G  tunnelling                                  → square-grade CLASS
+                                                      (TUN-level; frozen
+                                                      battery all-FAIL is a
+                                                      gate artifact)     ✓
+VAC-0H  static/driven existence 16/18 on 27/27      → LAW-like   ✓
+        turn-on (TAU/shells) 15/27                  → broad CLASS ✓
+VAC-0I  finite-range label 26/27                    → LAW-like   ✓
+        xi scale family-clustered                   → CLASS-structured ✓
+VAC-0J  B/J algebra 27/27 exact                     → LAW        ✓
+        quadrature usefulness 13/27                 → CLASS      ✓
 ```
 
-Filed (VAC-0F): two-path PASS on the open grid, square torus, J₂, and the J₂
-quotient; FAIL on triangular and hex; rewires fail the phase rung; the MZ
-corridor passes at LAW level after a window erratum. The finished question is
-which banked phenomena are LAW, which need a class, which need J₂, and which
-are accidental. Until H/I close, uniqueness stays debt.
+**FINAL VERDICT: MIXED — no phenomenon requires uniquely J₂** ✓.
+Per phenomenon: generic laws (A, D, H-core, I-label, J-alg, MZ at LAW
+level) or class member (F, E, H-turnon, G, J-useful). Degree-preserving
+rewiring destroys F/H/G/DE-validity, so a degree-only vacuum is excluded
+— but alternatives survive everywhere (square/quot for F; +tri/rr3 for
+H; +hex/ring for D), which is evidence against degree-only
+characterization, not for unique J₂. The substrate-uniqueness debt is
+not paid toward J₂; it dissolves into per-phenomenon substrate classes.
+Open threads (not VAC-0's to close): the exact F mechanism, a unified
+H-turnon property, the LB = 8 tunnelling floor, the held-out VAC-0Q
+battery.
 
 ---
 
@@ -368,6 +384,17 @@ arbitrary remote edge relocation
 ```
 
 BR-2.5 demotes the relocation move M1 to a formation and diagnostic tool.
+REWIRE-0 (#121) closes the selector question for the remaining local
+degree-preserving move — verdict **REWIRE0-DEGENERATE** ✓: no
+already-earned local, covariant, zero-parameter rule uniquely selects a
+rewire on any nontrivial state (24/24 J₂-L4 states DEGENERATE-or-ABSENT
+under all six exact principles, vacuum and excited alike,
+scale-persistent L4 → L28 with `n_phys` 9792/11291/6756; the mechanical
+REWIRE0-CLASS rung is vacuous single-outcome toy output). Exact-energy
+selection is additionally fp-summation-order fragile at ulp (1389
+violations, filed as a representation-robustness null — no tolerance
+introduced). Relocation is not merely demoted; it admits no deterministic
+exact-physics selector.
 BR-1 (#79, **BR1-FLAT** ✓) is the related debt, stated once: on pristine J₂
 the neutral drift that the legal moves allow destroys the vacuum class in a
 handful of moves, at every size tested. Quiescence is not explained by the
@@ -389,7 +416,20 @@ degeneracy when amplitudes match). The information lost on the sum map is
 exact, `|a − b|² / 2`.
 
 Debt: **split selection**. Which preimage, or which record, comes back is not
-determined by the instantaneous ontology.
+determined by the instantaneous ontology. SPLIT-0 (#116) narrows this debt
+without closing it — verdict **SPLIT0-MIXED** ✓: every tested inverse
+decomposes into forced-plus-residual (`M + ξ ↔ X`, 824/824 roundtrips,
+minimality 76/76 with two-way ablation witnesses), where the covariant
+residual `ξ = (cover, d)` is exactly what must be supplied beyond the
+merged state. The full inverse is never a singleton (continuous fiber,
+`d_cont` 1–2); the halves-restricted inverse is deterministic exactly on
+the 4 isolated-node cells. Reverse support holds exactly on the halves
+subset (36 rev / 24 graph-only / 0 one-way), correcting 3 cells against
+the MEASURE-0A signature proxy (J-multiset edge-orientation artifact,
+pinned). The hidden relative mode is retained everywhere, never
+quotiented; no measure is derived (MEASURE0-DEBT respected). What remains
+of split selection is the fiber measure over `ξ` — FIBER-0 (§11.5) files
+it as debt.
 
 ---
 
@@ -428,6 +468,43 @@ Status: accounting **EMPIRICALLY ESTABLISHED** where the condition holds ✓;
 the event rate is **OPEN / DEBT**. Zero-field contraction remains allowed, so
 conservation also does not explain why an empty field would sit still.
 
+Two later campaigns split this section's question in two. MERGE-0 (#119),
+verdict **MERGE0-DETERMINISTIC + MERGE0-ACCOUNT-DEBT** ✓ (38/38):
+selected-edge contraction is a unique covariant deterministic primitive
+(`R × U(1)` exact on all 325 events, including 87 annihilations) with an
+exact ledger (`dQ = 2B`, `dE = P1 + P2` with `P3 = P4 = 0`, support
+`2 + n_cross`) across 8 substrates — while no existing variable closes
+the energy reservoir on any tested class (0/80 coefficient tuples; only
+the banked field-blind decoupled remark on `c = 0`). HIDDEN-BR SIGNREV
+survives execution (2/24 on-support opposite-sign executed ledgers).
+VPI is all-`B < 0` yet all-`dE < 0`, refiling the BR-2.7 ordering result.
+Favorable orderings exist on 19/30 scans — and still no firing rule is
+constructed. The update is characterized; the trigger and the reservoir
+destination are not.
+
+RESERVOIR-0 (#122) then determines what the reservoir would have to store
+— verdict **RES0-XI** ✓ (68/68): the missing merge account
+`R_merge = −(ΔE_ψ + ΔE_G)` is an exact nontrivial zero-parameter function
+of the lost inverse information `ξ = (cover, d)`,
+`R(d) = A + |d|²/2 + Re(d̄W)` to `≤ 1e−9` on 26,992 fiber rows, both `ξ`
+legs varying, swap bitwise, `R_split = −R_merge`, one-neighborhood-local,
+disjoint-additive (`8.9e−16`), confluent orders agreeing. No reservoir
+degree of freedom is invented; the required content, transformation law,
+locality, additivity, and update rule are earned. And `R` never vanishes
+on the halves subset (964 rows, min 0.167) although no field information
+is lost there — energy debt and information debt are demonstrably
+distinct quantities.
+
+TRIGGER-0 (#124) censuses the trigger side under strict no-shopping —
+verdict **TRIGGER0-CONDITION** ✓ (75/77): 19 of 21 earned exact local
+predicates survive as CANDIDATE-CONDITION on 257,668 censused edges
+(BRIDGE NONLOCAL by construction, BAL_R2 VACUOUS at 0/257,668), and the
+structural audit finds zero dynamical implications — no `C(X,e) = true ⇒
+merge occurs` anywhere. BAL_R1 fires on exactly 6 hidden-dipole bonds
+(predicted vacuous, filed); `BJ_ZERO ⟺ ZERO_MIN` exactly. Merge is an
+unknown trigger plus an earned deterministic update. No TRIGGER-1
+formula shopping follows (prereg binding).
+
 ---
 
 # 10. No structural kinetics from the present ontology
@@ -448,7 +525,11 @@ binary graph                       ✗ a continuous deformation coordinate
 Energetics and kinetics are different questions. No firing mechanism is
 derived from the instantaneous ontology. The campaign's own statement stands:
 one further primitive dynamical postulate is required before geometry changes.
-The strong stop holds: no rate shopping on top of this null.
+The strong stop holds: no rate shopping on top of this null. Two later
+censuses reinforce it from opposite sides: TRIGGER-0 inventories every
+earned exact local condition (19 survive as conditions, zero imply firing),
+and REWIRE-0 shows the alternative local move admits no deterministic
+exact-physics selector either. The null is now censused, not merely derived.
 
 ---
 
@@ -525,6 +606,42 @@ forced. A CLOSED verdict was data-reachable and did not occur. Downstream
 may consume the apparatus and the disagreement battery, never a tuned
 weight.
 
+## 11.5 The split-fiber measure is underdetermined by 520 filed degrees
+
+FIBER-0 (#123) asks whether earned graph-field physics uniquely constrains
+a normalized physical measure on the SPLIT-0 inverse fiber. Verdict
+**FIBER0-DEBT** ✓ (22/22): two inequivalent normalized closed-form
+measures (rival A/B) satisfy every earned constraint — quotient, swap,
+transport, locality, collapse, ledgers, energy, vacuum, hidden,
+factorization, scheduler, history — differing with TV > 0 on 79 cells.
+DERIVED was data-reachable (residual 0) and did not occur (residual
+520 = 206 + 168 inter-orbit + 83 radial + 63 angular). Supporting
+structure, all earned: fiber roundtrip 257169/257169 exact; cover
+measure unique only on the `d = 0` cells (4/76); closed-form split
+ledgers everywhere; energy-blindness surviving on the fiber;
+factorization a choice (correlated rival differs, TV = 0.25);
+TIME0-NULL surviving fiber weights. Six sub-debts filed by name
+(INTER-ORBIT-WEIGHT, RADIAL-PROFILE, ANGULAR-PROFILE,
+VOLUME-CANONICALITY, FACTORIZATION, VACUUM-SELECTION); zero fitted
+params (AST firewall scan clean). No fiber weighting without a new
+primitive postulate.
+
+## 11.6 The probability-free books close exactly
+
+INFO-0 (#115) quantifies, without probabilities, information lost by
+contraction and required to specify reverse splits and histories.
+Verdict **INFO0-MATCHED** ✓ (19/19 HARD, 259 cells, 0 failures):
+forward vs backward information exactly equal (canonical pred == succ
+143/143 — the mirror theorem holds, no SEPARATED); timed-skeleton
+identity everywhere; schedulers all `m!` exact; hidden books green
+(distinctness plus sign R-equality pins); banked TIME-0 recomputed
+exactly. The labeled gauge audit reads 16/44 — descriptive, not gated:
+labels are redundancy, and the physical quotient restores the symmetry.
+Contraction loss, reverse multiplicity, history multiplicity, scheduler
+multiplicity, and hidden-state books are all exact counts with binary
+logs; no `−Σp log p` anywhere. The books close; the weight is still
+missing — which is §12.
+
 ---
 
 # 12. Histories, without a weight
@@ -595,11 +712,14 @@ on the record as a joint state in the transport-dead sector.
 | Campaign | State |
 |---|---|
 | VAC-FIELD-0 (#100) | ✓ VACFIELD0-JOINT: three-member family; `ψ = 0` is the no-information limit |
-| VAC-0 (#93) | ✓ for the LAW identities and the interference class split; H/I verdicts still open |
+| VAC-0 (#93 + #114) | ✓ FINAL MIXED: LAW/class split per phenomenon; nothing requires uniquely J₂ (§2.2) |
 | ZERO-0 (#98) | ✓ nodal-zero census: exact zeros are interference-nodal or eigen-nodal; winding changes need no zero (§13.4) |
 | VAC-EXC-0 (#103) | ✓ VACEXC0-COMPLETE: excitation physics around the family (§13.1) |
 | VAC-COMP-0 (#108) | ✓ VACCOMP0-COMPLETE: the full joint manifold (§13.2) |
 | VAC-SELECT-0 (#106) | ✓ VACSEL0-NOMEASURE: selection refuses without a measure (§13.3) |
+| VAC-DOMAIN-0 (#110) | ✓ VACDOMAIN-RADIATIVE: disconnected joins radiate, bulks persist (§13.5) |
+| VAC-TEXTURE-0 (#111) | ✓ VACTEXTURE-GRADIENT: hidden textures visible but silent (§13.6) |
+| VAC-STAB-0 (#118) | ✓ VACSTAB0-ROBUST: joint vacua stable to T = 4000 (§13.7) |
 
 Which member of the family is the physical background remains open. That is
 a narrower debt than "the vacuum field might be zero."
@@ -649,6 +769,49 @@ exact relational consequences (incident `B = J = 0`, `ρ̇ = 0` with quadratic
 touch, undefined phase). Cycle winding changes without any zero, via bond
 phase-slip at `|Δθ| ≈ π` — the continuum intuition does not transfer. The
 epistemic firewall held: no zero is called a particle, defect, or source.
+
+## 13.5 Disconnected joins radiate while bulks persist
+
+VAC-DOMAIN-0 (#110), verdict **VACDOMAIN-RADIATIVE** ✓ (7/7, 204 tasks).
+Every fixed-geometry interface between disconnected JOINT components
+(VPLUS|VPI, VPLUS|hidden ×4, VPI|hidden ×4, both orientations, L = 28)
+emits ballistic `|δρ|` fronts (`v ≈ 5–6.1`, `R² 0.89–0.92`, reach 4–6
+cells) while the S-step fully persists (0.999) and both bulk plateaus
+hold (drift 0.0): bulk vacua survive and the disturbance propagates
+away. Same-component hidden-hidden joins are exactly stationary
+(D-FLAT); mixed-sector P₋ residue frozen at weight 1/2; spectral
+superposition exact with witness `I = 0` — linear propagation, not
+interaction. No domain-wall particle, cosmology, or vacuum-preference
+claims (firewall held).
+
+## 13.6 Hidden orientation textures are visible but dynamically silent
+
+VAC-TEXTURE-0 (#111), verdict **VACTEXTURE-GRADIENT** ✓ (14/14, 28
+specs). The hidden JOINT vacuum orientation can vary spatially while
+remaining exactly vacuum-like: every texture sits in P₋ E₀ with
+`w_sym = 0.0`, `‖Hψ‖ = 0.0`, `E = 0.0` bitwise, emits no P₊, stays
+frozen. Gradients are relationally real — local `D = 6.4e-4` at L28,
+static coarse pattern `1.3e-3`, ledger separation (`dmax` 0.15/0.003),
+derived `B` scaling slope +0.173, `Q = a²` exact — and dynamically
+void: symmetric amplitude exactly 0.0 (quotient image absent),
+FIELD-0 witness `1.6e-17`, packets splitting exactly (`~9e-16`) and
+ballistic (`v = 1.92`) on frozen texture backgrounds. The vacuum
+tolerates arbitrary preregistered orientation textures; what varies
+is the measurable relational landscape, never the vacuum character.
+
+## 13.7 Joint vacua stay operationally close to vacuum to T = 4000
+
+VAC-STAB-0 (#118), verdict **VACSTAB0-ROBUST** ✓ (9/9, 180 tasks, CLASS
+silent, 0 frag cells). Small protected perturbations stay small on all
+six backgrounds (triangle apparatus), never focus beyond input scale
+(max C_ratio 3.5 vs trigger 50), show no late refocusing beyond input
+scale on propagating seeds (0.499, below own initial 0.704), keep
+positive protection margins with zero zero-steps, and recur
+identically across backgrounds (303 wraps; recurrence growing with L;
+frac sup_B slope 2.0000 exact over 1e-3…1e3). No systematic component
+difference (one 6× single-kind CLASS-adjacent effect filed). No
+structural stability claim, no vacuum selected or ranked (firewall
+held).
 
 ---
 
@@ -772,6 +935,22 @@ response, pinned to floating-point precision. "Susceptibility" means only
 this mathematical response of established relational observables — no
 force, charge, or curvature is claimed.
 
+## 16.2 A persistent source is boundary data; release radiates only on mismatch
+
+SOURCE-0 (#112), verdict **SOURCE0-INCOMPLETE** ✓ (9/10 checks, 74/74
+records — INCOMPLETE denotes a falsified frozen prediction with complete
+data, not missing work). POT's stationary field IS the driven counterpart
+of the RESPONSE kernel (K1 dev 0.024–0.037 within the 0.1 bar, K2 exact
+to 6.6e-12). A persistent source is boundary data `s(t)` on `δψ` in the
+vacuum frame; the carrier is vacuum-independent with per-vacuum response
+via banked `χ` (42/42). Switch-ON always radiates (`v = 5.5–5.6`); the
+falsified blanket prediction was release fronts on AMP legs —
+AMP/VPLUS release is silent by theorem (steady state equals `c·u₊` to
+7.4e-15, so free evolution continues it exactly) and AMP/VMINUS release
+is beating-dominated and frontless. Rule: switch-OFF radiates only when
+the released state mismatches free evolution. `R_G → dG` remains blocked
+by MEASURE0-DEBT.
+
 ---
 
 # 17. What counts as one microstate
@@ -814,12 +993,17 @@ POSTULATES
      │     "this is electromagnetism"          rejected ✓
      │     disturbance kernel + anatomy        ✓  EMPIRICAL
      │     vacuum-dependent susceptibility     ✓  EMPIRICAL
+     │     persistent sources = boundary data  ✓  EMPIRICAL (release rule)
      │
      └── B couples to connectivity
            → local contraction / split         ✓  ontology
+           → deterministic merge update        ✓  MERGE0 (unique, ledgered)
+           → missing account = f(lost info)    ✓  RES0-XI (no reservoir invented)
            → conditional accounting            ✓
-           → firing law absent                 ✓  BR27-NO-MODE
-           → history weight μ(Γ) absent        ⚠  DEBT
+           → firing law absent                 ✓  BR27-NO-MODE + TRIGGER0
+                                                  (19 conditions, 0 implications)
+           → rewire admits no selector         ✓  REWIRE0-DEGENERATE
+           → history weight μ(Γ) absent        ⚠  DEBT (+ FIBER0 520 dof)
 
 FABRIC
 └── J₂  ⚠ forced working choice                ✓ adopted, not derived
@@ -836,20 +1020,31 @@ VACUUM
 │                    which member               still open (VAC-SELECT refuses)
 ├── VAC-EXC-0        background-free carrier    ✓ excitations identical on all vacua
 ├── VAC-COMP-0       complete manifold          ✓ two rays + hidden circle (even L)
-└── VAC-SELECT-0     member selection           ✓ NOMEASURE (needs the missing measure)
+├── VAC-SELECT-0     member selection           ✓ NOMEASURE (needs the missing measure)
+├── VAC-DOMAIN-0     disconnected joins         ✓ RADIATIVE (bulks persist)
+├── VAC-TEXTURE-0    hidden textures            ✓ GRADIENT (visible, silent)
+└── VAC-STAB-0       long-time stability        ✓ ROBUST (to T = 4000)
 
 HIDDEN SECTOR
 ├── HIDDEN-0         dead sector stores local info ✓ SEPARATED
 └── HIDDEN-BR        hidden info steers response  ✓ SIGNREV (virtual ledgers)
 
 FOUNDATIONS, CLOSED OR OPEN
-├── VAC-0            substrate class            partial ✓ (LAW + square class; H/I open)
+├── VAC-0            substrate class            ✓ FINAL MIXED (nothing needs J₂ only)
 ├── ZERO-0           anatomy of nodal zeros     ✓ established
 ├── FIELD-0          interaction null           ✓ established
 ├── RESPONSE-0       disturbance kernel         ✓ established
+├── SOURCE-0         persistent sources         ✓ INCOMPLETE (falsified release rule)
 ├── SYM-0            physical-state equivalence ✓ list settled
 ├── RAND-0           stochastic completion      ✓ coherent apparatus, measure debt
 ├── MEASURE-0        transition measure         ✓ debt formalized (4/4 reasons)
+├── SPLIT-0          inverse fiber anatomy      ✓ MIXED (forced + ξ, never singleton)
+├── INFO-0           probability-free books     ✓ MATCHED (exact, no −Σp log p)
+├── MERGE-0          deterministic update       ✓ characterized; reservoir open
+├── RESERVOIR-0      missing account            ✓ XI: R = f(ξ) exact
+├── FIBER-0          fiber measure              ✓ DEBT (2 rivals, 520 dof)
+├── TRIGGER-0        trigger census             ✓ CONDITION (19 survive, 0 imply)
+├── REWIRE-0         rewire selector            ✓ DEGENERATE (none earned)
 └── QUOT-0           quotient mechanism         ✓ operational, not derived
 
 BLOCKED UNTIL THE DEBTS MOVE
@@ -867,12 +1062,12 @@ BLOCKED UNTIL THE DEBTS MOVE
 
 | Debt | Origin | Meaning | What can close it |
 |---|---|---|---|
-| Substrate uniqueness | J₂ adoption, PR #62 | Working fabric, not a derived unique substrate | VAC-0 H/I, when the LAW / CLASS / J₂ split is finished |
+| Substrate uniqueness | J₂ adoption, PR #62 | Working fabric, not a derived unique substrate; VAC-0 Final MIXED dissolves it into per-phenomenon classes (nothing needs J₂ only) | The F mechanism, VAC-0Q held-out battery, or a derivation that survives per-phenomenon classification |
 | Vacuum-field member | VAC-FIELD-0 (#100) ✓ | Three nonzero states are joint vacua; `ψ = 0` is the no-information limit; VAC-SELECT refuses to rank them without a measure | A principle that selects inside the VAC-COMP manifold without using later consequences; needs the history measure first |
-| History measure | U0, TIME-0, RAND-0, MEASURE-0 (#105) ✓ | Admissible histories are known more sharply than their weights; MEASURE-0 shows no unique weighting is forced | A measure principle that is reversible and matches both readings |
+| History measure | U0, TIME-0, RAND-0, MEASURE-0 (#105) ✓ + FIBER-0 (#123) ✓ | Admissible histories are known more sharply than their weights; MEASURE-0 shows no unique weighting is forced; FIBER-0 exhibits two rivals with 520 residual dof | A measure principle that is reversible and matches both readings |
 | Physical-state counting | RAND-0 orbit mismatch | Settled by SYM-0 (#102) ✓: `X/(R × U(1))` with `d_FS`. The measure on it is still missing | The same completion as history measure |
-| Structural kinetics | BR-2.7 | Ordering and unitarity do not fire an event | The same completion, as a new primitive if that is what it is |
-| Split information | BR-2.5, CONS-0 | Contraction is many-to-one | A history or stochastic treatment that carries the lost record, or a new ontology |
+| Structural kinetics | BR-2.7 + TRIGGER-0 (#124) ✓ | Ordering and unitarity do not fire an event; 19 earned conditions survive with zero firing implications | The same completion, as a new primitive if that is what it is |
+| Split information | BR-2.5, CONS-0, SPLIT-0 (#116) ✓ | Contraction is many-to-one; SPLIT-0 isolates the covariant residual `ξ = (cover, d)` (full inverse never singleton) | A measure over `ξ` (FIBER-0 files 520 dof), a history treatment carrying it, or a new ontology |
 | Neutral quiescence | BR-1 | Legal neutral moves destroy the vacuum class | Whatever dynamics makes the vacuum an attractor |
 | Matter | formation track, FIELD-0 | No dynamically stable matter, and linear overlap is not a force | Formation after a real dynamics, beating the interaction null |
 | Gravity | GRAV-0 (#80) ✓ | No tested strictly local graph update both preserves J₂ and carries a disturbance past the near field | A carrier inside the coupled `(G, ψ)` dynamics, not a retry of graph-only relocation |

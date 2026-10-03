@@ -1,4 +1,4 @@
-# The model, stated first (v0.7)
+# The model, stated first (v0.8)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
@@ -68,6 +68,20 @@ small-N `graphvk` closure (previously-merged main, not new in this release);
 no new D-numbers
 (D14/D15 are taken in DEFERRED.md — field debts are filed by name in
 §10 with a pointer to the §19 debt register).
+
+**v0.8 field-completion release.** No number changes:
+§10 extended with the twelve merged follow-up campaigns. VAC-0 closes
+(FINAL MIXED: per-phenomenon LAW/CLASS split, nothing requires uniquely
+J₂ — the "H/I open" of v0.7 is retired); the vacuum family gains domain
+interfaces (RADIATIVE), hidden textures (GRADIENT), and long-time
+stability (ROBUST); sources are characterized (SOURCE0-INCOMPLETE with
+the release rule); split selection narrows to the covariant residual `ξ`
+(SPLIT0-MIXED) with probability-free books closed (INFO0-MATCHED); the
+merge update is characterized as deterministic (MERGE0) with its missing
+account an exact function of `ξ` (RES0-XI); the fiber measure (FIBER0-DEBT,
+520 dof, two rivals) and the trigger census (TRIGGER0-CONDITION, 19 survive,
+zero imply) file the remaining debts; REWIRE-0 closes the rewire-selector
+question (DEGENERATE). L0/L1/L2 untouched; no new D-numbers.
 
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
@@ -825,8 +839,17 @@ Stated so no reader misses them:
   dynamics, no vacuum-member selection (VACSEL0-NOMEASURE refuses
   without the missing measure); `ψ = 0` is the no-information limit,
   not the vacuum (§10).
-- No J₂ uniqueness: the working fabric is forced, not derived; VAC-0F
-  establishes a square *class*, not J₂-only; VAC-0H/I verdicts open (§10).
+- No J₂ uniqueness: the working fabric is forced, not derived; VAC-0
+  Final MIXED dissolves the question into per-phenomenon classes
+  (nothing needs J₂ only); the F mechanism and VAC-0Q stay open (§10).
+- No rewire selector, no trigger: REWIRE0-DEGENERATE (no earned rule
+  selects a rewire) and TRIGGER0-CONDITION (19 conditions, zero firing
+  implications) leave kinetics absent; no TRIGGER-1 shopping (§10).
+- No fiber measure: FIBER0-DEBT exhibits two inequivalent normalized
+  rivals with 520 residual dof; no weighting without a new primitive (§10).
+- No reservoir: RES0-XI determines what a reservoir would store
+  (`R_merge` as an exact function of `ξ`) without inventing one;
+  energy debt and information debt are distinct (§10).
 - No derived observer quotient yet: QUOT0-OPERATIONAL is the mechanism
   (transporting symmetric sector); the DERIVED rung stays open (§10).
 
@@ -877,6 +900,9 @@ Single table; every symbol in §1–§4 appears here with its home.
 | `d_O` | blind-observer reconstructed dimension (`2.02`) | §10, `obs1` |
 | `X_red`, `d_FS` | `X/(relabel × U(1))`, projective metric | §10, `sym0` |
 | `μ(Γ)` | history weight (absent: the measure debt) | §10, `measure0` |
+| `ξ = (cover, d)` | covariant split residual (what the inverse needs) | §10, `split0` |
+| `d_cont` | continuous fiber dimension (1–2; never 0) | §10, `split0` |
+| `R_merge` | `−(ΔE_ψ + ΔE_G)` = exact `f(ξ)` (no reservoir invented) | §10, `reservoir0` |
 
 ---
 
@@ -916,7 +942,12 @@ Single table; every symbol in §1–§4 appears here with its home.
   `response` + `bgresp` (kernel + vacuum susceptibility), `vac0` +
   `vacfield` + `vacexc` + `vaccomp` + `vacselect` (LAW/class split +
   vacuum family), `hidden` + `hiddenbr` (dead-sector info + response),
-  `zero` (nodal census), `grav0` (graph-only null). Side apparatus:
+  `zero` (nodal census), `grav0` (graph-only null), `vacdomain` +
+  `vactexture` + `vacstab` (domain interfaces, hidden textures,
+  long-time stability), `source0` (persistent sources), `split0` +
+  `info0` + `merge0` + `fiber0` + `reservoir0` + `trigger0` + `rewire0`
+  (inverse fiber, books, deterministic update, fiber debt, missing
+  account, trigger census, rewire null). Side apparatus:
   `spectroscopy` (SPEC0 null: no localized modes beyond controls),
   `stern_gerlach` (SG gate fails), `fep` (FEP0 null), `graphvk` (D1 graph
   instance closed at small-N ED: all:all `< 0.25` bits vs chain sag `> 0.4`
@@ -926,11 +957,11 @@ Single table; every symbol in §1–§4 appears here with its home.
   kilonova wires, NICER wire, Kerr-quadrupole future wire, field-program wires
   (second-`M_O` quotient refuter, `I > 0` linearity breaker — §10) — see the v5 kill
   table (`paper/v5/main.tex` §6) and `docs/observation-protocol.md`.
-- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (1789 tests),
+- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (2194 tests),
   `python scripts/generate_figures.py` + `python scripts/generate_v5_figs.py`
   (86 figure files, Figs 1–75), `streamlit run app.py`.
 
-Counts above are v5.6 (`main.pdf` 13pp + `supplement.pdf` 19pp, S1–S12, 49
+Counts above are v5.7 (`main.pdf` 13pp + `supplement.pdf` 21pp, S1–S12, 49
 references cited). The v4.1 living document stays archived as the extended
 record; v5 is canonical.
 
@@ -946,7 +977,11 @@ deficit orderings), and paper-quoted (`0.002`-bit tracking, `42.99`,
 `0.57`/`100%` posteriors, `32` live BBH, MSS `0.50–0.68`, `1e-80/1e-160`
 dimensional estimate). Suite at v0.6: 425 collected, 423 passed,
 2 torch/GPU-only skipped. Suite at v0.7: 1789 collected (field-program
-campaigns banked; L0/L1/L2 pins unchanged).
+campaigns banked; L0/L1/L2 pins unchanged). Suite at v0.8: 2194
+collected, 2192 passed, 2 torch/GPU-only skipped (twelve follow-up
+campaigns banked: VAC-0 completion, SPLIT-0, REWIRE-0, MERGE-0,
+RESERVOIR-0, TRIGGER-0, FIBER-0, INFO-0, VAC-DOMAIN-0, VAC-TEXTURE-0,
+VAC-STAB-0, SOURCE-0; L0/L1/L2 pins unchanged).
 
 ---
 
@@ -976,6 +1011,12 @@ campaigns banked; L0/L1/L2 pins unchanged).
   quotient, vacuum family, hidden sector, response kernel, filed dynamics
   debts) with no number changes, no new D-numbers, and stable L0/L2;
   L1 T7/D1 record the merged small-N `graphvk` closure.
+  v0.8 extends the F-layer (§10: VAC-0 completion FINAL MIXED with the
+  LAW/CLASS per-phenomenon split, vacuum domain/texture/stability trio,
+  SOURCE-0 INCOMPLETE, MERGE-0 deterministic consolidation, RESERVOIR-0
+  ξ-accounting, TRIGGER-0 conditional coupling, FIBER-0 fiber debt,
+  INFO-0 matched conservation, SPLIT-0/REWIRE-0 fabric operations) with
+  no number changes, no new D-numbers, and stable L0/L1/L2.
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:
   T14 TeV absolutes follow the code (post-BS), not v5 prose (pre-BS).
@@ -1063,11 +1104,21 @@ adopted because later work needs one concrete sheet and J₂ survives the
 required probes (exact square quotient with shells `4r`, UV structure
 kept, family-typical perturbations, formation transfer, no persistent
 orientation). Forced is not derived: **substrate uniqueness stays debt**.
-VAC-0F splits LAW from class: two-path interference PASSES on the open
-grid, square torus, J₂, and the J₂ quotient, and FAILS on triangular/hex
-(rewires fail the phase rung; the MZ corridor passes at LAW level after
-a window erratum) — a square **CLASS** result, not yet J₂-only. VAC-0H/I
-verdicts stay open. (`vac0`, `docs/j2-status.md`.)
+VAC-0 is complete (FINAL MIXED): per phenomenon, generic law or class
+member — **nothing requires uniquely J₂**. LAW: A-identities, D-ballistic
+propagation (10/10 cells, any coordination/bipartiteness), H-core (16/18
+gates on 27/27), I finite-range label (26/27), J-algebra (27/27 exact),
+MZ at LAW level. CLASS: F-interference (square: open/square/J₂/quotient
+pass, tri/hex/rewires fail phase), E (2D-ordered; rings fail aperture
+gates), H turn-on (broad, 15/27; hex shells + expander TAU reversal),
+G tunnelling (square-grade at TUN level; the frozen all-FAIL battery is
+a gate artifact — J₂ matches transfer-matrix prediction to <3%),
+J-usefulness (13/27). Degree-preserving rewiring destroys F/H/G/DE
+validity (degree-only vacuum excluded) while alternatives survive
+everywhere (not J₂-selected). The substrate-uniqueness debt dissolves
+into per-phenomenon classes; open threads: the F mechanism, unified
+H-turnon, the LB = 8 floor, held-out VAC-0Q. (`vac0`,
+`docs/vac0-verdict.md`, `docs/j2-status.md`.)
 
 Independent rulers on J₂ meet (OBS0R-METRIC): graph balls/Hausdorff match
 the square control (gap 0 at L = 128), diffusion/spectral agree to 4
@@ -1114,11 +1165,23 @@ The admitted primitive is the local exchange `u—v ↔ [uv]`
 collapse; remote relocation is demoted to a formation/diagnostic tool.
 Contraction is many-to-one, so a record-free split has many preimages
 (CONS-0: powers of two, plus amplitude-match degeneracy; the sum-map
-information loss is exact, `|a − b|²/2`). **Split selection stays
-debt.** On pristine J₂ the neutral drift the legal moves allow destroys
+information loss is exact, `|a − b|²/2`). SPLIT-0 narrows **split
+selection** to a measured residual (SPLIT0-MIXED): every tested inverse
+decomposes into forced-plus-residual (`M + ξ ↔ X`, 824/824 roundtrips,
+minimality 76/76), where the covariant residual `ξ = (cover, d)` is
+exactly what must be supplied beyond the merged state; the full inverse
+is never a singleton (continuous fiber, `d_cont` 1–2); halves-restricted
+determinism holds exactly on the 4 isolated-node cells; reverse support
+is exact on the halves subset (36/24/0), correcting 3 MEASURE-0A cells
+(J-multiset orientation artifact). No measure derived. What remains is
+the fiber measure over `ξ` (FIBER-0 files it: two rivals, 520 dof). On pristine J₂ the neutral drift the legal moves allow destroys
 the vacuum class in a handful of moves at every tested size (BR1-FLAT):
-**neutral quiescence stays debt.** (`contraction`, `conservation`,
-`rigidity`.)
+**neutral quiescence stays debt.** The remaining local degree-preserving move admits no
+deterministic exact-physics selector either (REWIRE-0:
+REWIRE0-DEGENERATE — 24/24 J₂-L4 states DEGENERATE-or-ABSENT under all
+six exact principles, scale-persistent to L28; exact-energy selection
+fp-fragile at ulp). (`contraction`, `conservation`, `rigidity`,
+`split0`, `rewire0`).
 
 Event accounting closes conditionally and exactly where it closes
 (CONS0-PARTIAL + BR26-ACCOUNTED): cycle rank on triangle-free domains
@@ -1130,7 +1193,25 @@ combination of node count, graph energy, `Q_ψ`, `E_ψ` is conserved for
 arbitrary states; no graph reservoir closes the books; split
 conservation constrains but never selects. Zero-field contraction stays
 allowed. Conservation yields admissibility and equalities — never a law
-that says when the graph fires. (`conservation`, `accounting`.)
+that says when the graph fires. MERGE-0 characterizes the update side
+(MERGE0-DETERMINISTIC + MERGE0-ACCOUNT-DEBT, 38/38): selected-edge
+contraction is a unique covariant deterministic primitive (`R × U(1)`
+exact on all 325 events, incl. 87 annihilations) with exact ledger
+(`dQ = 2B`, `dE = P1 + P2`, `P3 = P4 = 0`, support `2 + n_cross`);
+HIDDEN-BR SIGNREV survives execution (2/24 on-support); no existing
+variable closes the reservoir (0/80 tuples); favorable orderings on
+19/30 scans, still no firing rule. RESERVOIR-0 determines what the
+reservoir would have to store (RES0-XI, 68/68): `R_merge = −(ΔE_ψ +
+ΔE_G) = A + |d|²/2 + Re(d̄W)` exact to `≤ 1e−9` on 26,992 fiber rows
+— an exact zero-parameter function of the lost `ξ`, swap-bitwise,
+`R_split = −R_merge`, one-neighborhood-local, disjoint-additive; and
+`R` never vanishes on the halves subset (min 0.167), so energy debt
+and information debt are distinct. TRIGGER-0 censuses the trigger
+side (TRIGGER0-CONDITION, 75/77): 19 of 21 earned exact local
+predicates survive as CANDIDATE-CONDITION on 257,668 edges with zero
+firing implications — merge is an unknown trigger plus an earned
+deterministic update. (`conservation`, `accounting`, `merge0`,
+`reservoir0`, `trigger0`).
 
 No firing mechanism derives from the instantaneous ontology
 (BR27-NO-MODE): every uniform scan is downhill yet discrete maxima do
@@ -1162,8 +1243,18 @@ formalizes the debt (544 cells, six HARD gates,
 representation-independent): all four frozen debt-reasons trigger, so no
 unique inter-outcome weighting is forced; CLOSED was data-reachable and
 did not occur — MEASURE0-DEBT. Downstream may consume the apparatus and
-the disagreement battery, never a tuned weight. (`u0`, `time0`, `rand0`,
-`measure0`.)
+the disagreement battery, never a tuned weight. FIBER-0 asks whether
+earned physics constrains a normalized measure on the SPLIT-0 inverse
+fiber (FIBER0-DEBT, 22/22): two inequivalent normalized closed-form
+rivals satisfy every earned constraint (TV > 0 on 79 cells), with 520
+residual dof (206 + 168 inter-orbit + 83 radial + 63 angular) —
+DERIVED was reachable and did not occur; six sub-debts filed by name;
+zero fitted params. INFO-0 closes the probability-free books
+(INFO0-MATCHED, 19/19): pred == succ 143/143 (mirror theorem),
+timed-skeleton identity, schedulers all `m!`, hidden books green,
+TIME-0 recomputed exactly — exact counts with binary logs, no
+`−Σp log p` anywhere. (`u0`, `time0`, `rand0`, `measure0`, `fiber0`,
+`info0`.)
 
 Synthesis: admissible states plus admissible local transitions give
 admissible histories; the weight `μ(Γ)` on them is missing — the
@@ -1224,6 +1315,24 @@ code is not ready (all four MEASURE-0 debt-reasons hold), so none of
 the 23 headline selection stages ran — all refusal records, no vacuum
 ranked, no weight chosen. (`vacselect`.)
 
+Interfaces between disconnected JOINT components are radiative
+(VACDOMAIN-RADIATIVE, 7/7): all 9 disconnected joins emit ballistic
+`|δρ|` fronts (`v ≈ 5–6.1`, `R² 0.89–0.92`, reach 4–6 cells) while
+S-steps persist (0.999) and bulks hold — hidden-hidden joins exactly
+stationary, mixed P₋ weight frozen at 1/2, spectral superposition
+exact (`I = 0`). Hidden orientation textures are visible but silent
+(VACTEXTURE-GRADIENT, 14/14): obstruction zero bitwise (`E = 0`
+everywhere), gradients relationally real (local `D = 6.4e-4`,
+coarse `1.3e-3`, ledger `dmax` 0.15/0.003, `B` slope +0.173) yet
+dynamically void (symmetric amplitude exactly 0.0, `I = 1.6e-17`,
+packets ballistic at `v = 1.92` on frozen backgrounds). Joint vacua
+stay operationally close to vacuum to `T = 1000/4000`
+(VACSTAB0-ROBUST, 9/9): small stays small, never focuses beyond input
+scale (max 3.5 vs trigger 50), no late refocusing (0.499 below own
+initial 0.704), margins positive with zero zero-steps, recurrence
+background-independent and growing with L. (`vacdomain`,
+`vactexture`, `vacstab`.)
+
 ### The dead sector stores local information that reverses geometric response.
 
 Every hidden transformation tested — sign, phase, shape, amplitude —
@@ -1272,6 +1381,18 @@ phase, while `χ_ZERO = 0` — pinned to floating-point precision.
 relational observables: no force, charge, or curvature is claimed.
 (`bgresp`.)
 
+A persistent source is boundary data `s(t)` on `δψ` in the vacuum
+frame, and POT's stationary field IS its driven RESPONSE counterpart
+(SOURCE0-INCOMPLETE, 9/10 — INCOMPLETE = falsified frozen prediction
+with complete data): K1 dev 0.024–0.037, K2 exact to 6.6e-12, carrier
+vacuum-independent with per-vacuum response via banked `χ` (42/42).
+Switch-ON always radiates (`v = 5.5–5.6`); the falsified blanket rule
+was release fronts — AMP/VPLUS release is silent by theorem (steady
+state equals `c·u₊` to 7.4e-15) and AMP/VMINUS release is
+beating-dominated and frontless. Rule: switch-OFF radiates only on
+mismatch with free evolution. `R_G → dG` stays blocked by
+MEASURE0-DEBT. (`source0`.)
+
 ### Zeros are nodal; graph-only gravity is a null.
 
 Exact zeros are reachable but not generic (ZERO-0, 4432 ledger rows):
@@ -1297,14 +1418,19 @@ signal of local fabric updates. (`grav0`.)
 
 No new D-numbers are minted here (D14/D15 are taken in DEFERRED.md).
 The open debts, each with its closer in `docs/scaffolding-history.md`
-§19: **substrate uniqueness** (VAC-0H/I split LAW/CLASS/J₂);
+§19: **substrate uniqueness** (dissolved by VAC-0 Final MIXED into
+per-phenomenon classes — nothing needs J₂ only; closer: the F
+mechanism, VAC-0Q, or a surviving derivation);
 **vacuum-field member** (a principle selecting inside the VAC-COMP
 manifold without using later consequences — needs the history measure
 first); **history measure** `μ(Γ)` (a reversible measure matching both
-the whole-history and conditional-local readings); **structural
-kinetics** (the firing postulate, if that is what it is);
-**split information** (a history/stochastic treatment carrying the lost
-record, or a new ontology); **neutral quiescence** (a dynamics making
+the whole-history and conditional-local readings; FIBER-0: two rivals,
+520 dof); **structural
+kinetics** (the firing postulate, if that is what it is — TRIGGER-0:
+19 conditions, zero implications);
+**split information** (narrowed by SPLIT-0 to the fiber measure over
+`ξ`; RESERVOIR-0: the missing account is an exact function of `ξ`);
+**neutral quiescence** (a dynamics making
 the vacuum an attractor); **matter** (formation after a real dynamics,
 beating the FIELD-0 null); **gravity carrier** (inside coupled `(G, ψ)`
 dynamics). Blocked until the debts move: a complete graph dynamics,

@@ -49,11 +49,13 @@ This is an evidence-based working choice, not a uniqueness claim. The current dy
 - Non-derivation disclaimer stands: J₂ is the substrate all formation and
   wave campaigns build on until something out-survives it.
 
-## Field-program record (v5.6)
+## Field-program record (v5.7)
 
-- VAC-0F: two-path interference PASSES on J₂ (and open square, square
-  torus, J₂ quotient) and FAILS on tri/hex — square-class result, not
-  J₂-only (`docs/DEFERRED.md` VAC-0F verdict; VAC-0H/I open).
+- VAC-0 Final MIXED: two-path interference PASSES on J₂ (and open square,
+  square torus, J₂ quotient) and FAILS on tri/hex — square-class result, not
+  J₂-only; H/I closed (static/driven existence LAW-like, turn-on broad
+  CLASS; finite-range label LAW-like, ξ scale CLASS-structured); nothing
+  requires uniquely J₂ (`docs/scaffolding-history.md` §2.2).
 - OBS-0R/OBS-1/QUOT-0: six rulers meet on J₂ (OBS0R-METRIC); the blind
   observer reconstructs `M_O(J₂) ≈ J₂ / sheet` with `d_O = 2.02`
   (OBS1-QUOTIENT); the mechanism is the transporting symmetric sector
@@ -62,6 +64,10 @@ This is an evidence-based working choice, not a uniqueness claim. The current dy
   (VPLUS/VPI/VMINUS; `ψ = 0` demoted to no-information limit), the
   background-free excitation carrier, the complete joint manifold, and
   the predicted selection refusal — all on frozen `(J₂, H = -A)`.
+- VAC-DOMAIN-0/VAC-TEXTURE-0/VAC-STAB-0: disconnected joins radiate while
+  bulks persist (RADIATIVE); hidden orientation textures stay exactly
+  vacuum-like, visible but silent (GRADIENT); joint vacua stay
+  operationally close to vacuum to T = 4000 (ROBUST) — all on J₂.
 - Full verdict ladder: `docs/scaffolding-history.md` §§2–3, 13–14;
   model statement: `docs/model.md` §10; methods: `paper/v5/`
   supplement S12.
