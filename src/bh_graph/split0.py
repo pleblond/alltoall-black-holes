@@ -518,14 +518,24 @@ def halves_section_dims() -> dict:
 
 def halves_reverse_support(g: nx.Graph, psi: np.ndarray, order: list,
                            i, j) -> dict:
-    """MEASURE-0C reproduction: full reverse iff psi_i == psi_j.
+    """MEASURE-0C reproduction: full reverse iff psi_i == psi_j (exact).
 
     Contracts (i, j), then checks graph-reverse (recorded cover present)
-    and full-reverse (some halves predecessor matches X up to R x U1
-    signature + exact halves condition). Reports all levels separately.
-    """
-    from bh_graph.measure0 import signature_key, state_signature
+    and full-reverse (some halves predecessor equals X exactly: labeled
+    edge-sets + field, up to the earned endpoint-swap gauge). Reports
+    all levels separately.
 
+    Comparison-note (derived, filed openly): the banked MEASURE-0A
+    signature is NOT used here because its J-multiset is edge-iteration
+    orientation dependent (J antisymmetry + insertion order): two
+    bit-identical labeled states built in different orders can carry
+    different J multisets (pinned: triangle/current#0-2). Labels are
+    tracked through the forward-backward bridge, so exact labeled
+    comparison up to endpoint-swap gauge is well-defined and strictly
+    stronger. Consequence: full_reverse holds EXACTLY on the halves
+    subset (theorem, pinned 60/60), correcting 3 orientation-artifact
+    cells that the signature proxy would file as graph-only.
+    """
     psi = np.asarray(psi, dtype=np.complex128)
     order = list(order)
     bridge = contraction_inverse_check(g, psi, order, i, j)
@@ -535,12 +545,21 @@ def halves_reverse_support(g: nx.Graph, psi: np.ndarray, order: list,
     idx = index_of(order)
     halves = is_equal_halves_ok(complex(psi[idx[i]]), complex(psi[idx[j]]))
     g2, psi2, order2, k, _rec = contracted_state(g, psi, order, i, j, "sum")
-    sig0 = signature_key(state_signature(g, psi, order))
     full = False
     if halves:
+        e_x = {tuple(sorted(e)) for e in g.edges()}
+        e_swap = {tuple(sorted((j if x == i else i if x == j else x,
+                                j if y == i else i if y == j else y)))
+                  for x, y in e_x}
         for row in halves_predecessors(g2, psi2, order2, k, i, j):
-            if signature_key(state_signature(row["h"], row["psi_h"],
-                                              row["order_h"])) == sig0:
+            e_h = {tuple(sorted(e)) for e in row["h"].edges()}
+            if e_h != e_x and e_h != e_swap:
+                continue
+            if set(row["h"].nodes()) != set(g.nodes()):
+                continue
+            idxh = index_of(row["order_h"])
+            if all(abs(complex(row["psi_h"][idxh[v]])
+                       - complex(psi[idx[v]])) <= FP_ATOL for v in order):
                 full = True
                 break
     else:
@@ -1148,13 +1167,15 @@ def is_roundtrip_ok(g2: nx.Graph, psi2: np.ndarray, order2: list, k,
         if not is_predecessor_ok(g2, psi2, order2, k, X, X["i"], X["j"]):
             return False
         back = encode_residual(X, order2, k, X["i"], X["j"])
-        if back["cover_key"] != tuple(tuple(v) for v in xi["cover_key"]):
-            # Canonical keys compared as nested tuples.
-            if (tuple(back["cover_key"][0]), tuple(back["cover_key"][1])) != \
-               (tuple(xi["cover_key"][0]), tuple(xi["cover_key"][1])):
-                return False
+        want_key = (tuple(xi["cover_key"][0]), tuple(xi["cover_key"][1]))
+        if (tuple(back["cover_key"][0]), tuple(back["cover_key"][1])) != want_key:
+            return False
         d0 = complex(xi["d"])
-        if not (back["d"] == d0 or back["d"] == -d0):
+        # Fiber arithmetic rounds (pinned: ulp-level, value-dependent), so
+        # the re-encoded relative mode is compared at FP grade, up to the
+        # endpoint-swap sign (undirected gauge).
+        if not (abs(back["d"] - d0) <= FP_ATOL
+                or abs(back["d"] + d0) <= FP_ATOL):
             return False
         return True
     except Exception:
@@ -1202,11 +1223,19 @@ def minimality_witnesses(g2: nx.Graph, psi2: np.ndarray, order2: list,
         okb = is_predecessor_ok(g2, psi2, order2, k, Xb, i, j)
         ia = index_of(Xa["order"])
         ib = index_of(Xb["order"])
-        rho_diff = abs(abs(complex(Xa["psi"][ia[i]])) ** 2
-                       - abs(complex(Xb["psi"][ib[i]])) ** 2)
+        # Daughter-local distinction over the FULL pair (rho_i, rho_j,
+        # B_ij): single-daughter rho can coincide (pinned: Re(s) = -1/2
+        # cells), while the pair never does for d = 0 vs d = 1.
+        pa = (complex(Xa["psi"][ia[i]]), complex(Xa["psi"][ia[j]]))
+        pb = (complex(Xb["psi"][ib[i]]), complex(Xb["psi"][ib[j]]))
+        rho_diff = max(abs(abs(pa[0]) ** 2 - abs(pb[0]) ** 2),
+                       abs(abs(pa[1]) ** 2 - abs(pb[1]) ** 2))
+        b_diff = abs(float(np.real(np.conj(pa[0]) * pa[1]))
+                     - float(np.real(np.conj(pb[0]) * pb[1])))
+        diff = max(rho_diff, b_diff)
         out["drop_d"] = {"applicable": True, "both_valid": bool(oka and okb),
-                         "rho_diff": float(rho_diff),
-                         "necessary": bool(oka and okb and rho_diff > 0.0)}
+                         "rho_diff": float(diff),
+                         "necessary": bool(oka and okb and diff > 0.0)}
     except Exception:
         pass
     return out
