@@ -908,9 +908,9 @@ def cmd_vacuum(args):
         rec["current"] = cur
         rec["current_ok"] = V.is_current_free_ok(cur)
         # Phase invariance + amplitude scaling (generic).
-        ph = V.phase_invariance(psi, g, order)
+        ph = V.phase_invariance(psi, g, order, eu, ev)
         rec["phase_ok"] = V.is_phase_invariant_ok(ph)
-        sc = V.amplitude_scaling(psi, g, order)
+        sc = V.amplitude_scaling(psi, g, order, eu, ev)
         rec["scaling_ok"] = V.is_scaling_ok(sc)
         # Stress (3D-native per-class).
         inc = V.incident_stats(bj["B"], eu, ev, len(order))
