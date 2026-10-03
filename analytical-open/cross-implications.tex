@@ -38,14 +38,32 @@ P_-=\frac{|d|^2}{|s|^2+|d|^2}
 =\frac12-\frac{B_{ij}}{q_{ij}},\qquad
 P_+=\frac12+\frac{B_{ij}}{q_{ij}}.
 \end{equation}
-Furthermore \(|B_{ij}|\le q_{ij}/2\), with equality if and only if
-\(\psi_i\) and \(\psi_j\) are nonnegative real multiples of one complex phase.
+Furthermore \(|B_{ij}|\le q_{ij}/2\).
+If \(q_{ij}=0\), both sides vanish.
+If \(q_{ij}>0\), equality holds if and only if \(|\psi_i|=|\psi_j|\) and the
+relative phase is \(0\) or \(\pi\).
+Phase \(0\) gives \(B_{ij}=+q_{ij}/2\).
+Phase \(\pi\) gives \(B_{ij}=-q_{ij}/2\).
 \end{lemma}
 
 \begin{proof}
 Expand \(|\psi_i\pm\psi_j|^2\).
 The cross term is \(2\Re(\psi_i^*\psi_j)\).
-Cauchy--Schwarz gives the bound on \(B_{ij}\).
+The bound is
+\[
+|B_{ij}|
+=|\Re(\psi_i^*\psi_j)|
+\le|\psi_i||\psi_j|
+\le\frac{q_{ij}}{2}.
+\]
+The first inequality is equality when \(\psi_i^*\psi_j\) is real, and the second
+when the moduli agree.
+If \(q_{ij}>0\) and either modulus vanishes, then \(B_{ij}=0<q_{ij}/2\).
+If the moduli agree and the product is positive real, a common phase
+factors out, the relative phase is \(0\), and
+\(B_{ij}=|\psi_i|^2=q_{ij}/2\).
+If the product is negative real, the relative phase is \(\pi\) and
+\(B_{ij}=-q_{ij}/2\).
 The unitary modes \(\alpha=s/\sqrt{2}\) and \(\beta=d/\sqrt{2}\)
 produce the same ratio \(P_-\), because the factors of \(2\) cancel.
 \end{proof}
@@ -88,7 +106,8 @@ s_e=h_2(P_-),\qquad
 h_2(p)=-p\log_2 p-(1-p)\log_2(1-p).
 \end{equation}
 Then \(0\le s_e\le 1\), with \(s_e=1\) if and only if \(B_{ij}=0\),
-and \(s_e=0\) at the Cauchy--Schwarz ends.
+and \(s_e=0\) at both endpoints of Lemma~\ref{lem:bond-expand},
+relative phase \(0\) and relative phase \(\pi\).
 This \(s_e\) is the uncertainty of one projective \(\pm\) measurement.
 It is not the von Neumann entropy of a pure global state.
 It does not see the phase of \(d\) relative to \(s\).
@@ -281,11 +300,24 @@ enter \(H\) (the store is frozen between events), the Jacobian on the
 An area law for this kernel would need either \(N_Q\) itself of order \(b\),
 or an imprint whose rank cancels the bulk and leaves a boundary layer.
 Neither is implied by \(H=-A\) or by the sum map.
-You could have a volume law for \(D_Q\) and, on a different set of edges,
-an area law for \(\sum h_2\).
-They count different things: interior relative modes, and leg channels.
+Three counts sit side by side and are not interchangeable.
+The continuous store dimension is \(D_Q=2N_d\), up to the all-zero
+correction \(D_c\) already in the ledger.
+The optional qubit weight of one selected channel is \(h_2(P_-)\).
+The third count is the number of boundary channels in the sum.
+The area sum is the product of the second with the third,
+\[
+S_Q=\sum_e h_2(P_{-,e}),
+\]
+the sum running over those channels.
+It is not \(D_Q\), and it is not a count of every hidden interior mode.
+A volume law for \(D_Q\) and an area law for \(S_Q\) can hold together:
+one grows with the interior merges, the other with the number of boundary
+channels, each weighted by \(h_2\).
+You could regard BHQENT0 as a reading of \(D_Q\), and BHQAREA0 as a reading
+of \(S_Q\).
 Promoting the factor \(2\) in \(D_Q=2N_d\) to two bits per merge
-is a third count, distinct from I1a's one bit per saturated leg.
+is yet another count, distinct from I1a's one bit per saturated leg.
 
 \section{One length in the chain weave}
 \label{sec:ell}
