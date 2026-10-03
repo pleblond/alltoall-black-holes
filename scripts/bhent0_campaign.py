@@ -221,8 +221,9 @@ def t_equiv(spec, outdir):
             break
     r1 = dict(r)
     r1["g"] = g1
-    c0 = be.collapse_region_direct(r, bg, "K")
-    c1 = be.collapse_region_direct(r1, bg, "K")
+    kint = max(v for v in r["order"] if isinstance(v, int)) + 1
+    c0 = be.collapse_region_direct(r, bg, kint)
+    c1 = be.collapse_region_direct(r1, bg, kint)
     es0 = {tuple(sorted(x)) for x in c0["g"].edges()}
     es1 = {tuple(sorted(x)) for x in c1["g"].edges()}
     s0 = be.exterior_static(bg, r)
