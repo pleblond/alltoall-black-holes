@@ -1,0 +1,1 @@
+{"task": "vacuum_S4_3_VPI", "params": {"spec": "S4_3", "bg": "VPI"}, "payload": {"spec": "S4_3", "bg": "VPI", "applicable": true, "n_R": 5, "b_R": 3, "N_Q": 4, "D_joint": 6, "D_wave": 6, "D_diff": 7, "D_static": 8, "firewall_ok": true}, "provenance": {"git_rev": "b74c924411ceb06bc4bc63f18e0ea0bdc14cbe0a", "utc": "2026-10-03T17:05:36Z", "host": "ip-172-31-16-236"}}
