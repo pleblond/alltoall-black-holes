@@ -1051,6 +1051,99 @@ On \(J_2\) any limit of these eigenvalues along growing tori satisfies
 On \(J_3\), if \(1/|t|\ge g(12+)\), every such limit lies back in
 \([-12,12]\).
 
+\section{Two stitches into the two bits of one cell}
+\label{sec:twobit}
+
+The flat pole of Proposition~\ref{prop:cellpole} distinguishes the two bits
+of one cell from two stubs in different cells.
+Take three copies, and join them by two edges of the same hopping \(t\neq 0\):
+one edge from a vertex \(a\) on the first copy to bit \(0\) of a cell \(c\) on
+the third, and one edge from a vertex \(b\) on the second copy to bit \(1\)
+of the same cell.
+Each outer copy carries one stub.
+The host carries both bits of one cell.
+
+\begin{proposition}
+\label{prop:twobit}
+Let \(\mathcal{G}\) be the diagonal resolvent entry of one pure copy, and
+let \(g\) be the on-site entry of Proposition~\ref{prop:rung}.
+Outside the even band, \(E\) is an eigenvalue if and only if
+\begin{equation}
+\label{eq:twobit}
+t^2\,\mathcal{G}(E)\,g(E)=1
+\qquad\text{or}\qquad
+t^2\,\frac{\mathcal{G}(E)}{E}=1.
+\end{equation}
+On \(J_2\) each equation has exactly one root above \(8\) and, by oddness of
+\(\mathcal{G}\) and of \(g\), the partner of that root below \(-8\).
+On \(J_3\) one has \(g(12+)<3/8\) and \(\mathcal{G}_3(12+)<11/48\), so
+\[
+\mathcal{G}_3(12+)\,g(12+)<\frac{11}{128},
+\qquad
+\frac{\mathcal{G}_3(12+)}{12}<\frac{11}{576}.
+\]
+Every \(|t|\le\sqrt{128/11}\) fails the first equation outside \([-12,12]\),
+and every \(|t|\le 24/\sqrt{11}\) fails the second.
+In particular the sheet hopping \(t=1\) produces no eigenvalue outside
+\([-12,12]\).
+\end{proposition}
+
+\begin{proof}
+The compression \eqref{eq:detstitch} applies to these four stubs, with the
+band of the host in place of \([-8,8]\) on \(J_3\): an energy outside that
+band is an eigenvalue precisely when the secular determinant on the stubs
+vanishes.
+Write \(|e\rangle\) and \(|o\rangle\) for the normalized even and odd states of
+the cell \(c\).
+Proposition~\ref{prop:cellpole} puts the resolvent entry of \(|e\rangle\)
+equal to \(g(E)\) and the resolvent entry of \(|o\rangle\) equal to \(1/E\).
+The two outer vertices lie on different copies, so the resolvent is diagonal
+across them, with entry \(\mathcal{G}(E)\) at each.
+The combinations \(|p\rangle=(|a\rangle+|b\rangle)/\sqrt{2}\) and
+\(|m\rangle=(|a\rangle-|b\rangle)/\sqrt{2}\) therefore have the same
+resolvent entry \(\mathcal{G}(E)\).
+The added edges contribute
+\(-t\) times the exchange of \(a\) with bit \(0\) and of \(b\) with bit \(1\).
+The only nonzero matrix elements of that perturbation among these four
+states are
+\[
+\langle p|V|e\rangle=-t,
+\qquad
+\langle m|V|o\rangle=-t.
+\]
+The even pair and the odd pair decouple.
+On a pair with resolvent entries \(\mathcal{G}\) and \(\gamma\) and with
+off-diagonal \(-t\), the secular equation is \(t^2\mathcal{G}\gamma=1\).
+The even pair has \(\gamma=g(E)\), and the odd pair has \(\gamma=1/E\).
+
+On \(J_2\), for \(E>8\), both \(\mathcal{G}\) and \(g\) fall strictly from
+\(+\infty\) to \(0\).
+The product \(\mathcal{G}g\) and the quotient \(\mathcal{G}/E\) do the same,
+so each equation has one root above \(8\).
+Both \(\mathcal{G}\) and \(g\) are odd, hence \(\mathcal{G}g\) and
+\(\mathcal{G}/E\) are even, and each positive root has a negative partner.
+
+On \(J_3\) the same two functions remain positive and strictly decreasing on
+\((12,\infty)\), from a finite edge value.
+The bounds of Proposition~\ref{prop:j3stitch} and
+Proposition~\ref{prop:rung} give the two comparisons above.
+A root of the first equation above \(12\) would require
+\(1/t^2<\mathcal{G}_3(12+)g(12+)\), and a root of the second would require
+\(1/t^2<\mathcal{G}_3(12+)/12\).
+Both fail for the hoppings stated, and oddness rules out the partners
+below \(-12\).
+\end{proof}
+
+The first factor is the even channel of the cell.
+The second is the odd channel, built from the flat pole \(1/E\).
+Touching both bits still imposes one condition on the odd kernel of the
+host, as in the count after \eqref{eq:detstitch}, and each outer copy
+imposes one more.
+The four roots on \(J_2\) are these two channels, each with a partner, rather
+than four lost zero modes.
+Unequal hoppings mix \(|e\rangle\) with \(|o\rangle\), and the factorization
+uses the equality of the two hoppings.
+
 \section{Codimension along a unitary orbit}
 \label{sec:codim}
 
