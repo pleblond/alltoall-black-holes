@@ -307,29 +307,55 @@ def _evolve_case(args):
     else:
         raise ValueError(prep_kind)
 
-    spec = coherence_of(setup, psi0)
-    f0 = flux_of(setup, psi0)
+    spec = None
+    f0 = None
+    intrinsic_only = setup["coords"] is None
+    if not intrinsic_only:
+        # D7: coordinate readouts are UNDEFINED on coord-less cells (RR);
+        # their records carry the D6.3 intrinsic block only (nulls below).
+        spec = coherence_of(setup, psi0)
+        f0 = flux_of(setup, psi0)
     rec = evolve_fixed(psi0, h, dt, n_steps)
     norms = rec["norms"]
-    if setup["kind"] == "ring":
+    if intrinsic_only:
+        mean_j = [None, None]
+        prep_j = [None, None]
+        prep_angle = None
+        mean_D = max_D = mean_S = None
+    elif setup["kind"] == "ring":
         tr = _d_trace_ring(rec["psi"], setup)
         jn = tr["J_net"]
         mean_j = [float(jn.mean()), 0.0]
         prep_j = [float(f0["J_net"]), 0.0]
         prep_angle = 0.0 if f0["J_net"] >= 0 else math.pi
+        mean_D = float(tr["D"].mean())
+        max_D = float(tr["D"].max())
+        mean_S = float(tr["S"].mean())
     else:
         tr = d_trace(rec["psi"], setup["edges"])
         mean_j = [float(tr["J_net"][:, 0].mean()), float(tr["J_net"][:, 1].mean())]
         prep_j = [float(f0["J_net"][0]), float(f0["J_net"][1])]
         prep_angle = float(f0["angle"])
-    ts = np.arange(rec["psi"].shape[0]) * dt
-    rs = unwrap_trace(
-        np.array([com(p, coords, order, periods=periods) for p in rec["psi"]]),
-        periods=periods)
-    alpha = msd_exponent_rs(rs, ts)
-    cv = velocity_autocorr(rs, ts)
-    fit = fit_velocity(rs, ts)
-    disp = float(np.linalg.norm(rs - rs[0], axis=1).max())
+        mean_D = float(tr["D"].mean())
+        max_D = float(tr["D"].max())
+        mean_S = float(tr["S"].mean())
+    if intrinsic_only:
+        alpha = cv_mean50 = r2 = disp = speed = None
+        v = [None, None]
+        ts = np.arange(rec["psi"].shape[0]) * dt
+    else:
+        ts = np.arange(rec["psi"].shape[0]) * dt
+        rs = unwrap_trace(
+            np.array([com(p, coords, order, periods=periods) for p in rec["psi"]]),
+            periods=periods)
+        alpha = msd_exponent_rs(rs, ts)
+        cv = velocity_autocorr(rs, ts)
+        fit = fit_velocity(rs, ts)
+        cv_mean50 = float(np.mean(cv[:50]))
+        r2 = float(fit["r2"])
+        disp = float(np.linalg.norm(rs - rs[0], axis=1).max())
+        v = [float(x) for x in fit["v"]] if len(fit["v"]) == 2 else [float(fit["v"][0]), 0.0]
+        speed = float(fit["speed"])
     br = branch_projectors(h)
     wprep = branch_weights_all(psi0, br)
     rows = rec["psi"][::10]
@@ -337,21 +363,21 @@ def _evolve_case(args):
     mix = float(np.abs(np.asarray(wtr) - wtr[0]).max())
     out = {
         "tag": tag,
-        "prep_D": float(f0["D"]),
-        "prep_S": float(f0["S"]),
+        "prep_D": None if f0 is None else float(f0["D"]),
+        "prep_S": None if f0 is None else float(f0["S"]),
         "prep_angle": prep_angle,
         "prep_J": prep_j,
-        "prep_C": float(spec["C"]),
-        "prep_M": float(spec["M_eff"]),
-        "mean_D": float(tr["D"].mean()),
-        "max_D": float(tr["D"].max()),
-        "mean_S": float(tr["S"].mean()),
+        "prep_C": None if spec is None else float(spec["C"]),
+        "prep_M": None if spec is None else float(spec["M_eff"]),
+        "mean_D": mean_D,
+        "max_D": max_D,
+        "mean_S": mean_S,
         "mean_J": mean_j,
-        "alpha": float(alpha),
-        "cv_mean50": float(np.mean(cv[:50])),
-        "v": [float(x) for x in fit["v"]] if len(fit["v"]) == 2 else [float(fit["v"][0]), 0.0],
-        "speed": float(fit["speed"]),
-        "r2": float(fit["r2"]),
+        "alpha": None if alpha is None else float(alpha),
+        "cv_mean50": cv_mean50,
+        "v": v,
+        "speed": speed,
+        "r2": r2,
         "disp": disp,
         "norm_dev": float(np.abs(norms - 1.0).max()),
         "w_plus": float(wprep["w_plus"]),
