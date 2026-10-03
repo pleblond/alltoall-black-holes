@@ -11408,3 +11408,196 @@ difference; one 6x single-kind visibility effect filed).
 
 **Firewall kept:** no structural stability claim (readouts only,
 no geometry dynamics); no vacuum selected, ranked, or mixed.
+
+## MERGE0-PREREG (FROZEN pre-data; this commit predates ALL beast MERGE-0 runs)
+
+Mission: test whether contraction/merge is a deterministic structural
+primitive distinct from stochastic split completion, and determine
+exactly what energy/information accounting is still missing. MERGE-0
+characterizes outcome determinism (given a selected edge, the
+contraction map) and its ledger; it does NOT invent event triggering
+(when/whether an edge contracts). No strong-force, binding-energy,
+particle, nuclear, or mass interpretation is earned here.
+
+Frozen inputs (read-only, consumed from the main tail, no modification):
+  BR-2.5 BR25-ONTOLOGY (exact contraction primitive + sum-map accounting)
+  BR-2.6 BR26-ACCOUNTED (exact local energy ledger dE = 2B - 2S_cross)
+  CONS-0 PARTIAL (invariant census; no-go: gamma=delta=0 forced)
+  BR-2.7 BR27-NO-MODE (no firing mechanism; binds MERGE-0J)
+  HIDDEN-BR HBR0-SIGNREV (hidden info changes/reverses structural ledger)
+  VACFIELD0-JOINT + VACCOMP0-COMPLETE + VACTEXTURE-GRADIENT (vacuum shapes
+    VPLUS/VPI/VMINUS, VSTAG, hidden circle; earned backgrounds)
+  VACEXC0-COMPLETE (excitation kinds/sectors as state builders only)
+  MEASURE0-DEBT (prohibition against inserting event probabilities)
+RESPONSE-0 has no verdict: response.py contributes NO claims (VAC-EXC
+kinds + sector readouts only, as frozen state builders).
+INFO-0 has no verdict on main: MERGE-0 quantifies information loss
+independently (info0_status probe files availability; never a dependency).
+
+Frozen law/conventions: H = -A, J = 1, hbar = 1; simple connected graphs;
+contraction = BR-2.5 contract_edge (kind-preserving, common collapse to
+one edge, consumed edge discarded); field map = sum ONLY (avg/norm never
+invoked); MERGE-0C normalization: Q_psi = sum |psi|^2 (any normalization),
+B_ij = Re(conj(psi_i) psi_j), Delta Q = +2B, Delta E = 2B - 2S_cross;
+physical quotient R x U(1) per SYM0-CLOSED (joint relabel x global phase).
+
+Battery (frozen, deterministic, 336 tasks):
+  substrates x8: j2-L4 (N=32 exact), j2-L8, j2-L28 (N=1568 headline),
+    ring-8, path-8, triangle (c=1), handbuilt (c=1,2), er-24 (seed 7).
+  fields: generic {zero, uniform, random777, spike0, stagger0/pi/half
+    (bipartite only)}; J2 vacuum {VPLUS, VPI, VMINUS, VSTAG, CIRCLE_pi6};
+    J2 hidden {H:delta/dipole/disk/checker/complex}; J2 pairs
+    {P:sign/phase_p2/shape_dipole/amp_05raw} (L4+L28, both members);
+    J2 excitations X:kind@vac (L4: 8 kinds x 3 vac; L28: 3 kinds x 3 vac;
+    eps=0.1 abs-mode, a=1, filed).
+  edges: elist[0] + elist[10]-or-last (BR-2.5 convention) on J2/ring/path;
+    all 3 on triangle; c=2/c=1/tail on handbuilt; [0,7,mid] on er-24;
+    PLUS one frozen support-overlap edge (lowest elist edge incident to
+    a pattern-support node) for H:/P:/X: tags (locality anatomy needs
+    on-support events; rule is pre-data, outcome-blind).
+  events: 311 (sub x tag x task_edges; P:* contracts BOTH members);
+  scans: 25 full-edge (B,dE) censuses (J2-L28 stride-capped at 600, frozen);
+  seqs: 5 frozen orders x states (path8-collapse, j2L4-ball x2 states,
+    handbuilt-chain, ring8-chain). Sequences are externally supplied graph
+    orders (lowest-elist / ball order); MERGE-0 chooses none. A retired
+    label STOPS the sequence honestly (no scheduler substitution).
+
+Stages -> gates (scripts/merge0_analyze.py, 38 gates):
+  A-det/A-rcov/A-ucov: bitwise rerun identity, R covariance (transported
+    back through inverse perm, k=max+1 relabel-invariant), U(1) covariance
+    (linearity) on EVERY event incl. pair members; A-degen: annihilation
+    (a+b=0) cases filed, still deterministic.
+  B-dN/B-dE/B-simple/B-cone: -1 / -(1+c) / simplicity / R_U=1, every event.
+  C-norm2B/C-normformula: dQ-2B < 1e-9, dQ-formula < 1e-12, every event.
+  D-energy/D-parts/D-P34/D-support: dE formula/direct < 1e-9, P1+P2 close,
+    P3=P4=0, support = 2+n_cross, every event.
+  H-bits/H-relmode: 3^d covers + log2((3^d+1)/2) bits + 2 field dims +
+    |a-b|^2/2 roundtrip, every event; H-paircontrast/H-signflip: >=1 pair
+    with dB > 1e-6 / strict opposite-sign executed ledger (SIGNREV anatomy
+    under an EXECUTED op -- genuine measurement, no prediction on count).
+  I-compose/I-nostop: stepwise ledgers sum to direct totals; no stops.
+  E-all: no nonzero (a,b,g,d) in {0,+/-1}^4 closes on the full battery
+    (max|res| < 1e-9 required on EVERY record); E-cvar: battery spans c=0
+    and c>0 (probe validity); E-decoupled: (1,-1,0,0) closes on c=0 and
+    misses by exactly c elsewhere (banked structural remark, field-blind,
+    never a reservoir); E-vac/E-hidden/E-exc: no FIELD-involving tuple
+    closes on the new vacuum/hidden-texture/excitation classes (graph-only
+    tuples excluded there ONLY because fixed-c domains admit the decoupled
+    law by banked theorem -- filed, not tuned); E-dxi: dxi=-c everywhere.
+  F-vac: VPLUS/VPI/VMINUS present with descriptive B/L tables (no selection).
+  G-exc/G-visible/G-sectors: excited-minus-vacuum rows at same edge (overlap-
+    edge vacuum baselines completed analyzer-side by the frozen deterministic
+    function, filed as derived-not-campaign); visible modulation somewhere;
+    P_+/P_- sector anatomy filed.
+  J-norule/J-census/J-fav: no firing rule constructed (functional flag);
+    scan census complete; favorable (B>0 & dE<0) fraction filed -- ordering
+    without kinetics (BR-2.7/MEASURE0 bind the firewall).
+
+Bars (frozen): FP/bitwise-transport 1e-12 (A-degen/det exact 0.0); ledger
+1e-9 (C/D/E, BR-2.6/CONS-0 precedent); physical 1e-6 (H/J, HIDDEN-BR
+precedent); U1 1e-12 (SYM-0 precedent). Analyzer reuses merge0.py bars,
+never literals.
+
+Pre-data predictions: A/B/C/D exact everywhere (theorems re-verified on
+the new battery); E finds no closure (banked no-go extension -- the
+decoupled tuple is the ONLY closer and only on c=0, filed structurally);
+H books exact; I composes; J finds favorable orderings that never fire
+(all-downhill scans expected, e.g. uniform VPLUS). P1: pair on-support
+events show dB/dL > 1e-6 (HIDDEN-BR locality predicts far-null +
+near-visible). NO prediction on sign-flip count under executed contraction
+(genuine measurement). PREDICTED VERDICT: MERGE0-DETERMINISTIC +
+MERGE0-ACCOUNT-DEBT.
+
+VERDICT LADDER (frozen): MERGE0-INCOMPLETE if any A gate red (post-state
+not unique on R x U(1)) or data/firewall incomplete. MERGE0-CLASS if A
+green but B/C/D/H/I red on a confined filed class. MERGE0-DETERMINISTIC
+if A+B+C+D+H+I green and J holds. Accounting status reported alongside:
+MERGE0-ACCOUNT-DEBT if all E green (no existing variable closes the
+reservoir); MERGE0-ACCOUNT-CLOSED + closing tuples if any E red (genuine
+surprise against the banked no-go). F/G are descriptive (presence +
+visibility gates only, no selection power).
+
+## MERGE0-VERDICT (filed post-data; 336 records + analyzer on beast)
+
+Branch cursor/merge-0-6665 (base main tail 51e0bd6). 336/336 specs
+CAMPAIGN-DONE on beast (16.54.88.181, xargs -P 60, OMP threads 1,
+nice, ~2 min); records data/merge0/event_*.json (301) + scan_*.json
+(30) + seq_*.json (5) + verdict.json banked. Analyzer
+scripts/merge0_analyze.py per PREREG (no post-data change: the
+sector-weight key fix and the decoupled-tuple subset scoping were both
+pre-data, validated on the local 251-task instrument run, committed in
+the frozen prereg). Full suite on beast (venv, -n 32, PYTHONPATH=src,
+pyproject addopts skips tests/test_weighted.py): 1878 passed, 2 skipped,
+0 failed, SUITE-EXIT=0.
+
+Headline: MERGE0-DETERMINISTIC + MERGE0-ACCOUNT-DEBT, 38/38 gates green.
+Selected-edge contraction is a unique covariant deterministic primitive
+with exact ledger across the entire headline battery (325 flattened
+events: 8 substrates x generic/vacuum/hidden/pair/excitation states,
+c in {0,1,2}); and no existing variable closes the energy reservoir on
+any tested class. The campaign cleanly separates what the theory HAS
+(deterministic merge update) from what it LACKS (event trigger +
+reservoir destination).
+
+Unique outcome (A): bitwise rerun identity, R covariance (transported
+back through the inverse permutation, k = max+1 relabel-invariant) and
+U(1) covariance (linearity) hold EXACTLY on all 325 events including
+87 annihilation cases (a+b = 0, mostly zero-field; psi_k = 0 filed and
+still unique). No exceptional non-uniqueness anywhere: the post-state
+descends to R x U(1) on every eligible state (MERGE0-INCOMPLETE and
+MERGE0-CLASS both unreachable -- zero red structural gates).
+
+Ledger (B/C/D): dN = -1, dE = -(1+c), simplicity, R_U = 1 cone exact
+everywhere; dQ - 2B < 1e-9 (formula < 1e-12) at every normalization
+tested; dE formula/direct < 1e-9 with P1+P2 closing and P3 = P4 = 0
+(< 1e-12); ledger support = 2 + n_cross exactly (one-neighborhood,
+common neighbors provably absent). The BR-2.5/2.6/CONS-0 identities
+re-verify on all newly earned state classes without modification.
+
+Information (H): covers 3^d + log2((3^d+1)/2) bits (1.0--21.2 across the
+battery) + 2 real field dims + |a-b|^2/2 roundtrip, exact on all 325
+events. Pair anatomy under EXECUTED contraction: on-support events show
+dB up to 0.32 with 2/24 strict opposite-sign executed ledgers --
+HIDDEN-BR SIGNREV survives execution (far edges file dB = dL = 0, the
+C5 locality boundary reproduced). INFO-0 still has no verdict on main;
+MERGE-0's books stand independently (probe filed).
+
+Composition (I): all 5 frozen sequences compose exactly (stepwise sums
+== direct totals, no retired-label stops), including the 7-step path-8
+full collapse and the J2-L4 ball collapse on uniform + VMINUS.
+
+Vacuum (F, descriptive): VPLUS all B > 0 with all dE < 0 (all-downhill);
+VPI all B < 0 yet ALSO all dE < 0 (the BR-2.7 ordering result refiled:
+both lower, hypothesis dead at ordering level); VMINUS B mixed +/-
+with dQ mixed but dE >= 0 on all tested edges (frac_Lneg = 0.0);
+CIRCLE_pi6 B mixed, dE >= 0 likewise. No selection among vacua.
+
+Excitations (G): every kind modulates the executed ledger on support
+(point_amp/source max |dL| 0.28 on VPI; sym_sector 0.24; packet 0.16;
+hidden_sector 0.17; point_phase smallest at 2.5e-3), with P_+/P_-
+sector anatomy filed per kind (hidden_sector pure P_-, packet pure P_+,
+point_amp half/half). Far-from-support rows file ~0 modulation (ledger
+locality). No response law is claimed (RESPONSE-0 still has no verdict).
+
+Reservoir (E): no nonzero (a,b,g,d) closes on the full 325-record
+battery (0/80 tuples); no field-involving tuple closes on the vacuum /
+hidden / excitation subsets either. The ONLY exact identity is the
+banked decoupled remark (1,-1,0,0) on c = 0 records, missing by exactly
+c elsewhere -- structural (field-blind), never a reservoir. dxi = -c
+holds on all 325 events. The BR-2.6/CONS-0 no-go thus extends to every
+newly earned class: the energy destination of a contraction event is
+still missing, and no already-earned graph-local quantity supplies it.
+
+Firewall (J): favorable orderings (B > 0 & dE < 0) exist on 19/30 scans
+and downhill (dE < 0) on 18/30 -- including whole all-downhill states
+(VPLUS scan: frac 1.0) -- yet no firing rule is constructed (functional
+flag False; module builds no threshold/rate/probability). BR-2.7 NO-MODE
+and MEASURE0-DEBT remain binding: ordering without kinetics, exactly as
+preregistered.
+
+Handoff: future structural theory may treat `event trigger +
+deterministic merge update' as separate problems -- the update is now
+characterized (unique, covariant, exactly ledgered, info books closed
+in form). SPLIT-0 inherits the inverse question: the predecessor
+information (partition + relative mode + hidden distinctions, continuous
+vs discrete) quantified per event here.

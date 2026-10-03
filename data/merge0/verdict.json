@@ -1,0 +1,284 @@
+{
+ "verdict": "MERGE0-DETERMINISTIC",
+ "accounting": "MERGE0-ACCOUNT-DEBT",
+ "reason": "unique covariant outcome + exact ledger + info books",
+ "n_gates": 38,
+ "n_pass": 38,
+ "gates": [
+  {
+   "gate": "count-events",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "count-pairs",
+   "ok": true,
+   "detail": "n=24"
+  },
+  {
+   "gate": "count-scans",
+   "ok": true,
+   "detail": "n=30"
+  },
+  {
+   "gate": "count-seqs",
+   "ok": true,
+   "detail": "n=5"
+  },
+  {
+   "gate": "A-det",
+   "ok": true,
+   "detail": "bad=0/325"
+  },
+  {
+   "gate": "A-rcov",
+   "ok": true,
+   "detail": "bad=0/325"
+  },
+  {
+   "gate": "A-ucov",
+   "ok": true,
+   "detail": "bad=0/325"
+  },
+  {
+   "gate": "A-degen",
+   "ok": true,
+   "detail": "annihilation_cases=87"
+  },
+  {
+   "gate": "B-dN",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "B-dE",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "B-simple",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "B-cone",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "C-norm2B",
+   "ok": true,
+   "detail": "max=7.216449660063518e-16"
+  },
+  {
+   "gate": "C-normformula",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "D-energy",
+   "ok": true,
+   "detail": "max=3.389649672058681e-15"
+  },
+  {
+   "gate": "D-parts",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "D-P34",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "D-support",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "H-bits",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "H-relmode",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "H-paircontrast",
+   "ok": true,
+   "detail": "npair=24"
+  },
+  {
+   "gate": "H-signflip",
+   "ok": true,
+   "detail": "nflip=2"
+  },
+  {
+   "gate": "I-compose",
+   "ok": true,
+   "detail": "n=5"
+  },
+  {
+   "gate": "I-nostop",
+   "ok": true,
+   "detail": "n=5"
+  },
+  {
+   "gate": "E-all",
+   "ok": true,
+   "detail": "closed=0/80"
+  },
+  {
+   "gate": "E-cvar",
+   "ok": true,
+   "detail": "c=[0, 1, 2]"
+  },
+  {
+   "gate": "E-decoupled",
+   "ok": true,
+   "detail": "c0max=0.0 npos=28"
+  },
+  {
+   "gate": "E-vac",
+   "ok": true,
+   "detail": "n=30 closed=0"
+  },
+  {
+   "gate": "E-hidden",
+   "ok": true,
+   "detail": "n=90 closed=0"
+  },
+  {
+   "gate": "E-exc",
+   "ok": true,
+   "detail": "n=99 closed=0"
+  },
+  {
+   "gate": "E-dxi",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "F-vac",
+   "ok": true,
+   "detail": "tags=['CIRCLE_pi6', 'VMINUS', 'VPI', 'VPLUS', 'VSTAG']"
+  },
+  {
+   "gate": "G-exc",
+   "ok": true,
+   "detail": "rows=99 derived_baselines=12"
+  },
+  {
+   "gate": "G-visible",
+   "ok": true,
+   "detail": "visible=57"
+  },
+  {
+   "gate": "G-sectors",
+   "ok": true,
+   "detail": "n=11"
+  },
+  {
+   "gate": "J-norule",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "J-census",
+   "ok": true,
+   "detail": "n=30"
+  },
+  {
+   "gate": "J-fav",
+   "ok": true,
+   "detail": "favorable=19 downhill=23"
+  }
+ ],
+ "vacuum_table": {
+  "CIRCLE_pi6": {
+   "n": 6,
+   "B_min": -0.015625000000000007,
+   "B_max": 0.015625000000000007,
+   "B_mean": 0.0,
+   "L_min": 0.001913265306122462,
+   "L_max": 0.15625000000000008,
+   "L_mean": 0.052933673469387786,
+   "dQ_min": -0.031249999999999778,
+   "dQ_max": 0.03125000000000022,
+   "frac_Bpos": 0.5,
+   "frac_Bneg": 0.5,
+   "frac_Lneg": 0.0
+  },
+  "VMINUS": {
+   "n": 6,
+   "B_min": -0.031249999999999993,
+   "B_max": 0.031249999999999993,
+   "B_mean": 0.0,
+   "L_min": 0.0012755102040816328,
+   "L_max": 0.18749999999999994,
+   "L_mean": 0.052933673469387744,
+   "dQ_min": -0.0625,
+   "dQ_max": 0.0625,
+   "frac_Bpos": 0.5,
+   "frac_Bneg": 0.5,
+   "frac_Lneg": 0.0
+  },
+  "VPI": {
+   "n": 6,
+   "B_min": -0.031249999999999993,
+   "B_max": -0.0006377551020408163,
+   "B_mean": -0.013233418367346936,
+   "L_min": -0.9375000000000009,
+   "L_max": -0.01913265306122547,
+   "L_mean": -0.39700255102040877,
+   "dQ_min": -0.0625,
+   "dQ_max": -0.0012755102040816757,
+   "frac_Bpos": 0.0,
+   "frac_Bneg": 1.0,
+   "frac_Lneg": 1.0
+  },
+  "VPLUS": {
+   "n": 6,
+   "B_min": 0.0006377551020408163,
+   "B_max": 0.031249999999999993,
+   "B_mean": 0.013233418367346936,
+   "L_min": -0.8124999999999991,
+   "L_max": -0.01658163265305923,
+   "L_mean": -0.3440688775510197,
+   "dQ_min": 0.0012755102040815647,
+   "dQ_max": 0.0625,
+   "frac_Bpos": 1.0,
+   "frac_Bneg": 0.0,
+   "frac_Lneg": 1.0
+  },
+  "VSTAG": {
+   "n": 6,
+   "B_min": -0.031249999999999993,
+   "B_max": 0.031249999999999993,
+   "B_mean": 0.0,
+   "L_min": 0.0012755102040816328,
+   "L_max": 0.18749999999999994,
+   "L_mean": 0.052933673469387744,
+   "dQ_min": -0.0625,
+   "dQ_max": 0.0625,
+   "frac_Bpos": 0.5,
+   "frac_Bneg": 0.5,
+   "frac_Lneg": 0.0
+  }
+ },
+ "firewall": {
+  "n_scans": 30,
+  "n_with_favorable": 19,
+  "n_with_downhill": 23,
+  "firing_rule_constructed": false,
+  "mechanism": "NONE (BR-2.7 NO-MODE binds)",
+  "measure": "NONE (MEASURE0-DEBT binds)"
+ },
+ "info0": {
+  "available": false,
+  "reason": "ModuleNotFoundError"
+ },
+ "closing_tuples": []
+}
