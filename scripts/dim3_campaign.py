@@ -936,7 +936,7 @@ def cmd_hidden(args):
     os.makedirs(outdir, exist_ok=True)
     from bh_graph import hidden as H
     from bh_graph import hiddenbr as HBR
-    from bh_graph import quot as Q
+    from bh_graph import quot as Q  # noqa: F401 (precedent reference)
 
     L = tag_L(tag)
     g = tag_graph(tag)
@@ -946,39 +946,39 @@ def cmd_hidden(args):
     h = R.hamiltonian(g, order)
     h_csc = sparse.csc_matrix(hamiltonian(g, order=order))
     eu, ev = R.edge_index_arrays(g, order)
+    eu = np.asarray(eu, dtype=int)
+    ev = np.asarray(ev, dtype=int)
     n = len(order)
-    plus = np.full(n, 1.0 / math.sqrt(n), dtype=np.complex128)
+    # Banked-verbatim battery (HIDDEN-0B/HBR-0A, Amendment-1 A6): uniform
+    # background (= VPLUS shape) + pure-hidden patterns via
+    # hidden.matched_pair. NO geometric-mean rescaling (that injects
+    # symmetric leakage on unequal-norm pairs; banked amplitude legs are
+    # RAW with filed dQ, plus the HAMP-Q rescale-P_+-only control).
+    plus = H.symmetric_uniform(n)
     cell_r = (L // 2, L // 2, L // 2)
     cell_q = ((L // 2 + 1) % L, L // 2, L // 2)
     d_r = dim3.hidden_delta_3d(order, c4, cell_r)
-    d_q = dim3.hidden_delta_3d(order, c4, cell_q)
     dip = dim3.hidden_dipole_3d(order, c4, cell_r, cell_q)
+    sub = dim3.j3_substrate(L)
+    vm = dim3.candidate_shape("VMINUS", sub)
     pr = dim3.sheet_projectors(order, c4)
+    s_mat = dim3.sheet_swap_matrix(order, c4)
     pairs = {
-        "sign": (plus + d_r, plus - d_r),
-        "phase": (plus + d_r, plus + 1j * d_r),
-        "shape": (plus + d_r, plus + dip),
-        "amplitude": (plus + d_r, plus + 2.0 * d_r),
+        "sign": H.matched_pair(plus, d_r, "sign"),
+        "phase": H.matched_pair(plus, d_r, "phase", math.pi / 2.0),
+        "shape": H.matched_pair(plus, d_r, "shape", dip),
+        "amp_raw": H.matched_pair(plus, d_r, "amplitude", 2.0),
+        "vminus": H.matched_pair(plus, vm, "sign"),
     }
-    # Normalize pairs to matched Q (HIDDEN-0 qmatch rule), P+ matched by
-    # construction (identical plus component).
-    npairs = {}
-    for name, (a, b) in pairs.items():
-        qa = float(np.vdot(a, a).real)
-        qb = float(np.vdot(b, b).real)
-        qm = math.sqrt(qa * qb)
-        npairs[name] = (a * math.sqrt(qm / qa), b * math.sqrt(qm / qb))
-    # Neighborhood R (quotient r <= 1) + internal edges.
-    nodes_r = []
-    for v, (x, y, zz, _) in c4.items():
-        if (min(abs(x - cell_r[0]), L - abs(x - cell_r[0]))
-                + min(abs(y - cell_r[1]), L - abs(y - cell_r[1]))
-                + min(abs(zz - cell_r[2]), L - abs(zz - cell_r[2])) <= 1):
-            nodes_r.append(pos[v])
-    nodes_r = np.asarray(nodes_r, dtype=int)
+    qraw = H.matched_pair(plus, d_r, "amplitude", 0.5)
+    qm = H.qmatch_pair(qraw)
+    # Neighborhood R (banked HIDDEN-0 R_PREP=2 convention, 3D shells).
+    shells_r = dim3.coarse_shells_3d(c4, order, cell_r, L, 2)
+    nodes_r = np.asarray(sorted({i for r in (0, 1, 2)
+                                 for i in shells_r[r]}), dtype=int)
     in_r = np.zeros(n, dtype=bool)
     in_r[nodes_r] = True
-    emask = in_r[np.asarray(eu, dtype=int)] & in_r[np.asarray(ev, dtype=int)]
+    emask = in_r[eu] & in_r[ev]
     # Dense systems for exact remote readouts (L=8: N=1024).
     Ew, Vw, _ = obs0.hamiltonian_system(g, order)
     wl, Vl, _ = obs0.lsym_system(g, order)
@@ -992,45 +992,99 @@ def cmd_hidden(args):
     node_of = {(x, y, zz, b): v for v, (x, y, zz, b) in c4.items()}
     ia = pos[node_of[(cell_r[0], cell_r[1], cell_r[2], 0)]]
     ib = pos[node_of[(cell_r[0], cell_r[1], cell_r[2], 1)]]
+    pins = [order[ia], order[ib]]
     out = {"tag": tag, "legs": {}}
-    for name, (a, b) in npairs.items():
-        loc = H.local_distance(a, b, np.asarray(eu), np.asarray(ev),
-                               nodes_r, emask)
+    for name in ("sign", "phase", "shape", "amp_raw"):
+        p = pairs[name]
+        a, b = p["psi_A"], p["psi_B"]
+        pm = HBR.is_pair_pplus_ok(a, b, pr)
+        pplus_max = float(np.abs(
+            np.asarray(pr["P_sym"], dtype=float) @ (a - b)).max())
+        erep = HBR.pair_energy_report(a, b, p["psi_plus"],
+                                      p["minus_A"], p["minus_B"], h)
+        eok = HBR.is_pair_energy_ok(erep)
+        an = H.energy_sector_anatomy(p["psi_plus"], p["minus_A"], h)
+        efree = H.is_energy_hidden_free_ok(an)
+        loc = H.local_distance(a, b, eu, ev, nodes_r, emask)
+        sodd = H.prob_diff_sodd_ok(a, b, s_mat)
         rw = H.remote_tv_wave(a, b, Ew, Vw, shells, ts_w)
-        pa, pb = (np.abs(a) ** 2), (np.abs(b) ** 2)
-        rd = H.remote_tv_diff(pa / pa.sum(), pb / pb.sum(), wl, Vl,
-                              shells, ts_d)
+        # Unnormalized |psi|^2 (banked-verbatim: RAW pairs keep dQ, so
+        # the mass-difference signal is physical, not normalized away).
+        rd = H.remote_tv_diff(np.abs(a) ** 2, np.abs(b) ** 2,
+                              wl, Vl, shells, ts_d)
         pf = H.pot_pair_fields(h_csc, (ia, ib), a, b, omega)
         dphi = np.asarray(pf["dphi"], dtype=float)
         rem_idx = np.concatenate([np.asarray(shells[r], dtype=int)
                                   for r in remote])
+        oA = HBR.bond_fields(a, eu, ev)
+        oB = HBR.bond_fields(b, eu, ev)
+        db = HBR.delta_b_census(oA["B"], oB["B"])
+        lc = HBR.ledger_census(g, order, a, b, eu, ev)
         out["legs"][name] = {
+            "pmatch": bool(pm), "pplus_max": pplus_max,
+            "dQ": float(abs(H.total_Q(a) - H.total_Q(b))),
+            "E_A": erep["E_A"], "E_B": erep["E_B"], "dE": erep["dE"],
+            "E_ok": bool(eok), "E_free": bool(efree),
             "local": loc,
             "local_ok": H.is_locally_distinguishable_ok(loc["D"]),
+            "sodd": bool(sodd),
             "wave_Dmax": {r: rw["Dmax"][r] for r in remote},
             "wave_ok": H.is_remote_blind_ok(rw["Dmax"], remote),
             "diff_Dmax": {r: rd["Dmax"][r] for r in remote},
             "diff_ok": H.is_remote_blind_ok(rd["Dmax"], remote),
             "pot_remote_max": float(np.abs(dphi[rem_idx]).max()),
-            "pot_exact_zero": bool(float(np.abs(dphi[rem_idx]).max()) == 0.0)}
-    # H-g virtual sign-reversal census on the sign pair (no graph mutation).
-    a, b = npairs["sign"]
-    ea = float(np.vdot(a, h @ a).real / np.vdot(a, a).real)
-    eb = float(np.vdot(b, h @ b).real / np.vdot(b, b).real)
-    la = HBR.ledger_array(g, a, order, np.asarray(eu), np.asarray(ev))
-    lb = HBR.ledger_array(g, b, order, np.asarray(eu), np.asarray(ev))
-    nflip = 0
-    for i in range(len(la)):
-        if HBR.is_sign_flip(float(la[i]), float(lb[i])):
-            nflip += 1
-    out["hg"] = {"e_a": ea, "e_b": eb, "de": abs(ea - eb),
-                 "n_edges": len(la), "n_flip": nflip}
+            "pot_support": bool(Q.anti_support_ok(dphi, order, g, pins)),
+            "db_max": db["max_abs"], "db_n": db["n_changed"],
+            "lc_n": lc["n_nonzero"], "lc_max": lc["max_abs"],
+            "n_flip": lc["n_flips"],
+        }
+    # HAMP-Q control (banked 05q precedent: EXPECTED C1+C2 fail at the
+    # predicted values, excluded with cause; local-D filed, no remote).
+    qa, qb = qm["psi_A"], qm["psi_B"]
+    qloc = H.local_distance(qa, qb, eu, ev, nodes_r, emask)
+    qpm = HBR.is_pair_pplus_ok(qa, qb, pr)
+    qpmax = float(np.abs(
+        np.asarray(pr["P_sym"], dtype=float) @ (qa - qb)).max())
+    from bh_graph import field0 as _f0
+    qeA = float(_f0.energy_of(qa, h))
+    qeB = float(_f0.energy_of(qb, h))
+    out["legs"]["amp_q"] = {
+        "pmatch": bool(qpm), "pplus_max": qpmax,
+        "scale_c": qm["scale_c"],
+        "E_A": qeA, "E_B": qeB,
+        "E_ratio": (qeB / qeA) if qeA != 0 else None,
+        "E_ratio_c2": qm["scale_c"] ** 2,
+        "dQ": float(abs(H.total_Q(qa) - H.total_Q(qb))),
+        "local": qloc,
+        "local_ok": H.is_locally_distinguishable_ok(qloc["D"]),
+        "control": "HAMP-Q-excluded-with-cause",
+    }
+    # H-g VMINUS-based sign pair (banked L:vminus analog: global hidden
+    # pattern; banked precedent 1276 flips. No wave/diff/pot remote legs
+    # -- banked L:vminus files no remote checks on the global pair).
+    pv = pairs["vminus"]
+    va, vb = pv["psi_A"], pv["psi_B"]
+    vpm = HBR.is_pair_pplus_ok(va, vb, pr)
+    verep = HBR.pair_energy_report(va, vb, pv["psi_plus"],
+                                   pv["minus_A"], pv["minus_B"], h)
+    veok = HBR.is_pair_energy_ok(verep)
+    vloc = H.local_distance(va, vb, eu, ev, nodes_r, emask)
+    voA = HBR.bond_fields(va, eu, ev)
+    voB = HBR.bond_fields(vb, eu, ev)
+    vdb = HBR.delta_b_census(voA["B"], voB["B"])
+    vlc = HBR.ledger_census(g, order, va, vb, eu, ev)
+    out["hg"] = {"pmatch": bool(vpm), "E_ok": bool(veok),
+                 "dE": verep["dE"], "D_local": vloc["D"],
+                 "db_max": vdb["max_abs"], "db_n": vdb["n_changed"],
+                 "lc_n": vlc["n_nonzero"],
+                 "n_edges": vlc["n_edges"], "n_flip": vlc["n_flips"]}
     with open(os.path.join(outdir, f"dim3_hidden_{tag}.json"), "w") as f:
         json.dump(jsonable(out), f)
     print(f"hidden {tag}: " + " ".join(
-        f"{k}(loc={v['local']['D']:.1e} w={v['wave_ok']} d={v['diff_ok']} "
-        f"pot={v['pot_remote_max']:.1e})" for k, v in out["legs"].items())
-        + f" flips={nflip}/{len(la)}", flush=True)
+        f"{k}(loc={v['local']['D']:.1e} w={v.get('wave_ok')} "
+        f"d={v.get('diff_ok')} pot={v.get('pot_remote_max', float('nan')):.1e})"
+        for k, v in out["legs"].items())
+        + f" vminus_flips={vlc['n_flips']}/{vlc['n_edges']}", flush=True)
 
 
 # ---------------------------------------------------------------------------

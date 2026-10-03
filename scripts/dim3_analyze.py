@@ -318,17 +318,48 @@ def eval_ports(datadir):
                             "contrast": d["contrast"]}
     else:
         ports["bilayer"] = {"pass": False, "missing": True}
-    # H-f/H-g hidden.
+    # H-f/H-g hidden (Amendment-1 A6: HBR-0 C0 gating table).
+    # sign/phase: full remote blindness (wave+diff+pot). shape/amp_raw:
+    # wave+pot blind, diff VISIBLE-expected (sodd False per HBR-0 Amd-1;
+    # |psi_-|^2 S-even part diffuses -- filed pattern, never gated).
+    # amp_q: HAMP-Q control, excluded with cause (filed). H-g: VMINUS
+    # global-pair flips > 100 (banked L:vminus precedent 1276); the
+    # local-pair flip counts are filed (banked B:sign:uniform = 0).
     p = os.path.join(datadir, "dim3_hidden_j3-L8.json")
     if os.path.exists(p):
         d = load_json(p)
-        legs = {k: bool(v["local_ok"] and v["wave_ok"] and v["diff_ok"]
-                        and v["pot_remote_max"] < 1e-9)
-                for k, v in d["legs"].items()}
-        hg = bool(d["hg"]["n_flip"] > 100)
-        ports["hidden"] = {"pass": bool(all(legs.values()) and hg),
-                           "legs": legs, "hg": hg,
-                           "n_flip": d["hg"]["n_flip"]}
+        legs, detail = {}, {}
+        for k in ("sign", "phase"):
+            v = d["legs"][k]
+            legs[k] = bool(v["pmatch"] and v["E_ok"] and v["E_free"]
+                           and v["dQ"] < 1e-9 and v["local_ok"]
+                           and v["sodd"] and v["wave_ok"] and v["diff_ok"]
+                           and v["pot_remote_max"] < 1e-9
+                           and v["pot_support"])
+            detail[k] = {q: v.get(q) for q in (
+                "pplus_max", "dQ", "dE", "sodd", "db_max", "lc_n",
+                "n_flip")}
+        for k in ("shape", "amp_raw"):
+            v = d["legs"][k]
+            legs[k] = bool(v["pmatch"] and v["E_ok"] and v["E_free"]
+                           and v["local_ok"] and not v["sodd"]
+                           and v["wave_ok"]
+                           and v["pot_remote_max"] < 1e-9
+                           and v["pot_support"])
+            detail[k] = {q: v.get(q) for q in (
+                "pplus_max", "dQ", "dE", "sodd",
+                "diff_Dmax", "db_max", "lc_n", "n_flip")}
+        q = d["legs"]["amp_q"]
+        detail["amp_q"] = {
+            "excluded": bool(not q["pmatch"] and q["dQ"] < 1e-9),
+            "scale_c": q["scale_c"], "E_ratio": q["E_ratio"],
+            "E_ratio_c2": q["E_ratio_c2"], "D": q["local"]["D"]}
+        hg = d["hg"]
+        hg_ok = bool(hg["pmatch"] and hg["E_ok"] and hg["n_flip"] > 100)
+        ports["hidden"] = {"pass": bool(all(legs.values()) and hg_ok),
+                           "legs": legs, "detail": detail,
+                           "hg": hg_ok, "n_flip": hg["n_flip"],
+                           "hg_lc_n": hg["lc_n"]}
     else:
         ports["hidden"] = {"pass": False, "missing": True}
     # I vacuum census.

@@ -97,6 +97,35 @@ exposures; identical bars.
   (pot_far: bar wrong, physics confirmed); both the literal and the
   diagnosed readings are filed.
 
+## A6. Hidden port: banked-verbatim battery + H-g VMINUS-state correction
+
+Two apparatus defects in the pre-grid hidden task (found in smoke review
+against the banked HIDDEN-0/HBR-0 runners, NOT fit to DIM-3-0 data):
+
+1. Amplitude-leg rescaling was non-banked: a geometric-mean Q-match on
+   both members injects symmetric leakage on unequal-norm pairs. Banked
+   legs are RAW (matched_pair, dQ filed) plus the HAMP-Q control
+   (qmatch_pair rescales P_+ ONLY). Fixed: all legs via
+   hidden.matched_pair verbatim; amp_raw(2.0) RAW + amp_q(0.5) HAMP-Q
+   control (expected C1+C2 fail at predicted c^2 values, excluded with
+   cause, never gated). Diffusion readouts use unnormalized |psi|^2
+   (banked-verbatim; RAW mass-difference signal is physical).
+2. H-g gated >100 flips on the LOCAL uniform+delta sign pair. Banked
+   precedent: B:sign:uniform has flips = 0 (lc_n = 16) -- the campaign
+   smoke's flips = 0/6144 REPRODUCES the banked value exactly (apparatus
+   confirmed). The 1346 precedent is the battery total, dominated by the
+   VMINUS-based GLOBAL sign pair (1276). Fixed: H-g runs the VMINUS
+   global pair (uniform + VMINUS shape, sign mode; banked L:vminus
+   analog) with the >100 gate; local-pair flip counts filed, never
+   gated. No remote legs on the global pair (banked L:vminus files none).
+
+Gating table (HBR-0 C0, frozen): sign/phase legs gate pmatch + E_ok +
+E_free + dQ + local + sodd + wave + diff + pot + pot_support;
+shape/amp_raw gate the same MINUS diff (sodd False filed per HBR-0
+Amendment-1: the |psi_-|^2 S-even part diffuses -- VISIBLE-expected,
+never gated) MINUS dQ on amp_raw (RAW variant). Neighborhood R_PREP=2
+(banked convention). Uniform background = VPLUS shape.
+
 ## Task count
 
 76 = 30 stations + 25 spread + 3 tladder + 3 packet + 2 pot0 + 3 pot1
