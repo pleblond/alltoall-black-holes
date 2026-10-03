@@ -1922,9 +1922,132 @@ products.
 
 The identity \(\mathcal{G}_3+\Gamma=1/12\) does not use the value of \(I\).
 The integral remains only in the antisymmetric channel, as \(I/4\).
-The threshold \(\sqrt{128/11}\) is the adjacent-cell substitute for the
-separation-uniform value \(24/\sqrt{55}\) of Proposition~\ref{prop:adj}.
-It does not extend to a non-adjacent pair.
+That adjacent value is the most permissive separation, not a special case.
+
+\begin{proposition}
+\label{prop:j3max}
+Let \(r\in\mathbb{Z}^3\) be nonzero and write \(\sigma(r)=(-1)^{r_1+r_2+r_3}\).
+For \(E>12\) both combinations \(\mathcal{G}_3(E)\pm\Gamma_r(E)\) are positive
+and strictly decreasing, from finite edge values down to \(0\).
+Consequently \(t^2\mathcal{G}_3(\mathcal{G}_3\pm\Gamma_r)=1\) has a root above
+\(12\) if and only if \(t^2\) exceeds the reciprocal of the corresponding
+edge product, and \(E\mapsto -E\) reproduces the two products.
+The larger edge product, over both channels and every nonzero \(r\),
+equals \(\mathcal{G}_3(12+)\cdot I/4\), and the equality holds only when
+the two cells are adjacent.
+Every non-adjacent separation has a strictly larger critical hopping.
+In particular every \(|t|\le\sqrt{128/11}\) produces no eigenvalue outside
+\([-12,12]\), at every separation.
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:cellpole} gives, for \(r\neq 0\),
+\[
+\Gamma_r(E)
+=\frac12\int\frac{\cos(q\cdot r)}{E-\varepsilon_3(q)}\,\frac{d^3q}{(2\pi)^3}.
+\]
+Adding and subtracting the diagonal produces
+\[
+\mathcal{G}_3\pm\Gamma_r
+=\frac{1}{2E}
++\frac12\int\frac{1\pm\cos(q\cdot r)}{E-\varepsilon_3(q)}\,\frac{d^3q}{(2\pi)^3}.
+\]
+The numerators are nonnegative and not identically zero.
+Each integrand falls as \(E\) increases, and so does \(1/(2E)\).
+Both combinations are therefore positive and strictly decreasing on
+\((12,\infty)\).
+As \(E\to\infty\) they are asymptotic to \(1/E\), so the products with
+\(\mathcal{G}_3\) fall from their edge values to \(0\).
+A decreasing continuous function meets \(1/t^2\) exactly once above \(12\)
+when its edge value exceeds \(1/t^2\), and otherwise not at all.
+
+The upper edge of \(\varepsilon_3\) sits at \((\pi,\pi,\pi)\).
+Shift by that momentum.
+The denominator \(12-\varepsilon_3\) becomes
+\[
+Q_3(k)=4\bigl(3-\cos k_x-\cos k_y-\cos k_z\bigr),
+\]
+and \(1-\sigma(r)\cos(q\cdot r)\) becomes \(1-\cos(k\cdot r)\).
+Near the origin \(Q_3(k)\sim 2|k|^2\), so \(1/Q_3\) is integrable on the
+three-torus.
+Both edge values are therefore finite, and
+\[
+\lim_{E\downarrow 12}\bigl(\mathcal{G}_3-\sigma(r)\Gamma_r\bigr)
+=\frac1{24}+\frac12 f(r),
+\]
+where
+\[
+f(r)
+=\int\frac{1-\cos(k\cdot r)}{Q_3(k)}\,\frac{d^3k}{(2\pi)^3}.
+\]
+The other combination tends to \(2\mathcal{G}_3(12+)-1/24-f(r)/2\).
+
+The same shift that proves \(\Gamma_r(-E)=-\sigma(r)\Gamma_r(E)\) in
+Proposition~\ref{prop:anysep} applies to \(\varepsilon_3\).
+With \(\mathcal{G}_3\) odd, the two products at \(-E\) are the two products
+at \(E\).
+
+The symbol of \(\mathcal{L}u=12u-2\sum_{y\sim x}u(y)\) is \(Q_3\):
+each pair of opposite neighbours contributes a factor \(2\cos k_j\), and
+\(12-4(\cos k_x+\cos k_y+\cos k_z)=Q_3\).
+The cancellation in the proof of Proposition~\ref{prop:mean} therefore
+gives \(\mathcal{L}f=-\delta_0\).
+Off the origin, \(f\) equals the average of its six neighbours, counting
+\(f(0)=0\).
+At the origin this flux gives \(f(1,0,0)=1/12\).
+Thus one edge value on a neighbouring cell is \(1/12\), and the other is
+\[
+2\mathcal{G}_3(12+)-\frac1{12}
+=\frac I4,
+\]
+since \(\mathcal{G}_3(12+)=1/24+I/8\).
+
+The integrand of \(I\) is not constant, and \(u\mapsto 1/u\) is strictly
+convex on \((0,\infty)\), so
+\[
+I>\frac{1}{\int(3+\cos q_x+\cos q_y+\cos q_z)\,d\mu}=\frac13.
+\]
+Therefore \(I/4>\mathcal{G}_3(12+)>1/12\).
+
+For the ordering of \(f\), write
+\[
+\frac{1}{Q_3(k)}=\int_0^\infty e^{-s Q_3(k)}\,ds.
+\]
+The exponential factors across the three axes, and
+\[
+\frac{1}{2\pi}\int_0^{2\pi}e^{\alpha\cos\theta}\cos(m\theta)\,d\theta
+=\sum_{k\ge 0}\frac{1}{k!\,(k+|m|)!}\Bigl(\frac\alpha2\Bigr)^{2k+|m|}
+\]
+is positive for every \(\alpha>0\) and every integer \(m\).
+Thus \(\int\cos(k\cdot r)/Q_3\,d\mu>0\) for every \(r\), which is
+\(f(r)<f(\infty)\), where the limit
+\[
+\lim_{|r|\to\infty}f(r)
+=\int\frac{1}{Q_3}\,d\mu=\frac I4
+\]
+is Riemann–Lebesgue.
+In particular \(f(r)<I/4\) and the two edge values are strictly ordered,
+the larger being \(2\mathcal{G}_3(12+)-1/24-f(r)/2\).
+
+That larger value increases as \(f\) decreases.
+The minimum of \(f\) on \(\mathbb{Z}^3\setminus\{0\}\) is attained, because
+\(f(r)\to I/4>f(1,0,0)\) and only finitely many values can lie below
+\((1/12+I/4)/2\).
+Every nonzero lattice point has a neighbour of strictly larger Euclidean
+norm: increase a nonzero coordinate.
+A minimizer of maximal norm therefore cannot have all six neighbours equal
+to it, so it must be adjacent to the origin, where the missing neighbour
+is the origin itself and \(f=1/12\).
+Any other point of the minimizing set would have larger norm and would
+not be adjacent to the origin, which the same comparison forbids.
+The minimum \(1/12\) is attained only at the six neighbours of the origin.
+The larger edge product is therefore at most
+\(\mathcal{G}_3(12+)\cdot I/4\), with equality only for adjacent cells.
+
+Proposition~\ref{prop:j3nn} already bounds that product by \(11/128\).
+Every \(|t|\le\sqrt{128/11}\) lies below every edge product, and the
+products decrease, so neither channel has a root outside \([-12,12]\).
+\end{proof}
 
 \section{Codimension along a unitary orbit}
 \label{sec:codim}
