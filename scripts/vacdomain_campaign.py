@@ -104,7 +104,10 @@ def t_bulk(p, outdir, record):
     h = vf.hamiltonian_of(sub)
     psi = vd.bulk_shape(name, sub)
     e = vd.bulk_energy(name)
-    lad = vc.joint_ladder(psi, sub, h, eu, ev, e, ledger_moves=2000)
+    # VACCOMP0-AMENDMENT-1 A2 precedent: sampled-M1 graphs (N > 64) need
+    # the headline move budget (2000 moves is noise-dominated there).
+    mv = 2000 if len(sub["order"]) <= 64 else 20000
+    lad = vc.joint_ladder(psi, sub, h, eu, ev, e, ledger_moves=mv)
     return {
         "rung": lad["rung"],
         "checks": {k: bool(v) for k, v in lad["checks"].items()},

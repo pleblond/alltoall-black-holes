@@ -128,3 +128,13 @@ post-data changes permitted.
 
 204 tasks (bulk 18, nogo 66, evolve 84, spectral 18, phase 18):
 data/vacdomain/*.json + data/vacdomain/verdict.json.
+
+## VACDOMAIN0-AMENDMENT-1 (measurement resolution; FROZEN pre-rerun)
+
+First campaign pass returned VACDOMAIN-NOJOIN via G0 (bulk_L28 VPI/H* read
+BALANCED on ledger_symmetric with moves=2000). Same measurement-resolution
+issue as VACCOMP0-AMENDMENT-1 A2: N>64 sampled-M1 seed-stability is
+noise-dominated at 2000 moves; the headline 20000-move budget (VAC-FIELD
+precedent) resolves it. Fix: bulk tasks use ledger_moves=20000 when N>64
+(2000/exhaustive otherwise). Gate unchanged (still all-10-checks JOINT);
+only the six L=28 bulk records are rerun. Physics and ladder untouched.
