@@ -227,14 +227,14 @@ def main():
     j_ok = bool(n_genuine == 0 and j_clean)
     gate("J-surface", j_ok,
          f"n_genuine={n_genuine} merge={merge_n} split={split_n} "
-         f"redefined={j_clean}")
+         f"clean={j_clean}")
     k1_syms = ("crossing_refine", "crossing_classify", "orientation_of",
                "mismatch_eval", "crossing_class")
     k_clean = not any(hasattr(j1, s) for s in k1_syms)
     k_ok = bool(krep == banked.get("k_crossed") and k_clean)
     gate("K-crossing", k_ok,
          f"ordinary={krep.get('ordinary_n')} hits={krep.get('n_hits')} "
-         f"redefined={k_clean}")
+         f"clean={k_clean}")
 
     # ---- X-firewall ----
     here = os.path.dirname(__file__)
