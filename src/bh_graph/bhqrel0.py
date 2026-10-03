@@ -717,7 +717,9 @@ def is_partial_trace_ok(atol: float = FP_ATOL) -> bool:
         if float(np.max(np.abs(rho1 - 0.5 * np.eye(2)))) > atol:
             return False
         rp = partial_trace_1q(product_state(2), 2, 0)
-        if abs(float(rp[0, 0]) - 1.0) > atol:
+        if abs(float(rp[0, 0].real) - 1.0) > atol:
+            return False
+        if abs(float(rp[0, 0].imag)) > atol:
             return False
         if abs(vne_1q(rp)) > atol or abs(vne_1q(rho) - 1.0) > atol:
             return False
