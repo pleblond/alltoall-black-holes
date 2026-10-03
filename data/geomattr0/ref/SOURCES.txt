@@ -1,0 +1,10 @@
+GEOMATTR0 pinned inputs (byte-identical blobs from main at prereg freeze).
+
+Branch: origin/main
+Commit: 1f8aa321f8170d2a05375a006f63d21bdd8ab9b0 (Release v5.10.0: first area law)
+
+Files (sha256):
+7f51db85e3b721f20fadf446da0c0459ef0d48f4852d68ced0f5a01443d4c40b  weave0_diagnosis.json
+fb8035311cccac38505c0649f0cc0b63b15d3a0399d90fbf1c37ac4a2b0f1fa7  weave0_verdict.json
+
+Cited values: C0/C3/C4 + C2 lam001/002/004 s7 B/C medians (WEAVE_BANKED).
