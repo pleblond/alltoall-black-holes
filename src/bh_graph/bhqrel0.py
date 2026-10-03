@@ -94,6 +94,8 @@ def edge_anatomy(r: int) -> dict:
     INT/EXT classes are exclusive by construction (pinned + audited).
     """
     r = int(r)
+    if r < 1:
+        raise ValueError("rung r must be >= 1")
     g = _bq.ambient_ball(r)
     disk = _bq.region_disk(g, r)
     edges = _bq.boundary_edges(g, disk)
