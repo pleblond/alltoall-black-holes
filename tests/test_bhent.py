@@ -329,8 +329,8 @@ def test_law_gates_branches():
                      [(2, 4, 1.0), (2, 8, 2.0), (4, 8, 4.0)], False, False)
     assert not g["volume_gate"] and not g["boundary_gate"]
     assert be.verdict_of(g, True) == "BHENT0-UNCLASSIFIED"
-    assert be.verdict_of(g, False, "C1 red") startswith(
-        "BHENT0-UNCLASSIFIED (census-invalid")
+    assert be.verdict_of(g, False, "C1 red").startswith(
+        "BHENT0-UNCLASSIFIED (census-invalid)")
     g2 = dict(g)
     g2["continuous_gate"] = True
     assert be.verdict_of(g2, True) == "BHENT0-CONTINUOUS"
