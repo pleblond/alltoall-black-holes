@@ -10282,10 +10282,11 @@ interior Sym(R) (exterior pointwise fixed) x U(1).
 
 Paths P2..P12 (pad 3; b = 2 constant: the boundary/volume
 discriminator). Stars S3_2 (n = 4, b = 2), S4_3, S6_4, S8_6
-(boundary-rich). J2 disks J2L4r0 (n = 2), J2L6r1 (n = 10), J2L8r2
-(n = 26), J2L28r1 (n = 10; field/ledger/channels). Square-torus
-controls SQL4dimer (n = 2), SQL4r1, SQL6r1. Builders in bhent.py
-(path_region, star_region, j2_disk_region, square_dimer_region,
+(boundary-rich). J2 regions J2L4edge (n = 2 connected edge; see
+AMENDMENT-1), J2L6r1 (n = 10), J2L8r2 (n = 26), J2L28r1 (n = 10;
+field/ledger/channels). Square-torus controls SQL4dimer (n = 2),
+SQL4r1, SQL6r1. Builders in bhent.py (path_region, star_region,
+j2_disk_region, j2_edge_region, square_dimer_region,
 square_ball_region); region_battery() freezes the per-branch specs.
 
 ### Counting branches (all preregistered, no post-hoc selection)
@@ -10363,3 +10364,14 @@ data/bhent0/*.json (committed; P6 chunk records banked). Full suite on
 beast (pytest -n 90 --ignore=tests/test_weighted.py). Analyzer
 scripts/bhent0_analyze.py writes data/bhent0/verdict.json. Verdict
 filed here post-data.
+
+### BHENT0-AMENDMENT-1 (pre-campaign-data design fix; no records exist)
+
+A single J2 cell (2 same-cell sheet nodes) is induced-disconnected: J2
+has no same-cell sheet edge (all 8 generators move spatially), so
+stepwise BR-2.5 collapse cannot start inside it. The tiny-J2 exact
+census region is therefore J2L4edge (two adjacent J2 nodes, one genuine
+edge, n = 2) instead of J2L4r0. Whole-cell J2 alphabets run on r >= 1
+disks only (whole_cells gate in the runner). Battery lists, builders,
+tests, and analyzer updated accordingly; no campaign record existed at
+amendment time (only test smokes), so no re-run is needed.

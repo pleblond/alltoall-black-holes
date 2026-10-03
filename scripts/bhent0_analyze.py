@@ -77,7 +77,7 @@ def main():
     chk("joint_P6:audit", len(keys) * math.factorial(6) >= n_conn)
     path_ns.append(6)
     path_y.append(math.log2(len(keys)))
-    for spec in ("S3_2", "J2L4r0", "SQL4dimer"):
+    for spec in ("S3_2", "J2L4edge", "SQL4dimer"):
         p = recs[f"joint_{spec}"]["payload"]
         chk(f"joint_{spec}:orbits", p["n_orbits"] > 1, p["n_orbits"])
 

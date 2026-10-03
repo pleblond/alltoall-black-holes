@@ -31,12 +31,19 @@ def test_star_region_specs():
 
 
 def test_j2r0_region_specs():
-    r = be.j2_disk_region(4, (2, 2), 0)
+    r = be.j2_edge_region(4)
     assert r["n"] == 2 and r["b"] > 0 and r["e_cut"] > 0
+    assert not r["whole_cells"]
+    # All battery regions used for collapse must be induced-connected.
+    for spec in ("P2", "P5", "S3_2", "S4_3", "J2L4edge", "J2L6r1",
+                 "SQL4dimer", "SQL4r1"):
+        rr = be.build_region(spec)
+        sub = rr["g"].subgraph(rr["R"])
+        assert nx.is_connected(sub), spec
 
 
 def test_battery_builds():
-    for spec in ("P2", "P5", "P12", "S3_2", "S8_6", "J2L4r0", "J2L6r1",
+    for spec in ("P2", "P5", "P12", "S3_2", "S8_6", "J2L4edge", "J2L6r1",
                  "J2L28r1", "SQL4dimer", "SQL4r1"):
         r = be.build_region(spec)
         assert r["n"] >= 2 and r["b"] >= 1
@@ -68,7 +75,7 @@ def test_collapse_consistent_paths_stars():
 
 
 def test_collapse_consistent_j2_square():
-    for spec in ("J2L4r0", "SQL4dimer"):
+    for spec in ("J2L4edge", "SQL4dimer"):
         r = be.build_region(spec)
         bg = be.background_shapes(r, "VPLUS")
         step = be.collapse_region_stepwise(r, bg)
@@ -77,7 +84,7 @@ def test_collapse_consistent_j2_square():
 
 
 def test_ledger_reproduction():
-    for spec in ("P4", "J2L4r0", "S3_2"):
+    for spec in ("P4", "J2L4edge", "S3_2"):
         r = be.build_region(spec)
         bg = be.background_shapes(r, "VPLUS")
         c = be.control_ledger_reproduction(r, bg)
@@ -125,7 +132,7 @@ def _bruteforce_joint_orbits(r):
 
 
 def test_joint_exact_vs_bruteforce():
-    for spec in ("P2", "P3", "S3_2", "J2L4r0", "SQL4dimer"):
+    for spec in ("P2", "P3", "S3_2", "J2L4edge", "SQL4dimer"):
         r = be.build_region(spec)
         got = be.joint_exact_count(r)
         want_orbits, want_conn = _bruteforce_joint_orbits(r)
@@ -265,10 +272,10 @@ def test_pot_profile_deterministic():
 
 
 def test_j2_alphabet_local_vs_static():
-    r = be.build_region("J2L4r0")
+    r = be.build_region("J2L6r1")
     bg = be.background_shapes(r, "VPLUS")
     states = be.blind_alphabet_j2(r, bg)
-    assert len(states) == 1 * 8
+    assert len(states) == 5 * 8
     s0 = be.exterior_static(bg, r)
     for s in states[:2]:
         assert be.local_distance_in_R(bg, s["psi"], r)["D"] > be.LOCAL_BAR

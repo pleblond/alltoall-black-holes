@@ -138,6 +138,33 @@ def j2_disk_region(L, center, radius):
     rec["c3"] = dict(c3)
     rec["cells"] = [tuple(c) for c in cells]
     rec["L"] = L
+    rec["whole_cells"] = True
+    return rec
+
+
+def j2_edge_region(L=4):
+    """Two adjacent J2 nodes (same-sheet edge; connected 2-node region).
+
+    A single J2 cell is induced-disconnected (no same-cell sheet edge),
+    so the tiny-J2 exact census uses a genuine edge instead (frozen:
+    cells (c,c)-(c+1,c) on sheet 0, c = L//2).
+    """
+    from bh_graph.ballistic import node_order
+    from bh_graph.formation import j2_torus_coords, j2_torus_graph
+
+    L = int(L)
+    g = j2_torus_graph(L)
+    c3 = j2_torus_coords(L)
+    c = L // 2
+    a = (c * L + c) * 2 + 0
+    b = (((c + 1) % L) * L + c) * 2 + 0
+    assert g.has_edge(a, b)
+    R = sorted((a, b))
+    rec = _region_record(g, node_order(g), R, f"J2L{L}edge")
+    rec["c3"] = dict(c3)
+    rec["cells"] = [(c, c), ((c + 1) % L, c)]
+    rec["L"] = L
+    rec["whole_cells"] = False
     return rec
 
 
@@ -165,14 +192,15 @@ def region_battery():
     """Frozen headline battery (specs only; builders run per task)."""
     return {
         "exact_joint": ["P2", "P3", "P4", "P5", "P6", "S3_2",
-                        "J2L4r0", "SQL4dimer"],
+                        "J2L4edge", "SQL4dimer"],
         "wiring": ["P2", "P3", "P4", "P5", "P6", "P7", "P8", "P10", "P12",
                    "S3_2", "S4_3", "S6_4", "S8_6",
-                   "J2L4r0", "J2L6r1", "J2L8r2", "J2L28r1",
+                   "J2L4edge", "J2L6r1", "J2L8r2", "J2L28r1",
                    "SQL4dimer", "SQL4r1", "SQL6r1"],
         "interior": ["P5", "P6", "P7", "P8", "P10", "P12",
                      "S4_3", "S6_4", "S8_6", "J2L6r1", "J2L8r2", "SQL4r1"],
-        "field": ["P4", "P8", "S4_3", "J2L4r0", "J2L6r1", "J2L28r1", "SQL4r1"],
+        "field": ["P4", "P8", "S4_3", "J2L4edge", "J2L6r1", "J2L28r1",
+                  "SQL4r1"],
         "alphabet": ["P4", "J2L6r1", "J2L28r1", "SQL4r1"],
         "equiv": ["P4", "J2L6r1", "SQL4r1"],
     }
@@ -185,6 +213,8 @@ def build_region(spec):
     if spec.startswith("S") and "_" in spec:
         kk, mm = spec[1:].split("_")
         return star_region(int(kk), int(mm))
+    if spec.startswith("J2L") and spec.endswith("edge"):
+        return j2_edge_region(int(spec[3:-4]))
     if spec.startswith("J2L") and "r" in spec:
         rest = spec[3:]
         LL, rr = rest.split("r")

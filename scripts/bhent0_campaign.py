@@ -163,7 +163,7 @@ def t_fiber(spec, outdir):
 def t_alphabet(spec, bg_name, outdir):
     r = be.build_region(spec)
     bg = be.background_shapes(r, bg_name)
-    if "c3" in r:
+    if r.get("whole_cells", False):
         states = be.blind_alphabet_j2(r, bg)
     else:
         states = be.blind_alphabet_pair(r, bg)
@@ -285,7 +285,7 @@ def all_tasks():
     specs_c = sorted(set(bat["exact_joint"]) | {"P7", "J2L6r1"})
     for s in specs_c:
         tasks.append(f"--task collapse --spec {s}")
-    for s in ("P2", "P3", "P4", "P5", "S3_2", "J2L4r0", "SQL4dimer"):
+    for s in ("P2", "P3", "P4", "P5", "S3_2", "J2L4edge", "SQL4dimer"):
         tasks.append(f"--task joint --spec {s}")
     for c in range(be.P6_CHUNKS):
         tasks.append(f"--task joint_chunk --spec P6 --chunk {c}")
