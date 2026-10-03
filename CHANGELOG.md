@@ -1,5 +1,20 @@
 # Changelog
 
+- **v5.6 (RESERVOIR-0)** — Merge-energy deficit and lost-information
+  correspondence: `src/bh_graph/reservoir0.py` (diagnostic
+  `R_merge = -(Delta E_psi + Delta E_G)`, exact `R(d)` formula and
+  cover/fiber/mixed separation, SPLIT-0 fiber sweeps, locality/
+  covariance/roundtrip/additivity books, frozen verdict ladder,
+  firewall scans), `tests/test_reservoir0.py` (44 pins), 477-task
+  campaign + frozen analyzer. VERDICT RES0-XI (68/68 gates): R is an
+  exact nontrivial zero-parameter function of `xi = (cover, d)`
+  (formula `<= 1e-9` on 26,992 fiber rows, both legs vary, swap
+  bitwise, `R_split = -R_merge`); one-neighborhood-local; disjoint-
+  additive with adjacency-supported cross terms; confluent orders
+  agree; hidden contrast at matched energy (max `|dR| = 1.86`);
+  nonzero core on the deterministic core (`R = 1` at `s = 0`).
+  Full suite 2057 passed / 2 skipped on beast (weighted skipped).
+  Records under `data/reservoir0/` (17 MB).
 - **v5.6 (SPLIT-0)** — Deterministic inverse constraints and residual split
   information: `src/bh_graph/split0.py` (exact graph/field inverse census,
   sum-map fiber parametrization `(s,d)`, halves section, covariant residual
