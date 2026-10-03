@@ -1,0 +1,2420 @@
+{
+ "apparatus_ok": true,
+ "components": {
+  "E": {
+   "exact_kinds": [
+    "combinatorial",
+    "spectral"
+   ],
+   "exact_rules": [
+    "E_spectral",
+    "E_ball"
+   ],
+   "rules": [
+    {
+     "ablation": [
+      {
+       "dropped": "disp_dim_2",
+       "exact": false,
+       "fn_cells": [],
+       "fp_cells": [
+        "ring_N1600",
+        "ring_N400"
+       ]
+      }
+     ],
+     "component": "E",
+     "conjuncts": [
+      "disp_dim_2"
+     ],
+     "exact": true,
+     "fn": 0,
+     "fn_cells": [],
+     "fp": 0,
+     "fp_cells": [],
+     "kind": "spectral",
+     "minimal": true,
+     "n": 13,
+     "name": "E_spectral",
+     "necessary": true,
+     "sufficient": true,
+     "tn": 2,
+     "tp": 11
+    },
+    {
+     "ablation": [
+      {
+       "dropped": "superlinear_ball",
+       "exact": false,
+       "fn_cells": [],
+       "fp_cells": [
+        "ring_N1600",
+        "ring_N400"
+       ]
+      }
+     ],
+     "component": "E",
+     "conjuncts": [
+      "superlinear_ball"
+     ],
+     "exact": true,
+     "fn": 0,
+     "fn_cells": [],
+     "fp": 0,
+     "fp_cells": [],
+     "kind": "combinatorial",
+     "minimal": true,
+     "n": 13,
+     "name": "E_ball",
+     "necessary": true,
+     "sufficient": true,
+     "tn": 2,
+     "tp": 11
+    }
+   ]
+  },
+  "F": {
+   "exact_kinds": [],
+   "exact_rules": [],
+   "rules": [
+    {
+     "ablation": [
+      {
+       "dropped": "square_class",
+       "exact": false,
+       "fn_cells": [],
+       "fp_cells": [
+        "hex_L40",
+        "j2rewire_s0",
+        "j2rewire_s1",
+        "j2rewire_s2",
+        "j2swap8_s0",
+        "tri_L40"
+       ]
+      }
+     ],
+     "component": "F",
+     "conjuncts": [
+      "square_class"
+     ],
+     "exact": false,
+     "fn": 2,
+     "fn_cells": [
+      "j2swap8_s1",
+      "j2swap8_s2"
+     ],
+     "fp": 0,
+     "fp_cells": [],
+     "kind": "spectral",
+     "minimal": false,
+     "n": 13,
+     "name": "F_spectral",
+     "necessary": false,
+     "sufficient": true,
+     "tn": 6,
+     "tp": 5
+    },
+    {
+     "ablation": [
+      {
+       "dropped": "bipartite",
+       "exact": false,
+       "fn": 1,
+       "fn_cells": [
+        "j2swap8_s2"
+       ],
+       "fp": 1,
+       "fp_cells": [
+        "j2swap8_s0"
+       ]
+      },
+      {
+       "dropped": "girth_4",
+       "exact": false,
+       "fn": 2,
+       "fn_cells": [
+        "j2swap8_s1",
+        "j2swap8_s2"
+       ],
+       "fp": 0,
+       "fp_cells": []
+      },
+      {
+       "dropped": "triangle_free",
+       "exact": false,
+       "fn": 2,
+       "fn_cells": [
+        "j2swap8_s1",
+        "j2swap8_s2"
+       ],
+       "fp": 0,
+       "fp_cells": []
+      },
+      {
+       "dropped": "c4_positive",
+       "exact": false,
+       "fn": 2,
+       "fn_cells": [
+        "j2swap8_s1",
+        "j2swap8_s2"
+       ],
+       "fp": 0,
+       "fp_cells": []
+      }
+     ],
+     "component": "F",
+     "conjuncts": [
+      "bipartite",
+      "girth_4",
+      "triangle_free",
+      "c4_positive"
+     ],
+     "exact": false,
+     "fn": 2,
+     "fn_cells": [
+      "j2swap8_s1",
+      "j2swap8_s2"
+     ],
+     "fp": 0,
+     "fp_cells": [],
+     "kind": "combinatorial",
+     "minimal": false,
+     "n": 13,
+     "name": "F_plaquette",
+     "necessary": false,
+     "sufficient": true,
+     "tn": 6,
+     "tp": 5
+    }
+   ]
+  },
+  "G_square_grade": {
+   "exact_kinds": [
+    "combinatorial",
+    "spectral"
+   ],
+   "exact_rules": [
+    "G_spectral",
+    "G_plaquette"
+   ],
+   "rules": [
+    {
+     "ablation": [
+      {
+       "dropped": "square_class",
+       "exact": false,
+       "fn_cells": [],
+       "fp_cells": [
+        "hex",
+        "rewire_s0",
+        "rewire_s1",
+        "rewire_s2",
+        "swap8_s0",
+        "swap8_s1",
+        "swap8_s2",
+        "tri"
+       ]
+      }
+     ],
+     "component": "G_square_grade",
+     "conjuncts": [
+      "square_class"
+     ],
+     "exact": true,
+     "fn": 0,
+     "fn_cells": [],
+     "fp": 0,
+     "fp_cells": [],
+     "kind": "spectral",
+     "minimal": true,
+     "n": 10,
+     "name": "G_spectral",
+     "necessary": true,
+     "sufficient": true,
+     "tn": 8,
+     "tp": 2
+    },
+    {
+     "ablation": [
+      {
+       "dropped": "bipartite",
+       "exact": false,
+       "fn": 0,
+       "fn_cells": [],
+       "fp": 2,
+       "fp_cells": [
+        "swap8_s0",
+        "swap8_s1"
+       ]
+      },
+      {
+       "dropped": "girth_4",
+       "exact": true,
+       "fn": 0,
+       "fn_cells": [],
+       "fp": 0,
+       "fp_cells": []
+      },
+      {
+       "dropped": "triangle_free",
+       "exact": true,
+       "fn": 0,
+       "fn_cells": [],
+       "fp": 0,
+       "fp_cells": []
+      },
+      {
+       "dropped": "c4_positive",
+       "exact": true,
+       "fn": 0,
+       "fn_cells": [],
+       "fp": 0,
+       "fp_cells": []
+      }
+     ],
+     "component": "G_square_grade",
+     "conjuncts": [
+      "bipartite",
+      "girth_4",
+      "triangle_free",
+      "c4_positive"
+     ],
+     "exact": true,
+     "fn": 0,
+     "fn_cells": [],
+     "fp": 0,
+     "fp_cells": [],
+     "kind": "combinatorial",
+     "minimal": false,
+     "n": 10,
+     "name": "G_plaquette",
+     "necessary": true,
+     "sufficient": true,
+     "tn": 8,
+     "tp": 2
+    }
+   ]
+  },
+  "H_TAU": {
+   "exact_kinds": [],
+   "exact_rules": [],
+   "rules": [
+    {
+     "ablation": [
+      {
+       "dropped": "gap_below_ramp",
+       "exact": false,
+       "fn_cells": [],
+       "fp_cells": [
+        "j2rewire_s0",
+        "j2rewire_s1",
+        "j2rewire_s2",
+        "ring_N1600",
+        "rr4_s0",
+        "rr4_s1",
+        "rr4_s2",
+        "rr8_s0",
+        "rr8_s1",
+        "rr8_s2"
+       ]
+      }
+     ],
+     "component": "H_TAU",
+     "conjuncts": [
+      "gap_below_ramp"
+     ],
+     "exact": false,
+     "fn": 10,
+     "fn_cells": [
+      "j2_L20",
+      "j2_L28",
+      "j2quot_L20",
+      "j2swap8_s0",
+      "j2swap8_s1",
+      "j2swap8_s2",
+      "rr3_s0",
+      "rr3_s1",
+      "rr3_s2",
+      "tri_L28"
+     ],
+     "fp": 1,
+     "fp_cells": [
+      "ring_N1600"
+     ],
+     "kind": "spectral",
+     "minimal": false,
+     "n": 27,
+     "name": "HTAU_gap",
+     "necessary": false,
+     "sufficient": false,
+     "tn": 9,
+     "tp": 7
+    },
+    {
+     "ablation": [
+      {
+       "dropped": "diam_not_small",
+       "exact": false,
+       "fn_cells": [],
+       "fp_cells": [
+        "j2rewire_s0",
+        "j2rewire_s1",
+        "j2rewire_s2",
+        "ring_N1600",
+        "rr4_s0",
+        "rr4_s1",
+        "rr4_s2",
+        "rr8_s0",
+        "rr8_s1",
+        "rr8_s2"
+       ]
+      }
+     ],
+     "component": "H_TAU",
+     "conjuncts": [
+      "diam_not_small"
+     ],
+     "exact": false,
+     "fn": 3,
+     "fn_cells": [
+      "rr3_s0",
+      "rr3_s1",
+      "rr3_s2"
+     ],
+     "fp": 1,
+     "fp_cells": [
+      "ring_N1600"
+     ],
+     "kind": "combinatorial",
+     "minimal": false,
+     "n": 27,
+     "name": "HTAU_diameter",
+     "necessary": false,
+     "sufficient": false,
+     "tn": 9,
+     "tp": 14
+    }
+   ]
+  },
+  "H_shell": {
+   "exact_kinds": [
+    "combinatorial",
+    "spectral"
+   ],
+   "exact_rules": [
+    "Hshell_spectral",
+    "Hshell_local"
+   ],
+   "rules": [
+    {
+     "ablation": [
+      {
+       "dropped": "not_hex",
+       "exact": false,
+       "fn_cells": [],
+       "fp_cells": [
+        "hex_L28",
+        "hex_L40"
+       ]
+      }
+     ],
+     "component": "H_shell",
+     "conjuncts": [
+      "not_hex"
+     ],
+     "exact": true,
+     "fn": 0,
+     "fn_cells": [],
+     "fp": 0,
+     "fp_cells": [],
+     "kind": "spectral",
+     "minimal": true,
+     "n": 27,
+     "name": "Hshell_spectral",
+     "necessary": true,
+     "sufficient": true,
+     "tn": 2,
+     "tp": 25
+    },
+    {
+     "ablation": [
+      {
+       "dropped": "not_hex_local",
+       "exact": false,
+       "fn_cells": [],
+       "fp_cells": [
+        "hex_L28",
+        "hex_L40"
+       ]
+      }
+     ],
+     "component": "H_shell",
+     "conjuncts": [
+      "not_hex_local"
+     ],
+     "exact": true,
+     "fn": 0,
+     "fn_cells": [],
+     "fp": 0,
+     "fp_cells": [],
+     "kind": "combinatorial",
+     "minimal": true,
+     "n": 27,
+     "name": "Hshell_local",
+     "necessary": true,
+     "sufficient": true,
+     "tn": 2,
+     "tp": 25
+    }
+   ]
+  },
+  "J_useful": {
+   "exact_kinds": [],
+   "exact_rules": [],
+   "rules": [
+    {
+     "ablation": [
+      {
+       "dropped": "gap_below_ramp",
+       "exact": false,
+       "fn": 3,
+       "fn_cells": [
+        "rr3_s0",
+        "rr3_s1",
+        "rr3_s2"
+       ],
+       "fp": 1,
+       "fp_cells": [
+        "ring_N1600"
+       ]
+      },
+      {
+       "dropped": "not_hex",
+       "exact": false,
+       "fn": 7,
+       "fn_cells": [
+        "j2_L20",
+        "j2_L28",
+        "j2quot_L20",
+        "rr3_s0",
+        "rr3_s1",
+        "rr3_s2",
+        "tri_L28"
+       ],
+       "fp": 3,
+       "fp_cells": [
+        "hex_L28",
+        "hex_L40",
+        "ring_N1600"
+       ]
+      },
+      {
+       "dropped": "ordered_dim",
+       "exact": false,
+       "fn": 7,
+       "fn_cells": [
+        "j2_L20",
+        "j2_L28",
+        "j2quot_L20",
+        "rr3_s0",
+        "rr3_s1",
+        "rr3_s2",
+        "tri_L28"
+       ],
+       "fp": 1,
+       "fp_cells": [
+        "ring_N1600"
+       ]
+      }
+     ],
+     "component": "J_useful",
+     "conjuncts": [
+      "gap_below_ramp",
+      "not_hex",
+      "ordered_dim"
+     ],
+     "exact": false,
+     "fn": 7,
+     "fn_cells": [
+      "j2_L20",
+      "j2_L28",
+      "j2quot_L20",
+      "rr3_s0",
+      "rr3_s1",
+      "rr3_s2",
+      "tri_L28"
+     ],
+     "fp": 1,
+     "fp_cells": [
+      "ring_N1600"
+     ],
+     "kind": "spectral",
+     "minimal": false,
+     "n": 27,
+     "name": "J_inherited",
+     "necessary": false,
+     "sufficient": false,
+     "tn": 14,
+     "tp": 5
+    }
+   ]
+  }
+ },
+ "degree_control": [
+  {
+   "cell": "j2rewire_s0",
+   "changed": [
+    "adj_gap_distinct",
+    "bipartite",
+    "c4",
+    "cross_sheet_fraction",
+    "diam_not_small",
+    "diameter",
+    "disp_dim_2",
+    "disp_family",
+    "girth",
+    "girth_3",
+    "girth_4",
+    "is_j2_spectrum",
+    "lambda2_lap",
+    "max_mult",
+    "n_distinct_evals",
+    "n_shell_orbits",
+    "ordered_dim",
+    "proj_edge_ratio",
+    "quotient_is_square",
+    "separable_band",
+    "shell_orbit_one",
+    "square_class",
+    "triangle_free",
+    "triangles",
+    "zero_mode_dim"
+   ],
+   "degree_preserved": true
+  },
+  {
+   "cell": "j2rewire_s1",
+   "changed": [
+    "adj_gap_distinct",
+    "bipartite",
+    "c4",
+    "cross_sheet_fraction",
+    "diam_not_small",
+    "diameter",
+    "disp_dim_2",
+    "disp_family",
+    "girth",
+    "girth_3",
+    "girth_4",
+    "is_j2_spectrum",
+    "lambda2_lap",
+    "max_mult",
+    "n_distinct_evals",
+    "n_shell_orbits",
+    "ordered_dim",
+    "proj_edge_ratio",
+    "quotient_is_square",
+    "separable_band",
+    "shell_orbit_one",
+    "square_class",
+    "triangle_free",
+    "triangles",
+    "zero_mode_dim"
+   ],
+   "degree_preserved": true
+  },
+  {
+   "cell": "j2rewire_s2",
+   "changed": [
+    "adj_gap_distinct",
+    "bipartite",
+    "c4",
+    "cross_sheet_fraction",
+    "diam_not_small",
+    "diameter",
+    "disp_dim_2",
+    "disp_family",
+    "girth",
+    "girth_3",
+    "girth_4",
+    "is_j2_spectrum",
+    "lambda2_lap",
+    "max_mult",
+    "n_distinct_evals",
+    "n_shell_orbits",
+    "ordered_dim",
+    "proj_edge_ratio",
+    "quotient_is_square",
+    "separable_band",
+    "shell_orbit_one",
+    "square_class",
+    "triangle_free",
+    "triangles",
+    "zero_mode_dim"
+   ],
+   "degree_preserved": true
+  },
+  {
+   "cell": "j2swap8_s0",
+   "changed": [
+    "adj_gap_distinct",
+    "bipartite",
+    "c4",
+    "cross_sheet_fraction",
+    "diameter",
+    "disp_dim_2",
+    "disp_family",
+    "is_j2_spectrum",
+    "lambda2_lap",
+    "max_mult",
+    "n_distinct_evals",
+    "n_shell_orbits",
+    "ordered_dim",
+    "proj_edge_ratio",
+    "quotient_is_square",
+    "separable_band",
+    "shell_orbit_one",
+    "square_class",
+    "zero_mode_dim"
+   ],
+   "degree_preserved": true
+  },
+  {
+   "cell": "j2swap8_s1",
+   "changed": [
+    "adj_gap_distinct",
+    "bipartite",
+    "c4",
+    "cross_sheet_fraction",
+    "diameter",
+    "disp_dim_2",
+    "disp_family",
+    "is_j2_spectrum",
+    "lambda2_lap",
+    "max_mult",
+    "n_distinct_evals",
+    "n_shell_orbits",
+    "ordered_dim",
+    "proj_edge_ratio",
+    "quotient_is_square",
+    "separable_band",
+    "shell_orbit_one",
+    "square_class",
+    "zero_mode_dim"
+   ],
+   "degree_preserved": true
+  },
+  {
+   "cell": "j2swap8_s2",
+   "changed": [
+    "adj_gap_distinct",
+    "bipartite",
+    "c4",
+    "cross_sheet_fraction",
+    "diameter",
+    "disp_dim_2",
+    "disp_family",
+    "girth",
+    "girth_3",
+    "girth_4",
+    "is_j2_spectrum",
+    "lambda2_lap",
+    "max_mult",
+    "n_distinct_evals",
+    "n_shell_orbits",
+    "ordered_dim",
+    "proj_edge_ratio",
+    "quotient_is_square",
+    "separable_band",
+    "shell_orbit_one",
+    "square_class",
+    "triangle_free",
+    "triangles",
+    "zero_mode_dim"
+   ],
+   "degree_preserved": true
+  }
+ ],
+ "family_bad": [],
+ "family_mismatch_preview": [],
+ "g_missing": [],
+ "g_note": "G families are scored on headline representatives (Bloch transfer for pristine builders; headline seeds for swap/rewire). L=160 spectra are not computed.",
+ "holdout_passed": false,
+ "holdout_reason": "No blind holdout. VAC-0 CLASS labels are already public, the independent-family count is too small to split, and the frozen VAC-0Q builders have no phenotype. A holdout was not manufactured.",
+ "j2_nonuniqueness": {
+  "E": [
+   {
+    "cell": "hex_L40",
+    "disp_family": "hex",
+    "lacks_vs_j2": [
+     "c4_positive",
+     "girth_4",
+     "is_j2_spectrum",
+     "not_hex",
+     "not_hex_local",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class"
+    ],
+    "shares": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "square_n40",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "tri_L40",
+    "disp_family": "tri",
+    "lacks_vs_j2": [
+     "bipartite",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "hex_L28",
+    "disp_family": "hex",
+    "lacks_vs_j2": [
+     "c4_positive",
+     "girth_4",
+     "is_j2_spectrum",
+     "not_hex",
+     "not_hex_local",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class"
+    ],
+    "shares": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2quot_L20",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2quot_L28",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "square_n28",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "square_n30",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "tri_L28",
+    "disp_family": "tri",
+    "lacks_vs_j2": [
+     "bipartite",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball"
+    ]
+   }
+  ],
+  "F": [
+   {
+    "cell": "j2quot_L40",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2swap8_s1",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "disp_dim_2",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2swap8_s2",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "open_70x61",
+    "disp_family": "open_grid",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "regular",
+     "sheet2",
+     "shell_orbit_one"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "separable_band",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "square_n40",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   }
+  ],
+  "G_square_grade_non_j2": [
+   "square"
+  ],
+  "H_TAU": [
+   {
+    "cell": "hex_L40",
+    "disp_family": "hex",
+    "lacks_vs_j2": [
+     "c4_positive",
+     "girth_4",
+     "is_j2_spectrum",
+     "not_hex",
+     "not_hex_local",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class"
+    ],
+    "shares": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2swap8_s0",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "disp_dim_2",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2swap8_s1",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "disp_dim_2",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2swap8_s2",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "square_n40",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "tri_L40",
+    "disp_family": "tri",
+    "lacks_vs_j2": [
+     "bipartite",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "hex_L28",
+    "disp_family": "hex",
+    "lacks_vs_j2": [
+     "c4_positive",
+     "girth_4",
+     "is_j2_spectrum",
+     "not_hex",
+     "not_hex_local",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class"
+    ],
+    "shares": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2quot_L20",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2quot_L28",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "ring_N400",
+    "disp_family": "ring",
+    "lacks_vs_j2": [
+     "c4_positive",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2",
+     "square_class",
+     "superlinear_ball"
+    ],
+    "shares": [
+     "bipartite",
+     "diam_not_small",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "rr3_s0",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr3_s1",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr3_s2",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "square_n28",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "tri_L28",
+    "disp_family": "tri",
+    "lacks_vs_j2": [
+     "bipartite",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball"
+    ]
+   }
+  ],
+  "H_shell": [
+   {
+    "cell": "j2rewire_s0",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "j2rewire_s1",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "j2rewire_s2",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "j2swap8_s0",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "disp_dim_2",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2swap8_s1",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "disp_dim_2",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2swap8_s2",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "sheet2",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "square_n40",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "tri_L40",
+    "disp_family": "tri",
+    "lacks_vs_j2": [
+     "bipartite",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "j2quot_L20",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2quot_L28",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "ring_N1600",
+    "disp_family": "ring",
+    "lacks_vs_j2": [
+     "c4_positive",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2",
+     "square_class",
+     "superlinear_ball"
+    ],
+    "shares": [
+     "bipartite",
+     "diam_not_small",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "ring_N400",
+    "disp_family": "ring",
+    "lacks_vs_j2": [
+     "c4_positive",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2",
+     "square_class",
+     "superlinear_ball"
+    ],
+    "shares": [
+     "bipartite",
+     "diam_not_small",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "rr3_s0",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr3_s1",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr3_s2",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr4_s0",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr4_s1",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr4_s2",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr8_s0",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr8_s1",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr8_s2",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "square_n28",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "tri_L28",
+    "disp_family": "tri",
+    "lacks_vs_j2": [
+     "bipartite",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball"
+    ]
+   }
+  ],
+  "J_useful": [
+   {
+    "cell": "square_n40",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "tri_L40",
+    "disp_family": "tri",
+    "lacks_vs_j2": [
+     "bipartite",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "j2quot_L20",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "j2quot_L28",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "ring_N400",
+    "disp_family": "ring",
+    "lacks_vs_j2": [
+     "c4_positive",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2",
+     "square_class",
+     "superlinear_ball"
+    ],
+    "shares": [
+     "bipartite",
+     "diam_not_small",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "rr3_s0",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr3_s1",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "rr3_s2",
+    "disp_family": "none",
+    "lacks_vs_j2": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "is_j2_spectrum",
+     "ordered_dim",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "shell_orbit_one",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "not_hex",
+     "not_hex_local",
+     "regular",
+     "superlinear_ball"
+    ]
+   },
+   {
+    "cell": "square_n28",
+    "disp_family": "square",
+    "lacks_vs_j2": [
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "sheet2"
+    ],
+    "shares": [
+     "bipartite",
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "girth_4",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "separable_band",
+     "shell_orbit_one",
+     "square_class",
+     "superlinear_ball",
+     "triangle_free"
+    ]
+   },
+   {
+    "cell": "tri_L28",
+    "disp_family": "tri",
+    "lacks_vs_j2": [
+     "bipartite",
+     "girth_4",
+     "is_j2_spectrum",
+     "quotient_is_square",
+     "separable_band",
+     "sheet2",
+     "square_class",
+     "triangle_free"
+    ],
+    "shares": [
+     "c4_positive",
+     "diam_not_small",
+     "disp_dim_2",
+     "not_hex",
+     "not_hex_local",
+     "ordered_dim",
+     "regular",
+     "shell_orbit_one",
+     "superlinear_ball"
+    ]
+   }
+  ],
+  "j2_shared_features": [
+   "bipartite",
+   "c4_positive",
+   "diam_not_small",
+   "disp_dim_2",
+   "girth_4",
+   "is_j2_spectrum",
+   "not_hex",
+   "not_hex_local",
+   "ordered_dim",
+   "quotient_is_square",
+   "regular",
+   "separable_band",
+   "sheet2",
+   "shell_orbit_one",
+   "square_class",
+   "superlinear_ball",
+   "triangle_free"
+  ]
+ },
+ "law_controls": {
+  "D_pass_outside_square_class": [
+   "hex_L28",
+   "hex_L40",
+   "ring_N1600",
+   "ring_N400",
+   "tri_L28",
+   "tri_L40"
+  ],
+  "H_existence_all_pass": true,
+  "H_existence_n": 27,
+  "I_class_counts": {
+   "FINITE-RANGE": 26,
+   "NON-RADIAL": 1
+  },
+  "J_alg_all_pass": true,
+  "J_alg_n": 27,
+  "J_alg_n_families": 6,
+  "square_class_does_not_control_D": true,
+  "square_class_does_not_control_J_alg": true
+ },
+ "necessity": {
+  "E": {
+   "n_fail": 2,
+   "n_pass": 11,
+   "shared_by_all_pass": [
+    "diam_not_small",
+    "disp_dim_2",
+    "ordered_dim",
+    "regular",
+    "shell_orbit_one",
+    "superlinear_ball"
+   ]
+  },
+  "F": {
+   "n_fail": 6,
+   "n_pass": 7,
+   "shared_by_all_pass": [
+    "c4_positive",
+    "diam_not_small",
+    "not_hex",
+    "not_hex_local",
+    "superlinear_ball"
+   ]
+  },
+  "G_square_grade": {
+   "n_fail": 8,
+   "n_pass": 2,
+   "shared_by_all_pass": [
+    "bipartite",
+    "c4_positive",
+    "diam_not_small",
+    "disp_dim_2",
+    "girth_4",
+    "not_hex",
+    "not_hex_local",
+    "ordered_dim",
+    "regular",
+    "separable_band",
+    "shell_orbit_one",
+    "square_class",
+    "superlinear_ball",
+    "triangle_free"
+   ]
+  },
+  "H_TAU": {
+   "n_fail": 10,
+   "n_pass": 17,
+   "shared_by_all_pass": [
+    "regular"
+   ]
+  },
+  "H_shell": {
+   "n_fail": 2,
+   "n_pass": 25,
+   "shared_by_all_pass": [
+    "not_hex",
+    "not_hex_local",
+    "regular"
+   ]
+  },
+  "J_useful": {
+   "n_fail": 15,
+   "n_pass": 12,
+   "shared_by_all_pass": [
+    "not_hex",
+    "not_hex_local",
+    "regular"
+   ]
+  }
+ },
+ "verdict": "SUBCLASS0-PARTIAL"
+}
