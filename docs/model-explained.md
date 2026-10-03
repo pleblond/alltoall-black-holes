@@ -3,7 +3,7 @@
 *A companion to the technical paper, written for educated non-physicists who
 already know what quantum entanglement is. Everything else is defined as
 needed; the mathematics is kept to a handful of formulas, each translated.
-For the full derivations, code, and tests, see `paper/paper.md`.*
+For the full derivations, code, and tests, see `paper/v5/main.pdf`.*
 
 ---
 

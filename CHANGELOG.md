@@ -199,8 +199,9 @@
   residue frozen at weight 1/2; witness I = 0. Full suite 1812 passed /
   2 skipped (weighted skipped). Records under `data/vacdomain/`.
 
-All notable changes to the paper + code. Versions match `paper/paper.md`
-draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
+All notable changes to the paper + code. Versions matched `paper/paper.md`
+draft headers through v4.1 (sources removed after v5.7; see git history);
+GitHub releases (Zenodo-archived) are marked with DOI status.
 
 - **v5.7 (VAC-0 completion)** — Vacuum Substrate Universality verdict: MIXED
   (nothing requires uniquely J2). LAW: A-identities, D ballistic

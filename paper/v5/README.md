@@ -41,7 +41,7 @@ with paper text. v5/main.tex:
   GW190814 audit, ringdown wording) extend beyond v4.1. All v4.1 numbers
   identical (p=0.913±0.049, 0.93/0.94/0.91 at
   4k/8k/16k, 0.047 M☉, ~1/yr O5, 42.99", γ=1, E_QG,2=√8 E_P).
-- v4.1 `paper.md` + `main.tex`/`main.pdf` untouched as extended record.
+- v4.1 `paper.md` + `main.tex`/`main.pdf` removed after v5.7 (see git history); v5 is canonical.
 - Honesty ledger preserved and tightened (S1 table).
 
 ## Compile (verified under TeX Live 2023; zero warnings)
