@@ -87,7 +87,7 @@ def main() -> int:
     # ---- 0F: scaling leg (derived slopes + ordering) ----
     lam_rows = [r for r in sw28 if r["family"] == "sine-x"
                 and abs(float(r["params"].get("delta", 0.0)) - math.pi / 4.0) < 1e-9]
-    lam_rows = sorted(lam_rows, key=lambda r: float(r["params"]["lam"]))
+    lam_rows = sorted(lam_rows, key=lambda r: float(r["analytic_grad"]))
     if len(lam_rows) >= 2:
         xs = np.array([float(r["analytic_grad"]) for r in lam_rows])
         ys = np.array([float(r["B_pcmax"]) for r in lam_rows])
