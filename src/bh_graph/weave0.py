@@ -287,10 +287,16 @@ def build_c0(L: int) -> dict:
 
 
 def build_c1(S: int, L: int) -> dict:
-    """C1 control: ordered aligned stack (periodic vertical edges)."""
+    """C1 control: ordered aligned stack (periodic vertical edges).
+
+    Requires S >= 3 (the stack ring is 10-regular only then; S = 2
+    identifies the two verticals per node).
+    """
     from bh_graph.formation import j2_torus_coords, j2_torus_graph
 
     S, L = int(S), int(L)
+    if S < 3:
+        raise ValueError("C1 stack needs S >= 3")
     M = 2 * L * L
     sg = j2_torus_graph(L)
     sc = j2_torus_coords(L)
@@ -609,12 +615,13 @@ def verify_stage_a(asm: dict) -> dict:
         except Exception:  # noqa: BLE001 - verification failed -> False
             out["bipartite"] = False
         out["bipartite_gated"] = True
-    # Meeting record exactness.
-    if fam == "c2" or fam == "c2sq" or fam == "c2nb":
+    # Meeting record exactness (branch on the meeting class, not family).
+    meeting = asm.get("meeting", "")
+    if meeting == "chain":
         ring = tuple(asm["ring"])
         out["meeting_ok"] = (sorted(ring) == list(range(S))
                              and ring == chain_ring_order(S, asm["seed"]))
-    elif fam == "c2er3":
+    elif meeting == "er3":
         out["meeting_ok"] = (tuple(sorted(tuple(sorted(e)) for e in asm["er3"]))
                              == er3_meeting_edges(S, asm["seed"]))
     else:

@@ -86,11 +86,17 @@ def test_weave0_sheets_intact_all_meetings():
 
 
 def test_weave0_c1_toy_exact():
-    asm = W.build_c1(2, 4)
+    asm = W.build_c1(4, 4)
     asm = {**asm, "tag": "t", "fam": "c1"}
     g = asm["graph"]
-    assert g.number_of_nodes() == 64
+    assert g.number_of_nodes() == 128
     assert all(d == 10 for _, d in g.degree())
+    from bh_graph.phase import is_bipartition_ok as phase_bip_ok
+
+    assert phase_bip_ok(g, asm["bipart"]) and nx.is_bipartite(g)
+    assert W.verify_stage_a(asm)["A_PASS"]
+    with pytest.raises(ValueError):
+        W.build_c1(2, 4)
     from bh_graph.phase import is_bipartition_ok as phase_bip_ok
 
     assert phase_bip_ok(g, asm["bipart"]) and nx.is_bipartite(g)
@@ -162,7 +168,7 @@ def test_weave0_tag_grammar():
 
 
 def test_weave0_build_tag_toys():
-    for tag in ("c0-j2L4", "c1-S2L4", "c2-S2L4-lam004-s7",
+    for tag in ("c0-j2L4", "c1-S4L4", "c2-S2L4-lam004-s7",
                 "c2dense-S2L4-lam004-s7", "c2er3-S4L4-lam004-s7",
                 "c2sq-S2L4-lam004-s7", "c2nb-S2L4-lam004-s7",
                 "c3-j3L4", "c4-cbL4", "c5-S2L4-lam004-s7"):
@@ -326,9 +332,12 @@ def test_weave0_krylov_diff_tv_matches_eigen_on_c0():
 
 def test_weave0_blind_firewall_audit():
     src = pathlib.Path("scripts/weave0_blind.py").read_text()
-    for tok in ("weave0", "build_tag", "tag_graph", "j2_torus", "j3_torus",
+    # NOTE: the bare token "weave0" is allowed (measurement filenames);
+    # the import scan below guards the module firewall.
+    for tok in ("build_tag", "tag_graph", "j2_torus", "j3_torus",
                 "cubic_torus", "coords", "formation", "hidden", "seal",
-                "quotient", "sheet", "stitch", "symmetric_embedding"):
+                "quotient", "sheet", "stitch", "symmetric_embedding",
+                "bh_graph.weave0", "weave0_campaign"):
         assert tok not in src, tok
     tree = ast.parse(src)
     imported = set()
