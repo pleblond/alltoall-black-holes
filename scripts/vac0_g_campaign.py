@@ -288,7 +288,12 @@ def _g1_case(args):
     trb = trb_weights(psi_t, masks)
     prof = col_profile(psi_t, order, x_of)
     nfit = min(lb, 8)
-    slope = interior_slope(prof, WALL_LO, nfit) if lb > 0 else {"slope": 0.0, "n": 0}
+    if lb > 1:
+        slope = interior_slope(prof, WALL_LO, nfit)
+    elif lb == 1:
+        slope = {"slope": float("nan"), "n": 1}  # G6: one column, no slope
+    else:
+        slope = {"slope": 0.0, "n": 0}
     asym = interior_asym(prof, WALL_LO, lb) if lb > 0 else {"asym": 1.0, "monotonic": True}
     return {"fam": fam, "seed": seed, "e0": e0, "lb": lb, "tsep": float(tsep),
             "T": trb["T"], "R": trb["R"], "B": trb["B"],

@@ -23,3 +23,19 @@ def test_empty_wall_all_families():
             assert g.number_of_nodes() > 0, fam
     finally:
         vgc.L_G = old
+
+
+def test_lb1_slope_nan_no_crash():
+    """G6: LB=1 files NaN slope (one column) instead of raising in polyfit."""
+    import math
+
+    old_L, old_W = vgc.L_G, vgc.WALL_LO
+    vgc.L_G, vgc.WALL_LO = 8, 4
+    try:
+        rec = vgc._g1_case(("square", 0, -3.0, 1, 1.0))
+        assert math.isnan(rec["slope"])
+        assert rec["trb_ok"] is True
+        rec0 = vgc._g1_case(("square", 0, -3.0, 0, 1.0))
+        assert rec0["slope"] == 0.0
+    finally:
+        vgc.L_G, vgc.WALL_LO = old_L, old_W

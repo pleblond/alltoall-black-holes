@@ -78,7 +78,7 @@ for _L in (20, 28):
     CELLS[f"j2quot_L{_L}"] = ("j2q", _L, 10.0)
 CELLS["square_n28"] = ("sq", 28, 16.0)
 CELLS["square_n40"] = ("sq", 40, 24.0)
-CELLS["square_n30"] = ("sq30", 30, 25.0)  # P1.1a regression (non-battery)
+CELLS["square_n30"] = ("sq30", 30, 12.0)  # P1.1a regression (non-battery); D8.2 wrap budget
 CELLS["ring_N400"] = ("ring", 400, 120.0)
 CELLS["ring_N1600"] = ("ring", 1600, 480.0)
 CELLS["tri_L28"] = ("tri", 28, 10.0)
@@ -160,6 +160,28 @@ def _prep_sigma_k_r0(setup):
     if kind == "sq30":
         return SIGMA_2D, (0.5, 0.0), (7.0, 15.0)
     return SIGMA_2D, (K_2D, 0.0), (L / 4, L / 2)
+
+
+def _trans_perm(setup, dx, dy):
+    """Translation permutation (D8.1: sheet-preserving on J2 labels).
+
+    Ring: cyclic shift. J2-label cells (j2/sw8/rew): shift (x, y) mod L
+    in full c3 labels, preserving the sheet bit (bijective). Unique-
+    coordinate 2D cells: shift (x, y) (unchanged D6 behavior).
+    """
+    order = setup["order"]
+    L = setup["L"]
+    if setup["kind"] == "ring":
+        return {v: (v + dx) % L for v in order}
+    if setup["kind"] in ("j2", "sw8", "rew"):
+        c3 = setup["c3"]
+        inv = {(x, y, b): v for v, (x, y, b) in c3.items()}
+        return {v: inv[((x + dx) % L, (y + dy) % L, b)]
+                for v, (x, y, b) in c3.items()}
+    coords = setup["coords"]
+    inv = {(int(x), int(y)): v for v, (x, y) in coords.items()}
+    return {v: inv[((int(x) + dx) % L, (int(y) + dy) % L)]
+            for v, (x, y) in coords.items()}
 
 
 def grid_coherence_2d(psi, order, coords, L):
@@ -282,14 +304,7 @@ def _evolve_case(args):
     elif prep_kind == "trans":
         raw = clean(k)
         dx, dy = prep_arg
-        L = setup["L"]
-        if setup["kind"] == "ring":
-            perm = {v: (v + dx) % L for v in order}
-        else:
-            inv = {(int(x), int(y)): v for v, (x, y) in coords.items()}
-            perm = {}
-            for v, (x, y) in coords.items():
-                perm[v] = inv[((int(x) + dx) % L, (int(y) + dy) % L)]
+        perm = _trans_perm(setup, dx, dy)
         idx = {v: i for i, v in enumerate(order)}
         out = np.empty_like(raw)
         for v, i in idx.items():
