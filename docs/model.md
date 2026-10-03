@@ -1,4 +1,4 @@
-# The model, stated first (v0.10)
+# The model, stated first (v0.11)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
@@ -109,6 +109,21 @@ orbits 8/67/701/10047/218083, volume/boundary/mixed all rejected,
 hidden-sector field multiplicity exterior-blind); DIM-3-1 repairs the
 3D rulers (DIM31-GEOMETRIC: dimension 3 through six channels, transfer
 validation failing at L16/L20). L0/L1/L2 untouched; no new D-numbers.
+
+**v0.11 area-law release.** No number changes:
+§10 gains six campaigns. WEAVE-0 tests the random-weave 3D alternative
+(WEAVE0-INCOMPLETE ambiguous: volume 3D-side only at λ = 0.01, spectral
+never jointly 3D, no B+C core); Q-INFO-0 identifies store information
+with the banked qubit functional (QINFO0-IDENTICAL: h2 = S_banked to
+1.1e-16, no new entropy); BH-Q-ENT-0 censuses blind-store dimension
+(BHQENT0-UNCLASSIFIED 34/34: topology-dependent D, all law gates miss);
+BH-Q-AREA-0 earns the first area law (BHQAREA0-MAX 22/22: S_Q^∂ = κ*A
+with κ* = 4.2207 at maximum density h* → 1, doubly selected —
+isolated information only, thermodynamics still open); JET-1 closes
+the dynamical-jet route (JET1-NULL 13/13 with a filed stop rule);
+EVENT-0 shows fixed-G flow never forces structural change
+(EVENT0-EQUIV 33/33: 61 orbits, zero firing implications). L0/L1/L2
+untouched; no new D-numbers.
 
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
@@ -888,6 +903,15 @@ Stated so no reader misses them:
 - No exact substrate class rule: SUBCLASS0-PARTIAL ties spectral vs
   combinatorial on E/H-shell/G and proves F/H_TAU exact rules
   impossible in frozen space; no unified condition (§10).
+- No thermodynamic entropy from the area law: BHQAREA0-MAX earns
+  S_Q = κ*A for isolated boundary information only — no temperature,
+  no first law, no Hawking flux, no horizon claim (§10).
+- No dynamical jet, no event forcing: JET1-NULL closes the jet route
+  (stop rule, no JET-2) and EVENT0-EQUIV shows fixed-G flow never
+  forces structural change — timing stays a separate debt (§10).
+- No 3D core on random weaves: WEAVE0-INCOMPLETE finds volume and
+  spectral never jointly 3D (no B+C cell); randomness alone does not
+  make 3D (§10).
 
 ---
 
@@ -940,6 +964,8 @@ Single table; every symbol in §1–§4 appears here with its home.
 | `d_cont` | continuous fiber dimension (1–2; never 0) | §10, `split0` |
 | `R_merge` | `−(ΔE_ψ + ΔE_G)` = exact `f(ξ)` (no reservoir invented) | §10, `reservoir0` |
 | `Q`, `E_Q` | kept event record `(cover, d)`; event-local readout (frozen store, Q-DYN-0b) | §10, `store0`/`qdyn0b` |
+| `h2(P_−)`, `H_Q` | isolated STORE information = banked qubit functional (QINFO0-IDENTICAL, 1.1e-16) | §10, `qinfo0` |
+| `S_Q^∂`, `κ*`, `h*` | boundary Q-information area law `κ* = 4.2207`, `h* → 1` (BHQAREA0-MAX) | §10, `bhqarea0` |
 
 ---
 
@@ -988,7 +1014,10 @@ Single table; every symbol in §1–§4 appears here with its home.
   store), `dim3` + `dim3_reveal` (J₃ lift + blind reveal), `subclass0`
   + `scale0` (substrate class + large-L bank), `qdyn0` + `qdyn0b`
   (store-dynamics null + event-local readout), `bhent` (collapsed
-  census), `dim31` (3D repaired rulers). Side apparatus:
+  census), `dim31` (3D repaired rulers), `weave0` (random-weave core
+  search), `qinfo0` (store/qubit identity), `bhqent0` (blind-store
+  dimension), `bhqarea0` (boundary Q area law), `jet0` + `jet1`
+  (jet search + NULL repair), `event0` (event necessity). Side apparatus:
   `spectroscopy` (SPEC0 null: no localized modes beyond controls),
   `stern_gerlach` (SG gate fails), `fep` (FEP0 null), `graphvk` (D1 graph
   instance closed at small-N ED: all:all `< 0.25` bits vs chain sag `> 0.4`
@@ -998,11 +1027,11 @@ Single table; every symbol in §1–§4 appears here with its home.
   kilonova wires, NICER wire, Kerr-quadrupole future wire, field-program wires
   (second-`M_O` quotient refuter, `I > 0` linearity breaker — §10) — see the v5 kill
   table (`paper/v5/main.tex` §6) and `docs/observation-protocol.md`.
-- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (2409 tests),
+- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (2545 tests),
   `python scripts/generate_figures.py` + `python scripts/generate_v5_figs.py`
   (86 figure files, Figs 1–75), `streamlit run app.py`.
 
-Counts above are v5.9 (`main.pdf` 13pp + `supplement.pdf` 22pp, S1–S12, 49
+Counts above are v5.10 (`main.pdf` 14pp + `supplement.pdf` 24pp, S1–S12, 49
 references cited). The v4.1 sources were removed after v5.7 (recoverable
 from git history); v5 is canonical.
 
@@ -1027,7 +1056,10 @@ collected, 2251 passed, 2 torch/GPU-only skipped (STORE-0, DIM-3-0
 banked; consistency tests repointed to the v5 paper; L0/L1/L2 pins
 unchanged). Suite at v0.10: 2409 collected, 2407 passed, 2
 torch/GPU-only skipped (SUBSTRATE-CLASS-0, SCALE-0, Q-DYN-0/0b,
-BH-ENT-0, DIM-3-1 banked; L0/L1/L2 pins unchanged).
+BH-ENT-0, DIM-3-1 banked; L0/L1/L2 pins unchanged). Suite at v0.11: 2545
+collected, 2543 passed, 2 torch/GPU-only skipped (WEAVE-0, Q-INFO-0,
+BH-Q-ENT-0, BH-Q-AREA-0, JET-0/1, EVENT-0 banked; L0/L1/L2 pins
+unchanged).
 
 ---
 
@@ -1071,6 +1103,12 @@ BH-ENT-0, DIM-3-1 banked; L0/L1/L2 pins unchanged).
   readout, BH-ENT-0 UNCLASSIFIED collapsed census, DIM-3-1 GEOMETRIC
   repaired 3D rulers with transfer-validation debt) with no number
   changes, no new D-numbers, and stable L0/L1/L2.
+  v0.11 extends the F-layer (§10: WEAVE-0 INCOMPLETE random-weave core
+  search, Q-INFO-0 IDENTICAL store/qubit identity, BH-Q-ENT-0
+  UNCLASSIFIED blind-store dimension, BH-Q-AREA-0 MAX boundary
+  Q-information area law with BH-entropy debt, JET-1 NULL jet-route
+  closure, EVENT-0 EQUIV flow-never-forces) with no number changes,
+  no new D-numbers, and stable L0/L1/L2.
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:
   T14 TeV absolutes follow the code (post-BS), not v5 prose (pre-BS).
@@ -1256,6 +1294,20 @@ cross-deviations exactly 0.0), velocities exactly L-independent
 (local pre-horizon physics), POT `ξ`/range exact at all L, packet
 speed vacuum-independent (1.9028 in all 4 vacua). (`scale0`.)
 
+The random alternative to the regular J₃ fabric shows no 3D core.
+WEAVE-0 tests Poisson-sheet weaves over a coupling ladder
+(WEAVE0-INCOMPLETE, ambiguous: no core, not stably 2D/nongeometric;
+270/270 grid cells): the apparatus validates (B/C controls read C0
+as 2D and C4/C3 as 3D; C5 never matches, 0/8), but volume reads
+3D-side only at `λ = 0.01` (B-head 5/8; 2/8 at 0.005, 0/8 above with
+overshoot past 3.5) while spectral never reads 3D jointly (0/8 at
+every rung, 2.05 → 2.77; 3D only at `λ = 0.16` where volume
+explodes) — no B+C joint cell, so `core_lams` is empty. E/F and H
+legs are filed apparatus-invalid (controls fail), not repaired.
+Randomness alone, as woven here, does not make 3D; the J₃/WEAVE
+universality question stays open with a first negative data point.
+(`weave0`.)
+
 ### Backreaction: `B` couples to connectivity; accounting is not a firing law.
 
 Three independent uses of `B` meet: the conjugacy `∂E_ψ/∂A = -2B`
@@ -1310,6 +1362,18 @@ structural map executes, while between events only the field energy
 is conserved. Zero evidence for Q dynamics; no further Q-dynamics
 campaign is justified; event timing stays a separate primitive debt.
 (`qdyn0`, `qdyn0b`).
+Q-INFO-0 identifies the isolated STORE information measure with the
+banked qubit functional (QINFO0-IDENTICAL, 16/17 — the red gate is the
+equiv-rule, red by design when IDENTICAL holds): `h2(P_−)` with
+`P_− = |d|²/(|s|² + |d|²)` matches `S_banked` to `1.1e-16` (machine
+precision vs a 1e-9 bar) under the exact Hadamard map (`H′H = I`,
+Schmidt values `== √(P_±)`), with the same log base 2 and the same
+`0 log 0 = 0` convention; multi-entry `H_Q` is filed separately from
+local `h2` per the no-relations firewall, and the factor-two audit
+reads `(d_R, d_I)` as one complex amplitude (no two-bit inference).
+Handoff: later work reuses the earned qubit measure for isolated Q
+modes instead of inventing an entropy; relations between entries and
+any thermodynamic reading stay out of scope. (`qinfo0`.)
 On pristine J₂ the neutral drift the legal moves allow destroys
 the vacuum class in a handful of moves at every tested size (BR1-FLAT):
 **neutral quiescence stays debt.** The remaining local degree-preserving move admits no
@@ -1392,6 +1456,25 @@ TIME-0 recomputed exactly — exact counts with binary logs, no
 `−Σp log p` anywhere. (`u0`, `time0`, `rand0`, `measure0`, `fiber0`,
 `info0`.)
 
+EVENT-0 shows fixed-G flow never forces structural change
+(EVENT0-EQUIV, 33/33): all 426 rungs of all 71 trajectories stay
+valid (`t* = +∞` everywhere), Q bitwise frozen, reversal exact —
+but 61 exact nontrivial same-N rewire-equivalence orbits exist on
+small symmetric graphs (same state mod `R × U(1)` under a relabeled
+edge set), while J₂-L4 is ruled out graph-first (0 cospectral rewire
+neighbors of 9792/leg). The orbits are equivalence surfaces, not
+triggers: zero firing implications, with 2493 exact time-crossing
+edges filed as TRIGGER-0-consistent conditions. EQUIV, not FORCED;
+no EVENT-1 shopping. (`event0`.) JET-1 closes the dynamical-jet
+route (JET1-NULL, 13/13): repairing JET-0's malformed aggregate
+`compat_keys` comparison with the correct per-rung bitwise check (0
+mismatches over 1152 bits; JET-0 apparatus + 496-record bank consumed
+read-only, banked JET0-INCOMPLETE 31/32 reproduced exactly) promotes
+no surface — `n_genuine = 0`, 0 crossings on 18 ordinary
+trajectories under unchanged definitions. Filed stop rule: no JET-2;
+event-occurrence passes to TIME-Q-0, then to an explicitly new law.
+(`jet0`, `jet1`.)
+
 Synthesis: admissible states plus admissible local transitions give
 admissible histories; the weight `μ(Γ)` on them is missing — the
 **history-measure debt**. What counts as one microstate is settled
@@ -1418,6 +1501,35 @@ multiplicity is dynamically exterior-visible (POT distinguishes graph
 pairs). No asymptotic law supported, no S_BH identification anywhere
 (firewall held), no finite field-fiber count derived (MEASURE0-DEBT);
 blind-submanifold dims filed. (`bhent`.)
+
+The exterior-blind continuous STORE dimension is topology-dependent
+with no universal law (BHQENT0-UNCLASSIFIED, 34/34 — the pre-data
+prediction): joint D is 0 on paths and squares, `2n−4` on stars, `n`
+on J₂ disks, with matched-`(n, b)` pairs splitting by topology; all
+law gates miss (boundary R² = 0.68 vs 0.70 bar, volume 0.89 vs 0.90,
+`b log b` 0.72), near-misses reported unmoved and unshopped. Blind
+weight concentrates boundary-adjacent; the complex-`d` factor two is
+resolved (`N_split = 0`); VMINUS halves the J₂ blind dimension;
+the STORE leg is fully POT-blind where BH-ENT graph legs are
+POT-visible. No measure, no bits, no entropy (`entropy_blocked`
+true). (`bhqent0`.)
+
+Isolated boundary Q-information obeys an area law at maximum density
+(BHQAREA0-MAX, 22/22) — the first earned area law in the program: a
+complete-graph core in a J₃-ball ladder (`r = 1..10`) gives
+`S_Q^∂ = κ* A + o(A)` with `κ* = 4.2207` bits/unit-area,
+`σ* = 4.2208` channels/unit-area, `h* = 0.999990` bits/channel
+(`h̄` ladder monotone 0.72 → 1; power `p(S vs A) = 0.92`;
+volume-density strictly decreasing, ruling out a volume law). The law
+is doubly selected: patterns give `S = 0` exactly (the MAX law is a
+vacuum-on-BH-geometry property, not a property of any state), and the
+plain-J₃ control gives a non-MAX law (`κ = 0.43`, `h ≈ 0.10`) with
+disjoint boundary distributions (`KS = 1.0`) — the complete core
+selects MAX. One disclosed amendment (domain-vs-domain G–J; v1
+NONUNIVERSAL preserved, freeze byte-identical); the conditional
+`a/ℓ_P = 3.42` carries NO agreement claim. Firewall holds: isolated
+boundary information only — not Bekenstein–Hawking entropy, not a
+horizon, not Hawking radiation. (`bhqarea0`, on frozen QINFO0 input.)
 
 ### The vacuum field is a family; `ψ = 0` is the no-information limit.
 
@@ -1576,7 +1688,8 @@ per-phenomenon classes — nothing needs J₂ only — and narrowed by
 SUBCLASS0-PARTIAL: exact minimal E/H-shell/G rules in tied
 spectral+combinatorial form, impossibility proofs for F/H_TAU in
 frozen space, no unified condition; SCALE-0 banks j2 == sq to machine
-precision; closer: the F mechanism, VAC-0Q, or a surviving derivation);
+precision; WEAVE-0 finds no 3D core on random weaves; closer: the F
+mechanism, VAC-0Q, or a surviving derivation);
 **3D transfer validation** (DIM-3-1: repaired rulers read dimension 3
 through six channels, but the cubic-gamma transfer fails tol_agree at
 L16/L20 — GEOMETRIC, not OPERATIONAL; closer: a follow-up on the
@@ -1587,12 +1700,20 @@ first); **history measure** `μ(Γ)` (a reversible measure matching both
 the whole-history and conditional-local readings; FIBER-0: two rivals,
 520 dof); **structural
 kinetics** (the firing postulate, if that is what it is — TRIGGER-0:
-19 conditions, zero implications);
+19 conditions, zero implications; EVENT-0: flow never forces, 61
+orbits, zero implications; JET-1 NULL closes the jet route with a
+stop rule);
 **split information** (narrowed by SPLIT-0 to the fiber measure over
 `ξ`; RESERVOIR-0: the missing account is an exact function of `ξ`;
 STORE-0: a kept-`ξ` store recovers and closes exactly — kept, not
 derived; Q-DYN-0b: Q frozen on all 414 rungs, R earned as an
-event-local functional — no Q dynamics, timing stays debt);
+event-local functional — no Q dynamics, timing stays debt;
+Q-INFO-0: h2(P_−) is the banked qubit functional to 1.1e-16 — the
+isolated-mode measure is earned, relations between modes are not);
+**BH entropy** (BHQAREA0-MAX: isolated boundary Q-information obeys
+S_Q = κ*A at maximum density — thermodynamic identification stays
+open: temperature, first law, Hawking flux; BHQENT0 scopes the
+dimensions as topology-dependent);
 **neutral quiescence** (a dynamics making
 the vacuum an attractor); **matter** (formation after a real dynamics,
 beating the FIELD-0 null); **gravity carrier** (inside coupled `(G, ψ)`
