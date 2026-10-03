@@ -10630,3 +10630,73 @@ all cells, max 2.2 vs trigger 50) already answers growth-beyond-
 input campaign-wide. No record re-run: analyzer recomputes all
 run gates from rep data (record flags kept as campaign-time
 values; analyzer is the gate authority).
+
+## VACSTAB0-VERDICT — VACSTAB0-ROBUST (DATA)
+
+Beast campaign 2026-10-03 (~/vacstab-dd70, 180 records, exit 0) +
+frozen analyzer (+ AMENDMENT-2, analyzer-only): 9/9 checks green,
+CLASS silent, 0 frag cells. Records data/vacstab/ (180 + verdict;
+6.3M after documented slimming: traces thinned 10x except com +
+t0/tend kept, floats rounded to 10 sig figs; full 47M records kept
+on beast; slim/full verdicts identical modulo float repr). Local
+analyzer re-run reproduces the beast verdict bitwise.
+
+**Headline (boxed):** all tested JOINT vacuum components show
+controlled long-time local response: small protected perturbations
+stay small (triangle apparatus), never focus beyond input scale
+(max C_ratio 3.5 vs trigger 50), show no late refocusing beyond
+input scale on propagating seeds (max 0.499 vs 0.5 bar, below own
+initial 0.704), keep positive protection margins with zero zero-
+steps on all 173 runs, and recur identically across backgrounds.
+No systematic component difference (CLASS 1/9 kinds firing, needs
+3). Stability is earned per-cell, not assumed: the frozen F2 rule
+as written fired on P-mixed seeds and was corrected by
+AMENDMENT-2 (frozen-floor confound, mechanism verified).
+
+**Apparatus (all green):** backgrounds 6/6 (E exact, residuals 0,
+current-free, stationary, sector-pure, P_- frozen_err 0);
+unitarity (norm drift + split_max <= 2.9e-9 on all 173 runs, incl.
+frac a = 1000); sup triangle (all sup <= 1x cross-scale, bar 10x);
+protection (m_min > 0 everywhere, min 8.2e-6 at the theorem floor
+frac a = 1e-3 interiors; 0 zero-steps campaign-wide); sector
+(normalized conservation, worst 4.6e-11); identity (8/8 xbg
+bitwise); blind (hidden-d on sym vacua: coarse = ||d0||^2 to
+2e-8, slack 1e-6).
+
+**Concentration/late (F1/F2):** F1 max 3.51 (patch; point-like
+seeds theorem-capped, packet/standing <= 2.2 even at L4). F2 on
+propagating seeds: max 0.499 (sym_sector 2-node seed, below own
+initial 0.704: lingering, not growing); packet xl 0.057. P-mixed
+filed: late <= init_max everywhere (point 0.758 vs 1.000; hidden
+0.673 = 0.673 exactly, frozen); max late-F 0.85 (point) / 0.99
+(packet) = revival-to-initial, response stays O(initial).
+
+**Recurrence (filed, background-independent):** xl packet (all 6
+bg identical): 303 wraps, first return t = 64.6, best 1-F =
+0.0049 at t = 1252.6. xl point: 0 wraps (half-frozen COM), best
+1-F = 0.093 at t = 1806, no first-return. L-scan packet: exact
+revivals at L4/L8 (F_best ~ 0), degrading with L (L28: 0.022);
+wrap counts ~ 1/L with revival jitter (363/186/85/138/90/75).
+Recurrence scales grow with L (filed table).
+
+**Amplitude/visibility (filed):** frac-mode sup_B slope 2.0000
+exact on all 3 anchors (both legs scale: 2-homogeneous, scale
+covariance holds over 1e-3..1e3). Coarse visibility: sym-d on
+hidden vacua blind at linear order (packet-on-circle 0.0-1e-6,
+mirror of the banked blind direction); hidden-d on hidden vacua
+visible; point seeds visible everywhere (0.0002-0.0006).
+
+**CLASS (silent):** 1/9 kinds fire (point_phase spread 6.04
+argmax PLUS: sym vacua show 6x more late phase-kick response
+than hidden); nearest quiet: standing 4.52, packet 3.87; rest
+~1.0-2.4. Single-kind effect, no systematic component split.
+
+**Mission questions:** small stays small (yes, all cells);
+concentration despite conserved norm (no: <= 3.5x, trigger 50);
+hidden textures stable (yes: circle points incl. coarse-visible
+interiors behave as the rays); recurrence grows with L (yes);
+components operationally different at long time (no systematic
+difference; one 6x single-kind visibility effect filed).
+
+**Firewall kept:** no structural stability claim (readouts only,
+no geometry dynamics); no vacuum selected, ranked, or mixed.
