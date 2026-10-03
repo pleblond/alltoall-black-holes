@@ -138,7 +138,7 @@ def run_reg(args, outdir: str) -> str:
     if rk == "ev":
         s = m0.build_substrate(args.sub)
         edges = m0.task_edges(s, args.ftag)
-        edge = edges[args.edge]
+        edge = edges[int(args.edge)]
         psi = m0.build_field(s, args.ftag)
         if isinstance(psi, dict):
             psi = psi["psi_A" if args.member == "A" else "psi_B"]
