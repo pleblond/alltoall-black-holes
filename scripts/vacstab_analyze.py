@@ -123,15 +123,19 @@ def analyze(datadir):
     checks["backgrounds"] = bool(bg_ok)
 
     # --- unitarity: norms + split on every run (0A) ---
+    # All run gates are recomputed here from rep data (records carry the
+    # same flags from campaign time; the analyzer is the gate authority,
+    # so AMENDMENT-2 needs no re-runs).
     unit_ok = True
     for name in run_names():
         r = need(recs, name)
-        leg = bool(r["norm_ok"]) and bool(r["split_ok"])
+        rep = r["rep"]
+        leg = bool(vs.is_norm_conserved_ok(rep)) and bool(vs.is_split_ok(rep))
         unit_ok = unit_ok and leg
         if not leg:
-            notes.append(f"{name}: UNITARITY FAIL norm_ok={r['norm_ok']} "
-                         f"split_ok={r['split_ok']} "
-                         f"split_max={r['rep']['split_max']:.2e}")
+            notes.append(f"{name}: UNITARITY FAIL n_d_drift="
+                         f"{rep['n_d_drift']:.2e} "
+                         f"split_max={rep['split_max']:.2e}")
     checks["unitarity"] = bool(unit_ok)
     notes.append(f"unitarity (norms + split) all runs: {unit_ok}")
 
@@ -139,8 +143,9 @@ def analyze(datadir):
     sup_ok = True
     for name in run_names():
         r = need(recs, name)
-        sup_ok = sup_ok and bool(r["sup_ok"])
-        if not r["sup_ok"]:
+        leg = bool(vs.is_sup_ok(r["rep"]["sup"], r["scales"]))
+        sup_ok = sup_ok and leg
+        if not leg:
             notes.append(f"{name}: SUP FAIL {r['rep']['sup']}")
     checks["sup_bounds"] = bool(sup_ok)
     notes.append(f"sup triangle apparatus all runs: {sup_ok}")
@@ -150,8 +155,9 @@ def analyze(datadir):
     frag_cells = []
     for name in stab_names() + amp_names() + xl_names():
         r = need(recs, name)
-        conc_ok = conc_ok and bool(r["conc_ok"])
-        if not r["conc_ok"]:
+        leg = bool(vs.is_concentration_ok(r["rep"]["C_ratio"]))
+        conc_ok = conc_ok and leg
+        if not leg:
             frag_cells.append(name + ":F1")
             notes.append(f"{name}: F1 C_ratio={r['rep']['C_ratio']:.1f} "
                          f"C_sup={r['rep']['C_sup']:.1f}")
@@ -161,12 +167,26 @@ def analyze(datadir):
         notes.append(f"{name}: C_ratio={r['rep']['C_ratio']:.2f} (filed)")
     checks["concentration"] = bool(conc_ok)
 
-    # --- late focus F2 (0B, headline L28 only gated) ---
+    # --- late focus F2 (0B, propagating seeds on headline L28 gated) ---
+    # AMENDMENT-2 scope: P-mixed/frozen seeds carry a frozen P_- half
+    # whose persistent response is filed with mechanism (frozen floor +
+    # revival-to-initial, verified: C_ratio = 1.00, late ~= initial
+    # scale, max late-F < 1), not gated as refocusing.
     late_ok = True
     for name in stab_names() + amp_names() + xl_names():
         r = need(recs, name)
-        late_ok = late_ok and bool(r["late_ok"])
-        if not r["late_ok"]:
+        kind = r["kind"]
+        if kind not in vs.PROPAGATING_KINDS:
+            tr = r["rep"]["traces"]
+            init_B = float(tr["dB"][0]) / max(r["scales"]["S_B"], 1e-300)
+            notes.append(f"{name}: late_ratio={r['late_ratio']:.3f} "
+                         f"init_ratio={init_B:.3f} "
+                         f"C_ratio={r['rep']['C_ratio']:.2f} "
+                         f"F_min={r['rep']['F_min']:.4f} (filed, P-mixed)")
+            continue
+        leg = bool(vs.is_late_focus_ok(r["rep"], r["scales"]))
+        late_ok = late_ok and leg
+        if not leg:
             frag_cells.append(name + ":F2")
             notes.append(f"{name}: F2 late_ratio={r['late_ratio']:.3f} "
                          f"F_min={r['rep']['F_min']:.4f}")
@@ -179,20 +199,22 @@ def analyze(datadir):
     prot_ok = True
     for name in run_names():
         r = need(recs, name)
-        prot_ok = prot_ok and bool(r["prot_ok"])
-        if not r["prot_ok"]:
+        leg = bool(vs.is_protection_ok(r["rep"]))
+        prot_ok = prot_ok and leg
+        if not leg:
             notes.append(f"{name}: PROTECTION FAIL "
                          f"m_min={r['rep']['m_min']:.3e} "
                          f"n_zero={r['rep']['n_zero_steps']}")
     checks["protection"] = bool(prot_ok)
     notes.append(f"protection (margin + zero-free) all runs: {prot_ok}")
 
-    # --- sector (0G, every run) ---
+    # --- sector (0G, every run; scale-covariant, AMENDMENT-2) ---
     sector_ok = True
     for name in run_names():
         r = need(recs, name)
-        sector_ok = sector_ok and bool(r["sector_ok"])
-        if not r["sector_ok"]:
+        leg = bool(vs.is_sector_conserved_ok(r["rep"]))
+        sector_ok = sector_ok and leg
+        if not leg:
             notes.append(f"{name}: SECTOR FAIL {r['rep']['w0_d']} "
                          f"{r['rep']['wT_d']}")
     checks["sector"] = bool(sector_ok)

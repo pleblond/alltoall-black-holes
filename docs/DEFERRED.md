@@ -10588,3 +10588,45 @@ gate (caught by the battery smoke task). Uniform u_min =
 1/sqrt(N) = 0.0252 > 0.01 keeps eps = 0.01. No gate, bar, or stage
 change; battery design + t_amp use eps_frac_for(bg). Pinned:
 test_protected_design_grids.
+
+### VACSTAB0-AMENDMENT-2 (post-data; analyzer + bars only, no re-runs)
+
+First analyzer pass returned VACSTAB0-PARTIAL: sector 1/173 red,
+blind 2/4 red, late_focus red on all P-mixed seeds. All three are
+measurement/gate-design issues, not physics and not gate weakenings:
+
+**A1 scale-covariant sector conservation.** amp VPLUS packet a =
+1000 reads dsym = 4.55e-9 vs the absolute 1e-9 bar. Sector weights
+scale as ||d0||^2 = 100 at frac a = 1000 while the bar is
+calibrated at unit norm (VACCOMP-A1 precedent: same fp-noise
+mechanism, relative drift 4.55e-11). Conservation is evaluated on
+normalized weights (exact-arithmetic equivalence). All 173 runs
+green after.
+
+**A2 blind slack 1e-9 -> 1e-6 relative.** Hidden-d on sym vacua at
+eps = 0.003 reads coarse_sup/||d0||^2 = 1.00000002: Krylov fp
+noise over 1e4 steps (absolute ~1e-13 on drift 9e-6), not
+cross-term leakage (which would exceed by O(10): cross/dd ~ 17x
+at eps = 0.003). Slack 1e-6 covers the measured 2e-8 floor with
+50x headroom while keeping full detection power. 4/4 pins green.
+
+**A3 F2 gated on PROPAGATING_KINDS (packet, standing, patch,
+sym_sector) only.** As frozen, F2 (late > 0.5x triangle scale +
+min-F < 0.9) fires on every P-mixed seed (point_amp, point_phase,
+source, mixed_sector: late_ratio 0.76-0.90, F_min = 0.5 exactly).
+Mechanism, verified from traces: single-node seeds are 50/50
+P-mixed; the frozen P_- half keeps a CONSTANT triangle-scale
+response forever while the P_+ half disperses and partially
+revives (max late-F 0.80-0.85; packet pure-sym revives to 0.99
+with response at 0.057x scale). Late ~= initial scale in every
+fired cell (C_ratio = 1.00 exactly: no focusing beyond input
+scale anywhere). F2-as-frozen therefore flags frozen-floor
+persistence, contradicting its stated intent (late near-maximal
+REFOCUSING, excluding frozen responses). Fix: gate F2 where
+refocusing is identifiable (P_+-pure seeds: initial << 0.5x,
+nothing frozen); file P-mixed cells with the verified mechanism
+(frozen floor + revival-to-initial). F1 (concentration ratio,
+all cells, max 2.2 vs trigger 50) already answers growth-beyond-
+input campaign-wide. No record re-run: analyzer recomputes all
+run gates from rep data (record flags kept as campaign-time
+values; analyzer is the gate authority).

@@ -289,3 +289,33 @@ def test_launch_scales():
     assert abs(float(np.linalg.norm(d)) - 0.01) < 1e-12
     d2 = vs.stab_delta("packet", vac, sub, eps=0.01, a=10.0, mode="frac")
     assert abs(float(np.linalg.norm(d2)) - 0.1) < 1e-12
+
+
+def test_sector_scale_covariant():
+    big = {"w0_d": {"w_sym": 100.0, "w_anti": 0.0},
+           "wT_d": {"w_sym": 100.0 + 4.55e-9, "w_anti": 0.0}}
+    assert vs.is_sector_conserved_ok(big)
+    tiny = {"w0_d": {"w_sym": 3e-8, "w_anti": 3e-8},
+            "wT_d": {"w_sym": 3e-8 + 1e-20, "w_anti": 3e-8 - 1e-20}}
+    assert vs.is_sector_conserved_ok(tiny)
+    bad = {"w0_d": {"w_sym": 1.0, "w_anti": 0.0},
+           "wT_d": {"w_sym": 0.5, "w_anti": 0.5}}
+    assert not vs.is_sector_conserved_ok(bad)
+
+
+def test_blind_slack_boundary():
+    assert vs.is_blind_ok(9e-6 * (1.0 + 2e-8), 0.003)
+    assert vs.is_blind_ok(1e-4, 0.01)
+    assert not vs.is_blind_ok(1e-4 * 11.0, 0.01)
+
+
+def test_propagating_kinds_pure_sym():
+    sub = _sub4()
+    for kind in vs.PROPAGATING_KINDS:
+        eta = vs.stab_seed(kind, sub)
+        w = vf.sector_weights(eta, sub["order"], sub["c3"])
+        assert vf.is_sector_pure_ok(w, "sym"), kind
+    for kind in ("point_amp", "source", "mixed_sector"):
+        eta = vs.stab_seed(kind, sub)
+        w = vf.sector_weights(eta, sub["order"], sub["c3"])
+        assert not vf.is_sector_pure_ok(w, "sym"), kind

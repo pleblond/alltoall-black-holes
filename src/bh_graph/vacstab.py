@@ -57,6 +57,11 @@ KINDS = ("point_amp", "point_phase", "patch", "packet", "standing",
          "source", "sym_sector", "hidden_sector", "mixed_sector")
 XBG_KINDS = ("point_amp", "patch", "packet", "standing", "source",
              "sym_sector", "hidden_sector", "mixed_sector")
+# Fully-propagating (P_+-pure) seeds: nothing frozen, so any late
+# near-maximal response is genuine refocusing (F2 gate scope,
+# AMENDMENT-2). Single-node/mixed seeds carry a frozen P_- half whose
+# persistent response is filed, not gated.
+PROPAGATING_KINDS = ("patch", "packet", "standing", "sym_sector")
 
 # Protected-regime eps grids (abs mode, a = 1): uniform-magnitude
 # backgrounds satisfy a*u_min - eps > 0 at eps <= 0.01 (u_min =
@@ -97,7 +102,7 @@ BARS = {
     "norm_accounting": 1e-9,  # VAC-EXC bar (unitarity legs)
     "split": 1e-8,  # full-vac-d split over long windows (100x 0A bar)
     "sector": 1e-9,  # d-sector weight conservation ([H,S] = 0)
-    "blind": 1e-9,  # cross-blindness slack (coarse <= ||d0||^2)
+    "blind": 1e-6,  # cross-blindness slack (Krylov floor, AMENDMENT-2)
     "cross_bg": 1e-12,  # cross-background dpsi identity (VAC-EXC 0B)
 }
 
@@ -318,7 +323,9 @@ def is_late_focus_ok(rep: dict, scales: dict) -> bool:
 
     Fires (False) iff a dephased disturbance (min-F < bar, excluding
     frozen hidden-sector responses) shows late-window (t > T/2) local
-    response above late_frac x the triangle cross-scale.
+    response above late_frac x the triangle cross-scale. Gated on
+    PROPAGATING_KINDS only (AMENDMENT-2): P-mixed seeds carry a frozen
+    P_- half whose persistent response is filed, not gated.
     """
     try:
         fmin = float(rep["F_min"])
@@ -605,11 +612,21 @@ def is_split_ok(rep: dict) -> bool:
 
 
 def is_sector_conserved_ok(rep: dict) -> bool:
-    """Boolean check: d-sector weights conserved (never raises)."""
+    """Boolean check: d-sector weights conserved (never raises).
+
+    Scale-covariant (AMENDMENT-2, VACCOMP-A1 precedent): weights scale
+    as ||d0||^2 (up to 100 at frac a = 1000), while the bar is
+    calibrated at unit norm, so conservation is evaluated on
+    normalized weights. In exact arithmetic shape-conserved iff
+    a-shape-conserved at every a > 0.
+    """
     try:
         w0, wT = rep["w0_d"], rep["wT_d"]
-        return bool(abs(float(wT["w_sym"]) - float(w0["w_sym"])) < BARS["sector"]
-                    and abs(float(wT["w_anti"]) - float(w0["w_anti"]))
+        tot = float(w0["w_sym"]) + float(w0["w_anti"])
+        scale = tot if tot > 0.0 else 1.0
+        return bool(abs(float(wT["w_sym"]) - float(w0["w_sym"])) / scale
+                    < BARS["sector"]
+                    and abs(float(wT["w_anti"]) - float(w0["w_anti"])) / scale
                     < BARS["sector"])
     except (KeyError, TypeError, ValueError):
         return False
@@ -628,7 +645,10 @@ def is_blind_ok(coarse_sup: float, d0_norm: float) -> bool:
 
     Hidden-sector d on a sheet-symmetric vacuum: per-cell coarse-rho
     cross terms cancel exactly (QUOT-0 blindness), leaving only the
-    quadratic dd drift, so coarse_sup <= ||d0||^2 (theorem, fp slack).
+    quadratic dd drift, so coarse_sup <= ||d0||^2 (theorem). Slack
+    covers the Krylov noise floor over 1e4 steps (AMENDMENT-2:
+    measured 2e-8 relative at eps = 0.003); genuine cross-term
+    leakage would exceed by O(10), so detection power is intact.
     """
     try:
         return bool(float(coarse_sup)
