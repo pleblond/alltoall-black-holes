@@ -540,8 +540,14 @@ def cmd_controls(args):
         cc = CMP.CELLS.index(tag)
         freeze["ref_2d"][tag] = own_med.get(cc, float("nan"))
     freeze["own_med"] = {str(c): v for c, v in own_med.items()}
+    freeze["own_scat"] = {str(c): v for c, v in own_scat.items()}
     tol_r = freeze["tolerances"]["tol_regress"]
-    tol_i = freeze["tolerances"]["tol_identity"]
+    # NOTE (2026-10-03 correction): no control set-scatter gate. A2.6
+    # specifies d_arr(L) = set-median with scatter FILED; the J3
+    # headline instrument is transfer-based, and tol_identity
+    # calibrates its (transfer) precision for the J3 identity /
+    # mismatch gates. Gating DIRECT (own-gamma) scatter by transfer
+    # precision was a code-vs-spec deviation (correction note A2.6c).
     # --- control gates (headline failures -> debt) ---
     for gname, dim in DIM_TRUE.items():
         for c in GROUPS[gname]:
@@ -550,10 +556,7 @@ def cmd_controls(args):
                     freeze["debt"].append(
                         f"d_arr W {CMP.CELLS[c]} med {own_med[c]:.3f} "
                         f"vs {dim}")
-                if own_scat[c] > tol_i:
-                    freeze["debt"].append(
-                        f"d_arr W {CMP.CELLS[c]} scatter "
-                        f"{own_scat[c]:.3f} > tol")
+                # own_scat filed (freeze["own_scat"]), never gated (A2.6c).
             else:
                 freeze["debt"].append(
                     f"d_arr W {CMP.CELLS[c]} UNMEAS all sets")

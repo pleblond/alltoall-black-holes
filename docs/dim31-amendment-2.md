@@ -103,6 +103,30 @@ precision (discrimination).
   packet + chart + static (A2.7/A3) all pass. Else GEOMETRIC
   with failures listed; freeze debt -> ESTIMATOR-DEBT.
 
+## A2.6c Correction (2026-10-03, post-controls, pre-J3)
+
+Two deviations between the A2.6 text/implementation and the
+frozen mechanical record, corrected here (no J3 data exists;
+J3 verdict criteria unchanged):
+
+1. Code gated control DIRECT (own-gamma) set-scatter against
+   tol_identity. The amendment specifies "Scatter filed": the
+   headline instrument is transfer-based (same instrument J3
+   and cubic), and tol_identity calibrates TRANSFER precision
+   for the J3 identity/mismatch gates. Holding the direct
+   calibration leg (alpha x own-gamma sampling noise, control
+   scatter 0.49--0.50 on j2-L42/cb-L20) to headline precision
+   is a category error. Gate removed; own_scat now filed in
+   the freeze record alongside own_med. The specified control
+   absolute gate (|med - dim| <= tol_regress) passes on all
+   ten control cells.
+2. Informal "~" values in A2.6 (0.46 scatter, 0.90 bias) were
+   diagnosis-phase notebook figures, superseded by the
+   mechanical record: max cubic transfer scatter 0.320 ->
+   tol_identity 0.416; max control |bias| 0.672 (cb-L12) ->
+   tol_regress 0.873. The 1.3x rules, not the informal
+   figures, bind the J3 verdict.
+
 ## A2.7 Static channel: deferred to Amendment-3
 
 Single-delta joint (alpha, xi) fits FALSIFIED on controls:
