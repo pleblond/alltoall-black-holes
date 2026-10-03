@@ -1,0 +1,28 @@
+{
+ "vac": "VMINUS",
+ "kind": "point",
+ "placement": "near",
+ "applicable": true,
+ "qdyn0_src": {
+  "vac": "VMINUS",
+  "kind": "point",
+  "placement": "near",
+  "applicable": true,
+  "dist_u_k": 1,
+  "q_fixed": true,
+  "d_rho_k": -0.008625134740140816,
+  "d_bond_k": -0.010750736302769787,
+  "E_Q_disturbed": 0.833511750957049
+ },
+ "qb": {
+  "E_Q_T_clean": 0.8091237633949464,
+  "E_Q_T_dist": 0.833511750957049,
+  "dE_Q": 0.024387987562102587,
+  "dA": 0.024387987562102587,
+  "dRe": 0.0,
+  "attrib_err": 0.0,
+  "dist_closure": 0.0,
+  "q_fixed": true
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

@@ -1,0 +1,62 @@
+{
+ "sub": "er-24",
+ "ftag": "spike0",
+ "edge": [
+  6,
+  13
+ ],
+ "k": 24,
+ "eligible": true,
+ "det_ok": true,
+ "rcov_ok": true,
+ "ucov_ok": true,
+ "info_ok": true,
+ "R": 1.0,
+ "R_cover": 1.0,
+ "R_fiber": -0.0,
+ "R_mixed": 0.0,
+ "c": 0,
+ "B": 0.0,
+ "Acoef": 1.0,
+ "W": [
+  0.0,
+  0.0
+ ],
+ "Rformula": 1.0,
+ "form_err": 0.0,
+ "formula_ok": true,
+ "R_split": -1.0,
+ "invert_err": 0.0,
+ "pred_ok": true,
+ "roundtrip_ok": true,
+ "exact_ok": true,
+ "phys_ok": true,
+ "drained": true,
+ "E_X": 77.0,
+ "E_M": 76.0,
+ "close_merge": 0.0,
+ "close_split": 0.0,
+ "store_cov": {
+  "rel_exact": true,
+  "rel_k": true,
+  "rel_R": 0.0,
+  "u1_rec": 0.0,
+  "u1_R": 0.0,
+  "swap_equiv": true,
+  "swap_R": 0.0
+ },
+ "locality": {
+  "applicable": true,
+  "ok": true,
+  "class": "one-neighborhood-local"
+ },
+ "candidates": {
+  "qR": true,
+  "qd": true,
+  "qc": true,
+  "qxi": true
+ },
+ "E_store_derived": true,
+ "R_pin_match": true,
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

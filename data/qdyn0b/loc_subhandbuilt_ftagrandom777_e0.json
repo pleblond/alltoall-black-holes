@@ -1,0 +1,34 @@
+{
+ "sub": "handbuilt",
+ "ftag": "random777",
+ "edge": [
+  0,
+  1
+ ],
+ "applicable": true,
+ "qdyn0_loc": {
+  "sub": "handbuilt",
+  "ftag": "random777",
+  "edge": [
+   0,
+   1
+  ],
+  "applicable": true,
+  "remote": 5,
+  "q_same_0": true,
+  "R_err_0": -4.440892098500626e-16,
+  "q_fixed_branch": true,
+  "E_Q_branch": 3.341698318818644,
+  "E_Q_mut_branch": 3.3192666728814313,
+  "readout_drift": -0.022431645937212696
+ },
+ "qb": {
+  "FR_t0_err": 0.0,
+  "q_same_T": true,
+  "dA_T": -0.003837043747264346,
+  "dRe_T": -0.018594602189948267,
+  "E_Q_T": 3.341698318818644,
+  "E_Q_mut_T": 3.3192666728814313
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

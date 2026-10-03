@@ -1,0 +1,16 @@
+{
+ "vac": "VPI",
+ "kind": "point",
+ "placement": "far",
+ "applicable": false,
+ "qdyn0_src": {
+  "vac": "VPI",
+  "kind": "point",
+  "placement": "far",
+  "applicable": false
+ },
+ "qb": {
+  "applicable": false
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

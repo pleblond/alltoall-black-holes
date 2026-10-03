@@ -1,0 +1,24 @@
+{
+ "qdyn0_multi": {
+  "kind": "seq",
+  "name": "handbuilt-chain",
+  "ftag": "uniform",
+  "n_entries": 2,
+  "keys_same": true,
+  "insertion_order": [
+   "7",
+   "8"
+  ],
+  "R_books": [
+   3.0,
+   1.5714285714285712
+  ],
+  "R_sum": 4.571428571428571,
+  "reverse_after_wait_ok": true,
+  "drained": true
+ },
+ "qb": {
+  "passthrough": true
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

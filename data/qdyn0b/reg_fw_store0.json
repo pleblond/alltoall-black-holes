@@ -1,0 +1,11 @@
+{
+ "fitted_params": 0,
+ "no_tuning": true,
+ "no_measure": true,
+ "fiber0_verdict": "FIBER0-DEBT",
+ "rivals_valid": true,
+ "rivals_detail": "valid=True differ=True tv-cells=79",
+ "roundtrips_exact": true,
+ "n_roundtrips": 12,
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

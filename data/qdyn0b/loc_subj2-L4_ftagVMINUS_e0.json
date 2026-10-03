@@ -1,0 +1,34 @@
+{
+ "sub": "j2-L4",
+ "ftag": "VMINUS",
+ "edge": [
+  0,
+  2
+ ],
+ "applicable": true,
+ "qdyn0_loc": {
+  "sub": "j2-L4",
+  "ftag": "VMINUS",
+  "edge": [
+   0,
+   2
+  ],
+  "applicable": true,
+  "remote": 12,
+  "q_same_0": true,
+  "R_err_0": 0.0,
+  "q_fixed_branch": true,
+  "E_Q_branch": 0.8091237633949464,
+  "E_Q_mut_branch": 0.8656091775694614,
+  "readout_drift": 0.056485414174515025
+ },
+ "qb": {
+  "FR_t0_err": 0.0,
+  "q_same_T": true,
+  "dA_T": 0.056485414174515025,
+  "dRe_T": 0.0,
+  "E_Q_T": 0.8091237633949464,
+  "E_Q_mut_T": 0.8656091775694614
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

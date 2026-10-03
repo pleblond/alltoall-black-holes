@@ -1,0 +1,16 @@
+{
+ "qdyn0_multi": {
+  "kind": "pair",
+  "sub": "j2-L4",
+  "ftag": "uniform",
+  "relation": "disjoint",
+  "n_entries": 2,
+  "factorize_t0": true,
+  "q_fixed_under_flow": true,
+  "no_compression": true
+ },
+ "qb": {
+  "passthrough": true
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

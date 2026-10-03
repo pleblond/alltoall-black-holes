@@ -1,0 +1,34 @@
+{
+ "sub": "path-8",
+ "ftag": "uniform",
+ "edge": [
+  0,
+  1
+ ],
+ "applicable": true,
+ "qdyn0_loc": {
+  "sub": "path-8",
+  "ftag": "uniform",
+  "edge": [
+   0,
+   1
+  ],
+  "applicable": true,
+  "remote": 3,
+  "q_same_0": true,
+  "R_err_0": -2.220446049250313e-16,
+  "q_fixed_branch": true,
+  "E_Q_branch": 1.0255859308155022,
+  "E_Q_mut_branch": 1.0199759029572155,
+  "readout_drift": -0.005610027858286681
+ },
+ "qb": {
+  "FR_t0_err": 0.0,
+  "q_same_T": true,
+  "dA_T": -0.005610027858286681,
+  "dRe_T": -0.0,
+  "E_Q_T": 1.0255859308155022,
+  "E_Q_mut_T": 1.0199759029572155
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}
