@@ -2559,12 +2559,17 @@ Up to signs and interchange of the axes,
 \lambda_\infty(4,1)
 &=\frac{10}{\pi}-3,\\
 \lambda_\infty(5,0)
-&=\frac{201}{8}-\frac{235}{3\pi}.
+&=\frac{201}{8}-\frac{235}{3\pi},\\
+\lambda_\infty(3,3)
+&=\frac1{16}+\frac{23}{60\pi},\\
+\lambda_\infty(4,3)
+&=\frac{3}{5\pi}.
 \end{align*}
 The cancelled coefficients \(16\pi/\lambda_\infty\) on these shells are
 \(768\pi^2/(16+3\pi)\), \(384\pi^2/(4+3\pi)\),
 \(768\pi^2/(92-21\pi)\), \(768\pi^2/(243\pi-736)\),
-\(16\pi^2/(10-3\pi)\), and \(384\pi^2/(603\pi-1880)\).
+\(16\pi^2/(10-3\pi)\), \(384\pi^2/(603\pi-1880)\),
+\(3840\pi^2/(15\pi+92)\), and \(80\pi^2/3\).
 \end{proposition}
 
 \begin{proof}
@@ -2663,6 +2668,128 @@ The neighbours of \((4,0)\) give
 \]
 hence \(f(5,0)=401/8-470/(3\pi)\) and
 \(\lambda_\infty(5,0)=201/8-235/(3\pi)\).
+
+The sine term in \(\cos(3k_x+3k_y)\) is odd in \(k_y\) and drops out.
+Write \(c=\cos(3k_x)\), \(b=2-\cos k_x\), and \(z=\cos k_y\).
+Then \(Q=4(b-z)\) and \(\cos(3k_y)=4z^3-3z\).
+Set \(w=b-z\). Expanding gives
+\[
+1-c(4z^3-3z)
+=(1-c(4b^3-3b))+c(12b^2-3)w-12cb\,w^2+4c\,w^3.
+\]
+Dividing by \(w\) and averaging in \(k_y\) replaces \(1/w\) by
+\(1/\sqrt{b^2-1}\), \(w\) by \(b\), and \(w^2\) by \(b^2+1/2\).
+The regular piece collapses to \(c(4b^2-1)\):
+\[
+c(12b^2-3)-12cb\cdot b+4c\Bigl(b^2+\frac12\Bigr)
+=c(4b^2-1).
+\]
+Here \(4b^2-1=15-16\cos x+4\cos^2 x\).
+The products
+\[
+\cos(3x)\cos x=\frac12\bigl(\cos 4x+\cos 2x\bigr)
+\]
+and
+\[
+\cos(3x)\cos^2 x
+=\frac12\cos(3x)+\frac14\bigl(\cos 5x+\cos x\bigr)
+\]
+are sums of \(\cos(nx)\) for \(n\neq 0\), so
+\(\int_0^{2\pi}c(4b^2-1)\,dx=0\).
+
+The singular numerator is \(S=1-c(4b^3-3b)\).
+Set \(v=\sin^2(x/2)\), so \(\cos x=1-2v\) and \(b=1+2v\).
+Then
+\[
+c=(1+48v^2)-(18v+32v^3),
+\qquad
+4b^3-3b=(1+48v^2)+(18v+32v^3),
+\]
+and the product is the difference of squares
+\[
+(1+48v^2)^2-(18v+32v^3)^2
+=1-228v^2+1152v^4-1024v^6.
+\]
+Hence
+\[
+S=228v^2-1152v^4+1024v^6
+=4v^2\bigl(57-288v^2+256v^4\bigr).
+\]
+On \((0,2\pi)\),
+\(\sqrt{b^2-1}=2\sin(x/2)\sqrt{1+\sin^2(x/2)}\), so with
+\(\varphi=x/2\),
+\[
+\frac{S}{\sqrt{b^2-1}}
+=2\sin^3\varphi\cdot
+\frac{57-288\sin^4\varphi+256\sin^8\varphi}{\sqrt{1+\sin^2\varphi}}.
+\]
+The factor \(1/4\) in \(1/Q\) puts the same \(1/(8\pi)\) in front of the
+\(x\)-integral as in the diagonal case.
+The regular integral vanishes, and the substitution \(x=2\varphi\)
+together with the symmetry about \(\varphi=\pi/2\) gives
+\[
+f(3,3)
+=\frac{1}{\pi}\int_0^1
+\frac{(1-w^2)P(1-w^2)}{\sqrt{2-w^2}}\,dw,
+\]
+where \(w=\cos\varphi\) and \(P(s)=57-288s^2+256s^4\).
+The numerator is
+\[
+25-473w^2+1696w^4-2272w^6+1280w^8-256w^{10}.
+\]
+Write
+\[
+A_n=\int_0^1\frac{w^{2n}}{\sqrt{2-w^2}}\,dw.
+\]
+The values already used are \(A_0=\pi/4\), \(A_1=\pi/4-1/2\),
+\(A_2=3\pi/8-1\), and \(A_3=5\pi/8-11/6\).
+Thus \(\int_0^{\pi/4}\sin^6\theta\,d\theta=5\pi/64-11/48\).
+The reduction
+\[
+\int_0^{\pi/4}\sin^m\theta\,d\theta
+=-\frac{2^{-m/2}}{m}+\frac{m-1}{m}
+\int_0^{\pi/4}\sin^{m-2}\theta\,d\theta
+\]
+at \(m=8\) gives
+\[
+\int_0^{\pi/4}\sin^8\theta\,d\theta
+=-\frac1{128}+\frac78\Bigl(\frac{5\pi}{64}-\frac{11}{48}\Bigr)
+=-\frac5{24}+\frac{35\pi}{512},
+\]
+and multiplication by \(2^4\) produces \(A_4=35\pi/32-10/3\).
+At \(m=10\),
+\[
+\int_0^{\pi/4}\sin^{10}\theta\,d\theta
+=-\frac1{320}+\frac9{10}\Bigl(-\frac5{24}+\frac{35\pi}{512}\Bigr)
+=-\frac{61}{320}+\frac{63\pi}{1024},
+\]
+and multiplication by \(2^5\) produces \(A_5=63\pi/32-61/10\).
+The integral is \(J\), where
+\[
+J=25A_0-473A_1+1696A_2-2272A_3+1280A_4-256A_5.
+\]
+The coefficient of \(\pi\) is
+\begin{align*}
+&\frac{25-473}{4}
++\frac{3\cdot 1696-5\cdot 2272}{8}
++\frac{35\cdot 1280-63\cdot 256}{32}\\
+&\qquad=-112-784+896=0.
+\end{align*}
+The rational part is
+\begin{align*}
+&\frac{473}{2}-1696+\frac{2272\cdot 11}{6}
+-\frac{1280\cdot 10}{3}+\frac{256\cdot 61}{10}\\
+&\qquad=-\frac{2919}{2}-\frac{304}{3}+\frac{15616}{10}
+=\frac{-43785-3040+46848}{30}
+=\frac{23}{30}.
+\end{align*}
+Thus \(f(3,3)=23/(30\pi)\) and
+\(\lambda_\infty(3,3)=1/16+23/(60\pi)\).
+
+The neighbours of \((3,3)\) are two copies of \((4,3)\) and two copies of
+\((3,2)\), so \(2f(3,3)=f(4,3)+f(3,2)\).
+With \(f(3,2)=1/(3\pi)+1/8\) this gives
+\(f(4,3)=6/(5\pi)-1/8\) and \(\lambda_\infty(4,3)=3/(5\pi)\).
 Dividing \(16\pi\) by each value gives the cancelled coefficients.
 \end{proof}
 
