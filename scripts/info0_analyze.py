@@ -161,6 +161,7 @@ def main():
         n_pairs = 0
         n_raw_match = 0
         n_phys_diff = 0
+        n_sign_equal = 0
         for patch, cells in by_patch.items():
             for pair in ("sign", "phase", "shape", "amplitude"):
                 a = cells.get((pair, "A"))
@@ -173,12 +174,18 @@ def main():
                     n_raw_match += 1
                 else:
                     hidden_ok = False
-                if a["sig"] != b["sig"]:
+                if pair == "sign":
+                    # AMENDMENT-3: R-equivalent equality pin.
+                    if a["sig"] == b["sig"]:
+                        n_sign_equal += 1
+                    else:
+                        hidden_ok = False
+                elif a["sig"] != b["sig"]:
                     n_phys_diff += 1
                 else:
                     hidden_ok = False
         hidden_detail = (f"pairs={n_pairs} raw_match={n_raw_match} "
-                         f"phys_diff={n_phys_diff}")
+                         f"phys_diff={n_phys_diff} sign_equal={n_sign_equal}")
         # Vacuum backgrounds phys distinct among themselves (filed).
         vac_sigs = {}
         for patch, cells in by_patch.items():

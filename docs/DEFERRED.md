@@ -10390,3 +10390,38 @@ set-equality check, mathematically identical to the enumeration pin
 when the union condition holds). Predictions unchanged.
 Gated re-runs: tests/test_info0.py full file (31 pins incl hidden).
 No banked data exists yet; campaign runs under PREREG + AMENDMENT-1 + AMENDMENT-2.
+
+## INFO0-AMENDMENT-3 — Hidden sig resolution + sign-pair R-equivalence (pre-campaign-data)
+
+Found via unit tests (test_hidden_pair_raw_match_phys_diff,
+pre-campaign-data, no campaign records affected). Two apparatus defects
+in hidden-cell signature bookkeeping:
+
+1. Truncation: hidden_cell_branch stored str(sig)[:120], but genuine
+pair differences start at char ~480 (phase 508, shape 482, amplitude
+506 on J2-L4 full keys, ~2.4KB) -> false equality on every pair. Fix:
+store the full signature-key string (measurement resolution,
+VACCOMP0-AMENDMENT-1 precedent). Ledger cost ~60KB over 24 hidden cells.
+
+2. Sign-pair R-equivalence: sign A/B (psi_A = pp+ma, psi_B = pp-ma)
+are the SAME point of X_phys = X/(R x U1): the cell sheet-swap is an
+exact J2-L4 automorphism (edge-set preserved) mapping psi_A exactly
+onto psi_B (verified: psiB == swap(psiA), full sigkeys identical). Any
+sign-mode pair is quotient-trivial when sheet-swap is in Aut(G). The
+signature equality is exactly correct (zero hidden physical bits), NOT
+signature debt -- HIDDEN0-SEPARATED is consistent (labeled-apparatus
+distinguishability at fixed sheets, a different question from
+R-quotient identity). The prereg "sigkeys differ on all 8 pair cells"
+expectation is corrected: the 2 sign cells become EQUALITY pins (the
+signature must identify R-equivalent states -- no over-separation),
+while phase/shape/amplitude (6 cells, full sigkeys verified
+pairwise-different pre-data) remain distinctness pins, plus 4 vacua
+distinct per patch (verified). M_hidden green = raw match all 8 + sign
+equal both patches + phase/shape/amplitude differ both patches + vacua
+distinct both patches. The gate is strictly stronger (tests both
+separation and correct quotienting). Predictions otherwise unchanged.
+
+Gated re-runs: tests/test_info0.py hidden pins (sign-equality +
+pair-distinctness + vacua), hidden campaign cells.
+No banked data exists yet; campaign runs under PREREG + AMENDMENT-1 +
+AMENDMENT-2 + AMENDMENT-3.

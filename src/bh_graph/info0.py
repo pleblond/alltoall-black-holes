@@ -996,8 +996,10 @@ def hidden_cell_branch(pair_name: str, side: str, patch: str,
     e0 = sorted(tuple(sorted(e)) for e in g.edges())[0]
     k0 = sorted(g.nodes())[0]
     sig = signature_key(state_signature(g, psi, order))
+    # Full key, untruncated: genuine pair differences live past char 120
+    # (INFO0-AMENDMENT-3; full J2-L4 keys are ~2.4KB).
     out: dict = {"state": pair_name, "side": side, "patch": patch,
-                 "sig": str(sig)[:120]}
+                 "sig": str(sig)}
     if patch == "edge0":
         i, j = e0
         br = branch_patch_edge(g, psi, order, i, j)

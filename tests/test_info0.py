@@ -269,10 +269,25 @@ def test_hidden_pair_sign_edge():
 
 
 def test_hidden_pair_raw_match_phys_diff():
-    a = i0.hidden_cell_branch("sign", "A", "edge0", 4)
-    b = i0.hidden_cell_branch("sign", "B", "edge0", 4)
-    assert a["branch"]["n_raw"] == b["branch"]["n_raw"]
-    assert a["sig"] != b["sig"]
+    # INFO0-AMENDMENT-3: sign A/B are R-equivalent (same X_phys point;
+    # cell sheet-swap automorphism maps psi_A exactly onto psi_B), so
+    # their sigkeys must be EQUAL (no over-separation). Phase/shape/
+    # amplitude pairs are genuinely distinct (full-key differences live
+    # past char 120, hence no truncation).
+    for patch in ("edge0", "node0"):
+        a = i0.hidden_cell_branch("sign", "A", patch, 4)
+        b = i0.hidden_cell_branch("sign", "B", patch, 4)
+        assert a["branch"]["n_raw"] == b["branch"]["n_raw"]
+        assert a["sig"] == b["sig"]
+    for patch in ("edge0", "node0"):
+        for pair in ("phase", "shape", "amplitude"):
+            a = i0.hidden_cell_branch(pair, "A", patch, 4)
+            b = i0.hidden_cell_branch(pair, "B", patch, 4)
+            assert a["branch"]["n_raw"] == b["branch"]["n_raw"]
+            assert a["sig"] != b["sig"]
+    vac_sigs = {i0.hidden_cell_branch(v, "-", "edge0", 4)["sig"]
+                for v in ("ZERO", "VPLUS", "VPI", "VMINUS")}
+    assert len(vac_sigs) == 4
 
 
 def test_hidden_vacuum_edge():
