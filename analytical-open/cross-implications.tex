@@ -1117,4 +1117,68 @@ A mass that redshifts with \(a_\perp\) would be a further quotient of this
 gap by the transverse scale.
 The gap itself does not supply that quotient.
 
+\section{Bond sum of an eigenstate}
+\label{sec:starsum}
+
+\begin{lemma}
+\label{lem:starsum}
+Let \(H=-A\) and \(H\psi=E\psi\). At every vertex
+\[
+\sum_{j\sim i}B_{ij}=-E\,|\psi_i|^2,
+\qquad
+\sum_{j\sim i}\mathcal{J}_{ij}=0.
+\]
+For a normalised eigenstate, \(\sum_e B_e=-E/2\).
+\end{lemma}
+
+\begin{proof}
+The eigenvalue equation is \(\sum_{j\sim i}\psi_j=-E\psi_i\).
+Multiply by \(\psi_i^*\).
+The right-hand side is real, so the imaginary part of the left-hand side
+vanishes and the real part is the bond sum.
+Summing the bond identity over vertices counts each edge twice and
+gives \(2\sum_e B_e=-E\) after \(\sum_i|\psi_i|^2=1\).
+The same factor is the quadratic form \(E_\psi=-2\sum_e B_e\).
+\end{proof}
+
+On \(8\)-regular \(J_2\) the normalised all-ones mode has \(E=-8\) and
+\(\sum_e B_e=4\).
+Any normalised eigenstate therefore satisfies
+\[
+\sum_e B_e-4=\frac{-E-8}{2}.
+\]
+A gap below the coordination floor is twice the excess of the total bond
+over \(4\):
+\[
+m_{\mathrm{gap}}=-E-8=2\Bigl(\sum_e B_e-4\Bigr)
+\]
+whenever \(E<-8\).
+Rearranging bonds without raising \(\sum_e B_e\) does not open that gap.
+The flat band is the case \(E=0\): the bond sum at every vertex vanishes,
+while a single \(B_{ij}\) may not.
+A flat-band texture is not a quadrature state.
+
+Every eigenstate, including a mode below the edge, has no net current at
+any vertex.
+A state inside the essential spectrum that is not an eigenstate of the
+full \(H\) is not under this constraint.
+Its density can leave the motif.
+The width of that leakage is the golden-rule width controlled by
+\eqref{eq:dos}.
+The conditional law of Theorem~\ref{thm:condJ} describes one edge.
+On an eigenstate the star of currents sums to zero, so that one edge does
+not carry its current alone.
+
+Between events the continuity equation is
+\[
+\partial_t|\psi_i|^2+\sum_{j\sim i}2\mathcal{J}_{ij}=0.
+\]
+A contraction replaces the unitary step.
+The norm jumps by \(2B\), which is Lemma~\ref{lem:bond-expand} and is not
+a divergence of \(\mathcal{J}\).
+The waiting interval transports density by the current.
+The event changes the norm by the bond.
+\(Q\) enters neither identity, because it does not enter \(H\) and it is
+not a term in \(B\).
+
 
