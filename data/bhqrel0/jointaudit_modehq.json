@@ -1,0 +1,1 @@
+{"candidate": "modehq", "sanity": {"m1": 2.0, "m2": 0.0, "m3": 1.0, "m4": 0.4689955935892812}, "sanity_ok": true, "marginals_defined": false, "verdict": "REJECTED", "reason": "wrong-object", "kind": "jointaudit", "_git": "9036a3c9fa14fdeafaa327a46fdf864d00c12f72"}
