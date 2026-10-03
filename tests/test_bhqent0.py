@@ -301,3 +301,29 @@ def test_measure_audit_blocked():
     ma = bq.measure_audit()
     assert ma["measure_earned"] is False
     assert ma["entropy_blocked"] is True
+
+
+# Capped cover enumeration ---------------------------------------------------------------
+
+def test_predecessors_capped_exact_small():
+    # Low degree: identical to full SPLIT0 enumeration, exact formula count.
+    from bh_graph import split0 as s0
+    g = nx.path_graph(5)
+    rows, exact, capped = bq.undirected_predecessors_capped(g, 2, 200)
+    full = s0.undirected_predecessors(g, 2)
+    assert exact == (3 ** 2 + 1) // 2 == len(full) == len(rows)
+    assert capped is False
+    assert [r["key"] for r in rows] == [r["key"] for r in full]
+
+
+def test_predecessors_capped_honest_cap():
+    # High degree: exact count by formula, capped rows deterministic.
+    g = nx.star_graph(8)
+    rows, exact, capped = bq.undirected_predecessors_capped(g, 0, 200)
+    assert exact == (3 ** 8 + 1) // 2
+    assert capped is True
+    assert len(rows) == 200
+    keys = [r["key"] for r in rows]
+    assert keys == sorted(keys) and len(set(keys)) == 200
+    rows2, _, _ = bq.undirected_predecessors_capped(g, 0, 200)
+    assert [r["key"] for r in rows2] == keys

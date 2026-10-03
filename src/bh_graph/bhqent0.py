@@ -712,6 +712,47 @@ def blind_anatomy(analysis, steps, channel="joint"):
 # Discrete cover census (J; combinatorial only, never combined)
 # ---------------------------------------------------------------------------
 
+def undirected_predecessors_capped(g2, k, cap=200):
+    """SPLIT0 undirected predecessors with an honest enumeration cap.
+
+    Exact undirected count is the pinned formula (3^d+1)/2 (U0-H); degrees
+    >= 6 already exceed any feasible full enumeration (each row also
+    builds a graph). When the exact count fits in `cap`, enumerate fully
+    (identical to SPLIT0 undirected_predecessors). Otherwise lazily take
+    the first `cap` unique canonical covers in split_covers generator
+    order (deterministic), sorted by canonical key. Returns
+    (rows, exact_count, capped). Rows mirror undirected_predecessors
+    ({key,A,B,h,cprime,dE}).
+    """
+    from bh_graph import split0 as s0
+    from bh_graph.contraction import apply_split_cover, split_covers
+
+    nbrs = sorted(g2.neighbors(k))
+    d = len(nbrs)
+    exact = (3 ** d + 1) // 2
+    if exact <= cap:
+        return s0.undirected_predecessors(g2, k), exact, False
+    seen: dict = {}
+    for A, B in split_covers(nbrs):
+        ka = tuple(sorted(A))
+        kb = tuple(sorted(B))
+        key = (ka, kb) if ka <= kb else (kb, ka)
+        if key not in seen:
+            seen[key] = (frozenset(A), frozenset(B))
+            if len(seen) >= cap:
+                break
+    i, j = s0.fresh_labels(g2)
+    rows = []
+    for key in sorted(seen):
+        A, B = seen[key]
+        h = apply_split_cover(g2, k, set(A), set(B), i, j)
+        rows.append({"key": key, "A": A, "B": B, "h": h,
+                     "cprime": len(set(A) & set(B)),
+                     "dE": int(h.number_of_edges()
+                               - g2.number_of_edges())})
+    return rows, exact, True
+
+
 def blind_covers_single(rec, M, Q0, frames, steps, psi0_full,
                         static_bar=REMOTE_BAR):
     """Single-entry cover variations: blind + distinct counts.
@@ -726,7 +767,6 @@ def blind_covers_single(rec, M, Q0, frames, steps, psi0_full,
     combinatorial information.
     """
     from bh_graph import bhent as be
-    from bh_graph import split0 as s0
     from bh_graph import store0 as st0
 
     # Rebuild step merged states by forward replay to get (g2,k) per step.
@@ -746,12 +786,15 @@ def blind_covers_single(rec, M, Q0, frames, steps, psi0_full,
         # Current merged state after this step's contraction:
         g2, psi2, order2, kk, _ = contracted_state(g, psi, order, i, j,
                                                    "sum")
-        # Enumerate undirected covers at kk.
+        # Enumerate undirected covers at kk (capped honestly at 200;
+        # exact count is the pinned (3^d+1)/2 formula, never enumerated).
+        cap = 200
         try:
-            preds = s0.undirected_predecessors(g2, kk)
+            preds, n_covers, capped = undirected_predecessors_capped(
+                g2, kk, cap)
         except Exception:
-            preds = []
-        n_covers = len(preds)
+            preds, n_covers, capped = [], 0, False
+        enum = preds[:cap]
         # True cover (canonical) for reference.
         true_cover = tuple(sorted([tuple(sorted(st["cover"][0])),
                                    tuple(sorted(st["cover"][1]))]))
@@ -759,10 +802,18 @@ def blind_covers_single(rec, M, Q0, frames, steps, psi0_full,
         distinct_here = 0
         pot_blind_here = 0
         details = []
-        # Cap enumeration for high-degree nodes (filed honestly).
-        cap = 200
-        enum = preds[:cap]
-        capped = len(preds) > cap
+        tested_here = 0
+        # X0-side legs hoisted per entry (identical inputs/outputs).
+        try:
+            shim0 = dict(rec)
+            shim0["g"] = X0["g"]
+            shim0["order"] = list(X0["order"])
+            psi0a = np.asarray(X0["psi"])
+            sA = be.exterior_static(psi0a, shim0)
+            pA = be.exterior_pot_profile(shim0)
+            legs0_ok = True
+        except Exception:
+            legs0_ok = False
         for row_p in enum:
             A, B = set(row_p["A"]), set(row_p["B"])
             key = tuple(sorted([tuple(sorted(A)), tuple(sorted(B))]))
@@ -791,26 +842,21 @@ def blind_covers_single(rec, M, Q0, frames, steps, psi0_full,
                 continue
             # Exterior static blindness (same R/B partition).
             try:
-                shim0 = dict(rec)
-                shim0["g"] = X0["g"]
-                shim0["order"] = list(X0["order"])
                 shim1 = dict(rec)
                 shim1["g"] = Xalt["g"]
                 shim1["order"] = list(Xalt["order"])
-                sA = be.exterior_static(np.asarray(X0["psi"]), shim0)
                 sB = be.exterior_static(np.asarray(Xalt["psi"]), shim1)
-                sm = bool(be.is_static_match_ok(sA, sB))
+                sm = bool(legs0_ok and be.is_static_match_ok(sA, sB))
             except Exception:
                 sm = False
             # POT graph-sensitive leg (filed; wave/diff TV undefined
             # across different graphs -- BH-ENT-0 equiv precedent).
             try:
-                pA = be.exterior_pot_profile(shim0)
                 pB = be.exterior_pot_profile(shim1)
                 pot_diff = float(
                     __import__("numpy").abs(
                         pA["phi_ext"] - pB["phi_ext"]).max())
-                pot_blind = bool(pot_diff < 1e-9)
+                pot_blind = bool(legs0_ok and pot_diff < 1e-9)
             except Exception:
                 pot_diff, pot_blind = -1.0, False
             # Distinctness (graph+field mod R x U1, capped audit).
@@ -829,11 +875,12 @@ def blind_covers_single(rec, M, Q0, frames, steps, psi0_full,
                 pot_blind_here += 1
             if sm and distinct:
                 total_blind += 1
+            tested_here += 1
             details.append({"blind_static": sm, "distinct": distinct,
                             "pot_diff": pot_diff,
                             "pot_blind": pot_blind})
         rows.append({"entry": k, "n_covers": n_covers,
-                     "n_alts": len(enum) - (1 if n_covers else 0),
+                     "n_alts": tested_here,
                      "capped": capped,
                      "blind_static": blind_here,
                      "pot_blind": pot_blind_here,
