@@ -1495,6 +1495,81 @@ At every other separation the same leading logarithm forces at least four
 eigenvalues outside \([-8,8]\), counted in \(\pm\) pairs.
 The coefficient \(8\pi\sqrt{2}\) does not depend on \(r\).
 The cancelled channel does: its logarithm is \(16\pi/\lambda_\infty(r)\).
+
+\begin{proposition}
+\label{prop:logsep}
+As \(|r|\to\infty\) through nonzero lattice vectors,
+\[
+\lambda_\infty(r)
+=\frac{1}{8\pi}\log|r|+C+\varepsilon(r),
+\]
+where \(C\) is independent of the direction of \(r\) and \(\varepsilon(r)\to 0\).
+Consequently the cancelled coefficient in \eqref{eq:rlog} satisfies
+\[
+\frac{16\pi}{\lambda_\infty(r)}
+=\frac{128\pi^2}{\log|r|}\bigl(1+o(1)\bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+Shift the momentum in \eqref{eq:lamr} by \((\pi,\pi)\).
+The integrand becomes \((1-\cos(k\cdot r))/Q(k)\), with
+\[
+Q(k)=8\sin^2\frac{k_x}{2}+8\sin^2\frac{k_y}{2}
+\]
+on the torus \([-\pi,\pi]^2\).
+Thus \(Q(k)=2|k|^2+O(|k|^4)\) at the origin, and \(Q\) vanishes nowhere else.
+Split the integral at \(|k|=1\), which lies inside the torus, as
+\(S(r)+T(r)\), where
+\[
+S(r)
+=\int_{|k|<1}
+\frac{1-\cos(k\cdot r)}{2|k|^2}
+\,\frac{d^2k}{(2\pi)^2}
+\]
+and \(T(r)\) carries the difference
+\(1/Q(k)-1/(2|k|^2)\) on that disk together with \(1/Q\) outside it.
+The difference is bounded near the origin, so the weight in \(T\) is
+integrable.
+The integral of that weight against \(\cos(k\cdot r)\) tends to \(0\) as
+\(|r|\to\infty\), and therefore \(T(r)\) tends to the integral of the weight,
+a finite constant independent of direction.
+
+In polar coordinates,
+\[
+S(r)
+=\frac{1}{4\pi}
+\int_0^{|r|}
+\frac{1-J_0(s)}{s}\,ds,
+\qquad
+J_0(s)
+=\frac{1}{2\pi}\int_0^{2\pi}\cos(s\cos\theta)\,d\theta.
+\]
+The integrand is \(O(s)\) at the origin.
+Symmetry gives
+\(J_0(s)=(2/\pi)\int_0^{\pi/2}\cos(s\cos\theta)\,d\theta\).
+The phase is stationary at \(\theta=0\).
+For \(s\ge 1\) set \(\delta=s^{-1/2}\) and bound the integral over
+\([0,\delta]\) by \(\delta\).
+On \([\delta,\pi/2]\) one has \(|\sin\theta|\ge\sin\delta\ge 2\delta/\pi\).
+Integration by parts against \(\partial_\theta\sin(s\cos\theta)\) produces
+boundary terms and an integral of \(\csc^2\), each \(O(1/(s\delta))\).
+Thus \(J_0(s)=O(s^{-1/2})\), and
+\(\int_1^\infty |J_0(s)|/s\,ds\) converges.
+Split \(\int_0^{|r|}(1-J_0(s))/s\,ds\) at \(1\).
+The piece up to \(1\) is a constant, and on \([1,|r|]\) the term \(1/s\)
+contributes \(\log|r|\) while the tail of \(J_0(s)/s\) tends to \(0\).
+Hence
+\[
+S(r)=\frac{1}{4\pi}\log|r|+C_S+o(1).
+\]
+The integral in \eqref{eq:lamr} equals \(S(r)+T(r)\), and
+\(\lambda_\infty=1/16\) plus half of that integral, which is the stated
+expansion with coefficient \(1/(8\pi)\).
+The cancelled coefficient is \(16\pi/\lambda_\infty(r)\), and dividing by
+the expansion gives the second display.
+\end{proof}
+
 On \(J_3\) the threshold of Proposition~\ref{prop:adj} already applies at
 every positive separation.
 Adjacent cells admit a sharper value, because the coordination identity
