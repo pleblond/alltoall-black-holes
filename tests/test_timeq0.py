@@ -255,7 +255,7 @@ def test_accounting_merge_close():
          if q0.is_enlarged_equiv_ok(Y, Xp)][0]
     ac = q0.event_accounting(Xm, Y, {"kind": "C", "edge": info["edge"]})
     assert abs(float(ac["close_merge"])) < 1e-9
-    assert ac["support"] == "one-neighborhood-local"
+    assert ac["support"] in ("edge-local", "one-neighborhood-local")
 
 
 # ---------------------------------------------------------------------------

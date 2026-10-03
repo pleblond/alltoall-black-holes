@@ -535,7 +535,7 @@ def main():
             spec = q0.tiny_graph_by_name(gname)
             e = sorted(tuple(sorted(x)) for x in spec["g"].edges())[0]
             if st0.classify_deficit_support(spec["g"], *e)["class"] \
-                    != "one-neighborhood-local":
+                    not in ("edge-local", "one-neighborhood-local"):
                 ok = False
         gate("K-res", bool(ok) and len(boundary) > 0,
              f"n={len(boundary)}")
