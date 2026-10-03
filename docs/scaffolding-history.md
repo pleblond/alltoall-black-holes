@@ -195,6 +195,23 @@ formula exact (ladder legs at L ≥ 256 filed unresolved-cost: dense
 infeasible). What the bank buys every later campaign: the L at which
 each readout stops moving.
 
+## 2.5 A random weave shows no three-dimensional core
+
+WEAVE-0 (#132) tests the random alternative to the regular J₃ fabric:
+Poisson-sheet weaves at coupling `λ`, asking whether volume and spectral
+channels jointly read 3D anywhere. Verdict **WEAVE0-INCOMPLETE** ◇
+(ambiguous: no core, not stably 2D/nongeometric; 270/270 grid cells).
+The apparatus validates (B/C controls: C0 ~2D, C4/C3 ~3D; C5 never
+matches, 0/8 — not generic-random), but the channels never meet: volume
+reads 3D-side only at `λ = 0.01` (B-head 5/8; 2/8 at 0.005, 0/8 above,
+overshooting past 3.5 at `λ = 0.02–0.04`), while spectral never reads
+3D jointly (0/8 everywhere, 2.05 → 2.77 over the ladder; 3D only at
+`λ = 0.16` where volume explodes). No B+C joint cell exists, so no
+core exists (`core_lams` empty); E/F and H legs are apparatus-invalid
+(controls fail), filed rather than repaired. The J₃/WEAVE universality
+question stays open with a first negative data point: randomness alone,
+as woven here, does not make 3D.
+
 ---
 
 # 3. Geometry from the fabric
@@ -561,6 +578,65 @@ vs 0/12 paths and 0/16 square — graph multiplicity is dynamically
 exterior-visible (POT distinguishes pairs). Firewall held: no scaling
 is identified with `S_BH`.
 
+## 8.6 Store information is qubit information, exactly
+
+Q-INFO-0 (#140) asks whether the STORE-derived normalized `+/−`
+information `h2(P_−)` is algebraically identical to the banked
+qubit/two-level functional under the exact Hadamard basis map — without
+inventing a new entropy. Verdict **QINFO0-IDENTICAL** ✓ (16/17; the red
+gate is the equiv-rule, red by design when IDENTICAL holds):
+`max|h2 − S_banked| = 1.1e-16` over all nonzero pair cells (machine
+precision vs a 1e-9 bar), same weights-to-bits map, same log base 2,
+same `0 log 0 = 0` endpoint convention, Hadamard identification exact
+(`H′H = I`, Schmidt values `== √(P_±)`). Multi-entry `H_Q` filed
+separately from local `h2` per the no-relations firewall; the
+factor-two audit reads `(d_R, d_I)` as two real coordinates of one
+complex amplitude (no two-bit inference). Handoff, not closure: later
+work may reuse the already-earned qubit measure for isolated Q modes
+instead of inventing an entropy. Relations between Q entries, and any
+thermodynamic reading, stay out of scope.
+
+## 8.7 Blind-store dimension is topology-dependent, with no universal law
+
+BH-Q-ENT-0 (#137) measures the exterior-blind continuous STORE
+dimension `D_Q^blind` across region families, testing boundary, volume,
+and mixed scalings against frozen bars. Verdict
+**BHQENT0-UNCLASSIFIED** ✓ (34/34 gates green — the pre-data
+prediction): joint D is 0 on paths and squares, `2n−4` on stars, `n`
+on J₂ disks; matched-(n, b) pairs split by topology (P4 vs S3_2: 0 vs
+4), so topology, not `(n, b)`, controls joint blindness. All law gates
+miss: boundary `R² = 0.68` (bar 0.70), volume `R² = 0.89` (bar 0.90),
+`b log b` 0.72 — near-misses reported as-is, no bar moved, nothing
+shopped. Blind weight concentrates boundary-adjacent (100% on stars);
+the complex-`d` factor two is resolved (`N_split = 0` everywhere);
+VMINUS halves the J₂ blind dimension vs VPLUS (background dependence
+filed, no interpretation attached); the STORE leg is fully POT-blind on the same
+regions where BH-ENT graph legs are POT-visible. No measure, no bits,
+no entropy, no horizon reading — `measure_earned` false,
+`entropy_blocked` true.
+
+## 8.8 Isolated boundary Q-information obeys an area law at maximum density
+
+BH-Q-AREA-0 (#142) embeds a complete-graph core in a J₃-ball ladder
+(`r = 1..10`) and censuses the banked QINFO0 `s_Q` on 132–5304 boundary
+channels per rung, asking whether isolated boundary STORE/qubit
+information scales with area. Verdict **BHQAREA0-MAX** ✓ (22/22) —
+the first earned area law in the program: `S_Q^∂ = κ* A + o(A)` with
+`κ* = 4.2207` bits/unit-area, `σ* = 4.2208` channels/unit-area,
+`h* = 0.999990` bits/channel (MAX class; `h̄` ladder monotone
+0.72 → 1; power `p(S vs A) = 0.92`; volume-density strictly
+decreasing, ruling out a volume law). The law is doubly selected:
+patterns give `S = 0` exactly (state control — the MAX law is a
+vacuum-on-BH-geometry property), and the plain-J₃ control gives a
+non-MAX law (`κ = 0.43`, `h ≈ 0.10`) with disjoint boundary
+distributions (`KS = 1.0`) — the complete core selects MAX. One
+disclosed amendment (G–J domain-vs-domain comparison; verdict
+NONUNIVERSAL → MAX, v1 preserved, freeze values byte-identical apart
+from timestamp). The conditional `a/ℓ_P = 3.42` is filed with NO
+agreement claim (graph length uncalibrated). Firewall holds: MAX
+establishes an area law for isolated boundary information only — not
+Bekenstein–Hawking entropy, not a horizon, not Hawking radiation.
+
 ---
 
 # 9. Accounting is not a firing law
@@ -660,6 +736,10 @@ censuses reinforce it from opposite sides: TRIGGER-0 inventories every
 earned exact local condition (19 survive as conditions, zero imply firing),
 and REWIRE-0 shows the alternative local move admits no deterministic
 exact-physics selector either. The null is now censused, not merely derived.
+EVENT-0 (§11.7) extends it along flows (fixed-G evolution never forces
+structural change; 61 equivalence orbits, zero firing implications) and
+JET-1 (§11.8) closes the dynamical-jet route entirely (JET1-NULL with a
+filed stop rule).
 
 ---
 
@@ -771,6 +851,40 @@ Contraction loss, reverse multiplicity, history multiplicity, scheduler
 multiplicity, and hidden-state books are all exact counts with binary
 logs; no `−Σp log p` anywhere. The books close; the weight is still
 missing — which is §12.
+
+## 11.7 Fixed-G flow never forces structural change
+
+EVENT-0 (#143) censuses structural event necessity: 71 fixed-graph
+unitary trajectories (426 rungs), asking whether flow ever breaks the
+earned representation or forces a structural move. Verdict
+**EVENT0-EQUIV** ✓ (33/33): every rung stays valid (`t* = +∞`
+everywhere), Q bitwise frozen on every stored rung, current-M reversal
+exact — but structural uniqueness fails on small symmetric graphs, with
+61 exact nontrivial same-N rewire-equivalence orbits (symmetric-`ψ`
+loci where a relabeled edge set describes the same state mod
+`R × U(1)`), while J₂-L4 is ruled out graph-first (0 cospectral rewire
+neighbors of 9792/leg, `ψ`-independently). The 61 orbits are
+equivalence surfaces, not triggers: the stability audit files zero
+firing implications, and 2493 exact time-crossing edges are filed as
+TRIGGER-0-consistent conditions. Nothing forces change: EQUIV, not
+FORCED. No EVENT-1 shopping follows.
+
+## 11.8 The dynamical-jet route is closed
+
+JET-1 (#139) repairs the single apparatus defect that forced
+JET0-INCOMPLETE — the malformed aggregate `compat_keys` comparison —
+with the correct per-rung bitwise comparison, then reruns the frozen
+jet verdict logic with no physics definition changed (JET-0 apparatus
++ 496-record bank consumed read-only; banked `JET0-INCOMPLETE` 31/32
+reproduced exactly). Verdict **JET1-NULL** ✓ (13/13): 0 mismatches
+over 1152 compared bits, searched/ever/orbit/search-count agreement on
+all 15 cells, `n_genuine = 0` with 0 crossings on 18 ordinary
+trajectories — no surface promoted by the repair; the NULL is the
+physical result of the unchanged definitions. Stop rule consequence
+(filed): do not open JET-2. The dynamical-jet route is closed unless a
+genuinely new theorem or state variable is earned elsewhere; the
+remaining event-occurrence question passes to TIME-Q-0 and then to an
+explicitly new event-occurrence law.
 
 ---
 
@@ -1134,6 +1248,8 @@ POSTULATES
            → conditional accounting            ✓
            → firing law absent                 ✓  BR27-NO-MODE + TRIGGER0
                                                   (19 conditions, 0 implications)
+                                                  + EVENT0-EQUIV (flow never forces)
+                                                  + JET1-NULL (jet route closed)
            → rewire admits no selector         ✓  REWIRE0-DEGENERATE
            → history weight μ(Γ) absent        ⚠  DEBT (+ FIBER0 520 dof)
 
@@ -1185,6 +1301,12 @@ FOUNDATIONS, CLOSED OR OPEN
 ├── Q-DYN-0          store-dynamics census      ✓ INCOMPLETE (Q frozen; spreads fail)
 ├── Q-DYN-0b         frozen readout             ✓ EVENT-LOCAL (no Q dynamics)
 ├── BH-ENT-0         interior multiplicity      ✓ UNCLASSIFIED (census rejects 3 laws)
+├── WEAVE-0          random-weave 3D core       ◇ INCOMPLETE (no B+C core; ambiguous)
+├── Q-INFO-0         store/qubit identity       ✓ IDENTICAL (h2 = banked, 1.1e-16)
+├── BH-Q-ENT-0       blind-store dimension      ✓ UNCLASSIFIED (topology-dependent D)
+├── BH-Q-AREA-0      boundary Q area law        ✓ MAX (κ* = 4.2207, h* → 1)
+├── JET-0/JET-1      dynamical-jet search       ✓ NULL (n_genuine = 0; stop rule)
+├── EVENT-0          event necessity            ✓ EQUIV (flow never forces; 61 orbits)
 └── QUOT-0           quotient mechanism         ✓ operational, not derived
 
 BLOCKED UNTIL THE DEBTS MOVE
@@ -1202,15 +1324,16 @@ BLOCKED UNTIL THE DEBTS MOVE
 
 | Debt | Origin | Meaning | What can close it |
 |---|---|---|---|
-| Substrate uniqueness | J₂ adoption, PR #62 | Working fabric, not a derived unique substrate; VAC-0 Final MIXED dissolves it into per-phenomenon classes (nothing needs J₂ only) | The F mechanism, VAC-0Q held-out battery, or a derivation that survives per-phenomenon classification; SUBCLASS0-PARTIAL proves no exact F/H_TAU/J rule in frozen space |
+| Substrate uniqueness | J₂ adoption, PR #62 | Working fabric, not a derived unique substrate; VAC-0 Final MIXED dissolves it into per-phenomenon classes (nothing needs J₂ only) | The F mechanism, VAC-0Q held-out battery, or a derivation that survives per-phenomenon classification; SUBCLASS0-PARTIAL proves no exact F/H_TAU/J rule in frozen space; WEAVE0-INCOMPLETE finds no B+C 3D core on random weaves (volume 3D-side only at λ=0.01, spectral never jointly 3D) |
 | 3D-blind rulers | DIM-3-0 (#117) ◇ + DIM-3-1 (#129) ◇ | 3D-calibrated rulers read 3 on every channel (`d*` 9/9, charts 9/9, `d_arr` ~3.5–3.8, static confirmed); what fails is cross-substrate transfer (`γ_J3 = γ_cb` beyond cubic self-variation at small L) | A transfer-validated estimator set, or a new campaign scoping transfer per substrate |
-| Interior multiplicity | BH-ENT-0 (#120) ✓ | Exact census rejects volume/boundary/mixed laws; filed volume-superlinear with saturated wiring and exterior-blind hidden pairs | A new law candidate surviving the census, or a derivation of the filed scaling |
-| Event timing | Q-DYN-0b (#131) ✓ | Q frozen with an event-local energy account; no Q dynamics, no inter-event clock | A timing primitive (decay/event timing), separate from the store |
+| Interior multiplicity | BH-ENT-0 (#120) ✓ | Exact census rejects volume/boundary/mixed laws; filed volume-superlinear with saturated wiring and exterior-blind hidden pairs | A new law candidate surviving the census, or a derivation of the filed scaling; BHQENT0-UNCLASSIFIED scopes the blind-store dimension as topology-dependent (0 on paths/squares, 2n−4 on stars, n on J₂ disks), no universal law |
+| Black-hole entropy | BH-Q-AREA-0 (#142) ✓ | Isolated boundary STORE/qubit information on a K-core in J₃ obeys S_Q = κ*A + o(A), κ* = 4.2207, MAX (h* → 1); state-selected (patterns give 0) and core-selected (plain J₃ gives κ = 0.43); QINFO0-IDENTICAL licenses h2 as the measure (1.1e-16) | Thermodynamic identification (temperature, first law, Hawking flux); the conditional a/ℓ_P = 3.42 carries no agreement claim until graph length is calibrated |
+| Event timing | Q-DYN-0b (#131) ✓ | Q frozen with an event-local energy account; no Q dynamics, no inter-event clock | A timing primitive (decay/event timing), separate from the store; JET1-NULL stop rule passes event-occurrence to TIME-Q-0, then to an explicitly new law |
 | Vacuum-field member | VAC-FIELD-0 (#100) ✓ | Three nonzero states are joint vacua; `ψ = 0` is the no-information limit; VAC-SELECT refuses to rank them without a measure | A principle that selects inside the VAC-COMP manifold without using later consequences; needs the history measure first |
 | History measure | U0, TIME-0, RAND-0, MEASURE-0 (#105) ✓ + FIBER-0 (#123) ✓ | Admissible histories are known more sharply than their weights; MEASURE-0 shows no unique weighting is forced; FIBER-0 exhibits two rivals with 520 residual dof | A measure principle that is reversible and matches both readings |
 | Physical-state counting | RAND-0 orbit mismatch | Settled by SYM-0 (#102) ✓: `X/(R × U(1))` with `d_FS`. The measure on it is still missing | The same completion as history measure |
-| Structural kinetics | BR-2.7 + TRIGGER-0 (#124) ✓ | Ordering and unitarity do not fire an event; 19 earned conditions survive with zero firing implications | The same completion, as a new primitive if that is what it is |
-| Split information | BR-2.5, CONS-0, SPLIT-0 (#116) ✓ + STORE-0 (#126) ✓ | Contraction is many-to-one; SPLIT-0 isolates the covariant residual `ξ = (cover, d)` (full inverse never singleton); STORE-0 shows a kept-`ξ` store recovers predecessors exactly and closes the energy account (minimal: discrete `c` + `d`) | A measure over `ξ` (FIBER-0 files 520 dof), a history treatment carrying it, a record ontology (STORE-0 files the store as kept, not derived), or a new ontology |
+| Structural kinetics | BR-2.7 + TRIGGER-0 (#124) ✓ | Ordering and unitarity do not fire an event; 19 earned conditions survive with zero firing implications | The same completion, as a new primitive if that is what it is; EVENT0-EQUIV extends the null along flows (61 orbits, 0 implications); JET1-NULL closes the jet route (stop rule: no JET-2) |
+| Split information | BR-2.5, CONS-0, SPLIT-0 (#116) ✓ + STORE-0 (#126) ✓ | Contraction is many-to-one; SPLIT-0 isolates the covariant residual `ξ = (cover, d)` (full inverse never singleton); STORE-0 shows a kept-`ξ` store recovers predecessors exactly and closes the energy account (minimal: discrete `c` + `d`) | A measure over `ξ` (FIBER-0 files 520 dof), a history treatment carrying it, a record ontology (STORE-0 files the store as kept, not derived), or a new ontology; QINFO0-IDENTICAL licenses h2 as the isolated-mode measure (banked qubit functional, 1.1e-16 — no new entropy) |
 | Neutral quiescence | BR-1 | Legal neutral moves destroy the vacuum class | Whatever dynamics makes the vacuum an attractor |
 | Matter | formation track, FIELD-0 | No dynamically stable matter, and linear overlap is not a force | Formation after a real dynamics, beating the interaction null |
 | Gravity | GRAV-0 (#80) ✓ | No tested strictly local graph update both preserves J₂ and carries a disturbance past the near field | A carrier inside the coupled `(G, ψ)` dynamics, not a retry of graph-only relocation |
