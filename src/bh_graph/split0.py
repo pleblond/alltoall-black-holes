@@ -304,8 +304,10 @@ def contraction_inverse_check(g: nx.Graph, psi: np.ndarray, order: list,
 
     Contracts (i, j) with the sum map, then verifies the recorded
     (nbrs_i, nbrs_j) cover appears among the undirected predecessors of
-    (g2, k) and restores the graph bit-identically (BR-2.5/CONS census
-    reproduction: the record IS one enumerated cover).
+    (g2, k) and restores the graph up to the earned endpoint-swap gauge
+    (BR-2.5/CONS census reproduction: the directed record IS one
+    enumerated undirected cover; its stored orientation may carry the
+    swapped daughter assignment, which is gauge by U0-H1).
     """
     from bh_graph.contraction import contracted_state
 
@@ -315,14 +317,20 @@ def contraction_inverse_check(g: nx.Graph, psi: np.ndarray, order: list,
     want = frozenset((frozenset(rec["nbrs_i"]), frozenset(rec["nbrs_j"])))
     # Undirected comparison: {A, B} as a set of frozensets.
     found = False
+    restores = False
     for row in undirected_predecessors(g2, k, i, j):
         if frozenset((row["A"], row["B"])) == want:
+            found = True
             e0 = {tuple(sorted(e)) for e in g.edges()}
             e1 = {tuple(sorted(e)) for e in row["h"].edges()}
-            found = bool(e0 == e1 and set(row["h"].nodes()) == set(g.nodes()))
+            swap = {tuple(sorted((j if x == i else i if x == j else x,
+                                  j if y == i else i if y == j else y)))
+                    for x, y in e0}
+            restores = bool((e1 == e0 or e1 == swap)
+                            and set(row["h"].nodes()) == set(g.nodes()))
             break
     return {"k": k, "recorded_cover_found": bool(found),
-            "restores_graph": bool(found),
+            "restores_graph": bool(found and restores),
             "n_undirected": undirected_cover_count(int(g2.degree(k)))}
 
 
@@ -601,22 +609,21 @@ def is_cover_covariant_ok(g2: nx.Graph, k, perm: dict) -> bool:
         from bh_graph.sym0 import apply_relabel
         from bh_graph.u0 import undirected_covers
 
-        h, _psi2, _order2 = apply_relabel(g2, np.zeros(g2.number_of_nodes()),
-                                          sorted(g2.nodes()), dict(perm))["g"], None, None
-        # Recompute directly on the relabeled graph (field-blind leg).
-        rel = apply_relabel(g2, np.zeros(len(list(g2.nodes())),
-                                        dtype=np.complex128),
+        rel = apply_relabel(g2, np.zeros(g2.number_of_nodes(),
+                                         dtype=np.complex128),
                             sorted(g2.nodes()), dict(perm))
         h = rel["g"]
         k2 = perm.get(k, k)
-        got = {(tuple(sorted(A)), tuple(sorted(B)))
-               for _key, A, B in undirected_covers(sorted(h.neighbors(k2)))}
+        # Canonical keys on both sides (undirected_covers stores the
+        # first-seen directed orientation; only the canonical key is
+        # comparable across representations).
+        got = {key for key, _A, _B
+               in undirected_covers(sorted(h.neighbors(k2)))}
         want = set()
         for _key, A, B in undirected_covers(sorted(g2.neighbors(k))):
             a, b = transport_cover(A, B, dict(perm))
             ka, kb = tuple(sorted(a)), tuple(sorted(b))
             want.add((ka, kb) if ka <= kb else (kb, ka))
-        _ = _psi2, _order2
         return bool(got == want)
     except Exception:
         return False
@@ -726,8 +733,8 @@ def is_sheet_covariant_ok_j2(spot: dict) -> bool:
 
         if not is_perm_auto_ok(g2, perm):
             return False
-        got = {(tuple(sorted(A)), tuple(sorted(B)))
-               for _key, A, B in undirected_covers(sorted(g2.neighbors(k2)))}
+        got = {key for key, _A, _B
+               in undirected_covers(sorted(g2.neighbors(k2)))}
         want = set()
         for _key, A, B in undirected_covers(sorted(g2.neighbors(k))):
             a, b = transport_cover(A, B, perm)
