@@ -688,6 +688,8 @@ def cmd_pot1(args):
     shells = euclidean_shells_of(tag, g, src)
     prof = {}
     for r, members in shells.items():
+        if not members:
+            continue
         m = np.asarray(members, dtype=int)
         prof[r] = float(np.abs(phi[m]).max())
     rs = sorted(r for r in prof if 1 <= r <= 8 and prof[r] > 0)
@@ -1015,8 +1017,8 @@ def cmd_hidden(args):
     a, b = npairs["sign"]
     ea = float(np.vdot(a, h @ a).real / np.vdot(a, a).real)
     eb = float(np.vdot(b, h @ b).real / np.vdot(b, b).real)
-    la = HBR.ledger_array(g, a, order)
-    lb = HBR.ledger_array(g, b, order)
+    la = HBR.ledger_array(g, a, order, np.asarray(eu), np.asarray(ev))
+    lb = HBR.ledger_array(g, b, order, np.asarray(eu), np.asarray(ev))
     nflip = 0
     for i in range(len(la)):
         if HBR.is_sign_flip(float(la[i]), float(lb[i])):
