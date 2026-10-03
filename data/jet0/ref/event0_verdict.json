@@ -1,0 +1,217 @@
+{
+ "verdict": "EVENT0-EQUIV",
+ "reason": "61 nontrivial same-N orbits, zero firing implications",
+ "n_gates": 33,
+ "n_pass": 33,
+ "gates": [
+  {
+   "gate": "count-regstore",
+   "ok": true,
+   "detail": "got=349 want=349"
+  },
+  {
+   "gate": "count-regmerge",
+   "ok": true,
+   "detail": "got=12 want=12"
+  },
+  {
+   "gate": "count-regsplit",
+   "ok": true,
+   "detail": "got=10 want=10"
+  },
+  {
+   "gate": "count-regrewire",
+   "ok": true,
+   "detail": "got=6 want=6"
+  },
+  {
+   "gate": "count-traj",
+   "ok": true,
+   "detail": "got=71 want=71"
+  },
+  {
+   "gate": "count-loc",
+   "ok": true,
+   "detail": "got=8 want=8"
+  },
+  {
+   "gate": "count-cyc",
+   "ok": true,
+   "detail": "got=6 want=6"
+  },
+  {
+   "gate": "count-audit",
+   "ok": true,
+   "detail": "got=1 want=1"
+  },
+  {
+   "gate": "A-store",
+   "ok": true,
+   "detail": "bad=0 kinds={'ev': 235, 'fib': 79, 'seq': 5, 'pair': 16, 'detcore': 4, 'tex': 9, 'fw': 1}"
+  },
+  {
+   "gate": "A-merge",
+   "ok": true,
+   "detail": "n=12"
+  },
+  {
+   "gate": "A-split",
+   "ok": true,
+   "detail": "n=10"
+  },
+  {
+   "gate": "A-rewire",
+   "ok": true,
+   "detail": "n=6 nphys=[9792, 9792, 9792, 0, 1, 0]"
+  },
+  {
+   "gate": "A-trigger",
+   "ok": true,
+   "detail": "n=12 bad=0"
+  },
+  {
+   "gate": "Q-frozen",
+   "ok": true,
+   "detail": "n=12"
+  },
+  {
+   "gate": "Q-reversal",
+   "ok": true,
+   "detail": "n=12"
+  },
+  {
+   "gate": "Q-attrib",
+   "ok": true,
+   "detail": "n=12"
+  },
+  {
+   "gate": "Q-current",
+   "ok": true,
+   "detail": "n=12"
+  },
+  {
+   "gate": "C-valid",
+   "ok": true,
+   "detail": "failed_rungs=0"
+  },
+  {
+   "gate": "D-neighbors",
+   "ok": true,
+   "detail": "n=71"
+  },
+  {
+   "gate": "D-search",
+   "ok": true,
+   "detail": "vacuous (no C-failures)"
+  },
+  {
+   "gate": "E-equiv",
+   "ok": true,
+   "detail": "n=71"
+  },
+  {
+   "gate": "F-perclass",
+   "ok": true,
+   "detail": "tiny_recomp=24 bad=0"
+  },
+  {
+   "gate": "F-orbits",
+   "ok": true,
+   "detail": "n=71"
+  },
+  {
+   "gate": "G-audit",
+   "ok": true,
+   "detail": "implications=0"
+  },
+  {
+   "gate": "H-cross",
+   "ok": true,
+   "detail": "n=71"
+  },
+  {
+   "gate": "I-static",
+   "ok": true,
+   "detail": "n=8 far_flips=[0, 0, 0, 0, 0, 0, 0, 0]"
+  },
+  {
+   "gate": "I-causal",
+   "ok": true,
+   "detail": "diagnostic filed"
+  },
+  {
+   "gate": "J-hidden",
+   "ok": true,
+   "detail": "books=3 far_bad=0"
+  },
+  {
+   "gate": "K-vacuum",
+   "ok": true,
+   "detail": "n=8"
+  },
+  {
+   "gate": "K-zerocert",
+   "ok": true,
+   "detail": "n=28 bad=[]"
+  },
+  {
+   "gate": "L-cycle",
+   "ok": true,
+   "detail": "n=6"
+  },
+  {
+   "gate": "X-firewall",
+   "ok": true,
+   "detail": "scan clean + live"
+  },
+  {
+   "gate": "S-report",
+   "ok": true,
+   "detail": "EVENT0-EQUIV"
+  }
+ ],
+ "n_cross": 2493,
+ "witness": {
+  "kind": "bare",
+  "sub": "handbuilt",
+  "ftag": "random777",
+  "edge": 0,
+  "pred": "B_POS",
+  "rung": 1,
+  "T": 0.5,
+  "bit0": false,
+  "bitr": true
+ },
+ "n_nontrivial": 61,
+ "n_implications": 0,
+ "failed_rungs": [],
+ "hidden_books": [
+  {
+   "pair": "P:sign",
+   "near_flips": 16,
+   "far_flips": 0,
+   "cross_a": 72,
+   "cross_b": 72,
+   "equiv_a": 0,
+   "equiv_b": 0
+  },
+  {
+   "pair": "P:phase_p2",
+   "near_flips": 12,
+   "far_flips": 0,
+   "cross_a": 72,
+   "cross_b": 72,
+   "equiv_a": 0,
+   "equiv_b": 0
+  },
+  {
+   "pair": "P:shape_dipole",
+   "near_flips": 21,
+   "far_flips": 0,
+   "cross_a": 72,
+   "cross_b": 76,
+   "equiv_a": 0,
+   "equiv_b": 0
+  }
+ ]
+}
