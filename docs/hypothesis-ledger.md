@@ -47,7 +47,7 @@ words above; they do not promote anything to the earned ledger by themselves.
 | | **Rewire outcome degeneracy** | **Derived** | Existing physics constrains rewiring but does not uniquely select an outcome. |
 | | **Event occurrence is missing law** | **Derived as debt** | Current dynamics determines event mechanics but not when structural events occur. |
 | | **Dynamical-jet admissibility** | **Derivable soon** | Full Krylov/derivative equivalence may define the deterministic surface where merge/split becomes admissible. |
-| | **Stochastic timing only** | **Intuition / soon testable** | If admissibility is deterministic, randomness may survive only in whether/when an admissible split fires. |
+| | **Stochastic timing only** | **Intuition / soon testable, conditional** | If admissibility is deterministic and the split consumes stored \(Q\), randomness may survive only in whether/when an admissible split fires; otherwise which-\(\xi\) selection is a second stochastic piece. |
 | **Matter / particles** | **Matter as stable graph-field-store composite** | **Intuition** | Particle-like matter may be a localized stable structure \((G_{\rm int},\psi_{\rm int},Q_{\rm int})\). |
 | | **Mass from structural distortion** | **Intuition** | Mass may correspond to a localized departure in weave density/connectivity/dimension from vacuum. |
 | | **Mass as dimensional frustration** | **Intuition** | Matter might locally prevent or distort the vacuum weave's preferred structural phase. |
@@ -56,8 +56,9 @@ words above; they do not promote anything to the earned ledger by themselves.
 | | **Stored information in bound state** | **Derived mathematically / physical interpretation intuitive** | Merge moves inverse information into \(Q\); possible analogue of internal composite information. |
 | **Weak interaction / decay** | **Rewire ↔ weak/transmutation** | **Intuition, currently weak** | Rewiring may correspond to identity-changing interactions, but REWIRE-0 shows outcome degeneracy. |
 | | **Split ↔ decay** | **Intuition** | A bound/composite state splitting may provide the structural anatomy of decay. |
-| | **Decay products deterministic** | **Derivable if mapping earned** | If decay is split, \(Q\) fixes the daughter products rather than sampling them. |
-| | **Decay lifetime stochastic** | **Intuition** | Randomness may reside in event time rather than daughter selection. |
+| | **Split outcome stochasticity** | **OPEN** | Stored inverse split is deterministic given \(Q\); a split without a corresponding stored \(\xi\) remains underdetermined and would require a selection law. |
+| | **Decay products deterministic given \(Q\)** | **Conditional (earned if \(\xi\) stored) / OPEN otherwise** | If decay is split consuming stored \(Q\), \(Q\) fixes the daughters; without stored \(\xi\), FIBER0-DEBT returns and products may be stochastic. |
+| | **Decay lifetime stochastic** | **Intuition** | Randomness may reside in event time plus — unless supplied by \(Q\) — in which-\(\xi\) product selection. |
 | | **Lifetime distribution / hazard** | **Future derivable** | Once split admissibility is known, derive/test the waiting-time law instead of assuming exponential/Gaussian behavior. |
 | **Gravity** | **Field disturbance → structural response** | **Partial / derivable later** | Sources produce \(\delta\psi\to\delta B\to\mathcal R_G\); the missing step is actual \(\delta G\). |
 | | **Gravity through disturbance flowing into \(Q/G\)** | **Intuition** | Matter disturbances may alter local structural/store relationships and thereby observable geometry. |
@@ -73,8 +74,9 @@ words above; they do not promote anything to the earned ledger by themselves.
 | | **Orientation relaxation → isotropy** | **Intuition / soon testable** | \(M_{ab}\to I/3\) could explain emergence/persistence of large-scale isotropy. |
 | | **Expansion without changing dimension** | **Intuition** | Universe can remain \(d_{\rm eff}\simeq3\) while weave density/metric scale continues evolving. |
 | | **Dark-energy phenomenology from weave evolution** | **Intuition** | Late-time acceleration might be effective geometry from evolving weave statistics rather than a separate vacuum-energy component. |
-| **Black holes / entropy** | **Raw graph counting is not BH entropy** | **Derived negative** | Kinematic graph multiplicity does not produce an area law. |
-| | **Hidden states as entropy candidates** | **Intuition / blocked** | Exterior-blind hidden states are more promising microstates, but continuous measure/physical state selection remains unresolved. |
+| **Black holes / entropy** | **Raw graph counting is not BH entropy** | **Derived negative (scoped)** | Pre-STORE kinematic graph census (BH-ENT-0) does not produce an area law; does not close the post-STORE \(Q\) question. |
+| | **Hidden store states as entropy candidates** | **Open / soon testable** | Exterior-blind \(Q\) variations are the natural post-STORE microstates; continuous measure/quantization still missing, so dimension, not entropy yet. |
+| | **BH-Q-ENT-0 boundary scaling** | **Derivable soon** | Test \(D_Q(R)=\dim_{\mathbb R}\{Q\) exterior-blind for \(R\}\) vs \(A/V\); decompose \(D_Q=2N_d+D_c\) (complex-\(d\) factor 2 + discrete cover). |
 | **Continuum physics** | **Microscopic Manhattan → radial macroscopic geometry** | **Partial / intuitive mechanism** | Path multiplicity and interference can make edge-based motion appear radial at large scale. |
 | | **J3 and WEAVE same universality class** | **Intuition / soon testable** | Regular J3 and random sheet weave may yield the same 3D macroscopic propagator after scale renormalization. |
 | | **Lorentz symmetry emergent** | **Open intuition** | Low-energy relativistic invariance would need to emerge despite microscopic graph dispersion; not yet demonstrated. |
@@ -247,7 +249,98 @@ a(t)&=&F(\rho_S,\rho_I).
 model, compute the implied \(H(z)\), and compare blind against BAO/SN/CMB
 distance data.
 
+### H2. Split outcome stochasticity — decay's two stochastic pieces (OPEN)
+
+**Correction to the ledger.** "Decay products deterministic" was too strong.
+The earned statement is: **deterministic if the relevant \(\xi\) is already
+stored in \(Q\).**
+
+**In the reduced state, split is underdetermined.** From \(M=(G,\psi)\) alone,
+SPLIT-0 found a whole inverse fiber \(\boxed{\xi=(c,d)}\), and FIBER-0 showed
+existing physics does not uniquely determine a measure over it
+(\(\boxed{\text{FIBER0-DEBT}}\)). So \(M\to X_\xi\) has multiple possible
+outcomes — calling that stochastic is reasonable if nature must choose a new
+\(\xi\).
+
+**STORE-0 changed the picture.** With the complete state \(\boxed{(G,\psi,Q)}\)
+retaining the \(\xi\) lost during merge, \((M,Q=\xi)\to X_\xi\) is unique:
+\(\boxed{\text{split is deterministic conditional on }Q.}\)
+
+\[
+\boxed{
+\begin{array}{c|c}
+\text{Known state} & \text{Split}\\
+\hline
+(G,\psi) & \text{underdetermined}\\
+(G,\psi,Q) & \text{deterministic}
+\end{array}}
+\]
+
+**Not established.** Physical decay need not replay a previously stored merge
+entry. A spontaneous split may require creation/selection of a new \(\xi\),
+in which case FIBER0-DEBT returns (\(\boxed{\text{new split}\Rightarrow\text{which }\xi?}\))
+and products could be stochastic. Only if every physical split consumes an
+existing \(Q\) entry are products predetermined with just timing stochastic.
+
+\[
+\boxed{\text{Decay may contain TWO potential stochastic pieces:}}
+\qquad
+\boxed{\underbrace{\text{when to split}}_{\text{timing}} + \underbrace{\text{which }\xi}_{\text{products, unless supplied by }Q}.}
+\]
+
+JET-0/TIME-Q bear on the first piece. Removing the second requires
+establishing whether a physical decay-like split necessarily uses pre-existing
+\(Q\).
+
+**What would promote it.** Show decay-like splits consume (vs. create) \(Q\)
+entries; derive/test the waiting-time law and any \(\xi\)-selection law
+instead of assuming them.
+
+### H3. Hidden store information as BH entropy candidates (Open / soon testable)
+
+**Status: not FAILED — leave open as we test it.** BH-ENT-0 predates the full
+significance of \(\boxed{\mathcal X_{\rm full}=(G,\psi,Q)}\); its headline
+counting (graph preimages + field blindness) does not close the post-STORE
+question.
+
+**Idea.** The natural post-STORE entropy census is no longer
+\(\#\{\text{interior graphs}\}\) but:
+
+\[
+\boxed{\#/\mathrm{Vol}\{Q:(G,\psi,Q)\mapsto\text{same exterior observables}\}.}
+\]
+
+\((G,\psi,Q_1)\) and \((G,\psi,Q_2)\) can share identical reduced \((G,\psi)\)
+while differing microscopically — many microstates → same exterior state, the
+required conceptual object.
+
+**The factor 2.** The generic continuous inverse fiber has \(d_{\rm cont}=2\),
+precisely the complex relative mode \(\boxed{d=d_R+i\,d_I\in\mathbb C\simeq\mathbb R^2}\)
+per store entry (plus discrete cover \(c\)). STORE says merge moves it into
+\(Q\): each generic merge transfers 2 continuous real DOF into \(Q\), so
+schematically \(\boxed{D_Q=2N_{\rm merge}+D_c}\). If independent stored modes
+scale with boundary area (\(N_Q\propto|\partial R|\)), then
+\(\boxed{\dim_{\mathbb R}Q_{\rm cont}\propto2|\partial R|}\) — the area-scaling
+information dimension BH-ENT-0's raw census would have missed.
+
+**Dimension, not entropy yet.** Continuous \((d_R,d_I)\) needs a measure,
+resolution, or quantization before it yields entropy. Schematically, \(k\)
+states per real DOF would give \(\Omega_Q\sim k^{2N_Q}\),
+\(S_Q\sim\boxed{2N_Q\log k}\propto A\) if \(N_Q\propto A\) — a genuine area-law
+mechanism — but we have no \(k\). Do not force the 2 into the BH \(1/4\); the
+primitive question is whether
+\(\boxed{\dim Q_{\rm exterior\text{-}blind}/|\partial R|\to\text{constant}}\)
+with the 2 from complex \(d\).
+
+**Test (BH-Q-ENT-0 — Boundary Scaling of Hidden Store Information).** Primary
+observable \(\boxed{D_Q(R)=\dim_{\mathbb R}\{Q\text{ variations exterior-blind for }R\}}\);
+test \(D_Q(R)\sim A\) vs \(V\) vs \(A\log A\) vs other, decomposed as
+\(\boxed{D_Q=\underbrace{2N_d}_{\text{complex modes}}+\underbrace{D_c}_{\text{discrete cover}}}\).
+
+**What would promote it.** Area-scaling \(D_Q(R)\) with the 2 from complex
+\(d\); a physical measure/quantization turning dimension into entropy.
+
 ---
 
-*Further hypothesis entries (H2, H3, …) to be added one at a time in the same
+*Further hypothesis entries (H4, H5, …) to be added one at a time in the same
 short format: idea + hypothesized mechanism/formula/value + what would promote it.*
