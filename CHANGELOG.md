@@ -1,6 +1,35 @@
 # Changelog
 
-- **v5.6 (BH-ENT-0)** — Collapsed-region microstate census:
+- **v5.9** — Substrate-and-store release (rolls up the 6 post-v5.8 campaign
+  entries below, all merged): SUBSTRATE-CLASS-0 PARTIAL substrate rules
+  (exact minimal E/H-shell/G in tied spectral+combinatorial form; F/H-TAU/J
+  impossible in frozen space; no unified condition); SCALE-0 large-L bank
+  (178/178, j2 == sq to machine precision, exact forms upheld); Q-DYN-0/0b
+  frozen store + event-local readout (Q bitwise on 414 rungs, R earned
+  event-local, timing stays debt); BH-ENT-0 UNCLASSIFIED collapsed census
+  (exact orbits 8–218083, volume/boundary/mixed rejected, no S_BH ID);
+  DIM-3-1 GEOMETRIC repaired 3D rulers (dimension 3 on six channels,
+  transfer leg open at L16/L20). Docs: `docs/model.md` v0.10 (six campaigns
+  in §10, transfer-validation debt), `docs/scaffolding-history.md`
+  §§2.3/2.4/3.2/8.4/8.5 + §18/§19. Paper v5: 13pp main + 22pp S1–S12
+  supplement (S12 +4 paragraphs, 3 S1 ledger rows, module map +6, Q-DYN kill
+  wire), 49/49 refs, zero LaTeX warnings (budget 30). 2407 tests passed +
+  2 skipped.
+
+- **v5.9 (DIM-3-1)** — Repaired operational 3D rulers on J3:
+  `src/bh_graph/dim31.py` (arrival-time transfer + direct estimators, blind
+  d*/charts, static/spread/packet legs, cubic-gamma transfer validation),
+  `tests/test_dim31.py` (24 apparatus/audit pins), blind J3 grid wave +
+  hash-verified controls, `docs/dim31-prereg.md` (FROZEN pre-data +
+  Amendments 1–4, freeze `docs/dim31-freeze.md`). VERDICT DIM31-GEOMETRIC
+  (2 failures, both tol_agree transfer-validation at L16 by 0.007 / L20 by
+  0.042, L24 passing): dimension reads 3 through six channels (arrival
+  medians 3.458/3.552/3.757, d* 9/9, charts 9/9, static 2.932/3.135 with
+  J3/cubic identity to six decimals, 3D spread laws, Bloch packets).
+  GEOMETRIC, not OPERATIONAL by the frozen all-gates rule. Blind-wave
+  records held off-repo (seal-gated); verdict in `docs/dim31-verdict.md`.
+
+- **v5.9 (BH-ENT-0)** — Collapsed-region microstate census:
   `src/bh_graph/bhent.py` (region battery, order-free C_R collapse, exact
   joint graph census via interior-Sym(R) canonicalization, partition-exact
   wiring Burnside, rooted interior recurrence + orbit bounds, exact fiber/
@@ -17,7 +46,7 @@
   J2 vs 0 elsewhere. Full suite 1819 passed / 2 skipped. Records under
   `data/bhent0/` (704K banked; full-key sidecars gitignored).
 
-- **Unreleased (Q-DYN-0b)** — Frozen store + relational energy readout:
+- **v5.9 (Q-DYN-0b)** — Frozen store + relational energy readout:
   `src/bh_graph/qdyn0b.py` (exact R(d) decomposition, fixed-Q U1 law
   complementing STORE-0 joint covariance, waitb/eigen/splitback/cycle/
   cov/loc/src/hid records nesting Q-DYN-0 verbatim, readout-only
@@ -35,7 +64,7 @@
   `data/qdyn0b/` (504 + verdict). Full suite on beast: 2287 passed /
   2 skipped (weighted skipped per policy; 3 failures pre-existing).
 
-- **unreleased (SUBSTRATE-CLASS-0)** — Structural characterization of
+- **v5.9 (SUBSTRATE-CLASS-0)** — Structural characterization of
   the VAC-0 class: `src/bh_graph/subclass0.py` (exact descriptors —
   Bloch spectrum certificates, motif counts, girth, ball volumes,
   Fiedler locality, sheet/quotient block — 21 boolean features,
@@ -50,7 +79,23 @@
   rewires move 19–25 descriptors; sheets unnecessary for all CLASS
   phenomena. Records under `data/subclass0/`.
 
-- **v5.6 (SCALE-0)** — Fixed-geometry asymptotic scaling bank
+- **v5.9 (Q-DYN-0)** — Internal store dynamics constraint census:
+  `src/bh_graph/qdyn0.py` (fixed-graph waiting legs under H(G) = -A,
+  T_LADDER=(0,.5,1,2,4,8), frozen-sufficient D/L/M gates + eigenstate-
+  spread E/F legs), `tests/test_qdyn0.py` (19 pins), 476-task beast
+  campaign + frozen 35-gate analyzer + post-data autopsy exhibit,
+  `docs/qdyn0-prereg.md` (FROZEN pre-data, prediction QDYN0-FROZEN).
+  VERDICT QDYN0-INCOMPLETE (33/35, autopsy-resolved apparatus-leg
+  failure): Q bitwise identical on all 414 rungs with current-M reversal
+  and the semigroup exact; the 2 red legs are premise errors (merged
+  states are not H(G2) eigenstates, residuals 0.094–0.458; Re(d̄W)
+  readout rotates under phase flow for d≠0, spread 1.76 vs 3e-13).
+  Zero Q-dynamics residual; corrected re-test filed as Q-DYN-0b.
+  STORE-0 apparatus vendored byte-identical (5784/5784 rows exact).
+  Records in `data/qdyn0/` (476 + verdict + autopsy). Full suite on
+  beast: 2267 passed / 2 skipped (3 failures pre-existing).
+
+- **v5.9 (SCALE-0)** — Fixed-geometry asymptotic scaling bank
   (branch): `src/bh_graph/scale0.py` (sparse large-L apparatus: Krylov
   wave/diffusion traces, CG static, segmented evolution, regime
   firewall, fit + matrix-schema helpers), `scripts/scale0_campaign.py`
