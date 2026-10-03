@@ -33,6 +33,22 @@
   1e-3..1e3, sym-d-on-hidden coarse-blindness mirror filed. Full suite
   1864 passed / 2 skipped on beast (weighted skipped; 6 spectral tests
   pass serially, xdist/load flake). Records under `data/vacstab/`.
+- **v5.6 (FIBER-0)** — Split inverse fiber measure:
+  `src/bh_graph/fiber0.py` (independent fiber reconstruction, R x U1
+  quotient, swap, Aut transport, locality, collapse, cover freedom,
+  invariant volumes, closed-form ledgers, HBR leg, vacuum legs,
+  hidden residual, factorization, scheduler census, TIME pushforward,
+  rival pair, primitive census, firewall, verdict ladder),
+  `tests/test_fiber0.py` (58 pins), 113-task beast campaign +
+  frozen analyzer, prereg `docs/fiber0-prereg.md` + verdict
+  FIBER0-VERDICT in `docs/DEFERRED.md`. VERDICT FIBER0-DEBT
+  (22/22 gates): two inequivalent normalized closed-form measures
+  satisfy every earned constraint; cover measure unique only on
+  d = 0 cells (4/76); 520 residual dof (206+168 inter-orbit,
+  83 radial, 63 angular); roundtrip 257169/257169; firewall clean
+  (0 fitted params). Full suite on beast 1902 passed / 2 skipped
+  (weighted skipped). Records
+  `data/fiber0_ledger.json` + `data/fiber0_verdict.json`.
 
 - **v5.6 (VAC-DOMAIN-0)** — Interfaces between disconnected joint-vacuum
   components: `src/bh_graph/vacdomain.py` (sharp slab joins, D-NOGO /

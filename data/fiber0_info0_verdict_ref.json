@@ -1,0 +1,143 @@
+{
+ "gates": [
+  {
+   "gate": "H-INST-no-crash",
+   "ok": true,
+   "detail": "run-failures=0/259"
+  },
+  {
+   "gate": "H-A-branch_edge",
+   "ok": true,
+   "detail": "n=60 bad=0"
+  },
+  {
+   "gate": "H-A-branch_node",
+   "ok": true,
+   "detail": "n=72 bad=0"
+  },
+  {
+   "gate": "H-B-inversion",
+   "ok": true,
+   "detail": "n=60 bad=0"
+  },
+  {
+   "gate": "H-B-partition",
+   "ok": true,
+   "detail": "n=60 bad=0"
+  },
+  {
+   "gate": "H-C-canonical",
+   "ok": true,
+   "detail": "T=['2', '3', '4', '5', '6'] fails=0"
+  },
+  {
+   "gate": "H-C-labeled",
+   "ok": true,
+   "detail": "T=['2', '3'] fails=0"
+  },
+  {
+   "gate": "H-D-no-shannon",
+   "ok": true,
+   "detail": "{'no_shannon': True, 'no_tuning': True, 'params': 0}"
+  },
+  {
+   "gate": "H-E-banked-match",
+   "ok": true,
+   "detail": "T=2..6 all_match=True"
+  },
+  {
+   "gate": "H-F-discrete-loss",
+   "ok": true,
+   "detail": "n=60 bad=0"
+  },
+  {
+   "gate": "H-G-branch-loss",
+   "ok": true,
+   "detail": "n=72 bad=0"
+  },
+  {
+   "gate": "H-I-canonical",
+   "ok": true,
+   "detail": "bound_fails=0"
+  },
+  {
+   "gate": "H-I-labeled",
+   "ok": true,
+   "detail": "bound_fails=0"
+  },
+  {
+   "gate": "H-J-branch_edge",
+   "ok": true,
+   "detail": "n=60 bad=0"
+  },
+  {
+   "gate": "H-J-branch_node",
+   "ok": true,
+   "detail": "n=72 bad=0"
+  },
+  {
+   "gate": "H-J-global_branch",
+   "ok": true,
+   "detail": "n=20 bad=0"
+  },
+  {
+   "gate": "H-J-hidden",
+   "ok": true,
+   "detail": "n=24 bad=0"
+  },
+  {
+   "gate": "H-K-gap",
+   "ok": true,
+   "detail": "n=72 bad=0 min=0.0348 max=0.5850"
+  },
+  {
+   "gate": "H-L-sync-raw",
+   "ok": true,
+   "detail": "n=20 bad=0"
+  },
+  {
+   "gate": "M-E-pred-branch-canonical",
+   "ok": true,
+   "detail": "total 143/143 struct 143/143 all_equal=True"
+  },
+  {
+   "gate": "M-hidden",
+   "ok": true,
+   "detail": "pairs=8 raw_match=8 phys_diff=6 sign_equal=2 vac_distinct=True ok=True"
+  },
+  {
+   "gate": "M-scheduler",
+   "ok": true,
+   "detail": "cells=20 bad_subsets=0 bound_fail=0 all_match=True"
+  },
+  {
+   "gate": "M-labeled",
+   "ok": true,
+   "detail": "total 16/44 struct 16/44 diff=28 med_gap=1.0000"
+  },
+  {
+   "gate": "M-hist",
+   "ok": true,
+   "detail": "T2: maxI=5.09; T3: maxI=6.88; T4: maxI=11.10; T5: maxI=13.58; T6: maxI=17.58 placements=True"
+  },
+  {
+   "gate": "M-branch-merge",
+   "ok": true,
+   "detail": "merged=28/72"
+  },
+  {
+   "gate": "M-hidden-merge",
+   "ok": true,
+   "detail": "merged=12/24"
+  }
+ ],
+ "hard_ok": true,
+ "headline": {
+  "e_pred_branch": true,
+  "hidden_ok": true,
+  "sched_ok": true
+ },
+ "verdict": "INFO0-MATCHED",
+ "reason": "exact correspondence: pred==succ canonical, timed==sum, branch-loss exact, dims match, hidden distinct, scheduler exact, bounds hold",
+ "interpretation": "see docs/DEFERRED.md INFO0-VERDICT"
+}

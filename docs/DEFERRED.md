@@ -11601,3 +11601,140 @@ characterized (unique, covariant, exactly ledgered, info books closed
 in form). SPLIT-0 inherits the inverse question: the predecessor
 information (partition + relative mode + hidden distinctions, continuous
 vs discrete) quantified per event here.
+
+## FIBER0-VERDICT — Split inverse fiber measure: FIBER0-DEBT (DATA)
+
+**Campaign:** beast EC2 16.54.88.181, --jobs 64, 113 tasks, 0
+run-failures, wall 63.6s; ledger data/fiber0_ledger.json (270KB,
+provenance git 7ac43ee, ref_ledger_sha256 f24f88d8...) +
+data/fiber0_verdict.json; 58/58 test_fiber0.py pins green (local +
+beast). Apparatus-fix (exact-== to FP_ATOL=1e-12 in three boolean
+checks: quotient |s| key, swap residual, pair-exchange reconstruction;
+comparisons-only, no gate/cell/threshold/physics touched; 1-ulp
+diagnosis filed in docs/fiber0-prereg.md section 10) applied
+pre-rerun; run-1 ledger (FIBER0-INCOMPLETE on H-B/H-C/M-M)
+superseded. Full suite on beast: 1902 passed, 2 skipped, 0 failed
+in 442.7s (test_weighted.py skipped per standing instruction). All 11 HARD
+gates green, all 11 MEASURED cells filed.
+
+**Headline (frozen ladder):** rivals_valid + rivals_differ =>
+**FIBER0-DEBT**. Two inequivalent normalized closed-form measures
+satisfy every earned constraint (quotient, swap, transport,
+locality, collapse, ledger, energy, vacuum, hidden, factorization,
+scheduler, history). DERIVED was data-reachable (residual 0) and did
+not occur (residual 520); NONNORMALIZABLE did not occur (rival
+radials normalize). Matches the prereg prediction.
+
+**A (fiber regression):** independent fiber reconstruction agrees
+with frozen SPLIT0 refs 76/76 tiny + 3/3 J2 overlap (ZERO/VPLUS/
+VMINUS); forward/backward roundtrip 257169/257169 exact, 0 bad.
+Hard gate green.
+
+**B (quotient):** fiber anatomy invariant under R x U1 on 83/83
+cells/legs (counts/dims exact, |s| within FP_ATOL, transported
+cover-key sets equal). Hard gate green.
+
+**C (swap):** endpoint involution sigma^2 = id on all covers +
+fiber d -> -d (within FP_ATOL) on all cells. Hard gate green.
+
+**D (transport):** exact-Aut cover transport 76/76 tiny (0 bad);
+J2 translations + sheet automorphisms all 7 legs green. Covariance
+holds; it constrains but does not select (see Q). Hard gate green.
+
+**E (locality):** fiber-locality + patch-orbit locality green on
+all cells (31 applicable, rest vacuous-single-patch). Hard gate
+green.
+
+**F (collapse):** equal-halves point is a singleton fiber iff d =
+0 (4/4 d=0 cells, census-free witness: daughter degrees 1 vs d+1);
+full-fiber collapse never (0 cells). Cover-unique iff d = 0 (same
+4 cells; signatures (d,0,0) vs (d,d,d)). Hard gate green.
+
+**G (cover freedom):** discrete cover measure unique on 4/76 tiny
+cells (exactly the d = 0 cells); the other 72 carry >= 2 exact Aut
+orbits (star4/zero@0: 41 covers -> 9 orbits, reproduces SPLIT-0
+n_iso = 9). J2 legs: 25 signature blocks per leg on all 7 legs
+(group-free design; full-Aut enumeration infeasible, |Stab| > 3000
+in 0.2s; true orbits refine blocks, so both directions sound).
+Filed.
+
+**H/I (volume + normalizability):** invariant-volume exhibits
+valid on plane (C) and half-line (R+), but non-canonical (>= 2
+admissible volumes, canonical = False filed, not selected).
+Lebesgue divergent (non-normalizable); both rival radial laws
+normalize exactly. Normalization exists but requires a choice.
+Filed.
+
+**J (ledgers):** split ledgers in closed form hold everywhere
+(bad = 0): dQ cover-blind (|d|^2 - |s|^2)/2; dEpsi = const(c) +
+|d|^2/2 - Re(dbar Delta(c)); CONS-0K recovered at d = 0,
+swap-invariant. Beta census 12266 zero / 11113 nonzero;
+circle witnesses 83/83, point-pair witnesses 58 cells. Ledgers
+constrain (level-set filing) without selecting. Gate green.
+
+**K (energy + HBR):** matched hidden pair (J2): sector projectors
+match to 1e-12, full energies match to 1e-9, HBR sign-flip demo
+1 flip. Energy-blindness (E_- = 0 family) survives on the fiber:
+E does not enter the fiber measure. Filed.
+
+**L (vacuum):** 7/7 J2 background legs (ZERO/VPLUS/VPI/VMINUS/
+HDELTA/HDIPOLE/HDISK) carry the debt: no vacuum background
+selects a fiber measure (leg_debt all true). Filed.
+
+**M (hidden):** tiny pair-exchange (d odd, s even) + linear
+readout (symmetric sees s only) + hidden-residual checks green
+on 76/76; M2 sheet-readout instantiation green on 7/7 legs
+(symmetric readouts see s only, antisymmetric sees d). The
+hidden residual is fiber structure, not a measure selector.
+Gate green.
+
+**N (factorization):** disjoint-support splits commute,
+joint roundtrip 64/64; correlated rival law valid and differs
+from the product (TV = 0.25). Factorization is a choice the
+physics does not force. Filed.
+
+**O (scheduler):** 24/24 tiny states reproduce the INFO0 m!
+scheduler census with fiber anatomy invariant and xi-schema
+valid. INFO0-MATCHED consumption exact. Hard gate green.
+
+**P (history):** TIME-0 split-step support + rival pushforward
+demo green on 6 cells; banked TIME0-NULL consumed
+(data/time0_verdict.json nested form) and survives: fiber
+weights do not select histories. Filed.
+
+**Q (rival-measure proof):** rival A (uniform covers,
+exponential radial, uniform angle) and rival B ((cprime+1)/Z
+covers, Cauchy-square radial, U1-invariant relative-angle
+profile; half-line variants radial-only) are both normalized
+closed forms, covariant with full support on every cell, and
+differ (TV > 0 on 79 cells). This is the debt proof: the
+earned constraints admit >= 2 inequivalent normalized
+measures. Filed.
+
+**R (primitive census):** 520 residual degrees of freedom:
+206 exact inter-orbit + 168 lower-bound inter-orbit (J2
+blocks) + 83 radial + 63 angular. The primitive-measure
+postulate, if added, must fix all 520. Filed.
+
+**FW (firewall):** fitted_param_count = 0; AST no-hidden-tuning
+scan clean on src/bh_graph/fiber0.py + both scripts (no RNG,
+no tuning names outside the labeled rival_*/is_rival_*
+exhibits). Hard gate green.
+
+**Debts filed (not closed):** INTER-ORBIT-WEIGHT (cover law on
+72/76 tiny cells + all J2 legs), RADIAL-PROFILE (exponential
+vs Cauchy-square vs ...), ANGULAR-PROFILE (63 angular dof),
+VOLUME-CANONICALITY (no canonical invariant volume),
+FACTORIZATION (product vs correlated, TV 0.25),
+VACUUM-SELECTION (7/7 legs debt). Firewall intact: no beta,
+cutoff, or weighting smuggled in.
+
+**Handoff:** the split inverse fiber is fully mapped (anatomy,
+ledgers, covariance, collapse, hidden residual) and its
+measure is underdetermined by 520 filed dof with two explicit
+normalized rivals in hand. Downstream may consume: the fiber
+apparatus + closed-form ledgers (HARD-green), the rival pair
+as discrimination controls (never as the answer), the 520-dof
+census as the selection target, and the TIME0-NULL + INFO0
+consumption checks. No fiber weighting is permitted without a
+new primitive postulate (= new content, firewall applies).
