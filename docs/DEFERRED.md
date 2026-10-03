@@ -10472,3 +10472,26 @@ is unaffected.
 the scalar "speed", crashing the const/trend fits (non-scalar
 series). Fix: rows bank "speed" (the theory quantity, |v| ~ 1.21);
 vectors remain in the cells. No bar involved.
+## SCALE0-AMENDMENT-3 (obs_dim rebuild station parallelism; execution-only)
+
+Serial cost of the L >= 256 obs_dim rebuild was underestimated in the
+prereg (~10 core-hrs/cell guessed): measured single-origin wave cost
+is ~0.09 s/step at N = 131072 (L256 krylov probe: 452 s / 5120
+steps) rising ~4x per doubling, and the rebuild loops 64 independent
+stations x (10240-step wave trace at L512 + CG solve), i.e. ~8.5
+core-hrs at L256 and ~64 core-hrs at L512 per cell -- single-threaded
+wall of 8.5 hrs / 2.7 days per cell. Infeasible as written.
+
+Fix (execution-only, no method/bar/grid/seed change): the 64 stations
+are independent, so _obs_dim_rebuild now maps them through a
+multiprocessing Pool (workers = SCALE0_DIM_WORKERS env, default
+min(64, ncpu)) via the extracted top-level _dim_station_job, whose
+body is the exact serial loop body (same calls, same argument order,
+h passed in its built format). Assembly runs in fixed a-major order.
+Output is bitwise-identical to the serial loop by construction;
+pinned by test_dim_station_parallel_bitwise (serial == Pool(2) to
+the bit incl. signed zeros and None taus on j2-L4). The 4 serial
+obs_dim tasks (L256/L512 x j2/sq) were killed mid-run and relaunched
+under this amendment; no other task's code path changed, so all other
+banked cells stand. Method, station draw (seed 9100 + 100*cell),
+grids, thresholds, and bars are untouched.

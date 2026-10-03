@@ -309,6 +309,38 @@ def run_obs_dim(sub: str, L: int) -> dict:
     return _obs_dim_rebuild(sub, L, t0)
 
 
+def _dim_station_job(job) -> tuple:
+    """One obs_dim rebuild station: wave taus + static phi (picklable).
+
+    Amendment-3: bitwise-identical to the serial loop body (same calls,
+    same argument order). Executed serially or via Pool.map in fixed
+    station order, so the assembled pairs dict is identical either way.
+    job = (a, sidx_a, sidx, h, h_csc, ts_w) with h exactly as built.
+    Returns (a, {b: tW}, {b: P}).
+    """
+    a, sidx_a, sidx, h, h_csc, ts_w = job
+    Pk = scale0.krylov_wave_traces_chunked(h, sidx_a, sidx, ts_w,
+                                           chunk_steps=CHUNK_BIG)
+    taus = {}
+    for b in range(len(sidx)):
+        if a == b:
+            continue
+        taus[b] = obs0.threshold_crossing(Pk[:, b], ts_w, obs0.THETA_WAVE)
+    phi = scale0.cg_static_phi(h_csc, sidx_a, scale0.OM_J2)
+    amps = {b: float(abs(phi[sidx[b]])) for b in range(len(sidx)) if a != b}
+    return (a, taus, amps)
+
+
+def _dim_workers() -> int:
+    try:
+        n = int(os.environ.get("SCALE0_DIM_WORKERS", "0"))
+    except ValueError:
+        n = 0
+    if n <= 0:
+        n = min(64, os.cpu_count() or 8)
+    return max(n, 1)
+
+
 def _obs_dim_rebuild(sub: str, L: int, t0: float) -> dict:
     import networkx as nx
 
@@ -323,22 +355,26 @@ def _obs_dim_rebuild(sub: str, L: int, t0: float) -> dict:
     D = obs0.intrinsic_diameter(g, order[0])
     h = scale0.hamiltonian(g, order)
     ts_w = obs0.wave_grid(D)
+    # Amendment-3: stations are independent; run them through a Pool
+    # (execution-only; per-station math unchanged, assembly in fixed
+    # a-major order, bitwise-identical to the serial loop it replaces).
+    h_csr, h_csc = h, h.tocsc()
+    jobs = [(a, sidx[a], sidx, h_csr, h_csc, ts_w) for a in range(64)]
+    nW = _dim_workers()
+    if nW <= 1:
+        payloads = [_dim_station_job(j) for j in jobs]
+    else:
+        from multiprocessing import Pool
+
+        with Pool(processes=nW) as pool:
+            payloads = pool.map(_dim_station_job, jobs)
     pairs = {}
-    for a in range(64):
-        Pk = scale0.krylov_wave_traces_chunked(h, sidx[a], sidx, ts_w,
-                                               chunk_steps=CHUNK_BIG)
+    for a, taus, amps in payloads:
         for b in range(64):
             if a == b:
                 continue
-            t = obs0.threshold_crossing(Pk[:, b], ts_w, obs0.THETA_WAVE)
-            pairs[f"S{a}|S{b}"] = {"W": t, "D": None, "P": None, "Dcfd": None}
-    hcsc = h.tocsc()
-    for a in range(64):
-        phi = scale0.cg_static_phi(hcsc, sidx[a], scale0.OM_J2)
-        for b in range(64):
-            if a == b:
-                continue
-            pairs[f"S{a}|S{b}"]["P"] = float(abs(phi[sidx[b]]))
+            pairs[f"S{a}|S{b}"] = {"W": taus[b], "D": None,
+                                    "P": amps[b], "Dcfd": None}
     nat = obs1.native_matrices(pairs, n=64)
     probes = {}
     for ch in ("W", "P"):

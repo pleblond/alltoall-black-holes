@@ -14,6 +14,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 import scale0_analyze as san  # noqa: E402
+import scale0_campaign as scamp  # noqa: E402
 
 from bh_graph import obs0, scale0
 from bh_graph.ballistic import fit_velocity
@@ -275,3 +276,30 @@ def test_sheet_projectors_dense_premise():
     assert isinstance(pr["P_sym"], np.ndarray)
     assert pr["P_sym"].shape == (32, 32)
     assert pr["P_anti"].shape == (32, 32)
+
+
+def test_dim_station_parallel_bitwise():
+    # Amendment-3: Pool execution of obs_dim stations is bitwise-identical
+    # to the serial loop (same calls, fixed order). Tiny j2-L4 case.
+    from multiprocessing import Pool
+
+    g = scale0.build_graph("j2", 4)
+    order = scale0.node_order(g)
+    sidx = [0, 5, 11, 17]
+    h = scale0.hamiltonian(g, order)
+    ts_w = obs0.wave_grid(4)
+    jobs = [(a, sidx[a], sidx, h, h.tocsc(), ts_w) for a in range(4)]
+    serial = [scamp._dim_station_job(j) for j in jobs]
+    with Pool(processes=2) as pool:
+        par = pool.map(scamp._dim_station_job, jobs)
+    assert len(par) == 4
+    for (a1, t1, p1), (a2, t2, p2) in zip(serial, par):
+        assert a1 == a2
+        assert t1.keys() == t2.keys() and p1.keys() == p2.keys()
+        for b in t1:
+            x, y = t1[b], t2[b]
+            assert (x is None and y is None) or (x == y and
+                                                 math.copysign(1.0, x) ==
+                                                 math.copysign(1.0, y))
+        for b in p1:
+            assert p1[b] == p2[b]
