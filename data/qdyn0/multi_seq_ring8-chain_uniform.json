@@ -1,0 +1,21 @@
+{
+ "kind": "seq",
+ "name": "ring8-chain",
+ "ftag": "uniform",
+ "n_entries": 3,
+ "keys_same": true,
+ "insertion_order": [
+  "8",
+  "9",
+  "10"
+ ],
+ "R_books": [
+  1.25,
+  1.5,
+  1.5
+ ],
+ "R_sum": 4.25,
+ "reverse_after_wait_ok": true,
+ "drained": true,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

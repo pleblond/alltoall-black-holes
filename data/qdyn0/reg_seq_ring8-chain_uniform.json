@@ -1,0 +1,114 @@
+{
+ "name": "ring8-chain",
+ "ftag": "uniform",
+ "steps": [
+  {
+   "step": 0,
+   "edge": [
+    0,
+    1
+   ],
+   "status": "contracted",
+   "k": 8,
+   "R": 1.25,
+   "close_merge": 0.0,
+   "deg_k": 2,
+   "c": 0
+  },
+  {
+   "step": 1,
+   "edge": [
+    2,
+    3
+   ],
+   "status": "contracted",
+   "k": 9,
+   "R": 1.5,
+   "close_merge": 4.440892098500626e-16,
+   "deg_k": 2,
+   "c": 0
+  },
+  {
+   "step": 2,
+   "edge": [
+    4,
+    5
+   ],
+   "status": "contracted",
+   "k": 10,
+   "R": 1.5,
+   "close_merge": 0.0,
+   "deg_k": 2,
+   "c": 0
+  }
+ ],
+ "rev_steps": [
+  {
+   "k": 10,
+   "status": "split",
+   "R_split": -1.5,
+   "close_split": 0.0,
+   "invert_err": 0.0
+  },
+  {
+   "k": 9,
+   "status": "split",
+   "R_split": -1.5,
+   "close_split": -4.440892098500626e-16,
+   "invert_err": 0.0
+  },
+  {
+   "k": 8,
+   "status": "split",
+   "R_split": -1.25,
+   "close_split": 0.0,
+   "invert_err": 0.0
+  }
+ ],
+ "exact_ok": true,
+ "phys_ok": true,
+ "drained": true,
+ "store_E_final": 0.0,
+ "capacity": {
+  "n_events": 3,
+  "total_field_real_dims": 6,
+  "total_scalar_readouts": 3,
+  "continuous_bits_claimed": false,
+  "per_event": [
+   {
+    "step": 0,
+    "k": "8",
+    "n_covers_directed": 9,
+    "n_covers_undirected": 5.0,
+    "graph_bits": 2.321928094887362,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   },
+   {
+    "step": 1,
+    "k": "9",
+    "n_covers_directed": 9,
+    "n_covers_undirected": 5.0,
+    "graph_bits": 2.321928094887362,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   },
+   {
+    "step": 2,
+    "k": "10",
+    "n_covers_directed": 9,
+    "n_covers_undirected": 5.0,
+    "graph_bits": 2.321928094887362,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   }
+  ]
+ },
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

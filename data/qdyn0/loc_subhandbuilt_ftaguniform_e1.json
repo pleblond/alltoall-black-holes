@@ -1,0 +1,17 @@
+{
+ "sub": "handbuilt",
+ "ftag": "uniform",
+ "edge": [
+  0,
+  2
+ ],
+ "applicable": true,
+ "remote": 4,
+ "q_same_0": true,
+ "R_err_0": 0.0,
+ "q_fixed_branch": true,
+ "E_Q_branch": 1.979749983717105,
+ "E_Q_mut_branch": 2.006984775668335,
+ "readout_drift": 0.02723479195122991,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

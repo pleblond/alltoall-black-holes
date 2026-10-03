@@ -1,0 +1,46 @@
+{
+ "sub": "er-24",
+ "ftag": "random777",
+ "relation": "disjoint",
+ "ea": [
+  1,
+  23
+ ],
+ "eb": [
+  10,
+  17
+ ],
+ "disjoint_ok": true,
+ "R_a": 4.042637641372951,
+ "R_b": 3.951485619861332,
+ "R_b_after_a": 3.951485619861332,
+ "R_a_after_b": 4.042637641372951,
+ "R_joint_ab": 7.994123261234283,
+ "R_joint_ba": 7.994123261234283,
+ "R_direct_ab": 7.994123261234283,
+ "R_direct_ba": 7.994123261234283,
+ "add_err": 0.0,
+ "step_err": 0.0,
+ "step_err_ba": 0.0,
+ "tele_err_ab": 0.0,
+ "tele_err_ba": 0.0,
+ "finals_equal": true,
+ "factorize": true,
+ "rev_ab_forward": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ab_reverse": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ba_forward": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ba_reverse": {
+  "exact": true,
+  "drained": true
+ },
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

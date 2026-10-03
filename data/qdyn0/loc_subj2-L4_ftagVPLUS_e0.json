@@ -1,0 +1,17 @@
+{
+ "sub": "j2-L4",
+ "ftag": "VPLUS",
+ "edge": [
+  0,
+  2
+ ],
+ "applicable": true,
+ "remote": 12,
+ "q_same_0": true,
+ "R_err_0": -8.881784197001252e-16,
+ "q_fixed_branch": true,
+ "E_Q_branch": 1.8921563976950142,
+ "E_Q_mut_branch": 2.051659782209994,
+ "readout_drift": 0.1595033845149798,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

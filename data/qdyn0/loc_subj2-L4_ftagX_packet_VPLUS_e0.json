@@ -1,0 +1,17 @@
+{
+ "sub": "j2-L4",
+ "ftag": "X:packet@VPLUS",
+ "edge": [
+  0,
+  2
+ ],
+ "applicable": true,
+ "remote": 12,
+ "q_same_0": true,
+ "R_err_0": 3.552713678800501e-15,
+ "q_fixed_branch": true,
+ "E_Q_branch": 2.000735845759131,
+ "E_Q_mut_branch": 2.1684145163048374,
+ "readout_drift": 0.1676786705457065,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

@@ -1,0 +1,12 @@
+{
+ "vac": "VPI",
+ "kind": "point",
+ "placement": "near",
+ "applicable": true,
+ "dist_u_k": 1,
+ "q_fixed": true,
+ "d_rho_k": 0.00040419646150927324,
+ "d_bond_k": -0.0015719507565117462,
+ "E_Q_disturbed": 0.5004782218132884,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

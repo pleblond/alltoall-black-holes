@@ -1,0 +1,20 @@
+{
+ "sub": "j2-L4",
+ "ftag": "VMINUS",
+ "edge": [
+  0,
+  2
+ ],
+ "rel_exact": true,
+ "rel_R": 0.0,
+ "u1_rec": 0.0,
+ "u1_R": 0.0,
+ "swap_equiv": true,
+ "swap_R": 0.0,
+ "R0": 0.8125,
+ "aut_ok": null,
+ "aut_detail": "capped",
+ "sheet_ok": true,
+ "orbit_not_dynamics": true,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

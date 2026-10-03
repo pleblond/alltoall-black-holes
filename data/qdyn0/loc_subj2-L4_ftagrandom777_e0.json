@@ -1,0 +1,17 @@
+{
+ "sub": "j2-L4",
+ "ftag": "random777",
+ "edge": [
+  0,
+  2
+ ],
+ "applicable": true,
+ "remote": 12,
+ "q_same_0": true,
+ "R_err_0": 0.0,
+ "q_fixed_branch": true,
+ "E_Q_branch": 1.172622824403325,
+ "E_Q_mut_branch": 1.1372314064063298,
+ "readout_drift": -0.03539141799699519,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

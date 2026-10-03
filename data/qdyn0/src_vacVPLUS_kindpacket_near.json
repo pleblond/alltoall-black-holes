@@ -1,0 +1,12 @@
+{
+ "vac": "VPLUS",
+ "kind": "packet",
+ "placement": "near",
+ "applicable": true,
+ "dist_u_k": 1,
+ "q_fixed": true,
+ "d_rho_k": 0.006061874679545776,
+ "d_bond_k": -0.0024391497003836693,
+ "E_Q_disturbed": 1.9666016654241698,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

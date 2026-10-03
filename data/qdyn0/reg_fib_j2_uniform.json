@@ -1,0 +1,50 @@
+{
+ "cell": "j2-L4/uniform",
+ "background": "uniform",
+ "k": 0,
+ "d": 8,
+ "n_covers": 184,
+ "buckets": {
+  "0": 25,
+  "1": 25,
+  "2": 25,
+  "3": 25,
+  "4": 25,
+  "5": 25,
+  "6": 25,
+  "7": 8,
+  "8": 1
+ },
+ "rows": {
+  "n_rows": 1104,
+  "bad_pred": 0,
+  "bad_rt": 0,
+  "bad_form": 0,
+  "bad_inv": 0,
+  "bad_info": 0
+ },
+ "qxi_sufficient": true,
+ "qc": {
+  "sufficient": false,
+  "necessary": true,
+  "pair_diff": 0.3383883476483185
+ },
+ "qd": {
+  "sufficient": false,
+  "n_classes": 25,
+  "classes_exact": false,
+  "capped": 0,
+  "skipped": 1078,
+  "witness": true,
+  "reason": "degree-sequence"
+ },
+ "qR": {
+  "sufficient": false,
+  "injective": false,
+  "witness": true,
+  "kind": "circle",
+  "reconstruct_ok": false
+ },
+ "y_pair": true,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

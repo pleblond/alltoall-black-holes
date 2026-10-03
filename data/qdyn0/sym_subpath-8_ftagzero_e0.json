@@ -1,0 +1,20 @@
+{
+ "sub": "path-8",
+ "ftag": "zero",
+ "edge": [
+  0,
+  1
+ ],
+ "rel_exact": true,
+ "rel_R": 0.0,
+ "u1_rec": 0.0,
+ "u1_R": 0.0,
+ "swap_equiv": true,
+ "swap_R": 0.0,
+ "R0": 1.0,
+ "aut_ok": true,
+ "aut_detail": "n_aut=2",
+ "sheet_ok": null,
+ "orbit_not_dynamics": true,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

@@ -1,0 +1,184 @@
+{
+ "verdict": "QDYN0-INCOMPLETE",
+ "reason": "headline legs fail with frozen-sufficient core green (apparatus/ontology inconsistency, needs autopsy): ['E-readout', 'F-total']",
+ "n_gates": 35,
+ "n_pass": 33,
+ "gates": [
+  {
+   "gate": "count-reg",
+   "ok": true,
+   "detail": "got=349 want=349"
+  },
+  {
+   "gate": "count-wait",
+   "ok": true,
+   "detail": "got=69 want=69"
+  },
+  {
+   "gate": "count-sym",
+   "ok": true,
+   "detail": "got=12 want=12"
+  },
+  {
+   "gate": "count-loc",
+   "ok": true,
+   "detail": "got=10 want=10"
+  },
+  {
+   "gate": "count-hid",
+   "ok": true,
+   "detail": "got=8 want=8"
+  },
+  {
+   "gate": "count-src",
+   "ok": true,
+   "detail": "got=12 want=12"
+  },
+  {
+   "gate": "count-multi",
+   "ok": true,
+   "detail": "got=9 want=9"
+  },
+  {
+   "gate": "count-stoch",
+   "ok": true,
+   "detail": "got=6 want=6"
+  },
+  {
+   "gate": "count-audit",
+   "ok": true,
+   "detail": "got=1 want=1"
+  },
+  {
+   "gate": "A-fiber",
+   "ok": true,
+   "detail": "cells=79 rows=5784 bad=0"
+  },
+  {
+   "gate": "A-minimality",
+   "ok": true,
+   "detail": "cells=79"
+  },
+  {
+   "gate": "A-energy",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "A-seq",
+   "ok": true,
+   "detail": "n=5"
+  },
+  {
+   "gate": "A-pair",
+   "ok": true,
+   "detail": "ndis=11 novl=5"
+  },
+  {
+   "gate": "A-covloc",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "B-inventory",
+   "ok": true,
+   "detail": "n=20"
+  },
+  {
+   "gate": "C-frozen-theorem",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "R-no-implication",
+   "ok": true,
+   "detail": "TRIGGER0-CONDITION"
+  },
+  {
+   "gate": "D-frozen",
+   "ok": true,
+   "detail": "n=69"
+  },
+  {
+   "gate": "E-readout",
+   "ok": false,
+   "detail": "n=69 neigen=8"
+  },
+  {
+   "gate": "F-total",
+   "ok": false,
+   "detail": "n=69 neigen=8"
+  },
+  {
+   "gate": "G-sym",
+   "ok": true,
+   "detail": "n=12"
+  },
+  {
+   "gate": "H-local",
+   "ok": true,
+   "detail": "n=10"
+  },
+  {
+   "gate": "I-hidden",
+   "ok": true,
+   "detail": "n=8"
+  },
+  {
+   "gate": "J-source",
+   "ok": true,
+   "detail": "n=12"
+  },
+  {
+   "gate": "K-multi",
+   "ok": true,
+   "detail": "nseq=5 npair=4"
+  },
+  {
+   "gate": "L-reversal",
+   "ok": true,
+   "detail": "n=69"
+  },
+  {
+   "gate": "M-compat",
+   "ok": true,
+   "detail": "n=69"
+  },
+  {
+   "gate": "N-required",
+   "ok": true,
+   "detail": "none required (frozen sufficient)"
+  },
+  {
+   "gate": "O-history",
+   "ok": true,
+   "detail": "semi_max=9.53e-14"
+  },
+  {
+   "gate": "P-unique",
+   "ok": true,
+   "detail": "vacuous (no forced map)"
+  },
+  {
+   "gate": "Q-rivals",
+   "ok": true,
+   "detail": "n=69"
+  },
+  {
+   "gate": "T-stoch",
+   "ok": true,
+   "detail": "n=6"
+  },
+  {
+   "gate": "X-firewall",
+   "ok": true,
+   "detail": "drift_exists=True"
+  },
+  {
+   "gate": "S-report",
+   "ok": true,
+   "detail": "one rung filed (see verdict)"
+  }
+ ],
+ "classification": "INCOMPLETE"
+}

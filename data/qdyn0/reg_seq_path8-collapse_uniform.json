@@ -1,0 +1,238 @@
+{
+ "name": "path8-collapse",
+ "ftag": "uniform",
+ "steps": [
+  {
+   "step": 0,
+   "edge": [
+    0,
+    1
+   ],
+   "status": "contracted",
+   "k": 8,
+   "R": 1.0000000000000002,
+   "close_merge": 2.220446049250313e-16,
+   "deg_k": 1,
+   "c": 0
+  },
+  {
+   "step": 1,
+   "edge": [
+    2,
+    3
+   ],
+   "status": "contracted",
+   "k": 9,
+   "R": 1.4999999999999998,
+   "close_merge": 2.220446049250313e-16,
+   "deg_k": 2,
+   "c": 0
+  },
+  {
+   "step": 2,
+   "edge": [
+    4,
+    5
+   ],
+   "status": "contracted",
+   "k": 10,
+   "R": 1.5,
+   "close_merge": 0.0,
+   "deg_k": 2,
+   "c": 0
+  },
+  {
+   "step": 3,
+   "edge": [
+    6,
+    7
+   ],
+   "status": "contracted",
+   "k": 11,
+   "R": 1.25,
+   "close_merge": 0.0,
+   "deg_k": 1,
+   "c": 0
+  },
+  {
+   "step": 4,
+   "edge": [
+    8,
+    9
+   ],
+   "status": "contracted",
+   "k": 12,
+   "R": 1.0,
+   "close_merge": 0.0,
+   "deg_k": 1,
+   "c": 0
+  },
+  {
+   "step": 5,
+   "edge": [
+    10,
+    11
+   ],
+   "status": "contracted",
+   "k": 13,
+   "R": 1.9999999999999996,
+   "close_merge": 0.0,
+   "deg_k": 1,
+   "c": 0
+  },
+  {
+   "step": 6,
+   "edge": [
+    12,
+    13
+   ],
+   "status": "contracted",
+   "k": 14,
+   "R": -2.999999999999999,
+   "close_merge": 0.0,
+   "deg_k": 0,
+   "c": 0
+  }
+ ],
+ "rev_steps": [
+  {
+   "k": 14,
+   "status": "split",
+   "R_split": 2.999999999999999,
+   "close_split": 0.0,
+   "invert_err": 0.0
+  },
+  {
+   "k": 13,
+   "status": "split",
+   "R_split": -1.9999999999999996,
+   "close_split": 0.0,
+   "invert_err": 0.0
+  },
+  {
+   "k": 12,
+   "status": "split",
+   "R_split": -1.0,
+   "close_split": 0.0,
+   "invert_err": 0.0
+  },
+  {
+   "k": 11,
+   "status": "split",
+   "R_split": -1.25,
+   "close_split": 0.0,
+   "invert_err": 0.0
+  },
+  {
+   "k": 10,
+   "status": "split",
+   "R_split": -1.5,
+   "close_split": 0.0,
+   "invert_err": 0.0
+  },
+  {
+   "k": 9,
+   "status": "split",
+   "R_split": -1.4999999999999998,
+   "close_split": -2.220446049250313e-16,
+   "invert_err": 0.0
+  },
+  {
+   "k": 8,
+   "status": "split",
+   "R_split": -1.0000000000000002,
+   "close_split": -2.220446049250313e-16,
+   "invert_err": 0.0
+  }
+ ],
+ "exact_ok": true,
+ "phys_ok": true,
+ "drained": true,
+ "store_E_final": 0.0,
+ "capacity": {
+  "n_events": 7,
+  "total_field_real_dims": 14,
+  "total_scalar_readouts": 7,
+  "continuous_bits_claimed": false,
+  "per_event": [
+   {
+    "step": 0,
+    "k": "8",
+    "n_covers_directed": 3,
+    "n_covers_undirected": 2.0,
+    "graph_bits": 1.0,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   },
+   {
+    "step": 1,
+    "k": "9",
+    "n_covers_directed": 9,
+    "n_covers_undirected": 5.0,
+    "graph_bits": 2.321928094887362,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   },
+   {
+    "step": 2,
+    "k": "10",
+    "n_covers_directed": 9,
+    "n_covers_undirected": 5.0,
+    "graph_bits": 2.321928094887362,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   },
+   {
+    "step": 3,
+    "k": "11",
+    "n_covers_directed": 3,
+    "n_covers_undirected": 2.0,
+    "graph_bits": 1.0,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   },
+   {
+    "step": 4,
+    "k": "12",
+    "n_covers_directed": 3,
+    "n_covers_undirected": 2.0,
+    "graph_bits": 1.0,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   },
+   {
+    "step": 5,
+    "k": "13",
+    "n_covers_directed": 3,
+    "n_covers_undirected": 2.0,
+    "graph_bits": 1.0,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   },
+   {
+    "step": 6,
+    "k": "14",
+    "n_covers_directed": 1,
+    "n_covers_undirected": 1.0,
+    "graph_bits": 0.0,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   }
+  ]
+ },
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}
