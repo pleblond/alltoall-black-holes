@@ -259,7 +259,7 @@ def _invariants_enlarged(X: dict) -> tuple:
     psi = np.asarray(X["psi"], dtype=np.complex128)
     nrm = float(np.sum(np.abs(psi) ** 2))
     return (int(g.number_of_nodes()), int(g.number_of_edges()), degs,
-            int(tri), int(nq), int(npr), round(nrm, 9))
+            int(tri), int(nq), int(npr), round(nrm, 9), _wl_bucket(g))
 
 
 def _phase_for_maps(v1: np.ndarray, v2p: np.ndarray) -> complex:
@@ -301,74 +301,103 @@ def _q_entries_match(e1: dict, e2: dict, mp, nodes1, ea: complex,
     return bool(direct or swapped)
 
 
+def _equiv_under_map(X1: dict, X2: dict, mp: dict,
+                     atol: float = BAR_LEDGER) -> bool:
+    from bh_graph.ballistic import index_of
+
+    g1, o1 = X1["g"], list(X1["order"])
+    g2, o2 = X2["g"], list(X2["order"])
+    p1 = np.asarray(X1["psi"], dtype=np.complex128)
+    p2 = np.asarray(X2["psi"], dtype=np.complex128)
+    idx1 = index_of(o1)
+    idx2 = index_of(o2)
+    v1 = np.array([complex(p1[idx1[v]]) for v in o1],
+                  dtype=np.complex128)
+    nodes1 = set(g1.nodes())
+    nodes2 = set(g2.nodes())
+    pr1 = present_keys(X1)
+    pr2 = present_keys(X2)
+    ab1 = sorted(absent_keys(X1), key=str)
+    ab2 = sorted(absent_keys(X2), key=str)
+    if len(pr1) != len(pr2) or len(ab1) != len(ab2):
+        return False
+    v2p = np.array([complex(p2[idx2[mp[v]]]) for v in o1],
+                   dtype=np.complex128)
+    al = st0.align_phase(v2p, v1)
+    if float(np.abs(al - v1).max(initial=0.0)) > atol:
+        return False
+    ea = _phase_for_maps(v1, v2p)
+    for k1 in pr1:
+        k2 = mp.get(k1, None)
+        if k2 is None or k2 not in X2["Q"] or k2 not in nodes2:
+            return False
+        if not _q_entries_match(X1["Q"][k1], X2["Q"][k2], mp,
+                                nodes1, ea, atol):
+            return False
+    if ab1:
+        used = [False] * len(ab2)
+        for k1 in ab1:
+            hit = False
+            for t, k2 in enumerate(ab2):
+                if used[t]:
+                    continue
+                if _q_entries_match(X1["Q"][k1], X2["Q"][k2], mp,
+                                    nodes1, ea, atol):
+                    used[t] = True
+                    hit = True
+                    break
+            if not hit:
+                return False
+    return True
+
+
 def is_enlarged_equiv_ok(X1: dict, X2: dict,
                          atol: float = BAR_LEDGER) -> bool:
     try:
         if _invariants_enlarged(X1) != _invariants_enlarged(X2):
             return False
-        from bh_graph.ballistic import index_of
-
-        g1, o1 = X1["g"], list(X1["order"])
-        g2, o2 = X2["g"], list(X2["order"])
-        p1 = np.asarray(X1["psi"], dtype=np.complex128)
-        p2 = np.asarray(X2["psi"], dtype=np.complex128)
-        idx1 = index_of(o1)
-        idx2 = index_of(o2)
-        v1 = np.array([complex(p1[idx1[v]]) for v in o1],
-                      dtype=np.complex128)
-        gm = nx.isomorphism.GraphMatcher(g1, g2)
-        if not gm.is_isomorphic():
+        g1, g2 = X1["g"], X2["g"]
+        # Fast path: labeled-identical graphs -> identity map first
+        # (self-comparisons and wait chains; fall through on failure
+        # since a nontrivial automorphism may still work).
+        if set(g1.nodes()) == set(g2.nodes()) and \
+                {tuple(sorted(e)) for e in g1.edges()} == \
+                {tuple(sorted(e)) for e in g2.edges()}:
+            if _equiv_under_map(X1, X2, {v: v for v in g1.nodes()},
+                                atol):
+                return True
+        # Fast path: V0 + Q-empty on both sides -> pure graph-iso
+        # decision (any iso map works; no enumeration).
+        if not X1["Q"] and not X2["Q"]:
+            n1 = float(np.sum(np.abs(np.asarray(X1["psi"])) ** 2))
+            n2 = float(np.sum(np.abs(np.asarray(X2["psi"])) ** 2))
+            if n1 == 0.0 and n2 == 0.0:
+                try:
+                    return bool(nx.is_isomorphic(g1, g2))
+                except Exception:
+                    return False
+        # General: constrained lazy enumeration. Present-Q keys must map
+        # to present-Q keys (node_match pruning on copies); maps tested
+        # one by one with early exit (no pre-listing to ISO_CAP).
+        if not nx.isomorphism.GraphMatcher(g1, g2).is_isomorphic():
             return False
-        from itertools import islice
-
-        maps = list(islice(gm.isomorphisms_iter(), ISO_CAP + 1))
-        if len(maps) > ISO_CAP:
-            return False
-        nodes1 = set(g1.nodes())
         pr1 = present_keys(X1)
         pr2 = present_keys(X2)
-        ab1 = sorted(absent_keys(X1), key=str)
-        ab2 = sorted(absent_keys(X2), key=str)
-        if len(pr1) != len(pr2) or len(ab1) != len(ab2):
-            return False
-        for mp in maps:
-            v2p = np.array([complex(p2[idx2[mp[v]]]) for v in o1],
-                           dtype=np.complex128)
-            al = st0.align_phase(v2p, v1)
-            if float(np.abs(al - v1).max(initial=0.0)) > atol:
-                continue
-            ea = _phase_for_maps(v1, v2p)
-            ok = True
-            for k1 in pr1:
-                k2 = mp.get(k1, None)
-                if k2 is None or k2 not in X2["Q"] or k2 not in set(g2.nodes()):
-                    ok = False
-                    break
-                if not _q_entries_match(X1["Q"][k1], X2["Q"][k2], mp,
-                                        nodes1, ea, atol):
-                    ok = False
-                    break
-            if not ok:
-                continue
-            if ab1:
-                used = [False] * len(ab2)
-                good = True
-                for k1 in ab1:
-                    hit = False
-                    for t, k2 in enumerate(ab2):
-                        if used[t]:
-                            continue
-                        if _q_entries_match(X1["Q"][k1], X2["Q"][k2], mp,
-                                            nodes1, ea, atol):
-                            used[t] = True
-                            hit = True
-                            break
-                    if not hit:
-                        good = False
-                        break
-                if not good:
-                    continue
-            return True
+        h1 = g1.copy()
+        h2 = g2.copy()
+        for v in h1.nodes():
+            h1.nodes[v]["q"] = 1 if v in pr1 else 0
+        for v in h2.nodes():
+            h2.nodes[v]["q"] = 1 if v in pr2 else 0
+        gm = nx.isomorphism.GraphMatcher(
+            h1, h2, node_match=lambda a, b: a.get("q") == b.get("q"))
+        n = 0
+        for mp in gm.isomorphisms_iter():
+            n += 1
+            if n > ISO_CAP:
+                return False
+            if _equiv_under_map(X1, X2, dict(mp), atol):
+                return True
         return False
     except Exception:
         return False
