@@ -96,9 +96,10 @@ def task_argv(t) -> str:
         return (f"--task detcore --graph {t[1]} --field {t[2]} "
                 f"--node {t[3]}")
     if k == "tex":
-        sub, fam, _p = t[1], t[2], t[3]
+        sub, fam, p = t[1], t[2], t[3]
         idx = [i for i, sp in enumerate(t0.TEXTURE_SPECS)
-               if sp[0] == sub and sp[1] == fam]
+               if sp[0] == sub and sp[1] == fam and dict(sp[2]) == dict(p)]
+        assert len(idx) == 1, f"tex task not unique: {t}"
         return f"--task tex --texidx {idx[0]}"
     return "--task fw"
 
