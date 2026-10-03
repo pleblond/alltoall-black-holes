@@ -1,6 +1,91 @@
 # Changelog
 
-- **v5.6 (RESERVOIR-0)** — Merge-energy deficit and lost-information
+- **v5.7** — Field-completion release (rolls up the 12 post-v5.6 campaign
+  entries below, all merged): VAC-0 Final MIXED (per-phenomenon LAW/CLASS
+  split, nothing requires uniquely J2); SPLIT-0 inverse fiber anatomy
+  (forced-plus-residual `M + xi <-> X`, never singleton) + FIBER-0 fiber
+  debt (two rivals, 520 residual dof) + INFO-0 exact probability-free
+  books (pred == succ 143/143); MERGE-0 deterministic update + RESERVOIR-0
+  `R = f(xi)` account + TRIGGER-0 condition census (19 survive, 0 imply)
+  + REWIRE-0 selector null; vacuum trio (VACDOMAIN-RADIATIVE,
+  VACTEXTURE-GRADIENT, VACSTAB0-ROBUST to T = 4000); SOURCE-0 boundary-data
+  reading with falsified blanket release (INCOMPLETE). Docs:
+  `docs/model.md` v0.8 (extended §10 F-layer), `docs/scaffolding-history.md`
+  §§2.2/8/9/11.5–11.6/13.5–13.7/16.2/18/19, `docs/j2-status.md` (H/I retired).
+  Paper v5: 13pp main + 21pp S1–S12 supplement (extended S12 methods, +2 S1
+  ledger rows, +11 modules), 49/49 refs, zero new LaTeX warnings.
+  2192 tests passed + 2 skipped.
+- **v5.7 (docs/paper roll-up)** — Twelve-campaign roll-up into the record:
+  `docs/scaffolding-history.md` (§2.2 VAC-0 completion, §8 SPLIT-0/REWIRE-0,
+  §9 MERGE-0/RESERVOIR-0/TRIGGER-0, §§11.5–11.6 FIBER-0/INFO-0, §§13.5–13.7
+  vacuum trio, §16.2 SOURCE-0, §18 diagram, §19 debt register),
+  `docs/model.md` v0.7 → v0.8, `paper/v5/main.tex` + `supplement.tex`
+  (S12 +6 paragraphs, S1 +2 rows, module map +11), recompiled PDFs
+  (13pp + 21pp), README + `paper/v5/README.md` + `docs/j2-status.md` counts.
+- **v5.7 (REWIRE-0)** — Local degree-preserving rewire selector census:
+  `src/bh_graph/rewire0.py` (six exact principles, J2-L4 state battery,
+  scale ladder, ulp robustness audit, frozen verdict ladder),
+  `tests/test_rewire0.py` (32 pins), `scripts/rewire0_campaign.py` +
+  `scripts/rewire0_analyze.py`. VERDICT REWIRE0-DEGENERATE (24/24 J2-L4
+  states DEGENERATE-or-ABSENT under all six principles, vacuum and excited
+  alike, scale-persistent L4 → L28 with `n_phys` 9792/11291/6756; mechanical
+  CLASS rung vacuous): no earned local, covariant, zero-parameter rule
+  selects a rewire on any nontrivial state. Exact-energy selection
+  additionally fp-summation-order fragile at ulp (1389 violations, filed as
+  representation-robustness null). Records under `data/rewire0/`.
+- **v5.7 (MERGE-0)** — Selected-edge contraction characterization:
+  `src/bh_graph/merge0.py` (covariance + ledger apparatus, 8-substrate
+  battery, reservoir coefficient sweep, SIGNREV execution checks, ordering
+  scans), `tests/test_merge0.py` (34 pins), `scripts/merge0_campaign.py` +
+  `scripts/merge0_analyze.py`, MERGE0-PREREG + VERDICT in `docs/DEFERRED.md`.
+  VERDICT MERGE0-DETERMINISTIC + MERGE0-ACCOUNT-DEBT (38/38): unique
+  covariant deterministic update (`R x U(1)` exact on all 325 events incl.
+  87 annihilations) with exact ledger (`dQ = 2B`, `dE = P1 + P2`,
+  `P3 = P4 = 0`, support `2 + n_cross`); no existing variable closes the
+  energy reservoir on any tested class (0/80 tuples). HIDDEN-BR SIGNREV
+  survives execution (2/24 on-support); VPI all-`B < 0` yet all-`dE < 0`;
+  favourable orderings on 19/30 scans, still no firing rule. Records under
+  `data/merge0/`.
+- **v5.7 (SOURCE-0)** — Persistent sources as boundary data:
+  `src/bh_graph/source0.py` (driven/static correspondence, boundary-data
+  framing, switch-ON/OFF release battery, per-vacuum response via banked
+  chi), `tests/test_source0.py` (29 pins), `scripts/source0_campaign.py` +
+  `scripts/source0_analyze.py`, SOURCE0-PREREG + AMENDMENT-1..6 + VERDICT
+  in `docs/DEFERRED.md`. VERDICT SOURCE0-INCOMPLETE (9/10 checks, 74/74
+  records; INCOMPLETE = falsified frozen prediction with complete data):
+  POT stationary field IS the driven RESPONSE counterpart (K1 dev
+  0.024–0.037, K2 exact to 6.6e-12); carrier vacuum-independent with
+  per-vacuum response (42/42); switch-ON always radiates (`v = 5.5–5.6`);
+  AMP/VPLUS release silent by theorem (steady state `c·u_+` to 7.4e-15),
+  AMP/VMINUS beating-dominated and frontless. Rule: switch-OFF radiates
+  only on mismatch with free evolution. Records under `data/source0/`.
+- **v5.7 (INFO-0)** — Probability-free information accounting:
+  `src/bh_graph/info0.py` (forward/backward information census, timed
+  skeletons, scheduler enumeration, hidden books, TIME-0 recomputation,
+  labeled gauge audit), `tests/test_info0.py` (31 pins),
+  `scripts/info0_campaign.py` + `scripts/info0_analyze.py`, INFO0-PREREG +
+  AMENDMENT-1/2/3/3b + VERDICT in `docs/DEFERRED.md`. VERDICT INFO0-MATCHED
+  (19/19 HARD, 259 cells, 0 failures): forward vs backward information
+  exactly equal (canonical pred == succ 143/143, mirror theorem, no
+  SEPARATED); schedulers all `m!` exact; hidden books green; banked TIME-0
+  recomputed exactly; 16/44 labeled gauge audit descriptive (labels are
+  redundancy; the quotient restores symmetry). No `-Σp log p` anywhere.
+  Records `data/info0_ledger.json` + `data/info0_verdict.json`.
+- **v5.7 (VAC-TEXTURE-0)** — Hidden orientation textures on joint vacua:
+  `src/bh_graph/vactexture.py` (texture construction, vacuum-character
+  checks, relational-visibility + dynamical-silence battery),
+  `tests/test_vactexture.py` (32 pins), `scripts/vactexture_campaign.py` +
+  `scripts/vactexture_analyze.py`, VACTEXTURE0-PREREG + VERDICT in
+  `docs/DEFERRED.md`. VERDICT VACTEXTURE-GRADIENT (14/14, 28 specs): hidden
+  JOINT orientation varies spatially staying exactly vacuum-like (P_- E_0,
+  `w_sym = 0`, `||Hψ|| = 0`, `E = 0` bitwise, no P_+, frozen) while
+  gradients stay relationally real (local `D = 6.4e-4`, coarse `1.3e-3`,
+  ledger separation, `B`-scaling slope +0.173, `Q = a²` exact) and
+  dynamically void (symmetric amplitude 0.0, FIELD-0 witness `1.6e-17`,
+  packets exact-split and ballistic at `v = 1.92`). Records under
+  `data/vactexture/`.
+
+- **v5.7 (RESERVOIR-0)** — Merge-energy deficit and lost-information
   correspondence: `src/bh_graph/reservoir0.py` (diagnostic
   `R_merge = -(Delta E_psi + Delta E_G)`, exact `R(d)` formula and
   cover/fiber/mixed separation, SPLIT-0 fiber sweeps, locality/
@@ -15,7 +100,7 @@
   nonzero core on the deterministic core (`R = 1` at `s = 0`).
   Full suite 2057 passed / 2 skipped on beast (weighted skipped).
   Records under `data/reservoir0/` (17 MB).
-- **v5.6 (TRIGGER-0)** — Deterministic merge-trigger census over
+- **v5.7 (TRIGGER-0)** — Deterministic merge-trigger census over
   already-earned exact local conditions (STRICT NO-SHOPPING):
   `src/bh_graph/trigger0.py` (21-predicate inventory, 155-state +
   6-cell battery, virtual ledgers, R x U(1)/support/surgery checks,
@@ -31,7 +116,7 @@
   pair sensitivity B 42% / J 21% / sector 16% / L 11% with zero
   far flips. Records under `data/trigger0/`.
 
-- **v5.6 (SPLIT-0)** — Deterministic inverse constraints and residual split
+- **v5.7 (SPLIT-0)** — Deterministic inverse constraints and residual split
   information: `src/bh_graph/split0.py` (exact graph/field inverse census,
   sum-map fiber parametrization `(s,d)`, halves section, covariant residual
   `xi = (cover, d)`, information dimensions, locality, hidden anatomy,
@@ -45,7 +130,7 @@
   J-orientation signature artifacts via exact labeled comparison); anatomy
   unchanged under RAND/MEASURE rival weightings (no measure derived).
   Records in `data/split0_ledger.json` + `data/split0_verdict.json`.
-- **v5.6 (VAC-STAB-0)** — Long-time operational stability of joint vacua
+- **v5.7 (VAC-STAB-0)** — Long-time operational stability of joint vacua
   (branch): `src/bh_graph/vacstab.py` (6-background registry incl. hidden
   circle interiors, 9-kind battery + mixed_sector, streaming Krylov runner
   with exact per-step sup/margin/overlap/coarse, triangle cross-scales,
@@ -64,7 +149,7 @@
   1e-3..1e3, sym-d-on-hidden coarse-blindness mirror filed. Full suite
   1864 passed / 2 skipped on beast (weighted skipped; 6 spectral tests
   pass serially, xdist/load flake). Records under `data/vacstab/`.
-- **v5.6 (FIBER-0)** — Split inverse fiber measure:
+- **v5.7 (FIBER-0)** — Split inverse fiber measure:
   `src/bh_graph/fiber0.py` (independent fiber reconstruction, R x U1
   quotient, swap, Aut transport, locality, collapse, cover freedom,
   invariant volumes, closed-form ledgers, HBR leg, vacuum legs,
@@ -81,7 +166,7 @@
   (weighted skipped). Records
   `data/fiber0_ledger.json` + `data/fiber0_verdict.json`.
 
-- **v5.6 (VAC-DOMAIN-0)** — Interfaces between disconnected joint-vacuum
+- **v5.7 (VAC-DOMAIN-0)** — Interfaces between disconnected joint-vacuum
   components: `src/bh_graph/vacdomain.py` (sharp slab joins, D-NOGO /
   D-FLAT / D-SWAP theorems, interface/front/width/spectral/witness/ledger
   apparatus), `tests/test_vacdomain.py` (25 pins), 204-task campaign +
@@ -95,7 +180,7 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
-- **unreleased (VAC-0)** — Vacuum Substrate Universality verdict: MIXED
+- **v5.7 (VAC-0 completion)** — Vacuum Substrate Universality verdict: MIXED
   (nothing requires uniquely J2). LAW: A-identities, D ballistic
   propagation (10/10 geometric cells), H-core 16/18 gates on 27/27,
   I finite-range label 26/27, J-alg exact 27/27, MZ at LAW level.

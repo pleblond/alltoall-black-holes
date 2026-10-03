@@ -213,16 +213,29 @@ release:
 @software{leblond2026alltoall,
   author  = {Leblond, Philippe},
   title   = {Compact Objects as Almost-Perfect All:All Entanglement Graphs: From fast scrambling and weak-field gravity to a testable gap-kilonova prediction},
-  version = {5.6.0},
+  version = {5.7.0},
   year    = {2026},
   doi     = {10.5281/zenodo.22929076},
   url     = {https://github.com/pleblond/alltoall-black-holes},
-  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.6.0 version DOI mints on Zenodo release}
+  note    = {Code MIT; text/figures CC BY 4.0. Concept DOI (all versions): 10.5281/zenodo.22929076; v5.7.0 version DOI mints on Zenodo release}
 }
 ```
 
 ## Status
 
+v5.7: field completion — twelve follow-up campaigns banked —
+[`main.pdf`](paper/v5/main.pdf) (13pp) +
+[`supplement.pdf`](paper/v5/supplement.pdf) (21pp S1–S12 methods, 49/49
+references cited, extended S12 + 2 S1 ledger rows + 11 modules); VAC-0
+Final MIXED (nothing requires uniquely J2); split residual `ξ` isolated
+(SPLIT0-MIXED) with the fiber measure filed (FIBER0-DEBT, 520 dof);
+probability-free books closed (INFO0-MATCHED, 143/143); merge update
+unique + ledgered (MERGE-0) with `R = f(ξ)` account (RESERVOIR-0),
+19 trigger conditions / 0 implications (TRIGGER-0), no rewire selector
+(REWIRE-0); vacuum trio (RADIATIVE / GRADIENT / ROBUST to T = 4000);
+sources as boundary data (SOURCE0-INCOMPLETE); [`model.md`](docs/model.md)
+v0.8 (extended §10 F-layer). 2194 tests (2192 passed + 2 skipped),
+86 figure files (Figs 1–75).
 v5.6: relational field program — [`main.pdf`](paper/v5/main.pdf) (13pp) +
 [`supplement.pdf`](paper/v5/supplement.pdf) (19pp S1–S12 methods, 49/49
 references cited, new S12 field-program methods); FP1/FP2 with derived B/J
