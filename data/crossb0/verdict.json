@@ -1,0 +1,101 @@
+{
+ "verdict": "CROSSB-PARTIAL",
+ "reason": "distinction holds; sharp debt: ['F-j3nn-loose', 'F-slope', 'F-spec-secular', 'F-two-channel']",
+ "n_gates": 17,
+ "n_pass": 17,
+ "gates": [
+  {
+   "gate": "counts",
+   "ok": true,
+   "detail": "120/120"
+  },
+  {
+   "gate": "A-spec",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "A-self",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "B-det",
+   "ok": true,
+   "detail": "bad=[] empty=[]"
+  },
+  {
+   "gate": "C-green",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "H-inst",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "X-firewall",
+   "ok": true,
+   "detail": "clean"
+  },
+  {
+   "gate": "D1-j2div",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "D2-j3combo",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "D3-j3decay",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "D4-j2bind",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "D5-j3larget",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "F-spec",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "F-slope",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "F-two",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "F-loose",
+   "ok": true,
+   "detail": "nn-cut>4"
+  },
+  {
+   "gate": "S-report",
+   "ok": true,
+   "detail": "one rung filed (see verdict)"
+  }
+ ],
+ "classification": "PARTIAL",
+ "distinction": true,
+ "debt": {
+  "F-spec-secular": true,
+  "F-slope": true,
+  "F-two-channel": true,
+  "F-j3nn-loose": true
+ }
+}
