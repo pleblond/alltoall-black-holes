@@ -1,6 +1,18 @@
 # Changelog
 
-- **v5.7 (STORE-0)** — Minimal reversible internal store: `src/bh_graph/store0.py`
+- **v5.8** — Store-and-3D release (rolls up the 2 post-v5.7 campaign
+  entries below, all merged): STORE-0 reversible kept-`ξ` store (exact
+  predecessor recovery + energy closure from the same content, minimal
+  discrete `c` + `d`, filed as kept, not derived); DIM-3-0 operational 3D
+  vacuum (J3 exactly quotient-cubic with 3D far-field laws; 2D-calibrated
+  rulers outrun three proven ways; DIM-3-1 filed). Docs: `docs/model.md`
+  v0.9 (STORE-0 + DIM-3-0 in §10, 3D-blind-rulers debt),
+  `docs/scaffolding-history.md` §8.3/§18/§19. Paper v5: 13pp main + 21pp
+  S1–S12 supplement (S12 +2 paragraphs, module map +3, STORE0 kill wire),
+  49/49 refs, zero new LaTeX warnings. v4.1 sources removed (`paper/main.*`,
+  `paper/paper.md`; git history retains); consistency tests repointed to
+  the v5 paper. 2251 tests passed + 2 skipped.
+- **v5.8 (STORE-0)** — Minimal reversible internal store: `src/bh_graph/store0.py`
   (preregistered candidate hierarchy qR/qd/qc/qxi with jointly-canonical
   gauge-invariant content, exact label-restoring + quotient-leg split recovery,
   node-keyed multi-event store Q, RES0 R-formula transcription cross-checked
@@ -22,6 +34,24 @@
   tunnel/potential/posteriors/emergent_dim, unrelated). Records in
   `data/store0/` (349) + `data/store0/verdict.json`; frozen sibling refs
   (RES0-XI, FIBER0-DEBT) pinned read-only under `data/store0/ref/`.
+- **v5.8 (DIM-3-0)** — Three-dimensional operational vacuum:
+  `src/bh_graph/dim3.py` + `dim3_reveal.py` (J3 = Z^3 ⋊ Z2 lift,
+  quotient-cubic + Bloch apparatus, blind dimension/metric/spreading
+  batteries, control comparisons), `tests/test_dim3.py` (22 pins), 76-task
+  beast campaign (`dim3_campaign` + `dim3_blind` + `dim3_analyze`),
+  `docs/dim3-prereg.md` (FROZEN, blind freeze 01a035d0) +
+  `docs/dim3-amendment-1.md` (A1–A7 pre-grid validity), DIM3-VERDICT in
+  `docs/DEFERRED.md` + `docs/scaffolding-history.md` §3.1. VERDICT
+  DIM3-GEOMETRIC (ladder-literal NOT3D via an invalidated trigger): the lift
+  is exactly quotient-cubic (mult 4, dead antisymmetric sector, isotropic
+  Bloch Hessian) with 3D metric reveal (DIST 0.04–0.07, factor 2.1–2.6,
+  MDS-3 pass / MDS-2 fail as preregistered) and r^-1/r^-2 far-field laws
+  at L20+, J3 ≡ cubic control everywhere — but blind dimension reads d* = 2
+  on known-3D data three mechanism-proven ways (d* capped at 2, arrival
+  supralinearity M ~ r^1.48, static P-compression); fronts at 2/3 bound on
+  J3 and cubic alike (forerunner). No post-data bar moved; 3D-calibrated
+  rulers are DIM-3-1 work. Full suite on beast: 1809 passed / 2 skipped.
+  Records in `data/dim3/` (106) + blind/verdict/diagnosis JSON.
 - **v5.7** — Field-completion release (rolls up the 12 post-v5.6 campaign
   entries below, all merged): VAC-0 Final MIXED (per-phenomenon LAW/CLASS
   split, nothing requires uniquely J2); SPLIT-0 inverse fiber anatomy
