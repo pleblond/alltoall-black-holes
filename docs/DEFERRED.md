@@ -10475,3 +10475,104 @@ vacuum tolerates arbitrary preregistered orientation textures without
 leaving E_0; what varies is the measurable relational landscape, never
 the vacuum character. Nothing here moves geometry or selects a vacuum;
 filed as input to future geometry coupling.
+## VACSTAB0-PREREG — Long-time operational stability of joint vacua (FROZEN PRE-DATA)
+
+**Status:** apparatus + grids + gates + ladder frozen; campaign NOT
+YET RUN. VAC-STAB-0 tests whether the earned JOINT vacuum components
+remain operationally close to vacuum under long-time generic small
+field disturbances. Unitarity already guarantees ||dpsi(t)|| =
+||dpsi(0)||; the question is local/relational stability, recurrence
+and concentration. Classification only (firewall: no structural
+stability claim — MEASURE0-DEBT blocks geometry dynamics; no vacuum
+selection, no transition measure, no energy/hidden/ground-state
+privilege, no SSB, no particle names, no graph evolution).
+
+**Frozen inputs (read-only, byte-identical, no law change):**
+VAC-FIELD-0 (candidate shapes, rho/B/J/E readouts, stationarity,
+current/ledger gates, perturbation conventions); VAC-COMP-0 (hidden
+RP^1 circle, two_value_family, coarse distance, pi_0 = 3 components);
+VAC-EXC-0 (8-kind battery, excitation_delta norm rules, norm
+accounting, wrap_count, cross-bg identity form); ZERO-0 (tau bar,
+protection form, incident null); QUOT-0/MALUS-0 ([H,S] = 0, H P_- = 0,
+frozen hidden dynamics, sector projectors); EM-0/BG-RESP-0/RESPONSE-0/
+FIELD-0 (propagation context only); VACTEXTURE-0 descriptive (hidden
+component texture context; no code dependency — unmerged at prereg).
+
+**Backgrounds (6, all exact eigenstates):** VPLUS (E = -8, P_+), VPI
+(E = +8, P_+), CIRCLE@0 = VMINUS (E = 0, P_-), CIRCLE@pi/2 = VSTAG
+(E = 0, P_-), CIRCLE@pi/6 + CIRCLE@pi/3 (E = 0, P_-, interior
+pattern points, coarse-visible per VACCOMP0-0V). pi_0 map: VPLUS ->
+PLUS, VPI -> PI, 4 circle points -> HIDDEN-as-one.
+
+**Perturbation battery (9 kinds):** VAC-EXC 8 (point_amp,
+point_phase angle rule, patch, packet B0 settings, standing,
+source, sym_sector, hidden_sector) + frozen mixed_sector =
+(sym + hidden)/sqrt(2) (P-mixed, weights 1/2 + 1/2). Norm rules:
+abs ||d|| = eps, frac ||d|| = eps*a (VAC-EXC 0H convention).
+
+**Protected regime (first):** eps grids abs/a=1: uniform-magnitude
+backgrounds {0.003, 0.01} (u_min = 1/sqrt(N)); interior circle
+points {0.001, 0.003} (u_min = ||cos|-|sin||/sqrt(N)); all cells
+satisfy a*u_min - eps > 0 by construction, hence m(t) >=
+a*u_min - eps > 0 is a THEOREM (norm bound + eigenstate carrier).
+Amplitude leg: frac eps = 0.01 over the 7-point VACFIELD grid
+(uniformly protected at every a).
+
+**Frozen constants:** L_HEAD = 28 (N = 1568); L_SCAN = {4, 8, 12, 16,
+20, 28} (even only: VPI/VSTAG need bipartite wrap); T_HEAD = 1000,
+T_XL = 4000, DT = 0.1 (P1 fiducial), STRIDE = 10 (stored traces;
+sup/margin/overlap/min-abs exact every step), CHUNK = 1000
+(streaming Krylov, memory-flat); T_BLIND = 20, REC_DELTA = 0.05
+(first-return fidelity radius). Bars: vacstab.BARS (sup_K = 10,
+conc_K = 50, late_frac = 0.5, late_dephased = 0.9, class_spread =
+5 over >= 3 kinds with consistent argmax, class_floor = 1e-2,
+class_min = 0.05, norm_accounting = 1e-9, split = 1e-8, sector =
+1e-9, blind slack = 1e-9, cross_bg = 1e-12).
+
+**Cross-scale + triangle theorem (pinned pre-data):** S_rho = S_B =
+2*a*u_max*||d0|| + ||d0||^2, S_J = 2*S_B. Per-bond triangle bound +
+unitarity give sup_X <= S_X ALWAYS, so the sup_K gate is apparatus
+(code correctness), while FRAGILE physics lives in F1/F2, which are
+NOT theorem-capped: F1 concentration ratio R_C = sup C/max(C0,1)
+with C = N*max|d|^2/||d||^2 (trigger > 50; point-like seeds are
+theorem-capped <= 26, packet/standing can reach ~200 only via
+genuine strong refocusing); F2 late-window (t > T/2) max
+late_X/S_X > 0.5 with min-F < 0.9 (excludes frozen hidden-sector
+responses, which are persistent-but-stationary, not unstable).
+
+**Stages (180 records):** battery (norms/weights/mixed/design); 6x
+bgcheck (residual < 1e-9, Rayleigh == E, current-free, stationary,
+sector purity, P_- frozen_err < 1e-8); 108x stab (6 bg x 9 kind x 2
+eps, a = 1 abs, T_HEAD L28); 21x amp (3 anchors x 7 a, frac,
+T_HEAD); 24x lscan (4 cells x 6 L, T_HEAD); 12x xl (6 bg x packet/
+point_amp, T_XL L28); 8x xbg (dpsi identity across 6 bg, T = 100).
+Runner: streaming Krylov for full + d legs, analytic e^{-iEt}vac
+(exact: all backgrounds eigenstates), exact per-step extrema.
+
+**Gates (scripts/vacstab_analyze.py):** backgrounds (6/6 bgcheck);
+unitarity (norm drift + split_max < 1e-8 every run); sup_bounds
+(triangle apparatus every run); concentration (F1, headline L28
+gated, lscan filed); late_focus (F2, headline L28 gated, lscan
+filed); protection (m_min > 0 + zero steps == 0 every run);
+sector (d weights conserved every run); identity (8/8 xbg bitwise);
+blind (hidden d on VPLUS/VPI: coarse_sup <= ||d0||^2, cross-term
+blindness theorem, 4 pins). Recurrence (F_best/t_best/t_first/wraps),
+amplitude sup slopes, coarse-visibility tables: FILED, never gated.
+CLASS (0J): per-kind normalized late_B/S_B (eps_hi cells, clamped at
+floor, kind abstains if max < 0.05), component-aggregated
+(max over member bgs); fires iff spread > 5 in >= 3 kinds with the
+same argmax component.
+
+**Verdict ladder (frozen):** VACSTAB0-ROBUST = apparatus green, no
+F1/F2 cell, CLASS rule silent. VACSTAB0-CLASS = apparatus green, no
+F1/F2, CLASS fires. VACSTAB0-FRAGILE = apparatus green + any F1/F2
+cell. VACSTAB0-PARTIAL = any apparatus check red (backgrounds,
+unitarity, sup_bounds, protection, sector, identity, blind).
+
+**Preregistered analytic predictions (also pinned in
+tests/test_vacstab.py, 23 pins, pre-data):** CIRCLE endpoints match
+VMINUS/VSTAG; protected-design grids all True; mixed 50/50; triangle
+bound holds on a live short run; O(N) sector/coarse forms match
+dense/banked forms; point C = N, uniform C = 1; streaming chunk
+invariant; hidden legs frozen (F = 1, R_C = 1, late_ok vacuous);
+hidden-on-sym coarse_sup = ||d0||^2 exactly; xbg bitwise.
