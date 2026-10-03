@@ -10409,7 +10409,7 @@ fp zero (~6e-15, frozen mechanism holds). Per HIDDEN-0 0D, equal
 hidden norms make Dp exactly S-odd (decays in place, never spreads).
 AMENDMENT-4 adds matched sign-pair alphabets (bg +/- hidden, 4 phases)
 with per-shell wave/diffusion filing split into near (d = 1) vs far
-(d >= 2) exterior shells. Six new tasks (alphabetM x battery + VPI
+(d >= 2) exterior shells. Five new tasks (alphabetM x battery + VPI
 control); single-alphabet records stand. No verdict gate involves dyn
 counts, so the ladder is unchanged; near/far blind counts are filed
 descriptively.
