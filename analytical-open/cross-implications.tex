@@ -838,6 +838,67 @@ The value at \(-E_*\) is the same because \(\mathcal{G}'\) is even.
 \end{proof}
 
 \begin{proposition}
+\label{prop:weak}
+Replace the stitch by an edge of hopping \(t\neq 0\), with perturbation
+\(-t(|a\rangle\langle b|+|b\rangle\langle a|)\).
+There is a unique root \(E_+(t)>8\) of \(\mathcal{G}(E)=1/|t|\), and the partner
+\(-E_+(t)\) is the unique root of \(\mathcal{G}(E)=-1/|t|\) below \(-8\).
+On the normalised upper state the endpoint weight is
+\[
+|\psi(a)|^2=|\psi(b)|^2
+=\frac{1}{2t^2\bigl(-\mathcal{G}'(E_+(t))\bigr)},
+\]
+the two moduli agree, and the relative phase is \(\pi\) when \(t>0\) and
+\(0\) when \(t<0\).
+The lower state has the same weight and the opposite phase.
+As \(t\to 0\),
+\begin{equation}
+\label{eq:weak}
+|\psi(a)|^2
+=512\pi\, e^{\pi}\, t^{-2}\exp\Bigl(-\frac{16\pi}{|t|}\Bigr)
+\bigl(1+o(1)\bigr).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The resolvent step of Proposition~\ref{prop:stitch} acquires a factor \(t\),
+so \(\psi(a)=-t\mathcal{G}(E)\psi(b)\) and
+\(t^2\mathcal{G}(E)^2=1\).
+On \((8,\infty)\) the function \(\mathcal{G}\) falls from \(+\infty\) to \(0\),
+so it meets \(1/|t|\) once.
+Oddness supplies the partner.
+The norm computation of Proposition~\ref{prop:endpoint} acquires \(t^2\) in
+front of each copy and gives the weight.
+The phase is the sign of \(-t\mathcal{G}(E_+(t))=-\operatorname{sign}(t)\).
+
+For the asymptotic, the expansion in the proof of
+Proposition~\ref{prop:stitch} reads
+\[
+\mathcal{G}(8+\delta)
+=\frac{1}{16\pi}\ln\frac1\delta
++\frac1{16}+\frac{3\ln 2}{8\pi}+r(\delta),
+\]
+with \(r(\delta)\to 0\).
+Setting this equal to \(1/|t|\) and using
+\(16\pi(1/16+3\ln 2/(8\pi))=\pi+6\ln 2\) gives
+\[
+\ln\frac1\delta
+=\frac{16\pi}{|t|}-\pi-6\ln 2-16\pi\, r(\delta).
+\]
+Hence
+\(\delta=64 e^{\pi}\exp(-16\pi/|t|)\,e^{16\pi r(\delta)}\).
+The root tends to the edge, so the remainder tends to \(0\).
+Proposition~\ref{prop:endpoint} gives
+\(\delta\bigl(-\mathcal{G}'(8+\delta)\bigr)\to 1/(16\pi)\), and therefore
+\[
+|\psi(a)|^2
+=\frac{8\pi\,\delta}{t^2}\bigl(1+o(1)\bigr).
+\]
+Inserting \(\delta\) produces \eqref{eq:weak}.
+The lower state has the same weight because \(\mathcal{G}'\) is even.
+\end{proof}
+
+\begin{proposition}
 \label{prop:stubs}
 Every eigenstate of \(H_0\) that vanishes at both endpoints of the stitch
 remains an eigenstate of \(H_0+V\) with the same energy.
