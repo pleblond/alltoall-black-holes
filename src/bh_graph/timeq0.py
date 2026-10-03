@@ -370,6 +370,27 @@ def _equiv_map_ctx(ctx: dict, mp: dict, atol: float = BAR_LEDGER) -> bool:
     return True
 
 
+def _single_entry_covers(X: dict):
+    Q = X["Q"]
+    if len(Q) != 1:
+        return None
+    k, e = next(iter(Q.items()))
+    if k not in X["g"].nodes():
+        return None
+    At, Bt = st0.oriented_cover(e["q"], e["frame"])
+    return set(At), set(Bt)
+
+
+def _set_cov_attrs(h, se) -> None:
+    At, Bt = se
+    for v in h.nodes():
+        a, b = (v in At), (v in Bt)
+        h.nodes[v]["c"] = "X" if (a and b) else ("A" if a else
+                                                 ("B" if b else ""))
+        h.nodes[v]["cs"] = "X" if (a and b) else ("B" if a else
+                                                  ("A" if b else ""))
+
+
 def is_enlarged_equiv_ok(X1: dict, X2: dict,
                          atol: float = BAR_LEDGER) -> bool:
     try:
@@ -412,18 +433,37 @@ def is_enlarged_equiv_ok(X1: dict, X2: dict,
             h1.nodes[v]["q"] = 1 if v in pr1 else 0
         for v in h2.nodes():
             h2.nodes[v]["q"] = 1 if v in pr2 else 0
-        gm = nx.isomorphism.GraphMatcher(
-            h1, h2, node_match=lambda a, b: a.get("q") == b.get("q"))
-        if not gm.is_isomorphic():
-            return False
+        # Single-entry cover pruning (exact): with exactly one present
+        # entry per side and no absent entries, cover membership is a
+        # node invariant up to endpoint swap; prune VF2 with it (direct
+        # + swapped matchers together yield every witness map).
+        se1 = _single_entry_covers(X1)
+        se2 = _single_entry_covers(X2)
+        matchers = []
+        if se1 is not None and se2 is not None:
+            _set_cov_attrs(h1, se1)
+            _set_cov_attrs(h2, se2)
+            matchers.append(nx.isomorphism.GraphMatcher(
+                h1, h2, node_match=lambda a, b: a["q"] == b["q"]
+                and a["c"] == b["c"]))
+            matchers.append(nx.isomorphism.GraphMatcher(
+                h1, h2, node_match=lambda a, b: a["q"] == b["q"]
+                and a["cs"] == b["c"]))
+        else:
+            matchers.append(nx.isomorphism.GraphMatcher(
+                h1, h2,
+                node_match=lambda a, b: a.get("q") == b.get("q")))
         ctx = _equiv_setup(X1, X2)
         n = 0
-        for mp in gm.isomorphisms_iter():
-            n += 1
-            if n > ISO_CAP:
-                return False
-            if _equiv_map_ctx(ctx, dict(mp), atol):
-                return True
+        for gm in matchers:
+            if not gm.is_isomorphic():
+                continue
+            for mp in gm.isomorphisms_iter():
+                n += 1
+                if n > ISO_CAP:
+                    return False
+                if _equiv_map_ctx(ctx, dict(mp), atol):
+                    return True
         return False
     except Exception:
         return False
