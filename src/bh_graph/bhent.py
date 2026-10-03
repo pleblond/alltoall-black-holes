@@ -421,8 +421,45 @@ def _combo_bits(interior_masks, wiring_codes, n, b):
     return np.concatenate([bits_in, bits_w], axis=1).astype(np.int64)
 
 
+def _exterior_connected(rec):
+    """Whether the exterior alone is connected (cached on the record)."""
+    if "_ext_conn" not in rec:
+        Rset = set(rec["R"])
+        ext = [v for v in rec["g"].nodes() if v not in Rset]
+        rec["_ext_conn"] = bool(ext) and bool(
+            nx.is_connected(rec["g"].subgraph(ext)))
+    return rec["_ext_conn"]
+
+
+def _connected_mask_small(bits, n, b):
+    """R-reaches-B filter for connected exteriors (vectorized, exact).
+
+    When the exterior alone is connected (all B mutually reachable
+    through it), overall connectivity is exactly: every R node reaches
+    B via interior/wiring edges. BFS from the wiring-touched set.
+    """
+    n_in = n * (n - 1) // 2
+    slots = _interior_slots(n)
+    M = bits.shape[0]
+    # Wiring touch: r touched iff any of the b rows has bit r set.
+    w = bits[:, n_in:].reshape(M, b, n).sum(axis=1) > 0
+    reached = w.copy()
+    I = np.zeros((M, n, n), dtype=bool)
+    for t, (i, j) in enumerate(slots):
+        on = bits[:, t].astype(bool)
+        I[on, i, j] = True
+        I[on, j, i] = True
+    for _ in range(n):
+        reached = reached | (I.astype(np.int64)
+                             @ reached.astype(np.int64) > 0)
+    return reached.min(axis=1)
+
+
 def _connected_mask(bits, rec, chunk_interiors):
     """Overall-connected filter via boolean reachability (vectorized)."""
+    n, b = len(rec["R"]), len(rec["B"])
+    if _exterior_connected(rec):
+        return _connected_mask_small(bits, n, b)
     g, order, R, B = rec["g"], rec["order"], rec["R"], rec["B"]
     n, b = len(R), len(B)
     pos = {v: i for i, v in enumerate(order)}

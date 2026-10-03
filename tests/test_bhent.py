@@ -160,21 +160,17 @@ def test_joint_chunk_union_p4():
     assert len(keys) == full["n_orbits"]
 
 
-def test_joint_j2edge_chunked_audits():
-    # 9.5M labeled: chunked path only (nx-level brute force infeasible).
+def test_joint_j2edge_chunked_scope():
+    # 9.5M labeled: full enumeration runs on beast (campaign chunks);
+    # here only scope arithmetic + fast-path agreement on a slice.
     r = be.build_region("J2L4edge")
     assert be.joint_labeled_bound(r["n"], r["b"]) > be.EXACT_COMBO_CAP
-    n_in = 1 << (r["n"] * (r["n"] - 1) // 2)
-    keys = set()
-    n_lab = n_conn = 0
-    for lo, hi in ((0, n_in // 2), (n_in // 2, n_in)):
-        out = be.joint_exact_chunk(r, lo, hi)
-        keys |= set(out["keys"])
-        n_lab += out["n_labeled"]
-        n_conn += out["n_connected"]
-    assert n_lab == be.joint_labeled_bound(r["n"], r["b"])
-    assert len(keys) * math.factorial(r["n"]) >= n_conn
-    assert len(keys) > 1
+    assert r["n"] == 2 and be.CHUNKED_SPECS["J2L4edge"] == 2
+    n, b = r["n"], r["b"]
+    bits = be._combo_bits(np.array([0, 1] * 50, dtype=np.int64),
+                          np.arange(100, dtype=np.int64) % (3 ** b), n, b)
+    assert (be._connected_mask(bits, r, None)
+            == be._connected_mask_small(bits, n, b)).all()
 
 
 # G-wire ----------------------------------------------------------------------
