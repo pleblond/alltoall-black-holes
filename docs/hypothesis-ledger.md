@@ -28,25 +28,26 @@ words above; they do not promote anything to the earned ledger by themselves.
 | Area | Hypothesis | Status | Short description |
 |---|---|---:|---|
 | **Space / geometry** | **Emergent quotient geometry** | **Derived** | Observable space is reconstructed from transport/relational structure, not raw graph labels. |
-| | **J2 → 2D** | **Derived** | J2's observable/transport geometry is effectively 2D. |
-| | **J3 → 3D** | **Derived** | J3 has genuine 3D geometry, though not every finite-size operational estimator is cubic-identical. |
-| | **Dimension universality** | **Derived / partial** | Dimension/phenomenology belongs to substrate classes rather than uniquely J2/J3. |
-| | **Random-sheet 3D (WEAVE)** | **Derivable soon** | Randomly interwoven locally-2D sheets may generate macroscopic 3D geometry. |
-| | **Disorder improves isotropy** | **Derivable soon** | Random sheet orientations may produce better large-scale isotropy than regular J3. |
-| | **2D→3D crossover scale** | **Derivable soon** | Sheet/intersection density determines the scale where geometry changes from locally 2D to globally 3D. |
+| | **J2 → 2D** | **Derived** | J2's observable/transport geometry is effectively 2D (SCALE-0: \(d_H\to2\), j2 == sq to machine precision at L≤512). |
+| | **J3 → 3D** | **Derived** | J3 has genuine 3D geometry; repaired DIM-3-1 rulers read 3 on six channels (GEOMETRIC — cubic-transfer leg open at L16/L20). |
+| | **Dimension universality** | **Derived / partial** | SUBCLASS0-PARTIAL: E/H-shell/G exact-minimal in inequivalent spectral + combinatorial forms; F sufficient-only; H_TAU/J provably rule-less in frozen space. |
+| | **Random-sheet 3D (WEAVE)** | **Open (first test INCOMPLETE)** | WEAVE-0 ambiguous: B-only at λ=0.01, C fails everywhere, no B+C core at any λ — still open. |
+| | **Disorder improves isotropy** | **Derivable soon (WEAVE-0: no verdict)** | Random sheet orientations may produce better large-scale isotropy than regular J3; untested. |
+| | **2D→3D crossover scale** | **Derivable soon (WEAVE-0: no core)** | Sheet/intersection density may set the locally-2D→globally-3D scale; WEAVE-0 found no core at any λ. |
 | **Vacuum** | **Nonzero vacuum field** | **Derived** | Vacuum is a family of nonzero stationary JOINT field states, not simply \(\psi=0\). |
 | | **Hidden vacuum microstructure** | **Derived** | Vacuum can contain relationally real hidden structure/textures with no ordinary radiation. |
 | | **Vacuum robustness** | **Derived** | Protected perturbations remain bounded over long evolution. |
 | **Hidden/internal information** | **Physical hidden sector** | **Derived** | \(P_-\) information is locally physical while potentially invisible to remote transport. |
 | | **Complete state \((G,\psi,Q)\)** | **Derived** | Reduced \((G,\psi)\) omits information needed for microscopic merge/split reversibility. |
-| | **\(Q\) as frozen memory** | **Derived** | \(Q\) stores inverse information and does not evolve between tested structural events. |
-| | **Event-local accounting** | **Derived** | \(R(M,Q)\) accounts for structural events but is not persistent energy stored inside \(Q\). |
+| | **\(Q\) as frozen memory** | **Derived** | \(Q\) bitwise frozen on all 414 rungs with zero Q-dynamics residual (Q-DYN-0 INCOMPLETE legs autopsied as apparatus; QDYN0B-EVENT-LOCAL 51/51). |
+| | **Event-local accounting** | **Derived** | \(R(M,Q)\) earned event-local (QDYN0B-EVENT-LOCAL 51/51); \(E_{\rm aug}\) drifts to 2.05 while \(E_\psi+E_G\) holds — accounting, not stored energy. |
+| | **STORE Q-information = qubit information** | **Derived (scoped)** | Isolated per-mode \(h_2(P_-)\) identical to the banked qubit functional to 1.1e-16 (QINFO0-IDENTICAL); no new entropy; \((d_R,d_I)\) = two real coords of one amplitude, no two-bit inference. |
 | **Structural dynamics** | **Deterministic merge outcome** | **Derived** | Once an edge is selected, contraction has a unique state update. |
 | | **Deterministic split given \(Q\)** | **Derived** | Stored \(\xi=(c,d)\) uniquely determines inverse split products. |
 | | **Merge/split microscopic reversibility** | **Derived** | With \(Q\), merge and split form an exact reversible pair on tested states. |
 | | **Rewire outcome degeneracy** | **Derived** | Existing physics constrains rewiring but does not uniquely select an outcome. |
-| | **Event occurrence is missing law** | **Derived as debt** | Current dynamics determines event mechanics but not when structural events occur. |
-| | **Dynamical-jet admissibility** | **Derivable soon** | Full Krylov/derivative equivalence may define the deterministic surface where merge/split becomes admissible. |
+| | **Event occurrence is missing law** | **Derived as debt** | Current dynamics determines event mechanics but not when structural events occur (Q-DYN-0b: timing stays debt). |
+| | **Dynamical-jet admissibility** | **NULL on tested battery (scoped)** | Zero genuine full-EXACT jet matches (\(n_{\rm genuine}=0\), 0 crossings on 18 trajs); no admissible surface promoted under frozen definitions (JET-0 INCOMPLETE → JET-1 NULL 13/13). |
 | | **Stochastic timing only** | **Intuition / soon testable, conditional** | If admissibility is deterministic and the split consumes stored \(Q\), randomness may survive only in whether/when an admissible split fires; otherwise which-\(\xi\) selection is a second stochastic piece. |
 | **Matter / particles** | **Matter as stable graph-field-store composite** | **Intuition** | Particle-like matter may be a localized stable structure \((G_{\rm int},\psi_{\rm int},Q_{\rm int})\). |
 | | **Mass from structural distortion** | **Intuition** | Mass may correspond to a localized departure in weave density/connectivity/dimension from vacuum. |
@@ -66,7 +67,7 @@ words above; they do not promote anything to the earned ledger by themselves.
 | | **Metric from transport statistics** | **Partially derived** | Observer geometry is reconstructed from propagation; changing substrate statistics therefore changes observed geometry. |
 | **Cosmology** | **Graph soup → geometry** | **Intuition** | Early state may be non-geometric graph soup that organizes into geometric phases. |
 | | **Big Bang as geometry-forming transition** | **Intuition** | Big Bang may correspond to transition/percolation from graph soup into a coherent low-dimensional weave. |
-| | **Local sheets → macroscopic 3D universe** | **Derivable soon** | 3D may emerge statistically rather than being microscopic. |
+| | **Local sheets → macroscopic 3D universe** | **Open (first test INCOMPLETE)** | 3D may emerge statistically rather than being microscopic; WEAVE-0 found no B+C core at any λ. |
 | | **Why 3 dimensions?** | **Open / soon testable** | 3D may be a uniquely viable/stable phase for vacuum + hidden + propagation + matter physics. |
 | | **Dimension evolution** | **Intuition** | Early \(d_{\rm eff}\) may have evolved before settling near 3. |
 | | **Expansion from declining sheet density** | **Intuition / WEAVE-dependent** | Cosmic scale factor may track increasing weave spacing, e.g. \(a\sim\rho_S^{-1}\). |
@@ -74,12 +75,12 @@ words above; they do not promote anything to the earned ledger by themselves.
 | | **Orientation relaxation → isotropy** | **Intuition / soon testable** | \(M_{ab}\to I/3\) could explain emergence/persistence of large-scale isotropy. |
 | | **Expansion without changing dimension** | **Intuition** | Universe can remain \(d_{\rm eff}\simeq3\) while weave density/metric scale continues evolving. |
 | | **Dark-energy phenomenology from weave evolution** | **Intuition** | Late-time acceleration might be effective geometry from evolving weave statistics rather than a separate vacuum-energy component. |
-| **Black holes / entropy** | **Raw graph counting is not BH entropy** | **Derived negative (scoped)** | Pre-STORE kinematic graph census (BH-ENT-0) does not produce an area law; does not close the post-STORE \(Q\) question. |
-| | **Hidden store states as entropy candidates** | **Open / soon testable** | Exterior-blind \(Q\) variations are the natural post-STORE microstates; continuous measure/quantization still missing, so dimension, not entropy yet. |
+| **Black holes / entropy** | **Raw graph counting is not BH entropy** | **Derived negative (scoped)** | Pre-STORE kinematic census rejects boundary/volume/mixed laws with no \(S_{BH}\) identification (BHENT0-UNCLASSIFIED); does not close the post-STORE \(Q\) question. |
+| | **Hidden store states as entropy candidates** | **Derived (scoped, isolated info)** | Per-mode measure earned (\(h_2\) ≡ banked qubit functional, QINFO0-IDENTICAL); boundary sum obeys an area law on BH-like geometry (BHQAREA0-MAX); thermodynamic identification still open. |
 | | **BH-Q-ENT-0 boundary scaling** | **Derived negative (scoped)** | Joint blind-store dimension is topology-dependent (paths/squares 0, stars 2n-4, J2 disks n); boundary/volume/b-log-b scalings all miss frozen bars (BHQENT0-UNCLASSIFIED). |
 | | **BH boundary Q-information area law** | **Derived (scoped)** | Isolated boundary STORE/qubit information on an all-to-all core in J3 obeys S_Q^d = k\*A + o(A) with k\* = 4.2207, s\* = 4.2208, h\* = 0.999990 (MAX, BH-Q-AREA-0); state-selected (patterns give 0) and core-selected (plain J3 gives k = 0.43). Isolated information only — thermodynamic identification still open. |
 | **Continuum physics** | **Microscopic Manhattan → radial macroscopic geometry** | **Partial / intuitive mechanism** | Path multiplicity and interference can make edge-based motion appear radial at large scale. |
-| | **J3 and WEAVE same universality class** | **Intuition / soon testable** | Regular J3 and random sheet weave may yield the same 3D macroscopic propagator after scale renormalization. |
+| | **J3 and WEAVE same universality class** | **Intuition (untested)** | Regular J3 and random sheet weave may yield the same 3D macroscopic propagator after scale renormalization; WEAVE-0 gave no 3D weave leg to compare. |
 | | **Lorentz symmetry emergent** | **Open intuition** | Low-energy relativistic invariance would need to emerge despite microscopic graph dispersion; not yet demonstrated. |
 
 ### The compact "big picture"
@@ -291,55 +292,51 @@ existing \(Q\) entry are products predetermined with just timing stochastic.
 
 JET-0/TIME-Q bear on the first piece. Removing the second requires
 establishing whether a physical decay-like split necessarily uses pre-existing
-\(Q\).
+\(Q\). Note (JET-1): the jet leg returned NULL — zero genuine full-EXACT
+matches (\(n_{\rm genuine}=0\)) on the tested battery, so no deterministic
+admissibility surface is earned from jets; the timing piece still needs its law.
 
 **What would promote it.** Show decay-like splits consume (vs. create) \(Q\)
 entries; derive/test the waiting-time law and any \(\xi\)-selection law
 instead of assuming them.
 
-### H3. Hidden store information as BH entropy candidates (Open / soon testable)
+### H3. Hidden store information as BH entropy candidates (Derived scoped — isolated area law; thermodynamics open)
 
-**Status: not FAILED — leave open as we test it.** BH-ENT-0 predates the full
-significance of \(\boxed{\mathcal X_{\rm full}=(G,\psi,Q)}\); its headline
-counting (graph preimages + field blindness) does not close the post-STORE
-question.
+**Status.** BH-ENT-0's negative is scoped to the pre-STORE census
+(BHENT0-UNCLASSIFIED: boundary/volume/mixed laws rejected, no \(S_{BH}\)
+identification). The post-STORE question has now been tested at two levels,
+with opposite answers:
 
-**Idea.** The natural post-STORE entropy census is no longer
-\(\#\{\text{interior graphs}\}\) but:
+- BH-Q-ENT-0 → UNCLASSIFIED (34/34): joint exterior-blind store dimension
+  exists but is topology-dependent (paths/squares 0, stars \(2n-4\), J2 disks
+  \(n\)); boundary (\(R^2=0.68\)), volume (0.89), \(b\log b\) (0.72) all miss
+  frozen bars. No universal scaling law for the joint blind dimension.
+  Factor-two resolved (\(N_{\rm split}=0\)); VMINUS halves J2 blind dim.
+- Q-INFO-0 → IDENTICAL (16/17): isolated per-mode \(h_2(P_-)\) **is** the
+  banked qubit functional (\(\max|h_2-S_{\rm banked}|=1.1\times10^{-16}\)) —
+  the earned per-mode measure, no new entropy. Factor-two audit: \((d_R,d_I)\)
+  are two real coords of ONE complex amplitude — no two-bit inference. The
+  "2" counts real dimensions of one mode, not two bits.
+- BH-Q-AREA-0 → MAX (22/22): isolated boundary Q-information on a BH-like
+  complete core in J3 obeys \(S_Q^\partial=\kappa^\*A+o(A)\) with
+  \(\kappa^\*=4.2207\), \(\sigma^\*=4.2208\), \(h^\*=0.999990\), \(p=0.92\),
+  volume control decreasing. State-selected (patterns give \(S=0\) exactly)
+  and core-selected (plain J3: \(\kappa=0.43\), \(\bar h\to0.10\), KS=1.0).
+
+**Idea (surviving).** The post-STORE census is:
 
 \[
 \boxed{\#/\mathrm{Vol}\{Q:(G,\psi,Q)\mapsto\text{same exterior observables}\}.}
 \]
 
-\((G,\psi,Q_1)\) and \((G,\psi,Q_2)\) can share identical reduced \((G,\psi)\)
-while differing microscopically — many microstates → same exterior state, the
-required conceptual object.
+\((G,\psi,Q_1)\) and \((G,\psi,Q_2)\) share identical reduced \((G,\psi)\)
+while differing microscopically — many microstates → same exterior state.
+The earned area law sums \(h_2(P_-)\) per boundary channel instead of counting
+raw dimensions. Do not force \(\kappa^\*\) into the BH \(1/4\): graph length
+\(a\) is unknown, so only the conditional \(a/\ell_P=3.42\) is filed.
 
-**The factor 2.** The generic continuous inverse fiber has \(d_{\rm cont}=2\),
-precisely the complex relative mode \(\boxed{d=d_R+i\,d_I\in\mathbb C\simeq\mathbb R^2}\)
-per store entry (plus discrete cover \(c\)). STORE says merge moves it into
-\(Q\): each generic merge transfers 2 continuous real DOF into \(Q\), so
-schematically \(\boxed{D_Q=2N_{\rm merge}+D_c}\). If independent stored modes
-scale with boundary area (\(N_Q\propto|\partial R|\)), then
-\(\boxed{\dim_{\mathbb R}Q_{\rm cont}\propto2|\partial R|}\) — the area-scaling
-information dimension BH-ENT-0's raw census would have missed.
-
-**Dimension, not entropy yet.** Continuous \((d_R,d_I)\) needs a measure,
-resolution, or quantization before it yields entropy. Schematically, \(k\)
-states per real DOF would give \(\Omega_Q\sim k^{2N_Q}\),
-\(S_Q\sim\boxed{2N_Q\log k}\propto A\) if \(N_Q\propto A\) — a genuine area-law
-mechanism — but we have no \(k\). Do not force the 2 into the BH \(1/4\); the
-primitive question is whether
-\(\boxed{\dim Q_{\rm exterior\text{-}blind}/|\partial R|\to\text{constant}}\)
-with the 2 from complex \(d\).
-
-**Test (BH-Q-ENT-0 — Boundary Scaling of Hidden Store Information).** Primary
-observable \(\boxed{D_Q(R)=\dim_{\mathbb R}\{Q\text{ variations exterior-blind for }R\}}\);
-test \(D_Q(R)\sim A\) vs \(V\) vs \(A\log A\) vs other, decomposed as
-\(\boxed{D_Q=\underbrace{2N_d}_{\text{complex modes}}+\underbrace{D_c}_{\text{discrete cover}}}\).
-
-**What would promote it.** Area-scaling \(D_Q(R)\) with the 2 from complex
-\(d\); a physical measure/quantization turning dimension into entropy.
+**What would promote it.** Thermodynamic identification — temperature, first
+law, horizon reading. Still open; the interpretation firewall holds.
 
 ---
 
