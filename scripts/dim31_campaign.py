@@ -105,6 +105,8 @@ def src_node(tag: str, g) -> int:
         return (L // 4) * L + L // 2
     if fam == "rg":
         return 0
+    if fam == "ex":
+        return 0  # random-regular: statistically homogeneous, any src
     return D3.src_node(tag, g)
 
 
