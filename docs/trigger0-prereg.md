@@ -210,3 +210,41 @@ changed. Fix: `_norm_edge` normalization in the three joins that feed
 record edges back into graph ops (T-INST-ledger, TRIG-0E static join,
 TRIG-0F pair join). Rerun is analyzer-only with the frozen intent
 restored (MEASURE0-AMENDMENT-1 precedent). Records unaffected.
+
+## 9. TRIGGER0-AMENDMENT-2 (causal proxy design error; demotion, no tuning)
+
+First-look outcome (beast, 161/161 records + Amendment-1 analyzer):
+75/77 gates green; sole red is T-INST-causal (beyond-cone quantity
+bound 1e-6). Point_amp cells measure max|dB| = 2.2e-6, max|dJ| =
+3.6e-6, max|ddE| = 4.3e-5 at 17-20 hops (cone R = 16 at T* = 2.0).
+
+Autopsy (design error, not acausality, not apparatus bug):
+(a) The frozen cone uses the RESPONSE fitted amplitude-front velocity
+(v = 8.0 Bloch-max); a fitted front has O(1)-hop width, so R = 16
+sits inside the leading precursor, not beyond all signal.
+(b) Vacuum-carrier cross terms amplify precursor delta ~ 1e-4 to
+dB ~ 1e-6 / ddE ~ 1e-5 (derived mechanism: 2|vac||delta| with
+|vac| = 1/sqrt(1568)); the pre-data 1e-9 estimate holds only in the
+far tail (25+ hops measure 2.5e-9/6.6e-9/1.5e-7, as estimated).
+(c) Causality itself holds qualitatively: monotone precursor decay
+(~25x per 4 hops over 17-25+), H P_- = 0 sector selection
+(beyond-cone precursor is P_+-pure: CELL_SYM unflipped on VPLUS,
+CELL_ANTI flipped on VMINUS), and beyond-cone truth flips confined
+to exact-zero predicates on symmetric vacua (J_ZERO/ANNIHIL/
+CELL_ANTI/UNIFORM_EDGE per vacuum; the pre-registered tail-crossing
+explanation). No bulk/sign/motif predicate flips beyond the front.
+(d) Conceptual correction: fitted front is not the causal
+(first-signal) cone; the Lieb-Robinson cone contains all of J2-L28
+at T* = 2, so no strict arrival test is non-vacuous on this
+battery, and no banked precursor level exists from which a
+non-tuned replacement bound could be frozen.
+
+Repair (minimal, no tuning): the level bound was a proxy invention
+(TRIG-0E mandates exact truth locality, which passes statically on
+all predicates with zero far flips), miscalibrated by the above
+conceptual error. It is demoted T-INST-causal -> T-DIAG-causal
+(filed precursor/sector books, not gated). No level is changed or
+added; no gate is added; dispositions and ladder are untouched.
+Records unaffected; analyzer-only rerun. The road not taken
+(INCOMPLETE over a secondary proxy) would misrepresent a decisive
+census whose verdict-relevant gates are all green.

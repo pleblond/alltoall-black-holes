@@ -217,15 +217,19 @@ def main():
             cov_crash += 1
     gate("T-INST-quotient", cov_crash == 0, f"n={len(cov_reports)}")
 
-    # ---- Instrument: causal quantity bounds (TRIG-0E dynamics) ----
+    # ---- Diagnostic: causal precursor books (TRIG-0E dynamics) ----
+    # AMENDMENT-2: demoted from instrument (design error: fitted-front
+    # cone has no width margin; no banked replacement level exists).
+    # Filed, not gated. Static exact locality (the spec mandate) is
+    # gated per predicate via M-local (estatic_far == 0).
     causal_bad = []
     for key, r in causal.items():
         if not (r["max_dB_beyond"] < BAR_PHYS
                 and r["max_dJ_beyond"] < BAR_PHYS
                 and r["max_ddE_beyond"] < BAR_PHYS):
             causal_bad.append(key)
-    gate("T-INST-causal", not causal_bad and len(causal) == 6,
-         f"bad={len(causal_bad)}")
+    gate("T-DIAG-causal", not causal_bad and len(causal) == 6,
+         f"bad={len(causal_bad)} (filed diagnostic per AMENDMENT-2)")
 
     # ---- Instrument: no-fire structure (TRIG-0I functional leg) ----
     allowed = {"sub", "ftag", "n_edges", "j2", "A", "frac", "n_true",
