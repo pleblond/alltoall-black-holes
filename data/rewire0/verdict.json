@@ -1,0 +1,112 @@
+{
+ "gates": [
+  {
+   "gate": "H-INST-complete",
+   "ok": true,
+   "detail": "tasks=20/20 missing=[]"
+  },
+  {
+   "gate": "H-ledger-exact",
+   "ok": true,
+   "detail": "rows=108 max_err=2.415e-15"
+  },
+  {
+   "gate": "H-quotient",
+   "ok": true,
+   "detail": "n_phys_ring6=12"
+  },
+  {
+   "gate": "H-determinism",
+   "ok": true,
+   "detail": "repeat"
+  },
+  {
+   "gate": "H-hist-br1",
+   "ok": true,
+   "detail": "closed=7665989632 banked=7665989632"
+  },
+  {
+   "gate": "H-hist-blind",
+   "ok": true,
+   "detail": "filed sq4={'accepts': 0} tri4={'accepts': 5}"
+  },
+  {
+   "gate": "M-head-counts",
+   "ok": true,
+   "detail": "states=24 n_phys_min=9792 max=9792"
+  },
+  {
+   "gate": "M-head-principles",
+   "ok": true,
+   "detail": "{\"CONS\": {\"DEGENERATE\": 24}, \"CONS_LEDG\": {\"DEGENERATE\": 24}, \"HID\": {\"DEGENERATE\": 24}, \"LEDG\": {\"DEGENERATE\": 24}, \"MOTIF\": {\"ABSENT\": 24}, \"SPAN\": {\"DEGENERATE\": 24}}"
+  },
+  {
+   "gate": "M-covariance",
+   "ok": true,
+   "detail": "{\"CONS\": 0, \"CONS_LEDG\": 1389, \"HID\": 0, \"LEDG\": 1389, \"MOTIF\": 0, \"SPAN\": 0}"
+  },
+  {
+   "gate": "M-vacuum",
+   "ok": true,
+   "detail": "vac_states=9 uniq_frac=0.000"
+  },
+  {
+   "gate": "M-excitation",
+   "ok": true,
+   "detail": "exc_states=15 uniq_frac=0.000"
+  },
+  {
+   "gate": "M-dist",
+   "ok": true,
+   "detail": "distinguishing=7/24"
+  },
+  {
+   "gate": "M-scale-j2L8-anchor",
+   "ok": true,
+   "detail": "states=7 n_phys_range=11291..11291"
+  },
+  {
+   "gate": "M-scale-j2L28-anchor",
+   "ok": true,
+   "detail": "states=7 n_phys_range=6756..6756"
+  },
+  {
+   "gate": "M-tiny",
+   "ok": true,
+   "detail": "classes=10"
+  }
+ ],
+ "hard_ok": true,
+ "verdict": "REWIRE0-CLASS",
+ "principle": "CONS",
+ "class": "tiny-path4",
+ "interpretation": "CONS UNIQUE on all 7 states of tiny-path4 only",
+ "headline_histo": {
+  "CONS": {
+   "DEGENERATE": 24
+  },
+  "LEDG": {
+   "DEGENERATE": 24
+  },
+  "CONS_LEDG": {
+   "DEGENERATE": 24
+  },
+  "SPAN": {
+   "DEGENERATE": 24
+  },
+  "MOTIF": {
+   "ABSENT": 24
+  },
+  "HID": {
+   "DEGENERATE": 24
+  }
+ },
+ "cov_viol": {
+  "CONS": 0,
+  "LEDG": 1389,
+  "CONS_LEDG": 1389,
+  "SPAN": 0,
+  "MOTIF": 0,
+  "HID": 0
+ }
+}

@@ -1,0 +1,691 @@
+{
+ "task": "j2L4-exc-VMINUS",
+ "rows": [
+  {
+   "graph": "j2L4-exc-VMINUS",
+   "field": "exc-VMINUS-packet",
+   "n_nodes": 32,
+   "n_edges": 128,
+   "anchored": null,
+   "smax": 3,
+   "n_raw": 9792,
+   "n_phys": 9792,
+   "principles": {
+    "CONS": {
+     "n_surv": 9792,
+     "status": "DEGENERATE"
+    },
+    "LEDG": {
+     "n_surv": 70,
+     "status": "DEGENERATE"
+    },
+    "CONS_LEDG": {
+     "n_surv": 70,
+     "status": "DEGENERATE"
+    },
+    "SPAN": {
+     "n_surv": 8000,
+     "status": "DEGENERATE"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 16,
+     "status": "DEGENERATE"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 9792,
+     "max_orbit": 1
+    },
+    "LEDG": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 70,
+     "max_orbit": 1
+    },
+    "CONS_LEDG": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 70,
+     "max_orbit": 1
+    },
+    "SPAN": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 8000,
+     "max_orbit": 1
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 16,
+     "max_orbit": 1
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 4339,
+     "n_unique": 1832,
+     "any_unique": true
+    },
+    "B_new": {
+     "n_values": 2482,
+     "n_unique": 50,
+     "any_unique": true
+    },
+    "J_new": {
+     "n_values": 1609,
+     "n_unique": 40,
+     "any_unique": true
+    },
+    "d_sq": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 2914,
+     "n_unique": 615,
+     "any_unique": true
+    },
+    "span_new": {
+     "n_values": 4,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 2752,
+     "n_unique": 200,
+     "any_unique": true
+    },
+    "any_quantity_distinguishes": true
+   },
+   "max_ledger_err": 3.885780586188048e-16,
+   "href": 0.07079134314651236,
+   "elapsed_s": 37.907
+  },
+  {
+   "graph": "j2L4-exc-VMINUS",
+   "field": "exc-VMINUS-point_amp",
+   "n_nodes": 32,
+   "n_edges": 128,
+   "anchored": null,
+   "smax": 3,
+   "n_raw": 9792,
+   "n_phys": 9792,
+   "principles": {
+    "CONS": {
+     "n_surv": 9792,
+     "status": "DEGENERATE"
+    },
+    "LEDG": {
+     "n_surv": 4503,
+     "status": "DEGENERATE"
+    },
+    "CONS_LEDG": {
+     "n_surv": 4503,
+     "status": "DEGENERATE"
+    },
+    "SPAN": {
+     "n_surv": 8000,
+     "status": "DEGENERATE"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 2464,
+     "status": "DEGENERATE"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 9792,
+     "max_orbit": 1
+    },
+    "LEDG": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 4503,
+     "max_orbit": 1
+    },
+    "CONS_LEDG": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 4503,
+     "max_orbit": 1
+    },
+    "SPAN": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 8000,
+     "max_orbit": 1
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 2464,
+     "max_orbit": 1
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 24,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "B_new": {
+     "n_values": 7,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 14,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 4,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 7,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": false
+   },
+   "max_ledger_err": 6.938893903907228e-17,
+   "href": 0.028284271247461926,
+   "elapsed_s": 30.578
+  },
+  {
+   "graph": "j2L4-exc-VMINUS",
+   "field": "exc-VMINUS-point_phase",
+   "n_nodes": 32,
+   "n_edges": 128,
+   "anchored": null,
+   "smax": 3,
+   "n_raw": 9792,
+   "n_phys": 9792,
+   "principles": {
+    "CONS": {
+     "n_surv": 9792,
+     "status": "DEGENERATE"
+    },
+    "LEDG": {
+     "n_surv": 5700,
+     "status": "DEGENERATE"
+    },
+    "CONS_LEDG": {
+     "n_surv": 5700,
+     "status": "DEGENERATE"
+    },
+    "SPAN": {
+     "n_surv": 8000,
+     "status": "DEGENERATE"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 2464,
+     "status": "DEGENERATE"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 9792,
+     "max_orbit": 1
+    },
+    "LEDG": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 5700,
+     "max_orbit": 1
+    },
+    "CONS_LEDG": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 5700,
+     "max_orbit": 1
+    },
+    "SPAN": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 8000,
+     "max_orbit": 1
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 2464,
+     "max_orbit": 1
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 15,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "B_new": {
+     "n_values": 7,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 3,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 13,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 4,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 11,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": false
+   },
+   "max_ledger_err": 4.163336342344337e-17,
+   "href": 0.004999979166692708,
+   "elapsed_s": 30.643
+  },
+  {
+   "graph": "j2L4-exc-VMINUS",
+   "field": "exc-VMINUS-patch",
+   "n_nodes": 32,
+   "n_edges": 128,
+   "anchored": null,
+   "smax": 3,
+   "n_raw": 9792,
+   "n_phys": 9792,
+   "principles": {
+    "CONS": {
+     "n_surv": 9792,
+     "status": "DEGENERATE"
+    },
+    "LEDG": {
+     "n_surv": 2111,
+     "status": "DEGENERATE"
+    },
+    "CONS_LEDG": {
+     "n_surv": 2111,
+     "status": "DEGENERATE"
+    },
+    "SPAN": {
+     "n_surv": 8000,
+     "status": "DEGENERATE"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 632,
+     "status": "DEGENERATE"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 9792,
+     "max_orbit": 1
+    },
+    "LEDG": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 2111,
+     "max_orbit": 1
+    },
+    "CONS_LEDG": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 2111,
+     "max_orbit": 1
+    },
+    "SPAN": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 8000,
+     "max_orbit": 1
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_perms": 6,
+     "n_stab": 0,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 632,
+     "max_orbit": 1
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 154,
+     "n_unique": 16,
+     "any_unique": true
+    },
+    "B_new": {
+     "n_values": 39,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 94,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 4,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 39,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": true
+   },
+   "max_ledger_err": 2.220446049250313e-16,
+   "href": 0.07135060680126758,
+   "elapsed_s": 49.538
+  },
+  {
+   "graph": "j2L4-exc-VMINUS",
+   "field": "exc-VMINUS-hidden_sector",
+   "n_nodes": 32,
+   "n_edges": 128,
+   "anchored": null,
+   "smax": 3,
+   "n_raw": 9792,
+   "n_phys": 9792,
+   "principles": {
+    "CONS": {
+     "n_surv": 9792,
+     "status": "DEGENERATE"
+    },
+    "LEDG": {
+     "n_surv": 5415,
+     "status": "DEGENERATE"
+    },
+    "CONS_LEDG": {
+     "n_surv": 5415,
+     "status": "DEGENERATE"
+    },
+    "SPAN": {
+     "n_surv": 8000,
+     "status": "DEGENERATE"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 1864,
+     "status": "DEGENERATE"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 9792,
+     "max_orbit": 2
+    },
+    "LEDG": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 288,
+     "covariant": false,
+     "n_surv": 5415,
+     "max_orbit": 2
+    },
+    "CONS_LEDG": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 288,
+     "covariant": false,
+     "n_surv": 5415,
+     "max_orbit": 2
+    },
+    "SPAN": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 8000,
+     "max_orbit": 2
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 1864,
+     "max_orbit": 2
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 17,
+     "n_unique": 1,
+     "any_unique": true
+    },
+    "B_new": {
+     "n_values": 9,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 10,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 4,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 9,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": true
+   },
+   "max_ledger_err": 5.551115123125783e-17,
+   "href": 0.0,
+   "elapsed_s": 43.647
+  }
+ ],
+ "elapsed_s": 193.714
+}

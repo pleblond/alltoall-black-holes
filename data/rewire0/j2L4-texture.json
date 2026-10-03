@@ -1,0 +1,280 @@
+{
+ "task": "j2L4-texture",
+ "rows": [
+  {
+   "graph": "j2L4-texture",
+   "field": "texture-sine-x",
+   "n_nodes": 32,
+   "n_edges": 128,
+   "anchored": null,
+   "smax": 3,
+   "n_raw": 9792,
+   "n_phys": 9792,
+   "principles": {
+    "CONS": {
+     "n_surv": 9792,
+     "status": "DEGENERATE"
+    },
+    "LEDG": {
+     "n_surv": 1220,
+     "status": "DEGENERATE"
+    },
+    "CONS_LEDG": {
+     "n_surv": 1220,
+     "status": "DEGENERATE"
+    },
+    "SPAN": {
+     "n_surv": 8000,
+     "status": "DEGENERATE"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 240,
+     "status": "DEGENERATE"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 9792,
+     "max_orbit": 2
+    },
+    "LEDG": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 360,
+     "covariant": false,
+     "n_surv": 1220,
+     "max_orbit": 2
+    },
+    "CONS_LEDG": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 360,
+     "covariant": false,
+     "n_surv": 1220,
+     "max_orbit": 2
+    },
+    "SPAN": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 8000,
+     "max_orbit": 2
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 240,
+     "max_orbit": 2
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 258,
+     "n_unique": 21,
+     "any_unique": true
+    },
+    "B_new": {
+     "n_values": 65,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 68,
+     "n_unique": 1,
+     "any_unique": true
+    },
+    "span_new": {
+     "n_values": 4,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 65,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": true
+   },
+   "max_ledger_err": 1.6653345369377348e-16,
+   "href": 0.0,
+   "elapsed_s": 28.499
+  },
+  {
+   "graph": "j2L4-texture",
+   "field": "texture-step",
+   "n_nodes": 32,
+   "n_edges": 128,
+   "anchored": null,
+   "smax": 3,
+   "n_raw": 9792,
+   "n_phys": 9792,
+   "principles": {
+    "CONS": {
+     "n_surv": 9792,
+     "status": "DEGENERATE"
+    },
+    "LEDG": {
+     "n_surv": 1215,
+     "status": "DEGENERATE"
+    },
+    "CONS_LEDG": {
+     "n_surv": 1215,
+     "status": "DEGENERATE"
+    },
+    "SPAN": {
+     "n_surv": 8000,
+     "status": "DEGENERATE"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 266,
+     "status": "DEGENERATE"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 9792,
+     "max_orbit": 2
+    },
+    "LEDG": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 235,
+     "covariant": false,
+     "n_surv": 1215,
+     "max_orbit": 2
+    },
+    "CONS_LEDG": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 235,
+     "covariant": false,
+     "n_surv": 1215,
+     "max_orbit": 2
+    },
+    "SPAN": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 8000,
+     "max_orbit": 2
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_perms": 6,
+     "n_stab": 1,
+     "closure_violations": 0,
+     "covariant": true,
+     "n_surv": 266,
+     "max_orbit": 2
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 102,
+     "n_unique": 9,
+     "any_unique": true
+    },
+    "B_new": {
+     "n_values": 35,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 5,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 1,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 68,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 4,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 35,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": true
+   },
+   "max_ledger_err": 1.1102230246251565e-16,
+   "href": 0.0,
+   "elapsed_s": 36.872
+  }
+ ],
+ "elapsed_s": 66.777
+}

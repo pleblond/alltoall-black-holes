@@ -1,0 +1,965 @@
+{
+ "task": "tiny-star4",
+ "rows": [
+  {
+   "graph": "tiny-star4",
+   "field": "zero",
+   "n_nodes": 4,
+   "n_edges": 3,
+   "anchored": null,
+   "smax": 4,
+   "n_raw": 0,
+   "n_phys": 0,
+   "principles": {
+    "CONS": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "B_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": false
+   },
+   "max_ledger_err": 0.0,
+   "href": 0.0,
+   "elapsed_s": 0.011
+  },
+  {
+   "graph": "tiny-star4",
+   "field": "uniform",
+   "n_nodes": 4,
+   "n_edges": 3,
+   "anchored": null,
+   "smax": 4,
+   "n_raw": 0,
+   "n_phys": 0,
+   "principles": {
+    "CONS": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "B_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": false
+   },
+   "max_ledger_err": 0.0,
+   "href": 1.7320508075688772,
+   "elapsed_s": 0.001
+  },
+  {
+   "graph": "tiny-star4",
+   "field": "bonding",
+   "n_nodes": 4,
+   "n_edges": 3,
+   "anchored": null,
+   "smax": 4,
+   "n_raw": 0,
+   "n_phys": 0,
+   "principles": {
+    "CONS": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "B_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": false
+   },
+   "max_ledger_err": 0.0,
+   "href": 1.7320508075688772,
+   "elapsed_s": 0.0
+  },
+  {
+   "graph": "tiny-star4",
+   "field": "current",
+   "n_nodes": 4,
+   "n_edges": 3,
+   "anchored": null,
+   "smax": 4,
+   "n_raw": 0,
+   "n_phys": 0,
+   "principles": {
+    "CONS": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "B_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": false
+   },
+   "max_ledger_err": 0.0,
+   "href": 1.0,
+   "elapsed_s": 0.0
+  },
+  {
+   "graph": "tiny-star4",
+   "field": "antibonding",
+   "n_nodes": 4,
+   "n_edges": 3,
+   "anchored": null,
+   "smax": 4,
+   "n_raw": 0,
+   "n_phys": 0,
+   "principles": {
+    "CONS": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "B_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": false
+   },
+   "max_ledger_err": 0.0,
+   "href": 1.0,
+   "elapsed_s": 0.0
+  },
+  {
+   "graph": "tiny-star4",
+   "field": "random_s7",
+   "n_nodes": 4,
+   "n_edges": 3,
+   "anchored": null,
+   "smax": 4,
+   "n_raw": 0,
+   "n_phys": 0,
+   "principles": {
+    "CONS": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "B_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": false
+   },
+   "max_ledger_err": 0.0,
+   "href": 0.6240238800674356,
+   "elapsed_s": 0.0
+  },
+  {
+   "graph": "tiny-star4",
+   "field": "spike",
+   "n_nodes": 4,
+   "n_edges": 3,
+   "anchored": null,
+   "smax": 4,
+   "n_raw": 0,
+   "n_phys": 0,
+   "principles": {
+    "CONS": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    },
+    "HID": {
+     "n_surv": 0,
+     "status": "ABSENT"
+    }
+   },
+   "covariance": {
+    "CONS": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "CONS_LEDG": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "SPAN": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "MOTIF": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    },
+    "HID": {
+     "n_surv": 0,
+     "covariant": true,
+     "n_stab": 0,
+     "max_orbit": 0,
+     "closure_violations": 0,
+     "note": "vacuous (no survivors)"
+    }
+   },
+   "dist": {
+    "dE": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "B_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "J_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_sq": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_T_touch": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "d_ncomp": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "hres": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "span_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "BJ_new": {
+     "n_values": 0,
+     "n_unique": 0,
+     "any_unique": false
+    },
+    "any_quantity_distinguishes": false
+   },
+   "max_ledger_err": 0.0,
+   "href": 1.7320508075688772,
+   "elapsed_s": 0.001
+  }
+ ],
+ "elapsed_s": 0.041
+}

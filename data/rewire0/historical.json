@@ -1,0 +1,31 @@
+{
+ "task": "historical",
+ "br1": {
+  "L28_closed": 7665989632,
+  "banked": 7665989632,
+  "match": true
+ },
+ "blind_L4": {
+  "square": {
+   "accepts": 0
+  },
+  "triangle": {
+   "accepts": 5
+  },
+  "metropolis025": {
+   "accepts": 0
+  }
+ },
+ "blind_L8": {
+  "square": {
+   "accepts": 0
+  },
+  "triangle": {
+   "accepts": 5
+  },
+  "metropolis025": {
+   "accepts": 0
+  }
+ },
+ "elapsed_s": 1.906
+}
