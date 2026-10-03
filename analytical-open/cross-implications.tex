@@ -1257,6 +1257,82 @@ On \(J_2\) any limit of these eigenvalues along growing tori satisfies
 On \(J_3\), if \(1/|t|\ge g(12+)\), every such limit lies back in
 \([-12,12]\).
 
+\begin{proposition}
+\label{prop:rungwt}
+In the geometry of Proposition~\ref{prop:rung}, the odd eigenstate at
+energy \(t\) is the odd delta of the cell.
+Its bond saturates the negative endpoint of
+Lemma~\ref{lem:bond-expand}.
+On the normalised even eigenstate outside the even band, the two bits
+are equal, so the bond saturates the positive endpoint, \(P_-=0\), and
+\(h_2(P_-)=0\).
+The cell carries
+\begin{equation}
+\label{eq:rungwt}
+|\varphi(c)|^2=\frac{1}{t^2\bigl(-g'(E)\bigr)},
+\end{equation}
+and each bit carries half of that weight.
+On \(J_2\), as \(t\to 0\),
+\begin{equation}
+\label{eq:rungexp}
+|\varphi(c)|^2
+=512\pi\, t^{-2}
+\exp\Bigl(-\frac{8\pi}{|t|}\Bigr)
+\bigl(1+o(1)\bigr),
+\end{equation}
+and \(|t|\ln\bigl(1/(|E|-8)\bigr)\to 8\pi\).
+\end{proposition}
+
+\begin{proof}
+The odd delta is the eigenstate of Proposition~\ref{prop:rung}, with
+amplitudes \(1/\sqrt{2}\) and \(-1/\sqrt{2}\).
+Proposition~\ref{prop:oddsat} gives the negative endpoint.
+
+The even intertwining of Proposition~\ref{prop:cellpole} puts both bits
+equal to \(\varphi/\sqrt{2}\).
+The moduli agree and the relative phase is \(0\), so
+\(B=q/2\) with \(q=|\varphi(c)|^2\).
+Then \(P_-=0\) and \(h_2(P_-)=0\).
+The identity \(\varphi=-t\,\varphi(c)\,(E+2A)^{-1}|c\rangle\) in the proof of
+Proposition~\ref{prop:rung} gives
+\(\|\varphi\|^2=t^2|\varphi(c)|^2(-g'(E))\).
+Normalisation is \eqref{eq:rungwt}.
+Each sheet bit carries \(|\varphi(c)|^2/2\).
+
+On \(J_2\), \(g=2\mathcal{G}-1/E\).
+The expansion of \(\mathcal{G}\) in the proof of
+Proposition~\ref{prop:stitch}, at \(E=8+\delta\) with \(L=\ln(1/\delta)\) and
+\(C_0=1/16+3\ln 2/(8\pi)\), gives
+\[
+g(8+\delta)
+=\frac{L}{8\pi}+\frac{3\ln 2}{4\pi}+\rho(\delta),
+\]
+where \(\rho(\delta)\to 0\).
+The constant terms \(2\cdot(1/16)\) and \(-1/8\) cancel.
+For \(t<0\) the root above \(8\) solves \(g=1/|t|\), so
+\[
+L=\frac{8\pi}{|t|}-6\ln 2-8\pi\,\rho(\delta)
+\]
+and \(\delta=64\exp(-8\pi/|t|)\,(1+o(1))\).
+Differentiating \(g=2\mathcal{G}-1/E\) and using
+\(\delta(-\mathcal{G}')\to 1/(16\pi)\) from
+Proposition~\ref{prop:endpoint} gives
+\(\delta(-g')\to 1/(8\pi)\).
+Therefore
+\(|\varphi(c)|^2=8\pi\,\delta/t^2\,(1+o(1))\),
+which is \eqref{eq:rungexp}.
+The function \(g\) is odd and \(g'\) is even, so the root below \(-8\),
+present when \(t>0\), has the same cell weight.
+The logarithm is the exponent of \(\delta\).
+\end{proof}
+
+The factor \(64\) is \(e^{6\ln 2}\) and carries no factor \(e^{\pi}\).
+The flat-pole term \(1/(2E)\) in \(\mathcal{G}\) cancels the edge value
+\(1/8\) inside \(g=2\mathcal{G}-1/E\), which is why this exponent is
+\(8\pi/|t|\) rather than the stitch exponent \(16\pi/|t|\).
+The even state remains saturated at \(+q/2\) for every \(t\neq 0\), while
+its cell weight tends to zero.
+
 \section{Two stitches into the two bits of one cell}
 \label{sec:twobit}
 
