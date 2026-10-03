@@ -117,7 +117,11 @@ def task_argv(t) -> str:
     if k == "forbit":
         return f"--task forbit --traj {t[1]}"
     if k == "traj":
-        return f"--task traj --kind {t[1]} --sub {t[2]} --ftag {t[3]}"
+        # JET0-AMENDMENT-2: omit --sub when empty (int kind has sub="",
+        # argparse rejects empty values; runner treats missing as "").
+        if t[2]:
+            return f"--task traj --kind {t[1]} --sub {t[2]} --ftag {t[3]}"
+        return f"--task traj --kind {t[1]} --ftag {t[3]}"
     if k == "lower":
         return (f"--task lower --sub {t[1]} --edge {t[2]} "
                 f"--construction {t[3]}")
