@@ -10220,3 +10220,173 @@ along global phase. ZERO is the no-linear-susceptibility limit. Nothing
 here selects a vacuum or moves geometry; the response differences are
 mathematical facts about established relational observables, filed as input
 to future geometry coupling.
+
+## SCALE0-PREREG — Fixed-geometry asymptotic scaling bank (FROZEN PRE-DATA)
+
+**Status:** ladder + substrates + per-observable grids + precision-scaling
+rules + regression gates + matrix schema + fit rules + verdict ladder
+frozen; campaign NOT YET RUN. SCALE-0 banks already-earned
+fixed-geometry observables at large L BEFORE dynamic geometry makes
+them expensive. No new physics is claimed: this is a measurement bank
+with justified asymptotic estimates and explicit unresolved entries.
+
+**Mission (SCALE-0.tex):** build a large-L bank for fixed-geometry
+observables: OBS residuals + reconstructed dimension; RESPONSE
+velocity/anisotropy/distance exponents; P1 packet velocity/dispersion/
+directional order; POT static range/floor + all-path diagnostics;
+QUOT sheet-forgetting/hidden visibility; ZERO near-zero statistics +
+protected-background floors; VAC-EXC fractional-collapse/response
+scaling; VAC-COMP zero-space + hidden-vacuum-manifold dimensions
+where feasible. Theory-derived scaling forms where available,
+otherwise effective exponents + monotonic trends (no forced power
+laws). Pre-wrap and torus-recurrence regimes kept separate. Controls:
+banked small-L regressions; frozen apparatus; no bar retuning; only
+documented precision scaling. Deliverable: machine-readable O(L)
+matrix + fit diagnostics + justified asymptotic estimates + explicit
+unresolved-asymptotic entries. Verdict SCALE0-BANKED.
+
+**Frozen ladder:** headline L in {64, 128, 256, 512} (J2 torus,
+N = 2L^2 = 8192/32768/131072/524288). Regression L in {4, 8, 28}
+(+ banked L in {20, 42} read-only where the banked protocol has
+them). Suggested ladder L=64,128,256,512 adopted exactly.
+
+**Frozen substrates:** J2 torus headline (formation.j2_torus_graph,
+int labels, same assembly as every banked campaign). Square-torus
+control for S0-OBS/S0-DIM ONLY (banked OBS0/OBS1 protocol has the
+control; graphs.build_torus_grid). All other observables J2-only
+(banked single-substrate protocols; no new controls invented).
+
+**Frozen law:** H = -A, J = 1, hbar = 1, unitary Krylov evolution
+(expm_multiply) via response.evolve (response-like cells) or
+ballistic.evolve_fixed (packet cells), matching each banked
+protocol (RESPONSE G2 pins them identical, dev 0.0). No onsite,
+no weights, no coin anywhere.
+
+**Regime firewall (frozen, analyzer-enforced):** t_wrap(r; L) =
+(L - r)/8 (RESPONSE V_MAX = 8 bound). PRE = windows/fits use
+t < t_wrap(r) strictly. POST = t > t_wrap(r) strictly. Any fit
+pooling pre+post points is VOID (analyzer rejects the cell).
+OBS taus: wrap-safe targets R < D/2 are PRE (banked calibration
+is wrap-safe-only); R >= D/2 filed descriptively as POST with NO
+calibration fit. Each O(L) matrix row carries regime PRE/POST/
+STATIC (static solves are regime-free; filed as STATIC).
+
+**Frozen time rules:** RESPONSE T(L) = max(16, 2*(L-10)/8 + 4),
+dt = 0.05 (frozen 16 at small L; covers pre+post at large L in
+ONE evolution, windowed analysis). P1/VACEXC packets: T_pre(L) =
+0.30*L/1.21, T_post(L) = 1.20*L/1.21, dt = 0.1 (vest = 1.21 J2
+packet speed, banked). QUOT wave: T = 16 frozen (pre at all
+L >= 64) + T_post(L) = 1.20*L/1.21 post run, dt = 0.05.
+ZERO pre: T = 40, dt = 0.02 frozen (pre-wrap at all L >= 64);
+ZERO post: L <= 128 only (T = 1.5*(L/2)/1.21, dt = 0.02).
+VACEXC longtime: T = 120 frozen (regime filed per L) + T_fit =
+8 pre analysis. OBS wave grid: Tmax = D, dt = 0.05 frozen; OBS
+diffusion return: DS_TS frozen; OBS diffusion taus: full frozen
+grid L <= 128 (banked spectral reuse), r <= 16 restricted at
+L >= 256 (cost; filed). POT static: OM_J2 = -8.5 frozen
+(POT-1); CG rtol = 1e-11 (OBS1 precedent).
+
+**Frozen grids/seeds:** origins = obs0.sample_origins (16,
+frozen seeds); targets = obs0.sample_targets subset (frozen
+TARGET_SEED_BASE + oi; 75/origin); stations = OBS1 frozen
+rng(9100 + 100*cell + set), 64 stations, set s0 only at
+L >= 256 (cost; banked sets reused read-only at L <= 128).
+P1 k in {(0.3,0),(0.5,0)}, sigma = 4.0 frozen, r0 =
+(L/4, L/2). RESPONSE src cell (7,14) at L = 28; scaled src
+(L/4, L/2) at L >= 64 (filed readout shift; covariance-gated).
+QUOT preps sym/anti (+ sheet0/sheet1 at L <= 128 only).
+ZERO families F1/F5/two-packet-pi (frozen seeds). VACEXC
+kinds point_amp/packet/hidden_sector (cross-bg) + packet
+amplitude ladder AMPLITUDES (7). VACCOMP alphas = ALPHA_GRID
+(frozen) + rays VPLUS/VPI/VMINUS/VSTAG.
+
+**Precision scaling (the ONLY deviations from banked dense
+protocols; each with a cross-validation gate):**
+P1 dense->Krylov wave/diffusion traces at ALL L; gates:
+|tauK - tauS| <= max(2 grid steps, 5%) on common pairs at
+L <= 128 (banked spectral read-only); Krylov d_s within 0.05
+of spectral; d_H exact BFS (no precision change).
+P2 spsolve->CG static at L >= 64; gate: CG vs spsolve <= 1e-8
+at L = 28 (OBS1 precedent pin).
+P3 full-target->75-subset OBS taus at L >= 256; gate:
+subset-fit vs banked full-fit |Dcalib| <= 5% at L = 64/128
+else VOID-subset (fall back to full targets at L <= 128,
+subset only L >= 256 with filed offset).
+P4 stored traces decimated (stride <= 20); arrivals/Rmax/fits
+computed full-rate internally BEFORE decimation (decimation
+touches stored traces only, never fitted quantities).
+P5 ZERO post at L >= 256 = unresolved-cost (no runs; explicit
+matrix entries with reason; no strided substitute).
+P6 Weyl dense-only: L <= 128 banked reuse; L >= 256 unresolved
+(needs full spectrum; eigsh partial spectra change the frozen
+window meaning, so no substitute is run).
+P7 rows never stored at L >= 64 (metrics only); L <= 28
+regression may store rows (frozen protocol parity).
+P8 banked eigen/tau/dim records consumed READ-ONLY from beast
+~/obs0-data, ~/obs0r-data, ~/obs1-data (never rebuilt; sha +
+byte-count logged per record).
+
+**Regression gates (HARD; any fail => SCALE0-PARTIAL, no
+shopping):**
+R-OBS replayed d_H/d_s/heat/weyl at L = 28/64/128 (j2+sq)
+match banked info JSON to 1e-9 (read-only replay); Krylov d_s
+within 0.05; Krylov tau subset within P1 gate.
+R-RESP L = 28 headline replay: v_field in (0.5, 12) and within
+5% of banked 7.947; v_quad within 10% of banked 5.94; decomp
+<= 1e-10.
+R-P1 L = 28 k=(0.3,0) v within 1% of V_BANKED j2 = 1.2075;
+sq L = 30 k=(0.5,0) within 5% of 0.9658 (banked C5 bars).
+R-POT L = 28 CG vs spsolve <= 1e-8; range == banked +- 1
+shell; xi within 20% of banked.
+R-QUOT L = 28 replay: comm/dead/intertwining <= 1e-12; anti
+remote <= 1e-9; sym arrival at load shells R_LOAD.
+R-ZERO L = 28 frozen headon subset event counts match banked
+ledger exactly (deterministic seeds).
+R-VACEXC L = 4 bitwise cross-bg 0.0; L = 28 frac collapse <=
+1e-9; packet v within 10% across vacua (banked bar).
+R-VACCOMP L = 4 census n_zero = 22 = 16 + 6 decomposition_ok;
+L = 8 extremal rows +-8 unique.
+
+**Task grid (frozen; scripts/scale0_campaign.py --print-all):**
+obs_replay (6: banked L<=128 read-only + Krylov validation),
+obs_hausdorff (8: L x sub), obs_krylov_origin (80: L>=64 x sub
+x origins; 4 validation origins at L<=128, 16 at L>=256),
+obs_dim (8: L x sub x s0; wave+static operational matrices ->
+volume dim + MDS d* + stress), resp_cell (8: L x BG0/BG+) +
+resp_regress (2), p1_cell (8: L x k) + p1_regress (2), pot_cell
+(4: L) + pot_regress (1), quot_cell (12: L x sym/anti +
+sheet pair at L<=128) + quot_regress (2), zero_cell (18: L x
+F1/F5/pinode pre + L<=128 post) + zero_regress (2),
+vacexc_cell (8: L x crossbg/fracladder) + vacexc_regress (3),
+vaccomp_cell (4: L) + vaccomp_regress (2). ~185 tasks, one
+process each, xargs-parallel on beast (light -P 90, heavy
+L>=256 evolutions + obs_dim -P 40; OMP=1 hygiene).
+
+**O(L) matrix schema (frozen; data/scale0/matrix.json):** rows
+keyed (observable, L, substrate, regime, channel, variant):
+{value, stat, method, n, regime, precision_note, unresolved}.
+stat = {kind: exact|fit_r2|median_spread|count, ...}. method
+names the apparatus function. unresolved = null or {reason,
+class: cost|spectrum|recurrence|fit_fail}. fits.json: per
+(observable, channel, regime) {form, params, r2, n, comment};
+forms: theory-first (d_H->const 2; nodal(L) exact combinatorics;
+v front const; B-blindness exact 0; cross-bg identity exact 0;
+xi saturate const; chi-style rank laws where banked), else
+effective (per-L power p(L) + monotone flag). unresolved.json:
+explicit list. verdict.json: gate table + ladder outcome.
+
+**Fit rules:** theory forms first; otherwise effective exponents
+per L + monotonic-trend flag; NO pooled pre/post fits; NO forced
+power laws (r2 < 0.9 => trend-only, no exponent claimed).
+Asymptotic estimate JUSTIFIED only if last two rungs agree
+within error AND the sequence is monotone; else an explicit
+unresolved-asymptotic entry (no extrapolation by eye).
+
+**Verdict ladder:** SCALE0-BANKED iff ALL tasks exit 0 AND all
+R-* gates green AND every preregistered matrix cell is filled
+or explicitly unresolved-with-reason AND fits/diagnostics are
+committed. Else SCALE0-PARTIAL with the failing gate named.
+No other verdict exists. Records: data/scale0/cells/*.json +
+matrix.json + fits.json + unresolved.json + verdict.json.
+Full suite on beast (-n 90, weighted skipped per standing
+pyproject config) green required before the verdict files.
