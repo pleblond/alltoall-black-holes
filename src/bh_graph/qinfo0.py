@@ -46,6 +46,22 @@ BANKED_ATOL = 1e-9
 
 KIND_IDENTITY = "I"
 
+
+def _close(a: float | complex, b: float | complex,
+           atol: float = FP_ATOL) -> bool:
+    """Scale-aware exact-algebra comparison (Amendment-1).
+
+    |a - b| <= atol * max(1, |a|, |b|): absolute 1e-12 at O(1) scale,
+    relative 1e-12 above it. Pure floating-point rounding allowance
+    (e.g. /sqrt(2) at |psi|^2 ~ 1e4); the bar value is unchanged.
+    """
+    try:
+        return bool(abs(complex(a) - complex(b))
+                    <= atol * max(1.0, abs(complex(a)),
+                                  abs(complex(b))))
+    except Exception:
+        return False
+
 # ---------------------------------------------------------------------------
 # Frozen battery (QINFO0-PREREG section 4; deterministic, no RNG)
 # ---------------------------------------------------------------------------
@@ -139,10 +155,10 @@ def is_algebra_ok(psi_i: complex, psi_j: complex,
         s = sum_mode(psi_i, psi_j)
         d = diff_mode(psi_i, psi_j)
         ri, rj = inverse_pair(s, d)
-        if abs(ri - psi_i) > atol or abs(rj - psi_j) > atol:
+        if not _close(ri, psi_i, atol) or not _close(rj, psi_j, atol):
             return False
         rep = norm_decomp(psi_i, psi_j)
-        return bool(abs(rep["sum_weights"] - rep["pair_norm"]) <= atol)
+        return bool(_close(rep["sum_weights"], rep["pair_norm"], atol))
     except Exception:
         return False
 
@@ -325,9 +341,9 @@ def is_hadamard_ok(atol: float = FP_ATOL) -> bool:
         for _name, psi_i, psi_j in PAIR_CELLS:
             pp, pm = hadamard_pair(psi_i, psi_j)
             rep = norm_decomp(psi_i, psi_j)
-            if abs(abs(pp) ** 2 - rep["w_plus"]) > atol:
+            if not _close(abs(pp) ** 2, rep["w_plus"], atol):
                 return False
-            if abs(abs(pm) ** 2 - rep["w_minus"]) > atol:
+            if not _close(abs(pm) ** 2, rep["w_minus"], atol):
                 return False
         return True
     except Exception:
@@ -731,9 +747,16 @@ def roundtrip_cell(name: str) -> dict | None:
         w_stored = (abs(complex(q["d"])) ** 2) / 2.0
         w_back = (abs(complex(back["q"]["d"])) ** 2) / 2.0
         cover_match = (back["q"]["cover"] == q["cover"])
-        psi_match = bool(
-            np.max(np.abs(np.asarray(Xrec["psi"])
-                           - np.asarray(psi))) <= FP_ATOL)
+        # Label-mapped field comparison (Amendment-1): recovered order
+        # is [rest..., i, j], not the predecessor order.
+        rec_idx = {v: t for t, v in enumerate(list(Xrec["order"]))}
+        rec_psi = np.asarray(Xrec["psi"], dtype=np.complex128)
+        psi_match = True
+        for t, v in enumerate(list(order)):
+            if abs(complex(rec_psi[rec_idx[v]]) - complex(psi[t])) \
+                    > FP_ATOL:
+                psi_match = False
+                break
         return {"cell": name, "w_stored": float(w_stored),
                 "w_back": float(w_back),
                 "abs_diff": float(abs(w_back - w_stored)),
@@ -751,7 +774,7 @@ def is_roundtrip_ok(atol: float = FP_ATOL) -> bool:
             rep = roundtrip_cell(name)
             if rep is None:
                 return False
-            if rep["abs_diff"] > atol:
+            if not _close(rep["w_back"], rep["w_stored"], atol):
                 return False
             if not rep["cover_match"] or not rep["psi_match"]:
                 return False
@@ -777,9 +800,11 @@ def is_scaling_ok(atol: float = FP_ATOL) -> bool:
                 fac = abs(complex(a)) ** 2
                 rep1 = norm_decomp(complex(psi_i) * complex(a),
                                    complex(psi_j) * complex(a))
-                if abs(rep1["w_plus"] - fac * rep0["w_plus"]) > atol:
+                if not _close(rep1["w_plus"], fac * rep0["w_plus"],
+                              atol):
                     return False
-                if abs(rep1["w_minus"] - fac * rep0["w_minus"]) > atol:
+                if not _close(rep1["w_minus"],
+                              fac * rep0["w_minus"], atol):
                     return False
                 w1 = mode_weights(rep1["s"], rep1["d"])
                 if abs(w1["P_plus"] - w0["P_plus"]) > atol:

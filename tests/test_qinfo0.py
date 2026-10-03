@@ -52,7 +52,7 @@ def test_qinfo0_hadamard():
 def test_qinfo0_schmidt():
     assert q0.is_schmidt_ok()
     vec = q0.schmidt_state_for_weights(0.8, 0.2)
-    assert abs(float(np.vdot(vec, vec)) - 1.0) < 1e-12
+    assert abs(float(np.vdot(vec, vec).real) - 1.0) < 1e-12
 
 
 def test_qinfo0_comparison_identical():
