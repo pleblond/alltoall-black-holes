@@ -60,7 +60,11 @@ def test_collapse_consistent_paths_stars():
         assert len(step["steps"]) == r["n"] - 1
         direct = be.collapse_region_direct(r, bg, step["k"])
         assert be.is_collapse_consistent_ok(step, direct)
-        assert abs(step["psi_k"] - complex(bg.sum())) < 1e-9
+        from bh_graph.ballistic import index_of
+
+        idx = index_of(r["order"])
+        assert abs(step["psi_k"]
+                   - complex(sum(bg[idx[v]] for v in r["R"]))) < 1e-9
 
 
 def test_collapse_consistent_j2_square():
