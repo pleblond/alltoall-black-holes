@@ -83,7 +83,8 @@ COVER_CAP_PER_C = 25  # STORE-0 frozen J2 fiber subset cap
 L28_FIBER_CAP = 8  # frozen L28 cost cap (EVENT-0 anchor precedent)
 
 # Exact-vs-QR order certification split (frozen; N = number of nodes).
-N_EXACT_MAX = 32
+# JET0-AMENDMENT-1: 32 -> 128 (j2-L8 exact 0.06 s, QR unstable resid 0.05).
+N_EXACT_MAX = 128
 QR_BAR = 1e-9
 QR_STAB_BARS = (1e-12, 1e-9, 1e-6)
 
@@ -261,7 +262,8 @@ def krylov_jet(g: nx.Graph, psi: np.ndarray, order: list, i, j,
 
     Iterative matvecs (no matrix powers): v_0 = psi, z_n = r . v_n,
     v_{n+1} = H v_n. Default m = certified order of (G, e) (exact for
-    N <= 32, QR for N > 32). Returns components + d/W cross-checks.
+    N <= 128, QR for N > 128; JET0-AMENDMENT-1). Returns components
+    + d/W cross-checks.
     """
     from bh_graph.ballistic import index_of
 
@@ -608,7 +610,7 @@ def krylov_order_qr(g: nx.Graph, order: list, i, j,
 
 
 def krylov_order(g: nx.Graph, order: list, i, j) -> dict:
-    """Certified Krylov order (exact for N <= 32, QR above; frozen split)."""
+    """Certified Krylov order (exact N <= 128, QR above; A1 split)."""
     if len(order) <= N_EXACT_MAX:
         return krylov_order_exact(g, order, i, j)
     return krylov_order_qr(g, order, i, j)
@@ -2160,7 +2162,13 @@ def _fiber_census_for_merge(sub: dict, ftag: str, edge, psi,
     L = sub.get("L", 0) if is_j2 else 0
     if not is_j2:
         dvals: tuple = tuple(D_GRID)
-        cap = None
+        # JET0-AMENDMENT-1: er-24 exhaustive is 9,842 covers x 27 =
+        # 265k alts (~7 h/task); cap to the frozen 25-per-c subset
+        # (J2-L4 precedent, outcome-blind canonical order).
+        if sub.get("name") == "er-24":
+            cap = COVER_CAP_PER_C
+        else:
+            cap = None
     elif L <= 4:
         dvals = tuple(D_GRID)
         cap = COVER_CAP_PER_C
@@ -3212,6 +3220,9 @@ def witness_record(spec: str) -> dict:
 def ord_tasks() -> list:
     out = []
     for sub in m0.SUBSTRATES:
+        # JET0-AMENDMENT-1: j2-L28 out of ORD (QR uncertifiable N=1568).
+        if sub == "j2-L28":
+            continue
         sd = m0.build_substrate(sub)
         for k in range(len(m0.frozen_edges(sd))):
             out.append({"sub": sub, "edge_idx": k})
@@ -3220,7 +3231,8 @@ def ord_tasks() -> list:
 
 def mergejet_tasks() -> list:
     out = []
-    for sub in m0.SUBSTRATES:
+    # JET0-AMENDMENT-1: j2-L28 out of MERGE-JET (1.7 h/task, STORE-0 prec).
+    for sub in [s for s in m0.SUBSTRATES if s != "j2-L28"]:
         sd = m0.build_substrate(sub)
         for ftag in m0.field_tags(sd):
             if ftag in m0.PAIR_FIELDS:
@@ -3267,8 +3279,8 @@ def traj_tasks() -> list:
             for f in TRAJ_TRI_FIELDS]
     out += [{"kind": "bare", "sub": "handbuilt", "ftag": f}
             for f in TRAJ_HB_FIELDS]
-    out += [{"kind": "bare", "sub": "j2-L28", "ftag": f}
-            for f in TRAJ_L28_FIELDS]
+    # JET0-AMENDMENT-1: j2-L28 out of TRAJ (fiber cost, STORE-0 precedent).
+    # TRAJ_L28_FIELDS retained as a frozen constant (unused by the battery).
     out += [{"kind": "int", "sub": "", "ftag": f} for f in TRAJ_INT_TAGS]
     out += [{"kind": "stored", "sub": s, "ftag": f}
             for s, f in TRAJ_STORED_CELLS]

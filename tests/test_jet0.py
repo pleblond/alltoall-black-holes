@@ -13,7 +13,7 @@ def test_bars_frozen():
     assert j0.BAR_U1 == 1e-12
     assert j0.MAP == "sum"
     assert j0.QR_BAR == 1e-9
-    assert j0.N_EXACT_MAX == 32
+    assert j0.N_EXACT_MAX == 128  # JET0-AMENDMENT-1 (was 32)
 
 
 def test_ladder_frozen():
@@ -29,19 +29,20 @@ def test_ladder_frozen():
 
 
 def test_battery_census():
-    assert len(j0.ord_tasks()) == 19
-    assert len(j0.mergejet_tasks()) == 325
+    # JET0-AMENDMENT-1: L28 out of ord/mergejet/traj (496 total, was 590).
+    assert len(j0.ord_tasks()) == 17
+    assert len(j0.mergejet_tasks()) == 235
     assert len(j0.splitjet_tasks()) == 79
     assert len(j0.samen_tasks()) == 24
     assert len(j0.forbit_tasks()) == 15
-    assert len(j0.traj_tasks()) == 30
+    assert len(j0.traj_tasks()) == 28
     assert len(j0.lower_tasks()) == 10
     assert len(j0.hidden_tasks()) == 24
     assert len(j0.source_tasks()) == 10
     assert len(j0.generic_tasks()) == 40
     assert len(j0.witness_tasks()) == 14
     total = sum(len(v) for v in j0.all_tasks().values())
-    assert total == 590
+    assert total == 496
     assert j0.all_tasks() == j0.all_tasks()
     assert len(j0.battery_checksum()) == 64
 
