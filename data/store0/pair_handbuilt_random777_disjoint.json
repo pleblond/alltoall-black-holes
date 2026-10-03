@@ -1,0 +1,46 @@
+{
+ "sub": "handbuilt",
+ "ftag": "random777",
+ "relation": "disjoint",
+ "ea": [
+  0,
+  2
+ ],
+ "eb": [
+  5,
+  6
+ ],
+ "disjoint_ok": true,
+ "R_a": 2.2253362998981068,
+ "R_b": 1.1382523035583145,
+ "R_b_after_a": 1.1382523035583145,
+ "R_a_after_b": 2.2253362998981068,
+ "R_joint_ab": 3.3635886034564213,
+ "R_joint_ba": 3.3635886034564213,
+ "R_direct_ab": 3.3635886034564213,
+ "R_direct_ba": 3.3635886034564213,
+ "add_err": 0.0,
+ "step_err": 0.0,
+ "step_err_ba": 0.0,
+ "tele_err_ab": 0.0,
+ "tele_err_ba": 0.0,
+ "finals_equal": true,
+ "factorize": true,
+ "rev_ab_forward": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ab_reverse": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ba_forward": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ba_reverse": {
+  "exact": true,
+  "drained": true
+ },
+ "_git": "591d50a92d77c5456ed2109fccee08bf3a7a3ac4"
+}

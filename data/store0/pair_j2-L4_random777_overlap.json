@@ -1,0 +1,46 @@
+{
+ "sub": "j2-L4",
+ "ftag": "random777",
+ "relation": "overlap",
+ "ea": [
+  0,
+  2
+ ],
+ "eb": [
+  1,
+  3
+ ],
+ "disjoint_ok": false,
+ "R_a": 1.1395605609462698,
+ "R_b": 1.2020180036790222,
+ "R_b_after_a": 2.141242222360611,
+ "R_a_after_b": 2.078784779627858,
+ "R_joint_ab": 3.2808027833068807,
+ "R_joint_ba": 3.2808027833068802,
+ "R_direct_ab": 3.2808027833068807,
+ "R_direct_ba": 3.2808027833068802,
+ "add_err": 0.9392242186815887,
+ "step_err": 0.9392242186815887,
+ "step_err_ba": 0.9392242186815882,
+ "tele_err_ab": 0.0,
+ "tele_err_ba": 0.0,
+ "finals_equal": true,
+ "factorize": false,
+ "rev_ab_forward": {
+  "exact": false,
+  "drained": true
+ },
+ "rev_ab_reverse": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ba_forward": {
+  "exact": false,
+  "drained": true
+ },
+ "rev_ba_reverse": {
+  "exact": true,
+  "drained": true
+ },
+ "_git": "591d50a92d77c5456ed2109fccee08bf3a7a3ac4"
+}

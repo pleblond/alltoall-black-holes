@@ -1,0 +1,63 @@
+{
+ "sub": "j2-L4",
+ "ftag": "H:delta",
+ "edge": [
+  4,
+  12
+ ],
+ "k": 32,
+ "eligible": true,
+ "det_ok": true,
+ "rcov_ok": true,
+ "ucov_ok": true,
+ "info_ok": true,
+ "R": 2.220446049250313e-16,
+ "R_cover": 1.0,
+ "R_fiber": -0.0,
+ "R_mixed": -0.9999999999999998,
+ "c": 0,
+ "B": 0.0,
+ "Acoef": 0.2500000000000001,
+ "W": [
+  0.7071067811865475,
+  0.0
+ ],
+ "Rformula": 1.1102230246251565e-16,
+ "form_err": 1.1102230246251565e-16,
+ "formula_ok": true,
+ "R_split": -2.220446049250313e-16,
+ "invert_err": 0.0,
+ "pred_ok": true,
+ "roundtrip_ok": true,
+ "exact_ok": true,
+ "phys_ok": true,
+ "drained": true,
+ "E_X": 128.0,
+ "E_M": 128.0,
+ "close_merge": 2.220446049250313e-16,
+ "close_split": -2.220446049250313e-16,
+ "store_cov": {
+  "rel_exact": true,
+  "rel_k": true,
+  "rel_R": 0.0,
+  "u1_rec": 0.0,
+  "u1_R": 0.0,
+  "swap_equiv": true,
+  "swap_R": 0.0
+ },
+ "locality": {
+  "applicable": true,
+  "ok": true,
+  "class": "one-neighborhood-local"
+ },
+ "candidates": {
+  "qR": true,
+  "qd": true,
+  "qc": true,
+  "qxi": true
+ },
+ "E_store_derived": true,
+ "R_pin": 2.220446049250313e-16,
+ "R_pin_match": true,
+ "_git": "591d50a92d77c5456ed2109fccee08bf3a7a3ac4"
+}

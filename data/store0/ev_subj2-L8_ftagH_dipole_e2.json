@@ -1,0 +1,63 @@
+{
+ "sub": "j2-L8",
+ "ftag": "H:dipole",
+ "edge": [
+  24,
+  40
+ ],
+ "k": 128,
+ "eligible": true,
+ "det_ok": true,
+ "rcov_ok": true,
+ "ucov_ok": true,
+ "info_ok": true,
+ "R": 0.5000000000000002,
+ "R_cover": 1.0,
+ "R_fiber": -0.0,
+ "R_mixed": -0.4999999999999998,
+ "c": 0,
+ "B": 0.0,
+ "Acoef": 0.6250000000000001,
+ "W": [
+  0.4999999999999999,
+  0.0
+ ],
+ "Rformula": 0.5000000000000001,
+ "form_err": 1.1102230246251565e-16,
+ "formula_ok": true,
+ "R_split": -0.5000000000000002,
+ "invert_err": 0.0,
+ "pred_ok": true,
+ "roundtrip_ok": true,
+ "exact_ok": true,
+ "phys_ok": true,
+ "drained": true,
+ "E_X": 512.0,
+ "E_M": 511.5,
+ "close_merge": 2.220446049250313e-16,
+ "close_split": -2.220446049250313e-16,
+ "store_cov": {
+  "rel_exact": true,
+  "rel_k": true,
+  "rel_R": 0.0,
+  "u1_rec": 0.0,
+  "u1_R": 0.0,
+  "swap_equiv": true,
+  "swap_R": 0.0
+ },
+ "locality": {
+  "applicable": true,
+  "ok": true,
+  "class": "one-neighborhood-local"
+ },
+ "candidates": {
+  "qR": true,
+  "qd": true,
+  "qc": true,
+  "qxi": true
+ },
+ "E_store_derived": true,
+ "R_pin": 0.5000000000000002,
+ "R_pin_match": true,
+ "_git": "591d50a92d77c5456ed2109fccee08bf3a7a3ac4"
+}

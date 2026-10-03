@@ -1,0 +1,13 @@
+{
+ "cell": "single/bonding@0",
+ "halves_deterministic": true,
+ "graph_deterministic": true,
+ "R": 0.5,
+ "nonzero": true,
+ "close_merge": 0.0,
+ "close_split": 0.0,
+ "invert_err": 0.0,
+ "exact_ok": true,
+ "phys_ok": true,
+ "_git": "591d50a92d77c5456ed2109fccee08bf3a7a3ac4"
+}

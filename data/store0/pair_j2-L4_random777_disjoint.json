@@ -1,0 +1,46 @@
+{
+ "sub": "j2-L4",
+ "ftag": "random777",
+ "relation": "disjoint",
+ "ea": [
+  0,
+  2
+ ],
+ "eb": [
+  20,
+  22
+ ],
+ "disjoint_ok": true,
+ "R_a": 1.1395605609462698,
+ "R_b": 1.296689930165924,
+ "R_b_after_a": 1.296689930165924,
+ "R_a_after_b": 1.1395605609462696,
+ "R_joint_ab": 2.436250491112194,
+ "R_joint_ba": 2.436250491112194,
+ "R_direct_ab": 2.436250491112194,
+ "R_direct_ba": 2.436250491112194,
+ "add_err": 0.0,
+ "step_err": 0.0,
+ "step_err_ba": -2.220446049250313e-16,
+ "tele_err_ab": 0.0,
+ "tele_err_ba": 0.0,
+ "finals_equal": true,
+ "factorize": true,
+ "rev_ab_forward": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ab_reverse": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ba_forward": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ba_reverse": {
+  "exact": true,
+  "drained": true
+ },
+ "_git": "591d50a92d77c5456ed2109fccee08bf3a7a3ac4"
+}

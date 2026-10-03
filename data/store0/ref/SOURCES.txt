@@ -1,0 +1,34 @@
+STORE-0 frozen external references (read-only; never modified).
+
+RESERVOIR-0 (sibling branch, not on main at STORE-0 prereg time):
+  branch: origin/cursor/reservoir-0-536e
+  branch-tip commit: 5f4c3befb6c76745567e0c8c9b7ce547470e3df6
+  apparatus commit (src/bh_graph/reservoir0.py last changed):
+    63fcec32ce6c5dc8cc3b4d95333a73f9e8ab919b
+  pinned blob: reservoir0_pin.py (byte-identical copy of that file)
+  pinned verdict: reservoir0_verdict.json (RES0-XI, 68/68)
+  consumed: R_merge convention, R(d) = A + |d|^2/2 + Re(conj(d) W)
+    decomposition, R_split = -R_merge, disjoint additivity, support
+    classes, D_GRID values, pair/order/seq battery rules.
+
+FIBER-0 (sibling branch, not on main at STORE-0 prereg time):
+  branch: origin/cursor/fiber0-split-fiber-e2ff
+  branch-tip commit: d6da031c51dda109954b34655b520ad749e3e616
+  apparatus commit (src/bh_graph/fiber0.py last changed):
+    7ac43ee5b268d214800b7b9f07bd47d664ab538a
+  pinned blob: fiber0_pin.py (byte-identical copy of that file)
+  pinned verdict: fiber0_verdict.json (FIBER0-DEBT)
+  consumed: rival_A/rival_B existence (non-uniqueness exhibits only),
+    swap involution, quotient invariance (cross-checked, never re-derived).
+
+On-main frozen inputs (imported, never modified):
+  MERGE0-DETERMINISTIC + MERGE0-ACCOUNT-DEBT (data/merge0/verdict.json)
+  SPLIT0-MIXED (data/split0_verdict.json)
+  INFO0-MATCHED (data/info0_verdict.json)
+  BR-2.5 ONTOLOGY / BR-2.6 ACCOUNTED / CONS0-PARTIAL / SYM0-CLOSED /
+  HIDDEN0-SEPARATED / HBR0-SIGNREV / VACFIELD0-JOINT / VACCOMP0-COMPLETE /
+  VACTEXTURE-GRADIENT (banked modules + data verdicts)
+
+Audit: tests/test_store0.py::test_pinned_refs_byte_identical pins the
+sha256 of each blob above; tests/test_store0.py cross-checks store0's
+transcribed R formula against reservoir0_pin.merge_deficit on a battery.
