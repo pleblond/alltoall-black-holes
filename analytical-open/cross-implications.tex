@@ -450,6 +450,56 @@ E_0\le -(n-1)\le -9,\qquad m=-8-E_0\ge n-9.
 
 For \(n\le 9\) this trial vector does not clear the edge.
 A triangle scores \(-2\), inside the band.
+
+\begin{proposition}
+\label{prop:degree}
+On a \(d\)-regular graph every induced clique has order \(n\le d+1\), and
+the normalised indicator of an induced \(K_{d+1}\) has Rayleigh quotient
+\(-d\), equal to the all-ones eigenvalue.
+No induced clique of a pure \(d\)-regular host lies strictly below the
+coordination floor.
+\end{proposition}
+
+\begin{proof}
+A vertex of an induced \(K_n\) has at least \(n-1\) neighbours inside the
+clique, so \(n-1\le d\).
+The normalised indicator \(u\) satisfies
+\(u^{\mathsf T}Au=n-1\), hence the Rayleigh quotient of \(H=-A\) is
+\(-(n-1)\ge -d\).
+Equality holds at \(n=d+1\).
+The all-ones vector of a \(d\)-regular graph is an eigenvector of
+eigenvalue \(-d\).
+\end{proof}
+
+\(J_2\) has \(8\) generators, so it is \(8\)-regular and its induced
+cliques stop at \(K_9\), which meets the floor \(-8\) and does not go
+under it.
+\(J_3\) has \(12\) generators.
+Its dispersive symbol \(-4(\cos q_x+\cos q_y+\cos q_z)\) fills \([-12,12]\),
+and the sheet bit produces the flat band at \(0\).
+Induced cliques stop at \(K_{13}\), which meets the floor \(-12\).
+The strict inequality in Proposition~\ref{prop:clique} therefore uses
+edges that are not in the host.
+A finite set of extra edges does not move the essential spectrum, and it
+can raise the clique order past \(d+1\).
+
+The same extra edges clear the \(J_2\) floor once \(n\ge 10\), and they
+clear the \(J_3\) floor once \(n\ge 14\), with
+\[
+m_{J_3}=-12-E_0\ge n-13.
+\]
+For \(10\le n\le 13\) the trial value \(-(n-1)\) lies in \([-12,-9]\).
+It is below the \(J_2\) floor and inside the \(J_3\) essential spectrum.
+A motif this trial vector binds on a sheet is not shown to be bound on
+\(J_3\).
+If a weave raises the maximum degree to \(\Delta\), every Rayleigh
+quotient of \(H=-A\) lies in \([-\Delta,\Delta]\).
+The clique trial equals \(-(n-1)\) and therefore requires \(\Delta\ge n-1\).
+It lies below the pure-host floor \(-d\) if and only if \(n-1>d\).
+The maximum degree does not by itself locate the essential bottom of the
+weave, so it does not by itself say whether the trial value is a gap
+there.
+
 Modes inside the essential spectrum hybridize with \eqref{eq:dos}.
 You could regard a motif with no eigenvalue below the edge as a resonance
 of the earned unitary, and a motif with such an eigenvalue as a spectral
