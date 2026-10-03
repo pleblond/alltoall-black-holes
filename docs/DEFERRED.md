@@ -10524,3 +10524,47 @@ frozen bars with ~4x margin scaling. Costs (beast): jump T=8 -> 1600
 steps, maintained turn-on T=16 -> 3200 steps, POT turn-on T=24 -> 4800
 steps; all within the parallel budget. DT_STATIC=0.05, DT_FREE=0.05,
 DT_POT1, all horizons, and all bars unchanged.
+
+### SOURCE0-AMENDMENT-2 (pre-data; no SOURCE-0 task has run)
+
+P-RES correction: E=0 static legs are BOUNDED quasi-steady, not secularly
+growing. Cause (measured, unit-scale methodology pins L4/L8 only; no
+campaign task, headline L28 untouched): ||P_ker(H_BB) f||/||f|| = 1.2e-15
+(L4, nullity 21) / 6.0e-16 (L8, nullity 77) -- the single-pin drive is
+exactly (fp-zero) orthogonal to the bulk kernel, so no ker direction is
+forced and no ~t growth exists. Mechanism conjectured bipartite/
+single-pin (drive supported on pin neighbors vs ker structure); filed as
+observation, not theorem. The cond rule still reports singular (cond
+1.1e50/1.2e81 >> 1e12), so the S2 branch structure is unchanged: E=0 legs
+take the static vehicle. Only the resonant-leg gate (b) changes:
+linear-growth fit (r2 > 0.99, slope > 0) is REPLACED by the bounded
+quasi-steady gate on ||d||(t): rel_drift = |slope[10,30]|*20/mean < 0.25
+AND rel_osc = half-range[20,30]/mean < 0.5. Calibration (same L4/L8 pins,
+all 4 E0 vacua x AMP/PHASE/COMPLEX identical by linearity + real uhat):
+worst rel_drift 0.057, worst rel_osc 0.16 -> 4.4x/3.1x margin; true ~t
+growth would give rel_drift ~ O(2), cleanly rejected. Gates (a) K2 recon
+(verified 1e-13 on static legs, bar 1e-8 unchanged) and (c) E=0 |sha|
+equality (verified bitwise across vacua at matched family) are UNCHANGED.
+BARS: growth_r2 retired -> bounded_drift 0.25, bounded_osc 0.5. Code:
+growth_fit/is_growth_ok -> bounded_fit/is_bounded_ok (r2 still filed);
+record key "growth" -> "bounded"; analyzer stationary check reads
+bounded.ok on resonant legs. Vehicle name "static", T_GROW=30, DT_STATIC,
+all horizons, and the verdict ladder are unchanged (ladder wording
+"growth r2/slope/sha" now reads "bounded drift/oscillation/sha").
+
+### SOURCE0-AMENDMENT-3 (pre-data; no SOURCE-0 task has run)
+
+S7 protocol correction: the gated superposition identity uses SAME-PIN-SET
+singles, not separately-pinned singles. Cause (measured, unit-scale L4
+methodology pin): joint (pins {u0,u1}) vs naive singles (pins {u0} / {u1})
+gives field dev 0.187 -- pinning is affine-linear in (psi, s) at FIXED pin
+geometry, but the naive singles leave the other node free (bulk) while the
+joint run overwrites it, so no exact identity exists across pin sets
+(RESPONSE-0 0Z precedent is free evolution, which has no boundary data).
+Corrected protocol: single-A pins BOTH nodes with sources (sa, 0),
+single-B with (0, sb), joint with (sa, sb); measured field dev 6.3e-16,
+cross-anatomy dev 2.5e-17 (fp-exact, L4). Gates UNCHANGED (field < 1e-9,
+cross < 1e-9); cases, vehicles, and DT/T unchanged. The naive-sum
+deviation is additionally FILED per pair case as `naive_dev` (boundary
+cross-talk magnitude: separation-dependent physics, no gate). Analyzer
+superposition check unchanged (reads field_ok/cross_ok).
