@@ -10475,3 +10475,264 @@ vacuum tolerates arbitrary preregistered orientation textures without
 leaving E_0; what varies is the measurable relational landscape, never
 the vacuum character. Nothing here moves geometry or selects a vacuum;
 filed as input to future geometry coupling.
+## INFO0-PREREG — Structural branching and information accounting (FROZEN PRE-DATA)
+
+Campaign: INFO-0. Mission: quantify, WITHOUT probabilities, information lost
+by contraction and information required to specify reverse splits and
+histories. Consumes BR-2.5, RAND-0, SYM-0, TIME-0 and MEASURE0-DEBT
+read-only (byte-identical to main tail 81bf7b4, no vendoring, no
+modification). No experiment on this branch predates this prereg commit.
+
+### Physical grain (frozen)
+
+X_phys = X / (R x U1) (SYM0-CLOSED, consumed). Operationalized via
+MEASURE-0 state_signature + signature_key (R x U1-invariant multisets:
+N, E, degrees, triangles, cycle rank, |psi|, B, J, Q, E_psi). Branch
+counts n(X) = |A_phys(X)|, I_branch(X) = log2 n(X) (combinatorial
+labeling, NOT Shannon entropy). Five grains filed per node patch
+(SYM-0V): raw-directed (1+3^d), raw-undirected (1+(3^d+1)/2),
+iso-class (RAND-0F, N <= 12 else capped), symmetry-orbit (RAND-0B,
+patch <= 8 else capped), red-quotient (= undirected: phase+relabel act
+trivially on the frozen structural set).
+
+### Contraction loss (frozen, discrete + continuous separately)
+
+Forward (psi_i, psi_j) -> s = psi_i + psi_j (BR-2.5 sum map). Lost
+relative mode d = psi_i - psi_j, inversion psi_i = (s+d)/2,
+psi_j = (s-d)/2 (pinned). Discrete partition loss: daughter degree d_k,
+n_covers_undirected = (3^d_k+1)/2 (U0-H1), I_graph_lost = log2 n
+(exact counting). Continuous field loss: fiber 1 complex = 2 real dims,
+equal-split error |d|^2/2 (BR-2.5G), B = (|s|^2-|d|^2)/4 (needs |d|: not
+recoverable from s alone), dQ = +2B (sum-map norm change). Graph-reverse
+pin: original partition among covers of N(k) (must hold everywhere).
+
+### Reverse/history multiplicity (frozen)
+
+Physical predecessor sets P(X), I_pred = log2 |P(X)| (structural C/S and
+total incl identity waits reported separately). Field fibers filed per
+predecessor kind: C-predecessors (larger Y) carry 1-complex-dim fiber
+(d free); S/I-predecessors carry determined fields (0 dims). At V0
+(psi = 0) the fiber collapses to the single zero point (exact finite
+counts headline). TIME-0 exact histories consumed (canonical N = 1..6,
+143 classes, T = 2..6; labeled N <= 4, 44 states, T = 2,3):
+N_hist(a,b,T) timed walks, S_L(a,b) no-wait skeleton walks (L = 0..T),
+identity N_timed = sum_L C(T,L) S_L (pinned theorem, apparatus gate),
+N_skel = sum_L S_L, I_hist = log2 N_hist, I_skel = log2 N_skel,
+I_wait = log2(N_timed/N_skel) when both > 0 (average waiting multiplicity
+per skeleton; None for incompatible pairs). Waiting placements C(T,L),
+I_wait_place = log2 C(T,L) (exact integers). Scheduler multiplicity
+separately: sync-vs-sequential orders per marked subset (m! perms
+enumerated, validity + quotient matching counted; predicted all m!
+valid and matching, U0-G commutation), I_sched = log2(#valid).
+
+### Battery (frozen, deterministic, no RNG)
+
+Tiny: 5 graphs x 4 fields = 20 states (RAND/MEASURE factories);
+per-edge branch+loss (60 cells each), per-node branch (72 cells),
+per-state global single-step + sync (20 each), per-state scheduler
+(20 cells, 2^E subsets, E <= 4, m! <= 24, never capped). Canonical:
+SINGLE task (universe + adj + predecessor census + history T = 2..6 +
+bounds + banked TIME-0 match + placements). Labeled: SINGLE task
+(universe + adj + predecessor census + history T = 2,3 + gauge audit).
+Hidden: J2-L4 matched pairs (sign/phase/shape/amplitude, A/B sides) +
+vacuum backgrounds (ZERO/VPLUS/VPI/VMINUS) x patches (edge0/node0) =
+24 cells (branch + loss + signature comparison; iso/orbit capped on
+J2, filed). Firewall: SINGLE task (no Shannon, no tuning, 0 params).
+Total ~275 cells. Hidden circle (VAC-COMP RP1) filed as continuous debt
+(not censused; headline uses finite spot pairs).
+
+### Firewall (campaign level)
+
+No -sum p log p anywhere (MEASURE0-DEBT: probabilities not earned).
+Only counts and their binary logs appear. No temperature, Boltzmann
+factors, Born rule, action, entropy maximization, fitted rates, or tuned
+weights. Forbidden forms appear ONLY in the firewall audit as negative
+patterns (never evaluated). info0.is_no_shannon_ok() strips docstrings/
+comments/strings and fails on shannon/entropy/Boltzmann/Born/p-log/
+uniform/orbit-measure/RNG patterns in code; counting logs
+(log2count/math.log2 on integer counts) are allowed.
+
+### Stage gates (frozen): HARD (apparatus, any red => INFO0-PARTIAL)
+
+H-INST-no-crash; H-A-rep (edge+node A_phys R x U1-invariant);
+H-B-inversion (field inversion + |d|^2/2 + B formulas + dQ + partition
+found); H-C-timed-skeleton (N_timed = sum C*S on every canonical+labeled
+pair/T); H-D-no-shannon (firewall + 0 params); H-E-banked-match
+(recomputed TIME-0 headline matches data/time0_verdict.json: n_pairs,
+n_compatible, max_nhist exact ints; f_unique/median within 1e-12;
+T = 2..6); H-F-discrete-loss (n_covers = (3^d+1)/2 exact);
+H-G-branch-loss (n_branch_raw = 1+n_covers exact);
+H-I-hist-bound (N_hist <= D_max^T, I_hist <= T log2 D_max, every pair/T);
+H-J-phys-raw (n_phys <= n_raw every patch: edge+node+global+hidden);
+H-K-gap (0 < I_branch_raw - I_lost <= 1 every node patch);
+H-L-sync-raw (n_sync_raw = 2^E, I_sync_raw = E bits exact).
+
+### Headline physics (frozen, all boolean)
+
+E_pred_branch_canonical: pred_set == succ_set (structural + total) on
+all 143 canonical classes (forward vs backward information equality;
+mirror theorem, predicted TRUE). M_hidden: hidden pairs raw identical
+(n_raw equal) AND phys distinct (sigkeys differ) on all 8 pair/patch
+cells + 4 vacua distinct per patch (predicted TRUE; else PARTIAL with
+signature debt). M_scheduler: orders == m! valid + matching on all sync
+subsets (predicted TRUE; else BOUNDED with factorial-cap bound).
+M_labeled: pred==succ on labeled (descriptive gauge audit, NOT blocking:
+labels are redundancy; physical verdict uses canonical).
+
+### Verdict ladder (frozen, priority PARTIAL > SEPARATED > BOUNDED > MATCHED)
+
+INFO0-MATCHED = all HARD green + M_hidden green + E_pred_branch green +
+M_scheduler green (exact correspondence: pred==succ canonical,
+timed==sum, branch-loss exact function + gap bound, dims 2=2, hidden
+distinct, scheduler exact, hist/phys bounds hold, no debt blocking).
+INFO0-BOUNDED = all HARD green + M_hidden green + E_pred_branch green,
+but M_scheduler fails with orders <= m! bound holding (bounds without
+exact factorial). INFO0-SEPARATED = all HARD green + M_hidden green,
+but E_pred_branch fails (canonical forward vs backward systematically
+independent). INFO0-PARTIAL = any HARD red (apparatus/debt prevents
+complete comparison) or M_hidden fails (signature debt: hidden info not
+captured by the physical quotient). PREDICTION (pre-data,
+theorem-backed): INFO0-MATCHED via canonical mirror symmetry,
+timed-skeleton combinatorics, branch-loss algebra, fiber-dim match,
+HIDDEN0-SEPARATED signatures, and U0-G commutation; SEPARATED/BOUNDED/
+PARTIAL rungs data-reachable on the stated triggers.
+
+### Execution (frozen)
+
+scripts/info0_campaign.py (--jobs 90, Pool, module-level workers),
+data/info0_ledger.json (committed), scripts/info0_analyze.py writes
+data/info0_verdict.json. Beast EC2 (16.54.88.181, 96 CPU, OMP threads 1).
+Full suite on beast (pytest -n 90 --ignore=tests/test_weighted.py).
+No fitting after data. Amendments, if any, as INFO0-AMENDMENT-n with
+gated re-runs; none pre-data.
+
+## INFO0-AMENDMENT-1 — Scheduler validity no-op fix (pre-campaign-data)
+
+Found via unit tests (test_sync_scheduler_square, pre-campaign-data, no
+campaign records affected). Design error in
+info0.sequential_orders_for_subset: strict validity (every perm step must
+contract) fails for cyclic marked subsets (e.g., square full 4-edge set:
+4 nodes need 3 merges, 4th mark is intra-class). The quotient absorbs
+intra-class edges; sequential simulation must skip ra == rb no-ops
+(continue, not failure). Missing-edge (ra != rb but no edge) remains a
+genuine failure (filed, predicted never to occur). Prediction unchanged
+(all m! valid and matching, U0-G commutation); prereg scheduler text
+("validity + quotient matching counted") now reads with this no-op rule.
+Gated re-runs: tests/test_info0.py scheduler pins (square f_all_match).
+No banked data exists yet; campaign runs under PREREG + AMENDMENT-1.
+
+## INFO0-AMENDMENT-2 — Direct reverse checks, no enumeration (pre-campaign-data)
+
+Found via unit tests (hidden J2 pair cells hung + 13GB pytest RSS,
+pre-campaign-data, no campaign records affected). Design error in
+info0.contraction_loss_event: it enumerated split_covers (3^d_k covers)
+and called measure0.contraction_reverse_status (which enumerates
+node_admissible, ~2.3M states on J2 daughters with d_k ~ 14: 3^14 =
+4.78M covers). Reverse checks are now DIRECT (O(d), exact for every
+degree, identical code path for tiny and J2 cells). Graph-reverse holds
+by BR-2.5 construction (N(k) = N(i) u N(j)) and is verified explicitly
+via set equality ((nbrs_i | nbrs_j) == N(k)), never via enumeration.
+Full-reverse (signature match under frozen equal-halves) holds iff the
+halves condition a == b holds (exact complex equality) given
+graph-reverse: |psi| multisets match iff {|a|,|b|} == {|s|/2,|s|/2},
+which forces a == b (triangle-equality rigidity); verified against
+MEASURE-0 enumeration on the tiny battery (reversible == halves,
+33/60 banked cells). Prereg graph-reverse pin ("original partition
+among covers of N(k), must hold everywhere") now reads as this direct
+set-equality check, mathematically identical to the enumeration pin
+(the enumerated covers always contain the original partition exactly
+when the union condition holds). Predictions unchanged.
+Gated re-runs: tests/test_info0.py full file (31 pins incl hidden).
+No banked data exists yet; campaign runs under PREREG + AMENDMENT-1 + AMENDMENT-2.
+
+## INFO0-AMENDMENT-3 — Hidden sig resolution + sign-pair R-equivalence (pre-campaign-data)
+
+Found via unit tests (test_hidden_pair_raw_match_phys_diff,
+pre-campaign-data, no campaign records affected). Two apparatus defects
+in hidden-cell signature bookkeeping:
+
+1. Truncation: hidden_cell_branch stored str(sig)[:120], but genuine
+pair differences start at char ~480 (phase 508, shape 482, amplitude
+506 on J2-L4 full keys, ~2.4KB) -> false equality on every pair. Fix:
+store the full signature-key string (measurement resolution,
+VACCOMP0-AMENDMENT-1 precedent). Ledger cost ~60KB over 24 hidden cells.
+
+2. Sign-pair R-equivalence: sign A/B (psi_A = pp+ma, psi_B = pp-ma)
+are the SAME point of X_phys = X/(R x U1): the cell sheet-swap is an
+exact J2-L4 automorphism (edge-set preserved) mapping psi_A exactly
+onto psi_B (verified: psiB == swap(psiA), full sigkeys identical). Any
+sign-mode pair is quotient-trivial when sheet-swap is in Aut(G). The
+signature equality is exactly correct (zero hidden physical bits), NOT
+signature debt -- HIDDEN0-SEPARATED is consistent (labeled-apparatus
+distinguishability at fixed sheets, a different question from
+R-quotient identity). The prereg "sigkeys differ on all 8 pair cells"
+expectation is corrected: the 2 sign cells become EQUALITY pins (the
+signature must identify R-equivalent states -- no over-separation),
+while phase/shape/amplitude (6 cells, full sigkeys verified
+pairwise-different pre-data) remain distinctness pins, plus 4 vacua
+distinct per patch (verified). M_hidden green = raw match all 8 + sign
+equal both patches + phase/shape/amplitude differ both patches + vacua
+distinct both patches. The gate is strictly stronger (tests both
+separation and correct quotienting). Predictions otherwise unchanged.
+
+Gated re-runs: tests/test_info0.py hidden pins (sign-equality +
+pair-distinctness + vacua), hidden campaign cells.
+No banked data exists yet; campaign runs under PREREG + AMENDMENT-1 +
+AMENDMENT-2 + AMENDMENT-3.
+
+## INFO0-AMENDMENT-3b — Signed-zero normalization in hidden sig strings (pre-campaign-data)
+
+Found in the AMENDMENT-3 gated re-run
+(test_hidden_pair_raw_match_phys_diff, pre-campaign-data, no campaign
+records affected). Sign A/B full sigkey tuples are EQUAL (-0.0 == 0.0
+elementwise, the correct R-equivalence signal), but str() of the tuples
+differs ("-0.0" vs "0.0" in the rounded J multiset) -> string comparison
+spuriously reports distinct. Fix: hidden_cell_branch normalizes signed
+zeros (v + 0.0, bitwise identity except -0.0 -> +0.0) before
+stringifying, so stored-string equality coincides with tuple equality.
+Distinctness pins unaffected (they differ in real values).
+Gated re-runs: tests/test_info0.py hidden pins.
+No banked data exists yet; campaign runs under PREREG + AMENDMENT-1 +
+AMENDMENT-2 + AMENDMENT-3 + AMENDMENT-3b.
+
+## INFO0-VERDICT — INFO0-MATCHED (post-data 2026-10-03)
+
+Campaign ran on beast EC2 (16.54.88.181, 32 workers, 30.3s wall):
+259 cells, 0 run-failures. Ledger data/info0_ledger.json (committed),
+analyzer data/info0_verdict.json (committed). Code on beast = branch
+cursor/info0-structural-2034 at f1828b1 (PREREG + AMENDMENT-1/2/3/3b;
+files synced scp-verified after GitHub push auth degraded to
+read-only mid-session; ledger meta git pins the base checkout).
+
+HARD: 19/19 green. H-A rep-independence (60 edge + 72 node cells);
+H-B field inversion + |d|^2/2 + B + dQ + partition-found (60/60);
+H-C timed-vs-skeleton identity N_timed = sum_L C(T,L) S_L on every
+canonical (143 classes, T = 2..6) and labeled (44 states, T = 2,3)
+pair; H-D firewall (no Shannon, no tuning, 0 params); H-E banked
+TIME-0 recompute matches data/time0_verdict.json exactly (T = 2..6);
+H-F discrete loss (3^d+1)/2 exact (60/60); H-G branch-loss
+n_branch = 1+n_covers exact (72/72); H-I hist bounds (0 fails);
+H-J phys <= raw on all 176 quotient cells; H-K gap in (0,1]
+(min 0.0348, max 0.5850); H-L sync raw 2^E exact (20/20).
+
+Headline: E_pred_branch canonical 143/143 total AND struct
+(forward vs backward information exactly equal -- mirror theorem
+holds, no SEPARATED); M_hidden green under AMENDMENT-3/3b (raw
+match 8/8, phase/shape/amplitude differ 6/6, sign R-equality pins
+2/2, vacua distinct both patches -- the quotient both separates
+distinct states and identifies equivalent ones); M_scheduler exact
+(all m! valid and matching, 20 cells, bound_fail 0 -- no BOUNDED).
+M_labeled descriptive: 16/44 (labels are redundancy; the physical
+quotient restores the symmetry -- canonical 143/143 vs labeled
+16/44 is itself a quotient-sensitivity result, filed not gated).
+M-hist: max I_hist 5.09/6.88/11.10/13.58/17.58 bits (T = 2..6),
+placements exact. No PARTIAL trigger (no HARD red, no hidden debt).
+
+Verdict INFO0-MATCHED per the frozen ladder (PARTIAL > SEPARATED >
+BOUNDED > MATCHED), as predicted pre-data. Information accounting
+without probabilities closes exactly: contraction loss (discrete
+partition + 2-real-dim fiber + |d|^2/2 + B/dQ books), reverse
+multiplicity (pred == succ), history multiplicity (timed-skeleton
+identity + waiting/skeleton split), scheduler multiplicity (m!),
+and hidden-state books (distinctness + R-equality pins) are all
+exact counts with binary logs; no -sum p log p anywhere.
