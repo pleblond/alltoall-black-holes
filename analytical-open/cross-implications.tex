@@ -1696,6 +1696,140 @@ Clearing the positive factor \(1/(8\pi)\) in \eqref{eq:lamconst} produces
 \eqref{eq:cancconst}.
 \end{proof}
 
+The same integral is discrete-harmonic away from the origin.
+On the first few shells it is an elementary number, so the cancelled
+coefficient in \eqref{eq:rlog} is a closed value rather than a logarithm.
+
+\begin{proposition}
+\label{prop:mean}
+Let \(T=[-\pi,\pi]^2\) and let \(Q\) be the symbol in the proof of
+Proposition~\ref{prop:logsep}.
+Define
+\[
+f(r)
+=\int_T\frac{1-\cos(k\cdot r)}{Q(k)}\,\frac{d^2k}{(2\pi)^2}
+\]
+for every lattice vector \(r\), so that \(f(0)=0\) and
+\(\lambda_\infty(r)=1/16+f(r)/2\) for \(r\neq 0\).
+The operator
+\[
+(\mathcal{L}u)(x)
+=8u(x)-2\sum_{y\sim x}u(y)
+\]
+satisfies \(\mathcal{L}f=-\delta_0\).
+Off the origin, \(f\) equals the average of its four neighbouring values,
+the value \(f(0)=0\) being used when the origin is one of them.
+The same average holds for \(\lambda_\infty\) at every lattice point whose
+four neighbours are nonzero.
+The adjacent values are fixed by the same identity:
+\[
+\lambda_\infty(1,0)=\frac18.
+\]
+The next three shells are
+\begin{align*}
+\lambda_\infty(1,1)
+&=\frac1{16}+\frac1{4\pi},\\
+\lambda_\infty(2,0)
+&=\frac5{16}-\frac1{2\pi},\\
+\lambda_\infty(2,1)
+&=\frac1{2\pi},
+\end{align*}
+up to signs and interchange of the axes.
+The cancelled coefficients \(16\pi/\lambda_\infty(r)\) on these shells are
+\(128\pi\), \(256\pi^2/(\pi+4)\), \(256\pi^2/(5\pi-8)\), and \(32\pi^2\).
+\end{proposition}
+
+\begin{proof}
+The symbol of \(\mathcal{L}\) is \(Q\).
+Explicitly,
+\[
+\sum_{e}\cos\bigl(k\cdot(x+e)\bigr)
+=\bigl(2\cos k_x+2\cos k_y\bigr)\cos(k\cdot x),
+\]
+the sine terms cancelling in pairs.
+Therefore
+\begin{align*}
+(\mathcal{L}f)(x)
+&=\int_T\cos(k\cdot x)\,
+\frac{-8+4\cos k_x+4\cos k_y}{Q(k)}
+\,\frac{d^2k}{(2\pi)^2}\\
+&=-\int_T\cos(k\cdot x)\,\frac{d^2k}{(2\pi)^2}
+=-\delta_{x0},
+\end{align*}
+where the constant terms \(8-8\) have cancelled before the division.
+At the origin the four neighbours are equal, \(f(0)=0\), and
+\(-8f(1,0)=-1\), so \(f(1,0)=1/8\).
+Hence \(\lambda_\infty(1,0)=1/16+1/16=1/8\), in agreement with the limit
+\(\lambda_+\to 1/8\) in the proof of Proposition~\ref{prop:adj}.
+Off the origin, \(\mathcal{L}f=0\) is the mean-value property.
+A constant is annihilated by \(\mathcal{L}\), so the same average holds for
+\(\lambda_\infty\) at every point whose four neighbours are nonzero.
+
+For the diagonal shell the odd product \(\sin k_x\sin k_y\) drops out, and
+\(Q=4(2-\cos k_x-\cos k_y)\).
+With \(b=2-\cos k_x\), the average in the proof of
+Proposition~\ref{prop:green} gives
+\[
+\frac{1}{2\pi}\int_0^{2\pi}
+\frac{1-\cos k_x\cos\phi}{b-\cos\phi}\,d\phi
+=\cos k_x+\frac{(1-\cos k_x)^2}{\sqrt{b^2-1}},
+\]
+because \(1-\cos k_x\cos\phi=\cos k_x\,(b-\cos\phi)+(1-\cos k_x)^2\).
+The cosine averages to zero, and
+\(\sqrt{b^2-1}=\sqrt{(1-\cos k_x)(3-\cos k_x)}\).
+Division by the factor \(4\) in \(Q\) therefore gives
+\[
+f(1,1)
+=\frac{1}{8\pi}\int_0^{2\pi}
+\frac{(1-\cos x)^{3/2}}{\sqrt{3-\cos x}}\,dx.
+\]
+The half-angle identities
+\(1-\cos x=2\sin^2(x/2)\) and \(3-\cos x=2\bigl(1+\sin^2(x/2)\bigr)\)
+turn the integrand into \(2\sin^3(x/2)/\sqrt{1+\sin^2(x/2)}\).
+The substitution \(\varphi=x/2\), followed by \(w=\cos\varphi\), produces
+\[
+f(1,1)
+=\frac{1}{\pi}\int_0^1
+\Biggl(\sqrt{2-w^2}-\frac{1}{\sqrt{2-w^2}}\Biggr)\,dw.
+\]
+The antiderivative of \((2-w^2)^{-1/2}\) is \(\arcsin(w/\sqrt{2})\),
+equal to \(\pi/4\) at the upper limit.
+The antiderivative of \((2-w^2)^{1/2}\) is
+\[
+\frac12\Bigl(w\sqrt{2-w^2}+2\arcsin(w/\sqrt{2})\Bigr),
+\]
+equal to \(\tfrac12+\pi/4\) at \(w=1\).
+The integral equals \(1/2\), and \(f(1,1)=1/(2\pi)\).
+Thus \(\lambda_\infty(1,1)=1/16+1/(4\pi)\).
+
+The point \((1,1)\) is not adjacent to the origin.
+Its neighbours are \((2,1)\), \((0,1)\), \((1,2)\) and \((1,0)\), so
+\[
+4f(1,1)=2f(2,1)+2f(1,0).
+\]
+Therefore \(f(2,1)=1/\pi-1/8\) and
+\(\lambda_\infty(2,1)=1/(2\pi)\).
+
+For the axial shell,
+\[
+f(2,0)
+=\frac{1}{8\pi}\int_0^{2\pi}
+\frac{1-\cos(2x)}{\sqrt{(1-\cos x)(3-\cos x)}}\,dx.
+\]
+Now \(1-\cos(2x)=2(1-\cos x)(1+\cos x)\), and the same half-angle reduction
+produces
+\[
+f(2,0)
+=\frac{2}{\pi}\int_0^1\frac{w^2}{\sqrt{2-w^2}}\,dw.
+\]
+The integrand is \(2(2-w^2)^{-1/2}-(2-w^2)^{1/2}\).
+The integral equals \(\pi/4-1/2\), so \(f(2,0)=1/2-1/\pi\) and
+\(\lambda_\infty(2,0)=5/16-1/(2\pi)\).
+
+Dividing \(16\pi\) by each of the four values gives the cancelled
+coefficients.
+\end{proof}
+
 On \(J_3\) the threshold of Proposition~\ref{prop:adj} already applies at
 every positive separation.
 Adjacent cells admit a sharper value, because the coordination identity
