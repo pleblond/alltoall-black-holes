@@ -29,13 +29,13 @@ def test_weave0_formulas():
 
 
 def test_weave0_windows_tables():
-    for key in ((8, 16), (8, 24), (16, 16)):
+    for key in ((16, 24), (24, 24), (16, 32), (8, 16)):
         assert key in W.WINDOWS
-    for name, win in (("local", W.WINDOWS[(8, 16)]["local"]),
-                      ("glob", W.WINDOWS[(8, 16)]["glob"])):
+    for name, win in (("local", W.WINDOWS[(16, 24)]["local"]),
+                      ("glob", W.WINDOWS[(16, 24)]["glob"])):
         assert win[1] - win[0] + 1 >= 3, name
-    for name, (lo, hi) in (("tlocal", W.WINDOWS[(8, 16)]["tlocal"]),
-                           ("tglob", W.WINDOWS[(8, 16)]["tglob"])):
+    for name, (lo, hi) in (("tlocal", W.WINDOWS[(16, 24)]["tlocal"]),
+                           ("tglob", W.WINDOWS[(16, 24)]["tglob"])):
         n = sum(1 for t in W.T_GRID if lo <= t <= hi)
         assert n >= 3, (name, n)
 
@@ -161,10 +161,10 @@ def test_weave0_tag_grammar():
         W.parse_tag("cx-foo")
     with pytest.raises(ValueError):
         W.lam_from_shorthand("999")
-    cells = [W.blind_cell_tag(c) for c in range(10)]
-    assert len(set(cells)) == 10
+    cells = [W.blind_cell_tag(c) for c in range(12)]
+    assert len(set(cells)) == 12
     with pytest.raises(ValueError):
-        W.blind_cell_tag(10)
+        W.blind_cell_tag(12)
 
 
 def test_weave0_build_tag_toys():
@@ -354,7 +354,7 @@ def test_weave0_task_grid_parses():
     import weave0_campaign as WC
 
     lines = WC.task_list()
-    assert len(lines) == 2 * len(WC.dim_tags()) + 30 \
+    assert len(lines) == 2 * len(WC.dim_tags()) + 36 \
         + 2 * len(WC.spread_tags()) + len(WC.packet_specs()) \
         + len(WC.transverse_tags()) + len(WC.switch_tags()) \
         + len(WC.hidden_tags()) + len(WC.vacuum_tags())
@@ -366,5 +366,5 @@ def test_weave0_task_grid_parses():
         W.parse_tag(t)
         assert ax in ("x", "y") and sg in (1, -1)
     # Blind cells resolve to campaign tags.
-    for c in range(10):
+    for c in range(12):
         W.parse_tag(W.blind_cell_tag(c))

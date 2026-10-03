@@ -88,27 +88,28 @@ LAM_SH = {"0.001": "0001", "0.005": "0005", "0.01": "001", "0.02": "002",
 
 
 def dim_tags():
-    tags = ["c0-j2L44", "c1-S8L16", "c3-j3L16", "c4-cbL16"]
-    tags += _c2_tags((8, 16), ("0001", "0005", "001", "002", "004", "008",
-                               "016"), weave0.WEAVE_SEEDS)
-    tags += _c2_tags((8, 24), ("002", "004"), weave0.SCALE_SEEDS)
-    tags += _c2_tags((16, 16), ("002", "004"), weave0.SCALE_SEEDS)
+    tags = ["c0-j2L44", "c1-S8L16", "c1-S16L24", "c3-j3L26", "c4-cbL26"]
+    tags += _c2_tags((16, 24), ("0001", "0005", "001", "002", "004", "008",
+                                "016"), weave0.WEAVE_SEEDS)
+    tags += _c2_tags((8, 16), ("004",), weave0.WEAVE_SEEDS)
+    tags += _c2_tags((24, 24), ("004",), weave0.SCALE_SEEDS)
+    tags += _c2_tags((16, 32), ("004",), weave0.SCALE_SEEDS)
     for sd in weave0.DISC_SEEDS:
-        tags.append(f"c2dense-S8L16-lam004-s{sd}")
-        tags.append(f"c2er3-S8L16-lam004-s{sd}")
-        tags.append(f"c2sq-S8L16-lam004-s{sd}")
+        tags.append(f"c2dense-S16L24-lam004-s{sd}")
+        tags.append(f"c2er3-S16L24-lam004-s{sd}")
+        tags.append(f"c2sq-S16L24-lam004-s{sd}")
     for sd in weave0.SCALE_SEEDS:
-        tags.append(f"c2nb-S8L16-lam004-s{sd}")
+        tags.append(f"c2nb-S16L24-lam004-s{sd}")
     for sd in weave0.WEAVE_SEEDS:
-        tags.append(f"c5-S8L16-lam004-s{sd}")
+        tags.append(f"c5-S16L24-lam004-s{sd}")
     return tags
 
 
 def spread_tags():
-    tags = ["c0-j2L28", "c4-cbL16", "c5-S8L16-lam004-s7"]
+    tags = ["c0-j2L28", "c4-cbL16", "c5-S16L24-lam004-s7"]
     for sh in ("001", "002", "004"):
         for sd in (7, 37):
-            tags.append(f"c2-S8L16-lam{sh}-s{sd}")
+            tags.append(f"c2-S16L24-lam{sh}-s{sd}")
     return tags
 
 
@@ -135,7 +136,8 @@ def switch_tags():
 
 def hidden_tags():
     return ["c0-j2L16", "c1-S8L16", "c2-S8L16-lam004-s7",
-            "c2-S8L16-lam004-s37", "c2-S8L16-lam002-s7", "c4-cbL16"]
+            "c2-S8L16-lam004-s37", "c2-S8L16-lam002-s7",
+            "c2-S16L24-lam004-s7", "c4-cbL16"]
 
 
 def vacuum_tags():
@@ -147,7 +149,7 @@ def task_list():
     for t in dim_tags():
         lines.append(f"construct --tag {t}")
         lines.append(f"dim --tag {t}")
-    for c in range(10):
+    for c in range(12):
         for s in range(3):
             lines.append(f"stations --cell {c} --set {s}")
     for t in spread_tags():
@@ -269,8 +271,9 @@ def cmd_dim(args):
     tc = weave0.crossover_radius(np.array(slide["t"]), np.array(slide["d"]))
     # Null census needs H eig (headline + controls only to bound cost).
     null = None
-    if tag in ("c0-j2L44", "c1-S8L16", "c3-j3L16", "c4-cbL16") \
-            or tag.startswith("c2-S8L16-lam004-s") or tag.startswith("c5-"):
+    if tag in ("c0-j2L44", "c1-S8L16", "c1-S16L24", "c3-j3L26",
+               "c4-cbL26") \
+            or tag.startswith("c2-S16L24-lam004-s") or tag.startswith("c5-"):
         wh, Vh = weave0.eigh_ham(g, order)
         null = weave0.null_census(wh, Vh, asm)
     rec = {"tag": tag, "D": D, "wrap_hi": wrap_hi,
@@ -450,7 +453,7 @@ def cmd_spread(args):
         remote_peak = max(float(tr[:, s].max()) for s in range(1, rcap + 1))
         theta = max(SPREAD_REL_THETA * remote_peak, floor)
         peaks, tstars, windows = {}, {}, {}
-        for s in range(2, 11):
+        for s in range(2, 15):
             if s > max_shell:
                 continue
             win = weave0.weave_spread_window(s, D, SPREAD_VMAX)

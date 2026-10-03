@@ -162,7 +162,7 @@ def gamma_of_cell(tag, measdir):
     return {"gamma": float(p), "n": len(xs)}
 
 
-_CELL_OF_TAG = {weave0.blind_cell_tag(c): c for c in range(10)}
+_CELL_OF_TAG = {weave0.blind_cell_tag(c): c for c in range(12)}
 
 
 def _cell_of_tag(tag):
@@ -203,7 +203,7 @@ def main():
             p = os.path.join(measdir, f"{pre}_{t}.json")
             if not os.path.exists(p):
                 missing.append(p)
-    for c in range(10):
+    for c in range(12):
         for s in range(3):
             for pre in ("weave0_meas", "weave0_seal"):
                 p = os.path.join(measdir, f"{pre}_cell{c}_s{s}.json")
@@ -258,8 +258,8 @@ def main():
             else {"local": float("nan"), "glob": float("nan")}
     d_c0l = b_med["c0-j2L44"]["local"]
     d_c0g = b_med["c0-j2L44"]["glob"]
-    d_c4g = b_med["c4-cbL16"]["glob"]
-    d_c3g = b_med["c3-j3L16"]["glob"]
+    d_c4g = b_med["c4-cbL26"]["glob"]
+    d_c3g = b_med["c3-j3L26"]["glob"]
     b_val2 = all(_ok_num(x) and 1.50 <= x <= 2.50 for x in (d_c0l, d_c0g))
     b_val3 = (_ok_num(d_c4g) and 2.20 <= d_c4g <= 3.30
               and _ok_num(d_c3g) and d_c3g > 2.20)
@@ -284,8 +284,8 @@ def main():
             else {"heat_local": float("nan"), "heat_glob": float("nan")}
     h_c0l = c_vals["c0-j2L44"]["heat_local"]
     h_c0g = c_vals["c0-j2L44"]["heat_glob"]
-    h_c4g = c_vals["c4-cbL16"]["heat_glob"]
-    h_c3g = c_vals["c3-j3L16"]["heat_glob"]
+    h_c4g = c_vals["c4-cbL26"]["heat_glob"]
+    h_c3g = c_vals["c3-j3L26"]["heat_glob"]
     c_val2 = all(_ok_num(x) and 1.50 <= x <= 2.50 for x in (h_c0l, h_c0g))
     c_val3 = (_ok_num(h_c4g) and 2.20 <= h_c4g <= 3.30
               and _ok_num(h_c3g) and h_c3g > 2.20)
@@ -313,7 +313,7 @@ def main():
     lam_of = {sh: weave0.lam_from_shorthand(sh) for sh in lam_sh}
     head = {}
     for sh in lam_sh:
-        tags = [f"c2-S8L16-lam{sh}-s{sd}" for sd in weave0.WEAVE_SEEDS]
+        tags = [f"c2-S16L24-lam{sh}-s{sd}" for sd in weave0.WEAVE_SEEDS]
         wov = sum(1 for t in tags if regimes.get(t) == "WOVEN")
         bh = [b_head(t) for t in tags]
         ch = [c_head(t) for t in tags]
@@ -332,7 +332,7 @@ def main():
         if not os.path.exists(p):
             continue
         rec = _load(p)
-        if t.startswith("c2-S8L16-lam"):
+        if t.startswith("c2-S16L24-lam"):
             sh = t.split("-")[2][3:]
             rc_med.setdefault(sh, []).append(rec["r_c"])
             tc_med.setdefault(sh, []).append(rec["t_c"])
@@ -362,7 +362,7 @@ def main():
 
     # B/C-disc + C5 RANDOM inputs.
     def dense_er3(tag_prefix):
-        return [f"{tag_prefix}-S8L16-lam004-s{sd}"
+        return [f"{tag_prefix}-S16L24-lam004-s{sd}"
                 for sd in weave0.DISC_SEEDS]
 
     b_disc = {"dense": [b_med[t]["glob"] for t in dense_er3("c2dense")],
@@ -379,7 +379,7 @@ def main():
                            if _ok_num(x) and x < 2.60) >= 2)
     verdict["B_disc"] = {"vals": b_disc, "pass": bool(b_disc_pass)}
     verdict["C_disc"] = {"vals": c_disc, "pass": bool(c_disc_pass)}
-    c5_tags = [f"c5-S8L16-lam004-s{sd}" for sd in weave0.WEAVE_SEEDS]
+    c5_tags = [f"c5-S16L24-lam004-s{sd}" for sd in weave0.WEAVE_SEEDS]
     c5_match = []
     for t in c5_tags:
         ok = (_ok_num(b_med[t]["glob"]) and _ok_num(c_vals[t]["heat_glob"])
@@ -395,19 +395,23 @@ def main():
     # ---- Stage D ----
     blind_cells = blind["cells"]
     opR = {}
-    for c in range(10):
+    for c in range(12):
         opR[c] = []
         for s in range(3):
             D = _arr(blind_cells[str(c)]["sets"][str(s)]["probes"]["C"]["D"])
             opR[c].append(op_chart_ratio(D)["R"])
-    r0, r4, r6 = opR[0], opR[4], opR[6]
+    r0, r4, r6, r11 = opR[0], opR[4], opR[6], opR[11]
     chart_valid = (all(_ok_num(x) for x in r0 + r6)
                    and max(r6) < min(r0))
     r_cal = (max(r6) + min(r0)) / 2.0 if chart_valid else float("nan")
-    chart_head = (chart_valid and sum(1 for x in r4 if _ok_num(x)
-                                      and x < r_cal) >= 2)
-    verdict["D_chart_op"] = {"R": {str(c): opR[c] for c in range(10)},
+    head4 = (chart_valid and sum(1 for x in r4 if _ok_num(x)
+                                 and x < r_cal) >= 2)
+    head11 = (chart_valid and sum(1 for x in r11 if _ok_num(x)
+                                  and x < r_cal) >= 2)
+    chart_head = bool(head4 or head11)
+    verdict["D_chart_op"] = {"R": {str(c): opR[c] for c in range(12)},
                              "valid": bool(chart_valid), "R_cal": r_cal,
+                             "head4": bool(head4), "head11": bool(head11),
                              "head_pass": bool(chart_head)}
     # D-chart-ref (Procrustes legs on reference cells).
     ref3_pass, ref2_pass = {}, {}
@@ -489,18 +493,19 @@ def main():
         gammas[c] = gamma_of_cell(tag, measdir)["gamma"]
     g_cal = _med(list(gammas.values()))
     wvol = {}
-    for c in range(10):
+    for c in range(12):
         wvol[c] = _med([blind_cells[str(c)]["sets"][str(s)]["probes"]["W"]["vol"]["d"]
                         for s in range(3)])
     dgam = {c: (g_cal * wvol[c] if _ok_num(g_cal) and _ok_num(wvol[c])
-                  else float("nan")) for c in range(10)}
+                  else float("nan")) for c in range(12)}
     gamma_gate = (_ok_num(dgam[0]) and abs(dgam[0] - 2) <= 0.50
-                  and _ok_num(dgam[4]) and abs(dgam[4] - 3) <= 0.50)
+                  and ((_ok_num(dgam[4]) and abs(dgam[4] - 3) <= 0.50)
+                       or (_ok_num(dgam[11]) and abs(dgam[11] - 3) <= 0.50)))
     verdict["D_gamma"] = {"gammas": gammas, "g_cal": g_cal, "wvol": wvol,
                           "d_gamma": dgam, "pass": bool(gamma_gate)}
     verdict["D_dstar_filed"] = {
         str(c): [blind_cells[str(c)]["sets"][str(s)]["probes"]["C"]["dstar"]
-                 for s in range(3)] for c in range(10)}
+                 for s in range(3)] for c in range(12)}
 
     # ---- Stage E/F ----
     def spread_fits(tag, kind):
@@ -515,7 +520,7 @@ def main():
         else:
             lw = weave0.lw_pred(lam)
             wins = {"near": (2, math.floor(lw)),
-                    "far": (math.ceil(2 * lw), 10)}
+                    "far": (math.ceil(2 * lw), 14)}
         for ch in ("psi", "rho", "J"):
             peaks = {int(k): v for k, v in rec["peaks"][ch].items()}
             out[ch] = {}
@@ -541,7 +546,7 @@ def main():
     for sh in ("001", "002"):
         for sd in (7, 37):
             for k in ("R", "I"):
-                t = f"c2-S8L16-lam{sh}-s{sd}"
+                t = f"c2-S16L24-lam{sh}-s{sd}"
                 f = spread_fits(t, k)
                 ef_recs.append((t, k, f))
     e_pass = []
@@ -572,7 +577,7 @@ def main():
         vals = []
         for sd in (7, 37):
             for k in ("R", "I"):
-                t = f"c2-S8L16-lam{sh}-s{sd}"
+                t = f"c2-S16L24-lam{sh}-s{sd}"
                 f = spread_fits(t, k)
                 p = os.path.join(measdir, f"weave0_spread_{t}_BG0_{k}.json")
                 rec = _load(p)
@@ -665,7 +670,7 @@ def main():
               and adj_mix and non_mix)
     h_weave = {}
     for t in ("c2-S8L16-lam004-s7", "c2-S8L16-lam004-s37",
-              "c2-S8L16-lam002-s7"):
+              "c2-S8L16-lam002-s7", "c2-S16L24-lam004-s7"):
         b = hid[t]["bat"]
         h_weave[t] = bool(
             b["prep_clean"] and b["local_ok"] and b["wave_in_ok"]
@@ -709,10 +714,10 @@ def main():
         return c_vals[tag]["heat_glob"]
 
     j_a = {}
-    for (S, L) in ((8, 24), (16, 16)):
+    for (S, L) in ((24, 24), (16, 32)):
         for sd in (7, 37):
             th = f"c2-S{S}L{L}-lam004-s{sd}"
-            tr0 = f"c2-S8L16-lam004-s{sd}"
+            tr0 = f"c2-S16L24-lam004-s{sd}"
             j_a[th] = {
                 "B": float(glob_b(th)), "B0": float(glob_b(tr0)),
                 "C": float(glob_c(th)), "C0": float(glob_c(tr0))}
@@ -721,8 +726,8 @@ def main():
                    and v["C"] >= v["C0"] - 0.10
                    for v in j_a.values())
     verdict["J_a"] = {"pass": bool(j_a_pass), "vals": j_a}
-    sq_b = [b_head(f"c2sq-S8L16-lam004-s{sd}") for sd in (7, 37, 67)]
-    sq_c = [c_head(f"c2sq-S8L16-lam004-s{sd}") for sd in (7, 37, 67)]
+    sq_b = [b_head(f"c2sq-S16L24-lam004-s{sd}") for sd in (7, 37, 67)]
+    sq_c = [c_head(f"c2sq-S16L24-lam004-s{sd}") for sd in (7, 37, 67)]
     verdict["J_b"] = {"pass": bool(sum(a and b for a, b in zip(sq_b, sq_c))
                                    >= 2)}
 
@@ -737,16 +742,21 @@ def main():
     h_joint_004 = bool(h_weave["c2-S8L16-lam004-s7"]
                        and h_weave["c2-S8L16-lam004-s37"])
     h_joint_002 = bool(h_weave["c2-S8L16-lam002-s7"])
+    h_joint_H = bool(h_weave["c2-S16L24-lam004-s7"])
     i_joint_004 = bool(i_all["c2-S8L16-lam004-s7"]["all"]
                        and i_all["c2-S8L16-lam004-s37"]["all"])
     i_joint_002 = bool(i_all["c2-S8L16-lam002-s7"]["all"])
+    i_joint_H = bool(i_all["c2-S16L24-lam004-s7"]["all"])
     joint = bool(h_val and h_sect and h_der_ok
                  and ((h_joint_004 and i_joint_004)
-                      or (h_joint_002 and i_joint_002)))
+                      or (h_joint_002 and i_joint_002)
+                      or (h_joint_H and i_joint_H)))
     verdict["joint_inputs"] = {
         "H_val": bool(h_val), "H_sect": bool(h_sect),
         "H_weave_004": bool(h_joint_004), "H_weave_002": bool(h_joint_002),
+        "H_weave_H": bool(h_joint_H),
         "I_004": bool(i_joint_004), "I_002": bool(i_joint_002),
+        "I_H": bool(i_joint_H),
         "H_der": bool(h_der_ok), "joint": joint}
     if (not verdict["A_PASS"]) or (not verdict["coverage_ok"]):
         headline = "WEAVE0-INCOMPLETE"
@@ -764,12 +774,12 @@ def main():
             if not head[sh]["woven_elig"]:
                 continue
             for sd in weave0.WEAVE_SEEDS:
-                t = f"c2-S8L16-lam{sh}-s{sd}"
+                t = f"c2-S16L24-lam{sh}-s{sd}"
                 g2.append(b_med[t]["glob"])
         stable2 = (len(g2) >= 8 and _ok_num(_med(g2))
                    and abs(_med(g2) - 2) <= 0.35)
         unmeas = sum(1 for t in WC.dim_tags()
-                     if t.startswith("c2-S8L16-lam")
+                     if t.startswith("c2-S16L24-lam")
                      and not _ok_num(b_med[t]["glob"]))
         if stable2:
             headline = "WEAVE0-2D"

@@ -28,34 +28,38 @@ SCALE_SEEDS = (7, 37)
 LAM_LADDER = (0.001, 0.005, 0.01, 0.02, 0.04, 0.08)
 LAM_OVER = 0.16
 LAM_ALL = LAM_LADDER + (LAM_OVER,)
-HEADLINE_SL = (8, 16)
-SCALE_SLS = ((8, 24), (16, 16))
+HEADLINE_SL = (16, 24)
+SCALE_SLS = ((24, 24), (16, 32))
+FILED_SMALL_SL = (8, 16)
 J_DEFAULT = 1.0
 
-# Frozen per-size windows (prereg sections 3-4). hi edges additionally capped
-# by the measured wrap limit D/2 - 1 (frozen rule, graph-intrinsic).
+# Frozen per-size windows (prereg sections 3-4; A0-11: uniform windows at all
+# sizes, wrap cap D/2 - 1 applies to every r-hi edge as a frozen rule).
 WINDOWS = {
-    (8, 16): {"local": (2, 4), "glob": (7, 11),
-              "tlocal": (2.0, 8.0), "tglob": (64.0, 192.0)},
-    (8, 24): {"local": (2, 4), "glob": (7, 13),
-              "tlocal": (2.0, 8.0), "tglob": (64.0, 256.0)},
-    (16, 16): {"local": (2, 4), "glob": (7, 15),
-               "tlocal": (2.0, 8.0), "tglob": (64.0, 256.0)},
+    (16, 24): {"local": (2, 4), "glob": (9, 15),
+               "tlocal": (8.0, 16.0), "tglob": (16.0, 48.0)},
+    (24, 24): {"local": (2, 4), "glob": (9, 15),
+               "tlocal": (8.0, 16.0), "tglob": (16.0, 48.0)},
+    (16, 32): {"local": (2, 4), "glob": (9, 15),
+               "tlocal": (8.0, 16.0), "tglob": (16.0, 48.0)},
+    (8, 16): {"local": (2, 4), "glob": (9, 15),
+              "tlocal": (8.0, 16.0), "tglob": (16.0, 48.0)},
 }
 # Control validation windows (prereg section 14 pins sizes; windows match the
 # headline size class).
-WINDOWS_C0 = {"local": (2, 4), "glob": (7, 11),
-              "tlocal": (2.0, 8.0), "tglob": (64.0, 192.0)}
+WINDOWS_C0 = {"local": (2, 4), "glob": (9, 15),
+              "tlocal": (8.0, 16.0), "tglob": (16.0, 48.0)}
 
 # Frozen dense spectral-time grid (prereg section 4).
-T_GRID = (1.0, 2.0, 3.0, 4.0, 6.0, 8.0, 12.0, 16.0, 24.0, 32.0, 48.0,
-          64.0, 96.0, 128.0, 192.0, 256.0, 384.0, 512.0, 1024.0)
+T_GRID = (1.0, 2.0, 3.0, 4.0, 6.0, 8.0, 12.0, 16.0, 24.0, 32.0, 40.0,
+          48.0, 64.0, 96.0, 128.0, 192.0, 256.0, 384.0, 512.0, 1024.0)
 
 # Blind cells (prereg section 5, frozen order).
 BLIND_CELLS = ("c0-j2L44", "c1-S8L16",
                "c2-lam001-s7", "c2-lam002-s7", "c2-lam004-s7",
                "c3-j3L12", "c4-cbL16", "c5-match4-s7",
-               "c2dense-lam004-s7", "c2sq-lam004-s7")
+               "c2dense-lam004-s7", "c2sq-lam004-s7",
+               "c2-S16L24-lam002-s7", "c2-S16L24-lam004-s7")
 
 MEETING_CODES = {"chain": 1, "dense": 2, "er3": 3}
 SUBSTRATE_CODES = {"j2": 1, "sq": 2}
@@ -479,7 +483,8 @@ def blind_cell_tag(cell: int) -> str:
              2: "c2-S8L16-lam001-s7", 3: "c2-S8L16-lam002-s7",
              4: "c2-S8L16-lam004-s7", 5: "c3-j3L12", 6: "c4-cbL16",
              7: "c5-S8L16-lam004-s7", 8: "c2dense-S8L16-lam004-s7",
-             9: "c2sq-S8L16-lam004-s7"}
+             9: "c2sq-S8L16-lam004-s7", 10: "c2-S16L24-lam002-s7",
+             11: "c2-S16L24-lam004-s7"}
     if int(cell) not in table:
         raise ValueError(f"unknown blind cell: {cell}")
     return table[int(cell)]

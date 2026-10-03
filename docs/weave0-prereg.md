@@ -98,21 +98,22 @@ nodes, `vacfield.square_torus_substrate` graph). All graphs simple/undirected.
   meeting edge per stitch.
 - C2-sq: square-torus sheets + C2 chain meeting (universality leg).
 - C2-nb: C2 chain meeting, stitches WITHOUT A-B restriction (robustness leg).
-- C3: J3 torus (`dim3`, frozen: L12/L16).
-- C4: cubic torus (`dim3`, frozen: L16 headline match `N = 4096`).
+- C3: J3 torus (`dim3`; dim leg J3-L26, blind cell J3-L12).
+- C4: cubic torus (`dim3`; dim leg cb-L26, blind cell cb-L16).
 - C5: configuration model with the EXACT degree sequence of the matched C2
   instance (seeded; simplified to simple graph; self-loops removed; resample
   `seed+1...` up to 20 tries for connected, else largest-component analysis
   with REFUSE flag filed). Same `N`, same degrees, no sheet structure.
 
-Frozen sizes: headline `(S,L) = (8,16)`, `N = 4096`; scale legs `(8,24)`
-(`N = 9216`) and `(16,16)` (`N = 8192`). C4-L16 `N = 4096` exact-matches the
-headline. C0 blind cell J2-L44 (`N = 3872`, even `L` = bipartite).
+Frozen sizes: headline `(S,L) = (16,24)`, `N = 18432`; scale legs
+`(24,24)` (`N = 27648`) and `(16,32)` (`N = 32768`); filed small-size leg
+`(8,16)` (`N = 4096`). C4-dim cb-L26 (`N = 17576`); C3-dim J3-L26
+(`N = 35152`); C0-blind J2-L44 (`N = 3872`, even `L` = bipartite).
 
 Frozen `lam` ladder (stitches/node): `(0.001, 0.005, 0.01, 0.02, 0.04, 0.08)`
 (+ `0.16` overconnected leg on headline size only), `l_W^pred` = `(15.8,
 7.07, 5.0, 3.54, 2.5, 1.77)` (+ `1.25`) cells. Per-ring-edge stitches at
-`(8,16)`: `lam*512` = `(0.5, 2.6, 5.1, 10.2, 20.5, 41.0)` (+ `82`).
+`(16,24)`: `lam*1152` = `(1.2, 5.8, 11.5, 23.0, 46.1, 92.2)` (+ `184`).
 
 Frozen ensemble: `WEAVE_SEEDS = (7, 17, 27, 37, 47, 57, 67, 77)` (8 seeds;
 C2/C5 headline legs run all 8; discriminator legs run seeds `(7, 37, 67)`;
@@ -152,15 +153,15 @@ instance; UNMEASURABLE is filed, never imputed, never gated as fail
 2 near-stitch (stub endpoints), 2 uniform random (seeded) = 8 origins.
 Full `d_eff(r) = d lnV/d lnr` curves filed (all `r`).
 
-Frozen windows, headline `(S,L)=(8,16)` (per-size table; `D` = measured
-graph diameter from node 0, wrap cap `D/2 - 1` applies to every hi edge):
+Frozen windows, UNIFORM at all sizes (A0-11; `D` = measured graph
+diameter from node 0, wrap cap `D/2 - 1` applies to every r-hi edge):
 
 ```text
-LOCAL:  r in [2, 4]            (below l_W for lam <= 0.04)
-GLOBAL: r in [7, 11]           (above l_W for lam >= 0.01; inside S*l_W)
+LOCAL:  r in [2, 4]            (below l_W for lam <= 0.02)
+GLOBAL: r in [9, 15]           (2-4 l_W at lam 0.02-0.01; 3D-side)
 ```
 
-Scale legs: same LOCAL; GLOBAL `[7, 13]` (`(8,24)`), `[7, 15]` (`(16,16)`).
+Scale legs use the SAME windows (cross-size comparability; J-a trend leg).
 Fits: log-log OLS exponent + `r2 >= 0.90` quality (filed; `r2 < 0.90` =
 UNMEASURABLE for that origin). Per-graph exponent = median over origins
 (far-origin median filed separately; gate uses all-origin median).
@@ -186,16 +187,16 @@ Control-relative gates (same code, same windows):
 ## 4. Stage C — spectral/diffusion dimension (PRIMARY operational channel)
 
 Dense-eig heat-trace `d_s` (`obs0.heat_trace_ds` math) + per-origin return
-`d_s` (`obs0.origin_return_ds` math) over a frozen dense `t`-grid
-`t = 2^k, k = 0..10` (+ `t = 48, 96, 192, 384` scale legs). Sliding
-3-point log-window `d_s(t)` curves filed. Frozen windows (headlice `(8,16)`):
+`d_s` (`obs0.origin_return_ds` math) over the frozen dense `t`-grid
+(`1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 40, 48, 64, 96, 128, 192, 256, 384,
+512, 1024`). Sliding 3-point log-window `d_s(t)` curves filed. Frozen
+windows (UNIFORM all graphs/sizes, A0-11):
 
 ```text
-T-LOCAL:  t in [2, 8]     (below t_W = l_W^2 for lam <= 0.04: 6.25..250)
-T-GLOBAL: t in [64, 192]  (above t_W for lam >= 0.005; below t_sat ~ 256)
+T-LOCAL:  t in [8, 16]    (above grain t ~ 8; below t_W for lam <= 0.01)
+T-GLOBAL: t in [16, 48]   (above t_W for lam >= 0.02; unsaturated: C4
+                           t_sat ~ 100, C0 2D t_sat ~ 3800, C2 ring-bottlenecked)
 ```
-
-Scale legs: same T-LOCAL; T-GLOBAL `[64, 256]` (`(8,24)`, `(16,16)`).
 Window fit = log-log OLS over grid points in window (`n >= 3` else
 UNMEASURABLE); heat-trace (mean) is the gated readout, origin-return filed.
 
@@ -222,10 +223,12 @@ no sheet id enters any instrument). Blind cells (frozen order):
 ```text
 0 c0-j2L44  1 c1-S8L16  2 c2-lam001-s7  3 c2-lam002-s7  4 c2-lam004-s7
 5 c3-j3L12  6 c4-cbL16  7 c5-match4-s7  8 c2dense-lam004-s7  9 c2sq-lam004-s7
+10 c2-S16L24-lam002-s7  11 c2-S16L24-lam004-s7
 ```
 
-(`c2-lamXXX` = headline `(8,16)` chain meeting at `lam`, seed 7; `c5-match4`
-= C5 matched to cell-4 degrees; `lam` shorthand `001 = 0.01` etc.)
+(`c2-lamXXX` = small-size `(8,16)` chain meeting at `lam`, seed 7;
+`c5-match4` = C5 matched to cell-4 degrees; `lam` shorthand `001 = 0.01`
+etc. Cells 10/11 (A0-11) repeat the C2 chart test at headline `(16,24)`.)
 
 Gated legs (DIM-3-0-validated ONLY):
 
@@ -233,18 +236,19 @@ Gated legs (DIM-3-0-validated ONLY):
   charts `< 0.30` + MDS-2 charts `>= 0.30` = 3D signature (DIM-3-0 D-c
   pattern: J3/cubic pass-3D fail-2D); MDS-2 `< 0.30` = 2D signature.
   Validation: cell 6 (C4) shows 3D signature `>= 2/3` sets; cell 0 (C0)
-  shows 2D signature `>= 2/3` sets. Headline: cell 4 (C2 `lam=0.04`)
-  shows 3D signature `>= 2/3` sets; cells 2/3 filed (ladder trend).
+  shows 2D signature `>= 2/3` sets. Headline: cells 4 (`(8,16)`) and 11
+  (`(16,24)`, both C2 `lam = 0.04`): 3D signature `>= 2/3` sets on `>= 1`
+  of the two; cells 2/3/10 filed (ladder/size trend).
   `select_dimension` d* is FILED, never gated (structurally forced to 2;
   DIM-3-0 diagnosis). Raw vol dimension filed; gamma-corrected vol
   (SECONDARY gate): `gamma_cal` = median W-arrival `tau ~ d_graph^gamma`
   exponent over control cells 0/5/6 (graph-distance fit at reveal time,
   frozen procedure); `d_gamma = gamma_cal * vol_d`; gate
-  `|d_gamma(cell4) - 3| <= 0.50` + `|d_gamma(cell0) - 2| <= 0.50`
+  `|d_gamma(cell 4 or 11) - 3| <= 0.50` + `|d_gamma(cell0) - 2| <= 0.50`
   (validates the correction 2D-side).
 - D-dist: DIST match `< 0.30` vs hidden reference where a reference exists
   (cells 0/1/5/6: sheet/quotient coords; C1 ref = stack coords). Cells
-  2/3/4/7/8/9 have NO ground-truth reference: chart legs only (no DIST
+  2/3/4/7/8/9/10/11 have NO ground-truth reference: chart legs only (no DIST
   gate — honest absence of ground truth).
 - D-locality/sheet: locality `> 0.70` gated on cells 0/5/6 only
   (reference cells); sheet contrast filed everywhere (C2 "sheets" =
@@ -255,9 +259,10 @@ Gated legs (DIM-3-0-validated ONLY):
 Point R/I impulse (unit, `eps=1e-3` battery legs), BG0, `T=16/dt=0.05`
 (RESPONSE-0 verbatim), INTRINSIC shells (graph-distance layers from source;
 no quotient exists). Shell-peak fits with the Amendment-1 A1 interior-peak
-validity rule verbatim (`n >= 3` else UNMEASURABLE). Frozen windows from
-`l_W^pred` (rule, not fit): NEAR shells `2..floor(l_W)` (min 3 shells else
-UNMEASURABLE), FAR shells `ceil(2*l_W)..10`. Per record `n` filed.
+validity rule verbatim (`n >= 3` else UNMEASURABLE). Spread legs run at
+headline `(16,24)` (A0-11). Frozen windows from `l_W^pred` (rule, not fit):
+NEAR shells `2..floor(l_W)` (min 3 shells else UNMEASURABLE), FAR shells
+`ceil(2*l_W)..14` (shells `2..14` scanned). Per record `n` filed.
 
 - E-val: C0 (J2-L28 leg) NEAR/FAR-equivalent window `2..10`: `alpha_psi`
   in `[0.40, 0.60]` (banked 2D replication); C4-L16: `alpha_psi` in
@@ -301,7 +306,7 @@ No global `P_+ (+) P_-` is assumed. Instruments are per-sheet LOCAL sectors
 (preparations/readouts supported on one sheet); the GLOBAL decomposition is
 derived from the woven graph spectrum:
 
-- H-der: null-space census (dense eig, headline `(8,16)` C2 `lam = 0.04`
+- H-der: null-space census (dense eig, headline `(16,24)` C2 `lam = 0.04`
   seeds 7/37 + C0/C1/C4): nullity, null-vector IPR, max overlap with any
   per-sheet `P_-` sector (filed; gate: nullity + IPR + overlaps FILED with
   existence bar — census completes, no physics bar pre-data).
@@ -310,8 +315,10 @@ derived from the woven graph spectrum:
   pairs mix `> 0` — stitches couple sectors, non-meeting `== 0` exact).
 - H-bat (HIDDEN-0 port, banked bars): matched hidden pair on ONE sheet far
   from stitches (`d_to_stub >= l_W`): locally distinguishable
-  (`D > 1e-6`), remote wave/diff shells blind (`< 1e-9`, shells `r >= 2`
-  intrinsic), POT remote exactly `0.0`. Run C0 + C1 + C2 (`lam = 0.04`).
+  (  `D > 1e-6`), remote wave/diff shells blind (`< 1e-9`, shells `r >= 2`
+  intrinsic), POT remote exactly `0.0`. Run C0 + C1 + C2 (`(8,16)`
+  `lam = 0.04` seeds 7/37 + `(8,16)` `lam = 0.02` s7 + `(16,24)`
+  `lam = 0.04` s7).
 - H-xbat (cross-sheet blindness): same pair, remote readout on OTHER sheets
   (all nodes with sheet `!= s`): blind `< 1e-9` wave/diff (gate on C2).
 - H-g (ledger census): virtual sign-reversal census, banked HBR-0 rules:
@@ -323,7 +330,8 @@ derived from the woven graph spectrum:
 Candidates derived from the graph (no VPLUS/VPI/VMINUS identity assumed):
 PERRON (ground state of `H = -A`, positive), STAG (bipartition-staggered,
 unit), SHEET-UNIFORM (uniform on one sheet, 0 else; non-stationary probe).
-Stages on C2 headline `lam = 0.04` seed 7 (+37 replication) and C0/C1/C4:
+Stages run C2 `(8,16)` `lam = 0.04` seeds 7/37 + `(8,16)` `lam = 0.02` s7
++ `(16,24)` `lam = 0.04` s7 (A0-9/A0-11 JOINT combos) and C0/C1/C4:
 
 - I-a stationary: Krylov drift `stationarity < 1e-8` (inherited bar) for
   PERRON; eigen-residual `< 1e-9` (inherited).
@@ -342,12 +350,12 @@ Stages on C2 headline `lam = 0.04` seed 7 (+37 replication) and C0/C1/C4:
 
 ## 10. Stage J — size scaling + universality
 
-- J-a: headline `lam = 0.04` at `(8,24)` + `(16,16)`: Stage-B GLOBAL and
-  Stage-C T-GLOBAL exponents move TOWARD 3 vs `(8,16)` (or stay within
-  `|d - d_C4| <= 0.25` while the measurable window broadens: `n_global`
-  shells/grid-points strictly larger). Gate: broadening + no retreat
-  (`d_J >= d_headline - 0.10`).
-- J-b: C2-sq (`lam = 0.04`, `(8,16)`, 3 seeds): B-head + C-head gates pass
+- J-a: headline `lam = 0.04` at `(24,24)` + `(16,32)`: SAME fixed
+  Stage-B GLOBAL and Stage-C T-GLOBAL windows as headline (A0-11
+  comparability rule); gate = no retreat (`d_J >= d_headline - 0.10` on
+  both channels, all 4 legs) + full curves filed (finite-size trend is
+  the J-a datum).
+- J-b: C2-sq (`lam = 0.04`, `(16,24)`, 3 seeds): B-head + C-head gates pass
   (exact J2 unnecessary). If C2-sq fails while C2 passes: J2 load-bearing
   (filed, verdict unaffected).
 - J-c: C2-nb (2 cells): B/C exponents filed (robustness; no gate).
@@ -369,18 +377,18 @@ Order of evaluation (first match fires):
    WEAVE0-NONGEOMETRIC if estimators systematically UNMEASURABLE/refuse
    (C5-like profiles), else WEAVE0-INCOMPLETE (ambiguous apparatus).
 6. C2 shows `>= 1` WOVEN `lam` with B-head + C-head passing (majority of
-   seeds) + B-mono/C-mono pass + E-head/F-head pass + J-a broadening ->
+   seeds) + B-mono/C-mono pass + E-head/F-head pass + J-a no-retreat ->
    WEAVE0-3D core. Then: H-bat + H-xbat + H-g + I-a + I-b + I-d pass ->
    WEAVE0-3D-JOINT; else WEAVE0-3D. If G-t washout inequality FAILS (C2
    transverse as coherent as C1) but core passes -> WEAVE0-ANISOTROPIC
    only if additionally the transverse ratio shows a STRONG preferred
    direction (filed threshold: `v_plane/v_trans > 3` with ballistic
    transverse); else WEAVE0-3D stands (washout is characterization).
-7. D-chart headline (cell 4, 3D signature `>= 2/3` sets) REQUIRED to
-   upgrade a (5)-ambiguous case, SUPPORTING (not required) for the core:
-   filed either way. If blind says 3D while B/C say 2D (or vice versa):
-   both filed, verdict follows B/C (intrinsic channels primary), blind
-   discrepancy noted (no post-data bar moves).
+7. D-chart headline (cells 4/11, 3D signature `>= 2/3` sets on `>= 1`)
+   REQUIRED to upgrade a (5)-ambiguous case, SUPPORTING (not required) for
+   the core: filed either way. If blind says 3D while B/C say 2D (or vice
+   versa): both filed, verdict follows B/C (intrinsic channels primary),
+   blind discrepancy noted (no post-data bar moves).
 
 Ensemble rule: "majority of 8 seeds" = `>= 5/8` instances pass at a `lam`
 for a stage-head claim; means/spreads reported per `(leg, lam)` always; no
@@ -404,8 +412,11 @@ amendments, if any, pre-grid with A-prefix like DIM3-Amd-1).
 Exact/dense (tests + analysis): balls, torus L `<= 8`, weave `(2,4)` toys.
 Campaign (beast, xargs-parallel, `nice`, `OMP_NUM_THREADS=1`, `JOBS <= 170`):
 per Section task lists (`weave0_campaign.py --list`); dense eig only for
-`N <= 9216`; full suite on beast (`-n 64`, skip `tests/test_weighted.py`
-per standing instruction + `pyproject.toml` default ignore).
+`N <= 35152` (C3-dim is the largest dense-eig task, ~20 GB peak; grid runs
+in waves: light tasks at `JOBS <= 150`, headline-eig at `JOBS <= 40`,
+scale/C3-eig at `JOBS <= 10`, sized to beast 371 GB RAM); full suite on
+beast (`-n 64`, skip `tests/test_weighted.py` per standing instruction +
+`pyproject.toml` default ignore).
 
 ## 14. Amendment-0 (PRE-DATA clarifications; no WEAVE-0 measurement exists)
 
@@ -495,3 +506,37 @@ below are derived from the frozen construction + banked precedent.
   majority over seeds, headline-eligible iff `>= 5/8` WOVEN; G-a strict
   conjunction over all packet parts/pairs; G-aniso over the 4 direction
   speeds per instance; I gates on C2 tags (controls filed).
+- A0-11 headline-size promotion + uniform windows (PRE-DATA apparatus
+  validity; no campaign seed measured, blind never run; ladder untouched):
+  non-campaign probes (seed 999, never in `WEAVE_SEEDS`) showed the
+  `(8,16)` dimension windows are structurally unmeasurable: woven
+  `D ~= 17-25` makes the wrap cap `D/2-1` empty B-GLOBAL `[7,11]`
+  (`-> [7,7]`, fewer than 3 points), and T-GLOBAL `[64,192]` sits in the
+  diffusion falloff (`t_sat`-scale at `N = 4096`), not in a scaling
+  regime. No `lam` admits jointly valid local+global windows at `(8,16)`
+  (local-2D needs `l_W >= 4`, i.e. `lam <= 0.015`; global needs
+  `2*l_W + 2 <= D/2 - 1`, i.e. `lam >= 0.02`: contradictory). Hence:
+  (a) headline dim/spread size `(8,16) -> (16,24)` (`N = 18432`,
+  woven `D ~= 26-45`, wrap `12-21` admits GLOBAL); `(8,16)` ladder legs
+  dropped except `lam = 0.04 x 8` seeds (filed small-size squeeze record);
+  scale legs `(24,24)` + `(16,32)`; discriminators + C5-dim at `(16,24)`;
+  (b) UNIFORM windows at all sizes (same-`r`/same-`t` comparability):
+  B LOCAL `[2,4]` (below `l_W` for `lam <= 0.02`) + GLOBAL `[9,15]` (3D
+  side, `[2,4]*l_W` at `lam 0.02-0.01`; wrap-capped per graph by the frozen
+  rule); C T-LOCAL `[8,16]` (above lattice grain `t ~ 8`, below `t_W` for
+  `lam <= 0.01`) + T-GLOBAL `[16,48]` (above grain and above `t_W` for
+  `lam >= 0.02`, below saturation on every control: C4 `t_sat ~ 100`, C0
+  2D `t_sat ~ 3800`); `T_GRID` gains `t = 40` so T-GLOBAL holds 5 points;
+  (c) controls: C4-dim cb-L26, C3-dim J3-L26, C1-dim gains S16L24 (S8L16
+  kept, both filed-matched), C0-dim J2-L44 unchanged; (d) E/F at
+  `(16,24)`, FAR cap `10 -> 14` (shells `2..14` scanned; E-head scope
+  still A0-8 `{0.01, 0.02}`); (e) blind cells 10/11
+  (`c2-S16L24-lam002/lam004-s7`) added (charts probe the local tangent,
+  valid at both sizes); D-chart headline = 3D signature on `>= 1` of
+  cells {4, 11}; D-gamma secondary likewise; (f) H+I gain the
+  headline-size pair `c2-S16L24-lam004-s7` (JOINT satisfiable at
+  `((8,16),0.04)` pair, `((8,16),0.02)` s7, or `((16,24),0.04)` s7);
+  (g) J-a = same fixed windows at scale sizes, no-retreat gate
+  (`d_scale >= d_head - 0.10` both channels; finite-size trend filed).
+  A0-1 control sizes superseded by (c). All bars/thresholds, the verdict
+  ladder order, and the ensemble rules are UNCHANGED.
