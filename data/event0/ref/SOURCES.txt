@@ -1,0 +1,31 @@
+EVENT-0 frozen external references (read-only; never modified).
+
+Q-DYN-0b (sibling branch, not on main at EVENT-0 prereg time):
+  branch: origin/cursor/q-dyn-0b-frozen-readout-8e3d
+  branch HEAD commit at pin time:
+    601a082899aab91a642e983f9f1cf53c687319fd
+  pinned verdict: qdyn0b_verdict.json (QDYN0B-EVENT-LOCAL, 51/51)
+  sha256(qdyn0b_verdict.json):
+    e1462c86ad8deba7c1209d24f6f9420948ee5f95d920581edf4bbf7d1f558b85
+  apparatus hashes at pin time (provenance only; not vendored):
+    qdyn0b.py 92a35c1ef3e014409165df23ade50f9cffb3e9dd541a764b46194bc236d1fd28
+    qdyn0.py  b827430a9a8038aaf266151625929762b610ce4e64fc21516d3cee22f660610b
+  consumed: QDYN0B-EVENT-LOCAL verdict only (Q frozen between events;
+    E_Q = F_R(M,Q) event-local readout; current-account inversion;
+    negated-H backward-leg precedent). No per-rung QDYN0B numbers are
+    consumed: EVENT-0 re-derives Q-frozen, current-M reversal, and
+    drift-attribution closure from banked main modules on its own battery.
+
+On-main frozen inputs (imported, never modified):
+  STORE0-REVERSIBLE (data/store0/verdict.json)
+  MERGE0-DETERMINISTIC + MERGE0-ACCOUNT-DEBT (data/merge0/verdict.json)
+  SPLIT0-MIXED (data/split0_verdict.json)
+  RES0-XI (data/reservoir0/verdict.json, via store0)
+  REWIRE0-DEGENERATE headline (data/rewire0/verdict.json)
+  TRIGGER0-CONDITION, zero implications (data/trigger0/verdict.json)
+  BR27-NO-MODE (VERDICT_A=A3, src/bh_graph/stability.py + data)
+  INFO0-MATCHED (data/info0_verdict.json)
+  SYM0-CLOSED (data/sym0_verdict.json)
+  HIDDEN0-SEPARATED + HBR0-SIGNREV, VACFIELD0-JOINT, VACCOMP0-COMPLETE,
+  VACTEXTURE-GRADIENT, VACSTAB0-ROBUST, RESPONSE0-KERNEL, MEASURE0-DEBT
+  (banked modules + data verdicts)
