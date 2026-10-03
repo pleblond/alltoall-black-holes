@@ -1,5 +1,20 @@
 # Changelog
 
+- **Unreleased (BH-Q-AREA-0)** — Q-information area law on a 3D BH-like
+  boundary: `src/bh_graph/bhqarea0.py` (K-core + J3-ball ladder, vacuum
+  eigensolver readout, banked qinfo0 s_Q census, deficit/audit/scaling
+  instruments, firewall scan), `tests/test_bhqarea0.py` (13 pins),
+  53-task beast campaign + frozen analyzer (+ Amendment-1: spec-literal
+  domain-vs-domain G-J, disclosed, moves no number),
+  `docs/bhqarea0-prereg.md` (FROZEN pre-data) + `docs/bhqarea0-verdict.md`.
+  VERDICT BHQAREA0-MAX (22/22): S_Q^d = k* A + o(A) with k* = 4.2207,
+  s* = 4.2208, h* = 0.999990 (MAX class); P_R collapsed (x ~ 0.002);
+  p(S vs A) = 0.92; patterns give S = 0 exactly (state-selected);
+  plain-J3 control gives k = 0.43, h ~ 0.10 with disjoint P (KS = 1);
+  conditional a/l_P = 3.42 (no agreement claim). Frozen QINFO0-IDENTICAL
+  input (`qinfo0.py` + 21 pins, byte-identical from Q-INFO-0 branch).
+  Records in `data/bhqarea0/` (53 + freeze/comparison/verdict + v1).
+
 - **Unreleased (BH-Q-ENT-0)** — Boundary scaling of exterior-blind store
   information: `src/bh_graph/bhqent0.py` (region/store collapse, 8 frozen
   exterior channels + joint, Q-Jacobians, blind dims, per-entry R/I

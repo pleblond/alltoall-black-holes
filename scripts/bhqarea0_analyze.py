@@ -167,20 +167,26 @@ def main(argv=None) -> int:
         gate("G-H", False, f"eval-error: {exc}")
         gate("G-I", False, f"eval-error: {exc}")
 
-    # ---- J: deficit agreement ----
+    # ---- J: deficit agreement (Amendment-1: domain-vs-domain) ----
     try:
         j_ok = True
         j_notes = []
         for r in bq.R_LADDER:
             rec = hv(r)
-            if rec["delta_dom_n"] >= 10:
-                denom = max(rec["delta"], 1e-9)
-                rel = abs(rec["delta"] - rec["delta2"]) / denom
+            dom = [float(x) for x in rec["xs"]
+                   if abs(float(x)) <= float(bq.J_DOMAIN)]
+            if len(dom) >= 10:
+                from bh_graph import qinfo0 as _q0
+
+                d_dom = sum(1.0 - _q0.h2_binary(0.5 - x) for x in dom)
+                d2 = ((2.0 / math.log(2.0))
+                      * sum(x * x for x in dom))
+                rel = abs(d_dom - d2) / max(d_dom, 1e-9)
                 if rel >= bq.BAR_J_REL:
                     j_ok = False
                     j_notes.append(f"r{r}: rel={rel:.3g}")
             else:
-                j_notes.append(f"r{r}: VACUOUS(n={rec['delta_dom_n']})")
+                j_notes.append(f"r{r}: VACUOUS(n={len(dom)})")
         gate("G-J", j_ok, "; ".join(j_notes[:6]))
     except Exception as exc:  # noqa: BLE001
         gate("G-J", False, f"eval-error: {exc}")
@@ -357,6 +363,9 @@ def main(argv=None) -> int:
         verdict = "BHQAREA0-NONUNIVERSAL"
     elif not gates.get("G-M") or not gates.get("G-J") or \
             not gates.get("G-S") or not gates.get("G-T"):
+        # Gap-fill enforcing the MAX/AREA/ZERO requirement sentences
+        # (J/M/S/T green necessary for any positive verdict). Not
+        # triggered when all gates are green.
         verdict = "BHQAREA0-NONUNIVERSAL"
     elif h_class == "MAX":
         verdict = "BHQAREA0-MAX"
