@@ -10495,3 +10495,20 @@ obs_dim tasks (L256/L512 x j2/sq) were killed mid-run and relaunched
 under this amendment; no other task's code path changed, so all other
 banked cells stand. Method, station draw (seed 9100 + 100*cell),
 grids, thresholds, and bars are untouched.
+## SCALE0-AMENDMENT-4 (sparse sheet split in run_quot; execution-only)
+
+run_quot's POT channel called malus.sheet_projectors (dense N x N,
+4 x N^2 doubles transient): 137 GB/projector-set at L256 and 2.2 TB
+at L512. On the 371 GB box this OOM-killed the L256/L512 quot tasks
+(dmesg-confirmed kills at 243/316 GB RSS; the wave scheduler died in
+the same chaos with 4 cells unstarted). Only the anti weight
+||P_anti phi||/||phi|| was ever used, and P_anti = (I-S)/2 with S the
+sheet-swap permutation, so the campaign now computes (phi - S.phi)/2
+by permutation (new _sheet_anti_frac helper). Bitwise-identical to
+the dense form (division by 2 exact; rounding commutes with exact
+power-of-2 scaling); pinned by test_sheet_anti_frac_sparse_bitwise
+(dense == sparse to the bit, real and complex phi, L = 4 and 28).
+Applied at every L (no branch); L <= 128 banked quot cells reproduce
+bitwise, so they stand. The 4 unstarted/killed quot tasks
+(L256-anti/sym, L512-anti/sym) are rerun under this amendment; no
+other task's code path changed.

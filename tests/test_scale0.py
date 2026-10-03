@@ -303,3 +303,27 @@ def test_dim_station_parallel_bitwise():
                                                  math.copysign(1.0, y))
         for b in p1:
             assert p1[b] == p2[b]
+
+
+def test_sheet_anti_frac_sparse_bitwise():
+    # Amendment-4: sparse (phi - S.phi)/2 anti weight is bitwise-identical
+    # to the dense decompose_solution form (dense N x N OOMs at L >= 256).
+    from bh_graph import malus, quot
+    from bh_graph.formation import j2_torus_coords, j2_torus_graph
+
+    for L in (4, 28):
+        g = j2_torus_graph(L)
+        order = sorted(g.nodes())
+        c3 = j2_torus_coords(L)
+        rng = np.random.default_rng(1000 + L)
+        n = len(order)
+        for trial in range(3):
+            phi = rng.standard_normal(n) + 1.0j * rng.standard_normal(n) * 1e-9
+            if trial == 2:
+                phi = phi.real.copy()
+            pr = malus.sheet_projectors(order, c3)
+            decomp = quot.decompose_solution(np.real(phi), pr)
+            dense = float(np.linalg.norm(decomp["anti"])
+                          / max(np.linalg.norm(phi), 1e-300))
+            sparse = scamp._sheet_anti_frac(phi, order, c3)
+            assert sparse == dense

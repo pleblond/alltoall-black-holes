@@ -808,6 +808,25 @@ def run_pot_regress() -> dict:
 # quot (QUOT scaling cell)
 # ---------------------------------------------------------------------------
 
+def _sheet_anti_frac(phi, order, c3) -> float:
+    """Sheet-antisymmetric weight ||P_anti phi||/||phi||, sparse (Amnd-4).
+
+    P_anti = (I-S)/2 with S the sheet-swap permutation: (phi - S.phi)/2.
+    Bitwise-identical to the dense decompose_solution form (rounding
+    commutes with the exact halving); dense N x N is OOM at L >= 256.
+    """
+    pos = {v: i for i, v in enumerate(order)}
+    node_of = {(x, y, b): v for v, (x, y, b) in c3.items()}
+    phi_arr = np.asarray(phi)
+    phir = np.real(phi_arr)
+    anti = np.empty_like(phir, dtype=float)
+    for v in order:
+        x, y, b = c3[v]
+        w = node_of[(x, y, 1 - b)]
+        anti[pos[v]] = (phir[pos[v]] - phir[pos[w]]) / 2.0
+    return float(np.linalg.norm(anti) / max(np.linalg.norm(phi_arr), 1e-300))
+
+
 def run_quot(L: int, family: str) -> dict:
     from bh_graph import quot
     from bh_graph.formation import j2_torus_coords, j2_torus_graph
@@ -902,11 +921,8 @@ def run_quot(L: int, family: str) -> dict:
     node_of = {(x, y, b): v for v, (x, y, b) in c3.items()}
     pin = [pos[node_of[(X0[0], X0[1], 0)]]]
     phi = quot.static_phi_multi(h.tocsc(), pin, np.array([1.0]), scale0.OM_J2)
-    from bh_graph import malus
-
-    pr = malus.sheet_projectors(order, c3)
-    decomp = quot.decompose_solution(np.real(phi), pr)
-    anti_frac = float(np.linalg.norm(decomp["anti"]) / max(np.linalg.norm(phi), 1e-300))
+    # Amendment-4: sparse sheet split (dense N x N OOMs at L >= 256).
+    anti_frac = _sheet_anti_frac(phi, order, c3)
     near8 = [(x, y) for x in range(L) for y in range(L)
              if min((x - X0[0]) % L, (X0[0] - x) % L) ** 2
              + min((y - X0[1]) % L, (X0[1] - y) % L) ** 2 <= 64]
