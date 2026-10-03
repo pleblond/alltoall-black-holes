@@ -1,0 +1,1132 @@
+{
+ "n_runs": 268,
+ "by_phase": {
+  "discovery": 144,
+  "stability": 96,
+  "spot": 12,
+  "ablation": 16
+ },
+ "discovery": {
+  "B1_diso": 10,
+  "B2_kappa": 39,
+  "B3_sparse": 144,
+  "B4_lw": 133,
+  "member": 0,
+  "n": 144,
+  "diso_ok": 144,
+  "kappa_ok": 144
+ },
+ "stability": {
+  "B1_diso": 7,
+  "B2_kappa": 26,
+  "B3_sparse": 96,
+  "B4_lw": 88,
+  "member": 0,
+  "n": 96,
+  "diso_ok": 96,
+  "kappa_ok": 96
+ },
+ "spot": {
+  "B1_diso": 0,
+  "B2_kappa": 0,
+  "B3_sparse": 12,
+  "B4_lw": 7,
+  "member": 0,
+  "n": 12,
+  "diso_ok": 12,
+  "kappa_ok": 12
+ },
+ "ablation": {
+  "B1_diso": 1,
+  "B2_kappa": 13,
+  "B3_sparse": 16,
+  "B4_lw": 16,
+  "member": 0,
+  "n": 16,
+  "diso_ok": 16,
+  "kappa_ok": 16
+ },
+ "discovery_per_gid": {
+  "G0": {
+   "n": 12,
+   "kappa_med": -0.2846666666666667,
+   "z_med": 1.9934172453703702,
+   "diam_med": 52.0,
+   "C_med": 0.9967086226851851
+  },
+  "G1": {
+   "n": 12,
+   "kappa_med": -0.27669841269841267,
+   "z_med": 1.9934172453703702,
+   "diam_med": 52.0,
+   "C_med": 0.9981367110017091
+  },
+  "G2": {
+   "n": 12,
+   "kappa_med": -0.06888888888888886,
+   "z_med": 1.99609375,
+   "diam_med": 121.0,
+   "C_med": 1.081537647664904
+  },
+  "G3": {
+   "n": 12,
+   "kappa_med": -0.27499999999999997,
+   "z_med": 1.9934172453703702,
+   "diam_med": 52.0,
+   "C_med": 2.591796875
+  },
+  "G4": {
+   "n": 12,
+   "kappa_med": -0.06533333333333328,
+   "z_med": 1.99609375,
+   "diam_med": 121.0,
+   "C_med": 1.0822457572804125
+  },
+  "G5": {
+   "n": 12,
+   "kappa_med": -0.282,
+   "z_med": 1.9934172453703702,
+   "diam_med": 52.0,
+   "C_med": 2.592182094687727
+  },
+  "G6": {
+   "n": 12,
+   "kappa_med": -0.06444444444444442,
+   "z_med": 1.99609375,
+   "diam_med": 121.0,
+   "C_med": 1.5149867217389779
+  },
+  "G7": {
+   "n": 12,
+   "kappa_med": -0.07555555555555551,
+   "z_med": 1.99609375,
+   "diam_med": 121.0,
+   "C_med": 1.515694831354486
+  },
+  "G8": {
+   "n": 12,
+   "kappa_med": -0.061666666666666634,
+   "z_med": 1.99609375,
+   "diam_med": 121.0,
+   "C_med": 1.5178191602010103
+  },
+  "G9": {
+   "n": 12,
+   "kappa_med": -0.07111111111111107,
+   "z_med": 1.99609375,
+   "diam_med": 121.0,
+   "C_med": 1.515163749142855
+  },
+  "G10": {
+   "n": 12,
+   "kappa_med": -0.6133333333333332,
+   "z_med": 2.91796875,
+   "diam_med": 12.0,
+   "C_med": 1.808617354499809
+  },
+  "G11": {
+   "n": 12,
+   "kappa_med": -0.06922222222222219,
+   "z_med": 1.99609375,
+   "diam_med": 121.0,
+   "C_med": 2.816042053576709
+  }
+ },
+ "stability_runs": [
+  {
+   "run_id": "stab-G00-cubic-N216-s00",
+   "gid": 0,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3194444444444444,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G00-cubic-N216-s01",
+   "gid": 0,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G00-cubic-N512-s00",
+   "gid": 0,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3313802083333333,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G00-cubic-N512-s01",
+   "gid": 0,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3287760416666667,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G00-diamond-N216-s00",
+   "gid": 0,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4884259259259258,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G00-diamond-N216-s01",
+   "gid": 0,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G00-diamond-N512-s00",
+   "gid": 0,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G00-diamond-N512-s01",
+   "gid": 0,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4970703125,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G01-cubic-N216-s00",
+   "gid": 1,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3194444444444444,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G01-cubic-N216-s01",
+   "gid": 1,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G01-cubic-N512-s00",
+   "gid": 1,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3313802083333333,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G01-cubic-N512-s01",
+   "gid": 1,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3287760416666667,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G01-diamond-N216-s00",
+   "gid": 1,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4884259259259258,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G01-diamond-N216-s01",
+   "gid": 1,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G01-diamond-N512-s00",
+   "gid": 1,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G01-diamond-N512-s01",
+   "gid": 1,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4970703125,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G02-cubic-N216-s00",
+   "gid": 2,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3225308641975309,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G02-cubic-N216-s01",
+   "gid": 2,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G02-cubic-N512-s00",
+   "gid": 2,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3307291666666667,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G02-cubic-N512-s01",
+   "gid": 2,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.33203125,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G02-diamond-N216-s00",
+   "gid": 2,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4791666666666667,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G02-diamond-N216-s01",
+   "gid": 2,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G02-diamond-N512-s00",
+   "gid": 2,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.5,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G02-diamond-N512-s01",
+   "gid": 2,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G03-cubic-N216-s00",
+   "gid": 3,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3194444444444444,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G03-cubic-N216-s01",
+   "gid": 3,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G03-cubic-N512-s00",
+   "gid": 3,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3313802083333333,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G03-cubic-N512-s01",
+   "gid": 3,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3287760416666667,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G03-diamond-N216-s00",
+   "gid": 3,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4884259259259258,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G03-diamond-N216-s01",
+   "gid": 3,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G03-diamond-N512-s00",
+   "gid": 3,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G03-diamond-N512-s01",
+   "gid": 3,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4970703125,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G04-cubic-N216-s00",
+   "gid": 4,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3225308641975309,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G04-cubic-N216-s01",
+   "gid": 4,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G04-cubic-N512-s00",
+   "gid": 4,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3307291666666667,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G04-cubic-N512-s01",
+   "gid": 4,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.33203125,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G04-diamond-N216-s00",
+   "gid": 4,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4791666666666667,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G04-diamond-N216-s01",
+   "gid": 4,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G04-diamond-N512-s00",
+   "gid": 4,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.5,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G04-diamond-N512-s01",
+   "gid": 4,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G05-cubic-N216-s00",
+   "gid": 5,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3194444444444444,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G05-cubic-N216-s01",
+   "gid": 5,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G05-cubic-N512-s00",
+   "gid": 5,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3313802083333333,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G05-cubic-N512-s01",
+   "gid": 5,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3287760416666667,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G05-diamond-N216-s00",
+   "gid": 5,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4884259259259258,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G05-diamond-N216-s01",
+   "gid": 5,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G05-diamond-N512-s00",
+   "gid": 5,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G05-diamond-N512-s01",
+   "gid": 5,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4970703125,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G06-cubic-N216-s00",
+   "gid": 6,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3225308641975309,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G06-cubic-N216-s01",
+   "gid": 6,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G06-cubic-N512-s00",
+   "gid": 6,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3307291666666667,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G06-cubic-N512-s01",
+   "gid": 6,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.33203125,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G06-diamond-N216-s00",
+   "gid": 6,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4791666666666667,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G06-diamond-N216-s01",
+   "gid": 6,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G06-diamond-N512-s00",
+   "gid": 6,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.5,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G06-diamond-N512-s01",
+   "gid": 6,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G07-cubic-N216-s00",
+   "gid": 7,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3225308641975309,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G07-cubic-N216-s01",
+   "gid": 7,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G07-cubic-N512-s00",
+   "gid": 7,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3307291666666667,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G07-cubic-N512-s01",
+   "gid": 7,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.33203125,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G07-diamond-N216-s00",
+   "gid": 7,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4791666666666667,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G07-diamond-N216-s01",
+   "gid": 7,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G07-diamond-N512-s00",
+   "gid": 7,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.5,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G07-diamond-N512-s01",
+   "gid": 7,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G08-cubic-N216-s00",
+   "gid": 8,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3225308641975309,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G08-cubic-N216-s01",
+   "gid": 8,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G08-cubic-N512-s00",
+   "gid": 8,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3307291666666667,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G08-cubic-N512-s01",
+   "gid": 8,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.33203125,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G08-diamond-N216-s00",
+   "gid": 8,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4791666666666667,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G08-diamond-N216-s01",
+   "gid": 8,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G08-diamond-N512-s00",
+   "gid": 8,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.5,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G08-diamond-N512-s01",
+   "gid": 8,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G09-cubic-N216-s00",
+   "gid": 9,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3225308641975309,
+   "B2": false,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G09-cubic-N216-s01",
+   "gid": 9,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G09-cubic-N512-s00",
+   "gid": 9,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3307291666666667,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G09-cubic-N512-s01",
+   "gid": 9,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.33203125,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G09-diamond-N216-s00",
+   "gid": 9,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4791666666666667,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G09-diamond-N216-s01",
+   "gid": 9,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G09-diamond-N512-s00",
+   "gid": 9,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.5,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G09-diamond-N512-s01",
+   "gid": 9,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  },
+  {
+   "run_id": "stab-G10-cubic-N216-s00",
+   "gid": 10,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.4830246913580247,
+   "B2": false,
+   "z_final": 2.9722222222222223
+  },
+  {
+   "run_id": "stab-G10-cubic-N216-s01",
+   "gid": 10,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.4830246913580247,
+   "B2": false,
+   "z_final": 2.9537037037037037
+  },
+  {
+   "run_id": "stab-G10-cubic-N512-s00",
+   "gid": 10,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.48046875,
+   "B2": false,
+   "z_final": 2.8984375
+  },
+  {
+   "run_id": "stab-G10-cubic-N512-s01",
+   "gid": 10,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.478515625,
+   "B2": false,
+   "z_final": 2.88671875
+  },
+  {
+   "run_id": "stab-G10-diamond-N216-s00",
+   "gid": 10,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.7314814814814814,
+   "B2": false,
+   "z_final": 2.9814814814814814
+  },
+  {
+   "run_id": "stab-G10-diamond-N216-s01",
+   "gid": 10,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.7337962962962963,
+   "B2": false,
+   "z_final": 2.9722222222222223
+  },
+  {
+   "run_id": "stab-G10-diamond-N512-s00",
+   "gid": 10,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.73046875,
+   "B2": false,
+   "z_final": 2.9375
+  },
+  {
+   "run_id": "stab-G10-diamond-N512-s01",
+   "gid": 10,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.732421875,
+   "B2": false,
+   "z_final": 2.9375
+  },
+  {
+   "run_id": "stab-G11-cubic-N216-s00",
+   "gid": 11,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3225308641975309,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G11-cubic-N216-s01",
+   "gid": 11,
+   "seed_id": "cubic",
+   "N": 216,
+   "edit": 1.3287037037037037,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G11-cubic-N512-s00",
+   "gid": 11,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.3307291666666667,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G11-cubic-N512-s01",
+   "gid": 11,
+   "seed_id": "cubic",
+   "N": 512,
+   "edit": 1.33203125,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G11-diamond-N216-s00",
+   "gid": 11,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4791666666666667,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G11-diamond-N216-s01",
+   "gid": 11,
+   "seed_id": "diamond",
+   "N": 216,
+   "edit": 1.4837962962962963,
+   "B2": true,
+   "z_final": 1.9907407407407407
+  },
+  {
+   "run_id": "stab-G11-diamond-N512-s00",
+   "gid": 11,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.5,
+   "B2": false,
+   "z_final": 2.0
+  },
+  {
+   "run_id": "stab-G11-diamond-N512-s01",
+   "gid": 11,
+   "seed_id": "diamond",
+   "N": 512,
+   "edit": 1.4951171875,
+   "B2": false,
+   "z_final": 1.99609375
+  }
+ ],
+ "ablation_pairs": [
+  {
+   "gid": 0,
+   "seed_id": "cubic",
+   "d_diso": -0.6686127526106158,
+   "d_kappa": 0.2504444444444444,
+   "d_z": 0.0462962962962965,
+   "d_diam": 24
+  },
+  {
+   "gid": 0,
+   "seed_id": "cubic",
+   "d_diso": -0.8432455110065256,
+   "d_kappa": 0.20866666666666667,
+   "d_z": 0.05555555555555558,
+   "d_diam": 26
+  },
+  {
+   "gid": 0,
+   "seed_id": "er-sparse",
+   "d_diso": -1.0076996128328872,
+   "d_kappa": 0.17250793650793655,
+   "d_z": 0.11111111111111094,
+   "d_diam": 11
+  },
+  {
+   "gid": 0,
+   "seed_id": "er-sparse",
+   "d_diso": -0.9850769413974712,
+   "d_kappa": 0.21844444444444436,
+   "d_z": 0.03703703703703698,
+   "d_diam": 47
+  },
+  {
+   "gid": 1,
+   "seed_id": "cubic",
+   "d_diso": -0.34968076500906164,
+   "d_kappa": 0.2464444444444444,
+   "d_z": 0.0462962962962965,
+   "d_diam": 24
+  },
+  {
+   "gid": 1,
+   "seed_id": "cubic",
+   "d_diso": -0.5311885561816401,
+   "d_kappa": 0.21933333333333327,
+   "d_z": 0.05555555555555558,
+   "d_diam": 26
+  },
+  {
+   "gid": 1,
+   "seed_id": "er-sparse",
+   "d_diso": -1.402427359741003,
+   "d_kappa": 0.1827301587301587,
+   "d_z": 0.11111111111111094,
+   "d_diam": 11
+  },
+  {
+   "gid": 1,
+   "seed_id": "er-sparse",
+   "d_diso": -1.6924252172944323,
+   "d_kappa": 0.19155555555555553,
+   "d_z": 0.03703703703703698,
+   "d_diam": 47
+  },
+  {
+   "gid": 7,
+   "seed_id": "cubic",
+   "d_diso": 0.3011052965569263,
+   "d_kappa": 0.0111111111111111,
+   "d_z": 0.05555555555555558,
+   "d_diam": -45
+  },
+  {
+   "gid": 7,
+   "seed_id": "cubic",
+   "d_diso": -0.1513653987914667,
+   "d_kappa": 0.017777777777777767,
+   "d_z": 0.03703703703703698,
+   "d_diam": -13
+  },
+  {
+   "gid": 7,
+   "seed_id": "er-sparse",
+   "d_diso": 0.47480902415001247,
+   "d_kappa": 0.003111111111111106,
+   "d_z": 0.07407407407407418,
+   "d_diam": -41
+  },
+  {
+   "gid": 7,
+   "seed_id": "er-sparse",
+   "d_diso": 0.11920250465058979,
+   "d_kappa": 0.015555555555555552,
+   "d_z": 0.03703703703703698,
+   "d_diam": -30
+  },
+  {
+   "gid": 8,
+   "seed_id": "cubic",
+   "d_diso": 0.20356699429994385,
+   "d_kappa": 0.006666666666666668,
+   "d_z": 0.05555555555555558,
+   "d_diam": -45
+  },
+  {
+   "gid": 8,
+   "seed_id": "cubic",
+   "d_diso": -0.30091356222137744,
+   "d_kappa": 0.027777777777777752,
+   "d_z": 0.03703703703703698,
+   "d_diam": -13
+  },
+  {
+   "gid": 8,
+   "seed_id": "er-sparse",
+   "d_diso": 0.43083518831506895,
+   "d_kappa": 0.0057777777777777775,
+   "d_z": 0.07407407407407418,
+   "d_diam": -41
+  },
+  {
+   "gid": 8,
+   "seed_id": "er-sparse",
+   "d_diso": -0.09242327369456182,
+   "d_kappa": 0.017777777777777764,
+   "d_z": 0.03703703703703698,
+   "d_diam": -30
+  }
+ ],
+ "git_sha": "397f91e712bd53469f702d95ad836a5c1a47d68e"
+}
