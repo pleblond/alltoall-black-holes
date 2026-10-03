@@ -3,13 +3,28 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
-- **unreleased (scaffolding history)** — Field-program scaffolding history
+- **v5.6** — Relational field program release (rolls up the 40-odd v5.6
+  campaign entries below, all merged): FP1/FP2 (`ψ = r + is`, `H = -A`)
+  with derived B/J anatomy (VAC-0A LAW); EM-1 falsification (ψ is a
+  relational scalar, not EM); BR contraction/splitting ontology +
+  conditional accounting, BR27-NO-MODE; observer quotient
+  (OBS0R-METRIC, OBS1-QUOTIENT `d_O = 2.02`, QUOT0-OPERATIONAL); joint
+  vacuum family (VACFIELD/VACEXC/VACCOMP + VACSEL0-NOMEASURE refusal);
+  hidden sector (HIDDEN0/HIDDEN-BR sign reversal); linearity null +
+  response kernel + per-vacuum susceptibility (FIELD0/RESPONSE/BGRESP);
+  dynamics debts filed (U0/TIME0/RAND0/MEASURE0 + SYM0 counting);
+  ZERO-0 nodal census; GRAV-0 graph-only null. Docs: `docs/model.md`
+  v0.7 (new §10 F-layer; T7/D1 record small-N `graphvk` closure).
+  Paper v5: 13pp main + 19pp S1–S12 supplement (new S12 methods),
+  49/49 refs, zero LaTeX warnings. 1787 tests passed + 2 skipped.
+
+- **v5.6 (scaffolding history)** — Field-program scaffolding history
   as a dependency tree (`docs/scaffolding-history.md` + rough-draft
   archive): postulates → fabric selection → field anatomy → backreaction →
   observer quotient → vacuum family → hidden sector → measure debts,
   covering P1 through VAC-COMP verdicts with a debt register.
 
-- **Unreleased (BG-RESP-0)** — Vacuum-dependent relational susceptibility:
+- **v5.6 (BG-RESP-0)** — Vacuum-dependent relational susceptibility:
   `src/bh_graph/bgresp.py` (analytic chi operator, dense + sparse, spectra,
   sector resolution, time-domain kernel, sign census, fingerprint),
   `tests/test_bgresp.py` (34 pins), `scripts/bgresp_campaign.py` (77 tasks)
@@ -22,7 +37,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   fingerprint (energy/signed-B), witness I = 0 identical on all vacua.
   Full suite 1605 passed / 2 skipped. Records under `data/bgresp/`.
 
-- **Unreleased (VAC-SELECT-0)** — Dynamical vacuum-selection campaign
+- **v5.6 (VAC-SELECT-0)** — Dynamical vacuum-selection campaign
   (branch): `src/bh_graph/vacselect.py` (VACSEL-0A/0B/0C regressions +
   MEASURE-gate firewall + C0..C8 controls + verdict ladder),
   `scripts/vacselect_campaign.py` (10-task beast battery) +
@@ -40,7 +55,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   0/23 ran (all refusals). Family preserved; selection undefined
   because geometry dynamics is incomplete.
 
-- **Unreleased (VAC-COMP-0)** — Complete joint-vacuum manifold census
+- **v5.6 (VAC-COMP-0)** — Complete joint-vacuum manifold census
   (branch): VAC-FIELD-0 `vacfield.py` + tests vendored byte-identical;
   new `src/bh_graph/vaccomp.py` (stages 0A-0AC + 0R/0S inventory),
   `tests/test_vaccomp.py` (40 preregistered pins, green),
@@ -58,7 +73,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   .5/.25/.25, circle-interior .25/.37/.38). Records under
   `data/vaccomp/` (results + verdict JSON).
 
-- **HIDDEN-BR** (unreleased) — Hidden-sector geometric backreaction ledger:
+- **HIDDEN-BR** (v5.6) — Hidden-sector geometric backreaction ledger:
   HBR0-SIGNREV (214/214 checks, 35 beast cells, J2 L28). Matched equal-E
   pairs (dE <= 1.8e-15, wave+POT remote <= 2.5e-15) have different B
   (max|dB| 0.025-0.71) hence different dE/dA, with 1346 strict
@@ -72,7 +87,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   blind. Virtual ledger only (no graph ops). Suite 1296 passed + 2
   skipped on beast (-n 8).
 
-- **unreleased (VAC-EXC-0 verdict)** — VACEXC0-COMPLETE banked (beast,
+- **v5.6 (VAC-EXC-0 verdict)** — VACEXC0-COMPLETE banked (beast,
   241/241 records): bitwise cross-vacuum dpsi identity 7/7 + packet v
   identical on all 4 backgrounds + interference null I ~ 6e-16 on all
   vacua + decomp cross +1/dd 0 + frac collapse 1e-13 over 6 decades of
@@ -85,7 +100,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   theorem, absolute J bar); suite 1007 passed / 2 skipped (weighted
   skipped per campaign note).
 
-- **unreleased (VAC-EXC-0 prereg)** — Excitations-around-joint-vacuum
+- **v5.6 (VAC-EXC-0 prereg)** — Excitations-around-joint-vacuum
   campaign opened on main tail: 8-kind dpsi battery (point/phase/patch/
   packet/standing/source/sym/hidden) around VACFIELD0-JOINT (VPLUS/VPI/
   VMINUS, ZERO control); 0A evolution theorem + 0B bitwise cross-bg
@@ -95,7 +110,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   + 0W long-time + 0X visibility + 0Y virtual ledger + 0Z matrix;
   apparatus (`vacexc.py`) + 241 beast tasks + analyzer + 32 pins (pre-data).
 
-- **HIDDEN-0** (unreleased) — Operationally hidden local degrees of freedom:
+- **HIDDEN-0** (v5.6) — Operationally hidden local degrees of freedom:
   HIDDEN0-SEPARATED (279/279 checks, 43 beast cells, J2 L28). Matched
   hidden-state pairs (sign/phase/shape/amplitude, exact P_+ match) show
   D_local in [0.07, 1.60] while D_remote <= 5.2e-15 on all remote shells
@@ -109,7 +124,7 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   Suite 750 passed + 2 skipped on beast (-n 8); test_weighted.py now
   skipped by default (slow; pyproject addopts).
 
-- **v5.5+ZERO-0 (unreleased)** — ZERO-0 zero-crossing census
+- **v5.6 (ZERO-0)** — ZERO-0 zero-crossing census
 apparatus + campaign (frozen `H = -A` field law): `zero.py`
 (codimension-2/persistent/two-mode/phasor theorems, F1–F5
 families, L1–L3 certification, Z0/Z+/Zπ/Z− backgrounds,
@@ -120,7 +135,7 @@ interference-enforced (1,588 certified two-packet π-nulls) or
 nodal, never generic; discrete winding changes via bond
 phase-slip without zeros (Z4 not earned).
 
-- **unreleased (FIELD-0 two-excitation null)** — Linear-superposition null
+- **v5.6 (FIELD-0 two-excitation null)** — Linear-superposition null
   campaign under frozen H=-A (read-only P1/POT0/EM0/MALUS/QUOT/COH apparatus):
   new `field0.py` (substrates + packets + collision grid + windows + triplet
   evolution + rho/B/J/E cross anatomy + momentum/coherence + naive-peak/false-
@@ -133,7 +148,7 @@ phase-slip without zeros (Z4 not earned).
   NO force (interference-only); 714 collected (712 passed, 2 torch/GPU skips).
   Witness I frozen for future matter/force claims.
 
-- **unreleased (VAC-FIELD-0 verdict)** — Nonzero-joint-vacuum-field
+- **v5.6 (VAC-FIELD-0 verdict)** — Nonzero-joint-vacuum-field
   campaign: VACFIELD0-JOINT (VPLUS/VPI/VMINUS all JOINT as a
   characterized family; ZERO control BACKGROUND-capped). Frozen
   (J2, H=-A) theory contains three symmetry-distinguished
@@ -150,7 +165,7 @@ phase-slip without zeros (Z4 not earned).
   `scripts/vacfield_analyze.py`); prereg + 4 amendments + verdict
   in `docs/DEFERRED.md`.
 
-- **Unreleased (RAND-0)** — Local-stochastic-completion preregistration:
+- **v5.6 (RAND-0)** — Local-stochastic-completion preregistration:
   frozen admissible sets (edge-2, node 1+(3^d+1)/2 undirected + equal
   field), stabilizer/orbit apparatus, MICRO-UNIFORM vs ORBIT-UNIFORM
   candidates, multiplicity audit (directed vs undirected, isomorphism
@@ -162,7 +177,7 @@ phase-slip without zeros (Z4 not earned).
   undirected coarse on all states; iso-classes coarser + non-uniform;
   P(R_effect) concentrates near N; vacuum not quiescent, no exception).
 
-- **unreleased (QUOT-0 verdict: QUOT0-OPERATIONAL)** — Observer-quotient
+- **v5.6 (QUOT-0 verdict: QUOT0-OPERATIONAL)** — Observer-quotient
   mechanism campaign complete (primary positive result): exact sector
   decomposition re-derived (comm/dead/intertwining 0.0, U-inter 1.7e-14,
   838 = 784 + 54); sym arrives / anti exactly 0 remotely / sheet-bit
@@ -175,7 +190,7 @@ phase-slip without zeros (Z4 not earned).
   honestly blocked with 4 design-error sub-bars, no post-data changes).
   Records: `data/quot_verdict.json` + `quot_stage.json` + `quot_replay.json`.
 
-- **unreleased (QUOT-0 prereg)** — Quot track opened on main tail (v5.5.0):
+- **v5.6 (QUOT-0 prereg)** — Quot track opened on main tail (v5.5.0):
   dynamical-origin-of-observer-quotient campaign preregistered (Q-ALG
   exact sector algebra + Q-COMM sym/anti/sheet channels + Q-SECTOR
   wave/diffusion/POT anatomy + Q-N projection + Q-O equivalence + Q-P
@@ -185,7 +200,7 @@ phase-slip without zeros (Z4 not earned).
   obs1/obs1_reveal + runners/analyzers, sha-pinned); sector apparatus
   (`quot.py`) + 19 pins + campaign/analysis scripts.
 
-- **Unreleased (TIME-0)** — Two-boundary history selection prereg +
+- **v5.6 (TIME-0)** — Two-boundary history selection prereg +
   apparatus (pre-data): `src/bh_graph/time0.py` (canonical N<=6 universe,
   pairwise compatibility, exact DP counters, Theta, affine field
   propagation, frozen ladder), `tests/test_time0.py` (C0-C7 + R/S/T
@@ -198,7 +213,7 @@ phase-slip without zeros (Z4 not earned).
   (on=1/off=0); single-step anchored resolution 1.0, pooled split
   resolution 0.65. Ledger + verdict + followup JSONs under `data/`.
 
-- **unreleased (U0)** — Minimal-geometry-dynamics campaign (branch):
+- **v5.6 (U0)** — Minimal-geometry-dynamics campaign (branch):
   read-only consumption of BR-2.7/CONS-0/UG-0 apparatus (byte-identical);
   U0-PREREG frozen (UB/UL/UEc semantics, full-sync quotient tick, S1..S8
   battery, gates, verdict mapping, INCOMPLETE predicted); u0.py apparatus
@@ -208,7 +223,7 @@ phase-slip without zeros (Z4 not earned).
   VERDICT U0-INCOMPLETE (contraction-only tendencies viable, splits
   unrealized for all; BR-3C stays BLOCKED).
 
-- **unreleased (BR-2.7 stability / firing)** — D14-BR2.7 campaign: new
+- **v5.6 (BR-2.7 stability / firing)** — D14-BR2.7 campaign: new
   `stability.py` (A3 kind/sector audit, unitary no-growth, H-blindness
   proofs, ordering scans, reversal identity, N-rows; no coordinate,
   threshold, rate, or potential); 19 pins incl. A3 trio + C7 tripwire,
@@ -216,7 +231,7 @@ phase-slip without zeros (Z4 not earned).
   no deformation mode, no instability, ordering without kinetics.
   EVENT-LAW PRIMITIVE DEBT filed; strong stop honored; BR-3C blocked.
 
-- **unreleased (BR-2.6 joint accounting)** — D14-BR2.6/CONS-0 campaign:
+- **v5.6 (BR-2.6 joint accounting)** — D14-BR2.6/CONS-0 campaign:
   new `accounting.py` (itemized event ledger, dE formula, Qtot/B_star
   algebra, constructive no-go exhibits, split-conservation, conditional
   matching scheduler, info books); 18 pins incl. universal/extended/
@@ -226,7 +241,7 @@ phase-slip without zeros (Z4 not earned).
   I returns NEGATIVE (equality non-firing). Six debts with statuses;
   BR-3C stays BLOCKED on EVENT-RATE.
 
-- **unreleased (CONS-0 invariant census)** — D14-CONS0 campaign verdict
+- **v5.6 (CONS-0 invariant census)** — D14-CONS0 campaign verdict
   CONS0-PARTIAL (22/22 gates green, beast): new `conservation.py`
   (fixed-graph invariant census with commutator theorem, continuity
   classification, exact contraction ledger with verified P1+P2+P3+P4
@@ -246,7 +261,7 @@ phase-slip without zeros (Z4 not earned).
   conservation-derived contraction law. Full suite: 749 passed,
   2 skipped, 0 failed (beast, -n 60, 83s).
 
-- **unreleased (BR-2.5 contraction ontology)** — D14-BR2.5 campaign: new
+- **v5.6 (BR-2.5 contraction ontology)** — D14-BR2.5 campaign: new
   `contraction.py` (exact edge contraction, 3 candidate field maps with
   exact census, record/oracle/cover splits, tendency readouts, cone
   checker); 20 pins incl. Dn=+2B accounting theorem, 3^d degeneracy,
@@ -256,7 +271,7 @@ phase-slip without zeros (Z4 not earned).
   quiescent at zero field, collapsed states + merger compose; M1 demoted
   to formation tool. Debts: norm account, info account, rate law (BR-3C).
 
-- **unreleased (EM-1 falsification)** — Electromagnetic-falsification
+- **v5.6 (EM-1 falsification)** — Electromagnetic-falsification
   campaign on frozen J2 wave (read-only EM-0/MALUS-0/OBS-0/SPEC-0/P1
   apparatus, no new DOF, gap-tuning firewalled): new `falsification.py`
   (spectral inventory + gapless classes/chiral-mirror/anticonfinement +
@@ -269,7 +284,7 @@ phase-slip without zeros (Z4 not earned).
   + F5-FAIL (no linear-isotropic sector); 711 collected (709 passed,
   2 torch/GPU skips). EM program at branch point (filed, not decided).
 
-- **unreleased (EM-0 continuum-field)** — Continuum-field-identification
+- **v5.6 (EM-0 continuum-field)** — Continuum-field-identification
   campaign on bare J2 (frozen H=-A, read-only POT0/POT1/BR2/P1 apparatus):
   new `continuum.py` (exact real eqs + continuity + J2 Bloch
   eps=-4(cos+cos)/flat-0 + Taylor/IR + static-Helmholtz + K0-Green +
@@ -281,7 +296,7 @@ phase-slip without zeros (Z4 not earned).
   B-conjugate (same E); 683 collected (681 passed, 2 torch/GPU skips).
   EM-1 gate opens.
 
-- **unreleased (BR-1 vacuum rigidity audit)** — D14-BR1 campaign: new
+- **v5.6 (BR-1 vacuum rigidity audit)** — D14-BR1 campaign: new
   `rigidity.py` (frozen J2 fingerprint, N1 neutral drift, M1 census
   anatomy, survival predicate, defect injection, small-field scaling);
   15 pins incl. BR-1A neutral-manifold theorem (both paths) and the
@@ -291,7 +306,7 @@ phase-slip without zeros (Z4 not earned).
   pristine + active on damage; blind rules frozen-or-leaving on J2),
   eps^2 continuity bit-clean. BR-3 inherits NEUTRAL-MOVE DEBT.
 
-- **unreleased (BR-2 phase-controlled backreaction)** — D14-BR2 campaign:
+- **v5.6 (BR-2 phase-controlled backreaction)** — D14-BR2 campaign:
   new `phase.py` (sublattice-stagger family, observation-only J readers,
   directional + staggered currents, R_B/R_mag, strict census + premise);
   15 theorem pins; verdict BR2-QUADRATURE (+EO) (R_B(phi) +0.93->-0.46
@@ -299,7 +314,7 @@ phase-slip without zeros (Z4 not earned).
   G-theorem proven strict+buffer at 1.87x margin; P3/G3 caveats filed);
   BR-3 admitted.
 
-- **unreleased (POT-0 coherence-direction)** — Omnidirectional-potential
+- **v5.6 (POT-0 coherence-direction)** — Omnidirectional-potential
   → coherent-directed-wave campaign on bare J2 (frozen ontology: same
   two-real-scalar field + H=-A bulk law, no new variable): flux readout
   D=|J_net|/S + spectral-C (Fourier peak fraction) + gradient/dephasing
@@ -313,7 +328,7 @@ phase-slip without zeros (Z4 not earned).
   ~envelope), all symmetry controls (S1–S5) + L42 appendix green;
   614 collected (612 passed, 2 torch/GPU skips). POT-1 gate opens.
 
-- **unreleased (BR-0 bond-energy landscape)** — D14-BR0 offline campaign:
+- **v5.6 (BR-0 bond-energy landscape)** — D14-BR0 offline campaign:
   P1-frozen wave sector vendored verbatim (P1 tip ac6a1409); new
   `backreaction.py` (E_psi, local dE=-2J(B_add-B_rem), M1 sampler,
   near/far + 2x2 + radial anatomy); 17 pins (C0-C5 roots); verdict
@@ -323,21 +338,21 @@ phase-slip without zeros (Z4 not earned).
   pre-filed BR0-E vacuum-half debt; BR-1/BR-2 admitted; cross-machine
   replication confirmed (local + beast bitwise on verdict fields).
 
-- **unreleased (SG verdict)** — SG-0 VERDICT banked (beast): Q1 no
+- **v5.6 (SG verdict)** — SG-0 VERDICT banked (beast): Q1 no
   splitting (0 firings / 50+ cells, all stages/shapes/gradients);
   Q2 bare wave SG1 (sine weak ladder 8/8 valid: Δy=±2.30/±4.10,
   reversal exact, S3c linear, no broadening); anti frozen under
   splitter (S4); gate still FAILS → SG-2/3/4 stay gated; two
   owned amendments (pilot gate-miss → weak ladder → sine apparatus).
 
-- **unreleased (SG prereg)** — Stern–Gerlach phenomenology campaign opened
+- **v5.6 (SG prereg)** — Stern–Gerlach phenomenology campaign opened
   on PR #65 tail: admission gate audited FAILS (P0/P3-A/MALUS-0 NULL,
   D15 closed, COH/SLIT firewalled, FEP/B0/B1 unfired → no SG-2/3/4);
   SG-0 null bank preregistered (sector-blind y-bond splitter H_SG,
   frozen SPLIT detector + SG0–SG4 ladder, exact Δy nulls, S0–S5 stages);
   apparatus (`stern_gerlach.py`) + bank script + 14 pins (pre-data).
 
-- **unreleased (FEP-0 prereg)** — D14-FEP finite-excitation
+- **v5.6 (FEP-0 prereg)** — D14-FEP finite-excitation
   phenomenology scan opened on P1 tail (ac6a140): discovery (not
   fitting) of persistent composite K+ψ excitations under the frozen
   one-way P1.2 coupling (C0-merge not required, reciprocal channel
@@ -352,14 +367,14 @@ phase-slip without zeros (Z4 not earned).
   electron firewall; composite readouts + gates (`fep.py`) + 11
   pins (pre-data).
 
-- **unreleased (FEP amendment-1)** — D14-FEP zero-k yardstick repair
+- **v5.6 (FEP amendment-1)** — D14-FEP zero-k yardstick repair
   (pre-data, pure arithmetic): G4 crossings used matched bare speed,
   which is 0 for validated zero-k nulls, making E2 vacuous as
   written; repaired with the family yardstick (matched minus-
   x-approach bare speed, plus fallback, else run-invalid); <Γ>
   trace added to S2 cells (prereg-required, pre-launch).
 
-- **unreleased (FEP-0 verdict NULL-0)** — D14-FEP S0–S4 complete
+- **v5.6 (FEP-0 verdict NULL-0)** — D14-FEP S0–S4 complete
   (beast): 6/6 formation reruns cap/2000, sitters L28-d1/d2/d3
   (A1 banked, determinism cross-check exact vs P1); 405/405 wave
   cells sealed (suite green 607 + 2 skipped); S3 verdict NULL-0
@@ -370,7 +385,7 @@ phase-slip without zeros (Z4 not earned).
   persistent K+ψ composite exists under the frozen one-way
   coupling; no tuning rescue per prereg.
 
-- **unreleased (SPEC-0 verdict)** — Bound-state spectroscopy result SPEC0
+- **v5.6 (SPEC-0 verdict)** — Bound-state spectroscopy result SPEC0
   (beast, 56 graphs): L1 median eKmax 4.69 vs 5.0 FAIL (near-miss in
   L28/L42 split 4.53/6.33); L2/L3/L4 pass as written (L4 dust-vacuous,
   disclosed); rewired matches formed (p=0.084 NS) ⟹ core edge states
@@ -378,14 +393,14 @@ phase-slip without zeros (Z4 not earned).
   object-specific spectra; SPEC-1/2 MOOT per prereg, STOP with followup
   proposed (density-calibrated bars, L42 clusters).
 
-- **unreleased (SPEC prereg)** — Bound-state spectroscopy campaign opened
+- **v5.6 (SPEC prereg)** — Bound-state spectroscopy campaign opened
   on PR-#65 tail (P1 amendment-7): SPEC-0 frozen spectral anatomy preregistered
   (H_K=-A_K, 18 formed + 38 controls, L1-L4 fire incl. MW dominance + size
   robustness), SPEC-1 scattering-resonance + SPEC-2 driven-transition procedures
   frozen (prediction-before-scan discipline); `spectroscopy.py` apparatus
   (dense spectra, near-K/sheet/dormant, R/T partition, J-drive runner) + 11 pins.
 
-- **unreleased (TUN tunneling campaign)** — Evanescent-transmission/
+- **v5.6 (TUN tunneling campaign)** — Evanescent-transmission/
   resonant-tunneling campaign on PR #65 tail (P1.1 apparatus fork:
   H=-A hopping-only, Gaussian k-packets, Krylov-exact-unitary; no
   formation/DNLS/detector): geometry-only y-bond-removal wall barriers
@@ -401,7 +416,7 @@ phase-slip without zeros (Z4 not earned).
   premature-T_sep pilot-1); `tunnel.py` + `tun_campaign.py` + 17 pins;
   suite 612 passed + 2 skipped.
 
-- **unreleased (COH prereg)** — COH phase-coherence campaign opened on
+- **v5.6 (COH prereg)** — COH phase-coherence campaign opened on
   P1-ballistic tail (PR #65): bare-J2 two-path interferometry preregistered
   (COH-0 calibration, COH-1 controlled phase, COH-2 V(Dl)/V(T)/V(Dt),
   COH-3 spectral-spread tau ~ 1/dE; superposition prep + recombination by
@@ -409,7 +424,7 @@ phase-slip without zeros (Z4 not earned).
   formed/nonlinear/path-record controls queued); `coherence.py` apparatus
   (J2 reflections, pair algebra, phi/fringe fits, spectral spread) + 11 pins.
 
-- **unreleased (COH verdict PASS)** — Bare-J2 coherence banked (beast):
+- **v5.6 (COH verdict PASS)** — Bare-J2 coherence banked (beast):
   COH-0 13/13 (linearity, I_int identity, R-swap, bitwise determinism);
   COH-1 12/12 restated (fringe V = 1.0000, k exact, slope -1.0000,
   breathing V/delta exact, trans-R-conjugation 7e-18; Amendment-2 fixed
@@ -420,7 +435,7 @@ phase-slip without zeros (Z4 not earned).
   transport + operational (l, tau) + mechanistic dE law; firewall: no
   Born/collapse/photon claims. COH-F/N/path-record queued.
 
-- **unreleased (MALUS-0 verdict)** — Malus track M0-NULL (local,
+- **v5.6 (MALUS-0 verdict)** — Malus track M0-NULL (local,
   L28): [H,S]=0, H\*P_anti=0, symmetric=double-square all exact;
   n_zero = 784+54 = 838 predicted exactly; sym packet ballistic
   (v=1.2110, α=2.087), anti packet frozen (disp=0, overlap=1),
@@ -429,7 +444,7 @@ phase-slip without zeros (Z4 not earned).
   MALUS-1/2 moot on bare J2 (suite 606 passed + 2 skipped;
   M0 replicated digit-for-digit on beast, subset 51 passed).
 
-- **unreleased (MALUS-0 prereg)** — Malus track opened on PR #65 P1.1
+- **v5.6 (MALUS-0 prereg)** — Malus track opened on PR #65 P1.1
   wave tail: internal-sector experiment preregistered (sheet-swap
   algebra, M0-ALG exact identities + M0-DYN 3-packet protocol on
   L28, M0-GATE decision table; MALUS-1/2 gated on M0-POSITIVE);
@@ -437,7 +452,7 @@ phase-slip without zeros (Z4 not earned).
   square, n_zero = N/2 + nodal; L28: 784+54 = 838 reproduces
   banked P1.1b); sheet apparatus (`malus.py`) + 10 pins.
 
-- **unreleased (P1 B0a verdict)** — B0a frozen-scattering verdict B0-NULL
+- **v5.6 (P1 B0a verdict)** — B0a frozen-scattering verdict B0-NULL
   + B1-NULL (S3 432/432 cells persisted on beast; S4 headline sitters
   L28-d1/d2/d3 + all6 sensitivity; A6 decision table applied): apparatus
   gates pass (branch accounting max-dev 1.8e-11, 0/432 invalid; 5
@@ -453,7 +468,7 @@ phase-slip without zeros (Z4 not earned).
   (432 cells + headline/all6 results + selection) + `scripts/b0a_campaign.py`
   + `scripts/b0a_analyze.py`.
 
-- **unreleased (P1 ballistic prereg)** — D14-P1 directed-motion campaign
+- **v5.6 (P1 ballistic prereg)** — D14-P1 directed-motion campaign
   opened on formation-design-2031 head: P1.0 formation null banked
   (Stage-0 reuse, C_v gap disclosed), P1.1 wave-only control
   preregistered (ring-400 + torus-grid-30, 6-criterion pass gate),
@@ -463,7 +478,7 @@ phase-slip without zeros (Z4 not earned).
   (invention ban-list); wave sector + detectors + one-way runner
   (`ballistic.py`) + elist_window capture + 13 pins (589 collected).
 
-- **unreleased (P1 amendment-1)** — D14-P1 branch structure (pre-data):
+- **v5.6 (P1 amendment-1)** — D14-P1 branch structure (pre-data):
   scalar J2 walk = dispersive band + extensive flat zero band
   (same-k doublets need a coin: deferred, coin undefined on
   irregular graphs); branches as exact chiral E-sign halves,
@@ -474,24 +489,24 @@ phase-slip without zeros (Z4 not earned).
   oscillation/profile followups (Dirac-fitting banned); branch
   projectors + R² fit + 4 pins (593 collected).
 
-- **unreleased (P1 amendment-2)** — D14-P1 window corrections (pre-data,
+- **v5.6 (P1 amendment-2)** — D14-P1 window corrections (pre-data,
   arithmetic-from-text): (e) replaced by full-window binned C_v
   positivity (T=120 ring = 7.7 packet-crossings, not 10);
   torus-grid T=40→25 (no-wrap guarantee, disp 24<30).
 
-- **unreleased (P1 pilot-1)** — D14-P1 wave-only results (beast):
+- **v5.6 (P1 pilot-1)** — D14-P1 wave-only results (beast):
   P1.1a PASS (ring v=0.9583 vs 0.9589, α=2.00, C_v=+1.000;
   torus v=0.967/0.965, α=2.05/2.04, C_v=+0.996; 22/22 checks);
   P1.1b   pilot-1 superseded (physics all-pass, nowrap gate missed
   7% at T=12) → amendment-3 (T=10, same gates/criteria).
 
-- **unreleased (P1 pilot-2)** — D14-P1 P1.1 VERDICT: PASS (beast):
+- **v5.6 (P1 pilot-2)** — D14-P1 P1.1 VERDICT: PASS (beast):
   P1.1b T=10 all 12 J2 checks pass (purity 100%, α=2.07-2.09,
   reversal/conjugation exact, mixing ≤1e-12, zero-k null);
   ring/torus replicated identical ⟹ ballistic detector validated,
   B0a frozen-scattering unblocked (input inventory next).
 
-- **unreleased (P1 amendment-4)** — D14-P1 B0a input plan + rules
+- **v5.6 (P1 amendment-4)** — D14-P1 B0a input plan + rules
   (pre-data): 6 reruns (elist+k4 capture, T-match gated vs j2_parts;
   s0_parts lack elists, L28-d0 missing); sitter selection via α
   recompute + frozen-quality; label-matched D1 + bare controls;
@@ -500,15 +515,15 @@ phase-slip without zeros (Z4 not earned).
   B0-TRACK (dual Spearman ρ>0.5, p<0.05) + decision table;
   5 new apparatus pins (598 collected).
 
-- **unreleased (P1 amendment-5)** — D14-P1 one-line (pre-data):
+- **v5.6 (P1 amendment-5)** — D14-P1 one-line (pre-data):
   B0a packet |k|=0.5→0.3 (P1.1b-validated packets only).
 
-- **unreleased (P1 amendment-6)** — D14-P1 contrastive mixing (pre-data,
+- **v5.6 (P1 amendment-6)** — D14-P1 contrastive mixing (pre-data,
   theory-justified): absolute >1e-6 vacuous on any non-bipartite graph
   ⟹ Mann-Whitney dominance (formed>D1, one-sided p<0.05); BRIDGE =
   dominance + residence-fire + track; v_out R² operationalization.
 
-- **unreleased (P1 amendment-7)** — D14-P1 sitter-selection repair
+- **v5.6 (P1 amendment-7)** — D14-P1 sitter-selection repair
   (pre-S4, S3 unopened): Jaccard≥0.5 dropped (unachievable per filed
   churn ≤0.31 + conceptually misplaced for per-save frozen targets;
   impl truthiness bug owned) ⟹ sitter = α<0.7 + core-present-all-saves;
