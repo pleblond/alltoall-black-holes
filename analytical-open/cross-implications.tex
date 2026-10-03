@@ -2555,11 +2555,16 @@ Up to signs and interchange of the axes,
 \lambda_\infty(3,1)
 &=\frac{23}{12\pi}-\frac7{16},\\
 \lambda_\infty(4,0)
-&=\frac{81}{16}-\frac{46}{3\pi}.
+&=\frac{81}{16}-\frac{46}{3\pi},\\
+\lambda_\infty(4,1)
+&=\frac{10}{\pi}-3,\\
+\lambda_\infty(5,0)
+&=\frac{201}{8}-\frac{235}{3\pi}.
 \end{align*}
 The cancelled coefficients \(16\pi/\lambda_\infty\) on these shells are
 \(768\pi^2/(16+3\pi)\), \(384\pi^2/(4+3\pi)\),
-\(768\pi^2/(92-21\pi)\), and \(768\pi^2/(243\pi-736)\).
+\(768\pi^2/(92-21\pi)\), \(768\pi^2/(243\pi-736)\),
+\(16\pi^2/(10-3\pi)\), and \(384\pi^2/(603\pi-1880)\).
 \end{proposition}
 
 \begin{proof}
@@ -2647,6 +2652,17 @@ The neighbours of \((3,0)\) give
 \]
 hence \(f(4,0)=10-92/(3\pi)\) and
 \(\lambda_\infty(4,0)=81/16-46/(3\pi)\).
+The neighbours of \((3,1)\) give
+\[
+4f(3,1)=f(4,1)+f(2,1)+f(3,2)+f(3,0),
+\]
+hence \(f(4,1)=20/\pi-49/8\) and \(\lambda_\infty(4,1)=10/\pi-3\).
+The neighbours of \((4,0)\) give
+\[
+4f(4,0)=f(5,0)+f(3,0)+2f(4,1),
+\]
+hence \(f(5,0)=401/8-470/(3\pi)\) and
+\(\lambda_\infty(5,0)=201/8-235/(3\pi)\).
 Dividing \(16\pi\) by each value gives the cancelled coefficients.
 \end{proof}
 
