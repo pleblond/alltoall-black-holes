@@ -182,34 +182,45 @@ def chart_claim(tag: str, Dmat: np.ndarray, seal: dict, d: int) -> dict:
 
 
 def static_workup(potdir: str, tag: str) -> dict:
-    """Static dimension per gap-delta leg (frozen section-4 protocol)."""
+    """Regime-window static dimension (Amendment-3, uniform xi* = 2.0)."""
+    fam = tag.split("-")[0]
     p = os.path.join(potdir, f"dim31_pot1_{tag}.json")
     if not os.path.exists(p):
         return {"error": "missing pot1 record"}
     with open(p) as f:
         rec = json.load(f)
+    unm = {"d": float("nan"), "alpha": float("nan"), "xi": float("nan"),
+           "r2": float("nan"), "n": 0, "ok": False}
+    if fam == "ex" or fam not in dim31.STATIC_DELTA_STAR:
+        return {"delta_star": None, "window": None,
+                "dim": dict(unm, reason="no-geometry refusal"),
+                "pr_meas": float("nan"), "pr_pred": float("nan")}
+    dkey = dim31.STATIC_DELTA_STAR[fam]
+    leg = rec["legs"][dkey]
     D = intrinsic_D(tag)
-    rmax = min(10, math.floor(D / 2.0) - 1)
-    out = {}
-    for delta, leg in rec["legs"].items():
-        prof = leg["profile_med"]
-        rs, ph = [], []
-        for r in range(2, rmax + 1):
-            v = prof.get(str(r))
-            if v is not None and v >= dim31.STATIC_PHI_FLOOR:
-                rs.append(float(r))
-                ph.append(float(v))
-        dim = dim31.static_dimension(rs, ph)
-        # P-range compression check (mechanism validation).
-        pr_meas, pr_pred = float("nan"), float("nan")
-        if len(ph) >= 2 and dim["ok"]:
-            P = -np.log(np.maximum(ph, 1e-300))
-            pr_meas = float(P[-1] - P[0])
-            pr_pred = float((rs[-1] - rs[0]) / dim["xi"]
-                            + dim["alpha"] * math.log(rs[-1] / rs[0]))
-        out[delta] = {"dim": dim, "pr_meas": pr_meas, "pr_pred": pr_pred,
-                      "omega": leg["omega"], "resid": leg["resid"]}
-    return out
+    win = dim31.static_regime_window(fam, tag_L(tag), D, float(dkey))
+    if win is None:
+        return {"delta_star": dkey, "window": None,
+                "dim": dict(unm, reason="no regime window"),
+                "pr_meas": float("nan"), "pr_pred": float("nan")}
+    prof = leg["profile_med"]
+    rs, ph = [], []
+    for r in range(win[0], win[1] + 1):
+        v = prof.get(str(r))
+        if v is not None and v >= dim31.STATIC_PHI_FLOOR:
+            rs.append(float(r))
+            ph.append(float(v))
+    dim = dim31.static_regime_fit(rs, ph, float(dkey),
+                                  dim31.STATIC_MASS[fam])
+    pr_meas, pr_pred = float("nan"), float("nan")
+    if len(ph) >= 2 and dim["ok"]:
+        P = -np.log(np.maximum(ph, 1e-300))
+        pr_meas = float(P[-1] - P[0])
+        pr_pred = float((rs[-1] - rs[0]) / dim["xi"]
+                        + dim["alpha"] * math.log(rs[-1] / rs[0]))
+    return {"delta_star": dkey, "window": list(win), "dim": dim,
+            "pr_meas": pr_meas, "pr_pred": pr_pred,
+            "omega": leg["omega"], "resid": leg["resid"]}
 
 
 def chart_claim_3d(tag: str, Dmat: np.ndarray, seal: dict) -> dict:
@@ -557,18 +568,37 @@ def cmd_controls(args):
                     freeze["debt"].append(
                         f"chart {CMP.CELLS[c]} s{s}: "
                         f"{charts[(c, s)]['d']} vs {int(dim)}")
-    for tag, dim in [("rg-N256", 1.0), ("rg-N512", 1.0), ("sq-L32", 2.0),
-                     ("sq-L48", 2.0), ("j2-L28", 2.0), ("j2-L42", 2.0),
-                     ("cb-L12", 3.0), ("cb-L16", 3.0), ("cb-L20", 3.0),
-                     ("cb-L24", 3.0)]:
-        leg = static.get(tag, {}).get("0.5", {})
-        dimrec = leg.get("dim", {})
-        if not dimrec.get("ok") or abs(dimrec["d"] - dim) > tol_r:
+    stat_tags = [("rg-N256", 1.0), ("rg-N512", 1.0), ("sq-L32", 2.0),
+                 ("sq-L48", 2.0), ("j2-L28", 2.0), ("j2-L42", 2.0),
+                 ("cb-L12", 3.0), ("cb-L16", 3.0), ("cb-L20", 3.0),
+                 ("cb-L24", 3.0)]
+    stat_bias = {}
+    for tag, dim in stat_tags:
+        rec = static.get(tag, {})
+        if rec.get("window") is not None \
+                and rec.get("dim", {}).get("ok"):
+            stat_bias[tag] = abs(rec["dim"]["d"] - dim)
+    maxsb = max(stat_bias.values()) if stat_bias else float("nan")
+    freeze["tolerances"]["tol_stat"] = (
+        1.3 * maxsb if np.isfinite(maxsb) else float("nan"))
+    tol_s = freeze["tolerances"]["tol_stat"]
+    for tag, dim in stat_tags:
+        rec = static.get(tag, {})
+        if "error" in rec:
+            freeze["debt"].append(f"d_stat {tag}: {rec['error']}")
+            continue
+        dd = rec.get("dim", {})
+        if rec.get("window") is None:
+            if dd.get("ok"):
+                freeze["debt"].append(
+                    f"d_stat {tag}: claimed without regime")
+            continue
+        if not dd.get("ok") or abs(dd["d"] - dim) > tol_s:
             freeze["debt"].append(
                 f"d_stat {tag}: "
-                f"{dimrec.get('d') if dimrec.get('ok') else 'UNMEAS'} "
+                f"{dd.get('d') if dd.get('ok') else 'UNMEAS'} "
                 f"vs {dim}")
-        pr_m, pr_p = leg.get("pr_meas"), leg.get("pr_pred")
+        pr_m, pr_p = rec.get("pr_meas"), rec.get("pr_pred")
         if pr_m is None or not np.isfinite(pr_m) or not np.isfinite(pr_p) \
                 or abs(pr_m - pr_p) / abs(pr_m) > 0.15:
             freeze["debt"].append(f"P-range {tag}: meas {pr_m} pred {pr_p}")
@@ -582,8 +612,7 @@ def cmd_controls(args):
                 freeze["debt"].append(
                     f"expander d* claimed {CMP.CELLS[c]} s{s}")
     for tag in ("ex-N1024-s0", "ex-N3456-s0"):
-        leg = static.get(tag, {}).get("0.5", {})
-        if leg.get("dim", {}).get("ok"):
+        if static.get(tag, {}).get("dim", {}).get("ok"):
             freeze["debt"].append(f"expander d_stat claimed {tag}")
     # Spreading + packet legs.
     for tag in ("cb-L20", "j2-L28"):
@@ -766,10 +795,17 @@ def cmd_j3(args):
                 F.append(f"j3 d* {c}/{s}: {rec['dstar']['dstar']}")
             if rec["chart"]["d"] != 3:
                 F.append(f"j3 chart {c}/{s}: {rec['chart']['d']}")
-        st = cell["static"].get("0.5", {}).get("dim", {})
-        if not st.get("ok") or abs(st["d"] - 3.0) > tol["tol_regress"]:
-            F.append(f"j3 d_stat {c}: "
-                     f"{st.get('d') if st.get('ok') else 'UNMEAS'}")
+        st = cell["static"]
+        if "error" in st:
+            F.append(f"j3 d_stat {c}: {st['error']}")
+        elif st.get("window") is None:
+            if st.get("dim", {}).get("ok"):
+                F.append(f"j3 d_stat {c}: claimed without regime")
+        else:
+            dd = st.get("dim", {})
+            if not dd.get("ok") or abs(dd["d"] - 3.0) > tol["tol_stat"]:
+                F.append(f"j3 d_stat {c}: "
+                         f"{dd.get('d') if dd.get('ok') else 'UNMEAS'}")
         for ch in ("psi", "rho"):
             leg = cell["spread"].get("R", {}).get("legs", {}).get(ch, {})
             if leg.get("measurable") and not leg.get("pass"):

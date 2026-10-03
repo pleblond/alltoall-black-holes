@@ -31,6 +31,19 @@ STATIC_R2_BAR = 0.9  # Yukawa log-space fit gate (spec D)
 STATIC_MIN_N = 4
 STATIC_PHI_FLOOR = 1e-10  # solver-floor rule (spec D/F)
 BAR_MARGIN = 1.3  # required control margin for bar freezing
+# Static regime apparatus (Amendment-3; uniform xi* = 2.0 scale).
+STATIC_XI_STAR = 2.0  # validated correlation scale (all families)
+STATIC_MASS = {"rg": 1.0, "sq": 1.0, "j2": 1.4142135623730951,
+               "cb": 1.0, "bcb": 1.0, "j3": 1.4142135623730951}
+STATIC_NIMG = {"rg": 2, "sq": 8, "j2": 8, "cb": 26, "bcb": 26,
+               "j3": 26}
+STATIC_IMG_TOT = 0.10  # image-guard total contamination cap
+STATIC_RLO = 4  # UV guard (lattice scale)
+STATIC_RLO_RING = 2  # 1D shells exact (no anisotropy)
+STATIC_XI_GATE = 0.20  # in-situ xi validation
+# delta* = (m/2)^2 on the pot1 grid (uniform xi* = 2.0).
+STATIC_DELTA_STAR = {"rg": "0.25", "sq": "0.25", "j2": "0.5",
+                     "cb": "0.25", "bcb": "0.25", "j3": "0.5"}
 
 
 def is_bars_ok(bars) -> bool:
@@ -217,6 +230,47 @@ def static_dimension(rs, phis) -> dict:
     return {"d": 2.0 * a + 1.0, "alpha": a, "xi": float(yuk["xi"]),
             "r2": float(yuk["r2"]), "n": int(yuk["n"]), "ok": True,
             "reason": ""}
+
+
+def static_regime_window(fam: str, L: int, D: float, delta: float):
+    """Regime-clean shell window (rlo, rhi) or None (Amendment-3).
+
+    Guards (all mechanical): UV rlo (lattice scale), image cap
+    (total image contamination <= STATIC_IMG_TOT at xi* = 2.0),
+    wrap-distance (D/2 - 2, ambiguous-path boundary), coord
+    (L/2 - 1, min-image boundary). Non-torus families (ex) use
+    the legacy rmax fallback (refusal path).
+    """
+    if fam not in STATIC_NIMG or L is None:
+        rhi = min(10, int(np.floor(D / 2.0)) - 1)
+        return (STATIC_RLO, rhi) if rhi >= STATIC_RLO + 3 else None
+    xi = STATIC_XI_STAR
+    r_img = int(np.floor(L - xi * np.log(
+        STATIC_NIMG[fam] / STATIC_IMG_TOT)))
+    r_wrap = int(np.floor(D / 2.0)) - 2
+    r_coord = int(L) // 2 - 1
+    rlo = STATIC_RLO_RING if fam == "rg" else STATIC_RLO
+    rhi = min(r_img, r_wrap, r_coord)
+    return (rlo, rhi) if rhi >= rlo + 3 else None
+
+
+def static_regime_fit(rs, phis, delta: float, m: float) -> dict:
+    """Regime static fit: joint OLS + in-situ xi validation (A3).
+
+    static_dimension gates (r2, n) plus the xi-gate
+    |xi*sqrt(delta)/m - 1| <= STATIC_XI_GATE, which refuses fits
+    whose decay rate disagrees with band theory (contamination).
+    """
+    out = static_dimension(rs, phis)
+    if not out.get("ok", False):
+        return out
+    dev = abs(out["xi"] * float(np.sqrt(delta)) / m - 1.0)
+    if not np.isfinite(dev) or dev > STATIC_XI_GATE:
+        out = dict(out)
+        out["ok"] = False
+        out["reason"] = f"xi-gate fail dev={dev:.3f}"
+        return out
+    return out
 
 
 def is_transfer_valid(spread: float, tol: float) -> bool:

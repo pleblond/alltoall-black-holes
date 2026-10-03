@@ -313,3 +313,42 @@ def test_load_bars_int_keys(tmp_path):
     bars = dim31_blind.load_bars(str(p))
     assert bars == {"D": {1: 0.01, 2: 0.02, 3: 0.05}}
     assert dim31.is_bars_ok(bars["D"]) is True
+
+
+# ---------------------------------------------------------------------------
+# Static regime apparatus (Amendment-3 goldens, hand-verified).
+# ---------------------------------------------------------------------------
+
+def test_static_delta_star_rule():
+    for fam, m in dim31.STATIC_MASS.items():
+        dkey = dim31.STATIC_DELTA_STAR[fam]
+        assert abs(float(dkey) - (m / 2.0) ** 2) < 1e-9
+
+
+def test_static_regime_window_goldens():
+    W = dim31.static_regime_window
+    assert W("cb", 20, 30, 0.25) == (4, 8)
+    assert W("cb", 24, 36, 0.25) == (4, 11)
+    assert W("cb", 12, 18, 0.25) is None
+    assert W("cb", 16, 24, 0.25) is None
+    assert W("sq", 32, 32, 0.25) == (4, 14)
+    assert W("sq", 48, 48, 0.25) == (4, 22)
+    assert W("j2", 28, 28, 0.5) == (4, 12)
+    assert W("j2", 42, 42, 0.5) == (4, 19)
+    assert W("rg", 256, 128, 0.25) == (2, 62)
+    assert W("ex", None, 4, 0.5) is None
+    assert W("j3", 20, 30, 0.5) == (4, 8)
+    assert W("j3", 24, 36, 0.5) == (4, 11)
+    assert W("j3", 16, 24, 0.5) is None
+
+
+def test_static_regime_fit_xi_gate():
+    rs = np.arange(4, 12, dtype=float)
+    good = rs ** -1.0 * np.exp(-rs / 2.0)
+    out = dim31.static_regime_fit(rs, good, 0.25, 1.0)
+    assert out["ok"] is True
+    assert out["d"] == pytest.approx(3.0, abs=0.05)
+    bad_xi = rs ** -1.0 * np.exp(-rs / 5.0)
+    out = dim31.static_regime_fit(rs, bad_xi, 0.25, 1.0)
+    assert out["ok"] is False
+    assert "xi-gate" in out["reason"]
