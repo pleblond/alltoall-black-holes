@@ -321,7 +321,9 @@ def run_horizon(hk: str, graph: str, horizon: int, outdir: str) -> str:
 
 
 def run_fw(outdir: str) -> str:
-    return _write(outdir, "fw_timeq0.json", q0.firewall_record())
+    rec = {"meta": {"kind": "fw"}}
+    rec.update(q0.firewall_record())
+    return _write(outdir, "fw_timeq0.json", rec)
 
 
 def main():
