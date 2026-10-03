@@ -10467,3 +10467,8 @@ unresolved-cost entries (reason
 dense-ladder-infeasible-at-L>=256). L <= 128 unchanged (full
 ladder; fits in RAM). The exact-formula FIT (n_zero at all L)
 is unaffected.
+
+7. P1 velocity rows banked the 2-vector fit_velocity "v" instead of
+the scalar "speed", crashing the const/trend fits (non-scalar
+series). Fix: rows bank "speed" (the theory quantity, |v| ~ 1.21);
+vectors remain in the cells. No bar involved.

@@ -357,9 +357,12 @@ def main():
             post_ok = p["travel_post_max"] >= p["L_half"]
             for reg, ok in (("PRE", pre_ok), ("POST", post_ok)):
                 v = (p["v_pre"] if reg == "PRE" else p["v_post"]) or {}
+                # Amendment-2: row banks the scalar speed (fit_velocity
+                # "speed"); the draft banked the 2-vector "v", which is not
+                # a fittable series (vectors stay available in the cells).
                 add(scale0.make_row("P1", L, kk, reg, "v", "com-fit",
-                                    v.get("v"), {"kind": "fit_r2",
-                                                 "r2": v.get("r2")},
+                                    v.get("speed"), {"kind": "fit_r2",
+                                                     "r2": v.get("r2")},
                                     "ballistic.fit_velocity", 2,
                                     "" if ok else "REGIME-VOID",
                                     None if ok else {"reason": "regime-window-void",
