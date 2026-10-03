@@ -946,6 +946,71 @@ The ground state of Proposition~\ref{prop:ground} is the further collapse
 The amount of current left after the bond is fixed is a property of the
 ensemble.
 
+\section{Motion of a bond}
+\label{sec:Bdot}
+
+\begin{proposition}
+\label{prop:Bdot}
+Between events, with \(i\partial_t\psi=H\psi\) and \(H=-A\),
+\begin{equation}
+\label{eq:Bdot}
+\dot B_{ij}
+=\sum_{m\in N(i)\setminus\{j\}}\mathcal{J}_{mj}
+-\sum_{n\in N(j)\setminus\{i\}}\mathcal{J}_{in},
+\end{equation}
+where \(\mathcal{J}_{ab}=\Im(\psi_a^*\psi_b)\) for every pair of vertices,
+adjacent or not.
+The current \(\mathcal{J}_{ij}\) does not appear.
+A common neighbour \(c\) contributes \(\Im(\psi_c^* s)\), with
+\(s=\psi_i+\psi_j\).
+If \(N(i)=\{j\}\) and \(N(j)=\{i\}\), then \(\dot B_{ij}=0\).
+\end{proposition}
+
+\begin{proof}
+From \(i\partial_t\psi=-A\psi\) one has \(\partial_t\psi=iA\psi\).
+Hence
+\[
+\partial_t(\psi_i^*\psi_j)
+=i\Bigl(\psi_i^*(A\psi)_j-(A\psi)_i^*\psi_j\Bigr).
+\]
+The real part of \(i z\) is \(-\Im z\).
+Expanding \(A\psi\) produces
+\(\sum_{n\sim j}\psi_i^*\psi_n-\sum_{m\sim i}\psi_m^*\psi_j\).
+If \(ij\) is an edge, the summands \(n=i\) and \(m=j\) are
+\(|\psi_i|^2-|\psi_j|^2\), which is real and drops out of the imaginary part.
+The remainder is \eqref{eq:Bdot}.
+For a common neighbour the two summands are
+\(\Im(\psi_c^*\psi_j)-\Im(\psi_i^*\psi_c)=\Im(\psi_c^* s)\).
+If neither endpoint has any other neighbour, both sums are empty.
+\end{proof}
+
+The pair norm changes by exchange with the rest of the graph,
+\[
+\dot q_{ij}
+=-\sum_{k\in N(i)\setminus\{j\}}2\mathcal{J}_{ik}
+-\sum_{k\in N(j)\setminus\{i\}}2\mathcal{J}_{jk}.
+\]
+The internal current cancels: the flux \(2\mathcal{J}_{ij}\) leaves one
+endpoint and enters the other.
+Therefore
+\[
+\dot P_-=-\frac{q_{ij}\dot B_{ij}-B_{ij}\dot q_{ij}}{q_{ij}^2}
+\]
+can be nonzero while \(\dot B_{ij}=0\), whenever the pair exchanges
+amplitude with its neighbourhood.
+On an isolated edge both derivatives vanish, so \(B\), \(q\), \(P_-\), and
+\(h_2(P_-)\) are constant.
+The state, if it moves, moves along the circle of
+Proposition~\ref{prop:circle}.
+The hazard of a crossing \(B_{ij}(t)=B_*\) is identically zero on that
+edge, for every initial state.
+A bond threshold is crossed only through the wedge currents in
+\eqref{eq:Bdot}.
+The second spectral moment \(m_2\) in the upcrossing rate is the variance
+of that sum.
+It is not the conditional variance of Theorem~\ref{thm:condJ}, which is
+the law of \(\mathcal{J}_{ij}\) itself.
+
 \section{Separable symbols, to every order}
 \label{sec:sep}
 
