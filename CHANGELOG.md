@@ -1,5 +1,38 @@
 # Changelog
 
+- **v5.10** — First-area-law release (rolls up the 6 post-v5.9 campaign
+  entries below, all merged): WEAVE-0 INCOMPLETE random-weave core search
+  (volume 3D-side only at λ = 0.01, spectral never jointly 3D, no B+C
+  core); Q-INFO-0 IDENTICAL store/qubit identity (h2 = banked functional
+  to 1.1e-16, no new entropy); BH-Q-ENT-0 UNCLASSIFIED blind-store
+  dimension (topology-dependent D, all law gates miss); BH-Q-AREA-0 MAX
+  boundary Q-information area law (S_Q = κ*A, κ* = 4.2207 at maximum
+  density, doubly selected, thermodynamics still open); JET-0/1 NULL
+  jet-route closure (n_genuine = 0, filed stop rule); EVENT-0 EQUIV
+  flow-never-forces (61 orbits, zero firing implications). Docs:
+  `docs/model.md` v0.11 (six campaigns in §10, BH-entropy debt),
+  `docs/scaffolding-history.md` §§2.5/8.6/8.7/8.8/11.7/11.8 + §18/§19.
+  Paper v5: 14pp main + 24pp S1–S12 supplement (S12 +4 paragraphs, 3 S1
+  ledger rows, module map +7, area-law + jet kill wires), 49/49 refs,
+  zero LaTeX warnings (budget 30). Also merged, undocumented by design:
+  agent campaign guide (#138), analytical-open notes (#141), hypothesis
+  ledger refresh (#144). 2543 tests passed + 2 skipped.
+
+- **v5.10 (EVENT-0)** — Structural event necessity census:
+  `src/bh_graph/event0.py` (fixed-G trajectory validity, same-N
+  rewire-equivalence search, crossing census, vacuum/eigen controls,
+  firewall scan), `tests/test_event0.py` (28 pins), 463-task beast
+  campaign (349 STORE-0 regression + 71 trajectories + locality/cycles
+  + audit) + frozen 33-gate analyzer, `docs/event0-prereg.md` (FROZEN
+  pre-data) + `docs/event0-verdict.md`. VERDICT EVENT0-EQUIV (33/33):
+  all 426 rungs valid (t* = +∞), Q bitwise frozen, reversal exact —
+  but 61 exact nontrivial same-N orbits on small symmetric graphs
+  (J2-L4 ruled out graph-first, 0/9792 cospectral neighbors), zero
+  firing implications, 2493 crossing edges filed as TRIGGER-0-consistent
+  conditions. EQUIV, not FORCED; no EVENT-1 shopping. Records in
+  `data/event0/` (463 + verdict + QDYN0B ref). Full suite on beast:
+  2319 passed / 2 skipped (3 failures pre-existing).
+
 - **v5.10 (Q-INFO-0)** — Store-mode / qubit consistency:
   `src/bh_graph/qinfo0.py` (STORE algebra, normalized +/- weights, binary
   `h2`, Hadamard/Schmidt identification vs the banked `haar.py` qubit
@@ -33,7 +66,7 @@
   `data/jet1/` (15 witnesses + verdict). Full suite on beast 2429 passed /
   2 skipped / 4 pre-existing failures (verified identical on clean main tail).
 
-- **Unreleased (BH-Q-AREA-0)** — Q-information area law on a 3D BH-like
+- **v5.10 (BH-Q-AREA-0)** — Q-information area law on a 3D BH-like
   boundary: `src/bh_graph/bhqarea0.py` (K-core + J3-ball ladder, vacuum
   eigensolver readout, banked qinfo0 s_Q census, deficit/audit/scaling
   instruments, firewall scan), `tests/test_bhqarea0.py` (13 pins),
@@ -48,7 +81,7 @@
   input (`qinfo0.py` + 21 pins, byte-identical from Q-INFO-0 branch).
   Records in `data/bhqarea0/` (53 + freeze/comparison/verdict + v1).
 
-- **Unreleased (BH-Q-ENT-0)** — Boundary scaling of exterior-blind store
+- **v5.10 (BH-Q-ENT-0)** — Boundary scaling of exterior-blind store
   information: `src/bh_graph/bhqent0.py` (region/store collapse, 8 frozen
   exterior channels + joint, Q-Jacobians, blind dims, per-entry R/I
   audit, cover census with honest cap-200, validation, anatomy, hidden
@@ -62,6 +95,20 @@
   cover log2 max 12.17 combinatorial-only; entropy still blocked. Full
   suite on beast: 2424 passed / 2 skipped (weighted skipped per policy;
   4 failures pre-existing). Records in `data/bhqent0/` (74 + verdict).
+
+- **v5.10 (WEAVE-0)** — Random-weave 3D-core search:
+  `src/bh_graph/weave0.py` (Poisson-sheet weave builder, volume +
+  spectral dimension channels, blind charts/distances, control battery),
+  `tests/test_weave0.py` (26 pins), 270-task beast grid +
+  frozen analyzer, `docs/weave0-prereg.md` (FROZEN pre-data).
+  VERDICT WEAVE0-INCOMPLETE (ambiguous: no core, not stably
+  2D/nongeometric): apparatus validates (C0 ~2D, C4/C3 ~3D, C5 0/8)
+  but volume reads 3D-side only at λ = 0.01 (B-head 5/8, overshoot
+  above) while spectral never reads 3D jointly (0/8 every rung) —
+  no B+C joint cell, core_lams empty; E/F/H legs filed
+  apparatus-invalid. Randomness alone, as woven here, does not make 3D.
+  Records in `data/weave0/` (270 slimmed + verdict/diagnosis; full
+  1.3GB trajectories on beast2, slim-equivalence byte-identical).
 
 - **v5.9** — Substrate-and-store release (rolls up the 6 post-v5.8 campaign
   entries below, all merged): SUBSTRATE-CLASS-0 PARTIAL substrate rules
