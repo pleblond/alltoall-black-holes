@@ -1,0 +1,1 @@
+{"task": "zero__L128-F5-pre", "meta": {"git_rev": "31702992695205713b06a2229bba0623ea612ff9", "host": "ip-172-31-39-189", "elapsed": 0.003481149673461914}, "payload": {"L": 128, "fam": "F5", "regime": "pre", "unresolved": {"reason": "F5-prep-needs-dense-eig", "class": "cost"}, "elapsed": 9.5367431640625e-07}}

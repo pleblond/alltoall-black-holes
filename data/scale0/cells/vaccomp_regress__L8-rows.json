@@ -1,0 +1,1 @@
+{"task": "vaccomp_regress__L8-rows", "meta": {"git_rev": "31702992695205713b06a2229bba0623ea612ff9", "host": "ip-172-31-39-189", "elapsed": 0.02738666534423828}, "payload": {"e_min": -8.000000000000002, "e_max": 7.999999999999996, "n_zero": 78, "minus8_mult": 1, "plus8_mult": 1, "elapsed": 0.023178815841674805}}

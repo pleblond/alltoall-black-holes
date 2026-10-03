@@ -12130,3 +12130,383 @@ estimators (γ-aware arrival-time dimension, 3-resolving d* rule,
 far-shell-only exponent windows. No post-data bar was moved in this
 campaign: every literal failure is filed with its mechanism proof and
 control-fails-bar defense.
+## SCALE0-PREREG — Fixed-geometry asymptotic scaling bank (FROZEN PRE-DATA)
+
+**Status:** ladder + substrates + per-observable grids + precision-scaling
+rules + regression gates + matrix schema + fit rules + verdict ladder
+frozen; campaign NOT YET RUN. SCALE-0 banks already-earned
+fixed-geometry observables at large L BEFORE dynamic geometry makes
+them expensive. No new physics is claimed: this is a measurement bank
+with justified asymptotic estimates and explicit unresolved entries.
+
+**Mission (SCALE-0.tex):** build a large-L bank for fixed-geometry
+observables: OBS residuals + reconstructed dimension; RESPONSE
+velocity/anisotropy/distance exponents; P1 packet velocity/dispersion/
+directional order; POT static range/floor + all-path diagnostics;
+QUOT sheet-forgetting/hidden visibility; ZERO near-zero statistics +
+protected-background floors; VAC-EXC fractional-collapse/response
+scaling; VAC-COMP zero-space + hidden-vacuum-manifold dimensions
+where feasible. Theory-derived scaling forms where available,
+otherwise effective exponents + monotonic trends (no forced power
+laws). Pre-wrap and torus-recurrence regimes kept separate. Controls:
+banked small-L regressions; frozen apparatus; no bar retuning; only
+documented precision scaling. Deliverable: machine-readable O(L)
+matrix + fit diagnostics + justified asymptotic estimates + explicit
+unresolved-asymptotic entries. Verdict SCALE0-BANKED.
+
+**Frozen ladder:** headline L in {64, 128, 256, 512} (J2 torus,
+N = 2L^2 = 8192/32768/131072/524288). Regression L in {4, 8, 28}
+(+ banked L in {20, 42} read-only where the banked protocol has
+them). Suggested ladder L=64,128,256,512 adopted exactly.
+
+**Frozen substrates:** J2 torus headline (formation.j2_torus_graph,
+int labels, same assembly as every banked campaign). Square-torus
+control for S0-OBS/S0-DIM ONLY (banked OBS0/OBS1 protocol has the
+control; graphs.build_torus_grid). All other observables J2-only
+(banked single-substrate protocols; no new controls invented).
+
+**Frozen law:** H = -A, J = 1, hbar = 1, unitary Krylov evolution
+(expm_multiply) via response.evolve (response-like cells) or
+ballistic.evolve_fixed (packet cells), matching each banked
+protocol (RESPONSE G2 pins them identical, dev 0.0). No onsite,
+no weights, no coin anywhere.
+
+**Regime firewall (frozen, analyzer-enforced):** t_wrap(r; L) =
+(L - r)/8 (RESPONSE V_MAX = 8 bound). PRE = windows/fits use
+t < t_wrap(r) strictly. POST = t > t_wrap(r) strictly. Any fit
+pooling pre+post points is VOID (analyzer rejects the cell).
+OBS taus: wrap-safe targets R < D/2 are PRE (banked calibration
+is wrap-safe-only); R >= D/2 filed descriptively as POST with NO
+calibration fit. Each O(L) matrix row carries regime PRE/POST/
+STATIC (static solves are regime-free; filed as STATIC).
+
+**Frozen time rules:** RESPONSE T(L) = max(16, 2*(L-10)/8 + 4),
+dt = 0.05 (frozen 16 at small L; covers pre+post at large L in
+ONE evolution, windowed analysis). P1/VACEXC packets: T_pre(L) =
+0.30*L/1.21, T_post(L) = 1.20*L/1.21, dt = 0.1 (vest = 1.21 J2
+packet speed, banked). QUOT wave: T = 16 frozen (pre at all
+L >= 64) + T_post(L) = 1.20*L/1.21 post run, dt = 0.05.
+ZERO pre: T = 40, dt = 0.02 frozen (pre-wrap at all L >= 64);
+ZERO post: L <= 128 only (T = 1.5*(L/2)/1.21, dt = 0.02).
+VACEXC longtime: T = 120 frozen (regime filed per L) + T_fit =
+8 pre analysis. OBS wave grid: Tmax = D, dt = 0.05 frozen; OBS
+diffusion return: DS_TS frozen; OBS diffusion taus: full frozen
+grid L <= 128 (banked spectral reuse), r <= 16 restricted at
+L >= 256 (cost; filed). POT static: OM_J2 = -8.5 frozen
+(POT-1); CG rtol = 1e-11 (OBS1 precedent).
+
+**Frozen grids/seeds:** origins = obs0.sample_origins (16,
+frozen seeds); targets = obs0.sample_targets subset (frozen
+TARGET_SEED_BASE + oi; 75/origin); stations = OBS1 frozen
+rng(9100 + 100*cell + set), 64 stations, set s0 only at
+L >= 256 (cost; banked sets reused read-only at L <= 128).
+P1 k in {(0.3,0),(0.5,0)}, sigma = 4.0 frozen, r0 =
+(L/4, L/2). RESPONSE src cell (7,14) at L = 28; scaled src
+(L/4, L/2) at L >= 64 (filed readout shift; covariance-gated).
+QUOT preps sym/anti (+ sheet0/sheet1 at L <= 128 only).
+ZERO families F1/F5/two-packet-pi (frozen seeds). VACEXC
+kinds point_amp/packet/hidden_sector (cross-bg) + packet
+amplitude ladder AMPLITUDES (7). VACCOMP alphas = ALPHA_GRID
+(frozen) + rays VPLUS/VPI/VMINUS/VSTAG.
+
+**Precision scaling (the ONLY deviations from banked dense
+protocols; each with a cross-validation gate):**
+P1 dense->Krylov wave/diffusion traces at ALL L; gates:
+|tauK - tauS| <= max(2 grid steps, 5%) on common pairs at
+L <= 128 (banked spectral read-only); Krylov d_s within 0.05
+of spectral; d_H exact BFS (no precision change).
+P2 spsolve->CG static at L >= 64; gate: CG vs spsolve <= 1e-8
+at L = 28 (OBS1 precedent pin).
+P3 full-target->75-subset OBS taus at L >= 256; gate:
+subset-fit vs banked full-fit |Dcalib| <= 5% at L = 64/128
+else VOID-subset (fall back to full targets at L <= 128,
+subset only L >= 256 with filed offset).
+P4 stored traces decimated (stride <= 20); arrivals/Rmax/fits
+computed full-rate internally BEFORE decimation (decimation
+touches stored traces only, never fitted quantities).
+P5 ZERO post at L >= 256 = unresolved-cost (no runs; explicit
+matrix entries with reason; no strided substitute).
+P6 Weyl dense-only: L <= 128 banked reuse; L >= 256 unresolved
+(needs full spectrum; eigsh partial spectra change the frozen
+window meaning, so no substitute is run).
+P7 rows never stored at L >= 64 (metrics only); L <= 28
+regression may store rows (frozen protocol parity).
+P8 banked eigen/tau/dim records consumed READ-ONLY from beast
+~/obs0-data, ~/obs0r-data, ~/obs1-data (never rebuilt; sha +
+byte-count logged per record).
+
+**Regression gates (HARD; any fail => SCALE0-PARTIAL, no
+shopping):**
+R-OBS replayed d_H/d_s/heat/weyl at L = 28/64/128 (j2+sq)
+match banked info JSON to 1e-9 (read-only replay); Krylov d_s
+within 0.05; Krylov tau subset within P1 gate.
+R-RESP L = 28 headline replay: v_field in (0.5, 12) and within
+5% of banked 7.947; v_quad within 10% of banked 5.94; decomp
+<= 1e-10.
+R-P1 L = 28 k=(0.3,0) v within 1% of V_BANKED j2 = 1.2075;
+sq L = 30 k=(0.5,0) within 5% of 0.9658 (banked C5 bars).
+R-POT L = 28 CG vs spsolve <= 1e-8; range == banked +- 1
+shell; xi within 20% of banked.
+R-QUOT L = 28 replay: comm/dead/intertwining <= 1e-12; anti
+remote <= 1e-9; sym arrival at load shells R_LOAD.
+R-ZERO L = 28 frozen headon subset event counts match banked
+ledger exactly (deterministic seeds).
+R-VACEXC L = 4 bitwise cross-bg 0.0; L = 28 frac collapse <=
+1e-9; packet v within 10% across vacua (banked bar).
+R-VACCOMP L = 4 census n_zero = 22 = 16 + 6 decomposition_ok;
+L = 8 extremal rows +-8 unique.
+
+**Task grid (frozen; scripts/scale0_campaign.py --print-all):**
+obs_replay (6: banked L<=128 read-only + Krylov validation),
+obs_hausdorff (8: L x sub), obs_krylov_origin (80: L>=64 x sub
+x origins; 4 validation origins at L<=128, 16 at L>=256),
+obs_dim (8: L x sub x s0; wave+static operational matrices ->
+volume dim + MDS d* + stress), resp_cell (8: L x BG0/BG+) +
+resp_regress (2), p1_cell (8: L x k) + p1_regress (2), pot_cell
+(4: L) + pot_regress (1), quot_cell (12: L x sym/anti +
+sheet pair at L<=128) + quot_regress (2), zero_cell (18: L x
+F1/F5/pinode pre + L<=128 post) + zero_regress (2),
+vacexc_cell (8: L x crossbg/fracladder) + vacexc_regress (3),
+vaccomp_cell (4: L) + vaccomp_regress (2). ~185 tasks, one
+process each, xargs-parallel on beast (light -P 90, heavy
+L>=256 evolutions + obs_dim -P 40; OMP=1 hygiene).
+
+**O(L) matrix schema (frozen; data/scale0/matrix.json):** rows
+keyed (observable, L, substrate, regime, channel, variant):
+{value, stat, method, n, regime, precision_note, unresolved}.
+stat = {kind: exact|fit_r2|median_spread|count, ...}. method
+names the apparatus function. unresolved = null or {reason,
+class: cost|spectrum|recurrence|fit_fail}. fits.json: per
+(observable, channel, regime) {form, params, r2, n, comment};
+forms: theory-first (d_H->const 2; nodal(L) exact combinatorics;
+v front const; B-blindness exact 0; cross-bg identity exact 0;
+xi saturate const; chi-style rank laws where banked), else
+effective (per-L power p(L) + monotone flag). unresolved.json:
+explicit list. verdict.json: gate table + ladder outcome.
+
+**Fit rules:** theory forms first; otherwise effective exponents
+per L + monotonic-trend flag; NO pooled pre/post fits; NO forced
+power laws (r2 < 0.9 => trend-only, no exponent claimed).
+Asymptotic estimate JUSTIFIED only if last two rungs agree
+within error AND the sequence is monotone; else an explicit
+unresolved-asymptotic entry (no extrapolation by eye).
+
+**Verdict ladder:** SCALE0-BANKED iff ALL tasks exit 0 AND all
+R-* gates green AND every preregistered matrix cell is filled
+or explicitly unresolved-with-reason AND fits/diagnostics are
+committed. Else SCALE0-PARTIAL with the failing gate named.
+No other verdict exists. Records: data/scale0/cells/*.json +
+matrix.json + fits.json + unresolved.json + verdict.json.
+Full suite on beast (-n 90, weighted skipped per standing
+pyproject config) green required before the verdict files.
+
+## SCALE0-AMENDMENT-1 (pre-data correction; no runs yet)
+
+R-ZERO headon regression uses j2 size 20, not L = 28: the banked
+ZERO-0 collide grid (scripts/zero0_tasks.py COLLIDE_SUBSIZES)
+contains (j2, 10/20) and (storus, 16/28) but no j2-28 collide, so
+no L = 28 headon row exists to regress against. Frozen
+replacement: j2 size 20, geom headon, dphi = pi, amp match,
+sigma = 3.0 (banked ledger key j2|20|headon|3.141593|match,
+n_rows = 1, mean_events = 508.0); gate: rerun n_events == 508
+exactly (deterministic same-code replay). No other prereg line
+changes.
+## SCALE0-AMENDMENT-2 (run-time config corrections; before large-L data)
+
+Six config/code errors surfaced during small-L validation (all
+provable by code inspection + deterministic small-L replay; no
+large-L value was used to set any bar; no bar is loosened):
+
+1. Analyzer `or`-idiom (R-OBS/R-RESP/R-POT/R-QUOT/R-VACEXC).
+`(x or 1.0)` maps exact 0.0 (the best outcome: bitwise replay,
+exact identities) to 1.0 = FAIL. Fix: explicit None checks.
+Bars unchanged. Proof: replay values are exact zeros
+(dh_dev = 0.0, decomp = 0.0, comm/dead/inter = 0.0,
+cross_maxdev = frac_dev = 0.0).
+
+2. Analyzer ZERO-pre crash on filed cells. The campaign files
+F1 pre cells as {"filed": "initial-exclusion"} (expected: at
+n >= 8192 a Haar-random state has near-zero nodes with
+probability ~1 - e^-85, so the exclusion pre-condition is
+vacuous at SCALE-0 sizes); the PRE matrix loop assumed T/dt
+keys and crashed while the POST loop already skipped filed
+cells. Fix: PRE loop mirrors POST (skip filed/unresolved).
+No gate touches F1 rows (R-ZERO covers headon + refine only).
+
+3. Headon replay dphi. The banked CLI received dphi = 3.141593
+(zero0_tasks %.6f formatting); the regress used math.pi.
+Screening is threshold-chaotic in dphi (88 vs 508 candidates
+for a 3.5e-7 shift; refined events stable). Fix: regress uses
+the exact banked float 3.141593. Param alignment, not tuning.
+
+4. R-ZERO headon gate unsatisfiable as written (n_events == 508).
+The banked 508 was refined with PRE-CAP code; current frozen
+code caps Level-2 refinement at REFINE_CAP = 60 (ZERO-0
+amendment d932d57, before the verdict commit but after the
+collide rows were banked: 508 > 60 proves the rows predate the
+cap). Same-code replay now yields exactly n_candidates = 508
+(Level-1 screening exhaustive + deterministic, reproduces the
+banked count to the digit), n_events = 60 (cap binds),
+refine_overflow = 448. Corrected gate (intent preserved --
+exact replay of the banked row): n_candidates == 508 AND
+n_events == 60 AND refine_overflow == 448. The numbers come
+from the banked ledger + frozen code constants, not from data.
+
+5. QUOT remote-shell off-by-one. The Cmax_remote matrix row
+maximized over r >= 1, but r = 1 is a CONTACT shell (it holds
+the paired preparation cell; C = 0.5 by construction at every
+L, L-independent). The frozen banked remote definition is
+R_LOAD = (2, 4, 6) (quot.py) and the frozen R-QUOT regress
+checks anti silence at shells 2/4/6. Fix: row maximizes over
+r >= 2 (variant "max-r>=2"), PRE and POST. The exact-zero FIT
+form and bar (1e-9) are unchanged; with the banked remote
+definition anti/sheet capacities are exactly 0.0 (anti-dead +
+sheet-forgetting theorems).
+
+6. VAC-COMP dense legs infeasible at L >= 256. joint_ladder ->
+malus.sheet_projectors builds DENSE N x N projectors (4 x N^2
+doubles transient). Measured: 26 GB at L = 128 (N = 32768);
+scaling x16 per doubling -> 400+ GB at L = 256 (N = 131072)
+vs 184 GB beast RAM: provably infeasible (code inspection +
+measurement, no data values involved). The mission scopes
+VAC-COMP with "where feasible". Fix: at L >= 256 run_vaccomp
+banks the O(1) formula rows (n_zero/flat/nodal) + sparse
+Rayleigh rays and files ladders/circle/amps as explicit
+unresolved-cost entries (reason
+dense-ladder-infeasible-at-L>=256). L <= 128 unchanged (full
+ladder; fits in RAM). The exact-formula FIT (n_zero at all L)
+is unaffected.
+
+7. P1 velocity rows banked the 2-vector fit_velocity "v" instead of
+the scalar "speed", crashing the const/trend fits (non-scalar
+series). Fix: rows bank "speed" (the theory quantity, |v| ~ 1.21);
+vectors remain in the cells. No bar involved.
+## SCALE0-AMENDMENT-3 (obs_dim rebuild station parallelism; execution-only)
+
+Serial cost of the L >= 256 obs_dim rebuild was underestimated in the
+prereg (~10 core-hrs/cell guessed): measured single-origin wave cost
+is ~0.09 s/step at N = 131072 (L256 krylov probe: 452 s / 5120
+steps) rising ~4x per doubling, and the rebuild loops 64 independent
+stations x (10240-step wave trace at L512 + CG solve), i.e. ~8.5
+core-hrs at L256 and ~64 core-hrs at L512 per cell -- single-threaded
+wall of 8.5 hrs / 2.7 days per cell. Infeasible as written.
+
+Fix (execution-only, no method/bar/grid/seed change): the 64 stations
+are independent, so _obs_dim_rebuild now maps them through a
+multiprocessing Pool (workers = SCALE0_DIM_WORKERS env, default
+min(64, ncpu)) via the extracted top-level _dim_station_job, whose
+body is the exact serial loop body (same calls, same argument order,
+h passed in its built format). Assembly runs in fixed a-major order.
+Output is bitwise-identical to the serial loop by construction;
+pinned by test_dim_station_parallel_bitwise (serial == Pool(2) to
+the bit incl. signed zeros and None taus on j2-L4). The 4 serial
+obs_dim tasks (L256/L512 x j2/sq) were killed mid-run and relaunched
+under this amendment; no other task's code path changed, so all other
+banked cells stand. Method, station draw (seed 9100 + 100*cell),
+grids, thresholds, and bars are untouched.
+## SCALE0-AMENDMENT-4 (sparse sheet split in run_quot; execution-only)
+
+run_quot's POT channel called malus.sheet_projectors (dense N x N,
+4 x N^2 doubles transient): 137 GB/projector-set at L256 and 2.2 TB
+at L512. On the 371 GB box this OOM-killed the L256/L512 quot tasks
+(dmesg-confirmed kills at 243/316 GB RSS; the wave scheduler died in
+the same chaos with 4 cells unstarted). Only the anti weight
+||P_anti phi||/||phi|| was ever used, and P_anti = (I-S)/2 with S the
+sheet-swap permutation, so the campaign now computes (phi - S.phi)/2
+by permutation (new _sheet_anti_frac helper). Bitwise-identical to
+the dense form (division by 2 exact; rounding commutes with exact
+power-of-2 scaling); pinned by test_sheet_anti_frac_sparse_bitwise
+(dense == sparse to the bit, real and complex phi, L = 4 and 28).
+Applied at every L (no branch); L <= 128 banked quot cells reproduce
+bitwise, so they stand. The 4 unstarted/killed quot tasks
+(L256-anti/sym, L512-anti/sym) are rerun under this amendment; no
+other task's code path changed.
+## SCALE0-VERDICT: SCALE0-BANKED (fails=[]; 178/178 cells)
+
+Bank: 178-task grid (L = 64/128/256/512; j2 + sq where applicable),
+sparse-first execution (dense wall: L128 dense eig banked at N=32768;
+L>=256 Krylov/CG/streaming only). Analyzer: frozen gates per
+SCALE0-PREREG + Amendments 1-4 (all execution/config corrections; no
+bar loosened, no method redefined post-data, all pins green).
+
+COMPLETE: PASS (178/178). Regress gates 8/8 PASS: R-OBS (replay +
+Krylov-vs-spectral), R-RESP (v_field + v_J + decomp), R-P1, R-POT
+(CG-vs-spsolve 7e-13, xi = 0.5265, range 3), R-QUOT (algebra + load
+shells), R-ZERO (headon 508/60/448 + refine bitwise), R-VACEXC
+(cross_maxdev + frac_dev exact 0.0), R-VACCOMP (census + spectral).
+Exact forms upheld (4/4): QUOT Cmax_remote PRE exact-zero (worst
+2.5e-15), VACEXC cross_maxdev + frac_dev exact 0.0, VACCOMP n_zero
+exact formula. Matrix 602 rows (32 unresolved-cost rows); fits 82
+records: 58 estimated + 20 unresolved-asymptotic + 4 exact-upheld.
+
+Per-family asymptotics (machine-readable in data/scale0/):
+
+- OBS: d_H 1.9098 -> 1.9725 monotone toward 2, j2 == sq to machine
+  precision at every L (substrate universality of the volume-growth
+  exponent; gap 0.0 to 1e-16). d_s L-independent (2.0697 j2 /
+  2.0692 sq, krylov-return, local-physics). tauW_resid shrinking
+  (j2 0.843 -> 0.784, sq 0.770 -> 0.671). d_star = 2 at all four
+  rungs (W, composite, composite_WP j2; sq composite_WP (2,2,3,2)
+  hits station-draw noise at L256 -- rebuild draws a fresh frozen
+  64-station set per (sub,L) cell). vol_d composite unresolved
+  (incommensurate W/P scales: 1.8 -> 0.9 -> 4.2).
+- RESPONSE: fit10 velocities exactly L-independent (local
+  pre-horizon physics: v_dpsi 7.947, v_drho 8.0/5.94, v_dJ
+  7.45/5.94). fitExt saturates by L256 (BG+ ~6.0, BG0 ~5.58).
+  Anisotropy diag/axial 0.8272 const. Distance exponents saturate
+  (BG+: -0.50/-0.60; BG0: -1.00/-1.15). v_dJ BG+ fitExt files
+  non-monotone on a 0.06% last-rung wiggle (5.9595 -> 5.9633;
+  converged in value).
+- P1: PRE v converges (k03 1.1768 -> 1.1773; k05 1.9081 -> 1.9089).
+  POST v stable to 4th digit (1.3777 -> 1.3776) but letter-of-rule
+  non-monotone. width_rate rising, not saturated (0.44 -> 0.67).
+  msd_alpha ~= 2.009 ballistic, stable to 5th digit (non-monotone).
+- POT: xi = 0.5265 and range = 3 exact at all L (saturate form).
+  Floor 3e-9 -> 2e-10 (converged; non-monotone on floor value).
+- QUOT: anti/sheet Cmax_remote exactly 0.0 PRE and POST at all L
+  (anti-dead + sheet-forgetting theorems hold to L512); sym remote
+  0.2093 L-independent (visible-sector signature); sym arrivals
+  L-independent (shell-2: 0.05, shell-4: 0.3, shell-6: 0.65).
+- ZERO: ppinode near_density 0.46 -> 0.985 (near-zero ubiquity at
+  large L); min_amp exactly 0.0 (certified nodes at all L). F1
+  initial-exclusion vacuous at n >= 8192 (filed); F5 dense-eig
+  filed at L >= 128; ZERO-post filed at L >= 256 (P5).
+- VACEXC: packet_v vacuum-independent (1.9028 in all 4 vacua, all
+  L); hidden_sector 0.0 (immobile); point_amp ~1e-15 (pinned;
+  files non-monotone); margin 0.0103 -> 0.0007 (shrinking).
+- VACCOMP: formula rows exact at all L; ladders/circle/amps filed
+  unresolved-cost at L >= 256 (dense N x N: 550 GB vs 184-371 GB
+  RAM; Amendment-2 item 6).
+
+Unresolved taxonomy (all explicit, machine-readable, none blocking
+BANKED -- the frozen verdict ladder permits unresolved-asymptotic):
+ (A) rule-artifact: converged values with fp-level last-rung wiggle
+     (gap-d_H 1e-16, point_amp 1e-15, POT floor 1e-10, P1 POST v,
+     msd_alpha, v_dJ fitExt) -- banked points ARE the asymptote; the
+     frozen monotone rule has no fp tolerance (kept frozen
+     deliberately; no Amendment-5: verdict semantics unchanged
+     post-data).
+ (B) genuine: composite vol_d (no asymptote), sq d_star draw jump.
+ (C) cost-filed: VACCOMP legs L>=256, F5 L>=128, ZERO-post L>=256.
+
+Execution record: prereg + sparse apparatus + 178-task runner +
+frozen analyzer built on cursor/scale-0-bank-28ae; campaign first
+launched on beast (96-core) alongside a duplicate sibling run
+(cursor/scale-0-bank-49e9, same tip), whose Amendment-2 (7 run-time
+config corrections) was merged after independent re-verification
+(headon 88 -> 508/60/448 reproduced exactly); moved to c8g.48xlarge
+#1 (384-core, died mid-wave), back to beast, then to c8g.48xlarge
+(192-core ARM, 371 GB) where 85 tasks ran at -P 170. Two further
+execution-only amendments, both bitwise-identical + pinned:
+Amendment-3 (obs_dim station Pool: ~64 core-hrs serial -> ~2 hr
+wall per L512 cell) and Amendment-4 (sparse sheet split: dense
+2.2 TB OOM -> permutation form). Banked cells carry git_rev meta
+(3170299 pre-Amendment-2 light cells, fc7e2b1 main wave, later revs
+for the 8 reruns). Cross-machine reproducibility: x86 vs ARM agree
+to 1e-16~1e-21, exact zeros bitwise. Pins 24/24. Full suite on ARM:
+1808 passed / 2 skipped / 3 pre-existing failures in other
+campaigns' exact-equality tests (test_potential aperture,
+test_tunnel unitarity 0.9999999999999998 vs 1.0, test_emergent_dim
+weighted diffusion) -- all pass on x86; 1-ulp ARM BLAS sensitivity,
+no shared-code change on this branch (test_weighted.py skipped per
+standing addopts).

@@ -1,0 +1,1 @@
+{"task": "vaccomp_regress__L4-census", "meta": {"git_rev": "31702992695205713b06a2229bba0623ea612ff9", "host": "ip-172-31-39-189", "elapsed": 0.011310100555419922}, "payload": {"census": {"L": 4, "n": 32, "n_zero": 22, "anti_rank": 16, "sym_rank": 6, "nodal_predicted": 6, "flat_predicted": 16, "decomposition_ok": true}, "elapsed": 0.0079345703125}}

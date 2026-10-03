@@ -1,0 +1,1 @@
+{"task": "zero_regress__refine", "meta": {"git_rev": "31702992695205713b06a2229bba0623ea612ff9", "host": "ip-172-31-39-189", "elapsed": 0.6707475185394287}, "payload": {"t_star": 1.2, "amp_min": 0.021789664306470415, "bitwise": true, "elapsed": 0.6646368503570557}}
