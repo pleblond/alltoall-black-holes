@@ -310,6 +310,20 @@ def eval_ports(datadir):
         cands = {}
         for name in ("VPLUS", "VPI", "VMINUS"):
             v = d["cands"][name]
+            if name == "VMINUS":
+                # Banked E-vacuous rule (VAC-FIELD Amendment-4).
+                sc = v["scaling"]
+                st = 0.01  # vacfield.BARS["scaling_slope"]
+                sb = 1e-9  # vacfield.BARS["scaling_normed"]
+                sc_ok = bool(
+                    not sc["Q"]["trivial"]
+                    and abs(sc["Q"]["slope"] - 2.0) < st
+                    and not sc["Bmax"]["trivial"]
+                    and abs(sc["Bmax"]["slope"] - 2.0) < st
+                    and sc["Eabs"]["trivial"] and v["scaling_e_vacuous"]
+                    and sc["normed_spread"] < sb)
+            else:
+                sc_ok = bool(v["scaling_ok"])
             led = v["ledger"]
             if name == "VPLUS":
                 pat = bool(led["f_zero"] == 1.0)
@@ -320,7 +334,7 @@ def eval_ports(datadir):
                            and abs(led["mean"]) < 1e-12)
             cands[name] = bool(v["eigen_res"] < 1e-9
                                and v["stationary"]["ok"] and v["current_ok"]
-                               and v["phase_ok"] and v["scaling_ok"]
+                               and v["phase_ok"] and sc_ok
                                and v["stress_ok"] and pat)
         cands["ZERO_bg"] = bool(d["cands"]["ZERO"]["bmax"] == 0.0)
         ports[f"vacuum_L{L}"] = {"pass": bool(all(cands.values())),

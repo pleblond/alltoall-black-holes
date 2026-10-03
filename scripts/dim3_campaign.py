@@ -912,6 +912,16 @@ def cmd_vacuum(args):
         rec["phase_ok"] = V.is_phase_invariant_ok(ph)
         sc = V.amplitude_scaling(psi, g, order, eu, ev)
         rec["scaling_ok"] = V.is_scaling_ok(sc)
+        rec["scaling"] = {k: sc[k] for k in ("Q", "Bmax", "Jmax", "Eabs")}
+        rec["scaling"]["normed_spread"] = sc["normed_spread"]
+        rec["scaling"]["normed_trivial"] = sc["normed_trivial"]
+        if name == "VMINUS":
+            # Banked E-vacuous rule (VAC-FIELD Amendment-4): E(a) == 0 at
+            # all amplitudes replaces the slope-2 Eabs leg for E=0 states.
+            from bh_graph.vacfield import AMPLITUDES
+            e_allzero = all(V.energy_of(a * psi, g, order) == 0.0
+                            for a in AMPLITUDES)
+            rec["scaling_e_vacuous"] = e_allzero
         # Stress (3D-native per-class).
         inc = V.incident_stats(bj["B"], eu, ev, len(order))
         per = {}
