@@ -722,8 +722,6 @@ def krylov_wave_traces(h, src_idx: int, tgt_idx: list, ts: np.ndarray,
     spectral evaluation used in OBS-0/1 (cross-checked in tests at L <= 6).
     Returns (T, Nt) array with rows aligned to `ts` (ts[0] must be 0).
     """
-    from bh_graph.ballistic import hamiltonian as _ham  # noqa: F401 (doc ref)
-
     n = h.shape[0]
     ts = np.asarray(ts, dtype=float)
     tj = np.asarray(list(tgt_idx), dtype=int)
@@ -741,8 +739,13 @@ def krylov_wave_traces(h, src_idx: int, tgt_idx: list, ts: np.ndarray,
     row = 1
     while row < len(ts):
         seg = min(chunk, len(ts) - row)
-        tail = expm_multiply(-1.0j * h, psi, start=dt, stop=seg * dt, num=seg)
-        tail = np.asarray(tail, dtype=np.complex128)
+        if seg == 1:
+            tail = np.asarray(expm_multiply(-1.0j * h * dt, psi),
+                              dtype=np.complex128).reshape(1, -1)
+        else:
+            tail = expm_multiply(-1.0j * h, psi, start=dt, stop=seg * dt,
+                                 num=seg)
+            tail = np.asarray(tail, dtype=np.complex128)
         out[row:row + seg, :] = (np.abs(tail[:, tj]) ** 2)
         psi = tail[-1, :]
         row += seg
@@ -774,8 +777,12 @@ def krylov_diff_traces(lrw, src_idx: int, tgt_idx: list, ts: np.ndarray,
     row = 1
     while row < len(ts):
         seg = min(chunk, len(ts) - row)
-        tail = expm_multiply(gen, p, start=dt, stop=seg * dt, num=seg)
-        tail = np.asarray(tail, dtype=float)
+        if seg == 1:
+            tail = np.asarray(expm_multiply(gen * dt, p),
+                              dtype=float).reshape(1, -1)
+        else:
+            tail = expm_multiply(gen, p, start=dt, stop=seg * dt, num=seg)
+            tail = np.asarray(tail, dtype=float)
         out[row:row + seg, :] = tail[:, tj]
         p = tail[-1, :]
         row += seg
@@ -874,3 +881,237 @@ def fit_exponent(shell_peaks: dict, lo: int, hi: int) -> dict:
     fit = fit_loglog(xs, ys)
     return {"alpha": float(-fit["p"]) if np.isfinite(fit["p"]) else float("nan"),
             "intercept": fit["intercept"], "r2": fit["r2"], "n": fit["n"]}
+
+
+# ---------------------------------------------------------------------------
+# H: matched sector preparations + 3D shells (QUOT/HIDDEN port)
+# ---------------------------------------------------------------------------
+
+def sector_preparations_3d(order: list, c4: dict, x0: tuple,
+                           x1: tuple) -> dict:
+    """Matched single-cell preparations (all norm 1, preregistered).
+
+    sym0/sym1: |x,+> deltas (quotient-compatible position bit);
+    anti0/anti1: |x,-> deltas (frozen-sector position bit);
+    sheet0/sheet1: |x0,0> / |x0,1> (microscopic sheet bit).
+    x0/x1 are coarse cells (int triples); total norm, coarse support
+    (one cell), and preparation region are matched by construction.
+    """
+    pos = {v: i for i, v in enumerate(order)}
+    n = len(order)
+    node_of = {(x, y, z, b): v for v, (x, y, z, b) in c4.items()}
+    out = {}
+    for name, cell, sign in (("sym0", x0, 1.0), ("sym1", x1, 1.0),
+                             ("anti0", x0, -1.0), ("anti1", x1, -1.0)):
+        psi = np.zeros(n, dtype=np.complex128)
+        psi[pos[node_of[(cell[0], cell[1], cell[2], 0)]]] = 1.0 / math.sqrt(2.0)
+        psi[pos[node_of[(cell[0], cell[1], cell[2], 1)]]] = sign / math.sqrt(2.0)
+        out[name] = psi
+    for name, b in (("sheet0", 0), ("sheet1", 1)):
+        psi = np.zeros(n, dtype=np.complex128)
+        psi[pos[node_of[(x0[0], x0[1], x0[2], b)]]] = 1.0
+        out[name] = psi
+    return out
+
+
+def coarse_shells_3d(c4: dict, order: list, src: tuple, L: int,
+                     rmax: int) -> dict:
+    """Receiver shells {r: [indices]} by rounded min-image quotient distance.
+
+    Shell 0 = source cell only (local); r >= 1 excludes the source cell
+    (remote for the sheet bit); r >= 2 excludes source + neighbor cells
+    (remote for the position bit). Both sheets included per cell.
+    """
+    pos = {v: i for i, v in enumerate(order)}
+    shells: dict = {r: [] for r in range(rmax + 1)}
+    for v, (x, y, z, _) in c4.items():
+        d2 = 0.0
+        for a, b in ((x, src[0]), (y, src[1]), (z, src[2])):
+            dd = abs(float(a) - float(b))
+            dd = min(dd, float(L) - dd)
+            d2 += dd * dd
+        r = int(round(math.sqrt(d2)))
+        if r <= rmax:
+            shells[r].append(pos[v])
+    return shells
+
+
+def hidden_delta_3d(order: list, c4: dict, cell: tuple) -> np.ndarray:
+    """Pure-hidden single-cell delta |x,-> (norm 1, P_- sector)."""
+    pos = {v: i for i, v in enumerate(order)}
+    node_of = {(x, y, z, b): v for v, (x, y, z, b) in c4.items()}
+    psi = np.zeros(len(order), dtype=np.complex128)
+    psi[pos[node_of[(cell[0], cell[1], cell[2], 0)]]] = 1.0 / math.sqrt(2.0)
+    psi[pos[node_of[(cell[0], cell[1], cell[2], 1)]]] = -1.0 / math.sqrt(2.0)
+    return psi
+
+
+def hidden_dipole_3d(order: list, c4: dict, cell_a: tuple,
+                     cell_b: tuple) -> np.ndarray:
+    """Pure-hidden dipole (|a,-> - |b,->)/sqrt2 (norm 1, P_- sector)."""
+    da = hidden_delta_3d(order, c4, cell_a)
+    db = hidden_delta_3d(order, c4, cell_b)
+    psi = (da - db) / math.sqrt(2.0)
+    return psi / np.linalg.norm(psi)
+
+
+# ---------------------------------------------------------------------------
+# I: cubic plaquettes + edge displacements/classes (VAC-FIELD port)
+# ---------------------------------------------------------------------------
+
+def cubic_face_plaquettes(L: int) -> list:
+    """Oriented square faces of the cubic torus (index loops, 3 per cell).
+
+    Returns [(cells..., )] as node-id loops on cubic labels
+    id = (x*L+y)*L+z; J3 callers map cells to sheet-0 node ids.
+    """
+    L = int(L)
+
+    def nid(x, y, z):
+        return (x * L + y) * L + z
+
+    out = []
+    for x in range(L):
+        for y in range(L):
+            for z in range(L):
+                out.append([nid(x, y, z), nid((x + 1) % L, y, z),
+                            nid((x + 1) % L, (y + 1) % L, z),
+                            nid(x, (y + 1) % L, z)])
+                out.append([nid(x, y, z), nid(x, (y + 1) % L, z),
+                            nid(x, (y + 1) % L, (z + 1) % L),
+                            nid(x, y, (z + 1) % L)])
+                out.append([nid(x, y, z), nid(x, y, (z + 1) % L),
+                            nid((x + 1) % L, y, (z + 1) % L),
+                            nid((x + 1) % L, y, z)])
+    return out
+
+
+def j3_edge_displacements(sub: dict, eu: np.ndarray,
+                          ev: np.ndarray) -> np.ndarray:
+    """Quotient-space bond vectors for J3 edges (min-image, 3-vectors).
+
+    Rows aligned with (eu, ev); used by directional-flux readouts.
+    """
+    L = float(sub["L"])
+    order = sub["order"]
+    coarse = sub["coarse"]
+    eu = np.asarray(eu, dtype=int)
+    ev = np.asarray(ev, dtype=int)
+    out = np.zeros((len(eu), 3))
+    for k in range(len(eu)):
+        a = np.array(coarse[order[int(eu[k])]], dtype=float)
+        b = np.array(coarse[order[int(ev[k])]], dtype=float)
+        d = b - a
+        d -= np.round(d / L) * L
+        out[k] = d
+    return out
+
+
+def edge_classes_j3(sub: dict) -> dict:
+    """J3 generator classes per undirected edge: SX/SY/SZ/FX/FY/FZ.
+
+    S = sheet-preserving, F = sheet-flipping; X/Y/Z = quotient axis moved.
+    (Diagonal-free by construction: every micro-edge moves one quotient
+    axis by +-1, pinned by the quotient-is-cubic test.)
+    """
+    order = sub["order"]
+    c4 = sub["c4"]
+    L = int(sub["L"])
+    idx = {v: i for i, v in enumerate(order)}
+    out = {}
+    for v in order:
+        x, y, z, b = c4[v]
+        for w in sub["graph"].neighbors(v):
+            if idx[w] <= idx[v]:
+                continue
+            x2, y2, z2, b2 = c4[w]
+            dx = (x2 - x) % L
+            dy = (y2 - y) % L
+            dz = (z2 - z) % L
+            if dx in (1, L - 1) and dy == 0 and dz == 0:
+                ax = "X"
+            elif dy in (1, L - 1) and dx == 0 and dz == 0:
+                ax = "Y"
+            elif dz in (1, L - 1) and dx == 0 and dy == 0:
+                ax = "Z"
+            else:  # pragma: no cover (structural impossibility, pinned)
+                ax = "?"
+            out[(v, w)] = ("S" if b2 == b else "F") + ax
+    return out
+
+
+# ---------------------------------------------------------------------------
+# G: 3D coherence + flux readouts (P1/POT port)
+# ---------------------------------------------------------------------------
+
+def spectral_coherence_3d(psi: np.ndarray, order: list, cfield: dict,
+                          L: int) -> dict:
+    """Fourier-space coherence: sheet-summed 3D-FFT peak fraction C + M_eff.
+
+    Same construction as potential.spectral_coherence (2D), lifted to the
+    cubic quotient: project both sheets onto cells, 3D FFT, peak fraction.
+    cfield maps node -> (x, y, z) cell (sheet already summed or per-node).
+    """
+    psi = np.asarray(psi, dtype=np.complex128)
+    idx = {v: i for i, v in enumerate(order)}
+    L = int(L)
+    phi = np.zeros((L, L, L), dtype=np.complex128)
+    for v, (x, y, z) in cfield.items():
+        phi[int(x), int(y), int(z)] += psi[idx[v]]
+    pw = np.abs(np.fft.fftn(phi)) ** 2
+    tot = float(pw.sum())
+    if tot == 0:
+        return {"C": 0.0, "M_eff": float(L ** 3), "Pmax": 0.0, "Psum": 0.0}
+    pmax = float(pw.max())
+    denom = float(np.sum(pw * pw))
+    meff = float(tot * tot / denom) if denom > 0 else float(L ** 3)
+    return {"C": float(pmax / tot), "M_eff": meff, "Pmax": pmax, "Psum": tot}
+
+
+def flux_decomposition_3d(psi: np.ndarray, edges: list,
+                          j: float = J_DEFAULT) -> dict:
+    """Directional flux readout in 3D: J_net, S, per-class fluxes, D, angle.
+
+    Same construction as potential.flux_decomposition (2D): each edge
+    contributes J_e * d_e with the stored-orientation current. edges rows
+    are (iu, iv, dx, dy, dz) with min-image displacements.
+    """
+    psi = np.asarray(psi, dtype=np.complex128)
+    jj = float(j)
+    qx = qy = qz = 0.0
+    stot = 0.0
+    jp = {"+x": 0.0, "-x": 0.0, "+y": 0.0, "-y": 0.0, "+z": 0.0, "-z": 0.0}
+    for iu, iv, dx, dy, dz in edges:
+        cur = float(2.0 * jj * (np.conj(psi[iu]) * psi[iv]).imag)
+        stot += abs(cur)
+        for q, d, pk, mk in ((cur * dx, dx, "+x", "-x"),
+                             (cur * dy, dy, "+y", "-y"),
+                             (cur * dz, dz, "+z", "-z")):
+            if d != 0:
+                if pk == "+x":
+                    qx += q
+                elif pk == "+y":
+                    qy += q
+                else:
+                    qz += q
+                if q >= 0:
+                    jp[pk] += q
+                else:
+                    jp[mk] -= q
+    jnet = np.array([qx, qy, qz])
+    nm = float(np.linalg.norm(jnet))
+    dd = float(nm / stot) if stot > 0 else 0.0
+    return {"J_net": jnet, "S": float(stot), "J_classes": jp, "D": dd}
+
+
+def d_trace_3d(psi_rows: np.ndarray, edges: list,
+               j: float = J_DEFAULT) -> dict:
+    """Directional readout per time row: D, J_net, S traces (3D)."""
+    psi_rows = np.asarray(psi_rows, dtype=np.complex128)
+    dd, ss, jn = [], [], []
+    for row in psi_rows:
+        f = flux_decomposition_3d(row, edges, j)
+        dd.append(f["D"])
+        ss.append(f["S"])
+        jn.append(f["J_net"])
+    return {"D": np.array(dd), "S": np.array(ss), "J_net": np.array(jn)}

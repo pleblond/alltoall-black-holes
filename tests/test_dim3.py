@@ -264,3 +264,160 @@ def test_j3_window_p_cubic_control():
                 g.add_edge((x, y, z), nb)
     _, _, vols = dim3.shells_cuts_vols(g, (0, 0, 0), 17)
     assert 2.85 < dim3.window_p(vols, 9, 16) < 3.05
+
+
+def test_dim3_blind_firewall_audit():
+    # The blind analyzer must never touch hidden geometry (import + token
+    # scan, same firewall pattern as OBS-1 C3).
+    import pathlib
+
+    src = pathlib.Path("scripts/dim3_blind.py").read_text()
+    for tok in ("dim3_reveal", "tag_graph", "j3_torus", "cubic_torus",
+                "coords", "formation", "hidden", "seal", "quotient",
+                "sheet", "symmetric_embedding"):
+        assert tok not in src, tok
+    tree = __import__("ast").parse(src)
+    imported = set()
+    for node in __import__("ast").walk(tree):
+        if isinstance(node, __import__("ast").ImportFrom):
+            imported.add(node.module or "")
+        elif isinstance(node, __import__("ast").Import):
+            imported.update(a.name for a in node.names)
+    assert not ({"bh_graph.dim3_reveal", "bh_graph.dim3",
+                 "dim3_campaign"} & imported)
+
+
+def test_dim3_reveal_helpers_synthetic():
+    # 3D reveal joins on synthetic exact-cubic data (no campaign data).
+    from bh_graph import dim3_reveal as DR
+
+    assert DR.torus_distance3((0, 0, 0), (7, 0, 0), 8) == 1.0
+    assert abs(DR.torus_distance3((0, 0, 0), (4, 4, 4), 8)
+               - math.sqrt(48.0)) < 1e-12
+    L = 6
+    nodes = list(range(8))
+    coords = {i: (float(i % 2), float((i // 2) % 2), float(i // 4))
+              for i in nodes}
+    H = DR.hidden_quotient_matrix3(coords, nodes, L)
+    assert np.allclose(H, H.T) and np.allclose(np.diag(H), 0.0)
+    # Exact-distance charts pass in 3D.
+    rep = DR.local_chart_report3(H, coords, nodes, float(L), k=4, d=3)
+    assert rep["pass"] and rep["n"] == 8
+    topo = DR.topology_report3([], coords, nodes, L, H)
+    assert topo["n"] == 0 and not topo["pass"]
+    assert DR.hidden_quotient_coords3("ex-N10-s0", 0) is None
+    assert DR.hidden_sheets3("cb-L4", 4) is None
+    c3 = DR.hidden_quotient_coords3("j3-L4", 4)
+    assert len(c3) == 128 and c3[0] == (0.0, 0.0, 0.0)
+    sh = DR.hidden_sheets3("j3-L4", 4)
+    assert sh[0] == 0 and sh[1] == 1
+
+
+def test_dim3_sector_preps_and_shells():
+    from bh_graph.ballistic import node_order
+
+    L = 4
+    g = dim3.j3_torus_graph(L)
+    order = node_order(g)
+    c4 = dim3.j3_torus_coords(L)
+    pr = dim3.sheet_projectors(order, c4)
+    x0, x1 = (1, 2, 2), (2, 2, 2)
+    preps = dim3.sector_preparations_3d(order, c4, x0, x1)
+    for name, psi in preps.items():
+        assert abs(np.linalg.norm(psi) - 1.0) < 1e-12, name
+    w = dim3.sheet_weights(preps["sym0"], pr)
+    assert abs(w["w_sym"] - 1.0) < 1e-12
+    w = dim3.sheet_weights(preps["anti0"], pr)
+    assert abs(w["w_anti"] - 1.0) < 1e-12
+    w = dim3.sheet_weights(preps["sheet0"], pr)
+    assert abs(w["w_sym"] - 0.5) < 1e-12
+    shells = dim3.coarse_shells_3d(c4, order, x0, L, 6)
+    assert len(shells[0]) == 2  # both sheets of the source cell
+    assert sum(len(v) for v in shells.values()) == len(order)
+    assert all(len(shells[r]) > 0 for r in (1, 2))
+    d = dim3.hidden_delta_3d(order, c4, x0)
+    assert abs(np.linalg.norm(d) - 1.0) < 1e-12
+    assert abs(dim3.sheet_weights(d, pr)["w_anti"] - 1.0) < 1e-12
+    dip = dim3.hidden_dipole_3d(order, c4, x0, x1)
+    assert abs(np.linalg.norm(dip) - 1.0) < 1e-12
+
+
+def test_dim3_plaquettes_displacements_classes():
+    L = 4
+    faces = dim3.cubic_face_plaquettes(L)
+    assert len(faces) == 3 * L ** 3
+    assert all(len(f) == 4 for f in faces)
+    sub = dim3.j3_substrate(L)
+    g, order = sub["graph"], sub["order"]
+    eu, ev = np.array([[u] for u, v in g.edges()]), None
+    eu = np.array([order.index(u) for u, v in g.edges()])
+    ev = np.array([order.index(v) for u, v in g.edges()])
+    disp = dim3.j3_edge_displacements(sub, eu, ev)
+    assert disp.shape == (len(eu), 3)
+    # Every micro-edge moves one quotient axis by +-1 (min-image unit).
+    assert np.allclose(np.abs(disp).sum(axis=1), 1.0)
+    eclass = dim3.edge_classes_j3(sub)
+    assert set(eclass.values()) == {"SX", "SY", "SZ", "FX", "FY", "FZ"}
+    for cls in ("SX", "SY", "SZ", "FX", "FY", "FZ"):
+        assert sum(1 for v in eclass.values() if v == cls) == 128, cls
+
+
+def test_dim3_coherence_and_flux():
+    from bh_graph.ballistic import node_order
+
+    L = 4
+    g = dim3.j3_torus_graph(L)
+    order = node_order(g)
+    n = len(order)
+    cfield = {v: (x, y, z) for v, (x, y, z, _) in
+              dim3.j3_torus_coords(L).items()}
+    uni = np.full(n, 1.0 / math.sqrt(n), dtype=np.complex128)
+    assert dim3.spectral_coherence_3d(uni, order, cfield, L)["C"] == 1.0
+    delta = np.zeros(n, dtype=np.complex128)
+    delta[0] = 1.0
+    assert abs(dim3.spectral_coherence_3d(delta, order, cfield, L)["C"]
+               - 1.0 / 64.0) < 1e-12
+    # +x plane wave on the cubic control: D = 1, J_net along +x.
+    gc = dim3.cubic_torus_graph(L)
+    oc = node_order(gc)
+    cc = dim3.cubic_torus_coords(L)
+    k = math.pi / 2  # periodic on L=4 (wrap edges see +k, not a jump)
+    psi = np.array([np.exp(1j * k * cc[v][0]) / math.sqrt(len(oc))
+                       for v in oc], dtype=np.complex128)
+    pos = {v: i for i, v in enumerate(oc)}
+    edges = []
+    for u, v in gc.edges():
+        a = np.array(cc[u], dtype=float)
+        b = np.array(cc[v], dtype=float)
+        d = b - a
+        d -= np.round(d / L) * L
+        edges.append((pos[u], pos[v], d[0], d[1], d[2]))
+    f = dim3.flux_decomposition_3d(psi, edges)
+    assert abs(f["D"] - 1.0) < 1e-9
+    assert f["J_net"][0] > 0 and abs(f["J_net"][1]) < 1e-9
+    tr = dim3.d_trace_3d(np.array([psi, psi]), edges)
+    assert tr["D"].shape == (2,) and tr["J_net"].shape == (2, 3)
+    f0 = dim3.flux_decomposition_3d(np.zeros_like(psi), edges)
+    assert f0["D"] == 0.0
+
+
+def test_dim3_measure_source_consistent():
+    # measure_source == manual Krylov + threshold + CG (L=3 smoke).
+    from bh_graph import obs0
+    from bh_graph.ballistic import hamiltonian, node_order
+    from bh_graph.obs0r import omega_below_edge
+
+    L = 3
+    g = dim3.j3_torus_graph(L)
+    order = node_order(g)
+    h = hamiltonian(g, order=order)
+    lrw = dim3.lrw_matrix(g, order)
+    ts_w = np.arange(0, 0.11, 0.05)
+    ts_d = np.arange(0, 0.26, 0.25)
+    phi = dim3.static_phi_cg(h.tocsc(), 0, omega_below_edge(12))
+    rec = dim3.measure_source(h, lrw, 0, [1, 2], ts_w, ts_d, phi)
+    pw = dim3.krylov_wave_traces(h, 0, [1, 2], ts_w)
+    assert rec["W"][1] == obs0.threshold_crossing(pw[:, 0], ts_w,
+                                                  obs0.THETA_WAVE)
+    assert rec["P"][2] == float(phi[2])
+    assert set(rec) == {"W", "D", "P"}
