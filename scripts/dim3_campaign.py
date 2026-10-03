@@ -384,9 +384,15 @@ def cmd_spread(args):
             pk = R.peak_in_window(tr[:, s], ts, *win) if win else None
             if pk is None:
                 continue
-            # Amendment-1 A1: interior-valid peaks only
-            # (tstar + dt/2 < hi; edge maxima are cutoffs, not data).
-            if pk["tstar"] + DT / 2.0 < win[1]:
+            # Amendment-1 A1 (v2): interior TRUE peaks only. A windowed
+            # maximum is data iff (i) grid room remains past it inside the
+            # window, (ii) the trace strictly falls somewhere in the
+            # remainder (local max, not a rising-edge cutoff), (iii) it
+            # exceeds the detection threshold (not precursor noise).
+            ts_idx = int(round(pk["tstar"] / DT))
+            rem = tr[ts_idx + 1:, s][ts[ts_idx + 1:] <= win[1]]
+            if (rem.size > 0 and rem.min() < pk["Rmax"]
+                    and pk["Rmax"] > theta):
                 peaks[s] = pk["Rmax"]
                 tstars[s] = pk["tstar"]
         fit = dim3.fit_exponent(peaks, FIT_SHELLS[0], FIT_SHELLS[-1])

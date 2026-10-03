@@ -16,8 +16,15 @@ peak if it sits STRICTLY INSIDE its window; a maximum at the window edge
 is a rising-trace cutoff, not data. Rule (frozen):
 
 ```text
-peak(s) VALID iff tstar(s) + dt/2 < hi(s),  window (lo, hi) = spread_window
+peak(s) VALID iff (tstar(s), hi(s)] holds grid points  (room past the max)
+                AND min tr over them < peak(s)          (strict falloff: true local max)
+                AND peak(s) > theta                     (above detection floor)
 ```
+
+Rationale: edge maxima are rising-trace cutoffs; pre-arrival window
+maxima are precursor noise. Both must be excluded (v2 tightens the v1
+interior-only rule after the j3-L16 smoke admitted a cutoff (r=6) and a
+noise peak (r=9)).
 
 - J2-L28 validation: all 9 shells interior (banked n=9 preserved exactly;
   v=7.947/r2=0.984/a_psi=0.50 replicate to all digits through campaign code).
