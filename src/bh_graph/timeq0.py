@@ -391,6 +391,20 @@ def _set_cov_attrs(h, se) -> None:
                                                   ("A" if b else ""))
 
 
+def _cover_multiset_codes(X: dict) -> dict:
+    nodes = set(X["g"].nodes())
+    per: dict = {v: [] for v in nodes}
+    for e in X["Q"].values():
+        At, Bt = st0.oriented_cover(e["q"], e["frame"])
+        A = set(At) & nodes
+        B = set(Bt) & nodes
+        for v in A & B:
+            per[v].append("X")
+        for v in A ^ B:
+            per[v].append("S")
+    return {v: tuple(sorted(c)) for v, c in per.items()}
+
+
 def is_enlarged_equiv_ok(X1: dict, X2: dict,
                          atol: float = BAR_LEDGER) -> bool:
     try:
@@ -450,9 +464,47 @@ def is_enlarged_equiv_ok(X1: dict, X2: dict,
                 h1, h2, node_match=lambda a, b: a["q"] == b["q"]
                 and a["cs"] == b["c"]))
         else:
-            matchers.append(nx.isomorphism.GraphMatcher(
-                h1, h2,
-                node_match=lambda a, b: a.get("q") == b.get("q")))
+            # Multi-entry / absent-entry cover pruning (exact): per live
+            # node, the multiset of folded (A/B-swap-invariant) cover
+            # memberships over ALL entries is preserved by any witness
+            # map (present keys map to present keys, absent entries pair
+            # by entry-match, folded live membership is swap-invariant).
+            # WL-refined (3 iterations seeded with (q, multiset-code)):
+            # refinement is a deterministic function of witness-invariant
+            # seeds, hence itself witness-invariant. Single matcher;
+            # every witness is still enumerated and every enumerated map
+            # is fully validated below. Pure set/hash logic, so no float
+            # tolerance is involved in the pruning itself. On any WL
+            # failure, falls back to the unrefined (q, m) seeds.
+            m1 = _cover_multiset_codes(X1)
+            m2 = _cover_multiset_codes(X2)
+            for v in h1.nodes():
+                h1.nodes[v]["m"] = m1[v]
+                h1.nodes[v]["t"] = (h1.nodes[v]["q"], m1[v])
+            for v in h2.nodes():
+                h2.nodes[v]["m"] = m2[v]
+                h2.nodes[v]["t"] = (h2.nodes[v]["q"], m2[v])
+            use_wl = False
+            try:
+                w1 = nx.weisfeiler_lehman_subgraph_hashes(
+                    h1, node_attr="t", iterations=3)
+                w2 = nx.weisfeiler_lehman_subgraph_hashes(
+                    h2, node_attr="t", iterations=3)
+                for v in h1.nodes():
+                    h1.nodes[v]["w"] = tuple(w1[v])
+                for v in h2.nodes():
+                    h2.nodes[v]["w"] = tuple(w2[v])
+                use_wl = True
+            except Exception:
+                use_wl = False
+            if use_wl:
+                matchers.append(nx.isomorphism.GraphMatcher(
+                    h1, h2,
+                    node_match=lambda a, b: a["w"] == b["w"]))
+            else:
+                matchers.append(nx.isomorphism.GraphMatcher(
+                    h1, h2, node_match=lambda a, b: a["q"] == b["q"]
+                    and a["m"] == b["m"]))
         ctx = _equiv_setup(X1, X2)
         n = 0
         for gm in matchers:

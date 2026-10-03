@@ -184,6 +184,37 @@ def test_equiv_reflexive():
     assert q0.is_enlarged_equiv_ok(b["Xp"], b["Xp"])
 
 
+def test_equiv_multientry_pruning():
+    # Regression: WL-refined multi-entry pruning must preserve witnesses.
+    from bh_graph import ug
+
+    g0 = q0.tiny_graph_by_name("square")
+    X0 = q0.make_enlarged(g0["g"], q0.zero_psi(4), g0["order"], {})
+    Y1, _ = q0.merge_successors(X0)[0]
+    Y2, _ = q0.merge_successors(Y1)[0]
+    assert len(Y2["Q"]) == 2
+    assert q0.is_enlarged_equiv_ok(Y2, Y2)
+    codes = q0._cover_multiset_codes(Y2)
+    assert set(codes) == set(Y2["g"].nodes())
+    perm = {v: 500 + i for i, v in
+            enumerate(sorted(Y2["g"].nodes(), key=str))}
+    h, psi2, order2 = ug.permute_state(Y2["g"], Y2["psi"], Y2["order"],
+                                       perm)
+    Q2 = {}
+    for k, e in Y2["Q"].items():
+        full = dict(perm)
+        At, Bt = st0.oriented_cover(e["q"], e["frame"])
+        for v in list(At) + list(Bt) + [e["frame"]["i"],
+                                        e["frame"]["j"], k]:
+            full.setdefault(v, v)
+        nq, nf = st0.transport_store_perm(e["q"], e["frame"], full)
+        nf = dict(nf)
+        nf["k"] = full[k]
+        Q2[full[k]] = {"frame": nf, "q": nq}
+    Yr = q0.make_enlarged(h, psi2, order2, Q2)
+    assert q0.is_enlarged_equiv_ok(Y2, Yr)
+
+
 # ---------------------------------------------------------------------------
 # DP spots (tiny, V0)
 # ---------------------------------------------------------------------------
