@@ -946,6 +946,226 @@ The ground state of Proposition~\ref{prop:ground} is the further collapse
 The amount of current left after the bond is fixed is a property of the
 ensemble.
 
+\section{Motion of a bond}
+\label{sec:Bdot}
+
+\begin{proposition}
+\label{prop:Bdot}
+Between events, with \(i\partial_t\psi=H\psi\) and \(H=-A\),
+\begin{equation}
+\label{eq:Bdot}
+\dot B_{ij}
+=\sum_{m\in N(i)\setminus\{j\}}\mathcal{J}_{mj}
+-\sum_{n\in N(j)\setminus\{i\}}\mathcal{J}_{in},
+\end{equation}
+where \(\mathcal{J}_{ab}=\Im(\psi_a^*\psi_b)\) for every pair of vertices,
+adjacent or not.
+The current \(\mathcal{J}_{ij}\) does not appear.
+A common neighbour \(c\) contributes \(\Im(\psi_c^* s)\), with
+\(s=\psi_i+\psi_j\).
+If \(N(i)=\{j\}\) and \(N(j)=\{i\}\), then \(\dot B_{ij}=0\).
+\end{proposition}
+
+\begin{proof}
+From \(i\partial_t\psi=-A\psi\) one has \(\partial_t\psi=iA\psi\).
+Hence
+\[
+\partial_t(\psi_i^*\psi_j)
+=i\Bigl(\psi_i^*(A\psi)_j-(A\psi)_i^*\psi_j\Bigr).
+\]
+The real part of \(i z\) is \(-\Im z\).
+Expanding \(A\psi\) produces
+\(\sum_{n\sim j}\psi_i^*\psi_n-\sum_{m\sim i}\psi_m^*\psi_j\).
+If \(ij\) is an edge, the summands \(n=i\) and \(m=j\) are
+\(|\psi_i|^2-|\psi_j|^2\), which is real and drops out of the imaginary part.
+The remainder is \eqref{eq:Bdot}.
+For a common neighbour the two summands are
+\(\Im(\psi_c^*\psi_j)-\Im(\psi_i^*\psi_c)=\Im(\psi_c^* s)\).
+If neither endpoint has any other neighbour, both sums are empty.
+\end{proof}
+
+The pair norm changes by exchange with the rest of the graph,
+\[
+\dot q_{ij}
+=-\sum_{k\in N(i)\setminus\{j\}}2\mathcal{J}_{ik}
+-\sum_{k\in N(j)\setminus\{i\}}2\mathcal{J}_{jk}.
+\]
+The internal current cancels: the flux \(2\mathcal{J}_{ij}\) leaves one
+endpoint and enters the other.
+Therefore
+\[
+\dot P_-=-\frac{q_{ij}\dot B_{ij}-B_{ij}\dot q_{ij}}{q_{ij}^2}
+\]
+can be nonzero while \(\dot B_{ij}=0\), whenever the pair exchanges
+amplitude with its neighbourhood.
+On an isolated edge both derivatives vanish, so \(B\), \(q\), \(P_-\), and
+\(h_2(P_-)\) are constant.
+The state, if it moves, moves along the circle of
+Proposition~\ref{prop:circle}.
+The hazard of a crossing \(B_{ij}(t)=B_*\) is identically zero on that
+edge, for every initial state.
+A bond threshold is crossed only through the wedge currents in
+\eqref{eq:Bdot}.
+The second spectral moment \(m_2\) in the upcrossing rate is the variance
+of that sum.
+It is not the conditional variance of Theorem~\ref{thm:condJ}, which is
+the law of \(\mathcal{J}_{ij}\) itself.
+
+\begin{proposition}
+\label{prop:Jdot}
+Under the same flow, if \(ij\) is an edge,
+\begin{equation}
+\label{eq:Jdot}
+\dot{\mathcal{J}}_{ij}
+=|\psi_i|^2-|\psi_j|^2
++\sum_{n\in N(j)\setminus\{i\}}B_{in}
+-\sum_{m\in N(i)\setminus\{j\}}B_{mj}.
+\end{equation}
+On an isolated edge this reduces to
+\(\dot{\mathcal{J}}_{ij}=|\psi_i|^2-|\psi_j|^2\), and
+\[
+\mathcal{J}_{ij}(t)
+=\mathcal{J}_{ij}(0)\cos 2t
++\frac{|\psi_i(0)|^2-|\psi_j(0)|^2}{2}\sin 2t,
+\]
+while \(B_{ij}\) stays at its initial value.
+\end{proposition}
+
+\begin{proof}
+The same product rule gives
+\(\partial_t(\psi_i^*\psi_j)=i z\) with \(z\) as in the proof of
+Proposition~\ref{prop:Bdot}, so \(\dot{\mathcal{J}}_{ij}=\Re z\).
+The diagonal summands are \(|\psi_i|^2-|\psi_j|^2\).
+The real parts of the remaining summands are the bonds \(B_{in}\) and
+\(B_{mj}\).
+On an isolated edge the neighbour sums are empty, and the continuity
+equation gives \(\partial_t|\psi_i|^2=-2\mathcal{J}_{ij}\) and
+\(\partial_t|\psi_j|^2=2\mathcal{J}_{ij}\).
+Therefore \(\ddot{\mathcal{J}}_{ij}=-4\mathcal{J}_{ij}\).
+The displayed solution is the general solution of that oscillator with
+the initial derivative \(|\psi_i|^2-|\psi_j|^2\).
+\(B_{ij}\) is constant by Proposition~\ref{prop:Bdot}.
+\end{proof}
+
+The pair \((\dot B,\dot{\mathcal{J}})\) is driven by the wedge data with
+the roles exchanged: wedge currents move the bond, wedge bonds and the
+population imbalance move the current.
+
+\begin{proposition}
+\label{prop:Bddot}
+Between events, for every pair of vertices \(i,j\),
+\begin{align}
+\ddot B_{ij}
+&=-\sum_r(A^2)_{jr}B_{ir}
+-\sum_r(A^2)_{ir}B_{jr}
++2\sum_{m\sim i}\sum_{n\sim j}B_{mn},
+\label{eq:Bddot}\\
+\ddot{\mathcal{J}}_{ij}
+&=-\sum_r(A^2)_{jr}\mathcal{J}_{ir}
++\sum_r(A^2)_{ir}\mathcal{J}_{jr}
++2\sum_{m\sim i}\sum_{n\sim j}\mathcal{J}_{mn}.
+\label{eq:Jddot}
+\end{align}
+Here \(B_{rr}=|\psi_r|^2\), and \((A^2)_{ab}\) is the number of walks of
+length \(2\) from \(a\) to \(b\).
+On an isolated edge, \(\ddot B_{ij}=0\) and
+\(\ddot{\mathcal{J}}_{ij}=-4\mathcal{J}_{ij}\).
+\end{proposition}
+
+\begin{proof}
+Since \(A\) is constant between events and \(\partial_t\psi=iA\psi\),
+one has \(\partial_t(A\psi)=iA^2\psi\).
+Differentiate
+\(z=\psi_i^*(A\psi)_j-(A\psi)_i^*\psi_j\).
+With \((\partial_t\psi_i)^*=-i(A\psi)_i^*\) and
+\((\partial_t(A\psi)_i)^*=-i(A^2\psi)_i^*\),
+\[
+\dot z
+=i\Bigl(
+\psi_i^*(A^2\psi)_j
++(A^2\psi)_i^*\psi_j
+-2(A\psi)_i^*(A\psi)_j
+\Bigr).
+\]
+The product rule of Proposition~\ref{prop:Bdot} gives
+\(\partial_t(\psi_i^*\psi_j)=iz\), so
+\(\partial_t^2(\psi_i^*\psi_j)=i\dot z=-w\) with \(w\) the parenthesis above.
+Thus \(\ddot B_{ij}=-\Re w\) and \(\ddot{\mathcal{J}}_{ij}=-\Im w\).
+The matrix element \((A^2\psi)_j=\sum_r(A^2)_{jr}\psi_r\) has
+\((A^2)_{jr}\) equal to the number of walks of length \(2\) from \(j\) to \(r\),
+and
+\[
+\Re w
+=\sum_r(A^2)_{jr}B_{ir}
++\sum_r(A^2)_{ir}B_{jr}
+-2\sum_{m\sim i}\sum_{n\sim j}B_{mn},
+\]
+which is the negative of \eqref{eq:Bddot}.
+For the current, \(\Im\bigl((A^2\psi)_i^*\psi_j\bigr)=-\sum_r(A^2)_{ir}\mathcal{J}_{jr}\),
+so
+\[
+\Im w
+=\sum_r(A^2)_{jr}\mathcal{J}_{ir}
+-\sum_r(A^2)_{ir}\mathcal{J}_{jr}
+-2\sum_{m\sim i}\sum_{n\sim j}\mathcal{J}_{mn},
+\]
+and \(-\Im w\) is \eqref{eq:Jddot}.
+On \(K_2\), \(A^2=I\) and each double sum reduces to the single entry
+\(B_{ij}\) or \(\mathcal{J}_{ji}=-\mathcal{J}_{ij}\).
+The two formulae collapse to \(0\) and \(-4\mathcal{J}_{ij}\).
+\end{proof}
+
+A state with every current equal to zero has \(\dot B_{ij}=0\) for every
+pair, by \eqref{eq:Bdot}, and has \(\partial_t(B_{ij}^2+\mathcal{J}_{ij}^2)=0\)
+by Proposition~\ref{prop:radius} below.
+The acceleration \eqref{eq:Bddot} is a combination of bonds.
+It vanishes for every state on an isolated edge, and it need not vanish
+on any larger graph.
+A real wave function is the example: every current is zero, and
+\(\ddot B_{ij}\) is still the walk combination of the bonds.
+
+\begin{proposition}
+\label{prop:radius}
+For every pair,
+\(B_{ij}^2+\mathcal{J}_{ij}^2=|\psi_i|^2|\psi_j|^2\) by Lemma~\ref{lem:BJ}.
+Between events the continuity equation
+\(\partial_t|\psi_k|^2=-\sum_{\ell\sim k}2\mathcal{J}_{k\ell}\) therefore gives
+\begin{equation}
+\label{eq:raddot}
+\partial_t\bigl(B_{ij}^2+\mathcal{J}_{ij}^2\bigr)
+=-2|\psi_j|^2\sum_{\ell\sim i}\mathcal{J}_{i\ell}
+-2|\psi_i|^2\sum_{\ell\sim j}\mathcal{J}_{j\ell}.
+\end{equation}
+If \(ij\) is an edge, the internal current may be separated:
+\begin{equation}
+\label{eq:raddot-edge}
+\partial_t\bigl(B_{ij}^2+\mathcal{J}_{ij}^2\bigr)
+=2\mathcal{J}_{ij}\bigl(|\psi_i|^2-|\psi_j|^2\bigr)
+-2|\psi_j|^2\sum_{m\in N(i)\setminus\{j\}}\mathcal{J}_{im}
+-2|\psi_i|^2\sum_{n\in N(j)\setminus\{i\}}\mathcal{J}_{jn}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Differentiate the product of the endpoint norms and substitute the
+continuity equation.
+On an edge, \(\mathcal{J}_{ji}=-\mathcal{J}_{ij}\), so the two internal
+summands combine into \(2\mathcal{J}_{ij}(|\psi_i|^2-|\psi_j|^2)\).
+\end{proof}
+
+On an isolated edge the wedge sums in \eqref{eq:raddot-edge} are empty.
+With \(\dot B_{ij}=0\) and
+\(\dot{\mathcal{J}}_{ij}=|\psi_i|^2-|\psi_j|^2\), the product moves as
+\(2\mathcal{J}_{ij}\dot{\mathcal{J}}_{ij}\).
+The same edge fixes the fibre radius.
+Indeed \(\partial_t s=is\) and \(\partial_t d=-id\), so \(|s|\) and \(|d|\)
+are constant, and \(B=(|s|^2-|d|^2)/4\) is constant with them.
+The motion is the relative angle of \(d\) against \(s\), at the rate \(2\)
+equal to the gap between the eigenvalues \(-1\) and \(+1\) of \(H\) on \(K_2\).
+The product \(|\psi_i|^2|\psi_j|^2\) follows that angle.
+It is constant only when \(\mathcal{J}_{ij}=0\) or
+\(|\psi_i|^2=|\psi_j|^2\).
+
 \section{Separable symbols, to every order}
 \label{sec:sep}
 
