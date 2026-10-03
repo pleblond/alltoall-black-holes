@@ -1,4 +1,4 @@
-# The model, stated first (v0.9)
+# The model, stated first (v0.10)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
@@ -92,6 +92,23 @@ selection). DIM-3-0 lifts the fabric to J₃ (DIM3-GEOMETRIC: exactly
 quotient-cubic with 3D far-field laws, but the 2D-calibrated blind
 rulers misread known-3D three proven ways; 3D-calibrated rulers are
 DIM-3-1 work). L0/L1/L2 untouched; no new D-numbers.
+
+**v0.10 substrate-and-store release.** No number changes:
+§10 gains six campaigns. SUBSTRATE-CLASS-0 narrows the VAC-0 class
+(SUBCLASS0-PARTIAL: exact minimal rules for E/H-shell/G in both
+spectral and combinatorial form with impossibility proofs for F and
+H_TAU in frozen space — spectral vs combinatorial ties, no unified
+condition); SCALE-0 banks the large-L asymptotics (SCALE0-BANKED,
+178/178: `d_H → 2` with j2 == sq to machine precision, exact forms
+upheld, velocities L-independent); Q-DYN-0/0b close the store-dynamics
+question (QDYN0-INCOMPLETE autopsy-resolved, QDYN0B-EVENT-LOCAL 51/51:
+Q frozen on all 414 rungs, RES0-XI earned as an event-local
+functional, no Q-dynamics campaign justified); BH-ENT-0 censuses
+collapsed-region multiplicity (BHENT0-UNCLASSIFIED 153/153: exact
+orbits 8/67/701/10047/218083, volume/boundary/mixed all rejected,
+hidden-sector field multiplicity exterior-blind); DIM-3-1 repairs the
+3D rulers (DIM31-GEOMETRIC: dimension 3 through six channels, transfer
+validation failing at L16/L20). L0/L1/L2 untouched; no new D-numbers.
 
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
@@ -862,6 +879,15 @@ Stated so no reader misses them:
   energy debt and information debt are distinct (§10).
 - No derived observer quotient yet: QUOT0-OPERATIONAL is the mechanism
   (transporting symmetric sector); the DERIVED rung stays open (§10).
+- No inter-event store dynamics: Q-DYN-0b holds Q frozen on all 414
+  waiting rungs with the RES0-XI functional earned as event-local;
+  event timing stays a separate primitive debt (§10).
+- No black-hole entropy identification: BH-ENT-0 censuses exact joint
+  orbits (8/67/701/10047/218083) and rejects volume/boundary/mixed —
+  no tested asymptotic law, no S_BH claim (§10).
+- No exact substrate class rule: SUBCLASS0-PARTIAL ties spectral vs
+  combinatorial on E/H-shell/G and proves F/H_TAU exact rules
+  impossible in frozen space; no unified condition (§10).
 
 ---
 
@@ -913,6 +939,7 @@ Single table; every symbol in §1–§4 appears here with its home.
 | `ξ = (cover, d)` | covariant split residual (what the inverse needs) | §10, `split0` |
 | `d_cont` | continuous fiber dimension (1–2; never 0) | §10, `split0` |
 | `R_merge` | `−(ΔE_ψ + ΔE_G)` = exact `f(ξ)` (no reservoir invented) | §10, `reservoir0` |
+| `Q`, `E_Q` | kept event record `(cover, d)`; event-local readout (frozen store, Q-DYN-0b) | §10, `store0`/`qdyn0b` |
 
 ---
 
@@ -957,7 +984,11 @@ Single table; every symbol in §1–§4 appears here with its home.
   long-time stability), `source0` (persistent sources), `split0` +
   `info0` + `merge0` + `fiber0` + `reservoir0` + `trigger0` + `rewire0`
   (inverse fiber, books, deterministic update, fiber debt, missing
-  account, trigger census, rewire null). Side apparatus:
+  account, trigger census, rewire null), `store0` (kept-`ξ` reversible
+  store), `dim3` + `dim3_reveal` (J₃ lift + blind reveal), `subclass0`
+  + `scale0` (substrate class + large-L bank), `qdyn0` + `qdyn0b`
+  (store-dynamics null + event-local readout), `bhent` (collapsed
+  census), `dim31` (3D repaired rulers). Side apparatus:
   `spectroscopy` (SPEC0 null: no localized modes beyond controls),
   `stern_gerlach` (SG gate fails), `fep` (FEP0 null), `graphvk` (D1 graph
   instance closed at small-N ED: all:all `< 0.25` bits vs chain sag `> 0.4`
@@ -967,11 +998,11 @@ Single table; every symbol in §1–§4 appears here with its home.
   kilonova wires, NICER wire, Kerr-quadrupole future wire, field-program wires
   (second-`M_O` quotient refuter, `I > 0` linearity breaker — §10) — see the v5 kill
   table (`paper/v5/main.tex` §6) and `docs/observation-protocol.md`.
-- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (2253 tests),
+- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (2409 tests),
   `python scripts/generate_figures.py` + `python scripts/generate_v5_figs.py`
   (86 figure files, Figs 1–75), `streamlit run app.py`.
 
-Counts above are v5.8 (`main.pdf` 13pp + `supplement.pdf` 21pp, S1–S12, 49
+Counts above are v5.9 (`main.pdf` 13pp + `supplement.pdf` 22pp, S1–S12, 49
 references cited). The v4.1 sources were removed after v5.7 (recoverable
 from git history); v5 is canonical.
 
@@ -994,7 +1025,9 @@ RESERVOIR-0, TRIGGER-0, FIBER-0, INFO-0, VAC-DOMAIN-0, VAC-TEXTURE-0,
 VAC-STAB-0, SOURCE-0; L0/L1/L2 pins unchanged). Suite at v0.9: 2253
 collected, 2251 passed, 2 torch/GPU-only skipped (STORE-0, DIM-3-0
 banked; consistency tests repointed to the v5 paper; L0/L1/L2 pins
-unchanged).
+unchanged). Suite at v0.10: 2409 collected, 2407 passed, 2
+torch/GPU-only skipped (SUBSTRATE-CLASS-0, SCALE-0, Q-DYN-0/0b,
+BH-ENT-0, DIM-3-1 banked; L0/L1/L2 pins unchanged).
 
 ---
 
@@ -1033,6 +1066,11 @@ unchanged).
   v0.9 extends the F-layer (§10: STORE-0 reversible kept-`ξ` store,
   DIM-3-0 J₃ quotient-cubic lift with 2D-capped rulers, 3D-blind-rulers
   debt) with no number changes, no new D-numbers, and stable L0/L1/L2.
+  v0.10 extends the F-layer (§10: SUBSTRATE-CLASS-0 PARTIAL substrate
+  rules, SCALE-0 large-L bank, Q-DYN-0/0b frozen store + event-local
+  readout, BH-ENT-0 UNCLASSIFIED collapsed census, DIM-3-1 GEOMETRIC
+  repaired 3D rulers with transfer-validation debt) with no number
+  changes, no new D-numbers, and stable L0/L1/L2.
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:
   T14 TeV absolutes follow the code (post-BS), not v5 prose (pre-BS).
@@ -1180,6 +1218,44 @@ current exponent chirps (1.53–1.66). No post-data bar moved; the
 3D-geometry result stands where the apparatus validates, and
 3D-calibrated rulers are DIM-3-1 work. (`dim3`, `dim3_reveal`.)
 
+DIM-3-1 repairs the estimators and measures J₃ blind
+(DIM31-GEOMETRIC): dimension reads 3 through six independent channels
+(arrival-time transfer + direct medians 3.458/3.552/3.757 at
+L16/20/24, `d*` 9/9, charts 9/9, static L20 2.932 / L24 3.135 with
+J₃/cubic static identity to six decimals, 3D spread laws, packets at
+Bloch speed) — but the cubic-gamma transfer the arrival channel
+relies on disagrees with J₃'s own gamma beyond the calibrated bar at
+L16 (by 0.007) and L20 (by 0.042), passing barely at L24. By the
+frozen all-gates rule the verdict is GEOMETRIC, not OPERATIONAL: every
+dimension-reading channel is unanimous at 3; what failed is a transfer
+validation leg, decaying with L, consistent with finite-size
+fiber-antisymmetric contamination (a follow-up hypothesis, not a
+correction). (`dim31`.)
+
+The substrate question is narrowed structurally and banked at scale.
+SUBSTRATE-CLASS-0 characterizes the VAC-0 class on a 31-cell frozen
+battery (SUBCLASS0-PARTIAL): E, H-shell, and G admit exact minimal
+rules each in BOTH spectral and simple-combinatorial form
+(E = {disp_dim_2} or {superlinear_ball}, H-shell = {not_hex} or
+{not_hex_local}, G = {square_class} with the frozen plaquette form
+non-minimal), while F, H_TAU, and J_useful provably admit no exact
+rule in frozen space (F: the two J2-swap seeds share identical
+feature vectors with split labels — defect location, not global
+structure; H_TAU: the ring floor artifact plus the rr3 puzzle; best
+rule diameter with 4 errors). Spectral vs combinatorial ties on every
+exact component, so SUBCLASS0-SPECTRAL is refused; no unified
+cross-component condition exists; sheets are necessary for nothing
+tested. One data-quality flag stands: VAC-0 prose says J-useful
+13/27, the JSON record counts 12 — JSON authoritative, prose flagged
+for erratum. (`subclass0`.) SCALE-0 banks the large-L asymptotics
+(SCALE0-BANKED, 178/178, L64–512): `d_H` 1.9098 → 1.9725 monotone
+toward 2 with j2 == sq to machine precision (substrate universality
+of the volume-growth exponent), `d_s` L-independent, exact forms
+upheld (QUOT anti/sheet remote exactly 0.0 to L512, VACEXC
+cross-deviations exactly 0.0), velocities exactly L-independent
+(local pre-horizon physics), POT `ξ`/range exact at all L, packet
+speed vacuum-independent (1.9028 in all 4 vacua). (`scale0`.)
+
 ### Backreaction: `B` couples to connectivity; accounting is not a firing law.
 
 Three independent uses of `B` meet: the conjugacy `∂E_ψ/∂A = -2B`
@@ -1218,6 +1294,22 @@ closes from the same stored content (`< 3e-14`); minimality is earned
 scalar-`R` fails on all 78 non-injective cells) — ontology: discrete
 `c` plus `d` required. No sampling is needed given the complete
 microscopic state; the store is kept information, not derived selection.
+Q-DYN-0/0b close the store-dynamics question (QDYN0-INCOMPLETE
+autopsy-resolved, then QDYN0B-EVENT-LOCAL, 51/51): Q stays bitwise
+identical on all 414 waiting rungs with current-M reversal and the
+semigroup exact, and the Q-DYN-0 red legs are premise errors — merged
+states are not eigenstates of the post-merge H(G₂) (residuals
+0.094–0.458), and the `Re(d̄W)` readout provably rotates under phase
+flow for `d ≠ 0` cells (true-eigenvector spread 1.76 vs 3e-13 at
+`d = 0`). The RES0-XI functional R is earned as an event-local
+accounting functional, not a persistent stored-energy term
+(`E_aug` drifts to 2.05 while `E_ψ + E_G` holds to 2.4e-12;
+inverse-split account equals the negative of the CURRENT account to
+3.1e-15; closed cycles return to 5.4e-15): it is evaluated when the
+structural map executes, while between events only the field energy
+is conserved. Zero evidence for Q dynamics; no further Q-dynamics
+campaign is justified; event timing stays a separate primitive debt.
+(`qdyn0`, `qdyn0b`).
 On pristine J₂ the neutral drift the legal moves allow destroys
 the vacuum class in a handful of moves at every tested size (BR1-FLAT):
 **neutral quiescence stays debt.** The remaining local degree-preserving move admits no
@@ -1309,6 +1401,23 @@ exactly node relabelings and global phase, so the state space is
 fixed nonzero norm — graph symmetries, time reversal, observer
 equivalence, and accidental degeneracies are all tested non-redundant.
 No Born rule is attached. (`sym0`.)
+
+Collapsed-region multiplicity is censused exactly
+(BHENT0-UNCLASSIFIED, 153/153): exact joint graph-field-store orbits
+8/67/701/10047/218083 on paths P2–P6 at fixed boundary (log₂ slope
+3.67, R² = 0.9945 — yet strict VOLUME rejected by second differences
+and a quadratic F-test at p = 0.0052, BOUNDARY rejected by growth at
+fixed boundary, MIXED rejected by the full-wiring branch at R² =
+0.928 off-band). Interior-graph multiplicity dominates and is
+volume-superlinear (`~2^{n²/2}/n!` quotient-corrected); boundary
+wiring is polylog/saturating (path leg wirings = 2 for all n).
+Matched sign pairs are 36/36 near+far blind on J₂ (VPLUS and VPI, L6
+and L28) vs 0/12 paths and 0/16 square: hidden-sector field
+multiplicity is exterior-blind and extensive in |R|, while graph
+multiplicity is dynamically exterior-visible (POT distinguishes graph
+pairs). No asymptotic law supported, no S_BH identification anywhere
+(firewall held), no finite field-fiber count derived (MEASURE0-DEBT);
+blind-submanifold dims filed. (`bhent`.)
 
 ### The vacuum field is a family; `ψ = 0` is the no-information limit.
 
@@ -1463,10 +1572,15 @@ signal of local fabric updates. (`grav0`.)
 No new D-numbers are minted here (D14/D15 are taken in DEFERRED.md).
 The open debts, each with its closer in `docs/scaffolding-history.md`
 §19: **substrate uniqueness** (dissolved by VAC-0 Final MIXED into
-per-phenomenon classes — nothing needs J₂ only; closer: the F
-mechanism, VAC-0Q, or a surviving derivation);
-**3D-blind rulers** (DIM-3-0: J₃ is quotient-cubic but the 2D-calibrated
-rulers misread known-3D three proven ways; closer: DIM-3-1 estimators);
+per-phenomenon classes — nothing needs J₂ only — and narrowed by
+SUBCLASS0-PARTIAL: exact minimal E/H-shell/G rules in tied
+spectral+combinatorial form, impossibility proofs for F/H_TAU in
+frozen space, no unified condition; SCALE-0 banks j2 == sq to machine
+precision; closer: the F mechanism, VAC-0Q, or a surviving derivation);
+**3D transfer validation** (DIM-3-1: repaired rulers read dimension 3
+through six channels, but the cubic-gamma transfer fails tol_agree at
+L16/L20 — GEOMETRIC, not OPERATIONAL; closer: a follow-up on the
+fiber-antisymmetric contamination hypothesis or L24+ transfer);
 **vacuum-field member** (a principle selecting inside the VAC-COMP
 manifold without using later consequences — needs the history measure
 first); **history measure** `μ(Γ)` (a reversible measure matching both
@@ -1477,7 +1591,8 @@ kinetics** (the firing postulate, if that is what it is — TRIGGER-0:
 **split information** (narrowed by SPLIT-0 to the fiber measure over
 `ξ`; RESERVOIR-0: the missing account is an exact function of `ξ`;
 STORE-0: a kept-`ξ` store recovers and closes exactly — kept, not
-derived);
+derived; Q-DYN-0b: Q frozen on all 414 rungs, R earned as an
+event-local functional — no Q dynamics, timing stays debt);
 **neutral quiescence** (a dynamics making
 the vacuum an attractor); **matter** (formation after a real dynamics,
 beating the FIELD-0 null); **gravity carrier** (inside coupled `(G, ψ)`
