@@ -1,0 +1,139 @@
+{
+ "gates": [
+  {
+   "gate": "H-INST-no-crash",
+   "ok": true,
+   "detail": "run-failures=0/113"
+  },
+  {
+   "gate": "H-A-fiber",
+   "ok": true,
+   "detail": "tiny-agree=76/76"
+  },
+  {
+   "gate": "H-A-fiber-j2",
+   "ok": true,
+   "detail": "j2-overlap=3/3"
+  },
+  {
+   "gate": "H-A-roundtrip",
+   "ok": true,
+   "detail": "n=257169 bad=0"
+  },
+  {
+   "gate": "H-B-quotient",
+   "ok": true,
+   "detail": "cells=83 bad=0"
+  },
+  {
+   "gate": "H-C-swap",
+   "ok": true,
+   "detail": "bad=0"
+  },
+  {
+   "gate": "H-D-transport",
+   "ok": true,
+   "detail": "tiny-bad=0 j2-bad=0"
+  },
+  {
+   "gate": "H-E-local",
+   "ok": true,
+   "detail": "bad=0 applicable=31"
+  },
+  {
+   "gate": "H-F-collapse",
+   "ok": true,
+   "detail": "halves-single=4 (expect 4) full-never=True"
+  },
+  {
+   "gate": "H-O-sched",
+   "ok": true,
+   "detail": "states=24 all_match+anatomy+schema"
+  },
+  {
+   "gate": "H-FW-firewall",
+   "ok": true,
+   "detail": "params=0 scan=clean"
+  },
+  {
+   "gate": "M-G-cover",
+   "ok": true,
+   "detail": "tiny-unique=4/76 j2-blocks=[25, 25, 25, 25, 25, 25, 25]"
+  },
+  {
+   "gate": "M-H-volume",
+   "ok": true,
+   "detail": "plane=True halfline=True canonical=False"
+  },
+  {
+   "gate": "M-I-norm",
+   "ok": true,
+   "detail": "lebesgue-div=True radial-norm=True"
+  },
+  {
+   "gate": "M-J-ledger",
+   "ok": true,
+   "detail": "bad=0 beta0=12266 betanz=11113 circle=83 pointpair=58"
+  },
+  {
+   "gate": "M-K-energy",
+   "ok": true,
+   "detail": "pmatch=True e-match=True flips=1"
+  },
+  {
+   "gate": "M-L-vacuum",
+   "ok": true,
+   "detail": "legs=7 debt=7"
+  },
+  {
+   "gate": "M-M-hidden",
+   "ok": true,
+   "detail": "tiny-bad=0 m2=True"
+  },
+  {
+   "gate": "M-N-factor",
+   "ok": true,
+   "detail": "comm=True rt={'n': 64, 'bad': 0} tv=0.25"
+  },
+  {
+   "gate": "M-P-time",
+   "ok": true,
+   "detail": "cells=6 null=TIME0-NULL"
+  },
+  {
+   "gate": "M-Q-rivals",
+   "ok": true,
+   "detail": "valid=True differ=True tv-cells=79"
+  },
+  {
+   "gate": "M-R-primitive",
+   "ok": true,
+   "detail": "inter-orbit=206+168(lb) radial=83 angular=63 total=520"
+  }
+ ],
+ "hard_ok": true,
+ "census": {
+  "hard": {
+   "H-INST-no-crash": true,
+   "H-A-fiber": true,
+   "H-A-fiber-j2": true,
+   "H-A-roundtrip": true,
+   "H-B-quotient": true,
+   "H-C-swap": true,
+   "H-D-transport": true,
+   "H-E-local": true,
+   "H-F-collapse": true,
+   "H-O-sched": true,
+   "H-FW-firewall": true
+  },
+  "rivals_valid": true,
+  "rivals_differ": true,
+  "volume_unique": false,
+  "lebesgue_divergent": true,
+  "discrete_unique_all": false,
+  "residual_dof_total": 520
+ },
+ "verdict": "FIBER0-DEBT",
+ "reason": "two inequivalent normalized measures satisfy every earned constraint",
+ "interpretation": "see docs/DEFERRED.md FIBER0-VERDICT"
+}
