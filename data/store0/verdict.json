@@ -1,0 +1,239 @@
+{
+ "verdict": "STORE0-REVERSIBLE",
+ "reason": "minimal local store: exact reconstruction + exact closure over headline battery and sequences",
+ "n_gates": 46,
+ "n_pass": 46,
+ "gates": [
+  {
+   "gate": "count-ev",
+   "ok": true,
+   "detail": "got=235 want=235"
+  },
+  {
+   "gate": "count-fib",
+   "ok": true,
+   "detail": "got=79 want=79"
+  },
+  {
+   "gate": "count-seq",
+   "ok": true,
+   "detail": "got=5 want=5"
+  },
+  {
+   "gate": "count-pair",
+   "ok": true,
+   "detail": "got=16 want=16"
+  },
+  {
+   "gate": "count-detcore",
+   "ok": true,
+   "detail": "got=4 want=4"
+  },
+  {
+   "gate": "count-tex",
+   "ok": true,
+   "detail": "got=9 want=9"
+  },
+  {
+   "gate": "A-det",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "A-split",
+   "ok": true,
+   "detail": "cells=79"
+  },
+  {
+   "gate": "A-info",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "A-R",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "A-Rsplit",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "A-Rpin",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "B-candidates",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "C-qxi",
+   "ok": true,
+   "detail": "cells=79"
+  },
+  {
+   "gate": "C-qc",
+   "ok": true,
+   "detail": "cells=79"
+  },
+  {
+   "gate": "C-qd",
+   "ok": true,
+   "detail": "cells=79"
+  },
+  {
+   "gate": "C-qR",
+   "ok": true,
+   "detail": "cells=79"
+  },
+  {
+   "gate": "D-Rcollision",
+   "ok": true,
+   "detail": "cells=79"
+  },
+  {
+   "gate": "E-covermulti",
+   "ok": true,
+   "detail": "cells=79"
+  },
+  {
+   "gate": "F-dvary",
+   "ok": true,
+   "detail": "cells=79"
+  },
+  {
+   "gate": "I-rel",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "I-u1",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "I-Rinv",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "J-swap",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "K-remote",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "K-class",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "L-merge",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "M-split",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "N-roundtrip",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "N-exact",
+   "ok": true,
+   "detail": "n=235"
+  },
+  {
+   "gate": "O-disjoint",
+   "ok": true,
+   "detail": "n=11"
+  },
+  {
+   "gate": "P-adjacent",
+   "ok": true,
+   "detail": "novl=5 nseq=5"
+  },
+  {
+   "gate": "Q-reverse",
+   "ok": true,
+   "detail": "n=5"
+  },
+  {
+   "gate": "R-commute",
+   "ok": true,
+   "detail": "n=11"
+  },
+  {
+   "gate": "R-overlap",
+   "ok": true,
+   "detail": "n=5"
+  },
+  {
+   "gate": "S-capacity",
+   "ok": true,
+   "detail": "n=5"
+  },
+  {
+   "gate": "T-closed",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "T-nonzero",
+   "ok": true,
+   "detail": "n=4"
+  },
+  {
+   "gate": "U-hidden",
+   "ok": true,
+   "detail": "n=51"
+  },
+  {
+   "gate": "V-vac",
+   "ok": true,
+   "detail": "nvac=20 ntex=9"
+  },
+  {
+   "gate": "V-nofire",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "W-exc",
+   "ok": true,
+   "detail": "n=72"
+  },
+  {
+   "gate": "X-nosample",
+   "ok": true,
+   "detail": "valid=True differ=True tv-cells=79"
+  },
+  {
+   "gate": "X-firewall",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "Y-pairs",
+   "ok": true,
+   "detail": "cells=79"
+  },
+  {
+   "gate": "Z-report",
+   "ok": true,
+   "detail": "discrete c plus d required"
+  }
+ ],
+ "ontology": "discrete c plus d required"
+}

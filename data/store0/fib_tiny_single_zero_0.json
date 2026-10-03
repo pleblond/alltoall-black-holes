@@ -1,0 +1,41 @@
+{
+ "cell": "single/zero@0",
+ "graph": "single",
+ "field": "zero",
+ "k": 0,
+ "d": 0,
+ "n_covers": 1,
+ "n_iso": 1,
+ "rows": {
+  "n_rows": 6,
+  "bad_pred": 0,
+  "bad_rt": 0,
+  "bad_form": 0,
+  "bad_inv": 0,
+  "bad_info": 0
+ },
+ "qxi_sufficient": true,
+ "qc": {
+  "sufficient": false,
+  "necessary": true,
+  "pair_diff": 0.25
+ },
+ "qd": {
+  "sufficient": true,
+  "n_classes": 1,
+  "classes_exact": true,
+  "capped": 0,
+  "skipped": 0,
+  "witness": false,
+  "reason": ""
+ },
+ "qR": {
+  "sufficient": true,
+  "injective": true,
+  "witness": false,
+  "kind": "",
+  "reconstruct_ok": true
+ },
+ "y_pair": true,
+ "_git": "591d50a92d77c5456ed2109fccee08bf3a7a3ac4"
+}

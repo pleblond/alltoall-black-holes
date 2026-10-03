@@ -1,0 +1,41 @@
+{
+ "cell": "star4/bonding@3",
+ "graph": "star4",
+ "field": "bonding",
+ "k": 3,
+ "d": 1,
+ "n_covers": 2,
+ "n_iso": 2,
+ "rows": {
+  "n_rows": 12,
+  "bad_pred": 0,
+  "bad_rt": 0,
+  "bad_form": 0,
+  "bad_inv": 0,
+  "bad_info": 0
+ },
+ "qxi_sufficient": true,
+ "qc": {
+  "sufficient": false,
+  "necessary": true,
+  "pair_diff": 0.4736067977499789
+ },
+ "qd": {
+  "sufficient": false,
+  "n_classes": 2,
+  "classes_exact": true,
+  "capped": 0,
+  "skipped": 0,
+  "witness": true,
+  "reason": "edge-count"
+ },
+ "qR": {
+  "sufficient": false,
+  "injective": false,
+  "witness": true,
+  "kind": "circle",
+  "reconstruct_ok": false
+ },
+ "y_pair": true,
+ "_git": "591d50a92d77c5456ed2109fccee08bf3a7a3ac4"
+}

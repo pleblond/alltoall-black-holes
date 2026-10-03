@@ -1,0 +1,76 @@
+{
+ "sub": "j2-L8",
+ "ftag": "TEX:sine-x",
+ "edge": [
+  0,
+  2
+ ],
+ "k": 128,
+ "eligible": true,
+ "det_ok": true,
+ "rcov_ok": true,
+ "ucov_ok": true,
+ "info_ok": true,
+ "R": 0.953125,
+ "R_cover": 1.0,
+ "R_fiber": -0.015624999999999997,
+ "R_mixed": -0.03125,
+ "c": 0,
+ "B": 0.007812499999999998,
+ "Acoef": 0.953125,
+ "W": [
+  0.0,
+  0.0
+ ],
+ "Rformula": 0.953125,
+ "form_err": 0.0,
+ "formula_ok": true,
+ "R_split": -0.953125,
+ "invert_err": 0.0,
+ "pred_ok": true,
+ "roundtrip_ok": true,
+ "exact_ok": true,
+ "phys_ok": true,
+ "drained": true,
+ "E_X": 512.0,
+ "E_M": 511.046875,
+ "close_merge": 0.0,
+ "close_split": 0.0,
+ "store_cov": {
+  "rel_exact": true,
+  "rel_k": true,
+  "rel_R": 0.0,
+  "u1_rec": 0.0,
+  "u1_R": 0.0,
+  "swap_equiv": true,
+  "swap_R": 0.0
+ },
+ "locality": {
+  "applicable": true,
+  "ok": true,
+  "class": "one-neighborhood-local"
+ },
+ "candidates": {
+  "qR": true,
+  "qd": true,
+  "qc": true,
+  "qxi": true
+ },
+ "E_store_derived": true,
+ "texture": {
+  "family": "sine-x",
+  "params": {
+   "alpha0": 0.0,
+   "delta": 0.39269908169872414,
+   "lam": 4
+  },
+  "grad": {
+   "max_grad": 0.3926990816987243,
+   "rms_grad": 0.2776801836348979,
+   "mean_grad": 0.19634954084936207,
+   "total_variation": 25.132741228718345,
+   "n_steps": 128.0
+  }
+ },
+ "_git": "9f8cb3bf27cbc77e13ed2ad834d6d4dad720dd3d"
+}

@@ -1,5 +1,27 @@
 # Changelog
 
+- **v5.7 (STORE-0)** — Minimal reversible internal store: `src/bh_graph/store0.py`
+  (preregistered candidate hierarchy qR/qd/qc/qxi with jointly-canonical
+  gauge-invariant content, exact label-restoring + quotient-leg split recovery,
+  node-keyed multi-event store Q, RES0 R-formula transcription cross-checked
+  bitwise against the pinned sibling blob, analytic R-level witness pairs,
+  R/U(1)/swap covariance, locality, energy books, sequence/pair/detcore/
+  texture records, firewall scans), `tests/test_store0.py` (37 pins),
+  349-task beast campaign + frozen analyzer, `docs/store0-prereg.md`.
+  VERDICT STORE0-REVERSIBLE (46/46 gates): full-xi store recovers the exact
+  physical predecessor (5784/5784 fiber rows valid roundtrips) and closes
+  the merge/split energy account (closure errors < 3e-14) over 235 forward
+  events, 5 stored sequences reversed exactly, disjoint factorization with
+  additive R, hidden/vacuum/texture/excitation batteries, and the detcore
+  control (R = 1 on single/zero with zero split-choice information);
+  minimality earned (cover-only fails everywhere, d-only fails on all
+  multi-class cells, scalar-R fails on all 78 non-injective cells with
+  59 circle + 19 cross witnesses, 1 proven-injective cell). Ontology:
+  discrete c plus d required. Full suite on beast: 2046 passed / 2 skipped
+  (weighted skipped per policy; 4 failures pre-existing on clean main in
+  tunnel/potential/posteriors/emergent_dim, unrelated). Records in
+  `data/store0/` (349) + `data/store0/verdict.json`; frozen sibling refs
+  (RES0-XI, FIBER0-DEBT) pinned read-only under `data/store0/ref/`.
 - **v5.6 (SPLIT-0)** — Deterministic inverse constraints and residual split
   information: `src/bh_graph/split0.py` (exact graph/field inverse census,
   sum-map fiber parametrization `(s,d)`, halves section, covariant residual
