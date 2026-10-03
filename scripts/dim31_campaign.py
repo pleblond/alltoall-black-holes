@@ -1,7 +1,7 @@
 """DIM-3-1 campaign battery (runner; verdicts filed by dim31_analyze.py).
 
 Frozen grid (DIM31-PREREG docs/dim31-prereg.md):
-  stations 16 cells x 3 sets (64 opaque stations, W/D/P + W ladder legs).
+  stations 17 cells x 3 sets (64 opaque stations, W/D/P + W ladder legs).
   pot1     static profiles + gap ladder (delta 0.25/0.5/1.0) per tag.
   packet   G-a ballistic packets (j3/cb new sizes; j2 banked P1.1).
   spread   far-shell E/F legs (j3-L20/24, cb-L20, j2-L28 bridge).
@@ -40,7 +40,8 @@ CELLS = ("rg-N256", "rg-N512",
          "cb-L12", "cb-L16", "cb-L20",
          "ex-N1024-s0", "ex-N1024-s1", "ex-N3456-s0",
          "bcb-L12",
-         "j3-L16", "j3-L20", "j3-L24")
+         "j3-L16", "j3-L20", "j3-L24",
+         "cb-L24")
 J3_CELLS = (13, 14, 15)
 N_STATIONS = 64
 STATION_SEED_BASE = 13100
@@ -52,11 +53,11 @@ WLADDER = {"W_hi_th": 1e-5, "W": obs0.THETA_WAVE, "W_lo_th": 1e-7}
 POT1_TAGS = ("rg-N256", "rg-N512",
              "sq-L32", "sq-L48",
              "j2-L28", "j2-L42",
-             "cb-L12", "cb-L16", "cb-L20",
+             "cb-L12", "cb-L16", "cb-L20", "cb-L24",
              "ex-N1024-s0", "ex-N3456-s0",
              "bcb-L12",
              "j3-L16", "j3-L20", "j3-L24")
-POT1_DELTAS = (0.25, 0.5, 1.0)
+POT1_DELTAS = (0.05, 0.1, 0.2, 0.25, 0.5, 1.0)
 PACKET_TAGS = ("j3-L20", "j3-L24", "cb-L20")
 SPREAD_TAGS = ("j3-L20", "j3-L24", "cb-L20", "j2-L28")
 

@@ -1,7 +1,7 @@
 """DIM-3-1 blind seal writer (pre-J3 workflow guard).
 
 Reads the frozen controls record (freeze.json) and the sealed blind
-artifact (blind over ALL cells 0..15, ladders + no claims), and writes
+artifact (blind over ALL cells 0..16, ladders + no claims), and writes
 the seal file consumed by dim31_analyze.py j3. Refuses to seal when
 the freeze carries estimator debt (controls failed -> ESTIMATOR-DEBT
 path, no J3 run).
@@ -43,7 +43,7 @@ def git_rev() -> str:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--blind", required=True,
-                    help="sealed blind artifact (cells 0..15)")
+                    help="sealed blind artifact (cells 0..16)")
     ap.add_argument("--freeze", required=True,
                     help="frozen controls record")
     ap.add_argument("--out", required=True, help="seal output path")

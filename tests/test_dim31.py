@@ -263,7 +263,7 @@ def test_seal_script(tmp_path):
     import subprocess
     import sys
 
-    cells = {str(c): {"sets": {"0": {}}} for c in range(16)}
+    cells = {str(c): {"sets": {"0": {}}} for c in range(17)}
     blind = tmp_path / "blind.json"
     blind.write_text(json.dumps({"cells": cells}))
     freeze_ok = tmp_path / "freeze_ok.json"
@@ -279,7 +279,7 @@ def test_seal_script(tmp_path):
     rec = json.loads(seal.read_text())
     assert len(rec["blind_sha256"]) == 64
     assert len(rec["freeze_sha256"]) == 64
-    assert rec["cells"] == [str(c) for c in range(16)]
+    assert rec["cells"] == [str(c) for c in range(17)]
     # Debt freeze must refuse.
     freeze_bad = tmp_path / "freeze_bad.json"
     freeze_bad.write_text(json.dumps({"debt": ["x"], "bars": {}}))

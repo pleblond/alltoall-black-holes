@@ -39,7 +39,7 @@ CONTROL_CELLS = tuple(c for c in range(len(CMP.CELLS)) if c not in CMP.J3_CELLS)
 J3_CELLS = CMP.J3_CELLS
 LADDER_LEVELS = ("W_hi_th", "W", "W_lo_th")
 CHANNELS = ("W", "D", "C")
-GROUPS = {"ring": (0, 1), "sq": (2, 3), "j2": (4, 5), "cb": (6, 7, 8),
+GROUPS = {"ring": (0, 1), "sq": (2, 3), "j2": (4, 5), "cb": (6, 7, 8, 16),
           "ex": (9, 10, 11), "bcb": (12,)}
 
 DIM_TRUE = {"ring": 1.0, "sq": 2.0, "j2": 2.0, "cb": 3.0}
