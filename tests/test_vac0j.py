@@ -42,12 +42,19 @@ def test_judge_arm_exact_on_hostile_graphs():
         eu, ev = edge_arrays(g, order)
         if len(eu) == 0:
             continue
-        for psi in (_random_state(len(order), 3),
-                    np.exp(1.0j * 0.3 * np.arange(len(order)))):
+        n = len(order)
+        spread = np.exp(1.0j * 2.0 * np.pi * 3.0 * np.arange(n) / n)
+        for psi in (_random_state(n, 3),
+                    np.exp(1.0j * 0.3 * np.arange(n)),
+                    spread):
             r = vj._judge_arm(psi, eu, ev)
             assert r["decomp"] < 1e-12, name
             assert r["cos_dev"] < 1e-12, name
             assert r["sin_dev"] < 1e-12, name
+        # R^2 needs phase spread (degenerate when all bonds share one dtheta,
+        # e.g. linear phase on a path); check it on spread states only.
+        for psi in (_random_state(n, 3), spread):
+            r = vj._judge_arm(psi, eu, ev)
             assert r["cos_r2"] > 0.999, name
             assert r["sin_r2"] > 0.999, name
 
