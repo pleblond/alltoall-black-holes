@@ -784,7 +784,7 @@ A sheet with no stub keeps its whole odd kernel.
 The count of surviving flat zeros is fixed by the set of stub cells, not
 by the number of stitches and not by \(\ell_W\).
 
-\section{The same stitch on \(J_3\)}
+\section{The same stitch on \texorpdfstring{\(J_3\)}{J3}}
 \label{sec:stitch3}
 
 The twelve generators of \(J_3\) are the axis steps \(\pm e_1,\pm e_2,\pm e_3\),
@@ -941,6 +941,115 @@ to \(0\) at infinity, so each even torus does have one eigenvalue above
 \(12\) and one below \(-12\).
 Any limit of these eigenvalues along even \(L\) lies in \([-12,12]\):
 a limit \(E_\infty>12\) would satisfy \(\mathcal{G}_3(E_\infty)=1\).
+
+\section{The edge joining the two bits of one cell}
+\label{sec:rung}
+
+Every generator of \(J_2\) or of \(J_3\) that flips the sheet bit also changes
+the cell.
+The two bits of one cell are not adjacent.
+An edge of hopping \(t\) between those two bits is a different modification
+from a stitch between two copies.
+
+\begin{proposition}
+\label{prop:rung}
+On one copy of \(J_2\), or of \(J_3\), add an edge of hopping \(t\neq 0\)
+between the two bits of a single cell \(c\).
+Let \(\psi\) be the odd delta of that cell, with amplitudes
+\(1/\sqrt{2}\) and \(-1/\sqrt{2}\) on the two bits and with every other
+amplitude zero.
+Then \(H\psi=t\psi\).
+Every odd state whose cell function vanishes at \(c\) remains a zero mode.
+On the even summand the same edge is the on-site potential \(-t\) at \(c\).
+Write \(g(E)\) for the on-site entry of \((E+2A)^{-1}\), with
+\(A=A_\square\) on \(J_2\) and \(A=A_{\mathrm{cubic}}\) on \(J_3\).
+The eigenvalues outside the even band are the energy \(t\), when \(|t|\)
+exceeds that band, together with the solutions of \(g(E)=-1/t\).
+On \(J_2\), for \(E>8\),
+\begin{equation}
+\label{eq:rungG}
+g(E)=\frac{2}{\pi E}\,K\Bigl(\frac{8}{E}\Bigr),
+\end{equation}
+where \(K\) is the elliptic integral of \eqref{eq:Gell}.
+The function \(g\) is odd, and on \((8,\infty)\) it falls strictly from
+\(+\infty\) to \(0\).
+Every \(t\neq 0\) therefore produces exactly one even eigenvalue outside
+\([-8,8]\), below the band when \(t>0\) and above the band when \(t<0\).
+On \(J_3\) the edge value is \(g(12+)=I/4\), with \(I\) the integral in the
+proof of Proposition~\ref{prop:j3stitch}, so \(g(12+)<3/8\).
+Every \(|t|\le 8/3\) produces no even eigenvalue outside \([-12,12]\).
+\end{proposition}
+
+\begin{proof}
+The pure adjacency annihilates \(\psi\) by Lemma~\ref{lem:sectors} or
+Lemma~\ref{lem:j3sectors}.
+The added edge sends one bit to the other.
+On \(\psi\) the two bits are opposite, so that exchange contributes \(-\psi\),
+and \(H=-A\) turns the minus into the eigenvalue \(+t\).
+An odd state that vanishes at \(c\) vanishes on both bits, so the added edge
+contributes nothing.
+
+The unitary map in the proof of Proposition~\ref{prop:cellpole} intertwines
+the pure Hamiltonian with \(-2A\).
+Both bits of an even state carry the same cell function, and the added edge
+multiplies the value of that function at \(c\) by \(-t\).
+The even operator is therefore \(-2A-t|c\rangle\langle c|\).
+For \(E\) outside the spectrum of \(-2A\),
+\[
+(E+2A+t|c\rangle\langle c|)\varphi=0
+\]
+if and only if \(\varphi=-t\,\varphi(c)\,(E+2A)^{-1}|c\rangle\).
+Evaluating at \(c\) yields \(g(E)=-1/t\), unless \(\varphi=0\).
+The odd eigenvalue \(t\) lies outside the even band precisely when \(|t|\)
+exceeds the edge.
+
+On \(J_2\), Proposition~\ref{prop:cellpole} and \eqref{eq:Gell} give
+\(\mathcal{G}(E)=1/(2E)+g(E)/2\), which is the displayed formula.
+For \(E>8\) every Bloch denominator \(E-\varepsilon(q)\) is positive and
+strictly decreasing, so \(g\) falls strictly from \(+\infty\) to \(0\).
+The shift \(q\mapsto q+(\pi,\pi)\) sends \(\varepsilon\) to \(-\varepsilon\), so
+\(g\) is odd.
+The value \(-1/t\) lies in \((0,\infty)\) exactly when \(t<0\), and then at
+one energy above \(8\).
+Oddness places the root below \(-8\) when \(t>0\).
+
+On \(J_3\) the same half-and-half splitting gives
+\(g(12+)=2\bigl(\mathcal{G}_3(12+)-1/24\bigr)=I/4\).
+The bound \(I<3/2\) yields \(g(12+)<3/8\).
+On \((12,\infty)\) the entry \(g\) falls strictly through \((0,g(12+))\).
+A root of \(g(E)=-1/t\) outside \([-12,12]\) therefore requires
+\(1/|t|<g(12+)\), and every \(|t|\le 8/3\) fails that inequality.
+\end{proof}
+
+The eigenvalue \(t\) is supported on two vertices.
+It remains an eigenstate when \(|t|\) lies inside the even band: the added
+edge preserves the odd summand, and the odd spectrum of the pure sheet is
+\(\{0\}\).
+
+A stitch of hopping \(t\) between two copies removes two kernel dimensions.
+On \(J_2\) it binds a pair next to both edges, and on \(J_3\) it binds nothing
+outside the band when \(|t|\le 48/11\).
+The edge inside one cell moves one flat mode from \(0\) to \(t\), and it
+binds at most one even eigenvalue, on the side opposite the sign of \(t\).
+
+On the \(L\)-torus the odd multiplicity of \(0\) drops by exactly \(1\).
+If some even zero mode is nonzero at \(c\), the even multiplicity of \(0\)
+also drops by exactly \(1\), for every \(t\neq 0\).
+A vector with \(-2A\varphi=t\,\varphi(c)\,|c\rangle\) pairs to zero against
+that mode, which forces \(\varphi(c)=0\) and then forces \(\varphi\) into the
+even kernel.
+The momentum \(0\) lies on every grid, so the even bottom equals the
+infinite-volume edge, and every \(t>0\) produces one even eigenvalue below
+that edge.
+The opposite edge lies on the grid only for even \(L\).
+When it is absent, a negative hopping can leave the finite band and still
+remain inside \((-8,8)\) on \(J_2\), or inside \((-12,12)\) on \(J_3\).
+When the edge momentum is present, the finite resolvent has a pole there,
+so an even eigenvalue sits outside the finite band.
+On \(J_2\) any limit of these eigenvalues along growing tori satisfies
+\(g(E)=-1/t\) and therefore stays outside \([-8,8]\).
+On \(J_3\), if \(1/|t|\ge g(12+)\), every such limit lies back in
+\([-12,12]\).
 
 \section{Codimension along a unitary orbit}
 \label{sec:codim}
