@@ -115,9 +115,12 @@ against the banked HIDDEN-0/HBR-0 runners, NOT fit to DIM-3-0 data):
    smoke's flips = 0/6144 REPRODUCES the banked value exactly (apparatus
    confirmed). The 1346 precedent is the battery total, dominated by the
    VMINUS-based GLOBAL sign pair (1276). Fixed: H-g runs the VMINUS
-   global pair (uniform + VMINUS shape, sign mode; banked L:vminus
-   analog) with the >100 gate; local-pair flip counts filed, never
-   gated. No remote legs on the global pair (banked L:vminus files none).
+   global pair (banked L:vminus analog) with the >100 gate; local-pair
+   flip counts filed, never gated. Background = campaign G-a packet
+   (sigma = L/6, k = 0.3 x, r0 = (L/4,L/2,L/2); uniform bg gives
+   flips = 0 since A/B localize on opposite sheets -- diagnosed in
+   smoke, packet restores 2882). No remote legs on the global pair
+   (banked L:vminus files none).
 
 Gating table (HBR-0 C0, frozen): sign/phase legs gate pmatch + E_ok +
 E_free + dQ + local + sodd + wave + diff + pot + pot_support;

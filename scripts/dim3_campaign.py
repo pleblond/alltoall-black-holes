@@ -968,7 +968,6 @@ def cmd_hidden(args):
         "phase": H.matched_pair(plus, d_r, "phase", math.pi / 2.0),
         "shape": H.matched_pair(plus, d_r, "shape", dip),
         "amp_raw": H.matched_pair(plus, d_r, "amplitude", 2.0),
-        "vminus": H.matched_pair(plus, vm, "sign"),
     }
     qraw = H.matched_pair(plus, d_r, "amplitude", 0.5)
     qm = H.qmatch_pair(qraw)
@@ -1060,9 +1059,19 @@ def cmd_hidden(args):
         "control": "HAMP-Q-excluded-with-cause",
     }
     # H-g VMINUS-based sign pair (banked L:vminus analog: global hidden
-    # pattern; banked precedent 1276 flips. No wave/diff/pot remote legs
-    # -- banked L:vminus files no remote checks on the global pair).
-    pv = pairs["vminus"]
+    # pattern on the campaign G-a packet background -- sigma=L/6, k=0.3
+    # along x, r0=(L/4,L/2,L/2): all G-a/POT-0 frozen parameters, no new
+    # choices. Uniform bg gives flips=0 (A/B localize on opposite
+    # sheets, no opposite-sign edges); packet bg restores the banked
+    # interference (smoke: 2882 flips, precedent 1276). No wave/diff/pot
+    # remote legs -- banked L:vminus files none on the global pair).
+    from bh_graph.ballistic import gaussian_packet as _gp
+    _pkt = np.asarray(_gp(sub["coarse"], order,
+                           (L / 4.0, L / 2.0, L / 2.0), (0.3, 0.0, 0.0),
+                           L / 6.0, periods=sub["periods"]),
+                      dtype=np.complex128)
+    _pkt /= np.linalg.norm(_pkt)
+    pv = H.matched_pair(_pkt, vm, "sign")
     va, vb = pv["psi_A"], pv["psi_B"]
     vpm = HBR.is_pair_pplus_ok(va, vb, pr)
     verep = HBR.pair_energy_report(va, vb, pv["psi_plus"],
