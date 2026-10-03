@@ -1351,6 +1351,153 @@ eigenvalues.
 On \(J_3\) that logarithm is absent, and the same absence persists at every
 positive distance between the two cells.
 
+\section{Any separation on one sheet}
+\label{sec:anysep}
+
+The logarithm is not special to adjacent cells.
+Fix a nonzero cell separation \(r=(r_1,r_2)\) and write
+\(\sigma(r)=(-1)^{r_1+r_2}\).
+
+\begin{proposition}
+\label{prop:anysep}
+For \(E>8\) the resolvent entry \(\Gamma_r(E)\) of one \(J_2\) copy between
+two cells separated by \(r\) is real and independent of the bits.
+As \(E\downarrow 8\),
+\[
+\mathcal{G}(E)-\sigma(r)\,\Gamma_r(E)
+\to\lambda_\infty(r),
+\]
+where
+\begin{equation}
+\label{eq:lamr}
+\lambda_\infty(r)
+=\frac{1}{16}
++\frac12\int_{[0,2\pi]^2}
+\frac{1-\sigma(r)\cos(q\cdot r)}{8-\varepsilon(q)}
+\,\frac{d^2q}{(2\pi)^2}
+\end{equation}
+and \(\varepsilon(q)=-4(\cos q_x+\cos q_y)\).
+The integrand extends to a bounded function on the torus, and
+\(\lambda_\infty(r)>1/16\).
+The other combination \(\mathcal{G}+\sigma(r)\,\Gamma_r\) tends to \(+\infty\).
+Both products \(\mathcal{G}(\mathcal{G}\pm\Gamma_r)\) tend to \(+\infty\) as
+\(E\downarrow 8\) and to \(0\) as \(E\to\infty\).
+For every hopping \(t\neq 0\), each of the equations
+\begin{equation}
+\label{eq:anysep}
+t^2\,\mathcal{G}(E)\bigl(\mathcal{G}(E)\pm\Gamma_r(E)\bigr)=1
+\end{equation}
+therefore has at least one root above \(8\).
+The set of those roots is invariant under \(E\mapsto -E\).
+Every such root approaches \(8\) as \(t\to 0\), and
+\begin{equation}
+\label{eq:rlog}
+\lim_{t\to 0}
+|t|\ln\frac{1}{E_{\mathrm{div}}(t)-8}
+=8\pi\sqrt{2},
+\qquad
+\lim_{t\to 0}
+t^2\ln\frac{1}{E_{\mathrm{canc}}(t)-8}
+=\frac{16\pi}{\lambda_\infty(r)},
+\end{equation}
+where \(E_{\mathrm{div}}\) is any root of the equation whose host factor is
+\(\mathcal{G}+\sigma(r)\Gamma_r\), and \(E_{\mathrm{canc}}\) is any root of
+the equation whose host factor is \(\mathcal{G}-\sigma(r)\Gamma_r\).
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:cellpole} gives
+\(\Gamma_r(E)=\tfrac12 R_r(E)\) for \(r\neq 0\), with
+\[
+R_r(E)
+=\int_{[0,2\pi]^2}
+\frac{\cos(q\cdot r)}{E-\varepsilon(q)}
+\,\frac{d^2q}{(2\pi)^2}.
+\]
+The sine term integrates to zero against an even denominator, so
+\(R_r\) is real.
+The diagonal \(R_0\) is the function \(g\) of Proposition~\ref{prop:rung},
+and \(\mathcal{G}=1/(2E)+R_0/2\).
+Hence
+\[
+\mathcal{G}-\sigma(r)\Gamma_r
+=\frac{1}{2E}
++\frac12\int
+\frac{1-\sigma(r)\cos(q\cdot r)}{E-\varepsilon(q)}
+\,\frac{d^2q}{(2\pi)^2}.
+\]
+The numerator is nonnegative, because
+\(|\sigma(r)\cos(q\cdot r)|\le 1\), and for \(r\neq 0\) it is not
+identically zero.
+As \(E\downarrow 8\) the integrand increases.
+At energy \(8\) the denominator vanishes at \(q=(\pi,\pi)\).
+Shift \(q=(\pi,\pi)+k\).
+Then \(\varepsilon=4(\cos k_x+\cos k_y)\) and
+\(1-\sigma(r)\cos(q\cdot r)=1-\cos(k\cdot r)\),
+while
+\[
+8-\varepsilon(q)
+=8\sin^2\frac{k_x}{2}+8\sin^2\frac{k_y}{2}.
+\]
+The numerator and the denominator are both quadratic at \(k=0\), so the
+singularity is removable and the extended integrand is bounded.
+Monotone convergence passes the limit inside the integral and produces
+\eqref{eq:lamr}.
+The integral is strictly positive, so \(\lambda_\infty(r)>1/16\).
+The diagonal \(\mathcal{G}\) tends to \(+\infty\) by the logarithm in the
+proof of Proposition~\ref{prop:stitch}, and therefore
+\[
+\mathcal{G}+\sigma(r)\Gamma_r
+=2\mathcal{G}-\bigl(\mathcal{G}-\sigma(r)\Gamma_r\bigr)
+\to+\infty.
+\]
+Both products with \(\mathcal{G}\) tend to \(+\infty\).
+As \(E\to\infty\), \(R_0=1/E+O(1/E^2)\).
+For \(r\neq 0\) the integral of \(\cos(q\cdot r)\) over the torus vanishes, so
+\(R_r=O(1/E^2)\).
+Both combinations are asymptotic to \(1/E\), and the products tend to \(0\)
+from above.
+
+Each product is continuous on \((8,\infty)\).
+For each fixed \(t\neq 0\) it is larger than \(1/t^2\) sufficiently near
+\(8\) and smaller than \(1/t^2\) for large \(E\), so each equation has at
+least one root in \((8,\infty)\).
+On any interval \([8+\delta,\infty)\) the product is bounded, because it
+tends to \(0\) at infinity.
+Thus every root tends to \(8\) as \(t\to 0\).
+
+For the symmetry, shift the momentum in \(R_r(-E)\) by \((\pi,\pi)\).
+The dispersion changes sign and the cosine acquires a factor
+\(\sigma(r)\), which gives
+\(R_r(-E)=-\sigma(r)\,R_r(E)\).
+Therefore \(\Gamma_r(-E)=-\sigma(r)\,\Gamma_r(E)\).
+With \(\mathcal{G}\) odd, the two products at \(-E\) are the two products
+\(\mathcal{G}(\mathcal{G}\pm\sigma(r)\Gamma_r)\) at \(E\).
+The set of roots is invariant under \(E\mapsto -E\).
+
+For the logarithms, write \(L=\ln(1/\delta)\) at \(E=8+\delta\) and use the
+expansion of \(\mathcal{G}\) in the proof of Proposition~\ref{prop:stitch}.
+The cancelled combination differs from \(\lambda_\infty(r)\) by a quantity
+that tends to \(0\), and
+\[
+\mathcal{G}+\sigma(r)\Gamma_r
+=\frac{L}{8\pi}+O(1).
+\]
+The divergent product is \(L^2/(128\pi^2)\) times \(1+o(1)\), and the
+cancelled product is \(\lambda_\infty(r)\,L/(16\pi)\) times \(1+o(1)\).
+Matching these with \(1/t^2\) gives \eqref{eq:rlog}.
+\end{proof}
+
+For a nearest neighbour, \(\sigma=-1\) and \(\lambda_\infty=1/8\), so
+\eqref{eq:rlog} reduces to \eqref{eq:adjlog}, and
+Proposition~\ref{prop:adj} supplies the missing uniqueness.
+At every other separation the same leading logarithm forces at least four
+eigenvalues outside \([-8,8]\), counted in \(\pm\) pairs.
+The coefficient \(8\pi\sqrt{2}\) does not depend on \(r\).
+The cancelled channel does: its logarithm is \(16\pi/\lambda_\infty(r)\).
+On \(J_3\) the threshold of Proposition~\ref{prop:adj} already applies at
+every positive separation.
+
 \section{Codimension along a unitary orbit}
 \label{sec:codim}
 
