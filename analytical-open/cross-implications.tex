@@ -1050,9 +1050,121 @@ the initial derivative \(|\psi_i|^2-|\psi_j|^2\).
 The pair \((\dot B,\dot{\mathcal{J}})\) is driven by the wedge data with
 the roles exchanged: wedge currents move the bond, wedge bonds and the
 population imbalance move the current.
-On an isolated edge the motion is pure angle at fixed radius.
-The frequency \(2\) is the gap between the eigenvalues \(-1\) and \(+1\)
-of \(H\) on \(K_2\).
+
+\begin{proposition}
+\label{prop:Bddot}
+Between events, for every pair of vertices \(i,j\),
+\begin{align}
+\ddot B_{ij}
+&=-\sum_r(A^2)_{jr}B_{ir}
+-\sum_r(A^2)_{ir}B_{jr}
++2\sum_{m\sim i}\sum_{n\sim j}B_{mn},
+\label{eq:Bddot}\\
+\ddot{\mathcal{J}}_{ij}
+&=-\sum_r(A^2)_{jr}\mathcal{J}_{ir}
++\sum_r(A^2)_{ir}\mathcal{J}_{jr}
++2\sum_{m\sim i}\sum_{n\sim j}\mathcal{J}_{mn}.
+\label{eq:Jddot}
+\end{align}
+Here \(B_{rr}=|\psi_r|^2\), and \((A^2)_{ab}\) is the number of walks of
+length \(2\) from \(a\) to \(b\).
+On an isolated edge, \(\ddot B_{ij}=0\) and
+\(\ddot{\mathcal{J}}_{ij}=-4\mathcal{J}_{ij}\).
+\end{proposition}
+
+\begin{proof}
+Since \(A\) is constant between events and \(\partial_t\psi=iA\psi\),
+one has \(\partial_t(A\psi)=iA^2\psi\).
+Differentiate
+\(z=\psi_i^*(A\psi)_j-(A\psi)_i^*\psi_j\).
+With \((\partial_t\psi_i)^*=-i(A\psi)_i^*\) and
+\((\partial_t(A\psi)_i)^*=-i(A^2\psi)_i^*\),
+\[
+\dot z
+=i\Bigl(
+\psi_i^*(A^2\psi)_j
++(A^2\psi)_i^*\psi_j
+-2(A\psi)_i^*(A\psi)_j
+\Bigr).
+\]
+The product rule of Proposition~\ref{prop:Bdot} gives
+\(\partial_t(\psi_i^*\psi_j)=iz\), so
+\(\partial_t^2(\psi_i^*\psi_j)=i\dot z=-w\) with \(w\) the parenthesis above.
+Thus \(\ddot B_{ij}=-\Re w\) and \(\ddot{\mathcal{J}}_{ij}=-\Im w\).
+The matrix element \((A^2\psi)_j=\sum_r(A^2)_{jr}\psi_r\) has
+\((A^2)_{jr}\) equal to the number of walks of length \(2\) from \(j\) to \(r\),
+and
+\[
+\Re w
+=\sum_r(A^2)_{jr}B_{ir}
++\sum_r(A^2)_{ir}B_{jr}
+-2\sum_{m\sim i}\sum_{n\sim j}B_{mn},
+\]
+which is the negative of \eqref{eq:Bddot}.
+For the current, \(\Im\bigl((A^2\psi)_i^*\psi_j\bigr)=-\sum_r(A^2)_{ir}\mathcal{J}_{jr}\),
+so
+\[
+\Im w
+=\sum_r(A^2)_{jr}\mathcal{J}_{ir}
+-\sum_r(A^2)_{ir}\mathcal{J}_{jr}
+-2\sum_{m\sim i}\sum_{n\sim j}\mathcal{J}_{mn},
+\]
+and \(-\Im w\) is \eqref{eq:Jddot}.
+On \(K_2\), \(A^2=I\) and each double sum reduces to the single entry
+\(B_{ij}\) or \(\mathcal{J}_{ji}=-\mathcal{J}_{ij}\).
+The two formulae collapse to \(0\) and \(-4\mathcal{J}_{ij}\).
+\end{proof}
+
+A state with every current equal to zero has \(\dot B_{ij}=0\) for every
+pair, by \eqref{eq:Bdot}, and has \(\partial_t(B_{ij}^2+\mathcal{J}_{ij}^2)=0\)
+by Proposition~\ref{prop:radius} below.
+The acceleration \eqref{eq:Bddot} is a combination of bonds.
+It vanishes for every state on an isolated edge, and it need not vanish
+on any larger graph.
+A real wave function is the example: every current is zero, and
+\(\ddot B_{ij}\) is still the walk combination of the bonds.
+
+\begin{proposition}
+\label{prop:radius}
+For every pair,
+\(B_{ij}^2+\mathcal{J}_{ij}^2=|\psi_i|^2|\psi_j|^2\) by Lemma~\ref{lem:BJ}.
+Between events the continuity equation
+\(\partial_t|\psi_k|^2=-\sum_{\ell\sim k}2\mathcal{J}_{k\ell}\) therefore gives
+\begin{equation}
+\label{eq:raddot}
+\partial_t\bigl(B_{ij}^2+\mathcal{J}_{ij}^2\bigr)
+=-2|\psi_j|^2\sum_{\ell\sim i}\mathcal{J}_{i\ell}
+-2|\psi_i|^2\sum_{\ell\sim j}\mathcal{J}_{j\ell}.
+\end{equation}
+If \(ij\) is an edge, the internal current may be separated:
+\begin{equation}
+\label{eq:raddot-edge}
+\partial_t\bigl(B_{ij}^2+\mathcal{J}_{ij}^2\bigr)
+=2\mathcal{J}_{ij}\bigl(|\psi_i|^2-|\psi_j|^2\bigr)
+-2|\psi_j|^2\sum_{m\in N(i)\setminus\{j\}}\mathcal{J}_{im}
+-2|\psi_i|^2\sum_{n\in N(j)\setminus\{i\}}\mathcal{J}_{jn}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Differentiate the product of the endpoint norms and substitute the
+continuity equation.
+On an edge, \(\mathcal{J}_{ji}=-\mathcal{J}_{ij}\), so the two internal
+summands combine into \(2\mathcal{J}_{ij}(|\psi_i|^2-|\psi_j|^2)\).
+\end{proof}
+
+On an isolated edge the wedge sums in \eqref{eq:raddot-edge} are empty.
+With \(\dot B_{ij}=0\) and
+\(\dot{\mathcal{J}}_{ij}=|\psi_i|^2-|\psi_j|^2\), the product moves as
+\(2\mathcal{J}_{ij}\dot{\mathcal{J}}_{ij}\).
+The same edge fixes the fibre radius.
+Indeed \(\partial_t s=is\) and \(\partial_t d=-id\), so \(|s|\) and \(|d|\)
+are constant, and \(B=(|s|^2-|d|^2)/4\) is constant with them.
+The motion is the relative angle of \(d\) against \(s\), at the rate \(2\)
+equal to the gap between the eigenvalues \(-1\) and \(+1\) of \(H\) on \(K_2\).
+The product \(|\psi_i|^2|\psi_j|^2\) follows that angle.
+It is constant only when \(\mathcal{J}_{ij}=0\) or
+\(|\psi_i|^2=|\psi_j|^2\).
 
 \section{Separable symbols, to every order}
 \label{sec:sep}
