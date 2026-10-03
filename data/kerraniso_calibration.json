@@ -1,0 +1,96 @@
+{
+ "provenance": "bh_graph.kerraniso.calibration_curve; imposed bridge proxy, exact OR, uniform measure",
+ "curves": [
+  {
+   "name": "N90",
+   "params": {
+    "per_shell": 15,
+    "n_shells": 6,
+    "n_graphs": 16,
+    "seed0": 100,
+    "max_per_zone": 4
+   },
+   "slope": -0.1426548213345341,
+   "points": [
+    {
+     "eps_imposed": -0.9,
+     "eps_measured": 0.3456657373279848,
+     "sem": 0.0,
+     "n_ok": 1,
+     "bridge_polar_frac": 0.06891025641025642
+    },
+    {
+     "eps_imposed": -0.5,
+     "eps_measured": 0.05394468618003178,
+     "sem": 0.025121891422889585,
+     "n_ok": 15,
+     "bridge_polar_frac": 0.30528846153846156
+    },
+    {
+     "eps_imposed": 0.0,
+     "eps_measured": 0.00552445918898695,
+     "sem": 0.012878867575834072,
+     "n_ok": 16,
+     "bridge_polar_frac": 0.5392628205128205
+    },
+    {
+     "eps_imposed": 0.5,
+     "eps_measured": -0.03660292702686997,
+     "sem": 0.023173279747491785,
+     "n_ok": 16,
+     "bridge_polar_frac": 0.7003205128205128
+    },
+    {
+     "eps_imposed": 1.0,
+     "eps_measured": -0.05318701763264049,
+     "sem": 0.03701567358729874,
+     "n_ok": 13,
+     "bridge_polar_frac": 0.8068910256410257
+    },
+    {
+     "eps_imposed": 1.5,
+     "eps_measured": -0.07782807314172879,
+     "sem": 0.06378998658845704,
+     "n_ok": 5,
+     "bridge_polar_frac": 0.9094551282051282
+    }
+   ],
+   "elapsed_s": 6.1
+  },
+  {
+   "name": "N160",
+   "params": {
+    "per_shell": 20,
+    "n_shells": 8,
+    "n_graphs": 8,
+    "seed0": 200,
+    "max_per_zone": 3
+   },
+   "slope": -0.09126945840626866,
+   "points": [
+    {
+     "eps_imposed": -0.5,
+     "eps_measured": 0.04713188302920342,
+     "sem": 0.02501301241560287,
+     "n_ok": 8,
+     "bridge_polar_frac": 0.3171875
+    },
+    {
+     "eps_imposed": 0.0,
+     "eps_measured": 0.01407725121156687,
+     "sem": 0.010269468180380732,
+     "n_ok": 8,
+     "bridge_polar_frac": 0.51171875
+    },
+    {
+     "eps_imposed": 0.5,
+     "eps_measured": -0.044137575377065245,
+     "sem": 0.019369414408146886,
+     "n_ok": 8,
+     "bridge_polar_frac": 0.6921875
+    }
+   ],
+   "elapsed_s": 3.1
+  }
+ ]
+}

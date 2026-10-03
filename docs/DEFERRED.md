@@ -402,6 +402,23 @@ level; factor ~2 resp. ~10% by parametrization, LIGO-P2500402).
 GW250114 (LIGO-P2500421, SNR 80 area law + Kerr ringdown) and GW241011 are
 currently consistent by construction, not passed predictions.
 
+**Update (Route A calibration):** imposed-anisotropy map shipped (`kerraniso`,
+`data/kerraniso_calibration.json`, `docs/kerr-multipoles-exploration.md` §4b):
+latitude-labeled shells + zonal OR give a monotone imposed→measured map with
+negative slope (~−0.1, dilution: more bridges → smaller |κ|), zero at zero,
+weak response (|ε_OR| ≲ 0.08 before zone starvation). Imposed proxy only —
+spin-from-dynamics still open; close criterion unchanged.
+
+**Update (parallel run §4c):** three lines + follow-up. (1) Completeness
+wiring (`kerrcomplete`): stronger response (slope +0.19) but OPPOSITE sign —
+completeness deepens |κ|. (2) P2 estimator (`kerrp2`): full-range readout
+exposed that index-half zones are HEMISPHERIC (corr −0.08 to P2), not
+quadrupolar — §4b slopes reframed as hemispheric-channel. (3) Route B
+(`kerrchiral`): uniform chiral bias gives drift exponent −0.6 ± 0.1, not
+Lense–Thirring −3. Follow-up: true quadrupole channel (P2-weighted
+imposition + B, `data/kerrp2_calibration.json`) gives the 2×2 sign table —
+wirings oppose in both channels (bridges −/−, completeness +/+).
+
 ## D3 — κ -> c2 map (2PN) — ongoing
 
 **Missing:** quantitative Ollivier-Ricci `κ` to 2PN coefficient `c2` map.

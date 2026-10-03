@@ -21,6 +21,37 @@ from bh_graph.evaporation_unitary import (
 from bh_graph.qec import recovery_error, recovery_fidelity, recovery_threshold, is_recoverable
 from bh_graph.robustness import log_slope_vs_p, quadratic_coefficient, qes_phase_boundary, all_quadratic
 from bh_graph.kerr import kerr_newman_area, kerr_newman_k, spin_budget_fraction, is_subextremal, is_extremal
+from bh_graph.kerrquad import (
+    kerr_multipole, kerr_quadrupole, kerr_octupole_current,
+    quadrupole_from_kappa, kappa_from_quadrupole, delta_q_from_kappa,
+    quadrupole_with_delta_q, is_quadrupole_ruled_out, is_qnm_deviation_ruled_out,
+    kerr_isco_radius, lense_thirring_omega,
+    toy_delta_q_finite_k, toy_delta_q_eint, toy_oblate_shell_quadrupole,
+    required_anisotropy_for_kerr, toy_kerr_deviation_summary,
+    GW241011_DELTA_Q_WIRE, GW250114_QNM_TOLERANCES, KERR_KAPPA, is_valid_spin,
+)
+from bh_graph.kerraniso import (
+    assign_latitude_labels, is_valid_bridge_eps, gradient_shell_graph_latitude,
+    edge_zone, bridge_polar_fraction, shell_kappa_profile_by_zone,
+    zonal_anisotropy, measure_anisotropy, calibration_curve,
+    is_anisotropy_detected, POLAR, EQUATORIAL, MIXED,
+)
+from bh_graph.kerrcomplete import (
+    is_valid_complete_delta, gradient_shell_graph_completeness,
+    zone_intra_density, measure_completeness_anisotropy, completeness_curve,
+    gradient_shell_graph_p2complete, caps_band_degree_gap,
+    measure_p2complete_response, p2complete_curve,
+)
+from bh_graph.kerrp2 import (
+    p2_legendre, attach_latitudes, edge_p2, radial_edges_with_kappa,
+    p2_amplitude, measure_p2_anisotropy, p2_curve, compare_estimators,
+    p2_node_weights, gradient_shell_graph_p2bridge, bridge_p2_mean,
+    measure_p2_response, p2_response_curve,
+)
+from bh_graph.kerrchiral import (
+    is_valid_bias, chiral_weights, transition_probs, equatorial_ring,
+    azimuthal_drift, drift_profile, fit_drift_exponent, bias_response,
+)
 from bh_graph.haar import (
     harmonic, page_entropy_exact_nats, page_entropy_exact_bits, page_curve_exact_bits,
     page_deficit_at_turnover, haar_state, subsystem_entropy_bits, haar_entropy_samples,
@@ -345,6 +376,27 @@ __all__ = [
     "recovery_error", "recovery_fidelity", "recovery_threshold", "is_recoverable",
     "log_slope_vs_p", "quadratic_coefficient", "qes_phase_boundary", "all_quadratic",
     "kerr_newman_area", "kerr_newman_k", "spin_budget_fraction", "is_subextremal", "is_extremal",
+    "kerr_multipole", "kerr_quadrupole", "kerr_octupole_current",
+    "quadrupole_from_kappa", "kappa_from_quadrupole", "delta_q_from_kappa",
+    "quadrupole_with_delta_q", "is_quadrupole_ruled_out", "is_qnm_deviation_ruled_out",
+    "kerr_isco_radius", "lense_thirring_omega",
+    "toy_delta_q_finite_k", "toy_delta_q_eint", "toy_oblate_shell_quadrupole",
+    "required_anisotropy_for_kerr", "toy_kerr_deviation_summary",
+    "GW241011_DELTA_Q_WIRE", "GW250114_QNM_TOLERANCES", "KERR_KAPPA", "is_valid_spin",
+    "assign_latitude_labels", "is_valid_bridge_eps", "gradient_shell_graph_latitude",
+    "edge_zone", "bridge_polar_fraction", "shell_kappa_profile_by_zone",
+    "zonal_anisotropy", "measure_anisotropy", "calibration_curve",
+    "is_anisotropy_detected", "POLAR", "EQUATORIAL", "MIXED",
+    "is_valid_complete_delta", "gradient_shell_graph_completeness",
+    "zone_intra_density", "measure_completeness_anisotropy", "completeness_curve",
+    "gradient_shell_graph_p2complete", "caps_band_degree_gap",
+    "measure_p2complete_response", "p2complete_curve",
+    "p2_legendre", "attach_latitudes", "edge_p2", "radial_edges_with_kappa",
+    "p2_amplitude", "measure_p2_anisotropy", "p2_curve", "compare_estimators",
+    "p2_node_weights", "gradient_shell_graph_p2bridge", "bridge_p2_mean",
+    "measure_p2_response", "p2_response_curve",
+    "is_valid_bias", "chiral_weights", "transition_probs", "equatorial_ring",
+    "azimuthal_drift", "drift_profile", "fit_drift_exponent", "bias_response",
     "harmonic", "page_entropy_exact_nats", "page_entropy_exact_bits", "page_curve_exact_bits",
     "page_deficit_at_turnover", "haar_state", "subsystem_entropy_bits", "haar_entropy_samples",
     "psi_family", "rho_ab", "concurrence_2qubit", "one_tangle", "interior_pairwise_c2",
