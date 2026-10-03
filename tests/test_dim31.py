@@ -1,0 +1,354 @@
+"""DIM-3-1 estimator tests: synthetic ONLY (no graphs/coords/J3 data).
+
+Covers bh_graph/dim31.py: arrival-gamma protocol, d = alpha*gamma,
+local-ball d* ladder + refusal, Yukawa static dimension, transfer
+lookup, and the C3 firewall audit (no substrate imports).
+
+Test-local bars below are SYNTHETIC-ONLY fixtures for noiseless
+Euclidean point sets. Campaign bars are frozen from the operational
+control battery in docs/dim31-freeze.md and are never imported here.
+"""
+
+import ast
+import os
+
+import numpy as np
+import pytest
+
+from bh_graph import dim31
+
+SYN_BARS = {1: 0.01, 2: 0.02, 3: 0.05}
+
+
+def _D_of(X):
+    d = np.asarray(X, dtype=float)[:, None, :] \
+        - np.asarray(X, dtype=float)[None, :, :]
+    return np.sqrt((d * d).sum(-1))
+
+
+def _line(n=25, seed=0):
+    rng = np.random.default_rng(seed)
+    return np.sort(rng.random(n)) * 10.0
+
+
+def _grid2d(n_side=6):
+    gx, gy = np.meshgrid(np.arange(n_side), np.arange(n_side))
+    return np.stack([gx.ravel(), gy.ravel()], 1).astype(float)
+
+
+def _grid3d(n_side=4):
+    gx, gy, gz = np.meshgrid(np.arange(n_side), np.arange(n_side),
+                             np.arange(n_side))
+    return np.stack([gx.ravel(), gy.ravel(), gz.ravel()], 1).astype(float)
+
+
+# ---------------------------------------------------------------------------
+# C3 firewall audit: dim31.py must not touch substrate machinery.
+# ---------------------------------------------------------------------------
+
+FORBIDDEN_TOKENS = (
+    "networkx", "bh_graph.dim3", "bh_graph.formation",
+    "bh_graph.ballistic", "bh_graph.graphs", "bh_graph.continuum",
+    "coords", "j3_", "quotient",
+)
+
+
+def test_dim31_firewall_no_substrate_imports():
+    path = os.path.join(os.path.dirname(__file__), "..", "src",
+                        "bh_graph", "dim31.py")
+    with open(path) as f:
+        src = f.read()
+    # Frozen-API dict-key access (classical_mds result) is not geometry.
+    src = src.replace('["coords"]', "")
+    for tok in FORBIDDEN_TOKENS:
+        assert tok not in src, f"forbidden token in dim31.py: {tok}"
+    tree = ast.parse(src)
+    mods = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            mods.update(a.name for a in node.names)
+        elif isinstance(node, ast.ImportFrom):
+            mods.add(node.module or "")
+    allowed = {"numpy", "numpy.linalg", "bh_graph.obs0", "bh_graph.obs1",
+               "bh_graph.obs0r", "__future__"}
+    assert mods <= allowed, f"unexpected imports: {mods - allowed}"
+
+
+# ---------------------------------------------------------------------------
+# Arrival-gamma protocol.
+# ---------------------------------------------------------------------------
+
+def test_arrival_gamma_recovers_power_law():
+    rng = np.random.default_rng(1)
+    radii, masses = [], []
+    for r in range(1, 21):
+        for _ in range(30):
+            radii.append(float(r))
+            masses.append(float(r) ** 1.5 * (1.0 + 0.02 * rng.normal()))
+    out = dim31.arrival_gamma(radii, masses, D=44)
+    assert out["ok"] is True
+    assert out["gamma"] == pytest.approx(1.5, abs=0.05)
+    assert out["r2"] > 0.99
+    assert out["window"] == [4, 21]
+
+
+def test_arrival_gamma_unmeasurable_small_cell():
+    radii = [2.0, 2.0, 3.0, 3.0]
+    masses = [0.05, 0.05, 0.05, 0.05]
+    out = dim31.arrival_gamma(radii, masses, D=8)
+    assert out["ok"] is False
+
+
+def test_arrival_gamma_grid_pinning_guard():
+    # All medians pinned at one DT step: bins dropped -> UNMEASURABLE.
+    radii, masses = [], []
+    for r in range(1, 25):
+        for _ in range(10):
+            radii.append(float(r))
+            masses.append(0.05)
+    out = dim31.arrival_gamma(radii, masses, D=52)
+    assert out["ok"] is False
+
+
+def test_arrival_gamma_low_r2_refuses():
+    rng = np.random.default_rng(2)
+    radii, masses = [], []
+    for r in range(1, 25):
+        for _ in range(10):
+            radii.append(float(r))
+            masses.append(float(rng.uniform(1.0, 5.0)))
+    out = dim31.arrival_gamma(radii, masses, D=52)
+    assert out["ok"] is False
+
+
+# ---------------------------------------------------------------------------
+# d = alpha * gamma.
+# ---------------------------------------------------------------------------
+
+def test_arrival_dimension_product():
+    g = {"gamma": 1.5, "r2": 0.99, "n": 10, "ok": True}
+    out = dim31.arrival_dimension(2.0, True, g)
+    assert out["ok"] is True
+    assert out["d"] == pytest.approx(3.0)
+
+
+def test_arrival_dimension_invalid_inputs():
+    g = {"gamma": 1.5, "r2": 0.99, "n": 10, "ok": True}
+    assert dim31.arrival_dimension(float("nan"), True, g)["ok"] is False
+    assert dim31.arrival_dimension(2.0, False, g)["ok"] is False
+    assert dim31.arrival_dimension(2.0, True, {"ok": False})["ok"] is False
+    bad = dict(g, gamma=-1.0)
+    assert dim31.arrival_dimension(2.0, True, bad)["ok"] is False
+
+
+# ---------------------------------------------------------------------------
+# Local-ball d* ladder.
+# ---------------------------------------------------------------------------
+
+def test_local_dstar_line_claims_1():
+    D = _D_of(_line().reshape(-1, 1))
+    out = dim31.local_dstar(D, SYN_BARS)
+    assert out["pass"] is True and out["dstar"] == 1
+
+
+def test_local_dstar_grid2d_claims_2():
+    D = _D_of(_grid2d())
+    out = dim31.local_dstar(D, SYN_BARS)
+    assert out["pass"] is True and out["dstar"] == 2
+
+
+def test_local_dstar_grid3d_claims_3():
+    D = _D_of(_grid3d())
+    out = dim31.local_dstar(D, SYN_BARS)
+    assert out["pass"] is True and out["dstar"] == 3
+
+
+def test_local_dstar_high_dim_refuses():
+    rng = np.random.default_rng(3)
+    D = _D_of(rng.random((40, 10)))
+    out = dim31.local_dstar(D, SYN_BARS)
+    assert out["pass"] is False and out["dstar"] is None
+
+
+def test_local_dstar_invalid_bars_refuses():
+    D = _D_of(_grid2d())
+    assert dim31.local_dstar(D, {1: 0.01})["pass"] is False
+    assert dim31.local_dstar(D, {1: -1.0, 2: 0.02, 3: 0.05})["pass"] \
+        is False
+
+
+def test_is_bars_ok():
+    assert dim31.is_bars_ok(SYN_BARS) is True
+    assert dim31.is_bars_ok({1: 0.01, 2: 0.02}) is False
+    assert dim31.is_bars_ok(None) is False
+
+
+def test_dim31_blind_firewall_audit():
+    # The blind analyzer must never touch hidden geometry (import +
+    # token scan, same firewall pattern as OBS-1 C3 / DIM-3-0).
+    import pathlib
+
+    src = pathlib.Path("scripts/dim31_blind.py").read_text()
+    for tok in ("dim3_reveal", "tag_graph", "j3_torus", "cubic_torus",
+                "coords", "formation", "hidden", "seal", "quotient",
+                "sheet", "symmetric_embedding", "dim31_campaign",
+                "dim31_analyze"):
+        assert tok not in src, tok
+    tree = ast.parse(src)
+    imported = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ImportFrom):
+            imported.add(node.module or "")
+        elif isinstance(node, ast.Import):
+            imported.update(a.name for a in node.names)
+    assert not ({"bh_graph.dim3_reveal", "bh_graph.dim3",
+                 "dim3_campaign", "dim31_campaign",
+                 "dim31_analyze"} & imported)
+
+
+# ---------------------------------------------------------------------------
+# Static Yukawa dimension.
+# ---------------------------------------------------------------------------
+
+def test_static_dimension_3d():
+    rs = np.arange(2, 11, dtype=float)
+    phis = rs ** -1.0 * np.exp(-rs / 2.0)
+    out = dim31.static_dimension(rs, phis)
+    assert out["ok"] is True
+    assert out["d"] == pytest.approx(3.0, abs=0.05)
+    assert out["xi"] == pytest.approx(2.0, abs=0.05)
+
+
+def test_static_dimension_2d():
+    rs = np.arange(2, 11, dtype=float)
+    phis = rs ** -0.5 * np.exp(-rs / 2.0)
+    out = dim31.static_dimension(rs, phis)
+    assert out["ok"] is True
+    assert out["d"] == pytest.approx(2.0, abs=0.05)
+
+
+def test_static_dimension_garbage_refuses():
+    rs = np.arange(2, 11, dtype=float)
+    out = dim31.static_dimension(rs, np.zeros_like(rs))
+    assert out["ok"] is False
+    out = dim31.static_dimension([2.0, 3.0], [1.0, 0.5])
+    assert out["ok"] is False
+
+
+# ---------------------------------------------------------------------------
+# Transfer helpers.
+# ---------------------------------------------------------------------------
+
+def test_transfer_lookup():
+    tab = {"by_L": {12: 1.5, 16: 1.4}, "pooled": 1.45}
+    assert dim31.transfer_lookup(tab, 16) == {"value": 1.4,
+                                             "source": "L16", "ok": True}
+    assert dim31.transfer_lookup(tab, 24) == {"value": 1.45,
+                                             "source": "pooled", "ok": True}
+    assert dim31.transfer_lookup({}, 12)["ok"] is False
+
+
+def test_is_transfer_valid():
+    assert dim31.is_transfer_valid(0.1, 0.2) is True
+    assert dim31.is_transfer_valid(0.3, 0.2) is False
+    assert dim31.is_transfer_valid(float("nan"), 0.2) is False
+
+
+# ---------------------------------------------------------------------------
+# Seal script (synthetic fixtures only).
+# ---------------------------------------------------------------------------
+
+def test_seal_script(tmp_path):
+    import json
+    import subprocess
+    import sys
+
+    cells = {str(c): {"sets": {"0": {}}} for c in range(17)}
+    blind = tmp_path / "blind.json"
+    blind.write_text(json.dumps({"cells": cells}))
+    freeze_ok = tmp_path / "freeze_ok.json"
+    freeze_ok.write_text(json.dumps({"debt": [], "bars": {}}))
+    seal = tmp_path / "seal.json"
+    repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    r = subprocess.run(
+        [sys.executable, os.path.join(repo, "scripts", "dim31_seal.py"),
+         "--blind", str(blind), "--freeze", str(freeze_ok),
+         "--out", str(seal)],
+        capture_output=True, text=True, cwd=repo, check=False)
+    assert r.returncode == 0, r.stderr
+    rec = json.loads(seal.read_text())
+    assert len(rec["blind_sha256"]) == 64
+    assert len(rec["freeze_sha256"]) == 64
+    assert rec["cells"] == [str(c) for c in range(17)]
+    # Debt freeze must refuse.
+    freeze_bad = tmp_path / "freeze_bad.json"
+    freeze_bad.write_text(json.dumps({"debt": ["x"], "bars": {}}))
+    r = subprocess.run(
+        [sys.executable, os.path.join(repo, "scripts", "dim31_seal.py"),
+         "--blind", str(blind), "--freeze", str(freeze_bad),
+         "--out", str(tmp_path / "seal2.json")],
+        capture_output=True, text=True, cwd=repo, check=False)
+    assert r.returncode != 0
+    # Blind missing cells must refuse.
+    blind_short = tmp_path / "blind_short.json"
+    blind_short.write_text(json.dumps({"cells": {"0": {}}}))
+    r = subprocess.run(
+        [sys.executable, os.path.join(repo, "scripts", "dim31_seal.py"),
+         "--blind", str(blind_short), "--freeze", str(freeze_ok),
+         "--out", str(tmp_path / "seal3.json")],
+        capture_output=True, text=True, cwd=repo, check=False)
+    assert r.returncode != 0
+
+
+def test_load_bars_int_keys(tmp_path):
+    import json
+    import sys
+    sys.path.insert(0, os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "scripts"))
+    import dim31_blind
+    p = tmp_path / "freeze.json"
+    p.write_text(json.dumps({"bars": {"D": {"1": 0.01, "2": 0.02,
+                                            "3": 0.05}}}))
+    bars = dim31_blind.load_bars(str(p))
+    assert bars == {"D": {1: 0.01, 2: 0.02, 3: 0.05}}
+    assert dim31.is_bars_ok(bars["D"]) is True
+
+
+# ---------------------------------------------------------------------------
+# Static regime apparatus (Amendment-3 goldens, hand-verified).
+# ---------------------------------------------------------------------------
+
+def test_static_delta_star_rule():
+    for fam, m in dim31.STATIC_MASS.items():
+        dkey = dim31.STATIC_DELTA_STAR[fam]
+        assert abs(float(dkey) - (m / 2.0) ** 2) < 1e-9
+
+
+def test_static_regime_window_goldens():
+    W = dim31.static_regime_window
+    assert W("cb", 20, 30, 0.25) == (4, 8)
+    assert W("cb", 24, 36, 0.25) == (4, 11)
+    assert W("cb", 12, 18, 0.25) is None
+    assert W("cb", 16, 24, 0.25) is None
+    assert W("sq", 32, 32, 0.25) == (4, 14)
+    assert W("sq", 48, 48, 0.25) == (4, 22)
+    assert W("j2", 28, 28, 0.5) == (4, 12)
+    assert W("j2", 42, 42, 0.5) == (4, 19)
+    assert W("rg", 256, 128, 0.25) == (2, 62)
+    assert W("ex", None, 4, 0.5) is None
+    assert W("j3", 20, 30, 0.5) == (4, 8)
+    assert W("j3", 24, 36, 0.5) == (4, 11)
+    assert W("j3", 16, 24, 0.5) is None
+
+
+def test_static_regime_fit_xi_gate():
+    rs = np.arange(4, 12, dtype=float)
+    good = rs ** -1.0 * np.exp(-rs / 2.0)
+    out = dim31.static_regime_fit(rs, good, 0.25, 1.0)
+    assert out["ok"] is True
+    assert out["d"] == pytest.approx(3.0, abs=0.05)
+    bad_xi = rs ** -1.0 * np.exp(-rs / 5.0)
+    out = dim31.static_regime_fit(rs, bad_xi, 0.25, 1.0)
+    assert out["ok"] is False
+    assert "xi-gate" in out["reason"]
