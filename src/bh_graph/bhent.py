@@ -450,8 +450,9 @@ def _connected_mask_small(bits, n, b):
         I[on, i, j] = True
         I[on, j, i] = True
     for _ in range(n):
-        reached = reached | (I.astype(np.int64)
-                             @ reached.astype(np.int64) > 0)
+        step = (I.astype(np.int64)
+                @ reached.astype(np.int64)[..., :, None])[..., 0] > 0
+        reached = reached | step
     return reached.min(axis=1)
 
 

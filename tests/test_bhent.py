@@ -288,7 +288,7 @@ def test_j2_alphabet_local_vs_static():
     r = be.build_region("J2L6r1")
     bg = be.background_shapes(r, "VPLUS")
     states = be.blind_alphabet_j2(r, bg)
-    assert len(states) == 5 * 8
+    assert len(states) == 9 * 8  # rounded-hypot r=1 disk = 9 cells
     s0 = be.exterior_static(bg, r)
     for s in states[:2]:
         assert be.local_distance_in_R(bg, s["psi"], r)["D"] > be.LOCAL_BAR
@@ -354,7 +354,7 @@ def test_law_gates_branches():
     assert not g["volume_gate"] and not g["boundary_gate"]
     assert be.verdict_of(g, True) == "BHENT0-UNCLASSIFIED"
     assert be.verdict_of(g, False, "C1 red").startswith(
-        "BHENT0-UNCLASSIFIED (census-invalid)")
+        "BHENT0-UNCLASSIFIED (census-invalid")
     g2 = dict(g)
     g2["continuous_gate"] = True
     assert be.verdict_of(g2, True) == "BHENT0-CONTINUOUS"

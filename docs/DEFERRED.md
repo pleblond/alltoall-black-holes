@@ -10283,8 +10283,8 @@ interior Sym(R) (exterior pointwise fixed) x U(1).
 Paths P2..P12 (pad 3; b = 2 constant: the boundary/volume
 discriminator). Stars S3_2 (n = 4, b = 2), S4_3, S6_4, S8_6
 (boundary-rich). J2 regions J2L4edge (n = 2 connected edge; see
-AMENDMENT-1), J2L6r1 (n = 10), J2L8r2 (n = 26), J2L28r1 (n = 10;
-field/ledger/channels). Square-torus controls SQL4dimer (n = 2),
+AMENDMENT-1), J2L6r1 (n = 18), J2L8r2 (n = 42), J2L28r1 (n = 18;
+field/ledger/channels; see AMENDMENT-2). Square-torus controls SQL4dimer (n = 2),
 SQL4r1, SQL6r1. Builders in bhent.py (path_region, star_region,
 j2_disk_region, j2_edge_region, square_dimer_region,
 square_ball_region); region_battery() freezes the per-branch specs.
@@ -10377,3 +10377,12 @@ disks only (whole_cells gate in the runner). J2L4edge (b = 14, 9.5M
 labeled) runs through the 2-chunk exact path. Battery lists, builders,
 tests, and analyzer updated accordingly; no campaign record existed at
 amendment time (only test smokes), so no re-run is needed.
+
+### BHENT0-AMENDMENT-2 (pre-campaign-data size correction; no records exist)
+
+The frozen rounded-hypot disk convention (hidden.disk_cells) gives 9
+cells at r = 1 (diagonals round down) and 21 cells at r = 2, so the J2
+battery sizes are J2L6r1 n = 18, J2L8r2 n = 42, J2L28r1 n = 18 (not
+10/26/10 as first written). No method changes: wiring Burnside is
+partition-exact at these sizes, and J2 disks were never in the exact-
+joint scope. Prereg battery paragraph corrected accordingly.
