@@ -10390,3 +10390,15 @@ No other verdict exists. Records: data/scale0/cells/*.json +
 matrix.json + fits.json + unresolved.json + verdict.json.
 Full suite on beast (-n 90, weighted skipped per standing
 pyproject config) green required before the verdict files.
+
+## SCALE0-AMENDMENT-1 (pre-data correction; no runs yet)
+
+R-ZERO headon regression uses j2 size 20, not L = 28: the banked
+ZERO-0 collide grid (scripts/zero0_tasks.py COLLIDE_SUBSIZES)
+contains (j2, 10/20) and (storus, 16/28) but no j2-28 collide, so
+no L = 28 headon row exists to regress against. Frozen
+replacement: j2 size 20, geom headon, dphi = pi, amp match,
+sigma = 3.0 (banked ledger key j2|20|headon|3.141593|match,
+n_rows = 1, mean_events = 508.0); gate: rerun n_events == 508
+exactly (deterministic same-code replay). No other prereg line
+changes.
