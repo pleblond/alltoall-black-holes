@@ -277,6 +277,21 @@ def test_reduced_field_spot():
     assert rc["complete"] is False and rc["N_red"] == 0
 
 
+def test_parallel_scan_matches_serial():
+    # Parallel first-hit scan must equal serial (pool mechanics engaged).
+    g0 = q0.tiny_graph_by_name("square")
+    X0 = q0.make_enlarged(g0["g"], q0.zero_psi(4), g0["order"], {})
+    Y1, _ = q0.merge_successors(X0)[0]
+    reps = [q0.copy_enlarged(Y1) for _ in range(6)]
+    invs = [q0._invariants_enlarged(Z) for Z in reps]
+    invY = q0._invariants_enlarged(Y1)
+    s = q0._scan_first_hit(Y1, invY, reps, invs, 1)
+    npool_before = len(q0._POOLS)
+    p = q0._scan_first_hit(Y1, invY, reps, invs, 2)
+    assert s == p == 0
+    assert len(q0._POOLS) > npool_before
+
+
 def test_scheduler_orders_distinct_histories():
     # Q-finer classes: scheduler orders are distinct class-paths (N_Q=6)
     # while canonical reduced counting sees one class-walk (N_red=1).

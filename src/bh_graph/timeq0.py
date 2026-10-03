@@ -25,11 +25,14 @@ read-only calls (never copy-pasted with edits).
 
 from __future__ import annotations
 
+import atexit
 import hashlib
 import inspect
 import itertools
 import math
+import multiprocessing
 import os
+import pickle
 
 import networkx as nx
 import numpy as np
@@ -444,6 +447,48 @@ def _cover_multiset_codes(X: dict) -> dict:
     return {v: tuple(sorted(c)) for v, c in per.items()}
 
 
+def _field_classes_compatible(X1: dict, X2: dict, c1: dict, c2: dict,
+                                atol: float = BAR_LEDGER) -> bool:
+    # Necessary condition (exact): a witness map preserves WL-seed classes
+    # and |psi| (phase-invariant, up to atol), so per-class sorted |psi|
+    # lists must match elementwise within slack. Sorted-vs-sorted is the
+    # optimal bottleneck matching on a line (exchange argument: uncrossing
+    # a crossing pair never increases the max displacement), hence
+    # necessary for any class-respecting bijection. Generous 10x slack
+    # keeps float noise far from the boundary. Vacuous (True) for zero
+    # fields. Any internal failure returns True (no pruning).
+    from bh_graph.ballistic import index_of
+
+    try:
+        p1 = np.asarray(X1["psi"], dtype=np.complex128)
+        p2 = np.asarray(X2["psi"], dtype=np.complex128)
+        if float(np.sum(np.abs(p1) ** 2)) == 0.0 and \
+                float(np.sum(np.abs(p2) ** 2)) == 0.0:
+            return True
+        idx1 = index_of(list(X1["order"]))
+        idx2 = index_of(list(X2["order"]))
+        a1: dict = {}
+        for v, c in c1.items():
+            a1.setdefault(c, []).append(abs(complex(p1[idx1[v]])))
+        a2: dict = {}
+        for v, c in c2.items():
+            a2.setdefault(c, []).append(abs(complex(p2[idx2[v]])))
+        if set(a1) != set(a2):
+            return False
+        tol = 10.0 * float(atol) + 1e-300
+        for c in a1:
+            s1 = sorted(a1[c])
+            s2 = sorted(a2[c])
+            if len(s1) != len(s2):
+                return False
+            for x, y in zip(s1, s2):
+                if abs(x - y) > tol:
+                    return False
+        return True
+    except Exception:
+        return True
+
+
 def is_enlarged_equiv_ok(X1: dict, X2: dict,
                          atol: float = BAR_LEDGER) -> bool:
     try:
@@ -537,10 +582,22 @@ def is_enlarged_equiv_ok(X1: dict, X2: dict,
             except Exception:
                 use_wl = False
             if use_wl:
+                if not _field_classes_compatible(
+                        X1, X2,
+                        {v: tuple(w1[v]) for v in h1.nodes()},
+                        {v: tuple(w2[v]) for v in h2.nodes()}, atol):
+                    return False
                 matchers.append(nx.isomorphism.GraphMatcher(
                     h1, h2,
                     node_match=lambda a, b: a["w"] == b["w"]))
             else:
+                if not _field_classes_compatible(
+                        X1, X2,
+                        {v: (h1.nodes[v]["q"], h1.nodes[v]["m"])
+                         for v in h1.nodes()},
+                        {v: (h2.nodes[v]["q"], h2.nodes[v]["m"])
+                         for v in h2.nodes()}, atol):
+                    return False
                 matchers.append(nx.isomorphism.GraphMatcher(
                     h1, h2, node_match=lambda a, b: a["q"] == b["q"]
                     and a["m"] == b["m"]))
@@ -560,8 +617,96 @@ def is_enlarged_equiv_ok(X1: dict, X2: dict,
         return False
 
 
-def count_histories_Q(Xm: dict, Xp: dict, T: int) -> dict:
+PAR_PAIR_MIN = 4
+
+
+def _pair_chunk_worker(payload: bytes) -> list:
+    import pickle
+
+    from bh_graph import timeq0 as q0
+
+    states_blob, pairs = pickle.loads(payload)
+    states = pickle.loads(states_blob)
+    return [bool(q0.is_enlarged_equiv_ok(states[a], states[b]))
+            for a, b in pairs]
+
+
+_POOLS: dict = {}
+
+
+def _pool_for(nworkers: int):
+    p = _POOLS.get(int(nworkers))
+    if p is None:
+        p = multiprocessing.Pool(int(nworkers))
+        _POOLS[int(nworkers)] = p
+    return p
+
+
+def _close_pools() -> None:
+    for p in list(_POOLS.values()):
+        try:
+            p.close()
+        except Exception:
+            pass
+    for p in list(_POOLS.values()):
+        try:
+            p.join()
+        except Exception:
+            pass
+    _POOLS.clear()
+
+
+atexit.register(_close_pools)
+
+
+def _nworkers_default() -> int:
+    try:
+        return max(1, int(os.environ.get("Q0_WORKERS", "1")))
+    except Exception:
+        return 1
+
+
+def _scan_first_hit(Y, invY, reps: list, reps_inv: list,
+                    nworkers: int = 1):
+    # First-hit scan over reps in order (identical to the serial grouping
+    # loop). Parallelizes the scan (states stay serial); returns the min
+    # hit index or None. Bit-identical results to serial: same pairs, same
+    # first-hit rule (min index), no transitivity assumption (ISO_CAP makes
+    # cap-False order-dependent, so union-find would differ).
+    cand = [t for t in range(len(reps)) if invY == reps_inv[t]]
+    if not cand:
+        return None
+    if int(nworkers) <= 1 or len(cand) < PAR_PAIR_MIN:
+        for t in cand:
+            if is_enlarged_equiv_ok(Y, reps[t]):
+                return t
+        return None
+    states = [Y] + [reps[t] for t in cand]
+    pairs = [(0, 1 + k) for k in range(len(cand))]
+    n = max(1, min(int(nworkers), len(pairs)))
+    # Contiguous chunks: concatenated worker outputs stay in pairs order.
+    chunks = [pairs[k * len(pairs) // n:(k + 1) * len(pairs) // n]
+              for k in range(n)]
+    chunks = [ch for ch in chunks if ch]
+    states_blob = pickle.dumps(states)
+    payloads = [pickle.dumps((states_blob, ch)) for ch in chunks]
+    try:
+        pool = _pool_for(n)
+        verdicts = []
+        for out in pool.map(_pair_chunk_worker, payloads):
+            verdicts.extend(out)
+    except Exception:
+        verdicts = [bool(is_enlarged_equiv_ok(Y, reps[t])) for t in cand]
+    for t, hit in zip(cand, verdicts):
+        if hit:
+            return t
+    return None
+
+
+def count_histories_Q(Xm: dict, Xp: dict, T: int,
+                        nworkers: int | None = None) -> dict:
     T = int(T)
+    nw = _nworkers_default() if nworkers is None else int(nworkers)
     cur = [(copy_enlarged(Xm), 1)]
     widths = [1]
     invXp = _invariants_enlarged(Xp)
@@ -574,28 +719,18 @@ def count_histories_Q(Xm: dict, Xp: dict, T: int) -> dict:
             uniq_inv: list = []
             for Y, _ in succs:
                 invY = _invariants_enlarged(Y)
-                dup = False
-                for Z, invZ in zip(uniq, uniq_inv):
-                    if invY != invZ:
-                        continue
-                    if is_enlarged_equiv_ok(Y, Z):
-                        dup = True
-                        break
-                if not dup:
+                if _scan_first_hit(Y, invY, uniq, uniq_inv, nw) is None:
                     uniq.append(Y)
                     uniq_inv.append(invY)
             for Y, invY in zip(uniq, uniq_inv):
-                placed = False
-                for t, (er, ec) in enumerate(nxt):
-                    if invY != nxt_inv[t]:
-                        continue
-                    if is_enlarged_equiv_ok(Y, er):
-                        nxt[t] = (er, ec + cnt)
-                        placed = True
-                        break
-                if not placed:
+                t = _scan_first_hit(Y, invY,
+                                    [er for er, _ in nxt], nxt_inv, nw)
+                if t is None:
                     nxt.append((Y, cnt))
                     nxt_inv.append(invY)
+                else:
+                    er, ec = nxt[t]
+                    nxt[t] = (er, ec + cnt)
         cur = nxt
         widths.append(len(cur))
     n = 0
@@ -640,10 +775,12 @@ def explicit_histories_Q(Xm: dict, Xp: dict, T: int,
             "complete": True, "cap": int(cap)}
 
 
-def skeleton_Q(Xm: dict, Xp: dict, T: int) -> dict:
+def skeleton_Q(Xm: dict, Xp: dict, T: int,
+                 nworkers: int | None = None) -> dict:
     from math import comb
 
     T = int(T)
+    nw = _nworkers_default() if nworkers is None else int(nworkers)
     s_vec = []
     invXp = _invariants_enlarged(Xp)
     for L in range(T + 1):
@@ -660,28 +797,18 @@ def skeleton_Q(Xm: dict, Xp: dict, T: int) -> dict:
                 uniq_inv: list = []
                 for Y, _ in succs:
                     invY = _invariants_enlarged(Y)
-                    dup = False
-                    for Z, invZ in zip(uniq, uniq_inv):
-                        if invY != invZ:
-                            continue
-                        if is_enlarged_equiv_ok(Y, Z):
-                            dup = True
-                            break
-                    if not dup:
+                    if _scan_first_hit(Y, invY, uniq, uniq_inv, nw) is None:
                         uniq.append(Y)
                         uniq_inv.append(invY)
                 for Y, invY in zip(uniq, uniq_inv):
-                    placed = False
-                    for t, (er, ec) in enumerate(nxt):
-                        if invY != nxt_inv[t]:
-                            continue
-                        if is_enlarged_equiv_ok(Y, er):
-                            nxt[t] = (er, ec + cnt)
-                            placed = True
-                            break
-                    if not placed:
+                    t = _scan_first_hit(Y, invY,
+                                        [er for er, _ in nxt], nxt_inv, nw)
+                    if t is None:
                         nxt.append((Y, cnt))
                         nxt_inv.append(invY)
+                    else:
+                        er, ec = nxt[t]
+                        nxt[t] = (er, ec + cnt)
             cur = nxt
         n = 0
         for rep, cnt in cur:
@@ -696,8 +823,10 @@ def skeleton_Q(Xm: dict, Xp: dict, T: int) -> dict:
             "expect_timed": expect}
 
 
-def forward_census_Q(Xm: dict, T: int) -> dict:
+def forward_census_Q(Xm: dict, T: int,
+                       nworkers: int | None = None) -> dict:
     T = int(T)
+    nw = _nworkers_default() if nworkers is None else int(nworkers)
     cur = [(copy_enlarged(Xm), 1)]
     for _ in range(T):
         nxt: list = []
@@ -708,28 +837,18 @@ def forward_census_Q(Xm: dict, T: int) -> dict:
             uniq_inv: list = []
             for Y, _ in succs:
                 invY = _invariants_enlarged(Y)
-                dup = False
-                for Z, invZ in zip(uniq, uniq_inv):
-                    if invY != invZ:
-                        continue
-                    if is_enlarged_equiv_ok(Y, Z):
-                        dup = True
-                        break
-                if not dup:
+                if _scan_first_hit(Y, invY, uniq, uniq_inv, nw) is None:
                     uniq.append(Y)
                     uniq_inv.append(invY)
             for Y, invY in zip(uniq, uniq_inv):
-                placed = False
-                for t, (er, ec) in enumerate(nxt):
-                    if invY != nxt_inv[t]:
-                        continue
-                    if is_enlarged_equiv_ok(Y, er):
-                        nxt[t] = (er, ec + cnt)
-                        placed = True
-                        break
-                if not placed:
+                t = _scan_first_hit(Y, invY,
+                                    [er for er, _ in nxt], nxt_inv, nw)
+                if t is None:
                     nxt.append((Y, cnt))
                     nxt_inv.append(invY)
+                else:
+                    er, ec = nxt[t]
+                    nxt[t] = (er, ec + cnt)
         cur = nxt
     return {"T": T, "n_classes": int(len(cur)),
             "total": int(sum(c for _, c in cur)),
