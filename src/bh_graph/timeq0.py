@@ -247,6 +247,36 @@ def all_successors(X: dict, include_wait: bool = True) -> list:
     return out
 
 
+def _entry_size_sigs(X: dict) -> tuple:
+    nodes = set(X["g"].nodes())
+    pr, ab = [], []
+    for k, e in X["Q"].items():
+        At, Bt = st0.oriented_cover(e["q"], e["frame"])
+        sig = (min(len(At), len(Bt)), max(len(At), len(Bt)))
+        (pr if k in nodes else ab).append(sig)
+    return (tuple(sorted(pr)), tuple(sorted(ab)))
+
+
+def _ret_key(s) -> tuple:
+    return (len(s), sorted((len(x), sorted(map(str, x))) for x in s))
+
+
+def _retired_sig(X: dict) -> tuple:
+    # Swap-folded retired-label sets per entry (exact): validation
+    # compares retired cover labels literally, so a witness map (plus
+    # absent-entry pairing) preserves the set {At_ret, Bt_ret} per
+    # matched entry. Present/absent kept separate, as in validation.
+    nodes = set(X["g"].nodes())
+    pr, ab = [], []
+    for k, e in X["Q"].items():
+        At, Bt, _ = q_oriented(e)
+        Ar = frozenset(set(At) - nodes)
+        Br = frozenset(set(Bt) - nodes)
+        (pr if k in nodes else ab).append(frozenset({Ar, Br}))
+    return (tuple(sorted(pr, key=_ret_key)),
+            tuple(sorted(ab, key=_ret_key)))
+
+
 def _invariants_enlarged(X: dict) -> tuple:
     g = X["g"]
     degs = tuple(sorted(v for _, v in g.degree()))
@@ -254,12 +284,21 @@ def _invariants_enlarged(X: dict) -> tuple:
         tri = sum(nx.triangles(g).values()) // 3 if g.number_of_nodes() else 0
     except Exception:
         tri = -1
-    nq = len(X["Q"])
-    npr = len(present_keys(X))
+    pr = present_keys(X)
     psi = np.asarray(X["psi"], dtype=np.complex128)
     nrm = float(np.sum(np.abs(psi) ** 2))
+    # Entry cover-size signatures + present-key degrees + retired-label
+    # signatures (exact integers/sets): a witness map matches present
+    # entries to present entries (absent to absent) preserving cover sizes
+    # up to swap and retired-label sets literally, and maps present keys
+    # to present keys preserving degrees -- so all are necessary
+    # conditions. Splits WL-collision buckets; surviving reps and counts
+    # identical (equivalent states share every component).
     return (int(g.number_of_nodes()), int(g.number_of_edges()), degs,
-            int(tri), int(nq), int(npr), round(nrm, 9), _wl_bucket(g))
+            int(tri), int(len(X["Q"])), int(len(pr)), round(nrm, 9),
+            _wl_bucket(g), _entry_size_sigs(X),
+            tuple(sorted(int(g.degree(k)) for k in pr)),
+            _retired_sig(X))
 
 
 def _phase_for_maps(v1: np.ndarray, v2p: np.ndarray) -> complex:
