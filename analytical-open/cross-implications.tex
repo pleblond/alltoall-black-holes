@@ -207,6 +207,40 @@ The normalised all-ones vector on \(K_N\), which is the ground state of
 \(H=-A\), has \(B_{ij}/q_{ij}=1/2\) on every edge, hence \(P_-=0\) and \(h_2=0\).
 \end{proposition}
 
+\begin{proposition}
+\label{prop:oddsat}
+Let \(\psi\) be a sheet-odd state on one copy of \(J_2\) or of \(J_3\),
+with cell function \(u\), so the two bits of a cell \(c\) carry \(u(c)\)
+and \(-u(c)\).
+Wherever \(u(c)\neq 0\), the pair of bits saturates the negative endpoint
+of Lemma~\ref{lem:bond-expand}:
+\[
+B=-|u(c)|^2=-\frac q2,\qquad P_-=1,\qquad h_2(P_-)=0,
+\]
+and the rung current \(\Im\bigl(u(c)^*(-u(c))\bigr)\) vanishes.
+If \(\psi\) is normalised, the sum of these rung bonds equals \(-1/2\).
+On the \(L\)-torus the space of such states has dimension \(L^2\) for
+\(J_2\) and \(L^3\) for \(J_3\).
+The sum of \(h_2\) over occupied rungs is \(0\) on every state in that space.
+\end{proposition}
+
+\begin{proof}
+Lemmas~\ref{lem:sectors} and~\ref{lem:j3sectors} are the odd splitting:
+the two bits are opposite and the state is a zero mode of \(H=-A\).
+The rung is not an edge of either graph.
+On it,
+\(B=\Re\bigl(u(c)^*(-u(c))\bigr)=-|u(c)|^2\) and \(q=2|u(c)|^2\),
+so \(B=-q/2\).
+The moduli agree and the relative phase is \(\pi\).
+Equation~\eqref{eq:Pminus} gives \(P_-=1\), and \(h_2(1)=0\).
+The product \(u(c)^*(-u(c))\) is real, so the current is zero.
+Normalisation is \(2\sum_c|u(c)|^2=1\), and summing the rung bonds produces
+\(-\sum_c|u(c)|^2=-1/2\).
+The cell function \(u\) is arbitrary, which is the dimension count in the
+two lemmas.
+Each occupied rung contributes \(h_2=0\).
+\end{proof}
+
 A flat-magnitude random-phase vector is Proposition~\ref{prop:arcsine},
 not Theorem~\ref{thm:haar}.
 The two means differ:
@@ -318,6 +352,10 @@ You could regard BHQENT0 as a reading of \(D_Q\), and BHQAREA0 as a reading
 of \(S_Q\).
 Promoting the factor \(2\) in \(D_Q=2N_d\) to two bits per merge
 is yet another count, distinct from I1a's one bit per saturated leg.
+Proposition~\ref{prop:oddsat} is the same separation on the flat band.
+A normalised sheet-odd state saturates every occupied rung at phase
+\(\pi\), so the sum of \(h_2\) over those rungs is \(0\), while the space
+of such states has dimension equal to the number of cells.
 
 \section{One length in the chain weave}
 \label{sec:ell}
