@@ -286,6 +286,248 @@ an area law for \(\sum h_2\).
 They count different things: interior relative modes, and leg channels.
 Promoting the factor \(2\) in \(D_Q=2N_d\) to two bits per merge
 is a third count, distinct from I1a's one bit per saturated leg.
+The logarithm of the undirected cover count is a fourth.
+It scales with the degree of the merged vertex
+(Proposition~\ref{prop:covers}).
+
+\section{Cover count is a different bit}
+\label{sec:covers}
+
+Lemma~\ref{lem:fiber} counts a complex line.
+A merge of degree \(d\) also hides a finite assignment of its neighbours.
+
+\begin{proposition}
+\label{prop:covers}
+Let \(N\) be a set of \(d\) neighbours.
+A directed cover is an ordered pair of subsets \((A,B)\) with
+\(A\cup B=N\): each neighbour lies in \(A\) only, in \(B\) only, or in both.
+There are \(3^d\) directed covers.
+The involution \((A,B)\mapsto(B,A)\) fixes exactly one of them, the cover
+\(A=B=N\).
+The number of orbits is \((3^d+1)/2\).
+The base-two logarithm of that number is
+\begin{equation}
+\label{eq:Igraph}
+I_{\mathrm{graph}}(d)
+=\log_2\Bigl(\frac{3^d+1}{2}\Bigr)
+=d\log_2 3+\log_2\bigl(1+3^{-d}\bigr)-1.
+\end{equation}
+The edge between the two daughters is restored in every cover.
+It is not one of the three labels.
+\end{proposition}
+
+\begin{proof}
+Three labels on each of \(d\) neighbours give \(3^d\) pairs.
+The equality \(A=B\) forces \(A=B=N\).
+Burnside's count of orbits under the swap is \(\tfrac12(3^d+1)\).
+The integer claim holds because \(3^d\) is odd.
+The logarithm is \(\log_2(3^d+1)-1\), and
+\(3^d+1=3^d(1+3^{-d})\).
+\end{proof}
+
+For \(d=0\) there is one orbit and \(I_{\mathrm{graph}}(0)=0\).
+A merged vertex with no neighbour has no discrete cover left.
+The residual ambiguity is the complex line of Lemma~\ref{lem:fiber}.
+For \(d=1\) there are two orbits and \(I_{\mathrm{graph}}(1)=1\).
+That bit records which daughter receives the unique neighbour.
+The same integer appears as one saturated leg in the I1 normalization
+and as the maximum of \(h_2\), and the three counts remain different.
+For \(d\ge 2\) one has \(I_{\mathrm{graph}}(d)>1\), with leading term
+\(d\log_2 3-1\).
+The growth is linear in the degree at the merge.
+It is not an area.
+
+A sum of \(I_{\mathrm{graph}}\) over several merges is a sum of local terms,
+each fixed by the degree at that event.
+The sum is boundary-sized when the merged vertices themselves form a
+boundary-sized set, the same structural requirement as the area-law
+alternative in Proposition~\ref{prop:vol}.
+The continuous \(2\), the discrete \(I_{\mathrm{graph}}(d)\), and an
+optional \(h_2(P_-)\) are three different contributions of one merge.
+
+\begin{proposition}
+\label{prop:charge}
+Write \(c=|A\cap B|\), \(X_A=A\setminus B\) and \(X_B=B\setminus A\).
+The number of directed covers with a given \(c\) is \(\binom{d}{c}2^{d-c}\).
+The number of undirected orbits of that charge is
+\[
+n(d,c)=
+\begin{cases}
+\binom{d}{c}\,2^{d-c-1} & 0\le c<d,\\
+1 & c=d.
+\end{cases}
+\]
+On the uniform measure on directed covers, \(c\) is a sum of \(d\)
+independent Bernoulli(\(1/3\)) indicators, so
+\[
+\mathbb{E}_{\mathrm{dir}}[c]=\frac{d}{3},\qquad
+\mathrm{Var}_{\mathrm{dir}}(c)=\frac{2d}{9}.
+\]
+On the uniform measure on undirected orbits, every function \(f\) constant
+on orbits satisfies
+\begin{equation}
+\label{eq:orbitmean}
+\mathbb{E}_{\mathrm{und}}[f]
+=\frac{3^d\,\mathbb{E}_{\mathrm{dir}}[f]+f(N,N)}{3^d+1}.
+\end{equation}
+In particular
+\begin{align}
+\mathbb{E}_{\mathrm{und}}[c]
+&=\frac{d\,(3^{d-1}+1)}{3^d+1}
+=\frac{d}{3}+\frac{2d}{3(3^d+1)},
+\label{eq:Ec}\\
+\mathrm{Var}_{\mathrm{und}}(c)
+&=\frac{2d\cdot 3^{d}\,(3^{d}+2d+1)}{9(3^{d}+1)^{2}}.
+\label{eq:Varc}
+\end{align}
+The cover piece of the event account is the integer \(R_{\mathrm{cover}}=1+c\).
+The two counting means of \(R_{\mathrm{cover}}\) differ by
+\(2d/\bigl(3(3^d+1)\bigr)\).
+\end{proposition}
+
+\begin{proof}
+Choose which \(c\) neighbours are common and assign each of the other
+\(d-c\) neighbours to exactly one side.
+That produces \(\binom{d}{c}2^{d-c}\) directed covers.
+For \(c<d\) none of these covers is fixed by the swap, so each orbit has
+size \(2\).
+For \(c=d\) there is one cover.
+The directed moments are the binomial moments of \(d\) trials of success
+probability \(1/3\).
+
+Let \(f\) be constant on orbits, and write \(D=3^d\).
+The sum of \(f\) over directed covers equals
+\(2\sum f + f(N,N)\), where the sum runs over the paired orbits only,
+hence equals \(2\sum_{\mathrm{orbits}} f - f(N,N)\).
+The sum over orbits is therefore
+\(\tfrac12\bigl(\sum_{\mathrm{dir}} f+f(N,N)\bigr)\).
+Dividing by \((D+1)/2\) gives \eqref{eq:orbitmean}.
+The identity \eqref{eq:Ec} is the case \(f=c\), using
+\(\mathbb{E}_{\mathrm{dir}}[c]=d/3\) and \(c(N,N)=d\).
+
+For the variance, apply \eqref{eq:orbitmean} to \(c^2\).
+The directed second moment is \((d^2+2d)/9\), and \(c(N,N)^2=d^2\), so
+\[
+\mathbb{E}_{\mathrm{und}}[c^2]
+=\frac{D(d^2+2d)+9d^2}{9(D+1)}.
+\]
+The square of \eqref{eq:Ec} is \(d^2(D+3)^2/\bigl(9(D+1)^2\bigr)\).
+The difference, cleared by the factor \(9(D+1)^2\), has numerator
+\[
+\bigl(D(d^2+2d)+9d^2\bigr)(D+1)-d^2(D+3)^2
+=2d\,D\,(D+2d+1),
+\]
+which is \eqref{eq:Varc}.
+\end{proof}
+
+The counting measures are the enumerations of the covers.
+They are not a law of which cover a dynamics selects.
+If a balance condition fixes the radius
+\[
+B_*=\frac{\alpha+\beta(1+c)}{2\gamma}
+\]
+with \(\gamma\neq 0\), the same two measures give two mean radii, and
+\begin{equation}
+\label{eq:Bshift}
+\mathbb{E}_{\mathrm{und}}[B_*]-\mathbb{E}_{\mathrm{dir}}[B_*]
+=\frac{\beta d}{3\gamma\,(3^d+1)}.
+\end{equation}
+The ratios \(\alpha/\gamma\) and \(\beta/\gamma\) stay unfixed.
+The shift moves the average radius and does not select a point on the
+circle of Proposition~\ref{prop:circle}.
+At \(d=1\) the shift equals \(\beta/(6\gamma)\).
+For large \(d\) it is smaller than every fixed positive multiple of
+\(|\beta/\gamma|\).
+
+\begin{proposition}
+\label{prop:balanced-count}
+Let \(T_d\) be the number of directed covers with \(|X_A|=|X_B|\),
+\[
+T_d=\sum_{m=0}^{\lfloor d/2\rfloor}\binom{d}{2m}\binom{2m}{m}.
+\]
+This is the central trinomial coefficient, the coefficient of \(t^d\) in
+\((1+t+t^2)^d\).
+The number of undirected orbits with equal exclusive cardinalities is
+\((T_d+1)/2\), and their proportion among all undirected orbits is
+\[
+\frac{T_d+1}{3^d+1}.
+\]
+The proportion tends to \(0\) as \(d\to\infty\).
+On each such orbit the coefficient of the fibre coordinate in
+\(\ddot\mu(t_0)\) vanishes, by Corollary~\ref{cor:balanced}.
+On every other orbit that coefficient is a nonzero real multiple of the
+fibre coordinate.
+\end{proposition}
+
+\begin{proof}
+Label each neighbour by \(+1\) if it lies in \(X_A\), by \(-1\) if it lies in
+\(X_B\), and by \(0\) if it is common.
+Equal exclusive cardinalities are the labelings whose labels sum to \(0\).
+If \(2m\) labels are nonzero, \(\binom{d}{2m}\binom{2m}{m}\) counts the ways
+to place them with total zero, and the remaining labels are \(0\).
+The unique labeling fixed by the swap is the zero labeling.
+Every other zero-sum labeling is paired with the labeling of opposite
+sign, so the number of orbits is \((T_d+1)/2\).
+Dividing by \((3^d+1)/2\) gives the proportion.
+
+The same count is the constant term of \((e^{i\theta}+e^{-i\theta}+1)^d\):
+\[
+\frac{T_d}{3^d}
+=\frac{1}{2\pi}\int_0^{2\pi}
+\Bigl(\frac{1+2\cos\theta}{3}\Bigr)^d\,d\theta.
+\]
+The function \(|1+2\cos\theta|\) attains the value \(3\) only at
+\(\theta\in 2\pi\mathbb{Z}\).
+Fix \(\varepsilon\in(0,\pi)\).
+On \([\varepsilon,2\pi-\varepsilon]\) its maximum \(\rho_\varepsilon\) is strictly less than \(3\).
+Therefore
+\[
+\Bigl|\frac{T_d}{3^d}\Bigr|
+\le\frac{\varepsilon}{\pi}+\Bigl(\frac{\rho_\varepsilon}{3}\Bigr)^d.
+\]
+The second term tends to \(0\), so the limsup is at most \(\varepsilon/\pi\).
+As \(\varepsilon\) is arbitrary, \(T_d/3^d\to 0\), and the orbit proportion has
+the same limit.
+\end{proof}
+
+\begin{corollary}
+\label{cor:imbalance}
+Let \(\delta=|X_A|-|X_B|\).
+The swap sends \(\delta\) to \(-\delta\), so \(\delta^2\) is constant on orbits.
+On the uniform directed measure
+\[
+\mathbb{E}_{\mathrm{dir}}[\delta]=0,\qquad
+\mathbb{E}_{\mathrm{dir}}[\delta^2]=\frac{2d}{3}.
+\]
+On the uniform orbit measure, since the unique fixed cover has \(\delta=0\),
+\begin{equation}
+\label{eq:delta2}
+\mathbb{E}_{\mathrm{und}}[\delta^2]
+=\frac{2d}{3}\cdot\frac{3^d}{3^d+1}.
+\end{equation}
+The \(d\)-dependent piece of \(\ddot\mu(t_0)\) in Lemma~\ref{lem:mu} is
+\(-\delta\, d_{\mathrm{fibre}}/2\), where \(d_{\mathrm{fibre}}=\psi_i-\psi_j\).
+The mean square of the numerical coefficient \(-\delta/2\), on the orbit
+measure, is one quarter of \eqref{eq:delta2}.
+\end{corollary}
+
+\begin{proof}
+Under the directed measure each neighbour contributes an independent step
+in \(\{+1,-1,0\}\) with equal weights.
+The mean of one step is \(0\) and the second moment is \(2/3\).
+Equation~\eqref{eq:orbitmean} with \(f=\delta^2\) and
+\(\delta^2(N,N)=0\) gives \eqref{eq:delta2}.
+Lemma~\ref{lem:mu} supplies the coefficient \(-\delta/2\).
+\end{proof}
+
+Equal exclusive cardinalities cancel the fibre coordinate in
+\(\ddot\mu(t_0)\).
+They do not cancel the amplitude imbalance \(V\) of
+Proposition~\ref{prop:circle-energy}.
+An orbit outside this set can pin the fibre coordinate at second order,
+and then only the value that cancels the imbalance.
+Under the uniform orbit measure that is the typical case once \(d\) is
+large: the balanced proportion tends to zero.
 
 \section{One length in the chain weave}
 \label{sec:ell}
