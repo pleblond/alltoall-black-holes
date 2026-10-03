@@ -132,7 +132,7 @@ def _bruteforce_joint_orbits(r):
 
 
 def test_joint_exact_vs_bruteforce():
-    for spec in ("P2", "P3", "S3_2", "J2L4edge", "SQL4dimer"):
+    for spec in ("P2", "P3", "S3_2", "SQL4dimer"):
         r = be.build_region(spec)
         got = be.joint_exact_count(r)
         want_orbits, want_conn = _bruteforce_joint_orbits(r)
@@ -158,6 +158,23 @@ def test_joint_chunk_union_p4():
     for lo, hi in ((0, n_in // 2), (n_in // 2, n_in)):
         keys |= set(be.joint_exact_chunk(r, lo, hi)["keys"])
     assert len(keys) == full["n_orbits"]
+
+
+def test_joint_j2edge_chunked_audits():
+    # 9.5M labeled: chunked path only (nx-level brute force infeasible).
+    r = be.build_region("J2L4edge")
+    assert be.joint_labeled_bound(r["n"], r["b"]) > be.EXACT_COMBO_CAP
+    n_in = 1 << (r["n"] * (r["n"] - 1) // 2)
+    keys = set()
+    n_lab = n_conn = 0
+    for lo, hi in ((0, n_in // 2), (n_in // 2, n_in)):
+        out = be.joint_exact_chunk(r, lo, hi)
+        keys |= set(out["keys"])
+        n_lab += out["n_labeled"]
+        n_conn += out["n_connected"]
+    assert n_lab == be.joint_labeled_bound(r["n"], r["b"])
+    assert len(keys) * math.factorial(r["n"]) >= n_conn
+    assert len(keys) > 1
 
 
 # G-wire ----------------------------------------------------------------------

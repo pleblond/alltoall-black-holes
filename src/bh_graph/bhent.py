@@ -72,9 +72,12 @@ DT_WAVE = 0.05         # dynamical-exterior grid step (= QUOT-0 DT_WAVE)
 PHASE_GRID = tuple(j * math.pi / 4.0 for j in range(8))  # HIDDEN-0 grid
 ALPHA_PROBE = 0.5      # blind-pair amplitude (frozen, descriptive)
 
-# Exact-joint scope: labeled combos cap (P6 beast-chunked exception filed).
+# Exact-joint scope: labeled combos cap (chunked exceptions filed).
 EXACT_COMBO_CAP = 3_000_000
+CHUNKED_SPECS = {"P6": 64, "J2L4edge": 2}
 P6_CHUNKS = 64
+# Reachability-slice memory budget: M x N x N int64 <= ~256 MB/worker.
+SLICE_MEM_BUDGET = 32_000_000
 
 # Scaling-gate thresholds (preregistered, analyzer-side).
 BOUNDARY_SLOPE_BAR = 0.5     # |slope| bits/node over fixed-boundary battery
@@ -469,7 +472,10 @@ def joint_exact_chunk(rec, i_lo, i_hi):
     maps, T = _perm_bitmaps(n, b)
     weights = (1 << np.arange(T, dtype=np.int64))
     # Wiring-axis slicing bounds memory (reachability is M x N x N).
-    WSLICE = 256
+    N = len(rec["order"])
+    n_in_chunk = max(int(i_hi) - int(i_lo), 1)
+    per_slice = max(SLICE_MEM_BUDGET // max(N * N, 1), 512)
+    WSLICE = max(per_slice // n_in_chunk, 1)
     n_labeled = 0
     n_connected = 0
     moons = []

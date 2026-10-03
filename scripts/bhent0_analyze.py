@@ -63,21 +63,28 @@ def main():
             p["n_orbits"] * math.factorial(p["n"]) >= p["n_connected"]))
         path_ns.append(p["n"])
         path_y.append(p["log2_orbits"])
-    # P6 union over chunks.
-    keys = set()
-    n_lab = n_conn = 0
-    for name, r in recs.items():
-        if name.startswith("joint_P6_c"):
-            keys |= set(r["payload"]["keys"])
-            n_lab += r["payload"]["n_labeled"]
-            n_conn += r["payload"]["n_connected"]
-    n_chunks = sum(1 for n in recs if n.startswith("joint_P6_c"))
-    chk("joint_P6:chunks", n_chunks == be.P6_CHUNKS, n_chunks)
-    chk("joint_P6:labeled", n_lab == be.joint_labeled_bound(6, 2), n_lab)
-    chk("joint_P6:audit", len(keys) * math.factorial(6) >= n_conn)
-    path_ns.append(6)
-    path_y.append(math.log2(len(keys)))
-    for spec in ("S3_2", "J2L4edge", "SQL4dimer"):
+    # Chunked unions (P6 headline + J2L4edge).
+    for spec, nch in be.CHUNKED_SPECS.items():
+        keys = set()
+        n_lab = n_conn = 0
+        for name, r in recs.items():
+            if name.startswith(f"joint_{spec}_c"):
+                keys |= set(r["payload"]["keys"])
+                n_lab += r["payload"]["n_labeled"]
+                n_conn += r["payload"]["n_connected"]
+        n_chunks = sum(1 for n in recs if n.startswith(f"joint_{spec}_c"))
+        rr = be.build_region(spec)
+        chk(f"joint_{spec}:chunks", n_chunks == nch, n_chunks)
+        chk(f"joint_{spec}:labeled",
+            n_lab == be.joint_labeled_bound(rr["n"], rr["b"]), n_lab)
+        chk(f"joint_{spec}:audit",
+            len(keys) * math.factorial(rr["n"]) >= n_conn)
+        if spec == "P6":
+            path_ns.append(6)
+            path_y.append(math.log2(len(keys)))
+        else:
+            chk(f"joint_{spec}:orbits", len(keys) > 1, len(keys))
+    for spec in ("S3_2", "SQL4dimer"):
         p = recs[f"joint_{spec}"]["payload"]
         chk(f"joint_{spec}:orbits", p["n_orbits"] > 1, p["n_orbits"])
 

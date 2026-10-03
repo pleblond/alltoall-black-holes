@@ -96,10 +96,11 @@ def t_joint(spec, outdir):
 def t_joint_chunk(spec, chunk, outdir):
     r = be.build_region(spec)
     n = r["n"]
+    nch = be.CHUNKED_SPECS[spec]
     n_in = 1 << (n * (n - 1) // 2)
-    per = n_in // be.P6_CHUNKS
+    per = n_in // nch
     lo = chunk * per
-    hi = lo + per if chunk < be.P6_CHUNKS - 1 else n_in
+    hi = lo + per if chunk < nch - 1 else n_in
     got = be.joint_exact_chunk(r, lo, hi)
     payload = {"n": n, "b": r["b"], "lo": lo, "hi": hi,
                "n_keys": got["n_orbits_slice"],
@@ -285,10 +286,11 @@ def all_tasks():
     specs_c = sorted(set(bat["exact_joint"]) | {"P7", "J2L6r1"})
     for s in specs_c:
         tasks.append(f"--task collapse --spec {s}")
-    for s in ("P2", "P3", "P4", "P5", "S3_2", "J2L4edge", "SQL4dimer"):
+    for s in ("P2", "P3", "P4", "P5", "S3_2", "SQL4dimer"):
         tasks.append(f"--task joint --spec {s}")
-    for c in range(be.P6_CHUNKS):
-        tasks.append(f"--task joint_chunk --spec P6 --chunk {c}")
+    for s, nch in be.CHUNKED_SPECS.items():
+        for c in range(nch):
+            tasks.append(f"--task joint_chunk --spec {s} --chunk {c}")
     for s in bat["wiring"]:
         tasks.append(f"--task wiring --spec {s}")
     for s in bat["interior"]:

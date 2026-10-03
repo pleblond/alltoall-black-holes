@@ -10295,9 +10295,10 @@ G-joint (headline): exact physical graph census = interior graphs x
 valid boundary wirings (each exterior boundary node >= 1 edge into R),
 overall-connected, canonicalized by interior-Sym(R) min-key (exterior
 fixed). Exact scope: labeled combos <= 3M single-shot (P2..P5, S3_2,
-J2L4r0, SQL4dimer) + P6 (130M) in 64 beast chunks over interior masks
-with wiring-axis slicing (union in the analyzer). Audit on every
-record: orbits x n! >= connected, orbits <= labeled.
+SQL4dimer) + chunked exceptions P6 (130M, 64 beast chunks) and J2L4edge
+(9.5M, 2 chunks) over interior masks with memory-budgeted wiring-axis
+slicing (union in the analyzer). Audit on every record: orbits x n! >=
+connected, orbits <= labeled.
 
 G-wire: wiring-only Burnside-exact orbit counts (interior fixed actual;
 connectivity automatic), full valid wirings + single-edge leg wirings,
@@ -10372,6 +10373,7 @@ has no same-cell sheet edge (all 8 generators move spatially), so
 stepwise BR-2.5 collapse cannot start inside it. The tiny-J2 exact
 census region is therefore J2L4edge (two adjacent J2 nodes, one genuine
 edge, n = 2) instead of J2L4r0. Whole-cell J2 alphabets run on r >= 1
-disks only (whole_cells gate in the runner). Battery lists, builders,
+disks only (whole_cells gate in the runner). J2L4edge (b = 14, 9.5M
+labeled) runs through the 2-chunk exact path. Battery lists, builders,
 tests, and analyzer updated accordingly; no campaign record existed at
 amendment time (only test smokes), so no re-run is needed.
