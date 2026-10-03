@@ -93,7 +93,7 @@ def main():
          f"got={len(stoch)} want={want['stoch']}")
     gate("count-audit", len(audit) == want["audit"],
          f"got={len(audit)} want={want['audit']}")
-   Toolkit = (reg, wait, sym, loc, hid, src, multi, stoch, audit)
+    Toolkit = (reg, wait, sym, loc, hid, src, multi, stoch, audit)
     _ = Toolkit
 
     # Split reg records by store0 kind (ev/fib/seq/pair/detcore/tex/fw).
