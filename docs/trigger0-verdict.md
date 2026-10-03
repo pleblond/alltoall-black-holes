@@ -109,4 +109,6 @@ No TRIGGER-1 formula shopping follows (prereg §6 binding).
 ## Suite
 
 Full test suite on beast (32-way, tests/test_weighted.py skipped):
-TBD.
+2046 passed, 2 skipped. NOTE: first suite attempt ran against the shared
+venv's stale editable bh_graph (7 collection ImportErrors); rerun with
+PYTHONPATH=~/trigger0-fabc/src so the branch code is tested.
