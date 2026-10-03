@@ -1,0 +1,40 @@
+{
+ "cell": "k2/current",
+ "k": 1,
+ "pred_ok": true,
+ "m_ref": 3,
+ "n_alts": 55,
+ "counts": {
+  "full": 0,
+  "lower-only": 1,
+  "no": 54
+ },
+ "triviality_counts": {
+  "not-a-match": 55
+ },
+ "match_rows": [
+  {
+   "cover": [
+    [
+     0
+    ],
+    [
+     0
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "lower-only",
+   "max_dev": 0.0,
+   "m_u": 3,
+   "m_p": 1,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "n_match_rows": 1,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

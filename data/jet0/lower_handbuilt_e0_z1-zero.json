@@ -1,0 +1,43 @@
+{
+ "sub": "handbuilt",
+ "edge": [
+  0,
+  1
+ ],
+ "construction": "z1-zero",
+ "feasible": false,
+ "rank": 1,
+ "jet_abs": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "anatomy": {
+  "m": 6,
+  "d": [
+   0.0,
+   0.0
+  ],
+  "W": [
+   0.0,
+   0.0
+  ],
+  "z1": [
+   0.0,
+   0.0
+  ],
+  "R": 3.0,
+  "Delta": 6.0,
+  "full_static": false,
+  "jet_abs": [
+   0.0,
+   0.0,
+   0.0,
+   1.0,
+   1.0,
+   4.0
+  ]
+ },
+ "vs_static_class": "lower-only",
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

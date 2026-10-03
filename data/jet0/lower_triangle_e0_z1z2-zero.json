@@ -1,0 +1,39 @@
+{
+ "sub": "triangle",
+ "edge": [
+  0,
+  1
+ ],
+ "construction": "z1z2-zero",
+ "feasible": false,
+ "rank": 1,
+ "jet_abs": [
+  0.0,
+  0.0,
+  0.0,
+  0.0
+ ],
+ "anatomy": {
+  "m": 1,
+  "d": [
+   0.0,
+   0.0
+  ],
+  "W": [
+   0.0,
+   0.0
+  ],
+  "z1": [
+   0.0,
+   0.0
+  ],
+  "R": 2.0,
+  "Delta": 4.0,
+  "full_static": true,
+  "jet_abs": [
+   0.0
+  ]
+ },
+ "vs_static_class": "full",
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

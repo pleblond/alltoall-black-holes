@@ -1,0 +1,25 @@
+{
+ "sub": "path-8",
+ "edge": [
+  6,
+  7
+ ],
+ "order": {
+  "m": 7,
+  "n": 8,
+  "method": "exact",
+  "recurrence": [
+   -1.0,
+   1.0,
+   9.0,
+   -9.0,
+   -6.0,
+   6.0,
+   1.0
+  ],
+  "recurrence_exact_ok": true,
+  "fallback": false
+ },
+ "order_ok": true,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

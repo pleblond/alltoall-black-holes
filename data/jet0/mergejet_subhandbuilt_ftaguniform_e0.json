@@ -1,0 +1,475 @@
+{
+ "sub": "handbuilt",
+ "ftag": "uniform",
+ "member": "",
+ "edge": [
+  0,
+  1
+ ],
+ "regression_ok": true,
+ "m_u": 6,
+ "order_method": "exact",
+ "algebra_ok": true,
+ "deriv_max_resid": 0.0,
+ "deriv_ok": true,
+ "reservoir_jet_ok": true,
+ "n_alts": 392,
+ "counts": {
+  "full": 1,
+  "lower-only": 13,
+  "no": 378
+ },
+ "triviality_counts": {
+  "not-a-match": 391,
+  "T2": 1
+ },
+ "true_found": 1,
+ "true_unique": true,
+ "match_rows": [
+  {
+   "fa": 0,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 6.803360514166089,
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 28,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 27.59140652967358,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 56,
+   "cover": [
+    [
+     2
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 3.401680257083047,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 84,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     3
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": true,
+   "class": "full",
+   "max_dev": 7.105427357601002e-15,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": -1,
+   "quotient_equal": false,
+   "triviality": "T2",
+   "T2_by": "known-perm"
+  },
+  {
+   "fa": 112,
+   "cover": [
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 9.071147352221459,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 140,
+   "cover": [
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 9.071147352221459,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 168,
+   "cover": [
+    [
+     2,
+     3
+    ],
+    [
+     4
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 15.118578920369085,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 196,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     3,
+     4
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 0.0,
+   "m_u": 6,
+   "m_p": 1,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 224,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     4
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 20.032117069489047,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 252,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 27.591406529673584,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 280,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 20.032117069489047,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 308,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     4
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 26.079548637636677,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 336,
+   "cover": [
+    [
+     2,
+     4
+    ],
+    [
+     3
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 18.52025917745213,
+   "m_u": 6,
+   "m_p": 6,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 364,
+   "cover": [
+    [
+     2,
+     4
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "is_true_pt": false,
+   "class": "lower-only",
+   "max_dev": 0.3779644730092273,
+   "m_u": 6,
+   "m_p": 2,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "n_match_rows": 14,
+ "audit_rows": [
+  {
+   "fa": 0,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "lower-only",
+   "max_dev": 6.803360514166089,
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 1,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 2,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 3,
+   "cover": [
+    [
+     2,
+     3,
+     4
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 6,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "theta_counterpart_ok": true,
+ "edge_pos": 0,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

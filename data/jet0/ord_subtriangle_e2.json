@@ -1,0 +1,19 @@
+{
+ "sub": "triangle",
+ "edge": [
+  1,
+  2
+ ],
+ "order": {
+  "m": 1,
+  "n": 3,
+  "method": "exact",
+  "recurrence": [
+   1.0
+  ],
+  "recurrence_exact_ok": true,
+  "fallback": false
+ },
+ "order_ok": true,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

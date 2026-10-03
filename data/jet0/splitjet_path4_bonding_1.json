@@ -1,0 +1,107 @@
+{
+ "cell": "path4/bonding",
+ "k": 1,
+ "pred_ok": true,
+ "m_ref": 5,
+ "n_alts": 139,
+ "counts": {
+  "full": 0,
+  "lower-only": 4,
+  "no": 135
+ },
+ "triviality_counts": {
+  "not-a-match": 139
+ },
+ "match_rows": [
+  {
+   "cover": [
+    [
+     0,
+     2
+    ],
+    [
+     0
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "lower-only",
+   "max_dev": 1.5,
+   "m_u": 5,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "cover": [
+    [
+     0
+    ],
+    [
+     2
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "lower-only",
+   "max_dev": 3.0,
+   "m_u": 5,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "cover": [
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "lower-only",
+   "max_dev": 0.0,
+   "m_u": 5,
+   "m_p": 1,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "cover": [
+    [
+     0,
+     2
+    ],
+    [
+     2
+    ]
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "lower-only",
+   "max_dev": 1.5,
+   "m_u": 5,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "n_match_rows": 4,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}
