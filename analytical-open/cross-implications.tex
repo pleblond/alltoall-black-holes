@@ -1,0 +1,1184 @@
+\part{Cross-readings}
+\label{part:cross}
+
+The ledger splits cleanly into campaigns.
+Several of the open rows are the same formula read on different objects.
+This part records those coincidences.
+A local derivation is repeated, in shorter form, under the hypothesis it came from.
+
+\section{One bond number}
+\label{sec:bond}
+
+\subsection{The identities}
+
+Let \(\psi_i,\psi_j\in\C\) and write
+\begin{equation}
+\label{eq:Bq}
+B_{ij}=\Re(\psi_i^*\psi_j),\qquad
+q_{ij}=|\psi_i|^2+|\psi_j|^2,\qquad
+s=\psi_i+\psi_j,\qquad
+d=\psi_i-\psi_j.
+\end{equation}
+The sum-map convention in \texttt{split0.fiber\_point} is the same \(s\) and \(d\),
+up to which daughter is called \(i\).
+The swap \(d\mapsto -d\) is the endpoint gauge already quotiented by STORE.
+
+\begin{lemma}
+\label{lem:bond-expand}
+\begin{align*}
+|s|^2&=q_{ij}+2B_{ij},&
+|d|^2&=q_{ij}-2B_{ij},\\
+|s|^2-|d|^2&=4B_{ij},&
+|s|^2+|d|^2&=2q_{ij}.
+\end{align*}
+If \(q_{ij}>0\),
+\begin{equation}
+\label{eq:Pminus}
+P_-=\frac{|d|^2}{|s|^2+|d|^2}
+=\frac12-\frac{B_{ij}}{q_{ij}},\qquad
+P_+=\frac12+\frac{B_{ij}}{q_{ij}}.
+\end{equation}
+Furthermore \(|B_{ij}|\le q_{ij}/2\), with equality if and only if
+\(\psi_i\) and \(\psi_j\) are nonnegative real multiples of one complex phase.
+\end{lemma}
+
+\begin{proof}
+Expand \(|\psi_i\pm\psi_j|^2\).
+The cross term is \(2\Re(\psi_i^*\psi_j)\).
+Cauchy--Schwarz gives the bound on \(B_{ij}\).
+The unitary modes \(\alpha=s/\sqrt{2}\) and \(\beta=d/\sqrt{2}\)
+produce the same ratio \(P_-\), because the factors of \(2\) cancel.
+\end{proof}
+
+\begin{corollary}
+\label{cor:Bzero}
+For \(q_{ij}>0\),
+\[
+B_{ij}=0
+\iff |s|=|d|
+\iff P_+=P_-=\tfrac12.
+\]
+The sum-map norm change is \(\Delta\|\psi\|^2=2B_{ij}\)
+(\texttt{accounting.event\_ledger}).
+Hence \(B_{ij}=0\) if and only if that contraction is norm-neutral.
+The energy change is
+\(\Delta E_\psi=2B_{ij}-2\Sigma_{\mathrm{cross}}\).
+On \(K_N\) every third vertex is a common neighbour, so
+\(\Sigma_{\mathrm{cross}}=0\) and norm neutrality coincides with energy neutrality.
+On a cut leg the exclusive-neighbour sum survives, and the two neutralities diverge.
+\end{corollary}
+
+If \(q_{ij}=0\) both amplitudes vanish.
+There is then no pair, and \(P_-\) is undefined.
+The limit of \(h_2(P_-)\) along \(q\to 0\) depends on the direction of approach,
+so an empty pair is not assigned the value \(1\) by continuity.
+
+\subsection{Binary entropy, as an optional reading}
+
+\begin{remark}
+\label{rem:h2}
+INFO-0 recorded counts with binary logarithms and did not introduce
+\(-\sum p\log p\).
+The map \(B/q\mapsto P_-\) does not need a further identification.
+You could still attach to an occupied pair the Shannon entropy of its
+\(\pm\) weight,
+\begin{equation}
+\label{eq:se}
+s_e=h_2(P_-),\qquad
+h_2(p)=-p\log_2 p-(1-p)\log_2(1-p).
+\end{equation}
+Then \(0\le s_e\le 1\), with \(s_e=1\) if and only if \(B_{ij}=0\),
+and \(s_e=0\) at the Cauchy--Schwarz ends.
+This \(s_e\) is the uncertainty of one projective \(\pm\) measurement.
+It is not the von Neumann entropy of a pure global state.
+It does not see the phase of \(d\) relative to \(s\).
+At \(B_{ij}=0\) that phase is a pure current:
+\(|\Im(\psi_i^*\psi_j)|=|\psi_i||\psi_j|\).
+The continuous fibre dimension \(\dim_\R d=2\) counts magnitude and phase.
+The number \(s_e\) counts neither as a dimension.
+The two are not proportional, which is the overlap between the
+post-STORE entropy row and the BH-Q dimension count
+(Section~\ref{sec:kernel}).
+\end{remark}
+
+\begin{lemma}
+\label{lem:taylor}
+With \(x=B/q\) and \(|x|\le 1/2\),
+\[
+h_2\Bigl(\tfrac12-x\Bigr)
+=1-\frac{2}{\ln 2}\,x^2-\frac{4}{3\ln 2}\,x^4+O(x^6).
+\]
+There is no odd term.
+\end{lemma}
+
+\begin{proof}
+Set \(f(x)=(\tfrac12-x)\ln(\tfrac12-x)+(\tfrac12+x)\ln(\tfrac12+x)\),
+so \(h_2=-f/\ln 2\).
+Then \(f(0)=-\ln 2\), \(f'(0)=0\),
+\(f''(x)=4/(1-4x^2)\), \(f''(0)=4\), \(f'''(0)=0\), \(f''''(0)=32\).
+The degree-\(4\) Taylor polynomial is \(-\ln 2+2x^2+\tfrac43 x^4\).
+\end{proof}
+
+\subsection{Three ensembles, one pair}
+
+\begin{theorem}
+\label{thm:haar}
+Let \(\psi\) be Haar-uniform on the unit sphere in \(\C^N\), \(N\ge 2\),
+and let \(\{i,j\}\) be any fixed pair.
+Then \(P_-\) is uniform on \([0,1]\), and
+\[
+\mathbb{E}[h_2(P_-)]=\frac{1}{2\ln 2}.
+\]
+The expectation is exact at finite \(N\), not a large-\(N\) limit.
+Weighting pairs by \(q_{ij}\) does not change it:
+\(h_2(P_-)\) depends only on the fraction, and for the Dirichlet law
+the fraction is independent of the pair norm.
+\end{theorem}
+
+\begin{proof}
+The squared moduli of a Haar vector in \(\C^N\) are Dirichlet with every
+parameter equal to \(1\).
+They have the law of \((e_1,\ldots,e_N)/\sum_k e_k\) with \(e_k\) i.i.d.\
+exponential.
+For any two coordinates,
+\(e_i/(e_i+e_j)\) is uniform on \([0,1]\).
+The rotation
+\(\alpha=(\psi_i+\psi_j)/\sqrt{2}\),
+\(\beta=(\psi_i-\psi_j)/\sqrt{2}\)
+is a global unitary.
+Haar measure is invariant, so
+\(P_-=|\beta|^2/(|\alpha|^2+|\beta|^2)\) is uniform on \([0,1]\).
+The integral \(\int_0^1 -p\ln p\,dp=1/4\), and the partner term in \(p\mapsto 1-p\)
+is equal, so
+\[
+\int_0^1 h_2(p)\,dp=\frac{1}{\ln 2}\cdot\frac12=\frac{1}{2\ln 2}.
+\]
+\end{proof}
+
+\begin{proposition}
+\label{prop:arcsine}
+If the two moduli are equal and the relative phase is uniform,
+or if the pair is a real Gaussian,
+then \(P_-\) is Beta\(\bigl(\tfrac12,\tfrac12\bigr)\) and
+\[
+\mathbb{E}[h_2(P_-)]=2-\frac{1}{\ln 2}.
+\]
+\end{proposition}
+
+\begin{proof}
+Equal moduli and uniform phase give
+\(P_-=(1-\cos\phi)/2\).
+The density of this law is \(1/(\pi\sqrt{p(1-p)})\).
+A real Gaussian pair has the same norm fraction, because the argument of
+\((g_1,g_2)\) is uniform.
+One of the two symmetric terms in the average is
+\[
+\frac{1}{\pi\ln 2}\int_0^1\frac{-p\ln p}{\sqrt{p(1-p)}}\,dp
+=\frac{1}{\pi\ln 2}\bigl(-\partial_a B(a,b)\bigr)_{a=3/2,\,b=1/2}.
+\]
+Here \(B(3/2,1/2)=\pi/2\) and \(\psi(3/2)-\psi(2)=1-2\ln 2\),
+so \(-\partial_a B=(\pi/2)(2\ln 2-1)\).
+One term equals \((2\ln 2-1)/(2\ln 2)\).
+Both terms give \(2-1/\ln 2\).
+\end{proof}
+
+\begin{proposition}
+\label{prop:ground}
+The normalised all-ones vector on \(K_N\), which is the ground state of
+\(H=-A\), has \(B_{ij}/q_{ij}=1/2\) on every edge, hence \(P_-=0\) and \(h_2=0\).
+\end{proposition}
+
+A flat-magnitude random-phase vector is Proposition~\ref{prop:arcsine},
+not Theorem~\ref{thm:haar}.
+The two means differ:
+\(1/(2\ln 2)\approx 0.721\) against \(2-1/\ln 2\approx 0.557\).
+
+\subsection{Scale separation}
+
+\begin{proposition}
+\label{prop:lambda}
+Fix \(v>0\) and let \(\psi_i=\sigma g\) with \(g\) complex normal,
+\(\mathbb{E}|g|^2=1\), and \(\psi_j=v\) real.
+Set \(\lambda=\sigma/v\). Then
+\[
+x=\frac{B}{q}=\frac{\lambda\,\Re g}{1+\lambda^2|g|^2}.
+\]
+As \(\lambda\to 0\) or \(\lambda\to\infty\), \(x\to 0\) in probability,
+so \(h_2(1/2-x)\to 1\) in probability.
+For small \(\lambda\), \(\mathbb{E}[(\Re g)^2]=1/2\) and
+\[
+1-\mathbb{E}[h_2]=\frac{\lambda^2}{\ln 2}+O(\lambda^4).
+\]
+\end{proposition}
+
+You could read this as follows.
+A dynamical selection of quadrature is one way to reach \(h_2=1\).
+A mismatch of the two amplitudes is another, and it does not use the
+phase. The case \(\psi_j=0\), \(\psi_i\neq 0\) is exactly \(B=0\).
+That endpoint is the \(\psi=0\) limit, which the ledger already separates
+from the JOINT vacua.
+
+\subsection{Where the same number sits}
+
+I1a assigns \(\ln 2\) nats, hence one bit, to a saturated leg, and the
+matching theorem gives \(A=4\ln 2\cdot k\,\ell_P^2\).
+In bits, \(S=k\) and
+\[
+\frac{S}{A}=\frac{1}{4\ell_P^2\ln 2}.
+\]
+You could take the channel set to be the \(k\) cut legs and set
+\(S_Q=\sum_e h_2(P_{-,e})\).
+Then \(S_Q=k\) if and only if \(\bar h=1\),
+and the coefficient above is reproduced with no free area.
+A Haar law on those same legs would give \(S_Q=k/(2\ln 2)\) instead,
+short by the constant \(2\ln 2\).
+The interior edges of \(K_N\) are a different set:
+there are \(\binom{N}{2}\) of them, and Theorem~\ref{thm:haar}
+puts about \(0.721\) bit on each.
+Edges of \(K_N\) incident to a leg-bearing vertex number about \(kN\).
+The cardinality of the set is part of the definition of the sum.
+The algebra does not choose the set.
+
+BR2-QUADRATURE says that structural response tracks \(\cos\Delta\theta\)
+through \(B\) and a staggered flux tracks \(\sin\Delta\theta\) through the current.
+It does not set \(B_{ij}=0\).
+The word ``quadrature'' in that verdict and the condition \(B=0\)
+share a trigonometric function and not a theorem.
+
+\section{Kernel dimension is a different count}
+\label{sec:kernel}
+
+\begin{lemma}
+\label{lem:fiber}
+The sum map \((p,q)\mapsto s=p+q\) has kernel the complex line \(d=p-q\),
+real dimension \(2\), for every \(s\) including \(s=0\).
+After the \(U(1)\) quotient the physical dimension drops to \(1\) only for
+the all-zero merged state.
+The swap \(d\mapsto -d\) is discrete and does not halve the dimension.
+\end{lemma}
+
+A tree of \(n-1\) interior merges therefore carries naive continuous
+dimension \(2(n-1)\), minus all-zero exceptions.
+That is the count \(D_Q=2N_d+D_c\) in the ledger.
+Lemma~\ref{lem:fiber} and Remark~\ref{rem:h2} do not convert it into \(h_2\).
+
+\begin{proposition}
+\label{prop:vol}
+Suppose each merge contributes an independent complex coordinate,
+and the exterior imprint of those coordinates factors through a complex
+boundary space of dimension at most \(b=|\partial R|\).
+Then
+\[
+D_Q\ge 2(N_Q-b).
+\]
+For a space-filling collapse, \(N_Q=n_R-1\), so the lower bound is
+volume-leading.
+If the exterior evolution is the collapsed graph alone, \(Q\) does not
+enter \(H\) (the store is frozen between events), the Jacobian on the
+\(d\)-coordinates vanishes, and \(D_Q=2(n_R-1)\) up to all-zero exceptions.
+\end{proposition}
+
+An area law for this kernel would need either \(N_Q\) itself of order \(b\),
+or an imprint whose rank cancels the bulk and leaves a boundary layer.
+Neither is implied by \(H=-A\) or by the sum map.
+You could have a volume law for \(D_Q\) and, on a different set of edges,
+an area law for \(\sum h_2\).
+They count different things: interior relative modes, and leg channels.
+Promoting the factor \(2\) in \(D_Q=2N_d\) to two bits per merge
+is a third count, distinct from I1a's one bit per saturated leg.
+
+\section{One length in the chain weave}
+\label{sec:ell}
+
+The chain construction places stitch endpoints at density \(\rho=4\lambda\)
+on the sheets and sets
+\begin{equation}
+\label{eq:ell}
+\ell_W=\rho^{-1/2}=\frac{1}{2\sqrt{\lambda}}
+\end{equation}
+in sheet cells.
+A transverse step costs an in-plane walk of that typical length, plus one
+stitch edge.
+
+\begin{proposition}
+\label{prop:metric}
+In coordinates \((x,y,z)\) with \(z\) the sheet index, the Riemannian
+approximation consistent with that cost is
+\begin{equation}
+\label{eq:ds}
+ds^2=dx^2+dy^2+\ell_W^2\,dz^2.
+\end{equation}
+The linear axis ratio is \(\ell_W\).
+In-plane shifts and a transpose act on \((x,y)\).
+They do not rotate \(z\) into the sheet.
+The quadratic symbol of \(J_2\) is already isotropic in the sheet
+(\(\mathrm{Hess}=4I\)), so those moves have no quadratic in-plane
+anisotropy left to erase.
+\end{proposition}
+
+Volume growth in the window \(\ell_W\ll r\ll S\ell_W\) is
+\(V\sim r^3/\ell_W\) for a one-dimensional meeting graph.
+An ellipsoid has the same volume exponent as a ball.
+The exponent \(3\) and the ratio \(\ell_W\) are independent readings of
+\eqref{eq:ds}.
+
+\begin{proposition}
+\label{prop:over}
+\(\ell_W=1\) forces \(\lambda=1/4\).
+The stub fraction \(1-\exp(-2\lambda)\) is then \(1-e^{-1/2}\approx 0.393\),
+which the weave preregistration labels overconnected.
+Every woven ladder value \(\lambda\le 0.08\) has \(\ell_W\ge 1.77\).
+\end{proposition}
+
+The same \(\ell_W\) is the crossover of \(d_{\mathrm{eff}}(r)\) and,
+if stitches are later removed, the transverse factor in any scale
+read off \eqref{eq:ds}.
+A scalar \(a\propto 1/\rho_S\) built from this metric tracks \(a_\perp\),
+not an isotropic scale factor.
+The in-plane factor stays \(1\) while the sheet lattice is held fixed.
+The ledger average \(M_{ab}=\langle n_a n_b\rangle\) needs normals in an
+ambient three-space.
+The chain construction does not have those normals.
+An isotropic plane process would be a different ensemble, and
+Proposition~\ref{prop:metric} would not apply to it.
+
+On a finite ring the third direction is compact, circumference \(S\ell_W\).
+For \(S=\infty\) the window is the infrared and the axis ratio remains.
+Spectral dimension of the homogenized walk is \(3\) only inside the time
+window corresponding to \eqref{eq:ell}, and returns to \(2\) after the ring
+is explored.
+That return is the compactification, not a second mechanism.
+
+\section{One quartic ratio}
+\label{sec:quartic}
+
+At \(J=1\),
+\begin{align}
+\label{eq:disp}
+\varepsilon_{J_2}(q)
+&=-8+2|q|^2-\tfrac16(q_x^4+q_y^4)+O(q^6),\\
+\varepsilon_{J_3}(q)
+&=-12+2|q|^2-\tfrac16\sum_i q_i^4+O(q^6).
+\end{align}
+Both are sums of functions of one momentum component, so every
+coefficient of \(q_i^2 q_j^2\) vanishes.
+The Hessian at the band bottom is \(4I\).
+
+\begin{theorem}
+\label{thm:ratio}
+Write the quartic part as
+\(\beta\sum_i q_i^4+\gamma\sum_{i<j}q_i^2 q_j^2\).
+A quartic function of \(|q|^2\), and the degree-\(4\) term in
+\(\sqrt{m^2c^4+c^2p^2}\), both require \(\gamma/\beta=2\).
+For \eqref{eq:disp}, \(\beta=-1/6\) and \(\gamma=0\).
+No choice of \(m\), \(c\), or \(J\) removes the mismatch.
+The first rotationally anisotropic correction and the first departure from
+the relativistic series sit at the same order.
+\end{theorem}
+
+The long-wave ray direction can still be radial.
+On \(J_2\),
+\(v_i=4q_i-(2/3)q_i^3+\cdots\), so \(v\) is parallel to \(q\) on the axes
+and the diagonals, and the deflection elsewhere is \(O(q^2)\).
+The Manhattan cone is a different object: for
+\(\varepsilon=-4\sum_{i=1}^d\cos q_i\),
+\[
+\frac{v_E^{\max}}{v_M}=\frac{1}{\sqrt{d}},
+\]
+equal to \(1/\sqrt{2}\) on \(J_2\) and \(1/\sqrt{3}\) on \(J_3\).
+A threshold on the peak and a threshold in the forerunner read these two
+speeds. The ratio does not require a continuum fit.
+
+A chain weave has Hessian \(\mathrm{diag}(4,4,t_\perp)\) at quadratic order.
+Rescaling the sheet-index coordinate matches this to \(4I_3\) and does not
+match the quartic, nor the flat band.
+The \(J_3\) zero eigenvalue is structural at every crystal momentum.
+A stitch with \(\|P_- H P_+\|\neq 0\) lifts the corresponding sheet zero.
+Nullity against stitch density is the spectral distinction;
+a quadratic packet, after the rescaling, does not see it.
+
+Dimension universality in the earned sense is universality of the
+quadratic form: SCALE-0 has \(d_H\to 2\) with \(J_2\) and the square control
+indistinguishable.
+Fringes at a few cells see \(O(q^2)\) corrections and the plaquette.
+Two graphs with the same Hessian and different \(\gamma/\beta\)
+agree on \(d_H\) and need not agree on interference.
+That is why a spectral feature vector can fail to classify F
+while still classifying the volume exponent.
+
+\section{Band edge, dimension, and a gap}
+\label{sec:dos}
+
+Near a band edge whose Hessian is a multiple of the identity,
+\begin{equation}
+\label{eq:dos}
+\rho(E)\propto
+\begin{cases}
+(E-E_0)^{-1/2}& d=1,\\
+\mathrm{const}& d=2,\\
+(E-E_0)^{d/2-1}& d\ge 2.
+\end{cases}
+\end{equation}
+The \(J_2\) dispersive edge is the \(d=2\) case.
+With \(m^*=1/4\) and \(J=1\),
+\(\rho\to m^*/(2\pi)=1/(8\pi)\) per quotient cell.
+The \(J_3\) edge is the \(d=3\) case, vanishing as \(\sqrt{E-E_0}\).
+
+Fermi's golden-rule width \(\Gamma=2\pi|V|^2\rho(E)\) therefore stays finite
+as \(E\downarrow E_0\) on \(J_2\) and can be parametrically small on \(J_3\).
+Dimension \(3\) is the lowest dimension in \eqref{eq:dos} with a vanishing
+edge density, and it is also the weave value
+\(d_{\mathrm{obs}}=d_{\mathrm{sheet}}+d_M\) for a \(2\)-dimensional sheet
+and a \(1\)-dimensional meeting complex.
+The density of states does not forbid \(d\ge 4\).
+The weave count does, and only as a minimality reading:
+P0' imports Maxwell dimension \(2\) when it sets \(\langle z\rangle=4\),
+and the graph alone does not force that integer.
+
+\begin{proposition}
+\label{prop:clique}
+On infinite \(J_2\) the essential spectrum of \(H=-A\) is \([-8,8]\) together
+with the flat band at \(0\).
+A finite edge perturbation does not move the essential spectrum.
+If a vertex subset induces a clique \(K_n\) with \(n\ge 10\),
+the normalised indicator of that subset has Rayleigh quotient \(-(n-1)\)
+for \(H\), so
+\[
+E_0\le -(n-1)\le -9,\qquad m=-8-E_0\ge n-9.
+\]
+\end{proposition}
+
+For \(n\le 9\) this trial vector does not clear the edge.
+A triangle scores \(-2\), inside the band.
+Modes inside the essential spectrum hybridize with \eqref{eq:dos}.
+You could regard a motif with no eigenvalue below the edge as a resonance
+of the earned unitary, and a motif with such an eigenvalue as a spectral
+bound state.
+The flat band on pure \(J_2\) is a protected kernel, extensive in the
+sheet-antisymmetric sector, and it does not propagate in the quotient.
+
+The event account \(R=A_{\mathrm{coef}}+|d|^2/2+\Re(\bar d\, W)\)
+telescopes along a sequence of merges to the change in known energy.
+Between events \(E_\psi\) is conserved.
+Q-DYN-0b treats \(R\) as event-local, not as a term stored in \(Q\).
+The spectral gap of Proposition~\ref{prop:clique} depends only on the
+final graph and the final eigenmode.
+Two histories that reach the same \((G,\psi)\) share that gap and need not
+share \(\sum R\).
+
+At fixed \(\psi\), an edge-set change shifts \(E_\psi\) only through
+\(-2\sum(\Delta A_e) B_e\).
+There is no extra term in \(H=-A\) coupling to \(d_{\mathrm{eff}}\).
+Deleting stitches on which \(B_e=0\) changes ball growth and does not change
+\(E_\psi\).
+A mass read from the eigenvalue and a dimension read from the ball are
+independent at that locus.
+
+Isolated \(K_n\) has spectrum \(\{-(n-1)\}\) once and \(\{+1\}\) with
+multiplicity \(n-1\).
+Only the ground level can sit below \(-8\), and only for \(n\ge 10\).
+The level \(+1\) lies in \([-8,8]\).
+
+\section{Codimension along a unitary orbit}
+\label{sec:codim}
+
+Between events, \(i\partial_t\psi=H(G)\psi\) with \(G\) and \(Q\) fixed,
+and \(\partial H/\partial Q=0\).
+VACEXC0 gives the same carrier evolution on every JOINT background.
+Arrival times read from \(G\), or from the linear packet, are constant on
+each inter-event interval.
+Any scale factor built from those times has \(\dot a=0\) there.
+A frozen texture in the flat band does not move \(H\).
+Orientations that are functions of \(G\) are likewise constant.
+A deterministic drift of \(M_{ab}\) would be an update rule for \(G\),
+which the present equations do not contain.
+REWIRE0 leaves degree-preserving re-pairings tied, so there is also no
+bond drift that would rotate a frame.
+
+Unweighted edges have combinatorial length \(1\).
+A non-integer dilation is not an automorphism of a fixed simple graph.
+
+\begin{lemma}
+\label{lem:mu}
+Across a sum-map split let \(\mu\) be the difference between the split-side
+sum \(p+q\) and the merged-side amplitude at the same vertex.
+Then \(\mu(t_0)=0\) for every fibre point, and
+\begin{equation}
+\label{eq:mudot}
+\dot\mu(t_0)=i\Bigl(s+\sum_{v\in C}\psi_v\Bigr),
+\end{equation}
+which does not depend on \(d=\psi_i-\psi_j\).
+The \(d\)-dependent piece of \(\ddot\mu(t_0)\) is
+\(-\tfrac12 d\bigl(|X_i|-|X_j|\bigr)\).
+\end{lemma}
+
+\begin{proof}
+From \(i\partial_t\psi=-A\psi\) one has \(\partial_t\psi=iA\psi\).
+On the split graph,
+\[
+\partial_t(p+q)=i\Bigl(s+\sum_{X_i}\psi+\sum_{X_j}\psi+2\sum_C\psi\Bigr).
+\]
+On the merged graph the exclusive and common neighbours each appear once.
+Subtracting cancels the exclusive sums and leaves \eqref{eq:mudot}.
+Differentiating the exclusive sums brings down \(|X_i|p\) and \(|X_j|q\),
+and \(p-q=d\) produces the second-derivative coefficient.
+\end{proof}
+
+If \(s+\sum_C\psi\neq 0\), no choice of \(d\) restores \(C^1\) continuity of
+the summed amplitude.
+A uniform nonzero state fails \eqref{eq:mudot} on every cover.
+A STORE replay meets every order because the recovered state is the
+predecessor, not because \(d\) was tuned.
+An asymmetric cover that has already passed \eqref{eq:mudot} fixes at most
+one \(d\) at the next order. Higher orders then overdetermine it.
+
+Equation~\eqref{eq:mudot} is two real constraints.
+A real condition \(B_{ij}(t)=B_*\) is one.
+Along the unitary orbit, \(B_{ij}(t)\) is almost periodic, with frequencies
+equal to eigenvalue differences of \(H\).
+For a two-mode parent
+\(B(t)=B_0+C\cos(\omega t+\varphi)\),
+crossings of a level inside the range exist and sit at an arccosine comb.
+A one-dimensional orbit misses a codimension-\(2\) submanifold for generic
+initial data, and meets a codimension-\(1\) level set in isolated roots.
+The ratios inside \(B_*\) are unfixed (the conditional conservation identity
+leaves two ratios free).
+The family of roots, or of Rice rates
+\[
+\lambda(B_*)=\frac{1}{2\pi}\sqrt{\frac{m_2}{m_0}}
+\exp\Bigl(-\frac{(B_*-\mu)^2}{2m_0}\Bigr)
+\]
+for a stationary Gaussian approximation, is determined by the spectral
+measure of \(B_{ij}(t)\) once the level is given.
+A two-mode parent is the comb, not a constant hazard.
+The exact codimension-\(2\) condition has rate zero.
+
+Radiative decay of an in-band resonance is a third clock, with width
+controlled by \eqref{eq:dos}, and it does not read \(Q\).
+You could separate a parent with an empty store and an eigenvalue inside
+the band from a parent that is spectrally bound and carries a stored
+\(\xi\).
+The first clock is the unitary width.
+The second, if it splits, replays \(\xi\) and the daughters are the STORE
+preimage.
+The marginal of \(P_-\) on a Haar pair is Theorem~\ref{thm:haar},
+with no free parameter.
+A departure from that law, from the arcsine law, and from a point mass at
+\(1/2\) would be a different distribution.
+Agreement with one of the three is the corresponding ensemble.
+
+\section{Expansion identities that assume a metric}
+\label{sec:expand}
+
+If a three-dimensional metric is already expanding and the sheets are
+comoving, area per physical volume scales as \(a^{-1}\),
+pairwise intersection length as \(a^{-2}\),
+and triple-point density as \(a^{-3}\).
+The relations \(a\propto\rho_S^{-1}\) and \(a\propto\rho_I^{-1/3}\)
+are those two dilutions.
+They do not determine \(\ddot a\).
+Given an independent \(\ell(t)\propto t^\alpha\),
+a single flat-universe fluid would have
+\[
+q=\frac{1-\alpha}{\alpha},\qquad
+w=\frac{2-3\alpha}{3\alpha}.
+\]
+No earned equation produces \(\alpha\).
+In particular \(w=-1\) is not implied by \(\dot\rho_S<0\).
+
+On the chain, the derived spacing is \(\ell_W\propto\lambda^{-1/2}\).
+The exponent \(-1/3\) belongs to triple points in the three-volume,
+not to the stitch intensity \(\lambda\).
+While \(\lambda\) is fixed, Section~\ref{sec:codim} gives \(\dot a=0\).
+
+For a pure power \(V=A(r/\ell)^d\),
+\(d_{\mathrm{eff}}=d\) is independent of \(\ell\).
+On the chain, \(d_{\mathrm{eff}}\) is a function of \(r/\ell_W\) only:
+\(2\), then \(3\), then \(2\) again past \(S\ell_W\).
+Walking in \(r\) on a fixed graph traces that curve.
+A time-dependent exponent at fixed probe radius needs \(\ell_W(t)\) or \(S(t)\).
+The local spectral gap of a tense motif stays fixed in hopping units if
+local edges are held fixed while \(\ell_W\) grows.
+The probe remains inside the three-dimensional window only while
+\(\ell_W\ll r_{\mathrm{probe}}\ll S\ell_W\).
+
+Static response of a drive detuned by \(1/2\) below the \(J_2\) edge is the
+massive symbol \(1/2+2|q|^2\), Helmholtz constant \(\kappa=1/2\).
+The gapless Laplace response sits at the band edge, which the
+electromagnetic falsification labels as excluded tuning.
+On a three-dimensional quotient that excluded Green function would be
+\(1/r\).
+\(J_2\) is \(8\)-regular against the Maxwell value \(4\), so excess
+coordination is already present.
+Curvature of \eqref{eq:ds} is the curvature of an anisotropic background
+whose axis ratio is \(\ell_W\), not a linearization about \(\delta_{ab}\),
+and only where \(\ell_W\) varies in space.
+A uniform \(\ell_W\) has none of that curvature.
+Between events a frozen \(Q\) does not source it, because
+\(\partial H/\partial Q=0\).
+
+\section{Plaquettes as an order parameter}
+\label{sec:soup}
+
+A tree has exponential ball growth and no integer plateau of
+\(d_{\mathrm{eff}}\).
+An expander has diameter \(\sim\log N\).
+The earned geometric graphs sit between them, with a density of \(4\)-cycles
+of order one per vertex.
+You could take the fraction \(f_\square\) of edges that lie in a \(4\)-cycle
+as a coordinate on that interval:
+\(0\) on a tree, order one on the square and on \(J_2\).
+Across a percolation of those cycles at fixed degree, a logarithmic
+derivative that was large on the tree side falls toward \(2\).
+A later weave window at \(3\) is Section~\ref{sec:ell}, and it is
+intermediate when \(S\) is finite.
+A rise of \(d_{\mathrm{eff}}\) from \(1\) toward \(3\) is a different path
+through the same \((f_\square,d_{\mathrm{eff}})\) plane.
+
+\section{The fibre circle}
+\label{sec:circle}
+
+The sum map fixes \(s\) and leaves \(d\in\C\).
+The bond and the pair current are two real coordinates on that line,
+not two different mechanisms.
+
+\begin{lemma}
+\label{lem:BJ}
+Let \(\mathcal{J}_{ij}=\Im(\psi_i^*\psi_j)\), so that
+\(\psi_i^*\psi_j=B_{ij}+i\mathcal{J}_{ij}\).
+Then
+\begin{align*}
+B_{ij}&=\frac{|s|^2-|d|^2}{4},&
+\mathcal{J}_{ij}&=\frac12\Im(\bar d\, s),\\
+B_{ij}^2+\mathcal{J}_{ij}^2&=|\psi_i|^2|\psi_j|^2.
+\end{align*}
+At hopping \(1\), the continuity flux on the bond is \(2\mathcal{J}_{ij}\).
+\end{lemma}
+
+\begin{proof}
+Substitute \(\psi_i=(s+d)/2\) and \(\psi_j=(s-d)/2\).
+The cross term \(d^*s-s^*d\) is purely imaginary and equals
+\(2i\Im(d^*s)\), which produces the formula for \(\mathcal{J}_{ij}\).
+The identity \(B^2+\mathcal{J}^2=|\psi_i|^2|\psi_j|^2\) is
+\(|\psi_i^*\psi_j|^2=|\psi_i|^2|\psi_j|^2\).
+The factor \(2\) in the flux is the divergence convention
+\(\sum_{j\sim i}2\Im(\psi_i^*\psi_j)\).
+\end{proof}
+
+\begin{proposition}
+\label{prop:circle}
+Fix \(s\) and a real level \(B_*\).
+The fibre set \(B(s,d)=B_*\) is empty when \(B_*>|s|^2/4\),
+a single point when equality holds, and the circle
+\[
+|d|^2=|s|^2-4B_*
+\]
+when \(B_*<|s|^2/4\).
+The weight \(P_-\), and therefore \(h_2(P_-)\), is constant on that circle.
+The endpoint identification \(d\mapsto -d\) preserves the circle,
+preserves \(B\), and sends \(\mathcal{J}\) to \(-\mathcal{J}\).
+\end{proposition}
+
+\begin{proof}
+Lemma~\ref{lem:BJ} rearranges to the displayed radius.
+\(P_-\) depends on the pair only through \(|d|^2/(|s|^2+|d|^2)\).
+Replacing \(d\) by \(-d\) changes the sign of \(\Im(\bar d\, s)\) and
+does not change \(|d|\).
+\end{proof}
+
+A bond threshold is one real condition.
+It selects the radius and leaves the angle.
+The angle is the pair current.
+Remark~\ref{rem:h2} sees only the radius, so an entropy built from
+\(h_2\) is constant on a set of fibre states that the current separates.
+The conditional balance
+\(-\alpha-\beta(1+c)+2\gamma B=0\)
+likewise fixes a radius when \(\gamma\neq 0\):
+\(B_*=\bigl(\alpha+\beta(1+c)\bigr)/(2\gamma)\),
+with the two ratios \(\alpha/\gamma\) and \(\beta/\gamma\) unfixed.
+Those ratios move the circle.
+They do not select a point on it.
+Two real witnesses of a level set are two points of this circle.
+
+\begin{corollary}
+\label{cor:balanced}
+If the exclusive neighbourhoods have equal cardinality,
+the coefficient of \(d\) in \(\ddot\mu(t_0)\) vanishes.
+\end{corollary}
+
+\begin{proof}
+Lemma~\ref{lem:mu} gives that coefficient as
+\(-\tfrac12\bigl(|X_i|-|X_j|\bigr)\).
+\end{proof}
+
+A symmetric cover therefore leaves the circle intact at the first two
+orders of the summed amplitude.
+The current is still free at those orders.
+An asymmetric cover can pin \(d\) at second order, and then only the
+value that cancels the imbalance.
+
+\begin{proposition}
+\label{prop:circle-energy}
+At hopping \(1\), the field energy is \(E_\psi=-2\sum_e B_e\), so no
+current appears in it.
+On the circle of Proposition~\ref{prop:circle} the contracted bond \(B\)
+is constant, and the contraction energy is
+\[
+\Delta E_\psi
+=2B-\Re(s^* S_{\mathrm{ex}})-\Re(d^* V),
+\]
+where \(S_{\mathrm{ex}}\) is the sum of the amplitudes on the exclusive
+neighbourhoods \(X_i\) and \(X_j\), and
+\[
+V=\sum_{n\in X_j}\psi_n-\sum_{m\in X_i}\psi_m.
+\]
+As the angle runs, \(\Delta E_\psi\) sweeps an interval of half-width
+\(|d|\,|V|\) about \(2B-\Re(s^* S_{\mathrm{ex}})\).
+The same half-width is the oscillation of the mixed piece of the event
+account, \(R_{\mathrm{mixed}}=2\Sigma_{\mathrm{cross}}\).
+The norm change \(2B\) and the fibre piece \(-2B\) stay constant.
+\(V=0\) is the vanishing of that oscillation.
+Equal cardinalities \(|X_i|=|X_j|\) do not imply it.
+\end{proposition}
+
+\begin{proof}
+The sum \(E_\psi=-2\sum_e B_e\) is the quadratic form of \(H=-A\).
+The ledger cross sum is
+\(\Sigma_{\mathrm{cross}}
+=\sum_{m\in X_i}\Re(\psi_j^*\psi_m)
++\sum_{n\in X_j}\Re(\psi_i^*\psi_n)\),
+and \(\Delta E_\psi=2B-2\Sigma_{\mathrm{cross}}\).
+Substitute \(\psi_i=(s+d)/2\) and \(\psi_j=(s-d)/2\).
+The terms linear in \(d\) collect into \(\Re(d^* V)/2\), and the terms
+without \(d\) collect into \(\Re(s^* S_{\mathrm{ex}})/2\).
+Doubling produces the displayed formula.
+On the circle \(B\), \(s\), and \(|d|\) are fixed, so the only variation
+is \(-\Re(d^* V)\), whose range has half-width \(|d|\,|V|\).
+The split of the event account into cover, fibre, and mixed pieces
+identifies the mixed piece with \(2\Sigma_{\mathrm{cross}}\).
+Common neighbours do not enter \(V\): their collapse cancels in
+\(\Delta E_\psi\).
+\end{proof}
+
+\section{Additive bits on a matching}
+\label{sec:bits}
+
+\begin{lemma}
+\label{lem:varh}
+For \(h_2\) as in \eqref{eq:se},
+\[
+\int_0^1 h_2(p)^2\,dp
+=\frac{\tfrac56-\pi^2/18}{(\ln 2)^2}.
+\]
+If \(P_-\) is uniform on \([0,1]\),
+\[
+\mathrm{Var}\bigl(h_2(P_-)\bigr)
+=\frac{21-2\pi^2}{36(\ln 2)^2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Write \(A(p)=p\ln p+(1-p)\ln(1-p)\), so \(h_2=-A/\ln 2\) and the
+integral of \(A^2\) is the numerator.
+Symmetry gives
+\[
+\int_0^1 A^2
+=2\int_0^1 p^2(\ln p)^2\,dp
++2\int_0^1 p(1-p)\ln p\ln(1-p)\,dp.
+\]
+The substitution \(p=e^{-u}\) yields
+\(\int_0^1 p^2(\ln p)^2\,dp=2/27\).
+The cross term is \(\partial_\alpha\partial_\beta B(\alpha,\beta)\) at
+\((\alpha,\beta)=(2,2)\).
+There \(B(2,2)=1/6\), \(\psi(2)-\psi(4)=-5/6\), and
+\(\psi'(4)=\pi^2/6-49/36\), so
+\[
+\partial_\alpha\partial_\beta B(2,2)
+=\frac1{6}\Bigl(\frac{37}{18}-\frac{\pi^2}{6}\Bigr)
+=\frac{37}{108}-\frac{\pi^2}{36}.
+\]
+Adding the two contributions produces
+\(\int A^2=5/6-\pi^2/18\).
+The variance subtracts
+\(\bigl(1/(2\ln 2)\bigr)^2\), and
+\[
+\frac56-\frac14-\frac{\pi^2}{18}
+=\frac{7}{12}-\frac{\pi^2}{18}
+=\frac{21-2\pi^2}{36}.
+\]
+\end{proof}
+
+\begin{theorem}
+\label{thm:disjoint}
+Let \(\psi\) be Haar-uniform on the unit sphere in \(\C^N\), and let
+\(e_1,\ldots,e_k\) be pairwise disjoint coordinate pairs, \(2k\le N\).
+Then the variables \(P_-(e_a)\) are i.i.d.\ uniform on \([0,1]\).
+With \(s_e=h_2(P_-(e))\),
+\begin{align*}
+\mathbb{E}\sum_{a=1}^k s_{e_a}
+&=\frac{k}{2\ln 2},\\
+\mathrm{Var}\Bigl(\sum_{a=1}^k s_{e_a}\Bigr)
+&=k\,\frac{21-2\pi^2}{36(\ln 2)^2}.
+\end{align*}
+The mean and the variance are fixed by the same law.
+No further parameter enters either.
+\end{theorem}
+
+\begin{proof}
+Haar measure is the direction of a vector with i.i.d.\ standard complex
+normal coordinates.
+\(P_-\) on a pair depends only on those two coordinates and is invariant
+under a global rescaling, so it is a function of the corresponding
+\(\C^2\) marginal.
+Disjoint pairs use disjoint coordinates and are independent.
+Uniformity of each marginal is Theorem~\ref{thm:haar}.
+The variance of one summand is Lemma~\ref{lem:varh}, and independence
+adds the variances.
+\end{proof}
+
+\begin{proposition}
+\label{prop:cov}
+If two pairs share a vertex, each marginal of \(P_-\) is still uniform,
+so the expectations of \(h_2\) still add.
+The covariance equals the variance of the conditional expectation of
+\(h_2\) given the shared amplitude, and that variance is strictly positive.
+\end{proposition}
+
+\begin{proof}
+Let \(f_{12}=h_2(P_-)\) on coordinates \((z_1,z_2)\), and \(f_{13}\) on
+\((z_1,z_3)\), with \(z_a\) i.i.d.\ standard complex normal.
+Conditioning on \(z_1\) makes \(z_2\) and \(z_3\) independent, so
+\[
+\mathbb{E}[f_{12}f_{13}]
+=\mathbb{E}\bigl[\bigl(\mathbb{E}[f_{12}\mid z_1]\bigr)^2\bigr].
+\]
+The covariance is \(\mathrm{Var}(\mathbb{E}[f_{12}\mid z_1])\).
+For each fixed finite nonzero \(z_1\) the relative phase is uniform and
+the amplitude ratio is finite, so \(h_2<1\) on a set of positive
+probability and the conditional expectation is strictly less than \(1\).
+As \(|z_1|\to\infty\) the ratio \(\lambda\) of
+Proposition~\ref{prop:lambda} tends to \(0\), and bounded convergence
+gives conditional expectation tending to \(1\).
+The law of \(|z_1|\) charges both regimes, so the conditional expectation
+is not almost surely constant.
+\end{proof}
+
+A cut that is a matching of \(k\) legs therefore has bit sum
+\(k/(2\ln 2)\) and variance proportional to \(k\), under the Haar law.
+A cut whose legs share interior vertices keeps the same mean per leg and
+replaces the variance by a sum of the covariances of
+Proposition~\ref{prop:cov}.
+The incidence graph of the cut is part of the fluctuation.
+It is not part of the one-edge mean.
+The dimension \(D_Q\) of Section~\ref{sec:kernel} does not enter this
+variance: \(h_2\) is constant on the circle of Proposition~\ref{prop:circle},
+while \(D_Q\) counts that circle's real plane.
+
+A symmetric law of \(B/q\) has mean bond zero and, unless the law is a
+point mass at \(0\), mean \(h_2\) strictly below \(1\).
+Lemma~\ref{lem:taylor} makes the deficit even in \(B/q\).
+Vanishing of \(\mathbb{E}[B]\) is a different condition from
+\(h_2=1\).
+
+\section{The current conditional on the bond}
+\label{sec:condJ}
+
+\begin{theorem}
+\label{thm:condJ}
+Let the pair be two i.i.d.\ standard complex normals, or equivalently
+any fixed coordinate pair of a Haar vector.
+Set \(x=B/q\) and \(y=\mathcal{J}/q\).
+The joint law is supported on the disk \(x^2+y^2<1/4\), with density
+\[
+f(x,y)=\frac{2}{\pi\sqrt{1-4(x^2+y^2)}}.
+\]
+The marginal of \(x\) is uniform on \([-1/2,1/2]\).
+Conditional on \(x\),
+\[
+y=\sqrt{\tfrac14-x^2}\,\sin\Theta,
+\]
+where \(\Theta\) is uniform on \((-\pi/2,\pi/2)\), and
+\[
+\mathrm{Var}(y\mid x)=\frac{1-4x^2}{8}.
+\]
+The differential entropy of this conditional law is
+\[
+\ln\Bigl(\frac{\pi}{2}\sqrt{\tfrac14-x^2}\Bigr)
+\]
+nats.
+\end{theorem}
+
+\begin{proof}
+For two i.i.d.\ exponential squared moduli the ratio
+\(\rho=|\psi_i|^2/q\) is uniform on \([0,1]\) and independent of the
+relative phase \(\varphi\), which is itself uniform on \([0,2\pi)\).
+Then \(x=\sqrt{\rho(1-\rho)}\cos\varphi\) and
+\(y=\sqrt{\rho(1-\rho)}\sin\varphi\).
+The push-forward of \(\rho(1-\rho)\) and of the uniform angle, written in
+polar coordinates on the \((x,y)\) plane and divided by the radius,
+is the displayed density.
+Its integral in \(y\) equals \(1\) for each \(x\in(-1/2,1/2)\), which is
+the marginal already implied by Theorem~\ref{thm:haar}.
+The change of variables \(y=\sqrt{1/4-x^2}\,\sin\Theta\) flattens the
+conditional density to \(d\Theta/\pi\) on \((-\pi/2,\pi/2)\).
+The second moment of \(\sin\Theta\) on that interval is \(1/2\), so the
+conditional variance is \((1/4-x^2)/2=(1-4x^2)/8\).
+The same change of variables, together with
+\(\int_0^{\pi/2}\ln(\cos\theta)\,d\theta=-(\pi/2)\ln 2\),
+produces the differential entropy.
+\end{proof}
+
+The density depends on the pair only through \(x^2+y^2\).
+The ensemble is isotropic in the \((B,\mathcal{J})\) plane.
+The optional bit \(h_2\) is not: it is a function of \(x\) alone.
+Conditioning on \(h_2\) fixes \(|x|\) and leaves the conditional law above.
+That differential entropy is not a summand of \(h_2\).
+One is the Shannon entropy of a binary weight.
+The other is a continuous entropy of a current.
+Section~\ref{sec:kernel} counts the real plane in which both sit, and
+counts it once.
+
+If the two moduli are equal and the phase is uniform, then
+\(x^2+y^2=1/4\), so \(y=\pm\sqrt{1/4-x^2}\).
+The conditional law collapses to a sign.
+The ground state of Proposition~\ref{prop:ground} is the further collapse
+\(x=\pm 1/2\), \(y=0\).
+The amount of current left after the bond is fixed is a property of the
+ensemble.
+
+\section{Separable symbols, to every order}
+\label{sec:sep}
+
+\begin{proposition}
+\label{prop:sep}
+Suppose \(\varepsilon(q)=\sum_{i=1}^d f_i(q_i)\).
+Every partial derivative that involves two distinct momenta vanishes
+identically, so every mixed monomial has coefficient zero.
+Both dispersive bands are of this form,
+\[
+\varepsilon_{J_2}=-4J(\cos q_x+\cos q_y),\qquad
+\varepsilon_{J_3}=-4J\sum_{i=1}^3\cos q_i.
+\]
+No order of either Taylor series satisfies \(\gamma/\beta=2\).
+\end{proposition}
+
+\begin{proof}
+A mixed partial of a sum of univariate functions is zero.
+The degree-\(4\) rotational invariant and the degree-\(4\) term of
+\(\sqrt{m^2c^4+c^2|q|^2}\) both contain \(q_i^2 q_j^2\) with
+\(\gamma/\beta=2\), as in Theorem~\ref{thm:ratio}.
+A coefficient that is zero at every order cannot match a coefficient
+that is not.
+\end{proof}
+
+The \(J_2\) generators are axis steps, half of them flipping the sheet bit.
+The sheet bit produces the flat band at eigenvalue \(0\).
+It does not produce a mixed monomial in \((q_x,q_y)\).
+A spatial generator along \(x+y\) would.
+Its symbol contains \(\cos q_x\cos q_y\), whose Taylor series contains
+\(q_x^2 q_y^2\).
+The obstruction of Theorem~\ref{thm:ratio} is the absence of those
+generators, not a truncation.
+
+\section{One length, three readings of its fluctuations}
+\label{sec:moments}
+
+\begin{proposition}
+\label{prop:rayleigh}
+Let stitch endpoints be a homogeneous Poisson process of intensity
+\(\rho\) on the sheet, and set \(\ell_W=\rho^{-1/2}\).
+The distance \(R\) from a sheet point to the nearest endpoint satisfies
+\[
+\mathbb{E}[R]=\frac12\ell_W,\qquad
+\frac{\mathrm{Var}(R)}{(\mathbb{E}[R])^2}=\frac4\pi-1.
+\]
+The coefficient of variation does not depend on \(\rho\).
+\end{proposition}
+
+\begin{proof}
+The void probability is \(\mathbb{P}(R>r)=\exp(-\rho\pi r^2)\).
+Hence
+\[
+\mathbb{E}[R]
+=\int_0^\infty\exp(-\pi\rho r^2)\,dr
+=\frac12\rho^{-1/2}.
+\]
+The random variable \(\pi R^2\) is exponential with mean \(1/\rho\), so
+\(\mathbb{E}[R^2]=1/(\pi\rho)\).
+Then
+\[
+\mathrm{Var}(R)
+=\frac1{\pi\rho}-\frac1{4\rho}
+=\frac{4-\pi}{4\pi\rho},
+\]
+and dividing by \((\mathbb{E}[R])^2=1/(4\rho)\) produces \(4/\pi-1\).
+\end{proof}
+
+The construction's length and the mean nearest-endpoint distance are the
+same power of \(\lambda\), and they differ by the factor \(1/2\).
+The relative width \(\sqrt{4/\pi-1}\) stays put as \(\lambda\to 0\).
+Scale separation enlarges the mean axis ratio.
+It does not tighten the transverse spacing about that mean.
+In-plane shifts move the endpoints.
+They do not change the law of \(R/\ell_W\).
+
+\begin{proposition}
+\label{prop:avol}
+Suppose the in-plane scale factor is \(1\) and the transverse factor is
+\(a_\perp\).
+The geometric mean of the three coordinate scales is \(a_\perp^{1/3}\).
+If \(a_\perp\propto t^\alpha\), the geometric mean grows as \(t^{\alpha/3}\).
+The isotropic substitution
+\(\alpha\mapsto(2-3\alpha)/(3\alpha)\)
+returns \((2-3\alpha)/(3\alpha)\) when \(\alpha\) is the transverse exponent
+and \((2-\alpha)/\alpha\) when \(\alpha\) is replaced by the volume exponent
+\(\alpha/3\).
+\end{proposition}
+
+\begin{proof}
+A coordinate cell has volume proportional to \(a_\perp\), so the geometric
+mean of the three edge lengths is \(a_\perp^{1/3}\).
+Insert \(\alpha\) and \(\alpha/3\) into \((2-3\alpha)/(3\alpha)\).
+The second insertion is
+\[
+\frac{2-3\cdot(\alpha/3)}{3\cdot(\alpha/3)}=\frac{2-\alpha}{\alpha}.
+\]
+\end{proof}
+
+No earned equation supplies \(\alpha\).
+The two substitutions are what the same isotropic formula returns on the
+two exponents that \eqref{eq:ds} distinguishes.
+The difference \(H_\perp-H_\parallel\) is then of order the expansion rate
+itself, because \(H_\parallel=0\) while \(a_\parallel\) is held at \(1\).
+Nothing in \(H=-A\) damps that difference.
+Section~\ref{sec:h-orient} is the same absence of a drift, read on
+\(M_{ab}\) rather than on \(\ell_W\).
+
+Balls of the graph distance are the balls of \eqref{eq:ds}.
+The static symbol \(\tfrac12+2|q|^2\) decays in that graph distance, with
+Helmholtz constant \(\kappa=1/2\).
+In coordinates where a sheet step has size \(1\), the same ball has
+transverse radius smaller by \(\ell_W\).
+A short range in hopping units and a large axis ratio are the same ball
+written in two coordinate systems.
+The excluded gapless response would be constant on the same family of
+ellipsoids, with \(\kappa=0\).
+
+\section{Three readings of the same quadratic}
+\label{sec:masses}
+
+At \(J=1\) the dispersive edge of \(J_2\) is
+\[
+\varepsilon(q)=-8+2|q|^2-\frac16(q_x^4+q_y^4)+O(q^6).
+\]
+The quadratic piece is \(\tfrac12 q\cdot(4I)q\).
+Matching it to \(|q|^2/(2m^*)\) fixes
+\begin{equation}
+\label{eq:mstar}
+m^*=\frac14.
+\end{equation}
+The same match at general hopping is \(m^*=1/(4J)\), because both the
+Hessian and the edge \(-8J\) scale with \(J\).
+This \(m^*\) is the inverse curvature of the band.
+It is a property of \(G\) through \(H=-A\), so it takes the same value on
+every field, including every JOINT vacuum.
+
+The constant \(-8\) is the eigenvalue of the normalised all-ones mode on
+the \(8\)-regular graph.
+An excitation energy measured from the edge does not contain it.
+A binding energy measured below the edge is
+\[
+m_{\mathrm{gap}}=-8-E_0
+\]
+when \(E_0<-8\), and \(0\) otherwise.
+Proposition~\ref{prop:clique} lower-bounds \(m_{\mathrm{gap}}\) by \(n-9\)
+for an embedded clique of order \(n\ge 10\).
+That bound is an eigenvalue difference in hopping units.
+It is not \(m^*\), and it is not \(-8\).
+
+A relativistic series
+\(mc^2+|q|^2/(2m)-|q|^4/(8m^3c^2)+\cdots\)
+asks the constant term, the curvature, and the quartic invariant to be
+three readings of one mass.
+Proposition~\ref{prop:sep} already forbids the quartic identification.
+The constant term cannot take its place:
+\(-8\) is shared by the sheet ground mode, so it cancels in every
+difference from the edge, whether the difference is \(2|q|^2\) above the
+edge or \(m_{\mathrm{gap}}\) below it.
+
+Between events \(H\) is fixed, and on a translation-invariant sheet the
+crystal momentum of a packet is conserved.
+The in-plane energy \(2|q|^2\) therefore does not drift.
+A growth of \(\ell_W\) that does not touch the edges inside a motif leaves
+the Rayleigh quotient of that motif's trial vector unchanged, so
+\(m_{\mathrm{gap}}\) stays fixed in hopping units while \(a_\perp\) grows
+(Section~\ref{sec:h-fixedd}).
+A mass that redshifts with \(a_\perp\) would be a further quotient of this
+gap by the transverse scale.
+The gap itself does not supply that quotient.
+
+\section{Bond sum of an eigenstate}
+\label{sec:starsum}
+
+\begin{lemma}
+\label{lem:starsum}
+Let \(H=-A\) and \(H\psi=E\psi\). At every vertex
+\[
+\sum_{j\sim i}B_{ij}=-E\,|\psi_i|^2,
+\qquad
+\sum_{j\sim i}\mathcal{J}_{ij}=0.
+\]
+For a normalised eigenstate, \(\sum_e B_e=-E/2\).
+\end{lemma}
+
+\begin{proof}
+The eigenvalue equation is \(\sum_{j\sim i}\psi_j=-E\psi_i\).
+Multiply by \(\psi_i^*\).
+The right-hand side is real, so the imaginary part of the left-hand side
+vanishes and the real part is the bond sum.
+Summing the bond identity over vertices counts each edge twice and
+gives \(2\sum_e B_e=-E\) after \(\sum_i|\psi_i|^2=1\).
+The same factor is the quadratic form \(E_\psi=-2\sum_e B_e\).
+\end{proof}
+
+On \(8\)-regular \(J_2\) the normalised all-ones mode has \(E=-8\) and
+\(\sum_e B_e=4\).
+Any normalised eigenstate therefore satisfies
+\[
+\sum_e B_e-4=\frac{-E-8}{2}.
+\]
+A gap below the coordination floor is twice the excess of the total bond
+over \(4\):
+\[
+m_{\mathrm{gap}}=-E-8=2\Bigl(\sum_e B_e-4\Bigr)
+\]
+whenever \(E<-8\).
+Rearranging bonds without raising \(\sum_e B_e\) does not open that gap.
+The flat band is the case \(E=0\): the bond sum at every vertex vanishes,
+while a single \(B_{ij}\) may not.
+A flat-band texture is not a quadrature state.
+
+Every eigenstate, including a mode below the edge, has no net current at
+any vertex.
+A state inside the essential spectrum that is not an eigenstate of the
+full \(H\) is not under this constraint.
+Its density can leave the motif.
+The width of that leakage is the golden-rule width controlled by
+\eqref{eq:dos}.
+The conditional law of Theorem~\ref{thm:condJ} describes one edge.
+On an eigenstate the star of currents sums to zero, so that one edge does
+not carry its current alone.
+
+Between events the continuity equation is
+\[
+\partial_t|\psi_i|^2+\sum_{j\sim i}2\mathcal{J}_{ij}=0.
+\]
+A contraction replaces the unitary step.
+The norm jumps by \(2B\), which is Lemma~\ref{lem:bond-expand} and is not
+a divergence of \(\mathcal{J}\).
+The waiting interval transports density by the current.
+The event changes the norm by the bond.
+\(Q\) enters neither identity, because it does not enter \(H\) and it is
+not a term in \(B\).
+
+
