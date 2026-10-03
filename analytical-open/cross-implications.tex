@@ -748,6 +748,157 @@ A sheet with no stub keeps its whole odd kernel.
 The count of surviving flat zeros is fixed by the set of stub cells, not
 by the number of stitches and not by \(\ell_W\).
 
+\section{The same stitch on \(J_3\)}
+\label{sec:stitch3}
+
+The twelve generators of \(J_3\) are the axis steps \(\pm e_1,\pm e_2,\pm e_3\),
+each once with the sheet bit fixed and once with the sheet bit flipped.
+The sheet exchange transposes two axes.
+That transposition preserves the set of six axis steps, so the cells
+adjacent to \((x,y,z)\) are the same six cells on each bit.
+
+\begin{lemma}
+\label{lem:j3sectors}
+If \(\psi(x,y,z,1)=-\psi(x,y,z,0)\) at every cell, then \(A\psi=0\).
+If the two bits carry the same cell function
+\(\varphi\), then
+\[
+(A\psi)(x,y,z,b)=2(A_{\mathrm{cubic}}\varphi)(x,y,z)
+\]
+at both values of the bit.
+The eigenvalues of \(H=-A\) on the even Bloch waves are
+\(-4(\cos q_x+\cos q_y+\cos q_z)\), with range \([-12,12]\), and every odd
+state is a zero mode.
+On the \(L\)-torus the odd space has dimension \(L^3\).
+\end{lemma}
+
+\begin{proof}
+The twelve neighbours of a cell are its six adjacent cells on each bit.
+An odd state cancels them in pairs.
+An even state counts each adjacent cell twice, which is twice the cubic
+adjacency.
+The symbol of that adjacency is \(2(\cos q_x+\cos q_y+\cos q_z)\), and the
+factor \(-2\) from \(H=-A\) produces the displayed band.
+The sum of three cosines fills \([-3,3]\), so the band fills \([-12,12]\).
+\end{proof}
+
+The diagonal resolvent of one copy is again half the flat pole plus half
+the dispersive average. Write \(\varepsilon_3(q)=-4(\cos q_x+\cos q_y+\cos q_z)\)
+and
+\[
+\mathcal{G}_3(E)
+=\frac{1}{2E}
++\frac12\int_{[0,2\pi]^3}\frac{d^3q}{(2\pi)^3}\,
+\frac{1}{E-\varepsilon_3(q)}
+\]
+for \(E\notin[-12,12]\).
+The shift \(q\mapsto q+(\pi,\pi,\pi)\) sends \(\varepsilon_3\) to \(-\varepsilon_3\),
+so \(\mathcal{G}_3\) is odd.
+On \((12,\infty)\) it is strictly decreasing.
+
+\begin{proposition}
+\label{prop:j3stitch}
+The limit \(\mathcal{G}_3(12+)\) exists and is finite, and
+\[
+\mathcal{G}_3(12+)<\frac{11}{48}<1.
+\]
+Two infinite copies of \(J_3\) joined by one stitch of hopping \(1\)
+therefore have no eigenvalue outside \([-12,12]\).
+The secular equation is \(\mathcal{G}_3(E)^2=1\), and it has no root in
+that region.
+The nullity statement of Proposition~\ref{prop:stubs} applies with cells
+in \(\mathbb{Z}^3\): the torus nullity drops by exactly \(2\), and an odd state
+survives when its cell function vanishes at the stub cell.
+Those two dimensions do not reappear as eigenvalues outside the band.
+\end{proposition}
+
+\begin{proof}
+For \(E>12\) the integrand is positive and increases as \(E\downarrow 12\),
+so the limit exists in \((0,\infty]\).
+It remains to show that the limit is finite and smaller than \(11/48\).
+At the edge,
+\[
+12-\varepsilon_3(q)=4\bigl(3+\cos q_x+\cos q_y+\cos q_z\bigr),
+\]
+so the dispersive half of the limit equals \(I/8\), where
+\[
+I=\int_{[0,2\pi]^3}\frac{d^3q}{(2\pi)^3}\,
+\frac{1}{3+\cos q_x+\cos q_y+\cos q_z},
+\]
+and the flat pole contributes \(1/24\).
+For \(a>0\), \(1/a=\int_0^\infty e^{-at}\,dt\).
+The denominator is positive almost everywhere.
+Tonelli's theorem gives
+\[
+I=\int_0^\infty e^{-3t}\,I_0(t)^3\,dt,
+\qquad
+I_0(t)=\frac{1}{2\pi}\int_0^{2\pi}e^{t\cos\theta}\,d\theta.
+\]
+Indeed \(e^{-t\cos q}=e^{t\cos(q+\pi)}\), so each axis contributes a factor
+\(I_0(t)\).
+
+The bound \(I_0(t)\le e^{t}\) is immediate from \(\cos\theta\le 1\).
+Thus \(e^{-3t}I_0(t)^3\le 1\) and
+\[
+\int_0^1 e^{-3t}I_0(t)^3\,dt\le 1.
+\]
+For the tail, use \(\cos\theta-1=-2\sin^2(\theta/2)\) and the symmetry that
+halves the period:
+\[
+I_0(t)=\frac{e^{t}}{\pi}\int_0^{\pi}e^{-2t\sin^2(\theta/2)}\,d\theta
+=\frac{2e^{t}}{\pi}\int_0^{\pi/2}e^{-2t\sin^2\phi}\,d\phi.
+\]
+On \([0,\pi/2]\) the concavity of sine gives \(\sin\phi\ge 2\phi/\pi\), so
+\[
+\int_0^{\pi/2}e^{-2t\sin^2\phi}\,d\phi
+<\int_0^{\infty}e^{-(8t/\pi^2)\phi^2}\,d\phi
+=\frac{\pi}{2}\sqrt{\frac{\pi}{8t}}.
+\]
+Multiplying by the prefactor \(2e^{t}/\pi\) gives
+\(I_0(t)<e^{t}\sqrt{\pi/(8t)}\) for \(t>0\), and
+\[
+\int_1^{\infty}e^{-3t}I_0(t)^3\,dt
+<\int_1^{\infty}\Bigl(\frac{\pi}{8t}\Bigr)^{3/2}\,dt
+=2\Bigl(\frac{\pi}{8}\Bigr)^{3/2}.
+\]
+The comparison \(2(\pi/8)^{3/2}<1/2\) is \(\pi^3<32\).
+Since \(\pi<22/7\) and
+\[
+\Bigl(\frac{22}{7}\Bigr)^3=\frac{10648}{343}<32=\frac{10976}{343},
+\]
+the tail is strictly less than \(1/2\).
+Therefore \(I<3/2\), and
+\[
+\mathcal{G}_3(12+)
+=\frac{1}{24}+\frac{I}{8}
+<\frac{1}{24}+\frac{3}{16}
+=\frac{11}{48}.
+\]
+For \(E>12\) one has \(\mathcal{G}_3(E)<\mathcal{G}_3(12+)\), so
+\(\mathcal{G}_3(E)=1\) has no root in \([12,\infty)\).
+Oddness rules out \(\mathcal{G}_3(E)=-1\) in \((-\infty,-12]\).
+The resolvent argument of Proposition~\ref{prop:stitch} then produces no
+eigenvalue outside \([-12,12]\).
+The kernel count is the pairing argument of Proposition~\ref{prop:stubs},
+with the odd delta on a cell of \(\mathbb{Z}^3\) in place of a cell of \(\mathbb{Z}^2\).
+\end{proof}
+
+The projection of the stitch onto the odd sector is the same rank-one
+coupling of strength \(1/2\) as on \(J_2\).
+The numbers \(\pm 1/2\) lie in \((-12,12)\) and are not eigenvalues.
+On \(J_2\) the resolvent diverges at the edge, so a root of
+\(\mathcal{G}(E)=1\) is forced to exist.
+On \(J_3\) the same edge is a quadratic maximum in three momenta, the
+integral of \(1/|q|^2\) converges, and the resolvent stays below \(11/48\).
+
+On the \(L\)-torus with \(L\) even, the momentum \((\pi,\pi,\pi)\) lies on
+the grid, so the finite resolvent has a simple pole at \(12\) and at \(-12\).
+Each pole sends the secular function to infinity, and the function tends
+to \(0\) at infinity, so each even torus does have one eigenvalue above
+\(12\) and one below \(-12\).
+Any limit of these eigenvalues along even \(L\) lies in \([-12,12]\):
+a limit \(E_\infty>12\) would satisfy \(\mathcal{G}_3(E_\infty)=1\).
+
 \section{Codimension along a unitary orbit}
 \label{sec:codim}
 
