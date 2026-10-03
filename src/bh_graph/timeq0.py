@@ -799,24 +799,35 @@ def reduced_count_field(Xm: dict, Xp: dict, T: int,
     gm, psim = rc_m["g"], rc_m["psi"]
     gp, psip = rc_p["g"], rc_p["psi"]
     kp = t0.labeled_key(gp)
+    cap_n = cap * max(T, 1)
+
+    def _walk_succs(walk, evs):
+        gc = walk[-1]
+        yield (walk + [gc], evs + [("I",)])
+        for i, j in sorted(tuple(sorted(e)) for e in gc.edges()):
+            h = t0.labeled_contract(gc, i, j)
+            yield (walk + [h], evs + [("C", i, j)])
+        for w in sorted(gc.nodes()):
+            for A, B in split_covers(sorted(gc.neighbors(w))):
+                h = t0.labeled_split(gc, w, A, B)
+                yield (walk + [h], evs + [("S", w, frozenset(A),
+                                           frozenset(B))])
+
     states = [([gm], [])]
     for _ in range(T):
         nxt = []
         for walk, evs in states:
-            gc = walk[-1]
-            nxt.append((walk + [gc], evs + [("I",)]))
-            for i, j in sorted(tuple(sorted(e)) for e in gc.edges()):
-                h = t0.labeled_contract(gc, i, j)
-                nxt.append((walk + [h], evs + [("C", i, j)]))
-            for w in sorted(gc.nodes()):
-                for A, B in split_covers(sorted(gc.neighbors(w))):
-                    h = t0.labeled_split(gc, w, A, B)
-                    nxt.append((walk + [h],
-                                evs + [("S", w, frozenset(A),
-                                        frozenset(B))]))
-            if len(nxt) > cap * max(T, 1):
-                return {"N_red": 0, "complete": False, "cap": int(cap),
-                        "n_graph_walks": int(len(nxt))}
+            for item in _walk_succs(walk, evs):
+                nxt.append(item)
+                # Per-successor cap check: one walk's 3^d split fan-out
+                # (GBs on dense substrates) must not overshoot the cap.
+                # Complete path untouched; incomplete path reports the
+                # same (N_red=0, complete=False), only the unused
+                # n_graph_walks telemetry lands closer to the cap.
+                if len(nxt) > cap_n:
+                    return {"N_red": 0, "complete": False,
+                            "cap": int(cap),
+                            "n_graph_walks": int(len(nxt))}
         states = nxt
     n = 0
     n_graph_match = 0
@@ -866,23 +877,24 @@ def reduced_count_V0_iso(Xm: dict, Xp: dict, T: int,
     gp = Xp["g"]
     budget = [int(iso_budget)]
 
-    def _succs(gc: nx.Graph) -> list:
-        out = [gc]
+    def _succs(gc: nx.Graph):
+        # Streamed (generator): identical successor sequence, O(1) working
+        # set instead of a 3^d split-fan-out list (GBs on dense substrates).
+        yield gc
         seen = {t0.labeled_key(gc)}
         for i, j in sorted(tuple(sorted(e)) for e in gc.edges()):
             h = t0.labeled_contract(gc, i, j)
             kh = t0.labeled_key(h)
             if kh not in seen:
                 seen.add(kh)
-                out.append(h)
+                yield h
         for w in sorted(gc.nodes()):
             for A, B in split_covers(sorted(gc.neighbors(w))):
                 h = t0.labeled_split(gc, w, A, B)
                 kh = t0.labeled_key(h)
                 if kh not in seen:
                     seen.add(kh)
-                    out.append(h)
-        return out
+                    yield h
 
     def _iso(a: nx.Graph, b: nx.Graph) -> bool:
         if _invariants_graph(a) != _invariants_graph(b):

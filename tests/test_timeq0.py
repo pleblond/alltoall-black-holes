@@ -268,6 +268,15 @@ def test_reduced_V0_iso_matches_canonical():
         assert rc["N_red"] == ri["N_red"]
 
 
+def test_reduced_field_spot():
+    spec = q0.tiny_graph_by_name("edge2")
+    X = q0.make_enlarged(spec["g"], q0.zero_psi(2), spec["order"], {})
+    r = q0.reduced_count_field(X, X, 1)
+    assert r["complete"] is True and r["N_red"] == 1
+    rc = q0.reduced_count_field(X, X, 1, cap=2)
+    assert rc["complete"] is False and rc["N_red"] == 0
+
+
 def test_scheduler_orders_distinct_histories():
     # Q-finer classes: scheduler orders are distinct class-paths (N_Q=6)
     # while canonical reduced counting sees one class-walk (N_red=1).
