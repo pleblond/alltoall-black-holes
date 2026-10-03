@@ -18,6 +18,26 @@ draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
   Paper v5: 13pp main + 19pp S1–S12 supplement (new S12 methods),
   49/49 refs, zero LaTeX warnings. 1787 tests passed + 2 skipped.
 
+- **v5.6 (SCALE-0)** — Fixed-geometry asymptotic scaling bank
+  (branch): `src/bh_graph/scale0.py` (sparse large-L apparatus: Krylov
+  wave/diffusion traces, CG static, segmented evolution, regime
+  firewall, fit + matrix-schema helpers), `scripts/scale0_campaign.py`
+  (178-task bank, L = 64/128/256/512) + `scripts/scale0_analyze.py`
+  (frozen regress gates + fits + verdict ladder), 24 pins in
+  `tests/test_scale0.py`, SCALE0-PREREG + Amendments 1-4 in
+  `docs/DEFERRED.md`. VERDICT SCALE0-BANKED (8/8 regress gates;
+  58 estimated + 20 explicit unresolved-asymptotic + 4 exact forms
+  upheld): d_H -> 2 monotone with j2/sq universality to machine
+  precision, d_s L-independent, RESPONSE velocities/exponents
+  saturated by L256, P1 PRE velocity converged, POT xi/range exact,
+  QUOT anti/sheet exact-zero at all L, ZERO near-ubiquity,
+  VACEXC vacuum-independence exact, VACCOMP formula exact
+  (ladder legs L>=256 filed unresolved-cost: dense infeasible).
+  Records under `data/scale0/` (178 cells + matrix/fits/unresolved/
+  verdict). Full suite 1808 passed / 2 skipped / 3 pre-existing
+  failures in other campaigns' exact-equality tests (potential/
+  tunnel/emergent_dim 1-ulp ARM BLAS sensitivity; pass on x86).
+
 - **v5.6 (scaffolding history)** — Field-program scaffolding history
   as a dependency tree (`docs/scaffolding-history.md` + rough-draft
   archive): postulates → fabric selection → field anatomy → backreaction →

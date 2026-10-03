@@ -10512,3 +10512,92 @@ Applied at every L (no branch); L <= 128 banked quot cells reproduce
 bitwise, so they stand. The 4 unstarted/killed quot tasks
 (L256-anti/sym, L512-anti/sym) are rerun under this amendment; no
 other task's code path changed.
+## SCALE0-VERDICT: SCALE0-BANKED (fails=[]; 178/178 cells)
+
+Bank: 178-task grid (L = 64/128/256/512; j2 + sq where applicable),
+sparse-first execution (dense wall: L128 dense eig banked at N=32768;
+L>=256 Krylov/CG/streaming only). Analyzer: frozen gates per
+SCALE0-PREREG + Amendments 1-4 (all execution/config corrections; no
+bar loosened, no method redefined post-data, all pins green).
+
+COMPLETE: PASS (178/178). Regress gates 8/8 PASS: R-OBS (replay +
+Krylov-vs-spectral), R-RESP (v_field + v_J + decomp), R-P1, R-POT
+(CG-vs-spsolve 7e-13, xi = 0.5265, range 3), R-QUOT (algebra + load
+shells), R-ZERO (headon 508/60/448 + refine bitwise), R-VACEXC
+(cross_maxdev + frac_dev exact 0.0), R-VACCOMP (census + spectral).
+Exact forms upheld (4/4): QUOT Cmax_remote PRE exact-zero (worst
+2.5e-15), VACEXC cross_maxdev + frac_dev exact 0.0, VACCOMP n_zero
+exact formula. Matrix 602 rows (32 unresolved-cost rows); fits 82
+records: 58 estimated + 20 unresolved-asymptotic + 4 exact-upheld.
+
+Per-family asymptotics (machine-readable in data/scale0/):
+
+- OBS: d_H 1.9098 -> 1.9725 monotone toward 2, j2 == sq to machine
+  precision at every L (substrate universality of the volume-growth
+  exponent; gap 0.0 to 1e-16). d_s L-independent (2.0697 j2 /
+  2.0692 sq, krylov-return, local-physics). tauW_resid shrinking
+  (j2 0.843 -> 0.784, sq 0.770 -> 0.671). d_star = 2 at all four
+  rungs (W, composite, composite_WP j2; sq composite_WP (2,2,3,2)
+  hits station-draw noise at L256 -- rebuild draws a fresh frozen
+  64-station set per (sub,L) cell). vol_d composite unresolved
+  (incommensurate W/P scales: 1.8 -> 0.9 -> 4.2).
+- RESPONSE: fit10 velocities exactly L-independent (local
+  pre-horizon physics: v_dpsi 7.947, v_drho 8.0/5.94, v_dJ
+  7.45/5.94). fitExt saturates by L256 (BG+ ~6.0, BG0 ~5.58).
+  Anisotropy diag/axial 0.8272 const. Distance exponents saturate
+  (BG+: -0.50/-0.60; BG0: -1.00/-1.15). v_dJ BG+ fitExt files
+  non-monotone on a 0.06% last-rung wiggle (5.9595 -> 5.9633;
+  converged in value).
+- P1: PRE v converges (k03 1.1768 -> 1.1773; k05 1.9081 -> 1.9089).
+  POST v stable to 4th digit (1.3777 -> 1.3776) but letter-of-rule
+  non-monotone. width_rate rising, not saturated (0.44 -> 0.67).
+  msd_alpha ~= 2.009 ballistic, stable to 5th digit (non-monotone).
+- POT: xi = 0.5265 and range = 3 exact at all L (saturate form).
+  Floor 3e-9 -> 2e-10 (converged; non-monotone on floor value).
+- QUOT: anti/sheet Cmax_remote exactly 0.0 PRE and POST at all L
+  (anti-dead + sheet-forgetting theorems hold to L512); sym remote
+  0.2093 L-independent (visible-sector signature); sym arrivals
+  L-independent (shell-2: 0.05, shell-4: 0.3, shell-6: 0.65).
+- ZERO: ppinode near_density 0.46 -> 0.985 (near-zero ubiquity at
+  large L); min_amp exactly 0.0 (certified nodes at all L). F1
+  initial-exclusion vacuous at n >= 8192 (filed); F5 dense-eig
+  filed at L >= 128; ZERO-post filed at L >= 256 (P5).
+- VACEXC: packet_v vacuum-independent (1.9028 in all 4 vacua, all
+  L); hidden_sector 0.0 (immobile); point_amp ~1e-15 (pinned;
+  files non-monotone); margin 0.0103 -> 0.0007 (shrinking).
+- VACCOMP: formula rows exact at all L; ladders/circle/amps filed
+  unresolved-cost at L >= 256 (dense N x N: 550 GB vs 184-371 GB
+  RAM; Amendment-2 item 6).
+
+Unresolved taxonomy (all explicit, machine-readable, none blocking
+BANKED -- the frozen verdict ladder permits unresolved-asymptotic):
+ (A) rule-artifact: converged values with fp-level last-rung wiggle
+     (gap-d_H 1e-16, point_amp 1e-15, POT floor 1e-10, P1 POST v,
+     msd_alpha, v_dJ fitExt) -- banked points ARE the asymptote; the
+     frozen monotone rule has no fp tolerance (kept frozen
+     deliberately; no Amendment-5: verdict semantics unchanged
+     post-data).
+ (B) genuine: composite vol_d (no asymptote), sq d_star draw jump.
+ (C) cost-filed: VACCOMP legs L>=256, F5 L>=128, ZERO-post L>=256.
+
+Execution record: prereg + sparse apparatus + 178-task runner +
+frozen analyzer built on cursor/scale-0-bank-28ae; campaign first
+launched on beast (96-core) alongside a duplicate sibling run
+(cursor/scale-0-bank-49e9, same tip), whose Amendment-2 (7 run-time
+config corrections) was merged after independent re-verification
+(headon 88 -> 508/60/448 reproduced exactly); moved to c8g.48xlarge
+#1 (384-core, died mid-wave), back to beast, then to c8g.48xlarge
+(192-core ARM, 371 GB) where 85 tasks ran at -P 170. Two further
+execution-only amendments, both bitwise-identical + pinned:
+Amendment-3 (obs_dim station Pool: ~64 core-hrs serial -> ~2 hr
+wall per L512 cell) and Amendment-4 (sparse sheet split: dense
+2.2 TB OOM -> permutation form). Banked cells carry git_rev meta
+(3170299 pre-Amendment-2 light cells, fc7e2b1 main wave, later revs
+for the 8 reruns). Cross-machine reproducibility: x86 vs ARM agree
+to 1e-16~1e-21, exact zeros bitwise. Pins 24/24. Full suite on ARM:
+1808 passed / 2 skipped / 3 pre-existing failures in other
+campaigns' exact-equality tests (test_potential aperture,
+test_tunnel unitarity 0.9999999999999998 vs 1.0, test_emergent_dim
+weighted diffusion) -- all pass on x86; 1-ulp ARM BLAS sensitivity,
+no shared-code change on this branch (test_weighted.py skipped per
+standing addopts).

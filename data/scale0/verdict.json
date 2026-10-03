@@ -1,1 +1,1 @@
-{"verdict": "SCALE0-PARTIAL", "fails": ["COMPLETE"], "n_cells": 150, "n_expected": 178, "n_rows": 508, "n_unresolved": 32}
+{"verdict": "SCALE0-BANKED", "fails": [], "n_cells": 178, "n_expected": 178, "n_rows": 602, "n_unresolved": 32}

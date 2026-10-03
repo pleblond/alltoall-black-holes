@@ -1,0 +1,1 @@
+{"task": "zero__L64-F5-pre", "meta": {"git_rev": "fc7e2b148dc077f08c48edfe7f96392bb62328db", "host": "ip-172-31-39-189", "elapsed": 3234.7050671577454}, "payload": {"L": 64, "fam": "F5", "regime": "pre", "filed": "initial-exclusion", "elapsed": 3234.665898323059}}
