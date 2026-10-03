@@ -252,3 +252,49 @@ def test_is_transfer_valid():
     assert dim31.is_transfer_valid(0.1, 0.2) is True
     assert dim31.is_transfer_valid(0.3, 0.2) is False
     assert dim31.is_transfer_valid(float("nan"), 0.2) is False
+
+
+# ---------------------------------------------------------------------------
+# Seal script (synthetic fixtures only).
+# ---------------------------------------------------------------------------
+
+def test_seal_script(tmp_path):
+    import json
+    import subprocess
+    import sys
+
+    cells = {str(c): {"sets": {"0": {}}} for c in range(16)}
+    blind = tmp_path / "blind.json"
+    blind.write_text(json.dumps({"cells": cells}))
+    freeze_ok = tmp_path / "freeze_ok.json"
+    freeze_ok.write_text(json.dumps({"debt": [], "bars": {}}))
+    seal = tmp_path / "seal.json"
+    repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    r = subprocess.run(
+        [sys.executable, os.path.join(repo, "scripts", "dim31_seal.py"),
+         "--blind", str(blind), "--freeze", str(freeze_ok),
+         "--out", str(seal)],
+        capture_output=True, text=True, cwd=repo, check=False)
+    assert r.returncode == 0, r.stderr
+    rec = json.loads(seal.read_text())
+    assert len(rec["blind_sha256"]) == 64
+    assert len(rec["freeze_sha256"]) == 64
+    assert rec["cells"] == [str(c) for c in range(16)]
+    # Debt freeze must refuse.
+    freeze_bad = tmp_path / "freeze_bad.json"
+    freeze_bad.write_text(json.dumps({"debt": ["x"], "bars": {}}))
+    r = subprocess.run(
+        [sys.executable, os.path.join(repo, "scripts", "dim31_seal.py"),
+         "--blind", str(blind), "--freeze", str(freeze_bad),
+         "--out", str(tmp_path / "seal2.json")],
+        capture_output=True, text=True, cwd=repo, check=False)
+    assert r.returncode != 0
+    # Blind missing cells must refuse.
+    blind_short = tmp_path / "blind_short.json"
+    blind_short.write_text(json.dumps({"cells": {"0": {}}}))
+    r = subprocess.run(
+        [sys.executable, os.path.join(repo, "scripts", "dim31_seal.py"),
+         "--blind", str(blind_short), "--freeze", str(freeze_ok),
+         "--out", str(tmp_path / "seal3.json")],
+        capture_output=True, text=True, cwd=repo, check=False)
+    assert r.returncode != 0
