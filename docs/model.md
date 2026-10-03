@@ -1031,7 +1031,7 @@ Single table; every symbol in §1–§4 appears here with its home.
   `python scripts/generate_figures.py` + `python scripts/generate_v5_figs.py`
   (86 figure files, Figs 1–75), `streamlit run app.py`.
 
-Counts above are v5.10 (`main.pdf` 13pp + `supplement.pdf` 22pp, S1–S12, 49
+Counts above are v5.10 (`main.pdf` 14pp + `supplement.pdf` 24pp, S1–S12, 49
 references cited). The v4.1 sources were removed after v5.7 (recoverable
 from git history); v5 is canonical.
 

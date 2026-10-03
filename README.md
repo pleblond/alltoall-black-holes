@@ -21,8 +21,8 @@
 > with a kill-or-confirm [`protocol`](docs/observation-protocol.md),
 > plus an upper-gap null and a GW190814 audit (tension, not exclusion).
 
-> **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 13pp) ·
-> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 22pp, S1–S12) ·
+> **Read the paper:** [`paper/v5/main.pdf`](paper/v5/main.pdf) (main text, 14pp) ·
+> [`paper/v5/supplement.pdf`](paper/v5/supplement.pdf) (methods, 24pp, S1–S12) ·
 > build [`notes`](paper/v5/README.md)
 
 ## Abstract
@@ -65,11 +65,11 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 
 | Path | Description | License |
 |---|---|---|
-| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 13pp main text + 22pp S1–S12 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
+| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 14pp main text + 24pp S1–S12 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 2409 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 2545 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -95,7 +95,8 @@ Field program (`docs/model.md` §10): `ballistic`, `coherence`, `slit`,
 `hidden`, `hiddenbr`, `zero`, `split0`, `rewire0`, `merge0`,
 `reservoir0`, `trigger0`, `fiber0`, `info0`, `vacdomain`, `vactexture`,
 `vacstab`, `source0`, `store0`, `dim3`, `dim3_reveal`, `subclass0`, `scale0`,
-`qdyn0`, `qdyn0b`, `bhent`, `dim31`; side apparatus `spectroscopy`, `fep`,
+`qdyn0`, `qdyn0b`, `bhent`, `dim31`, `weave0`, `qinfo0`, `bhqent0`,
+`bhqarea0`, `jet0`, `jet1`, `event0`; side apparatus `spectroscopy`, `fep`,
 `stern_gerlach`, `mergershed`, `graphvk`.
 
 ## Quickstart
@@ -104,7 +105,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 2409 tests (2 torch/GPU-only skip without torch)
+python -m pytest tests/ -q          # 2545 tests (2 torch/GPU-only skip without torch)
 python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
@@ -223,6 +224,15 @@ release:
 
 ## Status
 
+v5.10: first area law — [`main.pdf`](paper/v5/main.pdf) (14pp) +
+[`supplement.pdf`](paper/v5/supplement.pdf) (24pp S1–S12 methods, 49/49
+references cited, S12 +4 paragraphs, module map +7, area-law + jet kill
+wires); WEAVE0-INCOMPLETE (no 3D core on random weaves);
+QINFO0-IDENTICAL (h2 = banked qubit fn, 1.1e-16); BHQENT0-UNCLASSIFIED
+(topology-dependent D, 34/34); BHQAREA0-MAX (S_Q = κ*A, κ* = 4.2207,
+thermodynamics open); JET1-NULL (jet route closed, stop rule);
+EVENT0-EQUIV (flow never forces, 61 orbits); [`model.md`](docs/model.md)
+v0.11. 2545 tests (2543 passed + 2 skipped), 86 figure files (Figs 1–75).
 v5.9: substrate and store — [`main.pdf`](paper/v5/main.pdf) (13pp) +
 [`supplement.pdf`](paper/v5/supplement.pdf) (22pp S1–S12 methods, 49/49
 references cited, S12 +4 paragraphs, module map +6, Q-DYN kill wire);
