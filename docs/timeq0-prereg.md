@@ -135,7 +135,9 @@ no hand-picked graphs, no post-data additions. Kinds (frozen):
 - SCHED (scheduler m!): disjoint m=2 (above, reused) + m=3 (synthetic
   path12/path14/path16/ring12 triples with pairwise disjoint closed
   neighborhoods, T=3,4). 8 tasks. INFO0 m! reproduced via sequential_orders
-  (labeled); N_Q==N_red expected (V0, Q preserves scheduler).
+  (labeled) + all m! labeled orders replay to Xp-class in enlarged
+  (Q distinguishes orders that canonical counting collapses: e.g. sched
+  N_Q=6 vs N_red=1).
 - FORWARD (initial-only): 6 X_- x T=2,3, forward reachable census. 12 tasks.
 - TOY (controls): synthetic unique (chain, N=1) + zero (off-trajectory, N=0).
   4 tasks.
@@ -166,15 +168,19 @@ Counts: `count-<kind>` per battery kind + `count-fw` (exact task census).
   `C-disjoint` (all compatible), `C-seqrev` (forward+reverse exact, drained).
 - D (TIMEQ0-D census): `D-computed` (all battery N_Q + N_red + skeleton +
   waiting computed), `D-skel-identity` (V0 timed=sum C(T,L)S_L on all V0).
-- E (TIMEQ0-E reduced vs full): `E-compare` (N_Q<=N_red on all V0; projection
-  valid), `E-reduction` (pooled reduction filed; always passes when computed).
+- E (TIMEQ0-E reduced vs full): `E-compare` (projection valid: every
+  enlarged history projects to a valid reduced walk; live spots + filed
+  proj audit), `E-reduction` (pooled reduction filed; always passes when
+  computed). No N_Q<=N_red inequality is asserted (refuted pre-data:
+  Q-finer classes admit more class-paths than canonical).
 - F (TIMEQ0-F product): `F-collapse` (multicover/roundtrip enlarged products
   ==1; >=80% of product battery).
 - G (TIMEQ0-G timing): `G-survive` (timing battery S_1==1 single one-event
   skeleton with N_Q>1 surviving; >=80%).
 - H (TIMEQ0-H scheduler): `H-sched` (INFO0 m! reproduced via
-  sequential_orders on disjoint battery (all m! valid) + enlarged N_Q==N_red
-  on disjoint/sched V0 tasks (Q preserves scheduler); >=80%).
+  sequential_orders on disjoint battery (all m! valid) + all m! labeled
+  orders replay to Xp-class in enlarged on disjoint/sched tasks;
+  both >=80%).
 - I (TIMEQ0-I hidden-store): `I-load` (same reduced different Q give different
   history sets; all HIDDENQ pairs differ).
 - J (TIMEQ0-J reversal): `J-rev` (N(Xm,Xp;T)==N(Xp_rev,Xm_rev;T) all battery +
@@ -207,7 +213,7 @@ worst_T=min_T f_unique_Q(T), f_unique_red/same for reduced,
 f_unique_skel_Q=#(N_skel_Q==1)/#(N_skel_Q>0),
 product_resolve=#(enlarged products==1)/#product-battery,
 timing_frac=#(N_Q==expected)/#timing-battery,
-sched_frac=#(N_Q==N_red)/#sched-battery.
+sched_frac=#(orders-replay tasks green)/#sched-battery.
 Thresholds frozen: F_UNIQUE_NULL_BELOW=0.2, F_UNIQUE_UNIQUE_ABOVE=0.8,
 F_UNIQUE_WORST_T_MIN=0.6, F_COMPAT_UNIQUE_MIN=0.1, PRODUCT_RESOLVE_MIN=0.8,
 TIMING_SURVIVE_MIN=0.8, SCHED_PRESERVE_MIN=0.8, REDUCED_IMPROVE_FACTOR=2.0.
@@ -253,10 +259,10 @@ stronger reading; verdict reasons use ladder language only.
   larger-substrate reduced counts (j2-L4/er-24/sched synthetics); budget
   exhaustion returns `complete=False` with `N_red` filed as missing (0 with
   the flag), never a partial count.
-- `E-compare` (`N_Q<=N_red`) is evaluated over complete-V0 reduced counts
-  with coverage `(#complete-V0)/(#V0)` filed in the gate detail. Pooled red
-  stats (`f_unique_red`, `median_Nred`) likewise use complete reduced counts
-  only. No other gate changes.
+- `E-compare` was initially specified as an inequality over complete-V0
+  reduced counts; amendment 4 replaces it with projection validity (below).
+  Pooled red stats (`f_unique_red`, `median_Nred`) use complete reduced
+  counts only. No other gate changes.
 
 ## 9. Pre-data amendment 2 (predates ALL TIME-Q-0 campaign data)
 
@@ -284,3 +290,25 @@ stronger reading; verdict reasons use ladder language only.
     product) with N_Q>1 surviving (placements + M,S,M excursions).
     `G-survive`: S_1==1 and N_Q>1 at >=80%; `N-timing`: all cases N_Q>1
     with S_1==1. No battery, threshold, or ladder change.
+
+## 11. Pre-data amendment 4 (predates ALL observation of campaign data)
+
+- Finer-class correction (caught by local validation runs, pre-data; no
+  beast campaign record has been read): Q-finer physical classes admit MORE
+  class-paths than TIME-0 canonical counting, because canonical DP quotients
+  edge multiplicity (one (class,kind) transition per class pair) while Q
+  covers distinguish same-class moves. Exhibits: sched path12 T=3 has
+  N_Q=6 (six scheduler orders = six distinct class-paths) vs N_red=1
+  (single class-walk); disjoint path-8 T=2 has N_Q=2 vs N_red=1. Both counts
+  verified correct under their conventions (V0_iso == canonical DP on all
+  inside-universe spots, pinned by tests).
+- `E-compare` is therefore projection validity (every enlarged history
+  projects to a valid reduced walk: live tiny spots over complete explicit
+  histories + kind-matched canonical adjacency), NOT the refuted N_Q<=N_red
+  inequality. `E-reduction` and all pooled red comparisons unchanged.
+- `H-sched` part (b) is order-replay (all m! labeled merge orders replay to
+  Xp-class in enlarged on disjoint/sched tasks), NOT N_Q==N_red. Part (a)
+  (INFO0 sequential_orders all_match) unchanged. `sched_frac` redefined as
+  the replay-green rate (filed only; the ladder consumes gates, not fracs).
+- No battery, threshold, or ladder change. Beast campaign records already
+  collected remain valid (the campaign never assumed the inequality).

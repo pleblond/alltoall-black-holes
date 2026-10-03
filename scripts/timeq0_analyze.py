@@ -438,11 +438,45 @@ def main():
     gate("D-skel-identity", all(r.get("skel_identity_ok", False) for r in v0)
          and len(v0) > 0, f"nV0={len(v0)}")
 
-    # ---- E: reduced vs full ----
-    v0c = [r for r in v0 if r.get("red", {}).get("complete", True)]
-    viol = [r["_path"] for r in v0c if r["N_Q"] > r["red"]["N_red"]]
-    gate("E-compare", len(viol) == 0 and len(v0c) > 0,
-         f"viol={len(viol)} cov={len(v0c)}/{len(v0)} {viol[:3]}")
+    # ---- E: reduced vs full (projection validity; the N_Q<=N_red
+    # inequality is REFUTED pre-data: Q-finer classes admit more
+    # class-paths, e.g. sched 6>1, disjoint 2>1) ----
+    try:
+        uniA, traA, bynA = q0._time0_universe()
+        adjA = traA["adj"]
+        spots = [(("merge1", "edge2", 1),), (("merge1", "edge2", 2),),
+                 (("split1", "edge2", 1),), (("roundtrip", "edge2", 2),),
+                 (("wait", "path3", "on", 2),),
+                 (("roundtrip", "triangle", 2),)]
+        ok = True
+        nsteps = 0
+        for (t,) in spots:
+            b = q0.boundary_for_task(t)
+            Xm, Xp, T = b["Xm"], b["Xp"], int(b["T"])
+            ex = q0.explicit_histories_Q(Xm, Xp, T, cap=5000)
+            if not ex.get("complete"):
+                ok = False
+                break
+            for hist in ex["walks"]:
+                seq = [t0.canonical_id(X["g"], uniA, bynA) for X in hist]
+                for a, bb in zip(seq, seq[1:]):
+                    if a is None or bb is None:
+                        continue
+                    nsteps += 1
+                    dn = bb[0] - a[0]
+                    want = "C" if dn == -1 else ("S" if dn == 1 else "I")
+                    if want == "I":
+                        if bb != a:
+                            ok = False
+                    elif (bb, want) not in adjA.get(a, []):
+                        ok = False
+                if not ok:
+                    break
+            if not ok:
+                break
+        gate("E-compare", bool(ok and nsteps > 0), f"steps={nsteps}")
+    except Exception as e:  # noqa: BLE001
+        gate("E-compare", False, f"exc={e}")
     g_pre = {c["gate"]: c["ok"] for c in gates}
     gate("E-reduction", bool(g_pre.get("D-computed", False)),
          "pooled reduction filed")
@@ -475,7 +509,42 @@ def main():
     gate("N-timing", all(r["N_Q"] > 1 and r["S_vec_Q"][1] == 1 for r in tim)
          and len(tim) > 0, f"n={len(tim)}")
 
-    # ---- H: scheduler ----
+    # ---- H: scheduler (INFO0 m! + enlarged order-replay: every labeled
+    # order reaches Xp-class; N_Q==N_red is REFUTED pre-data since Q
+    # distinguishes orders that canonical counting collapses) ----
+    def _replay_ok(Xm: dict, Xp: dict, edges: list) -> tuple:
+        import itertools
+
+        n = 0
+        for perm in itertools.permutations([tuple(e) for e in edges]):
+            g = Xm["g"].copy()
+            psi = np.asarray(Xm["psi"], dtype=np.complex128).copy()
+            oo = list(Xm["order"])
+            Q = {}
+            good = True
+            for e in perm:
+                if not g.has_edge(*e):
+                    good = False
+                    break
+                enc = st0.encode_store({"g": g, "psi": psi, "order": oo},
+                                       *e)
+                post = m0.contract_deterministic(g, psi, oo, *e)
+                frame = st0.make_frame(post["k"], *e, enc["A_true"],
+                                       enc["B_true"], enc["q"]["cover"])
+                Q[post["k"]] = {
+                    "frame": dict(frame),
+                    "q": {"cover": [list(enc["q"]["cover"][0]),
+                                   list(enc["q"]["cover"][1])],
+                          "d": complex(enc["q"]["d"])}}
+                g, psi, oo = post["g"], post["psi"], post["order"]
+            if not good:
+                return False, n
+            n += 1
+            if not q0.is_enlarged_equiv_ok(
+                    q0.make_enlarged(g, psi, oo, Q), Xp):
+                return False, n
+        return True, n
+
     try:
         dis = K.get("disjoint", [])
         n_m = 0
@@ -488,13 +557,27 @@ def main():
                 [tuple(r["meta"]["ea"]), tuple(r["meta"]["eb"])])
             n_m += int(bool(rep.get("all_match", False)))
         frac_a = (n_m / len(dis)) if dis else 0.0
-        sch = [r for r in (K.get("disjoint", []) + K.get("sched", []))
-               if r.get("V0") and r.get("red", {}).get("complete", True)]
-        n_b = sum(1 for r in sch if r["N_Q"] == r["red"]["N_red"])
-        frac_b = (n_b / len(sch)) if sch else 0.0
+        n_b = 0
+        n_bt = 0
+        for r in dis:
+            t = ("disjoint", r["meta"]["sub"], r["meta"]["ftag"], r["T"])
+            b = q0.boundary_for_task(t)
+            ok, _ = _replay_ok(b["Xm"], b["Xp"],
+                               [tuple(r["meta"]["ea"]),
+                                tuple(r["meta"]["eb"])])
+            n_bt += 1
+            n_b += int(ok)
+        for r in K.get("sched", []):
+            t = ("sched", r["meta"]["sub"], r["T"])
+            b = q0.boundary_for_task(t)
+            ok, _ = _replay_ok(b["Xm"], b["Xp"],
+                               [tuple(e) for e in r["meta"]["edges"]])
+            n_bt += 1
+            n_b += int(ok)
+        frac_b = (n_b / n_bt) if n_bt else 0.0
         gate("H-sched", bool(frac_a >= q0.SCHED_PRESERVE_MIN
                              and frac_b >= q0.SCHED_PRESERVE_MIN),
-             f"m!={n_m}/{len(dis)} eq={n_b}/{len(sch)}")
+             f"m!={n_m}/{len(dis)} replay={n_b}/{n_bt}")
         sched_frac = float(frac_b)
     except Exception as e:  # noqa: BLE001
         gate("H-sched", False, f"exc={e}")

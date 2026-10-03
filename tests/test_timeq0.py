@@ -227,6 +227,24 @@ def test_reduced_canonical_spot():
     assert nq <= red["N_red"]
 
 
+def test_reduced_V0_iso_matches_canonical():
+    for t in [("merge1", "edge2", 2), ("roundtrip", "edge2", 2),
+              ("wait", "edge2", "on", 2), ("split1", "triangle", 2)]:
+        b = q0.boundary_for_task(t)
+        rc = q0.reduced_count_canonical(b["Xm"], b["Xp"], b["T"])
+        ri = q0.reduced_count_V0_iso(b["Xm"], b["Xp"], b["T"])
+        assert not rc["outside"] and ri["complete"]
+        assert rc["N_red"] == ri["N_red"]
+
+
+def test_scheduler_orders_distinct_histories():
+    # Q-finer classes: scheduler orders are distinct class-paths (N_Q=6)
+    # while canonical reduced counting sees one class-walk (N_red=1).
+    b = q0.boundary_for_task(("sched", "path12", 3))
+    assert q0.count_histories_Q(b["Xm"], b["Xp"], 3)["N"] == 6
+    assert q0.reduced_count_V0_iso(b["Xm"], b["Xp"], 3)["N_red"] == 1
+
+
 def test_explicit_audit_spot():
     b = q0.boundary_for_task(("roundtrip", "edge2", 2))
     nq = q0.count_histories_Q(b["Xm"], b["Xp"], 2)["N"]
