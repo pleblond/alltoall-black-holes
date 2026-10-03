@@ -1,5 +1,23 @@
 # Changelog
 
+- **Unreleased (Q-DYN-0b)** — Frozen store + relational energy readout:
+  `src/bh_graph/qdyn0b.py` (exact R(d) decomposition, fixed-Q U1 law
+  complementing STORE-0 joint covariance, waitb/eigen/splitback/cycle/
+  cov/loc/src/hid records nesting Q-DYN-0 verbatim, readout-only
+  inventory, firewall scans), `tests/test_qdyn0b.py` (21 pins),
+  504-task beast campaign + frozen 51-gate analyzer,
+  `docs/qdyn0b-prereg.md` (FROZEN pre-data + Amendment-1 pre-data).
+  VERDICT QDYN0B-EVENT-LOCAL (51/51): Q bitwise frozen on all 414 rungs
+  with all readout drift predicted by E_Q = F_R(M,Q) (closure 0.0, U1
+  law 4.4e-16, current-account inversion 6.7e-15, E-vendored bitwise
+  0.0, QDYN0-INCOMPLETE preserved with red conjuncts reproduced), but
+  E_aug drifts to 2.05 while E_psi + E_G holds to 2.4e-12 -- R earned
+  as event-local accounting, zero evidence for Q dynamics. Forwards
+  Q-DYN-0 apparatus byte-identical (qdyn0.py + runners + 19 pins +
+  prereg/verdict docs) with 71 frozen read-only refs. Records in
+  `data/qdyn0b/` (504 + verdict). Full suite on beast: 2287 passed /
+  2 skipped (weighted skipped per policy; 3 failures pre-existing).
+
 - **unreleased (SUBSTRATE-CLASS-0)** — Structural characterization of
   the VAC-0 class: `src/bh_graph/subclass0.py` (exact descriptors —
   Bloch spectrum certificates, motif counts, girth, ball volumes,

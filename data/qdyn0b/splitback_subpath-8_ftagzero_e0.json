@@ -1,0 +1,80 @@
+{
+ "sub": "path-8",
+ "ftag": "zero",
+ "edge": [
+  0,
+  1
+ ],
+ "k": 8,
+ "R_merge_M0": 1.0,
+ "E_Q_spread": 0.0,
+ "rungs": [
+  {
+   "T": 0.0,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "E_Q_T": 1.0,
+   "R_split": -1.0,
+   "invert_current_err": 0.0,
+   "orig_mismatch": 0.0,
+   "E_Xr": 0.0,
+   "E_Mf": 0.0
+  },
+  {
+   "T": 0.5,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "E_Q_T": 1.0,
+   "R_split": -1.0,
+   "invert_current_err": 0.0,
+   "orig_mismatch": 0.0,
+   "E_Xr": 0.0,
+   "E_Mf": 0.0
+  },
+  {
+   "T": 1.0,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "E_Q_T": 1.0,
+   "R_split": -1.0,
+   "invert_current_err": 0.0,
+   "orig_mismatch": 0.0,
+   "E_Xr": 0.0,
+   "E_Mf": 0.0
+  },
+  {
+   "T": 2.0,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "E_Q_T": 1.0,
+   "R_split": -1.0,
+   "invert_current_err": 0.0,
+   "orig_mismatch": 0.0,
+   "E_Xr": 0.0,
+   "E_Mf": 0.0
+  },
+  {
+   "T": 4.0,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "E_Q_T": 1.0,
+   "R_split": -1.0,
+   "invert_current_err": 0.0,
+   "orig_mismatch": 0.0,
+   "E_Xr": 0.0,
+   "E_Mf": 0.0
+  },
+  {
+   "T": 8.0,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "E_Q_T": 1.0,
+   "R_split": -1.0,
+   "invert_current_err": 0.0,
+   "orig_mismatch": 0.0,
+   "E_Xr": 0.0,
+   "E_Mf": 0.0
+  }
+ ],
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

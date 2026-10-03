@@ -1,0 +1,28 @@
+{
+ "vac": "VPLUS",
+ "kind": "point",
+ "placement": "near",
+ "applicable": true,
+ "qdyn0_src": {
+  "vac": "VPLUS",
+  "kind": "point",
+  "placement": "near",
+  "applicable": true,
+  "dist_u_k": 1,
+  "q_fixed": true,
+  "d_rho_k": -0.01139850601598763,
+  "d_bond_k": -0.014540730421592388,
+  "E_Q_disturbed": 1.8705713995692177
+ },
+ "qb": {
+  "E_Q_T_clean": 1.8921563976950142,
+  "E_Q_T_dist": 1.8705713995692177,
+  "dE_Q": -0.021584998125796506,
+  "dA": -0.021584998125796506,
+  "dRe": 0.0,
+  "attrib_err": 0.0,
+  "dist_closure": 0.0,
+  "q_fixed": true
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

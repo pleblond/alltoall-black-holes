@@ -1,0 +1,99 @@
+{
+ "sub": "ring-8",
+ "ftag": "uniform",
+ "edge": [
+  0,
+  1
+ ],
+ "qdyn0_sym": {
+  "sub": "ring-8",
+  "ftag": "uniform",
+  "edge": [
+   0,
+   1
+  ],
+  "rel_exact": true,
+  "rel_R": 0.0,
+  "u1_rec": 0.0,
+  "u1_R": 0.0,
+  "swap_equiv": true,
+  "swap_R": 0.0,
+  "R0": 1.25,
+  "aut_ok": true,
+  "aut_detail": "n_aut=4",
+  "sheet_ok": null,
+  "orbit_not_dynamics": true
+ },
+ "qb": {
+  "EQ_T": 1.237738351437521,
+  "rel_EQ_T_err": 0.0,
+  "swap_EQ_T_err": 0.0,
+  "u1_t0": {
+   "rows": [
+    {
+     "alpha": 0.7853981633974483,
+     "A_err": 0.0,
+     "Re_err": 0.0,
+     "EQ_err": 0.0
+    },
+    {
+     "alpha": 1.5707963267948966,
+     "A_err": 0.0,
+     "Re_err": 0.0,
+     "EQ_err": 0.0
+    },
+    {
+     "alpha": 3.141592653589793,
+     "A_err": 0.0,
+     "Re_err": 0.0,
+     "EQ_err": 0.0
+    },
+    {
+     "alpha": 4.71238898038469,
+     "A_err": 0.0,
+     "Re_err": 0.0,
+     "EQ_err": 0.0
+    }
+   ],
+   "A_inv_max": 0.0,
+   "Re_law_max": 0.0,
+   "EQ_law_max": 0.0
+  },
+  "u1_t2": {
+   "rows": [
+    {
+     "alpha": 0.7853981633974483,
+     "A_err": 0.0,
+     "Re_err": 0.0,
+     "EQ_err": 0.0
+    },
+    {
+     "alpha": 1.5707963267948966,
+     "A_err": 0.0,
+     "Re_err": 0.0,
+     "EQ_err": 0.0
+    },
+    {
+     "alpha": 3.141592653589793,
+     "A_err": 0.0,
+     "Re_err": 0.0,
+     "EQ_err": 0.0
+    },
+    {
+     "alpha": 4.71238898038469,
+     "A_err": 0.0,
+     "Re_err": 0.0,
+     "EQ_err": 0.0
+    }
+   ],
+   "A_inv_max": 0.0,
+   "Re_law_max": 0.0,
+   "EQ_law_max": 0.0
+  },
+  "aut_EQ_err": 0.0,
+  "aut_detail": "n_aut=4",
+  "sheet_EQ_err": null,
+  "sheet_detail": "n/a"
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

@@ -1,0 +1,46 @@
+{
+ "sub": "er-24",
+ "ftag": "uniform",
+ "relation": "disjoint",
+ "ea": [
+  1,
+  23
+ ],
+ "eb": [
+  10,
+  17
+ ],
+ "disjoint_ok": true,
+ "R_a": 4.249999999999999,
+ "R_b": 4.166666666666665,
+ "R_b_after_a": 4.166666666666668,
+ "R_a_after_b": 4.250000000000002,
+ "R_joint_ab": 8.416666666666668,
+ "R_joint_ba": 8.416666666666668,
+ "R_direct_ab": 8.416666666666668,
+ "R_direct_ba": 8.416666666666668,
+ "add_err": 3.552713678800501e-15,
+ "step_err": 2.6645352591003757e-15,
+ "step_err_ba": 2.6645352591003757e-15,
+ "tele_err_ab": 0.0,
+ "tele_err_ba": 0.0,
+ "finals_equal": true,
+ "factorize": true,
+ "rev_ab_forward": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ab_reverse": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ba_forward": {
+  "exact": true,
+  "drained": true
+ },
+ "rev_ba_reverse": {
+  "exact": true,
+  "drained": true
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

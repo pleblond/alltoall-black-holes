@@ -1,0 +1,36 @@
+{
+ "qdyn0_multi": {
+  "kind": "seq",
+  "name": "j2L4-ball",
+  "ftag": "VMINUS",
+  "n_entries": 8,
+  "keys_same": true,
+  "insertion_order": [
+   "32",
+   "33",
+   "34",
+   "35",
+   "36",
+   "37",
+   "38",
+   "39"
+  ],
+  "R_books": [
+   0.8125,
+   8.125,
+   3.875,
+   8.125,
+   5.875,
+   8.125,
+   7.875,
+   8.125
+  ],
+  "R_sum": 50.9375,
+  "reverse_after_wait_ok": true,
+  "drained": true
+ },
+ "qb": {
+  "passthrough": true
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

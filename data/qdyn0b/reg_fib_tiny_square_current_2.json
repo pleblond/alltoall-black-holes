@@ -1,0 +1,41 @@
+{
+ "cell": "square/current@2",
+ "graph": "square",
+ "field": "current",
+ "k": 2,
+ "d": 2,
+ "n_covers": 5,
+ "n_iso": 4,
+ "rows": {
+  "n_rows": 30,
+  "bad_pred": 0,
+  "bad_rt": 0,
+  "bad_form": 0,
+  "bad_inv": 0,
+  "bad_info": 0
+ },
+ "qxi_sufficient": true,
+ "qc": {
+  "sufficient": false,
+  "necessary": true,
+  "pair_diff": 0.5
+ },
+ "qd": {
+  "sufficient": false,
+  "n_classes": 5,
+  "classes_exact": true,
+  "capped": 0,
+  "skipped": 0,
+  "witness": true,
+  "reason": "degree-sequence"
+ },
+ "qR": {
+  "sufficient": false,
+  "injective": false,
+  "witness": true,
+  "kind": "circle",
+  "reconstruct_ok": false
+ },
+ "y_pair": true,
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

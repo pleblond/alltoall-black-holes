@@ -1,0 +1,18 @@
+Q-DYN-0b frozen refs (read-only inputs; never modified, never rewritten).
+
+Provenance: branch cursor/q-dyn-0-census-2660 (Q-DYN-0 campaign).
+Extracted via `git archive origin/cursor/q-dyn-0-census-2660 data/qdyn0`
+at 2026-10-03 (QDYN0-INCOMPLETE verdict commit d845c4b).
+
+Files (71):
+- verdict.json ............ Q-DYN-0 verdict (QDYN0-INCOMPLETE, 33/35)
+- autopsy_eigen.json ...... eigenstate-premise autopsy exhibit
+                            (post-merge H(G2) residuals 0.094-0.458,
+                            true-eigenvector d=0/d!=0 split ~3e-13/1.76)
+- wait_*.json (69) ........ Q-DYN-0 waiting-battery records
+                            (E_Q/E_total spreads for direct reproduction
+                            comparison; consumed by the E-vendored gate)
+
+Q-DYN-0 data files themselves live on the Q-DYN-0 branch; these copies
+are frozen reference inputs for Q-DYN-0b gates only. No original Q-DYN-0
+data or gate is rewritten by Q-DYN-0b.

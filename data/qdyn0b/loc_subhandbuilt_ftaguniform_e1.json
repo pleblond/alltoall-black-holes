@@ -1,0 +1,34 @@
+{
+ "sub": "handbuilt",
+ "ftag": "uniform",
+ "edge": [
+  0,
+  2
+ ],
+ "applicable": true,
+ "qdyn0_loc": {
+  "sub": "handbuilt",
+  "ftag": "uniform",
+  "edge": [
+   0,
+   2
+  ],
+  "applicable": true,
+  "remote": 4,
+  "q_same_0": true,
+  "R_err_0": 0.0,
+  "q_fixed_branch": true,
+  "E_Q_branch": 1.979749983717105,
+  "E_Q_mut_branch": 2.006984775668335,
+  "readout_drift": 0.02723479195122991
+ },
+ "qb": {
+  "FR_t0_err": 0.0,
+  "q_same_T": true,
+  "dA_T": 0.02723479195122991,
+  "dRe_T": 0.0,
+  "E_Q_T": 1.979749983717105,
+  "E_Q_mut_T": 2.006984775668335
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

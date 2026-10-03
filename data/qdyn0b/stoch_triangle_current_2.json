@@ -1,0 +1,13 @@
+{
+ "qdyn0_stoch": {
+  "cell": "triangle/current@2",
+  "both_valid": true,
+  "pair_diff": 0.5386751345948129,
+  "distinct": true,
+  "distribution_assumed": false
+ },
+ "qb": {
+  "passthrough": true
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

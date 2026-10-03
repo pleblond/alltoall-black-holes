@@ -1,0 +1,28 @@
+{
+ "vac": "VPLUS",
+ "kind": "packet",
+ "placement": "near",
+ "applicable": true,
+ "qdyn0_src": {
+  "vac": "VPLUS",
+  "kind": "packet",
+  "placement": "near",
+  "applicable": true,
+  "dist_u_k": 1,
+  "q_fixed": true,
+  "d_rho_k": 0.006061874679545776,
+  "d_bond_k": -0.0024391497003836693,
+  "E_Q_disturbed": 1.9666016654241698
+ },
+ "qb": {
+  "E_Q_T_clean": 1.8921563976950142,
+  "E_Q_T_dist": 1.9666016654241698,
+  "dE_Q": 0.0744452677291556,
+  "dA": 0.0744452677291556,
+  "dRe": -0.0,
+  "attrib_err": 0.0,
+  "dist_closure": 0.0,
+  "q_fixed": true
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

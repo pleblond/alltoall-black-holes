@@ -1,0 +1,83 @@
+{
+ "name": "handbuilt-chain",
+ "ftag": "uniform",
+ "steps": [
+  {
+   "step": 0,
+   "edge": [
+    0,
+    1
+   ],
+   "status": "contracted",
+   "k": 7,
+   "R": 3.0,
+   "close_merge": -4.440892098500626e-16,
+   "deg_k": 3,
+   "c": 2
+  },
+  {
+   "step": 1,
+   "edge": [
+    4,
+    5
+   ],
+   "status": "contracted",
+   "k": 8,
+   "R": 1.5714285714285712,
+   "close_merge": 0.0,
+   "deg_k": 2,
+   "c": 0
+  }
+ ],
+ "rev_steps": [
+  {
+   "k": 8,
+   "status": "split",
+   "R_split": -1.5714285714285712,
+   "close_split": 0.0,
+   "invert_err": 0.0
+  },
+  {
+   "k": 7,
+   "status": "split",
+   "R_split": -3.0,
+   "close_split": 4.440892098500626e-16,
+   "invert_err": 0.0
+  }
+ ],
+ "exact_ok": true,
+ "phys_ok": true,
+ "drained": true,
+ "store_E_final": 0.0,
+ "capacity": {
+  "n_events": 2,
+  "total_field_real_dims": 4,
+  "total_scalar_readouts": 2,
+  "continuous_bits_claimed": false,
+  "per_event": [
+   {
+    "step": 0,
+    "k": "7",
+    "n_covers_directed": 27,
+    "n_covers_undirected": 14.0,
+    "graph_bits": 3.807354922057604,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   },
+   {
+    "step": 1,
+    "k": "8",
+    "n_covers_directed": 9,
+    "n_covers_undirected": 5.0,
+    "graph_bits": 2.321928094887362,
+    "field_real_dims": 2,
+    "scalar_readouts": 1,
+    "frame_labels": 3,
+    "frame_bits_swap": 1
+   }
+  ]
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}

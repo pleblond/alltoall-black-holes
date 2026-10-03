@@ -1,0 +1,28 @@
+{
+ "vac": "VPI",
+ "kind": "packet",
+ "placement": "near",
+ "applicable": true,
+ "qdyn0_src": {
+  "vac": "VPI",
+  "kind": "packet",
+  "placement": "near",
+  "applicable": true,
+  "dist_u_k": 1,
+  "q_fixed": true,
+  "d_rho_k": 0.00032174658366124675,
+  "d_bond_k": 0.0014254769518891807,
+  "E_Q_disturbed": 0.4739650376815767
+ },
+ "qb": {
+  "E_Q_T_clean": 0.481302252042766,
+  "E_Q_T_dist": 0.4739650376815767,
+  "dE_Q": -0.0073372143611892815,
+  "dA": 0.002567566328044446,
+  "dRe": -0.009904780689233728,
+  "attrib_err": 0.0,
+  "dist_closure": 0.0,
+  "q_fixed": true
+ },
+ "_git": "601a082899aab91a642e983f9f1cf53c687319fd"
+}
