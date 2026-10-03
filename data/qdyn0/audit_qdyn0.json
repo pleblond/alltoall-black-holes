@@ -1,0 +1,155 @@
+{
+ "inventory": {
+  "rows": [
+   {
+    "op": "merge0.contract_deterministic",
+    "target": "G+psi",
+    "kind": "event",
+    "resolvable": true
+   },
+   {
+    "op": "store0.encode_store",
+    "target": "Q",
+    "kind": "event",
+    "resolvable": true
+   },
+   {
+    "op": "store0.make_frame",
+    "target": "Q-locator",
+    "kind": "event",
+    "resolvable": true
+   },
+   {
+    "op": "store0.split_recover",
+    "target": "G+psi",
+    "kind": "event",
+    "resolvable": true
+   },
+   {
+    "op": "store0.merge_deficit_frozen",
+    "target": "readout",
+    "kind": "readout",
+    "resolvable": true
+   },
+   {
+    "op": "store0.r_decomposition",
+    "target": "readout",
+    "kind": "readout",
+    "resolvable": true
+   },
+   {
+    "op": "store0.split_deficit",
+    "target": "readout",
+    "kind": "readout",
+    "resolvable": true
+   },
+   {
+    "op": "store0.transport_store_perm",
+    "target": "Q",
+    "kind": "symmetry",
+    "resolvable": true
+   },
+   {
+    "op": "store0.transport_store_u1",
+    "target": "Q",
+    "kind": "symmetry",
+    "resolvable": true
+   },
+   {
+    "op": "store0.swap_store",
+    "target": "Q",
+    "kind": "symmetry",
+    "resolvable": true
+   },
+   {
+    "op": "ballistic.evolve_fixed",
+    "target": "psi",
+    "kind": "flow",
+    "resolvable": true
+   },
+   {
+    "op": "response.evolve",
+    "target": "psi",
+    "kind": "flow",
+    "resolvable": true
+   },
+   {
+    "op": "ballistic.oneway_run",
+    "target": "psi",
+    "kind": "flow",
+    "resolvable": true
+   },
+   {
+    "op": "sym0.apply_relabel",
+    "target": "G+psi",
+    "kind": "symmetry",
+    "resolvable": true
+   },
+   {
+    "op": "sym0.apply_u1",
+    "target": "psi",
+    "kind": "symmetry",
+    "resolvable": true
+   },
+   {
+    "op": "sym0.phase_align",
+    "target": "psi",
+    "kind": "readout",
+    "resolvable": true
+   },
+   {
+    "op": "split0.predecessor_state",
+    "target": "G+psi",
+    "kind": "event",
+    "resolvable": true
+   },
+   {
+    "op": "split0.fiber_point",
+    "target": "psi",
+    "kind": "event",
+    "resolvable": true
+   },
+   {
+    "op": "contraction.contracted_state",
+    "target": "G+psi",
+    "kind": "event",
+    "resolvable": true
+   },
+   {
+    "op": "contraction.apply_split_cover",
+    "target": "G",
+    "kind": "event",
+    "resolvable": true
+   }
+  ],
+  "n": 20,
+  "q_flow_maps": [],
+  "earned_q_updater_without_event": false
+ },
+ "theorem": {
+  "paths": {
+   "ballistic.evolve_fixed": {
+    "store_refs": [],
+    "clean": true
+   },
+   "response.evolve": {
+    "store_refs": [],
+    "clean": true
+   }
+  },
+  "all_clean": true,
+  "runtime_q_same": true,
+  "theorem": "Q_{t+dt} = Q_t during pure field evolution on fixed G (implemented state machine)"
+ },
+ "trigger_audit": {
+  "trigger0_verdict": "TRIGGER0-CONDITION",
+  "condition_holds": true,
+  "implications": 0,
+  "qdyn_constructs_firing": false,
+  "detail": "n=21"
+ },
+ "fitted_params": 0,
+ "no_tuning": true,
+ "no_dynamics": true,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

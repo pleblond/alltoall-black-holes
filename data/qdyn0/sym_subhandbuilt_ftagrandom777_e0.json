@@ -1,0 +1,20 @@
+{
+ "sub": "handbuilt",
+ "ftag": "random777",
+ "edge": [
+  0,
+  1
+ ],
+ "rel_exact": true,
+ "rel_R": 0.0,
+ "u1_rec": 3.1031676915590914e-17,
+ "u1_R": 4.440892098500626e-16,
+ "swap_equiv": true,
+ "swap_R": 0.0,
+ "R0": 3.027506386551651,
+ "aut_ok": true,
+ "aut_detail": "n_aut=2",
+ "sheet_ok": null,
+ "orbit_not_dynamics": true,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

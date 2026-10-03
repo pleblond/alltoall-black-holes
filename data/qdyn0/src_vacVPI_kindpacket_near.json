@@ -1,0 +1,12 @@
+{
+ "vac": "VPI",
+ "kind": "packet",
+ "placement": "near",
+ "applicable": true,
+ "dist_u_k": 1,
+ "q_fixed": true,
+ "d_rho_k": 0.00032174658366124675,
+ "d_bond_k": 0.0014254769518891807,
+ "E_Q_disturbed": 0.4739650376815767,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

@@ -1,0 +1,41 @@
+{
+ "cell": "k2/bonding@0",
+ "graph": "k2",
+ "field": "bonding",
+ "k": 0,
+ "d": 1,
+ "n_covers": 2,
+ "n_iso": 2,
+ "rows": {
+  "n_rows": 12,
+  "bad_pred": 0,
+  "bad_rt": 0,
+  "bad_form": 0,
+  "bad_inv": 0,
+  "bad_info": 0
+ },
+ "qxi_sufficient": true,
+ "qc": {
+  "sufficient": false,
+  "necessary": true,
+  "pair_diff": 0.6035533905932737
+ },
+ "qd": {
+  "sufficient": false,
+  "n_classes": 2,
+  "classes_exact": true,
+  "capped": 0,
+  "skipped": 0,
+  "witness": true,
+  "reason": "edge-count"
+ },
+ "qR": {
+  "sufficient": false,
+  "injective": false,
+  "witness": true,
+  "kind": "circle",
+  "reconstruct_ok": false
+ },
+ "y_pair": true,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

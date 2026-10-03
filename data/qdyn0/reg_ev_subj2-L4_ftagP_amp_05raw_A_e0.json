@@ -1,0 +1,62 @@
+{
+ "sub": "j2-L4",
+ "ftag": "P:amp_05raw:A",
+ "edge": [
+  0,
+  2
+ ],
+ "k": 32,
+ "eligible": true,
+ "det_ok": true,
+ "rcov_ok": true,
+ "ucov_ok": true,
+ "info_ok": true,
+ "R": 1.4560257257504121,
+ "R_cover": 1.0,
+ "R_fiber": -0.031509518723741005,
+ "R_mixed": 0.48753524447415314,
+ "c": 0,
+ "B": 0.015754759361870502,
+ "Acoef": 1.480327375103931,
+ "W": [
+  0.3296444012618982,
+  0.049220821668263
+ ],
+ "Rformula": 1.4560257257504137,
+ "form_err": -1.5543122344752192e-15,
+ "formula_ok": true,
+ "R_split": -1.4560257257504121,
+ "invert_err": 0.0,
+ "pred_ok": true,
+ "roundtrip_ok": true,
+ "exact_ok": true,
+ "phys_ok": true,
+ "drained": true,
+ "E_X": 121.06684826346535,
+ "E_M": 119.61082253771494,
+ "close_merge": 4.440892098500626e-15,
+ "close_split": -4.440892098500626e-15,
+ "store_cov": {
+  "rel_exact": true,
+  "rel_k": true,
+  "rel_R": 0.0,
+  "u1_rec": 1.5515838457795457e-17,
+  "u1_R": 8.881784197001252e-16,
+  "swap_equiv": true,
+  "swap_R": 0.0
+ },
+ "locality": {
+  "applicable": true,
+  "ok": true,
+  "class": "one-neighborhood-local"
+ },
+ "candidates": {
+  "qR": true,
+  "qd": true,
+  "qc": true,
+  "qxi": true
+ },
+ "E_store_derived": true,
+ "R_pin_match": true,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}

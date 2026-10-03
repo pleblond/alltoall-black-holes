@@ -12510,3 +12510,63 @@ test_tunnel unitarity 0.9999999999999998 vs 1.0, test_emergent_dim
 weighted diffusion) -- all pass on x86; 1-ulp ARM BLAS sensitivity,
 no shared-code change on this branch (test_weighted.py skipped per
 standing addopts).
+## QDYN0-VERDICT (filed 2026-10-03): QDYN0-INCOMPLETE (33/35; autopsy-resolved apparatus-leg failure, zero Q-dynamics residual)
+
+Campaign: Q-DYN-0 — Internal Store Dynamics Constraint Census, null
+dot Q = 0 (branch cursor/q-dyn-0-census-2660). Fixed-graph waiting
+(H(G) = -A, J = 1, Krylov-exact), T_LADDER = (0,.5,1,2,4,8),
+DT = 0.05. STORE0-REVERSIBLE apparatus vendored byte-identical from
+the sibling STORE-0 branch (merge0/split0 identical to main).
+Prereg docs/qdyn0-prereg.md FROZEN pre-data (prediction QDYN0-FROZEN).
+Beast wave: 476 tasks (349 reg + 69 wait + 12 sym + 10 loc + 8 hid +
+12 src + 9 multi + 6 stoch + 1 audit), xargs -P 96, 476/476 filed, 0
+lost; files stamped _git = a9bdc20, analyzed at abe2c27. Records
+data/qdyn0/ (476 census + verdict.json + autopsy_eigen.json).
+STORE regression: 79 fiber cells, 5784/5784 rows exact, bad = 0.
+Suite on beast: 2267 passed + 2 skipped, test_weighted.py skipped
+per standing instruction; 3 failures (test_potential /
+test_emergent_dim / test_tunnel) reproduce identically at base
+commit 4454bdb, pre-existing and unrelated. Branch pins 56/56
+(test_qdyn0 19 + test_store0 37).
+
+Headline: the frozen-sufficient core is fully green — D-frozen (Q
+bitwise identical on all 414 rungs), L-reversal (current-M reversal
+exact on all 414 rungs), M-compat (field-sum exact, cover == N(k)),
+norm drift <= ~2e-13, E_psi + E_G conserved (E_Q spread == E_total
+spread on all 69 waits), O-history green (semigroup exact, no
+history dependence), N-required vacuous-green (no required updater),
+X-firewall green (fitted_params == 0, drift-does-not-move-Q). The
+only red gates are E-readout and F-total, solely via their
+eigenstate-spread conjuncts (j2-L4 VPLUS/VPI/VMINUS spreads
+0.127–1.5 vs BAR_LEDGER = 1e-9). No data supports
+COEVOLVING/HISTORY/DEBT (honestly gated, vacuous with L green).
+Per the frozen ladder (INCOMPLETE > HISTORY/DEBT/COEVOLVING >
+FROZEN; no post-data bar/ladder change), FROZEN is unreached and
+INCOMPLETE is filed, autopsy-resolved below.
+
+Autopsy (scripts/qdyn0_autopsy.py, post-data diagnostic, not a gate):
+the eigenstate-constancy premise was false twice over, both linear
+algebra. (a) Eigenstate-ness does not survive the merge: fields are
+exact H(G) eigenstates pre-merge (residual exactly 0; VPLUS/uniform
+lambda = -8, VPI +8, VMINUS 0, 32 nodes) but waiting evolves under
+the post-merge H(G2) on 31 nodes — post-merge H(G2)-residuals are
+0.094–0.458, none an eigenstate of the evolution Hamiltonian. (b)
+Even TRUE H(G2) eigenstates drift when the stored d != 0: Rformula
+= Acoef + |d|^2/2 + Re(conj(d) W) rotates under global phase flow
+unless d = 0, so E_Q is not U1-invariant there — VPI (both edges,
+d = -0.3536) and VMINUS[1,6] (d = +0.3536) show true-eigenvector
+E_Q spread 1.76 while every d = 0 cell shows ~3e-13, matching the
+prediction cell by cell. The legs demanded constancy of a quantity
+that provably rotates (d != 0 cells) and eigenstate survival across
+a change of Hamiltonian and Hilbert-space dimension (d = 0 cells):
+both premise errors, fully characterized, with drift fully
+explained by psi(t) motion under fixed H with fixed Q (memory, not
+field). Full record: docs/qdyn0-verdict.md.
+
+Follow-up (Q-DYN-0b/Q-DYN-1 prescription, out of scope here):
+eigenstate constancy must target POST-merge H(G2) eigenstates on
+d = 0 cells (U1-blind readout), or replace constancy with the
+earned U1-covariance law of the readout (Re(conj(d) W) rotation
+under phase flow) as an exact gated identity. No gate, bar, or
+ladder rung of Q-DYN-0 itself was changed post-data.
+

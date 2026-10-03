@@ -1,0 +1,17 @@
+{
+ "sub": "ring-8",
+ "ftag": "uniform",
+ "edge": [
+  0,
+  1
+ ],
+ "applicable": true,
+ "remote": 3,
+ "q_same_0": true,
+ "R_err_0": 0.0,
+ "q_fixed_branch": true,
+ "E_Q_branch": 1.237738351437521,
+ "E_Q_mut_branch": 1.2249431167041542,
+ "readout_drift": -0.012795234733366856,
+ "_git": "a9bdc202260d644edfe2fa1d51fb9b89fe4add44"
+}
