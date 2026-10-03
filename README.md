@@ -65,11 +65,11 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 
 | Path | Description | License |
 |---|---|---|
-| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 12pp main text + 15pp S1–S11 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
+| `paper/v5/` ([`main.pdf`](paper/v5/main.pdf), [`supplement.pdf`](paper/v5/supplement.pdf), LaTeX source) | The paper: 12pp main text + 15pp S1–S12 methods supplement ([`notes`](paper/v5/README.md)) | CC BY 4.0 |
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 576 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 1789 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
@@ -87,6 +87,14 @@ AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
 `concentration`; AP `ps`; AQ `scatter`; AR `emd`, `viability`; AS
 `entropic`; AT `redshift`; AU `heatker`, `orici`, `jacobson`; AV `fission`;
 AW `klanguage`; AX `tension`; AY `gw250114`; AZ `overtones`, `tensionvol`; BA `sparse24`; BB `lensing`, `chroma`, `shapiro`; BC `bcrit`; BD `dispersion`; BE `qnmfoot`, `qnmlegs`; BF `foamgrid`; BG `perwalk`; BH `strain`; BI `weakfield`; BJ–BL `strain` ext., `micro` ext., `legham`; BM `horizon` ext.; BN–BO `jacobson` ext.; BP `perwalk` ext.; BQ `weakfield` ext.; BR `tn` ext.; BS flip (PATCH, running-$\varepsilon$); BU `pulsar`, `orici` ext. (gradient shells), `collapse` ext. (leg-shedding); BV `uvscatter`, `sinkor`, `shellscale`; mass-gaps `massgaps`.
+Field program (`docs/model.md` §10): `ballistic`, `coherence`, `slit`,
+`tunnel`, `potential`, `driven`, `continuum`, `falsification`, `malus`,
+`obs0`, `obs0r`, `obs1`, `quot`, `backreaction`, `phase`, `rigidity`,
+`contraction`, `conservation`, `accounting`, `stability`, `grav0`,
+`u0`, `time0`, `rand0`, `measure0`, `sym0`, `field0`, `response`,
+`bgresp`, `vac0`, `vacfield`, `vacexc`, `vaccomp`, `vacselect`,
+`hidden`, `hiddenbr`, `zero`; side apparatus `spectroscopy`, `fep`,
+`stern_gerlach`, `mergershed`, `graphvk`.
 
 ## Quickstart
 
@@ -94,7 +102,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 576 tests (2 torch/GPU-only skip without torch)
+python -m pytest tests/ -q          # 1789 tests (2 torch/GPU-only skip without torch)
 python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
