@@ -315,6 +315,13 @@ def test_wall_cut():
     assert gw.number_of_edges() < sub["graph"].number_of_edges()
     gw2 = s0.wall_cut_graph(sub["graph"], 8)
     assert gw2.number_of_edges() == gw.number_of_edges()
+    # Amendment-4: default is source-adjacent (x0 = L//2-1), same shape.
+    assert (sub["graph"].number_of_edges() - gw.number_of_edges()) == 28
+    gexp = s0.wall_cut_graph(sub["graph"], 8, 8 // 2 - 1)
+    assert gexp.number_of_edges() == gw.number_of_edges()
+    gfar = s0.wall_cut_graph(sub["graph"], 8, 1)
+    assert (sub["graph"].number_of_edges() - gfar.number_of_edges()) == 28
+    assert set(gfar.edges()) != set(gw.edges())
 
 
 def test_resp_kernel_check():

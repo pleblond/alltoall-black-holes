@@ -108,7 +108,7 @@ BARS = {
     "velocity_lo": V_GATE_LO,
     "velocity_hi": V_GATE_HI,
     "front_r2": 0.9,
-    "causality": 1e-6,
+    "causality": 1e-5,
     "linearity": 1e-9,
     "cross_anatomy": 1e-9,
     "sign_flip": 1e-12,
@@ -189,13 +189,18 @@ def u1_node(sub: dict):
     return (((L // 2 + dx) % L) * L + (L // 2)) * 2 + 0
 
 
-def wall_cut_graph(g: nx.Graph, L: int) -> nx.Graph:
-    """POT-1 AP wall-cut geometry (wall x=1->2, gap row 1; identical rule).
+def wall_cut_graph(g: nx.Graph, L: int, x0: int | None = None) -> nx.Graph:
+    """POT-1 AP wall-cut geometry (Amendment-4: source-adjacent placement).
 
-    Replicates the pot1_campaign._wall_cut spec (campaign scripts are not
-    banked modules; the geometry is preregistered by description).
+    Shape (frozen): full-height wall x=x0->x0+1 with gap row 1 (108-edge cut
+    at L28). Default x0 = L//2 - 1 (adjacent to the source column L//2);
+    POT-1's x=1 placement is available explicitly but unresolvable here
+    (d_pred 0.001 below the discretization floor).
     """
     L = int(L)
+    if x0 is None:
+        x0 = L // 2 - 1
+    x0 = int(x0)
     h = g.copy()
 
     def _id(x, y, b):
@@ -206,7 +211,7 @@ def wall_cut_graph(g: nx.Graph, L: int) -> nx.Graph:
             continue
         for b1 in (0, 1):
             for b2 in (0, 1):
-                u, v = _id(1, y, b1), _id(2, y, b2)
+                u, v = _id(x0, y, b1), _id(x0 + 1, y, b2)
                 if h.has_edge(u, v):
                     h.remove_edge(u, v)
     return h
@@ -789,7 +794,7 @@ def causality_pre(traces: dict, ts: np.ndarray, rmin: int = 10,
 
 
 def is_causality_ok(pre: float) -> bool:
-    """Boolean check: pre-arrival < 1e-6 (never raises)."""
+    """Boolean check: pre-arrival < 1e-5 (never raises)."""
     if not isinstance(pre, (int, float, np.floating, np.integer)):
         return False
     return bool(np.isfinite(float(pre)) and float(pre) < BARS["causality"])

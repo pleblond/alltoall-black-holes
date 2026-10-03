@@ -154,16 +154,18 @@ def main(argv=None):
     else:
         checks["background"] = False
 
-    # switch: six L28 fronts + causality.
+    # switch: L28 turn-on fronts + causality; release fronts only (Amd-5).
     if not missing:
         legs = []
         for rec in ("turnon_L28_VPLUS_AMP", "turnon_L28_VPLUS_POT1.0",
-                    "turnon_L28_VPI_AMP", "turnon_L28_VMINUS_AMP",
-                    "release_VPLUS_POT1.0", "release_VPLUS_AMP",
-                    "release_VMINUS_AMP"):
+                    "turnon_L28_VPI_AMP", "turnon_L28_VMINUS_AMP"):
             r = P(rec)
             legs.append(bool(r["front"]["ok"]
                              and float(r["causality"]) < s0.BARS["causality"]))
+        for rec in ("release_VPLUS_POT1.0", "release_VPLUS_AMP",
+                    "release_VMINUS_AMP"):
+            r = P(rec)
+            legs.append(bool(r["front"]["ok"]))
         checks["switch"] = bool(all(legs))
         detail["switch"] = {"legs": legs}
     else:
@@ -212,7 +214,11 @@ def main(argv=None):
             got = (int(r["edges"]["n"]), int(r["edges"]["edges"]))
             edges_ok = edges_ok and (got == want)
         cut = P("allpath_VPLUS_AMP")
-        edges_ok = edges_ok and int(cut["cut_edges"]) > 0
+        cut2 = P("allpath_VPLUS_POT1.0")
+        edges_ok = (edges_ok and int(cut["cut_edges"]) == 108
+                    and int(cut2["cut_edges"]) == 108
+                    and cut["wall"] == {"x0": 13, "gap": 1}
+                    and cut2["wall"] == {"x0": 13, "gap": 1})
         legs.append(edges_ok)
         params_ok = True
         for _n, pr, rec in all_tasks():

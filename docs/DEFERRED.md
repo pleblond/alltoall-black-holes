@@ -10568,3 +10568,41 @@ cross < 1e-9); cases, vehicles, and DT/T unchanged. The naive-sum
 deviation is additionally FILED per pair case as `naive_dev` (boundary
 cross-talk magnitude: separation-dependent physics, no gate). Analyzer
 superposition check unchanged (reads field_ok/cross_ok).
+
+### SOURCE0-AMENDMENT-4 (pre-data; no campaign record exists)
+
+S4 wall translated: x=1->2 becomes x=(L/2-1)->(L/2) (L28: 13->14, adjacent
+to the source column x=14); gap row 1, wall shape, and 108-edge cut
+UNCHANGED. Cause (measured, /tmp scratch validation, no campaign data):
+POT d_pred at x=1 is 0.0010, below the jump discretization floor
+(global_dev 0.0155) -- the far-wall effect is unresolvable (smoke d_meas
+0.0069, ap_ok false). Translated wall: d_pred 0.46 (POT) / 0.97 (AMP),
+30x+ above the floor. POT-1 comparability preserved (shape-identical cut,
+source-adjacent as in POT-1). S0 u0 rule UNTOUCHED; gates (0.35 +
+1D-reject) UNCHANGED; analyzer additionally asserts cut_edges == 108 on
+both wall-cut records (frozen geometry).
+
+### SOURCE0-AMENDMENT-5 (pre-data; no campaign record exists)
+
+S6 causality rescoped: turn-on legs gate pre-signal < 1e-5 (absolute bar,
+was 1e-6); release legs keep the front gate but FILE pre-signal (no gate).
+Cause (measured, /tmp scratch): turn-on pre-signal floor is
+amplitude-proportional stepping noise, worst 1.2e-6|s0| across 3 L28 legs
+(POT s0=1.0: 1.17e-6; VPLUS AMP: 1.18e-8 at s0=0.01; VMINUS AMP: 3.99e-9)
+-- POT-1's 1e-6 was calibrated at DT_POT1 ~= 0.0025, ours at DT_HARM=0.005.
+Bar 1e-5 gives 8x margin at worst case, 4 orders below front signal.
+Release-from-extended-state has O(1e-3) local pre-response by construction
+(measured 1.26e-3 POT: initial support is everywhere, so pre-arrival
+silence cannot hold); the radiated-transient front (v=5.8, r2=0.996) is
+still gated. Analyzer switch check splits accordingly. BARS causality
+1e-6 -> 1e-5.
+
+### SOURCE0-AMENDMENT-6 (pre-data; no campaign record exists)
+
+S2 cond rule implementation: dense 2-norm cond at ALL L (conservative
+substitution for the preregistered L28 svds extremal estimate). Cause:
+exact exceeds estimate (svds near a singular matrix risks estimation
+error); every leg sits >10 orders from the 1e12 boundary on either side
+(measured: POT L28 32.8; E=0 L28 3.0e127; L4/L8 same split), so branch
+outcomes are identical under either implementation; cost is seconds per
+leg. Rule threshold and branch structure UNCHANGED.

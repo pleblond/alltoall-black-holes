@@ -339,6 +339,7 @@ def t_allpath(p, outdir, record):
     return {"omega": om, "d_pred": d_pred, "d_meas": d_meas,
             "ap_ok": ap_ok, "res1d": res1d, "respred": respred,
             "reject_ok": reject_ok,
+            "wall": {"x0": L // 2 - 1, "gap": 1},
             "cut_edges": int(sub["graph"].number_of_edges()
                              - gw.number_of_edges())}
 
