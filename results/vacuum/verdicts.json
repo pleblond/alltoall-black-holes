@@ -1,0 +1,15 @@
+{
+ "test_i": {
+  "cubic": "PASS",
+  "bcc": "PASS",
+  "fcc": "PASS",
+  "kelvin": "PASS"
+ },
+ "test_ii_form": "INCONCLUSIVE",
+ "test_iii_p": "NOT-RECOVERED",
+ "liv_null": "PASS",
+ "echo_null": "PASS",
+ "pulsar_label": "CONSISTENCY-GATE (never validation)",
+ "phase1_p_for_gate": null,
+ "elapsed_s": 976.5680425167084
+}
