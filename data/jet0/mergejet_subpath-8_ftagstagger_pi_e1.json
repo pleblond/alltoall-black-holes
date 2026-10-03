@@ -1,0 +1,114 @@
+{
+ "sub": "path-8",
+ "ftag": "stagger_pi",
+ "member": "",
+ "edge": [
+  6,
+  7
+ ],
+ "regression_ok": true,
+ "m_u": 7,
+ "order_method": "exact",
+ "algebra_ok": true,
+ "deriv_max_resid": 0.0,
+ "deriv_ok": true,
+ "reservoir_jet_ok": true,
+ "n_alts": 56,
+ "counts": {
+  "full": 0,
+  "lower-only": 0,
+  "no": 56
+ },
+ "triviality_counts": {
+  "not-a-match": 56
+ },
+ "true_found": 0,
+ "true_unique": false,
+ "match_rows": [],
+ "n_match_rows": 0,
+ "audit_rows": [
+  {
+   "fa": 0,
+   "cover": [
+    [
+     5
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": 6.717514421272195,
+   "m_u": 7,
+   "m_p": 7,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 1,
+   "cover": [
+    [
+     5
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": 2.7824855787278047,
+   "m_u": 7,
+   "m_p": 7,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 2,
+   "cover": [
+    [
+     5
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": 11.635076278220092,
+   "m_u": 7,
+   "m_p": 7,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 3,
+   "cover": [
+    [
+     5
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": 9.899102282319756,
+   "m_u": 7,
+   "m_p": 7,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "theta_counterpart_ok": true,
+ "edge_pos": 1,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

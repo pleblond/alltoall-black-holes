@@ -1,5 +1,23 @@
 # Changelog
 
+- **v5.10 (JET-1)** — Per-rung compatibility repair + final jet adjudication
+  (branch): ports the frozen JET-0 apparatus + 496-record bank + vendored
+  EVENT-0 refs read-only (`src/bh_graph/jet0.py` byte-identical,
+  `data/jet0/` banked with `JET0-INCOMPLETE` 31/32 verdict), then repairs the
+  single forcing defect — the malformed aggregate `compat_keys` set comparison
+  (filtered ours keys vs unfiltered vendored keys incl. all-`False` rows) —
+  with the correct per-rung bitwise comparison (`src/bh_graph/jet1.py`,
+  `scripts/jet1_campaign.py` 15-task witness battery,
+  `scripts/jet1_analyze.py` 13-gate analyzer, 8 pins in `tests/test_jet1.py`,
+  JET1-PREREG pre-data + verdict in `docs/jet1-prereg.md` /
+  `docs/jet1-verdict.md`). VERDICT JET1-NULL (13/13): 0 per-rung mismatches
+  over 1152 compared bits, searched/ever/orbit/search-count agreement on all
+  15 cells, 12 + 1 all-`False` witness rows, 13/13 controls green, frozen
+  analyzer rerun reproduces the banked verdict exactly, `n_genuine = 0` with
+  0 crossings on 18 ordinary trajs under unchanged definitions. Records under
+  `data/jet1/` (15 witnesses + verdict). Full suite on beast 2429 passed /
+  2 skipped / 4 pre-existing failures (verified identical on clean main tail).
+
 - **Unreleased (BH-Q-AREA-0)** — Q-information area law on a 3D BH-like
   boundary: `src/bh_graph/bhqarea0.py` (K-core + J3-ball ladder, vacuum
   eigensolver readout, banked qinfo0 s_Q census, deficit/audit/scaling

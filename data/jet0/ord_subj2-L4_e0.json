@@ -1,0 +1,22 @@
+{
+ "sub": "j2-L4",
+ "edge": [
+  0,
+  2
+ ],
+ "order": {
+  "m": 4,
+  "n": 32,
+  "method": "exact",
+  "recurrence": [
+   0.0,
+   -128.0,
+   16.0,
+   8.0
+  ],
+  "recurrence_exact_ok": true,
+  "fallback": false
+ },
+ "order_ok": true,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

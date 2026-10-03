@@ -1,0 +1,185 @@
+{
+ "sub": "j2-L4",
+ "ftag": "VMINUS",
+ "member": "",
+ "edge": [
+  1,
+  6
+ ],
+ "regression_ok": true,
+ "m_u": 4,
+ "order_method": "exact",
+ "algebra_ok": true,
+ "deriv_max_resid": 0.0,
+ "deriv_ok": true,
+ "reservoir_jet_ok": true,
+ "n_alts": 9520,
+ "counts": {
+  "full": 0,
+  "lower-only": 0,
+  "no": 9520
+ },
+ "triviality_counts": {
+  "not-a-match": 9520
+ },
+ "true_found": 0,
+ "true_unique": false,
+ "match_rows": [],
+ "n_match_rows": 0,
+ "audit_rows": [
+  {
+   "fa": 0,
+   "cover": [
+    [
+     0,
+     2,
+     3,
+     4,
+     5,
+     7,
+     8,
+     9,
+     14,
+     15,
+     24,
+     25,
+     30,
+     31
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 4,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 1,
+   "cover": [
+    [
+     0,
+     2,
+     3,
+     4,
+     5,
+     7,
+     8,
+     9,
+     14,
+     15,
+     24,
+     25,
+     30,
+     31
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    0.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 4,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 2,
+   "cover": [
+    [
+     0,
+     2,
+     3,
+     4,
+     5,
+     7,
+     8,
+     9,
+     14,
+     15,
+     24,
+     25,
+     30,
+     31
+    ],
+    []
+   ],
+   "d": [
+    0.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 4,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  },
+  {
+   "fa": 3,
+   "cover": [
+    [
+     0,
+     2,
+     3,
+     4,
+     5,
+     7,
+     8,
+     9,
+     14,
+     15,
+     24,
+     25,
+     30,
+     31
+    ],
+    []
+   ],
+   "d": [
+    1.0,
+    1.0
+   ],
+   "class": "no",
+   "max_dev": "inf",
+   "m_u": 4,
+   "m_p": 5,
+   "orientation": 0,
+   "quotient_equal": false,
+   "triviality": "not-a-match"
+  }
+ ],
+ "theta_counterpart_ok": true,
+ "sector": {
+  "error": "AttributeError"
+ },
+ "cert": {
+  "is_zero": false,
+  "is_eigen": true,
+  "resid": 0.0,
+  "lam": [
+   0.0,
+   0.0
+  ]
+ },
+ "vacuum_sector": {
+  "trivial": true,
+  "reasons": [
+   "H-eigen:0.000000",
+   "JOINT:VMINUS"
+  ],
+  "hp_minus_resid": null
+ },
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

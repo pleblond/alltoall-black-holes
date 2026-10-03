@@ -1,0 +1,30 @@
+{
+ "sub": "j2-L8",
+ "edge": [
+  1,
+  14
+ ],
+ "order": {
+  "m": 12,
+  "n": 128,
+  "method": "exact",
+  "recurrence": [
+   0.0,
+   -2097152.0,
+   262144.0,
+   2031616.0,
+   -253952.0,
+   -405504.0,
+   50688.0,
+   29184.0,
+   -3648.0,
+   -832.0,
+   104.0,
+   8.0
+  ],
+  "recurrence_exact_ok": true,
+  "fallback": false
+ },
+ "order_ok": true,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

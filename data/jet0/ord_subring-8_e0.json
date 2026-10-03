@@ -1,0 +1,22 @@
+{
+ "sub": "ring-8",
+ "edge": [
+  0,
+  1
+ ],
+ "order": {
+  "m": 4,
+  "n": 8,
+  "method": "exact",
+  "recurrence": [
+   0.0,
+   -4.0,
+   2.0,
+   2.0
+  ],
+  "recurrence_exact_ok": true,
+  "fallback": false
+ },
+ "order_ok": true,
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

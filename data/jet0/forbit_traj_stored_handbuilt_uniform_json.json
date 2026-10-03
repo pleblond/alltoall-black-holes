@@ -1,0 +1,161 @@
+{
+ "traj": "traj_stored_handbuilt_uniform.json",
+ "kind": "stored",
+ "sub": "handbuilt",
+ "ftag": "uniform",
+ "cross_check": {
+  "n_rewires": true,
+  "n_cospec": true,
+  "n_iso": true,
+  "compat_keys": true,
+  "n_nontrivial": true
+ },
+ "cross_check_ok": true,
+ "n_compat_keys": 3,
+ "n_orbits_repro": 2,
+ "n_orbits_vend": 2,
+ "n_jet_tests": 15,
+ "n_exact_full": 15,
+ "n_quot_full": 0,
+ "triviality_counts": {
+  "T2": 15
+ },
+ "full_rows": [
+  {
+   "rung": 0.0,
+   "rkey": "(((2, 7), (5, 6)), ((2, 5), (6, 7)))",
+   "edge": [
+    2,
+    7
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((2, 7), (5, 6)), ((2, 5), (6, 7)))",
+   "edge": [
+    3,
+    7
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((2, 7), (5, 6)), ((2, 5), (6, 7)))",
+   "edge": [
+    4,
+    5
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((2, 7), (5, 6)), ((2, 5), (6, 7)))",
+   "edge": [
+    4,
+    7
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((2, 7), (5, 6)), ((2, 5), (6, 7)))",
+   "edge": [
+    5,
+    6
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((3, 7), (5, 6)), ((3, 5), (6, 7)))",
+   "edge": [
+    2,
+    7
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((3, 7), (5, 6)), ((3, 5), (6, 7)))",
+   "edge": [
+    3,
+    7
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((3, 7), (5, 6)), ((3, 5), (6, 7)))",
+   "edge": [
+    4,
+    5
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((3, 7), (5, 6)), ((3, 5), (6, 7)))",
+   "edge": [
+    4,
+    7
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((3, 7), (5, 6)), ((3, 5), (6, 7)))",
+   "edge": [
+    5,
+    6
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((4, 7), (5, 6)), ((4, 6), (5, 7)))",
+   "edge": [
+    2,
+    7
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((4, 7), (5, 6)), ((4, 6), (5, 7)))",
+   "edge": [
+    3,
+    7
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((4, 7), (5, 6)), ((4, 6), (5, 7)))",
+   "edge": [
+    4,
+    5
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((4, 7), (5, 6)), ((4, 6), (5, 7)))",
+   "edge": [
+    4,
+    7
+   ],
+   "triviality": "T2"
+  },
+  {
+   "rung": 0.0,
+   "rkey": "(((4, 7), (5, 6)), ((4, 6), (5, 7)))",
+   "edge": [
+    5,
+    6
+   ],
+   "triviality": "T2"
+  }
+ ],
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

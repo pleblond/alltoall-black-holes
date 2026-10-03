@@ -1,0 +1,1047 @@
+{
+ "sub": "ring-8",
+ "ftag": "uniform",
+ "n_rewires": 32,
+ "n_cospec": 20,
+ "n_iso": 20,
+ "n_compat": 20,
+ "orbits": {
+  "n_survivors": 20,
+  "n_orbits": 3,
+  "n_nontrivial": 3,
+  "exact": true,
+  "n_perms": 16
+ },
+ "n_jet_tests": 160,
+ "n_full": 160,
+ "full_rows": [
+  {
+   "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))",
+   "edge": [
+    0,
+    1
+   ],
+   "edge_p": [
+    0,
+    7
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))",
+   "edge": [
+    0,
+    7
+   ],
+   "edge_p": [
+    0,
+    2
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))",
+   "edge": [
+    1,
+    2
+   ],
+   "edge_p": [
+    7,
+    6
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))",
+   "edge": [
+    2,
+    3
+   ],
+   "edge_p": [
+    6,
+    5
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))",
+   "edge": [
+    3,
+    4
+   ],
+   "edge_p": [
+    5,
+    4
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))",
+   "edge": [
+    4,
+    5
+   ],
+   "edge_p": [
+    4,
+    3
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))",
+   "edge": [
+    5,
+    6
+   ],
+   "edge_p": [
+    3,
+    1
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))",
+   "edge": [
+    6,
+    7
+   ],
+   "edge_p": [
+    1,
+    2
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))",
+   "edge": [
+    0,
+    1
+   ],
+   "edge_p": [
+    0,
+    1
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))",
+   "edge": [
+    0,
+    7
+   ],
+   "edge_p": [
+    0,
+    2
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))",
+   "edge": [
+    1,
+    2
+   ],
+   "edge_p": [
+    1,
+    7
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))",
+   "edge": [
+    2,
+    3
+   ],
+   "edge_p": [
+    7,
+    6
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))",
+   "edge": [
+    3,
+    4
+   ],
+   "edge_p": [
+    6,
+    5
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))",
+   "edge": [
+    4,
+    5
+   ],
+   "edge_p": [
+    5,
+    4
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))",
+   "edge": [
+    5,
+    6
+   ],
+   "edge_p": [
+    4,
+    3
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))",
+   "edge": [
+    6,
+    7
+   ],
+   "edge_p": [
+    3,
+    2
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))",
+   "edge": [
+    0,
+    1
+   ],
+   "edge_p": [
+    0,
+    7
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))",
+   "edge": [
+    0,
+    7
+   ],
+   "edge_p": [
+    0,
+    3
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))",
+   "edge": [
+    1,
+    2
+   ],
+   "edge_p": [
+    7,
+    6
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))",
+   "edge": [
+    2,
+    3
+   ],
+   "edge_p": [
+    6,
+    5
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))",
+   "edge": [
+    3,
+    4
+   ],
+   "edge_p": [
+    5,
+    4
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))",
+   "edge": [
+    4,
+    5
+   ],
+   "edge_p": [
+    4,
+    1
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))",
+   "edge": [
+    5,
+    6
+   ],
+   "edge_p": [
+    1,
+    2
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))",
+   "edge": [
+    6,
+    7
+   ],
+   "edge_p": [
+    2,
+    3
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))",
+   "edge": [
+    0,
+    1
+   ],
+   "edge_p": [
+    0,
+    1
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))",
+   "edge": [
+    0,
+    7
+   ],
+   "edge_p": [
+    0,
+    3
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))",
+   "edge": [
+    1,
+    2
+   ],
+   "edge_p": [
+    1,
+    2
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))",
+   "edge": [
+    2,
+    3
+   ],
+   "edge_p": [
+    2,
+    7
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))",
+   "edge": [
+    3,
+    4
+   ],
+   "edge_p": [
+    7,
+    6
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))",
+   "edge": [
+    4,
+    5
+   ],
+   "edge_p": [
+    6,
+    5
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))",
+   "edge": [
+    5,
+    6
+   ],
+   "edge_p": [
+    5,
+    4
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))",
+   "edge": [
+    6,
+    7
+   ],
+   "edge_p": [
+    4,
+    3
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))",
+   "edge": [
+    0,
+    1
+   ],
+   "edge_p": [
+    0,
+    7
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))",
+   "edge": [
+    0,
+    7
+   ],
+   "edge_p": [
+    0,
+    4
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))",
+   "edge": [
+    1,
+    2
+   ],
+   "edge_p": [
+    7,
+    6
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))",
+   "edge": [
+    2,
+    3
+   ],
+   "edge_p": [
+    6,
+    5
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))",
+   "edge": [
+    3,
+    4
+   ],
+   "edge_p": [
+    5,
+    1
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))",
+   "edge": [
+    4,
+    5
+   ],
+   "edge_p": [
+    1,
+    2
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))",
+   "edge": [
+    5,
+    6
+   ],
+   "edge_p": [
+    2,
+    3
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))",
+   "edge": [
+    6,
+    7
+   ],
+   "edge_p": [
+    3,
+    4
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))",
+   "edge": [
+    0,
+    1
+   ],
+   "edge_p": [
+    0,
+    1
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))",
+   "edge": [
+    0,
+    7
+   ],
+   "edge_p": [
+    0,
+    4
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))",
+   "edge": [
+    1,
+    2
+   ],
+   "edge_p": [
+    1,
+    2
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))",
+   "edge": [
+    2,
+    3
+   ],
+   "edge_p": [
+    2,
+    3
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))",
+   "edge": [
+    3,
+    4
+   ],
+   "edge_p": [
+    3,
+    7
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))",
+   "edge": [
+    4,
+    5
+   ],
+   "edge_p": [
+    7,
+    6
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))",
+   "edge": [
+    5,
+    6
+   ],
+   "edge_p": [
+    6,
+    5
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))",
+   "edge": [
+    6,
+    7
+   ],
+   "edge_p": [
+    5,
+    4
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))",
+   "edge": [
+    0,
+    1
+   ],
+   "edge_p": [
+    0,
+    7
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))",
+   "edge": [
+    0,
+    7
+   ],
+   "edge_p": [
+    0,
+    5
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))",
+   "edge": [
+    1,
+    2
+   ],
+   "edge_p": [
+    7,
+    6
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))",
+   "edge": [
+    2,
+    3
+   ],
+   "edge_p": [
+    6,
+    1
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))",
+   "edge": [
+    3,
+    4
+   ],
+   "edge_p": [
+    1,
+    2
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))",
+   "edge": [
+    4,
+    5
+   ],
+   "edge_p": [
+    2,
+    3
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))",
+   "edge": [
+    5,
+    6
+   ],
+   "edge_p": [
+    3,
+    4
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))",
+   "edge": [
+    6,
+    7
+   ],
+   "edge_p": [
+    4,
+    5
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))",
+   "edge": [
+    0,
+    1
+   ],
+   "edge_p": [
+    0,
+    1
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))",
+   "edge": [
+    0,
+    7
+   ],
+   "edge_p": [
+    0,
+    5
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))",
+   "edge": [
+    1,
+    2
+   ],
+   "edge_p": [
+    1,
+    2
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))",
+   "edge": [
+    2,
+    3
+   ],
+   "edge_p": [
+    2,
+    3
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))",
+   "edge": [
+    3,
+    4
+   ],
+   "edge_p": [
+    3,
+    4
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))",
+   "edge": [
+    4,
+    5
+   ],
+   "edge_p": [
+    4,
+    7
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))",
+   "edge": [
+    5,
+    6
+   ],
+   "edge_p": [
+    7,
+    6
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  },
+  {
+   "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))",
+   "edge": [
+    6,
+    7
+   ],
+   "edge_p": [
+    6,
+    5
+   ],
+   "class": "full",
+   "m_u": 4,
+   "m_p": 4,
+   "quotient_equal": false,
+   "triviality": "T2"
+  }
+ ],
+ "triviality_counts": {
+  "T2": 160
+ },
+ "_git": "e98fb34cde05d3567d331f83d314bae7cb1f15af"
+}

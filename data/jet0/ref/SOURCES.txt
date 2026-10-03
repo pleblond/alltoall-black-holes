@@ -1,0 +1,34 @@
+JET-0 pinned sibling refs (read-only, never modified by this campaign).
+
+1. qdyn0b_verdict.json
+   Source branch: origin/cursor/q-dyn-0b-frozen-readout-8e3d
+   Source commit: deb2c3699d333010f32f72ea57ca0361fd9c2c4b
+   Source path: data/qdyn0b/verdict.json
+   Verdict: QDYN0B-EVENT-LOCAL (51/51).
+   Consumed: Q frozen between events; E_Q = F_R(M,Q) event-local readout;
+   R event-local accounting functional; negated-H backward-leg precedent.
+   sha256: e1462c86ad8deba7c1209d24f6f9420948ee5f95d920581edf4bbf7d1f558b85
+
+2. event0_verdict.json
+   Source: beast2 ~/event0-3179 (branch cursor/event-0-necessity-3179,
+   NOT pushed to origin at JET-0 prereg time).
+   Source commit (prereg): 3796d834dc9131a23def619d9e7d1ec536cc7659
+   Source path: data/event0/verdict.json (beast-local analyzer output).
+   Verdict: EVENT0-EQUIV (33/33): 61 nontrivial same-N orbits, zero firing
+   implications, zero failed rungs.
+   sha256: 2cf12af29fba25d858daaf63d50091a370f76b17f68718a21e3a6dee8db313de
+
+3. event0_orbits.json
+   Source: same beast workspace; full EQUIV blocks of the 15 orbit-bearing
+   traj records (cands + per-rung compat + orbit quotients + counts).
+   Extracted 2026-10-03 via deterministic script (sorted keys); no physics
+   content altered. JET-0 F-tasks recompute every orbit from banked modules
+   and cross-check (n_nontrivial, compat keys) bitwise before jet comparison.
+   sha256: 71a3103af3d19f7dcd880c14445843e895ff8337bf1228ddfa69365205369811
+
+Provenance note: EVENT-0 data was copied from the running EVENT-0 beast
+workspace because that branch is unpushed. The copy is byte-recorded above;
+JET-0 never writes to it and independently re-derives every consumed number
+(F-gate reproduction check). If the EVENT-0 branch later merges with
+different bytes, JET-0 files a dated amendment; the prereg ladder is
+unaffected (it keys on the reproduction check, not on trust).

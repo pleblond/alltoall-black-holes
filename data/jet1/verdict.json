@@ -1,0 +1,110 @@
+{
+ "verdict": "JET1-NULL",
+ "reason": "zero GENUINE full EXACT matches anywhere under unchanged JET definitions (T1--T5 only)",
+ "n_gates": 13,
+ "n_pass": 13,
+ "gates": [
+  {
+   "gate": "A-provenance",
+   "ok": true,
+   "detail": "counts=True total=True verdict=True conjunct=True phys=True refs=True"
+  },
+  {
+   "gate": "A-rerun",
+   "ok": true,
+   "detail": "regenerated verdict identical"
+  },
+  {
+   "gate": "B-semantics",
+   "ok": true,
+   "detail": "n=15"
+  },
+  {
+   "gate": "C-bitwise",
+   "ok": true,
+   "detail": "bad=[] mismatch=0 compared=1152"
+  },
+  {
+   "gate": "D-ever",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "E-orbits",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "F-search",
+   "ok": true,
+   "detail": "bad=[]"
+  },
+  {
+   "gate": "G-allfalse",
+   "ok": true,
+   "detail": "witness_n={'traj_bare_ring-8_tiny_antibonding.json': 12, 'traj_int_handbuilt_INT-hb-twospike.json': 1}"
+  },
+  {
+   "gate": "H-controls",
+   "ok": true,
+   "detail": "n=13 bad=[]"
+  },
+  {
+   "gate": "I-replay",
+   "ok": true,
+   "detail": "red=['F-orbits'] n_genuine=0"
+  },
+  {
+   "gate": "J-surface",
+   "ok": true,
+   "detail": "n_genuine=0 merge=0 split=0 clean=True"
+  },
+  {
+   "gate": "K-crossing",
+   "ok": true,
+   "detail": "ordinary=18 hits=0 clean=True"
+  },
+  {
+   "gate": "X-firewall",
+   "ok": true,
+   "detail": "clean"
+  }
+ ],
+ "classification": "NULL",
+ "malformed": "ours filtered ever-compatible keys vs vendored all searched keys (incl. all-False rows)",
+ "per_rung_mismatch": 0,
+ "per_rung_compared": 1152,
+ "searched_equal": true,
+ "ever_equal": true,
+ "orbit_equal": true,
+ "allfalse_witness": {
+  "traj_bare_ring-8_tiny_antibonding.json": [
+   "(((0, 1), (2, 3)), ((0, 2), (1, 3)))",
+   "(((0, 1), (4, 5)), ((0, 4), (1, 5)))",
+   "(((0, 1), (6, 7)), ((0, 6), (1, 7)))",
+   "(((0, 7), (1, 2)), ((0, 2), (1, 7)))",
+   "(((0, 7), (3, 4)), ((0, 4), (3, 7)))",
+   "(((0, 7), (5, 6)), ((0, 6), (5, 7)))",
+   "(((1, 2), (3, 4)), ((1, 3), (2, 4)))",
+   "(((1, 2), (5, 6)), ((1, 5), (2, 6)))",
+   "(((2, 3), (4, 5)), ((2, 4), (3, 5)))",
+   "(((2, 3), (6, 7)), ((2, 6), (3, 7)))",
+   "(((3, 4), (5, 6)), ((3, 5), (4, 6)))",
+   "(((4, 5), (6, 7)), ((4, 6), (5, 7)))"
+  ],
+  "traj_int_handbuilt_INT-hb-twospike.json": [
+   "(((0, 3), (4, 5)), ((0, 4), (3, 5)))"
+  ]
+ },
+ "n_genuine": 0,
+ "merge_dir_genuine": 0,
+ "split_dir_genuine": 0,
+ "degen_tasks": [],
+ "k_crossed": {
+  "ordinary_n": 18,
+  "crossed": false,
+  "hits": [],
+  "n_hits": 0
+ },
+ "policy": "read-only bank; 15 compat witnesses + analyzer rerun + pins + full suite; no 496-task rerun"
+}
