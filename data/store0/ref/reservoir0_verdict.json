@@ -1,0 +1,751 @@
+{
+ "verdict": "RES0-XI",
+ "reason": "R is an exact nontrivial function of xi",
+ "n_gates": 68,
+ "n_pass": 68,
+ "gates": [
+  {
+   "gate": "count-events",
+   "ok": true,
+   "detail": "got=301 want=301"
+  },
+  {
+   "gate": "count-fiber",
+   "ok": true,
+   "detail": "got=76 want=76"
+  },
+  {
+   "gate": "count-fiberj2",
+   "ok": true,
+   "detail": "got=3 want=3"
+  },
+  {
+   "gate": "count-texture",
+   "ok": true,
+   "detail": "got=18 want=18"
+  },
+  {
+   "gate": "count-excresp",
+   "ok": true,
+   "detail": "got=48 want=48"
+  },
+  {
+   "gate": "count-disjoint",
+   "ok": true,
+   "detail": "got=16 want=16"
+  },
+  {
+   "gate": "count-order",
+   "ok": true,
+   "detail": "got=10 want=10"
+  },
+  {
+   "gate": "count-seq",
+   "ok": true,
+   "detail": "got=5 want=5"
+  },
+  {
+   "gate": "A-det",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "A-rcov",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "A-ucov",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "A-dQ2B",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "A-energy",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "A-P34",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "A-support",
+   "ok": true,
+   "detail": "n=325"
+  },
+  {
+   "gate": "A-signflip",
+   "ok": true,
+   "detail": "nflip=2"
+  },
+  {
+   "gate": "B-formula",
+   "ok": true,
+   "detail": "n=277"
+  },
+  {
+   "gate": "B-farfield",
+   "ok": true,
+   "detail": "bad=0 applicable=265"
+  },
+  {
+   "gate": "B-faredge",
+   "ok": true,
+   "detail": "bad=0 applicable=261"
+  },
+  {
+   "gate": "B-commonfield",
+   "ok": true,
+   "detail": "bad=0 applicable=28"
+  },
+  {
+   "gate": "B-class",
+   "ok": true,
+   "detail": "classes=['one-neighborhood-local'] n=277"
+  },
+  {
+   "gate": "C-u1",
+   "ok": true,
+   "detail": "n=277"
+  },
+  {
+   "gate": "C-rel",
+   "ok": true,
+   "detail": "n=277"
+  },
+  {
+   "gate": "C-swap",
+   "ok": true,
+   "detail": "n=277"
+  },
+  {
+   "gate": "C-sheet",
+   "ok": true,
+   "detail": "n_j2=213"
+  },
+  {
+   "gate": "C-xi",
+   "ok": true,
+   "detail": "n=26992"
+  },
+  {
+   "gate": "D-complete",
+   "ok": true,
+   "detail": "pos=27285 zero=15 neg=17 n=27317"
+  },
+  {
+   "gate": "D-table",
+   "ok": true,
+   "detail": "classes=['generic', 'vacuum', 'hidden', 'pair', 'excitation', 'fiber', 'texture']"
+  },
+  {
+   "gate": "E-formula",
+   "ok": true,
+   "detail": "n=26992"
+  },
+  {
+   "gate": "E-dvar",
+   "ok": true,
+   "detail": "groups=900"
+  },
+  {
+   "gate": "E-W0",
+   "ok": true,
+   "detail": "groups=437"
+  },
+  {
+   "gate": "E-halvesA",
+   "ok": true,
+   "detail": "n=964"
+  },
+  {
+   "gate": "F-sep",
+   "ok": true,
+   "detail": "n=26992"
+  },
+  {
+   "gate": "F-cvar",
+   "ok": true,
+   "detail": "groups=644"
+  },
+  {
+   "gate": "F-ccharge",
+   "ok": true,
+   "detail": "groups=2352"
+  },
+  {
+   "gate": "G-forward",
+   "ok": true,
+   "detail": "n=26992"
+  },
+  {
+   "gate": "G-nontrivial",
+   "ok": true,
+   "detail": "cells=27"
+  },
+  {
+   "gate": "G-info0",
+   "ok": true,
+   "detail": "n=26992"
+  },
+  {
+   "gate": "H-dropd",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "H-dropc",
+   "ok": true,
+   "detail": "groups=644"
+  },
+  {
+   "gate": "H-ledgerblind",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "K-invert",
+   "ok": true,
+   "detail": "n=26992"
+  },
+  {
+   "gate": "K-halves",
+   "ok": true,
+   "detail": "n=964"
+  },
+  {
+   "gate": "K-offhalves",
+   "ok": true,
+   "detail": "n=26028"
+  },
+  {
+   "gate": "L-nonvanish",
+   "ok": true,
+   "detail": "n=964"
+  },
+  {
+   "gate": "L-table",
+   "ok": true,
+   "detail": "n=964"
+  },
+  {
+   "gate": "M-cells",
+   "ok": true,
+   "detail": "n=112"
+  },
+  {
+   "gate": "M-anatomy",
+   "ok": true,
+   "detail": "n=112"
+  },
+  {
+   "gate": "M-nonzero",
+   "ok": true,
+   "detail": "n=112"
+  },
+  {
+   "gate": "I-disjoint",
+   "ok": true,
+   "detail": "n=11"
+  },
+  {
+   "gate": "I-step",
+   "ok": true,
+   "detail": "n=11"
+  },
+  {
+   "gate": "I-cross",
+   "ok": true,
+   "detail": "n=5"
+  },
+  {
+   "gate": "J-total",
+   "ok": true,
+   "detail": "n=5"
+  },
+  {
+   "gate": "J-path",
+   "ok": true,
+   "detail": "pairs=5"
+  },
+  {
+   "gate": "J-nostop",
+   "ok": true,
+   "detail": "n=68"
+  },
+  {
+   "gate": "N-contrast",
+   "ok": true,
+   "detail": "n=24"
+  },
+  {
+   "gate": "N-fixedE",
+   "ok": true,
+   "detail": "n=24"
+  },
+  {
+   "gate": "N-signrev",
+   "ok": true,
+   "detail": "n=24"
+  },
+  {
+   "gate": "N-texture",
+   "ok": true,
+   "detail": "n=18"
+  },
+  {
+   "gate": "O-present",
+   "ok": true,
+   "detail": "n_vac=30"
+  },
+  {
+   "gate": "O-table",
+   "ok": true,
+   "detail": "tags=['CIRCLE_pi6', 'VMINUS', 'VPI', 'VPLUS', 'VSTAG']"
+  },
+  {
+   "gate": "O-nofire",
+   "ok": true,
+   "detail": "scans=True badkeys=[]"
+  },
+  {
+   "gate": "P-decomp",
+   "ok": true,
+   "detail": "n=48"
+  },
+  {
+   "gate": "P-visible",
+   "ok": true,
+   "detail": "n=48"
+  },
+  {
+   "gate": "P-regime",
+   "ok": true,
+   "detail": "n_small=24"
+  },
+  {
+   "gate": "Q-derived",
+   "ok": true,
+   "detail": "rows=9"
+  },
+  {
+   "gate": "R-nosim",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "R-verdict",
+   "ok": true,
+   "detail": "params=['gates', 'r_allzero']"
+  }
+ ],
+ "r_allzero": false,
+ "sign_census": {
+  "pos": 27285,
+  "zero": 15,
+  "neg": 17
+ },
+ "vacuum_R": {
+  "VPLUS": {
+   "n": 6,
+   "min": 1.0165816326530592,
+   "max": 1.8124999999999991,
+   "mean": 1.3440688775510197
+  },
+  "VPI": {
+   "n": 6,
+   "min": 1.0191326530612255,
+   "max": 1.9375000000000009,
+   "mean": 1.3970025510204087
+  },
+  "VMINUS": {
+   "n": 6,
+   "min": 0.8125,
+   "max": 0.9987244897959183,
+   "mean": 0.9470663265306123
+  }
+ },
+ "texture_R": [
+  {
+   "family": "linear",
+   "edge": [
+    0,
+    2
+   ],
+   "R": 0.8125,
+   "grad": {
+    "max_grad": 2.356194490192345,
+    "rms_grad": 0.9619123726213981,
+    "mean_grad": 0.5890486225480862,
+    "total_variation": 18.84955592153876,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "linear",
+   "edge": [
+    1,
+    6
+   ],
+   "R": 0.9375,
+   "grad": {
+    "max_grad": 2.356194490192345,
+    "rms_grad": 0.9619123726213981,
+    "mean_grad": 0.5890486225480862,
+    "total_variation": 18.84955592153876,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "sine-x",
+   "edge": [
+    0,
+    2
+   ],
+   "R": 0.8125,
+   "grad": {
+    "max_grad": 2.404588367152237e-16,
+    "rms_grad": 1.1278519173178939e-16,
+    "mean_grad": 7.21376510145671e-17,
+    "total_variation": 2.3084048324661473e-15,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "sine-x",
+   "edge": [
+    1,
+    6
+   ],
+   "R": 0.9375,
+   "grad": {
+    "max_grad": 2.404588367152237e-16,
+    "rms_grad": 1.1278519173178939e-16,
+    "mean_grad": 7.21376510145671e-17,
+    "total_variation": 2.3084048324661473e-15,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "sine-xy",
+   "edge": [
+    0,
+    2
+   ],
+   "R": 0.8125,
+   "grad": {
+    "max_grad": 8.834314341299842e-32,
+    "rms_grad": 3.654365262054258e-32,
+    "mean_grad": 2.6502943023899523e-32,
+    "total_variation": 8.480941767647847e-31,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "sine-xy",
+   "edge": [
+    1,
+    6
+   ],
+   "R": 0.9375,
+   "grad": {
+    "max_grad": 8.834314341299842e-32,
+    "rms_grad": 3.654365262054258e-32,
+    "mean_grad": 2.6502943023899523e-32,
+    "total_variation": 8.480941767647847e-31,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "step",
+   "edge": [
+    0,
+    2
+   ],
+   "R": 0.8125,
+   "grad": {
+    "max_grad": 0.7853981633974483,
+    "rms_grad": 0.39269908169872414,
+    "mean_grad": 0.19634954084936207,
+    "total_variation": 6.283185307179586,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "step",
+   "edge": [
+    1,
+    6
+   ],
+   "R": 0.9375,
+   "grad": {
+    "max_grad": 0.7853981633974483,
+    "rms_grad": 0.39269908169872414,
+    "mean_grad": 0.19634954084936207,
+    "total_variation": 6.283185307179586,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "uniform",
+   "edge": [
+    0,
+    2
+   ],
+   "R": 0.8125,
+   "grad": {
+    "max_grad": 0.0,
+    "rms_grad": 0.0,
+    "mean_grad": 0.0,
+    "total_variation": 0.0,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "uniform",
+   "edge": [
+    1,
+    6
+   ],
+   "R": 0.9375,
+   "grad": {
+    "max_grad": 0.0,
+    "rms_grad": 0.0,
+    "mean_grad": 0.0,
+    "total_variation": 0.0,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "uniform",
+   "edge": [
+    0,
+    2
+   ],
+   "R": 0.8308058261758409,
+   "grad": {
+    "max_grad": 0.0,
+    "rms_grad": 0.0,
+    "mean_grad": 0.0,
+    "total_variation": 0.0,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "uniform",
+   "edge": [
+    1,
+    6
+   ],
+   "R": 0.9191941738241592,
+   "grad": {
+    "max_grad": 0.0,
+    "rms_grad": 0.0,
+    "mean_grad": 0.0,
+    "total_variation": 0.0,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "wall",
+   "edge": [
+    0,
+    2
+   ],
+   "R": 0.8135477070235013,
+   "grad": {
+    "max_grad": 0.2868929830862311,
+    "rms_grad": 0.18064038664490603,
+    "mean_grad": 0.12661872225002552,
+    "total_variation": 4.0517991120008165,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "wall",
+   "edge": [
+    1,
+    6
+   ],
+   "R": 0.9364522929764987,
+   "grad": {
+    "max_grad": 0.2868929830862311,
+    "rms_grad": 0.18064038664490603,
+    "mean_grad": 0.12661872225002552,
+    "total_variation": 4.0517991120008165,
+    "n_steps": 32.0
+   }
+  },
+  {
+   "family": "sine-x",
+   "edge": [
+    0,
+    2
+   ],
+   "R": 0.953125,
+   "grad": {
+    "max_grad": 0.3926990816987243,
+    "rms_grad": 0.2776801836348979,
+    "mean_grad": 0.19634954084936207,
+    "total_variation": 25.132741228718345,
+    "n_steps": 128.0
+   }
+  },
+  {
+   "family": "sine-x",
+   "edge": [
+    1,
+    14
+   ],
+   "R": 0.984375,
+   "grad": {
+    "max_grad": 0.3926990816987243,
+    "rms_grad": 0.2776801836348979,
+    "mean_grad": 0.19634954084936207,
+    "total_variation": 25.132741228718345,
+    "n_steps": 128.0
+   }
+  },
+  {
+   "family": "step",
+   "edge": [
+    0,
+    2
+   ],
+   "R": 0.953125,
+   "grad": {
+    "max_grad": 0.7853981633974483,
+    "rms_grad": 0.2776801836348979,
+    "mean_grad": 0.09817477042468103,
+    "total_variation": 12.566370614359172,
+    "n_steps": 128.0
+   }
+  },
+  {
+   "family": "step",
+   "edge": [
+    1,
+    14
+   ],
+   "R": 0.984375,
+   "grad": {
+    "max_grad": 0.7853981633974483,
+    "rms_grad": 0.2776801836348979,
+    "mean_grad": 0.09817477042468103,
+    "total_variation": 12.566370614359172,
+    "n_steps": 128.0
+   }
+  }
+ ],
+ "requirements": {
+  "rows": [
+   {
+    "id": "transformation",
+    "constraint": "values invariant under R x U(1) relabel/phase, covariant under sheet exchange and endpoint swap",
+    "cited": [
+     "C-u1",
+     "C-rel",
+     "C-swap",
+     "C-sheet",
+     "C-xi"
+    ],
+    "status": "earned"
+   },
+   {
+    "id": "locality",
+    "constraint": "update inputs live on one-neighborhood-local; far-field, far-edge, and common-neighbor-field blind",
+    "cited": [
+     "B-formula",
+     "B-farfield",
+     "B-faredge",
+     "B-commonfield",
+     "B-class"
+    ],
+    "status": "earned"
+   },
+   {
+    "id": "additivity",
+    "constraint": "additive on disjoint merges; cross terms only on shared neighborhoods",
+    "cited": [
+     "I-disjoint",
+     "I-step",
+     "I-cross"
+    ],
+    "status": "earned"
+   },
+   {
+    "id": "update",
+    "constraint": "per-event shift by R = (1+c) - 2B + 2 sum_cross, evaluated from the pre-image (needs xi at event time); path-independent totals on confluent orders",
+    "cited": [
+     "E-formula",
+     "F-sep",
+     "J-total",
+     "J-path",
+     "K-invert"
+    ],
+    "status": "earned"
+   },
+   {
+    "id": "storage-scalar",
+    "constraint": "signed accumulator viable only with transient xi access at events (update needs cover + d)",
+    "cited": [
+     "H-dropd",
+     "H-dropc",
+     "H-ledgerblind"
+    ],
+    "status": "earned"
+   },
+   {
+    "id": "storage-nonnegative",
+    "constraint": "allowed iff no R < 0 observed; excluded otherwise",
+    "cited": [
+     "D-complete"
+    ],
+    "status": "excluded"
+   },
+   {
+    "id": "storage-vector",
+    "constraint": "relative-mode store alone insufficient: cover leg carries R independently",
+    "cited": [
+     "F-cvar",
+     "H-dropc"
+    ],
+    "status": "earned"
+   },
+   {
+    "id": "storage-discrete",
+    "constraint": "cover store alone insufficient: d leg carries R independently",
+    "cited": [
+     "E-dvar",
+     "H-dropd"
+    ],
+    "status": "earned"
+   },
+   {
+    "id": "storage-compound",
+    "constraint": "(cover, d) compound store sufficient (XI verdict)",
+    "cited": [
+     "E-formula",
+     "F-sep",
+     "G-forward"
+    ],
+    "status": "earned"
+   }
+  ],
+  "choice": "none (classification only)",
+  "simulated": false
+ },
+ "firewall": {
+  "scans_clean": true,
+  "badkeys": []
+ },
+ "info0": {
+  "available": true
+ }
+}
