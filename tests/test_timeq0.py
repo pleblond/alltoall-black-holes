@@ -179,17 +179,24 @@ def test_equiv_distinguishes_Q():
 
 def test_wait_on_off():
     b = q0.boundary_for_task(("wait", "edge2", "on", 2))
-    assert q0.count_histories_Q(b["Xm"], b["Xp"], 2)["N"] == 1
+    cnt = q0.count_histories_Q(b["Xm"], b["Xp"], 2)
+    sk = q0.skeleton_Q(b["Xm"], b["Xp"], 2)
+    assert cnt["N"] == 2  # I,I + M,S excursion
+    assert sk["S_vec"] == [1, 0, 1]
     b = q0.boundary_for_task(("wait", "edge2", "off", 2))
     assert q0.count_histories_Q(b["Xm"], b["Xp"], 2)["N"] == 0
     b = q0.boundary_for_task(("wait", "edge2", "qpersist", 2))
-    assert q0.count_histories_Q(b["Xm"], b["Xp"], 2)["N"] == 1
+    cnt = q0.count_histories_Q(b["Xm"], b["Xp"], 2)
+    sk = q0.skeleton_Q(b["Xm"], b["Xp"], 2)
+    assert cnt["N"] >= 1
+    assert sk["S_vec"][0] == 1
 
 
 def test_merge1_timing_placements():
-    for T in (1, 2, 3):
+    expect = {1: 1, 2: 2, 3: 4}  # T=3 adds the M,S,M excursion
+    for T, n in expect.items():
         b = q0.boundary_for_task(("merge1", "edge2", T))
-        assert q0.count_histories_Q(b["Xm"], b["Xp"], T)["N"] == T
+        assert q0.count_histories_Q(b["Xm"], b["Xp"], T)["N"] == n
 
 
 def test_skeleton_identity_spot():

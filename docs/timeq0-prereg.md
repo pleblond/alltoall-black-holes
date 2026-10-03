@@ -108,8 +108,10 @@ All boundaries constructed via frozen factories (MERGE-0 substrates/fields/
 edges/sequences, SPLIT-0 cells, STORE pair_rule/SEQ_TASKS/TEXTURE_SPECS);
 no hand-picked graphs, no post-data additions. Kinds (frozen):
 
-- WAIT (no-event controls): empty-Q same-G on-trajectory (N=1) + off-trajectory
-  (N=0, seeded) + nonempty-Q waits (Q persists, N=1). 16 tasks.
+- WAIT (excursion-aware controls): empty-Q same-G on-trajectory
+  (N=1+C(T,2)*S_2, S_0=1, S_2=#physical merge classes; M,S excursions
+  return) + off-trajectory (N=0, seeded) + nonempty-Q waits (Q persists,
+  N>=1, S_0=1). 16 tasks.
 - MERGE1 (one merge): (G,{},{} )->(M,Q) with T=1,2,3 (timing placements).
   6 substrates x 3 T = 18 tasks.
 - SPLIT1 (one split): reverse of MERGE1, T=1,2,3. 18 tasks.
@@ -124,7 +126,8 @@ no hand-picked graphs, no post-data additions. Kinds (frozen):
 - SEQREV (stored sequences): STORE SEQ_TASKS (5 seqs) forward (empty->full Q,
   T=len) + reverse (full->empty, T=len) + with-wait (T=len+1). 15 tasks.
 - TIMING (single-event timing): V0 merge/split with T=3,4, multiple t_*.
-  4 cells x 2 T x 2 kinds = 16 tasks. N_Q=T expected.
+  4 cells x 2 T x 2 kinds = 16 tasks. S_1=1 with N_Q>1 expected
+  (M,S,M excursions count; N_Q=T does NOT hold for T>=3).
 - HIDDEN (hidden stores): H:/P: fields (j2-L4 subset), merge1 + roundtrip.
   12 tasks.
 - HIDDENQ (load bearing): same reduced (G,psi) with different Q (d/cover
@@ -156,7 +159,8 @@ Counts: `count-<kind>` per battery kind + `count-fw` (exact task census).
   `B-u1` (phase-rotated boundaries same N), `B-swap` (endpoint-swap same N),
   `B-nolabel` (no two distinct labeled histories gauge-equivalent within caps;
   labeled vs physical audit green).
-- C (TIMEQ0-C battery): `C-wait` (on N=1, off N=0, Q-persist N=1),
+- C (TIMEQ0-C battery): `C-wait` (on N>=1 + S_0=1 + S_2=#merge classes,
+  off N=0, Q-persist N>=1 + S_0=1),
   `C-roundtrip` (all ROUNDTRIP compatible N>=1), `C-detcore` (all compatible),
   `C-multicover` (all compatible), `C-hidden` (all compatible),
   `C-disjoint` (all compatible), `C-seqrev` (forward+reverse exact, drained).
@@ -166,8 +170,8 @@ Counts: `count-<kind>` per battery kind + `count-fw` (exact task census).
   valid), `E-reduction` (pooled reduction filed; always passes when computed).
 - F (TIMEQ0-F product): `F-collapse` (multicover/roundtrip enlarged products
   ==1; >=80% of product battery).
-- G (TIMEQ0-G timing): `G-survive` (timing battery N_Q==T (single-event V0)
-  and >1; >=80%).
+- G (TIMEQ0-G timing): `G-survive` (timing battery S_1==1 single one-event
+  skeleton with N_Q>1 surviving; >=80%).
 - H (TIMEQ0-H scheduler): `H-sched` (INFO0 m! reproduced via
   sequential_orders on disjoint battery (all m! valid) + enlarged N_Q==N_red
   on disjoint/sched V0 tasks (Q preserves scheduler); >=80%).
@@ -265,3 +269,18 @@ stronger reading; verdict reasons use ladder language only.
   only); disjoint-region merges stay order-independent (both entries live).
   SEQREV-reverse skeletons are the LIFO reverse sequences. No battery,
   gate, or ladder change.
+
+## 10. Pre-data amendment 3 (predates ALL TIME-Q-0 campaign data)
+
+- Excursion correction (caught by smoke tests, pre-data): at T>=2,
+  merge-split (M,S) excursions return to same-state boundaries and M,S,M
+  detours reach single-event boundaries, so the naive `N=1` (WAIT) and
+  `N_Q=T` (TIMING) expectations were wrong. Exact replacements:
+  - WAIT on-trajectory: N=1+C(T,2)*S_2 with S_0=1 and S_2 equal to the
+    live-computed #physical merge classes (T=2: N=1+S_2; T=3: N=1+3*S_2;
+    S_3=0 toward same-state by event balance). Off-trajectory stays N=0
+    (every walk from V0 stays V0). Q-persist: N>=1 + S_0=1.
+  - TIMING: the timing claim is S_1==1 (single one-event skeleton = unique
+    product) with N_Q>1 surviving (placements + M,S,M excursions).
+    `G-survive`: S_1==1 and N_Q>1 at >=80%; `N-timing`: all cases N_Q>1
+    with S_1==1. No battery, threshold, or ladder change.

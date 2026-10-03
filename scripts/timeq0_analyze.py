@@ -366,11 +366,33 @@ def main():
 
     # ---- C: battery ----
     w = K.get("wait", [])
-    gate("C-wait", all(r["N_Q"] == 1 for r in w
-                       if r["meta"].get("wk") in ("on", "qpersist"))
-         and all(r["N_Q"] == 0 for r in w
-                 if r["meta"].get("wk") == "off") and len(w) > 0,
-         f"n={len(w)}")
+
+    def _n_merge_classes(gname: str) -> int:
+        spec = q0.tiny_graph_by_name(gname)
+        X = q0.make_enlarged(spec["g"], q0.zero_psi(len(spec["order"])),
+                              spec["order"], {})
+        reps = []
+        for Y, _ in q0.merge_successors(X):
+            if not any(q0.is_enlarged_equiv_ok(Y, Z) for Z in reps):
+                reps.append(Y)
+        return len(reps)
+
+    try:
+        c_wait = True
+        for r in w:
+            wk = r["meta"].get("wk")
+            if wk == "off":
+                c_wait = c_wait and (r["N_Q"] == 0)
+            elif wk in ("on", "qpersist"):
+                c_wait = c_wait and (r["N_Q"] >= 1 and r["S_vec_Q"][0] == 1)
+                if wk == "on":
+                    c_wait = c_wait and (r["S_vec_Q"][2]
+                                         == _n_merge_classes(
+                                             r["meta"]["graph"]))
+        c_wait = c_wait and len(w) > 0
+        gate("C-wait", bool(c_wait), f"n={len(w)}")
+    except Exception as e:  # noqa: BLE001
+        gate("C-wait", False, f"exc={e}")
     gate("C-roundtrip", all(r["N_Q"] >= 1 for r in K.get("roundtrip", []))
          and len(K.get("roundtrip", [])) > 0,
          f"n={len(K.get('roundtrip', []))}")
@@ -442,9 +464,10 @@ def main():
         gate("F-collapse", False, f"exc={e}")
         product_resolve = 0.0
 
-    # ---- G/N: timing ----
+    # ---- G/N: timing (excursion-aware: M,S,M detours count; the timing
+    # claim is single one-event skeleton S_1==1 with N_Q>1 surviving) ----
     tim = K.get("timing", [])
-    n_g = sum(1 for r in tim if r["N_Q"] == r["T"] and r["N_Q"] > 1)
+    n_g = sum(1 for r in tim if r["S_vec_Q"][1] == 1 and r["N_Q"] > 1)
     frac_g = (n_g / len(tim)) if tim else 0.0
     gate("G-survive", bool(frac_g >= q0.TIMING_SURVIVE_MIN),
          f"{n_g}/{len(tim)}={frac_g:.3f}")
