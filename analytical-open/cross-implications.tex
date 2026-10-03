@@ -1497,6 +1497,99 @@ The coefficient \(8\pi\sqrt{2}\) does not depend on \(r\).
 The cancelled channel does: its logarithm is \(16\pi/\lambda_\infty(r)\).
 On \(J_3\) the threshold of Proposition~\ref{prop:adj} already applies at
 every positive separation.
+Adjacent cells admit a sharper value, because the coordination identity
+cancels the integral \(I\) in one channel.
+
+\begin{proposition}
+\label{prop:j3nn}
+On \(J_3\), for \(E>12\), the resolvent entry between adjacent cells is
+independent of the bits and of the axis, and equals
+\[
+\Gamma(E)=\frac{1-Eg(E)}{24}.
+\]
+It is even in \(E\).
+At the upper edge,
+\[
+\mathcal{G}_3(12+)+\Gamma(12+)=\frac{1}{12},
+\qquad
+\mathcal{G}_3(12+)-\Gamma(12+)=\frac{I}{4},
+\]
+with \(I\) the integral in the proof of Proposition~\ref{prop:j3stitch}.
+Both products \(\mathcal{G}_3(\mathcal{G}_3\pm\Gamma)\) are positive and
+strictly decreasing on \((12,\infty)\), from these edge values down to \(0\).
+The equation \(t^2\mathcal{G}_3(\mathcal{G}_3+\Gamma)=1\) has a root above
+\(12\) if and only if
+\(t^2>12/\mathcal{G}_3(12+)\),
+and \(t^2\mathcal{G}_3(\mathcal{G}_3-\Gamma)=1\) has a root above \(12\) if
+and only if
+\(t^2>4/(I\,\mathcal{G}_3(12+))\).
+In either case the substitution \(E\mapsto -E\) supplies the partner below
+\(-12\).
+Every \(|t|\le\sqrt{128/11}\) fails both inequalities.
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:cellpole} halves the resolvent of
+\(E+2A_{\mathrm{cubic}}\).
+That column satisfies \(Eg+12 R_{\mathrm{nn}}=1\), since the cubic lattice
+has six neighbors and the factor \(2\) in \(E+2A\) doubles their contribution.
+Thus \(R_{\mathrm{nn}}=(1-Eg)/12\) and the sheet entry is \((1-Eg)/24\).
+Oddness of \(g\) gives \(\Gamma(-E)=\Gamma(E)\), by the same algebra as in
+Proposition~\ref{prop:neighbor}.
+At \(E=12\),
+\begin{align*}
+\mathcal{G}_3+\Gamma
+&=\frac{1}{24}+\frac g2+\frac{1-12g}{24}
+=\frac{1}{12},\\
+\mathcal{G}_3-\Gamma
+&=\frac{1}{24}+\frac g2-\frac{1-12g}{24}
+=g=\frac I4,
+\end{align*}
+where the edge value \(g(12+)=I/4\) is the one recorded in
+Proposition~\ref{prop:rung}.
+
+For \(E>12\) the same comparisons as in Proposition~\ref{prop:adj}, with
+\(8\) replaced by \(12\), give
+\[
+(E-12)g'-g
+=\int\frac{\varepsilon-12}{(E-\varepsilon)^2}\,d\mu<0
+\]
+and
+\[
+\frac{d}{dE}\bigl[(E+12)g\bigr]
+=\int\frac{-\varepsilon-12}{(E-\varepsilon)^2}\,d\mu<0.
+\]
+Hence \(\mathcal{G}_3+\Gamma\) and \(\mathcal{G}_3-\Gamma\) are strictly
+decreasing.
+Both stay positive: \((E-12)g<1\), so
+\(\mathcal{G}_3+\Gamma>1/(2E)\), and \(g>1/(E+12)\), so
+\(\mathcal{G}_3-\Gamma>1/(2E)\).
+The diagonal \(\mathcal{G}_3\) decreases, and therefore so do the two
+products.
+Each tends to \(0\) at infinity and is continuous up to the edge value just
+computed, so it meets \(1/t^2\) above \(12\) exactly when that value exceeds
+\(1/t^2\).
+Evenness of \(\Gamma\) and oddness of \(\mathcal{G}_3\) exchange the products
+under \(E\mapsto -E\), because a neighbor has \(\sigma=-1\).
+
+Proposition~\ref{prop:j3stitch} and Proposition~\ref{prop:rung} give
+\(\mathcal{G}_3(12+)<11/48\) and \(I<3/2\).
+The edge products are therefore strictly less than
+\[
+\frac{11}{48}\cdot\frac{1}{12}=\frac{11}{576}
+\qquad\text{and}\qquad
+\frac{11}{48}\cdot\frac{3}{8}=\frac{11}{128}.
+\]
+The larger of these is \(11/128\), so every
+\(|t|\le\sqrt{128/11}\) satisfies \(1/t^2\ge 11/128\) and misses both
+products.
+\end{proof}
+
+The identity \(\mathcal{G}_3+\Gamma=1/12\) does not use the value of \(I\).
+The integral remains only in the antisymmetric channel, as \(I/4\).
+The threshold \(\sqrt{128/11}\) is the adjacent-cell substitute for the
+separation-uniform value \(24/\sqrt{55}\) of Proposition~\ref{prop:adj}.
+It does not extend to a non-adjacent pair.
 
 \section{Codimension along a unitary orbit}
 \label{sec:codim}
