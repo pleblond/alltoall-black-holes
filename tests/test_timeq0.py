@@ -106,6 +106,32 @@ def test_splits_without_Q_inadmissible():
     assert len(q0.merge_successors(X)) == 2
 
 
+def test_split_cover_liveness_stack():
+    spec = q0.tiny_graph_by_name("square")
+    X = q0.make_enlarged(spec["g"], q0.zero_psi(4), spec["order"], {})
+    Y = [Y for Y, ev in q0.merge_successors(X) if ev["edge"] == [0, 1]][0]
+    assert len(q0.split_successors(Y)) == 1
+    Z = [Z for Z, ev in q0.merge_successors(Y)
+         if set(ev["edge"]) == {2, 3}][0]
+    ss = q0.split_successors(Z)
+    assert len(ss) == 1  # inner entry stale: stack discipline
+    W, _ = ss[0]
+    assert q0.is_enlarged_equiv_ok(W, Y)
+    assert len(q0.split_successors(W)) == 1
+    Z2, _ = q0.split_successors(W)[0]
+    assert q0.is_enlarged_equiv_ok(Z2, X)
+
+
+def test_split_cover_liveness_disjoint():
+    Xm, _, info = q0._sched3_pair("path12", "zero")
+    ea, eb = [tuple(e) for e in info["edges"][:2]]
+    Y = [Y for Y, ev in q0.merge_successors(Xm)
+         if tuple(ev["edge"]) == ea][0]
+    Z = [Z for Z, ev in q0.merge_successors(Y)
+         if tuple(ev["edge"]) == eb][0]
+    assert len(q0.split_successors(Z)) == 2  # both live: any order
+
+
 def test_equiv_relabel_u1_swap():
     from bh_graph import ug
 

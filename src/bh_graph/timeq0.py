@@ -217,6 +217,15 @@ def split_successors(X: dict) -> list:
         if k not in g.nodes():
             continue
         e = X["Q"][k]
+        # Cover-liveness (pre-data fix): the stored entry inverts the merge
+        # iff its oriented cover is exactly the live neighborhood of k.
+        # Stale entries (an outer merge retired cover nodes) admit no
+        # split; skipping them yields stack discipline for nested merges
+        # and order-independence for disjoint regions. Without the guard,
+        # apply_split_cover would resurrect retired labels as ghost nodes.
+        At, Bt = st0.oriented_cover(e["q"], e["frame"])
+        if set(At) | set(Bt) != set(g.neighbors(k)):
+            continue
         Xrec = st0.split_recover(g, psi, order, k, e["q"], e["frame"],
                                  restore_labels=True)
         Q2 = copy_Q(X["Q"])

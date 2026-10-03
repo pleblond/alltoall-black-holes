@@ -253,3 +253,15 @@ stronger reading; verdict reasons use ladder language only.
   with coverage `(#complete-V0)/(#V0)` filed in the gate detail. Pooled red
   stats (`f_unique_red`, `median_Nred`) likewise use complete reduced counts
   only. No other gate changes.
+
+## 9. Pre-data amendment 2 (predates ALL TIME-Q-0 campaign data)
+
+- `split_successors` requires cover-liveness: a stored entry at `k` admits a
+  split iff its oriented cover union equals the live neighborhood of `k`
+  (`set(At)|set(Bt) == set(nbrs(k))`). Stale entries (an outer merge retired
+  cover nodes; `apply_split_cover` would otherwise resurrect them as ghost
+  nodes with no order slots) admit no split.
+- Consequence (frozen): nested merges obey stack discipline (LIFO splits
+  only); disjoint-region merges stay order-independent (both entries live).
+  SEQREV-reverse skeletons are the LIFO reverse sequences. No battery,
+  gate, or ladder change.
