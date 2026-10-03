@@ -1,0 +1,42 @@
+{
+ "4": {
+  "N": 64,
+  "n_cells": 9,
+  "n_p_ok": 0,
+  "median_p": null,
+  "mean_p": null,
+  "std_p": null
+ },
+ "5": {
+  "N": 125,
+  "n_cells": 9,
+  "n_p_ok": 9,
+  "median_p": 4.397676848454413e-15,
+  "mean_p": 4.397676848454413e-15,
+  "std_p": 0.0
+ },
+ "6": {
+  "N": 216,
+  "n_cells": 9,
+  "n_p_ok": 0,
+  "median_p": null,
+  "mean_p": null,
+  "std_p": null
+ },
+ "7": {
+  "N": 343,
+  "n_cells": 9,
+  "n_p_ok": 0,
+  "median_p": null,
+  "mean_p": null,
+  "std_p": null
+ },
+ "8": {
+  "N": 512,
+  "n_cells": 9,
+  "n_p_ok": 0,
+  "median_p": null,
+  "mean_p": null,
+  "std_p": null
+ }
+}
