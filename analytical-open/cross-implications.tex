@@ -763,6 +763,81 @@ and \(\mathcal{G}(E)=\pm 1\) has no solution there.
 The projection onto the flat band is not the spectrum of \(H\).
 
 \begin{proposition}
+\label{prop:endpoint}
+Normalise the bound state at \(E_*\) with \(\mathcal{G}(E_*)=1\).
+Its values at the two endpoints are opposite, the stitch bond saturates
+the negative endpoint of Lemma~\ref{lem:bond-expand}, and
+\[
+|\psi(a)|^2=|\psi(b)|^2=\frac{1}{2\bigl(-\mathcal{G}'(E_*)\bigr)}
+=-\,B_{ab}.
+\]
+The partner at \(-E_*\) saturates the positive endpoint, with the same
+endpoint weight.
+In both cases
+\begin{equation}
+\label{eq:endwt}
+\lim\frac{|\psi(a)|^2}{|E|-8}=8\pi,
+\end{equation}
+the limit being taken at \(E=\pm E_*\).
+\end{proposition}
+
+\begin{proof}
+The resolvent identity in the proof of Proposition~\ref{prop:stitch} gives
+\(\psi(a)=-\mathcal{G}(E)\psi(b)\).
+At \(E_*\) one has \(\psi(a)=-\psi(b)\).
+For real \(E\) outside the spectrum, \((E-H_0)^{-1}\) is real symmetric, so a
+global phase makes \(\psi\) real.
+Thus \(B_{ab}=\psi(a)\psi(b)=-|\psi(a)|^2\) and \(q_{ab}=2|\psi(a)|^2\).
+The moduli agree and the relative phase is \(\pi\).
+At \(-E_*\) one has \(\mathcal{G}=-1\), so \(\psi(a)=\psi(b)\) and the phase is \(0\).
+
+Differentiating the resolvent gives
+\(\|(E-H_0)^{-1}|a\rangle\|^2=-\mathcal{G}'(E)\).
+The two copies are orthogonal, and
+\[
+\psi=-\psi(b)\,(E-H_0)^{-1}|a\rangle-\psi(a)\,(E-H_0)^{-1}|b\rangle.
+\]
+Normalisation at either root, where \(|\psi(a)|=|\psi(b)|\) and
+\(\mathcal{G}'(-E_*)=\mathcal{G}'(E_*)\) because \(\mathcal{G}\) is odd, produces
+the displayed weight. The bond is then \(\mp|\psi(a)|^2\).
+
+For the limit, write \(E=8+\delta\) and \(k'=k'(8/E)\) as in the proof of
+Proposition~\ref{prop:stitch}, and set
+\(\rho(\delta)=K(8/E)-\ln(4/k')\).
+That proof gives \(\rho(\delta)\to 0\), and
+\[
+\ln\frac4{k'}=\frac12\ln\frac1\delta+3\ln 2+\eta(\delta)
+\]
+with \(\eta(\delta)=\ln\bigl((8+\delta)/(2\sqrt{16+\delta})\bigr)\), so
+\(\eta'(\delta)\) stays bounded.
+Thus
+\[
+\mathcal{G}(E)
+=\frac{1}{2E}+\frac{\ln(1/\delta)}{2\pi E}+\frac{3\ln 2+\eta(\delta)}{\pi E}
++\frac{\rho(\delta)}{\pi E}.
+\]
+Multiplying the derivative of \(\ln(1/\delta)/(2\pi E)\) by \(\delta\)
+produces \(-1/(16\pi)\) in the limit.
+Every term built from \(1/E\), \(\eta\), or \(\rho\) without a derivative
+of \(\rho\) contributes \(o(1/\delta)\) to \(\mathcal{G}'\).
+
+It remains to show \(\delta\rho'(\delta)\to 0\).
+Differentiate the integral identity for \(K-\ln(2/k')\) in that proof.
+The derivative in \(k'\) of each integrand is bounded by a multiple of
+\(k'(u^2+k'^2)^{-3/2}\).
+On \([0,1]\) the weight \(1-1/\sqrt{1+u^2}\) is \(O(u^2)\), and the
+substitution \(u=k'v\) returns a factor \(k'\log(1/k')\).
+On \([1,\infty)\) the integral is \(O(k')\).
+Hence \(d\rho/dk'=O\bigl(k'\log(1/k')\bigr)\).
+The explicit formula for \(k'\) gives \(dk'/d\delta=O(\delta^{-1/2})\), so
+\(\rho'(\delta)=O\bigl(\log(1/\delta)\bigr)\) and \(\delta\rho'\to 0\).
+
+Therefore \(\delta\bigl(-\mathcal{G}'(8+\delta)\bigr)\to 1/(16\pi)\).
+Dividing the endpoint weight by \(\delta\) produces \(8\pi\).
+The value at \(-E_*\) is the same because \(\mathcal{G}'\) is even.
+\end{proof}
+
+\begin{proposition}
 \label{prop:stubs}
 Every eigenstate of \(H_0\) that vanishes at both endpoints of the stitch
 remains an eigenstate of \(H_0+V\) with the same energy.
