@@ -1,0 +1,14 @@
+{
+ "kind": "stored",
+ "sub": "handbuilt",
+ "ftag": "uniform",
+ "remote": "7",
+ "remote_hop": 1000000000,
+ "n_edges": 5,
+ "n_far": 1,
+ "far_flips": 0,
+ "near_flips": 3,
+ "static_ok": true,
+ "causal": null,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

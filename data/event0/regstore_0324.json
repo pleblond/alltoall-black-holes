@@ -1,0 +1,19 @@
+{
+ "task": [
+  "pair",
+  "ring-8",
+  "random777",
+  "overlap"
+ ],
+ "relation": "overlap",
+ "factorize": false,
+ "add_err": 0.23930959621619907,
+ "step_err": 0.2393095962161993,
+ "finals_equal": true,
+ "tele_ab": 0.0,
+ "tele_ba": 0.0,
+ "R_joint_ab": 2.2312183841046522,
+ "R_joint_ba": 2.2312183841046522,
+ "has_rev": true,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

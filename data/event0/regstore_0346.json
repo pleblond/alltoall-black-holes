@@ -1,0 +1,17 @@
+{
+ "task": [
+  "tex",
+  "j2-L8",
+  "sine-x",
+  {
+   "alpha0": 0.0,
+   "delta": 0.39269908169872414,
+   "lam": 4
+  }
+ ],
+ "pred_ok": true,
+ "roundtrip_ok": true,
+ "exact_ok": true,
+ "phys_ok": true,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

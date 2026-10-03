@@ -1,0 +1,14 @@
+{
+ "kind": "stored",
+ "sub": "ring-8",
+ "ftag": "uniform",
+ "remote": "8",
+ "remote_hop": 1000000000,
+ "n_edges": 7,
+ "n_far": 3,
+ "far_flips": 0,
+ "near_flips": 2,
+ "static_ok": true,
+ "causal": null,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

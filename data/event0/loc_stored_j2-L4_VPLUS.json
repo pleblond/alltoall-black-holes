@@ -1,0 +1,14 @@
+{
+ "kind": "stored",
+ "sub": "j2-L4",
+ "ftag": "VPLUS",
+ "remote": "32",
+ "remote_hop": 1000000000,
+ "n_edges": 127,
+ "n_far": 40,
+ "far_flips": 0,
+ "near_flips": 14,
+ "static_ok": true,
+ "causal": null,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

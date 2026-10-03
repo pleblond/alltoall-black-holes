@@ -1,0 +1,25 @@
+{
+ "task": [
+  "ev",
+  "path-8",
+  "stagger_half",
+  0,
+  ""
+ ],
+ "det_ok": true,
+ "info_ok": true,
+ "formula_ok": true,
+ "invert_ok": true,
+ "pred_ok": true,
+ "roundtrip_ok": true,
+ "exact_ok": true,
+ "phys_ok": true,
+ "close_merge_ok": true,
+ "close_split_ok": true,
+ "cov_ok": true,
+ "loc_ok": true,
+ "form_err": 0.0,
+ "candidates_ok": true,
+ "R": 1.25,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

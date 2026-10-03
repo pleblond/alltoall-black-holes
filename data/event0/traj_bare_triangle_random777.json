@@ -1,0 +1,374 @@
+{
+ "kind": "bare",
+ "sub": "triangle",
+ "ftag": "random777",
+ "ladder": [
+  0.0,
+  0.5,
+  1.0,
+  2.0,
+  4.0,
+  8.0
+ ],
+ "dt": 0.05,
+ "n_nodes": 3,
+ "n_edges": 3,
+ "cert": {
+  "residual": 1.2899000044634905,
+  "lam": -0.13348932393775895,
+  "is_zero": false,
+  "is_eigen": false
+ },
+ "norm_drift": 2.5868196473766147e-14,
+ "E_psi_0": -0.133489323937759,
+ "E_psi_spread": 7.280287483979464e-14,
+ "t_star": null,
+ "all_valid": true,
+ "rungs": [
+  {
+   "T": 0.0,
+   "norm": 1.0000000000000002,
+   "E_psi": -0.133489323937759,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 1,
+    "B_NEG": 2,
+    "B_ZERO": 0,
+    "L_NEG": 2,
+    "L_POS": 1,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    1098,
+    1105,
+    1098
+   ],
+   "B_range": [
+    -0.19564537816607983,
+    0.333064016152727
+   ],
+   "dE_range": [
+    -0.39129075633215965,
+    0.666128032305454
+   ],
+   "J_max": 0.29225769211200053
+  },
+  {
+   "T": 0.5,
+   "norm": 1.0,
+   "E_psi": -0.13348932393775903,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 1,
+    "B_NEG": 2,
+    "B_ZERO": 0,
+    "L_NEG": 2,
+    "L_POS": 1,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    1098,
+    1105,
+    1098
+   ],
+   "B_range": [
+    -0.08405598289960597,
+    0.22951411158472756
+   ],
+   "dE_range": [
+    -0.16811196579921195,
+    0.45902822316945513
+   ],
+   "J_max": 0.41135214231441325
+  },
+  {
+   "T": 1.0,
+   "norm": 1.0000000000000002,
+   "E_psi": -0.13348932393775914,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 1,
+    "B_NEG": 2,
+    "B_ZERO": 0,
+    "L_NEG": 2,
+    "L_POS": 1,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    1098,
+    1098,
+    1105
+   ],
+   "B_range": [
+    -0.04640568294710716,
+    0.1475027880684578
+   ],
+   "dE_range": [
+    -0.09281136589421432,
+    0.2950055761369156
+   ],
+   "J_max": 0.3560908154398542
+  },
+  {
+   "T": 2.0,
+   "norm": 0.9999999999999998,
+   "E_psi": -0.13348932393775823,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 1,
+    "B_NEG": 2,
+    "B_ZERO": 0,
+    "L_NEG": 2,
+    "L_POS": 1,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    1098,
+    1105,
+    1098
+   ],
+   "B_range": [
+    -0.20697088562568333,
+    0.3051020228381864
+   ],
+   "dE_range": [
+    -0.41394177125136666,
+    0.6102040456763728
+   ],
+   "J_max": 0.2984458015242192
+  },
+  {
+   "T": 4.0,
+   "norm": 0.9999999999999967,
+   "E_psi": -0.13348932393783103,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 2,
+    "B_NEG": 1,
+    "B_ZERO": 0,
+    "L_NEG": 1,
+    "L_POS": 2,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    1098,
+    1105,
+    1105
+   ],
+   "B_range": [
+    -0.21170660822985649,
+    0.26424730774822675
+   ],
+   "dE_range": [
+    -0.42341321645971297,
+    0.5284946154964535
+   ],
+   "J_max": 0.2902453814013995
+  },
+  {
+   "T": 8.0,
+   "norm": 1.0000000000000138,
+   "E_psi": -0.13348932393778673,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 2,
+    "B_NEG": 1,
+    "B_ZERO": 0,
+    "L_NEG": 1,
+    "L_POS": 2,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    1098,
+    1105,
+    1105
+   ],
+   "B_range": [
+    -0.20045470868131604,
+    0.1576453431240299
+   ],
+   "dE_range": [
+    -0.4009094173626321,
+    0.3152906862480598
+   ],
+   "J_max": 0.36382713403191175
+  }
+ ],
+ "crossings": {
+  "n_cross": 2,
+  "per_pred": {
+   "B_POS": 2,
+   "B_NEG": 2,
+   "B_ZERO": 0,
+   "L_NEG": 2,
+   "L_POS": 2,
+   "LEDG_ZERO": 0,
+   "CROSS_ZERO": 0,
+   "BAL_R1": 0,
+   "BAL_R2": 0,
+   "C0": 0,
+   "C_POS": 0,
+   "BRIDGE": 0,
+   "FAVORABLE": 0,
+   "ANNIHIL": 0,
+   "J_ZERO": 0,
+   "BJ_ZERO": 0,
+   "CELL_SYM": 0,
+   "CELL_ANTI": 0,
+   "HID_ACTIVE": 0,
+   "ZERO_MIN": 0,
+   "UNIFORM_EDGE": 0
+  },
+  "witness": {
+   "edge": 1,
+   "pred": "B_POS",
+   "rung": 2,
+   "T": 1.0,
+   "bit0": true,
+   "bitr": false
+  }
+ },
+ "equiv": {
+  "n_rewires": 0,
+  "anchored": false,
+  "n_cospec": 0,
+  "n_iso": 0,
+  "cands": [],
+  "compat": {},
+  "orbits": {
+   "n_survivors": 0,
+   "n_orbits": 0,
+   "exact": true,
+   "n_perms": 6
+  },
+  "n_nontrivial": 0
+ },
+ "neighbors": {
+  "n_merge_nbrs": 3,
+  "n_split_nbrs": 0,
+  "n_rewire_nbrs": 0,
+  "anchored": false
+ },
+ "continuations": {},
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

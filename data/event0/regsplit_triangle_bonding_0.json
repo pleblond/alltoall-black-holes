@@ -1,0 +1,9 @@
+{
+ "graph": "triangle",
+ "field": "bonding",
+ "k": 0,
+ "roundtrip_ok": true,
+ "minimal_ok": true,
+ "n_witnesses": 2,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

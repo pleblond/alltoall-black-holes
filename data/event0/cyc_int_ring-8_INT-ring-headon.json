@@ -1,0 +1,14 @@
+{
+ "kind": "int",
+ "sub": "ring-8",
+ "ftag": "INT-ring-headon",
+ "T": 2.0,
+ "dt": 0.05,
+ "return_err": 5.550911616757274e-16,
+ "return_ok": true,
+ "inverse_ok": true,
+ "inverse": {
+  "exact_ok": true
+ },
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

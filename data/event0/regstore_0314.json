@@ -1,0 +1,18 @@
+{
+ "task": [
+  "seq",
+  "path8-collapse",
+  "uniform"
+ ],
+ "steps_ok": true,
+ "revs_ok": true,
+ "rev_close_ok": true,
+ "exact_ok": true,
+ "phys_ok": true,
+ "drained": true,
+ "store_E_final": 0.0,
+ "cap_events": 7,
+ "cap_nobits": true,
+ "cap_dims_ok": true,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

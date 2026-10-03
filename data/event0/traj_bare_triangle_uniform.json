@@ -1,0 +1,367 @@
+{
+ "kind": "bare",
+ "sub": "triangle",
+ "ftag": "uniform",
+ "ladder": [
+  0.0,
+  0.5,
+  1.0,
+  2.0,
+  4.0,
+  8.0
+ ],
+ "dt": 0.05,
+ "n_nodes": 3,
+ "n_edges": 3,
+ "cert": {
+  "residual": 0.0,
+  "lam": -2.0,
+  "is_zero": false,
+  "is_eigen": true
+ },
+ "norm_drift": 4.973799150320701e-14,
+ "E_psi_0": -2.0000000000000004,
+ "E_psi_spread": 9.325873406851315e-14,
+ "t_star": null,
+ "all_valid": true,
+ "rungs": [
+  {
+   "T": 0.0,
+   "norm": 1.0,
+   "E_psi": -2.0000000000000004,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 3,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 3,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 3,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 3
+   },
+   "masks": [
+    1066065,
+    1066065,
+    1066065
+   ],
+   "B_range": [
+    0.3333333333333334,
+    0.3333333333333334
+   ],
+   "dE_range": [
+    0.6666666666666669,
+    0.6666666666666669
+   ],
+   "J_max": 0.0
+  },
+  {
+   "T": 0.5,
+   "norm": 1.0,
+   "E_psi": -2.0,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 3,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 3,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 3,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 3
+   },
+   "masks": [
+    1066065,
+    1066065,
+    1066065
+   ],
+   "B_range": [
+    0.33333333333333337,
+    0.33333333333333337
+   ],
+   "dE_range": [
+    0.6666666666666667,
+    0.6666666666666667
+   ],
+   "J_max": 0.0
+  },
+  {
+   "T": 1.0,
+   "norm": 1.0000000000000002,
+   "E_psi": -2.0000000000000018,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 3,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 3,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 3,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 3
+   },
+   "masks": [
+    1066065,
+    1066065,
+    1066065
+   ],
+   "B_range": [
+    0.33333333333333354,
+    0.33333333333333354
+   ],
+   "dE_range": [
+    0.6666666666666671,
+    0.6666666666666671
+   ],
+   "J_max": 0.0
+  },
+  {
+   "T": 2.0,
+   "norm": 1.000000000000001,
+   "E_psi": -2.000000000000005,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 3,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 3,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 3,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 3
+   },
+   "masks": [
+    1066065,
+    1066065,
+    1066065
+   ],
+   "B_range": [
+    0.33333333333333415,
+    0.33333333333333415
+   ],
+   "dE_range": [
+    0.6666666666666683,
+    0.6666666666666683
+   ],
+   "J_max": 0.0
+  },
+  {
+   "T": 4.0,
+   "norm": 0.9999999999999977,
+   "E_psi": -1.9999999999999905,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 3,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 3,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 3,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 3
+   },
+   "masks": [
+    1066065,
+    1066065,
+    1066065
+   ],
+   "B_range": [
+    0.33333333333333176,
+    0.33333333333333176
+   ],
+   "dE_range": [
+    0.6666666666666635,
+    0.6666666666666635
+   ],
+   "J_max": 0.0
+  },
+  {
+   "T": 8.0,
+   "norm": 0.9999999999999779,
+   "E_psi": -1.9999999999999116,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 3,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 3,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 3,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 0,
+    "C_POS": 3,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 3,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 3
+   },
+   "masks": [
+    1066065,
+    1066065,
+    1066065
+   ],
+   "B_range": [
+    0.3333333333333186,
+    0.3333333333333186
+   ],
+   "dE_range": [
+    0.6666666666666372,
+    0.6666666666666372
+   ],
+   "J_max": 0.0
+  }
+ ],
+ "crossings": {
+  "n_cross": 0,
+  "per_pred": {
+   "B_POS": 0,
+   "B_NEG": 0,
+   "B_ZERO": 0,
+   "L_NEG": 0,
+   "L_POS": 0,
+   "LEDG_ZERO": 0,
+   "CROSS_ZERO": 0,
+   "BAL_R1": 0,
+   "BAL_R2": 0,
+   "C0": 0,
+   "C_POS": 0,
+   "BRIDGE": 0,
+   "FAVORABLE": 0,
+   "ANNIHIL": 0,
+   "J_ZERO": 0,
+   "BJ_ZERO": 0,
+   "CELL_SYM": 0,
+   "CELL_ANTI": 0,
+   "HID_ACTIVE": 0,
+   "ZERO_MIN": 0,
+   "UNIFORM_EDGE": 0
+  },
+  "witness": null
+ },
+ "equiv": {
+  "n_rewires": 0,
+  "anchored": false,
+  "n_cospec": 0,
+  "n_iso": 0,
+  "cands": [],
+  "compat": {},
+  "orbits": {
+   "n_survivors": 0,
+   "n_orbits": 0,
+   "exact": true,
+   "n_perms": 6
+  },
+  "n_nontrivial": 0
+ },
+ "neighbors": {
+  "n_merge_nbrs": 3,
+  "n_split_nbrs": 0,
+  "n_rewire_nbrs": 0,
+  "anchored": false
+ },
+ "continuations": {},
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

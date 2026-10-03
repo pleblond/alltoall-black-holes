@@ -1,0 +1,15 @@
+{
+ "task": [
+  "detcore",
+  "single",
+  "bonding",
+  0
+ ],
+ "close_merge": 0.0,
+ "close_split": 0.0,
+ "invert_err": 0.0,
+ "exact_ok": true,
+ "phys_ok": true,
+ "nonzero": true,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

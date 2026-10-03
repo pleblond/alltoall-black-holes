@@ -1,0 +1,14 @@
+{
+ "kind": "bare",
+ "sub": "j2-L4",
+ "ftag": "P:sign:A",
+ "remote": "25",
+ "remote_hop": 4,
+ "n_edges": 128,
+ "n_far": 64,
+ "far_flips": 0,
+ "near_flips": 16,
+ "static_ok": true,
+ "causal": null,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}
