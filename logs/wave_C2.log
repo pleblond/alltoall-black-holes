@@ -1,0 +1,38 @@
+wave_C2 config: JOBS=3 OMP=24 tasks=13 (8 B-rem + 5 heavy); threaded-BLAS ops note: bitwise-irrelevant (<1e-12 << gate tol), shortens neighbor-OOM exposure; date=2026-10-03T16:26:02Z
+START 16:26:02 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c1-S16L24
+START 16:26:02 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L24-lam004-s27
+START 16:26:02 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L24-lam004-s37
+dim c1-S16L24: D=32 rc=4.0 tc=None heat=(3.44,3.12)
+END rc=0 16:33:41 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c1-S16L24
+START 16:33:41 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L24-lam004-s67
+dim c2-S16L24-lam004-s27: D=28 rc=6.0 tc=39.45939318928752 heat=(2.31,2.42)
+END rc=0 16:34:09 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L24-lam004-s27
+START 16:34:09 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L24-lam004-s7
+dim c2-S16L24-lam004-s37: D=31 rc=5.0 tc=39.45939318928752 heat=(2.31,2.42)
+END rc=0 16:35:00 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L24-lam004-s37
+START 16:35:00 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L32-lam004-s37
+dim c2-S16L24-lam004-s67: D=30 rc=5.0 tc=39.45939318928752 heat=(2.31,2.42)
+END rc=0 16:41:41 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L24-lam004-s67
+START 16:41:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L32-lam004-s7
+dim c2-S16L24-lam004-s7: D=29 rc=5.0 tc=39.45939318928752 heat=(2.31,2.42)
+END rc=0 16:42:46 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L24-lam004-s7
+START 16:42:46 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S24L24-lam004-s37
+dim c2-S24L24-lam004-s37: D=37 rc=5.0 tc=39.45939318928752 heat=(2.31,2.42)
+END rc=0 16:54:36 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S24L24-lam004-s37
+START 16:54:36 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S24L24-lam004-s7
+dim c2-S16L32-lam004-s37: D=30 rc=5.0 tc=39.45939318928752 heat=(2.31,2.43)
+END rc=0 16:55:35 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L32-lam004-s37
+START 16:55:35 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c3-j3L26
+dim c2-S16L32-lam004-s7: D=31 rc=5.0 tc=39.45939318928752 heat=(2.31,2.43)
+END rc=0 17:00:21 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S16L32-lam004-s7
+START 17:00:21 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c4-cbL26
+dim c4-cbL26: D=39 rc=4.0 tc=2.8844991406148166 heat=(3.32,3.10)
+END rc=0 17:05:10 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c4-cbL26
+START 17:05:10 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py hidden --tag c2-S16L24-lam004-s7
+dim c2-S24L24-lam004-s7: D=40 rc=5.0 tc=39.45939318928752 heat=(2.31,2.42)
+END rc=0 17:06:45 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c2-S24L24-lam004-s7
+START 17:06:45 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py vacuum --tag c2-S16L24-lam004-s7
+vacuum c2-S16L24-lam004-s7: E=-8.1011 res=3.5e-14 gap=4.08e-03
+END rc=0 17:13:14 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py vacuum --tag c2-S16L24-lam004-s7
+END rc=137 17:18:33 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c3-j3L26
+END rc=137 17:18:34 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py hidden --tag c2-S16L24-lam004-s7

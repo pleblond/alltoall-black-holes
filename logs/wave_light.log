@@ -1,0 +1,492 @@
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c0-j2L44
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c1-S8L16
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c1-S16L24
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c3-j3L26
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c4-cbL26
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s17
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s27
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s47
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s57
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s77
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s17
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s27
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s47
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s57
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s77
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s17
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s27
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s47
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s57
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s77
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s17
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s27
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s47
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s57
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s77
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s17
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s27
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s47
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s57
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s77
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s17
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s27
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s47
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s57
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s77
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s17
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s27
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s47
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s57
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s77
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s17
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s47
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s27
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s57
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s77
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S24L24-lam004-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S24L24-lam004-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L32-lam004-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L32-lam004-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2dense-S16L24-lam004-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2er3-S16L24-lam004-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2sq-S16L24-lam004-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2dense-S16L24-lam004-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2er3-S16L24-lam004-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2sq-S16L24-lam004-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2dense-S16L24-lam004-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2er3-S16L24-lam004-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2sq-S16L24-lam004-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2nb-S16L24-lam004-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2nb-S16L24-lam004-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s7
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s17
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s27
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s37
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s47
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s57
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s67
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s77
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 0 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 0 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 0 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 1 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 1 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 1 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 2 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 2 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 2 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 3 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 3 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 3 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 4 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 4 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 4 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 5 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 5 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 6 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 5 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 6 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 6 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 7 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 7 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 7 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 8 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 8 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 8 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 9 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 9 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 9 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 10 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 10 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 10 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 11 --set 0
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 11 --set 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 11 --set 2
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c0-j2L28 --kind R
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c0-j2L28 --kind I
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c4-cbL16 --kind R
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c4-cbL16 --kind I
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c5-S16L24-lam004-s7 --kind R
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c5-S16L24-lam004-s7 --kind I
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam001-s7 --kind R
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam001-s7 --kind I
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam001-s37 --kind R
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam001-s37 --kind I
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam002-s7 --kind R
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam002-s7 --kind I
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam002-s37 --kind R
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam002-s37 --kind I
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam004-s7 --kind R
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam004-s7 --kind I
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam004-s37 --kind R
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam004-s37 --kind I
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c0-j2L16 --sheet 0 --axis x --sign 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c1-S8L16 --sheet 0 --axis x --sign 1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c1-S8L16 --sheet 0 --axis x --sign -1
+START 13:20:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c1-S8L16 --sheet 0 --axis y --sign 1
+packet c0-j2L16 sh0 x+1: v=1.032 bloch=1.182 r2=0.997
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c0-j2L16 --sheet 0 --axis x --sign 1
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c1-S8L16 --sheet 0 --axis y --sign -1
+construct c2-S16L24-lam0001-s47: A_PASS=True regime=DISCONNECTED K=18/18
+construct c2-S16L24-lam0001-s17: A_PASS=True regime=DISCONNECTED K=18/18
+construct c2-S16L24-lam0001-s27: A_PASS=True regime=DISCONNECTED K=18/18
+construct c2-S16L24-lam0001-s7: A_PASS=True regime=DISCONNECTED K=18/18
+construct c2-S16L24-lam0001-s77: A_PASS=True regime=DISCONNECTED K=18/18
+construct c2-S16L24-lam0001-s57: A_PASS=True regime=DISCONNECTED K=18/18
+construct c2-S16L24-lam0001-s37: A_PASS=True regime=DISCONNECTED K=18/18
+construct c2-S16L24-lam0001-s67: A_PASS=True regime=DISCONNECTED K=18/18
+packet c1-S8L16 sh0 x+1: v=1.032 bloch=1.182 r2=0.997
+packet c1-S8L16 sh0 y+1: v=0.986 bloch=1.182 r2=0.995
+packet c1-S8L16 sh0 x-1: v=0.986 bloch=1.182 r2=0.995
+spread c0-j2L28 R: n_psi=11 n_rho=11 n_J=11
+spread c0-j2L28 I: n_psi=11 n_rho=11 n_J=11
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s17
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s47
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s27
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s7
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis x --sign 1
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis x --sign -1
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis y --sign 1
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis y --sign -1
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s57
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s77
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s7 --sheet 3 --axis x --sign 1
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s37 --sheet 0 --axis x --sign 1
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s37
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0001-s67
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s37 --sheet 0 --axis x --sign -1
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py transverse --tag c1-S8L16
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c1-S8L16 --sheet 0 --axis x --sign 1
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py transverse --tag c2-S8L16-lam004-s7
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c1-S8L16 --sheet 0 --axis y --sign 1
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c1-S8L16 --sheet 0 --axis x --sign -1
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py transverse --tag c2-S8L16-lam004-s37
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py transverse --tag c2-S8L16-lam002-s7
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c0-j2L28 --kind R
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py switch --tag c1-S8L16
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c0-j2L28 --kind I
+START 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py switch --tag c2-S8L16-lam004-s7
+spread c4-cbL16 R: n_psi=7 n_rho=7 n_J=7
+spread c4-cbL16 I: n_psi=7 n_rho=7 n_J=7
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c4-cbL16 --kind R
+END rc=0 13:20:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c4-cbL16 --kind I
+packet c1-S8L16 sh0 y-1: v=1.032 bloch=1.182 r2=0.997
+END rc=0 13:20:40 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c1-S8L16 --sheet 0 --axis y --sign -1
+packet c2-S8L16-lam004-s7 sh0 y-1: v=1.027 bloch=1.182 r2=0.997
+packet c2-S8L16-lam004-s7 sh0 x+1: v=1.046 bloch=1.182 r2=0.997
+packet c2-S8L16-lam004-s7 sh0 x-1: v=0.982 bloch=1.182 r2=0.994
+packet c2-S8L16-lam004-s7 sh0 y+1: v=0.991 bloch=1.182 r2=0.995
+packet c2-S8L16-lam004-s7 sh3 x+1: v=1.032 bloch=1.182 r2=0.997
+packet c2-S8L16-lam004-s37 sh0 x+1: v=1.046 bloch=1.182 r2=0.998
+packet c2-S8L16-lam004-s37 sh0 x-1: v=0.984 bloch=1.182 r2=0.995
+END rc=0 13:20:40 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis x --sign -1
+END rc=0 13:20:40 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis y --sign -1
+END rc=0 13:20:40 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis x --sign 1
+END rc=0 13:20:40 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s7 --sheet 0 --axis y --sign 1
+END rc=0 13:20:40 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s7 --sheet 3 --axis x --sign 1
+END rc=0 13:20:40 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s37 --sheet 0 --axis x --sign 1
+END rc=0 13:20:40 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py packet --tag c2-S8L16-lam004-s37 --sheet 0 --axis x --sign -1
+switch c2-S8L16-lam004-s7: v=11.650485436893202 physical=False
+switch c1-S8L16: v=12.121212121212121 physical=False
+END rc=0 13:20:40 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py switch --tag c2-S8L16-lam004-s7
+END rc=0 13:20:40 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py switch --tag c1-S8L16
+transverse c2-S8L16-lam002-s7: peak={1: 4.1000000000000005, 2: 7.550000000000001, 3: 38.2, 4: 38.95} cross={1: 0.30000000000000004, 2: 0.9, 3: 1.4000000000000001, 4: 2.5}
+transverse c2-S8L16-lam004-s37: peak={1: 0.5, 2: 6.1000000000000005, 3: 36.2, 4: 39.1} cross={1: 0.05, 2: 0.1, 3: 0.4, 4: 1.0}
+transverse c2-S8L16-lam004-s7: peak={1: 0.7000000000000001, 2: 22.150000000000002, 3: 29.5, 4: 43.7} cross={1: 0.05, 2: 0.4, 3: 0.8500000000000001, 4: 1.6}
+transverse c1-S8L16: peak={1: 0.9500000000000001, 2: 1.6500000000000001, 3: 3.6, 4: 2.6} cross={1: 0.05, 2: 0.05, 3: 0.15000000000000002, 4: 0.35000000000000003}
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py transverse --tag c2-S8L16-lam002-s7
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py transverse --tag c2-S8L16-lam004-s37
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py transverse --tag c2-S8L16-lam004-s7
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py transverse --tag c1-S8L16
+spread c2-S16L24-lam002-s7 R: n_psi=13 n_rho=13 n_J=12
+spread c2-S16L24-lam004-s37 I: n_psi=12 n_rho=12 n_J=12
+spread c2-S16L24-lam001-s37 R: n_psi=12 n_rho=12 n_J=13
+spread c2-S16L24-lam004-s7 R: n_psi=13 n_rho=13 n_J=13
+spread c2-S16L24-lam004-s7 I: n_psi=13 n_rho=13 n_J=13
+spread c2-S16L24-lam002-s37 I: n_psi=12 n_rho=12 n_J=13
+spread c2-S16L24-lam002-s7 I: n_psi=13 n_rho=13 n_J=12
+spread c2-S16L24-lam001-s37 I: n_psi=12 n_rho=12 n_J=13
+spread c2-S16L24-lam001-s7 I: n_psi=12 n_rho=12 n_J=11
+spread c2-S16L24-lam004-s37 R: n_psi=12 n_rho=12 n_J=12
+spread c2-S16L24-lam001-s7 R: n_psi=12 n_rho=12 n_J=11
+spread c2-S16L24-lam002-s37 R: n_psi=12 n_rho=12 n_J=13
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam002-s7 --kind R
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam004-s37 --kind I
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam001-s37 --kind R
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam004-s7 --kind R
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam002-s37 --kind I
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam004-s7 --kind I
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam002-s7 --kind I
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam001-s37 --kind I
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam001-s7 --kind I
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam004-s37 --kind R
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam001-s7 --kind R
+END rc=0 13:20:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c2-S16L24-lam002-s37 --kind R
+construct c0-j2L44: A_PASS=True regime=WOVEN K=0/0
+END rc=0 13:20:46 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c0-j2L44
+construct c2-S8L16-lam004-s67: A_PASS=True regime=WOVEN K=164/164
+construct c2-S8L16-lam004-s47: A_PASS=True regime=WOVEN K=164/164
+construct c2-S8L16-lam004-s7: A_PASS=True regime=WOVEN K=164/164
+construct c2-S8L16-lam004-s57: A_PASS=True regime=WOVEN K=164/164
+construct c2-S8L16-lam004-s27: A_PASS=True regime=WOVEN K=164/164
+construct c2-S8L16-lam004-s17: A_PASS=True regime=WOVEN K=164/164
+END rc=0 13:20:48 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s67
+END rc=0 13:20:48 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s47
+construct c2-S8L16-lam004-s37: A_PASS=True regime=WOVEN K=164/164
+END rc=0 13:20:48 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s7
+construct c2-S8L16-lam004-s77: A_PASS=True regime=WOVEN K=164/164
+END rc=0 13:20:48 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s57
+END rc=0 13:20:48 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s27
+END rc=0 13:20:48 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s17
+END rc=0 13:20:48 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s37
+END rc=0 13:20:48 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S8L16-lam004-s77
+construct c1-S8L16: A_PASS=True regime=OVERCONNECTED K=4096/4096
+END rc=0 13:20:51 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c1-S8L16
+stations cell=7 (c5-S8L16-lam004-s7) set=2: D=6 W=1.0000 D=1.0000 P=1.0000 resid=9.8e-12
+END rc=0 13:21:10 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 7 --set 2
+stations cell=7 (c5-S8L16-lam004-s7) set=1: D=6 W=1.0000 D=1.0000 P=1.0000 resid=3.5e-12
+stations cell=7 (c5-S8L16-lam004-s7) set=0: D=6 W=1.0000 D=1.0000 P=1.0000 resid=1.0e-11
+END rc=0 13:21:10 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 7 --set 1
+END rc=0 13:21:10 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 7 --set 0
+construct c2sq-S16L24-lam004-s7: A_PASS=True regime=WOVEN K=369/369
+END rc=0 13:21:22 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2sq-S16L24-lam004-s7
+construct c2sq-S16L24-lam004-s37: A_PASS=True regime=WOVEN K=369/369
+construct c2sq-S16L24-lam004-s67: A_PASS=True regime=WOVEN K=369/369
+END rc=0 13:21:22 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2sq-S16L24-lam004-s37
+END rc=0 13:21:22 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2sq-S16L24-lam004-s67
+stations cell=8 (c2dense-S8L16-lam004-s7) set=1: D=15 W=1.0000 D=1.0000 P=1.0000 resid=8.5e-12
+stations cell=8 (c2dense-S8L16-lam004-s7) set=2: D=15 W=1.0000 D=1.0000 P=1.0000 resid=8.4e-12
+END rc=0 13:21:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 8 --set 1
+END rc=0 13:21:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 8 --set 2
+stations cell=8 (c2dense-S8L16-lam004-s7) set=0: D=15 W=1.0000 D=1.0000 P=1.0000 resid=8.2e-12
+END rc=0 13:21:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 8 --set 0
+stations cell=5 (c3-j3L12) set=0: D=18 W=1.0000 D=1.0000 P=1.0000 resid=1.4e-12
+END rc=0 13:21:41 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 5 --set 0
+stations cell=5 (c3-j3L12) set=1: D=18 W=1.0000 D=1.0000 P=1.0000 resid=1.4e-12
+stations cell=5 (c3-j3L12) set=2: D=18 W=1.0000 D=1.0000 P=1.0000 resid=1.4e-12
+END rc=0 13:21:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 5 --set 1
+END rc=0 13:21:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 5 --set 2
+stations cell=9 (c2sq-S8L16-lam004-s7) set=2: D=23 W=1.0000 D=1.0000 P=1.0000 resid=8.0e-12
+END rc=0 13:21:48 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 9 --set 2
+stations cell=9 (c2sq-S8L16-lam004-s7) set=1: D=23 W=1.0000 D=1.0000 P=1.0000 resid=8.2e-12
+END rc=0 13:21:48 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 9 --set 1
+stations cell=9 (c2sq-S8L16-lam004-s7) set=0: D=23 W=1.0000 D=1.0000 P=1.0000 resid=8.1e-12
+END rc=0 13:21:49 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 9 --set 0
+stations cell=4 (c2-S8L16-lam004-s7) set=0: D=18 W=0.8869 D=1.0000 P=1.0000 resid=9.9e-12
+END rc=0 13:21:56 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 4 --set 0
+stations cell=4 (c2-S8L16-lam004-s7) set=1: D=18 W=0.8909 D=1.0000 P=1.0000 resid=1.0e-11
+END rc=0 13:21:56 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 4 --set 1
+stations cell=4 (c2-S8L16-lam004-s7) set=2: D=18 W=0.8775 D=1.0000 P=1.0000 resid=1.0e-11
+END rc=0 13:21:57 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 4 --set 2
+spread c5-S16L24-lam004-s7 I: n_psi=0 n_rho=0 n_J=0
+spread c5-S16L24-lam004-s7 R: n_psi=0 n_rho=0 n_J=0
+END rc=0 13:22:11 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c5-S16L24-lam004-s7 --kind I
+END rc=0 13:22:11 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py spread --tag c5-S16L24-lam004-s7 --kind R
+stations cell=1 (c1-S8L16) set=2: D=20 W=1.0000 D=1.0000 P=1.0000 resid=9.9e-12
+END rc=0 13:22:12 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 1 --set 2
+stations cell=1 (c1-S8L16) set=1: D=20 W=1.0000 D=1.0000 P=1.0000 resid=9.9e-12
+END rc=0 13:22:12 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 1 --set 1
+stations cell=1 (c1-S8L16) set=0: D=20 W=1.0000 D=1.0000 P=1.0000 resid=9.9e-12
+END rc=0 13:22:13 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 1 --set 0
+stations cell=6 (c4-cbL16) set=1: D=24 W=1.0000 D=1.0000 P=1.0000 resid=6.6e-12
+END rc=0 13:22:17 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 6 --set 1
+stations cell=6 (c4-cbL16) set=2: D=24 W=1.0000 D=1.0000 P=1.0000 resid=6.6e-12
+END rc=0 13:22:17 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 6 --set 2
+stations cell=6 (c4-cbL16) set=0: D=24 W=1.0000 D=1.0000 P=1.0000 resid=6.6e-12
+END rc=0 13:22:19 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 6 --set 0
+stations cell=3 (c2-S8L16-lam002-s7) set=2: D=23 W=0.7247 D=1.0000 P=1.0000 resid=6.4e-12
+END rc=0 13:22:19 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 3 --set 2
+stations cell=3 (c2-S8L16-lam002-s7) set=1: D=23 W=0.7431 D=1.0000 P=1.0000 resid=6.4e-12
+END rc=0 13:22:20 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 3 --set 1
+stations cell=3 (c2-S8L16-lam002-s7) set=0: D=23 W=0.7312 D=1.0000 P=1.0000 resid=6.2e-12
+END rc=0 13:22:20 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 3 --set 0
+stations cell=2 (c2-S8L16-lam001-s7) set=0: D=27 W=0.6731 D=1.0000 P=1.0000 resid=9.2e-12
+END rc=0 13:22:42 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 2 --set 0
+stations cell=2 (c2-S8L16-lam001-s7) set=2: D=27 W=0.6682 D=1.0000 P=1.0000 resid=9.2e-12
+END rc=0 13:22:44 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 2 --set 2
+stations cell=2 (c2-S8L16-lam001-s7) set=1: D=27 W=0.6840 D=1.0000 P=1.0000 resid=9.7e-12
+END rc=0 13:22:44 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 2 --set 1
+construct c2-S16L24-lam0005-s57: A_PASS=True regime=WOVEN K=92/92
+END rc=0 13:24:02 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s57
+construct c2-S16L24-lam0005-s7: A_PASS=True regime=WOVEN K=92/92
+END rc=0 13:24:06 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s7
+construct c2-S16L24-lam0005-s47: A_PASS=True regime=WOVEN K=92/92
+END rc=0 13:24:06 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s47
+construct c2-S16L24-lam0005-s67: A_PASS=True regime=WOVEN K=92/92
+END rc=0 13:24:07 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s67
+construct c2-S16L24-lam0005-s37: A_PASS=True regime=WOVEN K=92/92
+END rc=0 13:24:07 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s37
+construct c2-S16L24-lam0005-s27: A_PASS=True regime=WOVEN K=92/92
+END rc=0 13:24:08 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s27
+construct c2-S16L24-lam0005-s77: A_PASS=True regime=WOVEN K=92/92
+END rc=0 13:24:11 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s77
+construct c2-S16L24-lam001-s47: A_PASS=True regime=WOVEN K=184/184
+END rc=0 13:24:14 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s47
+construct c2-S16L24-lam001-s17: A_PASS=True regime=WOVEN K=184/184
+END rc=0 13:24:17 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s17
+construct c2-S16L24-lam001-s57: A_PASS=True regime=WOVEN K=184/184
+construct c2-S16L24-lam001-s27: A_PASS=True regime=WOVEN K=184/184
+END rc=0 13:24:17 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s57
+END rc=0 13:24:17 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s27
+construct c2-S16L24-lam001-s7: A_PASS=True regime=WOVEN K=184/184
+END rc=0 13:24:21 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s7
+construct c2-S16L24-lam001-s37: A_PASS=True regime=WOVEN K=184/184
+END rc=0 13:24:22 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s37
+construct c2-S16L24-lam002-s67: A_PASS=True regime=WOVEN K=369/369
+END rc=0 13:24:24 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s67
+construct c2-S16L24-lam002-s47: A_PASS=True regime=WOVEN K=369/369
+END rc=0 13:24:24 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s47
+construct c2-S16L24-lam002-s7: A_PASS=True regime=WOVEN K=369/369
+construct c2-S16L24-lam002-s57: A_PASS=True regime=WOVEN K=369/369
+END rc=0 13:24:25 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s7
+END rc=0 13:24:25 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s57
+construct c2-S16L24-lam002-s77: A_PASS=True regime=WOVEN K=369/369
+construct c4-cbL26: A_PASS=True regime=WOVEN K=0/0
+construct c2-S16L24-lam002-s17: A_PASS=True regime=WOVEN K=369/369
+END rc=0 13:24:26 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s77
+END rc=0 13:24:26 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c4-cbL26
+END rc=0 13:24:26 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s17
+construct c2-S16L24-lam002-s37: A_PASS=True regime=WOVEN K=369/369
+construct c2-S16L24-lam002-s27: A_PASS=True regime=WOVEN K=369/369
+END rc=0 13:24:28 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s37
+END rc=0 13:24:28 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam002-s27
+construct c2nb-S16L24-lam004-s37: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:24:32 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2nb-S16L24-lam004-s37
+construct c2nb-S16L24-lam004-s7: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:24:33 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2nb-S16L24-lam004-s7
+construct c2-S16L24-lam004-s57: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:24:33 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s57
+construct c2-S16L24-lam004-s47: A_PASS=True regime=WOVEN K=737/737
+construct c2-S16L24-lam004-s17: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:24:35 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s47
+END rc=0 13:24:35 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s17
+construct c2-S16L24-lam004-s77: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:24:35 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s77
+construct c2-S16L24-lam004-s27: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:24:35 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s27
+construct c2-S16L24-lam004-s37: A_PASS=True regime=WOVEN K=737/737
+construct c2-S16L24-lam004-s7: A_PASS=True regime=WOVEN K=737/737
+construct c2-S16L24-lam004-s67: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:24:37 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s37
+END rc=0 13:24:37 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s7
+END rc=0 13:24:37 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam004-s67
+construct c2-S16L24-lam008-s17: A_PASS=True regime=WOVEN K=1475/1475
+END rc=0 13:24:45 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s17
+construct c2-S16L24-lam008-s77: A_PASS=True regime=WOVEN K=1475/1475
+END rc=0 13:24:46 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s77
+construct c2-S16L24-lam008-s67: A_PASS=True regime=WOVEN K=1475/1475
+END rc=0 13:24:46 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s67
+construct c2-S16L24-lam008-s47: A_PASS=True regime=WOVEN K=1475/1475
+END rc=0 13:24:46 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s47
+construct c2-S16L24-lam008-s57: A_PASS=True regime=WOVEN K=1475/1475
+construct c2-S16L24-lam008-s7: A_PASS=True regime=WOVEN K=1475/1475
+END rc=0 13:24:46 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s57
+END rc=0 13:24:47 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s7
+construct c2-S16L24-lam008-s37: A_PASS=True regime=WOVEN K=1475/1475
+construct c2-S16L24-lam008-s27: A_PASS=True regime=WOVEN K=1475/1475
+END rc=0 13:24:47 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s37
+END rc=0 13:24:47 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam008-s27
+construct c2-S16L24-lam001-s67: A_PASS=True regime=WOVEN K=184/184
+END rc=0 13:24:52 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s67
+construct c2er3-S16L24-lam004-s37: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:24:53 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2er3-S16L24-lam004-s37
+construct c2er3-S16L24-lam004-s67: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:24:56 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2er3-S16L24-lam004-s67
+construct c2er3-S16L24-lam004-s7: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:24:58 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2er3-S16L24-lam004-s7
+construct c2-S16L24-lam001-s77: A_PASS=True regime=WOVEN K=184/184
+END rc=0 13:24:58 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam001-s77
+construct c2-S16L24-lam0005-s17: A_PASS=True regime=WOVEN K=92/92
+END rc=0 13:24:59 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam0005-s17
+construct c2-S16L24-lam016-s47: A_PASS=True regime=OVERCONNECTED K=2949/2949
+END rc=0 13:25:00 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s47
+construct c2-S16L24-lam016-s17: A_PASS=True regime=OVERCONNECTED K=2949/2949
+END rc=0 13:25:01 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s17
+construct c2-S16L24-lam016-s27: A_PASS=True regime=OVERCONNECTED K=2949/2949
+END rc=0 13:25:02 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s27
+construct c2-S16L24-lam016-s67: A_PASS=True regime=OVERCONNECTED K=2949/2949
+END rc=0 13:25:03 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s67
+construct c2-S16L24-lam016-s57: A_PASS=True regime=OVERCONNECTED K=2949/2949
+END rc=0 13:25:03 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s57
+construct c2-S16L24-lam016-s37: A_PASS=True regime=OVERCONNECTED K=2949/2949
+END rc=0 13:25:03 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s37
+construct c2-S16L24-lam016-s7: A_PASS=True regime=OVERCONNECTED K=2949/2949
+END rc=0 13:25:04 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s7
+stations cell=0 (c0-j2L44) set=0: D=44 W=1.0000 D=1.0000 P=1.0000 resid=5.8e-12
+END rc=0 13:25:06 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 0 --set 0
+stations cell=0 (c0-j2L44) set=2: D=44 W=1.0000 D=1.0000 P=1.0000 resid=5.8e-12
+END rc=0 13:25:06 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 0 --set 2
+stations cell=0 (c0-j2L44) set=1: D=44 W=1.0000 D=1.0000 P=1.0000 resid=5.8e-12
+END rc=0 13:25:07 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 0 --set 1
+construct c2dense-S16L24-lam004-s67: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:25:08 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2dense-S16L24-lam004-s67
+construct c2dense-S16L24-lam004-s7: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:25:09 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2dense-S16L24-lam004-s7
+construct c2-S16L24-lam016-s77: A_PASS=True regime=OVERCONNECTED K=2949/2949
+END rc=0 13:25:14 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L24-lam016-s77
+construct c2dense-S16L24-lam004-s37: A_PASS=True regime=WOVEN K=737/737
+END rc=0 13:25:22 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2dense-S16L24-lam004-s37
+construct c5-S16L24-lam004-s37: A_PASS=True regime=WOVEN K=0/0
+END rc=0 13:25:38 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s37
+construct c5-S16L24-lam004-s57: A_PASS=True regime=WOVEN K=0/0
+construct c5-S16L24-lam004-s17: A_PASS=True regime=WOVEN K=0/0
+END rc=0 13:25:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s57
+END rc=0 13:25:39 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s17
+construct c1-S16L24: A_PASS=True regime=OVERCONNECTED K=18432/18432
+END rc=0 13:25:41 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c1-S16L24
+construct c5-S16L24-lam004-s27: A_PASS=True regime=WOVEN K=0/0
+END rc=0 13:25:43 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s27
+construct c5-S16L24-lam004-s77: A_PASS=True regime=WOVEN K=0/0
+END rc=0 13:25:44 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s77
+construct c5-S16L24-lam004-s67: A_PASS=True regime=WOVEN K=0/0
+END rc=0 13:25:45 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s67
+construct c5-S16L24-lam004-s47: A_PASS=True regime=WOVEN K=0/0
+END rc=0 13:25:46 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s47
+construct c5-S16L24-lam004-s7: A_PASS=True regime=WOVEN K=0/0
+END rc=0 13:26:46 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c5-S16L24-lam004-s7
+stations cell=11 (c2-S16L24-lam004-s7) set=0: D=29 W=0.5040 D=0.9025 P=1.0000 resid=6.6e-12
+END rc=0 13:27:53 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 11 --set 0
+stations cell=11 (c2-S16L24-lam004-s7) set=2: D=29 W=0.4871 D=0.8921 P=1.0000 resid=6.7e-12
+END rc=0 13:27:54 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 11 --set 2
+stations cell=11 (c2-S16L24-lam004-s7) set=1: D=29 W=0.5060 D=0.8916 P=1.0000 resid=6.6e-12
+END rc=0 13:27:59 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 11 --set 1
+construct c2-S24L24-lam004-s7: A_PASS=True regime=WOVEN K=1106/1106
+END rc=0 13:29:05 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S24L24-lam004-s7
+construct c2-S24L24-lam004-s37: A_PASS=True regime=WOVEN K=1106/1106
+END rc=0 13:29:10 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S24L24-lam004-s37
+stations cell=10 (c2-S16L24-lam002-s7) set=0: D=39 W=0.4454 D=0.8113 P=1.0000 resid=5.8e-12
+END rc=0 13:32:50 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 10 --set 0
+stations cell=10 (c2-S16L24-lam002-s7) set=2: D=39 W=0.4435 D=0.8180 P=1.0000 resid=5.9e-12
+END rc=0 13:32:56 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 10 --set 2
+stations cell=10 (c2-S16L24-lam002-s7) set=1: D=39 W=0.4802 D=0.8346 P=1.0000 resid=5.9e-12
+END rc=0 13:32:58 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py stations --cell 10 --set 1
+construct c2-S16L32-lam004-s7: A_PASS=True regime=WOVEN K=1311/1311
+END rc=0 13:33:14 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L32-lam004-s7
+construct c2-S16L32-lam004-s37: A_PASS=True regime=WOVEN K=1311/1311
+END rc=0 13:33:16 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c2-S16L32-lam004-s37
+construct c3-j3L26: A_PASS=True regime=WOVEN K=0/0
+END rc=0 13:36:55 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py construct --tag c3-j3L26

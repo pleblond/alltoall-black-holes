@@ -1,0 +1,7 @@
+wave_C3 config: JOBS=2 OMP=24 tasks=2 (c3 + hidden) date=2026-10-03T17:32:57Z
+START 17:32:57 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c3-j3L26
+START 17:32:57 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py hidden --tag c2-S16L24-lam004-s7
+hidden c2-S16L24-lam004-s7: local=2.1e-02 hg_flips=819
+END rc=0 17:47:58 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py hidden --tag c2-S16L24-lam004-s7
+dim c3-j3L26: D=39 rc=4.0 tc=None heat=(3.37,3.10)
+END rc=0 18:05:10 nice -n 10 ./venv/bin/python scripts/weave0_campaign.py dim --tag c3-j3L26
