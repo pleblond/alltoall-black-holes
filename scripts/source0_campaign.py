@@ -464,10 +464,10 @@ def t_quotient(p, outdir, record):
         look2 = _edge_lookup(eu2, ev2)
         for k in range(ne):
             a, b = order[int(eu[k])], order[int(ev[k])]
-            kk = look2[(min(perm[a], perm[b]), max(perm[a], perm[b]))]
+            pa, pb = pos2[perm[a]], pos2[perm[b]]
+            kk = look2[(min(pa, pb), max(pa, pb))]
             back[n + k] = rel2[n + kk]
             # J orientation: stored orientation may flip under relabel.
-            ia, ib = int(eu[k]), int(ev[k])
             ja, jb = int(eu2[kk]), int(ev2[kk])
             sgn = 1.0
             if (order2[ja], order2[jb]) == (perm[b], perm[a]):
@@ -487,7 +487,8 @@ def t_quotient(p, outdir, record):
         for k in range(ne):
             a, b = order[int(eu[k])], order[int(ev[k])]
             ga, gb = tperm[a], tperm[b]
-            kk = look[(min(ga, gb), max(ga, gb))]
+            ia, ib = idx[ga], idx[gb]
+            kk = look[(min(ia, ib), max(ia, ib))]
             expect[n + kk] = base_rel[n + k]
             sgn = 1.0
             if (order[int(eu[kk])], order[int(ev[kk])]) == (gb, ga):

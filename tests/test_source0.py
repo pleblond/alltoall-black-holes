@@ -365,3 +365,17 @@ def test_task_list_count():
     assert len(tasks) == 74
     names = [r for _n, _p, r in tasks]
     assert len(set(names)) == 74
+
+
+def test_quotient_tasks_l8():
+    # Full quotient legs (L8 readouts, no evolution): would have caught the
+    # relabel/aut index-vs-label transport bug pre-launch.
+    import sys
+    import os
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from source0_campaign import t_quotient
+    sy = t_quotient({"mode": "sym"}, "", "")["sym"]
+    assert sy["u1_ok"] and sy["relabel_ok"] and sy["aut_ok"]
+    assert sy["aut_distinct"] and sy["scale_ok"]
+    fs = t_quotient({"mode": "fs"}, "", "")["fs"]
+    assert fs["u1_zero"] and fs["others_positive"]
