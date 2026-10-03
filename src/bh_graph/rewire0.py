@@ -290,7 +290,8 @@ def is_quotient_invariant_ok(g: nx.Graph, psi: np.ndarray, order: list,
         from bh_graph.sym0 import apply_pushforward, apply_relabel, apply_u1
 
         psi2 = apply_u1(np.asarray(psi, dtype=np.complex128), float(alpha))
-        g2, psi2b, order2 = apply_relabel(g, psi2, list(order), dict(perm))
+        rel = apply_relabel(g, psi2, list(order), dict(perm))
+        g2, psi2b, order2 = rel["g"], rel["psi"], rel["order"]
         r1 = enumerate_rewires(g)
         r2 = enumerate_rewires(g2)
         q1 = physical_quotient(g, psi, list(order), r1)
@@ -481,8 +482,8 @@ def rewire_quantities(g: nx.Graph, psi: np.ndarray, order: list,
         nc0, nc1 = 1, 1
     d_ncomp = int(nc1 - nc0)
     d_xi = int(d_ncomp)  # dE=dN=0 exactly
-    t0 = sum(nx.triangles(g, nbunch=list(S)).values()) // 1
-    t1 = sum(nx.triangles(h, nbunch=list(S)).values()) // 1
+    t0 = sum(nx.triangles(g, list(S)).values()) // 1
+    t1 = sum(nx.triangles(h, list(S)).values()) // 1
     # Triangle-touch counts via blind_u canonical sets (exact).
     try:
         tr0 = _tris_touching_count(g, S)
