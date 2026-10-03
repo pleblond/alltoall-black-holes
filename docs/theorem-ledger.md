@@ -12,10 +12,11 @@ and from physical hypotheses (`docs/hypothesis-ledger.md`). Status words:
 - **Candidate / analytic implication** — precise statement filed, not yet earned.
 
 Two ledger entries cite work not yet merged at ledger creation: §9
-(BHQREL0-MEASURE-DEBT — no `bhqrel` records in repo) and §§7/11/13
-(CROSS-IMPL-A/B — no `analytical-open` cross-implication notes beyond
-`cross-implications.tex` in repo). They are transcribed as filed, with
-their unbanked status explicit. Ledger entries never promote anything
+(BHQREL0-MEASURE-DEBT — no `bhqrel` records in repo) and §13
+(CROSS-IMPL-B — no `analytical-open` note beyond
+`cross-implications.tex` in repo). CROSS-IMPL-A is merged
+(`docs/crossa-verdict.md`, PR #153); §7 records its verdict. They are
+transcribed as filed, with their unbanked status explicit. Ledger entries never promote anything
 by themselves; promotion happens only through the cited campaign or
 banking record.
 
@@ -257,8 +258,62 @@ or
 
 or both.
 
-CROSS-IMPL-A is determining which mechanism BHQAREA0 actually realizes.
-(CROSS-IMPL-A note not in repo at ledger creation; status per §11.)
+CROSS-IMPL-A resolved which mechanism BHQAREA0 actually realizes:
+**amplitude hierarchy, not quadrature** (CROSSA-SCALE, 11/11).
+\(R_2=\langle r^2\rangle\) collapses \(0.347\to1.3\times10^{-5}\) (ZERO
+track) while \(C_2=\langle\cos^2\Delta\theta\rangle=1\) throughout
+(NONZERO track) — the Perron ground state is real-positive, so the
+boundary amplitudes are **in phase**, the opposite of quadrature. The
+factorization reads
+
+\[
+\frac{2B}{q}
+=
+\underbrace{\operatorname{sech}(\log\lambda)}_{\rightarrow0}
+\underbrace{\cos\Delta\theta}_{=1},
+\]
+
+with the hierarchy \(|\psi_{\rm core}|:|\psi_{\rm ext}|\) growing
+\(\sim3{:}1\to518{:}1\) (median \(|\log\lambda|\): \(1.15\to6.25\)).
+The controls select the mechanism doubly: patterns give
+\(R_2=C_2=X_2=1\) with \(S=0\) exactly, while plain J3 keeps
+\(R_2\to0.94\) with \(\bar h\approx0.10\) — MAX is selected by the
+high-connectivity core plus its state, not by phases or J3 geometry
+alone. The BH mechanism chain is therefore
+
+\[
+\boxed{
+\text{highly connected core}
+\rightarrow
+\text{ground-state amplitude concentration}
+\rightarrow
+\text{core/exterior scale separation}
+\rightarrow
+P_-\to\frac12
+\rightarrow
+1\text{ bit/channel}
+\rightarrow
+S_Q^\partial\propto A.
+}
+\]
+
+The exact \(B=0\iff S_Q=1\) (§6) stands unchanged; the empirically
+established asymptotic route on the BH-like boundary is
+
+\[
+\boxed{
+\lambda\to0\text{ or }\infty
+\Rightarrow
+r\to0
+\Rightarrow
+B/q\to0,
+}
+\]
+
+with \(c=1\), rather than a quadrature condition. The area-law
+information emerges from localization/amplitude contrast across the
+interface. (No causal claim about BH formation; no follow-up campaign
+opened to force any interpretation.)
 
 ## 8. BH boundary information area law
 
@@ -393,7 +448,6 @@ dx^2+dy^2+\ell_W^2dz^2.
 This gives a mathematical explanation for why metric volume can look 3D while transport remains anisotropic.
 
 Current mark: **analytic implication / awaiting dedicated theorem banking**, rather than fully banked theorem.
-(CROSS-IMPL note not in repo at ledger creation.)
 
 ## 12. Event-law negative theorems
 
