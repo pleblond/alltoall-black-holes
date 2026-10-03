@@ -301,39 +301,58 @@ def _q_entries_match(e1: dict, e2: dict, mp, nodes1, ea: complex,
     return bool(direct or swapped)
 
 
-def _equiv_under_map(X1: dict, X2: dict, mp: dict,
-                     atol: float = BAR_LEDGER) -> bool:
+def _equiv_setup(X1: dict, X2: dict) -> dict:
     from bh_graph.ballistic import index_of
 
-    g1, o1 = X1["g"], list(X1["order"])
-    g2, o2 = X2["g"], list(X2["order"])
+    o1 = list(X1["order"])
     p1 = np.asarray(X1["psi"], dtype=np.complex128)
     p2 = np.asarray(X2["psi"], dtype=np.complex128)
     idx1 = index_of(o1)
-    idx2 = index_of(o2)
+    idx2 = index_of(list(X2["order"]))
     v1 = np.array([complex(p1[idx1[v]]) for v in o1],
                   dtype=np.complex128)
-    nodes1 = set(g1.nodes())
-    nodes2 = set(g2.nodes())
-    pr1 = present_keys(X1)
-    pr2 = present_keys(X2)
-    ab1 = sorted(absent_keys(X1), key=str)
-    ab2 = sorted(absent_keys(X2), key=str)
-    if len(pr1) != len(pr2) or len(ab1) != len(ab2):
+    n1 = float(np.sum(np.abs(v1) ** 2))
+    n2 = float(np.sum(np.abs(p2) ** 2))
+    return {"o1": o1, "p2": p2, "idx2": idx2, "v1": v1,
+            "nodes1": set(X1["g"].nodes()),
+            "nodes2": set(X2["g"].nodes()),
+            "pr1": present_keys(X1), "pr2": present_keys(X2),
+            "ab1": sorted(absent_keys(X1), key=str),
+            "ab2": sorted(absent_keys(X2), key=str),
+            "Q1": X1["Q"], "Q2": X2["Q"],
+            "v0": bool(n1 == 0.0 and n2 == 0.0)}
+
+
+def _equiv_under_map(X1: dict, X2: dict, mp: dict,
+                     atol: float = BAR_LEDGER) -> bool:
+    return _equiv_map_ctx(_equiv_setup(X1, X2), mp, atol)
+
+
+def _equiv_map_ctx(ctx: dict, mp: dict, atol: float = BAR_LEDGER) -> bool:
+    if len(ctx["pr1"]) != len(ctx["pr2"]) or \
+            len(ctx["ab1"]) != len(ctx["ab2"]):
         return False
-    v2p = np.array([complex(p2[idx2[mp[v]]]) for v in o1],
-                   dtype=np.complex128)
-    al = st0.align_phase(v2p, v1)
-    if float(np.abs(al - v1).max(initial=0.0)) > atol:
-        return False
-    ea = _phase_for_maps(v1, v2p)
-    for k1 in pr1:
+    v1 = ctx["v1"]
+    if ctx["v0"]:
+        # Zero fields align trivially (align_phase(0,0)=0, phase 1.0).
+        ea = complex(1.0, 0.0)
+    else:
+        o1, p2, idx2 = ctx["o1"], ctx["p2"], ctx["idx2"]
+        v2p = np.array([complex(p2[idx2[mp[v]]]) for v in o1],
+                       dtype=np.complex128)
+        al = st0.align_phase(v2p, v1)
+        if float(np.abs(al - v1).max(initial=0.0)) > atol:
+            return False
+        ea = _phase_for_maps(v1, v2p)
+    nodes1, nodes2 = ctx["nodes1"], ctx["nodes2"]
+    Q1, Q2 = ctx["Q1"], ctx["Q2"]
+    for k1 in ctx["pr1"]:
         k2 = mp.get(k1, None)
-        if k2 is None or k2 not in X2["Q"] or k2 not in nodes2:
+        if k2 is None or k2 not in Q2 or k2 not in nodes2:
             return False
-        if not _q_entries_match(X1["Q"][k1], X2["Q"][k2], mp,
-                                nodes1, ea, atol):
+        if not _q_entries_match(Q1[k1], Q2[k2], mp, nodes1, ea, atol):
             return False
+    ab1, ab2 = ctx["ab1"], ctx["ab2"]
     if ab1:
         used = [False] * len(ab2)
         for k1 in ab1:
@@ -341,8 +360,8 @@ def _equiv_under_map(X1: dict, X2: dict, mp: dict,
             for t, k2 in enumerate(ab2):
                 if used[t]:
                     continue
-                if _q_entries_match(X1["Q"][k1], X2["Q"][k2], mp,
-                                    nodes1, ea, atol):
+                if _q_entries_match(Q1[k1], Q2[k2], mp, nodes1, ea,
+                                    atol):
                     used[t] = True
                     hit = True
                     break
@@ -397,12 +416,13 @@ def is_enlarged_equiv_ok(X1: dict, X2: dict,
             h1, h2, node_match=lambda a, b: a.get("q") == b.get("q"))
         if not gm.is_isomorphic():
             return False
+        ctx = _equiv_setup(X1, X2)
         n = 0
         for mp in gm.isomorphisms_iter():
             n += 1
             if n > ISO_CAP:
                 return False
-            if _equiv_under_map(X1, X2, dict(mp), atol):
+            if _equiv_map_ctx(ctx, dict(mp), atol):
                 return True
         return False
     except Exception:
@@ -413,25 +433,30 @@ def count_histories_Q(Xm: dict, Xp: dict, T: int) -> dict:
     T = int(T)
     cur = [(copy_enlarged(Xm), 1)]
     widths = [1]
+    invXp = _invariants_enlarged(Xp)
     for _ in range(T):
         nxt: list = []
+        nxt_inv: list = []
         for rep, cnt in cur:
             succs = all_successors(rep, include_wait=True)
             uniq: list = []
+            uniq_inv: list = []
             for Y, _ in succs:
+                invY = _invariants_enlarged(Y)
                 dup = False
-                for Z in uniq:
-                    if _invariants_enlarged(Y) != _invariants_enlarged(Z):
+                for Z, invZ in zip(uniq, uniq_inv):
+                    if invY != invZ:
                         continue
                     if is_enlarged_equiv_ok(Y, Z):
                         dup = True
                         break
                 if not dup:
                     uniq.append(Y)
-            for Y in uniq:
+                    uniq_inv.append(invY)
+            for Y, invY in zip(uniq, uniq_inv):
                 placed = False
                 for t, (er, ec) in enumerate(nxt):
-                    if _invariants_enlarged(Y) != _invariants_enlarged(er):
+                    if invY != nxt_inv[t]:
                         continue
                     if is_enlarged_equiv_ok(Y, er):
                         nxt[t] = (er, ec + cnt)
@@ -439,11 +464,12 @@ def count_histories_Q(Xm: dict, Xp: dict, T: int) -> dict:
                         break
                 if not placed:
                     nxt.append((Y, cnt))
+                    nxt_inv.append(invY)
         cur = nxt
         widths.append(len(cur))
     n = 0
     for rep, cnt in cur:
-        if _invariants_enlarged(rep) != _invariants_enlarged(Xp):
+        if _invariants_enlarged(rep) != invXp:
             continue
         if is_enlarged_equiv_ok(rep, Xp):
             n += cnt
@@ -469,8 +495,9 @@ def explicit_histories_Q(Xm: dict, Xp: dict, T: int,
             pass
     matched = []
     matched_evs = []
+    invXp = _invariants_enlarged(Xp)
     for hist, evs in walks:
-        if _invariants_enlarged(hist[-1]) != _invariants_enlarged(Xp):
+        if _invariants_enlarged(hist[-1]) != invXp:
             continue
         if is_enlarged_equiv_ok(hist[-1], Xp):
             matched.append(hist)
@@ -487,6 +514,7 @@ def skeleton_Q(Xm: dict, Xp: dict, T: int) -> dict:
 
     T = int(T)
     s_vec = []
+    invXp = _invariants_enlarged(Xp)
     for L in range(T + 1):
         if L == 0:
             s_vec.append(1 if is_enlarged_equiv_ok(Xm, Xp) else 0)
@@ -494,23 +522,27 @@ def skeleton_Q(Xm: dict, Xp: dict, T: int) -> dict:
         cur = [(copy_enlarged(Xm), 1)]
         for _ in range(L):
             nxt: list = []
+            nxt_inv: list = []
             for rep, cnt in cur:
                 succs = merge_successors(rep) + split_successors(rep)
                 uniq: list = []
+                uniq_inv: list = []
                 for Y, _ in succs:
+                    invY = _invariants_enlarged(Y)
                     dup = False
-                    for Z in uniq:
-                        if _invariants_enlarged(Y) != _invariants_enlarged(Z):
+                    for Z, invZ in zip(uniq, uniq_inv):
+                        if invY != invZ:
                             continue
                         if is_enlarged_equiv_ok(Y, Z):
                             dup = True
                             break
                     if not dup:
                         uniq.append(Y)
-                for Y in uniq:
+                        uniq_inv.append(invY)
+                for Y, invY in zip(uniq, uniq_inv):
                     placed = False
                     for t, (er, ec) in enumerate(nxt):
-                        if _invariants_enlarged(Y) != _invariants_enlarged(er):
+                        if invY != nxt_inv[t]:
                             continue
                         if is_enlarged_equiv_ok(Y, er):
                             nxt[t] = (er, ec + cnt)
@@ -518,10 +550,11 @@ def skeleton_Q(Xm: dict, Xp: dict, T: int) -> dict:
                             break
                     if not placed:
                         nxt.append((Y, cnt))
+                        nxt_inv.append(invY)
             cur = nxt
         n = 0
         for rep, cnt in cur:
-            if _invariants_enlarged(rep) != _invariants_enlarged(Xp):
+            if _invariants_enlarged(rep) != invXp:
                 continue
             if is_enlarged_equiv_ok(rep, Xp):
                 n += cnt
@@ -537,23 +570,27 @@ def forward_census_Q(Xm: dict, T: int) -> dict:
     cur = [(copy_enlarged(Xm), 1)]
     for _ in range(T):
         nxt: list = []
+        nxt_inv: list = []
         for rep, cnt in cur:
             succs = all_successors(rep, include_wait=True)
             uniq: list = []
+            uniq_inv: list = []
             for Y, _ in succs:
+                invY = _invariants_enlarged(Y)
                 dup = False
-                for Z in uniq:
-                    if _invariants_enlarged(Y) != _invariants_enlarged(Z):
+                for Z, invZ in zip(uniq, uniq_inv):
+                    if invY != invZ:
                         continue
                     if is_enlarged_equiv_ok(Y, Z):
                         dup = True
                         break
                 if not dup:
                     uniq.append(Y)
-            for Y in uniq:
+                    uniq_inv.append(invY)
+            for Y, invY in zip(uniq, uniq_inv):
                 placed = False
                 for t, (er, ec) in enumerate(nxt):
-                    if _invariants_enlarged(Y) != _invariants_enlarged(er):
+                    if invY != nxt_inv[t]:
                         continue
                     if is_enlarged_equiv_ok(Y, er):
                         nxt[t] = (er, ec + cnt)
@@ -561,6 +598,7 @@ def forward_census_Q(Xm: dict, T: int) -> dict:
                         break
                 if not placed:
                     nxt.append((Y, cnt))
+                    nxt_inv.append(invY)
         cur = nxt
     return {"T": T, "n_classes": int(len(cur)),
             "total": int(sum(c for _, c in cur)),

@@ -173,6 +173,17 @@ def test_equiv_distinguishes_Q():
     assert not q0.is_enlarged_equiv_ok(Xa, Xb)
 
 
+def test_equiv_reflexive():
+    # Regression: symmetric-graph iso caps must never report False here.
+    _, Xp, _ = q0._merge1_pair("square")
+    assert q0.is_enlarged_equiv_ok(Xp, Xp)
+    Xh, _ = q0._hiddenq_pair("square", "stored")
+    assert q0.is_enlarged_equiv_ok(Xh, Xh)
+    b = q0.boundary_for_task(("wait", "square", "qpersist", 2))
+    assert q0.is_enlarged_equiv_ok(b["Xm"], b["Xm"])
+    assert q0.is_enlarged_equiv_ok(b["Xp"], b["Xp"])
+
+
 # ---------------------------------------------------------------------------
 # DP spots (tiny, V0)
 # ---------------------------------------------------------------------------
