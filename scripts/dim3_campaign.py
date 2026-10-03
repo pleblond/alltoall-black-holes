@@ -162,17 +162,22 @@ def euclidean_shells_of(tag: str, g, src) -> dict:
     fam = tag.split("-")[0]
     L = tag_L(tag)
     order = node_order(g)
+    # rmax covers the whole torus (J2: banked 25 verbatim; bigger 3D tori
+    # need more: corner at sqrt(ndim)*L/2).
+    ndim = 2 if fam == "j2" else 3
+    rmax = max(SPREAD_RMAX,
+               int(math.ceil(math.sqrt(ndim) * L / 2.0)) + 1)
     if fam == "j2":
         c3 = j2_torus_coords(L)
         cell = (c3[src][0], c3[src][1])
-        return Q.coarse_shells(c3, order, cell, L, SPREAD_RMAX)
+        return Q.coarse_shells(c3, order, cell, L, rmax)
     if fam in ("j3", "bcb"):
         c4 = dim3.j3_torus_coords(L)
-        return dim3.coarse_shells_3d(c4, order, c4[src][:3], L, SPREAD_RMAX)
+        return dim3.coarse_shells_3d(c4, order, c4[src][:3], L, rmax)
     if fam == "cb":
         cc = dim3.cubic_torus_coords(L)
         c4 = {v: (x, y, z, 0) for v, (x, y, z) in cc.items()}
-        return dim3.coarse_shells_3d(c4, order, cc[src], L, SPREAD_RMAX)
+        return dim3.coarse_shells_3d(c4, order, cc[src], L, rmax)
     raise ValueError(f"no shells for {tag}")
 
 
