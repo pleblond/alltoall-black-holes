@@ -12034,3 +12034,99 @@ characterized as F_M(xi) with earned locality/covariance/
 composition. A future campaign may use the Q-table as the frozen
 specification for what an added local store must satisfy -- this
 campaign chooses none and simulates none.
+## DIM3-VERDICT (filed 2026-10-03): DIM3-GEOMETRIC (ladder-literal NOT3D via invalidated trigger; J3 operationally cubic-class 3D where the apparatus validates)
+
+Campaign: DIM-3-0 — Three-Dimensional Operational Vacuum (branch
+dim3-operational-vacuum-b873, PR #117). Minimal natural 3D J2→J3 lift,
+H = -A unchanged: J3 = Z^3 ⋊ Z2 (x↔y transposition, 12 gens, quotient
+= cubic torus mult 4). Blind freeze sha256=01a035d0 (committed before
+reveal). Beast grid: 76 tasks, xargs -P 20, wall ~5 min, zero
+tracebacks; records data/dim3/ (106 parts) + data/dim3_blind.json +
+data/dim3_verdict.json + data/dim3_diagnosis.json committed. Suite 1809
+passed + 2 skipped on beast (-n 8; test_weighted.py skipped per
+standing instruction). Prereg docs/dim3-prereg.md FROZEN pre-data;
+docs/dim3-amendment-1.md (A1-A7) is the pre-grid apparatus-validity
+record (interior-peak rule, far-shell sizes L24/28/32, tladder,
+packet/pot0 validity, measurability-aware E/F/J, hidden banked-verbatim
+port + H-g VMINUS-state correction, vacuum ledger patterns).
+
+Headline: Stage A EXACT (M1-M5: degree 12, quotient cubic mult 4,
+bipartite, [H,S] = 0, H.P_anti = 0, H.U = U.H_Q) and Stage B EXACT
+(Bloch eps = -4Σcos, Γ Minv = 4I, m* = 1/4, Bloch-vs-brute < 1e-9):
+DIM3-NATURALITY-DEBT is off the table (unique minimal construction
+forced). The D-stage metric reveal POSITIVELY confirms 3D
+cubic-quotient geometry (DIST match 0.04-0.07 vs < 0.30 bar, 4-7x
+margin; quotient-vs-micro factor 2.1-2.6 at L12+; MDS-3 ball charts
+0.09-0.22 pass while MDS-2 charts 0.35-0.43 fail -- exactly the
+preregistered D-c pattern; sheet contrast 0.0). Far-field spreading
+confirms the 3D laws at L20+ (n = 4-8): |δψ| r^-0.86..-1.01,
+δρ r^-1.72..-2.02. J3 ≡ cubic control on EVERY readout (arrival
+supralinearity γ = 1.48 both; spread exponents identical to 3 digits
+at matched sizes; stress profiles, DIST, charts). The ladder code's
+literal output is DIM3-NOT3D via the d*-stability trigger -- but the
+trigger fires IDENTICALLY on the known-3D cubic control (d* = 2 stable
+there too), so it is an estimator ceiling, not a dimension
+measurement: nothing recovers 2D physics (exponents exclude the 2D
+windows J3 0.86-1.01 vs J2 0.50; LOCAL2 fails). Filed verdict:
+DIM3-GEOMETRIC (operational stages do not jointly pass their
+2D-calibrated bars), with three mechanism-proven estimator-validity
+diagnoses (QUOT-0 design-error-bar precedent: bars wrong, physics
+confirmed where the apparatus validates).
+
+C-stage diagnosis (blind dimension reads d* = 2, DIM 1.97-2.75, on J3
+AND cubic; J2 control reconstructs 2D correctly): (i) d* is
+STRUCTURALLY forced to 2 -- obs1.select_dimension returns the smallest
+d >= 2 with stress_d <= 0.5.stress_1, and MDS-2 of 3D station data
+always removes majority distortion (stress_2/stress_1 = 0.28-0.45 on
+all J3/cubic sets; the rule stops before examining dim 3/4, whose
+stresses 0.02-0.09 keep improving). It was validated only on 2D
+(correct 2) and expanders (returns 3 by failing at 2). (ii) W/D volume
+reads ~2.0 because fixed-threshold arrival times are SUPRALINEAR
+(M ~ r^1.48 on J3 AND cubic, fitted directly vs hidden quotient hops):
+amplitude decay (r^-1 in 3D) progressively delays threshold crossing,
+so V(R) ~ R^{3/1.48} = R^2.03 -- predicts the measured vol_d = 2.02 to
+1% (same mechanism milder in 2D: γ = 1.42 → R^1.41 vs measured
+1.48-1.57). The estimator is unbiased on synthetic Euclidean 3D-torus
+data (reads 2.7-3.0), so the distances, not the fit, deviate.
+(iii) P (static) volume reads 4-7.7 by STATIC-RANGE COMPRESSION:
+P-range ∝ 1/ξ with ξ_3D ~ 1.1-1.6 vs ξ_J2 0.53 predicts 0.35x the J2
+P-range; observed 0.35x exactly -- far-field pairs pile up in P,
+steepening V(R). Composite C-vol 2.24→2.51→2.75 trends toward 3 with L
+(j3-L16 within the ±0.25 window); only the capped d* and the P-driven
+cross-disagreement keep C failing.
+
+E/F-stage diagnosis: E-a fronts ride at 2/3 of bound on J3 (7.95-8.86)
+AND cubic (4.03-4.47) identically -- threshold-forerunner artifact
+(tladder: 6.74/7.95/9.38 per decade, extrapolating toward band edge
+12); packets ride at Bloch speed (L20 3%, cubic 4%, reversal exact),
+so propagation is Bloch-speed and the bar is 2D-calibrated. F-b
+current exponent reads 1.53-1.66 clean (r² ~ 0.98) on J3 AND cubic,
+below the [1.70, 2.30] bar -- 3D chirp artifact (k* grows toward the
+band edge as the peak rides below it; J2 rides at the edge, no chirp).
+L16 n = 3 near-field-only fits read steep (ψ 1.26, ρ 2.52, J3 ≡ cubic
+to digits); far-field legs (L20+, n >= 4) pass ψ/ρ. F-c B = 0.0 exact
+on all J3 (bipartite theorem holds); cb-L15 (odd-L cubic torus,
+non-bipartite) reads B 8e-3 -- control-construction footnote, not a J3
+finding. J2-L28 replicates banked RESPONSE-0 to all digits through
+campaign code (v = 7.947, ψ 0.50/ρ 1.00/J 0.95).
+
+G/H/I ports (characterization): packet/pot0 all rungs pass (pot0 both
+substrates, all 4 rungs, cos_pm = -1); pot1 equation-exact
+(resid ~1e-15, ξ filed 1.1-1.6 -- short-range as J2, no Coulomb claim);
+switch fronts same 2/3 fraction (filed forerunner); sector H-a..H-d all
+exact legs pass (comm/dead/inter/lrw 0.0, mixed-anti support 0.0
+exactly, far-field L2 0.43 descriptive per QUOT-0); bilayer contrast
+0.63; HIDDEN all legs green on banked patterns (sign/phase full blind;
+shape/amp wave+pot blind with diff VISIBLE-expected per HBR-0 Amd-1
+sodd rule; local-pair flips 0/0/20 match banked 0/0/12-46; amp_q
+E_ratio = 1.75 = c² exact; H-g VMINUS global pair 2850 flips vs 1276
+precedent, 28x margin); vacuum JOINT ladder all green at L4/8/12
+(VPLUS flat, VPI one-sided f_pos = 0, VMINUS symmetric, E-vacuous rule
+verified, ZERO B = 0).
+
+Follow-up (DIM-3-1 prescription, out of scope here): 3D-validated blind
+estimators (γ-aware arrival-time dimension, 3-resolving d* rule,
+ξ-aware static channel), larger blind cells (L24+) for vol convergence,
+far-shell-only exponent windows. No post-data bar was moved in this
+campaign: every literal failure is filed with its mechanism proof and
+control-fails-bar defense.

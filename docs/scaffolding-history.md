@@ -212,6 +212,26 @@ not established. A static-channel floor still blocks a full three-way
 cross-probe at L = 128; that limit stays on the record. Why the observer
 inhabits that quotient is §14.
 
+## 3.1 The 3D lift keeps its quotient but outruns the 2D-calibrated rulers
+
+DIM-3-0 (#117), verdict **DIM3-GEOMETRIC** ◇. The minimal J₂→J₃ lift
+(`J₃ = Z³ ⋊ Z2`, x↔y transposition, 12 gens) is exactly quotient-cubic
+(mult 4, `[H,S] = 0`, dead antisymmetric sector, Bloch `eps = −4Σcos`
+with isotropic Γ Hessian), so the construction debt is closed; what
+fails is joint operational recovery under the inherited 2D bars. The
+metric reveal still finds the quotient (distance match 4–7%, 2.1–2.6×
+closer than microscopic at L12+, MDS-3 charts pass where MDS-2 charts
+fail exactly as pre-registered, sheet contrast 0.0), far-field
+spreading reads `r⁻¹`/`r⁻²` at L20+, and J₃ matches the cubic control
+on every readout — but the blind dimension rulers, validated only on
+2D, misread known-3D data three proven ways: `d*` is structurally
+capped at 2 (majority-distortion rule stops at MDS-2), arrival times
+run supralinear (`M ~ r^1.48`, threshold-plus-decay) so volume growth
+reads `R²`, and the static channel compresses (`P`-range `∝ 1/ξ`).
+Fronts ride at 2/3 of bound on J₃ and cubic alike (forerunner
+artifact; packets ride at Bloch speed). The 3D-geometry result stands
+where the apparatus validates; 3D-calibrated rulers are DIM-3-1 work.
+
 ---
 
 # 4. Field anatomy
