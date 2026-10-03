@@ -2544,6 +2544,112 @@ Dividing \(16\pi\) by each of these values gives the cancelled
 coefficients.
 \end{proof}
 
+\begin{proposition}
+\label{prop:shells}
+Up to signs and interchange of the axes,
+\begin{align*}
+\lambda_\infty(2,2)
+&=\frac1{16}+\frac1{3\pi},\\
+\lambda_\infty(3,2)
+&=\frac18+\frac1{6\pi},\\
+\lambda_\infty(3,1)
+&=\frac{23}{12\pi}-\frac7{16},\\
+\lambda_\infty(4,0)
+&=\frac{81}{16}-\frac{46}{3\pi}.
+\end{align*}
+The cancelled coefficients \(16\pi/\lambda_\infty\) on these shells are
+\(768\pi^2/(16+3\pi)\), \(384\pi^2/(4+3\pi)\),
+\(768\pi^2/(92-21\pi)\), and \(768\pi^2/(243\pi-736)\).
+\end{proposition}
+
+\begin{proof}
+The sine term in \(\cos(2k_x+2k_y)\) is odd in \(k_y\) and drops out.
+Write \(c=\cos(2k_x)\), \(b=2-\cos k_x\), and \(z=\cos k_y\).
+Then \(Q=4(b-z)\) and \(\cos(2k_y)=2z^2-1\), so
+\[
+1-c(2z^2-1)
+=(1+c-2cb^2)+4cb\,(b-z)-2c(b-z)^2.
+\]
+Dividing by \(b-z\) and averaging in \(k_y\) replaces \(1/(b-z)\) by
+\(1/\sqrt{b^2-1}\) and \(b-z\) by \(b\).
+The sheet integral becomes
+\[
+f(2,2)
+=\frac{1}{8\pi}\int_0^{2\pi}
+\Biggl(
+2b\cos(2x)
++\frac{1+\cos(2x)-2\cos(2x)\,b^2}{\sqrt{b^2-1}}
+\Biggr)\,dx.
+\]
+The prefactor integrates to zero:
+\((2-\cos x)(2\cos^2 x-1)=-2+\cos x+4\cos^2 x-2\cos^3 x\),
+and \(\int_0^{2\pi}\cos=\int_0^{2\pi}\cos^3=0\) while
+\(\int_0^{2\pi}\cos^2=\pi\), so \(-4\pi+4\pi=0\).
+The remaining numerator, in \(u=\cos x\), is
+\(N=-4u^4+16u^3-12u^2-8u+8\).
+Set \(v=\sin^2(x/2)\), so \(u=1-2v\), \(\cos(2x)=1-8v+8v^2\) and
+\(b=1+2v\). Then
+\[
+(1-8v+8v^2)(1+4v+4v^2)=1-4v-20v^2+32v^4,
+\]
+and \(N=48v^2-64v^4=16\sin^4(x/2)\bigl(3-4\sin^4(x/2)\bigr)\).
+Also \(\sqrt{b^2-1}=2\sin(x/2)\sqrt{1+\sin^2(x/2)}\) on \((0,2\pi)\).
+The quotient is
+\(8\sin^3(x/2)\bigl(3-4\sin^4(x/2)\bigr)/\sqrt{1+\sin^2(x/2)}\).
+The substitution \(x=2\varphi\) and the symmetry about \(\varphi=\pi/2\)
+turn the integral of \(N/\sqrt{b^2-1}\) into
+\[
+32\int_0^1\frac{4w^6-12w^4+9w^2-1}{\sqrt{2-w^2}}\,dw,
+\]
+where \(w=\cos\varphi\) and the numerator is
+\((1-w^2)\bigl(3-4(1-w^2)^2\bigr)\).
+
+The substitution \(w=\sqrt{2}\sin\theta\) gives
+\[
+\int_0^1\frac{w^{2n}}{\sqrt{2-w^2}}\,dw
+=2^n\int_0^{\pi/4}\sin^{2n}\theta\,d\theta.
+\]
+The cases \(n=0,1,2\) are \(\pi/4\), \(\pi/4-1/2\), and \(3\pi/8-1\).
+For \(n=3\),
+\[
+\sin^6\theta
+=\frac{10-15\cos 2\theta+6\cos 4\theta-\cos 6\theta}{32}.
+\]
+Integrating from \(0\) to \(\pi/4\) and multiplying by \(8\) produces
+\(5\pi/8-11/6\).
+The numerator \(4w^6-12w^4+9w^2-1\) therefore integrates to
+\begin{align*}
+&4\Bigl(\frac{5\pi}{8}-\frac{11}{6}\Bigr)
+-12\Bigl(\frac{3\pi}{8}-1\Bigr)
++9\Bigl(\frac\pi4-\frac12\Bigr)
+-\frac\pi4\\
+&\qquad=-\frac{22}{3}+12-\frac92
+=\frac16.
+\end{align*}
+The coefficients of \(\pi\) cancel.
+Thus the \(x\)-integral equals \(32/6=16/3\), and
+\(f(2,2)=(16/3)/(8\pi)=2/(3\pi)\).
+Therefore \(\lambda_\infty(2,2)=1/16+1/(3\pi)\).
+
+The neighbours of \((2,2)\) are two copies of \((3,2)\) and two copies of
+\((2,1)\), so \(2f(2,2)=f(3,2)+f(2,1)\).
+With \(f(2,1)=1/\pi-1/8\) this gives \(f(3,2)=1/(3\pi)+1/8\) and
+\(\lambda_\infty(3,2)=1/8+1/(6\pi)\).
+The neighbours of \((2,1)\) give
+\[
+4f(2,1)=f(3,1)+f(1,1)+f(2,2)+f(2,0),
+\]
+hence \(f(3,1)=23/(6\pi)-1\) and
+\(\lambda_\infty(3,1)=23/(12\pi)-7/16\).
+The neighbours of \((3,0)\) give
+\[
+4f(3,0)=f(4,0)+f(2,0)+2f(3,1),
+\]
+hence \(f(4,0)=10-92/(3\pi)\) and
+\(\lambda_\infty(4,0)=81/16-46/(3\pi)\).
+Dividing \(16\pi\) by each value gives the cancelled coefficients.
+\end{proof}
+
 On \(J_3\) the threshold of Proposition~\ref{prop:adj} already applies at
 every positive separation.
 Adjacent cells admit a sharper value, because the coordination identity
