@@ -1,5 +1,20 @@
 # Changelog
 
+- **Unreleased (BH-Q-ENT-0)** — Boundary scaling of exterior-blind store
+  information: `src/bh_graph/bhqent0.py` (region/store collapse, 8 frozen
+  exterior channels + joint, Q-Jacobians, blind dims, per-entry R/I
+  audit, cover census with honest cap-200, validation, anatomy, hidden
+  overlap, graph contrast, law gates + verdict ladder, measure audit,
+  firewall scan), `tests/test_bhqent0.py` (22 pins), 74-task beast
+  campaign + frozen analyzer, `docs/bhqent0-prereg.md` (FROZEN pre-data)
+  + `docs/bhqent0-verdict.md`. VERDICT BHQENT0-UNCLASSIFIED (34/34):
+  joint D topology-dependent (paths/squares 0, stars 2n-4, J2 disks n),
+  boundary R^2 0.68 / volume R^2 0.89 / b-log-b R^2 0.72 all miss frozen
+  bars; factor-two resolved (N_split 0); VMINUS halves J2 blind dim;
+  cover log2 max 12.17 combinatorial-only; entropy still blocked. Full
+  suite on beast: 2424 passed / 2 skipped (weighted skipped per policy;
+  4 failures pre-existing). Records in `data/bhqent0/` (74 + verdict).
+
 - **v5.9** — Substrate-and-store release (rolls up the 6 post-v5.8 campaign
   entries below, all merged): SUBSTRATE-CLASS-0 PARTIAL substrate rules
   (exact minimal E/H-shell/G in tied spectral+combinatorial form; F/H-TAU/J

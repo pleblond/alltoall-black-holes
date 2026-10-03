@@ -1,0 +1,378 @@
+{
+ "verdict": "BHQENT0-UNCLASSIFIED",
+ "controls_ok": true,
+ "cause": "",
+ "factor_two_ok": true,
+ "headline_rows": [
+  {
+   "spec": "P2",
+   "n_R": 2,
+   "b_R": 2,
+   "D_joint": 0,
+   "D_static": 2
+  },
+  {
+   "spec": "P3",
+   "n_R": 3,
+   "b_R": 2,
+   "D_joint": 0,
+   "D_static": 4
+  },
+  {
+   "spec": "P4",
+   "n_R": 4,
+   "b_R": 2,
+   "D_joint": 0,
+   "D_static": 6
+  },
+  {
+   "spec": "P5",
+   "n_R": 5,
+   "b_R": 2,
+   "D_joint": 0,
+   "D_static": 8
+  },
+  {
+   "spec": "P6",
+   "n_R": 6,
+   "b_R": 2,
+   "D_joint": 0,
+   "D_static": 10
+  },
+  {
+   "spec": "P7",
+   "n_R": 7,
+   "b_R": 2,
+   "D_joint": 0,
+   "D_static": 12
+  },
+  {
+   "spec": "P8",
+   "n_R": 8,
+   "b_R": 2,
+   "D_joint": 0,
+   "D_static": 14
+  },
+  {
+   "spec": "S3_2",
+   "n_R": 4,
+   "b_R": 2,
+   "D_joint": 4,
+   "D_static": 6
+  },
+  {
+   "spec": "S4_3",
+   "n_R": 5,
+   "b_R": 3,
+   "D_joint": 6,
+   "D_static": 8
+  },
+  {
+   "spec": "S6_4",
+   "n_R": 7,
+   "b_R": 4,
+   "D_joint": 10,
+   "D_static": 12
+  },
+  {
+   "spec": "S8_6",
+   "n_R": 9,
+   "b_R": 6,
+   "D_joint": 14,
+   "D_static": 16
+  },
+  {
+   "spec": "S3_3",
+   "n_R": 4,
+   "b_R": 3,
+   "D_joint": 4,
+   "D_static": 6
+  },
+  {
+   "spec": "S5_3",
+   "n_R": 6,
+   "b_R": 3,
+   "D_joint": 8,
+   "D_static": 10
+  },
+  {
+   "spec": "J2L4edge",
+   "n_R": 2,
+   "b_R": 14,
+   "D_joint": 0,
+   "D_static": 2
+  },
+  {
+   "spec": "J2L6r1",
+   "n_R": 18,
+   "b_R": 24,
+   "D_joint": 18,
+   "D_static": 34
+  },
+  {
+   "spec": "J2L8r2",
+   "n_R": 42,
+   "b_R": 32,
+   "D_joint": 42,
+   "D_static": 82
+  },
+  {
+   "spec": "SQL4dimer",
+   "n_R": 2,
+   "b_R": 6,
+   "D_joint": 0,
+   "D_static": 2
+  },
+  {
+   "spec": "SQL4r1",
+   "n_R": 5,
+   "b_R": 6,
+   "D_joint": 0,
+   "D_static": 8
+  },
+  {
+   "spec": "SQL6r1",
+   "n_R": 5,
+   "b_R": 8,
+   "D_joint": 0,
+   "D_static": 8
+  }
+ ],
+ "gates_summary": {
+  "blind_none_gate": false,
+  "boundary_gate": false,
+  "volume_gate": false,
+  "mixed_gate": false,
+  "mixed_dim_gate": false
+ },
+ "fits": {
+  "boundary": {
+   "a": 1.0360469127285274,
+   "c": -1.2371507416350458,
+   "r2": 0.6807628314110983,
+   "ss_res": 614.4139358399449,
+   "n": 19
+  },
+  "volume": {
+   "a": 1.0742926205033416,
+   "c": -2.5630598606569013,
+   "r2": 0.8878601940727406,
+   "ss_res": 215.8278117446325,
+   "n": 19
+  },
+  "mixed": {
+   "a": 0.2075818718923202,
+   "c": 0.8577046574136868,
+   "r2": 0.7205348078253646,
+   "ss_res": 537.8675340758982,
+   "n": 19
+  },
+  "fixed": {
+   "a": 0.0,
+   "c": 0.0,
+   "r2": 1.0,
+   "ss_res": 0.0,
+   "n": 7
+  },
+  "quad_ftest": {
+   "F": 0.10816642095000786,
+   "p": 0.7465069180830171,
+   "quadratic_better": false
+  },
+  "second_diffs": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   4.0,
+   -2.0,
+   2.0,
+   0.0,
+   -14.0,
+   14.0,
+   -12.0,
+   26.0,
+   6.0,
+   -66.0,
+   42.0,
+   0.0
+  ],
+  "fixed_growth": 0
+ },
+ "kappa": null,
+ "gates": [
+  {
+   "gate": "count-store",
+   "ok": true,
+   "detail": "got=19 want=19"
+  },
+  {
+   "gate": "count-jacobian",
+   "ok": true,
+   "detail": "got=19 want=19"
+  },
+  {
+   "gate": "count-cover",
+   "ok": true,
+   "detail": "got=19 want=19"
+  },
+  {
+   "gate": "count-order",
+   "ok": true,
+   "detail": "got=5"
+  },
+  {
+   "gate": "count-contrast",
+   "ok": true,
+   "detail": "got=3"
+  },
+  {
+   "gate": "count-vacuum",
+   "ok": true,
+   "detail": "got=7 want=7"
+  },
+  {
+   "gate": "count-regression",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "count-audit",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "A-bhent",
+   "ok": true,
+   "detail": "C1=True C2=True"
+  },
+  {
+   "gate": "A-store",
+   "ok": true,
+   "detail": "n=19"
+  },
+  {
+   "gate": "A-split",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "A-sym",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "A-hidden-quot",
+   "ok": true,
+   "detail": "[True, True]"
+  },
+  {
+   "gate": "B-specs",
+   "ok": true,
+   "detail": "n=19"
+  },
+  {
+   "gate": "C-boundary",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "D-store",
+   "ok": true,
+   "detail": "n=19"
+  },
+  {
+   "gate": "E-rank",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "F-quotient",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "G-channels",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "H-rank",
+   "ok": true,
+   "detail": "SVD filed per channel"
+  },
+  {
+   "gate": "H-validate",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "I-audit",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "J-cover",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "K-gates",
+   "ok": true,
+   "detail": "blind_none=False boundary=False volume=False mixed=False mixed_dim=False"
+  },
+  {
+   "gate": "L-pairs",
+   "ok": true,
+   "detail": "matched-b ('P4', 'P6', 'P8'): [('P4', 0), ('P6', 0), ('P8', 0)]; matched-b ('S4_3', 'S5_3'): [('S4_3', 6), ('S5_3', 8)]; matched-n P4/S3_3: 0/4; matched-n P5/S4_3: 0/6; matched-n P6/S5_3: 0/8; matched-both P4/S3_2: 0/4"
+  },
+  {
+   "gate": "M-anatomy",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "N-ancestry",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "O-invariance",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "P-overlap",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "Q-vacuum",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "R-contrast",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "gate": "S-kappa",
+   "ok": true,
+   "detail": "filed post-verdict"
+  },
+  {
+   "gate": "T-audit",
+   "ok": true,
+   "detail": "no earned finite measure/resolution/quantization of the continuous blind Q fiber in the frozen bank; entropy remains blocked"
+  },
+  {
+   "gate": "Z-firewall",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "n_gates": 34,
+ "n_pass": 34
+}
