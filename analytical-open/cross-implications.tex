@@ -1350,6 +1350,176 @@ than four lost zero modes.
 Unequal hoppings mix \(|e\rangle\) with \(|o\rangle\), and the factorization
 uses the equality of the two hoppings.
 
+\begin{proposition}
+\label{prop:bitwt}
+On \(J_2\), normalise an eigenstate of the two-bit geometry in
+Proposition~\ref{prop:twobit}, at a root of either secular equation.
+The outer endpoints have equal weight
+\begin{equation}
+\label{eq:bitwt}
+|\psi(a)|^2=|\psi(b)|^2
+=\frac{\mathcal{G}(E)^2\lambda(E)}
+{2\bigl(-(\mathcal{G}\lambda)'(E)\bigr)},
+\end{equation}
+where \(\lambda=g\) on the even channel and \(\lambda=1/E\) on the odd
+channel.
+Above \(8\), each stitch has relative phase \(\pi\) when \(t>0\) and \(0\)
+when \(t<0\).
+Below \(-8\) that phase is the opposite.
+On the even channel \(\psi(a)=\psi(b)\) and the two host bits are equal, so
+their bond saturates the positive endpoint of
+Lemma~\ref{lem:bond-expand}.
+On the odd channel \(\psi(a)=-\psi(b)\), the host component is a scalar
+multiple of the odd delta of the cell, and the host bond saturates the
+negative endpoint.
+The host mass on the odd channel equals the sum of the two bit
+probabilities.
+As \(t\to 0\),
+\begin{equation}
+\label{eq:bitodd}
+|\psi(a)|^2
+=32768\pi\, e^{\pi}\, t^{-4}
+\exp\Bigl(-\frac{128\pi}{t^2}\Bigr)
+\bigl(1+o(1)\bigr)
+\end{equation}
+on the odd channel, and
+\begin{equation}
+\label{eq:biteven}
+|\psi(a)|^2
+=128\pi\, e^{\pi/2}\, t^{-2}
+\exp\Bigl(-\frac{8\sqrt{2}\,\pi}{|t|}\Bigr)
+\bigl(1+o(1)\bigr)
+\end{equation}
+on the even channel.
+The odd state puts half its norm on each outer copy.
+The even state puts one quarter on each outer copy and one half on the
+host.
+In the same limit,
+\(t^2\ln(1/(E-8))\to 128\pi\) on the odd channel and
+\(|t|\ln(1/(E-8))\to 8\pi\sqrt{2}\) on the even channel.
+\end{proposition}
+
+\begin{proof}
+Write \(x\) and \(y\) for the two host bits, and let \(R=(E-H_0)^{-1}\).
+Proposition~\ref{prop:cellpole} gives the host entries
+\(D=\mathcal{G}=1/(2E)+g/2\) and \(F=-1/(2E)+g/2\), so
+\(D+F=g\) and \(D-F=1/E\).
+The eigenvalue equation produces
+\(\psi(a)=-t\mathcal{G}\,\psi(x)\) and \(\psi(b)=-t\mathcal{G}\,\psi(y)\), and
+\begin{align*}
+\psi(x)&=-t D\,\psi(a)-t F\,\psi(b),\\
+\psi(y)&=-t F\,\psi(a)-t D\,\psi(b).
+\end{align*}
+Hence
+\(\bigl(1-t^2\mathcal{G}^2\bigr)\psi(a)=t^2\mathcal{G} F\,\psi(b)\).
+The root of \(t^2\mathcal{G} g=1\) has \(\psi(a)=\psi(b)\), and the root of
+\(t^2\mathcal{G}/E=1\) has \(\psi(a)=-\psi(b)\).
+A global phase makes \(\psi\) real.
+The stitch phase is the sign of \(-t\mathcal{G}\).
+
+On the odd channel, \(\psi(b)=-\psi(a)\), so the host vector is
+\(-t\psi(a)\,R(|x\rangle-|y\rangle)\).
+The odd delta is a zero mode of \(H_0\), and therefore
+\(R(|x\rangle-|y\rangle)=(1/E)(|x\rangle-|y\rangle)\).
+The host component is supported on the two bits,
+\(\psi(y)=-\psi(x)\), and
+\(|\psi(x)|^2=t^2|\psi(a)|^2/E^2\).
+The moduli agree and the relative phase is \(\pi\), so the host bond
+equals \(-q/2\).
+Its mass is \(|\psi(x)|^2+|\psi(y)|^2\).
+
+On the even channel the same substitution gives
+\(\psi(x)=\psi(y)=-t g\,\psi(a)\).
+The moduli agree and the relative phase is \(0\), so the host bond equals
+\(+q/2\).
+
+Each outer copy carries the squared mass
+\(|\psi(a)|^2(-\mathcal{G}')/\mathcal{G}^2\).
+The host mass is \(2t^2|\psi(a)|^2(-\lambda')\), because
+\(\|R|x\rangle\|^2=-\mathcal{G}'\), the cross term is \(-\partial_E F\), and
+the sign of \(\psi(a)\psi(b)\) selects \(\lambda=g\) or \(\lambda=1/E\).
+At the root, \(t^2=1/(\mathcal{G}\lambda)\), and normalisation produces
+\eqref{eq:bitwt}.
+Both \(\mathcal{G}g\) and \(\mathcal{G}/E\) are even, and \(\mathcal{G}'\) is
+even, so the weight at \(-E\) agrees with the weight at \(E\).
+
+For the odd asymptotic, write \(E=8+\delta\) and \(L=\ln(1/\delta)\).
+The secular equation is \(\mathcal{G}=E/t^2\).
+The expansion of \(\mathcal{G}\) in the proof of
+Proposition~\ref{prop:stitch}, with
+\(C_0=1/16+3\ln 2/(8\pi)\), gives
+\[
+\delta
+=64 e^{\pi}
+\exp\Bigl(-\frac{16\pi E}{t^2}\Bigr)
+\bigl(1+o(1)\bigr)
+\]
+as \(\delta\to 0\), since \(16\pi C_0=\pi+6\ln 2\).
+The root tends to the edge, so \(E\to 8\) and
+\[
+\delta=64 e^{\pi}\exp(-128\pi/t^2)\,(1+o(1)).
+\]
+Proposition~\ref{prop:endpoint} gives
+\(\delta(-\mathcal{G}')\to 1/(16\pi)\).
+In the denominator of \eqref{eq:bitwt},
+\[
+-\Bigl(\frac{\mathcal{G}}{E}\Bigr)'
+=\frac{E(-\mathcal{G}')+\mathcal{G}}{E^2},
+\]
+and \(\mathcal{G}/E=1/t^2\) is negligible beside \(-\mathcal{G}'\).
+The weight is \(8\pi\delta\,\mathcal{G}^2\,(1+o(1))\).
+Inserting \(\mathcal{G}=8/t^2\,(1+o(1))\) produces \eqref{eq:bitodd}.
+The outer mass is \(8\pi\delta(-\mathcal{G}')\,(1+o(1))\) and tends to \(1/2\).
+
+For the even channel, \(g=2\mathcal{G}-1/E\), so
+\[
+\mathcal{G}
+=\frac14\Biggl(\frac1E+\sqrt{\frac1{E^2}+\frac8{t^2}}\Biggr).
+\]
+The bound \(\sqrt{1+u}\le 1+u/2\) gives
+\[
+\mathcal{G}
+=\frac{1}{|t|\sqrt{2}}+\frac{1}{32}+o(1),
+\]
+because \(1/(4E)\to 1/32\).
+The same expansion of \(\mathcal{G}\) yields
+\[
+\delta
+=64 e^{\pi/2}
+\exp\Bigl(-\frac{8\sqrt{2}\,\pi}{|t|}\Bigr)
+\bigl(1+o(1)\bigr),
+\]
+since \(16\pi/32=\pi/2\) and \(16/\sqrt{2}=8\sqrt{2}\).
+Differentiating \(g=2\mathcal{G}-1/E\) gives
+\[
+-(\mathcal{G} g)'
+=(-\mathcal{G}')\Bigl(4\mathcal{G}-\frac1E\Bigr)
+-\frac{\mathcal{G}}{E^2}.
+\]
+The second summand is negligible: its ratio to the first is a constant
+multiple of \(\delta L\).
+The quotient \((2\mathcal{G}-1/E)/(4\mathcal{G}-1/E)\) tends to \(1/2\).
+The weight simplifies to
+\(4\pi\delta\,\mathcal{G}^2\,(1+o(1))\).
+Here \(\mathcal{G}^2=1/(2t^2)\,(1+o(1))\), which is \eqref{eq:biteven}.
+The outer mass tends to \(1/4\), and the host carries the remaining half.
+The logarithm statements are the exponents in the two expansions of
+\(\delta\).
+\end{proof}
+
+The value \(1/8\) is doing two jobs.
+It is the edge value of the flat pole \(1/E\), and it is the adjacent-cell
+edge value \(\lambda_\infty=1/8\) of Proposition~\ref{prop:mean}.
+That common value is why \eqref{eq:bitodd} and \eqref{eq:biteven} reproduce
+the adjacent weights in \eqref{eq:wcanc} and \eqref{eq:wdiv}.
+The states do not.
+On the odd channel the host mass sits on two vertices; on the adjacent
+cancelled channel it spreads over the sheet and tends to zero only after
+that spreading.
+On the even channel the stitch-bond ratio \(|B|/(q/2)\) tends to
+\(2\sqrt{2}/3\), while the bond of the two host bits remains saturated at
+\(+q/2\) for every \(t\neq 0\).
+
 \section{Two stitches into adjacent cells}
 \label{sec:neighbor}
 
