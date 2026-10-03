@@ -193,6 +193,44 @@ def t_alphabet(spec, bg_name, outdir):
                         {"spec": spec, "bg": bg_name}, payload)
 
 
+def t_alphabet_matched(spec, bg_name, outdir):
+    r = be.build_region(spec)
+    bg = be.background_shapes(r, bg_name)
+    if r.get("whole_cells", False):
+        pairs = be.matched_alphabet_j2(r, bg)
+    else:
+        pairs = be.matched_alphabet_pair(r, bg)
+    shells = be.exterior_shells(r)
+    near = [d for d in shells if d == 1]
+    far = [d for d in shells if d >= 2]
+    rows = []
+    for s in pairs:
+        psiA, psiB = s["psi_A"], s["psi_B"]
+        loc = be.local_distance_in_R(psiA, psiB, r)
+        sm = be.is_static_match_ok(be.exterior_static(psiA, r),
+                                   be.exterior_static(psiB, r))
+        wv = be.exterior_tv_wave(psiA, psiB, r)
+        df = be.exterior_tv_diff(psiA, psiB, r)
+        w = {int(k): float(v["C"]) for k, v in wv.items()}
+        d = {int(k): float(v["C"]) for k, v in df.items()}
+        nrm = max([w[k] for k in near] + [d[k] for k in near])
+        frm = max([w[k] for k in far] + [d[k] for k in far]) if far else 0.0
+        rows.append({"tag": s["tag"], "D": loc["D"], "static": bool(sm),
+                     "wave": w, "diff": d,
+                     "near_max": float(nrm), "far_max": float(frm),
+                     "near_blind": bool(nrm < be.REMOTE_BAR),
+                     "far_blind": bool(frm < be.REMOTE_BAR)})
+    payload = {"n_pairs": len(rows),
+               "min_D": min(x["D"] for x in rows),
+               "n_local": sum(1 for x in rows if x["D"] > be.LOCAL_BAR),
+               "n_static": sum(1 for x in rows if x["static"]),
+               "n_near_blind": sum(1 for x in rows if x["near_blind"]),
+               "n_far_blind": sum(1 for x in rows if x["far_blind"]),
+               "rows": rows, "firewall_ok": True}
+    return write_record(outdir, f"alphabetM_{spec}_{bg_name}",
+                        {"spec": spec, "bg": bg_name}, payload)
+
+
 def t_equiv(spec, outdir):
     import networkx as nx
 
@@ -301,6 +339,9 @@ def all_tasks():
     for s in bat["alphabet"]:
         tasks.append(f"--task alphabet --spec {s} --bg VPLUS")
     tasks.append("--task alphabet --spec J2L6r1 --bg VPI")
+    for s in bat["alphabet"]:
+        tasks.append(f"--task alphabet_matched --spec {s} --bg VPLUS")
+    tasks.append("--task alphabet_matched --spec J2L6r1 --bg VPI")
     for s in bat["equiv"]:
         tasks.append(f"--task equiv --spec {s}")
     for s in ("P2", "P3"):
@@ -341,6 +382,8 @@ def main():
         t_fiber(a.spec, a.outdir)
     elif t == "alphabet":
         t_alphabet(a.spec, a.bg, a.outdir)
+    elif t == "alphabet_matched":
+        t_alphabet_matched(a.spec, a.bg, a.outdir)
     elif t == "equiv":
         t_equiv(a.spec, a.outdir)
     elif t == "control":

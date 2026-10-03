@@ -119,7 +119,7 @@ def main():
     chk("fiber:blind_grows", True, f"{blind_by_n} -> {blind_grows}")
 
     for name, r in sorted(recs.items()):
-        if not name.startswith("alphabet_"):
+        if not name.startswith("alphabet_") or name.startswith("alphabetM_"):
             continue
         p = r["payload"]
         chk(f"{name}:local", p["n_local"] == p["n_states"],
@@ -127,6 +127,16 @@ def main():
         chk(f"{name}:static", p["n_static"] == p["n_states"],
             f"{p['n_static']}/{p['n_states']}")
         chk(f"{name}:dyn_filed", True, f"dyn_blind={p['n_dyn_blind']}")
+    for name, r in sorted(recs.items()):
+        if not name.startswith("alphabetM_"):
+            continue
+        p = r["payload"]
+        chk(f"{name}:local", p["n_local"] == p["n_pairs"],
+            f"{p['n_local']}/{p['n_pairs']}")
+        chk(f"{name}:static", p["n_static"] == p["n_pairs"],
+            f"{p['n_static']}/{p['n_pairs']}")
+        chk(f"{name}:near_filed", True, f"near_blind={p['n_near_blind']}")
+        chk(f"{name}:far_filed", True, f"far_blind={p['n_far_blind']}")
 
     # Equiv -----------------------------------------------------------------
     for name, r in sorted(recs.items()):

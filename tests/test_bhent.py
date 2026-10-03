@@ -295,6 +295,38 @@ def test_j2_alphabet_local_vs_static():
         assert be.is_static_match_ok(s0, be.exterior_static(s["psi"], r))
 
 
+def test_matched_j2_sodd():
+    from bh_graph.malus import sheet_swap_matrix
+
+    r = be.j2_disk_region(4, (2, 2), 1)
+    bg = be.background_shapes(r, "VPLUS")
+    pairs = be.matched_alphabet_j2(r, bg)
+    assert len(pairs) == 9 * 4
+    from bh_graph import hidden as _h
+
+    s = sheet_swap_matrix(r["order"], r["c3"])
+    p0 = pairs[0]
+    assert np.allclose(p0["psi_A"] + p0["psi_B"], 2.0 * bg)
+    assert _h.prob_diff_sodd_ok(p0["psi_A"], p0["psi_B"], s)
+    assert be.local_distance_in_R(p0["psi_A"], p0["psi_B"], r)["D"] \
+        > be.LOCAL_BAR
+
+
+def test_matched_pair_structure():
+    r = be.build_region("P4")
+    bg = be.background_shapes(r, "VPLUS")
+    pairs = be.matched_alphabet_pair(r, bg)
+    assert len(pairs) == 3 * 4
+    from bh_graph.ballistic import index_of
+
+    idx = index_of(r["order"])
+    for p0 in pairs[:2]:
+        assert np.allclose(p0["psi_A"] + p0["psi_B"], 2.0 * bg)
+        sA = complex(sum(p0["psi_A"][idx[v]] for v in r["R"]))
+        sB = complex(sum(p0["psi_B"][idx[v]] for v in r["R"]))
+        assert abs(sA - sB) < 1e-9
+
+
 def test_pair_alphabet_sum_zero():
     r = be.build_region("P4")
     bg = be.background_shapes(r, "VPLUS")

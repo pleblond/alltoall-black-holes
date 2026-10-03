@@ -901,6 +901,49 @@ def blind_alphabet_j2(rec, bg):
     return states
 
 
+def matched_alphabet_j2(rec, bg):
+    """J2 matched sign pairs: bg +/- e^{ip} d_c (equal |P_-|^2).
+
+    Equal hidden norms make Dp(0) exactly S-odd (HIDDEN-0 0D mechanism:
+    P_- eigenmode of Lrw, decays in place, never spreads). Four phases
+    (0, pi/4, pi/2, 3pi/4): unordered pairs, no sign double-count.
+    """
+    from bh_graph import hidden as _h
+
+    order, c3 = rec["order"], rec["c3"]
+    bg = np.asarray(bg, dtype=np.complex128)
+    states = []
+    for c in rec["cells"]:
+        d = _h.hidden_delta(order, c3, (int(c[0]), int(c[1])))
+        for j, ph in enumerate((0.0, math.pi / 4.0, math.pi / 2.0,
+                                3.0 * math.pi / 4.0)):
+            w = np.exp(1.0j * float(ph)) * d
+            states.append({"tag": f"mc{c[0]},{c[1]}:p{j}",
+                           "psi_A": bg + w, "psi_B": bg - w})
+    return states
+
+
+def matched_alphabet_pair(rec, bg, amp=ALPHA_PROBE):
+    """Sum-zero matched pairs: bg +/- a e^{ip}(e_pivot - e_d)."""
+    from bh_graph.ballistic import index_of
+
+    idx = index_of(rec["order"])
+    bg = np.asarray(bg, dtype=np.complex128)
+    R = list(rec["R"])
+    pivot = R[0]
+    states = []
+    for d in R[1:]:
+        vec = np.zeros(len(rec["order"]), dtype=np.complex128)
+        vec[idx[pivot]] = 1.0
+        vec[idx[d]] = -1.0
+        for j, ph in enumerate((0.0, math.pi / 4.0, math.pi / 2.0,
+                                3.0 * math.pi / 4.0)):
+            w = float(amp) * np.exp(1.0j * float(ph)) * vec
+            states.append({"tag": f"mpair{pivot}-{d}:p{j}",
+                           "psi_A": bg + w, "psi_B": bg - w})
+    return states
+
+
 def blind_alphabet_pair(rec, bg, amp=ALPHA_PROBE):
     """Sum-zero pair alphabet: bg + a e^{ip}(e_c - e_d), c fixed pivot."""
     from bh_graph.ballistic import index_of
