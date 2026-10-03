@@ -1,0 +1,447 @@
+{
+ "battery": {
+  "comparison": {
+   "max_abs_diff": 1.1102230246251565e-16,
+   "n_compared": 10,
+   "rows": [
+    {
+     "P_minus": 0.4333333333333333,
+     "S_banked": 0.9871377743721863,
+     "abs_diff": 0.0,
+     "cell": "g1",
+     "h2": 0.9871377743721863
+    },
+    {
+     "P_minus": 0.7935779816513763,
+     "S_banked": 0.7345876609421156,
+     "abs_diff": 1.1102230246251565e-16,
+     "cell": "g2",
+     "h2": 0.7345876609421155
+    },
+    {
+     "P_minus": 0.6428571428571429,
+     "S_banked": 0.9402859586706311,
+     "abs_diff": 0.0,
+     "cell": "g3",
+     "h2": 0.9402859586706311
+    },
+    {
+     "P_minus": 0.16666666666666666,
+     "S_banked": 0.6500224216483541,
+     "abs_diff": 0.0,
+     "cell": "g4",
+     "h2": 0.6500224216483541
+    },
+    {
+     "P_minus": 0.5666666666666665,
+     "S_banked": 0.9871377743721864,
+     "abs_diff": 1.1102230246251565e-16,
+     "cell": "g5",
+     "h2": 0.9871377743721863
+    },
+    {
+     "P_minus": 0.0,
+     "S_banked": -0.0,
+     "abs_diff": 0.0,
+     "cell": "sym",
+     "h2": 0.0
+    },
+    {
+     "P_minus": 1.0,
+     "S_banked": -0.0,
+     "abs_diff": 0.0,
+     "cell": "anti",
+     "h2": 0.0
+    },
+    {
+     "P_minus": 0.5,
+     "S_banked": 0.9999999999999999,
+     "abs_diff": 1.1102230246251565e-16,
+     "cell": "bal",
+     "h2": 1.0
+    },
+    {
+     "cell": "zero",
+     "skipped": "zero pair"
+    },
+    {
+     "P_minus": 0.2,
+     "S_banked": 0.7219280948873624,
+     "abs_diff": 1.1102230246251565e-16,
+     "cell": "real",
+     "h2": 0.7219280948873623
+    },
+    {
+     "P_minus": 0.4999999999999999,
+     "S_banked": 1.0,
+     "abs_diff": 0.0,
+     "cell": "ph",
+     "h2": 1.0
+    }
+   ]
+  },
+  "controls": {
+   "anti": {
+    "P_minus": 1.0,
+    "P_plus": 0.0,
+    "class": "defined",
+    "h2": 0.0
+   },
+   "bal": {
+    "P_minus": 0.5,
+    "P_plus": 0.5,
+    "class": "defined",
+    "h2": 1.0
+   },
+   "sym": {
+    "P_minus": 0.0,
+    "P_plus": 1.0,
+    "class": "defined",
+    "h2": 0.0
+   },
+   "zero": {
+    "P_minus": null,
+    "P_plus": null,
+    "class": "undefined",
+    "h2": null
+   }
+  },
+  "counts": {
+   "multi_sets": 4,
+   "pair_cells": 11,
+   "phase_probes": 10,
+   "roundtrip_cells": 3,
+   "scale_probes": 10
+  },
+  "factor_two": {
+   "d_domain": "d in C ~= (d_R, d_I) in R^2",
+   "dim_R": 2,
+   "no_two_bit_inference": true,
+   "prior_state": "complex vector components (one complex amplitude per basis state)",
+   "prior_weights": "lam real, one per Schmidt mode",
+   "reading": "two real coordinates of one complex amplitude",
+   "readings_considered": [
+    "two real coordinates of one complex amplitude",
+    "one two-level complex state amplitude",
+    "two independent information carriers"
+   ]
+  },
+  "firewall_ok": true,
+  "fitted_params": 0,
+  "hadamard_ok": true,
+  "multis": [
+   {
+    "H_Q": 2.0,
+    "p": [
+     0.25,
+     0.25,
+     0.25,
+     0.25
+    ],
+    "set": "m1"
+   },
+   {
+    "H_Q": 0.0,
+    "p": [
+     1.0
+    ],
+    "set": "m2"
+   },
+   {
+    "H_Q": 1.0,
+    "p": [
+     0.5,
+     0.5
+    ],
+    "set": "m3"
+   },
+   {
+    "H_Q": 0.4689955935892812,
+    "p": [
+     0.9,
+     0.1
+    ],
+    "set": "m4"
+   }
+  ],
+  "pairs": [
+   {
+    "P_minus": 0.4333333333333333,
+    "P_plus": 0.5666666666666667,
+    "S_banked": 0.9871377743721863,
+    "abs_diff": 0.0,
+    "algebra_ok": true,
+    "cell": "g1",
+    "class": "defined",
+    "d": {
+     "im": 3.0,
+     "re": -2.0
+    },
+    "h2": 0.9871377743721863,
+    "s": {
+     "im": 1.0,
+     "re": 4.0
+    },
+    "w_minus": 6.499999999999999,
+    "w_plus": 8.5
+   },
+   {
+    "P_minus": 0.7935779816513763,
+    "P_plus": 0.2064220183486238,
+    "S_banked": 0.7345876609421156,
+    "abs_diff": 1.1102230246251565e-16,
+    "algebra_ok": true,
+    "cell": "g2",
+    "class": "defined",
+    "d": {
+     "im": -1.1,
+     "re": 1.5
+    },
+    "h2": 0.7345876609421155,
+    "s": {
+     "im": -0.29999999999999993,
+     "re": -0.8999999999999999
+    },
+    "w_minus": 1.73,
+    "w_plus": 0.44999999999999984
+   },
+   {
+    "P_minus": 0.6428571428571429,
+    "P_plus": 0.35714285714285715,
+    "S_banked": 0.9402859586706311,
+    "abs_diff": 0.0,
+    "algebra_ok": true,
+    "cell": "g3",
+    "class": "defined",
+    "d": {
+     "im": -1.5,
+     "re": 3.0
+    },
+    "h2": 0.9402859586706311,
+    "s": {
+     "im": 1.5,
+     "re": 2.0
+    },
+    "w_minus": 5.625000000000001,
+    "w_plus": 3.125
+   },
+   {
+    "P_minus": 0.16666666666666666,
+    "P_plus": 0.8333333333333334,
+    "S_banked": 0.6500224216483541,
+    "abs_diff": 0.0,
+    "algebra_ok": true,
+    "cell": "g4",
+    "class": "defined",
+    "d": {
+     "im": 0.001,
+     "re": -0.001
+    },
+    "h2": 0.6500224216483541,
+    "s": {
+     "im": 0.001,
+     "re": 0.003
+    },
+    "w_minus": 1e-06,
+    "w_plus": 5e-06
+   },
+   {
+    "P_minus": 0.5666666666666665,
+    "P_plus": 0.43333333333333335,
+    "S_banked": 0.9871377743721864,
+    "abs_diff": 1.1102230246251565e-16,
+    "algebra_ok": true,
+    "cell": "g5",
+    "class": "defined",
+    "d": {
+     "im": -125.0,
+     "re": 75.0
+    },
+    "h2": 0.9871377743721863,
+    "s": {
+     "im": 25.0,
+     "re": 125.0
+    },
+    "w_minus": 10624.999999999998,
+    "w_plus": 8125.0
+   },
+   {
+    "P_minus": 0.0,
+    "P_plus": 1.0,
+    "S_banked": -0.0,
+    "abs_diff": 0.0,
+    "algebra_ok": true,
+    "cell": "sym",
+    "class": "defined",
+    "d": {
+     "im": 0.0,
+     "re": 0.0
+    },
+    "h2": 0.0,
+    "s": {
+     "im": 2.0,
+     "re": 2.0
+    },
+    "w_minus": 0.0,
+    "w_plus": 4.000000000000001
+   },
+   {
+    "P_minus": 1.0,
+    "P_plus": 0.0,
+    "S_banked": -0.0,
+    "abs_diff": 0.0,
+    "algebra_ok": true,
+    "cell": "anti",
+    "class": "defined",
+    "d": {
+     "im": 2.0,
+     "re": 2.0
+    },
+    "h2": 0.0,
+    "s": {
+     "im": 0.0,
+     "re": 0.0
+    },
+    "w_minus": 4.000000000000001,
+    "w_plus": 0.0
+   },
+   {
+    "P_minus": 0.5,
+    "P_plus": 0.5,
+    "S_banked": 0.9999999999999999,
+    "abs_diff": 1.1102230246251565e-16,
+    "algebra_ok": true,
+    "cell": "bal",
+    "class": "defined",
+    "d": {
+     "im": -1.0,
+     "re": 1.0
+    },
+    "h2": 1.0,
+    "s": {
+     "im": 1.0,
+     "re": 1.0
+    },
+    "w_minus": 1.0000000000000002,
+    "w_plus": 1.0000000000000002
+   },
+   {
+    "P_minus": null,
+    "P_plus": null,
+    "S_banked": null,
+    "abs_diff": null,
+    "algebra_ok": true,
+    "cell": "zero",
+    "class": "undefined-zero-pair",
+    "d": {
+     "im": 0.0,
+     "re": 0.0
+    },
+    "h2": null,
+    "s": {
+     "im": 0.0,
+     "re": 0.0
+    },
+    "w_minus": 0.0,
+    "w_plus": 0.0
+   },
+   {
+    "P_minus": 0.2,
+    "P_plus": 0.8,
+    "S_banked": 0.7219280948873624,
+    "abs_diff": 1.1102230246251565e-16,
+    "algebra_ok": true,
+    "cell": "real",
+    "class": "defined",
+    "d": {
+     "im": 0.0,
+     "re": 2.0
+    },
+    "h2": 0.7219280948873623,
+    "s": {
+     "im": 0.0,
+     "re": 4.0
+    },
+    "w_minus": 2.0,
+    "w_plus": 8.0
+   },
+   {
+    "P_minus": 0.4999999999999999,
+    "P_plus": 0.5000000000000001,
+    "S_banked": 1.0,
+    "abs_diff": 0.0,
+    "algebra_ok": true,
+    "cell": "ph",
+    "class": "defined",
+    "d": {
+     "im": 1.3660254037844386,
+     "re": -0.3660254037844386
+    },
+    "h2": 1.0,
+    "s": {
+     "im": 0.36602540378443865,
+     "re": 1.3660254037844388
+    },
+    "w_minus": 0.9999999999999998,
+    "w_plus": 1.0000000000000002
+   }
+  ],
+  "phase_ok": true,
+  "prior_convention_ok": true,
+  "prior_record": {
+   "companion": "tests/test_haar.py (product S = 0, deficit ~0.72 bits = 0.5 nats, symmetry)",
+   "domain": "sampling helper n_qubits <= 12; page_* return 0.0 for m/n < 1",
+   "file": "src/bh_graph/haar.py",
+   "formula": "S_bits = -sum(lam * log2(lam))",
+   "function": "subsystem_entropy_bits",
+   "gauge": "eigenvalues gauge-invariant (SVD)",
+   "log_base": 2,
+   "module": "bh_graph.haar",
+   "nats_conversion": "page_entropy_exact_bits = nats / ln 2",
+   "normalization": "||psi|| = 1 (normalized complex Ginibre)",
+   "selection": "unique -sum p log p functional with stated log base among qubit/two-level modules (prereg section 2)",
+   "weight_threshold": 1e-15,
+   "weights": "lam = squared Schmidt singular values (real, sum 1)"
+  },
+  "roundtrips": [
+   {
+    "abs_diff": 0.0,
+    "cell": "r1",
+    "cover_match": true,
+    "psi_match": true,
+    "swap": false,
+    "w_back": 6.499999999999999,
+    "w_stored": 6.499999999999999
+   },
+   {
+    "abs_diff": 0.0,
+    "cell": "r2",
+    "cover_match": true,
+    "psi_match": true,
+    "swap": false,
+    "w_back": 0.0,
+    "w_stored": 0.0
+   },
+   {
+    "abs_diff": 0.0,
+    "cell": "r3",
+    "cover_match": true,
+    "psi_match": true,
+    "swap": false,
+    "w_back": 1.0000000000000002,
+    "w_stored": 1.0000000000000002
+   }
+  ],
+  "scaling_ok": true,
+  "schmidt_ok": true,
+  "swap_ok": true
+ },
+ "campaign": "Q-INFO-0",
+ "elapsed_s": 0.012155532836914062,
+ "prereg": "docs/qinfo0-prereg.md (FROZEN pre-data)",
+ "provenance": {
+  "git_sha": "0ca8a81bc9fcd47a5651ae776893b005c9121b49",
+  "platform": "Linux-7.0.0-1013-aws-aarch64-with-glibc2.39",
+  "python": "3.12.3"
+ }
+}

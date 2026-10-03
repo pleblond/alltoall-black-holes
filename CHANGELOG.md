@@ -1,5 +1,20 @@
 # Changelog
 
+- **Q-INFO-0 (branch)** — Store-mode / qubit consistency:
+  `src/bh_graph/qinfo0.py` (STORE algebra, normalized +/- weights, binary
+  `h2`, Hadamard/Schmidt identification vs the banked `haar.py` qubit
+  functional read-only, multi-entry `H_Q`, firewall audit, factor-two
+  audit), `scripts/qinfo0_campaign.py` (11 pairs + 4 multi sets +
+  3 graph-level roundtrips, deterministic) + `scripts/qinfo0_analyze.py`
+  (frozen 17-gate ladder), 21 pins in `tests/test_qinfo0.py`,
+  `docs/qinfo0-prereg.md` (FROZEN pre-data + Amendment-1 pre-data).
+  VERDICT QINFO0-IDENTICAL (16/17, equiv-rule red by design):
+  `max|h2 - S_banked| = 1.1e-16` (machine precision) — isolated STORE Q
+  information is algebraically the same object as the banked two-level
+  functional; no new entropy introduced. Records under `data/qinfo0/`,
+  verdict in `docs/qinfo0-verdict.md`. Full suite on beast: 2425 passed /
+  2 skipped (3 failures pre-existing at base).
+
 - **v5.9** — Substrate-and-store release (rolls up the 6 post-v5.8 campaign
   entries below, all merged): SUBSTRATE-CLASS-0 PARTIAL substrate rules
   (exact minimal E/H-shell/G in tied spectral+combinatorial form; F/H-TAU/J
