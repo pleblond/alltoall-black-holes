@@ -1,0 +1,426 @@
+{
+ "verdict": "TRIGGER0-CONDITION",
+ "reason": "19 candidate-conditions; zero firing implications",
+ "n_gates": 77,
+ "n_pass": 75,
+ "n_candidates": 19,
+ "dispositions": {
+  "B_POS": "CANDIDATE-CONDITION",
+  "B_NEG": "CANDIDATE-CONDITION",
+  "B_ZERO": "CANDIDATE-CONDITION",
+  "L_NEG": "CANDIDATE-CONDITION",
+  "L_POS": "CANDIDATE-CONDITION",
+  "LEDG_ZERO": "CANDIDATE-CONDITION",
+  "CROSS_ZERO": "CANDIDATE-CONDITION",
+  "BAL_R1": "CANDIDATE-CONDITION",
+  "BAL_R2": "VACUOUS",
+  "C0": "CANDIDATE-CONDITION",
+  "C_POS": "CANDIDATE-CONDITION",
+  "BRIDGE": "NONLOCAL",
+  "FAVORABLE": "CANDIDATE-CONDITION",
+  "ANNIHIL": "CANDIDATE-CONDITION",
+  "J_ZERO": "CANDIDATE-CONDITION",
+  "BJ_ZERO": "CANDIDATE-CONDITION",
+  "CELL_SYM": "CANDIDATE-CONDITION",
+  "CELL_ANTI": "CANDIDATE-CONDITION",
+  "HID_ACTIVE": "CANDIDATE-CONDITION",
+  "ZERO_MIN": "CANDIDATE-CONDITION",
+  "UNIFORM_EDGE": "CANDIDATE-CONDITION"
+ },
+ "implications": [],
+ "causal_flips_beyond": {
+  "VMINUS|packet": 0,
+  "VMINUS|point_amp": 1936,
+  "VPI|packet": 0,
+  "VPI|point_amp": 1936,
+  "VPLUS|packet": 0,
+  "VPLUS|point_amp": 1936
+ },
+ "gates": [
+  {
+   "gate": "T-INST-battery",
+   "ok": true,
+   "detail": "n=155/155 missing=0"
+  },
+  {
+   "gate": "T-INST-causal-tasks",
+   "ok": true,
+   "detail": "n=6/6 missing=0"
+  },
+  {
+   "gate": "T-INST-census",
+   "ok": true,
+   "detail": "bad=0"
+  },
+  {
+   "gate": "T-INST-determinism",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "T-INST-ledger",
+   "ok": true,
+   "detail": "edges=257668 bad=0"
+  },
+  {
+   "gate": "T-INST-pairmatch",
+   "ok": true,
+   "detail": "n=8"
+  },
+  {
+   "gate": "T-INST-br27",
+   "ok": true,
+   "detail": "nrows=14 bad=0 mgrid=True"
+  },
+  {
+   "gate": "T-INST-quotient",
+   "ok": true,
+   "detail": "n=8"
+  },
+  {
+   "gate": "T-DIAG-causal",
+   "ok": false,
+   "detail": "bad=3 (filed diagnostic per AMENDMENT-2)"
+  },
+  {
+   "gate": "T-INST-nofire",
+   "ok": true,
+   "detail": "records carry no firing decision"
+  },
+  {
+   "gate": "T-audit-firewalls",
+   "ok": true,
+   "detail": "br27=True merge0j=True measure=True"
+  },
+  {
+   "gate": "T-audit-scan",
+   "ok": true,
+   "detail": "hits=0"
+  },
+  {
+   "gate": "T-audit-implications",
+   "ok": true,
+   "detail": "count=0"
+  },
+  {
+   "gate": "T-exhaustion",
+   "ok": true,
+   "detail": "n=21"
+  },
+  {
+   "gate": "M-nontrivial-B_POS",
+   "ok": true,
+   "detail": "130706/257668 split=64"
+  },
+  {
+   "gate": "M-nontrivial-B_NEG",
+   "ok": true,
+   "detail": "65791/257668 split=64"
+  },
+  {
+   "gate": "M-nontrivial-B_ZERO",
+   "ok": true,
+   "detail": "61171/257668 split=16"
+  },
+  {
+   "gate": "M-nontrivial-L_NEG",
+   "ok": true,
+   "detail": "149455/257668 split=31"
+  },
+  {
+   "gate": "M-nontrivial-L_POS",
+   "ok": true,
+   "detail": "59456/257668 split=43"
+  },
+  {
+   "gate": "M-nontrivial-LEDG_ZERO",
+   "ok": true,
+   "detail": "48757/257668 split=19"
+  },
+  {
+   "gate": "M-nontrivial-CROSS_ZERO",
+   "ok": true,
+   "detail": "48754/257668 split=17"
+  },
+  {
+   "gate": "M-nontrivial-BAL_R1",
+   "ok": true,
+   "detail": "6/257668 split=3"
+  },
+  {
+   "gate": "M-nontrivial-BAL_R2",
+   "ok": false,
+   "detail": "0/257668 split=0"
+  },
+  {
+   "gate": "M-nontrivial-C0",
+   "ok": true,
+   "detail": "256975/257668 split=13"
+  },
+  {
+   "gate": "M-nontrivial-C_POS",
+   "ok": true,
+   "detail": "693/257668 split=13"
+  },
+  {
+   "gate": "M-nontrivial-BRIDGE",
+   "ok": true,
+   "detail": "67/257668 split=6"
+  },
+  {
+   "gate": "M-nontrivial-FAVORABLE",
+   "ok": true,
+   "detail": "102881/257668 split=30"
+  },
+  {
+   "gate": "M-nontrivial-ANNIHIL",
+   "ok": true,
+   "detail": "92282/257668 split=51"
+  },
+  {
+   "gate": "M-nontrivial-J_ZERO",
+   "ok": true,
+   "detail": "195335/257668 split=30"
+  },
+  {
+   "gate": "M-nontrivial-BJ_ZERO",
+   "ok": true,
+   "detail": "53010/257668 split=16"
+  },
+  {
+   "gate": "M-nontrivial-CELL_SYM",
+   "ok": true,
+   "detail": "191796/256128 split=52"
+  },
+  {
+   "gate": "M-nontrivial-CELL_ANTI",
+   "ok": true,
+   "detail": "96256/256128 split=10"
+  },
+  {
+   "gate": "M-nontrivial-HID_ACTIVE",
+   "ok": true,
+   "detail": "64332/256128 split=52"
+  },
+  {
+   "gate": "M-nontrivial-ZERO_MIN",
+   "ok": true,
+   "detail": "53010/257668 split=16"
+  },
+  {
+   "gate": "M-nontrivial-UNIFORM_EDGE",
+   "ok": true,
+   "detail": "107935/257668 split=56"
+  },
+  {
+   "gate": "M-local-B_POS",
+   "ok": true,
+   "detail": "sup=0/8 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-B_NEG",
+   "ok": true,
+   "detail": "sup=0/8 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-B_ZERO",
+   "ok": true,
+   "detail": "sup=0/8 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-L_NEG",
+   "ok": true,
+   "detail": "sup=0/7 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-L_POS",
+   "ok": true,
+   "detail": "sup=0/7 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-LEDG_ZERO",
+   "ok": true,
+   "detail": "sup=0/7 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-CROSS_ZERO",
+   "ok": true,
+   "detail": "sup=0/7 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-BAL_R1",
+   "ok": true,
+   "detail": "sup=0/8 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-BAL_R2",
+   "ok": true,
+   "detail": "sup=0/7 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-C0",
+   "ok": true,
+   "detail": "sup=0/7 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-C_POS",
+   "ok": true,
+   "detail": "sup=0/7 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-BRIDGE",
+   "ok": true,
+   "detail": "sup=0/0 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-FAVORABLE",
+   "ok": true,
+   "detail": "sup=0/7 surg=0/7 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-ANNIHIL",
+   "ok": true,
+   "detail": "sup=0/8 surg=0/0 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-J_ZERO",
+   "ok": true,
+   "detail": "sup=0/8 surg=0/0 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-BJ_ZERO",
+   "ok": true,
+   "detail": "sup=0/8 surg=0/0 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-CELL_SYM",
+   "ok": true,
+   "detail": "sup=0/3 surg=0/3 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-CELL_ANTI",
+   "ok": true,
+   "detail": "sup=0/3 surg=0/3 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-HID_ACTIVE",
+   "ok": true,
+   "detail": "sup=0/3 surg=0/3 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-ZERO_MIN",
+   "ok": true,
+   "detail": "sup=0/8 surg=0/0 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-local-UNIFORM_EDGE",
+   "ok": true,
+   "detail": "sup=0/8 surg=0/0 efar=0 ffar=0"
+  },
+  {
+   "gate": "M-cov-B_POS",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-B_NEG",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-B_ZERO",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-L_NEG",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-L_POS",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-LEDG_ZERO",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-CROSS_ZERO",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-BAL_R1",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-BAL_R2",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-C0",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-C_POS",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-BRIDGE",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-FAVORABLE",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-ANNIHIL",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-J_ZERO",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-BJ_ZERO",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-CELL_SYM",
+   "ok": true,
+   "detail": "bad=0/4"
+  },
+  {
+   "gate": "M-cov-CELL_ANTI",
+   "ok": true,
+   "detail": "bad=0/4"
+  },
+  {
+   "gate": "M-cov-HID_ACTIVE",
+   "ok": true,
+   "detail": "bad=0/4"
+  },
+  {
+   "gate": "M-cov-ZERO_MIN",
+   "ok": true,
+   "detail": "bad=0/8"
+  },
+  {
+   "gate": "M-cov-UNIFORM_EDGE",
+   "ok": true,
+   "detail": "bad=0/8"
+  }
+ ]
+}

@@ -15,6 +15,22 @@
   nonzero core on the deterministic core (`R = 1` at `s = 0`).
   Full suite 2057 passed / 2 skipped on beast (weighted skipped).
   Records under `data/reservoir0/` (17 MB).
+- **v5.6 (TRIGGER-0)** — Deterministic merge-trigger census over
+  already-earned exact local conditions (STRICT NO-SHOPPING):
+  `src/bh_graph/trigger0.py` (21-predicate inventory, 155-state +
+  6-cell battery, virtual ledgers, R x U(1)/support/surgery checks,
+  causal evolution, H-audit helpers), `tests/test_trigger0.py`
+  (33 pins), `scripts/trigger0_campaign.py` (161 tasks) +
+  `scripts/trigger0_analyze.py` (77 frozen gates), TRIGGER0-PREREG
+  + AMENDMENT-1/2 + VERDICT in `docs/`. VERDICT TRIGGER0-CONDITION
+  (75/77): 19 CANDIDATE-CONDITION survive on 257,668 edges with
+  zero support/surgery/far flips and exact R x U(1) covariance;
+  BRIDGE NONLOCAL by GLOBAL support, BAL_R2 VACUOUS (0/257668);
+  H audit clean (zero firing implications). Filed: BAL_R1 fires on
+  exactly 6 hidden-dipole bonds; BJ_ZERO <=> ZERO_MIN exactly;
+  pair sensitivity B 42% / J 21% / sector 16% / L 11% with zero
+  far flips. Records under `data/trigger0/`.
+
 - **v5.6 (SPLIT-0)** — Deterministic inverse constraints and residual split
   information: `src/bh_graph/split0.py` (exact graph/field inverse census,
   sum-map fiber parametrization `(s,d)`, halves section, covariant residual
