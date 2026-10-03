@@ -433,19 +433,28 @@ def cmd_packet(args):
     order = node_order(g)
     coords, ndim = _quotient_coords_3d(tag, g, order)
     periods = (float(L),) * ndim
-    sigma = L / 8.0
-    r0 = (L / 4.0, L / 2.0, L / 2.0)[:ndim]
     fam = tag.split("-")[0]
+    # Apparatus validity (pre-data transverse-spread formula
+    # s(T) = s*sqrt(1 + (T/2m*s^2)^2), m* = 1/4 J3, 1/2 cubic):
+    # s(T) <= L/4 keeps the circular-mean COM readout clean (no
+    # wrap-teleport). J3's light mass needs wider-slower packets than
+    # the cubic control (whose s=L/8, T=8 config passes validation).
+    if fam == "j3":
+        sigma, dt, n_steps = L / 6.0, 0.1, 40
+    else:
+        sigma, dt, n_steps = L / 8.0, 0.1, 80
+    r0 = (L / 4.0, L / 2.0, L / 2.0)[:ndim]
     v_bloch = 4.0 * math.sin(0.3) if fam == "j3" else 2.0 * math.sin(0.3)
     h = hamiltonian(g, order=order)
-    out = {"tag": tag, "sigma": sigma, "v_bloch": v_bloch}
+    out = {"tag": tag, "sigma": sigma, "dt": dt, "n_steps": n_steps,
+           "v_bloch": v_bloch}
     for tagk, kval in (("plus", 0.3), ("minus", -0.3)):
         k = (kval,) + (0.0,) * (ndim - 1)
         psi0 = gaussian_packet(coords, order, r0, k, sigma, periods=periods)
-        rec = evolve_fixed(psi0, h, 0.1, 80)
+        rec = evolve_fixed(psi0, h, dt, n_steps)
         rs = np.array([com(p, coords, order, periods=periods)
                        for p in rec["psi"]])
-        ts = np.arange(81) * 0.1
+        ts = np.arange(n_steps + 1) * dt
         ru = unwrap_trace(rs, periods)
         fit = fit_velocity(ru, ts)
         alpha = msd_exponent_rs(ru, ts)
@@ -535,7 +544,9 @@ def cmd_pot0(args):
     coords, ndim = _quotient_coords_3d(tag, g, order)
     periods = (float(L),) * ndim
     edges = _edges_3d(tag, g, order)
-    sigma = L / 8.0
+    # Banked POT-0 sigma verbatim (4.0); sizes chosen so s(10) <= L/4
+    # (j3-L24, cb-L20) per the transverse-spread formula (see cmd_packet).
+    sigma = 4.0
     r0 = (L / 4.0, L / 2.0, L / 2.0)[:ndim]
     cfield = tag_cells(tag, g)
     out = {"tag": tag, "KX": POT0_KX, "T": POT0_T, "dt": POT0_DT,
@@ -1078,9 +1089,9 @@ def cmd_print_all(_args):
             lines.append(f"spread --tag {tag} --bg BG0 --kind {kind} --amp 1.0")
     for tag in ("j3-L8", "j3-L12", "j3-L16"):
         lines.append(f"spread --tag {tag} --bg BG+ --kind R --amp 1.0")
-    for tag in ("j3-L12", "j3-L16", "cb-L15"):
+    for tag in ("j3-L16", "j3-L20", "cb-L15"):
         lines.append(f"packet --tag {tag}")
-    for tag in ("j3-L12", "cb-L15"):
+    for tag in ("j3-L24", "cb-L20"):
         lines.append(f"pot0 --tag {tag}")
     for tag in ("j3-L12", "j3-L16", "cb-L15"):
         lines.append(f"pot1 --tag {tag}")

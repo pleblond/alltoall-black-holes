@@ -206,7 +206,7 @@ def eval_ports(datadir):
     """Evaluate the G/H/I characterization ports (filed, not gating)."""
     ports = {}
     # G-a packets.
-    for t in ("j3-L12", "j3-L16", "cb-L15"):
+    for t in ("j3-L16", "j3-L20", "cb-L15"):
         p = os.path.join(datadir, f"dim3_packet_{t}.json")
         if not os.path.exists(p):
             ports[f"packet_{t}"] = {"pass": False, "missing": True}
@@ -222,7 +222,7 @@ def eval_ports(datadir):
         ports[f"packet_{t}"] = {"pass": ok, "v+": vp, "v Bloch": vb,
                                 "cos": d["cos_pm"]}
     # G-b POT0 rungs (banked POT-0 bars on the 4-rung core).
-    for t in ("j3-L12", "cb-L15"):
+    for t in ("j3-L24", "cb-L20"):
         p = os.path.join(datadir, f"dim3_pot0_{t}.json")
         if not os.path.exists(p):
             ports[f"pot0_{t}"] = {"pass": False, "missing": True}

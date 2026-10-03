@@ -399,6 +399,21 @@ def test_dim3_coherence_and_flux():
     assert tr["D"].shape == (2,) and tr["J_net"].shape == (2, 3)
     f0 = dim3.flux_decomposition_3d(np.zeros_like(psi), edges)
     assert f0["D"] == 0.0
+    # Hand-computed two-node case (irrational phases exercise fp paths):
+    # single edge, d=(1,0,0): D=1, S=|2Im(conj(a)b)|, J_net=(cur,0,0).
+    a = complex(0.6, 0.8) / math.sqrt(2.0)
+    b = complex(0.8, -0.6) / math.sqrt(2.0)
+    tiny = np.array([a, b], dtype=np.complex128)
+    te = [(0, 1, 1.0, 0.0, 0.0)]
+    ft = dim3.flux_decomposition_3d(tiny, te)
+    cur = 2.0 * (np.conj(a) * b).imag
+    assert abs(ft["S"] - abs(cur)) < 1e-15
+    assert abs(ft["D"] - 1.0) < 1e-15
+    assert abs(ft["J_net"][0] - cur) < 1e-15
+    assert abs(ft["J_net"][1]) + abs(ft["J_net"][2]) == 0.0
+    tt = dim3.d_trace_3d(np.array([tiny, tiny]), te)
+    assert np.allclose(tt["D"], [1.0, 1.0], atol=1e-15)
+    assert np.allclose(tt["J_net"][:, 0], [cur, cur], atol=1e-15)
 
 
 def test_dim3_measure_source_consistent():

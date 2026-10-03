@@ -1068,50 +1068,58 @@ def spectral_coherence_3d(psi: np.ndarray, order: list, cfield: dict,
     return {"C": float(pmax / tot), "M_eff": meff, "Pmax": pmax, "Psum": tot}
 
 
+def _flux_edge_arrays(edges: list):
+    """Edge list -> (eu, ev, disp) int/float arrays (built once, reused)."""
+    eu = np.array([int(r[0]) for r in edges], dtype=int)
+    ev = np.array([int(r[1]) for r in edges], dtype=int)
+    dd = np.array([[float(r[2]), float(r[3]), float(r[4])] for r in edges],
+                  dtype=float)
+    return eu, ev, dd
+
+
 def flux_decomposition_3d(psi: np.ndarray, edges: list,
                           j: float = J_DEFAULT) -> dict:
     """Directional flux readout in 3D: J_net, S, per-class fluxes, D, angle.
 
     Same construction as potential.flux_decomposition (2D): each edge
     contributes J_e * d_e with the stored-orientation current. edges rows
-    are (iu, iv, dx, dy, dz) with min-image displacements.
+    are (iu, iv, dx, dy, dz) with min-image displacements. Vectorized over
+    edges (identical math to the explicit sum; fp-noise-level agreement).
     """
     psi = np.asarray(psi, dtype=np.complex128)
     jj = float(j)
-    qx = qy = qz = 0.0
-    stot = 0.0
-    jp = {"+x": 0.0, "-x": 0.0, "+y": 0.0, "-y": 0.0, "+z": 0.0, "-z": 0.0}
-    for iu, iv, dx, dy, dz in edges:
-        cur = float(2.0 * jj * (np.conj(psi[iu]) * psi[iv]).imag)
-        stot += abs(cur)
-        for q, d, pk, mk in ((cur * dx, dx, "+x", "-x"),
-                             (cur * dy, dy, "+y", "-y"),
-                             (cur * dz, dz, "+z", "-z")):
-            if d != 0:
-                if pk == "+x":
-                    qx += q
-                elif pk == "+y":
-                    qy += q
-                else:
-                    qz += q
-                if q >= 0:
-                    jp[pk] += q
-                else:
-                    jp[mk] -= q
-    jnet = np.array([qx, qy, qz])
+    eu, ev, dd = _flux_edge_arrays(edges)
+    cur = (2.0 * jj * (np.conj(psi[eu]) * psi[ev]).imag)
+    stot = float(np.abs(cur).sum())
+    q = cur[:, None] * dd
+    jnet = np.asarray(q.sum(axis=0), dtype=float).ravel()
+    jp = {}
+    for i, (pk, mk) in enumerate((("+x", "-x"), ("+y", "-y"),
+                                  ("+z", "-z"))):
+        col = q[:, i]
+        jp[pk] = float(col[col >= 0].sum())
+        jp[mk] = float(-col[col < 0].sum())
     nm = float(np.linalg.norm(jnet))
-    dd = float(nm / stot) if stot > 0 else 0.0
-    return {"J_net": jnet, "S": float(stot), "J_classes": jp, "D": dd}
+    dd_out = float(nm / stot) if stot > 0 else 0.0
+    return {"J_net": jnet, "S": stot, "J_classes": jp, "D": dd_out}
 
 
 def d_trace_3d(psi_rows: np.ndarray, edges: list,
                j: float = J_DEFAULT) -> dict:
-    """Directional readout per time row: D, J_net, S traces (3D)."""
-    psi_rows = np.asarray(psi_rows, dtype=np.complex128)
-    dd, ss, jn = [], [], []
-    for row in psi_rows:
-        f = flux_decomposition_3d(row, edges, j)
-        dd.append(f["D"])
-        ss.append(f["S"])
-        jn.append(f["J_net"])
-    return {"D": np.array(dd), "S": np.array(ss), "J_net": np.array(jn)}
+    """Directional readout per time row: D, J_net, S traces (3D).
+
+    Vectorized over rows and edges (identical math to the per-row loop).
+    """
+    p = np.asarray(psi_rows, dtype=np.complex128)
+    jj = float(j)
+    eu, ev, dd = _flux_edge_arrays(edges)
+    cur = (2.0 * jj * (np.conj(p[:, eu]) * p[:, ev]).imag)
+    ss = np.abs(cur).sum(axis=1)
+    jn = np.stack([(cur * dd[:, i]).sum(axis=1) for i in range(3)],
+                  axis=1)
+    nm = np.linalg.norm(jn, axis=1)
+    out_d = np.zeros(p.shape[0])
+    m = ss > 0
+    out_d[m] = nm[m] / ss[m]
+    return {"D": out_d, "S": np.asarray(ss, dtype=float),
+            "J_net": np.asarray(jn, dtype=float)}
