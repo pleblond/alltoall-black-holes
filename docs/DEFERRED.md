@@ -10511,3 +10511,16 @@ Bank persistent source -> dpsi(r,t) -> dB(r,t) -> R_G per (vacuum,
 family) (S11 + S3/S5 records); `R_G -> dG` remains blocked by
 MEASURE0-DEBT (cite data/measure0_verdict.json). No charge/mass/matter
 language in any record.
+
+### SOURCE0-AMENDMENT-1 (pre-data; no SOURCE-0 task has run)
+
+DT_HARM 0.02 -> 0.005 (all harmonic-drive evolutions: POT w=-8.5 and
+maintained E=+/-8). Cause: discrete-pinning steady error scales as O(dt^2)
+(mismatch between the continuous-time steady_predict and the discrete
+pin-overwrite map, POT-1 jump-global precedent at DT=2*pi/8.5/296 ~=
+0.0025); DT=0.02 would inflate POT-1's jump-global deviation ~64x and risk
+the frozen 0.05 bar without changing any physics. DT=0.005 keeps the
+frozen bars with ~4x margin scaling. Costs (beast): jump T=8 -> 1600
+steps, maintained turn-on T=16 -> 3200 steps, POT turn-on T=24 -> 4800
+steps; all within the parallel budget. DT_STATIC=0.05, DT_FREE=0.05,
+DT_POT1, all horizons, and all bars unchanged.
