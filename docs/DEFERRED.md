@@ -10440,3 +10440,45 @@ Distinctness pins unaffected (they differ in real values).
 Gated re-runs: tests/test_info0.py hidden pins.
 No banked data exists yet; campaign runs under PREREG + AMENDMENT-1 +
 AMENDMENT-2 + AMENDMENT-3 + AMENDMENT-3b.
+
+## INFO0-VERDICT — INFO0-MATCHED (post-data 2026-10-03)
+
+Campaign ran on beast EC2 (16.54.88.181, 32 workers, 30.3s wall):
+259 cells, 0 run-failures. Ledger data/info0_ledger.json (committed),
+analyzer data/info0_verdict.json (committed). Code on beast = branch
+cursor/info0-structural-2034 at f1828b1 (PREREG + AMENDMENT-1/2/3/3b;
+files synced scp-verified after GitHub push auth degraded to
+read-only mid-session; ledger meta git pins the base checkout).
+
+HARD: 19/19 green. H-A rep-independence (60 edge + 72 node cells);
+H-B field inversion + |d|^2/2 + B + dQ + partition-found (60/60);
+H-C timed-vs-skeleton identity N_timed = sum_L C(T,L) S_L on every
+canonical (143 classes, T = 2..6) and labeled (44 states, T = 2,3)
+pair; H-D firewall (no Shannon, no tuning, 0 params); H-E banked
+TIME-0 recompute matches data/time0_verdict.json exactly (T = 2..6);
+H-F discrete loss (3^d+1)/2 exact (60/60); H-G branch-loss
+n_branch = 1+n_covers exact (72/72); H-I hist bounds (0 fails);
+H-J phys <= raw on all 176 quotient cells; H-K gap in (0,1]
+(min 0.0348, max 0.5850); H-L sync raw 2^E exact (20/20).
+
+Headline: E_pred_branch canonical 143/143 total AND struct
+(forward vs backward information exactly equal -- mirror theorem
+holds, no SEPARATED); M_hidden green under AMENDMENT-3/3b (raw
+match 8/8, phase/shape/amplitude differ 6/6, sign R-equality pins
+2/2, vacua distinct both patches -- the quotient both separates
+distinct states and identifies equivalent ones); M_scheduler exact
+(all m! valid and matching, 20 cells, bound_fail 0 -- no BOUNDED).
+M_labeled descriptive: 16/44 (labels are redundancy; the physical
+quotient restores the symmetry -- canonical 143/143 vs labeled
+16/44 is itself a quotient-sensitivity result, filed not gated).
+M-hist: max I_hist 5.09/6.88/11.10/13.58/17.58 bits (T = 2..6),
+placements exact. No PARTIAL trigger (no HARD red, no hidden debt).
+
+Verdict INFO0-MATCHED per the frozen ladder (PARTIAL > SEPARATED >
+BOUNDED > MATCHED), as predicted pre-data. Information accounting
+without probabilities closes exactly: contraction loss (discrete
+partition + 2-real-dim fiber + |d|^2/2 + B/dQ books), reverse
+multiplicity (pred == succ), history multiplicity (timed-skeleton
+identity + waiting/skeleton split), scheduler multiplicity (m!),
+and hidden-state books (distinctness + R-equality pins) are all
+exact counts with binary logs; no -sum p log p anywhere.
