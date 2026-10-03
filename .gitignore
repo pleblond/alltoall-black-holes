@@ -11,3 +11,4 @@ __pycache__/
 data/vacfield/npy/
 data/vacexc/npy/
 data/bgresp/npy/
+data/bhent0/chunks_full/

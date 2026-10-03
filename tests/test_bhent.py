@@ -160,6 +160,29 @@ def test_joint_chunk_union_p4():
     assert len(keys) == full["n_orbits"]
 
 
+def test_union_orbits_dual_mode():
+    recs = {
+        "joint_X_c00": {"payload": {"keys": [1, 2, 3], "n_labeled": 10,
+                                    "n_connected": 8}},
+        "joint_X_c01": {"payload": {"keys": [3, 4], "n_labeled": 10,
+                                    "n_connected": 8}},
+    }
+    u = be.union_orbits(recs, "X")
+    assert (u["n_orbits"], u["n_labeled"], u["n_connected"],
+            u["n_chunks"], u["mode"]) == (4, 20, 16, 2, "full-audit")
+    banked = {
+        "joint_X_c00": {"payload": {"keys": [], "n_labeled": 10,
+                                    "n_connected": 8}},
+        "joint_X_c01": {"payload": {"keys": [], "n_labeled": 10,
+                                    "n_connected": 8}},
+        "joint_X_union": {"payload": {"n_orbits": 4, "n_labeled": 20,
+                                      "n_connected": 16, "n_chunks": 2,
+                                      "key_sha": u["key_sha"]}},
+    }
+    u2 = be.union_orbits(banked, "X")
+    assert (u2["n_orbits"], u2["mode"]) == (4, "banked")
+
+
 def test_joint_j2edge_chunked_scope():
     # 9.5M labeled: full enumeration runs on beast (campaign chunks);
     # here only scope arithmetic + fast-path agreement on a slice.

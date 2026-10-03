@@ -1164,6 +1164,43 @@ def law_gates(path_ns, path_y, wire_rows, joint_trivial, blind_grows):
     return out
 
 
+def union_orbits(recs, spec):
+    """Union canonical keys over chunk records, or read a union record.
+
+    Full-audit path: chunk records carrying key lists are unioned
+    directly. Banked path: pruned chunk records (keys []) plus a
+    joint_<spec>_union.json record with the precomputed union (counts +
+    key sha); full-key sidecars live under data/bhent0/chunks_full/
+    (gitignored). Both paths return the same counts (verified at prune
+    time); the analyzer accepts either.
+    """
+    import hashlib
+
+    chunks = {n: r["payload"] for n, r in recs.items()
+              if n.startswith(f"joint_{spec}_c")}
+    keyed = [p for p in chunks.values() if p.get("keys")]
+    n_lab = sum(p["n_labeled"] for p in chunks.values())
+    n_conn = sum(p["n_connected"] for p in chunks.values())
+    if keyed and len(keyed) == len(chunks):
+        keys = set()
+        for p in keyed:
+            keys |= set(p["keys"])
+        sha = hashlib.sha256(
+            ",".join(str(k) for k in sorted(keys)).encode()).hexdigest()
+        return {"n_orbits": len(keys), "n_labeled": n_lab,
+                "n_connected": n_conn, "n_chunks": len(chunks),
+                "key_sha": sha, "mode": "full-audit"}
+    union = recs.get(f"joint_{spec}_union", {}).get("payload", {})
+    if union and not keyed:
+        assert union["n_labeled"] == n_lab
+        assert union["n_connected"] == n_conn
+        assert union["n_chunks"] == len(chunks)
+        return {"n_orbits": union["n_orbits"], "n_labeled": n_lab,
+                "n_connected": n_conn, "n_chunks": len(chunks),
+                "key_sha": union["key_sha"], "mode": "banked"}
+    raise ValueError(f"mixed or missing chunk data for {spec}")
+
+
 def verdict_of(gates, controls_ok, cause=""):
     """Verdict ladder (preregistered priority; firewall-safe strings)."""
     if not controls_ok:
