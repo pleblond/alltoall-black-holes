@@ -728,6 +728,42 @@ the same cell amplitude, so vanishing at either bit is the condition that
 the cell amplitude vanish.
 \end{proof}
 
+\begin{proposition}
+\label{prop:cellpole}
+Outside the spectrum of one copy, the resolvent between vertices
+\((x,b)\) and \((y,b')\) is
+\begin{equation}
+\label{eq:cellpole}
+\langle x,b|(E-H)^{-1}|y,b'\rangle
+=\frac{\delta_{xy}}{2E}\,s(b,b')
++\frac12\bigl[(E+2A_\square)^{-1}\bigr]_{xy},
+\end{equation}
+where \(s(b,b')=+1\) when the bits agree and \(s(b,b')=-1\) when they differ.
+The first term is the flat band. It is supported on a single cell.
+The second term is the resolvent of \(-2A_\square\) and does not see the bit.
+On \(J_3\) the same formula holds with \(A_{\mathrm{cubic}}\) in place of
+\(A_\square\), for \(E\notin[-12,12]\).
+\end{proposition}
+
+\begin{proof}
+Lemma~\ref{lem:sectors} splits the Hilbert space into odd and even states,
+and \(H\) preserves both. On the odd summand \(H=0\), so the resolvent is
+\(1/E\). The odd projector acts cell by cell: its matrix on the two bits is
+\(\tfrac12\begin{pmatrix}1&-1\\-1&1\end{pmatrix}\), and it has no entry
+between distinct cells. That is the first term.
+On the even summand the map \(\varphi\mapsto\psi\), with both bits equal to
+\(\varphi/\sqrt{2}\), intertwines \(H\) with \(-2A_\square\).
+A site vector's even part is independent of the bit and equals that map
+applied to \(e_x/\sqrt{2}\). The resulting matrix element is half the
+square-lattice resolvent, for every pair of bits.
+The \(J_3\) case is the same splitting from Lemma~\ref{lem:j3sectors}.
+\end{proof}
+
+The flat pole does not couple distinct cells. In the compressed resolvent
+of several stubs, a \(1/E\) entry appears only when two stubs occupy the
+same cell, and then only with the sign \(s(b,b')\). Stubs in different
+cells communicate through \(-2A_\square\) alone.
+
 For a finite set of stitches, with adjacency \(A_W\) supported on the stub
 set \(\Sigma\), the same resolvent identity says that
 \(E\notin[-8,8]\) is an eigenvalue if and only if
@@ -890,6 +926,13 @@ On \(J_2\) the resolvent diverges at the edge, so a root of
 \(\mathcal{G}(E)=1\) is forced to exist.
 On \(J_3\) the same edge is a quadratic maximum in three momenta, the
 integral of \(1/|q|^2\) converges, and the resolvent stays below \(11/48\).
+For a stitch of hopping \(t\) the secular equation is
+\(\mathcal{G}_3(E)=\pm 1/t\).
+A root with \(|E|>12\) would require \(1/|t|<\mathcal{G}_3(12+)\).
+Every \(|t|\le 48/11\) fails that inequality, and the sheet hopping \(t=1\)
+is in this range.
+On \(J_2\) the edge divergence means every \(t\neq 0\) produces a pair
+outside \([-8,8]\).
 
 On the \(L\)-torus with \(L\) even, the momentum \((\pi,\pi,\pi)\) lies on
 the grid, so the finite resolvent has a simple pole at \(12\) and at \(-12\).
