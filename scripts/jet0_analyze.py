@@ -559,3 +559,7 @@ def main():
     with open(os.path.join(outdir, "verdict.json"), "w") as f:
         json.dump(out, f, indent=1)
     print(f"{verdict} {n_pass}/{len(gates)} :: {reason}")
+
+
+if __name__ == "__main__":
+    main()
