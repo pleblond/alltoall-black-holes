@@ -183,6 +183,29 @@ def test_is_bars_ok():
     assert dim31.is_bars_ok(None) is False
 
 
+def test_dim31_blind_firewall_audit():
+    # The blind analyzer must never touch hidden geometry (import +
+    # token scan, same firewall pattern as OBS-1 C3 / DIM-3-0).
+    import pathlib
+
+    src = pathlib.Path("scripts/dim31_blind.py").read_text()
+    for tok in ("dim3_reveal", "tag_graph", "j3_torus", "cubic_torus",
+                "coords", "formation", "hidden", "seal", "quotient",
+                "sheet", "symmetric_embedding", "dim31_campaign",
+                "dim31_analyze"):
+        assert tok not in src, tok
+    tree = ast.parse(src)
+    imported = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ImportFrom):
+            imported.add(node.module or "")
+        elif isinstance(node, ast.Import):
+            imported.update(a.name for a in node.names)
+    assert not ({"bh_graph.dim3_reveal", "bh_graph.dim3",
+                 "dim3_campaign", "dim31_campaign",
+                 "dim31_analyze"} & imported)
+
+
 # ---------------------------------------------------------------------------
 # Static Yukawa dimension.
 # ---------------------------------------------------------------------------

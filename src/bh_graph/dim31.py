@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from bh_graph.obs0 import DT_WAVE, D_H_LO, fit_loglog, hausdorff_window
+from bh_graph.obs0 import D_H_LO, DT_WAVE, fit_loglog, hausdorff_window
 from bh_graph.obs0r import fit_yukawa
 from bh_graph.obs1 import VOL_R2_BAR, classical_mds, stress_normalized
 
