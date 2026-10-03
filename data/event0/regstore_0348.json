@@ -1,0 +1,11 @@
+{
+ "task": [
+  "fw"
+ ],
+ "fw": {
+  "fitted_params": 0,
+  "no_tuning": true,
+  "no_measure": true
+ },
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

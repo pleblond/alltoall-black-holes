@@ -1,0 +1,19 @@
+{
+ "task": [
+  "pair",
+  "j2-L4",
+  "random777",
+  "overlap"
+ ],
+ "relation": "overlap",
+ "factorize": false,
+ "add_err": 0.9392242186815887,
+ "step_err": 0.9392242186815887,
+ "finals_equal": true,
+ "tele_ab": 0.0,
+ "tele_ba": 0.0,
+ "R_joint_ab": 3.2808027833068807,
+ "R_joint_ba": 3.2808027833068802,
+ "has_rev": true,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

@@ -1,0 +1,19 @@
+{
+ "task": [
+  "pair",
+  "path-8",
+  "uniform",
+  "disjoint"
+ ],
+ "relation": "disjoint",
+ "factorize": true,
+ "add_err": -4.440892098500626e-16,
+ "step_err": -2.220446049250313e-16,
+ "finals_equal": true,
+ "tele_ab": 0.0,
+ "tele_ba": 0.0,
+ "R_joint_ab": 2.25,
+ "R_joint_ba": 2.25,
+ "has_rev": true,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

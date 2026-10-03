@@ -1,0 +1,14 @@
+{
+ "kind": "bare",
+ "sub": "ring-8",
+ "ftag": "random777",
+ "remote": "4",
+ "remote_hop": 4,
+ "n_edges": 8,
+ "n_far": 4,
+ "far_flips": 0,
+ "near_flips": 0,
+ "static_ok": true,
+ "causal": null,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

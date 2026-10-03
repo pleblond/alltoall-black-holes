@@ -1,0 +1,674 @@
+{
+ "kind": "stored",
+ "sub": "ring-8",
+ "ftag": "random777",
+ "edge": [
+  0,
+  1
+ ],
+ "k": 8,
+ "eligible": true,
+ "ladder": [
+  0.0,
+  0.5,
+  1.0,
+  2.0,
+  4.0,
+  8.0
+ ],
+ "dt": 0.05,
+ "n_nodes": 7,
+ "n_edges": 7,
+ "cert": {
+  "residual": 0.7350619750055477,
+  "lam": -0.8833735050104716,
+  "is_zero": false,
+  "is_eigen": false
+ },
+ "norm_drift": 3.3084646133829665e-14,
+ "R0": 1.3566659999094637,
+ "E_psi_0": -0.9677749852466444,
+ "E_psi_spread": 3.1308289294429414e-14,
+ "E_Q_spread": 0.7713156895421363,
+ "attrib_max": 1.1102230246251565e-16,
+ "t_star": null,
+ "all_valid": true,
+ "q_same_all": true,
+ "rungs": [
+  {
+   "T": 0.0,
+   "norm": 1.0466826168604086,
+   "E_psi": -0.9677749852466444,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true,
+    "V4": true,
+    "V5": true,
+    "V6": true,
+    "V7": true
+   },
+   "q_same": true,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "field_sum_err": 0.0,
+   "cover_ok": true,
+   "E_Q": 1.3566659999094637,
+   "R_split": -1.3566659999094637,
+   "invert_err": 0.0,
+   "Acoef": 1.1820226611421962,
+   "Re_term": 0.06741067453449288,
+   "d2_term": 0.10723266423277454,
+   "closure_err": 0.0,
+   "n_true": {
+    "B_POS": 4,
+    "B_NEG": 3,
+    "B_ZERO": 0,
+    "L_NEG": 4,
+    "L_POS": 3,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 0,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 7,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 1,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    529,
+    529,
+    522,
+    522,
+    522,
+    529,
+    4617
+   ],
+   "B_range": [
+    -0.09996316933717639,
+    0.21571477347994067
+   ],
+   "dE_range": [
+    -0.14642034074750201,
+    0.12544761580481148
+   ],
+   "J_max": 0.13232882185177386
+  },
+  {
+   "T": 0.5,
+   "norm": 1.046682616860409,
+   "E_psi": -0.9677749852466448,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true,
+    "V4": true,
+    "V5": true,
+    "V6": true,
+    "V7": true
+   },
+   "q_same": true,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "field_sum_err": 1.3877787807814457e-17,
+   "cover_ok": true,
+   "E_Q": 1.5532182718356968,
+   "R_split": -1.5532182718356968,
+   "invert_err": 0.0,
+   "Acoef": 1.2395826248027377,
+   "Re_term": 0.20640298280018465,
+   "d2_term": 0.10723266423277454,
+   "closure_err": 0.0,
+   "n_true": {
+    "B_POS": 5,
+    "B_NEG": 2,
+    "B_ZERO": 0,
+    "L_NEG": 5,
+    "L_POS": 2,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 0,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 7,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 3,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    4617,
+    529,
+    4617,
+    522,
+    522,
+    529,
+    4617
+   ],
+   "B_range": [
+    -0.05940535060684287,
+    0.2187013020558497
+   ],
+   "dE_range": [
+    -0.1629113036022128,
+    0.1830151828600527
+   ],
+   "J_max": 0.2521582406007551
+  },
+  {
+   "T": 1.0,
+   "norm": 1.046682616860409,
+   "E_psi": -0.967774985246645,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true,
+    "V4": true,
+    "V5": true,
+    "V6": true,
+    "V7": true
+   },
+   "q_same": true,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "field_sum_err": 2.7755575615628914e-17,
+   "cover_ok": true,
+   "E_Q": 1.6436828667348935,
+   "R_split": -1.6436828667348935,
+   "invert_err": 0.0,
+   "Acoef": 1.2913935740862033,
+   "Re_term": 0.24505662841591574,
+   "d2_term": 0.10723266423277454,
+   "closure_err": 0.0,
+   "n_true": {
+    "B_POS": 5,
+    "B_NEG": 2,
+    "B_ZERO": 0,
+    "L_NEG": 4,
+    "L_POS": 3,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 0,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 7,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 2,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    529,
+    4617,
+    522,
+    522,
+    529,
+    4617,
+    529
+   ],
+   "B_range": [
+    -0.05432826155256097,
+    0.24521962212293902
+   ],
+   "dE_range": [
+    -0.1541227154559241,
+    0.16108872588015066
+   ],
+   "J_max": 0.1302466120864756
+  },
+  {
+   "T": 2.0,
+   "norm": 1.0466826168604089,
+   "E_psi": -0.9677749852466432,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true,
+    "V4": true,
+    "V5": true,
+    "V6": true,
+    "V7": true
+   },
+   "q_same": true,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "field_sum_err": 2.7755575615628914e-17,
+   "cover_ok": true,
+   "E_Q": 1.1456376267995851,
+   "R_split": -1.1456376267995854,
+   "invert_err": -2.220446049250313e-16,
+   "Acoef": 1.046024676402189,
+   "Re_term": -0.007619713835378316,
+   "d2_term": 0.10723266423277454,
+   "closure_err": 0.0,
+   "n_true": {
+    "B_POS": 5,
+    "B_NEG": 2,
+    "B_ZERO": 0,
+    "L_NEG": 4,
+    "L_POS": 3,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 0,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 7,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 3,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    530,
+    529,
+    522,
+    529,
+    4617,
+    4617,
+    4617
+   ],
+   "B_range": [
+    -0.047119584171130456,
+    0.13007900127604832
+   ],
+   "dE_range": [
+    -0.25434138914218885,
+    0.2211625250037343
+   ],
+   "J_max": 0.19521768589372573
+  },
+  {
+   "T": 4.0,
+   "norm": 1.046682616860405,
+   "E_psi": -0.9677749852466745,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true,
+    "V4": true,
+    "V5": true,
+    "V6": true,
+    "V7": true
+   },
+   "q_same": true,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "field_sum_err": 1.3877787807814457e-17,
+   "cover_ok": true,
+   "E_Q": 0.8723671771927572,
+   "R_split": -0.8723671771927574,
+   "invert_err": -1.1102230246251565e-16,
+   "Acoef": 0.9319875077482985,
+   "Re_term": -0.16685299478831578,
+   "d2_term": 0.10723266423277454,
+   "closure_err": 0.0,
+   "n_true": {
+    "B_POS": 5,
+    "B_NEG": 2,
+    "B_ZERO": 0,
+    "L_NEG": 3,
+    "L_POS": 4,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 0,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 7,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 3,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    529,
+    530,
+    4617,
+    4617,
+    4617,
+    529,
+    530
+   ],
+   "B_range": [
+    -0.0448081710780577,
+    0.25648820612906603
+   ],
+   "dE_range": [
+    -0.2909204234290066,
+    0.1956564691580322
+   ],
+   "J_max": 0.26203323035725473
+  },
+  {
+   "T": 8.0,
+   "norm": 1.0466826168603756,
+   "E_psi": -0.9677749852466541,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true,
+    "V4": true,
+    "V5": true,
+    "V6": true,
+    "V7": true
+   },
+   "q_same": true,
+   "pred_ok": true,
+   "roundtrip_ok": true,
+   "field_sum_err": 0.0,
+   "cover_ok": true,
+   "E_Q": 1.2754901997782686,
+   "R_split": -1.2754901997782686,
+   "invert_err": 0.0,
+   "Acoef": 1.2084662052549937,
+   "Re_term": -0.040208669709499656,
+   "d2_term": 0.10723266423277454,
+   "closure_err": 0.0,
+   "n_true": {
+    "B_POS": 5,
+    "B_NEG": 2,
+    "B_ZERO": 0,
+    "L_NEG": 4,
+    "L_POS": 3,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 0,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 7,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 2,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    529,
+    4617,
+    522,
+    4617,
+    522,
+    529,
+    529
+   ],
+   "B_range": [
+    -0.07107306340513181,
+    0.25277650736855767
+   ],
+   "dE_range": [
+    -0.26723276792512657,
+    0.18684937655061395
+   ],
+   "J_max": 0.19215874849991038
+  }
+ ],
+ "crossings": {
+  "n_cross": 7,
+  "per_pred": {
+   "B_POS": 3,
+   "B_NEG": 3,
+   "B_ZERO": 0,
+   "L_NEG": 6,
+   "L_POS": 6,
+   "LEDG_ZERO": 0,
+   "CROSS_ZERO": 0,
+   "BAL_R1": 0,
+   "BAL_R2": 0,
+   "C0": 0,
+   "C_POS": 0,
+   "BRIDGE": 0,
+   "FAVORABLE": 5,
+   "ANNIHIL": 0,
+   "J_ZERO": 0,
+   "BJ_ZERO": 0,
+   "CELL_SYM": 0,
+   "CELL_ANTI": 0,
+   "HID_ACTIVE": 0,
+   "ZERO_MIN": 0,
+   "UNIFORM_EDGE": 0
+  },
+  "witness": {
+   "edge": 0,
+   "pred": "L_NEG",
+   "rung": 1,
+   "T": 0.5,
+   "bit0": false,
+   "bitr": true
+  }
+ },
+ "equiv": {
+  "n_rewires": 21,
+  "anchored": false,
+  "n_cospec": 14,
+  "n_iso": 14,
+  "cands": [
+   {
+    "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((2, 8), (3, 4)), ((2, 4), (3, 8)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((2, 8), (4, 5)), ((2, 5), (4, 8)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((2, 8), (5, 6)), ((2, 6), (5, 8)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((2, 3), (7, 8)), ((2, 7), (3, 8)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((2, 8), (6, 7)), ((2, 7), (6, 8)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((3, 4), (7, 8)), ((3, 7), (4, 8)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((4, 5), (7, 8)), ((4, 7), (5, 8)))",
+    "n_maps": 14
+   },
+   {
+    "rkey": "(((5, 6), (7, 8)), ((5, 7), (6, 8)))",
+    "n_maps": 14
+   }
+  ],
+  "compat": {
+   "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((2, 8), (3, 4)), ((2, 4), (3, 8)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((2, 8), (4, 5)), ((2, 5), (4, 8)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((2, 8), (5, 6)), ((2, 6), (5, 8)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((2, 3), (7, 8)), ((2, 7), (3, 8)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((2, 8), (6, 7)), ((2, 7), (6, 8)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((3, 4), (7, 8)), ((3, 7), (4, 8)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((4, 5), (7, 8)), ((4, 7), (5, 8)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((5, 6), (7, 8)), ((5, 7), (6, 8)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "orbits": {
+   "n_survivors": 14,
+   "n_orbits": 2,
+   "exact": true,
+   "n_perms": 14
+  },
+  "n_nontrivial": 0
+ },
+ "neighbors": {
+  "n_merge_nbrs": 7,
+  "n_split_nbrs": 1,
+  "n_rewire_nbrs": 21,
+  "anchored": false
+ },
+ "continuations": {},
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

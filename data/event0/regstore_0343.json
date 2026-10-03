@@ -1,0 +1,16 @@
+{
+ "task": [
+  "tex",
+  "j2-L4",
+  "linear",
+  {
+   "alpha0": 0.0,
+   "winding": 1
+  }
+ ],
+ "pred_ok": true,
+ "roundtrip_ok": true,
+ "exact_ok": true,
+ "phys_ok": true,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

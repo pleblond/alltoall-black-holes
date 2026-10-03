@@ -1,0 +1,639 @@
+{
+ "kind": "bare",
+ "sub": "ring-8",
+ "ftag": "tiny:current",
+ "ladder": [
+  0.0,
+  0.5,
+  1.0,
+  2.0,
+  4.0,
+  8.0
+ ],
+ "dt": 0.05,
+ "n_nodes": 8,
+ "n_edges": 8,
+ "cert": {
+  "residual": 1.5524138928020762e-16,
+  "lam": -1.4142135623730951,
+  "is_zero": false,
+  "is_eigen": true
+ },
+ "norm_drift": 6.994405055138486e-15,
+ "E_psi_0": -1.414213562373095,
+ "E_psi_spread": 1.2212453270876722e-14,
+ "t_star": null,
+ "all_valid": true,
+ "rungs": [
+  {
+   "T": 0.0,
+   "norm": 0.9999999999999999,
+   "E_psi": -1.414213562373095,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 8,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 8,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 8,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 8,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593
+   ],
+   "B_range": [
+    0.0883883476483184,
+    0.08838834764831843
+   ],
+   "dE_range": [
+    0.1767766952966368,
+    0.1767766952966369
+   ],
+   "J_max": 0.08838834764831845
+  },
+  {
+   "T": 0.5,
+   "norm": 0.9999999999999994,
+   "E_psi": -1.4142135623730934,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 8,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 8,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 8,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 8,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593
+   ],
+   "B_range": [
+    0.08838834764831834,
+    0.08838834764831836
+   ],
+   "dE_range": [
+    0.17677669529663664,
+    0.17677669529663675
+   ],
+   "J_max": 0.08838834764831836
+  },
+  {
+   "T": 1.0,
+   "norm": 0.9999999999999998,
+   "E_psi": -1.4142135623730945,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 8,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 8,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 8,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 8,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593
+   ],
+   "B_range": [
+    0.08838834764831836,
+    0.08838834764831843
+   ],
+   "dE_range": [
+    0.17677669529663667,
+    0.1767766952966369
+   ],
+   "J_max": 0.08838834764831845
+  },
+  {
+   "T": 2.0,
+   "norm": 1.0000000000000004,
+   "E_psi": -1.4142135623730965,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 8,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 8,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 8,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 8,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593
+   ],
+   "B_range": [
+    0.08838834764831842,
+    0.08838834764831868
+   ],
+   "dE_range": [
+    0.1767766952966368,
+    0.17677669529663737
+   ],
+   "J_max": 0.08838834764831867
+  },
+  {
+   "T": 4.0,
+   "norm": 0.9999999999999978,
+   "E_psi": -1.414213562373089,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 8,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 8,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 8,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 8,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593
+   ],
+   "B_range": [
+    0.08838834764831673,
+    0.08838834764831942
+   ],
+   "dE_range": [
+    0.17677669529663018,
+    0.17677669529664075
+   ],
+   "J_max": 0.08838834764831982
+  },
+  {
+   "T": 8.0,
+   "norm": 0.9999999999999962,
+   "E_psi": -1.4142135623730843,
+   "valid": true,
+   "vbits": {
+    "V1": true,
+    "V2": true,
+    "V3": true
+   },
+   "n_true": {
+    "B_POS": 8,
+    "B_NEG": 0,
+    "B_ZERO": 0,
+    "L_NEG": 0,
+    "L_POS": 8,
+    "LEDG_ZERO": 0,
+    "CROSS_ZERO": 8,
+    "BAL_R1": 0,
+    "BAL_R2": 0,
+    "C0": 8,
+    "C_POS": 0,
+    "BRIDGE": 0,
+    "FAVORABLE": 0,
+    "ANNIHIL": 0,
+    "J_ZERO": 0,
+    "BJ_ZERO": 0,
+    "CELL_SYM": 0,
+    "CELL_ANTI": 0,
+    "HID_ACTIVE": 0,
+    "ZERO_MIN": 0,
+    "UNIFORM_EDGE": 0
+   },
+   "masks": [
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593,
+    593
+   ],
+   "B_range": [
+    0.08838834764831716,
+    0.08838834764831857
+   ],
+   "dE_range": [
+    0.17677669529662587,
+    0.17677669529664422
+   ],
+   "J_max": 0.08838834764832071
+  }
+ ],
+ "crossings": {
+  "n_cross": 0,
+  "per_pred": {
+   "B_POS": 0,
+   "B_NEG": 0,
+   "B_ZERO": 0,
+   "L_NEG": 0,
+   "L_POS": 0,
+   "LEDG_ZERO": 0,
+   "CROSS_ZERO": 0,
+   "BAL_R1": 0,
+   "BAL_R2": 0,
+   "C0": 0,
+   "C_POS": 0,
+   "BRIDGE": 0,
+   "FAVORABLE": 0,
+   "ANNIHIL": 0,
+   "J_ZERO": 0,
+   "BJ_ZERO": 0,
+   "CELL_SYM": 0,
+   "CELL_ANTI": 0,
+   "HID_ACTIVE": 0,
+   "ZERO_MIN": 0,
+   "UNIFORM_EDGE": 0
+  },
+  "witness": null
+ },
+ "equiv": {
+  "n_rewires": 32,
+  "anchored": false,
+  "n_cospec": 20,
+  "n_iso": 20,
+  "cands": [
+   {
+    "rkey": "(((0, 1), (2, 3)), ((0, 2), (1, 3)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((0, 7), (1, 2)), ((0, 2), (1, 7)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((0, 1), (3, 4)), ((0, 3), (1, 4)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((0, 7), (2, 3)), ((0, 3), (2, 7)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((0, 1), (4, 5)), ((0, 4), (1, 5)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((0, 7), (3, 4)), ((0, 4), (3, 7)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((0, 1), (5, 6)), ((0, 5), (1, 6)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((0, 7), (4, 5)), ((0, 5), (4, 7)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((0, 1), (6, 7)), ((0, 6), (1, 7)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((0, 7), (5, 6)), ((0, 6), (5, 7)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((1, 2), (3, 4)), ((1, 3), (2, 4)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((1, 2), (4, 5)), ((1, 4), (2, 5)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((1, 2), (5, 6)), ((1, 5), (2, 6)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((1, 2), (6, 7)), ((1, 6), (2, 7)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((2, 3), (4, 5)), ((2, 4), (3, 5)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((2, 3), (5, 6)), ((2, 5), (3, 6)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((2, 3), (6, 7)), ((2, 6), (3, 7)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((3, 4), (5, 6)), ((3, 5), (4, 6)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((3, 4), (6, 7)), ((3, 6), (4, 7)))",
+    "n_maps": 16
+   },
+   {
+    "rkey": "(((4, 5), (6, 7)), ((4, 6), (5, 7)))",
+    "n_maps": 16
+   }
+  ],
+  "compat": {
+   "(((0, 1), (2, 3)), ((0, 2), (1, 3)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((0, 7), (1, 2)), ((0, 2), (1, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((0, 1), (3, 4)), ((0, 3), (1, 4)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((0, 7), (2, 3)), ((0, 3), (2, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((0, 1), (4, 5)), ((0, 4), (1, 5)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((0, 7), (3, 4)), ((0, 4), (3, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((0, 1), (5, 6)), ((0, 5), (1, 6)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((0, 7), (4, 5)), ((0, 5), (4, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((0, 1), (6, 7)), ((0, 6), (1, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((0, 7), (5, 6)), ((0, 6), (5, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((1, 2), (3, 4)), ((1, 3), (2, 4)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((1, 2), (4, 5)), ((1, 4), (2, 5)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((1, 2), (5, 6)), ((1, 5), (2, 6)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((1, 2), (6, 7)), ((1, 6), (2, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((2, 3), (4, 5)), ((2, 4), (3, 5)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((2, 3), (5, 6)), ((2, 5), (3, 6)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((2, 3), (6, 7)), ((2, 6), (3, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((3, 4), (5, 6)), ((3, 5), (4, 6)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((3, 4), (6, 7)), ((3, 6), (4, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "(((4, 5), (6, 7)), ((4, 6), (5, 7)))": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "orbits": {
+   "n_survivors": 20,
+   "n_orbits": 3,
+   "exact": true,
+   "n_perms": 16
+  },
+  "n_nontrivial": 0
+ },
+ "neighbors": {
+  "n_merge_nbrs": 8,
+  "n_split_nbrs": 0,
+  "n_rewire_nbrs": 32,
+  "anchored": false
+ },
+ "continuations": {},
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

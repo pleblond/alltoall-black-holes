@@ -1,0 +1,36 @@
+{
+ "kind": "bare",
+ "sub": "j2-L4",
+ "ftag": "X:packet@VPLUS",
+ "remote": "31",
+ "remote_hop": 0,
+ "n_edges": 128,
+ "n_far": 64,
+ "far_flips": 0,
+ "near_flips": 16,
+ "static_ok": true,
+ "causal": {
+  "rungs": [
+   {
+    "T": 0.5,
+    "cone": 4.0,
+    "beyond": 0,
+    "flips": 0
+   },
+   {
+    "T": 1.0,
+    "cone": 8.0,
+    "beyond": 0,
+    "flips": 0
+   },
+   {
+    "T": 2.0,
+    "cone": 16.0,
+    "beyond": 0,
+    "flips": 0
+   }
+  ],
+  "note": "filed diagnostic; fitted front is not the causal cone (TRIGGER0-AMENDMENT-2)"
+ },
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

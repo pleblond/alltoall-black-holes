@@ -1,0 +1,15 @@
+{
+ "task": [
+  "fib",
+  "tiny",
+  "star4",
+  "bonding",
+  2
+ ],
+ "n_rows": 12,
+ "bad_pred": 0,
+ "bad_rt": 0,
+ "qxi_sufficient": true,
+ "y_pair": true,
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}

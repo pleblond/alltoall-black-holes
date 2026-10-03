@@ -1,0 +1,25 @@
+{
+ "BR27_NO_MODE": true,
+ "MERGE0_J_NORULE": true,
+ "MEASURE0": "MEASURE0-DEBT",
+ "TRIGGER0_implications": [],
+ "QDYN0B": "QDYN0B-EVENT-LOCAL",
+ "implications": [],
+ "n_implications": 0,
+ "scan": {
+  "n_hits": 0,
+  "hits": []
+ },
+ "fitted_params": 0,
+ "n_pred": 21,
+ "bars": {
+  "BAR_FP": 1e-12,
+  "BAR_LEDGER": 1e-09,
+  "BAR_PHYS": 1e-06,
+  "BAR_U1": 1e-12,
+  "BAR_SPEC": 1e-09
+ },
+ "n_tasks": 463,
+ "battery_checksum": "b163e97fd65a3e6fb4e437377911b5ab18ae30c715b54cbedddbc569d9ed7faa",
+ "_git": "3796d834dc9131a23def619d9e7d1ec536cc7659"
+}
