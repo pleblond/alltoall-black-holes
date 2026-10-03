@@ -227,3 +227,18 @@ R x U1 exact (H-B); endpoint/automorphism/sheet covariance
 (H-C/H-D + J2 sheet legs); locality (H-E); deterministic fibers
 give delta measures (H-F); no RNG, fitted parameter, or post-data
 cutoff in the headline derivation (H-FW).
+
+## 10. Apparatus-fix log (post-data, comparisons only)
+
+- 2026-10-03, run 1 -> run 2: first campaign returned
+  FIBER0-INCOMPLETE on H-B (HDIPOLE leg), H-C (10 tiny cells),
+  M-M (24 tiny cells via `pair_exchange_ok`). Diagnosis: exact
+  `==` on computed floats in three boolean checks
+  (`is_quotient_invariant_ok` |s| key after U1 rotation,
+  `is_swap_fiber_ok` residual, `is_pair_exchange_theorem_ok`
+  reconstruction), failing at 1 ulp (5.6e-17). Fix: compare
+  within the frozen `FP_ATOL = 1e-12` (same tolerance already
+  used by `is_sum_consistent_ok` / `is_linear_readout_theorem_ok`);
+  no physics, gate, cell, or threshold changed. Pins extended
+  with the failing values (`s = 0.7071067811865476`, HDIPOLE leg).
+  Campaign re-run in full (run 2); run-1 ledger discarded.

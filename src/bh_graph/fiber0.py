@@ -678,11 +678,13 @@ def fiber_anatomy_keys(g2: nx.Graph, psi2: np.ndarray, order2: list,
 
 
 def is_quotient_invariant_ok(g2: nx.Graph, psi2: np.ndarray, order2: list,
-                             k, perm: dict, alpha: float) -> bool:
+                             k, perm: dict, alpha: float,
+                             atol: float = FP_ATOL) -> bool:
     """Boolean check: fiber anatomy invariant under R x U1 (never raises).
 
     Compares invariant keys on M vs R x U1(M) at the transported locus,
-    plus transported-vs-recomputed cover-key set equality.
+    plus transported-vs-recomputed cover-key set equality. The |s| key
+    is compared within float tolerance (U1 rotation rounds at 1 ulp).
     """
     try:
         from bh_graph.sym0 import apply_relabel, apply_u1
@@ -695,7 +697,11 @@ def is_quotient_invariant_ok(g2: nx.Graph, psi2: np.ndarray, order2: list,
         k2 = perm.get(k, k)
         a0 = fiber_anatomy_keys(g2, psi2, order2, k)
         a1 = fiber_anatomy_keys(h, psi_h, order_h, k2)
-        if a0 != a1:
+        for key in ("d", "n_directed", "n_undirected", "d_cont_full",
+                    "s_is_zero"):
+            if a0[key] != a1[key]:
+                return False
+        if abs(a0["abs_s"] - a1["abs_s"]) > atol:
             return False
         got = {key for key, _A, _B
                in undirected_cover_list(sorted(h.neighbors(k2)))}
@@ -733,12 +739,13 @@ def undirected_key(A, B):
     return (ka, kb) if ka <= kb else (kb, ka)
 
 
-def is_swap_fiber_ok(s: complex, d: complex) -> bool:
-    """Boolean check: swap sends (p,q) -> (q,p), i.e. d -> -d (exact)."""
+def is_swap_fiber_ok(s: complex, d: complex,
+                     atol: float = FP_ATOL) -> bool:
+    """Boolean check: swap sends (p,q) -> (q,p), i.e. d -> -d (never raises)."""
     try:
         s, d = complex(s), complex(d)
         p, q = fiber_point(s, d)
-        return bool(fiber_residual(q, p) == -d
+        return bool(abs(fiber_residual(q, p) + d) <= atol
                     and is_sum_consistent_ok(q, p, s))
     except Exception:
         return False
@@ -1585,20 +1592,22 @@ def pair_exchange_split(p: complex, q: complex) -> dict:
             "P_plus_d": 0.0j, "P_minus_d": d}
 
 
-def is_pair_exchange_theorem_ok(p: complex, q: complex) -> bool:
+def is_pair_exchange_theorem_ok(p: complex, q: complex,
+                                  atol: float = FP_ATOL) -> bool:
     """Boolean check: d purely odd, s purely even (never raises)."""
     try:
         rep = pair_exchange_split(complex(p), complex(q))
         e0, e1 = rep["even_part"]
         o0, o1 = rep["odd_part"]
         # Even part invariant under daughter swap; odd flips sign.
-        if not (e0 == e1 and o0 == -o1):
+        if not (abs(e0 - e1) <= atol and abs(o0 + o1) <= atol):
             return False
         # Reconstruction + P_+ d = 0, P_- d = d.
-        if not (e0 + o0 == complex(p) and e1 + o1 == complex(q)):
+        if not (abs(e0 + o0 - complex(p)) <= atol
+                and abs(e1 + o1 - complex(q)) <= atol):
             return False
-        return bool(rep["P_plus_d"] == 0.0j
-                    and rep["P_minus_d"] == rep["d"])
+        return bool(abs(rep["P_plus_d"]) <= atol
+                    and abs(rep["P_minus_d"] - rep["d"]) <= atol)
     except Exception:
         return False
 

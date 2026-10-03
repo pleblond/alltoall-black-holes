@@ -135,6 +135,11 @@ def test_quotient_invariance():
         for perm in (reversal_perm(order), shuffle_perm(order, 11)):
             for a in F.U1_GRID:
                 assert F.is_quotient_invariant_ok(g, psi, order, k, perm, a)
+    leg = F.j2_leg_state("HDIPOLE")
+    for a in F.U1_GRID:
+        assert F.is_quotient_invariant_ok(
+            leg["g"], leg["psi"], leg["order"], leg["k"],
+            {v: v for v in leg["order"]}, a)
 
 
 # ---------------------------------------------------------------- C swap
@@ -142,7 +147,7 @@ def test_quotient_invariance():
 def test_swap_involution_and_fiber():
     assert F.is_swap_involution_ok({1, 2}, {2, 3})
     assert F.undirected_key({1}, {2}) == F.undirected_key({2}, {1})
-    for s in (0.0j, 1.0 + 1.0j):
+    for s in (0.0j, 1.0 + 1.0j, 0.7071067811865476 + 0j):
         for d in F.D_SWEEP:
             assert F.is_swap_fiber_ok(s, d)
 
@@ -373,13 +378,13 @@ def test_leg_debt_all_tiny():
 # ---------------------------------------------------------------- M hidden
 
 def test_pair_exchange_theorem():
-    for s in (0.0j, 1.0 + 2.0j):
+    for s in (0.0j, 1.0 + 2.0j, 0.7071067811865476 + 0j):
         for d in F.D_SWEEP:
             p, q = F.fiber_point(s, d)
             assert F.is_pair_exchange_theorem_ok(p, q)
             rep = F.pair_exchange_split(p, q)
             assert rep["P_plus_d"] == 0.0j
-            assert rep["P_minus_d"] == complex(d)
+            assert abs(rep["P_minus_d"] - complex(d)) <= F.FP_ATOL
 
 
 def test_linear_readout_theorem():
