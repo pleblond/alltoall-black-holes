@@ -12618,3 +12618,239 @@ Handoff: Q is retained internal information with no earned inter-event
 clock; decay/event timing remains a separate primitive debt. No
 corrected residual remains, so no further Q-dynamics campaign is
 justified. No gate, bar, or ladder rung changed post-data.
+## BHENT0-PREREG (FROZEN pre-data; commit predates ALL BH-ENT-0 runs)
+
+Collapsed-region microstate census (BH-ENT-0). Mission: test whether
+physically distinct microscopic states compatible with the same
+collapsed-region exterior state scale with graph boundary, volume, or
+another intrinsic quantity. This is a multiplicity/information campaign,
+not yet thermodynamic black-hole entropy.
+
+Primary object: for a region R collapsed to Xc = C_R(X),
+
+    Omega_phys(R; Xc) = {[X]_phys : C_R(X) = Xc},
+    S2(R) = log2 |Omega_phys(R)|,
+
+plus the count of physically distinct interiors indistinguishable to
+frozen exterior operational channels. The earned physical quotient
+X_phys = X / (R x U(1)) (SYM0-CLOSED) is used throughout: node
+relabeling / global phase never change physical counts, automorphism-
+related physical states are never quotiented.
+
+### Firewall (campaign level)
+
+BH-ENT-0 may not identify any scaling with S_BH = kB c^3 A / 4G hbar.
+No thermodynamic measure, GR horizon, or normalization has been earned.
+No continuous volume is converted into finite entropy (MEASURE0-DEBT).
+No vacuum is selected (VACSEL0-NOMEASURE). No transition weight is
+chosen. No firing law is assumed (BR27-NO-MODE). The analyzer scans
+every record for forbidden tokens (C4); any hit forces a census-invalid
+verdict.
+
+### Frozen ontology + consumed apparatus (byte-identical, read-only)
+
+H(G) = -A(G), J = 1, hbar = 1 (P1-locked). Contraction/split op u-v <->
+[uv] with the sum field map primary (BR25-ONTOLOGY); exact ledgers
+(BR26-ACCOUNTED, CONS0-PARTIAL); split covers 3^d directed,
+(3^d+1)/2 undirected (RAND-0A/U0-H); sector algebra [H,S] = 0, H P_- = 0
+(QUOT0-OPERATIONAL); hidden local-distinguishability bars D_local > 1e-6
+vs D_remote < 1e-9 (HIDDEN0-SEPARATED); ledger linearity dE/dA = -2B
+(HBR0-SIGNREV); JOINT vacuum family shapes (VACFIELD0-JOINT,
+VACCOMP0-COMPLETE filed manifold); blind-observer channels W/D/P
+(OBS1-QUOTIENT; consumed as frozen wave/diffusion/POT operators, no
+blind replay is re-run); representation-independence apparatus
+(MEASURE0-DEBT, signatures only, never a weight). Consumed modules stay
+byte-identical: contraction, accounting, conservation, sym0, rand0,
+measure0 (signatures), quot, obs0, driven, hidden, hiddenbr (cited),
+field0, vacfield/vaccomp (shapes/manifold), ballistic, malus,
+formation, graphs, phase, backreaction, continuum, potential.
+
+C_R (region collapse) is deterministic and order-free: exterior labels
+fixed, R fused to one node k with N(k) = union of exterior neighborhoods
+(BR-2.5A simple-graph kind), psi_k = sum_R psi (sum map). Stepwise
+lowest-sorted-internal-edge contraction must equal direct collapse
+(edge set + field < 1e-12) on every region; every step must reproduce
+the accounting.event_ledger and conservation.contraction_ledger books
+(C3, dev < 1e-9). Preimages are labeled states on the fixed label set
+(exterior + R) collapsing to the fixed labeled Xc, quotiented by
+interior Sym(R) (exterior pointwise fixed) x U(1).
+
+### Region battery (frozen)
+
+Paths P2..P12 (pad 3; b = 2 constant: the boundary/volume
+discriminator). Stars S3_2 (n = 4, b = 2), S4_3, S6_4, S8_6
+(boundary-rich). J2 regions J2L4edge (n = 2 connected edge; see
+AMENDMENT-1), J2L6r1 (n = 18), J2L8r2 (n = 42), J2L28r1 (n = 18;
+field/ledger/channels; see AMENDMENT-2). Square-torus controls SQL4dimer (n = 2),
+SQL4r1, SQL6r1. Builders in bhent.py (path_region, star_region,
+j2_disk_region, j2_edge_region, square_dimer_region,
+square_ball_region); region_battery() freezes the per-branch specs.
+
+### Counting branches (all preregistered, no post-hoc selection)
+
+G-joint (headline): exact physical graph census = interior graphs x
+valid boundary wirings (each exterior boundary node >= 1 edge into R),
+overall-connected, canonicalized by interior-Sym(R) min-key (exterior
+fixed). Exact scope: labeled combos <= 3M single-shot (P2..P5, S3_2,
+SQL4dimer) + chunked exceptions P6 (130M, 64 beast chunks) and J2L4edge
+(9.5M, 2 chunks) over interior masks with memory-budgeted wiring-axis
+slicing (union in the analyzer). Audit on every record: orbits x n! >=
+connected, orbits <= labeled.
+
+G-wire: wiring-only Burnside-exact orbit counts (interior fixed actual;
+connectivity automatic), full valid wirings + single-edge leg wirings,
+via partition-based conjugacy summation (exact big ints). Brute-force
+audit at n <= 4.
+
+G-int: interior-only labeled counts via the exact rooted recurrence
+f(n,r) (every node reaches the r actual boundary-touching roots) +
+orbit log bounds [log2(labeled/n!), log2(labeled)]. Connected-labeled
+c(n) as a reference leg.
+
+F-fiber: exact sum-map fiber dimensions (complex n-1, real 2(n-1)),
+explicit basis verified collapse-invariant; U(1) quotient caveat filed
+(U(1) moves between fibers unless s = 0); never converted to counts.
+
+F-blind: blind-submanifold dimensions over the deep interior
+D = R \\ N[B] (exact) + discrete exterior-blind alphabet census:
+J2 hidden-delta x 8 phases (P_- mechanism), non-J2 sum-zero pair x 8
+phases. Static-exterior blindness (t = 0 strictly-exterior rho/B/J)
+vs dynamical blindness (wave/diffusion TV < 1e-9 on exterior shells,
+T = 16) reported separately. Local distinguishability D > 1e-6 in R
+required for every alphabet state.
+
+E-equiv: exterior-equivalence battery per region: graph pair (actual
+vs one-interior-edge-toggled valid preimage) shares collapsed edge set
++ collapsed field + static exterior; POT exterior profile filed (graph
+sensitive); field pair (blind-basis) static match + wave/diff TV filed.
+
+### Controls (all must be green; else census-invalid)
+
+C1: orbit counts invariant under ambient relabel transport (P2, P3).
+C2: automorphism-pushed fields are distinct preimages sharing the
+collapsed sum (fs > 1e-7; P3, P4, S3_2). C3: BR-ledger reproduction
+every collapse step everywhere. C4: firewall token scan over every
+record. Plus audit_crosscheck (Burnside/recurrence pins on beast).
+
+### Headline scaling (preregistered laws + unclassified branch)
+
+y = log2 Omega_graph_phys on the exact headline P2..P6 (fixed b = 2);
+x in {|R|, |dR|, |dR| log|R|}. Gates in bhent.law_gates (frozen bars):
+BOUNDARY iff |slope| < 0.5 and growth < 6 bits; VOLUME iff linear R^2 >
+0.98, |mean 2nd difference| < 0.25, slope > 0.5, quadratic F-test
+p >= 0.01; MIXED iff the full-wiring branch fits y = a b log2 n + c
+with R^2 > 0.95 and a in (0.5, 2.5); CONTINUOUS iff headline discrete
+Omega <= 2 across the battery while blind-manifold dimension grows.
+Verdict priority: controls-fail -> UNCLASSIFIED (census-invalid: cause);
+then CONTINUOUS > BOUNDARY > VOLUME > MIXED > UNCLASSIFIED
+(census valid, no tested asymptotic law supported).
+
+Pre-data predictions (P, not gates): BOUNDARY rejected (growth at fixed
+b = 2 from interior graphs); strict VOLUME rejected (superlinear,
+quadratic F-test fires); MIXED rejected on the wiring branch
+(full-wiring log-orbits ~ b n, leg wirings saturate); CONTINUOUS not
+triggered (discrete census nontrivial). Expected: BHENT0-UNCLASSIFIED
+with volume-dominated superlinear characterization + boundary-flavored
+wiring saturation filed. Discrete graph multiplicity and continuous
+field-manifold dimension reported separately throughout.
+
+### Execution
+
+~140 tasks (scripts/bhent0_campaign.py --print-all), beast EC2
+(16.54.88.181, xargs -P 90, OMP threads 1), JSON records
+data/bhent0/*.json (committed; P6 chunk records banked). Full suite on
+beast (pytest -n 90 --ignore=tests/test_weighted.py). Analyzer
+scripts/bhent0_analyze.py writes data/bhent0/verdict.json. Verdict
+filed here post-data.
+
+### BHENT0-AMENDMENT-1 (pre-campaign-data design fix; no records exist)
+
+A single J2 cell (2 same-cell sheet nodes) is induced-disconnected: J2
+has no same-cell sheet edge (all 8 generators move spatially), so
+stepwise BR-2.5 collapse cannot start inside it. The tiny-J2 exact
+census region is therefore J2L4edge (two adjacent J2 nodes, one genuine
+edge, n = 2) instead of J2L4r0. Whole-cell J2 alphabets run on r >= 1
+disks only (whole_cells gate in the runner). J2L4edge (b = 14, 9.5M
+labeled) runs through the 2-chunk exact path. Battery lists, builders,
+tests, and analyzer updated accordingly; no campaign record existed at
+amendment time (only test smokes), so no re-run is needed.
+
+### BHENT0-AMENDMENT-2 (pre-campaign-data size correction; no records exist)
+
+The frozen rounded-hypot disk convention (hidden.disk_cells) gives 9
+cells at r = 1 (diagonals round down) and 21 cells at r = 2, so the J2
+battery sizes are J2L6r1 n = 18, J2L8r2 n = 42, J2L28r1 n = 18 (not
+10/26/10 as first written). No method changes: wiring Burnside is
+partition-exact at these sizes, and J2 disks were never in the exact-
+joint scope. Prereg battery paragraph corrected accordingly.
+
+### BHENT0-AMENDMENT-3 (post-data apparatus design-error fixes + gated reruns)
+
+Two red checks traced to apparatus design errors (not physics):
+(1) is_static_match_ok crashed (False) on empty readout classes: S4_3
+has no exterior-exterior edges, so the B/J max over an empty array
+raised. Fix: empty classes match vacuously (exact-zero rule, filed).
+Only fiber_S4_3 is affected (all other static comparisons have
+nonempty edges); only it is re-run. (2) The C2 automorph exhibit put a
+single spike at R[0], which on S3_2 is the star center fixed by every
+automorphism, so no candidate distinguished. Fix: distinct spikes at
+R[0] and R[-1]. Only the three control_C2 tasks are re-run. Regression
+pins added (star blind-static, C2 on P3/P4/S3_2). All other 131 records
+stand; the analyzer is re-run unchanged.
+
+### BHENT0-AMENDMENT-4 (post-data alphabet refinement; no gates touched)
+
+The single-sided alphabet (bg + hidden vs bg) carries an S-even |d|^2
+remnant, so diffusion sees it (J2 diff_max ~ 0.17) while wave stays at
+fp zero (~6e-15, frozen mechanism holds). Per HIDDEN-0 0D, equal
+hidden norms make Dp exactly S-odd (decays in place, never spreads).
+AMENDMENT-4 adds matched sign-pair alphabets (bg +/- hidden, 4 phases)
+with per-shell wave/diffusion filing split into near (d = 1) vs far
+(d >= 2) exterior shells. Five new tasks (alphabetM x battery + VPI
+control); single-alphabet records stand. No verdict gate involves dyn
+counts, so the ladder is unchanged; near/far blind counts are filed
+descriptively.
+
+### BHENT0-VERDICT (filed post-data): BHENT0-UNCLASSIFIED (153/153)
+
+Branch cursor/bh-ent-0-census-865a (base main tail 81bf7b4). 140/140
+tasks CAMPAIGN-DONE on beast (16.54.88.181, xargs -P 90 + 5 follow-up,
+OMP threads 1, nice; shared-machine contention ~2x); records
+data/bhent0/*.json (143 files incl. 2 union records + verdict.json)
+banked; full-key chunk sidecars under data/bhent0/chunks_full/
+(gitignored, shas in union records; banked-mode analyzer reproduces
+the verdict). Full suite on beast (venv, -n 60,
+--ignore=tests/test_weighted.py per default): 1819 passed, 2 skipped,
+0 failed.
+
+Headline (exact joint census, paths P2..P6, fixed b = 2): orbits
+8 / 67 / 701 / 10047 / 218083 (log2 3.000 / 6.066 / 9.453 / 13.294 /
+17.735; P6 union over 64 chunks, labeled 130056192 = bound exactly).
+Linear fit slope 3.67, R^2 = 0.9945, but second differences
+[0.321, 0.454, 0.599] (mean 0.458 vs 0.25 bar) and quadratic F-test
+p = 0.0052 < 0.01: strict VOLUME rejected. Growth at fixed boundary
+rejects BOUNDARY. Full-wiring branch vs b log2 n: R^2 = 0.928,
+slope 5.91 outside (0.5, 2.5): MIXED rejected. Discrete census
+nontrivial: CONTINUOUS not triggered. Controls all green: C1 orbit
+counts relabel-invariant; C2 automorphs distinct preimages sharing
+the collapsed sum; C3 every collapse step reproduces the BR-2.6/CONS-0
+books (dev < 1e-9); C4 firewall scan clean. Census valid, no tested
+asymptotic law supported: BHENT0-UNCLASSIFIED, as predicted pre-data.
+
+Filed characterization (descriptive, not a tested law): interior-graph
+multiplicity dominates and is volume-superlinear (unlabeled-graph
+growth ~ 2^{n^2/2}/n!, quotient-corrected); boundary-carried wiring
+multiplicity is polylog/saturating (path leg wirings = 2 for all n;
+P12 full-wiring log2 = 8.75). Same-(n,b,exterior-profile) regions
+share censuses structurally (S3_2 = P4 = 701/12424). J2L4edge:
+4782969 orbits; SQL4dimer 729 (Burnside audit exact). Field fiber real
+dim 2(n-1) exact; blind-submanifold dims filed (P8: 10, J2L6r1: 2,
+S4_3: 6); no finite count derived (MEASURE0-DEBT). Exterior channels:
+collapsed edge-set + field + static exterior identical across
+preimages; POT distinguishes graph pairs (0.068/0.002/0.008);
+single-sided alphabets wave-blind on J2 (~6e-15) but diffusion-visible
+(S-even remnant); matched sign pairs 36/36 near+far blind on J2
+(VPLUS and VPI, L6 and L28) vs 0/12 paths and 0/16 square: hidden-
+sector field multiplicity is exterior-blind and extensive in |R|,
+while graph multiplicity is dynamically exterior-visible. No S_BH
+identification anywhere (firewall held).

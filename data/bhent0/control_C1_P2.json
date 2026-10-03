@@ -1,0 +1,1 @@
+{"task": "control_C1_P2", "params": {"kind": "C1", "spec": "P2"}, "payload": {"applicable": true, "base": 8, "relabeled": 8, "invariant": true, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T01:56:16Z", "host": "ip-172-31-39-189"}}

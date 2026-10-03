@@ -1,0 +1,1 @@
+{"task": "wiring_P4", "params": {"spec": "P4"}, "payload": {"n": 4, "b": 2, "e_cut": 2, "full_orbits": "26", "leg_orbits": "2", "log2_full": 4.700439718141092, "log2_leg": 1.0, "m_predictor": 4.0, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T01:55:51Z", "host": "ip-172-31-39-189"}}

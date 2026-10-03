@@ -1,0 +1,1 @@
+{"task": "joint_P5", "params": {"spec": "P5"}, "payload": {"n": 5, "b": 2, "e_cut": 2, "n_orbits": 10047, "n_labeled": 984064, "n_connected": 901264, "log2_orbits": 13.294477161427873, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T02:02:59Z", "host": "ip-172-31-39-189"}}

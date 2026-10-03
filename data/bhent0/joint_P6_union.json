@@ -1,0 +1,1 @@
+{"task": "joint_P6_union", "params": {"spec": "P6"}, "payload": {"n_orbits": 218083, "n_labeled": 130056192, "n_connected": 123689696, "n_chunks": 64, "key_sha": "5c4f86804f8e5768465357917f2add0ee44fc9cfc05d668a0e2bd0713efe64b6", "mode": "banked"}, "provenance": {"note": "union of full-audit chunk keys (sidecar chunks_full/)"}}

@@ -1,0 +1,1 @@
+{"task": "wiring_P5", "params": {"spec": "P5"}, "payload": {"n": 5, "b": 2, "e_cut": 2, "full_orbits": "45", "leg_orbits": "2", "log2_full": 5.491853096329675, "log2_leg": 1.0, "m_predictor": 4.643856189774724, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T01:55:44Z", "host": "ip-172-31-39-189"}}

@@ -1,0 +1,1 @@
+{"task": "joint_P2", "params": {"spec": "P2"}, "payload": {"n": 2, "b": 2, "e_cut": 2, "n_orbits": 8, "n_labeled": 18, "n_connected": 14, "log2_orbits": 3.0, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T01:55:46Z", "host": "ip-172-31-39-189"}}

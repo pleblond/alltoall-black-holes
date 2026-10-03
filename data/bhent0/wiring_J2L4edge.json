@@ -1,0 +1,1 @@
+{"task": "wiring_J2L4edge", "params": {"spec": "J2L4edge"}, "payload": {"n": 2, "b": 14, "e_cut": 14, "full_orbits": "2391485", "leg_orbits": "8192", "log2_full": 21.18947531172785, "log2_leg": 13.0, "m_predictor": 14.0, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T01:56:03Z", "host": "ip-172-31-39-189"}}

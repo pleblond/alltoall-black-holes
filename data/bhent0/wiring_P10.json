@@ -1,0 +1,1 @@
+{"task": "wiring_P10", "params": {"spec": "P10"}, "payload": {"n": 10, "b": 2, "e_cut": 2, "full_orbits": "265", "leg_orbits": "2", "log2_full": 8.049848549450562, "log2_leg": 1.0, "m_predictor": 6.643856189774724, "firewall_ok": true}, "provenance": {"git_rev": "3206fdb9091d1829c7cca15e679c663ae19ce322", "utc": "2026-10-03T01:55:57Z", "host": "ip-172-31-39-189"}}
