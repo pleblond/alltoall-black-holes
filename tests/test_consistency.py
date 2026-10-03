@@ -1,45 +1,42 @@
-"""Repo consistency: every cited appendix figure/module exists (kills doc rot)."""
+"""Repo consistency: every cited v5-paper section/figure/module exists (kills doc rot)."""
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def _paper():
-    return (ROOT / "paper" / "paper.md").read_text()
+def _v5():
+    return ((ROOT / "paper" / "v5" / "main.tex").read_text()
+            + "\n" + (ROOT / "paper" / "v5" / "supplement.tex").read_text())
 
 
-def test_appendix_references_exist():
-    text = _paper()
-    defined = set(re.findall(r"^## Appendix ([A-Z]{1,2})\.", text, re.M))
-    cited = set(re.findall(r"Appendix(?:ices)? ([A-Z0-9,\-–/ ]+)", text))
-    # expand ranges like A-D, lists like Q/W, singles
-    need = set()
-    for chunk in cited:
-        for tok in re.split(r"[,/\s]+", chunk):
-            tok = tok.strip(" .()")
-            if re.fullmatch(r"[A-Z]{1,2}", tok or ""):
-                need.add(tok)
-    # single-letter range endpoints e.g. A–AU handled by spot checks below
-    missing = {t for t in need if t not in defined and len(t) == 1 and t < "Z"}
-    # only enforce two-letter + late-alphabet cites (single early letters appear in prose)
-    missing = {t for t in need if len(t) == 2 and t not in defined}
-    assert not missing, f"dangling appendix cites: {missing}"
-    assert len(defined) >= 40
+def test_supplement_sections_exist():
+    main = (ROOT / "paper" / "v5" / "main.tex").read_text()
+    supp = (ROOT / "paper" / "v5" / "supplement.tex").read_text()
+    n_sections = len(re.findall(r"^\\section\{", supp, re.M))
+    assert n_sections == 12, f"supplement has {n_sections} sections, want 12"
+    cited = set(int(m) for m in re.findall(r"\bS(\d{1,2})\b", main))
+    assert cited, "no supplement cites found in main.tex"
+    missing = {s for s in cited if not 1 <= s <= n_sections}
+    assert not missing, f"dangling supplement cites: {missing}"
 
 
 def test_figure_references_exist():
-    text = _paper()
-    figs = set(re.findall(r"figures/(fig[\w]+\.png)", text))
-    assert len(figs) > 40
+    text = _v5()
+    figs = set(re.findall(r"\\includegraphics\[[^\]]*\]\{([^}]+)\}", text))
+    figs |= set(re.findall(r"figures/(fig[\w]+\.png)", text))
+    figs = {f if f.endswith(".png") else f + ".png" for f in figs}
+    assert len(figs) > 10, f"too few figures cited: {len(figs)}"
     missing = [f for f in figs if not (ROOT / "figures" / f).exists()]
     assert not missing, f"missing figures: {missing}"
 
 
 def test_module_references_exist():
-    text = _paper() + (ROOT / "README.md").read_text()
+    text = (_v5() + (ROOT / "README.md").read_text()
+            + (ROOT / "docs" / "model.md").read_text())
     mods = set(re.findall(r"bh_graph\.([a-z_][a-z0-9_]*)", text))
-    ignore = set()
+    mods |= set(re.findall(r"\\path\{([a-z_][a-z0-9_]*)\}", text))
+    ignore = {"dev", "q", "figures", "paper", "main", "supplement"}
     missing = [m for m in mods
                if not (ROOT / "src" / "bh_graph" / f"{m}.py").exists()
                and not (ROOT / "scripts" / f"{m}.py").exists()

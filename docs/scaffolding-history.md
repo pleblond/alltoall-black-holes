@@ -449,7 +449,26 @@ the MEASURE-0A signature proxy (J-multiset edge-orientation artifact,
 pinned). The hidden relative mode is retained everywhere, never
 quotiented; no measure is derived (MEASURE0-DEBT respected). What remains
 of split selection is the fiber measure over `ξ` — FIBER-0 (§11.5) files
-it as debt.
+it as debt. STORE-0 (§8.3) then shows what a kept record buys.
+
+## 8.3 A stored ξ makes merge reversible
+
+STORE-0 (#126) asks whether the merge-discarded information can be kept in
+a minimal local hidden store. Verdict **STORE0-REVERSIBLE** ✓ (46/46): the
+full `ξ = (cover, d)` store recovers the exact physical predecessor
+(5784/5784 fiber rows valid roundtrips over 235 forward events on 79
+cells) and closes the merge/split energy account from the same stored
+content (closure errors `< 3e-14`, RES0 formula transcribed and
+cross-checked bitwise), with 5 stored sequences reversed exactly, disjoint
+factorization with additive `R`, and hidden/vacuum/texture/excitation
+batteries green. Minimality is earned, not assumed: cover-only fails
+everywhere, `d`-only fails on all multi-class cells, and scalar-`R` fails
+on all 78 non-injective cells (59 circle + 19 cross analytic witnesses; 1
+proven-injective cell). Ontology: discrete `c` plus `d` required. No
+split-fiber sampling is needed when the complete microscopic state is
+known — but the store is kept information, not derived selection:
+record-free splitting still faces the fiber debt, and nothing here writes,
+prices, or erases the record.
 
 ---
 
@@ -1019,6 +1038,7 @@ POSTULATES
            → local contraction / split         ✓  ontology
            → deterministic merge update        ✓  MERGE0 (unique, ledgered)
            → missing account = f(lost info)    ✓  RES0-XI (no reservoir invented)
+           → stored ξ makes merge reversible   ✓  STORE0 (recovery + closure exact)
            → conditional accounting            ✓
            → firing law absent                 ✓  BR27-NO-MODE + TRIGGER0
                                                   (19 conditions, 0 implications)
@@ -1065,6 +1085,8 @@ FOUNDATIONS, CLOSED OR OPEN
 ├── FIBER-0          fiber measure              ✓ DEBT (2 rivals, 520 dof)
 ├── TRIGGER-0        trigger census             ✓ CONDITION (19 survive, 0 imply)
 ├── REWIRE-0         rewire selector            ✓ DEGENERATE (none earned)
+├── STORE-0          reversible split store     ✓ REVERSIBLE (ξ kept; minimal c+d)
+├── DIM-3-0          operational 3D vacuum      ◇ GEOMETRIC (quotient cubic; 2D rulers outrun)
 └── QUOT-0           quotient mechanism         ✓ operational, not derived
 
 BLOCKED UNTIL THE DEBTS MOVE
@@ -1083,11 +1105,12 @@ BLOCKED UNTIL THE DEBTS MOVE
 | Debt | Origin | Meaning | What can close it |
 |---|---|---|---|
 | Substrate uniqueness | J₂ adoption, PR #62 | Working fabric, not a derived unique substrate; VAC-0 Final MIXED dissolves it into per-phenomenon classes (nothing needs J₂ only) | The F mechanism, VAC-0Q held-out battery, or a derivation that survives per-phenomenon classification |
+| 3D-blind rulers | DIM-3-0 (#117) ◇ | J₃ is quotient-cubic with 3D far-field laws, but the 2D-calibrated blind rulers misread it three proven ways (`d*` capped at 2, supralinear arrivals, static compression) | DIM-3-1: γ-aware arrival dimension, 3-resolving `d*` rule, ξ-aware static channel |
 | Vacuum-field member | VAC-FIELD-0 (#100) ✓ | Three nonzero states are joint vacua; `ψ = 0` is the no-information limit; VAC-SELECT refuses to rank them without a measure | A principle that selects inside the VAC-COMP manifold without using later consequences; needs the history measure first |
 | History measure | U0, TIME-0, RAND-0, MEASURE-0 (#105) ✓ + FIBER-0 (#123) ✓ | Admissible histories are known more sharply than their weights; MEASURE-0 shows no unique weighting is forced; FIBER-0 exhibits two rivals with 520 residual dof | A measure principle that is reversible and matches both readings |
 | Physical-state counting | RAND-0 orbit mismatch | Settled by SYM-0 (#102) ✓: `X/(R × U(1))` with `d_FS`. The measure on it is still missing | The same completion as history measure |
 | Structural kinetics | BR-2.7 + TRIGGER-0 (#124) ✓ | Ordering and unitarity do not fire an event; 19 earned conditions survive with zero firing implications | The same completion, as a new primitive if that is what it is |
-| Split information | BR-2.5, CONS-0, SPLIT-0 (#116) ✓ | Contraction is many-to-one; SPLIT-0 isolates the covariant residual `ξ = (cover, d)` (full inverse never singleton) | A measure over `ξ` (FIBER-0 files 520 dof), a history treatment carrying it, or a new ontology |
+| Split information | BR-2.5, CONS-0, SPLIT-0 (#116) ✓ + STORE-0 (#126) ✓ | Contraction is many-to-one; SPLIT-0 isolates the covariant residual `ξ = (cover, d)` (full inverse never singleton); STORE-0 shows a kept-`ξ` store recovers predecessors exactly and closes the energy account (minimal: discrete `c` + `d`) | A measure over `ξ` (FIBER-0 files 520 dof), a history treatment carrying it, a record ontology (STORE-0 files the store as kept, not derived), or a new ontology |
 | Neutral quiescence | BR-1 | Legal neutral moves destroy the vacuum class | Whatever dynamics makes the vacuum an attractor |
 | Matter | formation track, FIELD-0 | No dynamically stable matter, and linear overlap is not a force | Formation after a real dynamics, beating the interaction null |
 | Gravity | GRAV-0 (#80) ✓ | No tested strictly local graph update both preserves J₂ and carries a disturbance past the near field | A carrier inside the coupled `(G, ψ)` dynamics, not a retry of graph-only relocation |

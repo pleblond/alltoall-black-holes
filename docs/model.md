@@ -1,4 +1,4 @@
-# The model, stated first (v0.8)
+# The model, stated first (v0.9)
 
 **Status:** draft, model-first companion to the v5 paper. No new physics, no new
 numbers: every value below is quoted from `paper/v5/main.tex`,
@@ -82,6 +82,16 @@ account an exact function of `ξ` (RES0-XI); the fiber measure (FIBER0-DEBT,
 520 dof, two rivals) and the trigger census (TRIGGER0-CONDITION, 19 survive,
 zero imply) file the remaining debts; REWIRE-0 closes the rewire-selector
 question (DEGENERATE). L0/L1/L2 untouched; no new D-numbers.
+
+**v0.9 store-and-3D release.** No number changes:
+§10 gains two campaigns. STORE-0 shows a kept-`ξ` store makes merge
+reversible (STORE0-REVERSIBLE, 46/46: exact predecessor recovery and
+energy closure from the same stored content, minimality earned —
+discrete `c` plus `d` required — filed as kept information, not derived
+selection). DIM-3-0 lifts the fabric to J₃ (DIM3-GEOMETRIC: exactly
+quotient-cubic with 3D far-field laws, but the 2D-calibrated blind
+rulers misread known-3D three proven ways; 3D-calibrated rulers are
+DIM-3-1 work). L0/L1/L2 untouched; no new D-numbers.
 
 **What this document is:** the definition of the model — primitives, postulates,
 theorems, calibrations, open maps, and non-claims — in that order. Tests,
@@ -957,13 +967,13 @@ Single table; every symbol in §1–§4 appears here with its home.
   kilonova wires, NICER wire, Kerr-quadrupole future wire, field-program wires
   (second-`M_O` quotient refuter, `I > 0` linearity breaker — §10) — see the v5 kill
   table (`paper/v5/main.tex` §6) and `docs/observation-protocol.md`.
-- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (2194 tests),
+- **Reproduce**: `pip install -e ".[dev]"`, `pytest tests/ -q` (2253 tests),
   `python scripts/generate_figures.py` + `python scripts/generate_v5_figs.py`
   (86 figure files, Figs 1–75), `streamlit run app.py`.
 
-Counts above are v5.7 (`main.pdf` 13pp + `supplement.pdf` 21pp, S1–S12, 49
-references cited). The v4.1 living document stays archived as the extended
-record; v5 is canonical.
+Counts above are v5.8 (`main.pdf` 13pp + `supplement.pdf` 21pp, S1–S12, 49
+references cited). The v4.1 sources were removed after v5.7 (recoverable
+from git history); v5 is canonical.
 
 **Provenance layers (v0.2 audit).** Checked numbers fall in three layers with no
 numerical contradictions except the TeV absolutes (fixed in T14): test-pinned
@@ -981,7 +991,10 @@ campaigns banked; L0/L1/L2 pins unchanged). Suite at v0.8: 2194
 collected, 2192 passed, 2 torch/GPU-only skipped (twelve follow-up
 campaigns banked: VAC-0 completion, SPLIT-0, REWIRE-0, MERGE-0,
 RESERVOIR-0, TRIGGER-0, FIBER-0, INFO-0, VAC-DOMAIN-0, VAC-TEXTURE-0,
-VAC-STAB-0, SOURCE-0; L0/L1/L2 pins unchanged).
+VAC-STAB-0, SOURCE-0; L0/L1/L2 pins unchanged). Suite at v0.9: 2253
+collected, 2251 passed, 2 torch/GPU-only skipped (STORE-0, DIM-3-0
+banked; consistency tests repointed to the v5 paper; L0/L1/L2 pins
+unchanged).
 
 ---
 
@@ -1017,6 +1030,9 @@ VAC-STAB-0, SOURCE-0; L0/L1/L2 pins unchanged).
   ξ-accounting, TRIGGER-0 conditional coupling, FIBER-0 fiber debt,
   INFO-0 matched conservation, SPLIT-0/REWIRE-0 fabric operations) with
   no number changes, no new D-numbers, and stable L0/L1/L2.
+  v0.9 extends the F-layer (§10: STORE-0 reversible kept-`ξ` store,
+  DIM-3-0 J₃ quotient-cubic lift with 2D-capped rulers, 3D-blind-rulers
+  debt) with no number changes, no new D-numbers, and stable L0/L1/L2.
   Any number changed here must change in the same PR in the S1 audit table or
   be flagged as a deliberate divergence. One deliberate divergence stands:
   T14 TeV absolutes follow the code (post-BS), not v5 prose (pre-BS).
@@ -1146,6 +1162,24 @@ perturbation induces only order-`ε²` remote sheet signal). The DERIVED
 rung stays open: four pre-registered sub-bars were design errors in the
 ratio tests, filed with autopsies, never retuned. (`malus`, `quot`.)
 
+DIM-3-0 lifts the fabric to J₃ (`J₃ = Z³ ⋊ Z2`, 12 gens) and finds the
+quotient survives but the 2D-calibrated rulers do not (DIM3-GEOMETRIC):
+the lift is exactly quotient-cubic (mult 4, `[H,S] = 0`, dead
+antisymmetric sector, Bloch bands with isotropic Γ Hessian), the metric
+reveal confirms 3D quotient geometry (distance match 4–7%, 2.1–2.6×
+closer than microscopic at L12+, MDS-3 charts pass where MDS-2 fail
+exactly as pre-registered, sheet contrast 0.0), and far-field spreading
+reads `r⁻¹`/`r⁻²` at L20+ with J₃ identical to the cubic control on
+every readout — but blind dimension reads `d* = 2` on known-3D data
+three proven ways (`d*` structurally capped at 2 by the
+majority-distortion rule; arrival supralinearity `M ~ r^1.48` from
+threshold-plus-decay, predicting the `R²` volume growth to 1%;
+static-range compression `∝ 1/ξ`), fronts ride at 2/3 of bound on J₃
+and cubic alike (forerunner artifact; packets at Bloch speed), and the
+current exponent chirps (1.53–1.66). No post-data bar moved; the
+3D-geometry result stands where the apparatus validates, and
+3D-calibrated rulers are DIM-3-1 work. (`dim3`, `dim3_reveal`.)
+
 ### Backreaction: `B` couples to connectivity; accounting is not a firing law.
 
 Three independent uses of `B` meet: the conjugacy `∂E_ψ/∂A = -2B`
@@ -1174,14 +1208,24 @@ is never a singleton (continuous fiber, `d_cont` 1–2); halves-restricted
 determinism holds exactly on the 4 isolated-node cells; reverse support
 is exact on the halves subset (36/24/0), correcting 3 MEASURE-0A cells
 (J-multiset orientation artifact). No measure derived. What remains is
-the fiber measure over `ξ` (FIBER-0 files it: two rivals, 520 dof). On pristine J₂ the neutral drift the legal moves allow destroys
+the fiber measure over `ξ` (FIBER-0 files it: two rivals, 520 dof).
+STORE-0 shows what a kept record buys (STORE0-REVERSIBLE, 46/46): with
+the full `ξ` stored, split recovery is exact (5784/5784 fiber rows over
+235 events on 79 cells; 5 sequences reversed exactly; disjoint
+factorization with additive `R`) and the merge/split energy account
+closes from the same stored content (`< 3e-14`); minimality is earned
+(cover-only fails everywhere, `d`-only fails on all multi-class cells,
+scalar-`R` fails on all 78 non-injective cells) — ontology: discrete
+`c` plus `d` required. No sampling is needed given the complete
+microscopic state; the store is kept information, not derived selection.
+On pristine J₂ the neutral drift the legal moves allow destroys
 the vacuum class in a handful of moves at every tested size (BR1-FLAT):
 **neutral quiescence stays debt.** The remaining local degree-preserving move admits no
 deterministic exact-physics selector either (REWIRE-0:
 REWIRE0-DEGENERATE — 24/24 J₂-L4 states DEGENERATE-or-ABSENT under all
 six exact principles, scale-persistent to L28; exact-energy selection
 fp-fragile at ulp). (`contraction`, `conservation`, `rigidity`,
-`split0`, `rewire0`).
+`split0`, `rewire0`, `store0`).
 
 Event accounting closes conditionally and exactly where it closes
 (CONS0-PARTIAL + BR26-ACCOUNTED): cycle rank on triangle-free domains
@@ -1421,6 +1465,8 @@ The open debts, each with its closer in `docs/scaffolding-history.md`
 §19: **substrate uniqueness** (dissolved by VAC-0 Final MIXED into
 per-phenomenon classes — nothing needs J₂ only; closer: the F
 mechanism, VAC-0Q, or a surviving derivation);
+**3D-blind rulers** (DIM-3-0: J₃ is quotient-cubic but the 2D-calibrated
+rulers misread known-3D three proven ways; closer: DIM-3-1 estimators);
 **vacuum-field member** (a principle selecting inside the VAC-COMP
 manifold without using later consequences — needs the history measure
 first); **history measure** `μ(Γ)` (a reversible measure matching both
@@ -1429,7 +1475,9 @@ the whole-history and conditional-local readings; FIBER-0: two rivals,
 kinetics** (the firing postulate, if that is what it is — TRIGGER-0:
 19 conditions, zero implications);
 **split information** (narrowed by SPLIT-0 to the fiber measure over
-`ξ`; RESERVOIR-0: the missing account is an exact function of `ξ`);
+`ξ`; RESERVOIR-0: the missing account is an exact function of `ξ`;
+STORE-0: a kept-`ξ` store recovers and closes exactly — kept, not
+derived);
 **neutral quiescence** (a dynamics making
 the vacuum an attractor); **matter** (formation after a real dynamics,
 beating the FIELD-0 null); **gravity carrier** (inside coupled `(G, ψ)`

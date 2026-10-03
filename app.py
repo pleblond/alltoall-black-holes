@@ -35,7 +35,7 @@ from bh_graph import uvscatter as _uv
 
 st.set_page_config(page_title="All:All Black Holes — Secs 1–3 + A–BS, BV", layout="wide")
 st.title("Black Holes as Almost-Perfect All:All Entanglement Graphs")
-st.caption("Interactive companion to paper/paper.md — Secs 1–3 + Appendices A–BS, BV in src/bh_graph/ (paper/main.pdf)")
+st.caption("Interactive companion to the v5 paper (paper/v5/main.pdf + supplement.pdf) — Secs 1–3 + Appendices A–BS, BV in src/bh_graph/")
 
 tab1, tab2, tab3, tabA, tabB, tabC, tabD, tabF, tabHL, tabQ, tabBV, tab4 = st.tabs([
     "Sec 1: Fast scrambling", "Sec 2: Horizon wiring", "Sec 3: Micro-hole transition",
@@ -334,9 +334,13 @@ with tabBV:
         st.image("figures/fig72_uv_ladder.png", caption="fig72: ladder + no-r check")
 
 with tab4:
-    st.header("Paper draft")
-    p = Path(__file__).parent / "paper" / "paper.md"
-    st.markdown(p.read_text())
+    st.header("Paper (v5 journal cut)")
+    _proot = Path(__file__).parent / "paper" / "v5"
+    st.download_button("Download main.pdf", (_proot / "main.pdf").read_bytes(),
+                       "main.pdf", "application/pdf")
+    st.download_button("Download supplement.pdf", (_proot / "supplement.pdf").read_bytes(),
+                       "supplement.pdf", "application/pdf")
+    st.caption("The v4.1 living-document sources were removed after v5.7 (see git history); v5 is canonical.")
     st.subheader("Figures")
     for f in sorted((Path(__file__).parent / "figures").glob("*.png")):
         st.image(str(f), caption=f.name)

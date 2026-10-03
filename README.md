@@ -69,11 +69,10 @@ window. Postulates, derivations, and open gaps are labeled throughout.
 | `src/bh_graph/` | Simulation modules (one per section/appendix) | MIT |
 | `scripts/generate_figures.py` | Regenerates `figures/fig*.png` (Figs 1–75) | MIT |
 | `scripts/generate_v5_figs.py` | Regenerates the v5 survival-matrix figure | MIT |
-| `tests/` | 2194 pytest checks (derivations, data, falsifiers) | MIT |
+| `tests/` | 2253 pytest checks (derivations, data, falsifiers) | MIT |
 | `app.py` | Interactive Streamlit explorer | MIT |
 | `data/` | Cached GWOSC posteriors, PBHbounds curves (see provenance) | Upstream terms |
 | `CITATION.cff`, `.zenodo.json` | Citation + Zenodo metadata | CC0 facts / MIT |
-| `paper/` (unlinked) | Archived v4.1 living-document sources, retained for provenance | CC BY 4.0 |
 
 Module map (each with tests): Sec 1 `graphs`, `scrambling`; Sec 2 `horizon`;
 Sec 3 `micro`; A `circuits`; B `maxent`; C `qes`; D `evaporation`,
@@ -95,7 +94,7 @@ Field program (`docs/model.md` §10): `ballistic`, `coherence`, `slit`,
 `bgresp`, `vac0`, `vacfield`, `vacexc`, `vaccomp`, `vacselect`,
 `hidden`, `hiddenbr`, `zero`, `split0`, `rewire0`, `merge0`,
 `reservoir0`, `trigger0`, `fiber0`, `info0`, `vacdomain`, `vactexture`,
-`vacstab`, `source0`; side apparatus `spectroscopy`, `fep`,
+`vacstab`, `source0`, `store0`, `dim3`, `dim3_reveal`; side apparatus `spectroscopy`, `fep`,
 `stern_gerlach`, `mergershed`, `graphvk`.
 
 ## Quickstart
@@ -104,7 +103,7 @@ Requires Python ≥ 3.10.
 
 ```bash
 pip install -e ".[dev]"             # runtime + pytest/ruff
-python -m pytest tests/ -q          # 2194 tests (2 torch/GPU-only skip without torch)
+python -m pytest tests/ -q          # 2253 tests (2 torch/GPU-only skip without torch)
 python scripts/generate_figures.py  # writes figures/fig*.png (Figs 1–75)
 python scripts/generate_v5_figs.py  # writes figures/figV5_survival.png
 streamlit run app.py                # interactive explorer (Secs + appendices)
@@ -291,7 +290,8 @@ cited). 398 tests, 81 figure files (Figs 1–75).
 New survival-matrix figure (`scripts/generate_v5_figs.py`); the mass-gaps
 module (upper-gap null, universal BBH shedding, GW190814 epoch audit) and
 ringdown wording ports landed after the cut.
-The v4.1 files stay in `paper/` as the archived extended record (v5 is canonical).
+The v4.1 sources were removed after v5.7 (recoverable from git history;
+v5 is canonical).
 Build: `cd paper/v5 && pdflatex main.tex && pdflatex main.tex`
 then `pdflatex supplement.tex && pdflatex supplement.tex`
 (see [`paper/v5/README.md`](paper/v5/README.md)).
