@@ -198,3 +198,15 @@ H:collapsed-around-k STATE (BR-2.7 spec: J2-L6 contract elist[3],
 uniform threaded). This is battery setup, not campaign firing: the
 census evaluates virtual predicates on frozen states and constructs
 no firing decision anywhere (audited by symbol scan + T-INST-br27).
+
+## 8. TRIGGER0-AMENDMENT-1 (analyzer crash repair; no gate/bar/ladder change)
+
+First-look outcome (beast, 161/161 records CAMPAIGN-DONE): the frozen
+analyzer crashed in T-INST-ledger with `TypeError: unhashable type:
+'list'` on square-6 records (tuple node labels arrive as JSON lists).
+Autopsy: apparatus bug (JSON label round-trip), not physics; no gate,
+bar, threshold, battery, disposition, or verdict-ladder rule is
+changed. Fix: `_norm_edge` normalization in the three joins that feed
+record edges back into graph ops (T-INST-ledger, TRIG-0E static join,
+TRIG-0F pair join). Rerun is analyzer-only with the frozen intent
+restored (MEASURE0-AMENDMENT-1 precedent). Records unaffected.

@@ -57,6 +57,17 @@ def load(outdir: str):
     return census, causal
 
 
+def _norm_label(x):
+    """JSON round-trip: tuple labels arrive as lists (square-6)."""
+    if isinstance(x, list):
+        return tuple(_norm_label(v) for v in x)
+    return x
+
+
+def _norm_edge(e):
+    return [_norm_label(x) for x in e]
+
+
 def main():
     outdir = sys.argv[1] if len(sys.argv) > 1 else "data/trigger0"
     census, causal = load(outdir)
@@ -116,7 +127,7 @@ def main():
         psi = t0.build_field(s, key[1])
         idx = index_of(s["order"])
         for row in r["rows"]:
-            i, j = row["e"]
+            i, j = _norm_edge(row["e"])
             b = _bond(psi, idx[i], idx[j])
             e = _dE(s["g"], psi, s["order"], i, j)
             led_n += 1
@@ -270,7 +281,7 @@ def main():
         supp = set(t0.support_nodes(s, key[1]))
         a = t0.decode_bitmask(r["A"])
         for row, brow in zip(r["rows"], base["rows"]):
-            i, j = row["e"]
+            i, j = _norm_edge(row["e"])
             t = t0.decode_bitmask(row["T"])
             tb = t0.decode_bitmask(brow["T"])
             for p in PNAMES:
@@ -296,7 +307,7 @@ def main():
             supp = set(t0.support_nodes(s, base_tag + ":A"))
             a = t0.decode_bitmask(rA["A"])
             for rowA, rowB in zip(rA["rows"], rB["rows"]):
-                i, j = rowA["e"]
+                i, j = _norm_edge(rowA["e"])
                 tA = t0.decode_bitmask(rowA["T"])
                 tB = t0.decode_bitmask(rowB["T"])
                 for p in PNAMES:
