@@ -3,6 +3,7 @@
 Preregistered grid (DIM3-PREREG, docs/dim3-prereg.md):
   stations 10 frozen cells x 3 sets (64 opaque stations, W/D/P).
   spread   point R/I impulse, BG0 (+BG+ descriptive legs), T=16/dt=0.05.
+  tladder  forerunner diagnosis: fronts at rel-theta 1e-2/1e-3/1e-4 (Amd-1).
   packet   G-a ballistic packets (+reversal, norm).
   pot0     G-b collective-direction 4-rung battery.
   pot1     G-c static existence + equation-exactness (+xi filed).
@@ -51,8 +52,11 @@ CELLS = ("j3-L8", "j3-L12", "j3-L16",
 N_STATIONS = 64
 STATION_SEED_BASE = 9100
 
-SPREAD_TAGS = ("j3-L8", "j3-L12", "j3-L16", "j3-L20",
+SPREAD_TAGS = ("j3-L8", "j3-L12", "j3-L16", "j3-L20", "j3-L24",
+               "j3-L28", "j3-L32",
                "cb-L10", "cb-L15", "cb-L20", "j2-L28")
+TLADDER_TAGS = ("j3-L16", "cb-L20", "j2-L28")
+TLADDER_LEVELS = (1e-2, 1e-3, 1e-4)
 T_END = 16.0
 DT = 0.05
 FIT_SHELLS = (2, 3, 4, 5, 6, 7, 8, 9, 10)
@@ -366,19 +370,24 @@ def cmd_spread(args):
         use = [s for s in FIT_SHELLS if arrivals.get(s) is not None]
         front = R.front_velocity({s: arrivals[s] for s in use}, use) \
             if len(use) >= 3 else {"v": None, "r2": None, "n": 0}
-        peaks, tstars = {}, {}
+        peaks, tstars, windows = {}, {}, {}
         for s in FIT_SHELLS:
             if s > max_shell:
                 continue
             win = spread_window(s, L, fam)
+            windows[s] = list(win) if win else None
             pk = R.peak_in_window(tr[:, s], ts, *win) if win else None
-            if pk is not None:
+            if pk is None:
+                continue
+            # Amendment-1 A1: interior-valid peaks only
+            # (tstar + dt/2 < hi; edge maxima are cutoffs, not data).
+            if pk["tstar"] + DT / 2.0 < win[1]:
                 peaks[s] = pk["Rmax"]
                 tstars[s] = pk["tstar"]
         fit = dim3.fit_exponent(peaks, FIT_SHELLS[0], FIT_SHELLS[-1])
         return {"theta": theta, "remote_peak": remote_peak,
                 "arrivals": arrivals, "front": front, "peaks": peaks,
-                "tstars": tstars, "fit": fit}
+                "tstars": tstars, "windows": windows, "fit": fit}
 
     a_psi = analyze(psi_tr, SPREAD_FLOORS["psi"])
     a_rho = analyze(rho_tr, SPREAD_FLOORS["rho"])
@@ -394,6 +403,7 @@ def cmd_spread(args):
            "tstars": {k: v["tstars"]
                       for k, v in (("psi", a_psi), ("rho", a_rho),
                                     ("J", a_j))},
+           "windows": a_psi["windows"],
            "fits": {k: v["fit"]
                     for k, v in (("psi", a_psi), ("rho", a_rho),
                                   ("J", a_j))},
@@ -412,6 +422,50 @@ def cmd_spread(args):
           f"a_rho={rec['fits']['rho']['alpha']:.3f} "
           f"a_J={rec['fits']['J']['alpha']:.3f} v={rec['front'].get('v')} "
           f"bmax={bmax:.1e}", flush=True)
+
+
+# ---------------------------------------------------------------------------
+# tladder (Amendment-1 A3 forerunner diagnosis; characterization, no gates)
+# ---------------------------------------------------------------------------
+
+def cmd_tladder(args):
+    tag = args.tag
+    outdir = args.outdir
+    os.makedirs(outdir, exist_ok=True)
+    g = tag_graph(tag)
+    order = node_order(g)
+    pos = index_of(order)
+    h = R.hamiltonian(g, order)
+    src = src_node(tag, g)
+    iu = pos[src]
+    n_steps = int(round(T_END / DT))
+    ts = np.arange(n_steps + 1) * DT
+    rows = R.evolve(R.point_source(len(order), iu, 1.0), h, DT,
+                    n_steps)["psi"]
+    qs = euclidean_shells_of(tag, g, src)
+    max_shell = max(qs)
+    tr = np.zeros((len(ts), max_shell + 1))
+    for r, members in qs.items():
+        if members:
+            m = np.asarray(members, dtype=int)
+            tr[:, r] = np.abs(rows[:, m]).max(axis=1)
+    rcap = min(max_shell, SPREAD_RCAP)
+    remote_peak = max(float(tr[:, s].max()) for s in range(1, rcap + 1))
+    out = {"tag": tag, "remote_peak": remote_peak, "levels": {}}
+    for rel in TLADDER_LEVELS:
+        theta = max(rel * remote_peak, SPREAD_FLOORS["psi"])
+        arrivals = {s: R.arrival_time(tr[:, s], ts, theta)
+                    for s in FIT_SHELLS if s <= max_shell}
+        use = [s for s in FIT_SHELLS if arrivals.get(s) is not None]
+        front = R.front_velocity({s: arrivals[s] for s in use}, use) \
+            if len(use) >= 3 else {"v": None, "r2": None, "n": 0}
+        out["levels"][rel] = {"theta": theta, "arrivals": arrivals,
+                              "front": front}
+    with open(os.path.join(outdir, f"dim3_tladder_{tag}.json"), "w") as f:
+        json.dump(jsonable(out), f)
+    print(f"tladder {tag}: " + " ".join(
+        f"{rel:g}(v={out['levels'][rel]['front'].get('v')})"
+        for rel in TLADDER_LEVELS), flush=True)
 
 
 # ---------------------------------------------------------------------------
@@ -1089,6 +1143,8 @@ def cmd_print_all(_args):
             lines.append(f"spread --tag {tag} --bg BG0 --kind {kind} --amp 1.0")
     for tag in ("j3-L8", "j3-L12", "j3-L16"):
         lines.append(f"spread --tag {tag} --bg BG+ --kind R --amp 1.0")
+    for tag in TLADDER_TAGS:
+        lines.append(f"tladder --tag {tag}")
     for tag in ("j3-L16", "j3-L20", "cb-L15"):
         lines.append(f"packet --tag {tag}")
     for tag in ("j3-L24", "cb-L20"):
@@ -1145,12 +1201,16 @@ def main():
     p = sub.add_parser("vacuum")
     p.add_argument("--L", type=int, required=True)
     p.add_argument("--outdir", default="data/dim3")
+    p = sub.add_parser("tladder")
+    p.add_argument("--tag", required=True)
+    p.add_argument("--outdir", default="data/dim3")
     sub.add_parser("print-all")
     args = ap.parse_args()
     {"stations": cmd_stations, "spread": cmd_spread, "packet": cmd_packet,
      "pot0": cmd_pot0, "pot1": cmd_pot1, "switch": cmd_switch,
      "sector": cmd_sector, "bilayer": cmd_bilayer, "hidden": cmd_hidden,
-     "vacuum": cmd_vacuum, "print-all": cmd_print_all}[args.unit](args)
+     "vacuum": cmd_vacuum, "tladder": cmd_tladder,
+     "print-all": cmd_print_all}[args.unit](args)
 
 
 if __name__ == "__main__":

@@ -397,9 +397,15 @@ def eval_spread(d, tag):
     j_ok = (np.isfinite(e_j["alpha"] or np.nan)
             and 1.70 <= e_j["alpha"] <= 2.30 and e_j["r2"] > 0.9)
     b_ok = (d.get("bmax") or np.inf) < 1e-9
+    # Amendment-1 A5: measurability (n>=3 interior peaks per observable).
+    n_psi = int(e_psi.get("n") or 0)
+    n_rho = int(e_rho.get("n") or 0)
+    n_j = int(e_j.get("n") or 0)
     return {"v": v, "vmax": vmax, "v_ok": bool(v_ok),
             "psi_ok": bool(psi_ok), "rho_ok": bool(rho_ok),
-            "j_ok": bool(j_ok), "b_ok": bool(b_ok)}
+            "j_ok": bool(j_ok), "b_ok": bool(b_ok),
+            "n_psi": n_psi, "n_rho": n_rho, "n_j": n_j,
+            "exp_meas": bool(n_psi >= 3 and n_rho >= 3 and n_j >= 3)}
 
 
 def main():
@@ -533,9 +539,12 @@ def main():
                         "pass": ok}
         C1 = C1 and ok
 
-    # Stages E/F from spread records.
+    # Stages E/F from spread records (Amendment-1 A5: exponents gated
+    # where measurable (n>=3 interior peaks); unmeasurable sizes filed,
+    # never failed; fronts gated on all sizes).
     datadir = os.path.dirname(args.blind)
     spread, E_tags, P_tags, F_tags = {}, {}, {}, {}
+    spread_unmeas = {}
     for t in DC.SPREAD_TAGS:
         spread[t] = {}
         for kind in ("R", "I"):
@@ -545,16 +554,40 @@ def main():
         if spread[t]:
             E_tags[t] = bool(all(spread[t][k]["v_ok"]
                                  and spread[t][k]["psi_ok"]
-                                 for k in spread[t]))
+                                 for k in spread[t]
+                                 if spread[t][k]["exp_meas"])
+                             and any(spread[t][k]["exp_meas"]
+                                     for k in spread[t]))
             P_tags[t] = bool(all(spread[t][k]["psi_ok"]
-                                 for k in spread[t]))
+                                 for k in spread[t]
+                                 if spread[t][k]["exp_meas"])
+                             and any(spread[t][k]["exp_meas"]
+                                     for k in spread[t]))
             F_tags[t] = bool(all(spread[t][k]["rho_ok"]
                                  and spread[t][k]["j_ok"]
                                  and spread[t][k]["b_ok"]
-                                 for k in spread[t]))
-    j3spread_tags = ["j3-L8", "j3-L12", "j3-L16"]
-    E_PASS = bool(all(E_tags.get(t, False) for t in j3spread_tags))
-    F_PASS = bool(all(F_tags.get(t, False) for t in j3spread_tags))
+                                 for k in spread[t]
+                                 if spread[t][k]["exp_meas"])
+                             and any(spread[t][k]["exp_meas"]
+                                     for k in spread[t]))
+            if not any(spread[t][k]["exp_meas"] for k in spread[t]):
+                spread_unmeas[t] = {k: {"n_psi": spread[t][k]["n_psi"],
+                                        "n_rho": spread[t][k]["n_rho"],
+                                        "n_j": spread[t][k]["n_j"]}
+                                    for k in spread[t]}
+    j3spread_tags = ["j3-L8", "j3-L12", "j3-L16", "j3-L20", "j3-L24",
+                     "j3-L28", "j3-L32"]
+    # E-a fronts: all J3 sizes (arrival-only, always measurable).
+    E_front = bool(all(
+        all(spread.get(t, {}).get(k, {}).get("v_ok", False)
+            for k in ("R", "I") if k in spread.get(t, {}))
+        and spread.get(t) for t in j3spread_tags))
+    E_exp = bool(all(P_tags.get(t, False) for t in j3spread_tags
+                     if t not in spread_unmeas))
+    F_EXP = bool(all(F_tags.get(t, False) for t in j3spread_tags
+                     if t not in spread_unmeas))
+    E_PASS = bool(E_front and E_exp)
+    F_PASS = bool(F_EXP)
     # E-c 2D control: J2-L28 alpha in [0.40, 0.60].
     Ec = True
     for kind in ("R", "I"):
@@ -572,7 +605,8 @@ def main():
               and all(P_tags.get(t, False)
                       for t in ("cb-L10", "cb-L15", "cb-L20")))
 
-    # Stage J size consistency (filed spreads; gates).
+    # Stage J size consistency (Amendment-1 A5: exponents across
+    # MEASURABLE J3 sizes, filed which).
     def _alphas(key, obs):
         vals = []
         for t in j3spread_tags:
@@ -580,8 +614,12 @@ def main():
                 p = os.path.join(
                     datadir, f"dim3_spread_{t}_BG0_{kind}_1.json")
                 if os.path.exists(p):
-                    vals.append(load_json(p)["fits"][obs]["alpha"])
-        return [v for v in vals if v is not None and np.isfinite(v)]
+                    f = load_json(p)["fits"][obs]
+                    if (f["alpha"] is not None
+                            and np.isfinite(f["alpha"])
+                            and int(f.get("n") or 0) >= 3):
+                        vals.append(f["alpha"])
+        return vals
 
     j_psi = _alphas("psi", "psi")
     j_rho = _alphas("rho", "rho")
@@ -600,6 +638,17 @@ def main():
 
     # Ports G/H/I (characterization; filed, not headline-gating).
     ports = eval_ports(datadir)
+
+    # Amendment-1 A3 tladder (filed, no gates).
+    tladder = {}
+    for t in DC.TLADDER_TAGS:
+        p = os.path.join(datadir, f"dim3_tladder_{t}.json")
+        if os.path.exists(p):
+            d = load_json(p)
+            tladder[t] = {
+                rel: {"v": rec["front"].get("v"),
+                      "r2": (rec["front"] or {}).get("r2")}
+                for rel, rec in d["levels"].items()}
 
     # Headline.
     full = len(args.cells) >= 10 and len(args.sets) >= 3
@@ -634,8 +683,9 @@ def main():
         "A": ab, "A_PASS": A_PASS, "B_PASS": B_PASS,
         "C_cells": C_cells, "C_PASS": C_PASS,
         "D_cells": D_cells, "D_PASS": D_PASS,
-        "E_tags": E_tags, "E_PASS": E_PASS,
-        "F_tags": F_tags, "F_PASS": F_PASS,
+        "E_tags": E_tags, "E_PASS": E_PASS, "E_front": E_front,
+        "E_exp": E_exp, "spread_unmeas": spread_unmeas,
+        "F_tags": F_tags, "F_PASS": F_PASS, "tladder": tladder,
         "controls": {"C0": C0, "C0_PASS": C0_PASS, "C2_PASS": C2_PASS,
                      "C1": C1, "c1_detail": c1_detail,
                      "E_c_2d": Ec, "F_d_cubic": Fd},
