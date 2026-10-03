@@ -130,8 +130,8 @@ def pot1_shells_of(tag: str, g, src) -> dict:
     pos = index_of(order)
     if fam in ("j3", "cb", "bcb", "j2"):
         return D3.euclidean_shells_of(tag, g, src)
-    cells = tag_cells(tag, g)
     if fam == "sq":
+        cells = tag_cells(tag, g)
         L = tag_L(tag)
         shells = min_image_shells(cells, src, (L, L))
     elif fam == "rg":
