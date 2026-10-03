@@ -6,9 +6,17 @@ helpers, and the frozen O(L) matrix schema. Campaign-scale L runs on
 beast only.
 """
 
+import math
+import os
+import sys
+
 import numpy as np
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+import scale0_analyze as san  # noqa: E402
+
 from bh_graph import obs0, scale0
+from bh_graph.ballistic import fit_velocity
 from bh_graph.driven import steady_predict
 
 
@@ -210,3 +218,60 @@ def test_decimate_stride():
     assert d["stride"] == scale0.TRACE_DECIM
     assert d["n_full"] == 100
     assert len(d["trace"]) == 5
+
+
+def test_analyzer_le_none_safe():
+    # Amendment-2 item 1: exact 0.0 passes, None/NaN fail.
+    assert san._le(0.0, 1e-9)
+    assert san._le(1e-12, 1e-9)
+    assert not san._le(None, 1e-9)
+    assert not san._le(float("nan"), 1e-9)
+    assert not san._le(1.0, 1e-9)
+
+
+def test_headon_banked_dphi_float():
+    # Amendment-2 item 3: the banked CLI received %.6f-formatted pi, a
+    # float that differs from math.pi (screening is chaotic in dphi).
+    assert float(f"{math.pi:.6f}") == 3.141593
+    assert 3.141593 != math.pi
+
+
+def test_headon_cap_premise():
+    # Amendment-2 item 4: banked 508 events exceed current REFINE_CAP,
+    # so the pre-cap number cannot replay under current frozen code.
+    from bh_graph import zero
+
+    assert zero.REFINE_CAP == 60
+    assert 508 > zero.REFINE_CAP
+
+
+def test_quot_remote_definition():
+    # Amendment-2 item 5: banked remote/load shells start at r = 2.
+    from bh_graph import quot
+
+    assert quot.R_LOAD == (2, 4, 6)
+    assert quot.R_LOAD[0] == 2
+
+
+def test_fit_velocity_speed_scalar():
+    # Amendment-2 item 7: matrix rows bank the scalar speed, not the
+    # 2-vector, for fittable P1 series.
+    ts = np.arange(11, dtype=float)
+    rs = np.stack([1.2 * ts, np.zeros(11)], axis=1)
+    out = fit_velocity(rs, ts)
+    assert isinstance(out["speed"], float)
+    assert abs(out["speed"] - 1.2) < 1e-9
+    assert out["v"].shape == (2,)
+
+
+def test_sheet_projectors_dense_premise():
+    # Amendment-2 item 6: sheet projectors are dense N x N (the O(N^2)
+    # cost behind the vaccomp L >= 256 unresolved-cost filing).
+    from bh_graph import malus
+    from bh_graph.formation import j2_torus_coords
+
+    order = sorted(range(32))
+    pr = malus.sheet_projectors(order, j2_torus_coords(4))
+    assert isinstance(pr["P_sym"], np.ndarray)
+    assert pr["P_sym"].shape == (32, 32)
+    assert pr["P_anti"].shape == (32, 32)
