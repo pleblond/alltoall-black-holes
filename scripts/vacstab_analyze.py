@@ -178,9 +178,12 @@ def analyze(datadir):
         kind = r["kind"]
         if kind not in vs.PROPAGATING_KINDS:
             tr = r["rep"]["traces"]
-            init_B = float(tr["dB"][0]) / max(r["scales"]["S_B"], 1e-300)
+            sc = r["scales"]
+            init_max = max(float(tr["drho"][0]) / max(sc["S_rho"], 1e-300),
+                           float(tr["dB"][0]) / max(sc["S_B"], 1e-300),
+                           float(tr["dJ"][0]) / max(sc["S_J"], 1e-300))
             notes.append(f"{name}: late_ratio={r['late_ratio']:.3f} "
-                         f"init_ratio={init_B:.3f} "
+                         f"init_max_ratio={init_max:.3f} "
                          f"C_ratio={r['rep']['C_ratio']:.2f} "
                          f"F_min={r['rep']['F_min']:.4f} (filed, P-mixed)")
             continue
