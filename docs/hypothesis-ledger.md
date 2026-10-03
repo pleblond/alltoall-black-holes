@@ -74,8 +74,9 @@ words above; they do not promote anything to the earned ledger by themselves.
 | | **Orientation relaxation → isotropy** | **Intuition / soon testable** | \(M_{ab}\to I/3\) could explain emergence/persistence of large-scale isotropy. |
 | | **Expansion without changing dimension** | **Intuition** | Universe can remain \(d_{\rm eff}\simeq3\) while weave density/metric scale continues evolving. |
 | | **Dark-energy phenomenology from weave evolution** | **Intuition** | Late-time acceleration might be effective geometry from evolving weave statistics rather than a separate vacuum-energy component. |
-| **Black holes / entropy** | **Raw graph counting is not BH entropy** | **Derived negative** | Kinematic graph multiplicity does not produce an area law. |
-| | **Hidden states as entropy candidates** | **Intuition / blocked** | Exterior-blind hidden states are more promising microstates, but continuous measure/physical state selection remains unresolved. |
+| **Black holes / entropy** | **Raw graph counting is not BH entropy** | **Derived negative (scoped)** | Pre-STORE kinematic graph census (BH-ENT-0) does not produce an area law; does not close the post-STORE \(Q\) question. |
+| | **Hidden store states as entropy candidates** | **Open / soon testable** | Exterior-blind \(Q\) variations are the natural post-STORE microstates; continuous measure/quantization still missing, so dimension, not entropy yet. |
+| | **BH-Q-ENT-0 boundary scaling** | **Derivable soon** | Test \(D_Q(R)=\dim_{\mathbb R}\{Q\) exterior-blind for \(R\}\) vs \(A/V\); decompose \(D_Q=2N_d+D_c\) (complex-\(d\) factor 2 + discrete cover). |
 | **Continuum physics** | **Microscopic Manhattan → radial macroscopic geometry** | **Partial / intuitive mechanism** | Path multiplicity and interference can make edge-based motion appear radial at large scale. |
 | | **J3 and WEAVE same universality class** | **Intuition / soon testable** | Regular J3 and random sheet weave may yield the same 3D macroscopic propagator after scale renormalization. |
 | | **Lorentz symmetry emergent** | **Open intuition** | Low-energy relativistic invariance would need to emerge despite microscopic graph dispersion; not yet demonstrated. |
@@ -295,7 +296,51 @@ establishing whether a physical decay-like split necessarily uses pre-existing
 entries; derive/test the waiting-time law and any \(\xi\)-selection law
 instead of assuming them.
 
+### H3. Hidden store information as BH entropy candidates (Open / soon testable)
+
+**Status: not FAILED — leave open as we test it.** BH-ENT-0 predates the full
+significance of \(\boxed{\mathcal X_{\rm full}=(G,\psi,Q)}\); its headline
+counting (graph preimages + field blindness) does not close the post-STORE
+question.
+
+**Idea.** The natural post-STORE entropy census is no longer
+\(\#\{\text{interior graphs}\}\) but:
+
+\[
+\boxed{\#/\mathrm{Vol}\{Q:(G,\psi,Q)\mapsto\text{same exterior observables}\}.}
+\]
+
+\((G,\psi,Q_1)\) and \((G,\psi,Q_2)\) can share identical reduced \((G,\psi)\)
+while differing microscopically — many microstates → same exterior state, the
+required conceptual object.
+
+**The factor 2.** The generic continuous inverse fiber has \(d_{\rm cont}=2\),
+precisely the complex relative mode \(\boxed{d=d_R+i\,d_I\in\mathbb C\simeq\mathbb R^2}\)
+per store entry (plus discrete cover \(c\)). STORE says merge moves it into
+\(Q\): each generic merge transfers 2 continuous real DOF into \(Q\), so
+schematically \(\boxed{D_Q=2N_{\rm merge}+D_c}\). If independent stored modes
+scale with boundary area (\(N_Q\propto|\partial R|\)), then
+\(\boxed{\dim_{\mathbb R}Q_{\rm cont}\propto2|\partial R|}\) — the area-scaling
+information dimension BH-ENT-0's raw census would have missed.
+
+**Dimension, not entropy yet.** Continuous \((d_R,d_I)\) needs a measure,
+resolution, or quantization before it yields entropy. Schematically, \(k\)
+states per real DOF would give \(\Omega_Q\sim k^{2N_Q}\),
+\(S_Q\sim\boxed{2N_Q\log k}\propto A\) if \(N_Q\propto A\) — a genuine area-law
+mechanism — but we have no \(k\). Do not force the 2 into the BH \(1/4\); the
+primitive question is whether
+\(\boxed{\dim Q_{\rm exterior\text{-}blind}/|\partial R|\to\text{constant}}\)
+with the 2 from complex \(d\).
+
+**Test (BH-Q-ENT-0 — Boundary Scaling of Hidden Store Information).** Primary
+observable \(\boxed{D_Q(R)=\dim_{\mathbb R}\{Q\text{ variations exterior-blind for }R\}}\);
+test \(D_Q(R)\sim A\) vs \(V\) vs \(A\log A\) vs other, decomposed as
+\(\boxed{D_Q=\underbrace{2N_d}_{\text{complex modes}}+\underbrace{D_c}_{\text{discrete cover}}}\).
+
+**What would promote it.** Area-scaling \(D_Q(R)\) with the 2 from complex
+\(d\); a physical measure/quantization turning dimension into entropy.
+
 ---
 
-*Further hypothesis entries (H3, H4, …) to be added one at a time in the same
+*Further hypothesis entries (H4, H5, …) to be added one at a time in the same
 short format: idea + hypothesized mechanism/formula/value + what would promote it.*
