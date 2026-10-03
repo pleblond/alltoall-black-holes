@@ -47,7 +47,7 @@ STATION_SEED_BASE = 13100
 N_SETS = 3
 
 # Station W ladder (absolute thetas; blind-safe, no coords needed).
-WLADDER = {"W_lo": 1e-5, "W": obs0.THETA_WAVE, "W_hi": 1e-7}
+WLADDER = {"W_hi_th": 1e-5, "W": obs0.THETA_WAVE, "W_lo_th": 1e-7}
 
 POT1_TAGS = ("rg-N256", "rg-N512",
              "sq-L32", "sq-L48",
@@ -170,7 +170,7 @@ def audit_meas_schema(meas):
         for s in (a, b):
             if not s.startswith("S") or not s[1:].isdigit():
                 raise ValueError(f"non-opaque pair key: {key!r}")
-        bad = set(rec) - {"W", "D", "P", "Dcfd", "W_lo", "W_hi"}
+        bad = set(rec) - {"W", "D", "P", "Dcfd", "W_hi_th", "W_lo_th"}
         if bad:
             raise ValueError(f"hidden channel keys: {bad}")
     return True
@@ -220,10 +220,10 @@ def cmd_stations(args):
             pairs[f"S{a}|S{b}"] = {
                 "W": obs0.threshold_crossing(pw[:, k], ts_w,
                                              WLADDER["W"]),
-                "W_lo": obs0.threshold_crossing(pw[:, k], ts_w,
-                                                WLADDER["W_lo"]),
-                "W_hi": obs0.threshold_crossing(pw[:, k], ts_w,
-                                                WLADDER["W_hi"]),
+                "W_hi_th": obs0.threshold_crossing(pw[:, k], ts_w,
+                                                WLADDER["W_hi_th"]),
+                "W_lo_th": obs0.threshold_crossing(pw[:, k], ts_w,
+                                                WLADDER["W_lo_th"]),
                 "D": obs0.threshold_crossing(pd[:, k], ts_d,
                                              obs0.THETA_WAVE),
                 "P": v if np.isfinite(v) else None,

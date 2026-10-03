@@ -37,7 +37,7 @@ os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 
 CONTROL_CELLS = tuple(c for c in range(len(CMP.CELLS)) if c not in CMP.J3_CELLS)
 J3_CELLS = CMP.J3_CELLS
-LADDER_LEVELS = ("W_lo", "W", "W_hi")
+LADDER_LEVELS = ("W_hi_th", "W", "W_lo_th")
 CHANNELS = ("W", "D", "C")
 GROUPS = {"ring": (0, 1), "sq": (2, 3), "j2": (4, 5), "cb": (6, 7, 8),
           "ex": (9, 10, 11), "bcb": (12,)}
