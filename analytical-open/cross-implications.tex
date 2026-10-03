@@ -1144,6 +1144,181 @@ than four lost zero modes.
 Unequal hoppings mix \(|e\rangle\) with \(|o\rangle\), and the factorization
 uses the equality of the two hoppings.
 
+\section{Two stitches into adjacent cells}
+\label{sec:neighbor}
+
+Distinct cells do not share the flat pole.
+Between adjacent cells the even resolvent is fixed by the same elliptic
+integral that gives the diagonal.
+
+\begin{proposition}
+\label{prop:neighbor}
+For \(E>8\) the resolvent entry of one \(J_2\) copy between two adjacent
+cells is independent of the bits and equals
+\begin{equation}
+\label{eq:Gamma}
+\Gamma(E)=\frac{\pi-2K(8/E)}{16\pi},
+\end{equation}
+where \(K\) is the elliptic integral of \eqref{eq:Gell}.
+The function is even, \(\Gamma(-E)=\Gamma(E)\).
+\end{proposition}
+
+\begin{proof}
+For distinct cells, Proposition~\ref{prop:cellpole} halves the resolvent
+of \(E+2A_\square\).
+At the origin that resolvent column obeys
+\(E g+8 R_{\mathrm{nn}}=1\): the square lattice has four neighbors, and
+symmetry gives them a common entry.
+Hence \(R_{\mathrm{nn}}=(1-Eg)/8\), and the sheet entry is
+\((1-Eg)/16\).
+From \eqref{eq:Gell}, \(Eg=(2/\pi)K(8/E)\), which is \eqref{eq:Gamma}.
+The diagonal entry \(g\) is odd, so
+\[
+R_{\mathrm{nn}}(-E)
+=\frac{1-(-E)g(-E)}{8}
+=\frac{1-Eg(E)}{8}.
+\]
+The neighbor entry is even.
+\end{proof}
+
+\begin{proposition}
+\label{prop:adj}
+Join three copies by two edges of equal hopping \(t\neq 0\), from two
+outer vertices into two adjacent cells of the host, on either bit.
+Outside \([-8,8]\), \(E\) is an eigenvalue if and only if
+\begin{equation}
+\label{eq:adj}
+t^2\,\mathcal{G}(E)\bigl(\mathcal{G}(E)+\Gamma(E)\bigr)=1
+\quad\text{or}\quad
+t^2\,\mathcal{G}(E)\bigl(\mathcal{G}(E)-\Gamma(E)\bigr)=1.
+\end{equation}
+On \((8,\infty)\) each product is positive and strictly decreasing, from
+\(+\infty\) at the edge to \(0\) at infinity, so each equation has exactly
+one root above \(8\).
+The two roots are distinct.
+The substitution \(E\mapsto -E\) exchanges the two products, and there are
+exactly four eigenvalues outside \([-8,8]\).
+If \(E_+(t)\) and \(E_-(t)\) are the roots above \(8\) of the first and
+second equations, then
+\begin{equation}
+\label{eq:adjlog}
+\lim_{t\to 0}
+|t|\ln\frac{1}{E_-(t)-8}
+=8\pi\sqrt{2},
+\qquad
+\lim_{t\to 0}
+t^2\ln\frac{1}{E_+(t)-8}
+=128\pi.
+\end{equation}
+On \(J_3\), the same two stitches into any two distinct cells of the host
+produce no eigenvalue outside \([-12,12]\) whenever
+\(|t|\le 24/\sqrt{55}\).
+\end{proposition}
+
+\begin{proof}
+The compression \eqref{eq:detstitch} reduces the problem to the four
+stubs.
+The host block is diagonal \(\mathcal{G}\) with off-diagonal \(\Gamma\),
+so its eigenvalues are \(\mathcal{G}\pm\Gamma\).
+Equal hoppings decouple the corresponding combinations, and each outer
+vertex contributes a factor \(\mathcal{G}\).
+The secular equation on a combination with host entry \(\lambda\) is
+\(t^2\mathcal{G}\lambda=1\).
+
+Both combinations are positive for \(E>8\).
+Indeed \((E-8)g(E)=\int (E-8)/(E-\varepsilon)\,d\mu<1\), the integrand
+being strictly smaller than \(1\) off the band maximum, so
+\[
+\mathcal{G}+\Gamma
+=\frac{1}{2E}+\frac{1}{16}-\frac{(E-8)g}{16}
+>\frac{1}{2E}.
+\]
+In the other direction \(E-\varepsilon\le E+8\), so \(g\ge 1/(E+8)\), and
+the inequality is strict.
+Thus \((E+8)g>1\) and
+\[
+\mathcal{G}-\Gamma
+=\frac{1}{2E}-\frac{1}{16}+\frac{(E+8)g}{16}
+>\frac{1}{2E}.
+\]
+The sum \(\lambda_+=\mathcal{G}+\Gamma\) decreases.
+Its derivative receives \(-1/(2E^2)\) from the first term and, from
+\(g(8-E)\),
+\[
+(8-E)g'-g
+=\int\frac{\varepsilon-8}{(E-\varepsilon)^2}\,d\mu<0,
+\]
+where \(g'=-\int(E-\varepsilon)^{-2}\,d\mu\).
+The difference \(\lambda_-=\mathcal{G}-\Gamma\) decreases because
+\[
+\frac{d}{dE}\bigl[(E+8)g\bigr]
+=\int\frac{-\varepsilon-8}{(E-\varepsilon)^2}\,d\mu<0.
+\]
+The diagonal \(\mathcal{G}\) decreases, as each Bloch factor
+\(1/(E-\varepsilon(q))\) does.
+A product of positive strictly decreasing functions is strictly
+decreasing.
+
+As \(E\to\infty\), \(K(8/E)\to\pi/2\), so \(\Gamma\to 0\) and
+\(\mathcal{G}\to 0\).
+As \(E\downarrow 8\), \(\mathcal{G}\to+\infty\) by the logarithm in the
+proof of Proposition~\ref{prop:stitch}.
+The same expansion gives \((E-8)K(8/E)\to 0\), hence
+\((E-8)g\to 0\) and \(\lambda_+\to 1/8\).
+Therefore \(\mathcal{G}\lambda_+\to+\infty\) and
+\(\lambda_-=2\mathcal{G}-\lambda_+\to+\infty\).
+Each product runs from \(+\infty\) down to \(0\) and hits \(1/t^2\) once.
+The roots differ because \(\Gamma=0\) would force \(K(8/E)=\pi/2\), hence
+\(E=\infty\).
+Evenness of \(\Gamma\) and oddness of \(\mathcal{G}\) exchange the products
+under \(E\mapsto -E\).
+
+For the logarithms, write \(L=\ln(1/\delta)\) at \(E=8+\delta\) and use the
+expansion of \(\mathcal{G}\) in the proof of Proposition~\ref{prop:stitch},
+together with \(K=\tfrac12 L+3\ln 2+\theta(\delta)\) and \(\theta(\delta)\to 0\).
+Then \(\lambda_+=1/8+\rho(\delta)\) and
+\[
+\mathcal{G}\lambda_-
+=\frac{L^2}{128\pi^2}\bigl(1+o(1)\bigr),
+\qquad
+\mathcal{G}\lambda_+
+=\frac{L}{128\pi}\bigl(1+o(1)\bigr),
+\]
+as \(\delta\downarrow 0\).
+As \(t\to 0\) one has \(1/t^2\to\infty\), so both roots approach the edge
+and \(L\to\infty\).
+Matching powers of \(L\) gives \eqref{eq:adjlog}.
+
+On \(J_3\), for \(E>12\) and any nonzero cell separation, the off-diagonal
+entry of \((E+2A_{\mathrm{cubic}})^{-1}\) is an oscillatory integral of a
+positive function, so its absolute value is at most the diagonal entry
+\(g(E)\).
+Proposition~\ref{prop:cellpole} halves that entry.
+The host eigenvalues \(\lambda\) therefore satisfy
+\(|\lambda|\le\mathcal{G}+g/2\).
+Both \(\mathcal{G}\) and \(g\) are positive and strictly decreasing on
+\((12,\infty)\), and so is \(\mathcal{G}(\mathcal{G}+g/2)\).
+At the edge, Proposition~\ref{prop:j3stitch} and
+Proposition~\ref{prop:rung} give
+\(\mathcal{G}_3(12+)<11/48\) and \(g(12+)<3/8\), hence
+\[
+\mathcal{G}\Bigl(\mathcal{G}+\frac g2\Bigr)
+<\frac{11}{48}\Bigl(\frac{11}{48}+\frac{3}{16}\Bigr)
+=\frac{55}{576}.
+\]
+The same bound holds for \(E<-12\) because \(\mathcal{G}\) and \(g\) are odd
+and \(|\Gamma(E)|\le |g(E)|/2\).
+A root of \(t^2\mathcal{G}\lambda=1\) would require
+\(1/t^2<55/576\).
+Every \(|t|\le 24/\sqrt{55}\) fails that inequality.
+\end{proof}
+
+The flat pole does not enter \eqref{eq:adj}.
+On \(J_2\) the logarithm in the even resolvent is what forces the four
+eigenvalues.
+On \(J_3\) that logarithm is absent, and the same absence persists at every
+positive distance between the two cells.
+
 \section{Codimension along a unitary orbit}
 \label{sec:codim}
 
