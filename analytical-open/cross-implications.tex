@@ -456,6 +456,7 @@ of the earned unitary, and a motif with such an eigenvalue as a spectral
 bound state.
 The flat band on pure \(J_2\) is a protected kernel, extensive in the
 sheet-antisymmetric sector, and it does not propagate in the quotient.
+What one stitch does to that kernel is Section~\ref{sec:stitch}.
 
 The event account \(R=A_{\mathrm{coef}}+|d|^2/2+\Re(\bar d\, W)\)
 telescopes along a sequence of merges to the change in known energy.
@@ -478,6 +479,274 @@ Isolated \(K_n\) has spectrum \(\{-(n-1)\}\) once and \(\{+1\}\) with
 multiplicity \(n-1\).
 Only the ground level can sit below \(-8\), and only for \(n\ge 10\).
 The level \(+1\) lies in \([-8,8]\).
+
+\section{One stitch and the flat band}
+\label{sec:stitch}
+
+The eight generators of \(J_2\) are the axis steps
+\((\pm 1,0)\) and \((0,\pm 1)\), each once with the sheet bit fixed and
+once with the sheet bit flipped.
+On the sheet with bit \(1\) the axes in the group law are swapped.
+At hopping \(1\), \(H=-A\).
+
+\begin{lemma}
+\label{lem:sectors}
+If \(\psi(x,y,1)=-\psi(x,y,0)\) at every cell, then \(A\psi=0\).
+If \(\psi(x,y,1)=\psi(x,y,0)=\varphi(x,y)\), then
+\[
+(A\psi)(x,y,b)=2(A_\square\varphi)(x,y)
+\]
+at both values of the bit, where \(A_\square\) is the adjacency of the
+square lattice.
+The eigenvalues of \(H\) on the even Bloch waves are therefore
+\(-4(\cos q_x+\cos q_y)\), and every odd state is a zero mode.
+On the \(L\)-torus the odd space has dimension \(L^2\).
+\end{lemma}
+
+\begin{proof}
+At bit \(0\) the eight neighbours of \((x,y)\) are the four adjacent cells
+on bit \(0\) and the same four cells on bit \(1\).
+An odd state assigns opposite amplitudes to those two bits, so the eight
+terms cancel in pairs.
+At bit \(1\) the swapped axes still reach exactly the same four adjacent
+cells, on each bit, and the same cancellation applies.
+An even state assigns the same amplitude \(\varphi\) on both bits, so each
+pair of neighbours contributes \(2\varphi\), which is \(2(A_\square\varphi)\).
+The symbol of \(A_\square\) is \(2(\cos q_x+\cos q_y)\), and \(H=-A\)
+contributes a further minus sign together with that factor \(2\).
+The odd space is a free function of the cell, hence dimension \(L^2\).
+\end{proof}
+
+A stitch is one added edge of hopping \(1\) between a vertex \(a\) on one
+copy of this graph and a vertex \(b\) on another copy.
+The perturbation of \(H\) is
+\(V=-(|a\rangle\langle b|+|b\rangle\langle a|)\).
+The two copies do not meet in \(H_0\), so the resolvent of \(H_0\) is
+diagonal across copies.
+
+\begin{proposition}
+\label{prop:green}
+For \(E\notin[-8,8]\) the diagonal resolvent entry of one copy is independent
+of the vertex.
+For \(E>8\),
+\begin{equation}
+\label{eq:Gell}
+\mathcal{G}(E)
+=\frac{1}{2E}+\frac{1}{\pi E}\,K\Bigl(\frac{8}{E}\Bigr),
+\qquad
+K(k)=\int_0^{\pi/2}\frac{d\theta}{\sqrt{1-k^2\sin^2\theta}}.
+\end{equation}
+The function is odd, \(\mathcal{G}(-E)=-\mathcal{G}(E)\), wherever both sides are defined.
+On \((8,\infty)\) it is strictly decreasing, from \(+\infty\) down to \(0\).
+\end{proposition}
+
+\begin{proof}
+In the Bloch basis of Lemma~\ref{lem:sectors} the sheet block at momentum
+\(q\) has eigenvalues \(0\) and \(\varepsilon(q)=-4(\cos q_x+\cos q_y)\),
+with equal diagonal weight \(1/2\) in either bit.
+Hence
+\[
+\mathcal{G}(E)=\frac{1}{2E}
++\frac12\int_{[0,2\pi]^2}\frac{d^2q}{(2\pi)^2}\,
+\frac{1}{E-\varepsilon(q)},
+\]
+for \(E\) outside the range of \(\varepsilon\), which is \([-8,8]\).
+The shift \(q\mapsto q+(\pi,\pi)\) sends \(\varepsilon\) to \(-\varepsilon\) and
+preserves the measure, so the integral is an odd function of \(E\), and
+so is \(1/(2E)\).
+
+For the closed form, write \(E-\varepsilon(q)=E+4(\cos q_x+\cos q_y)\) and
+\[
+\int\frac{d^2q}{(2\pi)^2}\,\frac{1}{E-\varepsilon(q)}
+=\frac14\int\frac{d^2q}{(2\pi)^2}\,
+\frac{1}{a+\cos q_x+\cos q_y},
+\qquad a=\frac{E}{4}>2.
+\]
+Shifting both angles by \(\pi\) replaces the denominator by
+\(a-\cos q_x-\cos q_y\).
+The inner average is a contour integral.
+With \(z=e^{i\phi}\),
+\[
+\frac{1}{2\pi}\int_0^{2\pi}\frac{d\phi}{b-\cos\phi}
+=\frac{1}{\sqrt{b^2-1}},\qquad b>1,
+\]
+because the integrand becomes
+\(2i\,dz/((z-z_+)(z-z_-))\) with poles
+\(z_\pm=b\pm\sqrt{b^2-1}\), only \(z_-\) inside the unit circle, and the
+residue computation produces this value.
+The condition \(b=a-\cos q_x>1\) holds for all \(q_x\) precisely when \(a>2\).
+The momentum integral therefore equals
+\[
+J(a)=\frac{1}{2\pi}\int_0^{2\pi}
+\frac{dk}{\sqrt{(a-\cos k)^2-1}}
+=\frac{2}{\pi a}\,K\Bigl(\frac{2}{a}\Bigr).
+\]
+The evaluation of \(J\) is the substitution \(t=\tan(k/2)\) on \((0,\pi)\),
+followed by \(t=\sqrt{(a-2)/a}\,\tan\theta\).
+It produces the modulus \(2/a\).
+Since \(a=E/4\), one has \(2/a=8/E\), and
+\[
+\frac12\cdot\frac14\cdot J(a)
+=\frac{1}{\pi E}\,K\Bigl(\frac{8}{E}\Bigr).
+\]
+Adding the flat pole \(1/(2E)\) gives \eqref{eq:Gell}.
+
+Each summand \(1/(E-\varepsilon(q))\) is strictly decreasing for \(E>8\), so
+\(\mathcal{G}\) is strictly decreasing.
+As \(E\to\infty\), \(\mathcal{G}(E)\to 0\).
+As \(E\downarrow 8\), \(K(8/E)\to\infty\) because the integrand of \(K\)
+ceases to be integrable at modulus \(1\), so \(\mathcal{G}(E)\to+\infty\).
+\end{proof}
+
+\begin{proposition}
+\label{prop:stitch}
+Let \(H=H_0+V\) be two copies joined by one stitch.
+An energy \(E\notin[-8,8]\) is an eigenvalue if and only if \(\mathcal{G}(E)^2=1\).
+There is a unique \(E_*>8\) with \(G(E_*)=1\), and the partner \(-E_*\) is the
+unique solution of \(\mathcal{G}(E)=-1\) below \(-8\).
+These two eigenvalues lie outside the essential spectrum, which
+Proposition~\ref{prop:clique} keeps equal to \([-8,8]\) together with the
+flat band.
+The distance above the edge admits the expansion
+\begin{equation}
+\label{eq:Estar}
+\ln\frac{1}{E_*-8}=15\pi-6\ln 2-16\pi\, r(E_*-8),
+\end{equation}
+where \(r(\delta)\to 0\) as \(\delta\downarrow 0\), and \(r(E_*-8)\) is the
+value of that remainder at the root.
+\end{proposition}
+
+\begin{proof}
+The eigenvalue equation \((E-H_0)\psi=V\psi\) gives
+\[
+\psi=-\mathcal{G}_0(E)\bigl(\psi(b)\,|a\rangle+\psi(a)\,|b\rangle\bigr).
+\]
+Off-diagonal blocks of \(\mathcal{G}_0\) between the copies vanish, so
+\(\psi(a)=-\mathcal{G}(E)\psi(b)\) and \(\psi(b)=-\mathcal{G}(E)\psi(a)\).
+A solution with \(\psi(a)\) or \(\psi(b)\) nonzero exists exactly when
+\(\mathcal{G}(E)^2=1\).
+Proposition~\ref{prop:green} supplies one root of \(G=1\) in \((8,\infty)\)
+and, by oddness, one root of \(G=-1\) in \((-\infty,-8)\).
+A finite-rank perturbation does not move the essential spectrum, so
+\(\pm E_*\) are discrete.
+
+For the logarithm, the representation
+\[
+K(k)=\int_0^\infty\frac{dt}{\sqrt{(1+t^2)(1+k'^2 t^2)}},
+\qquad k'=\sqrt{1-k^2},
+\]
+follows from \(t=\tan\theta\).
+Equivalently, with \(u=k't\),
+\[
+K(k)=\int_0^\infty\frac{du}{\sqrt{(u^2+k'^2)(1+u^2)}}.
+\]
+Splitting at \(u=1\) gives the identity
+\begin{align*}
+K(k)-\ln\frac{2}{k'}
+&=\int_0^1\frac{1}{\sqrt{u^2+k'^2}}
+\Bigl(\frac{1}{\sqrt{1+u^2}}-1\Bigr)\,du\\
+&\quad+\int_1^\infty\frac{du}{\sqrt{(u^2+k'^2)(1+u^2)}}
++\ln\frac{1+\sqrt{1+k'^2}}{2},
+\end{align*}
+because
+\[
+\int_0^1\frac{du}{\sqrt{u^2+k'^2}}=\ln\frac{1+\sqrt{1+k'^2}}{k'}.
+\]
+As \(k'\to 0\) the logarithm tends to \(0\) and the integrands increase to
+their pointwise limits, which are integrable, so
+\[
+K(k)-\ln\frac{2}{k'}\to
+\int_0^1\frac1u\Bigl(\frac{1}{\sqrt{1+u^2}}-1\Bigr)\,du
++\int_1^\infty\frac{du}{u\sqrt{1+u^2}}.
+\]
+Those two integrals sum to \(\ln 2\).
+The first of those is \(\ln 2-\ln(1+\sqrt{2})\) after
+\(w=u^2\) and \(\sqrt{1+w}=s\); the second is \(\operatorname{arsinh} 1=\ln(1+\sqrt{2})\).
+Thus \(K(k)=\ln(4/k')+o(1)\) as \(k'\to 0\).
+
+At \(E=8+\delta\) the modulus in \eqref{eq:Gell} is \(k=8/E\), so
+\[
+k'=\sqrt{1-\frac{64}{E^2}}
+=\frac{\sqrt{\delta(16+\delta)}}{8+\delta}
+\]
+and
+\[
+\ln\frac{4}{k'}=\frac12\ln\frac1\delta+3\ln 2+\eta(\delta),
+\]
+with \(\eta(\delta)\to 0\) as \(\delta\downarrow 0\).
+Dividing by \(\pi E\) and adding \(1/(2E)\) produces
+\[
+G(8+\delta)
+=\frac{1}{16\pi}\ln\frac1\delta+\frac1{16}+\frac{3\ln 2}{8\pi}+r(\delta),
+\]
+where the remainder \(r(\delta)\) tends to \(0\) as \(\delta\downarrow 0\).
+Rearrangement at the unique root of \(G=1\) is \eqref{eq:Estar}.
+\end{proof}
+
+The values \(\pm 1/2\) are the eigenvalues of the stitch projected onto the
+odd sector: the normalised odd state has amplitude \(1/\sqrt{2}\) on the
+touched bit, and the two copies couple with matrix element of absolute
+value \(1/2\).
+Both numbers lie in \((-8,8)\).
+Inside that interval the resolvent is not the real function \eqref{eq:Gell},
+and \(\mathcal{G}(E)=\pm 1\) has no solution there.
+The projection onto the flat band is not the spectrum of \(H\).
+
+\begin{proposition}
+\label{prop:stubs}
+Every eigenstate of \(H_0\) that vanishes at both endpoints of the stitch
+remains an eigenstate of \(H_0+V\) with the same energy.
+On the \(L\)-torus the joint evaluation \(\psi\mapsto(\psi(a),\psi(b))\) is
+surjective on \(\ker H_0\), so the nullity drops by exactly \(2\).
+The two lost dimensions reappear as the two eigenvalues of the torus
+outside \([-8,8]\).
+In the infinite-sheet limit those eigenvalues are the pair \(\pm E_*\) of
+Proposition~\ref{prop:stitch}.
+An odd state on a copy remains a zero mode precisely when its cell
+function vanishes at the cell of that copy's endpoint.
+The bit of the endpoint does not impose a second condition.
+\end{proposition}
+
+\begin{proof}
+If \(H_0\psi=E\psi\) and \(\psi(a)=\psi(b)=0\), then \(V\psi=0\).
+The odd state supported on the first copy, with cell function a delta at
+the cell of \(a\), is a zero mode by Lemma~\ref{lem:sectors} and takes a
+nonzero value at \(a\) and the value \(0\) at \(b\).
+The symmetric construction on the second copy separates the two
+coordinates, so the evaluation has rank \(2\).
+On the \(L\)-torus, where the kernel is finite,
+\[
+\dim\bigl(\ker H_0\cap\{\psi(a)=\psi(b)=0\}\bigr)=\dim\ker H_0-2.
+\]
+The perturbed kernel is no larger.
+If \((H_0+V)\psi=0\), then \(H_0\psi=\psi(b)|a\rangle+\psi(a)|b\rangle\).
+Every \(\varphi\in\ker H_0\) is orthogonal to \(H_0\psi\), so
+\(\psi(b)\,\varphi(a)^*+\psi(a)\,\varphi(b)^*=0\).
+The two test states force \(\psi(a)=\psi(b)=0\), and therefore \(H_0\psi=0\).
+On an odd state the two bits of a cell carry opposite nonzero multiples of
+the same cell amplitude, so vanishing at either bit is the condition that
+the cell amplitude vanish.
+\end{proof}
+
+For a finite set of stitches, with adjacency \(A_W\) supported on the stub
+set \(\Sigma\), the same resolvent identity says that
+\(E\notin[-8,8]\) is an eigenvalue if and only if
+\begin{equation}
+\label{eq:detstitch}
+\det\bigl(I+\mathcal{G}_\Sigma(E)\,A_W\bigr)=0,
+\end{equation}
+where \(\mathcal{G}_\Sigma(E)\) is the resolvent of \(H_0\) compressed to \(\Sigma\).
+It is block diagonal across copies.
+If the stitches form a matching and each copy carries at most one stub,
+then \(\mathcal{G}_\Sigma\) is a scalar matrix \(\mathcal{G}(E)I\) and \(A_W\) is a permutation of
+disjoint transpositions, so \eqref{eq:detstitch} reduces to \(\mathcal{G}(E)^2=1\)
+with multiplicity equal to the number of stitches.
+Odd zero modes survive on each copy subject to one linear condition per
+distinct stub cell of that copy.
+Cells touched twice, or on both bits, still impose one condition.
+A sheet with no stub keeps its whole odd kernel.
+The count of surviving flat zeros is fixed by the set of stub cells, not
+by the number of stitches and not by \(\ell_W\).
 
 \section{Codimension along a unitary orbit}
 \label{sec:codim}
