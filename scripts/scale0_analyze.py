@@ -51,6 +51,18 @@ def tau_pairs_ok(pairs) -> bool:
     return True
 
 
+def _le(x, bar) -> bool:
+    """Amendment-2: None-safe x <= bar (exact 0.0 passes; None/NaN fail).
+
+    The frozen draft used `(x or default)`, which maps exact 0.0 -- the
+    best possible outcome -- to the fail default. Bars are unchanged.
+    """
+    try:
+        return x is not None and bool(x <= bar)
+    except TypeError:
+        return False
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--indir", default="data/scale0")
@@ -69,8 +81,8 @@ def main():
         if not p:
             ok = False
             continue
-        ok = ok and (p.get("dh_dev", 1.0) or 1.0) <= scale0.BAR_REPLAY
-        ok = ok and (p.get("krylov_ds_maxdev", 1.0) or 1.0) <= scale0.BAR_KRYLOV_DS
+        ok = ok and _le(p.get("dh_dev"), scale0.BAR_REPLAY)
+        ok = ok and _le(p.get("krylov_ds_maxdev"), scale0.BAR_KRYLOV_DS)
         ok = ok and tau_pairs_ok(p.get("krylov_tau_pairs", [{"banked": 0, "krylov": 1}]))
         ok = ok and bool((p.get("topo") or {}).get("N_ok")) and bool((p.get("topo") or {}).get("D_ok"))
     for L in (64, 128):
@@ -89,14 +101,16 @@ def main():
     ok = True
     for which in ("HR", "HI"):
         p = cells.get(f"resp_regress__L28-{which}", {})
-        v = (p.get("v_field") or float("nan"))
+        v = p.get("v_field")
         lo, hi = scale0.BAR_RESP_V_FIELD
-        ok = ok and bool(lo < v < hi)
-        if which == "HR":
+        ok = ok and v is not None and bool(lo < v < hi)
+        if which == "HR" and v is not None:
             ok = ok and abs(v - scale0.BANKED["resp_v_field"]) / scale0.BANKED["resp_v_field"] <= scale0.BAR_RESP_V_RTOL
-            vq = p.get("v_J") or float("nan")
-            ok = ok and abs(vq - scale0.BANKED["resp_v_quad"]) / scale0.BANKED["resp_v_quad"] <= scale0.BAR_RESP_V_QUAD_RTOL
-        ok = ok and (p.get("decomp", 1.0) or 1.0) <= scale0.BAR_RESP_DECOMP
+            vq = p.get("v_J")
+            ok = ok and vq is not None and abs(vq - scale0.BANKED["resp_v_quad"]) / scale0.BANKED["resp_v_quad"] <= scale0.BAR_RESP_V_QUAD_RTOL
+        elif which == "HR":
+            ok = False
+        ok = ok and _le(p.get("decomp"), scale0.BAR_RESP_DECOMP)
     gate("R-RESP", ok)
 
     # ---- R-P1 ----
@@ -117,7 +131,7 @@ def main():
     ok = True
     p = cells.get("pot_regress__L28", {})
     if p:
-        ok = ok and (p.get("cg_spsolve_dev", 1.0) or 1.0) <= scale0.BAR_CG_SPSOLVE
+        ok = ok and _le(p.get("cg_spsolve_dev"), scale0.BAR_CG_SPSOLVE)
         ok = ok and abs(p.get("range", -99) - 3) <= 1
         ok = ok and abs(p.get("xi", 0.0) - 0.53) / 0.53 <= scale0.BAR_POT_XI_RTOL
     else:
@@ -128,9 +142,9 @@ def main():
     ok = True
     p = cells.get("quot_regress__L28-alg", {})
     if p:
-        ok = ok and (p.get("comm", 1.0) or 1.0) <= scale0.BAR_QUOT_ALG
-        ok = ok and (p.get("dead", 1.0) or 1.0) <= scale0.BAR_QUOT_ALG
-        ok = ok and (p.get("inter", 1.0) or 1.0) <= scale0.BAR_QUOT_ALG
+        ok = ok and _le(p.get("comm"), scale0.BAR_QUOT_ALG)
+        ok = ok and _le(p.get("dead"), scale0.BAR_QUOT_ALG)
+        ok = ok and _le(p.get("inter"), scale0.BAR_QUOT_ALG)
         ok = ok and bool(p.get("neighbor_sets"))
     else:
         ok = False
@@ -141,15 +155,20 @@ def main():
             s = sh.get(f"sym@{r}", {})
             a = sh.get(f"anti@{r}", {})
             ok = ok and s.get("arrival") is not None
-            ok = ok and (a.get("C", 1.0) or 1.0) <= scale0.BAR_QUOT_ANTI
+            ok = ok and _le(a.get("C"), scale0.BAR_QUOT_ANTI)
     else:
         ok = False
     gate("R-QUOT", ok)
 
     # ---- R-ZERO ----
+    # Amendment-2: the banked 508 was refined with PRE-CAP code; frozen
+    # code caps Level-2 refinement at REFINE_CAP = 60 (ZERO-0 d932d57).
+    # Exact-replay gate under current code: screening reproduces 508
+    # candidates to the digit, cap binds at 60 events, rest overflows.
     ok = True
     p = cells.get("zero_regress__headon", {})
-    ok = ok and bool(p) and p.get("n_events") == 508
+    ok = ok and bool(p) and p.get("n_candidates") == 508 \
+        and p.get("n_events") == 60 and p.get("refine_overflow") == 448
     p = cells.get("zero_regress__refine", {})
     ok = ok and bool(p) and bool(p.get("bitwise"))
     gate("R-ZERO", ok)
@@ -164,7 +183,7 @@ def main():
         mdv = md
     ok = ok and bool(p) and float(mdv) == 0.0
     p = cells.get("vacexc_regress__L28-frac", {})
-    ok = ok and bool(p) and (p.get("frac_dev", 1.0) or 1.0) <= scale0.BAR_VACEXC_FRAC
+    ok = ok and bool(p) and _le(p.get("frac_dev"), scale0.BAR_VACEXC_FRAC)
     p = cells.get("vacexc_regress__L28-packet", {})
     if p and p.get("vels"):
         vv = np.array(list(p["vels"].values()), dtype=float)
@@ -377,16 +396,18 @@ def main():
                                             "arrival", f"shell-{r}",
                                             c.get("arrival"), {"kind": "exact"},
                                             "quot.capacity_curve", c.get("n", 0)))
-                remote = [c.get("C", 0.0) for r, c in cap.items()
-                          if int(r) >= 1 and (c.get("C") or 0.0) is not None]
+                # Amendment-2: remote = r >= 2 per frozen R_LOAD = (2,4,6);
+                # r = 1 is a contact shell (C = 0.5 by construction).
+                remote = [c.get("C") for r, c in cap.items()
+                          if int(r) >= 2 and c.get("C") is not None]
                 if remote:
                     add(scale0.make_row("QUOT", L, fam, reg.upper(),
-                                        "Cmax_remote", "max-r>=1", max(remote),
+                                        "Cmax_remote", "max-r>=2", max(remote),
                                         {"kind": "exact"},
                                         "quot.capacity_curve", len(remote)))
             dc = p.get("diff_pre", {}) or {}
-            dremote = [c.get("C", 0.0) for r, c in dc.items()
-                       if int(r) >= 1 and (c.get("C") or 0.0) is not None]
+            dremote = [c.get("C") for r, c in dc.items()
+                       if int(r) >= 1 and c.get("C") is not None]
             if dremote:
                 add(scale0.make_row("QUOT", L, fam, "PRE", "diff_Cmax_remote",
                                     "T16", max(dremote), {"kind": "exact"},
@@ -400,7 +421,10 @@ def main():
     for L in LADDER:
         for fam in ("F1", "F5", "ppinode"):
             p = cells.get(f"zero__L{L}-{fam}-pre", {})
-            if not p:
+            if not p or p.get("filed"):
+                # Amendment-2: filed pre cells (e.g. F1 initial-exclusion
+                # vacuous at large n) skip like POST filed cells; the cell
+                # itself is the machine-readable record.
                 continue
             if p.get("unresolved"):
                 for ch in ("near_density", "min_amp", "n_screen", "refined_min"):
@@ -474,17 +498,36 @@ def main():
                                     rec.get("E"), {"kind": "exact"},
                                     "vacfield.rayleigh_energy", 1))
         for name, rec in (p.get("ladders") or {}).items():
+            rec = rec or {}
+            # Amendment-2: dense legs filed unresolved-cost at L >= 256.
+            if "unresolved" in rec:
+                add(scale0.make_row("VACCOMP", L, "j2", "STATIC", "ladder",
+                                    name, None, {"kind": "none"},
+                                    "none", 0, "", rec["unresolved"]))
+                continue
             add(scale0.make_row("VACCOMP", L, "j2", "STATIC", "ladder", name,
-                                (rec or {}).get("rung", (rec or {}).get("error")),
+                                rec.get("rung", rec.get("error")),
                                 {"kind": "exact"}, "vaccomp.joint_ladder", 1))
         circ = p.get("circle", {}) or {}
-        for ch in ("n_joint", "n_background"):
-            if ch in circ:
-                add(scale0.make_row("VACCOMP", L, "j2", "STATIC", f"circle_{ch}",
-                                    "RP1", circ[ch], {"kind": "count"},
-                                    "vaccomp.circle_probe", 1))
+        if "unresolved" in circ:
+            for ch in ("n_joint", "n_background"):
+                add(scale0.make_row("VACCOMP", L, "j2", "STATIC",
+                                    f"circle_{ch}", "RP1", None,
+                                    {"kind": "none"}, "none", 0, "",
+                                    circ["unresolved"]))
+        else:
+            for ch in ("n_joint", "n_background"):
+                if ch in circ:
+                    add(scale0.make_row("VACCOMP", L, "j2", "STATIC",
+                                        f"circle_{ch}",
+                                        "RP1", circ[ch], {"kind": "count"},
+                                        "vaccomp.circle_probe", 1))
         amps = p.get("amps", {}) or {}
-        if "all_joint" in amps:
+        if "unresolved" in amps:
+            add(scale0.make_row("VACCOMP", L, "j2", "STATIC", "amps", "VPLUS",
+                                None, {"kind": "none"}, "none", 0, "",
+                                amps["unresolved"]))
+        elif "all_joint" in amps:
             add(scale0.make_row("VACCOMP", L, "j2", "STATIC", "amps", "VPLUS",
                                 amps["all_joint"], {"kind": "exact"},
                                 "vaccomp.amplitude_family_ladder", 7))

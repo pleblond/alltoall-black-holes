@@ -1070,7 +1070,10 @@ def run_zero_regress(which: str) -> dict:
         substrate = "j2"
         size = 20
         geom = "headon"
-        dphi = math.pi
+        # Amendment-2: exact banked CLI float (zero0_tasks %.6f of pi);
+        # screening is threshold-chaotic in dphi, so math.pi (3.5e-7 off)
+        # does not replay the banked candidate count.
+        dphi = 3.141593
         amp = "match"
         sigma = 3.0
         dt = zero.DT_HEAD
@@ -1082,6 +1085,7 @@ def run_zero_regress(which: str) -> dict:
     row = zc.kind_collide(A())
     return {"n_events": row["n_events"], "n_candidates": row["n_candidates"],
             "labels": row["labels"], "banked_events": 508,
+            "refine_overflow": row.get("refine_overflow", 0),
             "elapsed": time.time() - t0}
 
 
@@ -1268,6 +1272,19 @@ def run_vaccomp(L: int) -> dict:
         rays["VPI"] = {"E": sparse_rayleigh(psi_pi)}
     except ValueError:
         rays["VPI"] = None
+    if L >= 256:
+        # Amendment-2: dense ladder legs infeasible at L >= 256
+        # (joint_ladder -> dense N x N sheet projectors: measured 26 GB
+        # at L = 128, x16 per doubling -> 400+ GB at L = 256 vs 184 GB
+        # RAM). Formula + sparse rays banked; legs filed unresolved-cost
+        # per the mission's "where feasible" scope.
+        u = {"reason": "dense-ladder-infeasible-at-L>=256", "class": "cost"}
+        return {"L": L, "formula": formula, "rays": rays,
+                "ladders": {"VPLUS": {"unresolved": u},
+                            "VMINUS": {"unresolved": u},
+                            "VPI": {"unresolved": u}},
+                "circle": {"unresolved": u}, "amps": {"unresolved": u},
+                "elapsed": time.time() - t0}
     # JOINT ladder on rays (ledger_moves frozen 20000).
     ladders = {}
     for name in ("VPLUS", "VMINUS"):

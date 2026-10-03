@@ -10402,3 +10402,68 @@ sigma = 3.0 (banked ledger key j2|20|headon|3.141593|match,
 n_rows = 1, mean_events = 508.0); gate: rerun n_events == 508
 exactly (deterministic same-code replay). No other prereg line
 changes.
+## SCALE0-AMENDMENT-2 (run-time config corrections; before large-L data)
+
+Six config/code errors surfaced during small-L validation (all
+provable by code inspection + deterministic small-L replay; no
+large-L value was used to set any bar; no bar is loosened):
+
+1. Analyzer `or`-idiom (R-OBS/R-RESP/R-POT/R-QUOT/R-VACEXC).
+`(x or 1.0)` maps exact 0.0 (the best outcome: bitwise replay,
+exact identities) to 1.0 = FAIL. Fix: explicit None checks.
+Bars unchanged. Proof: replay values are exact zeros
+(dh_dev = 0.0, decomp = 0.0, comm/dead/inter = 0.0,
+cross_maxdev = frac_dev = 0.0).
+
+2. Analyzer ZERO-pre crash on filed cells. The campaign files
+F1 pre cells as {"filed": "initial-exclusion"} (expected: at
+n >= 8192 a Haar-random state has near-zero nodes with
+probability ~1 - e^-85, so the exclusion pre-condition is
+vacuous at SCALE-0 sizes); the PRE matrix loop assumed T/dt
+keys and crashed while the POST loop already skipped filed
+cells. Fix: PRE loop mirrors POST (skip filed/unresolved).
+No gate touches F1 rows (R-ZERO covers headon + refine only).
+
+3. Headon replay dphi. The banked CLI received dphi = 3.141593
+(zero0_tasks %.6f formatting); the regress used math.pi.
+Screening is threshold-chaotic in dphi (88 vs 508 candidates
+for a 3.5e-7 shift; refined events stable). Fix: regress uses
+the exact banked float 3.141593. Param alignment, not tuning.
+
+4. R-ZERO headon gate unsatisfiable as written (n_events == 508).
+The banked 508 was refined with PRE-CAP code; current frozen
+code caps Level-2 refinement at REFINE_CAP = 60 (ZERO-0
+amendment d932d57, before the verdict commit but after the
+collide rows were banked: 508 > 60 proves the rows predate the
+cap). Same-code replay now yields exactly n_candidates = 508
+(Level-1 screening exhaustive + deterministic, reproduces the
+banked count to the digit), n_events = 60 (cap binds),
+refine_overflow = 448. Corrected gate (intent preserved --
+exact replay of the banked row): n_candidates == 508 AND
+n_events == 60 AND refine_overflow == 448. The numbers come
+from the banked ledger + frozen code constants, not from data.
+
+5. QUOT remote-shell off-by-one. The Cmax_remote matrix row
+maximized over r >= 1, but r = 1 is a CONTACT shell (it holds
+the paired preparation cell; C = 0.5 by construction at every
+L, L-independent). The frozen banked remote definition is
+R_LOAD = (2, 4, 6) (quot.py) and the frozen R-QUOT regress
+checks anti silence at shells 2/4/6. Fix: row maximizes over
+r >= 2 (variant "max-r>=2"), PRE and POST. The exact-zero FIT
+form and bar (1e-9) are unchanged; with the banked remote
+definition anti/sheet capacities are exactly 0.0 (anti-dead +
+sheet-forgetting theorems).
+
+6. VAC-COMP dense legs infeasible at L >= 256. joint_ladder ->
+malus.sheet_projectors builds DENSE N x N projectors (4 x N^2
+doubles transient). Measured: 26 GB at L = 128 (N = 32768);
+scaling x16 per doubling -> 400+ GB at L = 256 (N = 131072)
+vs 184 GB beast RAM: provably infeasible (code inspection +
+measurement, no data values involved). The mission scopes
+VAC-COMP with "where feasible". Fix: at L >= 256 run_vaccomp
+banks the O(1) formula rows (n_zero/flat/nodal) + sparse
+Rayleigh rays and files ladders/circle/amps as explicit
+unresolved-cost entries (reason
+dense-ladder-infeasible-at-L>=256). L <= 128 unchanged (full
+ladder; fits in RAM). The exact-formula FIT (n_zero at all L)
+is unaffected.
