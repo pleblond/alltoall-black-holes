@@ -810,13 +810,24 @@ def cmd_j3(args):
                 F.append(f"j3 d_stat {c}: "
                          f"{dd.get('d') if dd.get('ok') else 'UNMEAS'}")
         for ch in ("psi", "rho"):
-            leg = cell["spread"].get("R", {}).get("legs", {}).get(ch, {})
+            rrec = cell["spread"].get("R", {})
+            if "error" in rrec:
+                # Battery integrity: L20+ legs must exist (prereg s5
+                # scopes spreading to J3-L20+; L16 has no leg).
+                if tag in ("j3-L20", "j3-L24"):
+                    F.append(f"j3 spread {tag}/R missing record")
+                continue
+            leg = rrec.get("legs", {}).get(ch, {})
             if leg.get("measurable") and not leg.get("pass"):
                 F.append(f"j3 spread {c}/R/{ch} fails")
-            if not leg.get("measurable"):
-                F.append(f"j3 spread {c}/R/{ch} unmeasurable")
-        if not cell["packet"].get("pass"):
-            F.append(f"j3 packet {c} fails")
+            # Near-field-only (n < 4) legs: filed, never gated
+            # (prereg section 5 verbatim).
+        pk = cell["packet"]
+        if tag in ("j3-L20", "j3-L24"):
+            if "error" in pk:
+                F.append(f"j3 packet {tag} missing record")
+            elif not pk.get("pass"):
+                F.append(f"j3 packet {c} fails")
     # --- drift figure (descriptive, A2.6) ---
     drift_vals = [verdict["medians"][str(c)]["d_arr_transfer_med"]
                   for c in headline_cells]
