@@ -10386,3 +10386,17 @@ battery sizes are J2L6r1 n = 18, J2L8r2 n = 42, J2L28r1 n = 18 (not
 10/26/10 as first written). No method changes: wiring Burnside is
 partition-exact at these sizes, and J2 disks were never in the exact-
 joint scope. Prereg battery paragraph corrected accordingly.
+
+### BHENT0-AMENDMENT-3 (post-data apparatus design-error fixes + gated reruns)
+
+Two red checks traced to apparatus design errors (not physics):
+(1) is_static_match_ok crashed (False) on empty readout classes: S4_3
+has no exterior-exterior edges, so the B/J max over an empty array
+raised. Fix: empty classes match vacuously (exact-zero rule, filed).
+Only fiber_S4_3 is affected (all other static comparisons have
+nonempty edges); only it is re-run. (2) The C2 automorph exhibit put a
+single spike at R[0], which on S3_2 is the star center fixed by every
+automorphism, so no candidate distinguished. Fix: distinct spikes at
+R[0] and R[-1]. Only the three control_C2 tasks are re-run. Regression
+pins added (star blind-static, C2 on P3/P4/S3_2). All other 131 records
+stand; the analyzer is re-run unchanged.

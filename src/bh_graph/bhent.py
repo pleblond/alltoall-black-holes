@@ -847,14 +847,22 @@ def exterior_pot_profile(rec, g_override=None, pin=None, omega=None):
 
 
 def is_static_match_ok(sA, sB, atol=REMOTE_BAR):
-    """Boolean check: static-exterior readouts identical (never raises)."""
+    """Boolean check: static-exterior readouts identical (never raises).
+
+    Empty readout classes (e.g. no exterior-exterior edges on a star)
+    match vacuously (AMENDMENT-3: exact-zero rule, filed).
+    """
     try:
-        return bool(np.abs(np.asarray(sA["rho"]) - np.asarray(sB["rho"])).max()
-                    < atol
-                    and np.abs(np.asarray(sA["B"]) - np.asarray(sB["B"])).max()
-                    < atol
-                    and np.abs(np.asarray(sA["J"]) - np.asarray(sB["J"])).max()
-                    < atol)
+        for key in ("rho", "B", "J"):
+            a = np.asarray(sA[key])
+            b = np.asarray(sB[key])
+            if a.size == 0 and b.size == 0:
+                continue
+            if a.shape != b.shape:
+                return False
+            if float(np.abs(a - b).max(initial=0.0)) >= atol:
+                return False
+        return True
     except Exception:
         return False
 
@@ -984,11 +992,15 @@ def control_automorph_distinct(rec):
             cands = [rev]
     psi0 = background_shapes(rec, "VPLUS")
     # Generic R-local perturbation so the automorph is field-visible.
+    # Two distinct spikes (first/last R nodes) so Aut-fixed points cannot
+    # hide the pushforward (AMENDMENT-3: single center spike was fixed
+    # by every star automorphism).
     from bh_graph.ballistic import index_of
 
     idx = index_of(order)
     psi0 = np.asarray(psi0, dtype=np.complex128).copy()
     psi0[idx[rec["R"][0]]] += 0.3 + 0.1j
+    psi0[idx[rec["R"][-1]]] += 0.2 - 0.05j
     for p in cands:
         if not is_perm_auto_ok(g, p):
             continue

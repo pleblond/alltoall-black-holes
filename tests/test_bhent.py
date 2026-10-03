@@ -317,8 +317,19 @@ def test_c1_relabel_invariance():
 
 
 def test_c2_automorph_distinct():
-    c = be.control_automorph_distinct(be.build_region("P3"))
-    assert c["applicable"] and c["distinct"] and c["same_collapsed_sum"]
+    for spec in ("P3", "P4", "S3_2"):
+        c = be.control_automorph_distinct(be.build_region(spec))
+        assert c["applicable"] and c["distinct"] \
+            and c["same_collapsed_sum"], spec
+
+
+def test_star_blind_static_vacuous():
+    # S4_3 has no exterior-exterior edges: empty B/J match vacuously.
+    r = be.build_region("S4_3")
+    bg = be.background_shapes(r, "VPLUS")
+    v = be.blind_basis(r)[0]
+    assert be.is_static_match_ok(be.exterior_static(bg, r),
+                                 be.exterior_static(bg + 0.1 * v, r))
 
 
 def test_c4_forbidden_scan():
