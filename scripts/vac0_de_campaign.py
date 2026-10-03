@@ -78,7 +78,7 @@ for _L in (20, 28):
     CELLS[f"j2quot_L{_L}"] = ("j2q", _L, 10.0)
 CELLS["square_n28"] = ("sq", 28, 16.0)
 CELLS["square_n40"] = ("sq", 40, 24.0)
-CELLS["square_n30"] = ("sq30", 30, 25.0)  # P1.1a regression (non-battery)
+CELLS["square_n30"] = ("sq30", 30, 12.0)  # P1.1a regression (non-battery); D8.2 wrap budget
 CELLS["ring_N400"] = ("ring", 400, 120.0)
 CELLS["ring_N1600"] = ("ring", 1600, 480.0)
 CELLS["tri_L28"] = ("tri", 28, 10.0)
@@ -160,6 +160,28 @@ def _prep_sigma_k_r0(setup):
     if kind == "sq30":
         return SIGMA_2D, (0.5, 0.0), (7.0, 15.0)
     return SIGMA_2D, (K_2D, 0.0), (L / 4, L / 2)
+
+
+def _trans_perm(setup, dx, dy):
+    """Translation permutation (D8.1: sheet-preserving on J2 labels).
+
+    Ring: cyclic shift. J2-label cells (j2/sw8/rew): shift (x, y) mod L
+    in full c3 labels, preserving the sheet bit (bijective). Unique-
+    coordinate 2D cells: shift (x, y) (unchanged D6 behavior).
+    """
+    order = setup["order"]
+    L = setup["L"]
+    if setup["kind"] == "ring":
+        return {v: (v + dx) % L for v in order}
+    if setup["kind"] in ("j2", "sw8", "rew"):
+        c3 = setup["c3"]
+        inv = {(x, y, b): v for v, (x, y, b) in c3.items()}
+        return {v: inv[((x + dx) % L, (y + dy) % L, b)]
+                for v, (x, y, b) in c3.items()}
+    coords = setup["coords"]
+    inv = {(int(x), int(y)): v for v, (x, y) in coords.items()}
+    return {v: inv[((int(x) + dx) % L, (int(y) + dy) % L)]
+            for v, (x, y) in coords.items()}
 
 
 def grid_coherence_2d(psi, order, coords, L):
@@ -282,14 +304,7 @@ def _evolve_case(args):
     elif prep_kind == "trans":
         raw = clean(k)
         dx, dy = prep_arg
-        L = setup["L"]
-        if setup["kind"] == "ring":
-            perm = {v: (v + dx) % L for v in order}
-        else:
-            inv = {(int(x), int(y)): v for v, (x, y) in coords.items()}
-            perm = {}
-            for v, (x, y) in coords.items():
-                perm[v] = inv[((int(x) + dx) % L, (int(y) + dy) % L)]
+        perm = _trans_perm(setup, dx, dy)
         idx = {v: i for i, v in enumerate(order)}
         out = np.empty_like(raw)
         for v, i in idx.items():
@@ -307,29 +322,55 @@ def _evolve_case(args):
     else:
         raise ValueError(prep_kind)
 
-    spec = coherence_of(setup, psi0)
-    f0 = flux_of(setup, psi0)
+    spec = None
+    f0 = None
+    intrinsic_only = setup["coords"] is None
+    if not intrinsic_only:
+        # D7: coordinate readouts are UNDEFINED on coord-less cells (RR);
+        # their records carry the D6.3 intrinsic block only (nulls below).
+        spec = coherence_of(setup, psi0)
+        f0 = flux_of(setup, psi0)
     rec = evolve_fixed(psi0, h, dt, n_steps)
     norms = rec["norms"]
-    if setup["kind"] == "ring":
+    if intrinsic_only:
+        mean_j = [None, None]
+        prep_j = [None, None]
+        prep_angle = None
+        mean_D = max_D = mean_S = None
+    elif setup["kind"] == "ring":
         tr = _d_trace_ring(rec["psi"], setup)
         jn = tr["J_net"]
         mean_j = [float(jn.mean()), 0.0]
         prep_j = [float(f0["J_net"]), 0.0]
         prep_angle = 0.0 if f0["J_net"] >= 0 else math.pi
+        mean_D = float(tr["D"].mean())
+        max_D = float(tr["D"].max())
+        mean_S = float(tr["S"].mean())
     else:
         tr = d_trace(rec["psi"], setup["edges"])
         mean_j = [float(tr["J_net"][:, 0].mean()), float(tr["J_net"][:, 1].mean())]
         prep_j = [float(f0["J_net"][0]), float(f0["J_net"][1])]
         prep_angle = float(f0["angle"])
-    ts = np.arange(rec["psi"].shape[0]) * dt
-    rs = unwrap_trace(
-        np.array([com(p, coords, order, periods=periods) for p in rec["psi"]]),
-        periods=periods)
-    alpha = msd_exponent_rs(rs, ts)
-    cv = velocity_autocorr(rs, ts)
-    fit = fit_velocity(rs, ts)
-    disp = float(np.linalg.norm(rs - rs[0], axis=1).max())
+        mean_D = float(tr["D"].mean())
+        max_D = float(tr["D"].max())
+        mean_S = float(tr["S"].mean())
+    if intrinsic_only:
+        alpha = cv_mean50 = r2 = disp = speed = None
+        v = [None, None]
+        ts = np.arange(rec["psi"].shape[0]) * dt
+    else:
+        ts = np.arange(rec["psi"].shape[0]) * dt
+        rs = unwrap_trace(
+            np.array([com(p, coords, order, periods=periods) for p in rec["psi"]]),
+            periods=periods)
+        alpha = msd_exponent_rs(rs, ts)
+        cv = velocity_autocorr(rs, ts)
+        fit = fit_velocity(rs, ts)
+        cv_mean50 = float(np.mean(cv[:50]))
+        r2 = float(fit["r2"])
+        disp = float(np.linalg.norm(rs - rs[0], axis=1).max())
+        v = [float(x) for x in fit["v"]] if len(fit["v"]) == 2 else [float(fit["v"][0]), 0.0]
+        speed = float(fit["speed"])
     br = branch_projectors(h)
     wprep = branch_weights_all(psi0, br)
     rows = rec["psi"][::10]
@@ -337,21 +378,21 @@ def _evolve_case(args):
     mix = float(np.abs(np.asarray(wtr) - wtr[0]).max())
     out = {
         "tag": tag,
-        "prep_D": float(f0["D"]),
-        "prep_S": float(f0["S"]),
+        "prep_D": None if f0 is None else float(f0["D"]),
+        "prep_S": None if f0 is None else float(f0["S"]),
         "prep_angle": prep_angle,
         "prep_J": prep_j,
-        "prep_C": float(spec["C"]),
-        "prep_M": float(spec["M_eff"]),
-        "mean_D": float(tr["D"].mean()),
-        "max_D": float(tr["D"].max()),
-        "mean_S": float(tr["S"].mean()),
+        "prep_C": None if spec is None else float(spec["C"]),
+        "prep_M": None if spec is None else float(spec["M_eff"]),
+        "mean_D": mean_D,
+        "max_D": max_D,
+        "mean_S": mean_S,
         "mean_J": mean_j,
-        "alpha": float(alpha),
-        "cv_mean50": float(np.mean(cv[:50])),
-        "v": [float(x) for x in fit["v"]] if len(fit["v"]) == 2 else [float(fit["v"][0]), 0.0],
-        "speed": float(fit["speed"]),
-        "r2": float(fit["r2"]),
+        "alpha": None if alpha is None else float(alpha),
+        "cv_mean50": cv_mean50,
+        "v": v,
+        "speed": speed,
+        "r2": r2,
         "disp": disp,
         "norm_dev": float(np.abs(norms - 1.0).max()),
         "w_plus": float(wprep["w_plus"]),

@@ -48,6 +48,23 @@
 All notable changes to the paper + code. Versions match `paper/paper.md`
 draft headers; GitHub releases (Zenodo-archived) are marked with DOI status.
 
+- **unreleased (VAC-0)** — Vacuum Substrate Universality verdict: MIXED
+  (nothing requires uniquely J2). LAW: A-identities, D ballistic
+  propagation (10/10 geometric cells), H-core 16/18 gates on 27/27,
+  I finite-range label 26/27, J-alg exact 27/27, MZ at LAW level.
+  CLASS: F square (open/square/J2/quot + swap 2/3; tri/hex/rewire
+  fail), E 2D-ordered (rings fail aperture gates), H turn-on broad
+  (15/27; hex shells + expander TAU reversal), G TUN-level
+  square-grade, J-useful 13/27. Frozen-G battery all-FAIL incl. J2
+  (LB=8 gate tighter than TUN's own; J2 passes all TUN-2/3 banked
+  gates) — verdicts stand, TUN-level comparison descriptive. C1:
+  POT-0 digit-exact, P1.1a ≤2%, POT1-FIELD 89/89. Degree-only vacuum
+  excluded (rewire destroys F/H/G/DE-validity) without J2-selection.
+  Apparatus: D7/D8, G5/G6 repairs (all filed pre-data or per D6.1
+  INVALID-remedy); J addendum + runner frozen pre-data. Records under
+  `data/vac0/` (+617MB beast HI file sha-pinned for audit). Full suite
+  1794 passed / 2 skipped on beast (parallel, weighted skipped).
+
 - **v5.6** — Relational field program release (rolls up the 40-odd v5.6
   campaign entries below, all merged): FP1/FP2 (`ψ = r + is`, `H = -A`)
   with derived B/J anatomy (VAC-0A LAW); EM-1 falsification (ψ is a

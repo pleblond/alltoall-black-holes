@@ -1,0 +1,4215 @@
+{
+ "families": {
+  "hex": {
+   "cells": [
+    "hex_L28",
+    "hex_L40"
+   ],
+   "pass": [],
+   "xi_consistent": true,
+   "xi_ratio": 1.0001067370535104
+  },
+  "j2": {
+   "cells": [
+    "j2_L20",
+    "j2_L28"
+   ],
+   "pass": [
+    "j2_L20",
+    "j2_L28"
+   ],
+   "xi_consistent": true,
+   "xi_ratio": 1.0088519825171602
+  },
+  "j2quot": {
+   "cells": [
+    "j2quot_L20",
+    "j2quot_L28"
+   ],
+   "pass": [
+    "j2quot_L20",
+    "j2quot_L28"
+   ],
+   "xi_consistent": true,
+   "xi_ratio": 1.0000567698572835
+  },
+  "j2rewire": {
+   "cells": [
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2"
+   ],
+   "pass": [],
+   "xi_consistent": true,
+   "xi_ratio": 1.0326609600437289
+  },
+  "j2swap8": {
+   "cells": [
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2"
+   ],
+   "pass": [
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2"
+   ],
+   "xi_consistent": true,
+   "xi_ratio": 1.0775936576077803
+  },
+  "ring": {
+   "cells": [
+    "ring_N1600",
+    "ring_N400"
+   ],
+   "pass": [
+    "ring_N400"
+   ],
+   "xi_consistent": true,
+   "xi_ratio": 1.0
+  },
+  "rr3": {
+   "cells": [
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2"
+   ],
+   "pass": [
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2"
+   ],
+   "xi_consistent": true,
+   "xi_ratio": 1.0107169154822977
+  },
+  "rr4": {
+   "cells": [
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2"
+   ],
+   "pass": [],
+   "xi_consistent": true,
+   "xi_ratio": 1.1332681559159399
+  },
+  "rr8": {
+   "cells": [
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2"
+   ],
+   "pass": [],
+   "xi_consistent": true,
+   "xi_ratio": 1.021160495748775
+  },
+  "square": {
+   "cells": [
+    "square_n28",
+    "square_n40"
+   ],
+   "pass": [
+    "square_n28",
+    "square_n40"
+   ],
+   "xi_consistent": true,
+   "xi_ratio": 1.0000591035509865
+  },
+  "tri": {
+   "cells": [
+    "tri_L28",
+    "tri_L40"
+   ],
+   "pass": [
+    "tri_L28",
+    "tri_L40"
+   ],
+   "xi_consistent": true,
+   "xi_ratio": 1.0033396084174915
+  }
+ },
+ "gate_table": {
+  "H_J": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_RB": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_TAU": {
+   "fail": [
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "ring_N1600",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2"
+   ],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_eps": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_jump_global": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_jump_shell": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_lin": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_pair_jump": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_pair_nodal": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_pair_ramp_inner": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_phase": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_quad": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_ramp_inner": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_ramp_shell": {
+   "fail": [
+    "hex_L28",
+    "hex_L40"
+   ],
+   "pass": [
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_range": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_switch_cone": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_switch_instant": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  },
+  "H_wrap": {
+   "fail": [],
+   "pass": [
+    "hex_L28",
+    "hex_L40",
+    "j2_L20",
+    "j2_L28",
+    "j2quot_L20",
+    "j2quot_L28",
+    "j2rewire_s0",
+    "j2rewire_s1",
+    "j2rewire_s2",
+    "j2swap8_s0",
+    "j2swap8_s1",
+    "j2swap8_s2",
+    "ring_N1600",
+    "ring_N400",
+    "rr3_s0",
+    "rr3_s1",
+    "rr3_s2",
+    "rr4_s0",
+    "rr4_s1",
+    "rr4_s2",
+    "rr8_s0",
+    "rr8_s1",
+    "rr8_s2",
+    "square_n28",
+    "square_n40",
+    "tri_L28",
+    "tri_L40"
+   ]
+  }
+ },
+ "source": {
+  "file": "hi_results.json",
+  "n_records": 459,
+  "sha256": "1a016a3ca92c79b31687459ce1b962b19e1228b3f46318b01941212366814991"
+ },
+ "verdicts": {
+  "hex_L28": {
+   "D_means": {
+    "ramp": 0.11242741514555409,
+    "zero": 0.061544141913397965
+   },
+   "F_split": {
+    "far_norm": 1.4492895484472392,
+    "local_norm": 2.8506595018817285
+   },
+   "Fmag_jump": 0.003412262401879036,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0009946749095819656,
+   "RB_work_filed": {
+    "nets12": [
+     0.00031272517550462453,
+     0.0007746094975902285,
+     -0.0011936552558862168
+    ],
+    "ratio": 0.011556356946875011
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0010983376519377985,
+    "4.0": 0.012197019727009721,
+    "8.0": 0.0028423344817981766
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": true,
+    "exch_5": true
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9958349913781669,
+      "slope": 0.3956593064366627,
+      "v": 2.527426964895821
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9929666342727567,
+      "slope": 0.4469217348253547,
+      "v": 2.2375282338657656
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.994131455399061,
+      "slope": 0.500350181314977,
+      "v": 1.998600255069133
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9965192920091831,
+      "slope": 0.3350107996106051,
+      "v": 2.984978398195925
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9957038130147094,
+      "slope": 0.36172502285541613,
+      "v": 2.764530891742335
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9943559422396596,
+      "slope": 0.40324036978992006,
+      "v": 2.4799104328789783
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     6,
+     13
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": false,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0000000000000002,
+    "resid_far": 0.9551894806814913,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 38,
+    "tot": 38
+   },
+   "pair_ramp_inner_val": 0.03701295757454106,
+   "pred_range": 3,
+   "ramp_inner_val": 0.05026779403108421,
+   "range_meas": 3,
+   "sep_resid_jump": 2.3276811504343727e-06,
+   "shell_cv_med": 0.2470217198821666,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 784,
+    "diam": 28,
+    "dstar": 8,
+    "dt": 0.006064850682605778,
+    "family": "hex",
+    "omega": -3.5,
+    "r_set": 7,
+    "rmax": 28,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 6.0,
+    "z": 3
+   },
+   "turnon_eps_filed": 0.10057060151984927,
+   "xi_jump": 1.368088409967135,
+   "xi_r2": 0.9998351505001558
+  },
+  "hex_L40": {
+   "D_means": {
+    "ramp": 0.11170715237805913,
+    "zero": 0.05620440571590352
+   },
+   "F_split": {
+    "far_norm": 1.4492895484240165,
+    "local_norm": 2.850659501893417
+   },
+   "Fmag_jump": 0.0034122623994027475,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0007894106788967813,
+   "RB_work_filed": {
+    "nets12": [
+     0.0002626436169792523,
+     0.00047641799039466193,
+     -0.0003150185028764074
+    ],
+    "ratio": 0.3341774970595495
+   },
+   "TAU_lingerer": {
+    "12.0": 0.00039559902590110223,
+    "4.0": 0.004999355824890695,
+    "8.0": 0.0009404335767994561
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": true,
+    "exch_5": true
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9943930541058281,
+      "slope": 0.4025183637562765,
+      "v": 2.484358702713739
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9918795173784087,
+      "slope": 0.44944875594310696,
+      "v": 2.224947753835999
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9935416246066754,
+      "slope": 0.5039602114831947,
+      "v": 1.9842836343308157
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9965192920091831,
+      "slope": 0.3350107996106051,
+      "v": 2.984978398195925
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9957976389127774,
+      "slope": 0.35919800173766375,
+      "v": 2.783979852789768
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.994296172916021,
+      "slope": 0.4007133486721676,
+      "v": 2.495549507680918
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     6,
+     13
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": false,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 0.9999999999999997,
+    "resid_far": 0.957298829367718,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 38,
+    "tot": 38
+   },
+   "pair_ramp_inner_val": 0.040631729465981946,
+   "pred_range": 3,
+   "ramp_inner_val": 0.0498176173492672,
+   "range_meas": 3,
+   "sep_resid_jump": 2.3276812325195546e-06,
+   "shell_cv_med": 0.24706599980571453,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 40,
+    "N": 1600,
+    "diam": 40,
+    "dstar": 8,
+    "dt": 0.006064850682605778,
+    "family": "hex",
+    "omega": -3.5,
+    "r_set": 8,
+    "rmax": 40,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 6.0,
+    "z": 3
+   },
+   "turnon_eps_filed": 0.11656881597464402,
+   "xi_jump": 1.3679423998260059,
+   "xi_r2": 0.9998343322150204
+  },
+  "j2_L20": {
+   "D_means": {
+    "ramp": 7.95711726052452e-16,
+    "zero": 2.318796597600825e-16
+   },
+   "F_split": {
+    "far_norm": 2.2955171584454788,
+    "local_norm": 3.263216198125861
+   },
+   "Fmag_jump": 0.00245684596660987,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.005301276969477772,
+   "RB_work_filed": {
+    "nets12": [
+     -0.003675250429355348,
+     -0.00306455718299814,
+     0.009188698680334895
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.005268854875814875,
+    "4.0": 0.019728960457758554,
+    "8.0": 0.008844589946371434
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": true,
+    "exch_5": true
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9977061050769699,
+      "slope": 0.1242699796730007,
+      "v": 8.04699576383099
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9962143853357243,
+      "slope": 0.13081050491894822,
+      "v": 7.644645975639435
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9292862641592433,
+      "slope": 0.17005365639463252,
+      "v": 5.880496904338033
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9992408980759686,
+      "slope": 0.12099971705002706,
+      "v": 8.26448213582642
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9988145682001615,
+      "slope": 0.1301564523943534,
+      "v": 7.683061282049689
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9984334597889889,
+      "slope": 0.15043208065679034,
+      "v": 6.64751823968647
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     5,
+     12
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 0.9999999999999998,
+    "resid_far": 0.9859571390725439,
+    "return_10": true
+   },
+   "nodal": {
+    "ok": 112,
+    "tot": 112
+   },
+   "pair_ramp_inner_val": 0.024809940866863073,
+   "pred_range": 3,
+   "ramp_inner_val": 0.014819509486025693,
+   "range_meas": 3,
+   "sep_resid_jump": 2.272784820346317e-06,
+   "shell_cv_med": 0.25016806658063456,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 20,
+    "N": 800,
+    "diam": 20,
+    "dstar": 8,
+    "dt": 0.002497291457543556,
+    "family": "j2",
+    "omega": -8.5,
+    "r_set": 5,
+    "rmax": 20,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.015616409294328702,
+   "xi_jump": 2.0427707892267213,
+   "xi_r2": 0.9982243893743447
+  },
+  "j2_L28": {
+   "D_means": {
+    "ramp": 4.581762740447298e-16,
+    "zero": 1.8878181792526703e-16
+   },
+   "F_split": {
+    "far_norm": 2.3019668167974876,
+    "local_norm": 3.2528339506688
+   },
+   "Fmag_jump": 0.002457725812239887,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.002643417664203228,
+   "RB_work_filed": {
+    "nets12": [
+     0.0010384714256810312,
+     -0.003018047637431298,
+     0.0013674520879218832
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0024394665823874256,
+    "4.0": 0.012601542364588455,
+    "8.0": 0.005987926183363501
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": true,
+    "exch_5": true
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9991689995981228,
+      "slope": 0.12525105845989293,
+      "v": 7.983964465419775
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9983028850953379,
+      "slope": 0.1308105049189482,
+      "v": 7.6446459756394365
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.934467654986523,
+      "slope": 0.16874555134544317,
+      "v": 5.926082151658478
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.99912388420909,
+      "slope": 0.12198079583691919,
+      "v": 8.19801177012272
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9988145682001615,
+      "slope": 0.13015645239435342,
+      "v": 7.683061282049687
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9978126341146014,
+      "slope": 0.15206721196827724,
+      "v": 6.576039548937151
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     6,
+     13
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0000000000000002,
+    "resid_far": 0.9839737867187407,
+    "return_10": true
+   },
+   "nodal": {
+    "ok": 112,
+    "tot": 112
+   },
+   "pair_ramp_inner_val": 0.051195478670308325,
+   "pred_range": 3,
+   "ramp_inner_val": 0.0635047130890612,
+   "range_meas": 3,
+   "sep_resid_jump": 2.274543849335958e-06,
+   "shell_cv_med": 0.2603848053090209,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 1568,
+    "diam": 28,
+    "dstar": 8,
+    "dt": 0.002497291457543556,
+    "family": "j2",
+    "omega": -8.5,
+    "r_set": 7,
+    "rmax": 28,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.04768341328523206,
+   "xi_jump": 2.0248468800446395,
+   "xi_r2": 0.9984741195113003
+  },
+  "j2quot_L20": {
+   "D_means": {
+    "ramp": 4.049231594786616e-16,
+    "zero": 1.5231218185322767e-16
+   },
+   "F_split": {
+    "far_norm": 1.7358111918326289,
+    "local_norm": 2.979839087614174
+   },
+   "Fmag_jump": 0.0031192817688939635,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0018763605086035517,
+   "RB_work_filed": {
+    "nets12": [
+     0.0008192708173533347,
+     -0.003552520606776577,
+     0.002761883617288685
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.003433264888982611,
+    "4.0": 0.02475747732735371,
+    "8.0": 0.010972774101408362
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": true,
+    "exch_5": true
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9996705649810574,
+      "slope": 0.24057241041002916,
+      "v": 4.156752631341267
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9993174527336018,
+      "slope": 0.244615644198433,
+      "v": 4.088045976277775
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9994163643011842,
+      "slope": 0.2540498563713752,
+      "v": 3.9362352503682576
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9997521275716764,
+      "slope": 0.22237785836221177,
+      "v": 4.4968505739055535
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.999815834545756,
+      "slope": 0.2355183681745243,
+      "v": 4.245953331584643
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9998049287990116,
+      "slope": 0.2506804948810388,
+      "v": 3.989141638142023
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     5,
+     12
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0,
+    "resid_far": 0.9767623016738919,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 52,
+    "tot": 52
+   },
+   "pair_ramp_inner_val": 0.05840169300109998,
+   "pred_range": 3,
+   "ramp_inner_val": 0.06469176680199192,
+   "range_meas": 3,
+   "sep_resid_jump": 2.7501370243786875e-06,
+   "shell_cv_med": 0.3267196837982667,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 20,
+    "N": 400,
+    "diam": 20,
+    "dstar": 8,
+    "dt": 0.0047171060864711605,
+    "family": "j2quot",
+    "omega": -4.5,
+    "r_set": 5,
+    "rmax": 20,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 8.0,
+    "z": 4
+   },
+   "turnon_eps_filed": 0.07119785447495078,
+   "xi_jump": 1.5381227711664025,
+   "xi_r2": 0.9995210123075431
+  },
+  "j2quot_L28": {
+   "D_means": {
+    "ramp": 5.06250470694197e-16,
+    "zero": 1.0197768086077679e-16
+   },
+   "F_split": {
+    "far_norm": 1.7358107347601608,
+    "local_norm": 2.9798392011678425
+   },
+   "Fmag_jump": 0.003119283489745764,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0016076679513001202,
+   "RB_work_filed": {
+    "nets12": [
+     0.0012408129726673156,
+     -0.0015303914013202746,
+     -0.00010867899980238072
+    ],
+    "ratio": 0.9546988124783774
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0018668623179539563,
+    "4.0": 0.01593352567382889,
+    "8.0": 0.006199795798929341
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": true,
+    "exch_5": true
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9998039792217975,
+      "slope": 0.23821385736679357,
+      "v": 4.197908597988211
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9998005324249887,
+      "slope": 0.2432678996022985,
+      "v": 4.1106944304399775
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9998361166194136,
+      "slope": 0.2496696864339379,
+      "v": 4.005292009146645
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9994422755158952,
+      "slope": 0.2264210921506157,
+      "v": 4.416549670800096
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9998422165420178,
+      "slope": 0.23989853811196196,
+      "v": 4.168428902777618
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.999825342764824,
+      "slope": 0.2523651756262071,
+      "v": 3.962511854175787
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     6,
+     13
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0000000000000002,
+    "resid_far": 0.9578131124684242,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 52,
+    "tot": 52
+   },
+   "pair_ramp_inner_val": 0.03756604673717908,
+   "pred_range": 3,
+   "ramp_inner_val": 0.050093549800990664,
+   "range_meas": 3,
+   "sep_resid_jump": 2.7501123840391276e-06,
+   "shell_cv_med": 0.3209681997745415,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 784,
+    "diam": 28,
+    "dstar": 8,
+    "dt": 0.0047171060864711605,
+    "family": "j2quot",
+    "omega": -4.5,
+    "r_set": 7,
+    "rmax": 28,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 8.0,
+    "z": 4
+   },
+   "turnon_eps_filed": 0.07549695638769191,
+   "xi_jump": 1.538035457113005,
+   "xi_r2": 0.999602074761414
+  },
+  "j2rewire_s0": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 0.4223989722004806,
+    "local_norm": 2.5488602996617202
+   },
+   "Fmag_jump": 0.003005592542578206,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.001825987164900913,
+   "RB_work_filed": {
+    "nets12": [
+     -0.0005350529002692284,
+     -0.00044300673982333727,
+     -0.000280021330724578
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.007338984771580103,
+    "4.0": 0.004454843719274868,
+    "8.0": 0.002965498037755564
+   },
+   "TAU_r_far": 3,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9920634920634921,
+      "slope": 0.13735103016489558,
+      "v": 7.280615214894702
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9924050632911393,
+      "slope": 0.15383315378468307,
+      "v": 6.500549299013127
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9885429638854296,
+      "slope": 0.17306229800776843,
+      "v": 5.778266043567224
+     },
+     "v20_n": 4
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9523809523809523,
+      "slope": 0.10988082413191644,
+      "v": 9.100769018618381
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9689922480620154,
+      "slope": 0.1373510301648956,
+      "v": 7.280615214894701
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9860394537177541,
+      "slope": 0.1565801743879809,
+      "v": 6.386504574469039
+     },
+     "v20_n": 4
+    },
+    "shells": [
+     1,
+     4
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": false,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 18,
+    "tot": 18
+   },
+   "pair_ramp_inner_val": 0.0034243996000856837,
+   "pred_range": 1,
+   "ramp_inner_val": 0.04199485164543211,
+   "range_meas": 1,
+   "sep_resid_jump": 1.465469188013438e-06,
+   "shell_cv_med": 0.05195560184692378,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 1568,
+    "diam": 6,
+    "dstar": 3,
+    "dt": 0.002497291457543556,
+    "family": "j2rewire",
+    "omega": -8.5,
+    "r_set": 2,
+    "rmax": 5,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.01501022038196377,
+   "xi_jump": 1.6043882088237866,
+   "xi_r2": 0.9149441420093878
+  },
+  "j2rewire_s1": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 0.4296493847081535,
+    "local_norm": 2.552190816409425
+   },
+   "Fmag_jump": 0.003001196456789971,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0017399835463681379,
+   "RB_work_filed": {
+    "nets12": [
+     -0.0004191962680237804,
+     -0.0005880799817121751,
+     -0.00029378087058917757
+    ],
+    "ratio": 0.6565930391916953
+   },
+   "TAU_lingerer": {
+    "12.0": 0.007308626834053324,
+    "4.0": 0.004452067370835802,
+    "8.0": 0.002946906684423989
+   },
+   "TAU_r_far": 3,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9838879159369527,
+      "slope": 0.1455920919747893,
+      "v": 6.868504919711984
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9924050632911393,
+      "slope": 0.15383315378468307,
+      "v": 6.500549299013127
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9885429638854296,
+      "slope": 0.17306229800776843,
+      "v": 5.778266043567224
+     },
+     "v20_n": 4
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9523809523809523,
+      "slope": 0.10988082413191644,
+      "v": 9.100769018618381
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9689922480620154,
+      "slope": 0.1373510301648956,
+      "v": 7.280615214894701
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9860394537177541,
+      "slope": 0.1565801743879809,
+      "v": 6.386504574469039
+     },
+     "v20_n": 4
+    },
+    "shells": [
+     1,
+     4
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": false,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 18,
+    "tot": 18
+   },
+   "pair_ramp_inner_val": 0.003431612652011045,
+   "pred_range": 1,
+   "ramp_inner_val": 0.04163411353153336,
+   "range_meas": 1,
+   "sep_resid_jump": 1.5209412961550867e-06,
+   "shell_cv_med": 0.08820114211947419,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 1568,
+    "diam": 6,
+    "dstar": 3,
+    "dt": 0.002497291457543556,
+    "family": "j2rewire",
+    "omega": -8.5,
+    "r_set": 2,
+    "rmax": 5,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.014969287059089056,
+   "xi_jump": 1.5830208458919763,
+   "xi_r2": 0.9148378476690141
+  },
+  "j2rewire_s2": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 0.464523329482457,
+    "local_norm": 2.547026716154934
+   },
+   "Fmag_jump": 0.003057959900875145,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0017280705215741415,
+   "RB_work_filed": {
+    "nets12": [
+     -0.0005446912947255633,
+     -0.0004271767588901465,
+     -0.00032774324076534356
+    ],
+    "ratio": 0.6117773855981832
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0072502039063550095,
+    "4.0": 0.004421039206033698,
+    "8.0": 0.002923093386389537
+   },
+   "TAU_r_far": 3,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9838879159369527,
+      "slope": 0.1455920919747893,
+      "v": 6.868504919711984
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9924050632911393,
+      "slope": 0.15383315378468307,
+      "v": 6.500549299013127
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9907216494845361,
+      "slope": 0.17031527740447053,
+      "v": 5.871463882979598
+     },
+     "v20_n": 4
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9523809523809523,
+      "slope": 0.10988082413191644,
+      "v": 9.100769018618381
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9689922480620154,
+      "slope": 0.1373510301648956,
+      "v": 7.280615214894701
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9860394537177541,
+      "slope": 0.1565801743879809,
+      "v": 6.386504574469039
+     },
+     "v20_n": 4
+    },
+    "shells": [
+     1,
+     4
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": false,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 18,
+    "tot": 18
+   },
+   "pair_ramp_inner_val": 0.003425000934764794,
+   "pred_range": 1,
+   "ramp_inner_val": 0.040918788224514405,
+   "range_meas": 1,
+   "sep_resid_jump": 1.543955238541515e-06,
+   "shell_cv_med": 0.05789356181407902,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 1568,
+    "diam": 6,
+    "dstar": 3,
+    "dt": 0.002497291457543556,
+    "family": "j2rewire",
+    "omega": -8.5,
+    "r_set": 2,
+    "rmax": 5,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.014724508801537224,
+   "xi_jump": 1.553644681944641,
+   "xi_r2": 0.9163880384254829
+  },
+  "j2swap8_s0": {
+   "D_means": {
+    "ramp": 0.08002014811555794,
+    "zero": 0.06578817099904051
+   },
+   "F_split": {
+    "far_norm": 2.198263640728418,
+    "local_norm": 3.129118853409662
+   },
+   "Fmag_jump": 0.0024884930833105686,
+   "H_pass": true,
+   "I_class": "NON-RADIAL",
+   "RB": 0.00245430925306833,
+   "RB_work_filed": {
+    "nets12": [
+     0.001182170168538832,
+     -0.0020747810170007597,
+     0.0016285078474025383
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0029203775904961637,
+    "4.0": 0.011419064434209678,
+    "8.0": 0.005757004407409811
+   },
+   "TAU_r_far": 8,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9956571428571429,
+      "slope": 0.1295023998697587,
+      "v": 7.721864621858018
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.994512303062489,
+      "slope": 0.13865913521408507,
+      "v": 7.2119301656975825
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.947469119226638,
+      "slope": 0.19032928465706955,
+      "v": 5.254052216934323
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9972815333528329,
+      "slope": 0.1363699513780035,
+      "v": 7.3329937416205615
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9933228575983238,
+      "slope": 0.152721264492872,
+      "v": 6.54787663866333
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9839899918063083,
+      "slope": 0.2017752038374776,
+      "v": 4.956010356978565
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     4,
+     11
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0000000000000002,
+    "resid_far": 0.9798640811578125,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 103,
+    "tot": 103
+   },
+   "pair_ramp_inner_val": 0.03650608258186297,
+   "pred_range": 3,
+   "ramp_inner_val": 0.057316516580692485,
+   "range_meas": 3,
+   "sep_resid_jump": 2.3690083408044508e-06,
+   "shell_cv_med": 0.7696783208583019,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 1568,
+    "diam": 25,
+    "dstar": 8,
+    "dt": 0.002497291457543556,
+    "family": "j2swap8",
+    "omega": -8.5,
+    "r_set": 6,
+    "rmax": 16,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.04555938870664963,
+   "xi_jump": 1.6622157161345676,
+   "xi_r2": 0.9928184652881353
+  },
+  "j2swap8_s1": {
+   "D_means": {
+    "ramp": 0.018117663449044887,
+    "zero": 0.03535910677978878
+   },
+   "F_split": {
+    "far_norm": 2.282422717471807,
+    "local_norm": 3.248474642091636
+   },
+   "Fmag_jump": 0.00245873854591419,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0024930867958596363,
+   "RB_work_filed": {
+    "nets12": [
+     0.0006367047828601535,
+     -0.0026791418577074566,
+     0.0021852165968478943
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0025326065592851024,
+    "4.0": 0.013187165227871351,
+    "8.0": 0.006454873222311585
+   },
+   "TAU_r_far": 10,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9963689179375455,
+      "slope": 0.12819429482056915,
+      "v": 7.800659158815756
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9972620325715876,
+      "slope": 0.13702400390259817,
+      "v": 7.297991384858654
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9672502977583316,
+      "slope": 0.20439141393585644,
+      "v": 4.892573424409242
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9957852706299911,
+      "slope": 0.1314645574435429,
+      "v": 7.606612911084018
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9951447245564893,
+      "slope": 0.1432375028862482,
+      "v": 6.981411849899032
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9830571032902526,
+      "slope": 0.18869415334558268,
+      "v": 5.299581265607931
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     5,
+     12
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0000000000000002,
+    "resid_far": 0.9836295865068373,
+    "return_10": true
+   },
+   "nodal": {
+    "ok": 112,
+    "tot": 112
+   },
+   "pair_ramp_inner_val": 0.036405784164982524,
+   "pred_range": 3,
+   "ramp_inner_val": 0.05553069812832118,
+   "range_meas": 3,
+   "sep_resid_jump": 2.2862670118506078e-06,
+   "shell_cv_med": 0.2889589153140902,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 1568,
+    "diam": 23,
+    "dstar": 8,
+    "dt": 0.002497291457543556,
+    "family": "j2swap8",
+    "omega": -8.5,
+    "r_set": 5,
+    "rmax": 21,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.03417804830094629,
+   "xi_jump": 1.7872504806203156,
+   "xi_r2": 0.9992486096327686
+  },
+  "j2swap8_s2": {
+   "D_means": {
+    "ramp": 0.016203019157287696,
+    "zero": 0.022334901819114204
+   },
+   "F_split": {
+    "far_norm": 2.286788714435222,
+    "local_norm": 3.2553031282358424
+   },
+   "Fmag_jump": 0.002458400129710948,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0024886336574325837,
+   "RB_work_filed": {
+    "nets12": [
+     0.0011910688325418306,
+     -0.0033918301417736885,
+     0.003144223396395418
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0027577903905327654,
+    "4.0": 0.012725534526102329,
+    "8.0": 0.006155766905141346
+   },
+   "TAU_r_far": 9,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9970805669350662,
+      "slope": 0.12590511098448762,
+      "v": 7.942489325339675
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9956500981380298,
+      "slope": 0.13440779380421927,
+      "v": 7.44004474514787
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9435720372276264,
+      "slope": 0.19098333718166435,
+      "v": 5.236058887424272
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9920634920634921,
+      "slope": 0.1308105049189482,
+      "v": 7.6446459756394365
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.991223375789361,
+      "slope": 0.1442185816731404,
+      "v": 6.933919252280668
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9654854299086778,
+      "slope": 0.1913103634439617,
+      "v": 5.227108359411581
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     4,
+     11
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0000000000000002,
+    "resid_far": 0.9887123710029041,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 113,
+    "tot": 113
+   },
+   "pair_ramp_inner_val": 0.0544063095643841,
+   "pred_range": 3,
+   "ramp_inner_val": 0.054331650216814895,
+   "range_meas": 3,
+   "sep_resid_jump": 2.2842154044989147e-06,
+   "shell_cv_med": 0.300498142238545,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 1568,
+    "diam": 24,
+    "dstar": 8,
+    "dt": 0.002497291457543556,
+    "family": "j2swap8",
+    "omega": -8.5,
+    "r_set": 6,
+    "rmax": 19,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.04037371496225604,
+   "xi_jump": 1.7911931132825845,
+   "xi_r2": 0.999557280500436
+  },
+  "ring_N1600": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 1.5816705885605158,
+    "local_norm": 2.6195803804165023
+   },
+   "Fmag_jump": 0.0034567239229772832,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.00017533114925133203,
+   "RB_work_filed": {
+    "nets12": [
+     0.0006599294350686513,
+     -0.0003808794479438493,
+     -0.00010393724586132969
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0,
+    "4.0": 0.0,
+    "8.0": 0.0
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": true,
+    "exch_5": true
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9996440349683295,
+      "slope": 0.4685097152312964,
+      "v": 2.134427456869949
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9999004965223535,
+      "slope": 0.48063941659650816,
+      "v": 2.0805617797249654
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.999819998199982,
+      "slope": 0.4882204799497653,
+      "v": 2.048254919791348
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9995695930122159,
+      "slope": 0.4260557604530561,
+      "v": 2.3471106198320784
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9996526920932614,
+      "slope": 0.44222869560667144,
+      "v": 2.2612734314496485
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9998834702557828,
+      "slope": 0.46345567299579166,
+      "v": 2.157703655963405
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     6,
+     13
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": false,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0,
+    "resid_far": 0.9502858669079403,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 16,
+    "tot": 16
+   },
+   "pair_ramp_inner_val": 0.022420517750551743,
+   "pred_range": 4,
+   "ramp_inner_val": 0.02697698699302495,
+   "range_meas": 4,
+   "sep_resid_jump": 2.376621891729132e-06,
+   "shell_cv_med": null,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 1600,
+    "N": 1600,
+    "diam": 800,
+    "dstar": 8,
+    "dt": 0.00849079095564809,
+    "family": "ring",
+    "omega": -2.5,
+    "r_set": 8,
+    "rmax": 800,
+    "t_jump": 12.0,
+    "t_turn": 24.0,
+    "v_cone": 4.0,
+    "z": 2
+   },
+   "turnon_eps_filed": 0.08166766617389086,
+   "xi_jump": 1.4690220562271799,
+   "xi_r2": 0.999940341589713
+  },
+  "ring_N400": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 1.5816705885605158,
+    "local_norm": 2.6195803804165023
+   },
+   "Fmag_jump": 0.0034567239229772832,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.00017533114925133203,
+   "RB_work_filed": {
+    "nets12": [
+     0.0006599294350686513,
+     -0.0003808794479438493,
+     -0.00010393724586132969
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 3.774098380316727e-30,
+    "4.0": 3.355029025205333e-29,
+    "8.0": 8.475506397982047e-30
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": true,
+    "exch_5": true
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9996440349683295,
+      "slope": 0.4685097152312964,
+      "v": 2.134427456869949
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9999004965223535,
+      "slope": 0.48063941659650816,
+      "v": 2.0805617797249654
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.999819998199982,
+      "slope": 0.4882204799497653,
+      "v": 2.048254919791348
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9995695930122159,
+      "slope": 0.4260557604530561,
+      "v": 2.3471106198320784
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9996526920932614,
+      "slope": 0.44222869560667144,
+      "v": 2.2612734314496485
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9998834702557828,
+      "slope": 0.46345567299579166,
+      "v": 2.157703655963405
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     6,
+     13
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0,
+    "resid_far": 0.9502858669079403,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 16,
+    "tot": 16
+   },
+   "pair_ramp_inner_val": 0.022420517750551743,
+   "pred_range": 4,
+   "ramp_inner_val": 0.02697698699302495,
+   "range_meas": 4,
+   "sep_resid_jump": 2.3766218917291316e-06,
+   "shell_cv_med": null,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 400,
+    "N": 400,
+    "diam": 200,
+    "dstar": 8,
+    "dt": 0.00849079095564809,
+    "family": "ring",
+    "omega": -2.5,
+    "r_set": 8,
+    "rmax": 200,
+    "t_jump": 12.0,
+    "t_turn": 24.0,
+    "v_cone": 4.0,
+    "z": 2
+   },
+   "turnon_eps_filed": 0.08166766617389086,
+   "xi_jump": 1.4690220562271799,
+   "xi_r2": 0.999940341589713
+  },
+  "rr3_s0": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 1.3833791563206745,
+    "local_norm": 2.651663365765748
+   },
+   "Fmag_jump": 0.003484506561193641,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0006523836187667874,
+   "RB_work_filed": {
+    "nets12": [
+     9.052203797765834e-05,
+     -0.0003552687159049661,
+     0.0007041178627902323
+    ],
+    "ratio": 0.2732946719502555
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0008396780165812372,
+    "4.0": 0.006164362405450116,
+    "8.0": 0.002281153229701326
+   },
+   "TAU_r_far": 6,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9968035840128864,
+      "slope": 0.32129268497137764,
+      "v": 3.112426914073954
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9975288350734357,
+      "slope": 0.3353718026274267,
+      "v": 2.981765289048245
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9962335216572504,
+      "slope": 0.3487289142498323,
+      "v": 2.8675568877078876
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9947725069572013,
+      "slope": 0.2877194044069527,
+      "v": 3.475608473683588
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9956233911552814,
+      "slope": 0.3068525642985067,
+      "v": 3.258894062971552
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.99535499648341,
+      "slope": 0.3295957543582783,
+      "v": 3.0340196643218182
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     3,
+     10
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 22,
+    "tot": 22
+   },
+   "pair_ramp_inner_val": 0.013335263430105632,
+   "pred_range": 3,
+   "ramp_inner_val": 0.02614442708527755,
+   "range_meas": 3,
+   "sep_resid_jump": 2.643564160778219e-06,
+   "shell_cv_med": 0.18258637960594948,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": null,
+    "N": 1600,
+    "diam": 14,
+    "dstar": 7,
+    "dt": 0.006064850682605778,
+    "family": "rr3",
+    "omega": -3.5,
+    "r_set": 3,
+    "rmax": 12,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 6.0,
+    "z": 3
+   },
+   "turnon_eps_filed": 0.03566800515265699,
+   "xi_jump": 1.0543833274033383,
+   "xi_r2": 0.9992658139636477
+  },
+  "rr3_s1": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 1.397507423011415,
+    "local_norm": 2.5704784129859157
+   },
+   "Fmag_jump": 0.0034892019200417515,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.000334579662729261,
+   "RB_work_filed": {
+    "nets12": [
+     -0.00026633645580331766,
+     -9.972476114872286e-05,
+     0.0004853953796952748
+    ],
+    "ratio": 0.3734397680806536
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0008809501769338082,
+    "4.0": 0.005729856999185138,
+    "8.0": 0.002066360836921086
+   },
+   "TAU_r_far": 6,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9982378319256243,
+      "slope": 0.3205706789377341,
+      "v": 3.1194368846011478
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9984261660465291,
+      "slope": 0.33284478150967434,
+      "v": 3.004403420309999
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9967195379434295,
+      "slope": 0.34511888408161456,
+      "v": 2.897552252642071
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9947725069572013,
+      "slope": 0.2877194044069527,
+      "v": 3.475608473683588
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9962664135421611,
+      "slope": 0.3072135673153285,
+      "v": 3.25506457523598
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.99535499648341,
+      "slope": 0.3295957543582783,
+      "v": 3.0340196643218182
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     3,
+     10
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 20,
+    "tot": 20
+   },
+   "pair_ramp_inner_val": 0.009537693229230957,
+   "pred_range": 2,
+   "ramp_inner_val": 0.011052261497894981,
+   "range_meas": 2,
+   "sep_resid_jump": 2.6951425833131598e-06,
+   "shell_cv_med": 0.00669520138214741,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": null,
+    "N": 1600,
+    "diam": 14,
+    "dstar": 7,
+    "dt": 0.006064850682605778,
+    "family": "rr3",
+    "omega": -3.5,
+    "r_set": 3,
+    "rmax": 13,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 6.0,
+    "z": 3
+   },
+   "turnon_eps_filed": 0.014133709011078754,
+   "xi_jump": 1.059661073520372,
+   "xi_r2": 0.9984274461308676
+  },
+  "rr3_s2": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 1.401763004324809,
+    "local_norm": 2.548374336549433
+   },
+   "Fmag_jump": 0.0034892489506642295,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0002821739337722739,
+   "RB_work_filed": {
+    "nets12": [
+     0.00025720615961022375,
+     -0.00022359105040958838,
+     0.0002639695787345353
+    ],
+    "ratio": 0.9131493625220178
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0008786975300824767,
+    "4.0": 0.00582890337085553,
+    "8.0": 0.002072245920650863
+   },
+   "TAU_r_far": 6,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9975025491731813,
+      "slope": 0.32490271513959534,
+      "v": 3.077844392806466
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9979043409426805,
+      "slope": 0.33717681771153557,
+      "v": 2.9658029481004493
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9963607163642525,
+      "slope": 0.3512559353675847,
+      "v": 2.8469269820409244
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9947725069572013,
+      "slope": 0.2877194044069527,
+      "v": 3.475608473683588
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9951164883786439,
+      "slope": 0.30721356731532845,
+      "v": 3.255064575235981
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.99535499648341,
+      "slope": 0.3295957543582783,
+      "v": 3.0340196643218182
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     3,
+     10
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 20,
+    "tot": 20
+   },
+   "pair_ramp_inner_val": 0.01132847351040902,
+   "pred_range": 2,
+   "ramp_inner_val": 0.010834659631133236,
+   "range_meas": 2,
+   "sep_resid_jump": 2.694233108197952e-06,
+   "shell_cv_med": 0.016916703596110725,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": null,
+    "N": 1600,
+    "diam": 14,
+    "dstar": 7,
+    "dt": 0.006064850682605778,
+    "family": "rr3",
+    "omega": -3.5,
+    "r_set": 3,
+    "rmax": 13,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 6.0,
+    "z": 3
+   },
+   "turnon_eps_filed": 0.015259512095447821,
+   "xi_jump": 1.0656830644090636,
+   "xi_r2": 0.9982906841431098
+  },
+  "rr4_s0": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 1.1847264582876196,
+    "local_norm": 2.3369611492733924
+   },
+   "Fmag_jump": 0.0034508167719567127,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.00045940478225650063,
+   "RB_work_filed": {
+    "nets12": [
+     0.00013742482295553415,
+     5.935287053149274e-05,
+     -0.00011699456759961535
+    ],
+    "ratio": 0.9791810634715964
+   },
+   "TAU_lingerer": {
+    "12.0": 0.001940044081314666,
+    "4.0": 0.003293090886433457,
+    "8.0": 0.0014340980700097532
+   },
+   "TAU_r_far": 4,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9995881065774231,
+      "slope": 0.24340267406191193,
+      "v": 4.108418298418693
+     },
+     "v05_n": 6,
+     "v10": {
+      "r2": 0.9987829415517495,
+      "slope": 0.25795831570016564,
+      "v": 3.876595322332374
+     },
+     "v10_n": 6,
+     "v20": {
+      "r2": 0.9982852312522642,
+      "slope": 0.2684707235500158,
+      "v": 3.724800927180804
+     },
+     "v20_n": 6
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9953743395474031,
+      "slope": 0.20863086348163876,
+      "v": 4.793154681488477
+     },
+     "v05_n": 6,
+     "v10": {
+      "r2": 0.9944497724814823,
+      "slope": 0.23046432593901955,
+      "v": 4.3390663432422
+     },
+     "v10_n": 6,
+     "v20": {
+      "r2": 0.9967638918458591,
+      "slope": 0.24744590785031573,
+      "v": 4.0412872804706765
+     },
+     "v20_n": 6
+    },
+    "shells": [
+     2,
+     7
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": false,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 32,
+    "tot": 32
+   },
+   "pair_ramp_inner_val": 0.004613760453664291,
+   "pred_range": 2,
+   "ramp_inner_val": 0.009795418629837994,
+   "range_meas": 2,
+   "sep_resid_jump": 2.634475615331626e-06,
+   "shell_cv_med": 0.12674141125404198,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": null,
+    "N": 1600,
+    "diam": 9,
+    "dstar": 4,
+    "dt": 0.0047171060864711605,
+    "family": "rr4",
+    "omega": -4.5,
+    "r_set": 2,
+    "rmax": 8,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 8.0,
+    "z": 4
+   },
+   "turnon_eps_filed": 0.0068007302206364,
+   "xi_jump": 1.168253172072936,
+   "xi_r2": 0.9609535554029389
+  },
+  "rr4_s1": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 1.1859315125013736,
+    "local_norm": 2.320130628236172
+   },
+   "Fmag_jump": 0.003447415474958675,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.00041793845550323807,
+   "RB_work_filed": {
+    "nets12": [
+     -3.3870339856578724e-05,
+     -0.00016895616616974252,
+     -0.00014488546312563244
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0019270276532694633,
+    "4.0": 0.003487195953857431,
+    "8.0": 0.0014489923939128573
+   },
+   "TAU_r_far": 4,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9967250980888495,
+      "slope": 0.25371292022234165,
+      "v": 3.94146265441921
+     },
+     "v05_n": 7,
+     "v10": {
+      "r2": 0.9968052973977696,
+      "slope": 0.26483181314045223,
+      "v": 3.775981397935961
+     },
+     "v10_n": 7,
+     "v20": {
+      "r2": 0.9965306226956165,
+      "slope": 0.2820155567411686,
+      "v": 3.5459036783484645
+     },
+     "v20_n": 7
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9960992907801418,
+      "slope": 0.2142913907854041,
+      "v": 4.666543048392556
+     },
+     "v05_n": 7,
+     "v10": {
+      "r2": 0.996150429375185,
+      "slope": 0.23450755972742338,
+      "v": 4.2642548545656105
+     },
+     "v10_n": 7,
+     "v20": {
+      "r2": 0.9967250980888496,
+      "slope": 0.2537129202223417,
+      "v": 3.941462654419209
+     },
+     "v20_n": 7
+    },
+    "shells": [
+     2,
+     8
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": false,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 30,
+    "tot": 30
+   },
+   "pair_ramp_inner_val": 0.004801580596514827,
+   "pred_range": 2,
+   "ramp_inner_val": 0.00968863725893615,
+   "range_meas": 2,
+   "sep_resid_jump": 2.609174697597582e-06,
+   "shell_cv_med": 0.18205970272796607,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": null,
+    "N": 1600,
+    "diam": 9,
+    "dstar": 4,
+    "dt": 0.0047171060864711605,
+    "family": "rr4",
+    "omega": -4.5,
+    "r_set": 2,
+    "rmax": 9,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 8.0,
+    "z": 4
+   },
+   "turnon_eps_filed": 0.006445017733662069,
+   "xi_jump": 1.3239441179580436,
+   "xi_r2": 0.9393447678331878
+  },
+  "rr4_s2": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 1.1910028320608215,
+    "local_norm": 2.337567762643398
+   },
+   "Fmag_jump": 0.0034511956508192585,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0004117629534439305,
+   "RB_work_filed": {
+    "nets12": [
+     0.00014415891359575994,
+     -0.00017769976774251184,
+     -0.00022029961504377304
+    ],
+    "ratio": 0.2602503568656418
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0019468467736778838,
+    "4.0": 0.0033692818236793235,
+    "8.0": 0.001465193928273905
+   },
+   "TAU_r_far": 4,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9971514889943893,
+      "slope": 0.24582861433495415,
+      "v": 4.067874696789563
+     },
+     "v05_n": 6,
+     "v10": {
+      "r2": 0.9977230229517963,
+      "slope": 0.2563410221848042,
+      "v": 3.901053336984312
+     },
+     "v10_n": 6,
+     "v20": {
+      "r2": 0.9967775709632387,
+      "slope": 0.2733226040961004,
+      "v": 3.6586802006628014
+     },
+     "v20_n": 6
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9953743395474031,
+      "slope": 0.20863086348163876,
+      "v": 4.793154681488477
+     },
+     "v05_n": 6,
+     "v10": {
+      "r2": 0.9944497724814823,
+      "slope": 0.23046432593901955,
+      "v": 4.3390663432422
+     },
+     "v10_n": 6,
+     "v20": {
+      "r2": 0.9967638918458591,
+      "slope": 0.24744590785031573,
+      "v": 4.0412872804706765
+     },
+     "v20_n": 6
+    },
+    "shells": [
+     2,
+     7
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": false,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 32,
+    "tot": 32
+   },
+   "pair_ramp_inner_val": 0.004624427305500734,
+   "pred_range": 2,
+   "ramp_inner_val": 0.009247383077423775,
+   "range_meas": 2,
+   "sep_resid_jump": 2.641779353747012e-06,
+   "shell_cv_med": 0.10389329637779457,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": null,
+    "N": 1600,
+    "diam": 9,
+    "dstar": 4,
+    "dt": 0.0047171060864711605,
+    "family": "rr4",
+    "omega": -4.5,
+    "r_set": 2,
+    "rmax": 8,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 8.0,
+    "z": 4
+   },
+   "turnon_eps_filed": 0.0051540093905855025,
+   "xi_jump": 1.170412319211666,
+   "xi_r2": 0.9627077903920948
+  },
+  "rr8_s0": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 0.4303731047081359,
+    "local_norm": 2.552754034326722
+   },
+   "Fmag_jump": 0.0029942578003239397,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0017268860207837126,
+   "RB_work_filed": {
+    "nets12": [
+     -0.00039393813159205315,
+     -0.0005692065834346227,
+     -0.0005079274049104576
+    ],
+    "ratio": 0.9634367352259432
+   },
+   "TAU_lingerer": {
+    "12.0": 0.007304174714235183,
+    "4.0": 0.00445145116425469,
+    "8.0": 0.002942609424133541
+   },
+   "TAU_r_far": 3,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9838879159369527,
+      "slope": 0.1455920919747893,
+      "v": 6.868504919711984
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9924050632911393,
+      "slope": 0.15383315378468307,
+      "v": 6.500549299013127
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9885429638854296,
+      "slope": 0.17306229800776843,
+      "v": 5.778266043567224
+     },
+     "v20_n": 4
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9523809523809523,
+      "slope": 0.10988082413191644,
+      "v": 9.100769018618381
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9689922480620154,
+      "slope": 0.1373510301648956,
+      "v": 7.280615214894701
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9860394537177541,
+      "slope": 0.1565801743879809,
+      "v": 6.386504574469039
+     },
+     "v20_n": 4
+    },
+    "shells": [
+     1,
+     4
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": false,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 16,
+    "tot": 16
+   },
+   "pair_ramp_inner_val": 0.0034019845561305893,
+   "pred_range": 1,
+   "ramp_inner_val": 0.04155608543472627,
+   "range_meas": 1,
+   "sep_resid_jump": 1.5389749181272837e-06,
+   "shell_cv_med": 0.0931977120881872,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": null,
+    "N": 1568,
+    "diam": 5,
+    "dstar": 2,
+    "dt": 0.002497291457543556,
+    "family": "rr8",
+    "omega": -8.5,
+    "r_set": 2,
+    "rmax": 5,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.0149274646271598,
+   "xi_jump": 1.563434707610274,
+   "xi_r2": 0.9142846339972359
+  },
+  "rr8_s1": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 0.43104926651989794,
+    "local_norm": 2.5313814541496917
+   },
+   "Fmag_jump": 0.002998556873979604,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0017645799688568954,
+   "RB_work_filed": {
+    "nets12": [
+     -0.0006177309607415804,
+     -0.0003581702390520469,
+     -0.0004064792384903537
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0073327171886620355,
+    "4.0": 0.004447646993013848,
+    "8.0": 0.002960330909706862
+   },
+   "TAU_r_far": 3,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9838879159369527,
+      "slope": 0.1455920919747893,
+      "v": 6.868504919711984
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9924050632911393,
+      "slope": 0.15383315378468307,
+      "v": 6.500549299013127
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9885429638854296,
+      "slope": 0.17306229800776843,
+      "v": 5.778266043567224
+     },
+     "v20_n": 4
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9523809523809523,
+      "slope": 0.10988082413191644,
+      "v": 9.100769018618381
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9796008869179601,
+      "slope": 0.12910996835500183,
+      "v": 7.745335334994365
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9860394537177541,
+      "slope": 0.1565801743879809,
+      "v": 6.386504574469039
+     },
+     "v20_n": 4
+    },
+    "shells": [
+     1,
+     4
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": false,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 18,
+    "tot": 18
+   },
+   "pair_ramp_inner_val": 0.0034329813155690703,
+   "pred_range": 1,
+   "ramp_inner_val": 0.04199978946496387,
+   "range_meas": 1,
+   "sep_resid_jump": 1.4944551882871115e-06,
+   "shell_cv_med": 0.051697616828865756,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": null,
+    "N": 1568,
+    "diam": 6,
+    "dstar": 3,
+    "dt": 0.002497291457543556,
+    "family": "rr8",
+    "omega": -8.5,
+    "r_set": 2,
+    "rmax": 5,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.015155838874857714,
+   "xi_jump": 1.5876641862315621,
+   "xi_r2": 0.9112542907545654
+  },
+  "rr8_s2": {
+   "D_means": null,
+   "F_split": {
+    "far_norm": 0.4178045885789151,
+    "local_norm": 2.531662958936967
+   },
+   "Fmag_jump": 0.002992869427697081,
+   "H_pass": false,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.001839873003835254,
+   "RB_work_filed": {
+    "nets12": [
+     -0.0005720610781310143,
+     -0.00039440137997881486,
+     -0.00034753021937961037
+    ],
+    "ratio": 0.9608495040266036
+   },
+   "TAU_lingerer": {
+    "12.0": 0.007272411398102746,
+    "4.0": 0.00445557385869882,
+    "8.0": 0.00292326381246254
+   },
+   "TAU_r_far": 3,
+   "exchange": null,
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9838879159369527,
+      "slope": 0.1455920919747893,
+      "v": 6.868504919711984
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9924050632911393,
+      "slope": 0.15383315378468307,
+      "v": 6.500549299013127
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9885429638854296,
+      "slope": 0.17306229800776843,
+      "v": 5.778266043567224
+     },
+     "v20_n": 4
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9523809523809523,
+      "slope": 0.10988082413191644,
+      "v": 9.100769018618381
+     },
+     "v05_n": 4,
+     "v10": {
+      "r2": 0.9689922480620154,
+      "slope": 0.1373510301648956,
+      "v": 7.280615214894701
+     },
+     "v10_n": 4,
+     "v20": {
+      "r2": 0.9860394537177541,
+      "slope": 0.1565801743879809,
+      "v": 6.386504574469039
+     },
+     "v20_n": 4
+    },
+    "shells": [
+     1,
+     4
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": false,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": null,
+   "nodal": {
+    "ok": 18,
+    "tot": 18
+   },
+   "pair_ramp_inner_val": 0.00339132531101564,
+   "pred_range": 1,
+   "ramp_inner_val": 0.04154014216528527,
+   "range_meas": 1,
+   "sep_resid_jump": 1.540782331994065e-06,
+   "shell_cv_med": 0.10714612323973141,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": null,
+    "N": 1568,
+    "diam": 6,
+    "dstar": 3,
+    "dt": 0.002497291457543556,
+    "family": "rr8",
+    "omega": -8.5,
+    "r_set": 2,
+    "rmax": 5,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 16.0,
+    "z": 8
+   },
+   "turnon_eps_filed": 0.014906225742902514,
+   "xi_jump": 1.5547645965949684,
+   "xi_r2": 0.9163307165424353
+  },
+  "square_n28": {
+   "D_means": {
+    "ramp": 5.06250470694197e-16,
+    "zero": 1.0197768086077679e-16
+   },
+   "F_split": {
+    "far_norm": 1.7358107347601608,
+    "local_norm": 2.9798392011678425
+   },
+   "Fmag_jump": 0.003119283489745764,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0016076679513001202,
+   "RB_work_filed": {
+    "nets12": [
+     0.0012408129726673156,
+     -0.0015303914013202746,
+     -0.00010867899980238072
+    ],
+    "ratio": 0.9546988124783774
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0018668623179539563,
+    "4.0": 0.01593352567382889,
+    "8.0": 0.006199795798929341
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": true,
+    "exch_5": true
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9998039792217975,
+      "slope": 0.23821385736679357,
+      "v": 4.197908597988211
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9998005324249887,
+      "slope": 0.2432678996022985,
+      "v": 4.1106944304399775
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9998361166194136,
+      "slope": 0.2496696864339379,
+      "v": 4.005292009146645
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9994422755158952,
+      "slope": 0.2264210921506157,
+      "v": 4.416549670800096
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9998422165420178,
+      "slope": 0.23989853811196196,
+      "v": 4.168428902777618
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.999825342764824,
+      "slope": 0.2523651756262071,
+      "v": 3.962511854175787
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     6,
+     13
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0000000000000002,
+    "resid_far": 0.9578131124684242,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 52,
+    "tot": 52
+   },
+   "pair_ramp_inner_val": 0.03756604673717908,
+   "pred_range": 3,
+   "ramp_inner_val": 0.050093549800990664,
+   "range_meas": 3,
+   "sep_resid_jump": 2.7501123840391276e-06,
+   "shell_cv_med": 0.3209681997745415,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 784,
+    "diam": 28,
+    "dstar": 8,
+    "dt": 0.0047171060864711605,
+    "family": "square",
+    "omega": -4.5,
+    "r_set": 7,
+    "rmax": 28,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 8.0,
+    "z": 4
+   },
+   "turnon_eps_filed": 0.07549695638769191,
+   "xi_jump": 1.538035457113005,
+   "xi_r2": 0.999602074761414
+  },
+  "square_n40": {
+   "D_means": {
+    "ramp": 5.559271756997164e-16,
+    "zero": 9.370975166674133e-17
+   },
+   "F_split": {
+    "far_norm": 1.7358107347594316,
+    "local_norm": 2.979839201168193
+   },
+   "Fmag_jump": 0.003119283495639307,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0009635206682237782,
+   "RB_work_filed": {
+    "nets12": [
+     0.001132597663148882,
+     -0.001219452908593821,
+     -0.00012339198637700832
+    ],
+    "ratio": 0.01653649195185018
+   },
+   "TAU_lingerer": {
+    "12.0": 0.001022534688742474,
+    "4.0": 0.011609865717112994,
+    "8.0": 0.0024842400619939607
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": true,
+    "exch_5": true
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.9998039792217975,
+      "slope": 0.23821385736679357,
+      "v": 4.197908597988211
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9998005324249887,
+      "slope": 0.2432678996022985,
+      "v": 4.1106944304399775
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9998361166194136,
+      "slope": 0.2496696864339379,
+      "v": 4.005292009146645
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9994422755158952,
+      "slope": 0.2264210921506157,
+      "v": 4.416549670800096
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9997640610888388,
+      "slope": 0.2422570911551975,
+      "v": 4.127846145726932
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.999559277214632,
+      "slope": 0.2547237286694427,
+      "v": 3.925821929600085
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     6,
+     13
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 0.9999999999999997,
+    "resid_far": 0.9624645316910079,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 52,
+    "tot": 52
+   },
+   "pair_ramp_inner_val": 0.04046654401224991,
+   "pred_range": 3,
+   "ramp_inner_val": 0.048849996893374555,
+   "range_meas": 3,
+   "sep_resid_jump": 2.7501125607875797e-06,
+   "shell_cv_med": 0.320936937697254,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 40,
+    "N": 1600,
+    "diam": 40,
+    "dstar": 8,
+    "dt": 0.0047171060864711605,
+    "family": "square",
+    "omega": -4.5,
+    "r_set": 8,
+    "rmax": 40,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 8.0,
+    "z": 4
+   },
+   "turnon_eps_filed": 0.08852018662303857,
+   "xi_jump": 1.5379445591283403,
+   "xi_r2": 0.9996034166379858
+  },
+  "tri_L28": {
+   "D_means": {
+    "ramp": 7.930532709341815e-16,
+    "zero": 1.3924453290831304e-16
+   },
+   "F_split": {
+    "far_norm": 2.1070950563796096,
+    "local_norm": 3.284538351177778
+   },
+   "Fmag_jump": 0.0031289597603829404,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.002767742093429941,
+   "RB_work_filed": {
+    "nets12": [
+     -0.00012159137082168314,
+     -0.0013682204027061218,
+     0.003187890914593705
+    ],
+    "ratio": 0.9929993503913097
+   },
+   "TAU_lingerer": {
+    "12.0": 0.002894498206390703,
+    "4.0": 0.02083994949747767,
+    "8.0": 0.008964503204998213
+   },
+   "TAU_r_far": 9,
+   "exchange": {
+    "B_5": false,
+    "exch_5": false
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 1.0,
+      "slope": 0.2351295956948702,
+      "v": 4.2529737570667585
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9998093458656651,
+      "slope": 0.24037802417020213,
+      "v": 4.160114068047833
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9998422165420178,
+      "slope": 0.24912540496242194,
+      "v": 4.014042647119188
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9990907796290819,
+      "slope": 0.2113367199400321,
+      "v": 4.731785372100766
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9993448840617188,
+      "slope": 0.22288326258576238,
+      "v": 4.486653633828668
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9993485766399584,
+      "slope": 0.23338011953642618,
+      "v": 4.284855119563511
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     4,
+     11
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 1.0000000000000002,
+    "resid_far": 0.9674047634829641,
+    "return_10": false
+   },
+   "nodal": {
+    "ok": 72,
+    "tot": 72
+   },
+   "pair_ramp_inner_val": 0.019630860096624476,
+   "pred_range": 3,
+   "ramp_inner_val": 0.05049691449404476,
+   "range_meas": 3,
+   "sep_resid_jump": 2.1670858889206456e-06,
+   "shell_cv_med": 0.14528278506932193,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 28,
+    "N": 784,
+    "diam": 18,
+    "dstar": 8,
+    "dt": 0.0032656888290954187,
+    "family": "tri",
+    "omega": -6.5,
+    "r_set": 4,
+    "rmax": 18,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 12.0,
+    "z": 6
+   },
+   "turnon_eps_filed": 0.023181051166464014,
+   "xi_jump": 1.6058624521503941,
+   "xi_r2": 0.9993836235554749
+  },
+  "tri_L40": {
+   "D_means": {
+    "ramp": 5.500381381720841e-16,
+    "zero": 1.514938005318598e-16
+   },
+   "F_split": {
+    "far_norm": 2.1070942133353325,
+    "local_norm": 3.2845388777860034
+   },
+   "Fmag_jump": 0.003129125522492479,
+   "H_pass": true,
+   "I_class": "FINITE-RANGE",
+   "RB": 0.0019071298901879698,
+   "RB_work_filed": {
+    "nets12": [
+     0.0014622605111793696,
+     -0.001957614101747218,
+     0.0017956329943249472
+    ],
+    "ratio": 1.0
+   },
+   "TAU_lingerer": {
+    "12.0": 0.0016627009493960488,
+    "4.0": 0.014007764068680996,
+    "8.0": 0.004685636985867198
+   },
+   "TAU_r_far": 10,
+   "exchange": {
+    "B_5": false,
+    "exch_5": false
+   },
+   "fronts": {
+    "S": {
+     "v05": {
+      "r2": 0.999787482732972,
+      "slope": 0.23757886231669179,
+      "v": 4.209128666787719
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.999815834545756,
+      "slope": 0.24457676695046765,
+      "v": 4.08869580078521
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9998422165420178,
+      "slope": 0.24912540496242194,
+      "v": 4.014042647119188
+     },
+     "v20_n": 8
+    },
+    "abs": {
+     "v05": {
+      "r2": 0.9996490933640504,
+      "slope": 0.21938431026887445,
+      "v": 4.558211108052411
+     },
+     "v05_n": 8,
+     "v10": {
+      "r2": 0.9997521275716764,
+      "slope": 0.23093085291460475,
+      "v": 4.330300552649788
+     },
+     "v10_n": 8,
+     "v20": {
+      "r2": 0.9998093458656651,
+      "slope": 0.2403780241702021,
+      "v": 4.160114068047834
+     },
+     "v20_n": 8
+    },
+    "shells": [
+     6,
+     13
+    ]
+   },
+   "gap_ok": true,
+   "gates": {
+    "H_J": true,
+    "H_RB": true,
+    "H_TAU": true,
+    "H_eps": true,
+    "H_jump_global": true,
+    "H_jump_shell": true,
+    "H_lin": true,
+    "H_pair_jump": true,
+    "H_pair_nodal": true,
+    "H_pair_ramp_inner": true,
+    "H_phase": true,
+    "H_quad": true,
+    "H_ramp_inner": true,
+    "H_ramp_shell": true,
+    "H_range": true,
+    "H_switch_cone": true,
+    "H_switch_instant": true,
+    "H_wrap": true
+   },
+   "inject": {
+    "acct_10": true,
+    "pkt_norm": 0.9999999999999997,
+    "resid_far": 0.9923914956549704,
+    "return_10": true
+   },
+   "nodal": {
+    "ok": 72,
+    "tot": 72
+   },
+   "pair_ramp_inner_val": 0.032220143099240615,
+   "pred_range": 3,
+   "ramp_inner_val": 0.04921759766259791,
+   "range_meas": 3,
+   "sep_resid_jump": 2.1671870419742836e-06,
+   "shell_cv_med": 0.14738386209133744,
+   "slow_p": false,
+   "slow_s": false,
+   "spec": {
+    "L": 40,
+    "N": 1600,
+    "diam": 26,
+    "dstar": 8,
+    "dt": 0.0032656888290954187,
+    "family": "tri",
+    "omega": -6.5,
+    "r_set": 6,
+    "rmax": 26,
+    "t_jump": 8.0,
+    "t_turn": 16.0,
+    "v_cone": 12.0,
+    "z": 6
+   },
+   "turnon_eps_filed": 0.04353245060130904,
+   "xi_jump": 1.6005173509328776,
+   "xi_r2": 0.999502560030287
+  }
+ }
+}
