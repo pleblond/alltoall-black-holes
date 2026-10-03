@@ -604,15 +604,16 @@ def selection_status(n_surv: int) -> str:
     return "ABSENT"
 
 
-def census_state(g: nx.Graph, psi: np.ndarray, order: list,
-                 rewires: list | None = None,
-                 smax: int = SPAN_SMAX_J2) -> dict:
-    """Full per-state census: n_phys + per-principle survivors + DIST."""
+def census_rows(g: nx.Graph, psi: np.ndarray, order: list,
+                rewires: list, smax: int = SPAN_SMAX_J2) -> tuple:
+    """Per-rewire quantity rows + parent href (single evaluation).
+
+    Shared by census_state and the campaign runner so rows are computed
+    exactly once per (state, R). Outputs bit-identical to calling
+    rewire_quantities per R (same code path, no caching approximations).
+    """
     from bh_graph.ballistic import hamiltonian
 
-    if rewires is None:
-        rewires = enumerate_rewires(g)
-    q = physical_quotient(g, psi, list(order), rewires)
     psi = np.asarray(psi, dtype=np.complex128)
     order = list(order)
     try:
@@ -626,6 +627,17 @@ def census_state(g: nx.Graph, psi: np.ndarray, order: list,
         qr = rewire_quantities(g, psi, order, r, smax=smax)
         qr["_href"] = href
         rows.append(qr)
+    return rows, href
+
+
+def census_state(g: nx.Graph, psi: np.ndarray, order: list,
+                 rewires: list | None = None,
+                 smax: int = SPAN_SMAX_J2) -> dict:
+    """Full per-state census: n_phys + per-principle survivors + DIST."""
+    if rewires is None:
+        rewires = enumerate_rewires(g)
+    q = physical_quotient(g, psi, list(order), rewires)
+    rows, href = census_rows(g, psi, list(order), rewires, smax=smax)
     princ = {}
     for p in PRINCIPLES:
         mask = principle_mask(rows, p, smax=smax)

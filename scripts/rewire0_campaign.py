@@ -71,41 +71,32 @@ def _run_states(graph_name: str, g, order, fields: dict, smax: int,
         rewires = r0.enumerate_rewires(g, primaries=prim)
     else:
         rewires = r0.enumerate_rewires(g)
-    q0 = r0.physical_quotient(g, fields[next(iter(fields))], list(order),
-                              rewires)
     rows_out = []
     for fname, psi in fields.items():
         t0 = time.time()
-        rep = r0.census_state(g, psi, list(order), rewires=rewires,
-                              smax=smax)
-        # Recompute rows for covariance (census_state is exact; rows
-        # rebuilt identically here for survivor indexing).
-        from bh_graph.ballistic import hamiltonian
-
-        import numpy as np
-
-        try:
-            H0 = hamiltonian(g, order=list(order))
-            H0d = H0.toarray() if hasattr(H0, "toarray") else np.asarray(H0)
-            href = float(np.linalg.norm(H0d @ np.asarray(psi)))
-        except Exception:
-            href = float("nan")
-        rows = []
-        for r in rewires:
-            qr = r0.rewire_quantities(g, psi, list(order), r, smax=smax)
-            qr["_href"] = href
-            rows.append(qr)
+        # Single rows evaluation (census_rows shared with census_state).
+        qrows, href = r0.census_rows(g, psi, list(order), rewires,
+                                     smax=smax)
+        princ = {}
+        for p in r0.PRINCIPLES:
+            mask = r0.principle_mask(qrows, p, smax=smax)
+            n = int(sum(1 for m in mask if m))
+            princ[p] = {"n_surv": n, "status": r0.selection_status(n)}
+        dist = r0.distinguishability(qrows)
+        max_err = max([abs(r["dE_formula_err"]) for r in qrows]) if qrows else 0.0
         cov = _covariance_per_principle(g, psi, list(order), rewires,
-                                        rows, smax, perms)
+                                        qrows, smax, perms)
         rows_out.append({"graph": graph_name, "field": fname,
                          "n_nodes": int(g.number_of_nodes()),
                          "n_edges": int(g.number_of_edges()),
                          "anchored": anchored, "smax": int(smax),
-                         "n_raw": rep["n_raw"], "n_phys": rep["n_phys"],
-                         "principles": rep["principles"],
-                         "covariance": cov, "dist": rep["dist"],
-                         "max_ledger_err": rep["max_ledger_err"],
-                         "href": rep["href"],
+                         "n_raw": int(len(rewires)),
+                         "n_phys": int(len({(r["new_edges"], r["old_edges"])
+                                            for r in rewires})),
+                         "principles": princ,
+                         "covariance": cov, "dist": dist,
+                         "max_ledger_err": float(max_err),
+                         "href": float(href),
                          "elapsed_s": round(time.time() - t0, 3)})
     return rows_out
 
