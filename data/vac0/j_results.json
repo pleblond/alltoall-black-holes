@@ -1,0 +1,1381 @@
+{
+ "cells": {
+  "hex_L28": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 784,
+   "arms": {
+    "driven": {
+     "cmax": 0.37327419544053875,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1176,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.009409763342181611,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1176,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.008281416830073496,
+     "cos_dev": 2.7755575615628914e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1176,
+     "sin_dev": 2.3592239273284576e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1176,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": false
+   }
+  },
+  "hex_L40": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1600,
+   "arms": {
+    "driven": {
+     "cmax": 0.3732741943009526,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.008801311569468088,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 2.220446049250313e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.002944558646700328,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 5.551115123125783e-17,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": false
+   }
+  },
+  "j2_L20": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 800,
+   "arms": {
+    "driven": {
+     "cmax": 0.2457226253278535,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.005109635131695308,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.008560010913173906,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 5.551115123125783e-17,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": true
+   }
+  },
+  "j2_L28": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 1568,
+   "arms": {
+    "driven": {
+     "cmax": 0.24570618298489746,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.003520016782867418,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0033491863334688286,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": true
+   }
+  },
+  "j2quot_L20": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 400,
+   "arms": {
+    "driven": {
+     "cmax": 0.33444940241439075,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 800,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.009416254099282408,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 800,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.01218003147796766,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 800,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 800,
+     "sin_dev": 5.551115123125783e-17,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": true
+   }
+  },
+  "j2quot_L28": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 784,
+   "arms": {
+    "driven": {
+     "cmax": 0.3344489143733171,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1568,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.009035231345312058,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1568,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.008281416830073496,
+     "cos_dev": 2.7755575615628914e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1568,
+     "sin_dev": 2.3592239273284576e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1568,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": true
+   }
+  },
+  "j2rewire_s0": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1568,
+   "arms": {
+    "driven": {
+     "cmax": 0.13820709864572792,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.0030899226980477586,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.003227133122382675,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 2.498001805406602e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "INVALID",
+    "HI": false
+   }
+  },
+  "j2rewire_s1": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1568,
+   "arms": {
+    "driven": {
+     "cmax": 0.14000778113402668,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.0033503380404070215,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0030503626332636013,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 2.498001805406602e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "INVALID",
+    "HI": false
+   }
+  },
+  "j2rewire_s2": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1568,
+   "arms": {
+    "driven": {
+     "cmax": 0.1545827350146749,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.0032429530540680723,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.003293870336889519,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 2.498001805406602e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "INVALID",
+    "HI": false
+   }
+  },
+  "j2swap8_s0": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1568,
+   "arms": {
+    "driven": {
+     "cmax": 0.2430478424292122,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.004299618422710291,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 2.220446049250313e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0033491863334688286,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.6653345369377348e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "INVALID",
+    "HI": true
+   }
+  },
+  "j2swap8_s1": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1568,
+   "arms": {
+    "driven": {
+     "cmax": 0.24553889296207518,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.0034957660231377833,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0033491863334688286,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 1.942890293094024e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "INVALID",
+    "HI": true
+   }
+  },
+  "j2swap8_s2": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1568,
+   "arms": {
+    "driven": {
+     "cmax": 0.24554909338249012,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.0036742220201348044,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 2.220446049250313e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0033491863334688286,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 1.942890293094024e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "INVALID",
+    "HI": true
+   }
+  },
+  "ring_N1600": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1600,
+   "arms": {
+    "driven": {
+     "cmax": 0.5,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1600,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.00757302912999337,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1600,
+     "sin_dev": 2.220446049250313e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.002323350429052747,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1600,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1600,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": false
+   }
+  },
+  "ring_N400": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 400,
+   "arms": {
+    "driven": {
+     "cmax": 0.5,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 400,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.02907742860528208,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 400,
+     "sin_dev": 2.220446049250313e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.01218003147796766,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 400,
+     "sin_dev": 2.7755575615628914e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 400,
+     "sin_dev": 5.551115123125783e-17,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": true
+   }
+  },
+  "rr3_s0": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 1600,
+   "arms": {
+    "driven": {
+     "cmax": 0.3639645660447879,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.007687381073425263,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0030965027305895946,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "MISSING",
+    "HI": true
+   }
+  },
+  "rr3_s1": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 1600,
+   "arms": {
+    "driven": {
+     "cmax": 0.3596636952731013,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.004936546885061626,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0028380062746537964,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "MISSING",
+    "HI": true
+   }
+  },
+  "rr3_s2": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 1600,
+   "arms": {
+    "driven": {
+     "cmax": 0.35973557557775737,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.005521831818803465,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 2.7755575615628914e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0030636652278035774,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2400,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "MISSING",
+    "HI": true
+   }
+  },
+  "rr4_s0": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1600,
+   "arms": {
+    "driven": {
+     "cmax": 0.2728423197088569,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.004438166896463488,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 2.7755575615628914e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0033391954024212136,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "MISSING",
+    "HI": false
+   }
+  },
+  "rr4_s1": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1600,
+   "arms": {
+    "driven": {
+     "cmax": 0.27373935593530585,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.004005253839851655,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0035026410967266453,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "MISSING",
+    "HI": false
+   }
+  },
+  "rr4_s2": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1600,
+   "arms": {
+    "driven": {
+     "cmax": 0.27267484122034596,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.004174987077074573,
+     "cos_dev": 2.7755575615628914e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0026496167101270137,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 2.7755575615628914e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "MISSING",
+    "HI": false
+   }
+  },
+  "rr8_s0": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1568,
+   "arms": {
+    "driven": {
+     "cmax": 0.14023013916386579,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.004164031056657884,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0034856924850913238,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "MISSING",
+    "HI": false
+   }
+  },
+  "rr8_s1": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1568,
+   "arms": {
+    "driven": {
+     "cmax": 0.1384491046133044,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.003393011414611469,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.0029912756155103873,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "MISSING",
+    "HI": false
+   }
+  },
+  "rr8_s2": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "FAIL",
+   "N": 1568,
+   "arms": {
+    "driven": {
+     "cmax": 0.14069225920143466,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.0034395323323700108,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.003195828734776391,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 6272,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "MISSING",
+    "HI": false
+   }
+  },
+  "square_n28": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 784,
+   "arms": {
+    "driven": {
+     "cmax": 0.3344489143733171,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1568,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.007936322390931932,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1568,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.008281416830073496,
+     "cos_dev": 2.7755575615628914e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1568,
+     "sin_dev": 2.3592239273284576e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 1568,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": true
+   }
+  },
+  "square_n40": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 1600,
+   "arms": {
+    "driven": {
+     "cmax": 0.33444891275801153,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.006457970569933454,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 2.220446049250313e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.002944558646700328,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 3200,
+     "sin_dev": 5.551115123125783e-17,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": true
+   }
+  },
+  "tri_L28": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 784,
+   "arms": {
+    "driven": {
+     "cmax": 0.32834284259031077,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2352,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.0069682840865702205,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2352,
+     "sin_dev": 1.214306433183765e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.008575346029697388,
+     "cos_dev": 2.7755575615628914e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2352,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 2352,
+     "sin_dev": 1.1102230246251565e-16,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": true
+   }
+  },
+  "tri_L40": {
+   "J_alg": "PASS",
+   "J_cos": true,
+   "J_decomp": true,
+   "J_dynnodrift": true,
+   "J_sin": true,
+   "J_useful": "PASS",
+   "N": 1600,
+   "arms": {
+    "driven": {
+     "cmax": 0.328342779384117,
+     "cos_dev": 0.0,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 4800,
+     "sin_dev": 0.0,
+     "sin_r2": 1.0
+    },
+    "packet_mid": {
+     "cmax": 0.005686556073545484,
+     "cos_dev": 2.220446049250313e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 4800,
+     "sin_dev": 2.220446049250313e-16,
+     "sin_r2": 1.0
+    },
+    "random": {
+     "cmax": 0.002944558646700328,
+     "cos_dev": 3.3306690738754696e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 4800,
+     "sin_dev": 3.3306690738754696e-16,
+     "sin_r2": 1.0
+    },
+    "stagger": {
+     "cmax": 1.0000000000000002,
+     "cos_dev": 1.1102230246251565e-16,
+     "cos_r2": 1.0,
+     "decomp": 0.0,
+     "nbonds": 4800,
+     "sin_dev": 5.551115123125783e-17,
+     "sin_r2": 1.0
+    }
+   },
+   "pheno_row": {
+    "DE": "PASS",
+    "HI": true
+   }
+  }
+ }
+}
