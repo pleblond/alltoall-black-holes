@@ -10366,3 +10366,27 @@ genuine failure (filed, predicted never to occur). Prediction unchanged
 ("validity + quotient matching counted") now reads with this no-op rule.
 Gated re-runs: tests/test_info0.py scheduler pins (square f_all_match).
 No banked data exists yet; campaign runs under PREREG + AMENDMENT-1.
+
+## INFO0-AMENDMENT-2 — Direct reverse checks, no enumeration (pre-campaign-data)
+
+Found via unit tests (hidden J2 pair cells hung + 13GB pytest RSS,
+pre-campaign-data, no campaign records affected). Design error in
+info0.contraction_loss_event: it enumerated split_covers (3^d_k covers)
+and called measure0.contraction_reverse_status (which enumerates
+node_admissible, ~2.3M states on J2 daughters with d_k ~ 14: 3^14 =
+4.78M covers). Reverse checks are now DIRECT (O(d), exact for every
+degree, identical code path for tiny and J2 cells). Graph-reverse holds
+by BR-2.5 construction (N(k) = N(i) u N(j)) and is verified explicitly
+via set equality ((nbrs_i | nbrs_j) == N(k)), never via enumeration.
+Full-reverse (signature match under frozen equal-halves) holds iff the
+halves condition a == b holds (exact complex equality) given
+graph-reverse: |psi| multisets match iff {|a|,|b|} == {|s|/2,|s|/2},
+which forces a == b (triangle-equality rigidity); verified against
+MEASURE-0 enumeration on the tiny battery (reversible == halves,
+33/60 banked cells). Prereg graph-reverse pin ("original partition
+among covers of N(k), must hold everywhere") now reads as this direct
+set-equality check, mathematically identical to the enumeration pin
+(the enumerated covers always contain the original partition exactly
+when the union condition holds). Predictions unchanged.
+Gated re-runs: tests/test_info0.py full file (31 pins incl hidden).
+No banked data exists yet; campaign runs under PREREG + AMENDMENT-1 + AMENDMENT-2.

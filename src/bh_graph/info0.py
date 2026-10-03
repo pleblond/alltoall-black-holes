@@ -424,9 +424,20 @@ def contraction_loss_event(g: nx.Graph, psi: np.ndarray, order: list,
     degree d_k, discrete n_covers/I_graph_lost, field (s, d, error, B),
     dQ direct vs formula, and the graph-reverse pin (original partition
     among covers of N(k)).
+
+    Implementation (INFO0-AMENDMENT-2): reverse checks are DIRECT (O(d),
+    no enumeration), exact for every degree. Graph-reverse holds by
+    BR-2.5 construction (N(k) = N(i) u N(j)); verified explicitly via
+    set equality, never via 3^d enumeration (which blows up for J2
+    daughters with d_k ~ 14: 3^14 covers). Full-reverse (signature
+    match under frozen equal-halves) holds iff the halves condition
+    a == b holds (exact complex equality) given graph-reverse: |psi|
+    multisets match iff {|a|,|b|} == {|s|/2,|s|/2}, which forces a == b
+    (triangle-equality rigidity); verified against MEASURE-0 enumeration
+    on the tiny battery (reversible == halves, 33/60 banked). No
+    enumeration anywhere here; tiny-vs-J2 identical code path.
     """
-    from bh_graph.contraction import contracted_state, split_covers
-    from bh_graph.measure0 import contraction_reverse_status
+    from bh_graph.contraction import contracted_state
 
     psi = np.asarray(psi, dtype=np.complex128)
     order = list(order)
@@ -439,13 +450,14 @@ def contraction_loss_event(g: nx.Graph, psi: np.ndarray, order: list,
     fld = field_loss(a, b)
     n0 = float(np.sum(np.abs(psi) ** 2))
     n1 = float(np.sum(np.abs(psi2) ** 2))
-    rev = contraction_reverse_status(g, psi, order, i, j)
-    # Original partition among covers of N(k) (graph reverse, explicit).
-    nbrs_i = frozenset(set(g.neighbors(i)) - {j})
-    nbrs_j = frozenset(set(g.neighbors(j)) - {i})
-    want = {nbrs_i, nbrs_j}
-    covers = list(split_covers(sorted(g2.neighbors(k))))
-    part_found = any({frozenset(A), frozenset(B)} == want for A, B in covers)
+    # Direct reverse checks (no enumeration; exact for all d).
+    nbrs_i = set(g.neighbors(i)) - {j}
+    nbrs_j = set(g.neighbors(j)) - {i}
+    nk = set(g2.neighbors(k))
+    part_found = bool((nbrs_i | nbrs_j) == nk)
+    graph_reverse = bool(part_found)
+    halves = bool(a == b)
+    full_reverse = bool(graph_reverse and halves)
     return {
         "edge": [i, j],
         "k": k,
@@ -460,8 +472,9 @@ def contraction_loss_event(g: nx.Graph, psi: np.ndarray, order: list,
         "dQ_direct": float(n1 - n0),
         "dQ_formula": fld["dQ"],
         "fiber_dim_R": 2,
-        "graph_reverse": bool(rev["graph_reverse"]),
-        "full_reverse": bool(rev["full_reverse"]),
+        "graph_reverse": bool(graph_reverse),
+        "full_reverse": bool(full_reverse),
+        "halves_condition": bool(halves),
         "partition_found": bool(part_found),
     }
 
