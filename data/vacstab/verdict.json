@@ -1,0 +1,517 @@
+{
+ "checks": {
+  "backgrounds": true,
+  "unitarity": true,
+  "sup_bounds": true,
+  "concentration": true,
+  "late_focus": true,
+  "protection": true,
+  "sector": true,
+  "identity": true,
+  "blind": true
+ },
+ "headline": "VACSTAB0-ROBUST",
+ "frag_cells": [],
+ "class_detail": {
+  "fires": false,
+  "firing": [
+   [
+    "point_phase",
+    6.036,
+    "PLUS"
+   ]
+  ],
+  "quiet": [
+   [
+    "point_amp",
+    1.045
+   ],
+   [
+    "patch",
+    2.424
+   ],
+   [
+    "packet",
+    3.874
+   ],
+   [
+    "standing",
+    4.518
+   ],
+   [
+    "source",
+    1.045
+   ],
+   [
+    "sym_sector",
+    1.099
+   ],
+   [
+    "hidden_sector",
+    1.0
+   ],
+   [
+    "mixed_sector",
+    1.045
+   ]
+  ],
+  "abstain": [],
+  "argmax_count": {
+   "PLUS": 1
+  }
+ },
+ "recurrence": {
+  "xl_bgVPLUS_kindpacket": {
+   "F_best": 0.004920078488,
+   "t_best": 1252.6,
+   "t_first": 64.6,
+   "F_min": 0.1170851876,
+   "wraps": 303
+  },
+  "xl_bgVPLUS_kindpoint_amp": {
+   "F_best": 0.09268341227,
+   "t_best": 1806.3,
+   "t_first": null,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "xl_bgVPI_kindpacket": {
+   "F_best": 0.004920078488,
+   "t_best": 1252.6,
+   "t_first": 64.6,
+   "F_min": 0.1170851876,
+   "wraps": 303
+  },
+  "xl_bgVPI_kindpoint_amp": {
+   "F_best": 0.09268341227,
+   "t_best": 1806.3,
+   "t_first": null,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "xl_bgCIRCLE0_kindpacket": {
+   "F_best": 0.004920078488,
+   "t_best": 1252.6,
+   "t_first": 64.6,
+   "F_min": 0.1170851876,
+   "wraps": 303
+  },
+  "xl_bgCIRCLE0_kindpoint_amp": {
+   "F_best": 0.09268341227,
+   "t_best": 1806.3,
+   "t_first": null,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "xl_bgCIRCLE1_kindpacket": {
+   "F_best": 0.004920078488,
+   "t_best": 1252.6,
+   "t_first": 64.6,
+   "F_min": 0.1170851876,
+   "wraps": 303
+  },
+  "xl_bgCIRCLE1_kindpoint_amp": {
+   "F_best": 0.09268341227,
+   "t_best": 1806.3,
+   "t_first": null,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "xl_bgCIRCLE2_kindpacket": {
+   "F_best": 0.004920078487,
+   "t_best": 1252.6,
+   "t_first": 64.6,
+   "F_min": 0.1170851876,
+   "wraps": 303
+  },
+  "xl_bgCIRCLE2_kindpoint_amp": {
+   "F_best": 0.09268341227,
+   "t_best": 1806.3,
+   "t_first": null,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "xl_bgCIRCLE3_kindpacket": {
+   "F_best": 0.004920078487,
+   "t_best": 1252.6,
+   "t_first": 64.6,
+   "F_min": 0.1170851876,
+   "wraps": 303
+  },
+  "xl_bgCIRCLE3_kindpoint_amp": {
+   "F_best": 0.09268341227,
+   "t_best": 1806.3,
+   "t_first": null,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "lscan_bgVPLUS_kindpacket_L4": {
+   "F_best": 5.474782849e-10,
+   "t_best": 177.5,
+   "t_first": 20.3,
+   "F_min": 0.5392647693,
+   "wraps": 363
+  },
+  "lscan_bgVPLUS_kindpacket_L8": {
+   "F_best": 0.0001130652115,
+   "t_best": 155.5,
+   "t_first": 26.5,
+   "F_min": 0.4064014057,
+   "wraps": 186
+  },
+  "lscan_bgVPLUS_kindpacket_L12": {
+   "F_best": 4.349762947e-06,
+   "t_best": 656.6,
+   "t_first": 20.7,
+   "F_min": 0.8948382346,
+   "wraps": 85
+  },
+  "lscan_bgVPLUS_kindpacket_L16": {
+   "F_best": 0.003444700773,
+   "t_best": 804.2,
+   "t_first": 21.1,
+   "F_min": 0.4742945347,
+   "wraps": 138
+  },
+  "lscan_bgVPLUS_kindpacket_L20": {
+   "F_best": 0.002971178498,
+   "t_best": 320.6,
+   "t_first": 32.2,
+   "F_min": 0.1503090407,
+   "wraps": 90
+  },
+  "lscan_bgVPLUS_kindpacket_L28": {
+   "F_best": 0.02240942732,
+   "t_best": 316.6,
+   "t_first": 64.6,
+   "F_min": 0.1218365639,
+   "wraps": 75
+  },
+  "lscan_bgVPLUS_kindpoint_amp_L4": {
+   "F_best": 9.07882991e-10,
+   "t_best": 177.5,
+   "t_first": 20.4,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "lscan_bgVPLUS_kindpoint_amp_L8": {
+   "F_best": 0.0001577637772,
+   "t_best": 155.5,
+   "t_first": 22.1,
+   "F_min": 0.5000000002,
+   "wraps": 0
+  },
+  "lscan_bgVPLUS_kindpoint_amp_L12": {
+   "F_best": 0.0001446878121,
+   "t_best": 656.6,
+   "t_first": 34.5,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "lscan_bgVPLUS_kindpoint_amp_L16": {
+   "F_best": 0.03241101641,
+   "t_best": 804.2,
+   "t_first": 246.5,
+   "F_min": 0.500000002,
+   "wraps": 0
+  },
+  "lscan_bgVPLUS_kindpoint_amp_L20": {
+   "F_best": 0.03846797202,
+   "t_best": 930.0,
+   "t_first": 320.4,
+   "F_min": 0.5000000012,
+   "wraps": 0
+  },
+  "lscan_bgVPLUS_kindpoint_amp_L28": {
+   "F_best": 0.1464206159,
+   "t_best": 952.1,
+   "t_first": null,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "lscan_bgCIRCLE2_kindpacket_L4": {
+   "F_best": 5.488538513e-10,
+   "t_best": 177.5,
+   "t_first": 20.3,
+   "F_min": 0.5392647693,
+   "wraps": 363
+  },
+  "lscan_bgCIRCLE2_kindpacket_L8": {
+   "F_best": 0.0001130652089,
+   "t_best": 155.5,
+   "t_first": 26.5,
+   "F_min": 0.4064014057,
+   "wraps": 186
+  },
+  "lscan_bgCIRCLE2_kindpacket_L12": {
+   "F_best": 4.349766117e-06,
+   "t_best": 656.6,
+   "t_first": 20.7,
+   "F_min": 0.8948382346,
+   "wraps": 85
+  },
+  "lscan_bgCIRCLE2_kindpacket_L16": {
+   "F_best": 0.003444700766,
+   "t_best": 804.2,
+   "t_first": 21.1,
+   "F_min": 0.4742945347,
+   "wraps": 138
+  },
+  "lscan_bgCIRCLE2_kindpacket_L20": {
+   "F_best": 0.002971178496,
+   "t_best": 320.6,
+   "t_first": 32.2,
+   "F_min": 0.1503090407,
+   "wraps": 90
+  },
+  "lscan_bgCIRCLE2_kindpacket_L28": {
+   "F_best": 0.02240942732,
+   "t_best": 316.6,
+   "t_first": 64.6,
+   "F_min": 0.1218365639,
+   "wraps": 75
+  },
+  "lscan_bgCIRCLE2_kindpoint_amp_L4": {
+   "F_best": 9.080793895e-10,
+   "t_best": 177.5,
+   "t_first": 20.4,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "lscan_bgCIRCLE2_kindpoint_amp_L8": {
+   "F_best": 0.0001577637772,
+   "t_best": 155.5,
+   "t_first": 22.1,
+   "F_min": 0.5000000002,
+   "wraps": 0
+  },
+  "lscan_bgCIRCLE2_kindpoint_amp_L12": {
+   "F_best": 0.000144687812,
+   "t_best": 656.6,
+   "t_first": 34.5,
+   "F_min": 0.5,
+   "wraps": 0
+  },
+  "lscan_bgCIRCLE2_kindpoint_amp_L16": {
+   "F_best": 0.03241101641,
+   "t_best": 804.2,
+   "t_first": 246.5,
+   "F_min": 0.500000002,
+   "wraps": 0
+  },
+  "lscan_bgCIRCLE2_kindpoint_amp_L20": {
+   "F_best": 0.03846797202,
+   "t_best": 930.0,
+   "t_first": 320.4,
+   "F_min": 0.5000000012,
+   "wraps": 0
+  },
+  "lscan_bgCIRCLE2_kindpoint_amp_L28": {
+   "F_best": 0.1464206159,
+   "t_best": 952.1,
+   "t_first": null,
+   "F_min": 0.5,
+   "wraps": 0
+  }
+ },
+ "notes": [
+  "battery green (norms, weights, mixed 50/50, design)",
+  "VPLUS: E=-8.0 res=0.0e+00 u_min=0.0253 u_max=0.0253 ok=True",
+  "VPI: E=8.0 res=0.0e+00 u_min=0.0253 u_max=0.0253 ok=True",
+  "CIRCLE@0: E=0.0 res=0.0e+00 u_min=0.0253 u_max=0.0253 ok=True",
+  "CIRCLE@pi/2: E=0.0 res=0.0e+00 u_min=0.0253 u_max=0.0253 ok=True",
+  "CIRCLE@pi/6: E=0.0 res=0.0e+00 u_min=0.0092 u_max=0.0345 ok=True",
+  "CIRCLE@pi/3: E=0.0 res=0.0e+00 u_min=0.0092 u_max=0.0345 ok=True",
+  "unitarity (norms + split) all runs: True",
+  "sup triangle apparatus all runs: True",
+  "lscan_bgVPLUS_kindpacket_L4: C_ratio=1.85 (filed)",
+  "lscan_bgVPLUS_kindpacket_L8: C_ratio=2.18 (filed)",
+  "lscan_bgVPLUS_kindpacket_L12: C_ratio=1.19 (filed)",
+  "lscan_bgVPLUS_kindpacket_L16: C_ratio=1.69 (filed)",
+  "lscan_bgVPLUS_kindpacket_L20: C_ratio=1.34 (filed)",
+  "lscan_bgVPLUS_kindpacket_L28: C_ratio=1.00 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L4: C_ratio=1.00 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L8: C_ratio=1.00 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L12: C_ratio=1.00 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L16: C_ratio=1.00 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L20: C_ratio=1.00 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L28: C_ratio=1.00 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L4: C_ratio=1.85 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L8: C_ratio=2.18 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L12: C_ratio=1.19 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L16: C_ratio=1.69 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L20: C_ratio=1.34 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L28: C_ratio=1.00 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L4: C_ratio=1.00 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L8: C_ratio=1.00 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L12: C_ratio=1.00 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L16: C_ratio=1.00 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L20: C_ratio=1.00 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L28: C_ratio=1.00 (filed)",
+  "stab_bgVPLUS_kindpoint_amp_eps0.003: late_ratio=0.776 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPLUS_kindpoint_amp_eps0.01: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPLUS_kindpoint_phase_eps0.003: late_ratio=0.853 init_max_ratio=0.499 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPLUS_kindpoint_phase_eps0.01: late_ratio=0.853 init_max_ratio=0.498 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPLUS_kindsource_eps0.003: late_ratio=0.776 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPLUS_kindsource_eps0.01: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPLUS_kindhidden_sector_eps0.003: late_ratio=0.695 init_max_ratio=0.695 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgVPLUS_kindhidden_sector_eps0.01: late_ratio=0.673 init_max_ratio=0.673 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgVPLUS_kindmixed_sector_eps0.003: late_ratio=0.776 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPLUS_kindmixed_sector_eps0.01: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPI_kindpoint_amp_eps0.003: late_ratio=0.776 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPI_kindpoint_amp_eps0.01: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPI_kindpoint_phase_eps0.003: late_ratio=0.851 init_max_ratio=0.499 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPI_kindpoint_phase_eps0.01: late_ratio=0.846 init_max_ratio=0.498 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPI_kindsource_eps0.003: late_ratio=0.776 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPI_kindsource_eps0.01: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPI_kindhidden_sector_eps0.003: late_ratio=0.695 init_max_ratio=0.695 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgVPI_kindhidden_sector_eps0.01: late_ratio=0.673 init_max_ratio=0.673 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgVPI_kindmixed_sector_eps0.003: late_ratio=0.776 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgVPI_kindmixed_sector_eps0.01: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE0_kindpoint_amp_eps0.003: late_ratio=0.847 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE0_kindpoint_amp_eps0.01: late_ratio=0.833 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE0_kindpoint_phase_eps0.003: late_ratio=0.426 init_max_ratio=0.499 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE0_kindpoint_phase_eps0.01: late_ratio=0.425 init_max_ratio=0.498 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE0_kindsource_eps0.003: late_ratio=0.847 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE0_kindsource_eps0.01: late_ratio=0.833 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE0_kindhidden_sector_eps0.003: late_ratio=0.695 init_max_ratio=0.695 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgCIRCLE0_kindhidden_sector_eps0.01: late_ratio=0.673 init_max_ratio=0.673 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgCIRCLE0_kindmixed_sector_eps0.003: late_ratio=0.847 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE0_kindmixed_sector_eps0.01: late_ratio=0.833 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE1_kindpoint_amp_eps0.003: late_ratio=0.847 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE1_kindpoint_amp_eps0.01: late_ratio=0.833 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE1_kindpoint_phase_eps0.003: late_ratio=0.426 init_max_ratio=0.499 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE1_kindpoint_phase_eps0.01: late_ratio=0.425 init_max_ratio=0.498 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE1_kindsource_eps0.003: late_ratio=0.847 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE1_kindsource_eps0.01: late_ratio=0.833 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE1_kindhidden_sector_eps0.003: late_ratio=0.695 init_max_ratio=0.695 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgCIRCLE1_kindhidden_sector_eps0.01: late_ratio=0.673 init_max_ratio=0.673 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgCIRCLE1_kindmixed_sector_eps0.003: late_ratio=0.847 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE1_kindmixed_sector_eps0.01: late_ratio=0.833 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE2_kindpoint_amp_eps0.001: late_ratio=0.852 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE2_kindpoint_amp_eps0.003: late_ratio=0.848 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE2_kindpoint_phase_eps0.001: late_ratio=0.114 init_max_ratio=0.134 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE2_kindpoint_phase_eps0.003: late_ratio=0.114 init_max_ratio=0.134 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE2_kindsource_eps0.001: late_ratio=0.852 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE2_kindsource_eps0.003: late_ratio=0.848 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE2_kindhidden_sector_eps0.001: late_ratio=0.704 init_max_ratio=0.704 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgCIRCLE2_kindhidden_sector_eps0.003: late_ratio=0.698 init_max_ratio=0.698 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgCIRCLE2_kindmixed_sector_eps0.001: late_ratio=0.852 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE2_kindmixed_sector_eps0.003: late_ratio=0.848 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE3_kindpoint_amp_eps0.001: late_ratio=0.852 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE3_kindpoint_amp_eps0.003: late_ratio=0.848 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE3_kindpoint_phase_eps0.001: late_ratio=0.114 init_max_ratio=0.134 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE3_kindpoint_phase_eps0.003: late_ratio=0.114 init_max_ratio=0.134 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE3_kindsource_eps0.001: late_ratio=0.852 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE3_kindsource_eps0.003: late_ratio=0.848 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE3_kindhidden_sector_eps0.001: late_ratio=0.704 init_max_ratio=0.704 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgCIRCLE3_kindhidden_sector_eps0.003: late_ratio=0.698 init_max_ratio=0.698 C_ratio=1.00 F_min=1.0000 (filed, P-mixed)",
+  "stab_bgCIRCLE3_kindmixed_sector_eps0.001: late_ratio=0.852 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "stab_bgCIRCLE3_kindmixed_sector_eps0.003: late_ratio=0.848 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "amp_bgVPLUS_kindpoint_amp_amp0.001: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "amp_bgVPLUS_kindpoint_amp_amp0.01: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "amp_bgVPLUS_kindpoint_amp_amp0.1: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "amp_bgVPLUS_kindpoint_amp_amp1.0: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "amp_bgVPLUS_kindpoint_amp_amp10.0: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "amp_bgVPLUS_kindpoint_amp_amp100.0: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "amp_bgVPLUS_kindpoint_amp_amp1000.0: late_ratio=0.758 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "xl_bgVPLUS_kindpoint_amp: late_ratio=0.879 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "xl_bgVPI_kindpoint_amp: late_ratio=0.879 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "xl_bgCIRCLE0_kindpoint_amp: late_ratio=0.892 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "xl_bgCIRCLE1_kindpoint_amp: late_ratio=0.892 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "xl_bgCIRCLE2_kindpoint_amp: late_ratio=0.902 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "xl_bgCIRCLE3_kindpoint_amp: late_ratio=0.902 init_max_ratio=1.000 C_ratio=1.00 F_min=0.5000 (filed, P-mixed)",
+  "lscan_bgVPLUS_kindpacket_L4: late_ratio=0.246 (filed)",
+  "lscan_bgVPLUS_kindpacket_L8: late_ratio=0.146 (filed)",
+  "lscan_bgVPLUS_kindpacket_L12: late_ratio=0.082 (filed)",
+  "lscan_bgVPLUS_kindpacket_L16: late_ratio=0.083 (filed)",
+  "lscan_bgVPLUS_kindpacket_L20: late_ratio=0.071 (filed)",
+  "lscan_bgVPLUS_kindpacket_L28: late_ratio=0.057 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L4: late_ratio=1.000 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L8: late_ratio=0.971 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L12: late_ratio=0.999 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L16: late_ratio=0.902 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L20: late_ratio=0.952 (filed)",
+  "lscan_bgVPLUS_kindpoint_amp_L28: late_ratio=0.758 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L4: late_ratio=0.235 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L8: late_ratio=0.146 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L12: late_ratio=0.085 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L16: late_ratio=0.091 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L20: late_ratio=0.079 (filed)",
+  "lscan_bgCIRCLE2_kindpacket_L28: late_ratio=0.065 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L4: late_ratio=1.000 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L8: late_ratio=0.997 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L12: late_ratio=1.000 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L16: late_ratio=0.967 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L20: late_ratio=0.960 (filed)",
+  "lscan_bgCIRCLE2_kindpoint_amp_L28: late_ratio=0.848 (filed)",
+  "protection (margin + zero-free) all runs: True",
+  "d-sector conservation all runs: True",
+  "xbg point_amp: max-dev=0.00e+00 bitwise=True ok=True",
+  "xbg patch: max-dev=0.00e+00 bitwise=True ok=True",
+  "xbg packet: max-dev=0.00e+00 bitwise=True ok=True",
+  "xbg standing: max-dev=0.00e+00 bitwise=True ok=True",
+  "xbg source: max-dev=0.00e+00 bitwise=True ok=True",
+  "xbg sym_sector: max-dev=0.00e+00 bitwise=True ok=True",
+  "xbg hidden_sector: max-dev=0.00e+00 bitwise=True ok=True",
+  "xbg mixed_sector: max-dev=0.00e+00 bitwise=True ok=True",
+  "blind VPLUS/0.003: coarse_sup=9.00e-06 d0n2=9.00e-06 ok=True",
+  "blind VPLUS/0.01: coarse_sup=1.00e-04 d0n2=1.00e-04 ok=True",
+  "blind VPI/0.003: coarse_sup=9.00e-06 d0n2=9.00e-06 ok=True",
+  "blind VPI/0.01: coarse_sup=1.00e-04 d0n2=1.00e-04 ok=True",
+  "CLASS-quiet point_amp: spread=1.04",
+  "CLASS-fire point_phase: spread=6.04 argmax=PLUS {'PLUS': 0.4246039108734552, 'PI': 0.42440204391387737, 'HIDDEN': 0.07034357918847928}",
+  "CLASS-quiet patch: spread=2.42",
+  "CLASS-quiet packet: spread=3.87",
+  "CLASS-quiet standing: spread=4.52",
+  "CLASS-quiet source: spread=1.04",
+  "CLASS-quiet sym_sector: spread=1.10",
+  "CLASS-quiet hidden_sector: spread=1.00",
+  "CLASS-quiet mixed_sector: spread=1.04",
+  "xl_bgVPLUS_kindpacket: F_best=0.0049 t_best=1252.6 t_first=64.6 wraps=303",
+  "xl_bgVPLUS_kindpoint_amp: F_best=0.0927 t_best=1806.3 t_first=None wraps=0",
+  "xl_bgVPI_kindpacket: F_best=0.0049 t_best=1252.6 t_first=64.6 wraps=303",
+  "xl_bgVPI_kindpoint_amp: F_best=0.0927 t_best=1806.3 t_first=None wraps=0",
+  "xl_bgCIRCLE0_kindpacket: F_best=0.0049 t_best=1252.6 t_first=64.6 wraps=303",
+  "xl_bgCIRCLE0_kindpoint_amp: F_best=0.0927 t_best=1806.3 t_first=None wraps=0",
+  "xl_bgCIRCLE1_kindpacket: F_best=0.0049 t_best=1252.6 t_first=64.6 wraps=303",
+  "xl_bgCIRCLE1_kindpoint_amp: F_best=0.0927 t_best=1806.3 t_first=None wraps=0",
+  "xl_bgCIRCLE2_kindpacket: F_best=0.0049 t_best=1252.6 t_first=64.6 wraps=303",
+  "xl_bgCIRCLE2_kindpoint_amp: F_best=0.0927 t_best=1806.3 t_first=None wraps=0",
+  "xl_bgCIRCLE3_kindpacket: F_best=0.0049 t_best=1252.6 t_first=64.6 wraps=303",
+  "xl_bgCIRCLE3_kindpoint_amp: F_best=0.0927 t_best=1806.3 t_first=None wraps=0",
+  "lscan_bgVPLUS_kindpacket_L4: F_best=0.0000 t_best=177.5 t_first=20.3 wraps=363",
+  "lscan_bgVPLUS_kindpacket_L8: F_best=0.0001 t_best=155.5 t_first=26.5 wraps=186",
+  "lscan_bgVPLUS_kindpacket_L12: F_best=0.0000 t_best=656.6 t_first=20.7 wraps=85",
+  "lscan_bgVPLUS_kindpacket_L16: F_best=0.0034 t_best=804.2 t_first=21.1 wraps=138",
+  "lscan_bgVPLUS_kindpacket_L20: F_best=0.0030 t_best=320.6 t_first=32.2 wraps=90",
+  "lscan_bgVPLUS_kindpacket_L28: F_best=0.0224 t_best=316.6 t_first=64.6 wraps=75",
+  "lscan_bgVPLUS_kindpoint_amp_L4: F_best=0.0000 t_best=177.5 t_first=20.4 wraps=0",
+  "lscan_bgVPLUS_kindpoint_amp_L8: F_best=0.0002 t_best=155.5 t_first=22.1 wraps=0",
+  "lscan_bgVPLUS_kindpoint_amp_L12: F_best=0.0001 t_best=656.6 t_first=34.5 wraps=0",
+  "lscan_bgVPLUS_kindpoint_amp_L16: F_best=0.0324 t_best=804.2 t_first=246.5 wraps=0",
+  "lscan_bgVPLUS_kindpoint_amp_L20: F_best=0.0385 t_best=930.0 t_first=320.4 wraps=0",
+  "lscan_bgVPLUS_kindpoint_amp_L28: F_best=0.1464 t_best=952.1 t_first=None wraps=0",
+  "lscan_bgCIRCLE2_kindpacket_L4: F_best=0.0000 t_best=177.5 t_first=20.3 wraps=363",
+  "lscan_bgCIRCLE2_kindpacket_L8: F_best=0.0001 t_best=155.5 t_first=26.5 wraps=186",
+  "lscan_bgCIRCLE2_kindpacket_L12: F_best=0.0000 t_best=656.6 t_first=20.7 wraps=85",
+  "lscan_bgCIRCLE2_kindpacket_L16: F_best=0.0034 t_best=804.2 t_first=21.1 wraps=138",
+  "lscan_bgCIRCLE2_kindpacket_L20: F_best=0.0030 t_best=320.6 t_first=32.2 wraps=90",
+  "lscan_bgCIRCLE2_kindpacket_L28: F_best=0.0224 t_best=316.6 t_first=64.6 wraps=75",
+  "lscan_bgCIRCLE2_kindpoint_amp_L4: F_best=0.0000 t_best=177.5 t_first=20.4 wraps=0",
+  "lscan_bgCIRCLE2_kindpoint_amp_L8: F_best=0.0002 t_best=155.5 t_first=22.1 wraps=0",
+  "lscan_bgCIRCLE2_kindpoint_amp_L12: F_best=0.0001 t_best=656.6 t_first=34.5 wraps=0",
+  "lscan_bgCIRCLE2_kindpoint_amp_L16: F_best=0.0324 t_best=804.2 t_first=246.5 wraps=0",
+  "lscan_bgCIRCLE2_kindpoint_amp_L20: F_best=0.0385 t_best=930.0 t_first=320.4 wraps=0",
+  "lscan_bgCIRCLE2_kindpoint_amp_L28: F_best=0.1464 t_best=952.1 t_first=None wraps=0",
+  "amp VPLUS/packet: sup_B slope=2.0000 (filed)",
+  "amp VPLUS/point_amp: sup_B slope=2.0000 (filed)",
+  "amp CIRCLE@pi/6/packet: sup_B slope=2.0000 (filed)",
+  "coarse VPLUS: {'point_amp': 0.000605, 'point_phase': 9e-06, 'patch': 0.000342, 'packet': 7.2e-05, 'standing': 0.000103, 'source': 0.000605, 'sym_sector': 0.000814, 'hidden_sector': 0.0001, 'mixed_sector': 0.000605}",
+  "coarse VPI: {'point_amp': 0.000605, 'point_phase': 9e-06, 'patch': 0.000347, 'packet': 7.2e-05, 'standing': 0.000102, 'source': 0.000605, 'sym_sector': 0.000814, 'hidden_sector': 0.0001, 'mixed_sector': 0.000605}",
+  "coarse CIRCLE@0: {'point_amp': 0.000605, 'point_phase': 0.0, 'patch': 2.7e-05, 'packet': 1e-06, 'standing': 2e-06, 'source': 0.000605, 'sym_sector': 0.0001, 'hidden_sector': 0.000814, 'mixed_sector': 0.000605}",
+  "coarse CIRCLE@pi/2: {'point_amp': 0.000605, 'point_phase': 0.0, 'patch': 2.7e-05, 'packet': 1e-06, 'standing': 2e-06, 'source': 0.000605, 'sym_sector': 0.0001, 'hidden_sector': 0.000814, 'mixed_sector': 0.000605}",
+  "coarse CIRCLE@pi/6: {'point_amp': 0.000216, 'point_phase': 0.0, 'patch': 2e-06, 'packet': 0.0, 'standing': 0.0, 'source': 0.000216, 'sym_sector': 9e-06, 'hidden_sector': 0.000302, 'mixed_sector': 0.000216}",
+  "coarse CIRCLE@pi/3: {'point_amp': 0.000216, 'point_phase': 0.0, 'patch': 2e-06, 'packet': 0.0, 'standing': 0.0, 'source': 0.000216, 'sym_sector': 9e-06, 'hidden_sector': 0.000302, 'mixed_sector': 0.000216}"
+ ]
+}

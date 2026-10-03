@@ -14,6 +14,25 @@
   J-orientation signature artifacts via exact labeled comparison); anatomy
   unchanged under RAND/MEASURE rival weightings (no measure derived).
   Records in `data/split0_ledger.json` + `data/split0_verdict.json`.
+- **v5.6 (VAC-STAB-0)** — Long-time operational stability of joint vacua
+  (branch): `src/bh_graph/vacstab.py` (6-background registry incl. hidden
+  circle interiors, 9-kind battery + mixed_sector, streaming Krylov runner
+  with exact per-step sup/margin/overlap/coarse, triangle cross-scales,
+  F1/F2 fragility statistics, boolean checks, verdict ladder),
+  `tests/test_vacstab.py` (26 pins), `scripts/vacstab_campaign.py`
+  (180-task beast battery: battery/bgcheck/stab/amp/lscan/xl/xbg) +
+  `scripts/vacstab_analyze.py` (frozen gates + CLASS rule),
+  VACSTAB0-PREREG + AMENDMENT-1/2 + VERDICT in `docs/DEFERRED.md`.
+  Read-only consumption of VAC-FIELD/VAC-COMP/VAC-EXC/ZERO/QUOT/MALUS
+  apparatus (byte-identical). VERDICT VACSTAB0-ROBUST (9/9, CLASS
+  silent): small protected perturbations stay small to T = 1000/4000
+  (303 wraps), never focus beyond input scale (max C_ratio 3.5 vs 50),
+  no late refocusing beyond initial on propagating seeds, margins stay
+  positive with zero zero-steps, recurrence background-independent and
+  growing with L (exact at L4/L8), frac sup_B slope 2.0000 over
+  1e-3..1e3, sym-d-on-hidden coarse-blindness mirror filed. Full suite
+  1864 passed / 2 skipped on beast (weighted skipped; 6 spectral tests
+  pass serially, xdist/load flake). Records under `data/vacstab/`.
 
 - **v5.6 (VAC-DOMAIN-0)** — Interfaces between disconnected joint-vacuum
   components: `src/bh_graph/vacdomain.py` (sharp slab joins, D-NOGO /
