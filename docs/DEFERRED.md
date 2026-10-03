@@ -10425,3 +10425,18 @@ Gated re-runs: tests/test_info0.py hidden pins (sign-equality +
 pair-distinctness + vacua), hidden campaign cells.
 No banked data exists yet; campaign runs under PREREG + AMENDMENT-1 +
 AMENDMENT-2 + AMENDMENT-3.
+
+## INFO0-AMENDMENT-3b — Signed-zero normalization in hidden sig strings (pre-campaign-data)
+
+Found in the AMENDMENT-3 gated re-run
+(test_hidden_pair_raw_match_phys_diff, pre-campaign-data, no campaign
+records affected). Sign A/B full sigkey tuples are EQUAL (-0.0 == 0.0
+elementwise, the correct R-equivalence signal), but str() of the tuples
+differs ("-0.0" vs "0.0" in the rounded J multiset) -> string comparison
+spuriously reports distinct. Fix: hidden_cell_branch normalizes signed
+zeros (v + 0.0, bitwise identity except -0.0 -> +0.0) before
+stringifying, so stored-string equality coincides with tuple equality.
+Distinctness pins unaffected (they differ in real values).
+Gated re-runs: tests/test_info0.py hidden pins.
+No banked data exists yet; campaign runs under PREREG + AMENDMENT-1 +
+AMENDMENT-2 + AMENDMENT-3 + AMENDMENT-3b.

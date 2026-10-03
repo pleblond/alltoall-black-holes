@@ -996,6 +996,15 @@ def hidden_cell_branch(pair_name: str, side: str, patch: str,
     e0 = sorted(tuple(sorted(e)) for e in g.edges())[0]
     k0 = sorted(g.nodes())[0]
     sig = signature_key(state_signature(g, psi, order))
+    # Normalize signed zeros (-0.0 -> +0.0): tuple equality already holds
+    # (-0.0 == 0.0), but str() would spuriously differ (AMENDMENT-3b).
+    # x + 0.0 is bitwise identity except -0.0 -> +0.0.
+    sig = tuple(
+        tuple(v + 0.0 if isinstance(v, float) else v for v in p)
+        if isinstance(p, tuple)
+        else (p + 0.0 if isinstance(p, float) else p)
+        for p in sig
+    )
     # Full key, untruncated: genuine pair differences live past char 120
     # (INFO0-AMENDMENT-3; full J2-L4 keys are ~2.4KB).
     out: dict = {"state": pair_name, "side": side, "patch": patch,
