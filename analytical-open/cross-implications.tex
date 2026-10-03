@@ -1498,76 +1498,202 @@ The cancelled channel does: its logarithm is \(16\pi/\lambda_\infty(r)\).
 
 \begin{proposition}
 \label{prop:logsep}
+Let
+\[
+\gamma_{\mathrm{E}}
+=-\int_0^\infty e^{-u}\log u\,du.
+\]
 As \(|r|\to\infty\) through nonzero lattice vectors,
-\[
+\begin{equation}
+\label{eq:lamconst}
 \lambda_\infty(r)
-=\frac{1}{8\pi}\log|r|+C+\varepsilon(r),
-\]
-where \(C\) is independent of the direction of \(r\) and \(\varepsilon(r)\to 0\).
-Consequently the cancelled coefficient in \eqref{eq:rlog} satisfies
-\[
+=\frac{1}{8\pi}\log|r|
++\frac{1}{16}
++\frac{\gamma_{\mathrm{E}}+\frac32\log 2}{8\pi}
++\varepsilon(r),
+\end{equation}
+where \(\varepsilon(r)\to 0\).
+The constant term does not depend on the direction of \(r\).
+Consequently the cancelled coefficient in \eqref{eq:rlog} is
+\begin{equation}
+\label{eq:cancconst}
 \frac{16\pi}{\lambda_\infty(r)}
-=\frac{128\pi^2}{\log|r|}\bigl(1+o(1)\bigr).
-\]
+=\frac{128\pi^2}
+{\log|r|+\gamma_{\mathrm{E}}+\frac32\log 2+\frac\pi2+\varepsilon_1(r)},
+\end{equation}
+with \(\varepsilon_1(r)\to 0\).
 \end{proposition}
 
 \begin{proof}
-Shift the momentum in \eqref{eq:lamr} by \((\pi,\pi)\).
-The integrand becomes \((1-\cos(k\cdot r))/Q(k)\), with
+The constant \(\gamma_{\mathrm{E}}\) is also the limit
 \[
-Q(k)=8\sin^2\frac{k_x}{2}+8\sin^2\frac{k_y}{2}
+\gamma_{\mathrm{E}}
+=\lim_{R\to\infty}
+\Biggl(
+\int_0^R\frac{1-e^{-s}}{s}\,ds-\log R
+\Biggr).
 \]
-on the torus \([-\pi,\pi]^2\).
-Thus \(Q(k)=2|k|^2+O(|k|^4)\) at the origin, and \(Q\) vanishes nowhere else.
-Split the integral at \(|k|=1\), which lies inside the torus, as
-\(S(r)+T(r)\), where
+Indeed, \(\log u=\int_1^u dt/t\).
+Splitting at \(u=1\) and changing the order, which is legitimate on each
+piece because \(\int_0^1|\log u|\,e^{-u}\,du\) and
+\(\int_1^\infty\log u\,e^{-u}\,du\) both converge, gives
 \[
-S(r)
-=\int_{|k|<1}
-\frac{1-\cos(k\cdot r)}{2|k|^2}
-\,\frac{d^2k}{(2\pi)^2}
+\int_0^\infty e^{-u}\log u\,du
+=\int_1^\infty\frac{e^{-t}}{t}\,dt
+-\int_0^1\frac{1-e^{-t}}{t}\,dt.
 \]
-and \(T(r)\) carries the difference
-\(1/Q(k)-1/(2|k|^2)\) on that disk together with \(1/Q\) outside it.
-The difference is bounded near the origin, so the weight in \(T\) is
-integrable.
-The integral of that weight against \(\cos(k\cdot r)\) tends to \(0\) as
-\(|r|\to\infty\), and therefore \(T(r)\) tends to the integral of the weight,
-a finite constant independent of direction.
+The same splitting shows that the limit equals the negative of this value.
+The tail \(\int_R^\infty e^{-s}/s\,ds\) is the rate.
 
-In polar coordinates,
+Write \(T=[-\pi,\pi]^2\) and
 \[
-S(r)
-=\frac{1}{4\pi}
-\int_0^{|r|}
-\frac{1-J_0(s)}{s}\,ds,
+Q(k)=8\sin^2\frac{k_x}{2}+8\sin^2\frac{k_y}{2},
+\]
+so that \(Q(k)=2|k|^2+O(|k|^4)\) at the origin and \(Q\) vanishes only there.
+After the shift used in \eqref{eq:lamr},
+\[
+\lambda_\infty(r)
+=\frac1{16}+\frac12 D(r),
 \qquad
-J_0(s)
-=\frac{1}{2\pi}\int_0^{2\pi}\cos(s\cos\theta)\,d\theta.
+D(r)
+=\int_T\frac{1-\cos(k\cdot r)}{Q(k)}\,\frac{d^2k}{(2\pi)^2}.
 \]
-The integrand is \(O(s)\) at the origin.
-Symmetry gives
-\(J_0(s)=(2/\pi)\int_0^{\pi/2}\cos(s\cos\theta)\,d\theta\).
-The phase is stationary at \(\theta=0\).
-For \(s\ge 1\) set \(\delta=s^{-1/2}\) and bound the integral over
-\([0,\delta]\) by \(\delta\).
-On \([\delta,\pi/2]\) one has \(|\sin\theta|\ge\sin\delta\ge 2\delta/\pi\).
-Integration by parts against \(\partial_\theta\sin(s\cos\theta)\) produces
-boundary terms and an integral of \(\csc^2\), each \(O(1/(s\delta))\).
-Thus \(J_0(s)=O(s^{-1/2})\), and
-\(\int_1^\infty |J_0(s)|/s\,ds\) converges.
-Split \(\int_0^{|r|}(1-J_0(s))/s\,ds\) at \(1\).
-The piece up to \(1\) is a constant, and on \([1,|r|]\) the term \(1/s\)
-contributes \(\log|r|\) while the tail of \(J_0(s)/s\) tends to \(0\).
-Hence
+For \(t>0\) define
+\begin{align*}
+p_t(x)
+&=\int_T e^{-t Q(k)/2}\cos(k\cdot x)\,\frac{d^2k}{(2\pi)^2},\\
+g_t(x)
+&=\int_{\R^2} e^{-t|k|^2}\cos(k\cdot x)\,\frac{d^2k}{(2\pi)^2}
+=\frac{1}{4\pi t}\exp\Bigl(-\frac{|x|^2}{4t}\Bigr).
+\end{align*}
+The Gaussian evaluation is the polar integral
+\(\int_0^\infty e^{-t\kappa^2}\kappa\,d\kappa/(2\pi)=1/(4\pi t)\).
+Integrating the multiplier in \(t\) gives
 \[
-S(r)=\frac{1}{4\pi}\log|r|+C_S+o(1).
+\int_0^\infty\bigl(p_t(0)-p_t(r)\bigr)\,dt
+=\int_T\frac{1-\cos(k\cdot r)}{Q(k)/2}\,\frac{d^2k}{(2\pi)^2}
+=2D(r).
 \]
-The integral in \eqref{eq:lamr} equals \(S(r)+T(r)\), and
-\(\lambda_\infty=1/16\) plus half of that integral, which is the stated
-expansion with coefficient \(1/(8\pi)\).
-The cancelled coefficient is \(16\pi/\lambda_\infty(r)\), and dividing by
-the expansion gives the second display.
+
+The ratio \(Q(k)/(2|k|^2)\) extends continuously by the value \(1\) at the origin,
+and the extension is positive on the compact torus, so
+\(Q(k)/2\ge c|k|^2\) for some \(c>0\).
+The Taylor comparison \(Q(k)/2-|k|^2=O(|k|^4)\) then yields, for every \(t\ge 1\)
+and every lattice vector \(x\),
+\[
+\bigl|p_t(x)-g_t(x)\bigr|\le\frac{M}{t^2}.
+\]
+The contribution of \(\R^2\setminus T\) is \(O(e^{-\pi^2 t})\).
+On \(T\), the difference of the two exponentials is at most
+\(C t|k|^4 e^{-c't|k|^2}\), and the change of scale \(k=u/\sqrt{t}\) turns the
+integral of that majorant into a constant multiple of \(t^{-2}\).
+In particular \(p_t(0)=1/(4\pi t)+O(t^{-2})\).
+
+Thus the limit
+\[
+C_{\mathrm{diag}}
+=\lim_{A\to\infty}
+\Biggl(\int_0^A p_t(0)\,dt-\frac{\log A}{4\pi}\Biggr)
+\]
+exists.
+Its value is read from the Laplace transform
+\[
+L(\beta)
+=\int_0^\infty e^{-\beta t}p_t(0)\,dt
+=\int_T\frac{1}{\beta+Q(k)/2}\,\frac{d^2k}{(2\pi)^2},
+\qquad\beta>0.
+\]
+Integration by parts writes \(L(\beta)\) as
+\(\beta\int_0^\infty e^{-\beta A}F(A)\,dA\), where \(F(A)=\int_0^A p_t(0)\,dt\).
+Substitute \(F(A)=(\log A)/(4\pi)+C_{\mathrm{diag}}+\varepsilon(A)\) for \(A\ge 1\),
+with \(\varepsilon(A)\to 0\) and \(|\varepsilon(A)|\le M/A\).
+The piece over \((0,1)\) is \(O(\beta)\).
+The identity
+\(\beta\int_0^\infty e^{-\beta A}\log A\,dA=-\gamma_{\mathrm{E}}-\log\beta\),
+together with \(\beta\int_1^\infty e^{-\beta A}\varepsilon(A)\,dA\to 0\), gives
+\[
+L(\beta)
+=-\frac{\log\beta}{4\pi}
+-\frac{\gamma_{\mathrm{E}}}{4\pi}
++C_{\mathrm{diag}}+o(1).
+\]
+
+For the expansion of \(L\), set \(\alpha=2+\beta/2\).
+Then \(\beta+Q/2=2(\alpha-\cos k_x-\cos k_y)\), and the inner average
+of the proof of Proposition~\ref{prop:green} produces
+\[
+L(\beta)=\frac{1}{\pi\alpha}\,K\Bigl(\frac{2}{\alpha}\Bigr).
+\]
+The complementary modulus is
+\(k'=\sqrt{\alpha^2-4}/\alpha\), so
+\[
+\log\frac{4}{k'}+\frac12\log\beta
+=\log 4+\log\alpha+\frac12\log 2-\frac12\log\Bigl(4+\frac\beta2\Bigr).
+\]
+As \(\beta\downarrow 0\) the right-hand side tends to \(\tfrac52\log 2\).
+Proposition~\ref{prop:stitch} supplies
+\(K(2/\alpha)=\log(4/k')+o(1)\), and therefore
+\(K(2/\alpha)+\tfrac12\log\beta\to\tfrac52\log 2\).
+Since \(\alpha\to 2\) and \(\beta\log\beta\to 0\),
+\[
+L(\beta)+\frac{\log\beta}{4\pi}
+\to\frac{5\log 2}{4\pi}.
+\]
+Comparing the two expansions of \(L\) yields
+\(C_{\mathrm{diag}}=(\gamma_{\mathrm{E}}+5\log 2)/(4\pi)\).
+
+It remains to pass from the diagonal to separation \(r\).
+For \(1\le t<\infty\),
+\[
+\int_1^\infty\bigl(p_t(r)-g_t(r)\bigr)\,dt
+=\int_{\R^2}\psi(k)\cos(k\cdot r)\,\frac{d^2k}{(2\pi)^2},
+\]
+where
+\[
+\psi(k)
+=1_T(k)\,\frac{e^{-Q(k)/2}}{Q(k)/2}
+-\frac{e^{-|k|^2}}{|k|^2}.
+\]
+Fubini applies: the \(k\)-integral of the absolute difference of the two
+multipliers is \(O(t^{-2})\), which is integrable on \([1,\infty)\).
+Hence \(\psi\in L^1(\R^2)\).
+The Riemann–Lebesgue lemma sends the integral to \(0\) as \(|r|\to\infty\).
+
+On any interval \([\eta,1]\) with \(\eta>0\),
+\[
+\int_\eta^1 p_t(r)\,dt
+=\int_T\cos(k\cdot r)\,
+\frac{e^{-\eta Q/2}-e^{-Q/2}}{Q/2}
+\,\frac{d^2k}{(2\pi)^2}.
+\]
+The weight extends to a bounded function on \(T\), because its limit at the
+origin is \(1-\eta\).
+Riemann–Lebesgue again sends the integral to \(0\), while
+\(\bigl|\int_0^\eta p_t(r)\,dt\bigr|\le\eta\).
+Thus \(\int_0^1 p_t(r)\,dt\to 0\).
+
+The Gaussian integral is elementary.
+With \(s=|r|^2/(4t)\),
+\[
+\int_1^\infty\bigl(g_t(0)-g_t(r)\bigr)\,dt
+=\frac{1}{4\pi}\int_0^{|r|^2/4}\frac{1-e^{-s}}{s}\,ds
+=\frac{1}{2\pi}\log|r|
++\frac{\gamma_{\mathrm{E}}-2\log 2}{4\pi}+o(1).
+\]
+Combining these limits,
+\begin{align*}
+2D(r)
+&=C_{\mathrm{diag}}
++\int_1^\infty\bigl(g_t(0)-g_t(r)\bigr)\,dt+o(1)\\
+&=\frac{1}{2\pi}\log|r|
++\frac{2\gamma_{\mathrm{E}}+3\log 2}{4\pi}+o(1).
+\end{align*}
+One quarter of this expansion is \(D(r)/2\).
+Added to \(1/16\), it is \eqref{eq:lamconst}.
+Every term that survives is radial, so the constant does not depend on
+direction.
+Clearing the positive factor \(1/(8\pi)\) in \eqref{eq:lamconst} produces
+\eqref{eq:cancconst}.
 \end{proof}
 
 On \(J_3\) the threshold of Proposition~\ref{prop:adj} already applies at
