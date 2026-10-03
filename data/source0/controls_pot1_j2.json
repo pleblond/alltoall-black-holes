@@ -1,0 +1,1 @@
+{"task": "controls_pot1_j2", "params": {"task": "controls", "kind": "pot1_j2"}, "payload": {"jump_global": true, "eps_ok": true, "ok": true}, "provenance": {"git_rev": "7ab4880b1c242864e38a54829ec11805726afa75", "utc": "2026-10-03T01:12:43Z", "host": "ip-172-31-39-189"}}

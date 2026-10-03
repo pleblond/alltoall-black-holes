@@ -10606,3 +10606,65 @@ error); every leg sits >10 orders from the 1e12 boundary on either side
 (measured: POT L28 32.8; E=0 L28 3.0e127; L4/L8 same split), so branch
 outcomes are identical under either implementation; cost is seconds per
 leg. Rule threshold and branch structure UNCHANGED.
+
+## SOURCE0-VERDICT: SOURCE0-INCOMPLETE (9/10 green; 74/74 records)
+
+Headline per the frozen ladder: nothing missing, controls green,
+background green, sign_phase green, switch red -> else-branch
+SOURCE0-INCOMPLETE. INCOMPLETE here denotes a falsified frozen prediction
+with complete data and full attribution -- not missing work. No post-data
+bar, gate, or ladder change was made (6 pre-data amendments, 0 post-data).
+
+Checks (analyzer data/source0/verdict.json, beast 2026-10-03): kernel
+GREEN (gated K1 4/4, dev 0.024-0.037 < 0.1; K2 53/53, worst 6.6e-12 <
+1e-8); stationary GREEN (28 jump legs, worst eps 0.0125/global 0.0201;
+14 bounded legs, worst drift 0.057/osc 0.16); range_law GREEN (chi 42/42
+< 1e-9; POT k=0.515 r2=0.999 range 3 on all vacua); allpath GREEN (POT
+d_meas 0.4598 vs d_pred 0.4608; AMP 0.9713 vs 0.9714; 1D-reject both);
+sign_phase GREEN (sign flip + rotation bitwise; lin slopes 1.000/1.000,
+dd 2.000 filed); background GREEN (POT sha 1 unique per fam/L; E=0 |sha|
+1 unique per fam); switch RED (see attribution); superposition GREEN
+(same-set field 1e-14/cross 1e-18; naive cross-talk 0.11 L28 / 6.95 L4
+filed); quotient GREEN (U1/relabel/Aut exact; FS zero iff U1-related);
+controls GREEN (POT-1 path+J2, kernel 1.1e-14, witness 9.7e-16,
+covariance, frozen graphs/params incl. cut==108 + wall geometry).
+
+Switch attribution (falsified: S6 release fronts on AMP legs):
+- Turn-on (switch-ON) always radiates: 4/4 L28 fronts v=5.54-5.62,
+  r2>0.99, causality <=1.2e-6 < 1e-5. POT release radiates: O(1)
+  transient (max|D|/max|phi0|=1.53), front v=5.83 r2=0.996.
+- AMP/VPLUS release is SILENT BY THEOREM: maintained-drive steady state
+  equals c.u+ to 7.4e-15 (pin s0=eps.uhat is eigenvector-proportional,
+  bulk equation solved exactly by c.u_B; shells flat 0.01 all r), so
+  U(t)(c.u+)=c.u+e^{+i8t} exactly and D is fp-zero (ratio 6.4e-12,
+  sector weights 1e-25/1e-30). No transient exists; front fit on noise
+  (v=-150, r2=0.25). Same for VPI (7.4e-15; no release leg).
+- AMP/VMINUS release is beating-dominated and frontless: static-final is
+  the small localized ker-perp response (|d|~0.012 vs |c.v-|=0.396,
+  resid 0.9996), still beating 6% at T=30 (pinning has no dissipation);
+  release D is 30% global beating (v=-50, r2=0.34).
+Rule: switch-OFF radiates only when the released state mismatches free
+evolution (gapped POT yes; eigenvector-coincident maintained no).
+
+Mission answers: (1) persistent source = boundary data s(t) on dpsi in
+the vacuum frame (S0 exact; K2 53/53 exact); (2) YES -- POT stationary
+is the driven counterpart of the RESPONSE kernel (K1 dev 0.024-0.037
+within the 0.1 regulator bar; maintained K1 filed 0.13/0.52/0.99 at
+L4/L8/L28, correctly never gated); (3) carrier vacuum-independent (POT
+sha) or sign-identical (E=0 |sha|) with per-vacuum relational response
+via banked chi (42/42); (4) surviving descriptors: location mod Aut(J2),
+|s0|, relative phase arg(s0/uhat), drive class, two-source separation;
+redundant: global phase, node labels.
+
+Handoff (data/source0/*.json): persistent source -> dpsi(r,t) -> dB(r,t)
+-> R_G per (vacuum, family): ranges (POT 3 all vacua; maintained 28),
+laws (POT k=0.515 r2=0.999; E=0 k=0.414 r2=0.67 filed; edge k=0 flat
+filed), POT/E0 sha groups, ledger diffs (6 cases x 3 seeds, N=20000),
+fronts, sectors, naive cross-talk. `R_G -> dG` REMAINS BLOCKED by
+MEASURE0-DEBT. Firewall held: no charge/mass/matter/force language, no H
+change, readout-only deltas/ledgers, single frozen tables.
+
+Follow-up (NOT this campaign): S6 release predictions need drive-class
+scoping (gapped radiates / eigenvector-coincident silent /
+beating-dominated frontless) before any re-gating; SOURCE0 data already
+banks all three regimes.
