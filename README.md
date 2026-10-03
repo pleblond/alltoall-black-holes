@@ -79,7 +79,7 @@ Sec 3 `micro`; A `circuits`; B `maxent`; C `qes`; D `evaporation`,
 `evaporation_unitary`; F `qec`;
 G `robustness`; H `kerr`; H2 `thermo`; I `haar`; J `monogamy`; L `otoc`, `pheno`;
 M `tn`; N `kerrpage`; O `syk`; Q `data`, `gwdata`; R `litcompare`; T `tev`;
-U `echoes`; W `posteriors`; X `ds`; Y `krylov`; Z–AC `collapse`,
+U `echoes`; W `posteriors`; W2 `gwtc4`; X `ds`; Y `krylov`; Z–AC `collapse`,
 `cosmic`, `lunch`, `remnant`; AE `bounds`; AF (protocol); AG `healing`;
 AH `mss`; AI `bigsyk`; AJ `mp`, `greybody`; AK `congestion`; AL `charge`;
 AM `bandwidth`; AN `gridcirc`, `monitor`, `selfattack`, `lhc`; AO
