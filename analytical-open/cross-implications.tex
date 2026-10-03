@@ -1011,6 +1011,49 @@ of that sum.
 It is not the conditional variance of Theorem~\ref{thm:condJ}, which is
 the law of \(\mathcal{J}_{ij}\) itself.
 
+\begin{proposition}
+\label{prop:Jdot}
+Under the same flow, if \(ij\) is an edge,
+\begin{equation}
+\label{eq:Jdot}
+\dot{\mathcal{J}}_{ij}
+=|\psi_i|^2-|\psi_j|^2
++\sum_{n\in N(j)\setminus\{i\}}B_{in}
+-\sum_{m\in N(i)\setminus\{j\}}B_{mj}.
+\end{equation}
+On an isolated edge this reduces to
+\(\dot{\mathcal{J}}_{ij}=|\psi_i|^2-|\psi_j|^2\), and
+\[
+\mathcal{J}_{ij}(t)
+=\mathcal{J}_{ij}(0)\cos 2t
++\frac{|\psi_i(0)|^2-|\psi_j(0)|^2}{2}\sin 2t,
+\]
+while \(B_{ij}\) stays at its initial value.
+\end{proposition}
+
+\begin{proof}
+The same product rule gives
+\(\partial_t(\psi_i^*\psi_j)=i z\) with \(z\) as in the proof of
+Proposition~\ref{prop:Bdot}, so \(\dot{\mathcal{J}}_{ij}=\Re z\).
+The diagonal summands are \(|\psi_i|^2-|\psi_j|^2\).
+The real parts of the remaining summands are the bonds \(B_{in}\) and
+\(B_{mj}\).
+On an isolated edge the neighbour sums are empty, and the continuity
+equation gives \(\partial_t|\psi_i|^2=-2\mathcal{J}_{ij}\) and
+\(\partial_t|\psi_j|^2=2\mathcal{J}_{ij}\).
+Therefore \(\ddot{\mathcal{J}}_{ij}=-4\mathcal{J}_{ij}\).
+The displayed solution is the general solution of that oscillator with
+the initial derivative \(|\psi_i|^2-|\psi_j|^2\).
+\(B_{ij}\) is constant by Proposition~\ref{prop:Bdot}.
+\end{proof}
+
+The pair \((\dot B,\dot{\mathcal{J}})\) is driven by the wedge data with
+the roles exchanged: wedge currents move the bond, wedge bonds and the
+population imbalance move the current.
+On an isolated edge the motion is pure angle at fixed radius.
+The frequency \(2\) is the gap between the eigenvalues \(-1\) and \(+1\)
+of \(H\) on \(K_2\).
+
 \section{Separable symbols, to every order}
 \label{sec:sep}
 
