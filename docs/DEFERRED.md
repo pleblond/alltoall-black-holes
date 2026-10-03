@@ -10487,8 +10487,8 @@ checks: quotient |s| key, swap residual, pair-exchange reconstruction;
 comparisons-only, no gate/cell/threshold/physics touched; 1-ulp
 diagnosis filed in docs/fiber0-prereg.md section 10) applied
 pre-rerun; run-1 ledger (FIBER0-INCOMPLETE on H-B/H-C/M-M)
-superseded. Full suite on beast: PENDING-SUITE (to be appended;
-test_weighted.py skipped per standing instruction). All 11 HARD
+superseded. Full suite on beast: 1902 passed, 2 skipped, 0 failed
+in 442.7s (test_weighted.py skipped per standing instruction). All 11 HARD
 gates green, all 11 MEASURED cells filed.
 
 **Headline (frozen ladder):** rivals_valid + rivals_differ =>

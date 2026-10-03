@@ -13,7 +13,8 @@
   satisfy every earned constraint; cover measure unique only on
   d = 0 cells (4/76); 520 residual dof (206+168 inter-orbit,
   83 radial, 63 angular); roundtrip 257169/257169; firewall clean
-  (0 fitted params). Full suite PENDING-SUITE. Records
+  (0 fitted params). Full suite on beast 1902 passed / 2 skipped
+  (weighted skipped). Records
   `data/fiber0_ledger.json` + `data/fiber0_verdict.json`.
 
 - **v5.6 (VAC-DOMAIN-0)** — Interfaces between disconnected joint-vacuum
