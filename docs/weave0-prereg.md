@@ -418,11 +418,13 @@ below are derived from the frozen construction + banked precedent.
   C0-packet/hidden/vacuum = J2-L16 (sheet-size local physics). C3-dim =
   J3-L16 (window fit); C3-blind = J3-L12 (frozen cell 5). C4 = cb-L16
   everywhere; C1 = S8L16 everywhere.
-- A0-2 G-t instrument: first-PEAK arrival (threshold-free; packet precedent:
-  threshold-free readouts ride at true speed, DIM-3-0 tladder proved
-  threshold arrivals carry the gamma artifact). Threshold-crossing (1e-3
-  relative) filed as secondary. The C1 ballistic gate (`1.0 +- 0.25`) and
-  the washout inequality apply to peak arrivals.
+- A0-2 G-t instrument: CFD first-peak arrival (banked `cfd_first_peak`,
+  frac 1/2 of global max, + interior-peak check; threshold-free — packet
+  precedent: threshold-free readouts ride at true speed, DIM-3-0 tladder
+  proved threshold arrivals carry the gamma artifact; global-window max
+  rejected in smoke: late resonances, not first passage).
+  Threshold-crossing (1e-3 relative) filed as secondary. The C1 ballistic
+  gate (`1.0 +- 0.25`) and the washout inequality apply to peak arrivals.
 - A0-3 hidden-sector exactness (derived): a sheet-0 hidden delta whose
   NEITHER bit is a stitch endpoint is an EXACT `E = 0` eigenstate of the
   woven `H` (J2 in-sheet death + no incident stitches), and its `Dp =

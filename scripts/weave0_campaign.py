@@ -20,6 +20,7 @@ import json
 import math
 import os
 import sys
+import warnings
 
 import networkx as nx
 import numpy as np
@@ -245,8 +246,11 @@ def cmd_dim(args):
                                  else np.pad(a.astype(float), (0, rmax - len(a)),
                                              constant_values=np.nan)
                                  for a in arr], dtype=float)
-    deff_far_med = np.nanmedian(seal(deffs["far"]), axis=0)
-    deff_all_med = np.nanmedian(seal(deffs["all"]), axis=0)
+    with np.errstate(all="ignore"):
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", RuntimeWarning)
+            deff_far_med = np.nanmedian(seal(deffs["far"]), axis=0)
+            deff_all_med = np.nanmedian(seal(deffs["all"]), axis=0)
     lam = asm["lam"] if asm["lam"] > 0 else 0.01
     rc = weave0.crossover_radius(rr, deff_far_med)
     # Stage C: dense Lrw eigensystem + heat/origin ds.
@@ -586,11 +590,12 @@ def cmd_transverse(args):
         row += seg
     peak_t, cross_t = {}, {}
     for k, tr in traces.items():
-        pk = R.peak_in_window(tr, ts, 0.0, T)
+        t_cfd = obs0.cfd_first_peak(tr, ts)  # banked CFD (frac 1/2)
         peak_t[k] = None
-        if pk is not None and weave0.interior_peak_ok(
-                tr, ts, pk["tstar"], pk["Rmax"], T, 1e-12):
-            peak_t[k] = pk["tstar"]
+        if t_cfd is not None:
+            kidx = int(np.argmin(np.abs(ts - t_cfd)))
+            if weave0.interior_peak_ok(tr, ts, ts[kidx], tr[kidx], T, 1e-12):
+                peak_t[k] = float(ts[kidx])
         rp = float(tr.max())
         cross_t[k] = R.arrival_time(tr, ts, max(1e-3 * rp, 1e-12))
     rec = {"tag": tag, "src": src, "ring": ring, "T": T,
