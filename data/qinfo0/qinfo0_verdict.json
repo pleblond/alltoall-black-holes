@@ -1,0 +1,92 @@
+{
+ "gates": [
+  {
+   "gate": "Q-INST-no-crash",
+   "ok": true,
+   "detail": "run-failures=0/18"
+  },
+  {
+   "gate": "Q-A-algebra",
+   "ok": true,
+   "detail": "n=11"
+  },
+  {
+   "gate": "Q-B-weights",
+   "ok": true,
+   "detail": "n=11"
+  },
+  {
+   "gate": "Q-C-h2",
+   "ok": true,
+   "detail": "endpoints+invalid"
+  },
+  {
+   "gate": "Q-D-prior",
+   "ok": true,
+   "detail": "bell/product/nats+record"
+  },
+  {
+   "gate": "Q-E-identification",
+   "ok": true,
+   "detail": "hadamard+schmidt"
+  },
+  {
+   "gate": "Q-F-identical",
+   "ok": true,
+   "detail": "maxdiff=1.1102230246251565e-16"
+  },
+  {
+   "gate": "Q-F-equiv-rule",
+   "ok": false,
+   "detail": "nats-rule"
+  },
+  {
+   "gate": "Q-G-phase",
+   "ok": true,
+   "detail": "frozen probes"
+  },
+  {
+   "gate": "Q-H-swap",
+   "ok": true,
+   "detail": "all pairs"
+  },
+  {
+   "gate": "Q-I-controls",
+   "ok": true,
+   "detail": "sym/anti/bal/zero"
+  },
+  {
+   "gate": "Q-J-multi",
+   "ok": true,
+   "detail": "4 sets+undefined"
+  },
+  {
+   "gate": "Q-K-firewall",
+   "ok": true,
+   "detail": "scan+no-symbol"
+  },
+  {
+   "gate": "Q-L-roundtrip",
+   "ok": true,
+   "detail": "n=3"
+  },
+  {
+   "gate": "Q-M-scaling",
+   "ok": true,
+   "detail": "frozen probes"
+  },
+  {
+   "gate": "Q-N-factortwo",
+   "ok": true,
+   "detail": "two real coordinates of one complex amplitude"
+  },
+  {
+   "gate": "Q-O-battery",
+   "ok": true,
+   "detail": "11/4/3"
+  }
+ ],
+ "verdict": "QINFO0-IDENTICAL",
+ "n_ok": 16,
+ "n_gates": 17
+}
