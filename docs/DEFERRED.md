@@ -11738,3 +11738,299 @@ as discrimination controls (never as the answer), the 520-dof
 census as the selection target, and the TIME0-NULL + INFO0
 consumption checks. No fiber weighting is permitted without a
 new primitive postulate (= new content, firewall applies).
+## RESERVOIR0-PREREG (FROZEN pre-data; this commit predates ALL beast RESERVOIR-0 runs)
+
+Mission: given MERGE0-DETERMINISTIC + MERGE0-ACCOUNT-DEBT, characterize
+the exact missing local account of a deterministic contraction and test
+whether it is mathematically related to the information xi discarded by
+merge. This campaign must not invent a reservoir degree of freedom. It
+determines what such a degree of freedom would have to store.
+
+Frozen inputs (read-only, consumed from the main tail, no modification):
+  BR-2.5 ONTOLOGY + BR-2.6 ACCOUNTED + CONS0-PARTIAL (exact contraction
+    primitive, sum map, dN = -1, dE = -(1+c), dQ = +2B, dE_psi = P1+P2
+    with P3 = P4 = 0, support = {i,j} + exclusive neighborhoods)
+  MERGE0-DETERMINISTIC + MERGE0-ACCOUNT-DEBT (unique covariant outcome,
+    exact ledger, no existing universal reservoir: 0/80 tuples close)
+  SPLIT0-MIXED (sum-map fiber (s,d), undirected covers (3^d+1)/2,
+    halves section, M + xi <-> X with xi = (cover, d), minimality,
+    deterministic halves-restricted isolated-node core)
+  INFO0-MATCHED (field_loss (s kept, d lost), B = (|s|^2-|d|^2)/4,
+    discrete partition books, branch/loss/pred/hist identities)
+  HBR0-SIGNREV (hidden info changes/reverses the structural ledger;
+    ledger support nodes; one-neighborhood locality)
+  VACFIELD0-JOINT + VACCOMP0-COMPLETE + VACTEXTURE-GRADIENT (VPLUS/VPI/
+    VMINUS, VSTAG, circle, hidden textures in P_- E_0 with E = 0)
+  VACEXC0-COMPLETE + RESPONSE0-KERNEL (excitation kinds/sectors as
+    state builders only, where excitation states are used)
+
+Frozen law/conventions: H = -A, J = 1, hbar = 1; simple graphs;
+contraction = BR-2.5 contract_edge; field map = sum ONLY.
+Known event ledger (exact campaign conventions):
+  Delta E_known = Delta E_psi + Delta E_G with
+    Delta E_psi = E_psi(after) - E_psi(before) (direct before/after,
+      BR-2.6: = P1+P2+P3+P4 = 2B - 2 sum_cross);
+    Delta E_G = E1 - E0 = -(1+c) (edge-count change, CONS-0C dE_G).
+Formal closing deficit (diagnostic number, zero-parameter):
+  R_merge = -Delta E_known = (E(X) - E(M)) + (1+c).
+R is NOT assumed to be an existing physical energy reservoir.
+
+Pre-data derivations (pinned in tests/test_reservoir0.py, verified
+numerically by the campaign, never fitted):
+  (D1) R = (1+c) - 2B + 2 sum_cross: exact cover/fiber/mixed
+    separation (cover part integer, fiber part from (s,d) only,
+    mixed part cover-sets x rest field).
+  (D2) At fixed (M, cover): R(d) = A + |d|^2/2 + Re(conj(d) W) with
+    A = (1+c) - |s|^2/2 + Re(conj(s) U), W = sum_{Xj} psi - sum_{Xi}
+    psi, U = sum_{Xj} psi + sum_{Xi} psi (zero-parameter: A, W from
+    the frozen ledger, checked against direct R, never fitted).
+  (D3) Support of R is N[i] u N[j] (closed neighborhoods): the psi
+    support is {i,j} + exclusive (BR-2.6/HBR), the graph support adds
+    common neighbors (c enters Delta E_G). Common-neighbor FIELD
+    values provably do not enter. Predicted class:
+    one-neighborhood-local (edge-local on isolated-edge cells).
+  (D4) R is R x U(1) invariant (B/cross products + counts), endpoint-
+    swap invariant (bitwise), sheet-covariant (J2 automorphism).
+  (D5) Exact-xi split inverts the books: R_split = -R_merge (state
+    functions); equal-halves policy inverts iff d = 0, with residual
+    E(X) - E(X_halves) off-halves. Disjoint merges add (step ledgers
+    independent); confluent full-collapse orders agree (state-function
+    totals). Excitation response splits exactly into linear +
+    quadratic parts via the polarization identity (R quadratic in
+    psi plus the graph constant).
+
+Battery (frozen, deterministic, 477 tasks):
+  events x301: full MERGE-0 battery (8 substrates x field tags x task
+    edges; P:* contracts BOTH members) + R + locality mutations +
+    U(1)/relabel/swap/sheet R-covariance on every single event.
+  fiber x76: every SPLIT-0 tiny cell (6 graphs x 4 fields x nodes):
+    exhaustive undirected covers x D_GRID (28 frozen d values:
+    D_SWEEP + real/imag axes + |d| = 1, 2 circles). Every row files
+    R, (A, W), separation, R_split, equal-policy residual,
+    predecessor check, INFO-0 (s,d) cross-check, swap-xi invariance.
+  fiberj2 x3: J2-L4 spot (zero/uniform/VMINUS): frozen cover subset
+    (first 25 per c' bucket, all c' 0..8 spanned, outcome-blind) x
+    D_GRID (<= 225 x 28 rows each).
+  texture x18: 9 frozen periodic hidden-texture maps (L4 uniform x2,
+    sine-x, sine-xy, linear w=1, wall, step; L8 sine-x, step) x 2
+    frozen edges (E = 0 backgrounds at varied gradients).
+  excresp x48: 4 kinds x 3 vacua x eps {1e-3, 1e-2, 0.1, 0.5}
+    (abs mode, a = 1) on j2-L4 support-overlap edges; R0/R+/R- +
+    exact L/Q split per row.
+  disjoint x16: 5 substrates x frozen node-disjoint pairs by
+    deterministic elist scan (disjoint closed neighborhoods, or
+    overlapping closed neighborhoods for the cross-term cells) x
+    frozen fields; joint vs sum, both orders, swap-aware finals.
+  order x10: path8-fwd/rev x {uniform, random777} + tri-o1/o2 x
+    {uniform, random777, zero} (confluent full-collapse pairs).
+  seq x5: MERGE-0 frozen sequences + per-step R books.
+
+Stages -> gates (scripts/reservoir0_analyze.py, 68 gates):
+  counts x8: exact file counts per kind (derived from frozen battery).
+  A x8 (RES-0A reproduction): det/rcov/ucov, dQ = 2B, dE formula,
+    P3 = P4 = 0, support = 2 + n_cross, >= 1 strict sign flip.
+  B x5 (RES-0B locality): support == N[i] u N[j] as sets; far-field,
+    far-edge, common-field mutations invariant (<= 1e-9, applicable
+    cells); emitted class consistent + one-neighborhood-local present.
+  C x5 (RES-0C covariance): R invariant under U(1)/relabel (<= 1e-12),
+    swap (== 0.0 bitwise), J2 sheet (<= 1e-12), undirected-xi swap
+    (<= 1e-12, every fiber row).
+  D x2 (RES-0D sign census): every R finite + classified; all 7
+    state-class tables present (descriptive; no sign interpreted).
+  E x4 (RES-0E d dependence): R(d) formula on every fiber row
+    (<= 1e-9); d leg varies somewhere (> 1e-6); W == 0 rows depend
+    on |d|^2 only; d = 0 rows match A.
+  F x3 (RES-0F cover dependence): separation on every row (<= 1e-9);
+    cover leg varies somewhere; same-c covers vary somewhere.
+  G x3 (RES-0G sufficiency): every row contracts back to M with exact
+    counts; >= 1 cell with nontrivial fiber R range; INFO-0 (s,d)
+    cross-check agrees everywhere (available).
+  H x3 (RES-0H minimality): drop-d witness (d = 0 vs 1, same cover);
+    drop-cover witness (same d, different cover); ledger-blind
+    witness (same B, different xi, different R).
+  I x3 (RES-0I additivity): disjoint joint == sum + finals commute
+    (<= 1e-9); step independence both orders; cross terms + support
+    overlap filed on every overlapping pair (descriptive).
+  J x3 (RES-0J composition): seq totals telescope (<= 1e-9); all 5
+    confluent order pairs agree with identical finals (<= 1e-9);
+    no retired-label stops.
+  K x3 (RES-0K roundtrip): R_split == -R_merge everywhere (<= 1e-12);
+    equal-policy residual 0 on all halves rows; nonzero somewhere
+    off-halves. (Ledger inversion only; no energy-return claim.)
+  L x2 (RES-0L halves): R nonzero on >= 1 halves row (control for
+    whether the deficit tracks information loss); halves table filed.
+  M x3 (RES-0M detcore): isolated-node cells present; R == 1 - |s|^2/2
+    on detcore-halves rows (<= 1e-9); nonzero deficit somewhere
+    with trivial residual info (distinctness remark).
+  N x4 (RES-0N hidden): pair R contrast; pair R contrast at matched
+    total field energy (<= 1e-9); sign-flip R view; texture records
+    complete with E = 0 and exact Q formula.
+  O x3 (RES-0O vacuum): VPLUS/VPI/VMINUS + texture reps present; R
+    tables filed (descriptive); nofire (symbol scans clean on all 3
+    apparatus files + no firing-decision keys in any record).
+  P x3 (RES-0P excitation): L/Q split exact everywhere (<= 1e-9);
+    visible response somewhere; small-eps ratios filed (regimes
+    descriptive, never fitted).
+  Q x1 (RES-0Q requirements): 9-row constraint table emitted, choice
+    none, nothing simulated, every earned row cites green gates.
+  R x2 (RES-0R control): symbol scans clean (module + both scripts);
+    verdict function takes (gates, r_allzero) only + reproduces.
+
+Bars (frozen): FP 1e-12 (exact arithmetic), ledger 1e-9 (BR-2.6/CONS-0
+precedent), physical 1e-6 (HBR precedent), U(1) 1e-12 (SYM-0
+precedent). Analyzer reuses reservoir0/merge0 bars, never literals.
+
+Pre-data predictions: A/B/C exact everywhere (theorems re-verified);
+D1/D2/D5 identities exact on every row (E-formula, F-sep, K-invert,
+P-decomp, J-total); both xi legs nontrivial (zero-background cells
+give d-leg 1/2 and cover-leg integer steps by arithmetic); I/J/K
+exact (state functions); M detcore R = 1 - |s|^2/2 with R = 1 at
+s = 0 (energy debt distinct from information debt as quantities);
+N contrast at fixed energy (HBR predicts on-support visibility);
+P visible (MERGE-0 G modulations up to 0.28); O descriptive; Q
+derives (transformation, locality, additivity, update, 5 storage
+options). PREDICTED VERDICT: RES0-XI. PARTIAL/SEPARATE/CLOSED are
+live genuine-surprise rungs: the legs are measured, not assumed
+(MERGE-0 H-signflip precedent); CLOSED contradicts banked E-all.
+
+VERDICT LADDER (frozen): RES0-INCOMPLETE if any apparatus/locality/
+covariance/firewall gate red (count/A/B/C/J-nostop/O-nofire/R) or
+correspondence formulas red (E-formula/F-sep/G-forward/K-invert).
+RES0-CLOSED if R vanishes identically (<= 1e-9 everywhere).
+Else, with formulas green: both legs (E-dvar+H-dropd, F-cvar+H-dropc)
+nontrivial -> RES0-XI; exactly one -> RES0-PARTIAL (blind leg filed);
+neither -> RES0-SEPARATE. Ladder implemented in
+reservoir0.verdict_from_gates (pure books-in/rung-out, pinned on all
+5 rungs with synthetic gate dicts).
+
+## RESERVOIR0-VERDICT (filed post-data; 477 records + analyzer on beast)
+
+Branch cursor/reservoir-0-536e (base main tail f362e6d). 477/477 specs
+CAMPAIGN-DONE on beast (16.54.88.181, xargs -P 60, OMP threads 1,
+nice, ~1 min); records data/reservoir0/event_*.json (301) +
+fiber_*.json (76) + fiberj2_*.json (3) + tex_*.json (18) + exc_*.json
+(48) + dis_*.json (16) + ord_*.json (10) + seq_*.json (5) +
+verdict.json banked (17 MB). Analyzer scripts/reservoir0_analyze.py
+per PREREG with NO post-data change. Full suite on beast (venv,
+-n 32, PYTHONPATH=src, pyproject addopts skips
+tests/test_weighted.py): 2057 passed, 2 skipped, 0 failed, 68 s.
+Local analyzer re-run reproduces the beast verdict bitwise.
+
+Headline: RES0-XI, 68/68 gates green. The missing merge account
+R_merge = -(Delta E_psi + Delta E_G) is an exact nontrivial
+zero-parameter function of the lost inverse information xi =
+(cover, d): the R(d) = A + |d|^2/2 + Re(conj(d) W) formula holds to
+<= 1e-9 on all 26,992 fiber rows, both xi legs carry R variation
+(900 d-groups, 644 cover groups, 2,352 same-c groups), gauge
+invariance is exact (swap bitwise, U(1)/relabel/sheet <= 1e-12),
+and ablation witnesses exist both ways (d = 0 vs 1 step 1/2,
+cover steps of 1 on zero cells, same-B/different-R pairs). What a
+reservoir degree of freedom would have to store is therefore
+determined: (cover, d)-equivalent information, with the required
+transformation law, locality, additivity, and update rule all
+earned below. No reservoir was invented; nothing was fitted.
+
+Reproduction (A): MERGE-0 re-verified exactly on 325 flattened
+events (det/rcov/ucov, dQ = 2B, dE = P1+P2, P3 = P4 = 0, support =
+2 + n_cross) including the same 2/24 strict executed sign flips.
+
+Locality (B): R support equals N[i] u N[j] as sets on every event;
+265 far-field + 261 far-edge + 28 common-neighbor-field mutations
+all leave R invariant (<= 1e-9); class one-neighborhood-local on
+events (edge-local on isolated-edge fiber cells, pinned). Common-
+neighbor graph surgery responds with dc = -1 (filed): the psi
+support excludes common neighbors while the graph support needs
+them (c enters Delta E_G) -- the exact anatomy predicted pre-data.
+
+Covariance (C): R invariant under U(1) x relabel (<= 1e-12, 277
+events), endpoint swap (== 0.0 bitwise), J2 sheet exchange
+(<= 1e-12, 213 events), and undirected-xi swap (<= 1e-12, all
+26,992 fiber rows). R descends to the physical quotient.
+
+Sign census (D, descriptive): 27,285 positive / 15 zero / 17
+negative over 27,317 R values. R = 0 (to 1 ulp) exactly on the
+H:delta support edges (Delta E_psi = +1 cancels Delta E_G = -1).
+R < 0 on 2 pair-B members (hidden-driven, j2-L28 on-support) and
+15 antibonding-cell fiber rows (Re(conj(d) W) overcoming A +
+|d|^2/2). No sign is interpreted as binding/release energy.
+
+Additivity (I): disjoint merges add exactly (max|add_err| =
+8.9e-16, finals commute swap-aware both orders). Cross-term
+support rule (observed on all 5 overlap cells + derived from the
+D3 support mechanism, not fitted): X = 0.0 bitwise at pair
+distance >= 2 (er-24, overlap 6 via shared neighbors only),
+nonzero (0.063 handbuilt, 0.239 path/ring, 0.939 j2-L4) iff the
+pairs are directly adjacent -- the merged node lands in the
+second edge's R-support neighborhood exactly under adjacency.
+
+Sequential (J): all seq/order totals telescope (<= 4.5e-16); all 5
+confluent full-collapse pairs agree with identical single-node
+finals (path8 fwd/rev 5.25 uniform / 6.663071 random777; triangle
+1.0 / 2.866511 / 3.0; tri-zero total = 3 = edge count, the
+state-function check). No retired-label stops.
+
+Roundtrip (K): exact-xi split inverts the books (R_split =
+-R_merge <= 1e-12, all rows); equal-halves policy inverts iff
+d = 0, with residual E(X) - E(X_halves) off-halves. Ledger
+inversion only; no energy-return claim is made.
+
+Halves/detcore (L/M): R never vanishes on the halves subset (964
+rows, min 0.167, max 9.0, median 2.875, 100% nonzero) although no
+field information is lost there; detcore R = 1 - |s|^2/2 with
+R = 1 at s = 0 (112 rows). Energy debt and information debt are
+demonstrably distinct quantities: the deficit carries a
+merge-intrinsic core piece F_M(xi_trivial) != 0 alongside the
+xi-tracking part (remark under XI, not against it).
+
+Hidden (N): matched-pair R contrast up to |dR| = 1.86 (j2-L4
+sign, on-support) with 8 pairs contrasted at bitwise-matched
+total field energy (dE = 0.00e+00); HBR sign flips retained in
+the R view (2 flips). Transport-hidden information changes R at
+fixed transported sector and fixed total energy. Textures all at
+E = 0 (<= 1e-9) with exact Q formula; R varies across maps at
+fixed E = 0 (uniform alpha0 sweep, wall, L8 legs).
+
+Vacuum (O, descriptive): VPLUS R 1.02--1.81, VPI 1.02--1.94,
+VMINUS 0.81--1.00 (6 events each); texture representatives filed.
+No vacuum event fired (symbol scans clean on all 3 apparatus
+files; no firing-decision keys in any of the 477 records).
+
+Excitation (P): deltaR = L + Q exact on all 48 rows (<= 1e-9);
+point_amp largest (max |dR| = 1.41), point_phase smallest
+(0.061, MERGE-0 ordering reproduced); small-eps rows are
+linear-dominated (L/Q ratio ~1e-13 at eps = 1e-3). Regimes
+descriptive, never fitted.
+
+Texture E_0 remark (derived post-data from E_0 + the frozen
+texture form, verified on banked records, not a gated claim):
+for E_0 states on c = 0 edges the sum rule gives Sig_cross =
+-(psi_i^2 + psi_j^2), so R depends only on the endpoint values.
+Hence linear/step maps are bitwise R-blind on the tested L4
+edges (endpoints at alpha = 0 cells, opposite parity) while the
+wall shifts B by -2 alpha^2/N (predicted -5.1e-4, measured
+-5.2e-4) with Sig_cross invariant to 8e-17. (L4 sine-x/sine-xy
+maps are lattice-trivial, lam = 2: filed, not used as gradient
+legs; L8 sine-x is the genuine gradient leg.)
+
+Requirements (Q): 9-row constraint table filed (choice none,
+nothing simulated): R x U(1)-invariant values, sheet-covariant,
+endpoint-symmetric; one-neighborhood update inputs; disjoint-
+additive; per-event shift by (1+c) - 2B + 2 sum_cross from the
+pre-image; scalar accumulator viable only with transient xi
+access; nonnegative store excluded iff R < 0 observed (it is:
+17 records); vector-only and discrete-only stores each
+insufficient alone; (cover, d) compound sufficient. Every earned
+row cites green gates.
+
+Firewall (R): module + campaign + analyzer symbol scans clean
+(no kinetics/augmentation/ontology tokens in code); verdict
+function takes (gates, r_allzero) only and reproduces. No
+strong-force, binding, mass, heat, radiation, internal-energy, or
+sub-particle reading was made. Any augmented-state simulation
+remains forbidden future work.
+
+Handoff: the merge update's missing account is now exactly
+characterized as F_M(xi) with earned locality/covariance/
+composition. A future campaign may use the Q-table as the frozen
+specification for what an added local store must satisfy -- this
+campaign chooses none and simulates none.

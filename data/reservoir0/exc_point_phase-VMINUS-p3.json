@@ -1,0 +1,1 @@
+{"sub": "j2-L4", "kind": "point_phase", "vac": "VMINUS", "eps": 0.5, "edge": [12, 20], "R0": 0.8125, "Rp": 0.8278021797637034, "Rm": 0.7971978202362966, "deltaR": 0.015302179763703405, "L": 0.015302179763703405, "Q": 0.0, "decomp_err": 0.0, "ratio": 0.0, "meta": {"kind": "excresp", "rev": "63fcec32ce6c5dc8cc3b4d95333a73f9e8ab919b", "wall_s": 0.01704692840576172}}
